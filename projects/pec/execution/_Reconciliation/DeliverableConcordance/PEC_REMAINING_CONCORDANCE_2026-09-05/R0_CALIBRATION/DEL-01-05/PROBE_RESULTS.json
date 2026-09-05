@@ -1,0 +1,77 @@
+{
+  "checker_sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+  "probes": [
+    {
+      "actual": {
+        "assertions": {
+          "dependency": "PASS",
+          "locality": "PASS",
+          "registration": "PASS"
+        },
+        "evaluated": {
+          "config_sha256": "1d018661816617f8565cab018d77ac3faf5bd7943ba4481743f24dd340d7fe3e",
+          "core_tree_sha256": "1713b5c354c3664c2f6d3609e0fdaf2aefcd9c9203ff9f247646e0fda3ab31bb",
+          "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+        },
+        "findings": [],
+        "release_force": "PEC_RELEASE_BLOCKING",
+        "schema_version": 1,
+        "verdict": "PASS"
+      },
+      "expected_contract_verdict": "BLOCK",
+      "name": "external_udp",
+      "source": "import socket\ns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\ns.sendto(b\"probe\", (\"198.51.100.10\", 443))\n",
+      "source_sha256": "75257d5cfcdd23d0ae7876478652af2257d79af5f08e1da4a9f1f7bb1ea760f3"
+    },
+    {
+      "actual": {
+        "assertions": {
+          "dependency": "PASS",
+          "locality": "PASS",
+          "registration": "PASS"
+        },
+        "evaluated": {
+          "config_sha256": "1d018661816617f8565cab018d77ac3faf5bd7943ba4481743f24dd340d7fe3e",
+          "core_tree_sha256": "ec1f6fd296a7a3f49e879ee1b38773853fe36af7a0d4f0d490e88277132310e7",
+          "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+        },
+        "findings": [],
+        "release_force": "PEC_RELEASE_BLOCKING",
+        "schema_version": 1,
+        "verdict": "PASS"
+      },
+      "expected_contract_verdict": "BLOCK",
+      "name": "dynamic_import_alias",
+      "source": "from importlib import import_module as load\nload(\"requests\")\n",
+      "source_sha256": "b9bf8faa1bc575f9e5ffe3fb680a7bccc03c57681612fc94931f5666304eeeb2"
+    }
+  ],
+  "unreadable_surface_fault": {
+    "assertions": {
+      "dependency": "BLOCK",
+      "locality": "BLOCK",
+      "registration": "UNEVALUATED"
+    },
+    "evaluated": {
+      "config_sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+      "core_tree_sha256": "UNAVAILABLE",
+      "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+    },
+    "findings": [
+      {
+        "assertion": "dependency",
+        "code": "EVALUATION_FAILURE",
+        "message": "scratch injected unreadable service-core entry"
+      },
+      {
+        "assertion": "locality",
+        "code": "EVALUATION_FAILURE",
+        "message": "scratch injected unreadable service-core entry"
+      }
+    ],
+    "release_force": "PEC_RELEASE_BLOCKING",
+    "schema_version": 1,
+    "verdict": "BLOCK"
+  },
+  "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+}

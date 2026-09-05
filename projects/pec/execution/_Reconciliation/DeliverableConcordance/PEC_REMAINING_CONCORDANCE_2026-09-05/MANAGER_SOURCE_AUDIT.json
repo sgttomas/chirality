@@ -1,0 +1,260 @@
+{
+  "status": "PASS",
+  "read_manifest_checks": [
+    {
+      "deliverable": "DEL-00-02",
+      "current_read_hashes": 66,
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-00-03",
+      "current_read_hashes": 41,
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-01-05",
+      "current_read_hashes": 63,
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-01-06",
+      "current_read_hashes": 58,
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-02-07",
+      "current_read_hashes": 75,
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-08-02",
+      "current_read_hashes": 36,
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "exact_sample_target_preflights": [
+    {
+      "deliverable": "DEL-00-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-00-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-00-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-00-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-01-05",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-01-05",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-01-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-01-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-02-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-02-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-08-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "deliverable": "DEL-08-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit": 0,
+      "output": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      }
+    }
+  ],
+  "containment": {
+    "tracked_changes": [],
+    "untracked_outside_run": [],
+    "ignored_pec_paths": []
+  },
+  "note": "Manager repeats exact project-relative file target preflight; DEL00-02 worker log used a repository-relative directory target, harmless with empty register but not reusable preflight convention."
+}

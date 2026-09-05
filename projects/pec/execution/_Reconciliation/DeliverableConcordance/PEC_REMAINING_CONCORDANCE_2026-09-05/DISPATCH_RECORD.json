@@ -1,0 +1,67 @@
+{
+  "recorded_utc": "2026-09-05T20:55:57.417599+00:00",
+  "parent": "/root/pec_remaining_reconciliation",
+  "workers": [
+    {
+      "deliverable": "DEL-00-02",
+      "actual_task_id": "/root/pec_remaining_reconciliation/r0_del0002",
+      "execution_class": "delegated-harness-native",
+      "role_evidence": "instruction-asserted",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-02/BRIEF.md",
+      "brief_sha256": "0b792cdf4c443da42655c2989640a06290b4f2749d1def1051ee7fbf9084c47b",
+      "launch_status": "spawn_agent returned canonical task ID",
+      "model_identity": "not exposed"
+    },
+    {
+      "deliverable": "DEL-00-03",
+      "actual_task_id": "/root/pec_remaining_reconciliation/r0_del0003",
+      "execution_class": "delegated-harness-native",
+      "role_evidence": "instruction-asserted",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/BRIEF.md",
+      "brief_sha256": "8526eeef4cfbd99241e9bc810b413f16d241393b6e61750360504d5dc73b339b",
+      "launch_status": "spawn_agent returned canonical task ID",
+      "model_identity": "not exposed"
+    },
+    {
+      "deliverable": "DEL-01-05",
+      "actual_task_id": "/root/pec_remaining_reconciliation/r0_del0105",
+      "execution_class": "delegated-harness-native",
+      "role_evidence": "instruction-asserted",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/BRIEF.md",
+      "brief_sha256": "f97012a736c52aa9c601115bff3780b127630bf459280e908b4460345e72f0d7",
+      "launch_status": "spawn_agent returned canonical task ID",
+      "model_identity": "not exposed"
+    },
+    {
+      "deliverable": "DEL-01-06",
+      "actual_task_id": "/root/pec_remaining_reconciliation/r0_del0106",
+      "execution_class": "delegated-harness-native",
+      "role_evidence": "instruction-asserted",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/BRIEF.md",
+      "brief_sha256": "8d63da0155cd9117cef5f5387c799b92f818cc2756305dd6ac2cb4f17e7e7585",
+      "launch_status": "spawn_agent returned canonical task ID",
+      "model_identity": "not exposed"
+    },
+    {
+      "deliverable": "DEL-02-07",
+      "actual_task_id": "/root/pec_remaining_reconciliation/r0_del0207",
+      "execution_class": "delegated-harness-native",
+      "role_evidence": "instruction-asserted",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-02-07/BRIEF.md",
+      "brief_sha256": "38c41025f649ec71f4e242e59f04c81c512845cb1763ec3513a64761417f6937",
+      "launch_status": "spawn_agent returned canonical task ID",
+      "model_identity": "not exposed"
+    },
+    {
+      "deliverable": "DEL-08-02",
+      "actual_task_id": "/root/pec_remaining_reconciliation/r0_del0802",
+      "execution_class": "delegated-harness-native",
+      "role_evidence": "instruction-asserted",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/BRIEF.md",
+      "brief_sha256": "3d78c6792f18c1645ada47310e3d15192f2805461a9caf594e7b0fc77a4b1237",
+      "launch_status": "spawn_agent returned canonical task ID",
+      "model_identity": "not exposed"
+    }
+  ],
+  "verifier": "not yet dispatched; depends on complete worker fan-in"
+}

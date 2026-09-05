@@ -1,0 +1,13 @@
+# V-001 bounded correction return
+
+Closure: CORRECTION_COMPLETE_PENDING_INDEPENDENT_BACKCHECK. R0 remains derivative and owner-unaccepted. Execution: fresh ephemeral Agent 2, delegated-harness-native, instruction-asserted; no delegation.
+
+Accepted upstream: decomposition revision 1.4 and exact accepted DEL-01-06 SOW SHA256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`; source base `faf22452528b5ba895e88ba0ad3770855100de08`. RUN_BASIS and the original worker and verifier packages remain the provenance basis.
+
+Full corrected derivative: 38 claims and three residuals. Assessment remains ASSESSED_UNKNOWN. Dispositions: 33 ALIGNED, two PARTIALLY_IMPLEMENTED, one UNKNOWN, one ACCEPTED_DIVERGENCE, one DEFERRED_AGENT_WORKFLOW. Only DEL-01-06::VER-001 and DEL-01-06-REM-001 change; CHANGE_MAP.json records exact per-field pre/post values and hashes. All other 37 claim and two residual rows are field-equal. Schemas, row order, LF, reciprocal residual linkage and linked proposal text equality pass.
+
+VER-001 is ALIGNED only for its finite checked-in default/registered malformed-fixture method. Existing verifier REGISTRY_TESTS.log records all 12 tests passing, including located rejection checks. This correction runs no tests or new probes. Broader lexical normalization remains the conditional REQ-001/AC-001 finding and REM-001 regression proposal pending owner interpretation. No resolved-containment defect or artifact acceptance follows. Original REQ/AC notes retaining historic AC/VER-mapping language are unchanged under the exact two-row fence; this explicit correction governs VER-001 in this derivative.
+
+Both exact project-relative ScopeOfWork.md and _STATUS.md correction-preparation preflights return ALLOW; argv and output are in READ_MANIFEST.json. Source/original/sealed-brief hashes reproduced before and after authoring. Five new files only under REVISION_V001; original worker/verifier evidence and BRIEF untouched. No production, SOW/status/lifecycle/source/dependency/TM or Git mutation. Shared-tree containment remains manager-owned.
+
+Next owner: independent verifier backchecks the exact two-row correction, then RECONCILIATION performs fan-in and presents calibration choices. Owner normalization interpretation, convention acceptance, scale-out and exact Remaining application remain separate pending gates. All proposals remain NON_SELECTABLE_PENDING_OWNER_APPLICATION; Gate5 HOLD at INITIALIZED and resolved RF-001/RF-002 persist. Rerun affected correction/backcheck on source, authority, hold or cited evidence drift. No product or full calibration closure claimed.

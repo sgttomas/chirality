@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "kind": "structural_only_not_semantic_acceptance",
+  "summary": [
+    {
+      "deliverable": "DEL-00-02",
+      "claims": 11,
+      "residuals": 4,
+      "dispositions": {
+        "DEFERRED_AGENT_WORKFLOW": 2,
+        "UNKNOWN": 9
+      }
+    },
+    {
+      "deliverable": "DEL-00-03",
+      "claims": 33,
+      "residuals": 1,
+      "dispositions": {
+        "ALIGNED": 32,
+        "DEFERRED_AGENT_WORKFLOW": 1
+      }
+    },
+    {
+      "deliverable": "DEL-01-05",
+      "claims": 61,
+      "residuals": 5,
+      "dispositions": {
+        "ALIGNED": 46,
+        "LIFECYCLE_REASSESSMENT_REQUIRED": 1,
+        "PARTIALLY_IMPLEMENTED": 7,
+        "UNKNOWN": 7
+      }
+    },
+    {
+      "deliverable": "DEL-01-06",
+      "claims": 38,
+      "residuals": 3,
+      "dispositions": {
+        "ACCEPTED_DIVERGENCE": 1,
+        "ALIGNED": 32,
+        "DEFERRED_AGENT_WORKFLOW": 1,
+        "PARTIALLY_IMPLEMENTED": 3,
+        "UNKNOWN": 1
+      }
+    },
+    {
+      "deliverable": "DEL-02-07",
+      "claims": 51,
+      "residuals": 7,
+      "dispositions": {
+        "ALIGNED": 20,
+        "DEFERRED_AGENT_WORKFLOW": 3,
+        "DOCUMENTED_UNIMPLEMENTED": 24,
+        "UNKNOWN": 4
+      }
+    },
+    {
+      "deliverable": "DEL-08-02",
+      "claims": 28,
+      "residuals": 1,
+      "dispositions": {
+        "ACCEPTED_DIVERGENCE": 2,
+        "ALIGNED": 25,
+        "DEFERRED_AGENT_WORKFLOW": 1
+      }
+    }
+  ],
+  "errors": []
+}

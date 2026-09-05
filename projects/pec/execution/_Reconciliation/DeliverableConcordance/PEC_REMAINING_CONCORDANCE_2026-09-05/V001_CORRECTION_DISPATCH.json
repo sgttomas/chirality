@@ -1,0 +1,10 @@
+{
+  "actual_task_id": "/root/pec_remaining_reconciliation/r0_v001_correction",
+  "class": "delegated-harness-native",
+  "role_evidence": "instruction-asserted",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/BRIEF.md",
+  "sha256": "ce2a548fb364cf2f833d1b44e4ddbddc07af7de27bc95b03a421a31e2229266d",
+  "finding": "V-001",
+  "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001",
+  "originals": "immutable; fresh derivative only"
+}
