@@ -25,7 +25,13 @@
 
 ## Deliverable Scope
 
-Keep App `/api/harness/*` and Desktop surfaces as daemon clients, bind project/persona/mode/options requests, and verify daemon-owned session lifecycle and one-active-turn behavior.
+Keep App `/api/harness/*` and Desktop surfaces as daemon clients, bind
+project/persona/mode/delegation-policy/options requests, and verify daemon-owned
+session lifecycle and one-active-turn behavior.
+
+Applied decomposition row L318 (SCA-APP-010 Gate 5, 2026-09-04) notes: App
+backend-integration slice; generic TurnEngine and lock ownership remain
+Root-owned; the stored delegation-policy field is Root-owned (SOW-083, OI-008).
 
 ## Anticipated Artifacts
 

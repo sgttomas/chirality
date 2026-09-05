@@ -25,6 +25,27 @@ the exact owner-approved layout/context-state constraints. Existing
 runtime-option, permission, project-truth, lifecycle, and human-authority
 constraints remain unchanged.
 
+## SCA-APP-010 Gate-5 Authority
+
+| RefID | Path | Current use |
+|---|---|---|
+| REF-010 | `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Brief.md` | Owner-confirmed Gate-1 envelope A001 to A029 and frozen pre-image identities (G1-CONFIRM) |
+| REF-011 | `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Gate3/GATE3_AMENDMENT_PACKAGE.md` | Owner-approved exact amendment bytes (G3-CONFIRM), including this deliverable's applied row |
+| REF-012 | `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Propagation_Plan.md` | Owner-approved propagation plan (G4-CONFIRM); this deliverable's alignment writes WI-011, WI-012, WI-013, WI-014, WI-015 and dependency writes DEP-005, DEP-006 |
+| REF-013 | `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Handoff_State.md` | Gate-5 handoff state; derivative closure open pending downstream alignment and audits |
+
+Applied identities: decomposition post-image SHA-256
+`c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` at content
+commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291` (PR #708 merge
+`7795b0972cac147869607d994173753e4a2fc232`); companion register post-image
+`63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`; active
+pointer `execution/_ScopeChange/_LATEST.md` SHA-256
+`b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0` (PR #711
+merge `311a2f0b811d55315d6eb623130cad0be1417565`). The authority-corpus rows
+above are unchanged (corpus v20 has no decomposition member). Seating and
+alignment are recorded under `D-APP-108` and run
+`execution/_Coordination/AgentRuns/APP_SCA_APP_010_SEATING_2026-09-04/`.
+
 ## Decomposition Entry
 
 - Decomposition: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`

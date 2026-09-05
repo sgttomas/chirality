@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-05-02
 package_id: PKG-05
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
-project_scope_refs: [SOW-014, SOW-015, SOW-039]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-014, SOW-015, SOW-039, SOW-082]
 package_objective_refs: [OBJ-003]
 ---
 
@@ -11,9 +11,50 @@ package_objective_refs: [OBJ-003]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-05-02` in service of project scope [SOW-014, SOW-015, SOW-039] and package objectives [OBJ-003].
+This Scope of Work defines `DEL-05-02` in service of project scope [SOW-014, SOW-015, SOW-039, SOW-082] and package objectives [OBJ-003].
 
 - **OUT-001** — A provider-neutral HarnessEvent schema and append-only JSONL persistence surface that records accepted turns, ordered runtime events, and durable terminal outcomes for the declared project scope and package objective.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-05-02 HarnessEvent Schema and Append-Only JSONL` (DATA_MODEL_CHANGE, applied decomposition row L337):
+
+Consume Root-owned daemon `HarnessEvent` records for App audit/replay surfaces
+and verify accepted-turn and terminal-event persistence without owning the
+generic event schema or writer; consume the additive `proposal.*` event types
+for replay and the proposal card once Root accepts them (SOW-082).
+
+Applied row notes: App event-consumption and conformance slice; generic
+persistence remains Root-owned.
+
+Applied row outputs: App runtime-event compatibility fixtures; accepted-turn and
+terminal persistence conformance tests; daemon evidence samples.
+
+### Current acceptance obligations
+
+1. Root-owned daemon `HarnessEvent` records are consumed for App audit and replay surfaces without owning the generic schema or writer.
+2. `proposal.offered`, `proposal.accepted`, `proposal.adjusted`, and `proposal.declined` are additive candidates against the closed schema v2 (K-EVENT-3) and are consumed only after Root DEL-02-10 acceptance is routed back (OI-008).
+3. Accepted-turn and terminal-event persistence conformance is verified with malformed-tail tolerance preserved.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-05-02-V3-02. Ruled
+questions applied here: Q13. Alignment writes WI-031, WI-032, WI-033, WI-034,
+WI-035 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
+DEP-013, DEP-014 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-07-03
 package_id: PKG-07
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
-project_scope_refs: [SOW-026]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-026, SOW-081]
 package_objective_refs: [OBJ-006]
 ---
 
@@ -11,9 +11,50 @@ package_objective_refs: [OBJ-006]
 
 ## Purpose and Objective Traceability
 
-This candidate defines `DEL-07-03` in service of project scope [SOW-026] and package objectives [OBJ-006].
+This candidate defines `DEL-07-03` in service of project scope [SOW-026, SOW-081] and package objectives [OBJ-006].
 
 - **OUT-001** — Metadata scanner and document-kit contract implementation with evidence for required, baseline, optional, and prohibited deliverable-local file handling.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-07-03 Deliverable Metadata and Document Kit Contracts` (BACKEND_FEATURE_SLICE, applied decomposition row L359):
+
+Scan and validate deliverable metadata files, canonical memory, semantic
+placeholders, and document kit buckets; define the governed workflow file
+contract (front matter, roadmap grammar with gate markers, app-maintained
+position, library/bind copy semantics) and the rule that the file steers and
+never records.
+
+Applied row notes: One deliverable-folder contract slice.
+
+Applied row outputs: Metadata scanners; document kit detection; `_MEMORY.md`
+rejection tests; workflow file contract and validator tests.
+
+### Current acceptance obligations
+
+1. Deliverable metadata, canonical memory, semantic placeholders, and document kit buckets are scanned and validated as before.
+2. The governed workflow file contract defines front matter (agent role, folder, permission, delegation policy, where briefs run, `roadmapSource` and hash), the roadmap grammar with human-gate markers, the app-maintained position with who-advanced attribution (Q16), and library/bind copy semantics (Q10).
+3. The file steers and never records: status, approvals, and evidence stay in deliverable records and the validator refuses them.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-07-03-V3-01. Ruled
+questions applied here: Q10, Q16. Alignment writes WI-046, WI-047, WI-048,
+WI-049, WI-050 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency
+writes DEP-019, DEP-020 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

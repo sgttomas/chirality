@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-07-01
 package_id: PKG-07
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
-project_scope_refs: [SOW-002, SOW-027, SOW-075]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-002, SOW-027, SOW-075, SOW-084]
 package_objective_refs: [OBJ-006, OBJ-008]
 ---
 
@@ -11,7 +11,7 @@ package_objective_refs: [OBJ-006, OBJ-008]
 
 ## Purpose and Objective Traceability
 
-This candidate defines `DEL-07-01` in service of project scope [SOW-002, SOW-027, SOW-075] and package objectives [OBJ-006, OBJ-008].
+This candidate defines `DEL-07-01` in service of project scope [SOW-002, SOW-027, SOW-075, SOW-084] and package objectives [OBJ-006, OBJ-008].
 
 - **OUT-001** — Root validation tests, path policy helpers, and instruction-root protection fixtures enforcing working-root validity, root separation, containment, fail-closed hooks, and initial symlink-write rejection.
 
@@ -19,6 +19,46 @@ This candidate defines `DEL-07-01` in service of project scope [SOW-002, SOW-027
 through the deterministic working-root and instruction-root enforcement
 surfaces. Human authority and project-control truth remain outside this
 deliverable.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-07-01 Working Root Validation and Instruction Root Protection` (SECURITY_CONTROL, applied decomposition row L357):
+
+Enforce working-root validity, root separation, path containment, and
+instruction-root write protection for both the bundled base and the
+client-owned, hash-pinned organisation layer.
+
+Applied row notes: Filesystem policy slice with security acceptance.
+
+Applied row outputs: Root validation tests; path policy helpers;
+instruction-root protection fixtures; organisation-layer pin and protection
+fixtures.
+
+### Current acceptance obligations
+
+1. Working-root validity, root separation, and path containment are enforced; instruction-root write protection covers both the bundled base and the client-owned organisation layer (K-ROOT-1).
+2. The organisation layer is hash-pinned, read-only during ordinary project execution, packaging-checked, separate from the working root, and never a working root or a proposal path.
+3. Security acceptance fixtures prove both layers' protection and the pin verification.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-07-01-V3-01. Ruled
+questions applied here: Q14. Alignment writes WI-041, WI-042, WI-043, WI-044,
+WI-045 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
+DEP-017, DEP-018 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

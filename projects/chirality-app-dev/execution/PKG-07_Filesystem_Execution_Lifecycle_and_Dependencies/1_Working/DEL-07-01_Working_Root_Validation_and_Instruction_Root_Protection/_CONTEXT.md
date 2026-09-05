@@ -25,7 +25,12 @@
 
 ## Deliverable Scope
 
-Enforce working-root validity, root separation, path containment, and instruction-root write protection.
+Enforce working-root validity, root separation, path containment, and
+instruction-root write protection for both the bundled base and the
+client-owned, hash-pinned organisation layer.
+
+Applied decomposition row L357 (SCA-APP-010 Gate 5, 2026-09-04) notes:
+Filesystem policy slice with security acceptance.
 
 ## Anticipated Artifacts
 

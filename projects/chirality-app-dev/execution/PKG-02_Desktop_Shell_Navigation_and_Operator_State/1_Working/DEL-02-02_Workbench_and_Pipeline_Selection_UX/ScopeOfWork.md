@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-02
 package_id: PKG-02
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
-project_scope_refs: [SOW-006, SOW-007]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-006, SOW-081, SOW-082]
 package_objective_refs: [OBJ-001, OBJ-007]
 ---
 
@@ -11,11 +11,11 @@ package_objective_refs: [OBJ-001, OBJ-007]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-02-02` in service of project scope [SOW-006, SOW-007] and package objectives [OBJ-001, OBJ-007].
+This Scope of Work defines `DEL-02-02` in service of project scope [SOW-006, SOW-081, SOW-082] and package objectives [OBJ-001, OBJ-007].
 
-- **OUT-001** — Work/Agents Coordination, Workbench, and Pipeline presentation contract grounded in SOW-006, SOW-007, OBJ-001, and OBJ-007.
+- **OUT-001** — Right-panel coordination, workflows, and proposal presentation contract grounded in SOW-006, SOW-081, SOW-082, OBJ-001, and OBJ-007 (SCA-APP-010; the earlier Work/Agents Coordination, Workbench, and Pipeline contract remains dated history).
 
-## SCA-APP-004 Gate-5 Current Contract (Controlling)
+## SCA-APP-004 Gate-5 Current Contract (Controlling until SCA-APP-010)
 
 The owner-approved SCA-APP-004 amendment re-hosts Workbench and Pipeline around
 the central dialogue and adds the Work/Agents Coordination presentation.
@@ -65,6 +65,63 @@ infer parentage, or mutate runtime state.
    provides a persistent return to the mounted primary dialogue.
 6. Tests prove that the panel cannot author approval, assignments, lifecycle,
    inferred parentage, or plan/task truth.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX` (UX_UI_SLICE, applied decomposition row L308):
+
+Present, in the right panel, the "Who is working" view over recorded
+agent/session selections and Agent 0/1/2 role entry for Codex sessions with
+source, authority class, responsible reference, currency, and evidence; the
+Workflows view, roadmap, New workflow form, library, and bind actions over
+governed workflow files; and the transcript proposal card rendered from
+`proposal.*` events. Workbench and Pipeline are retired from the active shell
+(code, routes, and tests retained) and the Work projection is unmounted until an
+explicitly recorded plan/task source exists.
+
+Applied row notes: DEL-08-02 retains routing, DEL-08-03 retains dispatch,
+DEL-08-04 retains role/delegation semantics, DEL-08-05 retains child records,
+DEL-05-04 retains replay/projection semantics, DEL-07-03 owns the workflow file
+contract, and DEL-06-03 owns the `propose` tool; this deliverable only composes
+accepted presentation, applies human proposal decisions, and does not infer
+enforcement. Split trigger: if implementation review finds cross-domain churn
+between the coordination and workflow views, propose a split before widening the
+envelope.
+
+Applied row outputs: Who is working view; Workflows view, roadmap, and forms;
+proposal card; role-entry controls; exact `role not mechanically enforced` and
+`Opt-in Preview` posture labels; provenance labels; stale/empty-state, label,
+and query compatibility tests.
+
+### Current acceptance obligations
+
+1. The primary dialogue is invariant; Workbench and Pipeline are unmounted from the active shell with code, routes, and tests retained and the routes reachable by URL (Q3); the Work projection stays unmounted until an explicitly recorded plan/task source exists.
+2. Who is working renders only canonical recorded sessions and exact parentage with source, authority class, responsible reference, currency, and evidence; unknown stays unknown and provenance-labelled.
+3. The Workflows view lists, opens, follows, pauses, creates, and binds governed workflow files with provenance (`roadmapSource` and hash), reports currency (Q15), and advances position only at human gates recording who advanced it (Q16); creation refuses role, folder, or delegation policy unset; the file steers and never records.
+4. The proposal card promotes nothing silently; Accept, Adjust, and Not now are human acts applied by the app; one proposal per chat per trigger; live `proposal.*` consumption waits on DEL-05-02 after Root DEL-02-10 acceptance.
+5. Presentation only: DEL-08-02 owns routing and guarded selection, DEL-08-03 dispatch semantics (no active-shell consumer), DEL-08-04 role and delegation semantics, DEL-08-05 child records, DEL-05-04 replay and projection, DEL-06-03 the `propose` tool, DEL-07-03 the workflow file contract.
+6. If implementation review finds cross-domain churn between the coordination and workflow views, a split is proposed before the envelope widens (row split trigger).
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-02-02-V3-03,
+DEL-02-02-V3-04. Ruled questions applied here: Q3, Q10 to Q14, Q15, Q16.
+Alignment writes WI-006, WI-007, WI-008, WI-009, WI-010 performed in run
+`APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes DEP-003, DEP-004 await
+the registered dependency-extract pass after owner acceptance of this alignment.
+No lifecycle, Checking Approval SHA, dependency-acceptance, product, or release
+act is implied.
 
 ## Deliverable Definition — Ontology
 
@@ -445,4 +502,4 @@ infer parentage, or mutate runtime state.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-006 SOW-007 OBJ-001 OBJ-007 | SCA-APP-004 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Projection provenance, semantic-owner boundaries, contextual controls, compatibility, and empty/stale/conflict evidence |
+| OUT-001 | SOW-006 SOW-081 SOW-082 OBJ-001 OBJ-007 | SCA-APP-010 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Projection provenance, semantic-owner boundaries, contextual controls, compatibility, and empty/stale/conflict evidence |

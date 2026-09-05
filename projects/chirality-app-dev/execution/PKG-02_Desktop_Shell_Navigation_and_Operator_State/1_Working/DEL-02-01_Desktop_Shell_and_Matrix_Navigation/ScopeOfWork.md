@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-01
 package_id: PKG-02
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
 project_scope_refs: [SOW-001, SOW-005]
 package_objective_refs: [OBJ-001]
 ---
@@ -15,7 +15,7 @@ This Scope of Work defines `DEL-02-01` in service of project scope [SOW-001, SOW
 
 - **OUT-001** — The current Woven Dialogue shell and compatibility-navigation contract for project scope SOW-001 and SOW-005 and package objective OBJ-001, with prior accepted implementation evidence retained as dated compatibility evidence.
 
-## SCA-APP-004 Gate-5 Current Contract (Controlling)
+## SCA-APP-004 Gate-5 Current Contract (Controlling until SCA-APP-010)
 
 The owner-approved SCA-APP-004 amendment prospectively changes this
 deliverable's target presentation while preserving its stable ID, lifecycle,
@@ -69,6 +69,54 @@ or automatic intent inference.
 7. Provide component/render, route/query compatibility, focus restoration,
    keyboard-region, accessible-landmark, reduced-motion, and bounded-projection
    evidence for the new shell.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-02-01 Woven Dialogue Shell and Compatibility Navigation` (UX_UI_SLICE, applied decomposition row L307):
+
+Compose the persistent primary human–agent transcript and composer with its
+context line (folder, agent, permissions, delegation, rung), the header-less
+three-panel frame, the left-panel chat navigator with local organisation,
+per-chat folder selection over the known-folder set, the account row host, and
+compatibility navigation without creating a second evidence store.
+
+Applied row notes: Shell integration owns presentation only; work, hierarchy,
+transcript, and artifact facts remain governed by their existing semantic
+owners; the direct shell items are seated as Remaining work by the owner, not by
+this row.
+
+Applied row outputs: Dialogue shell; composer context line; chat navigator;
+account row host; route/query and compatibility tests.
+
+### Current acceptance obligations
+
+1. The centre dialogue is never hidden, unmounted, or replaced; the frame has no header row.
+2. The composer context line shows folder, agent, permissions, delegation, and rung from recorded state; a chat may have no folder and says so.
+3. Folder selection is live only before a chat's first message and fixed thereafter; invalid or instruction-root-contained paths are refused by DEL-07-01's validation with the refusal visible (Q9: native picker, macOS recent documents, Reveal in Finder, folder drop).
+4. Chat organisation acts on local convenience state owned by DEL-02-04 only; deleting a chat hides it locally and never mutates the runtime session record (Q1); derived titles pass the redaction helper (Q6).
+5. Existing routes, queries, aliases, and the loop-first UI remain compatibility surfaces; the retired Workbench and Pipeline routes stay reachable by URL and unlisted (Q3).
+6. The pop-out panel window is not in scope (Q5); the account row is hosted here and its presentation is DEL-02-05's.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-02-01-V3-01,
+DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-01-V3-04. Ruled questions applied here:
+Q1, Q3, Q5, Q6, Q9. Alignment writes WI-001, WI-002, WI-003, WI-004, WI-005
+performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
+DEP-001, DEP-002 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 
@@ -446,4 +494,4 @@ or automatic intent inference.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-001 SOW-005 OBJ-001 | SCA-APP-004 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Woven Dialogue shell evidence, compatibility parity, provenance and primary-dialogue isolation checks |
+| OUT-001 | SOW-001 SOW-005 OBJ-001 | SCA-APP-010 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Woven Dialogue shell evidence, compatibility parity, provenance and primary-dialogue isolation checks |

@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-08-01
 package_id: PKG-08
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
-project_scope_refs: [SOW-030, SOW-031, SOW-073]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-030, SOW-031, SOW-073, SOW-082, SOW-084]
 package_objective_refs: [OBJ-007, OBJ-008]
 ---
 
@@ -11,9 +11,52 @@ package_objective_refs: [OBJ-007, OBJ-008]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-08-01` in service of project scope [SOW-030, SOW-031, SOW-073] and package objectives [OBJ-007, OBJ-008].
+This Scope of Work defines `DEL-08-01` in service of project scope [SOW-030, SOW-031, SOW-073, SOW-082, SOW-084] and package objectives [OBJ-007, OBJ-008].
 
 - **OUT-001** — Agent conformance validator, integrity fixtures, and source-completeness checklist that verify required instruction-root assets, agent metadata, write scopes, naming, and section markers.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-08-01 Instruction Root Packaging and Agent Conformance` (TEST_SUITE, applied decomposition row L368):
+
+Verify required instruction-root assets, agent metadata, write scopes, naming,
+section markers, the proposal clauses and named triggers in Agent 0 and Agent 1
+packages, skill-declared workflow templates, and organisation-layer packaging
+and pins.
+
+Applied row notes: Governance assets and checks; no runtime capability
+expansion; instruction-file changes under `agents/` or `skills/` ship the routed
+agent-index change notice.
+
+Applied row outputs: Agent conformance validator; integrity fixtures;
+source-completeness checklist; proposal-clause and template conformance checks;
+organisation-layer integrity checks.
+
+### Current acceptance obligations
+
+1. Required instruction-root assets, agent metadata, write scopes, naming, and section markers are verified as before.
+2. Agent 0 and Agent 1 packages carry proposal clauses with named triggers and once-per-chat; skill-declared workflow templates are discoverable; the organisation layer's packaging and pins are checked.
+3. No runtime capability expands; any instruction-file change under `agents/` or `skills/` ships the routed agent-index change notice and the G4 manifest.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-08-01-V3-01. Ruled
+questions applied here: Q14. Alignment writes WI-051, WI-052, WI-053, WI-054,
+WI-055 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
+DEP-021, DEP-022 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

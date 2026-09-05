@@ -17,9 +17,10 @@
 
 ## Package Scope
 
-**ScopeDescription:** Dialogue-centred shell, Woven Dialogue artifact
-presentation, Navigator, Work/Agents Coordination Panel, Activity Shelf,
-re-hosted Workbench/Pipeline/toolkit/settings, compatibility surfaces, and
+**ScopeDescription:** Dialogue-centred shell with an invariant centre dialogue,
+left chat navigator, one-view-at-a-time right panel (files, document, workflows,
+who is working, activity, session, settings), activity strip, composer context
+line, account row and settings presentation, compatibility surfaces, and
 non-authoritative local UI state.
 
 **InclusionCriteria:** Human-agent dialogue, artifact collaboration,
@@ -31,12 +32,17 @@ project-control-plane authority.
 
 ## Deliverable Scope
 
-Expose runtime options and preserve versioned workspace layout, primary
-dialogue drafts and attachments, explicit next-turn context references,
-artifact anchors, selected replay references, Work/Agents panel state, and
-local presets as non-authoritative convenience state with rollback-safe
-migration. Visible artifacts are not automatically model context; focus or
-replay selection does not transfer primary-session context or authority.
+Expose runtime options and preserve versioned layout (per-view right-panel
+widths, expand state), drafts, explicit next-turn context references, artifact
+anchors, selected replay references, panel state, chat annotations, known
+folders, chat rung and declined proposal triggers, and local presets as
+non-authoritative convenience state with rollback-safe migration; present the
+one-line activity strip in place of the resizable shelf.
+
+Applied decomposition row L310 (SCA-APP-010 Gate 5, 2026-09-04) notes:
+Convenience state stores references and presentation only; it never stores
+authoritative workflow, hierarchy, permission, or acceptance conclusions; the
+workflow file and the session record own rung-related truth.
 
 ## Anticipated Artifacts
 

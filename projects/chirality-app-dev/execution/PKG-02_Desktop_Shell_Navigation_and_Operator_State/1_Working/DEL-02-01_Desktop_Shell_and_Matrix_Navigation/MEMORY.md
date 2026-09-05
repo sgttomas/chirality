@@ -16,3 +16,4 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-105: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-02-01; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-09-04 - SCA-APP-010 seating and alignment (D-APP-108): Remaining items DEL-02-01-V3-01, DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-01-V3-04; read `_STATUS.md` with this file before any write; the applied decomposition row and the SCA-APP-010 Gate-5 Current Contract section in `ScopeOfWork.md` state the current responsibility; nothing here is authority. No lifecycle, Checking Approval SHA, dependency, product, or release change.

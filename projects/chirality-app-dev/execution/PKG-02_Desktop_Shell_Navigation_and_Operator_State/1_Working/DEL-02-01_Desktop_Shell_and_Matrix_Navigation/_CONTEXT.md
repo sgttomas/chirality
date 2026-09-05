@@ -17,9 +17,10 @@
 
 ## Package Scope
 
-**ScopeDescription:** Dialogue-centred shell, Woven Dialogue artifact
-presentation, Navigator, Work/Agents Coordination Panel, Activity Shelf,
-re-hosted Workbench/Pipeline/toolkit/settings, compatibility surfaces, and
+**ScopeDescription:** Dialogue-centred shell with an invariant centre dialogue,
+left chat navigator, one-view-at-a-time right panel (files, document, workflows,
+who is working, activity, session, settings), activity strip, composer context
+line, account row and settings presentation, compatibility surfaces, and
 non-authoritative local UI state.
 
 **InclusionCriteria:** Human-agent dialogue, artifact collaboration,
@@ -31,13 +32,16 @@ project-control-plane authority.
 
 ## Deliverable Scope
 
-Compose the persistent primary human-agent transcript and composer,
-provenance-bearing inline/focused artifact views, Navigator, Work/Agents
-Coordination Panel, Activity Shelf, and compatibility navigation without
-creating a second evidence store. The primary live dialogue remains mounted;
-recorded-session replay is read-only and observational. Existing routes,
-queries, loop-first surfaces, and matrix launch intents remain compatibility
-obligations until separately retired.
+Compose the persistent primary human–agent transcript and composer with its
+context line (folder, agent, permissions, delegation, rung), the header-less
+three-panel frame, the left-panel chat navigator with local organisation,
+per-chat folder selection over the known-folder set, the account row host, and
+compatibility navigation without creating a second evidence store.
+
+Applied decomposition row L307 (SCA-APP-010 Gate 5, 2026-09-04) notes: Shell
+integration owns presentation only; work, hierarchy, transcript, and artifact
+facts remain governed by their existing semantic owners; the direct shell items
+are seated as Remaining work by the owner, not by this row.
 
 ## Anticipated Artifacts
 

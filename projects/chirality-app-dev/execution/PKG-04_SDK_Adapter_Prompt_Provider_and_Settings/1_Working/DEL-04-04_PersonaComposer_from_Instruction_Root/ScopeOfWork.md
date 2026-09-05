@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-04-04
 package_id: PKG-04
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
-project_scope_refs: [SOW-017, SOW-030]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-017, SOW-030, SOW-081, SOW-084]
 package_objective_refs: [OBJ-004, OBJ-007]
 ---
 
@@ -11,9 +11,52 @@ package_objective_refs: [OBJ-004, OBJ-007]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-04-04` in service of project scope [SOW-017, SOW-030] and package objectives [OBJ-004, OBJ-007].
+This Scope of Work defines `DEL-04-04` in service of project scope [SOW-017, SOW-030, SOW-081, SOW-084] and package objectives [OBJ-004, OBJ-007].
 
 - **OUT-001** — PersonaComposer from instruction-root governance, active persona, working-root policy, mode, and tool-surface composition for DEL-04-04, producing `persona-composer.ts`, persona content hash tests, and boot fingerprint updates for SOW-017, SOW-030 and supporting OBJ-004, OBJ-007.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-04-04 PersonaComposer from Instruction Root` (BACKEND_FEATURE_SLICE, applied decomposition row L329):
+
+Replace stub prompt behavior with instruction-root governance composed from the
+bundled base and the client-owned organisation layer, active persona,
+working-root policy, mode, tool-surface composition, and a clearly delimited
+roadmap-injection block for a followed governed workflow.
+
+Applied row notes: Prompt composition slice with bounded artifacts; injected
+roadmap content is steering context from a K-PATH-2-contained file, never
+authority.
+
+Applied row outputs: `persona-composer.ts`; persona content hash tests;
+layered-root composition tests; roadmap-block delimiting tests; boot fingerprint
+updates.
+
+### Current acceptance obligations
+
+1. The prompt is composed from the bundled base plus the client-owned, hash-pinned organisation layer; the layer's pin is verified before use (Q14).
+2. A followed governed workflow's roadmap is injected only inside a clearly delimited block that names its source path and hash, read from a K-PATH-2-contained file; the block is steering context and never records.
+3. Persona content hash and boot fingerprint tests cover the layer pin and the roadmap hash.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-04-04-V3-01. Ruled
+questions applied here: Q14. Alignment writes WI-026, WI-027, WI-028, WI-029,
+WI-030 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
+DEP-011, DEP-012 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

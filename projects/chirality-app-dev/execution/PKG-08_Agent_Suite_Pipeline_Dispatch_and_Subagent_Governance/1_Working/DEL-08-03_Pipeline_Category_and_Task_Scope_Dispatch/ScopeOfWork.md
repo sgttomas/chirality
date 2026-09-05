@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-08-03
 package_id: PKG-08
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
 project_scope_refs: [SOW-007, SOW-026]
 package_objective_refs: [OBJ-001, OBJ-007]
 ---
@@ -14,6 +14,49 @@ package_objective_refs: [OBJ-001, OBJ-007]
 This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW-026] and package objectives [OBJ-001, OBJ-007].
 
 - **OUT-001** — Presentation-neutral DECOMP/PREP/TASK/AUDIT dispatch semantics, category/task-scope interpretation, dynamic scope, and disabled-option rules with selector, contextual-consumer, knowledge-type discovery, and regression evidence.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-08-03 Pipeline Category and Task Scope Dispatch` (UX_UI_SLICE, applied decomposition row L370):
+
+Own presentation-neutral DECOMP/PREP/TASK/AUDIT lane semantics,
+category/task-scope interpretation, dynamic scope, and disabled-option rules for
+contextual Run consumers.
+
+Applied row notes: Semantic dispatch owner; the contextual Pipeline presentation
+is retired from the active shell by SCA-APP-010 (code retained), so no active
+presentation consumer exists; any later consumer may not infer plans/tasks from
+conversational prose.
+
+Applied row outputs: Dispatch contract tests; Pipeline selector tests;
+knowledge-type discovery; dynamic-scope and disabled-option handling.
+
+### Current acceptance obligations
+
+1. DECOMP/PREP/TASK/AUDIT lane semantics, category and task-scope interpretation, dynamic scope, and disabled-option rules remain presentation-neutral and owned here.
+2. The contextual Pipeline presentation is retired from the active shell by SCA-APP-010 (code retained); no active presentation consumer exists.
+3. Any later consumer may not infer plans or tasks from conversational prose.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): none (record-only). Ruled
+questions applied here: SOW-007 presentation retirement (G2-CONFIRM). Alignment
+writes WI-056, WI-057, WI-058, WI-059, WI-060 performed in run
+`APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes DEP-023, DEP-024 await
+the registered dependency-extract pass after owner acceptance of this alignment.
+No lifecycle, Checking Approval SHA, dependency-acceptance, product, or release
+act is implied.
 
 ## Deliverable Definition — Ontology
 

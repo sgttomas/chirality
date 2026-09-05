@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-05
 package_id: PKG-02
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
 project_scope_refs: [SOW-013, SOW-019, SOW-023]
 package_objective_refs: [OBJ-001, OBJ-008]
 ---
@@ -21,6 +21,67 @@ through the selected-working-root attachment UI, including multi-select
 preview, remove/clear controls, and retry-preserving draft and attachment
 failure state. DEL-09-06 retains attachment, network, key, and renderer
 security validation.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-02-05 API Key UI and Runtime Feedback` (UX_UI_SLICE, applied decomposition row L311):
+
+Provide API key entry/status UI, secure-storage feedback, selected-working-root
+attachment controls, typed runtime errors, and retry-preserving failure states;
+serve as the explicit App account/consent UX carrier by consuming
+`HostedEngineConsentPort`, presenting one app-wide account and explaining
+per-folder consent over the root-private app-owned `CODEX_HOME`, presenting
+login/logout/account and consent/revocation state, distinguishing `missing`,
+`storageUnavailable`, `decryptFailed`, and `available`, and offering the three
+per-root command-network postures: no command network by default, ask per
+destination with host/protocol context and the queued-request caveat plus
+explicit-user-only `acceptForSession`, or labelled command network on through
+`network_access = true`. Agent 0/1/2 role entry remains available for Codex
+sessions; Agent 2/TASK is labelled `role not mechanically enforced` when G-ROLE
+fails, and the product posture is labelled `Opt-in Preview`.
+
+Applied row notes: Explicit App account/consent UX carrier; Root retains
+account/consent semantics. No ambient `~/.codex` read or project-truth secret
+persistence. DEL-09-06 retains server-side attachment, network, key,
+credential-IPC, and renderer security validation. Live claims remain gated by
+the accepted Root/App account/consent contract, G3, G-CSP, and G4. Presenting
+the account as app-wide (SCA-APP-010 SR-19) does not change the port's per-root
+login semantics; the root-private login home is Root-owned and the shared-login
+amendment routes through Root DEL-02-09 (OI-008).
+
+Applied row outputs: API key and account settings panel; account row and
+popover; Settings view account and folder groups; `HostedEngineConsentPort` UI
+adapter; per-root login and command-network consent controls; attachment picker
+and preview chips; typed storage/runtime error display; consent/revocation and
+retry-state tests.
+
+### Current acceptance obligations
+
+1. One app-wide account is presented; consent, network posture, and role are explained and controlled per folder over the root-private app-owned `CODEX_HOME`; `K-CONSENT-1` and the port's per-root login semantics are unchanged.
+2. The account row shows only the local model server status; no OpenAI status indicator and no API status indicator is rendered, now or after DEL-02-05-V3-03 (Q7).
+3. The Settings view hosts the split app-wide and per-folder account groups plus the runtime, key, and appearance panels with port behaviour unchanged; the fake port carries the UI until the accepted Root/App contract (DEL-02-05-V3-03).
+4. The root-private login home and any shared-login contract remain Root DEL-02-09's; the amendment is routed by the SCA-APP-010 Root notice (Q8) and live claims stay gated on the accepted contract, G3, G-CSP, and G4.
+5. Agent 0/1/2 role entry remains available for Codex sessions with the exact `role not mechanically enforced` and `Opt-in Preview` posture labels.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-02-05-V3-05. Ruled
+questions applied here: Q7, Q8. Alignment writes WI-016, WI-017, WI-018, WI-019,
+WI-020 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
+DEP-007, DEP-008 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

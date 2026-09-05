@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-04
 package_id: PKG-02
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
 project_scope_refs: [SOW-004, SOW-008, SOW-016]
 package_objective_refs: [OBJ-001, OBJ-004]
 ---
@@ -15,7 +15,7 @@ This Scope of Work defines `DEL-02-04` in service of project scope [SOW-004, SOW
 
 - **OUT-001** — Dialogue toolkit, explicit-context, and versioned local-workspace-state contract for DEL-02-04, traceable to SOW-004, SOW-008, SOW-016, OBJ-001, and OBJ-004.
 
-## SCA-APP-004 Gate-5 Current Contract (Controlling)
+## SCA-APP-004 Gate-5 Current Contract (Controlling until SCA-APP-010)
 
 The owner-approved SCA-APP-004 amendment expands this deliverable's
 non-authoritative convenience-state responsibilities for the Woven Dialogue
@@ -64,6 +64,53 @@ their existing owners.
    reduced-motion handling.
 6. Verify malformed-state discard, storage-failure recovery, per-dialogue
    draft/context isolation, replay/primary isolation, and rollback behavior.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-02-04 Dialogue Toolkit, Context, and Local UI State` (UX_UI_SLICE, applied decomposition row L310):
+
+Expose runtime options and preserve versioned layout (per-view right-panel
+widths, expand state), drafts, explicit next-turn context references, artifact
+anchors, selected replay references, panel state, chat annotations, known
+folders, chat rung and declined proposal triggers, and local presets as
+non-authoritative convenience state with rollback-safe migration; present the
+one-line activity strip in place of the resizable shelf.
+
+Applied row notes: Convenience state stores references and presentation only; it
+never stores authoritative workflow, hierarchy, permission, or acceptance
+conclusions; the workflow file and the session record own rung-related truth.
+
+Applied row outputs: Toolkit controls; workspace-state schema (additive v1
+fields); resize/expand/anchor behavior; activity strip; context-reference,
+draft/preset, annotation, and migration guards.
+
+### Current acceptance obligations
+
+1. Workspace-state changes are additive v1 fields under the existing schema string with rollback-safe migration that preserves prior state.
+2. Per-view right-panel widths, expand state, drafts, explicit next-turn context references, artifact anchors, selected replay references, panel state, chat annotations, known folders, chat rung, declined proposal triggers, and local presets are non-authoritative convenience state.
+3. Convenience state never transfers session authority, never stands in for the governed workflow file, and visible artifacts are not automatically model context.
+4. The one-line activity strip replaces the resizable shelf; the Activity view is a right-panel view.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-02-04-V3-01. Ruled
+questions applied here: none (Q3 and Q14 are applied by sibling carriers).
+Alignment writes WI-011, WI-012, WI-013, WI-014, WI-015 performed in run
+`APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes DEP-005, DEP-006 await
+the registered dependency-extract pass after owner acceptance of this alignment.
+No lifecycle, Checking Approval SHA, dependency-acceptance, product, or release
+act is implied.
 
 ## Deliverable Definition — Ontology
 
@@ -465,4 +512,4 @@ their existing owners.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-004 SOW-008 SOW-016 OBJ-001 OBJ-004 | SCA-APP-004 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Workspace-state migration, primary/replay isolation, explicit-context, focus/keyboard, rollback, and storage-guard evidence |
+| OUT-001 | SOW-004 SOW-008 SOW-016 OBJ-001 OBJ-004 | SCA-APP-010 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Workspace-state migration, primary/replay isolation, explicit-context, focus/keyboard, rollback, and storage-guard evidence |

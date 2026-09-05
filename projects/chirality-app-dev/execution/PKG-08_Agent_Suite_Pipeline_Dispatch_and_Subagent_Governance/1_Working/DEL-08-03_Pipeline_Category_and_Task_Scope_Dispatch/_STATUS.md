@@ -1,7 +1,7 @@
 # Status: DEL-08-03
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-24
+**Last Updated:** 2026-09-04
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -31,3 +31,4 @@
   clauses are satisfied on the woven surfaces while dispatch validation
   evidence is unchanged. State remains IN_PROGRESS; accepted historical
   evidence and Checking Approval SHA are preserved.
+- 2026-09-04 - SCA-APP-010 Gate-5 applied and seated (D-APP-108): the contextual Pipeline presentation is retired from the active shell by owner ruling (G2-CONFIRM; SOW-007 presentation half); DEL-08-03 remains the presentation-neutral DECOMP/PREP/TASK/AUDIT dispatch semantic owner with code, routes, and tests retained; no active-shell consumer exists and any later consumer may not infer plans/tasks from conversational prose. No work item seated; no lifecycle, Checking Approval SHA, or dependency change.

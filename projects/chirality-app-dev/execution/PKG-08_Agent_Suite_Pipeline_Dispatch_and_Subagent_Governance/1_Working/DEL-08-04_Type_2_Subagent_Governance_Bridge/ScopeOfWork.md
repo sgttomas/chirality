@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-08-04
 package_id: PKG-08
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
-project_scope_refs: [SOW-063]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-063, SOW-083]
 package_objective_refs: [OBJ-005, OBJ-007]
 ---
 
@@ -11,10 +11,63 @@ package_objective_refs: [OBJ-005, OBJ-007]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and package objectives [OBJ-005, OBJ-007].
+This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063, SOW-083] and package objectives [OBJ-005, OBJ-007].
 
 - **OUT-001** — The managed-delegation admission bridge for DEL-08-04, including `delegate_agent`, fail-closed governance evaluation, parent-relative hierarchy checks, restricted child tools/cwd, and the DEL-08-05 handoff interface.
 - **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-08-04` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 357 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): App project-authority and managed-delegation bridge; daemon-client dispatch; class-aware `subagent-governance` behavior; managed sibling-overlap checks; role/native-origin fixtures; sealed-brief, containment, approval, cancellation, and cleanup conformance tests. Traceable to SOW-063 and OBJ-005, OBJ-007.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-08-04 Type 2 Subagent Governance Bridge` (BACKEND_FEATURE_SLICE, applied decomposition row L371):
+
+Remain the Chirality-managed delegation bridge and prospectively carry
+multi-child managed execution plus the root `AGENTS.md` Agent 0/1/2 graph for v3
+work, while consuming delegated-harness-native descent as a distinct
+Root-originated class. Enforce managed hierarchy, named allowlist or declared
+generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries,
+active-sibling write-overlap fail-close, cancellation/cleanup, and class-aware
+routing; native descent assigns no Agent 0/1/2 role. Agent 0/1/2 role entry is
+offered for Codex sessions, with Agent 2/TASK labelled `role not mechanically
+enforced` and governed evidence marked `instruction-asserted` when G-ROLE cannot
+mechanically prove non-delegation. Honour the per-chat delegation policy carried
+with the session (`none` by default) as a narrowing input to managed delegation.
+
+Applied row notes: Project authority/client-dispatch slice; daemon owns
+operational managed delegation and Root owns delegated-harness-native semantics.
+The D-APP-74 exclusion remains historical and tranche-scoped to SCA-APP-004;
+this v3 carrier prospectively supersedes it without retroactive edit. D-GOV-35
+is necessary but App carrier acceptance and WP-03/05 fixtures remain required.
+
+Applied row outputs: App project-authority and managed-delegation bridge;
+daemon-client dispatch; class-aware `subagent-governance` behavior; managed
+sibling-overlap checks; role/native-origin fixtures; sealed-brief, containment,
+approval, cancellation, and cleanup conformance tests.
+
+### Current acceptance obligations
+
+1. The Chirality-managed delegation bridge enforces managed hierarchy, named allowlist or declared generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries, active-sibling write-overlap fail-close, cancellation and cleanup, and class-aware routing; native descent assigns no Agent 0/1/2 role.
+2. The per-chat delegation policy carried with the session (`none` by default) is honoured as a narrowing input to managed delegation and adds no delegation class.
+3. Role entry for Codex sessions carries the exact `role not mechanically enforced` label and `instruction-asserted` evidence marking where G-ROLE cannot prove non-delegation; WP-03/05 fixtures and D-GOV-35 remain required for the class-aware paths.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-08-04-V3-02. Ruled
+questions applied here: none beyond SR-24. Alignment writes WI-061, WI-062,
+WI-063, WI-064, WI-065 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`;
+dependency writes DEP-025, DEP-026 await the registered dependency-extract pass
+after owner acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

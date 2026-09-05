@@ -1,4 +1,4 @@
-# Context: DEL-02-02 Work/Agents Coordination, Workbench, and Pipeline UX
+# Context: DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX
 
 ## Identity
 
@@ -10,16 +10,17 @@
 | PackageID | PKG-02 |
 | PackageName | Woven Dialogue Shell, Navigation, and Operator State |
 | DeliverableID | DEL-02-02 |
-| DeliverableName | Work/Agents Coordination, Workbench, and Pipeline UX |
+| DeliverableName | Right-Panel Coordination, Workflows, and Proposal UX |
 | ResponsibleParty | TBD |
 | Type | UX_UI_SLICE |
 | ContextEnvelope | M |
 
 ## Package Scope
 
-**ScopeDescription:** Dialogue-centred shell, Woven Dialogue artifact
-presentation, Navigator, Work/Agents Coordination Panel, Activity Shelf,
-re-hosted Workbench/Pipeline/toolkit/settings, compatibility surfaces, and
+**ScopeDescription:** Dialogue-centred shell with an invariant centre dialogue,
+left chat navigator, one-view-at-a-time right panel (files, document, workflows,
+who is working, activity, session, settings), activity strip, composer context
+line, account row and settings presentation, compatibility surfaces, and
 non-authoritative local UI state.
 
 **InclusionCriteria:** Human-agent dialogue, artifact collaboration,
@@ -31,13 +32,23 @@ project-control-plane authority.
 
 ## Deliverable Scope
 
-Re-host Workbench and Pipeline around the central dialogue and present
-explicitly recorded plans/tasks and agent/session selections with source,
-authority class, responsible reference, status basis, currency, and evidence.
-Preserve disabled states, stale/empty/conflict disclosure, and deep-link
-intent. DEL-08-02 retains routing and guarded selection, DEL-08-03 retains
-dispatch, DEL-08-05 retains child records, and DEL-05-04 retains
-replay/projection semantics.
+Present, in the right panel, the "Who is working" view over recorded
+agent/session selections and Agent 0/1/2 role entry for Codex sessions with
+source, authority class, responsible reference, currency, and evidence; the
+Workflows view, roadmap, New workflow form, library, and bind actions over
+governed workflow files; and the transcript proposal card rendered from
+`proposal.*` events. Workbench and Pipeline are retired from the active shell
+(code, routes, and tests retained) and the Work projection is unmounted until an
+explicitly recorded plan/task source exists.
+
+Applied decomposition row L308 (SCA-APP-010 Gate 5, 2026-09-04) notes: DEL-08-02
+retains routing, DEL-08-03 retains dispatch, DEL-08-04 retains role/delegation
+semantics, DEL-08-05 retains child records, DEL-05-04 retains replay/projection
+semantics, DEL-07-03 owns the workflow file contract, and DEL-06-03 owns the
+`propose` tool; this deliverable only composes accepted presentation, applies
+human proposal decisions, and does not infer enforcement. Split trigger: if
+implementation review finds cross-domain churn between the coordination and
+workflow views, propose a split before widening the envelope.
 
 ## Anticipated Artifacts
 
