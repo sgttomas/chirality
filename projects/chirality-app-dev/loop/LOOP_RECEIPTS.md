@@ -6856,3 +6856,47 @@
   - Checks: receipt validator pass; instruction-entrypoint validator and its pytest pass; authority corpus status no drift; repo-wide self-check exit 0; frontend gates skipped because no runtime source changed.
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched.
   - Gate-Outcome: `EXECUTED` — owner directed the documentation and the merge of PR #706 in-session; the merge is performed on that direction. No deliverable `Remaining` item selected; no product, lifecycle, release, Root, or SCOPE_CHANGE act.
+
+- **2026-09-04 — Receipt 228** (SCA-APP-009 Gate-5 application and exact pointer act).
+  - Receipt-ID: `Receipt-228`
+  - Examined-Through: `fb07aceed1e8a58678f20fe5c3171c71e210dafe`
+  - Parent-Receipt: `Receipt-227`
+  - Pointers: branch
+    `codex/sca-app-009-gate5-actual-r4-2026-09-04`; basis above;
+    `execution/_ScopeChange/SCA-APP-009_2026-09-04_0944_App_V3_Pathway_Seating/`;
+    exact decomposition postimage
+    `e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97`;
+    exact companion-register postimage
+    `e47fced6f0bea32b1d18f987a7e33af0432271c4ff49bb196cdad6fb91742b70`;
+    exact root live-baseline pin
+    `e747795d2abf1f3336b87c12efd37d7000d2d132bf2936a49e6eae2cd1a5d198`;
+    exact active-pointer postimage
+    `f235ced4526aac51c4e7f5307ac619f3500e824c3549960b106bb80b67a6e17c`;
+    normalized-candidate independent-review report SHA-256
+    `c69aa66fd0b34d4c3c365cbd3e603c5229de8986df2cef1afbde8d0a4b1051ae`.
+  - Stale-Map-Delta: `_ScopeChange/_LATEST.md` now points to SCA-APP-009;
+    SCA-APP-008 remains immutable dated history. SCA-APP-009 applies the
+    owner-approved S-7, S-1, S-4a, and S-2 decomposition amendments and the
+    exact five-file DEL-09-07 structural scaffold. It leaves S-6, the
+    nine-node SCC, derivative warnings, downstream metadata/dependency work,
+    Root-owned contracts, G5/G6a, and every named downstream gate open.
+  - Checks: basis/currentness, protected preimages, exact authority and
+    scaffold identities, APP-HOLD admission/expiry/integrity, snapshot
+    manifest, pointer parity, receipt validator, authority corpus, practitioner
+    harness, harness self-check, combined validation, G0–G4, exact
+    change-scope, candidate whitespace, historical immutability, and
+    `git diff --check` pass; product/runtime premerge skipped because the
+    registered path rules do not select it.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact identifier unavailable); execution class
+    `delegated-harness-native`; Agent-2 role is `role not mechanically
+    enforced` with `instruction-asserted` governed-workflow evidence;
+    non-delegation is instruction+config asserted, not mechanism-proven; no
+    descendant was launched.
+  - Gate-Outcome: `AWAITING_OWNER` — the exact pre-pointer application and
+    separately approved pointer write are executed and validated. PR #707 is
+    the landing vehicle; after this landing-order repair is pushed and CI
+    passes, owner merge remains the gate. No product,
+    frontend, runtime, ScopeOfWork, WORKING_ITEMS implementation, Root, host,
+    Syft, signing, notarization, Apple call, distribution, publication,
+    release-readiness, or reliance act or claim occurred.

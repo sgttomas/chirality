@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """LIVE-tree baseline tests (skippable when the live roots are absent or when
 CHIRALITY_SKIP_LIVE_TESTS=1). Pins the ruled drift baseline (piping 0/101,
-app-dev 0/53 — conscious pin update 2026-07-02: the original 92/101 class was
+app-dev 0/54 — conscious pin update 2026-07-02: the original 92/101 class was
 resolved by the owner's class-wide K-CONFLICT-1 ruling, header IN_PROGRESS
 authoritative, recorded at projects/chirality-piping/execution/_Reconciliation/
 LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md),
@@ -56,7 +56,7 @@ def live_self_check():
 
 
 @live
-def test_live_drift_baseline_0_of_102_and_0_of_53():
+def test_live_drift_baseline_0_of_102_and_0_of_54():
     # Conscious pin update 2026-07-02 (was 92/101): the STATUS_HISTORY_MISMATCH
     # class was resolved by the owner's class-wide K-CONFLICT-1 ruling ("all
     # shall be IN_PROGRESS"); one parser-verified reversal history line was
@@ -65,6 +65,8 @@ def test_live_drift_baseline_0_of_102_and_0_of_53():
     # Decision_Log.md. Pin updates here are conscious, never silent. SCA-009
     # added DEL-07-09 as the 102nd Piping status file on 2026-08-21; it has no
     # asserted lifecycle state, so matches remain 101 and mismatches remain 0.
+    # SCA-APP-009 adds DEL-09-07 as the 54th App status file on 2026-09-04;
+    # all 54 App statuses parse and match, so the combined total is 156.
     report = cmd_drift.run_drift(LIVE_REPO, [
         LIVE_REPO / "projects" / "chirality-app-dev",
         LIVE_REPO / "projects" / "chirality-piping",
@@ -74,9 +76,9 @@ def test_live_drift_baseline_0_of_102_and_0_of_53():
     assert "mismatches=0" in piping
     assert "unparseable_docs=0" in piping
     app_dev = _fact(report, "drift.chirality-app-dev").value
-    assert "files=53" in app_dev
+    assert "files=54" in app_dev
     assert "mismatches=0" in app_dev
-    assert report.summary["files_total"] == 155
+    assert report.summary["files_total"] == 156
     assert report.summary["mismatches_total"] == 0
 
 
