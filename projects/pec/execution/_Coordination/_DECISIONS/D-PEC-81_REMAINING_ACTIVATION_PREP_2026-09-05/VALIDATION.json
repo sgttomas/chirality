@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checks": {
+    "accepted_census": "64 IDs / 11 packages / 64 unique statuses / 0 Remaining headers",
+    "currency_objects": "5/5 exact accepted hashes match",
+    "hold_preflight": "64/64 ALLOW exact-correction-preparation; header-only live register",
+    "git_diff_check": 0,
+    "no_git_mutation": "authoring only; CHANGE owns closeout",
+    "containment": "Exact equality of tracked+untracked changed paths to 8-file allowlist; no ignored PEC paths",
+    "owner_gate_wording": "Owner acts require origin/main; predecessor commit/checks/run record observable on run branch under D-PEC-80 C, without transferring owner acceptance"
+  },
+  "changed_file_allowlist": [
+    "projects/pec/execution/_Coordination/AgentRuns/PEC_REMAINING_PREPARATION_2026-09-05/RETURN.md",
+    "projects/pec/execution/_Coordination/AgentRuns/PEC_REMAINING_PREPARATION_2026-09-05/SEALED_BRIEF.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/BASIS_AND_CHECKS.json",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/PROPOSED_RECEIPT.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/SCOPE_CENSUS.csv",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/VALIDATION.json"
+  ],
+  "artifact_hashes": {
+    "projects/pec/execution/_Coordination/AgentRuns/PEC_REMAINING_PREPARATION_2026-09-05/RETURN.md": "daf49861b66b310bcf7f30547b0c631e9b662754d801763a91b42cc69d983ead",
+    "projects/pec/execution/_Coordination/AgentRuns/PEC_REMAINING_PREPARATION_2026-09-05/SEALED_BRIEF.md": "54867b92b60af11ef790a6cc546d059096e4849bf0844739c07973052a0141bd",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/BASIS_AND_CHECKS.json": "1638c15847bb3795b3cde52c3154d6a96a4307975d14c634b5d18b3e00b6bf3a",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/PROPOSED_RECEIPT.md": "67780ac560f77357c9e32b9ce3814c4e5484bbe557ef311a1b7114b28fa54b91",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/SCOPE_CENSUS.csv": "58f99ed385e49ed44dd388e96384a7ea320d9776638d8fd9a456d2452b7fa3fe",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "c98bf19da64b6fbb51ef7d47bfacfe80f7e2a41a69abc02b361b3df0cd14c29a"
+  }
+}
