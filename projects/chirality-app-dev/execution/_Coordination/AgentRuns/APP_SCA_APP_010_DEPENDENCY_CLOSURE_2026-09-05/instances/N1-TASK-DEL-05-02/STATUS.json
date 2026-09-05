@@ -1,0 +1,55 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-05-02",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "27ede0704416b2c0ffafeefd77fcd31a27ba7dc7d110c36bb26a90f876bb6269",
+    "dependenciesIndexSha256": "f89e5f40240fac304aca71c49cfca965b38417693c4013e5717866152ff5b9af"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "7a6da98003c9fc93caf3c602c09e242abb6105e90a1e45cff25e67d4a18f5380",
+    "postimageDependenciesIndexSha256": "8823be430d59a5060bff63a17d1474ff48c09ddc77a2ee7006dec0c7a91539a0",
+    "previewSha256": "3977bd30af0af35bc3ce466c97aeb4b50c8c6f893f197412a012286752b47392",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0100.md",
+    "taskRunRecordSha256": "4983bdd0eee286c5cb2319b2149a60920ea9b10b4766e79a08350a1a001bb88a",
+    "returnSha256": "e9c184b1c0de529c0ccee4436969137b199f6fa437574e9c222407c77ac23929",
+    "supersededV1": {
+      "postimageDependenciesCsvSha256": "73509dc928d63e0651a1242c5bb51105447ac126d7b0fb32da78a557f5069955",
+      "postimageDependenciesIndexSha256": "e5243e7cf7ac3474aa3ad4db945e2e8ea3f260620fb5bf2d5651c7bd91068224",
+      "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0039.md"
+    }
+  },
+  "counts": {
+    "pre": { "total": 13, "active": 12, "retired": 1, "anchor": 5, "execution": 8 },
+    "post": { "total": 15, "active": 14, "retired": 1, "anchor": 6, "execution": 9 },
+    "changes": { "added": 2, "reEvidenced": 9, "reEvidencedSccInternalEvidenceOnly": 3, "refreshed": 0, "unchanged": 1, "retired": 0, "deleted": 0, "held": 1 }
+  },
+  "amendmentV11": {
+    "heldRowsRemoved": ["DEP-05-02-016"],
+    "heldProposalIds": ["H-016"],
+    "sectionBRowsRefreshed": ["DEP-05-02-009", "DEP-05-02-010", "DEP-05-02-012"],
+    "sectionBFieldsChanged": ["EvidenceFile", "SourceRef", "LastSeen"],
+    "sectionBFrozenFieldViolations": 0
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": []
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "ASSUMPTION: outbound notice NOTICE_2026-09-04_APP_SCA-APP-010_SHELL_REDESIGN_ROOT_DEPENDENCIES.md named by _STATUS.md not found at the basis commit"
+  ],
+  "carrierBytesChanged": false,
+  "humanRulingRequired": false
+}

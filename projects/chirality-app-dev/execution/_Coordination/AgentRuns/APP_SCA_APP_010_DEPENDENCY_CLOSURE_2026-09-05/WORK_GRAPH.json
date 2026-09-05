@@ -1,0 +1,632 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "supervisor": {
+    "role": "HELP_HUMAN",
+    "agent_type": 0,
+    "model": "claude-fable-5-1"
+  },
+  "basis": {
+    "branch": "claude/sca-app-010-dependency-closure",
+    "cut_from": "d66395d101143df68d956984f7ab93f5027418ec",
+    "decomposition_sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61"
+  },
+  "authorization": "SCA-APP-010 OWNER_ACTION_MATRIX.csv steps 19-20 and DOWNSTREAM_HANDOFFS.csv rows 3-6 on the owner's 2026-09-05 acceptance (see ORCHESTRATION_PLAN.md)",
+  "scc_001": [
+    "DEL-02-05",
+    "DEL-03-02",
+    "DEL-03-03",
+    "DEL-03-04",
+    "DEL-04-03",
+    "DEL-04-05",
+    "DEL-05-02",
+    "DEL-05-03",
+    "DEL-05-05"
+  ],
+  "nodes": [
+    {
+      "id": "N0",
+      "name": "re-derive-preflight-baseline-freeze",
+      "role": "HELP_HUMAN",
+      "depends_on": [],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/**"
+      ]
+    },
+    {
+      "id": "N1-TASK-DEL-02-01",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-01",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-001",
+        "DEP-002"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-01/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-02-02",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-02",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-003",
+        "DEP-004"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-02/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-02-04",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-04",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-005",
+        "DEP-006"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-04/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-02-05",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-05",
+      "scc_001_member": true,
+      "dep_write_ids": [
+        "DEP-007",
+        "DEP-008"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-03-02",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-03-02",
+      "scc_001_member": true,
+      "dep_write_ids": [
+        "DEP-009",
+        "DEP-010"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-03-02/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-04-04",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-04-04",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-011",
+        "DEP-012"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-04-04/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-05-02",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-05-02",
+      "scc_001_member": true,
+      "dep_write_ids": [
+        "DEP-013",
+        "DEP-014"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-05-02/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-06-03",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-06-03",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-015",
+        "DEP-016"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-06-03/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-07-01",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-07-01",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-017",
+        "DEP-018"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-07-01/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-07-03",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-07-03",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-019",
+        "DEP-020"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-07-03/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-08-01",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-08-01",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-021",
+        "DEP-022"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-08-01/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-08-03",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-08-03",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-023",
+        "DEP-024"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-08-03/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N1-TASK-DEL-08-04",
+      "name": "dependency-extract-preview",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-08-04",
+      "scc_001_member": false,
+      "dep_write_ids": [
+        "DEP-025",
+        "DEP-026"
+      ],
+      "depends_on": [
+        "N0"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-08-04/**"
+      ],
+      "apply_edits": false
+    },
+    {
+      "id": "N2-REVIEWER",
+      "name": "independent-preview-review",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "depends_on": [
+        "N1-TASK-DEL-02-01",
+        "N1-TASK-DEL-02-02",
+        "N1-TASK-DEL-02-04",
+        "N1-TASK-DEL-02-05",
+        "N1-TASK-DEL-03-02",
+        "N1-TASK-DEL-04-04",
+        "N1-TASK-DEL-05-02",
+        "N1-TASK-DEL-06-03",
+        "N1-TASK-DEL-07-01",
+        "N1-TASK-DEL-07-03",
+        "N1-TASK-DEL-08-01",
+        "N1-TASK-DEL-08-03",
+        "N1-TASK-DEL-08-04"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/REVIEW.md"
+      ]
+    },
+    {
+      "id": "N2-GATE",
+      "name": "scc-root-path-stop-condition",
+      "role": "HELP_HUMAN",
+      "depends_on": [
+        "N2-REVIEWER"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HANDOFF_STATE.md"
+      ],
+      "human_gate": true
+    },
+    {
+      "id": "N3-TASK-DEL-02-01",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-01",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-02-01>/Dependencies.csv",
+        "<carrier DEL-02-01>/_DEPENDENCIES.md",
+        "<carrier DEL-02-01>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-02-01/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-02-02",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-02",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-02-02>/Dependencies.csv",
+        "<carrier DEL-02-02>/_DEPENDENCIES.md",
+        "<carrier DEL-02-02>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-02-02/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-02-04",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-04",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-02-04>/Dependencies.csv",
+        "<carrier DEL-02-04>/_DEPENDENCIES.md",
+        "<carrier DEL-02-04>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-02-04/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-02-05",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-02-05",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-02-05>/Dependencies.csv",
+        "<carrier DEL-02-05>/_DEPENDENCIES.md",
+        "<carrier DEL-02-05>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-02-05/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-03-02",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-03-02",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-03-02>/Dependencies.csv",
+        "<carrier DEL-03-02>/_DEPENDENCIES.md",
+        "<carrier DEL-03-02>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-03-02/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-04-04",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-04-04",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-04-04>/Dependencies.csv",
+        "<carrier DEL-04-04>/_DEPENDENCIES.md",
+        "<carrier DEL-04-04>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-04-04/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-05-02",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-05-02",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-05-02>/Dependencies.csv",
+        "<carrier DEL-05-02>/_DEPENDENCIES.md",
+        "<carrier DEL-05-02>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-05-02/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-06-03",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-06-03",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-06-03>/Dependencies.csv",
+        "<carrier DEL-06-03>/_DEPENDENCIES.md",
+        "<carrier DEL-06-03>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-06-03/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-07-01",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-07-01",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-07-01>/Dependencies.csv",
+        "<carrier DEL-07-01>/_DEPENDENCIES.md",
+        "<carrier DEL-07-01>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-07-01/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-07-03",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-07-03",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-07-03>/Dependencies.csv",
+        "<carrier DEL-07-03>/_DEPENDENCIES.md",
+        "<carrier DEL-07-03>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-07-03/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-08-01",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-08-01",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-08-01>/Dependencies.csv",
+        "<carrier DEL-08-01>/_DEPENDENCIES.md",
+        "<carrier DEL-08-01>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-08-01/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-08-03",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-08-03",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-08-03>/Dependencies.csv",
+        "<carrier DEL-08-03>/_DEPENDENCIES.md",
+        "<carrier DEL-08-03>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-08-03/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N3-TASK-DEL-08-04",
+      "name": "dependency-extract-reviewed-write",
+      "role": "TASK",
+      "task_skill": "dependency-extract",
+      "carrier": "DEL-08-04",
+      "depends_on": [
+        "N2-GATE"
+      ],
+      "writes": [
+        "<carrier DEL-08-04>/Dependencies.csv",
+        "<carrier DEL-08-04>/_DEPENDENCIES.md",
+        "<carrier DEL-08-04>/_run_records/TASK_RUN_2026-09-05_*.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-08-04/**"
+      ],
+      "apply_edits": true
+    },
+    {
+      "id": "N4-AUDIT-DEP-CLOSURE",
+      "name": "SCA-APP-010-GATE5-POST-APPLICATION",
+      "role": "AUDIT_DEP_CLOSURE",
+      "depends_on": [
+        "N3-TASK-DEL-02-01",
+        "N3-TASK-DEL-02-02",
+        "N3-TASK-DEL-02-04",
+        "N3-TASK-DEL-02-05",
+        "N3-TASK-DEL-03-02",
+        "N3-TASK-DEL-04-04",
+        "N3-TASK-DEL-05-02",
+        "N3-TASK-DEL-06-03",
+        "N3-TASK-DEL-07-01",
+        "N3-TASK-DEL-07-03",
+        "N3-TASK-DEL-08-01",
+        "N3-TASK-DEL-08-03",
+        "N3-TASK-DEL-08-04"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_*/**",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N4-AUDIT-DEP-CLOSURE/**"
+      ],
+      "pointer_move": false
+    },
+    {
+      "id": "N5-RECONCILIATION",
+      "name": "no-drift-and-carrier-concordance",
+      "role": "EPHEMERAL_AGENT2_GENERALIST_FOR_RECONCILIATION",
+      "depends_on": [
+        "N3-TASK-DEL-02-01",
+        "N3-TASK-DEL-02-02",
+        "N3-TASK-DEL-02-04",
+        "N3-TASK-DEL-02-05",
+        "N3-TASK-DEL-03-02",
+        "N3-TASK-DEL-04-04",
+        "N3-TASK-DEL-05-02",
+        "N3-TASK-DEL-06-03",
+        "N3-TASK-DEL-07-01",
+        "N3-TASK-DEL-07-03",
+        "N3-TASK-DEL-08-01",
+        "N3-TASK-DEL-08-03",
+        "N3-TASK-DEL-08-04"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_*/**",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N5-RECONCILIATION/**"
+      ],
+      "pointer_move": false
+    },
+    {
+      "id": "N6-AUDIT-DECOMP",
+      "name": "fresh-full-audit-post-alignment",
+      "role": "AUDIT_DECOMP",
+      "depends_on": [
+        "N3-TASK-DEL-02-01",
+        "N3-TASK-DEL-02-02",
+        "N3-TASK-DEL-02-04",
+        "N3-TASK-DEL-02-05",
+        "N3-TASK-DEL-03-02",
+        "N3-TASK-DEL-04-04",
+        "N3-TASK-DEL-05-02",
+        "N3-TASK-DEL-06-03",
+        "N3-TASK-DEL-07-01",
+        "N3-TASK-DEL-07-03",
+        "N3-TASK-DEL-08-01",
+        "N3-TASK-DEL-08-03",
+        "N3-TASK-DEL-08-04"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_ALIGNMENT_2026-09-05_*/**",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N6-AUDIT-DECOMP/**"
+      ],
+      "pointer_move": false
+    },
+    {
+      "id": "N7",
+      "name": "fan-in-handoff-receipt-pr",
+      "role": "HELP_HUMAN",
+      "depends_on": [
+        "N4-AUDIT-DEP-CLOSURE",
+        "N5-RECONCILIATION",
+        "N6-AUDIT-DECOMP"
+      ],
+      "writes": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/**",
+        "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "priorAudit": "SCA-APP-008-GATE5-POST-APPLICATION_2026-08-24",
+  "metrics": {
+    "total_files": {
+      "sca_app_008": 51,
+      "live": 52
+    },
+    "total_rows": {
+      "sca_app_008": 564,
+      "live": 635
+    },
+    "anchor_rows": {
+      "sca_app_008": 247,
+      "live": 273
+    },
+    "execution_rows": {
+      "sca_app_008": 317,
+      "live": 362
+    },
+    "schema_valid": {
+      "sca_app_008": 51,
+      "live": 52
+    },
+    "schema_invalid": {
+      "sca_app_008": 0,
+      "live": 0
+    },
+    "implements_node_present": {
+      "sca_app_008": 51,
+      "live": 52
+    },
+    "implements_node_missing": {
+      "sca_app_008": 0,
+      "live": 0
+    },
+    "evidence_populated": {
+      "sca_app_008": 564,
+      "live": 635
+    },
+    "evidence_total": {
+      "sca_app_008": 564,
+      "live": 635
+    },
+    "graph_nodes": {
+      "sca_app_008": 46,
+      "live": 48
+    },
+    "graph_edges": {
+      "sca_app_008": 98,
+      "live": 109
+    },
+    "orphan_count": {
+      "sca_app_008": 5,
+      "live": 4
+    },
+    "scc_count": {
+      "sca_app_008": 1,
+      "live": 1
+    },
+    "scc_sizes": {
+      "sca_app_008": [
+        9
+      ],
+      "live": [
+        9
+      ]
+    },
+    "hub_count": {
+      "sca_app_008": 0,
+      "live": 0
+    },
+    "bidirectional_pair_count": {
+      "sca_app_008": 1,
+      "live": 1
+    },
+    "normalization_count": {
+      "sca_app_008": 0,
+      "live": 0
+    }
+  },
+  "coreChecks": {
+    "activeExecutionRows": {
+      "sca_app_008": 296,
+      "live": 341
+    },
+    "activeDeliverableEndpointRows": {
+      "sca_app_008": 112,
+      "live": 129
+    },
+    "resolvedDeliverableEndpointRows": {
+      "sca_app_008": 112,
+      "live": 129
+    },
+    "unresolvedDeliverableEndpointRows": {
+      "sca_app_008": 0,
+      "live": 0
+    },
+    "misplacedTargetDeliverableIdRows": {
+      "sca_app_008": 0,
+      "live": 0
+    },
+    "invalidDirectionRows": {
+      "sca_app_008": 0,
+      "live": 0
+    },
+    "distinctDirectedEdges": {
+      "sca_app_008": 98,
+      "live": 109
+    },
+    "graphNodes": {
+      "sca_app_008": 46,
+      "live": 48
+    },
+    "isolatedDeliverables": {
+      "sca_app_008": 5,
+      "live": 4
+    },
+    "directedSccs": {
+      "sca_app_008": 1,
+      "live": 1
+    },
+    "enumeratedRepresentativeCycles": {
+      "sca_app_008": 10,
+      "live": 10
+    },
+    "evidenceRowsPopulated": {
+      "sca_app_008": 564,
+      "live": 635
+    },
+    "evidenceRowsTotal": {
+      "sca_app_008": 564,
+      "live": 635
+    }
+  },
+  "sccMembershipIdentical": true,
+  "sccMembership": {
+    "sca_app_008": [
+      [
+        "DEL-02-05",
+        "DEL-03-02",
+        "DEL-03-03",
+        "DEL-03-04",
+        "DEL-04-03",
+        "DEL-04-05",
+        "DEL-05-02",
+        "DEL-05-03",
+        "DEL-05-05"
+      ]
+    ],
+    "live": [
+      [
+        "DEL-02-05",
+        "DEL-03-02",
+        "DEL-03-03",
+        "DEL-03-04",
+        "DEL-04-03",
+        "DEL-04-05",
+        "DEL-05-02",
+        "DEL-05-03",
+        "DEL-05-05"
+      ]
+    ]
+  },
+  "isolates": {
+    "sca_app_008": [
+      "DEL-01-01",
+      "DEL-01-03",
+      "DEL-02-04",
+      "DEL-10-04",
+      "DEL-10-05"
+    ],
+    "live": [
+      "DEL-01-01",
+      "DEL-09-07",
+      "DEL-10-04",
+      "DEL-10-05"
+    ],
+    "resolvedSince": [
+      "DEL-01-03",
+      "DEL-02-04"
+    ],
+    "newSince": [
+      "DEL-09-07"
+    ]
+  },
+  "cycleCount": {
+    "sca_app_008": 10,
+    "live": 10
+  },
+  "cycleSetIdentical": true,
+  "registersAddedSince": [
+    "DEL-09-07"
+  ]
+}

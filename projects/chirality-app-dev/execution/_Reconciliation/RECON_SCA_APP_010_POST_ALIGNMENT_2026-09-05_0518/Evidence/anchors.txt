@@ -1,0 +1,118 @@
+# Dependencies.csv ANCHOR rows against the applied rows (python csv module; scratchpad helper anchors.py sha256 bf5455b34878231f...)
+=== DEL-02-01 L307 'Woven Dialogue Shell and Compatibility Navigation' type=UX_UI_SLICE env=M
+  dec SOW ['SOW-001', 'SOW-005'] dec OBJ ['OBJ-001']
+  IMPLEMENTS_NODE [('DEP-02-01-001', 'PKG-02', 'Woven Dialogue Shell, Navigation, and Operator State', 'ACTIVE')]
+  active SOW ['SOW-001', 'SOW-005'] retired SOW []
+  active OBJ ['OBJ-001'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 13 {'ACTIVE': 13} FromDeliverableName values {'Woven Dialogue Shell and Compatibility Navigation'}
+=== DEL-02-02 L308 'Right-Panel Coordination, Workflows, and Proposal UX' type=UX_UI_SLICE env=M
+  dec SOW ['SOW-006', 'SOW-081', 'SOW-082'] dec OBJ ['OBJ-001', 'OBJ-007']
+  IMPLEMENTS_NODE [('DEP-02-02-001', 'PKG-02', 'Woven Dialogue Shell, Navigation, and Operator State', 'ACTIVE')]
+  active SOW ['SOW-006', 'SOW-081', 'SOW-082'] retired SOW ['SOW-007']
+  active OBJ ['OBJ-001', 'OBJ-007'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 16 {'ACTIVE': 15, 'RETIRED': 1} FromDeliverableName values {'Right-Panel Coordination, Workflows, and Proposal UX'}
+=== DEL-02-04 L310 'Dialogue Toolkit, Context, and Local UI State' type=UX_UI_SLICE env=S
+  dec SOW ['SOW-004', 'SOW-008', 'SOW-016'] dec OBJ ['OBJ-001', 'OBJ-004']
+  IMPLEMENTS_NODE [('DEP-02-04-001', 'PKG-02', 'Woven Dialogue Shell, Navigation, and Operator State', 'ACTIVE')]
+  active SOW ['SOW-004', 'SOW-008', 'SOW-016'] retired SOW []
+  active OBJ ['OBJ-001', 'OBJ-004'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 16 {'ACTIVE': 16} FromDeliverableName values {'Dialogue Toolkit, Context, and Local UI State'}
+=== DEL-02-05 L311 'API Key UI and Runtime Feedback' type=UX_UI_SLICE env=S
+  dec SOW ['SOW-013', 'SOW-019', 'SOW-023'] dec OBJ ['OBJ-001', 'OBJ-008']
+  IMPLEMENTS_NODE [('DEP-02-05-001', 'PKG-02', 'Woven Dialogue Shell, Navigation, and Operator State', 'ACTIVE')]
+  active SOW ['SOW-013', 'SOW-019', 'SOW-023'] retired SOW []
+  active OBJ ['OBJ-001', 'OBJ-008'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 13 {'ACTIVE': 13} FromDeliverableName values {'API Key UI and Runtime Feedback'}
+=== DEL-03-02 L318 'Thin TurnEngine and Session Locking' type=BACKEND_FEATURE_SLICE env=M
+  dec SOW ['SOW-009', 'SOW-010', 'SOW-011', 'SOW-038', 'SOW-083'] dec OBJ ['OBJ-002']
+  IMPLEMENTS_NODE [('DEP-03-02-001', 'PKG-03', 'Runtime Engine Contract and Turn Lifecycle', 'ACTIVE')]
+  active SOW ['SOW-009', 'SOW-010', 'SOW-011', 'SOW-038', 'SOW-083'] retired SOW []
+  active OBJ ['OBJ-002'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 14 {'ACTIVE': 14} FromDeliverableName values {'Thin TurnEngine and Session Locking'}
+=== DEL-04-04 L329 'PersonaComposer from Instruction Root' type=BACKEND_FEATURE_SLICE env=M
+  dec SOW ['SOW-017', 'SOW-030', 'SOW-081', 'SOW-084'] dec OBJ ['OBJ-004', 'OBJ-007']
+  IMPLEMENTS_NODE [('DEP-04-04-001', 'PKG-04', 'SDK Adapter, Prompt, Provider, and Settings', 'ACTIVE')]
+  active SOW ['SOW-017', 'SOW-030', 'SOW-081', 'SOW-084'] retired SOW []
+  active OBJ ['OBJ-004', 'OBJ-007'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 14 {'ACTIVE': 13, 'RETIRED': 1} FromDeliverableName values {'PersonaComposer from Instruction Root'}
+=== DEL-05-02 L337 'HarnessEvent Schema and Append-Only JSONL' type=DATA_MODEL_CHANGE env=M
+  dec SOW ['SOW-014', 'SOW-015', 'SOW-039', 'SOW-082'] dec OBJ ['OBJ-003']
+  IMPLEMENTS_NODE [('DEP-05-02-001', 'PKG-05', 'Session Audit Replay and Tool Result Records', 'ACTIVE')]
+  active SOW ['SOW-014', 'SOW-015', 'SOW-039', 'SOW-082'] retired SOW []
+  active OBJ ['OBJ-003'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 15 {'ACTIVE': 14, 'RETIRED': 1} FromDeliverableName values {'HarnessEvent Schema and Append-Only JSONL'}
+=== DEL-06-03 L348 'Initial Chirality MCP Read Tools' type=BACKEND_FEATURE_SLICE env=M
+  dec SOW ['SOW-048', 'SOW-050', 'SOW-064', 'SOW-082'] dec OBJ ['OBJ-005', 'OBJ-006']
+  IMPLEMENTS_NODE [('DEP-06-03-001', 'PKG-06', 'Permissioned Tools, MCP, and Hooks', 'ACTIVE')]
+  active SOW ['SOW-048', 'SOW-050', 'SOW-064', 'SOW-082'] retired SOW []
+  active OBJ ['OBJ-005', 'OBJ-006'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 17 {'ACTIVE': 17} FromDeliverableName values {'Initial Chirality MCP Read Tools'}
+=== DEL-07-01 L357 'Working Root Validation and Instruction Root Protection' type=SECURITY_CONTROL env=M
+  dec SOW ['SOW-002', 'SOW-027', 'SOW-075', 'SOW-084'] dec OBJ ['OBJ-006', 'OBJ-008']
+  IMPLEMENTS_NODE [('DEP-07-01-001', 'DEL-07-01', 'Working Root Validation and Instruction Root Protection', 'ACTIVE')]
+  active SOW ['SOW-002', 'SOW-027', 'SOW-075', 'SOW-084'] retired SOW []
+  active OBJ ['OBJ-006', 'OBJ-008'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 12 {'ACTIVE': 11, 'RETIRED': 1} FromDeliverableName values {'Working Root Validation and Instruction Root Protection'}
+=== DEL-07-03 L359 'Deliverable Metadata and Document Kit Contracts' type=BACKEND_FEATURE_SLICE env=M
+  dec SOW ['SOW-026', 'SOW-081'] dec OBJ ['OBJ-006']
+  IMPLEMENTS_NODE [('DEP-07-03-001', 'SOW-026', 'Metadata files and document kit', 'ACTIVE')]
+  active SOW ['SOW-081'] retired SOW []
+  active OBJ ['OBJ-006'] retired OBJ []
+  SOW parity MISMATCH missing={'SOW-026'} extra=set() | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 14 {'ACTIVE': 14} FromDeliverableName values {'Deliverable Metadata and Document Kit Contracts'}
+=== DEL-08-01 L368 'Instruction Root Packaging and Agent Conformance' type=TEST_SUITE env=M
+  dec SOW ['SOW-030', 'SOW-031', 'SOW-073', 'SOW-082', 'SOW-084'] dec OBJ ['OBJ-007', 'OBJ-008']
+  IMPLEMENTS_NODE [('DEP-08-01-001', 'PKG-08', 'Agent Suite, Pipeline Dispatch, and Subagent Governance', 'ACTIVE')]
+  active SOW ['SOW-030', 'SOW-031', 'SOW-073', 'SOW-082', 'SOW-084'] retired SOW []
+  active OBJ ['OBJ-007', 'OBJ-008'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 20 {'ACTIVE': 20} FromDeliverableName values {'Instruction Root Packaging and Agent Conformance'}
+=== DEL-08-03 L370 'Pipeline Category and Task Scope Dispatch' type=UX_UI_SLICE env=M
+  dec SOW ['SOW-007', 'SOW-026'] dec OBJ ['OBJ-001', 'OBJ-007']
+  IMPLEMENTS_NODE [('DEP-08-03-001', 'DEL-08-03', 'Pipeline Category and Task Scope Dispatch', 'ACTIVE')]
+  active SOW ['SOW-007', 'SOW-026'] retired SOW []
+  active OBJ ['OBJ-001', 'OBJ-007'] retired OBJ []
+  SOW parity OK | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 10 {'ACTIVE': 10} FromDeliverableName values {'Pipeline Category and Task Scope Dispatch'}
+=== DEL-08-04 L371 'Type 2 Subagent Governance Bridge' type=BACKEND_FEATURE_SLICE env=M
+  dec SOW ['SOW-063', 'SOW-083'] dec OBJ ['OBJ-005', 'OBJ-007']
+  IMPLEMENTS_NODE [('DEP-08-04-001', 'SOW-063', 'Project delegation authority daemon-client dispatch and checkout AgentRuns', 'ACTIVE')]
+  active SOW ['SOW-083'] retired SOW []
+  active OBJ ['OBJ-005', 'OBJ-007'] retired OBJ []
+  SOW parity MISMATCH missing={'SOW-063'} extra=set() | retired∩row set()
+  OBJ parity OK | retired∩row set()
+  other anchors []
+  rows 13 {'ACTIVE': 12, 'RETIRED': 1} FromDeliverableName values {'Type 2 Subagent Governance Bridge'}

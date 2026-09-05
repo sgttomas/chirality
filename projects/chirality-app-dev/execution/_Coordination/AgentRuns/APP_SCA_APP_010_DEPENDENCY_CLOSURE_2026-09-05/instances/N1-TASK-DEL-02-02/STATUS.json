@@ -1,0 +1,62 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-02-02",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "applyEdits": false,
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "decompositionContentCommit": "dbd812a52d5ed0cb3ed173f3aaaa68703a914291",
+  "carrier": "DEL-02-02",
+  "preImages": {
+    "dependenciesCsvSha256": "ccc6f4018a0c61eb3ff59105080bf3f6cd807c2a326a67d2a5f4d5998cafeb92",
+    "dependenciesIndexSha256": "77360b1b8f8ba69f594ba7ab10c013d21a01836d0d78fa0ae105e3867931a925"
+  },
+  "supersededV1Outputs": {
+    "postimageDependenciesCsvSha256": "00f6a880ab6f965ef684ede0668e4cf897e1743dc0cab00315db94c38400823d",
+    "postimageDependenciesIndexSha256": "a2826a395df96b1136a1876f00daed7abc0938cb546a89233ee4bfd01903d61d",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-02/_run_records/TASK_RUN_2026-09-05_0038.md"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "d4f6dad83cc9538186214b6ab9a116c85c6ae2a8578acfb5a65acd56e61c3cff",
+    "postimageDependenciesIndexSha256": "adeb89260b62b2a86268b99505f08a6df2ea2eb98a22185961767fbad09b1df0",
+    "previewSha256": "353c8c19bf02cd3ec9eff31c8f078c70ba8331e60fbc5a048910847901d21e48",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-02/_run_records/TASK_RUN_2026-09-05_0105.md",
+    "taskRunRecordSha256": "428cc8ec13e3e9ea5059fd5f05c823f63e23ffc9f59046b35fefe024bbb973b4",
+    "returnSha256": "b0262cd38b9a7b5ab6ad7d4d956cd1c8bd0e70261c814fcfc17aab9711c34c18"
+  },
+  "counts": {
+    "pre": { "total": 9, "active": 9, "retired": 0, "anchor": 4, "execution": 5 },
+    "post": { "total": 16, "active": 15, "retired": 1, "anchor": 7, "execution": 9 },
+    "satisfaction": { "TBD": 12, "PENDING": 4 }
+  },
+  "heldProposals": {
+    "removedFromPostImage": ["DEP-02-02-015", "DEP-02-02-017", "DEP-02-02-018", "DEP-02-02-019", "DEP-02-02-020", "DEP-02-02-022"],
+    "heldIds": ["H-002", "H-003", "H-004", "H-005", "H-006", "H-007"],
+    "register": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv",
+    "disposition": "HELD_NON_EMITTED_PENDING_OWNER_RULING"
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": []
+  },
+  "dispositionsApplied": [
+    "C.1: DEP-02-02-021 keeps target DEL-02-03 at Confidence=MEDIUM with an ASSUMPTION note citing the owner-adopted _STATUS.md Depends line (DEL-02-03-V3-01, D-APP-108) and the L307/L309 silence"
+  ],
+  "warnings": [
+    "CONTEXT_SOW_007_RESIDUE: _CONTEXT.md#Traceability still lists SOW-007 while applied row L308 carries SOW-006, SOW-081, SOW-082",
+    "V3_01_ROLE_ENTRY_SEATING_CONFLICT: seated DEL-02-02-V3-01 unseating text versus applied row L308 role-entry artifacts; the DEL-08-04 row that recorded it (DEP-02-02-019) is held as H-005",
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "INSTRUCTION_ROOT_ENV_UNSET: CHIRALITY_INSTRUCTION_ROOT not exported; resolved to REPO_ROOT from the sealed brief",
+    "NOTES_CROSSREF_RECONCILED: Notes of DEP-02-02-011 and DEP-02-02-014 redirected from the absent row DEP-02-02-015 to held proposal H-002; disclosed deviation, revertible at N2"
+  ],
+  "humanRulingRequired": false
+}

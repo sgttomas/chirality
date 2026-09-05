@@ -1,0 +1,25 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection",
+  "operation": "dispatch",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "d66395d101143df68d956984f7ab93f5027418ec",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-07-01",
+      "entry_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "a905938902f937ccce4065692c63e8d10cb0a93ae3ea21b99d49f297566d2422",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-07-01"
+  ],
+  "verdict": "ALLOW"
+}

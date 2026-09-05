@@ -1,0 +1,68 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-03-02",
+  "parentRunId": "N1",
+  "orchestrationRunId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "applyEdits": false,
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "decompositionContentCommit": "dbd812a52d5ed0cb3ed173f3aaaa68703a914291",
+  "companionRegisterSha256": "63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca",
+  "latestPointerSha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+  "carrier": "DEL-03-02",
+  "sccMember": "SCC-001",
+  "preImages": {
+    "dependenciesCsvSha256": "f8efee202c2e4f35fb3fea34b536b7d339abd52a1940a099320dff15f89758dd",
+    "dependenciesIndexSha256": "98fe53bec8b3b1c5d4199bd68e27c00f84a3d570034c8749bb650fbed44c9a40"
+  },
+  "supersededV1Outputs": {
+    "postimageDependenciesCsvSha256": "972b9e818892488325ca86410a91111e4e54322c52b0d69136a9832f80567415",
+    "postimageDependenciesIndexSha256": "a056c1949b4bfb7254b994d35ed089a3ec87824939ff3ca20a484ce7f645a40c",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0038.md",
+    "retained": true
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "be877cffd700069afae17a3f604af28bc2e666c5608b833aff814ce51c291458",
+    "postimageDependenciesIndexSha256": "dffe9d126bebeb967dc9e0a109c528b44b22b7daf374cda4079f3fc349da7eb8",
+    "previewSha256": "ccd1e5f652c110e13161a788070118d9dab19548416387a6cc20a8921447f3d5",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0105.md",
+    "taskRunRecordSha256": "dc2a3bb96b4bb850523399bd7c8a25fa9decf8c8558082e1057c88e0a70a0a24",
+    "returnSha256": "76afcfa62a988fc3bdd9bf8a0a96f369add9471fb01dc1dcc4356994c523c704"
+  },
+  "counts": {
+    "pre": { "total": 10, "active": 10, "retired": 0, "anchor": 5, "execution": 5 },
+    "post": { "total": 14, "active": 14, "retired": 0, "anchor": 7, "execution": 7 },
+    "postSatisfaction": { "satisfied": 5, "pending": 9, "tbd": 0 }
+  },
+  "changes": {
+    "added": ["DEP-03-02-011", "DEP-03-02-012", "DEP-03-02-014", "DEP-03-02-015"],
+    "reEvidenced": ["DEP-03-02-001", "DEP-03-02-002", "DEP-03-02-003", "DEP-03-02-004", "DEP-03-02-005", "DEP-03-02-006", "DEP-03-02-010"],
+    "reEvidencedSccInternalEvidenceFieldsOnly": ["DEP-03-02-007", "DEP-03-02-008", "DEP-03-02-009"],
+    "refreshed": [],
+    "retired": [],
+    "unchanged": [],
+    "held": [
+      { "dependencyId": "DEP-03-02-013", "heldId": "H-015", "edge": "DEL-03-02 -> DEL-08-04", "reciprocalHeldId": "H-019", "idReserved": true }
+    ]
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": []
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "TBD_IMPLEMENTATION_PATHS: Root locations for DEP-03-02-014 and DEP-03-02-015 are TBD by convention"
+  ],
+  "humanRulingRequired": false,
+  "carrierWritten": false,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (report-only preview), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}

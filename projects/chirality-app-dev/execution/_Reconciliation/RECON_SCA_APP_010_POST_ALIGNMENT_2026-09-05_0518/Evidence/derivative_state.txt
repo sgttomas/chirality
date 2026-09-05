@@ -1,0 +1,115 @@
+# Derivative-state evidence (read 2026-09-05 05:30 MDT)
+
+## git
+HEAD d66395d101143df68d956984f7ab93f5027418ec branch claude/sca-app-010-dependency-closure; origin/main d66395d101143df68d956984f7ab93f5027418ec
+
+## execution/_Reconciliation/DepClosure/
+CLOSURE_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1820
+CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z
+CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245
+CLOSURE_ORCHESTRATOR_DAG_CLOSURE_2026-05-24_1123
+CLOSURE_ORCHESTRATOR_DAG_DOSSIERS_2026-05-24_1224
+CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431
+CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518
+CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301
+CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320
+CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020
+CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z
+CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348
+_LATEST.md
+--- _LATEST.md:
+Latest: CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z
+Updated: 2026-07-11
+--- CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_* contents at read time:
+projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Brief.md
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/analyze_closure.py
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/hubs.csv
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/coverage.csv
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/closure_summary.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/bidirectional_pairs.csv
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/cycles_sample.csv
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/schema_validation.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/posture_checks.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/delta_vs_sca_app_008.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/orphans.csv
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/normalization_lineage.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/refreshed_registers.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/core_checks.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/analyzer_stdout.txt
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/delta_vs_baseline.json
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/edge_list.csv
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/scc_summary.csv
+  projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/Evidence/id_normalization.csv
+
+## execution/_Reconciliation/_LATEST.md (not moved by this run)
+Latest reconciliation package: RECON_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1825
+Latest accepted DepClosure snapshot: CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z
+Strict SCC status: ACYCLIC (`scc_count = 0`) for dependency-closure discovery
+Updated: 2026-07-10
+
+The reconciliation package remains historical decision-support material. Current dependency-closure
+state is discovered from `execution/_Reconciliation/DepClosure/_LATEST.md` and the accepted
+`CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` snapshot.
+
+## execution/_ScopeChange/_LATEST.md status line
+3:**Status:** `OPEN_PENDING_DERIVATIVE_CLOSURE`
+4:**Active snapshot:** `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/`
+
+## SCA-APP-010 Handoff_State.md (derivative fields; last commit touching it)
+91402dcda 2026-09-04 sca(app): SCA-APP-010 pointer sub-gate — _LATEST.md moved to SCA-APP-010 (G5-POINTER)
+10:| `SCAStatus` | `ACTIVE_OPEN_PENDING_DERIVATIVE_CLOSURE` |
+12:| `DerivativePackageState` | `INCOMPLETE` (thirteen carrier working surfaces and dependency registers `STALE_REBUILD_REQUIRED`; SCA-APP-009 closure still open) |
+14:| `DownstreamRerunState` | `FROZEN` (pending owner seating and separately authorized dispatches) |
+15:| `MetadataAlignmentState` | `NOT_STARTED` |
+16:| `AuditState` | `WARNINGS` (post-change 0 / 74 / 8; no new blocker or major; `Evidence/Gate5/AUDIT_DECOMP/`) |
+17:| `ReadyForNextPhase` | `NO` |
+
+## SCA-APP-009 Handoff_State.md verdict
+4:**Closure verdict:** `OPEN_PENDING_DERIVATIVE_CLOSURE`
+5:**ReadyForNextPhase:** `NO`
+87f2d2a75 2026-09-04 Apply SCA-APP-009 pathway seating
+
+## Seating run handoff (APP_SCA_APP_010_SEATING_2026-09-04) DerivativeState
+15:| `DerivativeState` | `CARRIER_SURFACES_CURRENT_DEPENDENCY_REGISTERS_STALE` | The thirteen carriers' working surfaces are current with the applied decomposition. Their `Dependencies.csv` and `_DEPENDENCIES.md` still predate the SOW-081 to SOW-084 and revised SOW-001/002/004/006/007/008/010 relations (DEP-001 to DEP-026 not run). SCA-APP-010's own derivative closure (`Handoff_State.md` `Derivati
+
+## D-APP-108 register row
+123:| D-APP-108 | Seat the SCA-APP-010 shell-redesign Remaining items (the seating list presented 2026-09-04, adopted as presented; items outside the thirteen carriers seated in the same pass; WORKING_ITEMS alignment in the same PR) and rule the open shell-redesign questions Q1, Q2, Q3, Q4, Q5, Q6,
+
+## Task Management register (TM-001: DEL-02-02 label)
+FUTURE_WRITE_SET.csv TM-001: TM-001,Post-Gate5,DOWNSTREAM_OWNER,TASK_MANAGEMENT,projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv,Refresh the DEL-02-02 label to the post-image name in any row that carries it; no disposition change,"Any disposition, status, or new-row act without owner triage"
+rows carrying the pre-image name 'Workbench and Pipeline Selection UX' or 'Workbench and Pipeline' in REGISTER.csv: 0
+rows carrying it in REGISTER_CLOSED.csv: 0
+rows mentioning DEL-02-02 in REGISTER.csv: 1 (TM-APP-036, by ID only)
+rows carrying the post-image name 'Right-Panel Coordination' in either register: 0
+TaskManagement files dated 2026-09-05: 0
+
+## Root notice (DOWNSTREAM_HANDOFFS row 7)
+db0dff954 seat(app): SCA-APP-010 shell-redesign Remaining items seated under D-APP-108; thirteen carriers aligned; Root notice routed
+- Root notice N-001 routed to execution/_Coordination/ on the owner's Q8
+NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md
+
+## working tree (git status --short, paths outside carriers)
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/
+?? projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518/
+?? projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/
+
+## Root notice landing (DOWNSTREAM_HANDOFFS row 7): files of seating commit db0dff954 outside the project execution tree
+ execution/_Coordination/NOTICE_2026-09-04_APP_SCA-APP-010_SHELL_REDESIGN_ROOT_DEPENDENCIES.md                                 |  105 ++++
+ .../1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/MEMORY.md                                             |    1 +
+ .../1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/_STATUS.md                                            |    3 +-
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/MEMORY.md      |    1 +
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md |   54 +-
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_CONTEXT.md    |   24 +-
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_REFERENCES.md |   21 +
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md     |   36 +-
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md      |    1 +
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md |   69 ++-
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_CONTEXT.md    |   35 +-
+ .../PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_REFERENCES.md |   26 +-
+--- files of db0dff954 matching NOTICE
+ execution/_Coordination/NOTICE_2026-09-04_APP_SCA-APP-010_SHELL_REDESIGN_ROOT_DEPENDENCIES.md                                 |  105 ++++
+--- commit body lines mentioning notice
+- Root notice N-001 routed to execution/_Coordination/ on the owner's Q8

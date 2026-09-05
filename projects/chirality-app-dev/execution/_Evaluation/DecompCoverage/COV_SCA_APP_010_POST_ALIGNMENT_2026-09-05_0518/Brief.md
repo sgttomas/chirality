@@ -1,0 +1,38 @@
+# Brief — SCA-APP-010 post-alignment fresh full audit (N6-AUDIT-DECOMP)
+
+Verbatim sealed brief from HELP_HUMAN (`projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N6-AUDIT-DECOMP/LAUNCH_BRIEF.md`):
+
+---
+
+# Sealed Brief — N6-AUDIT-DECOMP — AUDIT_DECOMP fresh full audit after the SCA-APP-010 alignment
+
+- **RunID:** `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` · **Node:** N6 · **InstanceID:** `N6-AUDIT-DECOMP` · **Parent:** HELP_HUMAN (Agent 0) · **RequestedBy:** HELP_HUMAN for SCA-APP-010 `DOWNSTREAM_HANDOFFS.csv` row 6 ("Fresh full audit and pre/post comparison; own versioned surface").
+- **Role:** `AUDIT_DECOMP` (named dedicated Agent 2, D-GOV-13); a fresh bounded Claude Code subagent; read-only on deliverables and the decomposition; **no delegation**; role not mechanically enforced.
+- **Repository root:** `/Users/ryan/dev/chirality/.claude/worktrees/task-management-gen-pass-518da2`; branch `claude/sca-app-010-dependency-closure`; basis `d66395d101143df68d956984f7ab93f5027418ec` plus the thirteen refreshed registers (working tree). No network; no state-changing git command.
+- **Parameters:** `EXECUTION_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (expected SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`; live and applied, active pointer SCA-APP-010 at `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0`); companion `projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv` (`63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`); `DECOMP_VARIANT=SOFTWARE`; `SCOPE=ALL`; `RUN_LABEL=SCA_APP_010_POST_ALIGNMENT`; `REQUESTED_BY=HELP_HUMAN`; `PRIOR_RUN_LABEL=SCA_APP_010_GATE5_POSTCHANGE` at `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Evidence/Gate5/AUDIT_DECOMP/` (its `coverage_summary.json` is the comparison basis); `EXPECTED_SOURCE_SNAPSHOT` = the SCA-APP-010 snapshot folder; `EXPECTED_HANDOFF_PHASE` = post-Gate-5 downstream alignment (steps 18 to 20 done on this branch; owner disposition pending).
+- **Write:** exactly the nine files under `projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/` (`Brief.md`, `AUDIT_DECOMP_RETURN.md`, `Decision_Log.md`, `Decomp_Coverage_IssueLog.csv`, `Decomp_Coverage_Matrix.csv`, `Decomp_Coverage_Report.md`, `QA_Report.md`, `RUN_SUMMARY.md`, `coverage_summary.json`) plus `MANIFEST.sha256`, and `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N6-AUDIT-DECOMP/RETURN.md`, `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N6-AUDIT-DECOMP/STATUS.json`. Same shapes and columns as the prior run's files. Do **not** move `projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/_LATEST.md` (record the override in `Decision_Log.md`). No other write.
+
+## Expectations to test (report every deviation)
+
+10 packages / 52 deliverables / 84 scope rows (79 IN / 4 OUT / 1 TBD), envelopes S9 M41 L2 XL0, forward 52/52, reverse 52/54 (PKG-00 and DEL-00-01/02 carried), companion 83 rows / 50 families, OI-008 AffectedScope 4. Versus the Gate-5 post-change audit: the thirteen amended carriers' `_CONTEXT.md` lags (G5-010-COV-004) and the DEL-02-02 name lag (G5-010-COV-005) are expected to be **resolved** by PR #713 (WORKING_ITEMS alignment); confirm or report each. Expect the thirteen refreshed dependency registers to be schema-valid and anchored to the applied rows. Report every new finding and state explicitly whether any new BLOCKER or MAJOR condition exists relative to the Gate-5 post-change audit. Read `agents/AGENT_AUDIT_DECOMP.md` completely and the prior run's nine files for method and form before auditing. Attribution in `RUN_SUMMARY.md`: "Claude Fable 5.1 (Anthropic, `claude-fable-5-1`) as a Claude Code subagent acting as AUDIT_DECOMP, dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched". LF, no trailing whitespace, final newline.
+
+---
+
+## Normalized parameters
+
+| Parameter | Value |
+|---|---|
+| `EXECUTION_ROOT` | `projects/chirality-app-dev/execution` |
+| `DECOMPOSITION_PATH` | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (live, applied; SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`; content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`) |
+| Companion register | `projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv` (SHA-256 `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`) |
+| `DECOMP_VARIANT` | `SOFTWARE` |
+| `SCOPE` | `ALL` |
+| `RUN_LABEL` | `SCA_APP_010_POST_ALIGNMENT` |
+| `REQUESTED_BY` | `HELP_HUMAN` (SCA-APP-010 `DOWNSTREAM_HANDOFFS.csv` row 6) |
+| `PRIOR_RUN_LABEL` | `SCA_APP_010_GATE5_POSTCHANGE` at `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Evidence/Gate5/AUDIT_DECOMP/` (its `coverage_summary.json` is the comparison basis: 0 blockers / 74 warnings / 8 info) |
+| `EXPECTED_SOURCE_SNAPSHOT` | `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (active; `_ScopeChange/_LATEST.md` SHA-256 `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0`) |
+| `EXPECTED_HANDOFF_PHASE` | post-Gate-5 downstream alignment (`DOWNSTREAM_HANDOFFS.csv` steps 18 to 20 done on this branch: owner seating, WORKING_ITEMS alignment, dependency extraction; owner disposition pending) |
+| Basis | git HEAD `d66395d101143df68d956984f7ab93f5027418ec` (PR #713 merge) plus the working tree: thirteen carriers' `Dependencies.csv` and `_DEPENDENCIES.md` modified (N3 reviewed writes) and thirteen untracked `_run_records/TASK_RUN_2026-09-05_*.md` |
+| Output location | `projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/` (nine files plus `MANIFEST.sha256`); `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N6-AUDIT-DECOMP/RETURN.md` and `STATUS.json` |
+| Pointer rule | `projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/_LATEST.md` is not moved (brief override; Decision PA-010-001) |
+| Attribution | Claude Fable 5.1 (Anthropic, `claude-fable-5-1`) as a Claude Code subagent acting as AUDIT_DECOMP, dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched |

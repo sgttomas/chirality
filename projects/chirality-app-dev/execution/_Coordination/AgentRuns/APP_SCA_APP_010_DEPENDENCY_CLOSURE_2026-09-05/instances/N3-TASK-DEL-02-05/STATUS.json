@@ -1,0 +1,63 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-02-05",
+  "parentRunId": "N3",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "carrier": "DEL-02-05",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "authorization": {
+    "futureWriteSet": ["DEP-007", "DEP-008"],
+    "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+    "reviewVerdictForCarrier": "PASS",
+    "n2GateDisposition": "PROCEED",
+    "previewInstance": "N1-TASK-DEL-02-05",
+    "previewRunRecordPath": "instances/N1-TASK-DEL-02-05/_run_records/TASK_RUN_2026-09-05_0103.md"
+  },
+  "preImages": {
+    "dependenciesCsvSha256": "c39a3d533bf5f811f35d3a3b7fbfd839e7c1baedc28607cc4d59ad9eb200b8d0",
+    "dependenciesIndexSha256": "e172982d34981ce52f04d8776c53d2a09712559ae648f660923b4457d0fc080e"
+  },
+  "outputs": {
+    "carrierDependenciesCsvPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+    "carrierDependenciesCsvSha256": "03d3d7bcf405e98e7096d24f6322b2a7bc0fd68a239e620f8d27191616c66f17",
+    "carrierDependenciesIndexPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_DEPENDENCIES.md",
+    "carrierDependenciesIndexSha256": "5dfb3da66a0c128569e0fd9714a65a14df28c3d2ffa5cedf710cc3b40d21fcc9",
+    "postimageParity": "cmp identical for both files",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/TASK_RUN_2026-09-05_0515.md",
+    "taskRunRecordSha256": "1ef39e7202403c2a94a80646df6f88888fc9476aef40024fab1ba27e49f61b9e"
+  },
+  "function5": {
+    "schema": "VALID (29 columns, 13 data rows, exit 0)",
+    "enumInvocations": 25,
+    "enumFailures": 0,
+    "implementsNodeActive": 1,
+    "dependencyIdUnique": true,
+    "heldIdsAbsent": ["DEP-02-05-014", "DEP-02-05-015"],
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": ["Dependencies.csv (M)", "_DEPENDENCIES.md (M)", "_run_records/TASK_RUN_2026-09-05_0515.md (untracked)"]
+  },
+  "counts": {
+    "pre": { "total": 10, "active": 10, "retired": 0, "anchor": 4, "execution": 6 },
+    "post": { "total": 13, "active": 13, "retired": 0, "anchor": 6, "execution": 7 },
+    "satisfactionPost": { "TBD": 6, "PENDING": 6, "SATISFIED": 1 }
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "needsHumanGraphDecision": [],
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": []
+  },
+  "reviewFindingsCarriedNotApplied": ["R-001", "R-005"],
+  "heldProposalsNotWritten": ["H-013 (DEP-02-05-014)", "H-014 (DEP-02-05-015)"],
+  "warnings": [
+    "INSTRUCTION_ROOT_ASSUMED: CHIRALITY_INSTRUCTION_ROOT unset; repository checkout used as INSTRUCTION_ROOT (same as N1 preview run)",
+    "SIBLING_CARRIERS_MODIFIED_BY_OTHER_N3_INSTANCES: whole-tree git status listed DEL-02-01, DEL-04-04, DEL-07-01, DEL-07-03 as modified; not touched by this run"
+  ],
+  "humanRulingRequired": false,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (reviewed write), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}

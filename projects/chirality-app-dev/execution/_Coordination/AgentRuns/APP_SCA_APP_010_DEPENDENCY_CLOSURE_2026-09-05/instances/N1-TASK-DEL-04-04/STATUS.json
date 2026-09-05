@@ -1,0 +1,43 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-04-04",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "status": "WARNINGS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "23a9370244149417f785706608f5507ef091b45d62a34365dfbdd0ce01a32850",
+    "dependenciesIndexSha256": "d418bf2e51b0e73676429af96a6cb94943aba147907d688c53588e64ee768c2d"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "1cb90e1ff30b50fb08c9f9f06aa65ad74ac63b92ab0ebbcecdf52ec93cde8034",
+    "postimageDependenciesIndexSha256": "1896ed236a76269842419a20021d9b1691da2e3b30dea3e5db9dbd2df42cb352",
+    "previewSha256": "2e75b8d15f80adfee71cc2a8cef9c27cdf8452c9c60e56b318edc782e6b53028",
+    "returnSha256": "cba782550328f59d227fedb1df11445890df8e682f86a98c020cdfbb1c7cfd7e",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0037.md",
+    "taskRunRecordSha256": "ebace1cc4049c426eb13146305656b95e10b8acd636dcec9b94e7e7e814346fe"
+  },
+  "counts": {
+    "pre": { "total": 8, "active": 7, "retired": 1, "anchor": 3, "execution": 5 },
+    "post": { "total": 14, "active": 13, "retired": 1, "anchor": 7, "execution": 7 }
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": ["DEP-04-04-004"]
+  },
+  "warnings": [
+    "NEEDS_HUMAN_GRAPH_DECISION: DEP-04-04-004 relation restated in live ScopeOfWork.md bytes but kept RETIRED per RUL-SCC-001-TRANCHE-001; reactivation would recreate the DEL-04-02 <-> DEL-04-04 bidirectional pair",
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "UNKNOWN_TARGET: DEP-04-04-008 runtime-boundary fingerprint consumer remains UNKNOWN/TBD",
+    "INSTRUCTION_ROOT_ENV: CHIRALITY_INSTRUCTION_ROOT unset in dispatch shell; INSTRUCTION_ROOT resolved to REPO_ROOT",
+    "CONFLICT_NONBLOCKING: _CONTEXT.md#Traceability lists SOW-017, SOW-030 only while applied row L329 lists four scope refs"
+  ],
+  "humanRulingRequired": true
+}

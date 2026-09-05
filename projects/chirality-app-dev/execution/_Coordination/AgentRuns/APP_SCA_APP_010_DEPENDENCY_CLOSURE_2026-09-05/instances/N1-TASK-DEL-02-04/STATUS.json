@@ -1,0 +1,79 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-02-04",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "decompositionContentCommit": "dbd812a52d5ed0cb3ed173f3aaaa68703a914291",
+  "preImages": {
+    "dependenciesCsvSha256": "7f986d37a117f3e9812dd978a4ab00031878be50f2c351c4693713ae087c1010",
+    "dependenciesIndexSha256": "a81ae0ee95103979cfd923f6666e74680d3d69c66a43a86418d9a55424251b1d",
+    "rows": 14
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "c6bdffd1aef83f0c04764a8f8f01d5f67abc1928c9630866f6f48dd83d16ac62",
+    "postimageDependenciesIndexSha256": "1fffa1ec5e37709dcb26f0c1b0cd611e3ae474690db63593a85e6bd2c50ba35e",
+    "previewSha256": "a83442a02637e60b7af8acdb8a06b3b6112b0378ee780b47d960120631f6a777",
+    "taskRunRecordSha256": "d64f463d1c914ee987d4bb03619d752c178a81067f70da1fd3a72eb89a7fede5",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0102.md",
+    "supersededTaskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0039.md",
+    "returnSha256": "059d8d9f00ae555d2328ba5508c4138908964fa1ba4a10ed74ad8e7a3ae1e2c4"
+  },
+  "supersededOutputs": {
+    "postimageDependenciesCsvSha256": "53dd60e943c206e6e31ca05134c7f24f5239d1d310b45774863a998c7d4c4718",
+    "postimageDependenciesIndexSha256": "b50b7050f7c84896b8038085f85a27c8aa3a4d447ba703877bc8fe0e2f4e80ac"
+  },
+  "counts": {
+    "pre": {
+      "total": 14,
+      "active": 14,
+      "retired": 0,
+      "anchor": 6,
+      "execution": 8
+    },
+    "post": {
+      "total": 16,
+      "active": 16,
+      "retired": 0,
+      "anchor": 6,
+      "execution": 10
+    },
+    "changes": {
+      "ADDED": 2,
+      "RE-EVIDENCED": 14,
+      "REFRESHED": 0,
+      "RETIRED": 0,
+      "UNCHANGED": 0,
+      "HELD": 5
+    }
+  },
+  "heldProposals": [
+    "DEP-02-04-015 reserved -> H-008 (DEL-02-04 -> DEL-02-02 UPSTREAM PREREQUISITE, DEL-02-02-V3-03)",
+    "DEP-02-04-016 reserved -> H-009 (DEL-02-04 -> DEL-02-03 UPSTREAM PREREQUISITE, DEL-02-03-V3-01)",
+    "DEP-02-04-017 reserved -> H-010 (DEL-02-01 <- DEL-02-04 DOWNSTREAM HANDOVER, additive v1 fields)",
+    "DEP-02-04-018 reserved -> H-011 (DEL-02-02 <- DEL-02-04 DOWNSTREAM HANDOVER, additive v1 fields)",
+    "DEP-02-04-019 reserved -> H-012 (DEL-02-03 <- DEL-02-04 DOWNSTREAM HANDOVER, additive v1 fields)"
+  ],
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [
+      "plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md (design basis; not emitted)",
+      "loop/LOOP_INIT.md section 7 Evidence contract (not emitted)"
+    ]
+  },
+  "needsHumanGraphDecision": [],
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "INSTRUCTION_ROOT_DECLARED_BY_BRIEF: CHIRALITY_INSTRUCTION_ROOT unset; INSTRUCTION_ROOT=REPO_ROOT taken from the sealed brief"
+  ],
+  "carrierWritten": false,
+  "humanRulingRequired": false
+}

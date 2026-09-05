@@ -1,0 +1,82 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N5-RECONCILIATION",
+  "parentRunId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "node": "N5",
+  "agentRole": "EPHEMERAL_AGENT2_GENERALIST_FOR_RECONCILIATION",
+  "actingFor": "RECONCILIATION (read-only R0/R1 checks; not an activated concordance run)",
+  "dispatchedBy": "HELP_HUMAN",
+  "model": "claude-fable-5-1",
+  "roleEnforcement": "instruction-asserted; role not mechanically enforced",
+  "descendantsLaunched": 0,
+  "status": "FINDINGS",
+  "result": "FINDINGS",
+  "severity": {
+    "BLOCKER": 0,
+    "MAJOR": 0,
+    "MINOR": 3,
+    "OBSERVATION": 1,
+    "UNKNOWN": 1
+  },
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "branch": "claude/sca-app-010-dependency-closure",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "companionSha256": "63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca",
+  "pointerSha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+  "decompositionContentCommit": "dbd812a52d5ed0cb3ed173f3aaaa68703a914291",
+  "corpus": {
+    "version": "v20",
+    "drift": "none",
+    "exit": 0
+  },
+  "appliedPairParity": "PASS",
+  "registerParityVsReviewedPostImages": "13/13",
+  "carrierConcordance": {
+    "claims": 489,
+    "ALIGNED": 470,
+    "MISMATCH": 17,
+    "UNKNOWN": 2,
+    "validatorPass": 13
+  },
+  "lifecycleUnchanged": true,
+  "fencesUnchanged": true,
+  "derivativeState": {
+    "appliedPair": "CURRENT",
+    "pointer": "CURRENT",
+    "carrierWorkingSurfaces": "CURRENT_WITH_MINOR_LAGS",
+    "carrierDependencyRegisters": "CURRENT_IN_WORKING_TREE_UNCOMMITTED",
+    "closureAudit": "PRESENT_IN_PROGRESS_AT_READ_TIME",
+    "decompAudit": "ABSENT_AT_READ_TIME",
+    "scaApp009Closure": "OPEN",
+    "tmLabel": "OPEN",
+    "handoffStateDisposition": "OPEN",
+    "rootNotice": "ROUTED_RECEIPT_NOT_EVIDENCED"
+  },
+  "closureClaimed": false,
+  "pointerMoved": false,
+  "deliverableWrites": 0,
+  "outputs": {
+    "snapshot": "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518",
+    "runBasisSha256": "875537ce448cfc79ed2838b9674b072acb26ce7a8ec2432eea9bec07abf05948",
+    "reportSha256": "4f89bc8c101c62381e10347a403c5fbe00ba1df25ed539fa1c74706adb24ffc5",
+    "ledgerSha256": "27c8fd768cad1f0a230033b981a242c2f84a2dd455a43d2fb722954e1777c8ee",
+    "manifestSha256": "f91711ef3cb56b27b32d9625fca34a0880e3becdd6aa92d2216dbd8ae78438fb",
+    "returnPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N5-RECONCILIATION/RETURN.md"
+  },
+  "pathsWritten": [
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/RUN_BASIS.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/RECONCILIATION_REPORT.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/CARRIER_CONCORDANCE.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/anchors.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/applied_pair.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/corpus_status.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/derivative_state.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/lifecycle_fences.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/register_parity.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/surfaces.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/Evidence/validator.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/MANIFEST.sha256",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N5-RECONCILIATION/RETURN.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N5-RECONCILIATION/STATUS.json"
+  ]
+}

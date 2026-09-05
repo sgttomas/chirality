@@ -1,0 +1,84 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N6-AUDIT-DECOMP",
+  "parentRunId": "N6",
+  "agentRole": "AUDIT_DECOMP",
+  "agentForm": "named dedicated Agent 2 (D-GOV-13); fresh Claude Code subagent; role not mechanically enforced",
+  "model": "claude-fable-5-1",
+  "runLabel": "SCA_APP_010_POST_ALIGNMENT",
+  "status": "WARNINGS",
+  "runStatus": "WARNINGS",
+  "overallStatus": "WARNINGS",
+  "closureReadiness": "FAIL",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "basisWorkingTree": "thirteen carriers' Dependencies.csv and _DEPENDENCIES.md modified (hash-exact to the sealed brief); thirteen untracked _run_records/TASK_RUN_2026-09-05_*.md",
+  "inputs": {
+    "decompositionPath": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+    "companionRegisterSha256": "63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca",
+    "scopeChangePointerSha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+    "activeSnapshot": "SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA",
+    "priorRunLabel": "SCA_APP_010_GATE5_POSTCHANGE",
+    "priorRunPath": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Evidence/Gate5/AUDIT_DECOMP/",
+    "priorTotals": {
+      "blocker": 0,
+      "warning": 74,
+      "info": 8
+    }
+  },
+  "snapshotPath": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/",
+  "outputs": {
+    "AUDIT_DECOMP_RETURN.md": "fa01cad5c3ace00008810c9b485ef4eb3643d9fcc044a6170919a1bf5ff9a26f",
+    "Brief.md": "4e83227a9bdb713d62320761a4e81f1ba12ae1c069dea7c37c7dd4ccf5a5f412",
+    "Decision_Log.md": "1038cc3d40e283147f2b9ca567558cfcd147dce91a13a1d7d30dc40f696dad7e",
+    "Decomp_Coverage_IssueLog.csv": "3660eb905e72a5ff01dbe00e3dd5d2ce10f81348168381caadb8d7a640672c5e",
+    "Decomp_Coverage_Matrix.csv": "36c6364aa360bb7eea4f30d6768d4437d9fa31d519ab9030e5c2cc0d65878aa4",
+    "Decomp_Coverage_Report.md": "fab437d646cf2089277acf49f8fccd30946a88c86dd3ff9e445dd679262832d8",
+    "QA_Report.md": "921dda676b5d1d6fda18c951fdb592b089841dc81b1e3a470b4781adcf5c8bb7",
+    "RUN_SUMMARY.md": "fdbad76812321e59ba247e9de45f0618d31df3f34dd5e6c985e3da42b2b4184f",
+    "coverage_summary.json": "9536a91af7d21de131923de758bcc4b090d333b5e1fa8130775850fd933353dc"
+  },
+  "manifest": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/MANIFEST.sha256",
+  "totals": {
+    "blocker": 0,
+    "major": 0,
+    "warning": 72,
+    "info": 10
+  },
+  "comparison": {
+    "newBlockers": 0,
+    "newMajors": 0,
+    "newWarningOccurrences": 0,
+    "warningsResolvedOrReclassified": 2,
+    "gate5Cov004": "PARTIALLY_RESOLVED (identity, DeliverableName, Package Scope, Deliverable Scope aligned; Traceability CoversScopeItems stale on 9 carriers; Anticipated Artifacts stale on 10; DEL-08-03 ownership-boundary section names retired DEL-02-02 consumer; 13 occurrences remain WARNING)",
+    "gate5Cov005": "RESOLVED_AT_CONTEXT (folder label retained by design; INFO PA-010-COV-005)",
+    "gate5Cov013": "RECLASSIFIED_TO_INFO (SCA-APP-009 no longer active)"
+  },
+  "checks": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "WARNING",
+    "4": "PASS",
+    "5": "WARNING",
+    "6": "WARNING",
+    "7": "PASS",
+    "8": "PASS",
+    "9": "SKIPPED",
+    "9b": "WARNING",
+    "10": "WARNING",
+    "11": "PASS",
+    "12": "PASS"
+  },
+  "pointerMoved": false,
+  "latestPointerUntouched": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/_LATEST.md",
+  "writesOutsideDeclaredSet": false,
+  "networkUsed": false,
+  "descendantLaunched": false,
+  "humanRulingRequired": true,
+  "humanRulingItems": [
+    "Residual thirteen-carrier _CONTEXT.md Traceability and Anticipated Artifacts lag (outside the executed WI permitted effect): further WORKING_ITEMS authorization or FUTURE_WRITE_SET.csv amendment",
+    "Acceptance of this snapshot as the _Evaluation/DecompCoverage/_LATEST.md target",
+    "SCA-APP-010 Handoff_State.md derivative-field update on disposition"
+  ],
+  "timestamp": "2026-09-05T05:35:53-06:00"
+}

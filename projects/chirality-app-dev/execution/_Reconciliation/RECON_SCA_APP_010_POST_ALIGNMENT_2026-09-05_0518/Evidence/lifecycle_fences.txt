@@ -1,0 +1,145 @@
+# Lifecycle, fences, and working-tree change set per carrier (git status --short; diff against origin/main = d66395d101143df68d956984f7ab93f5027418ec)
+# loop/LOOP_INIT.md vs origin/main: IDENTICAL (F-APP-1..F-APP-5 at L254-L272)
+=== DEL-02-01
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_run_records/TASK_RUN_2026-09-05_0513.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+8:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-02-02
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/TASK_RUN_2026-09-05_0514.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+8:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-02-04
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/TASK_RUN_2026-09-05_0513.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-02-05
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/TASK_RUN_2026-09-05_0515.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-03-02
+ M projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_run_records/TASK_RUN_2026-09-05_0515.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-04-04
+ M projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_run_records/TASK_RUN_2026-09-05_0513.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-05-02
+ M projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_run_records/TASK_RUN_2026-09-05_0514.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-06-03
+ M projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_run_records/TASK_RUN_2026-09-05_0515.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-07-01
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_run_records/TASK_RUN_2026-09-05_0513.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-07-03
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_run_records/TASK_RUN_2026-09-05_0513.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-08-01
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_run_records/TASK_RUN_2026-09-05_0514.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-08-03
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/_run_records/TASK_RUN_2026-09-05_0514.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+=== DEL-08-04
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/Dependencies.csv
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_DEPENDENCIES.md
+?? projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_run_records/TASK_RUN_2026-09-05_0513.md
+_STATUS.md IDENTICAL to origin/main
+ScopeOfWork.md IDENTICAL to origin/main
+_CONTEXT.md IDENTICAL to origin/main
+_REFERENCES.md IDENTICAL to origin/main
+MEMORY.md IDENTICAL to origin/main
+3:**Current State:** IN_PROGRESS
+7:**Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec

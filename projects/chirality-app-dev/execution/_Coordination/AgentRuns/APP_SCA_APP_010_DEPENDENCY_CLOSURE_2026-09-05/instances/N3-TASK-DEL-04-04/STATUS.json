@@ -1,0 +1,49 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-04-04",
+  "parentRunId": "N3",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "previewInstance": "N1-TASK-DEL-04-04",
+  "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+  "preImages": {
+    "dependenciesCsvSha256": "23a9370244149417f785706608f5507ef091b45d62a34365dfbdd0ce01a32850",
+    "dependenciesIndexSha256": "d418bf2e51b0e73676429af96a6cb94943aba147907d688c53588e64ee768c2d"
+  },
+  "outputs": {
+    "carrierDependenciesCsvPath": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/Dependencies.csv",
+    "postimageDependenciesCsvSha256": "1cb90e1ff30b50fb08c9f9f06aa65ad74ac63b92ab0ebbcecdf52ec93cde8034",
+    "carrierDependenciesIndexPath": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_DEPENDENCIES.md",
+    "postimageDependenciesIndexSha256": "1896ed236a76269842419a20021d9b1691da2e3b30dea3e5db9dbd2df42cb352",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_run_records/TASK_RUN_2026-09-05_0513.md",
+    "taskRunRecordSha256": "2d47337adc4f138c31bea565d3711f1fddbc26934a5b2cabb7bfd7242b32954a",
+    "returnSha256": "d84814f9ed7d9f5ce1a3d35b2e1aca9bb554067bf4617dbccb332e5a004c35cf"
+  },
+  "counts": {
+    "pre": { "total": 8, "active": 7, "retired": 1, "anchor": 3, "execution": 5 },
+    "post": { "total": 14, "active": 13, "retired": 1, "anchor": 7, "execution": 7 }
+  },
+  "function5": {
+    "schemaValidator": "VALID (29 columns, 14 data rows)",
+    "enumChecks": "27 checks, 0 failures",
+    "parentAnchorCount": 1,
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": ["M Dependencies.csv", "M _DEPENDENCIES.md", "?? _run_records/TASK_RUN_2026-09-05_0513.md"]
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": ["DEP-04-04-004"]
+  },
+  "warnings": [
+    "NEEDS_HUMAN_GRAPH_DECISION: DEP-04-04-004 kept RETIRED byte-identical; carried from the N1 preview and REVIEW.md to the owner slate; no new ruling introduced",
+    "INSTRUCTION_ROOT_ENV: CHIRALITY_INSTRUCTION_ROOT unset in dispatch shell; INSTRUCTION_ROOT resolved to REPO_ROOT"
+  ],
+  "humanRulingRequired": false
+}

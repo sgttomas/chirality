@@ -1,0 +1,79 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-08-04",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "1f7c06a2d49689c9dc3ea7fb778c6763ab96b3ea929426e5d9269c3198612400",
+    "dependenciesIndexSha256": "e4c5ec7bc2efcffb534a04abf34054b64345ba10c075fb379ef833926199360b"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "902678b137b5600f0cd2202519b7906122c29168d74ab48846ca99b2f41d84e5",
+    "postimageDependenciesIndexSha256": "8d66e9dd97d16e2746ca295f01dab051fb9ac981accced36ef76855e9cd074c0",
+    "previewSha256": "da77877a3427fa4efe9059c81a8124b3273e42f2e2deca092ec8bdc232f7d9db",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0059.md",
+    "taskRunRecordSha256": "cd0b0202fe2fc67de022a90aeeb4b533df9df71bed9b8213223e454490658d8b",
+    "returnSha256": "0c2cbd2a5635058b27f1a82886361742e079d9ae24c7889ff742dacce18c4115",
+    "v1TaskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0040.md",
+    "v1TaskRunRecordSha256": "395da5c0aa6dffb7568e985be3614ce3b8bdaefbbf4ca7e093ec81ad116ecadb",
+    "v1PostimageDependenciesCsvSha256": "ccbf5649c7800a26f98f3de24e22751cd272149f44d1db39b58feb80fda7afce",
+    "v1PostimageDependenciesIndexSha256": "6ff3291f24a66753872bee93ac288865c1e8fe12d2838d93fbb79c72e791871b"
+  },
+  "counts": {
+    "pre": {
+      "total": 11,
+      "active": 10,
+      "retired": 1,
+      "anchor": 3,
+      "execution": 8
+    },
+    "post": {
+      "total": 13,
+      "active": 12,
+      "retired": 1,
+      "anchor": 4,
+      "execution": 9
+    },
+    "diff": {
+      "added": 2,
+      "reEvidenced": 2,
+      "refreshed": 8,
+      "unchanged": 1,
+      "retired": 0,
+      "deleted": 0,
+      "held": 1
+    }
+  },
+  "heldProposals": [
+    {
+      "heldId": "H-019",
+      "reservedDependencyId": "DEP-08-04-013",
+      "edge": "DEL-08-04 -> DEL-03-02",
+      "direction": "UPSTREAM",
+      "dependencyType": "INTERFACE",
+      "register": "HELD_EDGE_PROPOSALS.csv",
+      "disposition": "HELD_NON_EMITTED_PENDING_OWNER_RULING"
+    }
+  ],
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "needsHumanGraphDecision": [],
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": []
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "TARGET_UNRESOLVED: permission overlay and hook infrastructure has no single stable local target (DEP-08-04-004)",
+    "CONTEXT_TRACEABILITY_LAG: _CONTEXT.md#Traceability lists CoversScopeItems SOW-063 only; front matter and applied row carry SOW-063, SOW-083"
+  ],
+  "humanRulingRequired": false,
+  "carrierBytesChanged": false
+}

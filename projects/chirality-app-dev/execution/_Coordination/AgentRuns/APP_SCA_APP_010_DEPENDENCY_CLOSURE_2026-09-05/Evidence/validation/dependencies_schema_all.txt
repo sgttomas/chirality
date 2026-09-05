@@ -1,0 +1,4 @@
+FAIL DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration
+  unchanged vs origin/main
+FAIL DEL-05-05_ToolResultStore_and_Session_Artifacts
+  unchanged vs origin/main

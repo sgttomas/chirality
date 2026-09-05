@@ -1,0 +1,16 @@
+# Register parity: live Dependencies.csv/_DEPENDENCIES.md vs N2-reviewed post-images and N3 post-write identities
+review_sha256 ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85
+postwrite basis d66395d101143df68d956984f7ab93f5027418ec
+DEL-02-01 csv 4af3d115b79d403c190661ba57050abe9bda04539cadf09cf9b07edf2d49c254 reviewed True postwrite True | md 26a99f29ef68e00a9cc02839802142f099f67f7c5816cb461971a9ccb9a3ef49 reviewed True postwrite True | rows 13
+DEL-02-02 csv d4f6dad83cc9538186214b6ab9a116c85c6ae2a8578acfb5a65acd56e61c3cff reviewed True postwrite True | md adeb89260b62b2a86268b99505f08a6df2ea2eb98a22185961767fbad09b1df0 reviewed True postwrite True | rows 16
+DEL-02-04 csv c6bdffd1aef83f0c04764a8f8f01d5f67abc1928c9630866f6f48dd83d16ac62 reviewed True postwrite True | md 1fffa1ec5e37709dcb26f0c1b0cd611e3ae474690db63593a85e6bd2c50ba35e reviewed True postwrite True | rows 16
+DEL-02-05 csv 03d3d7bcf405e98e7096d24f6322b2a7bc0fd68a239e620f8d27191616c66f17 reviewed True postwrite True | md 5dfb3da66a0c128569e0fd9714a65a14df28c3d2ffa5cedf710cc3b40d21fcc9 reviewed True postwrite True | rows 13
+DEL-03-02 csv be877cffd700069afae17a3f604af28bc2e666c5608b833aff814ce51c291458 reviewed True postwrite True | md dffe9d126bebeb967dc9e0a109c528b44b22b7daf374cda4079f3fc349da7eb8 reviewed True postwrite True | rows 14
+DEL-04-04 csv 1cb90e1ff30b50fb08c9f9f06aa65ad74ac63b92ab0ebbcecdf52ec93cde8034 reviewed True postwrite True | md 1896ed236a76269842419a20021d9b1691da2e3b30dea3e5db9dbd2df42cb352 reviewed True postwrite True | rows 14
+DEL-05-02 csv 7a6da98003c9fc93caf3c602c09e242abb6105e90a1e45cff25e67d4a18f5380 reviewed True postwrite True | md 8823be430d59a5060bff63a17d1474ff48c09ddc77a2ee7006dec0c7a91539a0 reviewed True postwrite True | rows 15
+DEL-06-03 csv 89a579e740656560f565c41c9f536dbfe99038d86d65faae93f882134f682d02 reviewed True postwrite True | md d9140c2f599150cd3f7ab82124b12a3aad6b0a137a6c5636d4cf37f89bba3800 reviewed True postwrite True | rows 17
+DEL-07-01 csv 9c8e0405599f5077d450d92e8934c0664e25b5c193bb12e90d1c11b2af6a982f reviewed True postwrite True | md b6b1fbb7436f9d1ef10fdad5af82e04c48bb9a0f5fe5db64fe4d3bb2847adac9 reviewed True postwrite True | rows 12
+DEL-07-03 csv 54d8dc8cff7338b164264eee9a7dd6a48e6bd364177a38e50ee4991e166715ed reviewed True postwrite True | md 8c8fe0324138c219493cae174545d6e5b4674f6db16ba8a6700059945fbfb297 reviewed True postwrite True | rows 14
+DEL-08-01 csv 1f616ed9ed997a5cbd6e19114930e9c9055bd44313be7fe5954ac93d03c768f6 reviewed True postwrite True | md 09321d20219a27017c74f99da5d84f8c2f8bed10832b008304bf09d38ca3e57a reviewed True postwrite True | rows 20
+DEL-08-03 csv 7981ea6078052e96eebbaed06dade989e094260d659347e2eb8812f8a3fb7727 reviewed True postwrite True | md d8fbef7de157f70276c0cc90bd752802f4b8f61ba8f820a80c6a4620c8cf9294 reviewed True postwrite True | rows 10
+DEL-08-04 csv 902678b137b5600f0cd2202519b7906122c29168d74ab48846ca99b2f41d84e5 reviewed True postwrite True | md 8d66e9dd97d16e2746ca295f01dab051fb9ac981accced36ef76855e9cd074c0 reviewed True postwrite True | rows 13

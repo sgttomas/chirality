@@ -1,0 +1,82 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-02-01",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "status": "WARNINGS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "decompositionContentCommit": "dbd812a52d5ed0cb3ed173f3aaaa68703a914291",
+  "preImages": {
+    "dependenciesCsvSha256": "5ca2d96b48ac962d4a9f9afef8bc07957fcac81889fc1ba441b94d899bcacd99",
+    "dependenciesIndexSha256": "f60ddd1687e169bf3c0904f361d09601f4c9e7fa6a0966f939a92e90f8c83109"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "4af3d115b79d403c190661ba57050abe9bda04539cadf09cf9b07edf2d49c254",
+    "postimageDependenciesIndexSha256": "26a99f29ef68e00a9cc02839802142f099f67f7c5816cb461971a9ccb9a3ef49",
+    "previewSha256": "805fb989f9e3f7750823751cda5ddbba89778a164fc97d772342e286c7bb54ff",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0102.md",
+    "taskRunRecordSha256": "f9106d2825d152e474224e0534e71237b9c7b0d9edd6ecbc90919a5d64a5bed3",
+    "priorTaskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0043.md",
+    "returnSha256": "96f69ef87deefb3d4774a752416e5416d70ae15643cbd8b9233059f391a14f78"
+  },
+  "v1Outputs": {
+    "postimageDependenciesCsvSha256": "11da42b4ec14ac2beca22a86215d2ded987653640cb8bd10091399cfdb1aef92",
+    "postimageDependenciesIndexSha256": "51fbfeda61eaee9500d1b67757c1886cfbe649640d4c4d4e72b74554e2d7a5e0",
+    "previewSha256": "df5987745938c6e01f8150323468c314f9da395577eb60f60b1051b5800f1b8b"
+  },
+  "counts": {
+    "pre": {
+      "total": 8,
+      "active": 8,
+      "retired": 0,
+      "anchor": 4,
+      "execution": 4
+    },
+    "post": {
+      "total": 13,
+      "active": 13,
+      "retired": 0,
+      "anchor": 4,
+      "execution": 9
+    }
+  },
+  "heldRows": [
+    {
+      "dependencyId": "DEP-02-01-010",
+      "heldId": "H-001",
+      "edge": "DEL-02-01 UPSTREAM INTERFACE on DEL-02-04",
+      "disposition": "HELD_NON_EMITTED_PENDING_OWNER_RULING",
+      "idReserved": true
+    }
+  ],
+  "fences": {
+    "F1": "PASS_WITH_CANDIDATES",
+    "F1_candidates": [
+      "FC-1 redaction helper -> DEL-05-03",
+      "FC-2 session-record binding -> DEL-03-02",
+      "FC-3 account-row host -> DEL-02-05; DEL-02-05-V3-05 gate"
+    ],
+    "F2": "NONE",
+    "F2_candidates": [],
+    "F3": "NONE",
+    "needsHumanGraphDecision": [
+      "HGD-1 DEP-02-01-006 direction",
+      "HGD-2 DEP-02-01-007/008 retire or keep",
+      "HGD-3 DEL-02-02-V3-03 prerequisite (new SCC if emitted)"
+    ]
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "UNKNOWN_IMPLEMENTATION_WORKSPACE: DEP-02-01-005 target remains UNKNOWN/TBD",
+    "TARGET_UNRESOLVED: DEP-02-01-012 target remains UNKNOWN because its only explicit resolution is fenced by F1",
+    "SCC_EXPOSURE: all nine SCC-001 members reach DEL-02-01 through DEP-02-01-006; no path from DEL-02-01 into SCC-001",
+    "HELD_EDGE: DEP-02-01-010 (DEL-02-04) held non-emitted under amendment v1.1 as H-001; ID reserved",
+    "INSTRUCTION_ROOT_ASSUMED: CHIRALITY_INSTRUCTION_ROOT not exported; sealed-brief repository root used as instruction root"
+  ],
+  "humanRulingRequired": true,
+  "carrierWritten": false
+}

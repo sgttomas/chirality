@@ -1,0 +1,52 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-06-03",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "status": "WARNINGS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "b9802d035476e9781c89e71cb49415bcb98206c0ad310420ae61b1bf8361918c",
+    "dependenciesIndexSha256": "9dc38450f2525d2d59cd8356b94e4331ec789b0de41d070b3ebc451dbbc18e9c"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "89a579e740656560f565c41c9f536dbfe99038d86d65faae93f882134f682d02",
+    "postimageDependenciesIndexSha256": "d9140c2f599150cd3f7ab82124b12a3aad6b0a137a6c5636d4cf37f89bba3800",
+    "previewSha256": "d961bd83acf77a841af848d202be550cbcd60b221741ada60a2bcba1d0e581c5",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0100.md",
+    "taskRunRecordSha256": "47f4a89a364fe4835e05748809c7d10a84c8461408ee9897ee7608b901771c23",
+    "returnSha256": "7d508dc87d9a1f2c90acd98643197f62e53b36fc3323078566a6f2557315093a",
+    "supersededV1": {
+      "postimageDependenciesCsvSha256": "80451a3ade2c9dad3ea0de976a4d7ee19abf35efef5f67fa52ecfbe11563b84e",
+      "postimageDependenciesIndexSha256": "9cf2b811aacbc317c78f1ec0193927f7ea9a4381bd1e198b7fff3cd29b4ecb5c",
+      "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0041.md"
+    }
+  },
+  "counts": {
+    "pre": { "total": 9, "active": 9, "retired": 0, "anchor": 3, "execution": 6 },
+    "post": { "total": 17, "active": 17, "retired": 0, "anchor": 7, "execution": 10 }
+  },
+  "heldRowsRemoved": [
+    { "dependencyId": "DEP-06-03-014", "heldId": "H-017", "edge": "DEL-06-03 -> DEL-08-01 UPSTREAM INTERFACE", "reservedId": true }
+  ],
+  "fences": { "F1": "NONE", "F2": "NONE", "F3": "NONE", "fenceF1Candidates": [], "fenceF2Candidates": [] },
+  "needsHumanGraphDecision": [
+    "H-1 held candidate (not emitted; carried per amendment C.6): DEL-06-02 catalog validation of the registered propose tool forms a new two-node SCC with DEP-06-02-006; decompose/invert/merge/cut",
+    "DEP-06-03-008: live ScopeOfWork.md CLM-020 line 326 names DEL-07-04 as status-reader alignment owner; resolution is outside the DEP-015 permitted effect; row kept UNKNOWN/TBD"
+  ],
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "TARGET_UNRESOLVED: DEP-06-03-008 status lifecycle API owner (DEL-07-04 proposed, held)",
+    "TARGET_UNRESOLVED: DEP-06-03-009 Chirality runtime event path owner",
+    "TARGET_UNRESOLVED: DEP-06-03-015 instruction-root roster and policy values (SOW-030/SOW-084 owners proposed)",
+    "SCC_001_ADJACENCY: DEP-06-03-017 targets SCC-001 member DEL-05-02 as DOWNSTREAM handover; SCC-001 unchanged; DEL-06-03 outside it",
+    "HELD_PROPOSAL: DEP-06-03-014 removed from the post-image and reserved for HELD_EDGE_PROPOSALS.csv H-017 (cycle with DEL-08-01 H-018 in the fan-in simulation); pending owner ruling"
+  ],
+  "toolPolicy": "COMPLIANT for the v1.1 rerun; the v1 read-only analyze_dep_closure.py import is accepted as disclosed and non-load-bearing per amendment C.6",
+  "carrierWritten": false,
+  "humanRulingRequired": true
+}

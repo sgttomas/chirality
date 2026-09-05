@@ -1,0 +1,56 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N1-TASK-DEL-02-05",
+  "parentRunId": "N1",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REPORT_ONLY_PREVIEW",
+  "amendment": "v1.1",
+  "carrier": "DEL-02-05",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "c39a3d533bf5f811f35d3a3b7fbfd839e7c1baedc28607cc4d59ad9eb200b8d0",
+    "dependenciesIndexSha256": "e172982d34981ce52f04d8776c53d2a09712559ae648f660923b4457d0fc080e"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "03d3d7bcf405e98e7096d24f6322b2a7bc0fd68a239e620f8d27191616c66f17",
+    "postimageDependenciesIndexSha256": "5dfb3da66a0c128569e0fd9714a65a14df28c3d2ffa5cedf710cc3b40d21fcc9",
+    "previewSha256": "267fd87d113d5e07bf67e59e828a3d86ab2ca1a87c753e94b7d571cb84bdd4d6",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0103.md",
+    "taskRunRecordSha256": "d6497eb59b5d1607b28269400883595fdaf8b3fa63a2b4c2c57f6bd5a8e4406f",
+    "returnSha256": "c69d76626eb1368f009e9988d4e748ada83aa0558e6281eea767a3a747ce6fcb",
+    "supersededV1": {
+      "postimageDependenciesCsvSha256": "34166944f5328e18b41e1d66c6d4f574ba0c27f52f70056232358c3ce956561a",
+      "postimageDependenciesIndexSha256": "2719efe64ff38ad2c98cc115ae44283f340b93eaffb31f6c799d8c5f4d632a01",
+      "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0036.md"
+    }
+  },
+  "counts": {
+    "pre": { "total": 10, "active": 10, "retired": 0, "anchor": 4, "execution": 6 },
+    "post": { "total": 13, "active": 13, "retired": 0, "anchor": 6, "execution": 7 },
+    "changes": { "added": 3, "reEvidenced": 1, "reEvidencedSccInternalEvidenceOnly": 2, "refreshed": 7, "held": 2, "retired": 0, "unchanged": 0 }
+  },
+  "heldProposals": [
+    { "heldId": "H-013", "reservedDependencyId": "DEP-02-05-014", "edge": "DEL-02-05 UPSTREAM PREREQUISITE DEL-02-01 (account row host)" },
+    { "heldId": "H-014", "reservedDependencyId": "DEP-02-05-015", "edge": "DEL-02-05 UPSTREAM PREREQUISITE DEL-02-03 (right-panel view switcher; target conflict carried)" }
+  ],
+  "sectionBRefreshed": ["DEP-02-05-004", "DEP-02-05-006"],
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "needsHumanGraphDecision": [],
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": []
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "F2_OBSERVATION: pre-existing DEP-02-05-005 TargetLocation frontend/packages/harness-contract (App-owned, not Root) lies outside the F2 whitelist; preserved unchanged for reviewer disposition",
+    "F3_NON_EMISSION: DEL-02-05 to DEL-09-06 upstream prerequisite stated by the seated DEL-02-05-V3-03 Depends line predates SCA-APP-010 and is outside the DEP-007/DEP-008 write set; not emitted",
+    "NOTES_PROVENANCE_CLAUSE: DEP-02-05-004/-006 received a dated Notes clause recording the amendment-B pointer refresh; amendment B lists Notes in neither the refreshable nor the frozen set; strip if Notes is read as frozen"
+  ],
+  "humanRulingRequired": false,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (report-only preview, amendment v1.1 rerun), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}
