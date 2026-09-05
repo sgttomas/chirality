@@ -113,7 +113,7 @@ git status --short && git log --oneline -20
 python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .
 p=$(git ls-tree --name-only HEAD projects/chirality-app-dev/loop/ | grep -E '/WORKPLAN_.*\.md$' | LC_ALL=C sort | tail -1); [ -n "$p" ] && git show "HEAD:$p" || echo "no committed plan: deliverables alone"
 head -51 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md && tail -60 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
-grep -n "AWAITING_RULING\|PROPOSAL" projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
+grep -nE "^\| D-APP-[0-9]+ \|([^|]*\|){2} (AWAITING_RULING|NOT_PREPARED)" projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
 ls projects/chirality-app-dev/execution/_Coordination/NOTICE_* 2>/dev/null
 cd projects/chirality-app-dev && PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status; cd -
 grep -l '^## Remaining' projects/chirality-app-dev/execution/PKG-*/1_Working/DEL-*/_STATUS.md
@@ -147,9 +147,13 @@ routed Root notices are observable only on `origin/main` (after
 run record are on the run's branch (Step 4), so a chain of dependent items
 proceeds within one run without a merge between links. Blockedness beyond
 gates is re-derived from the item's own `Depends` line, the deliverable's
-`Dependencies.csv` / `_DEPENDENCIES.md` (each `ACTIVE` row gates per its
-`SatisfactionStatus`), and the accepted DepClosure snapshot (§2), never from
-a hand-maintained summary. Precedence: (a) repair
+`Dependencies.csv` / `_DEPENDENCIES.md`, and the accepted DepClosure
+snapshot (§2), never from a hand-maintained summary. A register row blocks
+an item only when it is `ACTIVE`, of type `PREREQUISITE`, its
+`SatisfactionStatus` is `TBD`, `PENDING`, or `IN_PROGRESS`, and the item's
+`Depends` line names its target; `INTERFACE`, `HANDOVER`, `CONSTRAINT`, and
+`ENABLES` rows order work and never block; `SATISFIED`, `WAIVED`, and
+`NOT_APPLICABLE` never block. Precedence: (a) repair
 failing validation on landed work; (b) work that discharges a gate
 prerequisite; (c) owner-directed over agent-inferred; (d) the plan's focus
 and order; (e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6**
