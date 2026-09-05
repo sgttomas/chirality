@@ -149,10 +149,10 @@ row gates per its `SatisfactionStatus`), and the accepted DepClosure
 snapshot (§2), never from a hand-maintained summary. Precedence: (a) repair
 failing validation on landed work; (b) work that discharges a gate
 prerequisite; (c) owner-directed over agent-inferred; (d) the plan's focus
-and order; (e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6** to every
-item: standalone-harness or feature-parity work is off-strategy. Never
-manufacture work outside recorded `Remaining` scope or revive a ruled-shut
-item (a revival takes a new register row).
+and order; (e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6**
+to every item: standalone-harness or feature-parity work is off-strategy.
+Never manufacture work outside recorded `Remaining` scope or revive a
+ruled-shut item (a revival takes a new register row).
 
 Judgment-shaped forks are triaged under the D-APP-64 §5 contract (fast-reject
 boundary first, then the selection method and attribution schema); D-APP-60
