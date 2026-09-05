@@ -1,0 +1,15 @@
+{
+  "actual_failure_capture_sha256": "300828b5161e2650df17ff5948536ebf936249d5a3b0a9dbfd54cd7919420345",
+  "raw_preimages": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff.pre_amendment_v1.2",
+      "sha256": "97221639751812c04b783ac60345491e860f5dfdac6b08ac13bde5770bf3ecc6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff.pre_retention_repair",
+      "sha256": "13ee7a1ec4c7bed72793c4fbd8a0851c6decd6698346aac3815afefc0a3b69b4"
+    }
+  ],
+  "attributes_preimage_sha256": "830d955cb6822240c92ba9f0073eb6af9a54a2f370bf5d338b783148d9c79592",
+  "detection": "CHANGE full staged check found historical diff suffixes omitted by early extension-limited scan"
+}

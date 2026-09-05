@@ -1,0 +1,17 @@
+{
+  "id": "release-quality-with-registered-premerge-service",
+  "command": [
+    "npm",
+    "run",
+    "validate:release-quality"
+  ],
+  "cwd": "projects/chirality-app-dev/frontend",
+  "exit_code": 125,
+  "timeout_seconds": 1200,
+  "duration_seconds": 0.0,
+  "stdout": "",
+  "stderr": "service setup failed: [Errno 1] Operation not permitted",
+  "status": "FAIL",
+  "started_at": "2026-09-05T21:43:27.826790+00:00",
+  "ended_at": "2026-09-05T21:43:27.826865+00:00"
+}

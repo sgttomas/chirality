@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-09-05T21:47:36.757136+00:00",
+  "classification": "supplementary immutable derivative",
+  "source": {
+    "status": "SOURCE_FROZEN_REVIEW_PENDING",
+    "base": "50b70f47f38867430be9879b6a928890d320685e",
+    "files": [
+      {
+        "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+        "sha256": "a2b5d7fa5304d38faae72388615a4b5ef0f110616fcffe78f135ee0582b9671d",
+        "bytes": 23709
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+        "sha256": "92e10b37a4de8cdd5ddf815acb5e94777c5916cd5c516aa3c97e7f2c445bbae6",
+        "bytes": 28069
+      }
+    ],
+    "diff_sha256": "f9b9d9122ea3f9213203a8244d9acf9ca272bdd958ce857220af67f7780923e4",
+    "focused_tests": "32 PASS; author/COMMANDS.json",
+    "amendments": [
+      "AUTHOR_AMENDMENT_v1.1.md",
+      "AUTHOR_AMENDMENT_v1.2.md",
+      "AUTHOR_AMENDMENT_v1.3.md",
+      "AUTHOR_AMENDMENT_v1.4.md"
+    ]
+  },
+  "review": "reviewer/REVIEW_RETURN_v3.md",
+  "shared_checks": "SHARED_CHECK_FAN_IN.json",
+  "closure": "partial source complete; localpremergeFAIL CI pending"
+}

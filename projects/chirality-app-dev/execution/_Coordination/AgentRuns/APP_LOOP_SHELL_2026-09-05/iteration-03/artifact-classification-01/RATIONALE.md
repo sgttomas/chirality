@@ -1,0 +1,7 @@
+# Exact frozen-diff artifact preservation — iteration3
+
+Parent HELP_HUMAN authorizes six exact observed artifact paths under existing project exact-byte frozen-diff conventions. D-APP-59 ordinary means/evidence judgment, D-APP-60 and D-APP-64 apply; agent selection, no owner ruling. EARLY_RAW_DIAGNOSTICS_01.json captures actual read-only no-index check failures before effect; BEFORE_EFFECT.json pins that evidence and all six canonical preimages.
+
+Selected outcome: iteration-03/.gitattributes enumerates only the six observed frozen diff/patch filenames with whitespace=-trailing-space. Unified-diff context lines require a literal space; canonical frozen artifact bytes and hashes remain unchanged. Reject normalization that would alter patch evidence, blanket/wildcard/source exemptions and global settings. Ontology distinguishes evidence serialization from authored source; epistemology preserves exact measured bytes; praxeology diagnoses before final review; axiology preserves truthful recomputation and strict authored-code gates.
+
+No whitespace-gate waiver: full unaltered staged git diff --cached --check across complete tranche remains mandatory. Fresh independent final governed reviewer must verify exact path/class scope, preimage preservation and later full staged result before closeout effect. No PASS anticipated. No source/global setting/owner/lifecycle/pointer changes. Receipt247 Pointers must directly cite this RATIONALE.md in addition to source judgments.

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "status",
+    "exit_code": 0
+  },
+  {
+    "id": "log",
+    "exit_code": 0
+  },
+  {
+    "id": "receipt-validator",
+    "exit_code": 0
+  },
+  {
+    "id": "receipt-head",
+    "exit_code": 0
+  },
+  {
+    "id": "receipt-tail",
+    "exit_code": 0
+  },
+  {
+    "id": "overlay",
+    "exit_code": 0
+  },
+  {
+    "id": "open-register",
+    "exit_code": 0
+  },
+  {
+    "id": "corpus",
+    "exit_code": 0
+  },
+  {
+    "id": "hold",
+    "exit_code": 0
+  },
+  {
+    "id": "committed-dependencies",
+    "exit_code": 0
+  },
+  {
+    "id": "source-drift",
+    "exit_code": 0
+  },
+  {
+    "id": "harness-status",
+    "exit_code": 0
+  },
+  {
+    "id": "self-check",
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "raw_hashes_unchanged": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff.pre_amendment_v1.2",
+      "sha256": "97221639751812c04b783ac60345491e860f5dfdac6b08ac13bde5770bf3ecc6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff.pre_retention_repair",
+      "sha256": "13ee7a1ec4c7bed72793c4fbd8a0851c6decd6698346aac3815afefc0a3b69b4"
+    }
+  ],
+  "attributes_postimage_sha256": "5f11cf89eef96eb3d71f0ef5838411898c465b91df675c942949490bf42959e9",
+  "receipt_before_sha256": "f24d9eda9b4de98529baf736e56f12d5a319abc127f2105d245692f552c3ba87",
+  "receipt_after_sha256": "5a7f86e75a252471c60839251c10cce45e67b9981772cea40f5ff16d324f7642",
+  "receipt_scope": "Receipt247 Pointers added exact supplemental rationale only; all other bytes preserved",
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "full_staged_check_and_delta_review": "PENDING"
+}

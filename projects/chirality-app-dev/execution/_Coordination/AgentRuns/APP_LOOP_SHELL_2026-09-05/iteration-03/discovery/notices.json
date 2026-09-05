@@ -1,0 +1,166 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-07-25_CONTRACT_INDEX_CORRECTION.md",
+    "sha256": "99437ff4fe01e35727dbe4adb4ff7d789d935f0beedc0889500f37c0d382a18b"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-07-25_helps_humans_p1_p7_applied.md",
+    "sha256": "99f798f534d13ca49ab5f036a4d5fa0eb113a8c3b1ec1c4fae88afba887a4777"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-07-27_D-PEC-67_OD7-G3_INTERFACE_CLARIFICATIONS.md",
+    "sha256": "923b905f9454aa3b3aa57889b8f6b55f3fb877abdbdbe33ab8ef42a288e2c3d8"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-07-27_PIPING_SCA-008_CURRENT_EFFECT_RECONCILIATION.md",
+    "sha256": "1082985345615fe20ccf7d61603631caa62f79981ecfd9a8507888d03adbdf26"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_AUDIT_GOVERNANCE_STALE_DBM_REFERENCE_REPAIR.md",
+    "sha256": "28222953e38ebafbdb6aef85229a4823e7bba3e034c4c5bd5f0afc852cb7dfa0"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_PRODUCT_DELIVERY_DIRECTION.md",
+    "sha256": "3231f46463e5a9d2b93793ae39b3b78a041878220932b369d76a976601090cb3"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_ROOT_GOVERNANCE_DOC_SIMPLIFICATION.md",
+    "sha256": "d1500dd428f42431dd19b638f3f0bbc0e75834ce7d721b6d9ba9ca8cb6424525"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_ROOT_HARNESS_SCOPE_CORRECTION.md",
+    "sha256": "f6923e7335f76fc413dd56d5735f0299c31bbf83187bce1b660bfb23ae007a11"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_ROOT_RESPONSE_DAPP84_DAPP85.md",
+    "sha256": "b4c6e9a67437618de517616ab411bb411bb099f543663ab14362c745e901b328"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_CLOSEOUT_RECEIPT_RULE.md",
+    "sha256": "266af9c9e2ab06742dcab6064000af6d63cb380b99c13a7dcc2fe8a520816e2f"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_DEFERRAL_REVIEW_MODE.md",
+    "sha256": "a358b455ab217e039f4443ca717816f37d63f4701200e9404c8222858e361b09"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_FEDERATION_PREFLIGHT.md",
+    "sha256": "b82bb366f15007369bb5fa0ffaf31c05e3c8822b42b2f7576eb93bee2c94ef99"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_INSTRUCTION_SCHEMA_REPAIR.md",
+    "sha256": "6f6bd502dc11bb9f365afa585b837f6fadc0eb34fde78725157cedcf5cac2422"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_TM-APP-002_PARITY_NEXT_PLANNING.md",
+    "sha256": "f397bcffb0f99ba8b478e3a2c7ce2a7551e0d2b7b4c2e4aca0e771a3eba8df62"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_PI_G1B_APP_WORK_ACCEPTANCE_HANDOFF.md",
+    "sha256": "618c5c3edbf55a04eeefbf513e08a566fa1ef751febb3f6dcbe2c07e453af6b4"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_RUNTIME_GRACEFUL_STOP_INVESTIGATION.md",
+    "sha256": "4f52ed537338ccb678da4a3ad9a5cb96459d1ed844ee67fd7c51c87442500656"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_SCA003_PRD_BASIS_RECONCILIATION.md",
+    "sha256": "3bdcd81c9da6fdfecfeb8d50781c375e2a86103302a161847ed8270ff0a0615a"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_TM-ROOT-112_GRACEFUL_STOP_ROW.md",
+    "sha256": "0289459dedffd57ea1edc889913a3aa24e89b5af064f44086b34d843c476c301"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_TM-ROOT-117_DAPP48_CARRIER.md",
+    "sha256": "3cae92c7ee53c86db2c20798b4fbfb1202031f7dff7d072aa9d5bbd7f7382edd"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_TM-ROOT-122_ELECTRON_AUTHORITY_DRIFT.md",
+    "sha256": "f806474b4500b2b081a49d759a0c0793fe65bce860d7efd146147abc38d5951e"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_TM_LAUNCHER_REMEDIATION.md",
+    "sha256": "5df971b70c8b15900081825af6bf372afcfe34500024116bb07cc25a1dbdbbd2"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-04_ROOT_TM-ROOT-112_ACCEPTED_GRACEFUL_STOP_REPAIR.md",
+    "sha256": "1029648d039edd3c0449d0bea867853b033cc457a4b1f477c458dd4e127a6ed3"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-16_ROOT_AGENT0_DIRECT_A2_DISPATCH_ALIGNMENT.md",
+    "sha256": "daa9d3144e4eb6126237ebdc261b1f4d90fcfbbfda52a78303b3573a0c231e36"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-19_ROOT_TM-APP-027_TM-APP-028_COMPATIBILITY_COMPLETION.md",
+    "sha256": "17f269567c3a5795799e5be92a9ac75281dc8ff553afa11376a055d3e78924ed"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-20_ROOT_EXTERNAL_WORKING_ROOT.md",
+    "sha256": "d4592f47aa9cb3282a88612fabc27d95d7ce1dbf7fcdf87d0521017644c38357"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+    "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DGOV34_CHANGE_ROUTINE_BRANCH.md",
+    "sha256": "5b6abb9e2e3e3efe62fb6d1f607ba3fb98ff9121debe77389eed386f9be5d3fe"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM117_TRIGGER_RESCOPE_AND_DEL0206_PREPARATION_AUTHORIZATION.md",
+    "sha256": "fd587b676a55c42feecd2c0e9dbcb96d67a1f2bcff3d5ab66d6fdb78826fdaf0"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM125_AGENT0_A2_VALIDATOR_ALIGNMENT.md",
+    "sha256": "eb765dc3bebbf9dd84842643fb22aa989539513843647b562098c96468547864"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md",
+    "sha256": "b68ed592b310fa996bb10d2aaf6889a25eb0481e6a57ce3fb2e414b775e4ee2b"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_AGENT_INDEX_TASK_MANAGEMENT_2026-07-31.md",
+    "sha256": "993829fea4f840253e0474076d0ad980c3b4411f3e0bbd0f6064ef8c666f722d"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-21_ROOT_DOCTRINE_AMENDMENT.md",
+    "sha256": "ebeb6dbeeb13eea272b2c804f7adb4a07d0aed3fb1fcf50525e1bfdf2ccf3155"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-23_DIRECTIVE_GENUS_SUPERSESSION.md",
+    "sha256": "0c967b3d9b87b6dfd018ce2ae8d1862f0ea80806a6f271134b1b84a41e154840"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-24_OPERATING_SYSTEM_PROSE_PROPAGATION.md",
+    "sha256": "d72f39c4d04f378c9d1e590ece6b7a11f016bc73fc14948a0ca6df579a8a66e7"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md",
+    "sha256": "8dcacdaab7d5327e7fc630c500fd6bb26086854852722eab9078b1f1a1e936ae"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-26_SPEC_CONTRACT_AMENDMENTS.md",
+    "sha256": "f5a557498c09921d4d2075c801938b5ef90eacecb515487afabbee7c43b2d182"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-28_ROOT_RUNTIME_STEWARDSHIP_PRD.md",
+    "sha256": "689a32ac9b9a557046561e418d5b6a2b003e045d5c428a7161c82846bf485fc4"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-31_MERGE_GATE_POLICY_SUCCESSION.md",
+    "sha256": "8f8d064d0bc464321668c424d58975f90ad0ba80268178f4796573a99fcad0fc"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-32_TASK_MANAGEMENT_STANDARD.md",
+    "sha256": "a42ed6f849cb620a70e66162366d606f9e47f2133a000106342d10c1d32f785b"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md",
+    "sha256": "9b8ebfe16e5241bc2c58b4bbc71032837632f5b07d776e82f11a273d2469cee7"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-T0-24_FLOW_A_ROOT_IDENTITY_SEPARATION.md",
+    "sha256": "363990d542206fe78de0c6d28b82854191bdf552c3914699349b138b0de78a5e"
+  }
+]

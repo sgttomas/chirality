@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "path": "validation/FINAL_RETURN.md",
+      "sha256": "6a477d60ea891511551186689a384b642a8c853dfaf4248aefd1d74eb513de69"
+    },
+    {
+      "path": "validation/FINAL_MANIFEST.json",
+      "sha256": "af9e59f43a1702b98377013e766726689afc889ccc77429f63eba125310018e5"
+    },
+    {
+      "path": "validation/final-01/evidence-sha256.json",
+      "sha256": "9525793548e3af8a3b7688101c8f52bea0d79d000066eaa5d94799ec3d902bc9"
+    }
+  ],
+  "scope": "Actual terminal validation on its exact pinned bytes; source0drift and receipt247/ordinarydiff PASS. New binding/inventory/review brief are subsequent additive review inputs, not implicitly covered.",
+  "remaining": "Fresh governed review and full staged check; actual new-headCI after commit"
+}

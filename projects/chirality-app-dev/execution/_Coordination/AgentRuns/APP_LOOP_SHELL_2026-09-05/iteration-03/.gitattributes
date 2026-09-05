@@ -1,0 +1,9 @@
+# Exact frozen-diff context bytes; see artifact-classification-01/RATIONALE.md.
+instances/pkg02_fields/FROZEN_SOURCE.diff whitespace=-trailing-space
+instances/pkg02_fields/author/SOURCE_DIFF.patch whitespace=-trailing-space
+instances/pkg02_fields/author/SOURCE_DIFF_v1.patch whitespace=-trailing-space
+instances/pkg02_fields/author/SOURCE_DIFF_v2.patch whitespace=-trailing-space
+instances/pkg02_fields/author/SOURCE_DIFF_v3.patch whitespace=-trailing-space
+instances/pkg02_fields/author/SOURCE_DIFF_v4.patch whitespace=-trailing-space
+instances/pkg02_fields/FROZEN_SOURCE.diff.pre_amendment_v1.2 whitespace=-trailing-space
+instances/pkg02_fields/FROZEN_SOURCE.diff.pre_retention_repair whitespace=-trailing-space

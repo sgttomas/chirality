@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "full_staged_check": "PENDING",
+  "final_review": "PENDING",
+  "shared_terminal_pinned_bytes": "No shared record mutation in terminal-binding/brief/inventory step"
+}

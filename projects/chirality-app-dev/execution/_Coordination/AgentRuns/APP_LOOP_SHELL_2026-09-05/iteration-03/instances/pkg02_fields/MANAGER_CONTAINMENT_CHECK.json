@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "source_sha_match": true,
+  "unmodified_carrier_fields": [
+    "Dependencies.csv",
+    "_DEPENDENCIES.md",
+    "ScopeOfWork.md",
+    "_CONTEXT.md",
+    "_REFERENCES.md"
+  ],
+  "remaining_bytes_preserved": true,
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "--",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State",
+    "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "staged_full_check": "parent CHANGE pending"
+}

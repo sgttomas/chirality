@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "git",
+    "ls-tree",
+    "-r",
+    "--name-only",
+    "HEAD",
+    "projects/chirality-app-dev/loop/"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "stdout": "projects/chirality-app-dev/loop/LOOP_INIT.md\nprojects/chirality-app-dev/loop/LOOP_RECEIPTS.md\n",
+  "stderr": "",
+  "stdout_sha256": "345dd627e4b76e118e4f42ab8f23853740bc4c9e538f03ac8ba31f3fa9b1ace2"
+}

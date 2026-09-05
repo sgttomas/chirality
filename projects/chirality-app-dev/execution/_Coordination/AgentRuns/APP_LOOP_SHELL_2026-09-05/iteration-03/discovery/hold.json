@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "python3",
+    "execution/_Scripts/app_hold.py",
+    "check",
+    "--operation",
+    "reliance",
+    "--entry-path",
+    "HELP_HUMAN:ITERATION03:DISCOVERY",
+    "--target",
+    "DEL-02-04",
+    "--target",
+    "DEL-02-02"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"HELP_HUMAN:ITERATION03:DISCOVERY\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"50b70f47f38867430be9879b6a928890d320685e\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-02\",\n      \"entry_path\": \"HELP_HUMAN:ITERATION03:DISCOVERY\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    },\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-04\",\n      \"entry_path\": \"HELP_HUMAN:ITERATION03:DISCOVERY\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"9f9362da70bd2304f11ccab9491ebc424ea479b34835b62082700ead0973816d\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-02\",\n    \"DEL-02-04\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+  "stderr": "",
+  "stdout_sha256": "9b953bcc91608a7b592e0740839894c0bc8752725c7e7df9545592ade3e830f6"
+}

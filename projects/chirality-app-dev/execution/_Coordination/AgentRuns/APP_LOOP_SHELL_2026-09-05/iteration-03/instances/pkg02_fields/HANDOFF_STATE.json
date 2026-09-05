@@ -1,0 +1,26 @@
+{
+  "status": "PARTIAL_SOURCE_COMPLETE_LOCAL_PREMERGE_FAIL_CI_PENDING",
+  "accepted_upstream": [
+    "D-APP-108 SCA-APP-010 seated scope",
+    "D-APP-111 CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034",
+    "DEP015 committed50b70f47"
+  ],
+  "derivative_status": "immutable supplementary source/verification snapshot; no pointer changes",
+  "closure": "bounded source and independent review complete; parent integration and source-boundCI pending",
+  "blockers": [
+    "actual local premerge503 missing runtime binding; CI for new source owed",
+    "parent integration/refutation/CHANGE pending"
+  ],
+  "residual_scope": [
+    "Activity strip",
+    "Activity view",
+    "consumer integration under future selection"
+  ],
+  "rerun": [
+    "source mutation requires new freeze/full review/checks",
+    "new boundCI after committed source",
+    "freshStep0 before future work"
+  ],
+  "future_advice": "FUTURE_REDERIVATION_NOTES.md; not selected queue",
+  "a1": "restage/fresh owner execution required for later proof"
+}

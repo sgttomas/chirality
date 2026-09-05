@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "python3",
+    "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+    "status"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "stdout": "corpus current_version: v20\n  [MATCH] docs/DIRECTIVE.md            snapshot=50b816d5be74 live=50b816d5be74\n  [MATCH] docs/CONTRACT.md             snapshot=51ec0d4872dd live=51ec0d4872dd\n  [MATCH] docs/SPEC.md                 snapshot=c2fb9ecbbc37 live=c2fb9ecbbc37\n  [MATCH] docs/TYPES.md                snapshot=a8cdc94d39e1 live=a8cdc94d39e1\n  [MATCH] docs/PLAN.md                 snapshot=3741bb7ec389 live=3741bb7ec389\n  [MATCH] docs/PRD.md                  snapshot=87ced649beae live=87ced649beae\n  [MATCH] AGENT_SOFTWARE_DECOMP.md     snapshot=ad849d9a9274 live=ad849d9a9274\n  [MATCH] AGENT_DOMAIN_ENGINE.md       snapshot=bb2df7178d7b live=bb2df7178d7b\nno drift.\n",
+  "stderr": "",
+  "stdout_sha256": "921a96d8fcfa2c08c5659046e2dac4fa1d19fc07749beec041ae5d7c5a179351"
+}

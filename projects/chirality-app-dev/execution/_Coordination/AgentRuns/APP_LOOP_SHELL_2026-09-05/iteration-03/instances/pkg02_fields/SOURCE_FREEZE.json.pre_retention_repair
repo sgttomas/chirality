@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_FROZEN_REVIEW_PENDING",
+  "base": "50b70f47f38867430be9879b6a928890d320685e",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+      "sha256": "401278fe0eccfc83ee4e990f5e472ee0b4bc7da199c2bb3372e10a3a6637a2b9",
+      "bytes": 23587
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+      "sha256": "48de79f9b9876bc3674f869ba862a6aeeba6a4ab63cdc87421059c5bd313f497",
+      "bytes": 26315
+    }
+  ],
+  "diff_sha256": "13ee7a1ec4c7bed72793c4fbd8a0851c6decd6698346aac3815afefc0a3b69b4",
+  "focused_tests": "31 PASS; author/COMMANDS.json",
+  "amendments": [
+    "AUTHOR_AMENDMENT_v1.1.md",
+    "AUTHOR_AMENDMENT_v1.2.md",
+    "AUTHOR_AMENDMENT_v1.3.md"
+  ]
+}

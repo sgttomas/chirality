@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "status": "PARENT_APPROVED_ACTIVATION",
+  "approval_class": "HELP_HUMAN agent activation under existing scope; not owner ruling",
+  "source_commit": "50b70f47f38867430be9879b6a928890d320685e",
+  "manager_brief": "instances/pkg02_fields/MANAGER_ACTIVATION_v2.md",
+  "manager_brief_sha256": "70e1643a4d80a9239c92a9635e158c332ca925c852963193b691de6753fe7736",
+  "nodes": [
+    {
+      "id": "I3-N1",
+      "role": "WORKING_ITEMS PKG02",
+      "scope": "source validation and bounded author brief; exact local records/instance evidence",
+      "depends_on": []
+    },
+    {
+      "id": "I3-N2",
+      "role": "TASK author",
+      "scope": "frontend/src/lib/woven-dialogue/woven-workspace-state.ts and frontend/src/__tests__/lib/woven-workspace-state.test.ts only",
+      "depends_on": [
+        "I3-N1"
+      ]
+    },
+    {
+      "id": "I3-N3",
+      "role": "fresh TASK software-code-review",
+      "scope": "read-only complete frozen source diff",
+      "depends_on": [
+        "I3-N2"
+      ]
+    },
+    {
+      "id": "I3-N4",
+      "role": "shared validation",
+      "scope": "full tests/typecheck/build/premerge plus harness/record checks",
+      "depends_on": [
+        "I3-N3"
+      ]
+    },
+    {
+      "id": "I3-N5",
+      "role": "parent shared integration and fresh governed review",
+      "scope": "receipt/log/graph; precise rationale citations",
+      "depends_on": [
+        "I3-N4"
+      ]
+    },
+    {
+      "id": "I3-N6",
+      "role": "CHANGE",
+      "scope": "scoped staged full check/commit/push",
+      "depends_on": [
+        "I3-N5"
+      ]
+    }
+  ],
+  "concurrency": "No overlapping writes; shared checks after product freeze",
+  "prohibited": "Dependency files, UI strip/Activity, other source, accepted pointers/lifecycle/Root",
+  "verdicts": "No execution/review/check verdict yet"
+}

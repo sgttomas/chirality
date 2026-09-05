@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-09-05T20:28:23.743Z",
+  "profile": "runtime-premerge-evidence",
+  "status": "fail",
+  "releaseClaim": false,
+  "section9Policy": {
+    "standaloneSection9IsBlockingForThisWrapper": true,
+    "premergeSection9IsReportOnly": true
+  },
+  "commands": [
+    {
+      "id": "full_test",
+      "status": "pass",
+      "command": "npm run test -- --testTimeout=15000",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T20:28:00.754Z",
+      "endedAt": "2026-09-05T20:28:07.241Z",
+      "durationMs": 6487,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stderr.log"
+    },
+    {
+      "id": "typecheck",
+      "status": "pass",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T20:28:07.241Z",
+      "endedAt": "2026-09-05T20:28:13.357Z",
+      "durationMs": 6116,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stderr.log"
+    },
+    {
+      "id": "section9",
+      "status": "pass",
+      "command": "npm run harness:validate:section9",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T20:28:13.357Z",
+      "endedAt": "2026-09-05T20:28:23.040Z",
+      "durationMs": 9683,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stderr.log"
+    },
+    {
+      "id": "premerge",
+      "status": "fail",
+      "command": "npm run harness:validate:premerge",
+      "exitCode": 1,
+      "startedAt": "2026-09-05T20:28:23.040Z",
+      "endedAt": "2026-09-05T20:28:23.740Z",
+      "durationMs": 700,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stderr.log"
+    }
+  ],
+  "summaryConsistency": {
+    "id": "summary.consistency",
+    "status": "fail",
+    "checks": [
+      {
+        "id": "summary.section9",
+        "status": "pass",
+        "artifactPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+        "errors": []
+      },
+      {
+        "id": "summary.section8",
+        "status": "fail",
+        "artifactPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+        "errors": [
+          "ENOENT: no such file or directory, access '/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json'"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "releaseQualitySummary": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json",
+    "section8Summary": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+    "section9Summary": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+    "section9Manifest": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json"
+  },
+  "boundaries": [
+    "No release publication authorization.",
+    "No lifecycle issuance.",
+    "No professional approval.",
+    "No certification, sealing, authentication, notarization, code-compliance acceptance, or release-readiness claim."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "original_manifest_unchanged": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/MANIFEST_SHA256.json",
+    "sha256": "6c366482843f91b4f68c84392f42ccf51838f5d5e098e49b96ce0ecfd928334d"
+  },
+  "new_files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/RATIONALE_ATTRIBUTION_SUPPLEMENT_v1.md",
+      "sha256": "b8ef617d95ced3e8675557497ef541f40f5c5c82fac576ac25ea14ecb34b458a",
+      "bytes": 14726
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/ATTRIBUTION_SUPPLEMENT_VERIFICATION_v1.json",
+      "sha256": "78d1c31c1e0db5725b46eb0eae7e0b0404b1058a3d1480878430bc3d0f42f40d",
+      "bytes": 1362
+    }
+  ],
+  "bound_notice": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/GOVERNED_REVIEW_BLOCK_NOTICES_01.md",
+    "sha256": "d2cd8482abba5d403e46869f8004c28e6fc36127af9ad7c2594b1f365c3f92d2"
+  },
+  "status": "FROZEN_SUPPLEMENT_FOR_INDEPENDENT_DELTA_REVIEW"
+}

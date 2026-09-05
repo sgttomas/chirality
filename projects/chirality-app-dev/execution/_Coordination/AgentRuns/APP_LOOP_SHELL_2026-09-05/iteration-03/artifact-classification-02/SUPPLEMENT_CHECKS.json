@@ -1,0 +1,29 @@
+{
+  "receipt_before_sha256": "5a7f86e75a252471c60839251c10cce45e67b9981772cea40f5ff16d324f7642",
+  "receipt_after_sha256": "b39a96432f3b96108d7bf4f8bf8b3ebcd4639385766546ee171d33217dcb4ce0",
+  "scope": "Receipt247 additional exact rationale citation; no other receipt edits",
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "final_review": "BLOCK notices recorded; fresh delta result pending"
+}

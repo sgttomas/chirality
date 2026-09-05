@@ -1,0 +1,104 @@
+{
+  "scope": "New iteration3 raw diff/patch/log/stdout/stderr/txt artifacts at observation; no mutation/index changes",
+  "files_scanned": 6,
+  "findings": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff",
+      "sha256": "f9b9d9122ea3f9213203a8244d9acf9ca272bdd958ce857220af67f7780923e4",
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff"
+      ],
+      "exit_code": 3,
+      "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:6: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:34: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:247: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:276: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:402: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:417: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:447: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:453: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:463: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:470: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/FROZEN_SOURCE.diff:543: trailing whitespace.\n+ \n",
+      "stderr": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch",
+      "sha256": "f9b9d9122ea3f9213203a8244d9acf9ca272bdd958ce857220af67f7780923e4",
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch"
+      ],
+      "exit_code": 3,
+      "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:6: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:34: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:247: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:276: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:402: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:417: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:447: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:453: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:463: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:470: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF.patch:543: trailing whitespace.\n+ \n",
+      "stderr": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch",
+      "sha256": "c1837ef398967ab2102f6c5b55a90199b7d9d88e6bae43123d955ca8a8af7aaf",
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch"
+      ],
+      "exit_code": 3,
+      "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:6: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:168: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:197: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:323: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:338: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:361: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:367: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:377: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:384: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v1.patch:439: trailing whitespace.\n+ \n",
+      "stderr": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch",
+      "sha256": "97221639751812c04b783ac60345491e860f5dfdac6b08ac13bde5770bf3ecc6",
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch"
+      ],
+      "exit_code": 3,
+      "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:6: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:34: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:192: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:221: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:347: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:362: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:385: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:391: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:401: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:408: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v2.patch:464: trailing whitespace.\n+ \n",
+      "stderr": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch",
+      "sha256": "e421badc631a7eb07b35d1589f21502de37f08ea286551043637b98770b3f17d",
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch"
+      ],
+      "exit_code": 3,
+      "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:6: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:34: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:215: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:244: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:370: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:385: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:408: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:414: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:424: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:431: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v3.patch:504: trailing whitespace.\n+ \n",
+      "stderr": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch",
+      "sha256": "13ee7a1ec4c7bed72793c4fbd8a0851c6decd6698346aac3815afefc0a3b69b4",
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch"
+      ],
+      "exit_code": 3,
+      "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:6: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:34: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:217: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:246: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:372: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:387: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:410: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:416: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:426: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:433: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author/SOURCE_DIFF_v4.patch:506: trailing whitespace.\n+ \n",
+      "stderr": ""
+    }
+  ],
+  "classification": "No attributes added; parent coordination required before exact-path amendment",
+  "final_staged_check": "Still required"
+}

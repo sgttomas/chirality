@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "stdout": "?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/\n",
+  "stderr": "",
+  "stdout_sha256": "b9fab07310771af2b4e1351b9a6814f7b822d461305d0b4dacde03afcd27986d"
+}

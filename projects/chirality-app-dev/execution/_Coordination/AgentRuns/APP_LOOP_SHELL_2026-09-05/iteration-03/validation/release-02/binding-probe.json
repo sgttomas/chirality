@@ -1,0 +1,8 @@
+{
+  "url": "http://127.0.0.1:56698/api/harness/session/list?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F85d6%2Fchirality%2Fprojects%2Fchirality-app-dev",
+  "method": "GET",
+  "started_at": "2026-09-05T21:43:42.449768+00:00",
+  "ended_at": "2026-09-05T21:43:42.600658+00:00",
+  "status": 503,
+  "body": "{\"error\":{\"type\":\"ENGINE_UNAVAILABLE\",\"message\":\"Chirality runtime daemon client is not configured\"}}"
+}

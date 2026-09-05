@@ -1,0 +1,29 @@
+{
+  "cwd": "frontend",
+  "command": [
+    "npm",
+    "run",
+    "harness:validate:premerge"
+  ],
+  "service": {
+    "cwd": "frontend",
+    "command": [
+      "node",
+      "node_modules/next/dist/bin/next",
+      "dev",
+      "--port",
+      "{port}"
+    ],
+    "port": "auto",
+    "ready_url": "http://127.0.0.1:{port}",
+    "env": {
+      "CHIRALITY_HARNESS_PROVIDER": "stub",
+      "NEXT_TELEMETRY_DISABLED": "1"
+    },
+    "check_env": {
+      "HARNESS_BASE_URL": "http://127.0.0.1:{port}"
+    },
+    "startup_timeout_seconds": 90,
+    "shutdown_timeout_seconds": 10
+  }
+}
