@@ -138,9 +138,10 @@ Rules the output does not show you:
 A `Remaining` item (deliverable `_STATUS.md`, §2) is selectable when it
 carries no `(gated: ...)`, `(stage-gated: ...)`, or `NOT_SELECTABLE_UNTIL:`
 marker, or its named gate or act is observable on `main` (a ruling record,
-a routed Root notice, or a merged act). Blockedness beyond gates is re-derived from the deliverable's
-`Dependencies.csv` / `_DEPENDENCIES.md` and the accepted DepClosure snapshot
-(§2), never from a hand-maintained summary. Precedence: (a) repair failing
+a routed Root notice, or a merged act). Blockedness beyond gates is
+re-derived from the deliverable's `Dependencies.csv` / `_DEPENDENCIES.md`
+and the accepted DepClosure snapshot (§2), never from a hand-maintained
+summary. Precedence: (a) repair failing
 validation on landed work; (b) work that discharges a gate prerequisite;
 (c) owner-directed over agent-inferred; (d) the plan's focus and order;
 (e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6** to every

@@ -13,8 +13,8 @@ Owning loop: `Chirality App Dev`
 Candidate: branch `claude/loop-init-consolidation-d-app-112` from `origin/main`
 `7cb41194f55d7747f6c388e6afbedf88cfd1d9f4`; the candidate bytes are applied
 to `loop/LOOP_INIT.md` on the branch (SHA-256
-`fb7eccb4bc404536f98e1696c9567b916bce749935b9c98850290d613bccfcc4`, 244
-lines, 14,394 bytes; the ruled D-APP-105 text is 386 lines, 23,838 bytes).
+`79c6d4476867df5572e92f82a3a107a6b78dc33a3a9c64e3d296199baf6d28ee`, 245
+lines, 14394 bytes; the ruled D-APP-105 text is 386 lines, 23,838 bytes).
 The owner rules by reply; on acceptance the register row flips to `RULED`
 with a one-line ruling record on the same PR before merge.
 
