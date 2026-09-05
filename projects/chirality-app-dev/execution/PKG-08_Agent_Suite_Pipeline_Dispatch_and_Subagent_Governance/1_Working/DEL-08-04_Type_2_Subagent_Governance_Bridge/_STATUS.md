@@ -9,7 +9,9 @@
 ## Remaining
 
 - Prepare the D-APP-53 §3 Option C per-attempt subagent decision-replay
-  decision packet under D-APP-103 (packet authorized; awaiting ruling).
+  decision packet under D-APP-103 (`SELECTABLE`: packet preparation is
+  authorized by D-APP-103 and no packet file exists yet; implementation stays
+  gated on the later ruling on that packet).
 
 - **DEL-08-04-V3-01** (`NOT_SELECTABLE_UNTIL: Root WP-03/WP-05 fixtures (accepted DEL-02-07 supervisor and DEL-02-10 API v2 returns routed to App); G-ROLE/G-APPR/G-SBX/G-SENT/G-PROT/G-ENV/G4 for claims`) — class-aware managed/native delegation bridge for v3.
   Trace: OUT-002, REQ-001 through REQ-005, AC-002, VER-002; CLM-033.
@@ -30,6 +32,7 @@
   Removed when: merged with review PASS.
 
 ## History
+- 2026-09-05 - Remaining marker normalized under D-APP-114 (`SELECTABLE` packet preparation; no scope change).
 - 2026-09-05 - D-APP-109 (owner direction 2026-09-05): dependency register re-extracted against the applied decomposition row L371 with the held edge proposals emitted as cycle-participating, non-gating rows (run `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/`); `_CONTEXT.md` Traceability, Anticipated Artifacts, and Source Authority aligned to the applied row. No Remaining, lifecycle, Checking Approval SHA, product, or release change.
 - 2026-09-04 - SCA-APP-010 shell-redesign seating (D-APP-108; owner adopted the seating list as presented): Remaining items seeded DEL-08-04-V3-02 (SELECTABLE: none) with gate, dependency, write-locus, check, and return contracts; ruled questions cited by item. `ScopeOfWork.md` re-pinned to the applied decomposition at `dbd812a52d5ed0cb3ed173f3aaaa68703a914291` with a SCA-APP-010 Gate-5 Current Contract section; `_CONTEXT.md` and `_REFERENCES.md` aligned (WI-061, WI-062, WI-063, WI-064, WI-065). Run evidence `execution/_Coordination/AgentRuns/APP_SCA_APP_010_SEATING_2026-09-04/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; decomposition-conformant v3 outputs/requirements (OUT-002, REQ-*, AC-002, VER-002) added from the Gate-5 row text only; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.

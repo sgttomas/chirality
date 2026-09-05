@@ -10,12 +10,14 @@
 
 ## Remaining
 
-- Prepare the D-APP-89 later-retirement packet authorized by D-APP-101: run a
+- (`SELECTABLE`) Prepare the D-APP-89 later-retirement packet authorized by D-APP-101: run a
   fresh execution-time zero-consumer census across App and affected clients;
   specify exact facade/workspace deletion and rollback bytes; gather Root/App
   build and focused-test evidence; record release disposition as none; and
-  route the required D-APP-76 Root ruling request. Packet preparation is
-  selectable; deletion remains gated on later App and Root rulings.
+  prepare the required D-APP-76 Root ruling request for routing. Packet
+  preparation is selectable; routing the request to a Root surface is an
+  owner-granted write (`NOT_SELECTABLE_UNTIL: owner grants Root write scope`);
+  deletion remains gated on later App and Root rulings.
 
 - **DEL-03-01-V3-01** (`NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10); exact-pin claims until G2-accepted supply is consumable and G-WIRE passes`) — App client conformance consumption for Root API v2.
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L303 (verify the App client against Root-owned runtime contracts and produce conformance evidence without redefining generic runtime semantics).
@@ -27,6 +29,7 @@
   Removed when: App conformance against the accepted v2 contracts lands with G-WIRE evidence.
 
 ## History
+- 2026-09-05 - Remaining marker normalized under D-APP-114 (`SELECTABLE` packet preparation; Root routing named as an owner-granted write; no scope change).
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-08-17 - D-APP-101 authorized the bounded facade-retirement packet, not
   deletion. DEL-03-01 is its deliverable-local home; TM-APP-031 is resolved by

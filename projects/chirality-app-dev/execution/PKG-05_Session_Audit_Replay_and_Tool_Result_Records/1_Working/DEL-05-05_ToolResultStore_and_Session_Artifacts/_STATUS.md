@@ -8,9 +8,12 @@
 
 ## Remaining
 - Prepare the D-APP-42 Option C / D-APP-53 §3 full tool-result audit-policy
-  decision packet under D-APP-102 (packet authorized; awaiting ruling).
+  decision packet under D-APP-102 (`SELECTABLE`: packet preparation is
+  authorized by D-APP-102 and no packet file exists yet; implementation stays
+  gated on the later ruling on that packet).
 
 ## History
+- 2026-09-05 - Remaining marker normalized under D-APP-114 (`SELECTABLE` packet preparation; no scope change).
 - 2026-08-17 - D-APP-102 authorized one bounded planning node to prepare the
   full tool-result audit-policy decision packet with at most three options and
   a recommendation. Implementation remains gated on a later ruling; lifecycle

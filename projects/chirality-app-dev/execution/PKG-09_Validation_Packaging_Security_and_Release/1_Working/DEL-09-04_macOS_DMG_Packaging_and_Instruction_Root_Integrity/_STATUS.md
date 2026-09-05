@@ -91,7 +91,7 @@
 
 ## Remaining
 
-- After a rebuilt C1 artifact exists, the owner may deploy the daemon service
+- (`NOT_SELECTABLE_UNTIL: owner act`) After a rebuilt C1 artifact exists, the owner may deploy the daemon service
   on the owner's machine and report the result (owner act, not agent work;
   owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
   nothing on a machine whose LaunchAgent was installed earlier: the existing
@@ -118,6 +118,7 @@
   Removed when: merged with review PASS.
 
 ## History
+- 2026-09-05 - Remaining marker normalized under D-APP-114 (owner-act item marked `NOT_SELECTABLE_UNTIL: owner act`; no scope change).
 - 2026-09-04 - SCA-APP-010 shell-redesign seating (D-APP-108; owner adopted the seating list as presented): Remaining items seeded DEL-09-04-V3-02 (SELECTABLE: none) with gate, dependency, write-locus, check, and return contracts; ruled questions cited by item. Outside the thirteen SCA-APP-010 carriers: seating only, no Scope of Work, context, or reference change. Run evidence `execution/_Coordination/AgentRuns/APP_SCA_APP_010_SEATING_2026-09-04/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-08-23 - The owner executed the exact R20 staged procedure at revision `2ee96958daf997b7a156f020739bde43ca78ebf9` and returned `PASS`. Exactly three public JSON files were independently verified as mode `0600` under a mode-`0700` public directory, copied byte-identically to `Evidence/R20_Owner_Login_Proof_PASS_2026-08-23/`, and verified at hashes `5961b2060b554dc12989947a45335422f48f9e953d5af60c2ece88f7fdcf0a88`, `38a603c470a51209b463a4657448794f8500cb32bfd5f83c2e6c611fb0aa06b1`, and `aa84cdf66753d229dc9b2d27d147bc892107f054266d62f1f4bdf261280a6405`. The packaged-LaunchAgent actual-login-session proof obligation is satisfied by owner-executed evidence. Any frontend mutation invalidates the staged procedure and requires a new staged revision plus fresh owner proof for a future claim. DEL-09-04 remains `IN_PROGRESS` on separately gated signing, notarization, DMG, and release lanes; no G0.25 human ruling, acceptance, release-readiness, signing, notarization, distribution, publication, issuance, or reliance claim is made. See R21.

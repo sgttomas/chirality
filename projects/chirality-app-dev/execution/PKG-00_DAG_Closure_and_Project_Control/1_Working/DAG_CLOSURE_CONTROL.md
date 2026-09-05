@@ -6,7 +6,7 @@
 |---|---|
 | ControlPackageID | PKG-00 |
 | ControlPackageName | DAG Closure and Project Control |
-| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/` |
+| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/` |
 | StrictFullGraphStatus | ACYCLIC |
 | StrictSCCCount | 0 |
 | BlockerSubsetStatus | ACYCLIC |
@@ -61,7 +61,7 @@ The four existing scope-change packets remain available as seed evidence inside 
 
 | Priority | Control Deliverable | Scope | Action |
 |---:|---|---|---|
-| - | - | No active SCC closure queue | Latest accepted DepClosure snapshot `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` reports `scc_count = 0`; proceed with the D-APP-19 inspection queue. |
+| - | - | No active SCC closure queue | Latest accepted DepClosure snapshot `CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034` reports `scc_count = 0`; proceed with the D-APP-19 inspection queue. |
 
 ## SCC-001 Dispatch Evidence
 
@@ -94,6 +94,10 @@ The accepted snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOV
 
 RECONCILIATION converted the approved SCC-002 ruling into a CHANGE handoff. CHANGE retired `DEP-10-02-004` as non-blocking interface/reference evidence and preserved `DEP-10-03-006` as the hard prerequisite. AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/` proves SCC-002 is absent: `scc_count = 1`, `graph_edges = 113`, and no `DEL-10-02` / `DEL-10-03` bidirectional pair remains.
 
+## SCA-APP-010 Decompose Closure Evidence
+
+The SCA-APP-010 dependency refresh (D-APP-109) recorded a twenty-node SCC and a two-node SCC as cycle-participating, non-gating rows. D-APP-110 resolved both by the `decompose` move in the `SCC-SAFE-MOVES-001` form: seven contract-consumption rows re-targeted to three document-scoped contract nodes; no row retired, cut, merged, or inverted; every `PREREQUISITE` row kept strict. The accepted snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/` records closure `PASS`, strict `scc_count = 0`, 48 nodes, 119 active strict deliverable execution edges, and bidirectional pair count `0`. D-APP-111 accepted it as the loop's DepClosure pointer (PR #716). Run evidence: `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/`.
+
 ## Acceptance Condition
 
 The DAG is produced as a consequence of SCC closure. Completion requires DepClosure evidence showing:
@@ -102,4 +106,4 @@ The DAG is produced as a consequence of SCC closure. Completion requires DepClos
 - strict FULL_GRAPH acyclic
 - blocker state reportable by ORCHESTRATOR
 
-This acceptance condition is satisfied for dependency-closure discovery by `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. It does not create lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.
+This acceptance condition was first satisfied for dependency-closure discovery by `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` and is currently satisfied by `CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034`. It does not create lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.
