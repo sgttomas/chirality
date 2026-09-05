@@ -7064,3 +7064,13 @@
   - Checks: the full Step 0 block runs to exit 0 and reports no committed plan; instruction-entrypoint validator pass; repo-wide self-check exit 0; harness status pass; receipt validator pass after this receipt; candidate whitespace pass; `git diff --check` clean; changed-path scope exactly the files named in Pointers plus the DAG control file; no product source changed so frontend and runtime gates skipped.
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched for this act.
   - Gate-Outcome: `EXECUTED` — applied on the owner's direction; merge confers pointer, marker, and archive currency only. No item added, removed, widened, or narrowed; no fence, check, product, lifecycle, or release change is inferred.
+- **2026-09-05 — Receipt 244** (D-APP-115: owner intent of record captured from the retired workplan overlay into a ruling record).
+  - Receipt-ID: `Receipt-244`
+  - Examined-Through: `6d4cc9089217b1a096ad46505bb117570c9d9277`
+  - Parent-Receipt: `Receipt-243`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-05, Ryan Tufts): "Yes, capture this in a ruling record.  Commit, push, open a PR and merge." Transcribed as D-APP-115.
+  - Stale-Map-Delta: none; the overlay's intent paragraph and parked list are quoted with their source hash; the live parked state is item-marker-derived.
+  - Pointers: branch `claude/app-owner-intent-of-record` from `origin/main` `6d4cc9089217b1a096ad46505bb117570c9d9277`; `execution/_Coordination/_DECISIONS/D-APP-115_RULING_OWNER_INTENT_OF_RECORD_2026-09-05.md` and its `_REGISTER.md` row.
+  - Checks: receipt validator pass after this receipt; repo-wide self-check exit 0; candidate whitespace pass; `git diff --check` clean; changed-path scope exactly the ruling record, the register row, and this ledger; no product source changed so frontend and runtime gates skipped.
+  - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched for this act.
+  - Gate-Outcome: `EXECUTED` — record-only act on the owner's direction; merge confers record currency only.
