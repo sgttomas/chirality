@@ -13,11 +13,11 @@ The analysis, classification, and candidate choices are the agent's. No owner
 acceptance of these candidate bytes is asserted. D-PEC-79 is reserved by the
 already-adopted, unapplied PRD candidate; this packet does not reuse that ID.
 
-## Basis and three separately rulable items
+## Basis and four separately rulable items
 
 Branch `codex/pec-loop-home-consolidation-20260905` starts at fetched
 `origin/main` `7458e9c1eb9399ed259da464207d9a507acdea2e`.
-The proposal has three independently reviewable decisions:
+The proposal has four independently reviewable decisions:
 
 - **A — Migration.** Re-home the loop, its Task Management directory, and its
   evidence; update live locators and validation coverage. Every moved file is
@@ -30,6 +30,11 @@ The proposal has three independently reviewable decisions:
   Preserve fence wording; move the model convention to project AGENTS.
 - **C — Run-based PR boundary.** Adopt the run/iteration and gate-class split
   below, replacing the receipt archive's per-iteration READY PR practice.
+
+- **D — Retirement of the workplan overlay.** Archive every plan and currency
+  note unchanged, preserve owner intent and constraint homes in the candidate
+  ruling record, and select only from deliverables. D supersedes the original
+  optional-overlay portion of B; details and hashes are in the supplement below.
 
 The app-dev precedents govern the method being adapted, not PEC authority:
 `projects/chirality-app-dev/loop/LOOP_INIT.md` and the D-APP-105, D-APP-112,
@@ -47,7 +52,7 @@ The latest owner grant, verbatim:
 > I grant the exact additional paths above, the locator-only source exception, and the proposed receipt/migration treatment.
 
 This is execution permission to prepare the reviewable branch, not a ruling
-accepting A, B, or C. Owner merge is the acceptance act. The candidate receipt
+accepting A, B, C, or D. Owner merge is the acceptance act. The candidate receipt
 and register must remain awaiting owner until a real owner direction occurs.
 
 Beyond `projects/pec/**` and deletion of `_DomainEngines/pec/**`, the grant is
@@ -131,12 +136,13 @@ init and plan receive exhaustive clause dispositions in `CLAUSE_TRIAGE.csv`
 and its readable table `CLAUSE_TRIAGE.md`: POINT (discoverable source), MECH
 (command/check replaces prose), KEEP (necessary rule, compressed), OWNER
 (verbatim owner/fence text), DROP (explanation or provenance without behavior).
-Owner intent and target sequence remain in the immutable plan as overlay
-content. On merge of B, the plan only narrows and orders; its protocol and
-plan-precedence clauses are superseded by the init without editing the plan.
+The original B-only candidate retained an optional overlay, as recorded in
+its immutable triage and dry-run evidence. Supplementary item D supersedes
+that choice: plans are historical only; owner intent survives in the
+candidate ruling record, and target sequence is never a selection surface.
 
 Order: header naming the full deliverable/Remaining work surface; bootstrap;
-pointer index; verbatim fences; optional committed-HEAD overlay; Steps 0–5;
+pointer index; verbatim fences; committed-HEAD retirement check; Steps 0–5;
 first return; posture; work-type checks; evidence contract; per-run steer and
 historical path/section mapping. The model convention moves verbatim from the
 old init to the project's Agent Posture, not to a root agent package.
@@ -187,7 +193,7 @@ directory. Acceptance checks are execution evidence, not owner rulings.
 
 ## On-ruling mechanics, rollback, and handoff
 
-The owner may accept, amend, or decline A, B, and C separately. The PR diff is
+The owner may accept, amend, or decline A, B, C, and D separately. The PR diff is
 the candidate. A partial disposition is implemented as an amended candidate
 on this same PR, retaining dependency truth (B uses A's paths; C's textual
 changes are identified above). No unsupported partial combination is silently
@@ -201,7 +207,7 @@ to the relocation map. No product data rollback exists. Historical receipts,
 plans, evidence, notices, and ruling bytes remain recoverable unchanged.
 
 This package is derivative coordination evidence over the cited Git basis,
-not decomposition truth or phase acceptance. A/B/C await the owner; no
+not decomposition truth or phase acceptance. A/B/C/D await the owner; no
 product, lifecycle, release, or reliance gate is advanced. Checks must rerun
 on any changed candidate, and a fresh origin comparison is required before
 owner merge. Subsequent operators use the new init only as a candidate until
@@ -219,3 +225,50 @@ decomposition byte-for-byte, rather than repinning or accepting a changed
 basis. The corrected A tree is independently rechecked before restoring the
 uncommitted B/C candidate. Both A commits remain visible; history is not
 rewritten after publication. No SCA or scope change is inferred.
+
+
+## D — Workplan retirement (supplementary owner direction)
+
+The full supplementary instruction is in
+`D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/OWNER_DIRECTION.md`.
+D-APP-114/115 were read on fetched origin/main before authoring. The candidate
+ruling text is `D-PEC-80_D_RULING_OWNER_INTENT_OF_RECORD_2026-09-05.md`, linked
+by the existing D-PEC-80 register row; it remains PROPOSAL / AWAITING_RULING
+until the owner rules D with the rest. The ruling record creates no plan,
+queue, status surface, or item selection.
+
+`D_RETIREMENT/RELOCATION_MAP.csv` continues A's map: three top-level workplans,
+the adjacent currency note, and two already archived workplans move to
+`projects/pec/plans/workplans/` with all six SHA-256 pairs equal. No archived
+bytes are edited or deleted. The init points at deliverables and explicitly
+labels the archive "Historical archive (never selection surfaces)". The
+committed-HEAD loader remains only a retirement check: after commit it must
+print "no committed plan: deliverables alone"; a reintroduced loop plan is
+an error, never a selectable overlay.
+
+The complete newest Owner intent section is carried verbatim with source
+hash, including the source's later consumer-owned-use qualification. Its
+parked list is quoted as dated history. The ruling text locates every
+constraint in surviving fences, PRD/decision records, exact review evidence,
+Task Management, or Receipt 165/166 and the landed currency handoff. No
+homeless temporary constraint was identified; no gate is waived.
+
+Remaining-gate audit: all 64 deliverable status files lack Remaining sections.
+There is no existing Remaining item with a plan-only gate. Item marker edit
+list: **empty**. No new scope, status, or lifecycle is created. Missing scope
+remains subject to the init's explicit owner-directed preparation rule.
+
+Live pointers changed only in PEC init, AGENTS, README, and STATUS. The PEC
+launcher and its root catalog copy already point only to LOOP_INIT; neither
+needs a change. Shared validator code tolerates absent plans and references
+no retired PEC plan, so its generic compatibility logic is unchanged.
+The whole-tree plan-reference inventory distinguishes immutable records from
+unrelated sister-loop live locators; those are not this tranche's write scope.
+The supplement indexes post-commit checks, retirement hashes, and the fresh
+acceptance rerun. Earlier check reports remain immutable evidence of the
+pre-retirement candidate; the supplement is the final D verification home.
+
+Review D after A. If D is declined while B is accepted, the owner must choose
+an amended init on this same PR; no partial combination is silently applied.
+On merge direction update this same register row, the candidate intent ruling,
+and the existing Receipt 167 gate outcome. No second receipt or PR is created.

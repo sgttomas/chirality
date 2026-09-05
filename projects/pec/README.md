@@ -32,8 +32,9 @@ eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. Current derivative state is recorded
 in `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`
 and the WORKING_ITEMS currency-sweep handoff. Build phases P1–P4 remain
-separately owner-gated. See the standing plan at
-`projects/pec/loop/WORKPLAN_2026-07-24_pec_coordination_plane.md`.
+separately owner-gated. Follow `projects/pec/loop/LOOP_INIT.md` to discover
+work from deliverable `## Remaining` surfaces. Retired plans live in
+`projects/pec/plans/workplans/` as history only.
 
 Superseding owner direction on 2026-08-03 sends TM-PEC-023 to a dedicated
 SCOPE_CHANGE mapping session: neither mappings nor blanks are ruled, all nine

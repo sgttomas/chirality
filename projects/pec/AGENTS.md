@@ -96,8 +96,8 @@ the runtime exposes it; the convention is not evidence of the model used.
 ## Primary Agents
 
 The v2 build runs through the governed pipeline (PRD v2 §12). The generic
-loop instructions are in `loop/LOOP_INIT.md`; a committed workplan only narrows
-and orders. Work selection uses deliverable `_STATUS.md` `## Remaining`.
+loop instructions are in `loop/LOOP_INIT.md`. Work selection uses deliverable
+`_STATUS.md` `## Remaining`; retired plans are history only.
 
 | Agent | Type | Role in this project |
 |---|---:|---|
@@ -174,9 +174,9 @@ instance-content lane and creates no invocation by itself.
   (`SOFTWARE_DECOMP.md` working surface + companion registers;
   `_LATEST.md` is the revision pointer and handoff state — read it first)
 - `_DomainEngines/_DECISIONS/_REGISTER.md` — tier-0 register (`D-T0-*`)
-- `projects/pec/loop/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
-  optional narrowing/ordering overlay (historical protocol clauses superseded
-  by `loop/LOOP_INIT.md` upon D-PEC-80 B acceptance)
+- `projects/pec/plans/workplans/` — historical archive, never selection surfaces
+- `execution/_Coordination/_DECISIONS/D-PEC-80_D_RULING_OWNER_INTENT_OF_RECORD_2026-09-05.md`
+  — owner-intent preservation under D-PEC-80 D; verify its disposition
 - `projects/pec/loop/LOOP_RECEIPTS.md` — loop handoff ledger
 - `docs/PRD.md` — adopted product definition; `docs/STATUS.md` — current state
 - `_DomainEngines/profiles/pec.yaml` — D-T0-27 O-A exact PEC v2 successor

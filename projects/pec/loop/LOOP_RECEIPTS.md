@@ -1869,7 +1869,7 @@
   - Examined-Through: `7458e9c1eb9399ed259da464207d9a507acdea2e`
   - Parent-Receipt: `Receipt-166`
   - Pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md`; owner task and exact grant in its `OWNER_DIRECTIONS.md` evidence.
-  - Stale-Map-Delta: historical `_DomainEngines/pec/` locators and old init section numbers resolve through the packet’s relocation map and Git history; accepted plans remain unchanged.
-  - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md`; receipt and entrypoint checks pass.
+  - Stale-Map-Delta: historical `_DomainEngines/pec/` locators and old init section numbers resolve through the packet’s relocation map and Git history; accepted plan bytes remain unchanged; D_RETIREMENT/RELOCATION_MAP.csv continues the map into plans/workplans/.
+  - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md` and `D_RETIREMENT/VALIDATION.md`; receipt and entrypoint checks pass.
   - Model-Attribution: Codex acting as HELP_HUMAN; native read-only inventory and dry-run children; role not mechanically enforced.
-  - Gate-Outcome: `AWAITING_OWNER` — migration, generic init, and run-based PR boundary are separate candidate decisions; owner merge remains the gate.
+  - Gate-Outcome: `AWAITING_OWNER` — migration (A), generic init (B), run-based PR boundary (C), and workplan retirement (D) are separate candidate decisions; owner merge remains the gate.

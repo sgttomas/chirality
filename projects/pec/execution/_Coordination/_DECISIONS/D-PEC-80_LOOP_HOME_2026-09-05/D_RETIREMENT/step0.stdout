@@ -1,0 +1,566 @@
+?? projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/CHECKS/
+b4df082ca D-PEC-80 D: retire workplan overlay and preserve owner intent
+c241cfe84 Consolidate PEC loop instructions and propose run-based PR boundary
+aa17255b5 Preserve accepted PEC decomposition provenance during relocation
+ca49b846d Migrate PEC loop and evidence to canonical project homes
+7458e9c1e Merge pull request #718 from sgttomas/claude/loop-init-d-app-113-residuals
+186015f05 loop(app): D-APP-113 residuals of the second dry run; state-anchored register grep at Step 0; explicit gating semantics at Step 1
+70041862b Merge pull request #717 from sgttomas/claude/loop-init-consolidation-d-app-112
+a8136f3e7 loop(app): D-APP-112 ruled on the owner's merge direction; register row RULED, ruling record, Receipt 241 gate outcome
+9abbbbe46 loop(app): D-APP-112 item B, run-based PR boundary; one branch per run, one commit and one receipt per iteration, one PR at terminus; predecessor items observable on the run's branch
+1aefb6d59 loop(app): D-APP-112 rewrap one Step 1 line; refresh candidate hash
+25476a6cb loop(app): D-APP-112 third cut from a fresh-operator dry run; repair the Step 0 harness status command; add the five clauses the operator lacked
+ec6296b56 loop(app): D-APP-112 packet byte-count formatting
+d44a4d7ea loop(app): D-APP-112 rewrap one Step 1 line; refresh candidate hash in packet and Receipt 241
+3821fcc39 loop(app): D-APP-112 second cut reorders LOOP_INIT.md map-then-limits-then-protocol; deliverable path named in the header and at Step 1
+81c39d9a8 loop(app): D-APP-112 proposal consolidates loop/LOOP_INIT.md to what the agent cannot discover (386 to 242 lines); candidate applied for owner ruling
+7cb41194f Merge pull request #716 from sgttomas/claude/sca-app-010-pointers-d-app-111
+709372736 pointers(app): D-APP-111 accept the SCA-APP-010 closure, coverage, and reconciliation snapshots as the loop's pointers
+4bd942827 Merge pull request #714 from sgttomas/claude/sca-app-010-dependency-closure
+c12713fd1 decompose(app): SCA-APP-010 SCCs decomposed under D-APP-110; seven rows re-targeted to three contract nodes; strict graph acyclic (48 nodes, 119 edges); closure snapshot 1034
+dc27e55d5 Merge pull request #715 from sgttomas/codex/piping-ui-toolkit-parity
+VALID /Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied
+no committed plan: deliverables alone
+# PEC Loop Receipts
+
+> **Epistemic status: derivative handoff ledger — not authority.** Append-only.
+> Current state is always re-derived from the live tree, the decision registers,
+> the pec profile (`_DomainEngines/profiles/pec.yaml`; ADOPTED 2026-07-05 Gate 2, v0.2 as amended 2026-07-24 under `D-PEC-59`), git history, and the
+> deterministic checks; on any disagreement those sources govern (K-AUTH-1). A
+> receipt records only what tools cannot re-derive: owner directions given
+> outside governed artifacts, gate outcomes and their rationale, deltas found in
+> dated maps (which are never edited), and pointers to the authoritative
+> artifacts created elsewhere.
+
+## Rules (fixed — part of the loop protocol)
+
+1. **Pointer, not narrative.** Prefer paths, PR numbers, commit SHAs, and
+   decision IDs. Work history lives in commits, PRs, decision records, and
+   project-local files — never here.
+2. **Owner directions verbatim.** Any owner direction not otherwise captured in
+   a governed artifact is quoted word-for-word with its date. This is the one
+   place chat-only directions become durable.
+3. **Measurements as check summaries only.** `self-check pass; harness pytest
+   pass; pec health check pass` is the maximum. Until the harness tranche lands
+   there are no pec `status`/`drift` measurements — do not invent them.
+4. **Stale-map deltas as one-line pointers.** Dated assessments and plan files
+   are never edited to match reality; a receipt line says what disagreed and
+   where to verify.
+5. **Gate outcomes with reason.** stopped / executed / awaiting owner — and
+   why, especially no-op outcomes ("all remaining work is owner-shaped"), so
+   the next loop neither rediscovers the stop nor invents work around it.
+6. **Capped.** Roughly 6–12 lines per receipt. If it wants more, the detail
+   belongs in a decision packet, PR description, or project-local record.
+
+## Receipts (append-only)
+
+- **2026-07-04 — Receipt 0** (loop creation).
+  - Owner rulings: accept the Candidate Harvest Report and promote zero candidates; close `TM-PEC-020` as `INFORMATIONAL_NO_ACTION`; close `TM-PEC-025` as `OBE`; retain `TM-PEC-022` byte-identically as `STILL_BLOCKED / DEFERRED`; proceed through archive and closeout. Exact ruling text is preserved in the two reports below.
+  - Register delta: zero rows minted; two deferred rows closed by owner ruling; one deferred row unchanged. Archive mechanically moved three rows (`TM-PEC-016`, `TM-PEC-020`, `TM-PEC-025`), yielding 18 live rows and 7 archived rows; follow-up dry-run predicts zero moves.
+  - Reports: `_DomainEngines/pec/_TaskManagement/HARVEST_CANDIDATES_2026-08-08.md`; `_DomainEngines/pec/_TaskManagement/DEFERRAL_REVIEW_2026-08-08.md`. Routed handoffs/notices: none.
+  - Final federation: `COMPLETE`, 4/4 canonical registers PASS, zero writes and zero PEC-related findings. Counts: PEC `OPEN=17 / DEFERRED=1 / ELEVATED=0 / CLOSED=0`, archive 7; ROOT `12 / 9 / 0 / 0`, archive 102; APP `11 / 3 / 0 / 0`, archive 26; PIP `10 / 24 / 0 / 0`, archive 6.
+  - Final register hashes before Git closeout: live SHA-256 `7fd9fbd7a3b42923ab0eed6e0088bb3fe5b53c8cbab749fa0a46ca8581d71fa4`; archive SHA-256 `bf0d5537686d3dba23ad2e3c1b91d989850cda04e98e92dc545516829c9242b6`.
+  - Authority fence: register closure and mechanical archive accept no cited artifact and create no product, scope, priority, assignment, lifecycle, release, reliance, foreign-loop duty, or merge effect. `TM-PEC-022` remains the sole deferred row; all 17 open rows remain unchanged.
+  - Gate outcome: **ZERO PROMOTIONS / TWO OWNER-RULED CLOSURES / THREE ROWS ARCHIVED / REPORTS + RECEIPT CURRENT / READY PR IS THE OWNER MERGE GATE / DO NOT MERGE**.
+
+- **2026-08-09 — Receipt 165** (bounded PEC currency-repair tranche and owner acceptances).
+  - Basis and Git: started from `d269f0e04204bc463a11684499213b2283bd28f7`; fetched current `origin/main@da40d7dc4192c9aa2f49e9438729179aae281b61`; the start is its ancestor and `git diff d269f0e04..da40d7dc4 -- projects/pec _DomainEngines/pec` is empty. Branch `codex/pec-currency-repair-20260809` was fast-forwarded without rebase, force, or merge commit; index remained clean before closeout staging.
+  - Owner direction of record (2026-08-09, verbatim): “Owner direction, 2026-08-09. Unpark the PEC loop for a bounded currency-repair tranche. This is the separately scheduled owner act that TM-PEC-013 and TM-PEC-014 were reserved for. Scope is exactly the items below — no P1/P2 source slice, no new packets, no register harvest.
+
+    0. Basis first. Fetch and reconcile with current origin/main before any staging: your prior report pinned 81c376b41 as identical to remote main, but origin/main has advanced to d269f0e04 (or later by the time you run). Confirm the intervening diff over projects/pec/** and _DomainEngines/pec/** is empty before proceeding; if it is not empty, stop and return the delta to me instead of executing.
+
+    1. TM-PEC-013 (SCA-004 downstream ScopeOfWork currency). Execute the finalized route. The resulting artifact goes through its own REVIEW; exact-byte acceptance remains mine.
+
+    2. TM-PEC-014 (DEL-00-03 SPEC OI-003 currency). Execute the finalized route under the same terms. Confirm before dispatch that its production path is disjoint from item 1's, as previously claimed; if the paths overlap, serialize rather than parallelize.
+
+    3. TM-PEC-011 (DEL-01-06 SCA-004 ScopeOfWork currency). Invoke TASK_MANAGEMENT separately, as its gate requires, to disposition the row: the cited concern is believed stale because RF-002 has since been resolved. Verify that staleness against the live RF-002 record rather than trusting this prompt, then present the disposition for my ruling — do not close the row on my behalf.
+
+    4. Record the two map deltas durably. Your prior session reported, chat-only: (a) the standing plan's profile-supersession follow-on is already completed by D-T0-27; (b) PRD §16 decision 3 (loop-registry home) remains textually open although D-PEC-78/SCA-004 resolves it. Land both on the appropriate coordination surface — a plan-currency note for (a), and for (b) a drafted PRD §16 amendment prepared for my ruling, not applied. The PRD text itself does not change in this tranche.
+
+    Held gates, unchanged: TM-PEC-023 remains held for its dedicated owner session; TM-PEC-022 remains deferred pending the next DEL-08-02 lifecycle act; any P1/P2 source slice still requires a new exact-path D-PEC packet and owner ruling.
+
+    Constraints: all repo-bound changes ship on a branch by PR for my merge — nothing lands on main in-session and merge remains expressly prohibited; run the loop's validators (registers, receipts, API contract, loop registry, core posture) before and after; close with a receipt and an updated handoff state distinguishing what was executed, what was prepared, and what awaits my ruling; return the loop to its parked-at-owner-gates posture.”
+  - Owner rulings of record (2026-08-09, verbatim): “REVIEW: PEER_REVIEW for all four; proceed as recommended.
+    TM-PEC-011: RESOLVED_WITH_CHANGE.
+    PRD §16.3 candidate: ADOPT.” — and “REVIEW findings: REVISE all eight. Authorize one bounded WORKING_ITEMS repair and PEER_REVIEW rerun confined to the cited SOW/SPEC claims and regenerated review evidence; preserve lifecycle, dependencies, source, and all unrelated content.
+    D-PEC-79: ADOPT the exact postimage and carrier hashes above, but do not apply the live PRD in this tranche.”
+  - Exact-byte ruling of record (2026-08-09, verbatim): “ACCEPT_EXACT_BYTES for:
+    DEL-02-07 SOW: d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559
+    DEL-03-01 SOW: 564955235aeab60f169e6377dd9d5bb5fbe2a88a8cc66094e17f6f83987792d2
+    DEL-04-01 SOW: 6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae
+    DEL-00-03 SOW: 3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741
+    DEL-00-03 SPEC: cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae”
+  - Executed: TM-PEC-013/014 production, eight-finding `REVISE` repair, four serialized `PEER_REVIEW` reruns, and four post-ruling snapshots ending at `REV_DEL-00-03_2026-08-09_2156`; all five exact objects are accepted, zero findings remain open, Gate 5 remains unentered, DEL-02-07/03-01/04-01 remain `INITIALIZED`, and DEL-00-03 remains `CHECKING`. TM-PEC-011 is live `CLOSED / RESOLVED_WITH_CHANGE` on register SHA-256 `6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264`; ordinary archive remains a later TASK_MANAGEMENT act.
+  - Map deltas: `_DomainEngines/pec/PLAN_CURRENCY_NOTE_2026-08-09_D-T0-27.md` records the already-complete profile follow-on. PRD v2.3 postimage SHA-256 `92627ee1d384dd8ef0f2db5d63362ec54eee9da30794b9c2d776bd46fb20f5b0` and D-PEC-79 carrier SHA-256 `bc3a4bd59d4542e3d686c4663cc5b5b4fc59f4f3abc6bc4a40ea65063716b5d2` are exact-byte adopted but not applied; live PRD and decision register remain unchanged.
+  - Handoff: `projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`, SHA-256 `8a9957b4150143c9958083107982dd8e5538a8d1cb69aa436a0bab953d00d24f`; currency lane `COMPLETE`, overall SCA-004 derivative state incomplete only for held `TM-PEC-023`. `TM-PEC-022` remains deferred; TM-PEC-013/014 row dispositions, PRD live application, and any future P1/P2 packet remain later owner/scheduled acts.
+  - Checks: Task Management live/archive and federation pass; strict decomposition registers pass at 64 / 255 / zero findings; SOW/checklist and accepted-hash reproduction pass; API contract 6/6, loop registry 12/12, service-core posture, receipt/self-check, and whitespace pass. The practitioner self-check retains only its inherited REVIEW/WARN/INFO/NOT_APPLICABLE posture with no tranche-created blocker.
+  - Gate outcome: **CURRENCY LANE COMPLETE / FIVE EXACT OBJECTS ACCEPTED / TM-PEC-011 RESOLVED_WITH_CHANGE / PRD V2.3 + D-PEC-79 ADOPTED NOT APPLIED / PARKED AT OWNER GATES / READY PR IS OWNER MERGE GATE / DO NOT MERGE**.
+
+- **2026-08-09 — Receipt 166** (PR #534 owner merge accounting).
+  - Owner directions of record (2026-08-09, verbatim): “Merge PR #534” and “perform that administrative action now.” The latter authorizes this receipt-only accounting act after a fresh Step 0; it opens no substantive PEC tranche.
+  - Git outcome: ready PR #534 merged normally at `67946580f0d6ca3f74a2a887d57ff16fff76d4cc` from reviewed head `e92a82ca9c726cf6413ebd803e7af2b470b071d9`; `origin/main` identifies the merge commit and records the reviewed head as its second parent. Governance-harness `harness` and `pec-tests` both completed `SUCCESS` before merge.
+  - Effective state: Receipt 165's five accepted exact objects, four post-ruling REVIEW closures, TM-PEC-011 `CLOSED / RESOLVED_WITH_CHANGE`, D-T0-27 plan-currency note, and adopted-not-applied PRD v2.3 / D-PEC-79 package are now durable on shared `main`. The merge creates no additional acceptance, Gate 5, lifecycle, dependency, source, live-PRD, decision-register, release, or reliance effect.
+  - Fresh Step 0: profile SHA-256 `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d` and standing-plan SHA-256 `70f697f78141f6791c310629ad973309b6560b2f551a5ebfb1dabc66a12b2448` reproduce; no newer PEC or tier-0 ruling opens work. Task Management live/archive validate at 18/7 rows; live counts remain `OPEN=16 / DEFERRED=1 / CLOSED=1`.
+  - Parked state: currency repair remains `COMPLETE`; TM-PEC-023 remains held for its dedicated owner session; TM-PEC-022 remains deferred; TM-PEC-013/014 dispositions, TM-PEC-011 ordinary archive, PRD v2.3 live application, and any exact-path P1/P2 packet remain later owner/scheduled acts.
+  - Checks: Task Management live/archive validation, receipt/self-check, receipt-only containment, and whitespace pass; this branch changes only `_DomainEngines/pec/LOOP_RECEIPTS.md`.
+  - Gate outcome: **PR #534 MERGED / CURRENCY REPAIR EFFECTIVE ON SHARED MAIN / RECEIPT CURRENT / NO SUBSTANTIVE TRANCHE OPEN / PARKED AT OWNER GATES / RECEIPT-ONLY PR IS OWNER MERGE GATE**.
+<!-- receipt-contract-v2 frozen-through=Receipt-166 prefix-bytes=426714 prefix-sha256=153732e389a1dd948805dd71150f63d865ef3c70cb8b8f8230a36b836dda0dd7 -->
+
+- **2026-09-05 — Receipt 167** (canonical loop migration and generic init candidate).
+  - Receipt-ID: `Receipt-167`
+  - Examined-Through: `7458e9c1eb9399ed259da464207d9a507acdea2e`
+  - Parent-Receipt: `Receipt-166`
+  - Pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md`; owner task and exact grant in its `OWNER_DIRECTIONS.md` evidence.
+  - Stale-Map-Delta: historical `_DomainEngines/pec/` locators and old init section numbers resolve through the packet’s relocation map and Git history; accepted plan bytes remain unchanged; D_RETIREMENT/RELOCATION_MAP.csv continues the map into plans/workplans/.
+  - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md`; receipt and entrypoint checks pass.
+  - Model-Attribution: Codex acting as HELP_HUMAN; native read-only inventory and dry-run children; role not mechanically enforced.
+  - Gate-Outcome: `AWAITING_OWNER` — migration, generic init, and run-based PR boundary are separate candidate decisions; owner merge remains the gate.
+23:| D-PEC-02 | Post-pilot P3 scope selection after pilot feedback: monthly reconciliation loop, archive views, lessons learned, authority matrix/approval-route templates, and supersession-impact propagation. | P3 planning and implementation order. | NOT_PREPARED | - | - |
+24:| D-PEC-03 | Pointer row: PEC tier-0 integration decisions D-T0-11..16 are governed in `_DomainEngines/_DECISIONS/`, not duplicated here. | Local agents finding the tier-0 gate surface. | NOT_PREPARED | - | `_DomainEngines/_DECISIONS/_REGISTER.md` |
+97:| D-PEC-80 | Canonical PEC loop migration (A), generic init consolidation (B), and run-based PR boundary and D workplan retirement (C), separately rulable. | Adoption of the candidate instruction surface and prospective receipt/run contract; no product or lifecycle opening. | AWAITING_RULING | `D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md` | PROPOSAL applied on the review branch under explicit task/write-scope grant; owner merge is the ruling.  Owner-intent candidate: `D-PEC-80_D_RULING_OWNER_INTENT_OF_RECORD_2026-09-05.md`; item D awaits owner with A/B/C. |
+# Tier-0 Bridge — Decision Register (**RULED 2026-06-21**; SHA-bound at publication commit `6e70b5aac`, backfilled 2026-07-02 per owner ruling)
+
+Each row is a human-only decision framed by `bridge/BRIDGE_2026-06-21_tier0-prep/BRIEF_human_decisions.md`. DOMAIN_ENGINE drafts and recommends; **only the owner rules**. All 8 were ruled by the owner in-session on 2026-06-21 (recorded below and in each `D-T0-0*` stub); each ruling is SHA-bound at the publication commit `6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45` (2026-06-21; K-AUTH-1/K-AUTH-2; the per-record Ruling SHA fields were backfilled 2026-07-02 per owner ruling). The owner took all recommendations except D-T0-04, ruled **open residency** (see its stub + `../RULINGS_PUBLISHED.md`).
+
+**Residual-work rows (convention, owner-ruled 2026-07-03):** rows appended below D-T0-08 are post-2026-06-21 residual-work rows — a ruling that leaves residual work keeps its ruled row immutable, and the residue gets its own new row with its own provenance and an open `HumanRuling` cell until the owner rules. The 2026-06-21 session record above ("All 8 were ruled...") is unchanged history. Ruled by Ryan Tufts in-session 2026-07-03; recorded by agent at owner direction (K-AUTH-1; D-GOV-04).
+
+| ID | Decision | My recommendation | HumanRuling | Unblocks |
+|---|---|---|---|---|
+| D-T0-01 | Contract precedence | Framework-root persona canonical; two-way merge to root | **RULED: framework-root canonical, NEW policy** | PKG-10 re-draft; FM-02 |
+| D-T0-02 | `ProfileStatus` `INVALID`/`UNKNOWN` | Keep both (7 tokens) | **RULED: keep both (7 tokens)** | FM-01 |
+| D-T0-03 | `INTEGRATION_LEVEL` target + staging | L3 destination, risk-graded, per-operation | **RULED: L3 destination, per-op risk-graded** | staged build plan |
+| D-T0-04 | Data-residency for live binding | (frame only — owner's) | **RULED: OPEN RESIDENCY** (→ RES-RECONCILE) | L3 no longer residency-blocked |
+| D-T0-05 | Four-gate sequence | Confirm PROTOCOL-mapped G1–G5 | **RULED: confirmed G1–G5** | lawful sequencing |
+| D-T0-06 | Profile adoption lifecycle + sub-gates | Persona cadence; validator via TOOLMAKER | **RULED: persona cadence; VALIDATED via TOOLMAKER** | profile off DRAFT |
+| D-T0-07 | Contract versioning + DEC-041 confirm | tier-0-owned scheme referencing both versions; DEC-041 is written | **RULED: tier-0-owned; DEC-041 confirmed** | app-dev Q5; pkg pull |
+| D-T0-08 | Fence-3 opening sequence (sub-decision) | sequential: source types → MCP tools; after D-T0-01 + proven L2 | **RULED: sequential** | R7 build lane |
+| D-T0-09 | Residual of `D-T0-07` (2026-07-03 convention): settle the concrete Flow-A contract version **value** under the ruled tier-0-owned scheme — `FLOW_A_CONTRACT_VERSION` remains `TBD_BY_TIER_0` in the extracted app-dev package until this rules | Prepared packet: `D-T0-09_flow_a_contract_version_value.md`; recommendation O-A sets `FLOW_A_CONTRACT_VERSION` to `flow-a.contract.v0.1.0` | **RULED: O-A — `FLOW_A_CONTRACT_VERSION = flow-a.contract.v0.1.0`** (owner in-session 2026-07-04; ruling SHA TBD at publication commit) | app-dev Q5 completion; `DEC-041` pkg-pull versioning; piping D-30 consumption execution |
+| D-T0-10 | Residual of `D-T0-08` (2026-07-03 convention): acknowledge the **proven L2** — the D-T0-08 precondition — on the DEC-064/TP-RUNNER-014 evidence (PROVISIONAL headless entrypoint + validated-kernel run, exit 0, `MECHANICS_SOLVED`; run record + witness artifact + DEC-025 sweep, all commit-bound in the tranche PR) and apply the staged profile edits (`headless_runner` impl/status lines + version bump) | Staged CHANGE: `../bridge/CHANGE_PREP_2026-07-04_proven_l2_acknowledgment.md`; recommendation: acknowledge on the cited evidence | **RULED: ACKNOWLEDGED — proven L2 on the DEC-064/TP-RUNNER-014 evidence; staged CHANGE applied** (owner in-session 2026-07-04, run steer quoted in `D-T0-10_proven_l2_acknowledgment.md`; ruling SHA `2081d6daa`, backfilled same-branch) | D-T0-08 F3 step (a) preconditions complete; the staged `D-APP-49` source-types PROPOSAL becomes rulable on its merits |
+| D-T0-11 | PEC registration shape: loop dir, profile id, proposals dir, staged profile location, `_LATEST.md` convention, one-time `projects/pec/docs/STATUS.md` pointer edit, and PEC-local `D-PEC-XX` decision-ID scheme | Packet: `D-T0-11_pec_registration_shape.md`; recommendation O-A approves the authored `pec` shape | **RULED: O-A — authored `pec` registration shape affirmed** (owner in-session 2026-07-04; published by PR #51 merge commit `57307cac1`) | D-T0-12..16 and standing PEC loop registration |
+| D-T0-12 | PEC profile lifecycle and Gate 2: DRAFT profile, deterministic validator evidence, and owner adoption gate | Packet: `D-T0-12_pec_profile_lifecycle.md`; recommendation O-A uses the existing validator while keeping ADOPTED owner-only | **RULED: O-A — validator evidence path affirmed; Gate 2 ADOPTED 2026-07-05** (O-A owner in-session 2026-07-04, published by PR #51 merge commit `57307cac1`; Gate-2 adoption ruled owner in-session 2026-07-05, verbatim in the packet's dated adoption note) | Profile ADOPTED per the ruled lifecycle |
+| D-T0-13 | PEC integration level target and staging | Packet: `D-T0-13_pec_integration_staging.md`; recommendation O-A: L0 now, L2 destination through read-only L1 and per-operation L2, L3 future-only | **RULED: O-A — L0 now, L2 destination through staged deterministic seams; instance-content capture remains gated by D-T0-14** (owner in-session 2026-07-04; published by PR #51 merge commit `57307cac1`) | Staged integration plan and immutable evidence-capture convention |
+| D-T0-14 | PEC data residency and instance-content visibility | Packet: `D-T0-14_pec_data_residency.md`; frame-only packet; gate-safe default CLOSED/TBD if deferred | **RULED: deferred — O-A CLOSED default remains for now; future O-B case expected through D-PEC-01 with concrete data basis** (owner in-session 2026-07-04; published by PR #51 merge commit `57307cac1`) | Whether L1/L2 evidence capture may touch PEC instance content |
+| D-T0-15 | PEC standing loop goal and fences F-PEC-1..4 | Packet: `D-T0-15_pec_loop_goal_fences.md`; recommendation O-A adopts the proposed standing goal and fences | **RULED: O-A — standing goal and fences adopted; ACTIVE launcher remains scaffolding, not adoption** (owner in-session 2026-07-04; published by PR #51 merge commit `57307cac1`) | Standing PEC loop authority after registration slate |
+| D-T0-16 | PEC harness-tranche authorization | Packet: `D-T0-16_pec_harness_tranche_authorization.md`; recommendation O-A authorizes the later TOOLMAKER harness tranche after registration lands | **RULED: O-A — later TOOLMAKER harness PR authorized, execution unblocked by PR #51 merge; tests must assert PEC remains DRAFT with Gate 2 open** (owner in-session 2026-07-04; published by PR #51 merge commit `57307cac1`) | Multi-profile adapter fix, PEC harness awareness, and profile move into `_DomainEngines/profiles/` |
+
+| D-T0-17 | Residual of `D-T0-13` (2026-07-03 convention): accept the read-only **L1 evidence rung** as proven on the two published snapshots (`PEC_2026-07-04_L1-evidence-01/` PR #57, `PEC_2026-07-04_L1-evidence-02/` PR #58) | Record: `D-T0-17_pec_l1_acceptance.md`; evidence commit-bound in the record | **RULED: ACCEPTED — "I accept L1 as proven."** (owner in-session 2026-07-04; ruling SHA `0164d944f`, backfilled same-branch) | Per-operation L2 stage of the D-T0-13 O-A path (`backup.create` first, human-confirmed, demo/scratch basis until D-PEC-01) |
+| D-T0-18 | Residual of `D-T0-13` (2026-07-03 convention): advance PEC integration staging to **L3 / `OPERATION_PROPOSAL`**, scoped to the §16 import-proposal seam built by the D-PEC-08 tranche (PR #82); semantics fixed by pec-local `D-PEC-12` | Packet: `D-T0-18_pec_l3_operation_proposal_advance.md`; recommendation O-A advances scoped-L3 with all authority-bearing acts remaining human | **RULED: O-A — advance affirmed with full-agency amendment on the companion D-PEC-12** (owner in-session 2026-07-05; verbatim in the packet; ruling SHA in PEC Receipt 28) | Agent-authored import proposals as first-class operation proposals; profile `integration_level` flip; first L3 evidence run |
+| D-T0-19 | New coupling row (no prior register home, verified 2026-07-05): the **pec ↔ chirality-app-dev harness bridge lane** — lane authorization + cross-loop sequencing; transport for an HTTP-API-shaped engine; pec mapping of the domain MCP tool names with accept/apply/`force` remaining human in pec (K-DOMAIN-3) | Packet: `D-T0-19_pec_appdev_bridge_lane.md`; recommendations O-1A (single lane, app-dev **decision-packet-only** authoring grant), O-2A (localhost HTTP + person-bound service identity, D-PEC-10 actor model), O-3A (propose/refresh → `domain_propose_operation`; read-only inspection → `domain_proposal_validate`); design brief `../proposals/pec/BRIEF_2026-07-05_pec_appdev_bridge_design.md` | **RULED: O-1A + O-2A + O-3A** (owner in-session steer 2026-07-06, verbatim in the packet; ruling received with `main` at `4c636e53e`, tag `pre-bridge-session-2026-07-06`); bridge design brief CANDIDATE → ADOPTED; O-1A fence-scope grant + app-dev deconfliction notes applied per the packet mechanism | The bridge lane: future app-dev PROPOSALs (provisionally `D-APP-51` multi-engine registry + pec read-side, `D-APP-52` pec transport client + first live propose/validate exposure — renumbered from the live app-dev register at authoring time); the shared agent client contract for the built-in pec agent UI (`D-PEC-16`) |
+| D-T0-20 | Residual of `D-T0-14` (2026-07-03 convention): **pec instance-content visibility for LLM-hosted agents** — a standing basis replacing per-run D-PEC-01-style enumerations for the ruled weekly workflow (D-PEC-10 O-A), the harness bridge (`D-T0-19`), and the built-in agent UI (`D-PEC-16`) | Packet: `D-T0-20_pec_harness_agent_residency.md`; recommendation O-B enumerated OPEN surface (intake items; `import_proposal` records/reports; the profile's `chirality_readable_artifacts` set as enumerated in the profile; owner-dropped files) under the agent person's RBAC visibility, `is_admin=0` | **RULED: O-B — enumerated OPEN surface (i)–(iv) exactly as listed, agent person's RBAC, `is_admin=0`** (owner in-session steer 2026-07-06, verbatim in the packet; ruling received with `main` at `4c636e53e`, tag `pre-bridge-session-2026-07-06`); discharges the D-PEC-10 Scope-note-4 visibility confirmation for the 272-item run; mutation basis unchanged (scratch/demo only — pilot-scratch is inside it); profile `data_residency` updated + validator VALID per the packet mechanism | Real-data agent-triage **visibility** (the D-PEC-10 Scope-note-4 confirmation — discharged only if the ruling says so), the bridge's real-data visibility (the real/non-scratch-DB mutation basis stays its own future row), the built-in UI's LLM features, the adopted upload brief's RV-12 rider |
+| D-T0-21 | Residual of `D-T0-20` (2026-07-03 convention): **pec agent broad-access basis** — whether model-provider-egress agents gain a second, config-selected access basis (broad RBAC-visibility reads for designer/sole-user testing, `PEC_AGENT_ACCESS=enumerated\|broad`, default `enumerated`) alongside the ruled enumeration, with accept/apply/reject-of-others/`force`/conversion-dispositions excluded regardless of basis | Packet: `D-T0-21_pec_agent_broad_access_basis.md`; recommendation O-B dual basis, owner-selected per launch, narrow default kept | **RULED: O-B — approval to proceed; implementation deferred to the next session** (owner in-session 2026-07-06, verbatim in the packet) | The owner's 2026-07-06 broad-expansion direction; pec-local `D-PEC-20` source tranche |
+| D-T0-22 | Residual of `D-PEC-21`'s retained-restriction rationale (2026-07-03 convention): **pec agent session-profile basis** — whether the SDK engine gains a second, config-selected session profile (`PEC_AGENT_SESSION=hermetic\|open`, default `hermetic`) where the harness's built-in tools and setting sources load (owner-machine content readable by the model as the owner's OS user, egressing to the model provider), for designer/sole-user limit-testing; the pec human-act boundary and D-T0-21 access clamp excluded from widening regardless of profile | Packet: `D-T0-22_pec_agent_session_profile_basis.md` (owner direction verbatim; residency note in-packet) | **RULED: opt-in `open` profile directed; hermetic default retained, no prior restriction removed** (owner launcher steer 2026-07-07, verbatim in the packet) | The owner's limit-testing lane; pec-local `D-PEC-22` source tranche |
+| D-T0-23 | Cross-project convergence on the root shared runtime: app-dev and PEC become registered clients of one daemon while project/domain authority, deterministic acts, RBAC, data boundaries, and checkout-contained evidence remain independently governed | Packet: `D-T0-23_shared_runtime_domain_convergence.md`; companions D-GOV-20, D-APP-73, D-PEC-56 | **RULED 2026-07-22: accepted Shared Runtime and Local-Agent Pilot plan** — retire PEC's independent LLM/session/delegation ownership prospectively; preserve its deterministic adapter service, human acts, visibility basis, scratch/demo pilot fence, and open production gates | Shared runtime project registration, PEC adapter migration, and app-dev/PEC pilot sequencing without authority convergence |
+| D-T0-24 | Relationship between the existing Tier-0 Flow-A contract identity and the future Root runtime compatibility identity | CONTINUE-SEPARATE: retain D-T0-07/D-T0-09 Flow-A authority and value; keep the future Root identity distinct and unnamed; require separate evidence-backed rulings for any later mapping or retirement/supersession | **RULED: CS-A — Flow-A remains governed by D-T0-07/D-T0-09 and separate from the unnamed future Root runtime compatibility identity; any later mapping or retirement/supersession requires its own evidence-backed owner ruling** (Ryan Tufts, in-session 2026-07-27; accepted candidate SHA-256 `6a42c2c7c3d9cd86eb10168d4589de7ed0ede0972f00ef4f356ffd4ed972bd45`; PublicationSHA `aed9ef5ea1df7e128739fb6363218f0cc237e248`; EffectiveSHA `4ac8348e0c15795f33bf2192b2964ee1347aca59`) | Prevents identity conflation while preserving later evidence-backed relationship choices |
+
+| D-T0-25 | Preserve D-T0-23 unchanged and publish its post-D-PEC-58 residual classification | OD7-G3 R-A exact application packet | **RULED: exact application approved; verbatim ruling in D-T0-25 record** (PublicationSHA `1e08b927928fe77407e2cd43692a7bf04accba4a`; EffectiveSHA `2c8e4168220b49f1e83a45aa916a6eb29856f0b4`) | Lineage coherence only; no product or implementation authority |
+
+| D-T0-26 | Demote the frozen PEC profile to STALE / MANUAL_BRIDGE and deny governed profile-mediated invocation | OD7-G3 P-A exact application packet | **RULED: exact application approved; verbatim ruling in D-T0-26 record** (PublicationSHA `7948eef43fe27eacd482688d9249a1ad2b92471c`; EffectiveSHA `dc89356eb4db715bfe8357b25d8831c752cb822e`) | Historical profile preserved; no PEC v2 profile authority |
+
+| D-T0-27 | Separately adopt a newly authored PEC v2 Domain Engine Profile against accepted v2 contract bytes, replacing the live frozen-v0.4 `STALE / DENY_ALL` binding only through an exact coordinated application | Packet: `../bridge/PEC_V2_PROFILE_SUCCESSOR_D-T0-27_2026-08-02/PACKET.md`; O-A adopts exact candidate SHA-256 `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d` at `READ_ONLY`; D-PEC-76 is the local pointer row | **RULED O-A / EFFECTIVE / ADOPTED / READ_ONLY** (PublicationSHA `0e47c218c26830a4efeb29eb2d2f3ea99142b987`; EffectiveSHA `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`) | Successor-profile prerequisite satisfied only; no source, adapter invocation, lifecycle, release, reliance, or cross-loop authority |
+
+| D-T0-28 | One-path conscious live-baseline amendment for D-T0-27: update only the portable ABS-path evidence count and PEC bridge-status profile pin in `tools/practitioner_harness/test_live_baseline.py` | Packet: `../bridge/PEC_V2_PROFILE_LIVE_PIN_AMENDMENT_D-T0-28_2026-08-02/PACKET.md`; O-A applied exact preimage `80823ee8...` to postimage `7a4e8aa0...` and ran the frozen checks | **RULED O-A / APPLIED / EFFECTIVE SUPPORTING AMENDMENT** (PR #459 EffectiveSHA `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`) | Conscious test pins only; no production/profile/project/source/SOW/lifecycle/runtime/release/reliance authority |
+
+| D-T0-29 | Exact-path Git whitespace attribute for the ruled D-T0-28 unified-diff evidence, preserving the patch and test postimage bytes | Packet: `../bridge/D-T0-29_D-T0-28_PATCH_WHITESPACE_ATTRIBUTE_2026-08-02/PACKET.md`; O-A applied exact `.gitattributes` preimage `7dece552...` to postimage `c0d9e5b7...` | **RULED O-A / APPLIED / EFFECTIVE SUPPORTING AMENDMENT** (PR #459 EffectiveSHA `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`) | Exact whitespace treatment only; no validator/source/profile/project/PEC/SOW/lifecycle/runtime/release/reliance authority |
+
+Per-decision records: `D-T0-01..22_*.md` (`D-T0-10`'s record was added at its 2026-07-04 acknowledgment; its staging CHANGE prep remains under `../bridge/`; `D-T0-11..16` are PEC registration records with owner rulings published by PR #51 merge commit `57307cac1`; `D-T0-17` is the PEC L1-acceptance record added at its 2026-07-04 ruling).
+# PEC v2 Domain Engine Profile candidate
+#
+# Candidate only. D-T0-27 is awaiting owner ruling. These bytes are not the
+# live profile and authorize no profile-mediated invocation.
+
+domain_profile:
+  schema_version: "1.0"
+  id: "pec"
+  name: "PEC v2 coordination plane"
+  engine_type: "coordination-plane/file-truth-projection"
+  profile_version: "1.0"
+  profile_status: "ADOPTED"
+  integration_level: "READ_ONLY"
+  execution_policy: "DECLARED_READ_ONLY_AND_SUMMARY_TOOLS_ONLY"
+  historical_binding_only: false
+  data_residency: "REPO_COMMITTED_CONTENT_MINIMAL_ONLY"
+  governance_authority: "NONE_FILE_NATIVE_SOURCES_GOVERN"
+
+  domain_root_patterns:
+    - "projects/pec/v2/**"
+
+  authoritative_artifacts:
+    - "projects/pec/v2/contracts/api/v1/schema.json"
+
+  chirality_readable_artifacts:
+    - "projects/pec/v2/contracts/api/**"
+    - "projects/pec/v2/tests/contracts/api/**"
+    - "projects/pec/software-workflow.json"
+    - "projects/pec/docs/PRD.md"
+    - "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md"
+    - "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md"
+    - "projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/EXECUTION_HANDOFF.md"
+
+  protected_write_paths:
+    - "_DomainEngines/profiles/pec.yaml"
+    - "projects/pec/v2/**"
+    - "projects/pec/software-workflow.json"
+    - "projects/pec/chirality.project.json"
+    - "projects/pec/AGENTS.md"
+    - "projects/pec/docs/**"
+    - "projects/pec/execution/_Decomposition/**"
+    - "projects/pec/execution/_ScopeChange/**"
+    - "projects/pec/execution/_Coordination/_DECISIONS/**"
+    - "projects/pec/execution/**/_STATUS.md"
+    - "projects/pec/execution/**/ScopeOfWork.md"
+
+  agent_writable_paths:
+    - "projects/pec/execution/_Coordination/AgentRuns/**"
+    - "projects/pec/execution/_Coordination/** except _DECISIONS/** and owner-ruling records"
+
+  deterministic_tools:
+    - id: "pec.v2.registered_checks"
+      impl: "tools/software_workflow/run_registered_checks.py with projects/pec/software-workflow.json"
+      mode: "summary_write"
+      requires_human_confirmation: false
+      output_policy: "Normalized evidence only under an expressly authorized projects/pec/execution/_Coordination/AgentRuns snapshot path"
+      validate_result_schema: "chirality-software-check-evidence/v1"
+      apply_result_schema: "TBD"
+    - id: "pec.v2.harness_self_check"
+      impl: "python3 tools/practitioner_harness/harness.py self-check"
+      mode: "read_only"
+      requires_human_confirmation: false
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+
+  operation_proposal_policy: "DISABLED"
+  operation_proposal_contract:
+    lifecycle: ["draft", "ready_for_review", "accepted", "rejected", "applied"]
+    risk_classes: ["engine_checkable", "engine_silent"]
+    deterministic_check_result_schema: "chirality-software-check-evidence/v1"
+    accepted_or_applied_requires:
+      - "a separately enabled operation family and declared deterministic tool"
+      - "human approval bound to git SHA per K-AUTH-2"
+      - "domain-engine-controlled apply or external terminal acceptance record"
+
+  operation_risk_class_axis: ["engine_checkable", "engine_silent"]
+
+  human_gates:
+    - "D-T0-27 exact-profile Gate 2 adoption and effective application merge"
+    - "separate D-PEC packet for every project source or workflow-profile write"
+    - "profile amendment before any runtime, adapter-client, mutating, proposal, or external-result tool is declared or invoked"
+    - "separate owner act for artifact fitness, lifecycle, release, or professional reliance"
+
+  professional_boundary:
+    agent_must_not_claim:
+      - "PEC output is authoritative over governed file truth"
+      - "a governed act depends on a PEC read or write"
+      - "adoption, ruling, acceptance, rejection, force, or lifecycle state was written by PEC"
+      - "another loop must consume, poll, inject, subscribe to, or implement PEC"
+      - "professionally approved"
+      - "checked or check-accepted"
+      - "issued"
+      - "released"
+      - "code compliant"
+      - "certified"
+      - "sealed"
+      - "ready for construction"
+      - "external prover validated absent a cited human record"
+
+  open_issues:
+    - "No PEC v2 runtime store, service, transport, runtime client, event bridge, proposal operation, or external-result tool exists or is declared by this profile."
+    - "The authoritative_artifacts entry identifies the accepted PEC-owned API contract only; it is not authority over loop governance facts, which remain file-native."
+    - "Future source production remains governed by exact-path D-PEC packets. A production packet may override protected source paths only for its bounded development tranche; this profile grants no such override."
+    - "Before any future adapter or runtime-client invocation, amend this profile with exact inputs, outputs, paths, modes, side effects, failure behavior, result schemas, and human gates."
+    - "The frozen v0.4 profile version 0.3 remains historical lineage and must be preserved outside the live profiles/*.yaml discovery set when this successor becomes effective."
+    - "projects/pec/software-workflow.json is a project development check registry, not this Domain Engine Profile and not an authority or invocation grant."
+# Latest — revision pointer and handoff state
+
+Latest: `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1.4**
+(**`current_basis`** — accepted 2026-08-03 as the SCA-004 successor under
+D-PEC-78 O-A and the owner's SCA-004 Gate 5 execution direction).
+
+## Handoff state
+
+- **Basis:** accepted PRD v2.2; D-PEC-60 SOFTWARE_DECOMP revision 1.0;
+  SCA-001 directed bootstrap; SCA-002 objective mapping; SCA-003 consumer
+  interface/ADR-014 concordance; SCA-004 loop-registry disposition.
+- **Package:** `SOFTWARE_DECOMP.md` revision 1.4 + `ScopeLedger.csv` (94 rows)
+  + `Deliverables.csv` (64 rows) + unchanged `ContextBudgetQA.csv` (64 rows)
+  + unchanged `Companion_Inventory.csv`.
+- **Basis integrity:** decomposition SHA-256
+  `7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81`;
+  Scope Ledger SHA-256
+  `2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25`;
+  Deliverables SHA-256
+  `49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72`.
+- **Semantic result:** SOW-077 is `IN` and maps reciprocally to
+  `PKG-01 → DEL-01-06 → OBJ-004`; SOW-094 carries the settled D-PEC-78
+  implementation basis; OI-003 is retained and resolved. Counts are 94 scope
+  items (`72 IN / 14 OUT / 8 TBD`), 11 packages, 64 deliverables, six
+  objectives, and 10 open / 3 resolved issues.
+- **Closure verdict:** `CLOSED_FOR_SCOPE_CHANGE_ONLY`.
+- **Audit:**
+  `_Evaluation/DecompCoverage/COV_SCA004_POSTCHANGE_2026-08-03_1442/`;
+  `WARNINGS`, 0 blockers / 1 unchanged unrelated DEL-08-02 warning / 69 info.
+- **Scope-change snapshot:**
+  `_ScopeChange/SCA-004_2026-08-02_2325/`.
+- **Derivative state:** `INCOMPLETE`; `DownstreamRerunState = FROZEN`;
+  `MetadataAlignmentState = NOT_STARTED`; `ReadyForNextPhase = NO`.
+- **Stale populations:** 63 context provenance blocks; 64 reference packets;
+  DEL-01-06 requirement anchor; four SOW contracts (DEL-01-06, DEL-02-07,
+  DEL-03-01, DEL-04-01); DEL-00-03 accepted SPEC; and four ordinary PEC
+  orientation/map surfaces. Exact owners and rerun obligations are in the
+  SCA-004 `Handoff_State.md`.
+- **Authority fence:** no downstream repair, source, lifecycle, artifact
+  acceptance, release, professional reliance, or foreign-loop duty is
+  implied by this pointer.
+# Latest Scope Change
+
+| Field | Value |
+|---|---|
+| AmendmentID | `SCA-004` |
+| Snapshot | `execution/_ScopeChange/SCA-004_2026-08-02_2325/` |
+| Variant | `SOFTWARE` |
+| Status | **`CLOSED_FOR_SCOPE_CHANGE_ONLY`** |
+| CurrentGate | Gate 5 — Confirmed / Executed / Validated |
+| AcceptedBasis | `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.4 (`current_basis`) |
+| Authority | D-PEC-78 O-A and owner SCA-004 Gate 5 direction, 2026-08-03 |
+| DecompositionTruthState | `COMPLETE` |
+| DerivativePackageState | `INCOMPLETE` — downstream surfaces remain stale |
+| ContentRemediationState | `NOT_REQUIRED` |
+| DownstreamRerunState | `FROZEN` — no downstream repair authorized by Gate 5 |
+| MetadataAlignmentState | `NOT_STARTED` — 63 contexts / 64 references |
+| AuditState | **`WARNINGS`** — `COV_SCA004_POSTCHANGE_2026-08-03_1442`, 0 blockers / 1 unchanged unrelated warning |
+| ReadyForNextPhase | `NO` |
+| ClosureVerdict | **`CLOSED_FOR_SCOPE_CHANGE_ONLY`** |
+
+## Result
+
+Revision 1.4 applies the exact approved SCA-004 postimage and direct
+DEL-01-06 context mirror. SOW-077 is now `IN` and maps to PKG-01 /
+DEL-01-06 / OBJ-004; OI-003 is resolved by D-PEC-78 O-A. Stable IDs,
+topology, source, dependencies, lifecycle, envelope, phase, name, and path are
+unchanged.
+
+## Downstream boundary
+
+Gate 5 performed no downstream repair. `SCA-004_2026-08-02_2325/Handoff_State.md`
+is the controlling derivative-state handoff and names every stale population,
+owner, and rerun obligation: 63 contexts, 64 references, the DEL-01-06
+requirement anchor, four SOW contracts, the DEL-00-03 SPEC, and four PEC
+orientation/map surfaces. Each is separately gated.
+# PEC — Product Requirements Document
+
+| | |
+|---|---|
+| **Version** | 2.2 |
+| **Date** | 2026-07-27 |
+| **Status** | **Adopted 2026-07-27** by owner ruling (`D-PEC-68`); v2.0 adopted by `D-PEC-58`; directed-bootstrap clarification adopted as v2.1 by `D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; consumer-interface concordance adopted as v2.2 by `D-PEC-68`; product definition of record |
+| **Product stage** | Prototype of the prior product exists (v0.4 baseline code); the coordination plane defined here is not yet implemented |
+| **Supersession** | Supersedes PRD v1.0 ("team information hub", adopted 2026-07-10 by `D-PEC-55`), preserved at `c31be74c2:projects/pec/docs/PRD.md` and archived at `docs/.archive/PRD_v1.0_2026-07-09_team_information_hub.md`. The v0.4 catalogue remains preserved at `7e8312172:projects/pec/docs/PRD.md`. |
+
+> **Epistemic status:** authored from owner-directed design (session
+> 2026-07-24); adopted 2026-07-24 (`D-PEC-58`), amended to v2.1 the same
+> day (`D-PEC-61`), and amended in two exact invariant rows on 2026-07-27
+> (`D-PEC-67`), then adopted with surrounding v2.2 consumer-interface
+> concordance on 2026-07-27 (`D-PEC-68`). Adoption makes a PRD the product
+> definition of record only — nothing in this document is an implementation
+> mandate; each build tranche still requires its own owner-ruled packet.
+
+> **v2.2 provenance labels:** `TRANSCRIBED` means copied without changing
+> source meaning from a ruled record; `CLARIFIED` means surrounding prose
+> reconciled to a ruled meaning without creating a new external duty;
+> `PROPOSED` means product text newly proposed by and adopted through the
+> `D-PEC-68` owner gate rather than inherited from an earlier ruling. The
+> PEC-K-03 and PEC-K-11 rows are `TRANSCRIBED` byte-for-byte from the PRD bytes adopted by
+> `D-PEC-67`; the P1 first-ingestion correction is `TRANSCRIBED` from
+> `D-PEC-61`; the consumer-interface corrections in §§1, 4, 5, 8, 9, 11, 12,
+> and 15 are `CLARIFIED`; the resulting P3/P4 capability-exit wording is
+> `PROPOSED`.
+
+---
+
+## 1. Product definition
+HoldID,Status,TargetPath,TargetClauses,ProhibitedActs,AllowedActs,Authority,ReleaseRule
+taskmgmt validate PASS: projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv — 18 row(s), schema columns and referential rules conform. Form only; content judgment stays human (PRD §9.3).
+taskmgmt validate PASS: projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv — 7 row(s), schema columns and referential rules conform. Form only; content judgment stays human (PRD §9.3).
+projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md
+projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md
+projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md
+projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md
+projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md
+projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md
+projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md
+projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md
+projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md
+projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md
+projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md
+projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md
+projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md
+projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md
+projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md
+projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md
+projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md
+projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md
+projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md
+projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md
+projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md
+projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md
+projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md
+projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md
+projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md
+projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md
+projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md
+projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md
+Remaining surfaces:
+No recorded selectable scope: no ## Remaining sections; do not infer work from lifecycle alone.
+Routed notices:
+projects/pec/execution/_Coordination/NOTICE_2026-07-25_helps_humans_oi013_response.md
+projects/pec/execution/_Coordination/NOTICE_2026-07-25_helps_humans_p1_p7_applied.md
+projects/pec/execution/_Coordination/NOTICE_2026-07-27_D-APP-77_RB-PEC-ADAPTER_CURRENT_EVIDENCE_RETIREMENT.md
+projects/pec/execution/_Coordination/NOTICE_2026-07-27_SCA-APP-005_APP_CLIENT_BOUNDARY.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-02_ROOT_HARNESS_SCOPE_CORRECTION.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_CLOSEOUT_RECEIPT_RULE.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_DEFERRAL_REVIEW_MODE.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_FEDERATION_PREFLIGHT.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-02_TASK_MANAGEMENT_INSTRUCTION_SCHEMA_REPAIR.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-03_ROOT_SCA003_PRD_BASIS_RECONCILIATION.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-03_TM_LAUNCHER_REMEDIATION.md
+projects/pec/execution/_Coordination/NOTICE_2026-08-20_ROOT_EXTERNAL_WORKING_ROOT.md
+projects/pec/execution/_Coordination/NOTICE_AGENT_INDEX_TASK_MANAGEMENT_2026-07-31.md
+projects/pec/execution/_Coordination/NOTICE_D-GOV-28_ROOT_RUNTIME_STEWARDSHIP_PRD.md
+projects/pec/execution/_Coordination/NOTICE_D-GOV-31_MERGE_GATE_POLICY_SUCCESSION.md
+projects/pec/execution/_Coordination/NOTICE_D-GOV-32_TASK_MANAGEMENT_ADOPTION.md
+> **Generated view — not authority.** Produced by tools/practitioner_harness (command: self-check).
+> Sources cited per finding; on any disagreement the cited source files govern.
+> Regenerate from project files; safe to delete. Structural checks are not approval,
+> issue, authentication, or acceptance of residual risk (K-AUTH-1; D-GOV-01).
+
+# Self-check — consistency audit
+
+Scope: `projects/chirality-app-dev`, `projects/chirality-piping`, `projects/pec`, `_DomainEngines`, `docs/governance_harness`
+
+## Root governance status (self-declared; INFO facts)
+
+- `docs/DIRECTIVE.md` (line 3): > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them aut …[truncated]
+- `docs/CONTRACT.md` (line 3): > **Status: RATIFIED — owner ratification 2026-07-11 (K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them authoritative." Thi …[truncated]
+- `docs/SPEC.md` (line 3): > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them aut …[truncated]
+- `docs/TYPES.md` (line 3): > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them aut …[truncated]
+
+## Findings
+
+| Severity | Code | Dimension | Source | Invariant (ratification) | Message |
+|---|---|---|---|---|---|
+| REVIEW | STALE_RULING_ANNOTATION | staleness | `_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md:1` | K-CONFLICT-1 (RATIFIED) | Line carries a '(PROPOSAL; HumanRuling = TBD)'-form annotation while the decision register title declares RULED; sources conflict — human review required. |
+| REVIEW | TITLE_CONTRADICTS_RULING | staleness | `_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md:1` | K-CONFLICT-1 (RATIFIED) | Title line carries a PROPOSAL/TBD tag while a body line records a ruling attributed to 'Ryan Tufts' (allowlisted); sources conflict — human review required. |
+| REVIEW | STALE_DRAFT_DIRECTIVE | staleness | `_DomainEngines/RULINGS_PUBLISHED.md:20` | K-CONFLICT-1 (RATIFIED) | Prose directs to 'Update the DRAFT profile' while the profile declares profile_status ADOPTED; sources conflict — human review required. |
+| REVIEW | ABS_PATH_IN_GOVERNED_SURFACE | path-anchoring | `_DomainEngines/applications/OD7-G3_D-T0-25_D-T0-26_EFFECTIVE_CLOSEOUT_2026-07-28/PEC_PROFILE_VALIDATION.json:5` | SPEC-0.2.4 (N_A) | Machine-absolute path in an instruction/coordination/plan/status surface (SPEC §0.2.4 requires repo-relative anchoring there); human review required. |
+| INFO | ABS_PATH_IN_EVIDENCE | path-anchoring | `_DomainEngines/profiles/_validation/open_pipe_stress.validation.json:5` | SPEC-0.2.4 (N_A) | Machine-absolute path in a run-record/evidence artifact (permitted by SPEC §0.2.4; noted for portability awareness). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/CHANGE_HANDOFF.md:13` | K-PROV-1 (RATIFIED) | Reference `init/init-prompt.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/DOMAIN_ENGINE_INDEX.md:52` | K-PROV-1 (RATIFIED) | Reference `pec/PEC_2026-07-04_tier0-prep/BRIEF_human_decisions.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md:7` | K-PROV-1 (RATIFIED) | Reference `profiles/open_pipe_stress.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-11_pec_registration_shape.md:19` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/LOOP_INIT.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-11_pec_registration_shape.md:19` | K-PROV-1 (RATIFIED) | Reference `init/init-prompt.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-11_pec_registration_shape.md:29` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-11_pec_registration_shape.md:29` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/profile/pec.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-12_pec_profile_lifecycle.md:20` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/profile/pec.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-12_pec_profile_lifecycle.md:20` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/profile/pec.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-12_pec_profile_lifecycle.md:21` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-12_pec_profile_lifecycle.md:21` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-13_pec_integration_staging.md:20` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-13_pec_integration_staging.md:21` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-13_pec_integration_staging.md:21` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-13_pec_integration_staging.md:37` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-14_pec_data_residency.md:18` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-14_pec_data_residency.md:18` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-14_pec_data_residency.md:19` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-14_pec_data_residency.md:19` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-15_pec_loop_goal_fences.md:17` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/WORKPLAN_2026-07-04_pec_loop.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-15_pec_loop_goal_fences.md:18` | K-PROV-1 (RATIFIED) | Reference `init/init-prompt.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-15_pec_loop_goal_fences.md:18` | K-PROV-1 (RATIFIED) | Reference `init/init-prompt.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-15_pec_loop_goal_fences.md:20` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-15_pec_loop_goal_fences.md:20` | K-PROV-1 (RATIFIED) | Reference `projects/pec/docs/SPEC.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-17_pec_l1_acceptance.md:17` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/PEC_2026-07-04_L1-evidence-01/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-17_pec_l1_acceptance.md:21` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/PEC_2026-07-04_L1-evidence-02/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-17_pec_l1_acceptance.md:47` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/LOOP_RECEIPTS.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-19_pec_appdev_bridge_lane.md:41` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/PEC_2026-07-05_DPEC10-rehearsal-01/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-19_pec_appdev_bridge_lane.md:196` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/LOOP_RECEIPTS.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-19_pec_appdev_bridge_lane.md:209` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/LOOP_RECEIPTS.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-21_pec_agent_broad_access_basis.md:6` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/PEC_2026-07-06_DPEC20-evidence-01/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-21_pec_agent_broad_access_basis.md:7` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/LOOP_RECEIPTS.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/D-GOV-21_IMPLEMENTATION_HANDOFF.md:50` | K-PROV-1 (RATIFIED) | Reference `domains/chirality/_Coordination/NOTICE_D-GOV-21_ROOT_DOCTRINE_AMENDMENT.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/D-GOV-21_IMPLEMENTATION_HANDOFF.md:85` | K-PROV-1 (RATIFIED) | Reference `projects/chirality-root/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/FOUR_DOCUMENT_CONSUMER_INVENTORY.md:46` | K-PROV-1 (RATIFIED) | Reference `agents/AGENT_ORCHESTRATOR.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-03_pilot_scope.md:25` | K-PROV-1 (RATIFIED) | Reference `projects/chirality-governance/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-07_domain_gate_sha_binding.md:26` | K-PROV-1 (RATIFIED) | Reference `gate_snapshots/_LATEST_GATE6.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-18_agent_index_redisposition.md:28` | K-PROV-1 (RATIFIED) | Reference `agents/AGENT_ORCHESTRATOR.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-19_chirality_framework_knower_accountability.md:181` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-19_chirality_framework_knower_accountability.md:182` | K-PROV-1 (RATIFIED) | Reference `domains/chirality/_Decomposition/gate_snapshots/GATE6_PUBLISH_20260615T044434Z` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-23_directive_genus_supersession.md:63` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-24_operating_system_prose_propagation.md:58` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-31_merge_gate_policy_succession.md:68` | K-PROV-1 (RATIFIED) | Reference `DEL-04-06/_CONTEXT.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-31_merge_gate_policy_succession.md:71` | K-PROV-1 (RATIFIED) | Reference `DEL-04-06/_CONTEXT.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-31_merge_gate_policy_succession.md:152` | K-PROV-1 (RATIFIED) | Reference `DEL-04-06/_CONTEXT.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/_REGISTER.md:36` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/_REGISTER.md:37` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/_REGISTER.md:43` | K-PROV-1 (RATIFIED) | Reference `CANDIDATE_B_SHARED_CHANGE/PRD_ROOT_REV7_CANDIDATE.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_PROPOSALS/D-GOV-21_root-working-root-exception/PACKET.md:127` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_PROPOSALS/D-GOV-21_root-working-root-exception/PACKET.md:356` | K-PROV-1 (RATIFIED) | Reference `projects/chirality-root/` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_PROPOSALS/D-GOV-21_root-working-root-exception/PACKET.md:430` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_PROPOSALS/D-GOV-22_root_prd_adoption/PACKET.md:105` | K-PROV-1 (RATIFIED) | Reference `tools/export/export_public.py` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/D-GOV-35.proposed.md:165` | K-PROV-1 (RATIFIED) | Reference `_DECISIONS/D-GOV-35_delegated_harness_native_class.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/IMPACT.md:142` | K-PROV-1 (RATIFIED) | Reference `OWNER_RULING_2026-08-09_TM_PIP_038_040/RUN_BASIS.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/README.md:63` | K-PROV-1 (RATIFIED) | Reference `_DECISIONS/D-GOV-35_delegated_harness_native_class.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md:103` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |
+| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md:104` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |
+| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md:88` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |
+| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md:89` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |
+| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md:90` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |
+| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md:91` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |
+| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate · PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md — closure recorded; sources govern on disagreement. |
+| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-02_verifier_severity_and_override.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate · PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md — closure recorded; sources govern on disagreement. |
+| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-03_pilot_scope.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate · PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md — closure recorded; sources govern on disagreement. |
+| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-04_human_actor_identity.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate · PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md — closure recorded; sources govern on disagreement. |
+| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate · PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md — closure recorded; sources govern on disagreement. |
+| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-06_domain_profile_current_truth.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate · PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md — closure recorded; sources govern on disagreement. |
+| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-07_domain_gate_sha_binding.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate · PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md — closure recorded; sources govern on disagreement. |
+| NOT_APPLICABLE | POINTER_CHECK_NOT_APPLICABLE | staleness | `docs/governance_harness` | K-STALE-2 (RATIFIED) | No `_LATEST*` pointer files under this root; pointer-currency check skipped (preconditions absent). |
+
+## Summary
+
+Finding severities: INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=55
+- scope: ['projects/chirality-app-dev', 'projects/chirality-piping', 'projects/pec', '_DomainEngines', 'docs/governance_harness']
+- pointer_files_scanned: 36
+- checks_run: DE-1..8 (domain-engine surfaces incl. stale open issues vs later rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), GEN-3 (generated labeling), GEN-4 (root governance status facts), GEN-5 (unresolved refs; control files only in v1), GEN-6 (draft-basis-used-as-binding; control files only in v1), GEN-7 (_LATEST pointer currency: target resolution outside .archive + newest-same-class-sibling by date-in-filename), GEN-8 (active-surface portability: structural roles + hash-bound historical exceptions + semantic invariants), GEN-9 (agent-registry currency: AGENTS.md file tokens vs live agents/ files, both directions), GEN-10 (bridge receipt labels + parked-lane carry-forward), GEN-11 (D-44 piping receipt contract), GEN-12 (D-APP-57 app-dev receipt contract), GEN-13 (claims-language DEC-081)

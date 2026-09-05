@@ -1,3 +1,22 @@
+Fresh read-only acceptance test. Read only this supplied new launcher and candidate init as initial context. Do not load AGENTS.md, persona files, prior context, other agents' reports. Execute full Step 0 using host permission if needed; report exit codes and whether committed HEAD prints no committed plan: deliverables alone. Give first return and Step 1 selection, walk Steps 4/5 to the PR boundary on paper only. Stop before Step 2; no writes, delegation, commits, pushes or PR actions. Inspect live sources as needed, excluding AGENTS/persona. End with Friction; ensure no plan serves selection.
+
+NEW LAUNCHER
+<init-prompt>
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Set `WORKING_ROOT` to `{REPO_ROOT}/projects/pec`.
+
+Read `{REPO_ROOT}/AGENTS.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
+
+Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
+
+Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it.
+
+Steer (this run): <none>
+</init-prompt>
+
+CANDIDATE INIT
 # PEC work loop — session init and generic loop
 
 This file is the PEC loop's generic instruction surface: protocol, fences,
@@ -71,7 +90,7 @@ All paths below are repository-relative unless explicitly labelled otherwise.
 ## 3. Hard fences
 
 The following text is carried verbatim from the project's **Write Scopes And
-Fences** section and the retired plan. Fence wording changes only by owner act.
+Fences** section and the standing plan. Fence wording changes only by owner act.
 
 Default writable project-local surfaces are only `execution/_Coordination/**`,
 this `AGENTS.md`, and the one-time `docs/STATUS.md` governance pointer
@@ -322,7 +341,7 @@ Checks constrain PEC work; they do not impose duties on a sister project.
 
 ## 9. Evidence contract
 
-The retired plan supplied no separate empirical evidence schema. Follow the
+The standing plan supplies no separate empirical evidence schema. Follow the
 selected role and `docs/SOFTWARE_WORKFLOW_PROFILE.md`: preserve source
 identities, commands/cwd/interpreter, exit codes, outputs, and a bounded rerun
 method for verification claims. Cite accepted upstream snapshots; distinguish
