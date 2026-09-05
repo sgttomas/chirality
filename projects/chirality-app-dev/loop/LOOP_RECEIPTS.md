@@ -7044,3 +7044,13 @@
   - Checks: instruction-entrypoint validator pass; repo-wide self-check exit 0; receipt validator pass after this receipt; candidate whitespace pass; `git diff --check` clean; changed-path scope exactly the loop file, the packet, the register row, and this ledger; no product source changed so frontend and runtime gates skipped.
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched for this act.
   - Gate-Outcome: `EXECUTED` — the owner ruled items A and B by directing the merge of PR #717; the register row is `RULED` with its ruling record on the same PR. No fence, check, pointer target, product, lifecycle, or release change is inferred.
+- **2026-09-05 — Receipt 242** (D-APP-113: the two second-dry-run residuals fixed in `loop/LOOP_INIT.md`; state-anchored register grep; explicit gating semantics).
+  - Receipt-ID: `Receipt-242`
+  - Examined-Through: `70041862b5873a569f7ed11d8a1d1b5b5d862f19`
+  - Parent-Receipt: `Receipt-241`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-05, Ryan Tufts): "Clean up the one residual from the app-dev second dry run worth a later pass: … Both are one-line fixes;" (excerpt; verbatim in the ruling record). Transcribed as D-APP-113.
+  - Stale-Map-Delta: the D-APP-112 packet's second-run friction rows 1 and 4 are closed by this change; the ruled Step 0 grep had returned thirteen historical rows; verify in the ruling record.
+  - Pointers: branch `claude/loop-init-d-app-113-residuals` from `origin/main` `70041862b5873a569f7ed11d8a1d1b5b5d862f19`; `execution/_Coordination/_DECISIONS/D-APP-113_RULING_LOOP_INIT_DRY_RUN_RESIDUALS_2026-09-05.md` and its `_REGISTER.md` row; `loop/LOOP_INIT.md` SHA-256 `a25cb37e58a333d684c7e713f4a8c9013a870e7e14f73077c8d26283c9d68d26`.
+  - Checks: the full Step 0 block runs to exit 0; instruction-entrypoint validator pass; repo-wide self-check exit 0; receipt validator pass after this receipt; candidate whitespace pass; `git diff --check` clean; changed-path scope exactly the loop file, the ruling record, the register row, and this ledger; no product source changed so frontend and runtime gates skipped.
+  - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched for this act.
+  - Gate-Outcome: `EXECUTED` — applied on the owner's direction as a residual of D-APP-112; merge confers instruction currency only. No fence, check, pointer target, product, lifecycle, or release change is inferred.
