@@ -1,7 +1,7 @@
 # SCA-APP-010 Literal Pointer Candidate Validation
 
-**State:** `POINTER_SUBGATE_PENDING_OWNER_RULING`
-**Live pointer changed:** `NO`
+**State:** `POINTER_MOVED` (G5-POINTER, 2026-09-04, after PR #708 merged as `7795b0972`)
+**Live pointer changed:** `YES` — written on branch `claude/sca-app-010-pointer` from `origin/main` `7795b0972`; see the post-pointer parity section at the end
 **Live pointer pre-image SHA-256:** `f235ced4526aac51c4e7f5307ac619f3500e824c3549960b106bb80b67a6e17c` (SCA-APP-009, `OPEN_PENDING_DERIVATIVE_CLOSURE`)
 
 The pointer is excluded from the Gate-5 application transaction
@@ -50,3 +50,7 @@ Deterministic extraction of the fenced payload (the bytes between the
 reproduces that identity. Owner approval must name this exact post-image
 before the live pointer may move; a post-pointer read-only parity backcheck
 follows.
+
+## Post-pointer parity backcheck
+
+After the owner's G5-POINTER ruling the live `_LATEST.md` was replaced with the fenced payload above. Read-only backcheck results are recorded in `CHECKS.md` (pointer section): live pointer SHA-256 equals the literal post-image, the target snapshot exists with a verified manifest, both authoritative hashes are unchanged, and the SCA-APP-009 tree is unchanged.
