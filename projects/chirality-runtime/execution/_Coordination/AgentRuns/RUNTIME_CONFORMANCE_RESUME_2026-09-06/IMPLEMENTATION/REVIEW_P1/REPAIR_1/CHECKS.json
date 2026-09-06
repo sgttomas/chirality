@@ -1,0 +1,32 @@
+[
+  {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "tests/codex-containment.test.ts",
+      "tests/codex-session.test.ts",
+      "tests/codex-supervisor.test.ts",
+      "tests/exact-boundary-conformance.test.ts",
+      "--no-cache"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "CHIRALITY_RUN_EXACT_BOUNDARY": "0",
+    "exitCode": 0,
+    "elapsedSeconds": 3.676,
+    "log": "check-1.log",
+    "sha256": "9232dea769be7dfdb2114648494a75dd57ee13e15f3acf34fdb7b38e73023536"
+  },
+  {
+    "command": [
+      "./node_modules/.bin/tsc",
+      "-p",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P1/REPAIR_1/tsconfig.check.json"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "CHIRALITY_RUN_EXACT_BOUNDARY": "0",
+    "exitCode": 0,
+    "elapsedSeconds": 0.736,
+    "log": "check-2.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

@@ -1,0 +1,303 @@
+{
+  "derivative": true,
+  "manager": "/root/conformance_manager WORKING_ITEMS instruction-asserted",
+  "proposalPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/WHITESPACE_PROPOSAL/EXACT_TRANSFORM_V1.json",
+  "proposalSha256": "6f306e4631ddbc75fb4165259cd64f5df0416c5d0e8ca725aaa06d5c484c34d2",
+  "status": "48 owned historical immutable outputs released only for parent-directed lossless archival plus explicitly derivative presentation",
+  "conditions": [
+    "Archived originals preserve exact hashes/bytes and remain available to all existing seals",
+    "Presentation is labeled derivative and publication maps original-to-presentation paths/hashes",
+    "No accepted source/evidence verdict rewritten; no source code transforms in this release",
+    "Manager and specialists will not rewrite these48 historical paths; active work uses fresh subpaths"
+  ],
+  "rows": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/DIAGNOSTICS/PATCH.diff",
+      "originalSha256": "eed84d20eb9f0d1651ee4748492d240cd4df28b7f7d01e312d7d46c75d1bb5e4",
+      "originalBytes": 39400,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/DIAGNOSTICS/PURE_TESTS.log",
+      "originalSha256": "066441463cca280a0b557c51526fe2863cbdb01d987b03084bb1fcb82f90e429",
+      "originalBytes": 431,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/DIAGNOSTICS/PURE_TESTS_FINAL.log",
+      "originalSha256": "f0f8cd18b559b3bfcc80c181296ff782e803f70e6f6b906b50a19318d1666c15",
+      "originalBytes": 431,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/CONTROLLED_TESTS.log",
+      "originalSha256": "0a271109a43ad71fc8e0551595f2daa623799e8c4385f9a685fc89e07dda6937",
+      "originalBytes": 845,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P1/FOLLOWON_DIAGNOSIS/SOURCE_EXCERPTS.md",
+      "originalSha256": "b81b85cde1974f7cd3730fb04c09247666d54e0d332a9c53dd30eec6ddcb6430",
+      "originalBytes": 16373,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P1/REPAIR_1/SOURCE_EXCERPTS.md",
+      "originalSha256": "b81b85cde1974f7cd3730fb04c09247666d54e0d332a9c53dd30eec6ddcb6430",
+      "originalBytes": 16373,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P1/REPAIR_1/check-1.log",
+      "originalSha256": "12b1dd2eb609167510fe345881fb7baad3beabfa113661d3450a115d1dec6537",
+      "originalBytes": 428,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P1/check-1.log",
+      "originalSha256": "9ea541748d8ce13e6b4485d2c6777dd210afaefa848ed9fe77ea90f3cfad803b",
+      "originalBytes": 350,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_2/spec_plan_tests.rs.excerpt.source",
+      "originalSha256": "089e6f285c339f27d6d2865e2e9411b3b18e7aa5d1d410d556ee1ce75bb2e6f4",
+      "originalBytes": 1663,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_4_DIAGNOSIS/CALLCHAIN_09.source",
+      "originalSha256": "765b157028efdf3f868491d00e4f70dc7d0f3311e2c98e6922e6dc42bffd0489",
+      "originalBytes": 429,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_4_DIAGNOSIS/CALLCHAIN_10.source",
+      "originalSha256": "a83210ff5c5bb0e5dcec94222c32945096af7828b48a950e37782699b8465031",
+      "originalBytes": 1701,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_4_DIAGNOSIS/CALLCHAIN_12.source",
+      "originalSha256": "de7b2c60caa96027398349ee0b4e00f37aebd5811d9b07992f3d8effbea9f269",
+      "originalBytes": 939,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_4_DIAGNOSIS/CALLCHAIN_13.source",
+      "originalSha256": "11826fee72a51d4562a9770e8fd987aa677b4693d7060119b048d5c20d683ea9",
+      "originalBytes": 576,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/CHECK.log",
+      "originalSha256": "925507369a2185096a5bf4603b079a1a1847fa78b07edcbb60c7a5f267da0e15",
+      "originalBytes": 347,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/NETWORK_COMPATIBILITY/CHECK.log",
+      "originalSha256": "a02c6754a8e37bf4972a7085d6f1e6addff2f0e9831e113f59a66c80111a6021",
+      "originalBytes": 358,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/NETWORK_REPAIR_1/CHECK.log",
+      "originalSha256": "62792c0a63f4ffc94c3d3a206d09369321a06726ca080da860bba93f68e5d1ec",
+      "originalBytes": 358,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_1/CHECK.log",
+      "originalSha256": "00150bd6195e9b522f8e13bdc9c2fe3fa730709d8eb71ad57d7b11755db38bef",
+      "originalBytes": 347,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_2/CHECK.log",
+      "originalSha256": "31f62797861af159fce833f4c39ec2198da4e5055d38484316820615ab6cb3cf",
+      "originalBytes": 347,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/CHECK.log",
+      "originalSha256": "6b29b83f1c45a65eccd3ba96da3e59b753661874e1307569629c6c78578ebbc3",
+      "originalBytes": 349,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/CHECK.log",
+      "originalSha256": "6e9b7091a838b6a0d3f144b40395e33c2e4d34004e760186e1a531eb45a6c2bf",
+      "originalBytes": 349,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/HISTORICAL_EXPECTATION_FAILURE.log",
+      "originalSha256": "7221c2829832a8fb567c75016cbc5ff56a09ae1d2b973778b7adc53bb261fc25",
+      "originalBytes": 5462,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/PATCH.diff",
+      "originalSha256": "9e5d168831f14f526673aaaeff8407343b34802209ba699707853811624fbb07",
+      "originalBytes": 16002,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REGRESSION.log",
+      "originalSha256": "aaf51d447d33193f20f2d7924e0a03cfdd5cf02467d310a8c68ef9274b9a7c4d",
+      "originalBytes": 5603,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/PATCH_FROM_HEAD.diff",
+      "originalSha256": "baaa2d0355bbc87c20023fd447709129e08a7bfafc3c467963a080158ed921ea",
+      "originalBytes": 17980,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REGRESSION.log",
+      "originalSha256": "57a3fa37baf5bc4c9bb6b3ec7e5dbade896e12231a2bd9548fbe962b4028c612",
+      "originalBytes": 5880,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REGRESSION_RED.log",
+      "originalSha256": "1e7208b7295561df00c5de14ab1b5a30d7e7eb46e90aace5e755faae102de6ab",
+      "originalBytes": 7036,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_DIAGNOSTICS/PURE.log",
+      "originalSha256": "daae9a5c038467172fbf112fb1302be665c1b2ee4a0b885c3867cef16bc9fa54",
+      "originalBytes": 431,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_DIAGNOSTICS/PURE_FINAL.log",
+      "originalSha256": "d05041fa57f754aefdbbdc1fd974ea29589c05b5aa04f9a259e759636df4185e",
+      "originalBytes": 431,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_DIAGNOSTICS/REVIEWED.diff",
+      "originalSha256": "53508a6d9f8f80979a70850ec5bcdcb7a4ca81383e2e1023317f7f6864ae2718",
+      "originalBytes": 39388,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/ADVERSARIAL_FINAL.log",
+      "originalSha256": "0d8c88340103deb4b0f5b7e6d8abd426d9cc7fdc38db88c9d7159d7b579b0f9a",
+      "originalBytes": 423,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/ADVERSARIAL_PRELIMINARY.log",
+      "originalSha256": "c7d04b9f7c741f1c4e2f51a39b4669dda712c14a618dfc4c5a9897f293afce3f",
+      "originalBytes": 423,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/CONTROLLED_FINAL.log",
+      "originalSha256": "716a8e002cdaa735da9981d097507ec5dd0753d304dd62210529bf2fc0a5eb4a",
+      "originalBytes": 483,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/MANAGER_APPROVAL_FINAL.log",
+      "originalSha256": "d803330326e1c348f874b4831c718c4d635d015d976654babb01dfc9dd0e7a86",
+      "originalBytes": 333,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P1/REPAIR_1/check-1.log",
+      "originalSha256": "9232dea769be7dfdb2114648494a75dd57ee13e15f3acf34fdb7b38e73023536",
+      "originalBytes": 513,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P1/check-1.log",
+      "originalSha256": "8fcacb1112bc1bb6435138eb176ba139a57a124df917352aa32f5ab212c8256c",
+      "originalBytes": 350,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/CHECKS.log",
+      "originalSha256": "619615c9dd8f3d61051e164e37a6322f34bbf90da0ddb22bd0050bbeda5aaffb",
+      "originalBytes": 358,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_1/CHECKS.log",
+      "originalSha256": "c1938b21678e251bac8639484fa3f964fc4f85c2753509a27eb85ba284dbdbcd",
+      "originalBytes": 358,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_2/CHECKS.log",
+      "originalSha256": "28bee85901e194dce9b411596f94ac33dcdbd39d466e08574b83a13193e6dc2c",
+      "originalBytes": 358,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/CHECKS.log",
+      "originalSha256": "93ddd2e036d1fa1389b02784292c9a43c86379afa463b078ac9dae809d615566",
+      "originalBytes": 358,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/REPAIR_1/CHECKS.log",
+      "originalSha256": "df410f6f1fa7ea83c6a03aaf6ad0e188345d00cafd5e25aa8af8e0f64e34572a",
+      "originalBytes": 351,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/TRANSPORT_LIFECYCLE/FINAL_BACKCHECK/LIFECYCLE_CHECKS.log",
+      "originalSha256": "3146b2a5b8f48a4c44b6ce92f7406bcbe4ecdda5fe6bc1df96d9383dc9e06b06",
+      "originalBytes": 332,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/TRANSPORT_LIFECYCLE/FINAL_BACKCHECK/PUBLIC_CHECKS.log",
+      "originalSha256": "fb3dde4e3d53209096edfea617fadcbfc5f9b6f347412d296a332529fad10ac0",
+      "originalBytes": 360,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/ACTUAL_ALIAS_DIAGNOSIS/SOURCE_EXCERPTS.md",
+      "originalSha256": "5be1ad5da0596f63326ccb7953b5e8aed38d2e37a5f9ff3f61ec69842b903e9f",
+      "originalBytes": 23298,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_1/REPAIR_DIFF.txt",
+      "originalSha256": "23164f13258019d3c2bb1b389626ba4c3ac79df55064ab4cd587aaff3a0282c3",
+      "originalBytes": 3107,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_2/REPAIR_DIFF.txt",
+      "originalSha256": "398e0ffff0f53762d6fcde1daa2405330f0c0f7567d2a9e729849503979bc539",
+      "originalBytes": 12017,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/REPAIR_DIFF.txt",
+      "originalSha256": "fee24ea0576aa36eaecb612fe15e2cbb70e7751827f35fda877280c9b31d1e1e",
+      "originalBytes": 17938,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/FOCUSED.log",
+      "originalSha256": "02f9533a4dd839e34a48af5ffbb41433e827b35942421264b54176edb22867ca",
+      "originalBytes": 354,
+      "currentMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/focused.log",
+      "originalSha256": "124db2c504b52ef81e8a43d3488e324cb81f1d84bfbda6a4cc82c64e3780caaf",
+      "originalBytes": 358,
+      "currentMatches": true
+    }
+  ]
+}

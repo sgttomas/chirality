@@ -1,0 +1,8 @@
+{
+  "path": "/private/tmp/runtime-conformance-resume-20260906/parent/run_candidate2_profiles.py",
+  "sha256": "d5f79399a3034d03d5528714a4a7e06cff26f6a8c9d518094707a81762590dc2",
+  "execution": "parent-only; explicit selected profiles, stop first failure, fresh immutable evidence per profile",
+  "candidate": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "authority": "SUPPLIER/PARENT_DIAGNOSTIC_ADMISSION.json + conformance frozen fixture independent reviews + inherited AM13 fixed GET endpoint only",
+  "release": "pending production source freeze and build; creation is not execution"
+}

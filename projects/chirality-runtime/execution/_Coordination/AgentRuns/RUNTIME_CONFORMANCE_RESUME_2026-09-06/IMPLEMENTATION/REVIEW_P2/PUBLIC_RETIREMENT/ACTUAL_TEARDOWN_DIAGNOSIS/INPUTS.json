@@ -1,0 +1,21 @@
+{
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-process-runtime-conformance.test.ts": "c47e2efdfecff6a8b208e9715212a27f427b0f638c5291df136adc436467f272",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_02/PUBLIC_PROCESS_RETIREMENT.json": "025e2019e1526b5db4e848dad9f38841be136dfda5bd24d747c59aea702fe406",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/MANAGER_RETURN.md": "0f7d4a8dd5d7fd3fb58bac56a172e759430577a89c2897e36475dffd7a53596c",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-transport/src/transport/stdio.rs": "ffb372ec8a369b307ad3c0fb3d7af19982098360df12ed4158fe5180beb0a91b",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/lib.rs": "272c9443e54cf1d83c1b83855ccaa9647931eae8463524126fedf5bc4e0116e7",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/request_processors/thread_processor.rs": "49269190a4962d74e51678774c07b2e06bb19e54806f7fecf0cc1ef2250fa8d4",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/thread_manager.rs": "de66744ba42975b6094ce393a57991897ecfb7e19afc0f21252562fb086fef52",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/handlers.rs": "5e455a944935d3b84ebd15b9ae23214d86efa54d33d26fb93923e6771e869e89",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/mod.rs": "e6218071821f7e1b3858d31c2a0aef5fa5b63dea0ab16dfbced716d825ddbcc9",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/unified_exec/process_manager.rs": "a7016c5c321df20a89b85fced47d002fd695e0e88fa690d66fd2dcad9f0e38d6",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/unified_exec/process.rs": "5cdbba59aec2ab739e93c3b1cb293f9b0945a25f9ad152d0f88ded37f1aedc56",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/utils/pty/src/pipe.rs": "ce78d972bb162d5a54c47214aa4c83777f895dd316f6b32b75493c608e0654ab",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/utils/pty/src/process.rs": "f6dca08eec90266e43c7bebe9d1e651611d8d074614bae9df707c11c1c64d71c",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/utils/pty/src/process_group.rs": "4c9c062f990c9bfef8c61641956765379586c4f4bb8fc61db67cf1a515d084d3"
+}

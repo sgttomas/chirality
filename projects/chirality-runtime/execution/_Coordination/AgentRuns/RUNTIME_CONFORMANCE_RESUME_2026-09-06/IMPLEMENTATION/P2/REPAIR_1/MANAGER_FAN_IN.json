@@ -1,0 +1,10 @@
+{
+  "source": "tests/exact-process-conformance.test.ts",
+  "sourceHash": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+  "outputContract": "verified reports, checks, seals; no source changes by review",
+  "review": "REVIEW_P2/REPAIR_1",
+  "verdict": "ADMIT_PARENT_BOUNDED_ACTUAL_ONLY",
+  "actual": "Parent exact scenarios pending",
+  "derivative": true,
+  "acceptedProduction": false
+}

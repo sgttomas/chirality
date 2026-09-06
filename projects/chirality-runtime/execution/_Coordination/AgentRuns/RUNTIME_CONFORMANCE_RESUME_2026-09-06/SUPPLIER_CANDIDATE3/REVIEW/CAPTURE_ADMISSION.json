@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-09-06T19:35:45.528842+00:00",
+  "status": "ADMITTED_FOR_POST_BUILD_CAPTURE",
+  "captureSha256": "31bddbc1cddaaf0706cd84369a84afd1aeb0e5954f5c2cd60455e022a96d2c28",
+  "sourceRunnerAdmission": "SOURCE_RUNNER_ADMISSION.json",
+  "constraints": [
+    "only after successful exact source suites and Candidate3 build",
+    "require source/runner/log identities and new app-server hash/mtime after build start",
+    "retain separate old artifacts and original source verification",
+    "version-only invocation under deny-network and Candidate3-write-only sandbox, explicit PATH/TMPDIR, timeout10s",
+    "independent final review remains required"
+  ],
+  "reviewerExecutedArtifact": false
+}

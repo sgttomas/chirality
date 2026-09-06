@@ -1,0 +1,15 @@
+# CHANGE publication preparation return
+
+Status: PREPARATION_COMPLETE; FINAL_RELEASE_PENDING. This is derivative publication readiness evidence, not final validation, immutable implementation acceptance, client acceptance or release authority.
+
+Identity: `/root/publication_manager`, CHANGE / Agent 1, parent `/root` HELP_HUMAN / Agent 0. Native harness execution; OpenAI GPT-6, exact serving model ID unavailable. Role enforcement is instruction-asserted. `LAUNCH.json` records bounded scope and source hashes.
+
+Observations: repository resolved through Git to `/Users/ryan/.codex/worktrees/341e/chirality`; branch `codex/runtime-packaging-integration`, HEAD and fetched origin/main `ec491aee1870a2a6a8eb2faf2919d4d5db5124b4`, zero ahead/behind at preparation. Latest PR737 is MERGED with this exact merge commit and its final CI supplement. No staged files or active merge/rebase/cherry-pick/revert at preparation. Dirty production paths match the manager’s four named paths; new run evidence is concurrently in progress. Historical branch/worktrees were left intact.
+
+Interpretation: the owner-authorized Runtime repair is eligible for ordinary scoped closeout when final validation and owning handoff are complete. Existing upstream is `origin/main`; parent explicitly named `origin HEAD:refs/heads/codex/runtime-packaging-integration` with matching upstream for eventual publication, preventing accidental push to main. There is no NEXT_INSTANCE_STATE or NEXT_INSTANCE_PROMPT surface in this project; continuity uses HANDOFF_STATE and LOOP_RECEIPTS under its loop instructions.
+
+Risks/blockers: final manager review/freeze, parent full registered checks, current accepted-basis/whitespace checks and final exact staging list remain pending. Interim implementer logs include failures and cannot be presented as final passes. Local consumer/App-build probes do not establish Linux CI, App adoption or full delegated release conformance. The separate bundled-conformance inventory limitation must remain visible. No fresh approval gate is required for authorized routine publication; no merge authority exists.
+
+Next actions: parent completes validated fan-in and continuation/receipt; CHANGE receives final release and exact paths, verifies actual stable state, replaces the pending-validation draft with final evidence-backed text, and performs only scoped ordinary add/commit/push and PR publication if included in that release. Future merge remains an owner act. No Git mutation or PR publication has occurred during this preparation task.
+
+Sources: `LAUNCH.json`; `PR737_READINESS_SOURCE.json`; `PREPARATION_STATE.json`; preceding AGENT0_HANDOFF/PR_PUBLICATION; current ENTRY/ORCHESTRATION_PLAN; manager PLAN_V1/DIAGNOSIS/BOUNDARY_DISPOSITION_PRELIMINARY. Accepted basis is migration index → Gate3 V3/Gate5 owner acts and prior specification fan-in/current owner implementation direction. Required derivative/audit fan-in remains pending; rerun mutable candidate checks after any further code changes.

@@ -1,0 +1,10 @@
+{
+  "command": [
+    "./node_modules/.bin/vitest",
+    "run",
+    "tests/manager-approval-integration.test.ts"
+  ],
+  "exitCode": 0,
+  "elapsedMs": 1131,
+  "correction": "Earlier multi-file run included nonexistent manager-approval.test.ts selector; that run actually executed4files103tests. This separate run completes the intended manager-approval-integration target; no nonexistent test counted as executed."
+}

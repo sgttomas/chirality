@@ -1,0 +1,18 @@
+{
+  "projects/chirality-runtime/tests/exact-role-conformance.test.ts": "9b200f51b63a45fae6d3057ecda9ea41fe7f4e19ae1cfaae15b79ef30c258ea0",
+  "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "542f699b98cf646bcd2d3e0be7254f6f20ac8c7120eda4e0bd9a530a4e6fd1c3",
+  "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5",
+  "projects/chirality-runtime/packages/client/src/client.ts": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367",
+  "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+  "projects/chirality-runtime/packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+  "projects/chirality-runtime/packages/core/src/role-policy.ts": "96db623331afcd4d83c0ee8d13d0e63363657165596761e7f5f611c559056f0c",
+  "projects/chirality-runtime/packages/core/dist/delegated-runtime.js": "14c8df30b5556d3a4e93545af07c25890ccb851cac064afbaf37df54b44d32b7",
+  "projects/chirality-runtime/packages/core/dist/role-policy.js": "f8fb7030165f5b4de75197c298746200c36d55407a2fba8ad72574cb2501566a",
+  "projects/chirality-runtime/packages/core/dist/worker-retirement.js": "8a7e70138b38d27e45d4c6541db2fe35399268896e2028198722b36b73340518",
+  "projects/chirality-runtime/packages/client/dist/src/client.js": "3ae98b2e3b2390e75d02612bd676a8ae58cc8319d2e6b3af4bdbdba09d1a61e2",
+  "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+  "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+  "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+  "projects/chirality-runtime/packages/daemon/dist/codex-supervisor.js": "d7a3991cec0c55755609b45c672b8c3e8dca894f3a226c79f13c7a0492133d11",
+  "projects/chirality-runtime/packages/client/package.json": "d55665d055e3d1bd8cb1113ed7412356b41a02d1ede6871775f2691607b3cc14"
+}

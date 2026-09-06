@@ -1,0 +1,39 @@
+{
+  "role": "WORKING_ITEMS manager; actual bounded native specialists and independent review required",
+  "objective": "Repair confirmed supplier filesystem-helper broadening in isolated Candidate3; build and verify a distinct unaccepted artifact for parent actual alias backcheck",
+  "authority": "Current owner autonomous Runtime implementation/resume plus preserved owner amendments12/14; no new supplier acceptance or pin adoption",
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "writeRoots": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/**",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/**"
+  ],
+  "supplierSourceWriteTargets": [
+    "candidate3/source/codex-rs/exec-server/src/fs_sandbox.rs including inline tests"
+  ],
+  "otherScratchWrites": "Isolated copied source/toolchain/cache/target, runner and build/test/provenance outputs only. Additional source changes require exact amendment. Preserve original source/lock/cache/binaries/evidence read-only; APFS clone or copy, never hardlink files that may mutate.",
+  "constraints": [
+    "No Runtime production or fixture edits by supplier lane",
+    "No accepted supplier pin/contract/governance/hold/lifecycle writes",
+    "No old recovery restore, relabeling or modifying Candidate2 artifacts",
+    "Frozen offline dependencies and unchanged network-deny sandbox; at most4 build jobs; isolated caches/targets only",
+    "No accounts/providers/oMLX/network canaries/remote communication; parent owns actual supplier canaries",
+    "Preserve explicit Minimal/default and unrestricted behavior, exact helper executable reads, declared immutable leaves/denies/project writes; eliminate only automatic Minimal injection into incoming restricted no-default policy",
+    "Source/runner/test review before release build; source tests before/after as practical, no weakened assertions",
+    "Record failure and preserve outputs rather than claiming acceptance"
+  ],
+  "acceptanceChecks": [
+    "Before/after original6416 source and retained7 artifact hashes unchanged",
+    "Focused no-default restricted read/write versus explicit Minimal/unrestricted/precise helper-read controls",
+    "Generated helper Seatbelt lacks undeclared temp/default grants for restricted no-default profile; precise positives preserved",
+    "Independent source+runner review, frozen offline build exit0, newly measured app-server bytes/hash/version and distinct artifact provenance",
+    "Durable child briefs/runs/returns, manager fan-in/seal, bounded handoff with actual alias backcheck still parent-owned"
+  ],
+  "inputs": {
+    "IMPLEMENTATION/REVIEW_P3/ACTUAL_ALIAS_DIAGNOSIS/REPORT.md": "ee80f8797266a2f9cd94f1f8d83f615c95fce946733ee406f4128b96852e7ec9",
+    "IMPLEMENTATION/P3/REPAIR_4_DIAGNOSIS/REPORT.md": "3e6ccb5333b0f9e7601a59fafe9c2e510f90372bb515419d9a008f00f41e1da8",
+    "PARENT_CHECKS/P3_STAR_CANDIDATE2_02/EXACT_PROTECTED_star.json": "0e65adf7884df5d5ed33e8f1063c1b8ecb6a2b9d454722ed7c58f447428fad0a",
+    "SUPPLIER/MANAGER_RETURN.md": "0f7d4a8dd5d7fd3fb58bac56a172e759430577a89c2897e36475dffd7a53596c",
+    "SUPPLIER/OUTPUT_MANIFEST.json": "2845dc631ddf3fedebd838f25b9f194aad2a59d0b96f8f936c2792f7de3ff3a9"
+  }
+}

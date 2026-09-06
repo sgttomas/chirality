@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-09-06T19:27:25.021161+00:00",
+  "reviewer": "/root/conformance_manager/review_approval_diagnostics",
+  "role": "Agent2; instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "verdict": "ADMIT_SCOPED_ACTOR_SOURCE",
+  "blockingFindings": [],
+  "controlledPassed": 107,
+  "independentAdversarialPassed": 38,
+  "strictNoEmit": "PASS_SOURCE_COHERENT",
+  "frozenActorSha256": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+  "frozenTestSha256": "2d682ff9426de480a0579a4ecccbfdec38ab66fc015147b1ecf200f08e6f6b6d",
+  "actualSupplierExecuted": false,
+  "accepted": false,
+  "nonblockingObservations": [
+    "Future SOCKS diagnostic predicate needs hyphen-label calibration; current HTTP unaffected"
+  ],
+  "remaining": [
+    "Parent registered combined build after P2 lifecycle freeze",
+    "Actual same-Candidate2 ask-allow replay",
+    "Ask-deny unsupported absent decline",
+    "Broader public/native conformance"
+  ]
+}

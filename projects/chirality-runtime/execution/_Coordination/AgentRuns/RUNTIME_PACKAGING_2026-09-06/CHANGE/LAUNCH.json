@@ -1,0 +1,70 @@
+{
+  "run": "RUNTIME_PACKAGING_2026-09-06",
+  "parent": "/root HELP_HUMAN Agent 0",
+  "instance": "/root/publication_manager CHANGE Agent 1",
+  "mechanism": "delegated-harness-native collaboration.spawn_agent",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "roleEnforcement": "instruction-asserted; not mechanically enforced",
+  "objective": "Bounded publication preparation for Runtime import-only Pi SDK CommonJS repair; Git closeout only after parent final validation release",
+  "writeScope": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/CHANGE/**",
+    "/private/tmp/runtime-packaging-20260906/change/**"
+  ],
+  "gitMutationStatus": "NOT_AUTHORIZED_UNTIL_PARENT_RELEASE",
+  "futurePushTarget": "origin HEAD:refs/heads/codex/runtime-packaging-integration; set matching upstream",
+  "mergeAuthority": "Future merge requires explicit owner direction; not granted",
+  "sourceRefs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "agents/AGENT_CHANGE.md",
+      "sha256": "bb2922c5761395687caf120097276806769ec38f4fee8935d9e6c7bbb8506a06"
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "d9d644117688a896aba8a4496533b5fadadeb612b97dfd05d2796f7ad013b07b"
+    },
+    {
+      "path": "projects/chirality-runtime/docs/PRD_AUTHORITY.md",
+      "sha256": "314df4245f1da14ba5d7bd355981dba8b2d33354bd240c30d2ff9c53102de337"
+    },
+    {
+      "path": "projects/chirality-runtime/docs/PRD.md",
+      "sha256": "ec2837e50ae89d1aa333f8bef20ec483f0e7bb0ccfbec56633e354dfd81f4e68"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/_AUTHORITY.md",
+      "sha256": "65b144cff2038bb403c2098aa95313753ea4b342f70e7a95baf1be4c098c7b89"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md",
+      "sha256": "461fc4d93c6135a67d897477c97a774cca219ae10a3cdd7d64925d255a4b2b2d"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/AGENT0_HANDOFF.md",
+      "sha256": "7213a1270f5a8c917480c58858d6ecb8c12eb5a03a1807b5a07ff39c8d35fdb0"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PR_PUBLICATION.md",
+      "sha256": "2afda84685ffa3d454d22efd01aa35d3da42131e8bfc70afa1ecb593522d9f36"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/ENTRY.md",
+      "sha256": "03b2f7bd411aceae1ab4a63949e255d17556de0afcb924c4021b9318693d8e32"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/ORCHESTRATION_PLAN.json",
+      "sha256": "2ec7048e3252b82d0820637627ab9617ae8e695482b70f4971af4f33cc4773ce"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/PLAN_V1.json",
+      "sha256": "35ecc469366a5d099d4a1d25089a20b49e5c555a9dc9888eb5a3714874eb3040"
+    }
+  ]
+}

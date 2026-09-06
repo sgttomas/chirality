@@ -1,0 +1,19 @@
+{
+  "command": [
+    "./node_modules/.bin/tsc",
+    "--noEmit",
+    "--target",
+    "ES2022",
+    "--module",
+    "NodeNext",
+    "--moduleResolution",
+    "NodeNext",
+    "--strict",
+    "--skipLibCheck",
+    "--esModuleInterop",
+    "tests/exact-network-conformance.test.ts",
+    "tests/exact-network-runtime-conformance.test.ts"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+  "exitCode": 2
+}

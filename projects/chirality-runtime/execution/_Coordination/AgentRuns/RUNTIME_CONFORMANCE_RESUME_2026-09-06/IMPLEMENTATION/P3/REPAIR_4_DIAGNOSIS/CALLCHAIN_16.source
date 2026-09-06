@@ -1,0 +1,17 @@
+    async fn write_file(
+        &self,
+        path: &PathUri,
+        contents: Vec<u8>,
+        options: WriteFileOptions,
+        sandbox: Option<&FileSystemSandboxContext>,
+    ) -> FileSystemResult<()> {
+        reject_sandbox_context(sandbox)?;
+        let path = path.to_abs_path()?;
+        if options.follow_symlinks {
+            tokio::fs::write(path.as_path(), contents).await
+        } else {
+            no_follow::write_file(path.as_path(), contents).await
+        }
+    }
+
+    async fn create_directory(

@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-09-06T20:02:08.752267+00:00",
+  "records": 60,
+  "originalBytes": 318049,
+  "originalArchiveSha256": "fe07f43bee8e641eab4506d22b2b95160f692829c5bf159336d9d28f63c8a338",
+  "proposalSha256": "10d67f111baf8096f428bc1fa085ea45adef1061e4a3d2c095f9ca1b8adcaab6",
+  "allOriginalStrictRoundTrips": true,
+  "allPresentationHashesMatch": true,
+  "untransformedTrackedOrUntrackedRuntimeFilesChecked": 2698,
+  "unexpectedChangedFiles": [],
+  "historicalSealsNotRewritten": true,
+  "basis": "Parent execution grant after manager exact60 releases and supplier original70 verification",
+  "releaseEvidence": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/PUBLICATION_HISTORICAL_RELEASE_1.json": "db59bb8d73b8759d6a5d63552d47f9c0831f4ab84e1c283623adcd7b3a8c23a2",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/PUBLICATION_HISTORICAL_RELEASE_2.json": "816c570cb4e428a77384c98d99a925ea1365527d3dd0e9479c81980351d3501f",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/FAN_IN.json": "28cf69957a6e6e1f39a2c908d67bc86a3a5572a627bfd039f3c3d39e438191b6"
+  },
+  "gitMutations": false,
+  "productionOrTestEdits": false,
+  "supplierBinaryEdits": false
+}

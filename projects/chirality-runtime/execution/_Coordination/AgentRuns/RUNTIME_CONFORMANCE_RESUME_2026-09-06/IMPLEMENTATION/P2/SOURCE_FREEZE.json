@@ -1,0 +1,22 @@
+{
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; native Agent2/nondelegation instruction-asserted",
+  "frozenAt": "2026-09-06T18:32:54.564179+00:00",
+  "evidenceClass": "derivative-implementation-not-conformance-acceptance",
+  "ownedSources": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-process-conformance.test.ts": "aaaebc5e663f4b1708cc27669b2980593858f069e091a5c1ec797a5cf014513e",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81"
+  },
+  "parentRunInputSnapshot": {
+    "tests/exact-process-conformance.test.ts": "aaaebc5e663f4b1708cc27669b2980593858f069e091a5c1ec797a5cf014513e",
+    "tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+  },
+  "acceptedBasisIndex": {
+    "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/BASIS.json",
+    "sha256": "18e1770bbf0e55f496c2aabaa95581724d4a8923fa893c37ed5e106cd5bc38cb"
+  },
+  "upstreamNote": "Original PROCESS_NORMAL_1 failed evidence and FOLLOWON_01 checkpoint are unchanged; parent must compare all source inputs before/after supplier execution."
+}

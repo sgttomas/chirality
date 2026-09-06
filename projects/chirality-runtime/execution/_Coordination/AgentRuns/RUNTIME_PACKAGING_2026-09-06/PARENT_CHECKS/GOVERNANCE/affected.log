@@ -1,0 +1,61 @@
+{
+  "checks": [
+    "practitioner_harness",
+    "validation"
+  ],
+  "paths": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/ENTRY.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/CI34019371445_FAILED.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/CONTEXT_SHA256.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/DIAGNOSIS.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/IMPLEMENTER/CONTEXT_CHECK.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/IMPLEMENTER/PRE_FIX.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/IMPLEMENTER/TYPECHECK_INITIAL.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/IMPLEMENTER_BRIEF.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/NATIVE_DELEGATION.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/PLAN_V1.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/PR737_LIVE.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/RUNTIME_EVENTS.jsonl",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/ORCHESTRATION_PLAN.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/APP_BEFORE/BUNDLE_IDENTITY.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/APP_BEFORE/PROBE.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/APP_BEFORE/PROVENANCE.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/APP_BEFORE/build.mjs.source",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/APP_BEFORE/probe-app.cjs.source",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/CI34019371445.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/ENTRY_ACCEPTED_BASIS.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/ENTRY_DRIFT.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/ENTRY_STATUS.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/0.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/1.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/2.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/3.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/4.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/5.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/6.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/7.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/8.log",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/GOVERNANCE/RESULTS.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/PR737.json"
+  ],
+  "reasons": {},
+  "schema": "chirality-affected-checks/v1"
+}
+[run-affected] running 2 suite(s); skipping 15: analysis, coordination, decomp, drawing_extract, equation_audit, pdf2md, publication, reporting, retrieval, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime
+[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 26%]
+........................................................................ [ 34%]
+........................................................................ [ 43%]
+........................................................................ [ 52%]
+........................................................................ [ 61%]
+............u........................................................... [ 69%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+..................uuuuuuuu.............................................. [ 94%]
+..........................................                               [100%]
+825 passed, 9 subtests passed in 18.66s

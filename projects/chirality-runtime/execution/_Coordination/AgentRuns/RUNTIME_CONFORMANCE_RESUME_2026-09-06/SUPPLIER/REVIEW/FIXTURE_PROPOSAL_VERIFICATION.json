@@ -1,0 +1,39 @@
+{
+  "proposal_patch_sha256": "20f4c09cad6be3852180b827e549807fe4ba20e9df16eaa5088e42bfd2e4069f",
+  "adapted_source_sha256": "f25717098a46248e398fa4034f01dea6ef8b5423e8db1feeed9770289e748434",
+  "runner_sha256": "3a2250c1b4f2ccb62e64d7a33306f62aacaeec38bb0d4c1dba6a2a8a21dfdcc0",
+  "recipe_sha256": "755b42a81668cc889d01eadd6929d7a6d52c079b0d998c8fa2ed876185e4a3fb",
+  "line_count_equal": true,
+  "changed_lines": [
+    [
+      740,
+      "            host: \"example.com\".to_string(),",
+      "            host: \"8.8.8.8\".to_string(),"
+    ],
+    [
+      773,
+      "        assert_eq!(event.field(\"server.address\"), Some(\"example.com\"));",
+      "        assert_eq!(event.field(\"server.address\"), Some(\"8.8.8.8\"));"
+    ],
+    [
+      796,
+      "            network.set_allowed_domains(vec![\"example.com\".to_string()]);",
+      "            network.set_allowed_domains(vec![\"8.8.8.8\".to_string()]);"
+    ],
+    [
+      805,
+      "            host: \"example.com\".to_string(),",
+      "            host: \"8.8.8.8\".to_string(),"
+    ],
+    [
+      926,
+      "            host: \"example.com\".to_string(),",
+      "            host: \"8.8.8.8\".to_string(),"
+    ]
+  ],
+  "only_five_literal_replacements": true,
+  "runner_only_root_change": true,
+  "all_input_pins_match": true,
+  "public_ip_python_crosscheck": true,
+  "review_execution": false
+}

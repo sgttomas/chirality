@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "tools/validation/validate_candidate_whitespace.py",
+    "--paths",
+    "projects/chirality-runtime/packages",
+    "projects/chirality-runtime/tests",
+    "projects/chirality-runtime/package.json",
+    "projects/chirality-runtime/package-lock.json"
+  ],
+  "exitCode": 0,
+  "stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n",
+  "stderr": ""
+}

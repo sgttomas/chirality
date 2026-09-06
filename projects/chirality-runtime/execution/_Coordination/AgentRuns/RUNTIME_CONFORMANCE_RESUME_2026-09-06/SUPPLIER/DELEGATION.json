@@ -1,0 +1,11 @@
+{
+  "class": "delegated-harness-native",
+  "parent": "/root/supplier_manager",
+  "children": {
+    "build": "/root/supplier_manager/build_specialist",
+    "review": "/root/supplier_manager/constraint_reviewer"
+  },
+  "execution": "actual collaboration.spawn_agent",
+  "role_enforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable"
+}

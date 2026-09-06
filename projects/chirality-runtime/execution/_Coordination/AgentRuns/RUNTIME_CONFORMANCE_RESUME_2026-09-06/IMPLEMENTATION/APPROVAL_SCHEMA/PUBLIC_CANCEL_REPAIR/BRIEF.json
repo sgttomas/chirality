@@ -1,0 +1,25 @@
+{
+  "timestampUtc": "2026-09-06T19:48:42.415430+00:00",
+  "requestedBy": "/root/conformance_manager under parent explicit disposition",
+  "actualAgent": "/root/conformance_manager/approval_schema",
+  "role": "Agent2; instruction-asserted; no delegation",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "writeScope": [
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/**",
+    "/private/tmp/runtime-conformance-resume-20260906/APPROVAL_SCHEMA/**"
+  ],
+  "authorization": "Parent accepted diagnosis: fixture-only cancellation evidence calibration, assert inactive ApprovalStore.read403; bounded read-only host audit of exact fixture-owned records; require request+no decision+public interrupt ACK+matching interrupted retirement+closed worker before outer cleanup. Do not fabricate/mislabel provider resolution. Significant native/architecture changes require discussion; native work remains separate read-only.",
+  "sourceBefore": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "d04124fa83bec8f402a90532af205838cdabbbb08a6277a193e4eebe9839518c"
+  },
+  "acceptance": [
+    "separate provider resolution optional field from host interruption evidence",
+    "O_NOFOLLOW/owner/type/canonical directory/64KiB bound",
+    "exact request digest/full binding and retirement basis/turn/generation",
+    "missing/tampered/granted/foreign/malformed records cannot pass",
+    "no public API or production edits",
+    "pure tests and full strict noemit then independent freeze review",
+    "no actual supplier/network work by child"
+  ]
+}

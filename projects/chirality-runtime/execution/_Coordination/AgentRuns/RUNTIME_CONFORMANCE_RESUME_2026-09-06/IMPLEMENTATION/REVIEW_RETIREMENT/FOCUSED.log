@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+·········································
+
+ Test Files  1 passed (1)
+      Tests  41 passed (41)
+   Start at  12:58:31
+   Duration  8.82s (transform 179ms, setup 0ms, collect 382ms, tests 8.30s, environment 0ms, prepare 29ms)

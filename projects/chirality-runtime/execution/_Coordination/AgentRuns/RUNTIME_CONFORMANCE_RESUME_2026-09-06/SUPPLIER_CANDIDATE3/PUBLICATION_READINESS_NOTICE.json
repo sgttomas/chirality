@@ -1,0 +1,39 @@
+{
+  "time": "2026-09-06T19:52:37.998822+00:00",
+  "proposal_sha256": "6f306e4631ddbc75fb4165259cd64f5df0416c5d0e8ca725aaa06d5c484c34d2",
+  "immutable_files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/FIXTURE_ADAPTED/network-policy-tests.log",
+      "sha256": "8287bab1524ae86b590d21bcbcd7b32a05d19e25e0711efefc62c8b30eed6552",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/FIXTURE_ADAPTED/public-ip-fixtures.patch",
+      "sha256": "20f4c09cad6be3852180b827e549807fe4ba20e9df16eaa5088e42bfd2e4069f",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/FIXTURE_PROPOSAL/public-ip-fixtures.patch",
+      "sha256": "20f4c09cad6be3852180b827e549807fe4ba20e9df16eaa5088e42bfd2e4069f",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/HELPER_TEST_ATTEMPT_1/helper-policy.patch",
+      "sha256": "433553f7823e2e12cd8ed137be60edf96dc3a9f6d44f5bb10b0cbe5376b3fc36",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/helper-policy.patch",
+      "sha256": "58969ef1557a90d9e006abd198c739ddca2ca6d6a3cb09c7cc1e580707aa9b44",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/helper-policy.v1.patch",
+      "sha256": "22bb1de90d343de63f51bb297cb985c044b124483707c45c797c7ce769d9d53c",
+      "match": true
+    }
+  ],
+  "status": "Released for lossless archive and separate normalized derivative presentation",
+  "sequencing": "Raw original files must remain unchanged through Candidate3 capture/final review original70file verification. New Candidate3 outputs use new paths; historical hashes never resealed to normalized bytes.",
+  "owner": "HELP_HUMAN publication; manager does not mutate publication artifacts"
+}

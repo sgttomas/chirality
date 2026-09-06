@@ -1,0 +1,11 @@
+{
+  "authority": "OWNER_DIRECTION; implementation amendment11; parent delegated manager grant",
+  "reason": "Actual process command construction and call issuance/output identity live in existing fixture provider. Pure test wrappers cannot truthfully repair that boundary.",
+  "exclusiveOwner": "/root/conformance_manager/p2_process",
+  "additionalAllowedWriteTargets": [
+    "projects/chirality-runtime/tests/fixtures/process-response-provider.mjs"
+  ],
+  "inputSHA256": "d144efa6ed8e9a51bb983bbc451781c679d9729f751d164951cbc4315f7bcb76",
+  "limits": "Same no-supplier/no-account/test-only bounds; no policy change; no packaging overlap",
+  "collisionCheck": "Parent /root explicitly confirmed no collision and exclusive P2 ownership before helper edits"
+}

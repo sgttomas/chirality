@@ -1,0 +1,40 @@
+{
+  "schema": "chirality-agent0-orchestration-amendment/v1",
+  "authority": "Current owner autonomous Runtime implementation + preserved owner amendments; no accepted lifecycle/source/supply changes",
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "reason": "Actual Candidate2 probes exposed separate helper containment, public process teardown, and network item-ID boundaries; bounded repairs follow independently reviewed source diagnoses",
+  "delegation": {
+    "conformance_manager": "Runtime network item parser twofile repair; shared owned transport lifecycle fourfile repair; reviewed P4 fixture; prospective isolated alias fixture; preserves failed actual evidence and matrix",
+    "supplier_manager": "New isolated Candidate3 fs_sandbox.rs+inline tests, independent source/runner review, frozen offline max4job build and new artifact; previous supplier seal read-only",
+    "parent": "Actual fixed endpoint/no-account diagnostics, cross-manager fan-in, integrated verification and eventual publication preparation"
+  },
+  "confirmedEvidence": {
+    "Candidate2P1": "PASS with actual primary/native read+environment+startup guards",
+    "Candidate2Network": "OFF/ON PASS; ask callback now observed but actual network#itemId rejected; no decline offered",
+    "Candidate2P3": "Primary alias patch changed foreign synthetic regular file; child alias result contaminated; other families held",
+    "Candidate2P2": "Public normal PASS; public interruption leaves detached processes, retirement rejects and repaired journal remains prepared; other same-mechanism lifetime trials held"
+  },
+  "dependencyOrder": [
+    "Independent Runtime parser/transport source review then registered build/typecheck",
+    "Candidate2 matched network/cancellation diagnostics after exact source freeze as useful",
+    "Candidate3 independent source/runner tests/build/artifact verification",
+    "New minimal independent primary/native alias backcheck then protected-family reruns if boundary repaired",
+    "Final actual evidence matrix, accepted-basis/scope verification, full registered validation and bounded handoff/publication"
+  ],
+  "limits": [
+    "Runtime subtree and owned scratch only",
+    "No old supplier source/binary relabel/overwrite",
+    "No hosted/oMLX/account calls",
+    "Parent-only fixed AM13 GET endpoint; no dynamic targets or response-body retention",
+    "No supplier acceptance, hold release, lifecycle promotion or merge inferred",
+    "Do not classify generic failures/contaminated child probes as denials"
+  ],
+  "inputs": {
+    "ORCHESTRATION_PLAN_V1.json": "da7a8b828267c3a5a166168ad0d7810907470e23eb948249fd6ef39432b034d6",
+    "SUPPLIER_CANDIDATE3/PARENT_BRIEF.json": "640f4bd9f056a9bd1b5a3e4e24bfe4b4f0470ea4d3f1134d6471d7c0b428b51e",
+    "PARENT_CHECKS/P3_STAR_CANDIDATE2_02/EXACT_PROTECTED_star.json": "0e65adf7884df5d5ed33e8f1063c1b8ecb6a2b9d454722ed7c58f447428fad0a",
+    "PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_02/PUBLIC_PROCESS_RETIREMENT.json": "025e2019e1526b5db4e848dad9f38841be136dfda5bd24d747c59aea702fe406",
+    "PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_02/EXACT_NETWORK_CANARY.json": "6a5df130535bcc11aac6a1e3a912deb68392afbad2b93be53e4fd57b1c1749b1"
+  }
+}

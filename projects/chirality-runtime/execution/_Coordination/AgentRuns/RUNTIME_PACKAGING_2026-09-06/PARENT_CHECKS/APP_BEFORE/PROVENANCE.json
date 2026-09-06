@@ -1,0 +1,5 @@
+{
+  "source": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-app-dev/frontend/scripts/build-electron.mjs",
+  "sourceSha256": "e2074b6c2dd67e19ad1c16240213b9d33d49569fd21c08e89c82ae4140003d5f",
+  "adaptation": "Original consumer build copied into parent scratch. Only esbuild resolution/frontendRoot bound to observed checkout and rm calls removed/output paths redirected. Consumer source read only; no execution of App or credentials."
+}

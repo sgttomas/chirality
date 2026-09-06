@@ -1,0 +1,8 @@
+2026-09-06 PUBLIC_RETIREMENT/REPAIR_1
+From projects/chirality-runtime:
+CHIRALITY_RUN_EXACT_PROCESS_RUNTIME=0 node_modules/.bin/vitest run --config execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts
+Exit0;5passed,1supplier skipped; tests9ms; total388ms; start13:03:19 America/Edmonton.
+node_modules/.bin/tsc --project execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/tsconfig.json
+Exit0; noEmit, no diagnostics.
+New pure control accepts exact actor RuntimeError session-closed correlation and rejects ordinary Error with same message, different protocol message, wrong reason, foreign generation, missing ACK and a rejection observed before interrupt began. Existing failed/pending retirement/journal, stale census/survivor and first-output controls still pass. No actual supplier/provider/account/network/signal probe.
+Source and both config hashes frozen immediately after these checks; no later source/config edits.

@@ -1,0 +1,124 @@
+{
+  "sourcesMatch": true,
+  "retainedPinsMatch": true,
+  "retainedPins": {
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/features/src/lib.rs": {
+      "expected": "803a1e291c5df27daa9ee7b6ca4d164bf607fb8bbbeefa3c614791eeddf28dcc",
+      "actual": "803a1e291c5df27daa9ee7b6ca4d164bf607fb8bbbeefa3c614791eeddf28dcc"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/session.rs": {
+      "expected": "3a8c9a19b161d49028c00c76944fe3691f6de298d528c351ebc3b44ab1e14088",
+      "actual": "3a8c9a19b161d49028c00c76944fe3691f6de298d528c351ebc3b44ab1e14088"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/environment_selection.rs": {
+      "expected": "8295bbf000a152049ca23650b008479ed6d862524a48c2e7e2a803db382232db",
+      "actual": "8295bbf000a152049ca23650b008479ed6d862524a48c2e7e2a803db382232db"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/shell_snapshot.rs": {
+      "expected": "03e9b3e78ad73bc5387e7416382c15eee512101cd207bb3dcec892e5c019bf9f",
+      "actual": "03e9b3e78ad73bc5387e7416382c15eee512101cd207bb3dcec892e5c019bf9f"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/shell.rs": {
+      "expected": "99ca66a51f7f662978548b49d54346f489206b638c57abcfaa810538afdc71a2",
+      "actual": "99ca66a51f7f662978548b49d54346f489206b638c57abcfaa810538afdc71a2"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/unified_exec.rs": {
+      "expected": "acdd9d801500be041808a5c9fc356812512e3e1327801d37e65c0e554c962f8b",
+      "actual": "acdd9d801500be041808a5c9fc356812512e3e1327801d37e65c0e554c962f8b"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/runtimes/mod.rs": {
+      "expected": "9497eb23ab7470a2d08a2589fdcd8c1a23d6126318a375a3834a4ec0815e86b8",
+      "actual": "9497eb23ab7470a2d08a2589fdcd8c1a23d6126318a375a3834a4ec0815e86b8"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/runtimes/unified_exec.rs": {
+      "expected": "947befde9f04d3777322bec755cc4cfda4f6f98c177dcff8382d7f41dbe1400f",
+      "actual": "947befde9f04d3777322bec755cc4cfda4f6f98c177dcff8382d7f41dbe1400f"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/shell-command/src/shell_detect.rs": {
+      "expected": "ac40af958738216a2d50d71ca864f3107036ed0dd842d41c7152d9a094f4b66c",
+      "actual": "ac40af958738216a2d50d71ca864f3107036ed0dd842d41c7152d9a094f4b66c"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/shell_environment.rs": {
+      "expected": "09b0d80471c7218dbcc71fa2ced96453d706616d48748e79780608fd34c90be1",
+      "actual": "09b0d80471c7218dbcc71fa2ced96453d706616d48748e79780608fd34c90be1"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/config.schema.json": {
+      "expected": "614d197030b888f71bd57321100fe2ddbe2ad051ba56310d21d6196efdcfa962",
+      "actual": "614d197030b888f71bd57321100fe2ddbe2ad051ba56310d21d6196efdcfa962"
+    },
+    "/private/tmp/runtime-conformance-resume-20260906/parent/p1-candidate1-01/EXACT_BOUNDARY_P1.json": {
+      "expected": "8cf4aefaab831e3ffb2ccf60d5d90775e6d108b2d78beb6838874e9f8d7f2c41",
+      "actual": "8cf4aefaab831e3ffb2ccf60d5d90775e6d108b2d78beb6838874e9f8d7f2c41"
+    },
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/MANIFEST.json": {
+      "expected": "c4e9215865779ce12b944b27309f5b6b6c70c09bcad0e50c32e6bec77d77cadd",
+      "actual": "c4e9215865779ce12b944b27309f5b6b6c70c09bcad0e50c32e6bec77d77cadd"
+    }
+  },
+  "outputs": [
+    {
+      "path": "AMENDMENT.json",
+      "match": true
+    },
+    {
+      "path": "CHECKS.json",
+      "match": true
+    },
+    {
+      "path": "FROZEN_SOURCES.json",
+      "match": true
+    },
+    {
+      "path": "REPORT.md",
+      "match": true
+    },
+    {
+      "path": "SOURCE_EXCERPTS.md",
+      "match": true
+    },
+    {
+      "path": "SOURCE_PINS.json",
+      "match": true
+    },
+    {
+      "path": "SOURCE_STATE.json",
+      "match": true
+    },
+    {
+      "path": "check-1.log",
+      "match": true
+    },
+    {
+      "path": "check-2.log",
+      "match": true
+    },
+    {
+      "path": "check-3.log",
+      "match": true
+    },
+    {
+      "path": "packages__daemon__src__codex-containment.ts.before.source",
+      "match": true
+    },
+    {
+      "path": "packages__daemon__src__codex-session.ts.before.source",
+      "match": true
+    },
+    {
+      "path": "tests__codex-containment.test.ts.before.source",
+      "match": true
+    },
+    {
+      "path": "tests__codex-session.test.ts.before.source",
+      "match": true
+    },
+    {
+      "path": "tests__codex-supervisor.test.ts.before.source",
+      "match": true
+    },
+    {
+      "path": "tsconfig.check.json",
+      "match": true
+    }
+  ]
+}

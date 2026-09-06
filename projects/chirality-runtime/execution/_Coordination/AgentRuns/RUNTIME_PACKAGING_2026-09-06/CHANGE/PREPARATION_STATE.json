@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-09-06T18:21:15.515194+00:00",
+  "repo": "/Users/ryan/.codex/worktrees/341e/chirality",
+  "branch": "codex/runtime-packaging-integration",
+  "head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "originMain": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "upstream": "origin/main",
+  "divergence": "0\t0",
+  "status": " M projects/chirality-runtime/package-lock.json\n M projects/chirality-runtime/package.json\n M projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts\n?? projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/\n?? projects/chirality-runtime/tests/pi-packaging.test.ts\n",
+  "staged": "",
+  "gitOperations": {
+    "MERGE_HEAD": false,
+    "rebase-merge": false,
+    "rebase-apply": false,
+    "CHERRY_PICK_HEAD": false,
+    "REVERT_HEAD": false
+  }
+}

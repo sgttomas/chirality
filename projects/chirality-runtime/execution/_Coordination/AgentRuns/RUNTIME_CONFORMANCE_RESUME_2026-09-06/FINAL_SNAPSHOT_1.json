@@ -1,0 +1,125 @@
+{
+  "schema": "runtime-agent0-derivative-snapshot/v1",
+  "acceptedUpstreamSubject": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3",
+  "derivative": true,
+  "closure": "Bounded Runtime repair and diagnostic tranche locally validated; full Runtime/supplier/release conformance remains open",
+  "publicationAndCI": "Subsequent append-only supplements; this snapshot grants no merge or acceptance",
+  "historicalResolution": "Exact original path/hash via lossless maps; these entries bind current parent/manager snapshot bytes",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/FINAL_OUTPUTS.json",
+      "sha256": "d9275028f2777f98b267f987aaf044f9eeded3deeadd32cbf013474416571ae7",
+      "bytes": 2859
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/MANAGER_OUTPUT_MANIFEST.json",
+      "sha256": "b59a0e56099a96770f5e7dc0f0a7113ff5f93761c978f0d5ca6b37fcde106c35",
+      "bytes": 2221
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PACKAGING_SNAPSHOT.json",
+      "sha256": "ee000354f64c9a1985fa55ebba09700eb8ac93ba22e37598963872301941be79",
+      "bytes": 11344
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/REFERENCE_PATTERNS/REPORT.md",
+      "sha256": "881abcb6c0a9bb7ed0b58a015b9fa764d744bb51440f8fbc897668335c18ce87",
+      "bytes": 10338
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_FINAL.json",
+      "sha256": "08b488ff11aaf28330c26655e598e160e53ea17f83cfc73287dd1c07762f3d72",
+      "bytes": 38987
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/FINAL_SOURCE_CHECK.json",
+      "sha256": "6a63d65dd49c638ca539b53809763ef604565359df22ee2ade0851b7e3ff3334",
+      "bytes": 3278
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_REGISTERED_02/CHECK.json",
+      "sha256": "8bbd01b0d64502b44c759fd4ccd0cfb9492bc8ccdd422217842082f366fb61c4",
+      "bytes": 105292
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_REGISTERED_02/registered.json",
+      "sha256": "4df19f4e806cacd8d68af871c72c15c8c7b9456e7f7d8d0cfad79a8e8c684c27",
+      "bytes": 178906
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/GOVERNANCE_FINAL_01/RESULTS.json",
+      "sha256": "85b7a45ec0153d38b1cd9adb52b84509f8bb0be2c4f7d4b8ab8c479b8168b36e",
+      "bytes": 2427
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/GOVERNANCE_FINAL_01/ACCEPTED_BASIS.json",
+      "sha256": "32f0c42c969973692a4dc2beec786171c900ea776a8329a95c5e6a9d55ee1369",
+      "bytes": 13648
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/APP_BUNDLE_FINAL_01/RESULT.json",
+      "sha256": "5d515462ac848bac8125aed54ac2eaa78675bb4121c1cb973eefa0d97184730b",
+      "bytes": 638
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_02/EXACT_NETWORK_RUNTIME_CANARY.json",
+      "sha256": "15b8508ce279d97ccb2a3ce0ed89dd0540ed492cb26b645e56f46ef9a0c6a51e",
+      "bytes": 8698
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE3_01/EXACT_BOUNDARY_P1.json",
+      "sha256": "170a3d3d3d5ac00712eb12952e15da6e00586d46512627b8ea0dabee8ed4f152",
+      "bytes": 8394
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE3_01/PARENT_INTERPRETATION.json",
+      "sha256": "aeecea75a03eacf7fb9bb463a272f6daeb0c3826f92a90579c52300461f9754e",
+      "bytes": 3143
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/LOSSLESS_PUBLICATION_VERIFY.json",
+      "sha256": "ebdb2947d5c135b1c03dbb9edf591f7f44bf5eb033bc2eb9bd80fd04cb24cfa2",
+      "bytes": 811
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/LOSSLESS_PRESENTATION_V1/SNAPSHOT.json",
+      "sha256": "e7393669d3542e0f30e75acf18012477e9b8cdfda6e2b36abfa24a9db3e7a8c4",
+      "bytes": 14520
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/LOSSLESS_PRESENTATION_V2/SNAPSHOT.json",
+      "sha256": "d5c3907a881c6ec765ce74aa67d7ee7bccbc6a1120a4fdb216e37fc2a124b32d",
+      "bytes": 1734
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/OWNER_SCOPE_CLARIFICATION_1.json",
+      "sha256": "277182395d3ed14ce97f661517477fafca6764a66977bda80b8afecea2ec77be",
+      "bytes": 842
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/NATIVE_APPROVAL_DESIGN_DISCUSSION.md",
+      "sha256": "c60ade22c5b70fb21340b22734729e55426c792299f4105e74eb8a255f8262fd",
+      "bytes": 2436
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/AGENT0_HANDOFF.md",
+      "sha256": "22f8dba70fcd96a306eaf3c9df0e5fbe475a19102c88ca76d85b5cd12cb528e8",
+      "bytes": 7597
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/FINAL_FAN_IN.json",
+      "sha256": "e31c494a546efb30fed8012c244f8017c13859cd427f3005b5074e0fd9367f81",
+      "bytes": 8017
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/CONFORMANCE_MANAGER_SEAL_CHECK.json",
+      "sha256": "a42cea310e7a2cdbc0729901643b9061cc2362782fa6d6ae8b6ef60905bb750b",
+      "bytes": 337
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/CANDIDATE3_MANAGER_SEAL_CHECK.json",
+      "sha256": "c0ee6add4fca1c0457cfd8d0000b6e0f9747029cc40e94a0f0d59b7923bca29a",
+      "bytes": 489
+    }
+  ]
+}

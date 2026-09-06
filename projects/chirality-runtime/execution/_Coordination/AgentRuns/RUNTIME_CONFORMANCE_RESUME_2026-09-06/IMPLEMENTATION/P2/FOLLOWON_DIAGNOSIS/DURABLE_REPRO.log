@@ -1,0 +1,5 @@
+Command: node --input-type=module < .../FOLLOWON_DIAGNOSIS/DURABLE_REPRO.source
+Exit0. Actual source behavior reproduced through current compiled core modules, with controlled in-memory no-exec supervisor and real temporary retirement journal.
+Result: interrupt rejected ENGINE_UNAVAILABLE / DESCENDANT_RECONCILIATION_REQUIRED; turn rejected identical reason; durable state committed, durable outcome interrupted; retirement.restart returned thread/start.
+This is CONFIRMED_CURRENT_DEFECT_NOT_DESIRED_BEHAVIOR. No real supplier, process, account or network activity. Temporary owned journal removed after observation.
+Minimum remedy: require retire success before catch-path terminalize; if retirement fails preserve prepared state, expose reconciliation-required through existing coordinator reconcile; do not publish interrupted merely from intent. Regression must require restart refused while retirement unresolved.

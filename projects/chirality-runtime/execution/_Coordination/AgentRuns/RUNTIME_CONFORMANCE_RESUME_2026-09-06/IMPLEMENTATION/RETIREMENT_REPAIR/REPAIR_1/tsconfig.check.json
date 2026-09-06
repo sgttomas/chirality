@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "skipLibCheck": true,
+    "strict": true,
+    "paths": {
+      "@chirality/runtime-core": [
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/index.ts"
+      ]
+    }
+  },
+  "files": [
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/delegated-runtime.test.ts"
+  ]
+}

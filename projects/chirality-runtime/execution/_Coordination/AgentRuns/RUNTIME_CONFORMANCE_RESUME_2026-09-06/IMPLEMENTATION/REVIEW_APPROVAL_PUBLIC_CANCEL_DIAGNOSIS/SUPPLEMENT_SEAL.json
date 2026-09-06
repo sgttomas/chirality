@@ -1,0 +1,9 @@
+{
+  "timestampUtc": "2026-09-06T19:50:19.263170+00:00",
+  "supplementSha256": "a82749b7605c56c929dedf721607f446676d8ecac05b7839a9970f6ec7bf4a85",
+  "priorOutputSealSha256": "eb66c168f29be7a2a543da2645a5097d110d901c03384f11e24df8f6c4eac351",
+  "basis": {
+    "execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+    "execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "at": "2026-09-06T19:18:44.014161+00:00",
+  "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/BUILD/SOURCE_BEFORE.json",
+  "manifestSha256": "86157a12c2901045dd51a75335a625ee5fb1e28d85fed8adc11db64135b91f78",
+  "files": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/apply_patch.rs",
+      "candidate2ManifestHash": "78889d430bb1453aeb189bd050aef76f24cea2b974f4e8364c584f631320d61e",
+      "currentHash": "78889d430bb1453aeb189bd050aef76f24cea2b974f4e8364c584f631320d61e",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/safety.rs",
+      "candidate2ManifestHash": "6341d13d6d1b70ee5617548785257f01bb23e0d8e2d92753e0914380c6043a2b",
+      "currentHash": "6341d13d6d1b70ee5617548785257f01bb23e0d8e2d92753e0914380c6043a2b",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/runtimes/apply_patch.rs",
+      "candidate2ManifestHash": "becc8bdafb970443afb5c2aaab74fa0df2cfdffdf257dcb5593c89a1119d6659",
+      "currentHash": "becc8bdafb970443afb5c2aaab74fa0df2cfdffdf257dcb5593c89a1119d6659",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/lib.rs",
+      "candidate2ManifestHash": "5e6f736f3a4b66c1d651baa9b85ce6e6921de170faf901e6c2f78ad9a383eaf9",
+      "currentHash": "5e6f736f3a4b66c1d651baa9b85ce6e6921de170faf901e6c2f78ad9a383eaf9",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/local_file_system.rs",
+      "candidate2ManifestHash": "1c5d8bbf51529c0cc0f2c73f22b78189910ee7e31d42bbf4230861add1e688a0",
+      "currentHash": "1c5d8bbf51529c0cc0f2c73f22b78189910ee7e31d42bbf4230861add1e688a0",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/sandboxed_file_system.rs",
+      "candidate2ManifestHash": "0282cecf59842650b78a767d7156e5e112008ab1acbcaa5fc5ecc31654108e7a",
+      "currentHash": "0282cecf59842650b78a767d7156e5e112008ab1acbcaa5fc5ecc31654108e7a",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/fs_sandbox.rs",
+      "candidate2ManifestHash": "6bd757ade4b4df954c30478fdeecf4de955ee94bc959d88e0b546b8a28228b4e",
+      "currentHash": "6bd757ade4b4df954c30478fdeecf4de955ee94bc959d88e0b546b8a28228b4e",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/permissions.rs",
+      "candidate2ManifestHash": "45347859f8d0f3b1ecb0ce40271c6447893f42f2a805191a3ee5959d47a82065",
+      "currentHash": "45347859f8d0f3b1ecb0ce40271c6447893f42f2a805191a3ee5959d47a82065",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/sandboxing/src/seatbelt.rs",
+      "candidate2ManifestHash": "fe56fa7fbf4000e7f181373b94fd492e9ca0058cd7b62a9b192c84ae3d3c31b3",
+      "currentHash": "fe56fa7fbf4000e7f181373b94fd492e9ca0058cd7b62a9b192c84ae3d3c31b3",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/sandboxing/src/restricted_read_only_platform_defaults.sbpl",
+      "candidate2ManifestHash": "092b34f8104b3a73da42bbcb600ba83f03c6f3eee1c8b39c02bf0939d824db56",
+      "currentHash": "092b34f8104b3a73da42bbcb600ba83f03c6f3eee1c8b39c02bf0939d824db56",
+      "matches": true
+    }
+  ]
+}

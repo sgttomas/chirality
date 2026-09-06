@@ -1,0 +1,42 @@
+{
+  "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts": {
+    "sha256": "d76120502d5cc724ca2782be933a166f10ff092ef8a440e5bbadea5aed8a6391",
+    "bytes": 26584
+  },
+  "projects/chirality-runtime/tests/pi-packaging.test.ts": {
+    "sha256": "b6417a32a3f2fa568bfa650f1c5975c2dc16ca0567025fce4e708a42e7032769",
+    "bytes": 9773
+  },
+  "projects/chirality-runtime/package.json": {
+    "sha256": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+    "bytes": 463
+  },
+  "projects/chirality-runtime/package-lock.json": {
+    "sha256": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf",
+    "bytes": 173507
+  },
+  "/private/tmp/runtime-packaging-20260906/manager/implement/pre-fix-pi-turn-runtime.ts": {
+    "sha256": "3057c424bb21afa4624374042ab8069da79d5b3d5b6209d403928e6622738cde",
+    "bytes": 25456
+  },
+  "/private/tmp/runtime-packaging-20260906/manager/implement/pre-fix.cjs": {
+    "sha256": "de8adfcf9cfdb416dbee6fab48eb5dfb5b226a28184001ea795848e6b75fa8f0",
+    "bytes": 288338
+  },
+  "/private/tmp/runtime-packaging-20260906/manager/implement/post-fix.cjs": {
+    "sha256": "7a2e73c4bf8032b11746909f83aeef45124b48b8e951b627f72ae8223a8dcbc3",
+    "bytes": 285590
+  },
+  "projects/chirality-runtime/node_modules/@earendil-works/pi-ai/package.json": {
+    "sha256": "5ff1327178682b9a7a3224f8358eec187e97b5c3f3bd1e77bb45c310aab84865",
+    "version": "0.82.0"
+  },
+  "projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/package.json": {
+    "sha256": "031b6774e3c212780dce1ac1a4b78a186d385b7878dca1897b45bd557ac68492",
+    "version": "0.82.0"
+  },
+  "projects/chirality-runtime/node_modules/esbuild/package.json": {
+    "sha256": "d55d1d19fcc5b6079e4a71dd4111340c79c682bc36835ac7058a0c364c7db58a",
+    "version": "0.28.1"
+  }
+}

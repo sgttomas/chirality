@@ -1,0 +1,187 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run tests/pi-packaging.test.ts tests/pi-turn-runtime.test.ts tests/pi-omlx-integration.test.ts tests/manager-pi-integration.test.ts tests/exact-managed-pi-integration.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ↓ tests/exact-managed-pi-integration.test.ts (1 test | 1 skipped)
+ ✓ tests/pi-turn-runtime.test.ts (21 tests) 488ms
+   ✓ uses the actual isolated Pi SDK with strict local transport and canonical terminal events  335ms
+ ✓ tests/pi-omlx-integration.test.ts (6 tests | 1 skipped) 1033ms
+   ✓ uses the actual Pi SDK through coordinator-created Agent 2 and one bound read tool  584ms
+ ✓ tests/manager-pi-integration.test.ts (4 tests) 1084ms
+   ✓ real coordinator creates, binds, executes and reviews actual SDK Pi child without seeded sessions  578ms
+ ❯ tests/pi-packaging.test.ts (16 tests | 8 failed) 21491ms
+   ✓ cjs consumer: real SDK offline success  747ms
+   × cjs consumer: real SDK offline interrupt 1318ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs:6033:27) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   × cjs consumer: real SDK offline close 1322ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs:6033:27) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   × cjs consumer: real SDK offline release 1300ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs:6033:27) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   × cjs consumer: real SDK offline deadline 1309ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs
+AssertionError [ERR_ASSERTION]: deadline waited for SDK loading
+    at main (/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs:6039:29) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   ✓ cjs consumer: real SDK offline capacity  2018ms
+   ✓ cjs consumer: real SDK offline snapshot  2033ms
+   ✓ cjs consumer: real SDK offline load-error  762ms
+   ✓ esm consumer: real SDK offline success  579ms
+   × esm consumer: real SDK offline interrupt 1309ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs:6012:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   × esm consumer: real SDK offline close 1291ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs:6012:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   × esm consumer: real SDK offline release 1288ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs:6012:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   × esm consumer: real SDK offline deadline 1292ms
+     → Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs
+AssertionError [ERR_ASSERTION]: deadline waited for SDK loading
+    at main (file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs:6018:14) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+   ✓ esm consumer: real SDK offline capacity  2028ms
+   ✓ esm consumer: real SDK offline snapshot  2054ms
+   ✓ esm consumer: real SDK offline load-error  759ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/pi-packaging.test.ts > cjs consumer: real SDK offline interrupt
+ FAIL  tests/pi-packaging.test.ts > cjs consumer: real SDK offline close
+ FAIL  tests/pi-packaging.test.ts > cjs consumer: real SDK offline release
+Error: Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs:6033:27) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/pi-packaging.test.ts > cjs consumer: real SDK offline deadline
+Error: Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs
+AssertionError [ERR_ASSERTION]: deadline waited for SDK loading
+    at main (/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.cjs:6039:29) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/pi-packaging.test.ts > esm consumer: real SDK offline interrupt
+ FAIL  tests/pi-packaging.test.ts > esm consumer: real SDK offline close
+ FAIL  tests/pi-packaging.test.ts > esm consumer: real SDK offline release
+Error: Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs
+AssertionError [ERR_ASSERTION]: cancellation waited for SDK loading
+    at main (file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs:6012:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/pi-packaging.test.ts > esm consumer: real SDK offline deadline
+Error: Command failed: /Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node --import /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/register.mjs /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs
+AssertionError [ERR_ASSERTION]: deadline waited for SDK loading
+    at main (file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/runtime-pi-packaging-lbBw2E/consumer.mjs:6018:14) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+
+ Test Files  1 failed | 3 passed | 1 skipped (5)
+      Tests  8 failed | 38 passed | 2 skipped (48)
+   Start at  12:16:20
+   Duration  21.69s (transform 293ms, setup 0ms, collect 1.20s, tests 24.10s, environment 0ms, prepare 142ms)

@@ -1,0 +1,10 @@
+{
+  "files": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-conformance.test.ts": "4fddab001e32c6a375914efbd583b9cdd0ceaee81606f6b7fe5dd61b31b30357",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "d137b11365e2822f6254a616af363fac896d5fb5899ebd89852e937710fe853e"
+  },
+  "pureTests": "14 passed; 2 exact scenarios skipped",
+  "noemitCompatExit": 0,
+  "actualCanariesRun": false,
+  "sourceEdits": "two authorized fixture files only"
+}

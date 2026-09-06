@@ -10,6 +10,98 @@ import { CodexSupervisor } from '../packages/daemon/src/codex-supervisor.js';
 import { prepareCodexNativePolicy } from '../packages/daemon/src/codex-containment.js';
 import { startSupervisorServer, SupervisorClient } from '../packages/daemon/src/supervisor-server.js';
 
+// Diagnostics are observational only: no callback values become approval authority.
+function diagnosticRecord(value: unknown): Record<string, unknown> | undefined {
+  return value !== null && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : undefined;
+}
+function diagnosticMetadata(value: unknown) {
+  const serialized = JSON.stringify(value) ?? 'undefined';
+  return { type: value === null ? 'null' : Array.isArray(value) ? 'array' : typeof value, bytes: Buffer.byteLength(serialized), sha256: createHash('sha256').update(serialized).digest('hex') };
+}
+function diagnosticId(value: unknown, expected?: unknown) {
+  return { ...diagnosticMetadata(value), stringLength: typeof value === 'string' ? value.length : null, stringBytes: typeof value === 'string' ? Buffer.byteLength(value) : null,
+    matchesCurrentIdentifier: typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value),
+    hasControlCharacters: typeof value === 'string' && /[\x00-\x1f\x7f]/.test(value),
+    matchesObservedPrimary: typeof expected === 'string' && typeof value === 'string' ? value === expected : null,
+    supplierNetworkShape: typeof value === 'string' && value.length <= 1024 && /^network#[^#\x00-\x20\x7f]+#(?:http|https|socks5_tcp|socks5_udp)#[^#\x00-\x20\x7f]+#[0-9]{1,5}#[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value) };
+}
+function diagnosticChoice(value: unknown, expectedHost: string) {
+  const unknown = () => ({ tag: 'UNKNOWN', ...diagnosticMetadata(value) });
+  if (typeof value === 'string' && ['accept', 'acceptForSession', 'decline', 'cancel'].includes(value)) return { tag: value };
+  const object = diagnosticRecord(value);
+  if (!object || Object.keys(object).length !== 1) return unknown();
+  const network = diagnosticRecord(object.applyNetworkPolicyAmendment);
+  const amendment = diagnosticRecord(network?.network_policy_amendment);
+  if (network && Object.keys(network).join(',') === 'network_policy_amendment' && amendment && Object.keys(amendment).sort().join(',') === 'action,host' && typeof amendment.host === 'string' && amendment.host.length <= 253 && (amendment.action === 'allow' || amendment.action === 'deny')) {
+    return { tag: 'applyNetworkPolicyAmendment', action: amendment.action, hostMatchesExpected: amendment.host === expectedHost };
+  }
+  const exec = diagnosticRecord(object.acceptWithExecpolicyAmendment);
+  if (exec && Object.keys(exec).join(',') === 'execpolicy_amendment' && Array.isArray(exec.execpolicy_amendment) && exec.execpolicy_amendment.length <= 16 && exec.execpolicy_amendment.every(part => typeof part === 'string' && part.length <= 4096)) {
+    return { tag: 'acceptWithExecpolicyAmendment', argumentCount: exec.execpolicy_amendment.length, ...diagnosticMetadata(exec.execpolicy_amendment) };
+  }
+  return unknown();
+}
+function diagnosticCallback(message: Record<string, unknown>, expectedHost: string, primary: { threadId?: unknown; turnId?: unknown }) {
+  const params = diagnosticRecord(message.params) ?? {};
+  const context = diagnosticRecord(params.networkApprovalContext);
+  const choices = params.availableDecisions;
+  const knownKeys = ['threadId', 'turnId', 'itemId', 'startedAtMs', 'environmentId', 'reason', 'networkApprovalContext', 'proposedNetworkPolicyAmendments', 'availableDecisions', 'approvalId', 'additionalPermissions', 'proposedExecpolicyAmendment', 'command', 'cwd', 'commandActions'];
+  return { method: message.method === 'item/commandExecution/requestApproval' ? message.method : 'OTHER', parameterKeys: Object.keys(params).filter(key => knownKeys.includes(key)), unknownParameterKeys: diagnosticMetadata(Object.keys(params).filter(key => !knownKeys.includes(key))),
+    requestId: diagnosticId(message.id), threadId: diagnosticId(params.threadId, primary.threadId), turnId: diagnosticId(params.turnId, primary.turnId), itemId: diagnosticId(params.itemId), environmentId: diagnosticId(params.environmentId),
+    startedAtMsValid: Number.isSafeInteger(params.startedAtMs) && Number(params.startedAtMs) >= 0,
+    networkContext: context ? { host: context.host === expectedHost ? expectedHost : 'OTHER', protocol: context.protocol === 'http' ? 'http' : 'OTHER', exactKeys: Object.keys(context).sort().join(',') === 'host,protocol' } : undefined,
+    availableDecisions: { type: diagnosticMetadata(choices).type, count: Array.isArray(choices) ? choices.length : null, withinBound: Array.isArray(choices) && choices.length <= 16,
+      duplicates: Array.isArray(choices) && choices.length <= 16 ? new Set(choices.map(value => diagnosticMetadata(value).sha256)).size !== choices.length : null,
+      choices: Array.isArray(choices) ? choices.slice(0, 16).map(value => diagnosticChoice(value, expectedHost)) : [], ...(Array.isArray(choices) ? {} : { unknown: diagnosticMetadata(choices) }) } };
+}
+function diagnosticFailure(error: unknown) {
+  const value = diagnosticRecord(error);
+  const messages: Record<string, string> = {
+    'Invalid Codex identifier': 'INVALID_CODEX_IDENTIFIER', 'Network request is outside the active primary turn': 'FOREIGN_PRIMARY_TURN',
+    'Invalid network request ID': 'INVALID_NETWORK_REQUEST_ID', 'Invalid network approval timestamp': 'INVALID_NETWORK_TIMESTAMP',
+    'Unsupported combined approval request': 'COMBINED_APPROVAL', 'Invalid network destination context': 'INVALID_NETWORK_CONTEXT',
+    'Exact available approval decisions required': 'MISSING_EXACT_CHOICES', 'Unknown approval decision': 'UNKNOWN_CHOICE',
+    'No valid exact network choices': 'NO_VALID_EXACT_CHOICES', 'Conflicting or stale network approval request': 'CONFLICTING_APPROVAL',
+    'Server request ID reused across capability classes': 'REUSED_REQUEST_ID', 'Network approval inventory bound exceeded': 'APPROVAL_INVENTORY_BOUND',
+    'Network approval requires trusted ask posture': 'WRONG_NETWORK_POSTURE', 'supervisor request rejected': 'BROKER_REJECTED',
+  };
+  return { classification: typeof value?.message === 'string' && Object.hasOwn(messages, value.message) ? messages[value.message] : 'UNCLASSIFIED',
+    code: value?.code === 'ENGINE_UNAVAILABLE' || value?.code === 'INVALID_REQUEST' ? value.code : 'UNCLASSIFIED',
+    reason: diagnosticRecord(value?.details)?.reason === 'CODEX_PROTOCOL_FAILURE' ? 'CODEX_PROTOCOL_FAILURE' : 'UNCLASSIFIED' };
+}
+function observeDiagnosticFailure<A extends unknown[], R>(original: (...args: A) => Promise<R>, record: (failure: ReturnType<typeof diagnosticFailure>) => void): (...args: A) => Promise<R> {
+  return async (...args) => { try { return await original(...args); } catch (error) { try { record(diagnosticFailure(error)); } catch { /* diagnostics cannot replace the original rejection */ } throw error; } };
+}
+it('records closed callback diagnostics without raw IDs, unknown values or command data', () => {
+  const secret = 'Bearer fixture-secret-not-for-output';
+  const itemId = 'network#local#http#example.com#80#00000000-0000-4000-8000-000000000000';
+  const observed = diagnosticCallback({ id: 1, method: 'item/commandExecution/requestApproval', params: { threadId: secret, turnId: 'turn', itemId, startedAtMs: 1, reason: secret, command: secret, [secret]: secret, networkApprovalContext: { host: 'example.com', protocol: 'http' }, availableDecisions: ['accept', 'acceptForSession', { applyNetworkPolicyAmendment: { network_policy_amendment: { host: 'example.com', action: 'allow' } } }, 'cancel', secret, { [secret]: secret }, { applyNetworkPolicyAmendment: { network_policy_amendment: { host: secret, action: secret } } }] } }, 'example.com', { threadId: secret, turnId: 'turn' });
+  expect(JSON.stringify(observed)).not.toContain(secret); expect(JSON.stringify(observed)).not.toContain(itemId);
+  expect(observed.itemId).toMatchObject({ supplierNetworkShape: true, matchesCurrentIdentifier: false });
+  expect(observed.threadId.matchesObservedPrimary).toBe(true); expect(observed.turnId.matchesObservedPrimary).toBe(true);
+  expect(observed.availableDecisions.choices.map(value => value.tag)).toEqual(['accept', 'acceptForSession', 'applyNetworkPolicyAmendment', 'cancel', 'UNKNOWN', 'UNKNOWN', 'UNKNOWN']);
+  expect(observed.availableDecisions.choices).not.toContainEqual({ tag: 'decline' });
+  expect(diagnosticId('wrong', 'expected').matchesObservedPrimary).toBe(false); expect(diagnosticId('unknown').matchesObservedPrimary).toBeNull();
+  for (const value of [null, {}, [], 'x'.repeat(4096), 'network#bad\ncontrol']) { const metadata = diagnosticId(value); expect(metadata.matchesCurrentIdentifier).toBe(false); expect(metadata.supplierNetworkShape).toBe(false); }
+  expect(diagnosticId('network#bad\ncontrol').hasControlCharacters).toBe(true);
+  const bounded = diagnosticCallback({ params: { availableDecisions: Array(17).fill(secret) } }, 'example.com', {});
+  expect(bounded.availableDecisions.withinBound).toBe(false); expect(bounded.availableDecisions.choices).toHaveLength(16); expect(JSON.stringify(bounded)).not.toContain(secret);
+});
+it('observes only allowlisted failure classes and preserves the original failure and terminal outcome', async () => {
+  const error = Object.assign(new Error('Invalid Codex identifier'), { code: 'ENGINE_UNAVAILABLE', details: { reason: 'CODEX_PROTOCOL_FAILURE', secret: 'not-retained' } });
+  const failures: unknown[] = [];
+  const wrapped = observeDiagnosticFailure(async (_worker: string) => { throw error; }, value => failures.push(value));
+  await expect(wrapped('worker')).rejects.toBe(error);
+  expect(failures).toEqual([{ classification: 'INVALID_CODEX_IDENTIFIER', code: 'ENGINE_UNAVAILABLE', reason: 'CODEX_PROTOCOL_FAILURE' }]);
+  let successfulTerminal = false;
+  await wrapped('worker').then(() => { successfulTerminal = true; }, () => {});
+  expect(successfulTerminal).toBe(false);
+  await expect(observeDiagnosticFailure(async () => { throw error; }, () => { throw new Error('observer failure'); })()).rejects.toBe(error);
+  const success = { exitCode: 0 }; expect(await observeDiagnosticFailure(async () => success, () => { throw new Error('must not run'); })()).toBe(success);
+  expect(diagnosticFailure(new Error('Bearer fixture-secret-not-for-output'))).toEqual({ classification: 'UNCLASSIFIED', code: 'UNCLASSIFIED', reason: 'UNCLASSIFIED' });
+  expect(diagnosticFailure(new Error('toString')).classification).toBe('UNCLASSIFIED');
+});
+
 const marker = 'OWNED_DESTINATION_REACHED_731A';
 function commandEvidence(output: string) {
   const status = /^NETWORK_COMMAND_FINISHED:([0-9]{1,3})\r?$/m.exec(output);
@@ -72,6 +164,7 @@ it.runIf(process.env.CHIRALITY_RUN_EXACT_NETWORK === '1')('actual primary comman
   const result: Record<string, unknown> = { schema: 'chirality-exact-primary-network/v1', evidenceClass: controlled ? 'supplier-candidate-unaccepted' : 'accepted-supply', supplySha256: supply.sha256, supplySize: Number(supply.identity.size), scenario: selected, commandNetworkPosture: posture, launchEvidence: 'test-only-no-account-exact-vendor-factory', managerModel: 'owned-loopback-deterministic-Responses', target: publicTarget ? 'http://example.com/' : 'owned-loopback-HTTP', targetAuthorization: publicTarget ? 'IMPLEMENTATION_AMENDMENT_13' : 'owned-fixture', publicZeroNetworkTrafficProven: false, approvalEvidence: 'primary-private-protocol-only', storedAttributionProven: false, nativeDescendantNetworkProven: false, accountUsed: false, passed: false };
   let phase = 'setup', destinationHits = 0, commandReturnedMarker = false, commandStarted = false, commandFinished = false, curlStatus: number | undefined, approvalCount = 0;
   const safeRequests: unknown[] = [];
+  const observedPrimary: { threadId?: unknown; turnId?: unknown } = {};
   const sources = ['tests/exact-network-conformance.test.ts', 'packages/daemon/src/codex-session.ts', 'packages/daemon/src/codex-supervisor.ts', 'packages/daemon/src/codex-containment.ts', 'packages/daemon/src/supervisor-server.ts'];
   const pins = async () => Object.fromEntries(await Promise.all(sources.map(async path => [path, createHash('sha256').update(await readFile(path)).digest('hex')])));
   result.sourcesBefore = await pins();
@@ -102,7 +195,7 @@ it.runIf(process.env.CHIRALITY_RUN_EXACT_NETWORK === '1')('actual primary comman
           // A vendor rejection begins at the top-level tool output, unlike HTTP bytes within a command transcript.
           const supplierError = supplierErrorText(commandOutput);
           result.supplierPolicyDiagnostic = supplierError || null;
-          const retainedOutput = publicTarget ? supplierError || commandOutput.split('\n').filter(line => /^(?:NETWORK_COMMAND_STARTED|NETWORK_COMMAND_FINISHED:[0-9]{1,3}|NETWORK_HTTP_STATUS:[0-9]{3}|curl: )/.test(line)).join('\n') : commandOutput;
+          const retainedOutput = publicTarget ? supplierError || commandOutput.split('\n').filter((line: string) => /^(?:NETWORK_COMMAND_STARTED|NETWORK_COMMAND_FINISHED:[0-9]{1,3}|NETWORK_HTTP_STATUS:[0-9]{3}|curl: )/.test(line)).join('\n') : commandOutput;
           const safeOutput = retainedOutput.replace(/\bBearer\s+[^\s"']+/gi, 'Bearer [REDACTED]').replace(/\bsk-[A-Za-z0-9_-]{8,}/g, '[REDACTED_KEY]').replace(/((?:access_token|refresh_token|id_token|api[_-]?key|authorization)["']?\s*[:=]\s*)["']?[^\s,"'}]+["']?/gi, '$1[REDACTED]');
           result.supplierPolicyDiagnostic = supplierError ? safeOutput.slice(0, 2048) : null;
           result.syntheticCommandOutput = { text: safeOutput.slice(0, 8192), truncated: safeOutput.length > 8192, scope: publicTarget ? 'AM13 status and curl diagnostic lines only; public response body discarded' : 'owned-loopback curl command; isolated no-account worker; known credential patterns scrubbed', stream: 'vendor tool combined output' };
@@ -139,18 +232,20 @@ it.runIf(process.env.CHIRALITY_RUN_EXACT_NETWORK === '1')('actual primary comman
       child.on('error', () => {}); child.once('exit', kill);
       let stderrBytes = 0, observedBytes = 0, lines = '';
       child.stderr.on('data', (bytes: Buffer) => { stderrBytes += bytes.length; if (stderrBytes > 65536) kill(); });
-      child.stdout.on('data', (bytes: Buffer) => { observedBytes += bytes.length; if (observedBytes > 2000000) return; lines += bytes.toString(); for (let n = lines.indexOf('\n'); n >= 0; n = lines.indexOf('\n')) { const line = lines.slice(0, n); lines = lines.slice(n + 1); try { const message = JSON.parse(line); if (message.id !== undefined && message.method && safeRequests.length < 16) safeRequests.push({ method: String(message.method).slice(0, 128), parameterKeys: Object.keys(message.params ?? {}).slice(0, 32), networkContext: message.params?.networkApprovalContext ? { host: message.params.networkApprovalContext.host === expectedHost ? expectedHost : 'OTHER', protocol: message.params.networkApprovalContext.protocol === 'http' ? 'http' : 'OTHER' } : undefined }); } catch { /* observer never authorizes */ } } });
+      child.stdout.on('data', (bytes: Buffer) => { observedBytes += bytes.length; if (observedBytes > 2000000) return; lines += bytes.toString(); for (let n = lines.indexOf('\n'); n >= 0; n = lines.indexOf('\n')) { const line = lines.slice(0, n); lines = lines.slice(n + 1); try { const message = JSON.parse(line); if (message.id !== undefined && !message.method && message.result) { if (observedPrimary.threadId === undefined && typeof message.result.thread?.id === 'string') observedPrimary.threadId = message.result.thread.id; if (observedPrimary.turnId === undefined && typeof message.result.turn?.id === 'string') observedPrimary.turnId = message.result.turn.id; } if (message.id !== undefined && message.method && safeRequests.length < 16) safeRequests.push(diagnosticCallback(message, expectedHost, observedPrimary)); } catch { /* observer never authorizes */ } } });
       const timer = setTimeout(kill, 60000);
       try { await new Promise<void>((resolve, reject) => { child.once('spawn', resolve); child.once('error', reject); }); } catch { clearTimeout(timer); kill(); await closed; throw new Error('Candidate did not spawn'); }
       return { pid: child.pid!, permissionProfile: policy.permissionProfile, policyDigest: policy.policyDigest, expectedPermissions: policy.expectedPermissions, transport: { stdin: child.stdin, stdout: child.stdout, close: async () => { clearTimeout(timer); kill(); await closed; result.processClosed = true; } } };
     } });
+    const originalWait = workers.wait.bind(workers);
+    workers.wait = observeDiagnosticFailure(originalWait, failure => { result.actorFailure = failure; });
     cleanups.push(() => workers.close());
     const socketPath = join(broker, 's.sock'), server = await startSupervisorServer({ socketPath, supervisor: workers }); cleanups.push(() => server.close());
     const client = new SupervisorClient({ socketPath, credential: server.credential });
     phase = 'acquire'; const handle = await client.acquire('network-primary', JSON.stringify({ prompt: 'Run the deterministic authorized destination command once and finish.' }));
     phase = 'command-and-approval';
     let settled = false, successfulTerminal = false;
-    const terminal = client.wait(handle.workerId, handle.generation).then(value => { successfulTerminal = value.exitCode === 0; settled = true; }, () => { settled = true; });
+    const terminal = client.wait(handle.workerId, handle.generation).then(value => { successfulTerminal = value.exitCode === 0; settled = true; }, error => { result.terminalFailure = diagnosticFailure(error); settled = true; });
     const deadline = Date.now() + 50000;
     while (!settled && Date.now() < deadline) {
       const prompts = await client.pendingNetworkApprovals(handle.workerId, handle.generation);
@@ -171,7 +266,7 @@ it.runIf(process.env.CHIRALITY_RUN_EXACT_NETWORK === '1')('actual primary comman
     result.passed = wantsAccess ? successfulTerminal && commandStarted && commandFinished && curlStatus === 0 && (publicTarget ? result.httpStatus === 200 : destinationHits === 1) && commandReturnedMarker : (publicTarget || destinationHits === 0) && !commandReturnedMarker && (selected === 'ask-cancel' ? result.cancelled === true : successfulTerminal && commandStarted && commandFinished && curlStatus !== undefined && curlStatus > 0 && curlStatus <= 255);
     if (posture === 'ask-per-destination') result.passed = result.passed === true && approvalCount === 1;
     await verify(binary); await verify(supplied); result.supplyRevalidated = true;
-  } catch { result.failurePhase = phase; }
+  } catch (error) { result.failurePhase = phase; result.fixtureFailure = diagnosticFailure(error); }
   finally {
     result.destinationHits = publicTarget ? null : destinationHits; result.responseBodyPersisted = !publicTarget; result.requestShape = { method: 'GET', query: false, body: false, credentials: false, cookies: false, redirectsFollowed: false, maxResponseBytes: 16384 }; result.commandReturnedMarker = commandReturnedMarker; result.approvalCount = approvalCount; result.serverRequests = safeRequests;
     let failures = 0; for (const cleanup of cleanups.reverse()) try { await cleanup(); } catch { failures++; }

@@ -1,0 +1,16 @@
+{
+  "authority": "Parent /root explicit release after confirmed actual-class durable repro; ordinary owner direction and amendment11",
+  "exclusiveOwner": "/root/conformance_manager/retirement_repair",
+  "allowedWriteTargets": [
+    "projects/chirality-runtime/packages/core/src/delegated-runtime.ts",
+    "projects/chirality-runtime/tests/delegated-runtime.test.ts"
+  ],
+  "inputHashes": {
+    "packages/core/src/delegated-runtime.ts": "542f699b98cf646bcd2d3e0be7254f6f20ac8c7120eda4e0bd9a530a4e6fd1c3",
+    "tests/delegated-runtime.test.ts": "9648a53a0c67c00a0c4acc92f226b1cf7b2bfbd7ad98dde51116b54b32bf046e"
+  },
+  "objective": "Require generation-bound successful single retirement before any terminal publication; retain rejection and prepared/no-restart if cleanup fails",
+  "collisionCheck": "Parent confirms no active canary and exclusive two-file scope; parent probes wait stable freeze",
+  "constraints": "No coordinator/contracts/API expansion, no acceptance/source pin/operational writes. Retain failed-turn/interrupt/race/unrelated-turn isolation and no replay. Pure/local controlled tests only; parent actual supplier execution.",
+  "evidence": "Original repro retained, new source/preimage/checks/report hashes, fresh independent review"
+}

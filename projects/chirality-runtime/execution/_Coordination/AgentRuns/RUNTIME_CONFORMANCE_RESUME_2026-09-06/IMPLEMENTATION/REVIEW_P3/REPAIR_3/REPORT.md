@@ -1,0 +1,25 @@
+# P3 repair 3 independent backcheck
+
+Verdict: limited admission for parent repeat star at the verified generation, then the remaining families after inspecting the actual result. No new blocking issue found. Actual apply_patch availability/enforcement is still a parent-run obligation.
+
+OpenAI GPT-6; exact serving model ID unavailable. Ephemeral Agent2 under /root/conformance_manager, role/nondelegation instruction-asserted. Read-only source review plus pure/default-skip checks; writes restricted to REVIEW_P3/REPAIR_3. No supplier execution, network service, hosted model call, source edit, account/build/Git/state action or delegation. Tools: zsh/python3 and local Vitest/tsc through exec_command; apply_patch for evidence. ToolPolicyCompliance: PASS.
+
+Accepted upstream remains original brief/BASIS with accepted authority pointers and parent-approved AMENDMENT.md. This package is derivative review evidence and preserves earlier failures/reviews. Input observation and pure checks began before final evidence seal arrived; final conclusion followed verification of the completed author seal, matching source copy, unchanged source/imports and complete report. No check is claimed against a different source generation.
+
+## Evidence and change assessment
+
+Live source4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3 and author seal45ad5095e0412bdf672abdf26f351bdd090cfb3ff185af5be9503577e8904c01 verify. Every sealed member matches. SOURCE_BEFORE/AFTER.json pin stable current containment1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179, session868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8 and other imports. SEAL_VERIFICATION.json confirms the repaired denial classifier is byte-identical to repair2.
+
+The copied OBSERVED_PATCH_SCHEMA.json and embedded regression object both exactly equal historical actual FILE_CHANGE_2/RESULT.json requests[0].tools[4]; its whole-file hash also verifies. This is actual historical custom/Lark grammar provenance, not a fabricated tool advertisement. Prior failed Candidate2 run lacked complete patch-tool metadata, so the unknown-model fallback explanation remains a source-grounded inference as documented by REPAIR_3_DIAGNOSIS. This review does not transform that inference into actual current-supplier evidence.
+
+One fixed gpt-5.4 metadata slug is consistently used in launch configuration, thread/start, turn/start and deterministic Responses output. It selects the catalogued freeform tool metadata. The configured provider remains runtime_deterministic with the fixture's unauthenticated127.0.0.1 Responses URL, auth disabled and command network off. Evidence distinguishes modelMetadataSlug from deterministic-loopback-only and hostedModelUsed=false. The repair is not a hosted GPT-5.4 execution or a change to reviewer attribution.
+
+Actual flattened tool selection requires exactly one apply_patch name, custom type, grammar/Lark format and byte-identical known definition. Absent, duplicate, function, unknown grammar and malformed namespace reject. Custom wire uses the original patch string as input, preserves actual namespace/call identity, and has no function arguments or shell fallback. Existing SSE custom input delivery is preserved. Metadata is captured before patch selection, so absence still records the bounded table projection; selected exact schema/hash are retained when present. Full-table projection contains only bounded type/name/namespace/required/property names and grammar hash, excluding arbitrary description text, headers and prompts. Selected schema is retained as explicitly required tool evidence.
+
+REPAIR_DIFF.txt shows no relaxation of compiler/readback, protected rules, positive/negative sentinel plan, host checks, unique native identity,24 required action records,10s probe/60s family budgets, source/supply stability or owned cleanup. The strict prior denial-classifier regressions remain intact. Exact grammar equality is deliberately narrow; a future grammar change must fail for review rather than silently receive admission. The current safe-argument/schema protections from repair2 remain intact.
+
+## Checks and handoff
+
+Fresh Vitest:6 pure passed,4 exact skipped. Fresh standalone strict tsc:exit0. CHECKS.json retains commands/results. These checks verify the schema/wire regressions and preserve prior parser safety; no skipped test is a conformance pass.
+
+Closure: bounded repair backcheck complete; parent actual star and remaining globstar/question/class evidence are still open. Use truthful selected supplier bytes, new evidence directory and stable source/policy generation; inspect actual custom patch outputs and complete native/host/timing facts before continuing. Unknown advertisement or denial text remains failed/inconclusive. No supplier acceptance, conformance consolidation, owner-live proof, lifecycle promotion, hold release, publication or merge act follows from this review. No additional human ruling is needed for the authorized bounded rerun.

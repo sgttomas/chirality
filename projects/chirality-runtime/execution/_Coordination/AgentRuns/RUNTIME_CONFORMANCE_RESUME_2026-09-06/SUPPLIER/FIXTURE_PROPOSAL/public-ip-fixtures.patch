@@ -1,0 +1,47 @@
+--- a/codex-rs/network-proxy/src/network_policy.rs
++++ b/codex-rs/network-proxy/src/network_policy.rs
+@@ -737,7 +737,7 @@
+
+         let request = NetworkPolicyRequest::new(NetworkPolicyRequestArgs {
+             protocol: NetworkProtocol::Http,
+-            host: "example.com".to_string(),
++            host: "8.8.8.8".to_string(),
+             port: 80,
+             environment_id: None,
+             client_addr: None,
+@@ -770,7 +770,7 @@
+             Some(REASON_NOT_ALLOWED)
+         );
+         assert_eq!(event.field("network.transport.protocol"), Some("http"));
+-        assert_eq!(event.field("server.address"), Some("example.com"));
++        assert_eq!(event.field("server.address"), Some("8.8.8.8"));
+         assert_eq!(event.field("server.port"), Some("80"));
+         assert_eq!(event.field("http.request.method"), Some(DEFAULT_METHOD));
+         assert_eq!(event.field("client.address"), Some(DEFAULT_CLIENT_ADDRESS));
+@@ -793,7 +793,7 @@
+     async fn evaluate_host_policy_emits_execution_id_for_baseline_allow() {
+         let state = network_proxy_state_for_policy({
+             let mut network = NetworkProxyConfig::default();
+-            network.set_allowed_domains(vec!["example.com".to_string()]);
++            network.set_allowed_domains(vec!["8.8.8.8".to_string()]);
+             network
+         });
+         state.register_execution("token-baseline-allow", "local", "execution-baseline-allow");
+@@ -802,7 +802,7 @@
+             .expect("expected registered execution");
+         let request = NetworkPolicyRequest::new(NetworkPolicyRequestArgs {
+             protocol: NetworkProtocol::Http,
+-            host: "example.com".to_string(),
++            host: "8.8.8.8".to_string(),
+             port: 80,
+             environment_id: None,
+             client_addr: None,
+@@ -923,7 +923,7 @@
+             Arc::new(|_req| async { NetworkDecision::ask(REASON_NOT_ALLOWED) });
+         let request = NetworkPolicyRequest::new(NetworkPolicyRequestArgs {
+             protocol: NetworkProtocol::Http,
+-            host: "example.com".to_string(),
++            host: "8.8.8.8".to_string(),
+             port: 80,
+             environment_id: None,
+             client_addr: None,

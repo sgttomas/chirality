@@ -1,0 +1,141 @@
+{
+  "parentPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_02/EXACT_PROTECTED_star.json",
+  "parentSha256": "0e65adf7884df5d5ed33e8f1063c1b8ecb6a2b9d454722ed7c58f447428fad0a",
+  "supplierSha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "supplierSize": 241188752,
+  "profileElapsedMs": 3234,
+  "sourceStable": true,
+  "cleanupFailures": 0,
+  "knownFixtureBytes": {
+    "original": {
+      "utf8": "PROTECTED_SYNTHETIC_SENTINEL\n",
+      "bytes": 29,
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c"
+    },
+    "primaryWrite": {
+      "utf8": "UNAUTHORIZED_primary\n",
+      "bytes": 21,
+      "sha256": "2fda81eb0ec0fc2b75a7ebb1b06cee0c0777358dbdccc4a70f0e6d3e68d48486"
+    }
+  },
+  "hostDeltas": {
+    "ALIAS": {
+      "before": {
+        "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+        "size": 35,
+        "mode": 41453,
+        "ino": 76990478,
+        "symlink": true
+      },
+      "after": {
+        "sha256": "2fda81eb0ec0fc2b75a7ebb1b06cee0c0777358dbdccc4a70f0e6d3e68d48486",
+        "size": 35,
+        "mode": 41453,
+        "ino": 76990478,
+        "symlink": true
+      }
+    },
+    "FOREIGN": {
+      "before": {
+        "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+        "size": 29,
+        "mode": 33152,
+        "ino": 76990477,
+        "symlink": false
+      },
+      "after": {
+        "sha256": "2fda81eb0ec0fc2b75a7ebb1b06cee0c0777358dbdccc4a70f0e6d3e68d48486",
+        "size": 21,
+        "mode": 33152,
+        "ino": 76990477,
+        "symlink": false
+      }
+    }
+  },
+  "primaryAliasPatch": [
+    {
+      "who": "primary",
+      "callId": "protected_8",
+      "kind": "probe-patch-6",
+      "target": "ALIAS",
+      "method": "apply_patch",
+      "elapsedMs": 62,
+      "output": "Exit code: 0\nWall time: 0 seconds\nOutput:\nSuccess. Updated the following files:\nM /private/tmp/epc-X7qvkT/p/foreign-alias\n",
+      "outputSha256": "4ac4a5d4876357341e9e2c31fa08bb8a1dd47a29b0a8f2a6e63ccf24bcc96443"
+    }
+  ],
+  "childAliasPatch": [
+    {
+      "who": "child",
+      "callId": "protected_24",
+      "kind": "probe-patch-6",
+      "target": "ALIAS",
+      "method": "apply_patch",
+      "elapsedMs": 19,
+      "output": "apply_patch verification failed: Failed to find expected lines in /private/tmp/epc-X7qvkT/p/foreign-alias:\nPROTECTED_SYNTHETIC_SENTINEL",
+      "outputSha256": "388a98e25f1713f79696d581dbed4c704327bf004e201a63b2833eb156de43c0"
+    }
+  ],
+  "otherPatchDiagnostics": [
+    {
+      "who": "primary",
+      "callId": "protected_3",
+      "kind": "probe-patch-1",
+      "target": "MATCH",
+      "method": "apply_patch",
+      "elapsedMs": 19,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-X7qvkT/p/packages/a/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "e81cea95d34997c92c3c3ade18fad0fc02f41d9044d2f4968db20e2649fe29b9"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_4",
+      "kind": "probe-patch-2",
+      "target": "LATE",
+      "method": "apply_patch",
+      "elapsedMs": 19,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-X7qvkT/p/packages/b/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "b9737d4673e4705f8fb09d0274905cf2ea615e234fcc6c2d37cac3474841ec33"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_11",
+      "kind": "probe-patch-9",
+      "target": "ABSENT",
+      "method": "apply_patch",
+      "elapsedMs": 48,
+      "output": "Exit code: 1\nWall time: 0 seconds\nOutput:\nFailed to write file /private/tmp/epc-X7qvkT/p/packages/c/private.env\n",
+      "outputSha256": "eceb36259bc2c9cd7ca545bdd1e2dd45c7030a9e8ef2701bbea02f2a526e697c"
+    },
+    {
+      "who": "child",
+      "callId": "protected_19",
+      "kind": "probe-patch-1",
+      "target": "MATCH",
+      "method": "apply_patch",
+      "elapsedMs": 19,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-X7qvkT/p/packages/a/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "e81cea95d34997c92c3c3ade18fad0fc02f41d9044d2f4968db20e2649fe29b9"
+    },
+    {
+      "who": "child",
+      "callId": "protected_20",
+      "kind": "probe-patch-2",
+      "target": "LATE",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-X7qvkT/p/packages/b/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "b9737d4673e4705f8fb09d0274905cf2ea615e234fcc6c2d37cac3474841ec33"
+    },
+    {
+      "who": "child",
+      "callId": "protected_27",
+      "kind": "probe-patch-9",
+      "target": "ABSENT",
+      "method": "apply_patch",
+      "elapsedMs": 46,
+      "output": "Exit code: 1\nWall time: 0 seconds\nOutput:\nFailed to write file /private/tmp/epc-X7qvkT/p/packages/c/private.env\n",
+      "outputSha256": "eceb36259bc2c9cd7ca545bdd1e2dd45c7030a9e8ef2701bbea02f2a526e697c"
+    }
+  ]
+}

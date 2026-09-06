@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-network-runtime-conformance.test.ts (11 tests | 1 skipped) 97ms
+ ✓ tests/approval-store.test.ts (21 tests) 1125ms
+
+ Test Files  2 passed (2)
+      Tests  31 passed | 1 skipped (32)
+   Start at  13:56:06
+   Duration  1.41s (transform 254ms, setup 0ms, collect 428ms, tests 1.22s, environment 0ms, prepare 62ms)

@@ -1,0 +1,13 @@
+{
+  "time": "2026-09-06T19:23:18.631222+00:00",
+  "parent_brief_sha256": "640f4bd9f056a9bd1b5a3e4e24bfe4b4f0470ea4d3f1134d6471d7c0b428b51e",
+  "inputs_match": {
+    "IMPLEMENTATION/REVIEW_P3/ACTUAL_ALIAS_DIAGNOSIS/REPORT.md": true,
+    "IMPLEMENTATION/P3/REPAIR_4_DIAGNOSIS/REPORT.md": true,
+    "PARENT_CHECKS/P3_STAR_CANDIDATE2_02/EXACT_PROTECTED_star.json": true,
+    "SUPPLIER/MANAGER_RETURN.md": true,
+    "SUPPLIER/OUTPUT_MANIFEST.json": true
+  },
+  "prior_supplier_manifest_sha256": "2845dc631ddf3fedebd838f25b9f194aad2a59d0b96f8f936c2792f7de3ff3a9",
+  "repo_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4"
+}

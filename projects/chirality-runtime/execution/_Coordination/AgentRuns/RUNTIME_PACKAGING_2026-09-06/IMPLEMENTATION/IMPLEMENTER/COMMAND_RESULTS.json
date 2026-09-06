@@ -1,0 +1,51 @@
+{
+  "node": "24.18.0",
+  "model": "OpenAI GPT-6; exact serving ID unavailable",
+  "native_role": "Ephemeral Agent 2; instruction-asserted; no delegation",
+  "commands": [
+    {
+      "command": "node pre-fix.cjs",
+      "exit": 1,
+      "log": "PRE_FIX.log",
+      "expected": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+    },
+    {
+      "command": "npm install --save-dev --save-exact esbuild@0.28.1 --ignore-scripts --offline",
+      "exit": 0,
+      "log": "DEPENDENCY.log"
+    },
+    {
+      "command": "npm test -- tests/pi-packaging.test.ts tests/pi-turn-runtime.test.ts tests/pi-omlx-integration.test.ts tests/manager-pi-integration.test.ts tests/exact-managed-pi-integration.test.ts",
+      "exit": 0,
+      "log": "FOCUSED_PASS.log",
+      "tests": {
+        "passed": 46,
+        "skipped_live_provider": 2
+      }
+    },
+    {
+      "command": "npm run typecheck",
+      "exit": 0,
+      "log": "TYPECHECK_FREEZE.log"
+    },
+    {
+      "command": "node post-fix.cjs",
+      "exit": 0,
+      "log": "POST_FIX_STARTUP.log"
+    },
+    {
+      "command": "git diff --check -- [owned tracked production paths]",
+      "exit": 0,
+      "log": "PRODUCTION_DIFF_CHECK.log"
+    }
+  ],
+  "historical_attempts": {
+    "FOCUSED_INITIAL.log": "Eight overly narrow elapsed-time fixture failures; existing Pi tests passed.",
+    "FOCUSED_FINAL.log": "Same first loader resolution fixture, edit command path failed before this run.",
+    "FOCUSED_VERIFIED.log": "Eight elapsed-time fixture failures remained with delays on both SDK resolution hooks.",
+    "BARRIER_CHECK.log": "Resolve-hook barrier caused fixture blocking; owner interrupted own test session with Ctrl-C, exit130.",
+    "EVALUATION_BARRIER_PROBE.log": "One CJS actual SDK evaluation-barrier interruption test passed, 15 filtered out.",
+    "FOCUSED_ACCEPTANCE.log": "45 passed / 2 skipped / 1 ESM interrupt timing assertion failure despite terminal arriving before barrier release.",
+    "FOCUSED_PASS.log": "All final fixture assertions pass after eliminating elapsed-time gates and observing real module completion markers."
+  }
+}

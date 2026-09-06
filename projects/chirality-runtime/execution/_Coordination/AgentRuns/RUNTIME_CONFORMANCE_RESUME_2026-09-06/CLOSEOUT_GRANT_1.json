@@ -1,0 +1,28 @@
+{
+  "authority": "HELP_HUMAN owning-workflow handoff under current owner ordinary implementation/resume authorization and AGENT_CHANGE routine validated closeout",
+  "parentSnapshotSha256": "24e5a62f91e97be86e3c303353b1afa5790eba3556401b73f5cfc33be01af8a0",
+  "draftManifestSha256": "9049d22994d08d6dc8161d844d347915a0c7607c28a610233872821520f9408e",
+  "actions": [
+    "Apply reviewed project HANDOFF_STATE replacement and append Receipt3 without changing prior receipts",
+    "Recheck Runtime-only diff,22sourcepins,43acceptedbasis,global whitespace and staged whitespace",
+    "Stage exact enumerated Runtime tranche paths and ordinary scoped commit",
+    "Push HEAD:refs/heads/codex/runtime-packaging-integration with upstream set to same branch",
+    "Create PR against main with reviewed final title/body",
+    "Record PR_PUBLICATION.md and exact Git/publication evidence; ordinary metadata-only followup commit/push if needed"
+  ],
+  "allowedFileWrites": [
+    "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+    "projects/chirality-runtime/loop/LOOP_RECEIPTS.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/**",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PR_PUBLICATION.md",
+    "Owned CHANGE scratch"
+  ],
+  "prohibited": [
+    "Production source/test/acceptedbasis/supplierbinary changes",
+    "Root/frontend/sibling writes",
+    "Merge/rebase/reset/forcepush/historyrewrite",
+    "Supplier/lifecycle/hold/release acceptance"
+  ],
+  "CI": "Return actual PR/head/check identities to parent; parent will read fresh completed verdicts and append final CI/handoff supplement to PR description. Do not infer registration success from local fail-stop probe.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; roles instruction-asserted"
+}

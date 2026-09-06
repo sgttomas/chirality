@@ -1,0 +1,5 @@
+ M projects/chirality-runtime/package-lock.json
+ M projects/chirality-runtime/package.json
+ M projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts
+?? projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/
+?? projects/chirality-runtime/tests/pi-packaging.test.ts

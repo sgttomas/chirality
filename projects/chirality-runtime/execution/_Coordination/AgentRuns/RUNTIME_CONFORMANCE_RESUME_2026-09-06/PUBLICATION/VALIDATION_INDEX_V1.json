@@ -1,0 +1,459 @@
+{
+  "checks": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_BUILD_01/CHECK.json",
+      "sha256": "70f81e9ab363460533388e64e96188db4d183a64b28d45c7dffeec8a4751661c",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 1.128,
+      "sourceStable": false,
+      "changedInputs": [
+        "packages/core/dist/.tsbuildinfo",
+        "packages/core/dist/delegated-runtime.d.ts",
+        "packages/core/dist/delegated-runtime.d.ts.map",
+        "packages/core/dist/delegated-runtime.js",
+        "packages/core/dist/delegated-runtime.js.map",
+        "packages/daemon/dist/.tsbuildinfo",
+        "packages/daemon/dist/codex-containment.d.ts",
+        "packages/daemon/dist/codex-containment.d.ts.map",
+        "packages/daemon/dist/codex-containment.js",
+        "packages/daemon/dist/codex-containment.js.map",
+        "packages/daemon/dist/codex-session.js",
+        "packages/daemon/dist/codex-session.js.map"
+      ]
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_BUILD_02/CHECK.json",
+      "sha256": "e558123b8c8bea9028367bb17edd1e306c4f651fdac217c6236ff5345dea078c",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.419,
+      "sourceStable": false,
+      "changedInputs": [
+        "packages/core/dist/.tsbuildinfo",
+        "packages/core/dist/delegated-runtime.d.ts.map",
+        "packages/core/dist/delegated-runtime.js",
+        "packages/core/dist/delegated-runtime.js.map"
+      ]
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_BUILD_03/CHECK.json",
+      "sha256": "7e3d4f3708bf567b3647980d1b2ac4ef39f129b43b8a863eba200ae9200f7840",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 1.201,
+      "sourceStable": false,
+      "changedInputs": [
+        "packages/daemon/dist/.tsbuildinfo",
+        "packages/daemon/dist/codex-session.d.ts.map",
+        "packages/daemon/dist/codex-session.js",
+        "packages/daemon/dist/codex-session.js.map",
+        "packages/daemon/dist/codex-supervisor.d.ts.map",
+        "packages/daemon/dist/codex-supervisor.js",
+        "packages/daemon/dist/codex-supervisor.js.map",
+        "packages/daemon/dist/codex-transport-lifecycle.d.ts",
+        "packages/daemon/dist/codex-transport-lifecycle.d.ts.map",
+        "packages/daemon/dist/codex-transport-lifecycle.js",
+        "packages/daemon/dist/codex-transport-lifecycle.js.map"
+      ]
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_REGISTERED_01/CHECK.json",
+      "sha256": "39b3443de097b8cf6037bc04221b311ec210fa317d195b92b7e45cc9ae0011df",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--reporter=json",
+        "--outputFile=/private/tmp/runtime-conformance-resume-20260906/parent/integrated-registered-01/registered.json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 49.54,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_TYPECHECK_01/CHECK.json",
+      "sha256": "741a3c6bc797b2cd40a389f057df5bb449911bf886b83ebf4dc56fe7a3ddd805",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.145,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_TYPECHECK_02/CHECK.json",
+      "sha256": "2df3ed6c4bda69c786aa83ad561816cd30e029bde185fe74d1e234e194f7c72c",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.168,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/CHECK.json",
+      "sha256": "104be4a4bab53661cb3954e327e0d5e1f0065bf39b6e3b9b35fafb91300d570a",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-network-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 4.532,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_02/CHECK.json",
+      "sha256": "2631c596d7f505b1c1182dbdb253d74affa82f58d49c7ead7cf295782c5609d0",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-network-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 4.446,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_03/CHECK.json",
+      "sha256": "af7057049ed9f9c9170841560332e8b55f7169c3e246a557a19aa87b4358fdae",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-network-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 5.136,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_CANCEL_CANDIDATE2_01/CHECK.json",
+      "sha256": "6ef60097845d4be459939c1531801d72caf3656905a1a04f0ca725812423b8d2",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-network-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.41,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_OFF_CANDIDATE2_01/CHECK.json",
+      "sha256": "8591287f1980570b99171e0bde719ca49fd1a606bc2d541311d80d92d53285ab",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-network-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.496,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ON_CANDIDATE2_01/CHECK.json",
+      "sha256": "6ccf440842aad68faefaea669cba3451db4fed6658cd61c65c7952726acf6b27",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-network-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.342,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE1_01/CHECK.json",
+      "sha256": "840898308f659487e9e815eaf3c286a4ad77549eab3aac327e719e7edcf4770f",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-boundary-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 3.566,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE1_02/CHECK.json",
+      "sha256": "5320a1fb61888c4a03b5f6adcbea3031f485bc27722d3ccb3002c52c4c6175eb",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-boundary-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 3.218,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE2_01/CHECK.json",
+      "sha256": "70411d05c21821ab9a55e94fb6c71bcc39498907b4da56be801388b23c5cd5fd",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-boundary-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 3.067,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_CHILD_01/CHECK.json",
+      "sha256": "431386ceec837a25a142b1237607eb6ee405ac4b504f92688b2dd960f17745da",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-process-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 9.897,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_PRIMARY_01/CHECK.json",
+      "sha256": "4634c93b4e46d01b399c9a6371b574fdeaa114a45ed94359b0d2cbb431bec475",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-process-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 3.243,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_NORMAL_01/CHECK.json",
+      "sha256": "9131478e87c565ade524f45c27e274502ac37516d8ff93fd3476664e5cdb8d74",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-process-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 3.023,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_TIMEOUT_PRIMARY_01/CHECK.json",
+      "sha256": "b13d8a68a410ee7e92c7250da626ddb63db742624ca9b44c94a47fb667522b63",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-process-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 10.024,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_CHILD_CANDIDATE2_03/CHECK.json",
+      "sha256": "0d0868db4f087b6dc6031c83ab3844fcac84b8eeade9c4903bef6be391a227f3",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts",
+        "tests/exact-process-runtime-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.68,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_01/CHECK.json",
+      "sha256": "2732e418ad6a44620008f37964faa98e6124b54393cdf673e71b8b924b932aeb",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts",
+        "tests/exact-process-runtime-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 10.281,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_02/CHECK.json",
+      "sha256": "8648e9ba834ae40f7cf6080ee7ffc9bb57e66b6d653e507d43fa9cb4bf1fe920",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts",
+        "tests/exact-process-runtime-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 10.387,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_03/CHECK.json",
+      "sha256": "9caf6860a69ac42b989d742347bd14e28f3bf607971705c078a002b60a77a967",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts",
+        "tests/exact-process-runtime-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.552,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_NORMAL_CANDIDATE2_01/CHECK.json",
+      "sha256": "4427b725941aef272fa5ced827074498f53a741e477aabd5cbb3768f20d41f0f",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts",
+        "tests/exact-process-runtime-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.489,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_NORMAL_CANDIDATE2_03/CHECK.json",
+      "sha256": "4d7c9e76788dbd309b928c3f286dbb7679baa9062d8e707a088e3963a172387f",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts",
+        "tests/exact-process-runtime-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.471,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_TIMEOUT_PRIMARY_CANDIDATE2_03/CHECK.json",
+      "sha256": "7b0941d809f6f0116e38936e38469cb687b491fa60178fb2397810b6ae2e5327",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts",
+        "tests/exact-process-runtime-conformance.test.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 8.344,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_CANDIDATE1_STAR_01/CHECK.json",
+      "sha256": "94ea8845fd45483c6e29a7b32c8eb8406d0728c1169920edd135ebe5b5d977c7",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-protected-path-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 3.162,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_01/CHECK.json",
+      "sha256": "8895d879ad7e4457a050d90ad538be9b34bc80e09926c44e3ed7af3c5acdbf2f",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-protected-path-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 3.035,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_02/CHECK.json",
+      "sha256": "f45e76f78b8366aefb7a47693810336c5a43ce720750ba5f18d9fc7d4aa25401",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-protected-path-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 3.7,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P4_CANDIDATE1_01/CHECK.json",
+      "sha256": "75e19432e47c9d3f58164207520e4f784b3367282bb5980f21bea0f8b15f44b8",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-role-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 3.321,
+      "sourceStable": true,
+      "changedInputs": []
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P4_CANDIDATE2_01/CHECK.json",
+      "sha256": "a7d427244584b85408b2125bf9b894175840ec77f1055963898501a116467bd9",
+      "command": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "tests/exact-role-conformance.test.ts"
+      ],
+      "exitCode": 1,
+      "elapsedSeconds": 5.03,
+      "sourceStable": true,
+      "changedInputs": []
+    }
+  ],
+  "registered": {
+    "numPassedTests": 558,
+    "numFailedTests": 0,
+    "numPendingTests": 14,
+    "success": true
+  },
+  "notFinal": true
+}

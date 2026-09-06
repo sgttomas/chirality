@@ -1,0 +1,146 @@
+[
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/apply_patch.rs",
+    "startLine": 397,
+    "endLine": 435,
+    "inputSha256": "78889d430bb1453aeb189bd050aef76f24cea2b974f4e8364c584f631320d61e",
+    "excerpt": "CALLCHAIN_01.source",
+    "excerptSha256": "15d43557c1dc3bbbe342d9fab4b5283807587448b727fcde3255de0311c933c6"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/invocation.rs",
+    "startLine": 201,
+    "endLine": 275,
+    "inputSha256": "ab6ce54396919236a2b68a5dc33f670663c67c12fa8def3b80588933d297047a",
+    "excerpt": "CALLCHAIN_02.source",
+    "excerptSha256": "430ca8115f62a88a16f01760c109e948fbc1c98a0879a5955a01dd883aae8fe4"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/file_update.rs",
+    "startLine": 28,
+    "endLine": 53,
+    "inputSha256": "f954105ba036f1c3748fc2ed605ce9a677d619e56ce25f89bffdcad3377734f9",
+    "excerpt": "CALLCHAIN_03.source",
+    "excerptSha256": "4fedc00c04e5e64acb12ad13285c3adfddbcb282217fb0edf94f26d068f9823d"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/apply_patch.rs",
+    "startLine": 280,
+    "endLine": 327,
+    "inputSha256": "78889d430bb1453aeb189bd050aef76f24cea2b974f4e8364c584f631320d61e",
+    "excerpt": "CALLCHAIN_04.source",
+    "excerptSha256": "d47b6377011f69a77a465cac661caa27e3a759766ee302a031dca94910939d63"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/safety.rs",
+    "startLine": 63,
+    "endLine": 91,
+    "inputSha256": "6341d13d6d1b70ee5617548785257f01bb23e0d8e2d92753e0914380c6043a2b",
+    "excerpt": "CALLCHAIN_05.source",
+    "excerptSha256": "a5a6df654d6ac06d0db993c6e6afb084e8d7f67e2dde6f08273ccf60dfeea8d3"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/safety.rs",
+    "startLine": 145,
+    "endLine": 168,
+    "inputSha256": "6341d13d6d1b70ee5617548785257f01bb23e0d8e2d92753e0914380c6043a2b",
+    "excerpt": "CALLCHAIN_06.source",
+    "excerptSha256": "29ce3d6b5f0022f19c999ea2ec5c44f8bd367db74b9426d0747e975f97d14d98"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/runtimes/apply_patch.rs",
+    "startLine": 199,
+    "endLine": 226,
+    "inputSha256": "becc8bdafb970443afb5c2aaab74fa0df2cfdffdf257dcb5593c89a1119d6659",
+    "excerpt": "CALLCHAIN_07.source",
+    "excerptSha256": "aefa3403569bfb66ed5d1af5b4c51bfc5931bb266d4b51887b14ec19e97f0c12"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/lib.rs",
+    "startLine": 692,
+    "endLine": 706,
+    "inputSha256": "5e6f736f3a4b66c1d651baa9b85ce6e6921de170faf901e6c2f78ad9a383eaf9",
+    "excerpt": "CALLCHAIN_08.source",
+    "excerptSha256": "d9ec0fedda8ab4767e5039761347b38a329399c491a096ec223e8304a1192289"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/local_file_system.rs",
+    "startLine": 82,
+    "endLine": 98,
+    "inputSha256": "1c5d8bbf51529c0cc0f2c73f22b78189910ee7e31d42bbf4230861add1e688a0",
+    "excerpt": "CALLCHAIN_09.source",
+    "excerptSha256": "765b157028efdf3f868491d00e4f70dc7d0f3311e2c98e6922e6dc42bffd0489"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/sandboxed_file_system.rs",
+    "startLine": 100,
+    "endLine": 151,
+    "inputSha256": "0282cecf59842650b78a767d7156e5e112008ab1acbcaa5fc5ecc31654108e7a",
+    "excerpt": "CALLCHAIN_10.source",
+    "excerptSha256": "a83210ff5c5bb0e5dcec94222c32945096af7828b48a950e37782699b8465031"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/fs_sandbox.rs",
+    "startLine": 86,
+    "endLine": 114,
+    "inputSha256": "6bd757ade4b4df954c30478fdeecf4de955ee94bc959d88e0b546b8a28228b4e",
+    "excerpt": "CALLCHAIN_11.source",
+    "excerptSha256": "51718392ba7cd4eaad12c800017accd1473af6a9f48cac51ff6717472c7ff2ad"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/fs_sandbox.rs",
+    "startLine": 207,
+    "endLine": 236,
+    "inputSha256": "6bd757ade4b4df954c30478fdeecf4de955ee94bc959d88e0b546b8a28228b4e",
+    "excerpt": "CALLCHAIN_12.source",
+    "excerptSha256": "de7b2c60caa96027398349ee0b4e00f37aebd5811d9b07992f3d8effbea9f269"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/permissions.rs",
+    "startLine": 845,
+    "endLine": 858,
+    "inputSha256": "45347859f8d0f3b1ecb0ce40271c6447893f42f2a805191a3ee5959d47a82065",
+    "excerpt": "CALLCHAIN_13.source",
+    "excerptSha256": "11826fee72a51d4562a9770e8fd987aa677b4693d7060119b048d5c20d683ea9"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/sandboxing/src/seatbelt.rs",
+    "startLine": 897,
+    "endLine": 913,
+    "inputSha256": "fe56fa7fbf4000e7f181373b94fd492e9ca0058cd7b62a9b192c84ae3d3c31b3",
+    "excerpt": "CALLCHAIN_14.source",
+    "excerptSha256": "55bc04c66ba40ef87e148eacf20c1ee6200ca730dcbf09aa5567312d090c175b"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/sandboxing/src/restricted_read_only_platform_defaults.sbpl",
+    "startLine": 92,
+    "endLine": 101,
+    "inputSha256": "092b34f8104b3a73da42bbcb600ba83f03c6f3eee1c8b39c02bf0939d824db56",
+    "excerpt": "CALLCHAIN_15.source",
+    "excerptSha256": "1c6c52094c3b8c632696f899785de6d1f84409c7b8261b2be7c01b83445d8188"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/local_file_system.rs",
+    "startLine": 596,
+    "endLine": 612,
+    "inputSha256": "1c5d8bbf51529c0cc0f2c73f22b78189910ee7e31d42bbf4230861add1e688a0",
+    "excerpt": "CALLCHAIN_16.source",
+    "excerptSha256": "e955aded7955ed343ec6a92246732f496c6e9b47ab0853b75eef966705798013"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/fs_sandbox.rs",
+    "startLine": 422,
+    "endLine": 445,
+    "inputSha256": "6bd757ade4b4df954c30478fdeecf4de955ee94bc959d88e0b546b8a28228b4e",
+    "excerpt": "CALLCHAIN_17.source",
+    "excerptSha256": "c452d222e3908faf111f6976ba9f91f3e81f6d859b977d6e7914192f9da960bc"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/lib.rs",
+    "startLine": 433,
+    "endLine": 450,
+    "inputSha256": "5e6f736f3a4b66c1d651baa9b85ce6e6921de170faf901e6c2f78ad9a383eaf9",
+    "excerpt": "CALLCHAIN_18.source",
+    "excerptSha256": "fb9deb9808f44e3bfde8a43d4e2ba60ac578fc793fa0d78e73ad7fb2a5d50bf5"
+  }
+]

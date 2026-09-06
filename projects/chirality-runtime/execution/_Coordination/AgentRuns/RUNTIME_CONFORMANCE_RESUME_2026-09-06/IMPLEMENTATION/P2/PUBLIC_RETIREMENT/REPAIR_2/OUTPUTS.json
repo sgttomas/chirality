@@ -1,0 +1,9 @@
+{
+  "AMENDMENT.json": "8c961fef8052e13e8d94fe1b0bbd5e2ab2ffbe866c2dedf9592d4e6715db690a",
+  "CHECKS.log": "3e814663f4c76cd4fc97fb5711cbafbd9c7654b6716d7488e5aeccf2152c7e3f",
+  "INPUTS.json": "d897ef7802884096b98ee6433ced64920714358c567544b90db5e66fedc00bc1",
+  "REPORT.md": "307d647c405da49d88cc9c2709dd2c428814957f13a78e7e5a66e67995572dbc",
+  "SOURCE_FREEZE.json": "234c197ac16e5c4e96663c934a782437e294d554aa76a431f248e6a98ef3d95d",
+  "exact-process-runtime-conformance.postimage.source": "a7b6cb99a3f19ff6a97601b4a935065d0ea0e14be966da4a588f437fb5f07f97",
+  "exact-process-runtime-conformance.preimage.source": "fcc54e168130b4d3b1d5e87012ee4b4647754ebf6b491f02aeaf261437e17815"
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "previous": "ORCHESTRATION_PLAN.json",
+  "change": "Add actual /root/publication_manager CHANGE for read-only publication readiness alongside implementation; Git publication remains dependent on validated manager return and final parent checks.",
+  "authority": "Standing owner implementation direction and ordinary owning-workflow publication handoff; no merge authorization",
+  "ownership": "CHANGE writes only run CHANGE/** and /private/tmp/runtime-packaging-20260906/change/**; no overlapping source writes",
+  "graph": "implementation -> independent review -> manager fan-in -> parent aggregate/continuation closeout -> CHANGE scoped commit/push/PR on explicit parent validation release. CHANGE may prepare title/body and readiness before final fan-in.",
+  "roleEnforcement": "instruction-asserted",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable"
+}

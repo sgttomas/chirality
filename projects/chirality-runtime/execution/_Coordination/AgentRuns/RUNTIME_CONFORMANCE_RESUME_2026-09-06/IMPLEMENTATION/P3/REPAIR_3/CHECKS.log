@@ -1,0 +1,6 @@
+Working directory: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+Command: ./node_modules/.bin/vitest run tests/exact-protected-path-conformance.test.ts
+Vitest3.2.7; 6 pure passed,4 actual skipped;269ms;exit0. Start13:10:52 local2026-09-06.
+Command: ./node_modules/.bin/tsc --noEmit --skipLibCheck --strict --noUncheckedIndexedAccess --module nodenext --target es2023 --moduleResolution nodenext tests/exact-protected-path-conformance.test.ts
+Exit0; no diagnostics.
+No supplier/account/provider execution or source build.

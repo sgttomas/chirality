@@ -1,0 +1,29 @@
+
+fn add_helper_runtime_permissions(
+    file_system_policy: &mut FileSystemSandboxPolicy,
+    helper_read_roots: &[AbsolutePathBuf],
+    cwd: &std::path::Path,
+) {
+    if !file_system_policy.has_full_disk_read_access() {
+        let minimal_read_entry = FileSystemSandboxEntry::new(
+            FileSystemPath::Special {
+                value: FileSystemSpecialPath::Minimal,
+            },
+            FileSystemAccessMode::Read,
+        );
+        if !file_system_policy.entries.contains(&minimal_read_entry) {
+            file_system_policy.entries.push(minimal_read_entry);
+        }
+    }
+
+    for helper_read_root in helper_read_roots {
+        if file_system_policy.can_read_path_with_cwd(helper_read_root.as_path(), cwd) {
+            continue;
+        }
+
+        file_system_policy.entries.push(FileSystemSandboxEntry::new(
+            helper_read_root.clone().into(),
+            FileSystemAccessMode::Read,
+        ));
+    }
+}

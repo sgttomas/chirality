@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-network-runtime-conformance.test.ts (11 tests | 1 skipped) 106ms
+ ✓ tests/worker-retirement.test.ts (19 tests) 1349ms
+   ✓ keeps terminal records readable across concurrent thread association in 30 interleavings  800ms
+
+ Test Files  2 passed (2)
+      Tests  29 passed | 1 skipped (30)
+   Start at  13:56:37
+   Duration  1.61s (transform 186ms, setup 0ms, collect 366ms, tests 1.45s, environment 0ms, prepare 62ms)

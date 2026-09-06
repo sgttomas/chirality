@@ -1,0 +1,16 @@
+{
+  "lifecyclePure": {
+    "pass": 10,
+    "exit": 0
+  },
+  "publicPure": {
+    "pass": 7,
+    "skip": 1,
+    "exit": 0
+  },
+  "sourceAliasNoEmit": 0,
+  "helperStrictNoEmit": 0,
+  "reviewFindings": "31b759b18ab431a3ba77a8a09b5a9f0d90b1cf1f23faa1811c52d53f8a6887db",
+  "reviewSeal": "dc79267ec6d0a6ed800034f0a76115f07e7d972c82089f4b4723e862d735782a",
+  "followon": "sticky active stdin failure; absolute deadline; terminal timeout pipe disposal"
+}

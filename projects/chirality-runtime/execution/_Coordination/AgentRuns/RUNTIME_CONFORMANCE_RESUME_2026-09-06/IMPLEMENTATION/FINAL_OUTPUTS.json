@@ -1,0 +1,47 @@
+{
+  "derivative": true,
+  "sealType": "new final snapshot current-byte identities",
+  "historicalArtifacts": "Resolve original identities via publication lossless archive; not literal normalized presentation hashes",
+  "files": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/CONFORMANCE_SOURCE_FREEZE_FINAL.json": {
+      "sha256": "563eee1029a2fefaa130674ad9927496fa63ddc496178daf05fe383a1b6284a9",
+      "bytes": 3380
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/MANAGER_FINAL_FAN_IN.json": {
+      "sha256": "46b859eb016f9b4955209c4d233a33e8744aeabb5bbc101a822c0a50b4246e98",
+      "bytes": 13686
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/MANAGER_FINAL_ACTUAL_CHECK.json": {
+      "sha256": "9d7dfbeef52d818a5737bfc4f48330dd3237ec6f9ed79a14c64eb1f03f7f1c1d",
+      "bytes": 2321
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_FINAL.json": {
+      "sha256": "08b488ff11aaf28330c26655e598e160e53ea17f83cfc73287dd1c07762f3d72",
+      "bytes": 38987
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/SESSION_HANDOFF_FINAL.md": {
+      "sha256": "52bc8fcc852d520aa14c74a05d0a525c30b9acb95a9e07c8b28fddae1718bfda",
+      "bytes": 9623
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/MANAGER_RETURN_FINAL.json": {
+      "sha256": "4a2c1bc02b55efad20f83b878053f4ef1e7eb7959635a454a6a7b3a87e484504",
+      "bytes": 1979
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RUNTIME_EVENTS.jsonl": {
+      "sha256": "07d9fb4979a893377db06bf23b376c44726ea023a2d304d0532245f8d337166c",
+      "bytes": 32714
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RUNTIME_TELEMETRY_FINAL.json": {
+      "sha256": "721647adec11c22fb28d691fbaab439a9debe4d44c21c3139ca6c2a1195991f0",
+      "bytes": 8907
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/TELEMETRY_CALIBRATION_FINAL.md": {
+      "sha256": "832d05b62542561765289406320258f32a38de508d39f0e96db6996b74982899",
+      "bytes": 1338
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/TELEMETRY_PATH_CORRECTION.json": {
+      "sha256": "6648a7b14777d900ade9899c5c679603cf738cab75cc9e2cbe78edf35a103f32",
+      "bytes": 2162
+    }
+  }
+}

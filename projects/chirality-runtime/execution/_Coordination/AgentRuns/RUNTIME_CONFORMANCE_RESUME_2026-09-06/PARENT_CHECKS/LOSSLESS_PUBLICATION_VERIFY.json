@@ -1,0 +1,18 @@
+{
+  "parentIndependentVerification": "All archived originals strict-decode and match lengths/hashes; current exact presentations match recorded hashes",
+  "status": "PASS",
+  "checks": [
+    {
+      "archive": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/LOSSLESS_PRESENTATION_V1/ORIGINALS.json",
+      "sha256": "fe07f43bee8e641eab4506d22b2b95160f692829c5bf159336d9d28f63c8a338",
+      "records": 60,
+      "failures": []
+    },
+    {
+      "archive": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/LOSSLESS_PRESENTATION_V2/ORIGINALS.json",
+      "sha256": "42bba244714bc635d270fbd4583a74fbe577bb69dea2580ddaedd9ce3f042494",
+      "records": 4,
+      "failures": []
+    }
+  ]
+}

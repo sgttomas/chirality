@@ -1,0 +1,18 @@
+[
+  {
+    "path": "packages/daemon/src/codex-transport-lifecycle.ts",
+    "absent": true
+  },
+  {
+    "path": "tests/codex-transport-lifecycle.test.ts",
+    "absent": true
+  },
+  {
+    "path": "packages/daemon/src/codex-supervisor.ts",
+    "sha256": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f"
+  },
+  {
+    "path": "tests/exact-process-runtime-conformance.test.ts",
+    "sha256": "c47e2efdfecff6a8b208e9715212a27f427b0f638c5291df136adc436467f272"
+  }
+]

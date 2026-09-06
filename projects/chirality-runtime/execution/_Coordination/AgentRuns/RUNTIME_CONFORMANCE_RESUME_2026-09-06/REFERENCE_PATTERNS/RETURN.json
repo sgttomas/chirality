@@ -1,0 +1,31 @@
+{
+  "status": "completed-read-only",
+  "model": "OpenAI GPT-6; exact serving ID unavailable",
+  "roleEnforcement": "instruction-asserted",
+  "productionEdits": false,
+  "executedFetchedCode": false,
+  "testsExecuted": false,
+  "requiresOwnerDiscussion": "Any significant native identity/schema, lifecycle refactor, migration or overhaul; research is not an implementation grant",
+  "outputs": [
+    {
+      "path": "PARENT_BRIEF.json",
+      "sha256": "acffedd6d2051075ce00fe2928c9c4c2f305e08e4b60f7409277dd9f3cb45768",
+      "bytes": 2337
+    },
+    {
+      "path": "PARENT_BRIEF.sha256",
+      "sha256": "ad76f5a321c5caec3b84bb3bc01bf780de201c50e4a484cc97254815f581a30e",
+      "bytes": 84
+    },
+    {
+      "path": "SOURCE_MANIFEST.json",
+      "sha256": "30083e3ab0b81ed95a73460ac8f4f292468c67939fa61317c499a7e42b1f9187",
+      "bytes": 9431
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "881abcb6c0a9bb7ed0b58a015b9fa764d744bb51440f8fbc897668335c18ce87",
+      "bytes": 10338
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "baec50a52472f2691df400098cd5b531434628da9358617ab8ba32b22cdf9447",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/NETWORK_REPAIR_1/REPORT.md": "054dd03126cf88fccec435e16e1a6fccb271697cc4c65feea055dc134d6109fb",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/NETWORK_REPAIR_1/TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/NETWORK_REPAIR_1/exact-network-runtime-conformance.source": "6129245278caf1eb4094db6fd640a7fa9f6c0ccf6f3ff2940f6a79cf8402fd6f",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/NETWORK_REPAIR_1/CHECK.log": "62792c0a63f4ffc94c3d3a206d09369321a06726ca080da860bba93f68e5d1ec",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/NETWORK_REPAIR_1/INPUT_HASHES.json": "ba7fe1aa50b06c638e97c758c3fab405ab7b69521d788c355838b3eded327021"
+}

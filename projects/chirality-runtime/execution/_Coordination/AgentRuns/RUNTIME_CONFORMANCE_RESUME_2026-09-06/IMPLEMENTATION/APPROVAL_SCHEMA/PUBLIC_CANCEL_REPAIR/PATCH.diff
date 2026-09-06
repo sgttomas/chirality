@@ -1,0 +1,132 @@
+--- before/exact-network-runtime-conformance.test.ts
++++ after/exact-network-runtime-conformance.test.ts
+@@ -1,8 +1,9 @@
+ import { spawn } from 'node:child_process';
++import { constants } from 'node:fs';
+ import { createHash } from 'node:crypto';
+ import { createServer } from 'node:http';
+ import { gunzipSync } from 'node:zlib';
+-import { chmod, copyFile, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
++import { chmod, copyFile, lstat, mkdir, mkdtemp, open, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
+ import { join } from 'node:path';
+ import { expect, it } from 'vitest';
+ import { createControlledSupplyVerifierForTests, verifyExactSupply } from '../packages/core/src/exact-supply.js';
+@@ -118,6 +119,91 @@
+   const success = { exitCode: 0 }; expect(await observeDiagnosticFailure(async () => success, () => { throw new Error('must not run'); })()).toBe(success);
+   expect(diagnosticFailure(new Error('Bearer fixture-secret-not-for-output'))).toEqual({ classification: 'UNCLASSIFIED', code: 'UNCLASSIFIED', reason: 'UNCLASSIFIED' });
+   expect(diagnosticFailure(new Error('toString')).classification).toBe('UNCLASSIFIED');
++});
++
++// Read-only host audit of isolated fixture evidence; never an approval API or liveness override.
++const auditDigest = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
++const auditUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
++async function readCancellationAuditRecord(directory: string, basename: string): Promise<unknown | undefined> {
++  if (/[^A-Za-z0-9._-]/.test(basename) || !/^(?:[0-9a-f-]{36}\.(?:request|decision|resolution)|[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.(?:prepared|terminal|thread))\.json$/.test(basename)) throw new Error('Unsafe cancellation audit basename');
++  if (await realpath(directory) !== directory) throw new Error('Noncanonical cancellation audit directory');
++  const parent = await lstat(directory);
++  if (!parent.isDirectory() || parent.isSymbolicLink() || (parent.mode & 0o077) !== 0 || (process.getuid && parent.uid !== process.getuid())) throw new Error('Unsafe cancellation audit directory');
++  let handle;
++  try { handle = await open(join(directory, basename), constants.O_RDONLY | constants.O_NOFOLLOW); }
++  catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return undefined; throw error; }
++  try {
++    const before = await handle.stat(), bound = 65536;
++    if (!before.isFile() || (before.mode & 0o077) !== 0 || (process.getuid && before.uid !== process.getuid()) || before.size > bound) throw new Error('Unsafe cancellation audit record');
++    const bytes = Buffer.alloc(bound + 1); let length = 0;
++    while (length <= bound) { const read = await handle.read(bytes, length, bytes.length - length, null); if (read.bytesRead === 0) break; length += read.bytesRead; }
++    const after = await handle.stat();
++    if (length > bound || length !== before.size || before.size !== after.size || before.mtimeMs !== after.mtimeMs || before.ctimeMs !== after.ctimeMs || before.ino !== after.ino || before.dev !== after.dev) throw new Error('Cancellation audit record changed or exceeded bound');
++    return JSON.parse(bytes.subarray(0, length).toString('utf8'));
++  } finally { await handle.close(); }
++}
++async function auditInterruptedApproval(broker: string, expected: Awaited<ReturnType<ApprovalStore['read']>>['request']) {
++  const requestId = expected.requestId, turnId = expected.binding.turnId;
++  if (!auditUuid.test(requestId) || /[^A-Za-z0-9._-]/.test(turnId) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(turnId)) throw new Error('Unsafe cancellation audit identity');
++  const approvalDirectory = join(broker, 'approvals'), retirementDirectory = join(broker, 'retirement');
++  const request = diagnosticRecord(await readCancellationAuditRecord(approvalDirectory, `${requestId}.request.json`));
++  const decision = await readCancellationAuditRecord(approvalDirectory, `${requestId}.decision.json`);
++  const rawResolution = await readCancellationAuditRecord(approvalDirectory, `${requestId}.resolution.json`), resolution = diagnosticRecord(rawResolution);
++  const prepared = diagnosticRecord(await readCancellationAuditRecord(retirementDirectory, `${turnId}.prepared.json`));
++  const committed = diagnosticRecord(await readCancellationAuditRecord(retirementDirectory, `${turnId}.terminal.json`));
++  const terminal = diagnosticRecord(committed?.terminal), identity = diagnosticRecord(prepared?.identity), binding = diagnosticRecord(request?.binding);
++  const continuityKeys = ['canonicalRoot', 'cwd', 'accountId', 'accountEpoch', 'policyDigest'] as const;
++  const fullBindingKeys = [...continuityKeys, 'sessionId', 'turnId', 'workerGeneration', 'scopeDigest'] as const;
++  const requestDigestMatches = request !== undefined && auditDigest(request) === auditDigest(expected);
++  const fullBindingMatches = binding !== undefined && fullBindingKeys.every(key => binding[key] === expected.binding[key]);
++  const attributedRequest = requestDigestMatches && fullBindingMatches && request?.requestedBy === 'trusted-codex-supervisor';
++  const providerResolutionPresent = rawResolution !== undefined;
++  const providerResolutionValid = !providerResolutionPresent || (resolution !== undefined && Object.keys(resolution).sort().join(',') === 'reason,requestDigest,requestId,resolvedAt,resolvedBy' && resolution.requestId === requestId && resolution.requestDigest === auditDigest(expected) && resolution.reason === 'provider-resolved' && resolution.resolvedBy === 'trusted-codex-supervisor' && typeof resolution.resolvedAt === 'string' && Number.isFinite(Date.parse(resolution.resolvedAt)));
++  const preparedMatches = prepared?.turnId === turnId && prepared.state === 'prepared' && identity !== undefined && continuityKeys.every(key => identity[key] === expected.binding[key]);
++  const interruptedRetirement = preparedMatches && committed?.basisDigest === auditDigest(prepared) && terminal?.turnId === turnId && terminal.workerId === turnId && terminal.generation === expected.binding.workerGeneration && terminal.outcome === 'interrupted' && typeof terminal.recordedAt === 'string' && Number.isFinite(Date.parse(terminal.recordedAt));
++  let committedThreadValid = true;
++  if (committed?.threadDigest !== undefined) {
++    const thread = diagnosticRecord(await readCancellationAuditRecord(retirementDirectory, `${turnId}.thread.json`));
++    committedThreadValid = thread !== undefined && Object.keys(thread).sort().join(',') === 'basisDigest,threadId' && thread.basisDigest === auditDigest(prepared) && typeof thread.threadId === 'string' && /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(thread.threadId) && committed.threadDigest === auditDigest(thread) && (prepared?.threadId === undefined || prepared.threadId === thread.threadId);
++  }
++  return { attributedRequest, requestDigestMatches, fullBindingMatches, decisionAbsent: decision === undefined, providerResolutionPresent, providerResolutionValid, interruptedRetirement, committedThreadValid,
++    complete: attributedRequest && decision === undefined && providerResolutionValid && interruptedRetirement && committedThreadValid };
++}
++it('audits host interruption evidence without inventing provider resolution or a decision', async () => {
++  const base = await realpath(await mkdtemp(join(await realpath('/tmp'), 'cancel-audit-'))), broker = join(base, 'broker');
++  const approvalDirectory = join(broker, 'approvals'), retirementDirectory = join(broker, 'retirement');
++  await mkdir(approvalDirectory, { recursive: true, mode: 0o700 }); await mkdir(retirementDirectory, { mode: 0o700 });
++  const requestId = '00000000-0000-4000-8000-000000000001', turnId = 'network-turn';
++  const binding = { canonicalRoot: join(base, 'project'), cwd: join(base, 'project'), accountId: 'fixture', accountEpoch: 1, policyDigest: 'fixture-policy', sessionId: turnId, turnId, workerGeneration: 'fixture-generation' };
++  const request = { requestId, binding, networkApprovalContext: { host: 'example.com', protocol: 'http' }, requestedBy: 'trusted-codex-supervisor', requestedAt: '2026-09-06T00:00:00Z', consentDigest: 'fixture-consent', caveat: 'fixture' };
++  const prepared = { turnId, identity: Object.fromEntries(['canonicalRoot', 'cwd', 'accountId', 'accountEpoch', 'policyDigest'].map(key => [key, binding[key as keyof typeof binding]])), state: 'prepared' };
++  const committed = { basisDigest: auditDigest(prepared), terminal: { turnId, workerId: turnId, generation: binding.workerGeneration, outcome: 'interrupted', recordedAt: '2026-09-06T00:00:01Z' } };
++  const save = async (directory: string, name: string, value: unknown) => writeFile(join(directory, name), JSON.stringify(value), { mode: 0o600 });
++  const requestName = `${requestId}.request.json`, decisionName = `${requestId}.decision.json`, resolutionName = `${requestId}.resolution.json`, terminalName = `${turnId}.terminal.json`;
++  try {
++    await save(approvalDirectory, requestName, request); await save(retirementDirectory, `${turnId}.prepared.json`, prepared); await save(retirementDirectory, terminalName, committed);
++    expect(await auditInterruptedApproval(broker, request)).toMatchObject({ complete: true, attributedRequest: true, decisionAbsent: true, providerResolutionPresent: false, interruptedRetirement: true });
++    for (const field of ['canonicalRoot', 'cwd', 'accountId', 'accountEpoch', 'policyDigest', 'sessionId', 'turnId', 'workerGeneration'] as const) {
++      await save(approvalDirectory, requestName, { ...request, binding: { ...binding, [field]: field === 'accountEpoch' ? 2 : 'wrong' } });
++      expect((await auditInterruptedApproval(broker, request)).complete).toBe(false);
++    }
++    await save(approvalDirectory, requestName, request);
++    await save(approvalDirectory, decisionName, { decision: 'allow' }); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false); await rm(join(approvalDirectory, decisionName));
++    for (const change of [{ outcome: 'completed' }, { outcome: 'failed' }, { generation: 'wrong' }, { turnId: 'wrong' }, { workerId: 'wrong' }]) {
++      await save(retirementDirectory, terminalName, { ...committed, terminal: { ...committed.terminal, ...change } }); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false);
++    }
++    await save(retirementDirectory, terminalName, { ...committed, basisDigest: 'wrong' }); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false);
++    await save(retirementDirectory, terminalName, committed);
++    const resolution = { requestId, requestDigest: auditDigest(request), resolvedBy: 'trusted-codex-supervisor', resolvedAt: '2026-09-06T00:00:01Z', reason: 'provider-resolved' };
++    await save(approvalDirectory, resolutionName, resolution); expect(await auditInterruptedApproval(broker, request)).toMatchObject({ complete: true, providerResolutionPresent: true, providerResolutionValid: true });
++    await save(approvalDirectory, resolutionName, { ...resolution, reason: 'host-interrupted' }); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false); await rm(join(approvalDirectory, resolutionName));
++    await rm(join(retirementDirectory, terminalName)); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false); await save(retirementDirectory, terminalName, committed);
++    await rm(join(approvalDirectory, requestName)); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false);
++    await symlink(join(retirementDirectory, terminalName), join(approvalDirectory, requestName)); await expect(auditInterruptedApproval(broker, request)).rejects.toThrow(); await rm(join(approvalDirectory, requestName));
++    await writeFile(join(approvalDirectory, requestName), 'x'.repeat(65537), { mode: 0o600 }); await expect(auditInterruptedApproval(broker, request)).rejects.toThrow('Unsafe cancellation audit record');
++    for (const unsafe of ['../outside', '/outside', requestName + '\n']) await expect(readCancellationAuditRecord(approvalDirectory, unsafe)).rejects.toThrow('Unsafe');
++    await expect(auditInterruptedApproval(broker, { ...request, requestId: '../outside' })).rejects.toThrow('Unsafe');
++  } finally { await rm(base, { recursive: true, force: true }); }
+ });
+
+ const marker = 'OWNED_DESTINATION_REACHED_731A';
+@@ -328,9 +414,15 @@
+         await expect(client.decideDelegatedApproval('network-project', prompt.requestId, compatibility, { turnId: 'network-turn', workerGeneration: 'wrong-generation', decision: 'allow', approvedBy: 'parent-fixture-operator', explicitUserAct: true })).rejects.toMatchObject({ code: 'FORBIDDEN' });
+         result.staleGenerationRejected = true;
+         if (selected === 'ask-cancel') {
++          const pendingRecord = await approvals.read(prompt.requestId, prompt.binding as Parameters<typeof approvals.read>[1]);
++          expect(pendingRecord.decision).toBeUndefined();
+           await client.interruptDelegatedTurn('network-project', 'network-turn', compatibility); result.cancelled = true; result.commandElapsedMs = commandIssuedAt === undefined ? null : Date.now() - commandIssuedAt; result.commandBudgetMs = 10000; result.commandWithinBudget = typeof result.commandElapsedMs === 'number' && result.commandElapsedMs <= 10000;
+-          const stored = await approvals.read(prompt.requestId, prompt.binding as Parameters<typeof approvals.read>[1]);
+-          result.cancellationStored = stored.resolution !== undefined && stored.decision === undefined;
++          await expect(approvals.read(prompt.requestId, prompt.binding as Parameters<typeof approvals.read>[1])).rejects.toMatchObject({ code: 'FORBIDDEN', status: 403 });
++          result.inactiveApprovalReadRejected = true;
++          await terminal; // Audit after the original turn has settled, never from interrupt ACK alone.
++          result.cancellationAudit = await auditInterruptedApproval(broker, pendingRecord.request);
++          result.workerClosedBeforeCancellationAudit = result.processClosed === true;
++          result.cancellationEvidenceComplete = (result.cancellationAudit as Awaited<ReturnType<typeof auditInterruptedApproval>>).complete && result.workerClosedBeforeCancellationAudit === true && result.inactiveApprovalReadRejected === true;
+           break;
+         }
+         const decision = selected === 'ask-allow' ? 'allow' : 'deny';
+@@ -345,7 +437,7 @@
+     result.successfulTerminal = successfulTerminal; result.modelRequests = modelRequests;
+     const wantsAccess = selected === 'on' || selected === 'ask-allow';
+     result.passed = wantsAccess ? successfulTerminal && commandStarted && commandFinished && curlStatus === 0 && (publicTarget ? result.httpStatus === 200 : destinationHits === 1) && commandReturnedMarker : (publicTarget || destinationHits === 0) && !commandReturnedMarker && (selected === 'ask-cancel' ? result.cancelled === true : successfulTerminal && commandStarted && commandFinished && curlStatus !== undefined && curlStatus > 0 && curlStatus <= 255);
+-    if (posture === 'ask-per-destination') result.passed = result.passed === true && approvalCount === 1 && result.staleGenerationRejected === true && (selected === 'ask-cancel' ? result.cancellationStored === true : result.storedAttributionProven === true);
++    if (posture === 'ask-per-destination') result.passed = result.passed === true && approvalCount === 1 && result.staleGenerationRejected === true && (selected === 'ask-cancel' ? result.cancellationEvidenceComplete === true : result.storedAttributionProven === true);
+     if (nativeChild) { result.nativeDescendantNetworkProven = result.passed === true && typeof result.nativeChildId === 'string' && result.commandEmittedFor === 'native-child'; result.passed = result.nativeDescendantNetworkProven; }
+     await verify(binary); await verify(supplied); result.supplyRevalidated = true;
+   } catch (error) { result.failurePhase = phase; result.fixtureFailure = diagnosticFailure(error); const value = error as { code?: unknown; status?: unknown }; result.failureCode = typeof value.code === 'string' && /^[A-Z_]{1,64}$/.test(value.code) ? value.code : 'UNCLASSIFIED'; if (typeof value.status === 'number') result.failureStatus = value.status; }

@@ -1,0 +1,30 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-boundary-conformance.test.ts (3 tests | 1 failed) 3056ms
+   ✓ retains the failed assertion and safe terminal facts without raw error/output 1ms
+   ✓ rejects echoed command markers as primary or native execution evidence 0ms
+   × P1 actual primary and native read/environment boundary 3054ms
+     → See exact bounded read/environment evidence; no aggregate conformance claim: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-boundary-conformance.test.ts > P1 actual primary and native read/environment boundary
+AssertionError: See exact bounded read/environment evidence; no aggregate conformance claim: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-boundary-conformance.test.ts:149:109
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  12:32:59
+   Duration  3.32s (transform 79ms, setup 0ms, collect 112ms, tests 3.06s, environment 0ms, prepare 33ms)

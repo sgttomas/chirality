@@ -1,0 +1,14 @@
+{
+  "status": "ADMITTED",
+  "source_sha256": "70822f93d036f4bc690d313aac067403e7788d43ecc77a2053313fbed11d36fe",
+  "runner_sha256": "35c6ced46429ef8d0b55c1e969ebcfd4f55b11bb0f752cce4e93adb893022a4e",
+  "phases": [
+    "helper-tests",
+    "protected-glob-tests",
+    "candidate3"
+  ],
+  "sequence": "Run focused helper and protected-glob suites first; candidate3 build requires positive nonempty zero-failure test receipts bound to these exact source/runner/logs. Source or runner drift requires fresh independent review/release. No actual canaries.",
+  "authority": "Existing PARENT_BRIEF/owner amendments12/14 Candidate3 bounded preparation",
+  "review_sha256": "40adaf9447a7242331c9ee7bf01e35ad02eb89f864ea24d8322304073e0d7163",
+  "acceptance": "Engineering execution release only, no source/supplier/hold/lifecycle/release acceptance; parent actual alias backcheck remains required"
+}

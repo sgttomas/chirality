@@ -1,0 +1,51 @@
+--- V1/exact-network-runtime-conformance.test.ts
++++ REPAIR_1/exact-network-runtime-conformance.test.ts
+@@ -142,6 +142,16 @@
+     return JSON.parse(bytes.subarray(0, length).toString('utf8'));
+   } finally { await handle.close(); }
+ }
++function verifyInterruptAcknowledgement(value: unknown, turnId: string, generation: string) {
++  const ack = diagnosticRecord(value);
++  if (!ack || Object.keys(ack).sort().join(',') !== 'interrupted,turnId,workerGeneration' || ack.interrupted !== true || ack.turnId !== turnId || ack.workerGeneration !== generation) throw new Error('Uncorrelated interrupt acknowledgement');
++  return { interrupted: true, turnMatched: true, generationMatched: true };
++}
++it('requires the actual interrupt acknowledgement to match this turn and worker generation', () => {
++  const ack = { interrupted: true, turnId: 'network-turn', workerGeneration: 'generation' };
++  expect(verifyInterruptAcknowledgement(ack, 'network-turn', 'generation')).toEqual({ interrupted: true, turnMatched: true, generationMatched: true });
++  for (const value of [null, {}, { ...ack, interrupted: false }, { ...ack, turnId: 'foreign' }, { ...ack, workerGeneration: 'stale' }, { ...ack, extra: true }]) expect(() => verifyInterruptAcknowledgement(value, 'network-turn', 'generation')).toThrow();
++});
+ async function auditInterruptedApproval(broker: string, expected: Awaited<ReturnType<ApprovalStore['read']>>['request']) {
+   const requestId = expected.requestId, turnId = expected.binding.turnId;
+   if (!auditUuid.test(requestId) || /[^A-Za-z0-9._-]/.test(turnId) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(turnId)) throw new Error('Unsafe cancellation audit identity');
+@@ -159,7 +169,7 @@
+   const attributedRequest = requestDigestMatches && fullBindingMatches && request?.requestedBy === 'trusted-codex-supervisor';
+   const providerResolutionPresent = rawResolution !== undefined;
+   const providerResolutionValid = !providerResolutionPresent || (resolution !== undefined && Object.keys(resolution).sort().join(',') === 'reason,requestDigest,requestId,resolvedAt,resolvedBy' && resolution.requestId === requestId && resolution.requestDigest === auditDigest(expected) && resolution.reason === 'provider-resolved' && resolution.resolvedBy === 'trusted-codex-supervisor' && typeof resolution.resolvedAt === 'string' && Number.isFinite(Date.parse(resolution.resolvedAt)));
+-  const preparedMatches = prepared?.turnId === turnId && prepared.state === 'prepared' && identity !== undefined && continuityKeys.every(key => identity[key] === expected.binding[key]);
++  const preparedMatches = prepared?.turnId === turnId && prepared.state === 'prepared' && prepared.terminal === undefined && (prepared.rolePolicyDigest === undefined || (typeof prepared.rolePolicyDigest === 'string' && /^[a-f0-9]{64}$/.test(prepared.rolePolicyDigest))) && (prepared.threadId === undefined || (typeof prepared.threadId === 'string' && /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(prepared.threadId))) && identity !== undefined && continuityKeys.every(key => identity[key] === expected.binding[key]);
+   const interruptedRetirement = preparedMatches && committed?.basisDigest === auditDigest(prepared) && terminal?.turnId === turnId && terminal.workerId === turnId && terminal.generation === expected.binding.workerGeneration && terminal.outcome === 'interrupted' && typeof terminal.recordedAt === 'string' && Number.isFinite(Date.parse(terminal.recordedAt));
+   let committedThreadValid = true;
+   if (committed?.threadDigest !== undefined) {
+@@ -194,6 +204,13 @@
+     }
+     await save(retirementDirectory, terminalName, { ...committed, basisDigest: 'wrong' }); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false);
+     await save(retirementDirectory, terminalName, committed);
++    for (const change of [{ terminal: { outcome: 'failed' } }, { rolePolicyDigest: 'bad' }, { rolePolicyDigest: null }, { threadId: '../foreign' }, { threadId: null }]) {
++      const changedPrepared = { ...prepared, ...change };
++      await save(retirementDirectory, `${turnId}.prepared.json`, changedPrepared);
++      await save(retirementDirectory, terminalName, { ...committed, basisDigest: auditDigest(changedPrepared) });
++      expect((await auditInterruptedApproval(broker, request)).complete).toBe(false);
++    }
++    await save(retirementDirectory, `${turnId}.prepared.json`, prepared); await save(retirementDirectory, terminalName, committed);
+     const resolution = { requestId, requestDigest: auditDigest(request), resolvedBy: 'trusted-codex-supervisor', resolvedAt: '2026-09-06T00:00:01Z', reason: 'provider-resolved' };
+     await save(approvalDirectory, resolutionName, resolution); expect(await auditInterruptedApproval(broker, request)).toMatchObject({ complete: true, providerResolutionPresent: true, providerResolutionValid: true });
+     await save(approvalDirectory, resolutionName, { ...resolution, reason: 'host-interrupted' }); expect((await auditInterruptedApproval(broker, request)).complete).toBe(false); await rm(join(approvalDirectory, resolutionName));
+@@ -416,7 +433,7 @@
+         if (selected === 'ask-cancel') {
+           const pendingRecord = await approvals.read(prompt.requestId, prompt.binding as Parameters<typeof approvals.read>[1]);
+           expect(pendingRecord.decision).toBeUndefined();
+-          await client.interruptDelegatedTurn('network-project', 'network-turn', compatibility); result.cancelled = true; result.commandElapsedMs = commandIssuedAt === undefined ? null : Date.now() - commandIssuedAt; result.commandBudgetMs = 10000; result.commandWithinBudget = typeof result.commandElapsedMs === 'number' && result.commandElapsedMs <= 10000;
++          const interruptAck = await client.interruptDelegatedTurn('network-project', 'network-turn', compatibility); result.interruptAcknowledgement = verifyInterruptAcknowledgement(interruptAck, 'network-turn', prompt.binding.workerGeneration); result.cancelled = true; result.commandElapsedMs = commandIssuedAt === undefined ? null : Date.now() - commandIssuedAt; result.commandBudgetMs = 10000; result.commandWithinBudget = typeof result.commandElapsedMs === 'number' && result.commandElapsedMs <= 10000;
+           await expect(approvals.read(prompt.requestId, prompt.binding as Parameters<typeof approvals.read>[1])).rejects.toMatchObject({ code: 'FORBIDDEN', status: 403 });
+           result.inactiveApprovalReadRejected = true;
+           await terminal; // Audit after the original turn has settled, never from interrupt ACK alone.

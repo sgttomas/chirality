@@ -1,0 +1,18 @@
+{
+  "status": "PROPOSAL_COMPLETE_EXECUTION_NOT_PERFORMED",
+  "recommendation": "lossless original-byte archive plus explicitly normalized presentations; no attributes or validator policy change",
+  "existingPublicationSealSha256": "8fd837c3b83b301ae4eb1391b24221a7bcdc483c7ef5caa48ab7e6ac0dd8192d",
+  "existingSealMismatches": [],
+  "proposalWhitespace": {
+    "exitCode": 0,
+    "stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n",
+    "stderr": ""
+  },
+  "exactTransformSha256": "6f306e4631ddbc75fb4165259cd64f5df0416c5d0e8ca725aaa06d5c484c34d2",
+  "records": 58,
+  "sourceOrHistoricalArtifactWrites": false,
+  "onlyWrites": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/WHITESPACE_PROPOSAL/**",
+  "acceptanceChanged": false,
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable"
+}

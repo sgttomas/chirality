@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-09-06T19:41:53.258140+00:00",
+  "status": "ADMITTED_FOR_MANAGER_RELEASE",
+  "reviewRevision": 4,
+  "pins": {
+    "source_sha256": "30bad4478319c71373b0d943d810dd9e8eaa08501d68fa667fc7b130d791e3b3",
+    "runner_sha256": "a60caab58a4e9056c1e4ea3db8026daf165c16b1ec400cf8369b579ed698da28",
+    "patch_sha256": "58969ef1557a90d9e006abd198c739ddca2ca6d6a3cb09c7cc1e580707aa9b44",
+    "copied_manifest_sha256": "03b0124ff8c2f14183cf2d4f70e576e5b0ae3f20fcaa814c1e9993c42664c397",
+    "original_manifest_sha256": "44c3b14ed8cdac1ea49bca4dff8ac9eec6b6d072f6f0a25df37dc22fd4aad3da",
+    "repaired_manifest_sha256": "b7ebd1cb75f0c054902c2282e68a4c014fbf549f6aeceb0edee673030c0aea53",
+    "phase": "HOLD_FOR_REVIEW",
+    "tests_run": false,
+    "build_run": false,
+    "timestamp": 1788723641.547041,
+    "review_revision": 4,
+    "capture_sha256": "d951dfe66780abc31a934c9c6b2097a07a1d26080ed2c4803b56dbae79aa1bd2"
+  },
+  "checks": {
+    "source_sha256": true,
+    "runner_sha256": true,
+    "capture_sha256": true,
+    "patch_sha256": true,
+    "repaired_manifest_sha256": true
+  },
+  "sourceManifestVerified": 6416,
+  "initialFailureLogUnchanged": true,
+  "initialRunnerUnchanged": true,
+  "review": "numeric root-parameter parsing distinguishes actual write grant from .codex exclusion; positive require-not literal/subpath checks retained; output prints before assertions; production removal unchanged",
+  "runnerCaptureReview": "only attempt2 fresh result paths, new manager release filename and runner identity changed; original frozen/offline4job/network/write/env/fresh-artifact constraints preserved",
+  "execution": "none by reviewer; manager may release attempt2 helper/protected-glob phases, successful reviewed results required before build",
+  "remaining": "final result/artifact/source verification and parent actual alias backcheck"
+}

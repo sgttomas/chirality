@@ -43,6 +43,7 @@ describe.skipIf(process.platform !== 'darwin')('actual macOS Codex containment',
       expect(network.status).not.toBe(0); expect(network.stderr).toMatch(/permitted|permission/i);
       await expect(prepared.launchArguments('/bin/sh')).rejects.toThrow('within');
       expect(prepared.config.allow_login_shell).toBe(false);
+      expect(prepared.config.features.shell_snapshot).toBe(false);
       expect(prepared.commandNetworkBoundary).toBe('outer-sandbox-denied');
       expect(prepared.environment).not.toHaveProperty('SSH_AUTH_SOCK');
       await prepared.cleanup();
@@ -98,7 +99,11 @@ describe.skipIf(process.platform !== 'darwin')('native policy compiler only', ()
       expect(enabled.expectedPermissions.network).toMatchObject({ domains: { '*': 'allow' }, allow_upstream_proxy: false, proxy_url: 'http://127.0.0.1:0' });
       const ask = await prepareCodexNativePolicy({ ...options, commandNetworkPosture: 'ask-per-destination' });
       expect(ask.approvalPolicy).toBe('on-request');
-      for (const policy of [first, enabled, ask]) expect(policy.configToml).toContain('approvals_reviewer="user"');
+      for (const policy of [first, enabled, ask]) {
+        expect(policy.configToml).toContain('approvals_reviewer="user"');
+        expect(policy.configOverrides).toContain('features.shell_snapshot=false');
+        expect(policy.args).toContain('features.shell_snapshot=false');
+      }
       expect(ask.configToml).toContain('features.network_proxy=true');
       expect(enabled.configToml).toContain('features.network_proxy=true');
       expect(first.configToml).toContain('features.network_proxy=false');

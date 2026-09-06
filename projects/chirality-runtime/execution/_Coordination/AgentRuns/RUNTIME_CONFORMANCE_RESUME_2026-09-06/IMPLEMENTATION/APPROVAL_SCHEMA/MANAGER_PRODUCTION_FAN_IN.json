@@ -1,0 +1,164 @@
+{
+  "derivative": true,
+  "verdict": "bounded actor/session source admission; registered combined build and actual replay pending",
+  "manifests": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/OUTPUT_HASHES.json",
+      "sha256": "8f1f89b068e7b9fb6ed90cf6db93cdd68b97856d68d8dda4139f68ac734876d1",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/CONTROLLED_TESTS.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/CONTROLLED_TESTS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/PATCH.diff",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/BRIEF.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/SOURCE_BACKCHECK.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/RETURN.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/codex-session.test.ts.before",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/codex-session.ts.before",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/GRAMMAR_AND_REGRESSION_PLAN.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/NOEMIT.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/NOEMIT.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/BRIEF.sha256",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/FREEZE.json",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/OUTPUTS.json",
+      "sha256": "f2bda815a8553cd37251bd0d1c160566e832204d894a84fd0ce2ed901a432938",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/ADVERSARIAL_FINAL.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/ADVERSARIAL_PRELIMINARY.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/ADVERSARIAL_PRELIMINARY.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/AUTHOR_FINAL_INPUTS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/BRIEF.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/BRIEF.sha256",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/CONTROLLED_FINAL.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/INPUT_BASELINE.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/MANAGER_APPROVAL_FINAL.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/MANAGER_APPROVAL_FINAL.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/REGEX_HYPOTHESIS_CHECK.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/REPORT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/RETURN.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/REVIEWED_ACTOR.diff",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/SOURCE_AFTER_FINAL.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/SOURCE_AT_SEAL.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/SOURCE_BEFORE_FINAL.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/STRICT_NOEMIT_FINAL.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/VALIDATION_FINAL.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/independent.case.ts",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/tsconfig.check.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/vitest.independent.config.ts",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Ask-deny unsupported actual choices; cancel not deny",
+    "No public/native actual approval conformance",
+    "Diagnostic SOCKS shape labels need calibration before SOCKS profiles; HTTP unaffected",
+    "Supervisor generation changing separately; not combined source admission"
+  ]
+}

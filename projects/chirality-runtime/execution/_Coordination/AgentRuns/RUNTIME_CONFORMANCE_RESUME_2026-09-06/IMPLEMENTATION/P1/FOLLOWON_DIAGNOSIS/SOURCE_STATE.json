@@ -1,0 +1,11 @@
+{
+  "supplierHead": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "supplierStatus": [
+    " M codex-rs/Cargo.lock",
+    " M codex-rs/core/src/session/session.rs",
+    " M codex-rs/core/src/tools/network_approval_tests.rs",
+    " M codex-rs/network-proxy/src/network_policy.rs",
+    " M codex-rs/sandboxing/src/seatbelt_base_policy.sbpl"
+  ],
+  "sourceBinaryCalibration": "Retained source is current Candidate2 preparation; referenced snapshot/shell logic is unchanged relative to source HEAD. session.rs local diff affects later network initialization only. Candidate1 artifact manifest matches actual tested hash/size. Source analysis is not binary-instrumented provenance."
+}

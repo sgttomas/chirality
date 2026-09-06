@@ -1,0 +1,7 @@
+{
+  "projects/chirality-runtime/tests/exact-boundary-conformance.test.ts": "ebfe559bb0570a3a90efb6001dbf088ae37591870e4ef9783a160ad9933c37c7",
+  "priorEvidence": {
+    "path": "/private/tmp/runtime-execution-20260906/patched-boundary-1/EXACT_BOUNDARY_P1.json",
+    "sha256": "da89c974e248b8332ae9c43191cb21f9aeb0e8f486281925e95638b847cda2c5"
+  }
+}

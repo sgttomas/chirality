@@ -1,0 +1,8 @@
+{
+  "tests/exact-network-conformance.test.ts": "4fddab001e32c6a375914efbd583b9cdd0ceaee81606f6b7fe5dd61b31b30357",
+  "tests/exact-network-runtime-conformance.test.ts": "d137b11365e2822f6254a616af363fac896d5fb5899ebd89852e937710fe853e",
+  "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+  "packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+  "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+  "packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc"
+}

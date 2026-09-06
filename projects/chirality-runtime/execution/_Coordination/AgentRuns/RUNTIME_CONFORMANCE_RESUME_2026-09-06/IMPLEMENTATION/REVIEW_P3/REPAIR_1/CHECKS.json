@@ -1,0 +1,28 @@
+{
+  "commands": [
+    "CHIRALITY_RUN_EXACT_PROTECTED=0 ./node_modules/.bin/vitest run tests/exact-protected-path-conformance.test.ts",
+    "./node_modules/.bin/tsc --noEmit --skipLibCheck --strict --noUncheckedIndexedAccess --module nodenext --target es2023 --moduleResolution nodenext tests/exact-protected-path-conformance.test.ts"
+  ],
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "61a1a6",
+        "wall_time_seconds": 0.407001792,
+        "exit_code": 0,
+        "original_token_count": 89,
+        "output": "\n RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime\n\n ✓ tests/exact-protected-path-conformance.test.ts (6 tests | 4 skipped) 2ms\n\n Test Files  1 passed (1)\n      Tests  2 passed | 4 skipped (6)\n   Start at  12:46:01\n   Duration  309ms (transform 96ms, setup 0ms, collect 136ms, tests 2ms, environment 0ms, prepare 38ms)\n\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "499235",
+        "wall_time_seconds": 0.428671792,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ]
+}

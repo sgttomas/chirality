@@ -1,0 +1,15 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/manager-approval-integration.test.ts (4 tests) 1256ms
+   ✓ routes an actual manager prompt through approval-only public controls for allow  319ms
+   ✓ routes an actual manager prompt through approval-only public controls for acceptForSession  345ms
+   ✓ does not carry cancelled or changed-consent manager approval authority  338ms
+ ✓ tests/approval-store.test.ts (21 tests) 1711ms
+   ✓ asks for exact attributed approval, preserving durable session choice without auto-granting another request  362ms
+ ✓ tests/codex-session.test.ts (56 tests) 2823ms
+
+ Test Files  3 passed (3)
+      Tests  81 passed (81)
+   Start at  13:24:11
+   Duration  3.05s (transform 200ms, setup 0ms, collect 400ms, tests 5.79s, environment 0ms, prepare 76ms)

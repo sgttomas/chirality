@@ -1,0 +1,65 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "TEST_FIXTURE": 1
+    },
+    "event_type": {
+      "FINISH": 3,
+      "REMEDIATION": 1,
+      "START": 3
+    },
+    "outcome": {
+      "PASS": 3,
+      "RETRY": 1,
+      "STARTED": 3
+    },
+    "reason_code": {
+      "NODE_RESOLVE_HOOK_BLOCKS_EVENT_LOOP": 1
+    }
+  },
+  "events": 7,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 648.881,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "/root/packaging_manager/implement",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 1,
+      "retries": 0,
+      "role": "AGENT_2",
+      "session_id": "packaging-implement"
+    },
+    {
+      "duration_seconds": 885.753,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/packaging_manager",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "packaging-manager"
+    },
+    {
+      "duration_seconds": 152.025,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/packaging_manager/review",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2",
+      "session_id": "packaging-review"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

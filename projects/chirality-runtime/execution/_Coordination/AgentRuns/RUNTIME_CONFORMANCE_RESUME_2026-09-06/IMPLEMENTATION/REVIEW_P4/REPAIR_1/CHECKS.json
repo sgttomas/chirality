@@ -1,0 +1,18 @@
+{
+  "fixtureSha256": "153df38bd56b9dcae9cc1a446ce0e803b50e4885987cb01cf1ff59e279f00965",
+  "defaultSkip": {
+    "command": "env -u CHIRALITY_RUN_EXACT_ROLE ./node_modules/.bin/vitest run tests/exact-role-conformance.test.ts",
+    "exitCode": 0,
+    "passed": 4,
+    "skipped": 1
+  },
+  "noEmit": {
+    "command": "./node_modules/.bin/tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop --skipLibCheck tests/exact-role-conformance.test.ts",
+    "exitCode": 0
+  },
+  "changedFromOriginalReview": [
+    "projects/chirality-runtime/tests/exact-role-conformance.test.ts"
+  ],
+  "supplierExecuted": false,
+  "networkExecuted": false
+}

@@ -1,0 +1,54 @@
+import hashlib,json,os,subprocess,shutil,time
+from pathlib import Path
+E=Path(__file__).resolve().parent
+R=E.parents[1]
+O=Path('/private/tmp/runtime-execution-20260906/supplier-candidate')
+N=O/'candidate3'
+def sha(p):
+ h=hashlib.sha256()
+ with p.open('rb') as f:
+  for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
+ return h.hexdigest()
+def save(n,v): (E/n).write_text(json.dumps(v,indent=2)+'\n')
+pb=E.parent/'PARENT_BRIEF.json'
+assert sha(pb)==(E.parent/'PARENT_BRIEF.sha256').read_text().split()[0]
+for n,h in json.loads(pb.read_text())['inputs'].items(): assert sha(R/n)==h,n
+sm=json.loads((R/'SUPPLIER/BUILD/SOURCE_BEFORE.json').read_text())['source_files']
+actual={n:sha(O/'source/codex'/n) for n in sm}
+assert actual==sm
+art=list({r['path']:r for r in json.loads((R/'SUPPLIER/MANAGER_PREFLIGHT.json').read_text())['retained_artifacts'] + json.loads((R/'SUPPLIER/MANAGER_POST_EXACT_VERIFICATION.json').read_text())['artifacts'] + json.loads((R/'SUPPLIER/BUILD/HISTORICAL_CONTROLS_UNCHANGED.json').read_text())}.values())
+print('artifacts format',str(art)[:200],flush=True)
+art_checks=[]
+for row in art:
+ p=Path(row['path']); h=sha(p); assert h==row['sha256'];art_checks.append({'path':str(p),'sha256':h,'size':p.stat().st_size})
+assert len(art_checks)==7
+seal=json.loads((R/'SUPPLIER/OUTPUT_MANIFEST.json').read_text())
+assert all(sha(R/'SUPPLIER'/n)==h for n,h in seal.items())
+save('ORIGINAL_BEFORE.json',{'source_files':actual,'retained_artifacts':art_checks,'supplier_seal_files':len(seal),'supplier_seal_sha256':sha(R/'SUPPLIER/OUTPUT_MANIFEST.json'),'disk':shutil.disk_usage(O)._asdict(),'process_census':subprocess.check_output(['ps','-axo','pid,ppid,comm'],text=True),'timestamp':time.time()})
+assert not N.exists()
+N.mkdir()
+for src,dst in [(O/'source/codex',N/'source'),(O/'toolchain',N/'toolchain'),(O/'cache',N/'cache'),(O/'builds/target',N/'target')]:
+ print('clone',src,dst,flush=True);subprocess.run(['/bin/cp','-cR',str(src),str(dst)],check=True)
+for d in ['tmp','home','builds','artifacts']:(N/d).mkdir()
+# Refuse any copied symlink resolving outside Candidate3 (source/git-local links included).
+links=[]
+for tree in ['source','toolchain','cache','target']:
+ for base,dirs,files in os.walk(N/tree,followlinks=False):
+  for n in dirs+files:
+   p=Path(base)/n
+   if p.is_symlink():
+    resolved=p.resolve(); links.append({'path':str(p.relative_to(N)),'target':os.readlink(p),'resolved':str(resolved)})
+    assert resolved.is_relative_to(N),str(p)
+copied={n:sha(N/'source'/n) for n in sm};assert copied==sm
+for n in sm:
+ a=(O/'source/codex'/n).stat();b=(N/'source'/n).stat();assert (a.st_dev,a.st_ino)!=(b.st_dev,b.st_ino),n
+ident={}
+paths=['source/codex-rs/Cargo.lock','source/codex-rs/rust-toolchain.toml','toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin/rustc','toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin/cargo','cache/v8/librusty_v8_ptrcomp_sandbox_release_aarch64-apple-darwin.a.gz','cache/v8/src_binding_ptrcomp_sandbox_release_aarch64-apple-darwin.rs']
+for n in paths:
+ old=O/(n.replace('source/','source/codex/',1) if n.startswith('source/') else n)
+ assert sha(old)==sha(N/n);ident[n]=sha(N/n)
+prebuilt={}
+for name in ['codex-app-server','codex-code-mode-host']:
+ p=N/'target/aarch64-apple-darwin/release'/name;prebuilt[name]={'sha256':sha(p),'mtime_ns':p.stat().st_mtime_ns,'size':p.stat().st_size,'identity':'copied Candidate2 target only; NOT Candidate3 artifact'}
+save('COPIED_BEFORE.json',{'source_files':copied,'dependency_identity':ident,'symlinks':links,'preexisting_target_outputs':prebuilt,'copy_mode':'APFS cp -cR independent inodes; no hardlinks back to original'})
+print('prepared',len(copied),flush=True)

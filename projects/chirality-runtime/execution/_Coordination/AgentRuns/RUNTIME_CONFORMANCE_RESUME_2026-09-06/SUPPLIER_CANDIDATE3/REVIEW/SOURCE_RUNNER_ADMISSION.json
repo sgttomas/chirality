@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-09-06T19:33:18.355228+00:00",
+  "status": "ADMITTED_FOR_MANAGER_RELEASE",
+  "reviewRevision": 3,
+  "pins": {
+    "source_sha256": "70822f93d036f4bc690d313aac067403e7788d43ecc77a2053313fbed11d36fe",
+    "runner_sha256": "35c6ced46429ef8d0b55c1e969ebcfd4f55b11bb0f752cce4e93adb893022a4e",
+    "patch_sha256": "433553f7823e2e12cd8ed137be60edf96dc3a9f6d44f5bb10b0cbe5376b3fc36",
+    "copied_manifest_sha256": "03b0124ff8c2f14183cf2d4f70e576e5b0ae3f20fcaa814c1e9993c42664c397",
+    "original_manifest_sha256": "44c3b14ed8cdac1ea49bca4dff8ac9eec6b6d072f6f0a25df37dc22fd4aad3da",
+    "repaired_manifest_sha256": "1c843911537c3346e5e65bd060e92aa2ad2e1b1f540e813b5f4dafdad659eb66",
+    "phase": "HOLD_FOR_REVIEW",
+    "tests_run": false,
+    "build_run": false,
+    "timestamp": 1788722978.768976,
+    "review_revision": 3
+  },
+  "identityChecks": {
+    "source_sha256": true,
+    "runner_sha256": true,
+    "patch_sha256": true,
+    "copied_manifest_sha256": true,
+    "original_manifest_sha256": true,
+    "repaired_manifest_sha256": true,
+    "runner_review_copy": true
+  },
+  "sourceCount": 6416,
+  "changedFromOriginal": [
+    "codex-rs/exec-server/src/fs_sandbox.rs"
+  ],
+  "dependencyChecks": {
+    "source/codex-rs/Cargo.lock": true,
+    "source/codex-rs/rust-toolchain.toml": true,
+    "toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin/rustc": true,
+    "toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin/cargo": true,
+    "cache/v8/librusty_v8_ptrcomp_sandbox_release_aarch64-apple-darwin.a.gz": true,
+    "cache/v8/src_binding_ptrcomp_sandbox_release_aarch64-apple-darwin.rs": true
+  },
+  "independentIsolationChecks": {
+    "source": {
+      "regularFileCount": 6440,
+      "unsafeLinks": []
+    },
+    "cache": {
+      "regularFileCount": 63916,
+      "unsafeLinks": []
+    },
+    "toolchain": {
+      "regularFileCount": 2481,
+      "unsafeLinks": []
+    },
+    "target": {
+      "regularFileCount": 14846,
+      "unsafeLinks": []
+    }
+  },
+  "sourceReview": "PASS after author corrected glob control to actual ReadDenyMatcher",
+  "runnerReview": "PASS after correcting substring zero-passed gate to parsed count",
+  "testsExecutedByReviewer": false,
+  "buildExecutedByReviewer": false,
+  "actualConfinementEstablished": false,
+  "next": "manager may release helper-tests/protected-glob-tests; successful identified suites required before candidate3 build"
+}

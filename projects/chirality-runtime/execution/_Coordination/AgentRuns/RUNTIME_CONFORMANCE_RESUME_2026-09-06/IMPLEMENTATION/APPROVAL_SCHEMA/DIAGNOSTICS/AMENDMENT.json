@@ -1,0 +1,34 @@
+{
+  "timestampUtc": "2026-09-06T19:11:26.131423+00:00",
+  "requestedBy": "/root/conformance_manager",
+  "actualAgent": "/root/conformance_manager/approval_schema",
+  "executionClass": "delegated-harness-native",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "role": "Agent2; instruction-asserted; no delegation",
+  "authorization": "Parent NEW_TASK: diagnostic-only edits to both exact network fixtures; P4 released public fixture baec50a52472f2691df400098cd5b531434628da9358617ab8ba32b22cdf9447; no actual canary active. Parent owns actual runs.",
+  "scope": [
+    "projects/chirality-runtime/tests/exact-network-conformance.test.ts",
+    "projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/DIAGNOSTICS/**",
+    "/private/tmp/runtime-conformance-resume-20260906/APPROVAL_SCHEMA/**"
+  ],
+  "acceptance": [
+    "bounded callback metadata, no raw params/body/secrets",
+    "allowlisted actor failure wrapper rethrows identical exception",
+    "preserve client pass/fail, cleanup, timeout and output bounds",
+    "pure regressions and default-skipped exact fixtures",
+    "independent review/freeze before parent actual run"
+  ],
+  "prohibitions": [
+    "production edits",
+    "dialect acceptance changes",
+    "supplier execution",
+    "endpoint activity",
+    "cancel-to-deny alias",
+    "unadvertised decline"
+  ],
+  "before": {
+    "projects/chirality-runtime/tests/exact-network-conformance.test.ts": "e3461c886ca6db2b2feed7e44a5cf3618737872c8a6f30d547f0063ee31e4613",
+    "projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "baec50a52472f2691df400098cd5b531434628da9358617ab8ba32b22cdf9447"
+  }
+}

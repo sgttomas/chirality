@@ -1,0 +1,10 @@
+{
+  "authority": "Parent through WORKING_ITEMS current explicit REPAIR4 instruction after frozen P4-R3-1 review",
+  "allowedWriteTargets": [
+    "projects/chirality-runtime/tests/exact-role-conformance.test.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/**"
+  ],
+  "objective": "Require exact depth3 valid supplier date and canonical filename/child-ID/date consistency before opening first SessionMeta; negative controls",
+  "limits": "Retain exact origin, native metadata, no-read-ahead, ownership and budget controls; no production/network fixture edits or supplier execution",
+  "attribution": "OpenAI GPT-6 exact serving ID unavailable; Agent2/nondelegation instruction-asserted"
+}

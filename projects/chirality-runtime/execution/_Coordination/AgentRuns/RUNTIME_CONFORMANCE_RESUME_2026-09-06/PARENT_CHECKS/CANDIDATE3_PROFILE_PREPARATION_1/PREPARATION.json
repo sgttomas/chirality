@@ -1,0 +1,19 @@
+{
+  "status": "Prepared; no execution until independent supplier final verification",
+  "runnerSha256": "90461ed40a03bb9d62b9c0dc49ad98e9e1d82f37451a3f3717fd7f53c53c9ec1",
+  "artifactPath": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-app-server",
+  "artifactSha256": "b2a7e321d1c64794761803ba8895a15fafeeae9ac17c34abce942a82edaf7d4a",
+  "artifactSize": 241276384,
+  "profiles": [
+    "p1",
+    "p3-star"
+  ],
+  "fixtureEdits": false,
+  "historicalCandidate2Replayed": false,
+  "limitations": [
+    "Existing protected fixture classifier and shared child target limitations remain; no maintenance attempted after screening rejection",
+    "A failed result remains failed; raw observations do not constitute supply acceptance"
+  ],
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "roleEnforcement": "instruction-asserted"
+}

@@ -1,0 +1,26 @@
+{
+  "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_CANDIDATE1_STAR_01",
+  "sha256": "4bb585d621257c37d93cba86ec3e8a79936672a2c5095f3e8377adc6f512f4c6",
+  "observed": {
+    "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+    "supplySize": 241191088,
+    "sourcesBefore": {
+      "tests/exact-protected-path-conformance.test.ts": "540fd7ecc7909ec6c9327be8e4dbfc544babd65ed4645af51de1f7d4489e2f60",
+      "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+      "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+      "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+      "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+    },
+    "failurePhase": "primary-and-native-actions",
+    "failure": "Codex transport ended",
+    "peerFailures": [
+      "Explicit shell/login advertisement required"
+    ],
+    "probes": [],
+    "issuedCalls": [],
+    "hostUnchanged": true,
+    "sourceStable": true,
+    "cleanupFailures": 0,
+    "elapsedMs": 2636
+  }
+}

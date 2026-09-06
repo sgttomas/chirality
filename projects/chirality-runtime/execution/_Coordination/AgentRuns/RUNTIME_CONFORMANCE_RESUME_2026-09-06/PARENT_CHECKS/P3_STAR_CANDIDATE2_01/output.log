@@ -1,0 +1,35 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-protected-path-conformance.test.ts (8 tests | 1 failed | 3 skipped) 2448ms
+   ✓ P3 requires standalone unique markers and an actual access denial 1ms
+   ✓ P3 never mistakes a protected pathname or missing/context error for permission denial 0ms
+   ✓ P3 builds safe options from the exact observed exec advertisement without inventing login 0ms
+   ✓ P3 rejects unadvertised, forbidden, unknown-required and unsafe exec options 1ms
+   × P3 actual protected star primary/native profile 2445ms
+     → See bounded P3 evidence; no conformance acceptance inferred: expected false to be true // Object.is equality
+   ↓ P3 actual protected globstar primary/native profile
+   ↓ P3 actual protected question primary/native profile
+   ↓ P3 actual protected class primary/native profile
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-protected-path-conformance.test.ts > P3 actual protected star primary/native profile
+AssertionError: See bounded P3 evidence; no conformance acceptance inferred: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-protected-path-conformance.test.ts:376:93
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed | 3 skipped (8)
+   Start at  13:04:02
+   Duration  2.82s (transform 76ms, setup 0ms, collect 129ms, tests 2.45s, environment 0ms, prepare 23ms)

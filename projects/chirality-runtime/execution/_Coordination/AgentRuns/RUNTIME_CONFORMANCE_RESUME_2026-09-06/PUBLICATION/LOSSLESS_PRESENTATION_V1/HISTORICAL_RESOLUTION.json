@@ -1,0 +1,45 @@
+{
+  "resolver": "direct-current-bytes then exact path+expected-original-hash archive; strict decode length/hash required",
+  "manifests": [
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/OUTPUT_MANIFEST.json",
+      "manifestSha256": "2845dc631ddf3fedebd838f25b9f194aad2a59d0b96f8f936c2792f7de3ff3a9",
+      "members": 70,
+      "direct": 67,
+      "originalArchiveResolved": 3,
+      "unresolved": []
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/OUTPUT_HASHES.json",
+      "manifestSha256": "eb79828a2a234a6a0116f72a523d26cb52ff318f01197872663d1e239013b9e0",
+      "members": 46,
+      "direct": 43,
+      "originalArchiveResolved": 3,
+      "unresolved": []
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/SEAL_V1.json",
+      "manifestSha256": "8fd837c3b83b301ae4eb1391b24221a7bcdc483c7ef5caa48ab7e6ac0dd8192d",
+      "members": 13,
+      "direct": 13,
+      "originalArchiveResolved": 0,
+      "unresolved": []
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/WHITESPACE_PROPOSAL/SEAL.json",
+      "manifestSha256": "d5ccd2bfc0f5d1ac3d7cb6bb516aa8e5cd4fd2e074cfb6bbc0d9d622f80ade31",
+      "members": 4,
+      "direct": 4,
+      "originalArchiveResolved": 0,
+      "unresolved": []
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/WHITESPACE_PROPOSAL_2/SEAL.json",
+      "manifestSha256": "4446d632f097c758ac2ae65aac0f0ea3f03e80d66e513c7b57b6f71ddc057493",
+      "members": 4,
+      "direct": 4,
+      "originalArchiveResolved": 0,
+      "unresolved": []
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/protocol.rs": "ca51d3b5c624f47708d31be33772406c863bc746920ed67075fca82cd0f8392a",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/history/src/lib.rs": "6f5b0d36fed47ff9ceefe7545df6939eadfe470f1f5c49e8ba8a14ec8effd117",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/history/src/rollout_payload.rs": "2d275a1544ba00f68e1f52f5b0d2841eaea9a101e43fee6b447017cad8009e70",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/rollout/src/recorder.rs": "0e201df879122f55ae536b307667471cc2746d05c5488206d3b167dddd0b42fd",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/agent/control.rs": "6969e371eba2d3076374a4a270475ecf7cd3239cad0bf0fec648d49c7013c1e9",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/codex_thread.rs": "0ebd8ce8b55b8912243224f38c17a1ac858c5642a4b2affa1c8685074a81ed90",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/context/subagent_notification.rs": "e55f18adee1a906b66eec6b569750214a3881aa1e3781bf8fe17f00baed497b5"
+}

@@ -1,0 +1,12 @@
+{
+  "source_sha256": "399d222e1746ed267bb0c59d0aa71f08c531717c1abc80446c9b4545af871cba",
+  "runner_sha256": "af780154ce7bcfead6614b3203c3d40f586529993c077ce178b15b3f0e6122ad",
+  "patch_sha256": "22bb1de90d343de63f51bb297cb985c044b124483707c45c797c7ce769d9d53c",
+  "copied_manifest_sha256": "03b0124ff8c2f14183cf2d4f70e576e5b0ae3f20fcaa814c1e9993c42664c397",
+  "original_manifest_sha256": "44c3b14ed8cdac1ea49bca4dff8ac9eec6b6d072f6f0a25df37dc22fd4aad3da",
+  "repaired_manifest_sha256": "606be119fdf1ae9df98ef895b807fb65fb964f7d40fd51717d837b7897bebad8",
+  "phase": "HOLD_FOR_REVIEW",
+  "tests_run": false,
+  "build_run": false,
+  "timestamp": 1788722978.768976
+}

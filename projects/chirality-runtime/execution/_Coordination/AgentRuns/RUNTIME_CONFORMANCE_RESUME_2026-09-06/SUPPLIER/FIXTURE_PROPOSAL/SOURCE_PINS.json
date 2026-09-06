@@ -1,0 +1,36 @@
+{
+  "source_head_from_review": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "sha256": {
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/network-proxy/src/network_policy.rs": "29898c34d60d40eaf3eb333a77a999d41858aad0843997e31ca976517dcc1287",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/network-proxy/src/runtime.rs": "3214446d85796e5d1c4a308ba53aab3bf7098fc18cd38cfc6f97a1cbb14d2e4f",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/network-proxy/src/policy.rs": "2f8183c75e455821a86d3cd20995e6a8a22120b59f9e860594835989fb100a45",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/Cargo.lock": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/run.py": "7dfcca33d72da5a8fee843bb7222f7de4890a52110c8211bb0b58688f19584de",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/FIXTURE_ADAPTATION_AMENDMENT_1.md": "9f01cea38b4ee7cadbaa5051ab49f7277d4e735ffb8d60b18de7891d15bcb84b",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/BUILD/SOURCE_BEFORE.json": "86157a12c2901045dd51a75335a625ee5fb1e28d85fed8adc11db64135b91f78",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/BUILD/network-policy-tests.log": "8c830b6adb0a1c01d74e28283e3040f130aa6078236a5b3d534988352653f069",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/BUILD/network-policy-tests.json": "fc2e90551ac0d258b3f13db27f4e0f7948b4b5797da009050e0282a36ea342b5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/REVIEW/NETWORK_POLICY_FAILURE.md": "c941617c5212d120441b195e09a092995ff11cd2fe65f3690bfe1332ddf0a9cd",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/REVIEW/SOURCE_VERIFICATION.json": "fcf252ce215b07c8369d045d38b6f8adaf62f73abad0c7afde29aa23338866bd"
+  },
+  "expected_test_changes": [
+    {
+      "test": "evaluate_host_policy_emits_domain_event_for_decider_allow_override",
+      "literal_replacements": 2,
+      "original_start_line": 725
+    },
+    {
+      "test": "evaluate_host_policy_emits_execution_id_for_baseline_allow",
+      "literal_replacements": 2,
+      "original_start_line": 793
+    },
+    {
+      "test": "evaluate_host_policy_emits_domain_event_for_decider_ask",
+      "literal_replacements": 1,
+      "original_start_line": 920
+    }
+  ],
+  "adapted_network_policy_sha256": "f25717098a46248e398fa4034f01dea6ef8b5423e8db1feeed9770289e748434",
+  "original_tests_result": "FAILED: 4 passed; 3 failed; 219 filtered",
+  "proposal_only": true
+}

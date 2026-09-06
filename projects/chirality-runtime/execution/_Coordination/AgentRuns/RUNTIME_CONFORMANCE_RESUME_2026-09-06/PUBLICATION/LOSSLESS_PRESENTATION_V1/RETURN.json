@@ -1,0 +1,13 @@
+{
+  "status": "EXACT60_LOSSLESS_PRESENTATION_COMPLETE_NEW4_WHITESPACE_FINDINGS",
+  "originals": 60,
+  "originalBytes": 318049,
+  "allRoundTripsAndPresentationHashesPass": true,
+  "historicalSupplier70AndCandidate3Build46Resolved": true,
+  "productionTestsOldSealsUnchanged": true,
+  "globalWhitespaceExitCode": 1,
+  "next": "Fresh exact proposal for four newly emitted raw logs; no transformation authorized yet",
+  "gitMutations": false,
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable"
+}

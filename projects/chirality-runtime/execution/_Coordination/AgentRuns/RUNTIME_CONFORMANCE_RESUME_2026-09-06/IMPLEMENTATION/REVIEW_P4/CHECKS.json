@@ -1,0 +1,22 @@
+{
+  "defaultSkip": {
+    "command": "env -u CHIRALITY_RUN_EXACT_ROLE ./node_modules/.bin/vitest run tests/exact-role-conformance.test.ts",
+    "exitCode": 0,
+    "passed": 3,
+    "skipped": 1
+  },
+  "typecheck": {
+    "command": "./node_modules/.bin/tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop --skipLibCheck tests/exact-role-conformance.test.ts",
+    "exitCode": 0
+  },
+  "boundedRepro": {
+    "command": "node /private/tmp/runtime-conformance-resume-20260906/REVIEW_P4/repro.mjs",
+    "exitCode": 0,
+    "supplierLaunches": 0,
+    "networkUse": false
+  },
+  "missingPin": {
+    "packages/client/dist/client.js": false,
+    "packages/client/dist/src/client.js": true
+  }
+}

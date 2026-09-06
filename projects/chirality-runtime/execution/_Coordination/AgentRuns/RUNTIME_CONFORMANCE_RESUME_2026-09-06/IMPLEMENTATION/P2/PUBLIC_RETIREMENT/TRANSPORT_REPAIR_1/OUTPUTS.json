@@ -1,0 +1,90 @@
+{
+  "status": "frozen-for-independent-review",
+  "outputs": [
+    {
+      "path": "AMENDMENT.json",
+      "sha256": "6eb85928d83691362080fd866ab862e71681fab05f8533aaaaa30b66e09ead1d",
+      "bytes": 1257
+    },
+    {
+      "path": "CHECKS.json",
+      "sha256": "8c864500156678f648aa2138fea2b82cb0e210c977de16efacee2b7cde594de0",
+      "bytes": 2291
+    },
+    {
+      "path": "INPUTS.json",
+      "sha256": "f42d0c92429c362feed89140138d72957f701ce12e14cb24c713b86aa9cd0680",
+      "bytes": 476
+    },
+    {
+      "path": "INTERIM_1/CHECKS.json",
+      "sha256": "450b06a2a2f0f45ffe7dcc3d5f4299bc99244711398a1089432e4379557391ff",
+      "bytes": 447
+    },
+    {
+      "path": "INTERIM_1/SOURCE_FREEZE.json",
+      "sha256": "54be4158a48444b510c120d5cf0c54c2203863a33e55880732b5d6eaaac69733",
+      "bytes": 600
+    },
+    {
+      "path": "INTERIM_1/codex-supervisor.ts.source",
+      "sha256": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+      "bytes": 26967
+    },
+    {
+      "path": "INTERIM_1/codex-transport-lifecycle.test.ts.source",
+      "sha256": "3257d9eb360d93b60bdfbbaac9e3e719cc8278d7c1e4c57ebb10258e3496c155",
+      "bytes": 7272
+    },
+    {
+      "path": "INTERIM_1/codex-transport-lifecycle.ts.source",
+      "sha256": "573ff1f1ba4a18b4619e2a4a5fcfc885b8bdaebd21931bac8bda5676bf7c9482",
+      "bytes": 4836
+    },
+    {
+      "path": "INTERIM_1/exact-process-runtime-conformance.test.ts.source",
+      "sha256": "672fc53ab7e52d0f8760665e6e38c98d2f4eb2a1dc4ea516b75b119dbd06eabe",
+      "bytes": 40848
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "e8cfe38d1e2b24589eb77067e34e46763f7cf3db9cd585abe9c6bd6a6476a399",
+      "bytes": 8968
+    },
+    {
+      "path": "SOURCE_FREEZE.json",
+      "sha256": "0719e642690a1f7d2d057ce5b2d1838b6607894d84c442701d1647cd441ed5dd",
+      "bytes": 678
+    },
+    {
+      "path": "codex-supervisor.ts.after.source",
+      "sha256": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+      "bytes": 26967
+    },
+    {
+      "path": "codex-supervisor.ts.before.source",
+      "sha256": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+      "bytes": 26939
+    },
+    {
+      "path": "codex-transport-lifecycle.test.ts.after.source",
+      "sha256": "b0b9c413690683545ff9e723fe04c007c68f54e5a6e99a5b7d2a7a550e345d48",
+      "bytes": 9594
+    },
+    {
+      "path": "codex-transport-lifecycle.ts.after.source",
+      "sha256": "361eef00340fff883791a3b858504436f1979a11bd9e9ceb7a8acb4998e9a0f1",
+      "bytes": 6483
+    },
+    {
+      "path": "exact-process-runtime-conformance.test.ts.after.source",
+      "sha256": "672fc53ab7e52d0f8760665e6e38c98d2f4eb2a1dc4ea516b75b119dbd06eabe",
+      "bytes": 40848
+    },
+    {
+      "path": "exact-process-runtime-conformance.test.ts.before.source",
+      "sha256": "c47e2efdfecff6a8b208e9715212a27f427b0f638c5291df136adc436467f272",
+      "bytes": 39784
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "bundleSha256": "49fd656a4f38b5683acc83686dd8047996c8a99f663acde06a31624c0d7b86c0",
+  "bundleSize": 1530995,
+  "piCommonJsRequirePresent": false,
+  "inputRecipe": "Previously pinned actual App build recipe with scratch output only",
+  "verdict": "PASS full App import graph reaches fail-stop Electron API boundary",
+  "limitations": [
+    "Node/CommonJS with fail-stop Electron stub; not actual Electron registration",
+    "Existing runtime-conformance import.meta CJS inventory warning remains; no delegated conformance acceptance",
+    "Fresh Linux Runtime/App CI remains required"
+  ],
+  "sourceFilesUnchangedDuringChecks": true
+}

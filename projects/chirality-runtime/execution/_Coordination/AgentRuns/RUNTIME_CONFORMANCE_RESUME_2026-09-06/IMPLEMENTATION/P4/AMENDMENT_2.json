@@ -1,0 +1,9 @@
+{
+  "authority": "Current owner ordinary Runtime implementation and predecessor amendment11; parent exclusively assigned existing network fixture",
+  "exclusiveOwner": "/root/conformance_manager/p4_role",
+  "path": "projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts",
+  "objective": "Extend current exact network fixture repair to evidence-safe setup and source-fingerprint failure handling: scratch cleanup and failed result survive before/after pin errors",
+  "reason": "Same discovered P4 early source-pins outside try/finally defect affects network fixture; bounded ordinary diagnostic reliability repair before actual supplier network tests",
+  "limits": "No altered network target/request count/posture/approval semantics, supplier/callback/production edits, external calls, or acceptance. Preserve prior network identity freeze/report and record new separate repair evidence",
+  "collisionCheck": "No added write path; parent already exclusively assigned this fixture"
+}

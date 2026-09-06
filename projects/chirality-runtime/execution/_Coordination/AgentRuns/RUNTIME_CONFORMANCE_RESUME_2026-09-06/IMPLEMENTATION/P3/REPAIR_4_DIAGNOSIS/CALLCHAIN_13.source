@@ -1,0 +1,13 @@
+    /// Returns true when platform-default readable roots should be included.
+    pub fn include_platform_defaults(&self) -> bool {
+        !self.has_full_disk_read_access()
+            && matches!(self.kind, FileSystemSandboxKind::Restricted)
+            && self.entries.iter().any(|entry| {
+                matches!(
+                    &entry.path,
+                    FileSystemPath::Special { value }
+                        if matches!(value, FileSystemSpecialPath::Minimal)
+                            && entry.access.can_read()
+                )
+            })
+    }

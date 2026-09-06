@@ -1,0 +1,18 @@
+{
+  "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "a87328babf6128351b3ce730ab5c9ad617ec9cb1f5c850670fa4d8d61bb54b55",
+  "projects/chirality-runtime/tests/delegated-runtime.test.ts": "48b3c5a3fb5c747ce6d0f571b6fbff3473c2edfefe9b20d6b4b2fb3732b2ff7c",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REGRESSION.log": "aaf51d447d33193f20f2d7924e0a03cfdd5cf02467d310a8c68ef9274b9a7c4d",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/PATCH.diff": "9e5d168831f14f526673aaaeff8407343b34802209ba699707853811624fbb07",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/delegated-runtime.test.ts.before.gz": "d277b57dfbbc7fda2297b99f3e161a813c4c5b749e00dced13e53db40e3a5b23",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPORT.md": "77cd41b9bd04f69ca4cbc4824d8de55961bec73574cc2104b5379ce1c940622c",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/HISTORICAL_EXPECTATION_FAILURE.log": "7221c2829832a8fb567c75016cbc5ff56a09ae1d2b973778b7adc53bb261fc25",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/delegated-runtime.ts.before.gz": "645c9983526457afe0a9ce4a7dbe885b1ddb22f3e7ddb2e334881ca950fa107c",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/TYPECHECK.log": "601cbaf62c20cb430ef5c16594f41b8b4ba14034af977eb8fad69cc9c06a1a30",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/delegated-runtime.ts.after.gz": "8cdbc411cf59cf67ac19ca94cd2b0724b3f6e10c974805e878dfa5f2d6922d04",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/AMENDMENT_1.json": "3c0b1b999d81debcb2100131cc9cb09b864052bbe2dee0dc15b09c446dbbc5c3",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/INPUTS.json": "d03ca826113f27ccc09e78931b5afeaa3b5eb9496402ee1828d55f757b46a90d",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/PLAN.md": "24dc226b1ce55f2dbe3d7c718ba5c8cbf9aa6cb1464e2f47327cfbd7ca050fe5",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/BRIEF.md": "ad608db23ac33485f45d9edbc18fae4cf44e6af26c08df3e098eb4b54ff06c9a",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/delegated-runtime.test.ts.after.gz": "b78a3aef4bd358f84cd67ce064e73eed59dfb1cf9679072b51a645f476d5ff14",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/FREEZE.json": "272a8925c824f6afab8b489ce226bec6b0168f4ed6fc08c9f7328b13f22a1c1a"
+}

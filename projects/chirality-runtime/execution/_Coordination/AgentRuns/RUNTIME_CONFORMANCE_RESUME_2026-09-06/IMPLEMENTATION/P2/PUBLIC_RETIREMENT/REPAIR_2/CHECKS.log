@@ -1,0 +1,8 @@
+REPAIR_2 actual checks,2026-09-06 America/Edmonton
+Initial added pure regression found attempt counter accidentally incremented only inside optional observer callback; fixed by incrementing independently. No supplier ran on failed test.
+Final configured Vitest command:
+CHIRALITY_RUN_EXACT_PROCESS_RUNTIME=0 node_modules/.bin/vitest run --config execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts
+Exit0;6passed/1supplier skipped;9ms tests,396ms total;13:11:44.
+node_modules/.bin/tsc --project execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/tsconfig.json
+Exit0; noEmit/no diagnostics.
+New controlled regression: first census shell-only then second shell+sleep, succeeds after20ms fake-clock poll with matching current identity. Rejects current identity reuse, disappearance, failed census and no observed marker until40ms fake deadline; no process launched. Existing cause/cancellation/journal/census/timing/pin checks pass.

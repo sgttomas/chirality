@@ -1,0 +1,23 @@
+{
+  "timestampUtc": "2026-09-06T19:44:53.335391+00:00",
+  "requestedBy": "/root/conformance_manager",
+  "actualAgent": "/root/conformance_manager/approval_schema",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "role": "Agent2; instruction-asserted; no delegation",
+  "authorization": "Read-only cancellation diagnosis during active native parent window; no source/test writes or actual run; own PUBLIC_CANCEL_DIAGNOSIS evidence only.",
+  "writeScope": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_DIAGNOSIS/**",
+  "sourcePins": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "d04124fa83bec8f402a90532af205838cdabbbb08a6277a193e4eebe9839518c",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/approval-store.ts": "4ac5d0197f528a6dce2dfd4cad007b4d806e622553ab921edcf24422fa1e1e91",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/hosted-consent.ts": "13026aed1c6cac03c6d75edb4fc5285a0d970c9b6c9f3a131b0e0575d03d46d8",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/delegated-runtime.test.ts": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/approval-store.test.ts": "31599f398ab4e5a586a512da9470b10ad507ebf9d781e62042d72bdb3dbe4c0b",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/manager-approval-integration.test.ts": "a15e7098c6448f04fb463afa2c616eac3f6b9c9a71042f5910c865a553a52c2b",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/EXACT_NETWORK_RUNTIME_CANARY.json": "033ef1ffec3711f00d72683264d5267e116ce35362f14018025ccfeaa729a4b3",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/CHECK.json": "03428df386fcf394cd8701b253d215c5f641b8f93812acb3062eb00e14f86116",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/output.log": "734ead4b6fcd4544c6588ca0b7bd85fa098ac18add96443440af30e3d996eeb4"
+  }
+}

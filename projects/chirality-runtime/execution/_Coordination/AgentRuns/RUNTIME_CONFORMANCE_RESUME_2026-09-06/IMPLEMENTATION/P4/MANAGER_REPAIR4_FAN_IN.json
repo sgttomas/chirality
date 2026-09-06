@@ -1,0 +1,75 @@
+{
+  "derivative": true,
+  "verdict": "bounded actual parent role probe admission after shared source freeze",
+  "manifests": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/OUTPUT_HASHES.json",
+      "sha256": "3ee2b4cab1c6370c2eae980e6c1e12bf0c54b6cf594c595fdec8042572e7aa4b",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/tests/exact-role-conformance.test.ts",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/REPORT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/exact-role-conformance.source",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/TYPECHECK.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/rollout_file_name.rs.source",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/CHECK.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/INPUT_HASHES.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_4/AMENDMENT.json",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P4/REPAIR_4/OUTPUT_HASHES.json",
+      "sha256": "328071c020c20321510fd0b423a0cae40f207a1fa93216866f13af8ac6da9405",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P4/REPAIR_4/CHECKS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P4/REPAIR_4/REPORT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P4/REPAIR_4/REPRO.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P4/REPAIR_4/REPRO.mjs.source",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P4/REPAIR_4/SOURCE_HASHES.json",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No production role envelope proof",
+    "No actual full role profile pass yet",
+    "Instruction-asserted roles only"
+  ]
+}

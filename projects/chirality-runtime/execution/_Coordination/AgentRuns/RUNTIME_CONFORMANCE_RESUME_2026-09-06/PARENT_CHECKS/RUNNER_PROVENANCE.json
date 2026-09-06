@@ -1,0 +1,7 @@
+{
+  "source": "/private/tmp/runtime-execution-20260906/run_runtime_check.py",
+  "originalSha256": "5b00ef78d34a0e1cbddf89355c66cdfb6a20a8b67b95bea5a648009e18a04c1d",
+  "derived": "/private/tmp/runtime-conformance-resume-20260906/parent/run_runtime_check.py",
+  "derivedSha256": "ad394efc337dc665b0934fac3a3474005524d9eaa9401bcd7a4edac1b90d4e86",
+  "change": "Only output root redirects to new owned scratch; all tests have own bounded cleanup and fixture source pin records. Wrapper inventories whole Runtime before/after; unrelated concurrent test edits must be surfaced, not misrepresented as coherent full-source freeze."
+}

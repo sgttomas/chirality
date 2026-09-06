@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "status": "FROZEN",
+  "run_id": "RUNTIME_PACKAGING_2026-09-06",
+  "parent": "/root",
+  "manager": "/root/packaging_manager",
+  "role": "WORKING_ITEMS Agent 1",
+  "model": "OpenAI GPT-6; exact serving ID unavailable",
+  "enforcement": "instruction-asserted; not mechanically enforced",
+  "package": "PKG-02_Runtime_Product",
+  "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+  "basis": "Merged PR737 ec491aee1870a2a6a8eb2faf2919d4d5db5124b4; accepted Gate3 V3 / Gate5 migration; prior OWNER_DIRECTION, SPEC_FAN_IN, PLAN_V2, AMENDMENT11; current owner packaging repair direction",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "graph": [
+    "manager diagnosis -> implement specialist",
+    "accepted implementation -> independent review specialist",
+    "review acceptance -> manager fan-in -> parent aggregate"
+  ],
+  "concurrency": "One implementation owner, read-only review follows; parent checks separate. No shared production writes.",
+  "production_owner": "/root/packaging_manager/implement",
+  "exclusive_paths": [
+    "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+    "projects/chirality-runtime/tests/pi-packaging.test.ts",
+    "projects/chirality-runtime/package.json",
+    "projects/chirality-runtime/package-lock.json"
+  ],
+  "check_profile": "projects/chirality-runtime/software-workflow.json",
+  "checks": [
+    "npm run typecheck",
+    "npm test",
+    "focused Pi and consumer esbuild/CommonJS offline regression"
+  ],
+  "limits": "No supplier/build/cache/server/account/credential operations, frontend/shared/sibling/accepted contracts/lifecycle/hold changes, commit/push/merge or release",
+  "escalation": "Scope or semantic/API change, insufficient consumer repair, or failed independent review",
+  "closure": "Derivative repair evidence only; parent owns acceptance fan-in and reruns"
+}

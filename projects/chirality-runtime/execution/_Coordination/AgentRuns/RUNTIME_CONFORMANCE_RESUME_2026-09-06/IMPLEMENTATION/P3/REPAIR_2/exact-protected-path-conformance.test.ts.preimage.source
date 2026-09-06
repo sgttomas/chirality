@@ -1,0 +1,267 @@
+import { spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { chmod, copyFile, mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile, lstat } from 'node:fs/promises';
+import { createServer } from 'node:http';
+import { dirname, join } from 'node:path';
+import { gunzipSync } from 'node:zlib';
+import { expect, it } from 'vitest';
+import { verifyExactSupply, createControlledSupplyVerifierForTests } from '../packages/core/src/exact-supply.js';
+import { prepareCodexNativePolicy } from '../packages/daemon/src/codex-containment.js';
+import { CodexTurnSession } from '../packages/daemon/src/codex-session.js';
+// @ts-ignore Existing standalone test-only deferred-tool helpers.
+import { discoveredTools, nativeSearch } from './fixtures/response-provider.mjs';
+
+const quote = (value: string) => "'" + value.replaceAll("'", "'\\''") + "'";
+const digest = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
+const families = [
+  { id: 'star', rule: 'packages/*/private.env', existing: 'packages/a/private.env', late: 'packages/b/private.env', absent: 'packages/c/private.env', positive: 'packages/a/public.env' },
+  { id: 'globstar', rule: 'secrets/**/*.key', existing: 'secrets/a/b/one.key', late: 'secrets/new/deep/two.key', absent: 'secrets/new/deeper/three.key', positive: 'secrets/a/b/one.txt' },
+  { id: 'question', rule: 'env?.txt', existing: 'env1.txt', late: 'env2.txt', absent: 'env3.txt', positive: 'env12.txt' },
+  { id: 'class', rule: 'config[ab].txt', existing: 'configa.txt', late: 'configb.txt', absent: 'nested/configa.txt', positive: 'configc.txt' },
+] as const;
+// Character-class grammar has only two root matches. Use a second policy rule at
+// the nested scope for a genuinely absent third target, preserving the grammar.
+const requestedFamily = process.env.CHIRALITY_EXACT_PROTECTED_FAMILY;
+if (process.env.CHIRALITY_RUN_EXACT_PROTECTED === '1' && requestedFamily && !families.some(family => family.id === requestedFamily)) throw new Error('Unknown exact protected family');
+const markers = (output: string, who: string) => {
+  const lines = output.split(/\r?\n/);
+  const start = `PROTECTED_${who}_START`, finish = `PROTECTED_${who}_FINISH`;
+  const values: Record<string, string> = {};
+  let duplicates = false;
+  for (const line of lines) {
+    const match = /^PROTECTED_([A-Z_]+):([0-9]{1,3}|PASS|FAIL)$/.exec(line);
+    if (match) { if (match[1]! in values) duplicates = true; values[match[1]!] = match[2]!; }
+  }
+  return { started: lines.filter(line => line === start).length === 1, finished: lines.filter(line => line === finish).length === 1, duplicates, values };
+};
+// A generic error, loader failure, absent file, or the rejected patch echoed in
+// text does not establish a filesystem-policy denial.
+const patchDenied = (output: string) => output.split(/\r?\n/).some(line =>
+  /^patch rejected: writing outside of the project; rejected by user approval settings$/.test(line)
+  || /^(?:patch rejected: )?(?:Failed to (?:read|write|create|delete|open) file(?: to update)? [^\r\n]+: |apply_patch(?: verification)? failed: )?(?:Permission denied(?: \(os error 13\))?|Operation not permitted(?: \(os error 1\))?)$/.test(line));
+const patchSucceeded = (output: string) => /^Success\. Updated the following files:\r?$/m.test(output);
+
+it('P3 requires standalone unique markers and an actual access denial', () => {
+  expect(markers("exec_command failed for printf 'PROTECTED_primary_START\\n'", 'primary').started).toBe(false);
+  expect(markers('PROTECTED_primary_START\nPROTECTED_OK:PASS\nPROTECTED_primary_FINISH', 'primary')).toMatchObject({ started: true, finished: true, duplicates: false, values: { OK: 'PASS' } });
+  expect(markers('PROTECTED_OK:PASS\nPROTECTED_OK:PASS', 'primary').duplicates).toBe(true);
+  for (const text of ['Failed to find expected lines', 'exec_command failed: loader denied', '+Permission denied', 'patch rejected: file not found', 'No such file or directory']) expect(patchDenied(text)).toBe(false);
+  expect(patchDenied('patch rejected: writing outside of the project; rejected by user approval settings')).toBe(true);
+  expect(patchDenied('Failed to read file /synthetic/a: Operation not permitted (os error 1)')).toBe(true);
+  expect(patchSucceeded('Success. Updated the following files:\nA allowed.txt')).toBe(true);
+});
+
+it('P3 never mistakes a protected pathname or missing/context error for permission denial', () => {
+  for (const output of [
+    'patch rejected: Failed to read file to update /synthetic/protected.txt: No such file or directory (os error 2)',
+    'patch rejected: Failed to find expected lines in /synthetic/protected-dir/deep/data.txt',
+    'patch rejected: protected file was not found',
+    'patch rejected: unknown protected path failure',
+    'patch rejected: Failed to read file /synthetic/Permission denied: No such file or directory (os error 2)',
+    'Failed to read file /synthetic/protected.txt: file includes Permission denied text',
+    'apply_patch failed: expected context contains protected path',
+    '+patch rejected: writing outside of the project; rejected by user approval settings',
+    'patch rejected: writing outside of the project: unknown parse error',
+    'Operation not permitted (os error 2)',
+  ]) expect(patchDenied(output), output).toBe(false);
+  for (const output of [
+    'patch rejected: writing outside of the project; rejected by user approval settings',
+    'Failed to read file /synthetic/protected.txt: Operation not permitted (os error 1)',
+    'patch rejected: Failed to read file to update /synthetic/protected.txt: Permission denied (os error 13)',
+    'apply_patch verification failed: Permission denied',
+    'Operation not permitted',
+  ]) expect(patchDenied(output), output).toBe(true);
+});
+
+interface Issued { who: string; kind: string; startedAt?: number; method?: string; namespace?: string; target?: string }
+interface Probe { who: string; callId: string; kind: string; target?: string; method?: string; namespace?: string; elapsedMs: number; output: string; outputSha256: string; summary?: ReturnType<typeof markers> }
+
+async function startProtectedPeer(root: string, commandFor: (who: string) => string, patchesFor: (who: string) => { target: string; patch: string }[]) {
+  const issued = new Map<string, Issued>(), records: Probe[] = [], failures: string[] = [];
+  const controls: { who: string; callId: string; kind: string; output: string }[] = [];
+  let count = 0, overdue: ReturnType<typeof setTimeout> | undefined;
+  let abort = () => {};
+  const fail = (message: string) => { failures.push(message); abort(); };
+  const flatten = (tools: any[]) => tools.flatMap(tool => tool.type === 'namespace' && Array.isArray(tool.tools) ? tool.tools.map((member: any) => ({ ...member, namespace: tool.name })) : [tool]);
+  const server = createServer(async (request, response) => {
+    try {
+      if (request.url !== '/v1/responses' || request.method !== 'POST' || request.headers.authorization) throw new Error('Unexpected model request');
+      const chunks: Buffer[] = []; let size = 0;
+      for await (const part of request) { size += part.length; if (size > 2000000) throw new Error('Request bound'); chunks.push(part); }
+      const bytes = Buffer.concat(chunks);
+      const body = JSON.parse((request.headers['content-encoding'] === 'gzip' ? gunzipSync(bytes, { maxOutputLength: 4000000 }) : bytes).toString());
+      if (++count > 64 || !Array.isArray(body.input) || !Array.isArray(body.tools)) throw new Error('Request shape/budget');
+      const who = JSON.stringify(body.input.filter((item: any) => item.role === 'user').at(-1)?.content ?? '').includes('PROTECTED_NATIVE_CHILD_ONLY') ? 'child' : 'primary';
+      const tools = flatten([...body.tools, ...discoveredTools(body.input, issued)]);
+      const own = body.input.filter((item: any) => ['function_call_output', 'custom_tool_call_output'].includes(item.type) && issued.get(item.call_id)?.who === who).map((item: any) => ({ ...item, issued: issued.get(item.call_id)! }));
+      for (const item of own) if (item.issued.kind.startsWith('probe') && !records.some(record => record.callId === item.call_id)) {
+        // Consume each call's first output once; later replay cannot improve it.
+        clearTimeout(overdue);
+        const output = typeof item.output === 'string' ? item.output : JSON.stringify(item.output);
+        if (output.length > 16384) throw new Error('Output bound');
+        const elapsedMs = Date.now() - item.issued.startedAt;
+        records.push({ who, callId: item.call_id, kind: item.issued.kind, target: item.issued.target, method: item.issued.method, namespace: item.issued.namespace, elapsedMs, output, outputSha256: digest(output), ...(item.issued.kind === 'probe-shell' ? { summary: markers(output, who) } : {}) });
+        if (elapsedMs > 10000) throw new Error('Probe budget exceeded');
+      }
+      for (const item of own) if (['spawn', 'wait'].includes(item.issued.kind) && !controls.some(row => row.callId === item.call_id)) {
+        const output = typeof item.output === 'string' ? item.output : JSON.stringify(item.output);
+        if (output.length > 16384) throw new Error('Native output bound');
+        controls.push({ who, callId: item.call_id, kind: item.issued.kind, output });
+      }
+      const call = (tool: any, args: any, kind: string, target?: string) => {
+        if (!tool) throw new Error('Actual advertised tool missing');
+        if (tool.type === 'function' && (tool.parameters?.required ?? []).some((key: string) => !(key in args))) throw new Error('Unmapped required tool argument');
+        const call_id = `protected_${count}`;
+        issued.set(call_id, { who, kind, startedAt: Date.now(), method: tool.name, namespace: tool.namespace, target });
+        if (kind.startsWith('probe')) overdue = setTimeout(() => fail('PROBE_EXCEEDED_10000_MS'), 10000);
+        return { type: tool.type === 'custom' ? 'custom_tool_call' : 'function_call', id: `call_${count}`, call_id, name: tool.name, ...(tool.namespace ? { namespace: tool.namespace } : {}), ...(tool.type === 'custom' ? { input: args } : { arguments: JSON.stringify(args) }), status: 'completed' };
+      };
+      const message = (text: string) => ({ type: 'message', id: `msg_${count}`, role: 'assistant', status: 'completed', content: [{ type: 'output_text', text, annotations: [] }] });
+      let item: any;
+      const nextPatch = patchesFor(who).find((_, index) => !own.some((entry: any) => entry.issued.kind === `probe-patch-${index}`));
+      if (!own.some((entry: any) => entry.issued.kind === 'probe-shell')) {
+        if ([...issued.values()].some(entry => entry.who === who && entry.kind === 'probe-shell')) throw new Error('No shell resend without output');
+        const tool = tools.find((entry: any) => entry.type === 'function' && entry.name === 'exec_command');
+        if (!tool?.parameters?.properties?.login || !tool.parameters.properties.shell) throw new Error('Explicit shell/login advertisement required');
+        item = call(tool, { cmd: commandFor(who), login: false, shell: '/bin/sh', ...(tool.parameters.properties.workdir ? { workdir: root } : {}), ...(tool.parameters.properties.yield_time_ms ? { yield_time_ms: 1000 } : {}) }, 'probe-shell');
+      } else if (nextPatch) {
+        const index = patchesFor(who).findIndex(patch => patch.target === nextPatch.target);
+        if ([...issued.values()].some(entry => entry.who === who && entry.kind === `probe-patch-${index}`)) throw new Error('No patch resend without output');
+        item = call(tools.find((entry: any) => entry.type === 'custom' && entry.name === 'apply_patch'), nextPatch.patch, `probe-patch-${index}`, nextPatch.target);
+      } else if (who === 'child') item = message('PROTECTED_CHILD_COMPLETE');
+      else if (!own.some((entry: any) => entry.issued.kind === 'spawn')) {
+        const tool = tools.find((entry: any) => entry.type === 'function' && entry.name === 'spawn_agent');
+        item = tool ? call(tool, { message: 'PROTECTED_NATIVE_CHILD_ONLY: perform the bounded protected probes exactly once and finish.' }, 'spawn') : nativeSearch(body.tools, issued, who, 'spawn', count);
+      } else if (!own.some((entry: any) => entry.issued.kind === 'wait')) {
+        const spawned = own.find((entry: any) => entry.issued.kind === 'spawn');
+        const value = JSON.parse(spawned.output), id = value.agent_id ?? value.id;
+        if (typeof id !== 'string') throw new Error('Native child identity absent');
+        const tool = tools.find((entry: any) => entry.type === 'function' && ['wait_agent', 'wait'].includes(entry.name));
+        item = tool ? call(tool, { [tool.name === 'wait_agent' ? 'targets' : 'ids']: [id] }, 'wait') : nativeSearch(body.tools, issued, who, 'wait', count);
+      } else item = message('PROTECTED_PRIMARY_COMPLETE');
+      const result = { id: `resp_${count}`, object: 'response', model: 'runtime-deterministic', status: 'completed', output: [item], usage: { input_tokens: 1, output_tokens: 1, total_tokens: 2 } };
+      const frames = [{ type: 'response.created', response: { ...result, status: 'in_progress', output: [] } }, { type: 'response.output_item.added', output_index: 0, item: { ...item, ...(item.type === 'function_call' ? { arguments: '' } : item.type === 'custom_tool_call' ? { input: '' } : {}) } }, ...(item.type === 'function_call' ? [{ type: 'response.function_call_arguments.delta', item_id: item.id, output_index: 0, delta: item.arguments }, { type: 'response.function_call_arguments.done', item_id: item.id, output_index: 0, arguments: item.arguments }] : item.type === 'custom_tool_call' ? [{ type: 'response.custom_tool_call_input.delta', item_id: item.id, call_id: item.call_id, output_index: 0, delta: item.input }] : []), { type: 'response.output_item.done', output_index: 0, item }, { type: 'response.completed', response: result }];
+      response.writeHead(200, { 'Content-Type': 'text/event-stream' }).end(frames.map((frame, sequence_number) => `event: ${frame.type}\ndata: ${JSON.stringify({ ...frame, sequence_number, response_id: result.id })}\n\n`).join(''));
+    } catch (error) { fail(error instanceof Error ? error.message : 'BOUNDED_PEER_FAILURE'); response.writeHead(400).end('{}'); }
+  });
+  server.requestTimeout = 10000;
+  await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', resolve); });
+  return { baseUrl: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`, records, failures, issued, controls, setAbort(fn: () => void) { abort = fn; }, async close() { clearTimeout(overdue); server.closeAllConnections(); await new Promise<void>(resolve => server.close(() => resolve())); } };
+}
+
+for (const family of families) it.runIf(process.env.CHIRALITY_RUN_EXACT_PROTECTED === '1' && (!process.env.CHIRALITY_EXACT_PROTECTED_FAMILY || process.env.CHIRALITY_EXACT_PROTECTED_FAMILY === family.id))(`P3 actual protected ${family.id} primary/native profile`, async () => {
+  const started = Date.now(), supplied = process.env.CHIRALITY_EXACT_CODEX_PATH, evidenceDirectory = process.env.CHIRALITY_EXACT_EVIDENCE_DIR;
+  const sha = process.env.CHIRALITY_EXACT_CANDIDATE_SHA256, size = process.env.CHIRALITY_EXACT_CANDIDATE_SIZE;
+  if (!supplied || !evidenceDirectory?.startsWith('/')) throw new Error('Explicit supplier and private evidence directory required');
+  if ((sha === undefined) !== (size === undefined) || (sha !== undefined && (!/^[a-f0-9]{64}$/.test(sha) || !size || String(Number(size)) !== size || !Number.isSafeInteger(Number(size)) || Number(size) < 1 || Number(size) > 4294967296))) throw new Error('Complete bounded candidate identity required');
+  const fixtureVerifier = sha ? createControlledSupplyVerifierForTests({ sha256: sha, size: Number(size), version: 'candidate-source-version-not-accepted-identity' }) : undefined;
+  const verify = (path: string) => fixtureVerifier ? fixtureVerifier.verify(path) : verifyExactSupply({ executablePath: path });
+  const supply = await verify(supplied);
+  const base = await realpath(await mkdtemp(join(await realpath('/tmp'), 'epc-'))), root = join(base, 'p'), broker = join(base, 'b'), worker = join(broker, 'w'), home = join(worker, 'h');
+  const cleanup: (() => Promise<unknown>)[] = [() => rm(base, { recursive: true, force: true })];
+  const observation: Record<string, any> = { schema: 'chirality-exact-protected/v1', suite: 'P3-protected', family: family.id, rule: family.rule, evidenceClass: fixtureVerifier ? 'supplier-candidate-unaccepted' : 'accepted-supply', supplySha256: supply.sha256, supplySize: Number(supply.identity.size), accountUsed: false, modelEvidence: 'deterministic-loopback-only', passed: false, conformanceAcceptance: false, fixtureTopology: 'synthetic user-owned protected files; does not establish immutable system-leaf enforcement', profileBudgetMs: 60000, probeBudgetMs: 10000 };
+  const sourcePaths = ['tests/exact-protected-path-conformance.test.ts', 'tests/fixtures/response-provider.mjs', 'packages/daemon/src/codex-session.ts', 'packages/daemon/src/codex-containment.ts', 'packages/core/src/exact-supply.ts'];
+  const pins = async () => Object.fromEntries(await Promise.all(sourcePaths.map(async path => [path, digest(await readFile(path))])));
+  observation.sourcesBefore = await pins();
+  const sentinel = 'PROTECTED_SYNTHETIC_SENTINEL';
+  const targets: Record<string, string> = { MATCH: join(root, family.existing), LATE: join(root, family.late), LITERAL: join(root, 'protected.txt'), CONFIG: join(root, '.codex', 'private.txt'), BROKER: join(broker, 'control.txt'), ALIAS: join(root, 'foreign-alias'), DIRECTORY: join(root, 'protected-dir', 'deep', 'data.txt'), TRAVERSAL: `${root}/traverse/../protected.txt` };
+  const foreign = join(base, 'foreign.txt'), absent = join(root, family.absent), ancestor = join(root, 'protected-dir');
+  const hostPaths = { ...targets, FOREIGN: foreign, ABSENT: absent, FUTURE_DIRECTORY: join(ancestor, 'new', 'created.txt') };
+  const hostSnapshot = async () => Object.fromEntries(await Promise.all(Object.entries(hostPaths).map(async ([name, path]) => {
+    try { const stats = await lstat(path); return [name, { sha256: digest(await readFile(path)), size: stats.size, mode: stats.mode, ino: stats.ino, symlink: stats.isSymbolicLink() }]; }
+    catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return [name, { absent: true }]; throw error; }
+  })));
+  let phase = 'setup', timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    await mkdir(root, { mode: 0o700 }); await mkdir(worker, { recursive: true, mode: 0o700 }); await chmod(broker, 0o700); await mkdir(home, { mode: 0o700 });
+    await mkdir(join(root, 'traverse'), { mode: 0o700 });
+    for (const path of [...Object.values(targets), absent, join(root, family.positive)]) await mkdir(dirname(path), { recursive: true, mode: 0o700 });
+    for (const [name, path] of Object.entries(targets)) if (!['LATE', 'ALIAS', 'TRAVERSAL'].includes(name)) await writeFile(path, sentinel + '\n', { mode: 0o600 });
+    await writeFile(foreign, sentinel + '\n', { mode: 0o600 }); await symlink(foreign, targets.ALIAS!);
+    const binary = join(worker, 'app-server'); await copyFile(supplied, binary); await chmod(binary, 0o700); await verify(binary);
+    cleanup.push(async () => { await verify(binary); await verify(supplied); observation.supplyRevalidated = true; });
+    const rules = [join(root, family.rule), ...(family.id === 'class' ? [join(root, 'nested', family.rule)] : [])]; observation.declaredRules = rules;
+    phase = 'compile-named-pattern';
+    const policy = await prepareCodexNativePolicy({ canonicalRoot: root, codexHome: home, privateDirectory: worker, protectedPaths: [broker, targets.LITERAL!, ancestor, ...rules], immutableReadRoots: ['/bin', '/usr/lib', '/usr/bin/curl', '/private/etc/ssl/openssl.cnf', '/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld'], commandNetworkPosture: 'off' });
+    cleanup.push(() => policy.cleanup()); observation.policyDigest = policy.policyDigest; observation.configSha256 = digest(policy.configToml); observation.expectedPermissions = policy.expectedPermissions;
+    for (const rule of rules) expect(policy.expectedPermissions.filesystem[rule]).toBe('deny');
+    observation.futureBeforeCreation = await hostSnapshot();
+    expect(observation.futureBeforeCreation.LATE).toEqual({ absent: true }); expect(observation.futureBeforeCreation.ABSENT).toEqual({ absent: true });
+    // Create a new match only after the compiler has consumed the pattern.
+    await writeFile(targets.LATE!, sentinel + '\n', { mode: 0o600, flag: 'wx' });
+    observation.matchCreatedAfterCompile = true; observation.hostBefore = await hostSnapshot();
+    // This callback runs after owned vendor termination and before fixture removal.
+    cleanup.push(async () => { observation.hostAfter = await hostSnapshot(); observation.hostUnchanged = JSON.stringify(observation.hostBefore) === JSON.stringify(observation.hostAfter); });
+    const positivesFor = (who: string) => ({ shell: join(root, family.positive), patch: join(dirname(join(root, family.positive)), `${who}-positive-patch.txt`) });
+    const commandFor = (who: string) => [
+      `printf 'PROTECTED_${who}_START\\n'`,
+      `printf '${who}-positive\\n' > ${quote(positivesFor(who).shell)}; if [ "$(/bin/cat ${quote(positivesFor(who).shell)})" = '${who}-positive' ]; then printf 'PROTECTED_POSITIVE:PASS\\n'; else printf 'PROTECTED_POSITIVE:FAIL\\n'; fi`,
+      ...Object.entries(targets).flatMap(([name, path]) => [
+        `/bin/cat ${quote(path)} >/dev/null 2>&1; printf 'PROTECTED_READ_${name}:%s\\n' "$?"`,
+        `(printf 'UNAUTHORIZED_${who}\\n' > ${quote(path)}) 2>/dev/null; printf 'PROTECTED_WRITE_${name}:%s\\n' "$?"`,
+      ]),
+      `(printf 'UNAUTHORIZED_${who}\\n' > ${quote(absent)}) 2>/dev/null; printf 'PROTECTED_WRITE_ABSENT:%s\\n' "$?"`,
+      `(cd ${quote(ancestor)}) 2>/dev/null; printf 'PROTECTED_TRAVERSE_DIRECTORY:%s\\n' "$?"`,
+      `/bin/mkdir ${quote(join(ancestor, 'new'))} 2>/dev/null; printf 'PROTECTED_CREATE_DIRECTORY:%s\\n' "$?"`,
+      `printf 'PROTECTED_${who}_FINISH\\n'`,
+    ].join('; ');
+    const patchesFor = (who: string) => [
+      { target: 'POSITIVE', patch: `*** Begin Patch\n*** Add File: ${positivesFor(who).patch}\n+${who}-patch-marker\n*** End Patch` },
+      ...Object.entries(targets).map(([target, path]) => ({ target, patch: `*** Begin Patch\n*** Update File: ${path}\n@@\n-${sentinel}\n+UNAUTHORIZED_${who}\n*** End Patch` })),
+      { target: 'ABSENT', patch: `*** Begin Patch\n*** Add File: ${absent}\n+UNAUTHORIZED_${who}\n*** End Patch` },
+      { target: 'FUTURE_DIRECTORY', patch: `*** Begin Patch\n*** Add File: ${hostPaths.FUTURE_DIRECTORY}\n+UNAUTHORIZED_${who}\n*** End Patch` },
+    ];
+    const peer = await startProtectedPeer(root, commandFor, patchesFor);
+    cleanup.push(async () => { observation.probes = peer.records; observation.peerFailures = peer.failures; observation.nativeToolOutputs = peer.controls; observation.issuedCalls = [...peer.issued].map(([callId, value]) => ({ callId, ...value })); await peer.close(); });
+    phase = 'launch'; await verify(binary); const launch = await policy.launchArguments(binary);
+    const overrides = ['model_provider="runtime_deterministic"', 'model="runtime-deterministic"', 'model_providers.runtime_deterministic.name="Protected deterministic fixture"', `model_providers.runtime_deterministic.base_url=${JSON.stringify(peer.baseUrl)}`, 'model_providers.runtime_deterministic.wire_api="responses"', 'model_providers.runtime_deterministic.requires_openai_auth=false', 'model_providers.runtime_deterministic.supports_websockets=false', 'model_providers.runtime_deterministic.request_max_retries=0', 'model_providers.runtime_deterministic.stream_max_retries=0', 'features.multi_agent=true'];
+    const child = spawn(launch[0]!, [...launch.slice(1), ...overrides.flatMap(value => ['-c', value])], { cwd: root, env: policy.environment, detached: true, stdio: 'pipe' });
+    const closed = new Promise<void>(resolve => child.once('close', () => resolve()));
+    const kill = () => { if (child.pid) try { process.kill(-child.pid, 'SIGKILL'); } catch { /* fixture-owned group already gone */ } };
+    peer.setAbort(kill); child.on('error', () => {}); child.once('exit', kill);
+    let stderrBytes = 0, stderr = ''; child.stderr.on('data', (bytes: Buffer) => { stderrBytes += bytes.length; if (stderr.length < 4096) stderr += bytes.toString().slice(0, 4096 - stderr.length); if (stderrBytes > 65536) kill(); });
+    timer = setTimeout(kill, Math.max(1, 55000 - (Date.now() - started)));
+    const close = async () => { kill(); await closed; observation.vendorProcessClosed = true; observation.vendorStderr = stderr; observation.vendorStderrBytes = stderrBytes; }; cleanup.push(close);
+    await new Promise<void>((resolve, reject) => { child.once('spawn', resolve); child.once('error', reject); });
+    const actor = new CodexTurnSession({ transport: { stdin: child.stdin, stdout: child.stdout, close }, permissionProfile: policy.permissionProfile, policyDigest: policy.policyDigest, commandNetworkPosture: 'off', requestTimeoutMs: 10000, turnTimeoutMs: Math.max(1, 50000 - (Date.now() - started)) });
+    cleanup.push(async () => { await actor.close(); observation.nativeChildren = actor.nativeChildren(); });
+    void (async () => { for await (const _event of actor.events()) { /* actual actor drain */ } })().catch(() => {});
+    phase = 'initialize-policy-readback'; await actor.initialize(); await actor.verifyNativePolicy(policy.expectedPermissions); observation.policyReadbackVerified = true;
+    expect((await actor.accountRead()).hasAccount).toBe(false);
+    phase = 'primary-and-native-actions';
+    const threadId = await actor.startThread({ cwd: root, model: 'runtime-deterministic', continuityChecked: true }); observation.threadId = threadId;
+    const turnId = await actor.startTurn({ threadId, model: 'runtime-deterministic', text: 'Perform one bounded protected-path profile, then its native child, and finish.' }); observation.turnId = turnId;
+    const terminal = await actor.waitTurn(turnId); observation.terminalStatus = terminal.status; observation.nativeChildren = actor.nativeChildren();
+    expect(terminal.status).toBe('completed'); expect(terminal.output).toContain('PROTECTED_PRIMARY_COMPLETE'); expect(peer.failures).toEqual([]);
+    expect(peer.records).toHaveLength(2 * (1 + patchesFor('primary').length));
+    for (const who of ['primary', 'child']) {
+      const shell = peer.records.find(record => record.who === who && record.kind === 'probe-shell');
+      expect(shell?.summary).toMatchObject({ started: true, finished: true, duplicates: false, values: { POSITIVE: 'PASS' } });
+      for (const name of Object.keys(targets)) for (const operation of ['READ', 'WRITE']) expect(Number(shell?.summary?.values[`${operation}_${name}`])).toBeGreaterThan(0);
+      for (const name of ['WRITE_ABSENT', 'TRAVERSE_DIRECTORY', 'CREATE_DIRECTORY']) expect(Number(shell?.summary?.values[name])).toBeGreaterThan(0);
+      for (const patch of patchesFor(who)) {
+        const record = peer.records.find(row => row.who === who && row.target === patch.target);
+        expect(record?.method).toBe('apply_patch'); expect(record).toBeDefined();
+        expect(patch.target === 'POSITIVE' ? patchSucceeded(record!.output) : patchDenied(record!.output), `${who}/${patch.target} must return actual terminal success/access-denial`).toBe(true);
+      }
+      expect(await readFile(positivesFor(who).patch, 'utf8')).toBe(`${who}-patch-marker\n`);
+    }
+    for (const record of peer.records) expect(record.elapsedMs).toBeLessThanOrEqual(10000);
+    const native = actor.nativeChildren();
+    const spawnOutput = peer.controls.find(row => row.kind === 'spawn' && row.who === 'primary');
+    expect(spawnOutput).toBeDefined();
+    const spawned = JSON.parse(spawnOutput!.output), childId = spawned.agent_id ?? spawned.id;
+    expect(childId).not.toBe(threadId);
+    expect(native).toContainEqual({ threadId: childId, sourceTurnId: turnId });
+    observation.passed = true;
+  } catch (error) { observation.failurePhase = phase; observation.failure = (error instanceof Error ? error.message : String(error)).slice(0, 2048); }
+  finally {
+    let failures = 0; for (const fn of cleanup.reverse()) try { await fn(); } catch { failures++; }
+    clearTimeout(timer); observation.cleanupFailures = failures;
+    observation.sourcesAfter = await pins(); observation.sourceStable = JSON.stringify(observation.sourcesBefore) === JSON.stringify(observation.sourcesAfter);
+    observation.elapsedMs = Date.now() - started;
+    observation.passed = observation.passed === true && observation.hostUnchanged === true && failures === 0 && observation.vendorProcessClosed === true && observation.sourceStable === true && observation.supplyRevalidated === true && observation.elapsedMs <= 60000;
+    await mkdir(evidenceDirectory, { recursive: true, mode: 0o700 }); await writeFile(join(evidenceDirectory, `EXACT_PROTECTED_${family.id}.json`), JSON.stringify(observation, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
+  }
+  expect(observation.passed, 'See bounded P3 evidence; no conformance acceptance inferred').toBe(true);
+}, 75000);

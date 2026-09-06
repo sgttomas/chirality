@@ -1,0 +1,39 @@
+{
+  "derivative": true,
+  "parentOwnedExecution": true,
+  "verifiedActualJson": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE3_01/EXACT_BOUNDARY_P1.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE3_01/CHECK.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE3_01/CHECK.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE3_01/PARENT_INTERPRETATION.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE3_01/EXACT_PROTECTED_star.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_02/EXACT_NETWORK_RUNTIME_CANARY.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_02/CHECK.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_REGISTERED_02/CHECK.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/INTEGRATED_REGISTERED_02/registered.json"
+  ],
+  "p1Candidate3Passed": true,
+  "p3Candidate3Passed": false,
+  "p3Candidate3ProbeCount": 24,
+  "publicPrimaryCancelCandidate2Passed": true,
+  "publicPrimaryCancelAudit": {
+    "attributedRequest": true,
+    "requestDigestMatches": true,
+    "fullBindingMatches": true,
+    "decisionAbsent": true,
+    "providerResolutionPresent": false,
+    "providerResolutionValid": true,
+    "interruptedRetirement": true,
+    "committedThreadValid": true,
+    "complete": true
+  },
+  "publicPrimaryCancelLegacyStoredAttributionProven": false,
+  "registered": {
+    "numPassedTests": 560,
+    "numPendingTests": 14,
+    "numFailedTests": 0,
+    "numTotalTestSuites": 75
+  },
+  "sourceFilesStableAgainstFinalFreeze": 18,
+  "conformanceAccepted": false
+}

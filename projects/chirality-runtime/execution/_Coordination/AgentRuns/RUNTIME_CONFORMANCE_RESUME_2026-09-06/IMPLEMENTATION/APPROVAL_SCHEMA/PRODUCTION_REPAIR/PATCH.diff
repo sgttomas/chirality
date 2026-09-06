@@ -1,0 +1,155 @@
+--- before/packages/daemon/src/codex-session.ts
++++ after/packages/daemon/src/codex-session.ts
+@@ -32,6 +32,26 @@
+ function identifier(value: unknown): string {
+   if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value)) throw protocol("Invalid Codex identifier");
+   return value;
++}
++/** Network callback correlation IDs are opaque supplier tokens, not primary thread/turn identifiers. */
++function networkApprovalItemId(value: unknown, environmentId: unknown, host: string, protocolName: string): string {
++  if (typeof value !== "string" || !value.startsWith("network#")) return identifier(value);
++  // Supplier: network#environment#protocol#lowercase-host#u16-port#v4-uuid.
++  // Environment 128 is an adapter bound, not an upstream guarantee; host 253 is our existing context bound.
++  // 444 = 7 + 128 + 10 + 253 + 5 + 36 + five separators. Keep the original token/signature intact.
++  if (value.length > 444 || /[\x00-\x20\x7f]/.test(value)) throw protocol("Invalid network approval item ID");
++  const parts = value.split("#");
++  const protocolLabel = protocolName === "socks5Tcp" ? "socks5-tcp" : protocolName === "socks5Udp" ? "socks5-udp" : protocolName;
++  if (parts.length !== 6 || parts[1] !== identifier(environmentId) || parts[2] !== protocolLabel || parts[3] !== host.toLowerCase()
++    || !/^(?:0|[1-9][0-9]{0,4})$/.test(parts[4]!) || Number(parts[4]) > 65535
++    || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(parts[5]!)) throw protocol("Invalid network approval item ID");
++  return value;
++}
++function ignoredNetworkPolicyChoice(value: unknown, host: string): void {
++  const choice = object(value), network = object(choice.applyNetworkPolicyAmendment), amendment = object(network.network_policy_amendment);
++  if (Object.keys(choice).join(",") !== "applyNetworkPolicyAmendment" || Object.keys(network).join(",") !== "network_policy_amendment"
++    || Object.keys(amendment).sort().join(",") !== "action,host" || amendment.host !== host || (amendment.action !== "allow" && amendment.action !== "deny")) throw protocol("Unknown approval decision");
++  // Recognized persistent-rule choices are omitted, never executed or mapped to a one-time grant.
+ }
+ /**
+  * Known-method actor, not a sandbox or launch/authentication authority. The trusted
+@@ -193,18 +213,20 @@
+     const requestId = message.id;
+     if ((typeof requestId !== "string" && typeof requestId !== "number") || (typeof requestId === "number" && !Number.isSafeInteger(requestId)) || String(requestId).length > 128) throw protocol("Invalid network request ID");
+     const params = object(message.params), active = this.active;
+-    const threadId = identifier(params.threadId), turnId = identifier(params.turnId); identifier(params.itemId);
++    const threadId = identifier(params.threadId), turnId = identifier(params.turnId);
+     if (!active?.id || active.id !== turnId || active.threadId !== threadId || this.threadId !== threadId) throw protocol("Network request is outside the active primary turn");
+     if (!Number.isSafeInteger(params.startedAtMs) || Number(params.startedAtMs) < 0) throw protocol("Invalid network approval timestamp");
+     // Never turn a combined filesystem/exec-policy prompt into a network-only grant.
+     if (["additionalPermissions", "proposedExecpolicyAmendment", "command", "cwd", "commandActions"].some(key => params[key] !== undefined && params[key] !== null)) throw protocol("Unsupported combined approval request");
+     const context = object(params.networkApprovalContext), host = context.host, protocolName = context.protocol;
+     if (Object.keys(context).sort().join(",") !== "host,protocol" || typeof host !== "string" || host.length > 253 || (!isIP(host.replace(/^\[|\]$/g, "")) && !host.split(".").every(label => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i.test(label))) || !["http", "https", "socks5Tcp", "socks5Udp"].includes(String(protocolName))) throw protocol("Invalid network destination context");
++    networkApprovalItemId(params.itemId, params.environmentId, host, String(protocolName));
+     if (!Array.isArray(params.availableDecisions) || params.availableDecisions.length > 16) throw protocol("Exact available approval decisions required");
+     const availableDecisions: NetworkApprovalChoice[] = [];
+     for (const choice of params.availableDecisions) {
+       if (choice === "accept") availableDecisions.push("allow"); else if (choice === "decline") availableDecisions.push("deny"); else if (choice === "acceptForSession") availableDecisions.push("acceptForSession");
+-      else if (choice === "cancel" || (choice && typeof choice === "object")) continue;
++      else if (choice === "cancel") continue;
++      else if (choice && typeof choice === "object") ignoredNetworkPolicyChoice(choice, host);
+       else throw protocol("Unknown approval decision");
+     }
+     if (!availableDecisions.length || new Set(availableDecisions).size !== availableDecisions.length) throw protocol("No valid exact network choices");
+--- before/tests/codex-session.test.ts
++++ after/tests/codex-session.test.ts
+@@ -322,6 +322,100 @@
+   const prompt = (id: string | number, change = {}) => send({ id, method: "item/commandExecution/requestApproval", params: { threadId: "network-thread", turnId: "network-turn", itemId: "network-item", startedAtMs: 1, networkApprovalContext: { host: "example.com", protocol: "https" }, availableDecisions: ["accept", "decline", "acceptForSession"], ...change } });
+   return { actor, send, replies, prompt, stdin };
+ }
++const supplierNetworkUuid = "00000000-0000-4000-8000-000000000000";
++const supplierPolicyChoice = (host = "example.com", action = "allow") => ({ applyNetworkPolicyAmendment: { network_policy_amendment: { host, action } } });
++function supplierNetworkPrompt(overrides: Record<string, unknown> = {}) {
++  return { itemId: `network#local#http#example.com#80#${supplierNetworkUuid}`, environmentId: "local", networkApprovalContext: { host: "example.com", protocol: "http" }, availableDecisions: ["accept", "acceptForSession", supplierPolicyChoice(), "cancel"], ...overrides };
++}
++it("accepts the observed supplier network callback shape without inventing decline or executing policy amendments", async () => {
++  const f = await networkActor();
++  try {
++    const params = supplierNetworkPrompt();
++    f.prompt(101, params); f.prompt(101, params);
++    expect(f.replies).toEqual([]);
++    const prompts = f.actor.pendingNetworkApprovals(); expect(prompts).toHaveLength(1);
++    expect(prompts[0]).toMatchObject({ threadId: "network-thread", turnId: "network-turn", networkApprovalContext: { host: "example.com", protocol: "http" }, availableDecisions: ["allow", "acceptForSession"] });
++    for (const unsupported of ["deny", "cancel", "applyNetworkPolicyAmendment"] as const) await expect(f.actor.replyNetworkApproval(prompts[0]!.approvalId, unsupported as "deny")).rejects.toThrow();
++    expect(f.replies).toEqual([]);
++    await f.actor.replyNetworkApproval(prompts[0]!.approvalId, "allow");
++    expect(f.replies).toEqual([{ id: 101, result: { decision: "accept" } }]);
++    f.prompt(101, params);
++    await expect(f.actor.waitTurn("network-turn")).rejects.toThrow();
++    expect(f.replies).toHaveLength(1);
++  } finally { await f.actor.close(); }
++});
++it.each([["http", "http"], ["https", "https"], ["socks5Tcp", "socks5-tcp"], ["socks5Udp", "socks5-udp"]])("correlates supplier %s context with its exact %s label", async (context, label) => {
++  const f = await networkActor();
++  try {
++    f.prompt(102, supplierNetworkPrompt({ itemId: `network#local#${label}#example.com#65535#${supplierNetworkUuid}`, networkApprovalContext: { host: "example.com", protocol: context } }));
++    expect(f.actor.pendingNetworkApprovals()).toHaveLength(1); expect(f.replies).toEqual([]);
++  } finally { await f.actor.close(); }
++});
++it("allows the bounded maximum supplier token and lowercase host correlation without rewriting signature input", async () => {
++  const f = await networkActor();
++  try {
++    const host = [...Array(3).fill("a".repeat(63)), "b".repeat(61)].join(".");
++    const environmentId = "e".repeat(128), itemId = `network#${environmentId}#socks5-tcp#${host}#65535#${supplierNetworkUuid}`;
++    expect(host).toHaveLength(253); expect(itemId).toHaveLength(444);
++    const params = supplierNetworkPrompt({ environmentId, itemId, networkApprovalContext: { host: host.toUpperCase(), protocol: "socks5Tcp" }, availableDecisions: ["accept", supplierPolicyChoice(host.toUpperCase(), "deny"), "cancel"] });
++    f.prompt(103, params); expect(f.actor.pendingNetworkApprovals()).toHaveLength(1); expect(f.replies).toEqual([]);
++    // Changing even an omitted known policy option must conflict with the full original request signature.
++    f.prompt(103, { ...params, availableDecisions: ["accept", supplierPolicyChoice(host.toUpperCase(), "allow"), "cancel"] });
++    await expect(f.actor.waitTurn("network-turn")).rejects.toThrow("Conflicting"); expect(f.replies).toEqual([]);
++  } finally { await f.actor.close(); }
++});
++it("rejects malformed, unbounded and inconsistent supplier identifiers before any reply", async () => {
++  const item = (environment = "local", protocol = "http", host = "example.com", port = "80", uuid = supplierNetworkUuid) => `network#${environment}#${protocol}#${host}#${port}#${uuid}`;
++  const cases: Record<string, unknown>[] = [
++    { itemId: null }, { itemId: {} }, { itemId: "" }, { itemId: "x".repeat(129) },
++    { environmentId: undefined }, { environmentId: null }, { environmentId: "" }, { environmentId: "foreign" }, { environmentId: {} },
++    { itemId: item("e".repeat(129)), environmentId: "e".repeat(129) }, { itemId: item("local\n"), environmentId: "local\n" },
++    { itemId: item("local", "https") }, { itemId: item("local", "socks5_tcp") }, { itemId: item("local", "http", "foreign.example") },
++    ...["-1", "65536", "080", "1e2", "", "00000"].map(port => ({ itemId: item("local", "http", "example.com", port) })),
++    ...["\n", "\r", "\t", "\0", "\u007f", " "].map(control => ({ itemId: item() + control })),
++    { itemId: item() + "#extra" }, { itemId: item().replace("network#", "different#") }, { itemId: item("local", "http", "example.com", "80", "a".repeat(36)) },
++    { itemId: item("local", "http", "example.com", "80", supplierNetworkUuid.replace("4000", "1000")) },
++    { itemId: item("local", "http", "example.com", "80", supplierNetworkUuid.replace("8000", "7000")) },
++    { itemId: item("local", "http", "example.com", "80", "AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA") },
++    { itemId: item("local", "http", "a".repeat(254)), networkApprovalContext: { host: "a".repeat(254), protocol: "http" } },
++    { itemId: "network#" + "x".repeat(438) },
++    { threadId: "foreign" }, { turnId: "foreign" }, { threadId: "network#thread" }, { turnId: "network#turn" },
++    ...["additionalPermissions", "proposedExecpolicyAmendment", "command", "cwd", "commandActions"].map(key => ({ [key]: {} })),
++  ];
++  for (const change of cases) {
++    const f = await networkActor();
++    try { f.prompt(104, supplierNetworkPrompt(change)); expect(() => f.actor.pendingNetworkApprovals()).toThrow(); await expect(f.actor.waitTurn("network-turn")).rejects.toThrow(); expect(f.replies).toEqual([]); }
++    finally { await f.actor.close(); }
++  }
++});
++it("fails closed for unknown or malformed offered objects even when accept is also present", async () => {
++  const invalidChoices: unknown[] = [null, [], {}, 1, true, "future-decision", { futureDecision: {} },
++    { applyNetworkPolicyAmendment: null }, { applyNetworkPolicyAmendment: [] }, { applyNetworkPolicyAmendment: {} },
++    { applyNetworkPolicyAmendment: { network_policy_amendment: [] } }, { applyNetworkPolicyAmendment: { network_policy_amendment: {} } },
++    { ...supplierPolicyChoice(), extra: true },
++    { applyNetworkPolicyAmendment: { network_policy_amendment: { host: "example.com", action: "allow", extra: true } } },
++    { applyNetworkPolicyAmendment: { network_policy_amendment: { host: "example.com", action: "allow" }, extra: true } },
++    supplierPolicyChoice("foreign.example"), supplierPolicyChoice("example.com", "future"),
++    { acceptWithExecpolicyAmendment: { execpolicy_amendment: ["curl"] } },
++  ];
++  for (const choice of invalidChoices) {
++    const f = await networkActor();
++    try { f.prompt(105, supplierNetworkPrompt({ availableDecisions: ["accept", choice, "cancel"] })); expect(() => f.actor.pendingNetworkApprovals()).toThrow(); await expect(f.actor.waitTurn("network-turn")).rejects.toThrow(); expect(f.replies).toEqual([]); }
++    finally { await f.actor.close(); }
++  }
++});
++it("rejects a resolved source-shaped callback replay without sending a grant", async () => {
++  const f = await networkActor();
++  try {
++    const params = supplierNetworkPrompt(); f.prompt("source-request", params);
++    const [prompt] = f.actor.pendingNetworkApprovals();
++    f.send({ method: "serverRequest/resolved", params: { threadId: "network-thread", requestId: "source-request" } });
++    expect(f.actor.pendingNetworkApprovals()).toEqual([]);
++    await expect(f.actor.replyNetworkApproval(prompt!.approvalId, "allow")).rejects.toThrow();
++    f.prompt("source-request", params); await expect(f.actor.waitTurn("network-turn")).rejects.toThrow(); expect(f.replies).toEqual([]);
++  } finally { await f.actor.close(); }
++});
++
+ it.each(["allow", "deny", "acceptForSession"] as const)("routes exact attributed-host network choice %s without automatic decisions", async decision => {
+   const f = await networkActor();
+   try {

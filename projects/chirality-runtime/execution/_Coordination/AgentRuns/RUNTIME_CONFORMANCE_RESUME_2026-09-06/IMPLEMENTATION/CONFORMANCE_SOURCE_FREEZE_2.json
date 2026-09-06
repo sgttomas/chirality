@@ -1,0 +1,28 @@
+{
+  "derivative": true,
+  "status": "source/test freeze before independent final transport review; not admission",
+  "attribution": "WORKING_ITEMS OpenAI GPT-6 exact servingID unavailable; instruction-asserted",
+  "sha256": {
+    "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+    "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+    "projects/chirality-runtime/packages/daemon/src/codex-transport-lifecycle.ts": "361eef00340fff883791a3b858504436f1979a11bd9e9ceb7a8acb4998e9a0f1",
+    "projects/chirality-runtime/tests/codex-containment.test.ts": "96ee102c0fc93f74feb99204cf0edd4c073963a12bcbeca7b09f4b3cfc1385f4",
+    "projects/chirality-runtime/tests/codex-session.test.ts": "2d682ff9426de480a0579a4ecccbfdec38ab66fc015147b1ecf200f08e6f6b6d",
+    "projects/chirality-runtime/tests/codex-supervisor.test.ts": "199c8bf041cd2c43b8004f142c11376ada63317971eea20cf3076bbde7afe3c5",
+    "projects/chirality-runtime/tests/codex-transport-lifecycle.test.ts": "b0b9c413690683545ff9e723fe04c007c68f54e5a6e99a5b7d2a7a550e345d48",
+    "projects/chirality-runtime/tests/delegated-runtime.test.ts": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+    "projects/chirality-runtime/tests/exact-boundary-conformance.test.ts": "e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383",
+    "projects/chirality-runtime/tests/exact-network-conformance.test.ts": "f56992078da4f09197a4be09cc44e228b1ea2c0f182d3e6e5aa5a63582683792",
+    "projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "d04124fa83bec8f402a90532af205838cdabbbb08a6277a193e4eebe9839518c",
+    "projects/chirality-runtime/tests/exact-process-conformance.test.ts": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+    "projects/chirality-runtime/tests/exact-process-runtime-conformance.test.ts": "672fc53ab7e52d0f8760665e6e38c98d2f4eb2a1dc4ea516b75b119dbd06eabe",
+    "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3",
+    "projects/chirality-runtime/tests/exact-role-conformance.test.ts": "d029dc722ac8232f19a8b81dbe4c6416a09a89fb8156fb7d51f7882e00379127",
+    "projects/chirality-runtime/tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81"
+  },
+  "excluded": "Generated dist is parent build-owned; packaging source/manifests owned separate admitted lane",
+  "runtimeCore": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+  "required": "Consume reviewer final and parent registered build before actuals"
+}

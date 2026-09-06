@@ -1,0 +1,7 @@
+{
+  "packages/daemon/src/codex-transport-lifecycle.ts": "573ff1f1ba4a18b4619e2a4a5fcfc885b8bdaebd21931bac8bda5676bf7c9482",
+  "tests/codex-transport-lifecycle.test.ts": "3257d9eb360d93b60bdfbbaac9e3e719cc8278d7c1e4c57ebb10258e3496c155",
+  "packages/daemon/src/codex-supervisor.ts": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+  "tests/exact-process-runtime-conformance.test.ts": "672fc53ab7e52d0f8760665e6e38c98d2f4eb2a1dc4ea516b75b119dbd06eabe",
+  "packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f"
+}

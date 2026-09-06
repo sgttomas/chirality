@@ -1,0 +1,5 @@
+# Pre-execution review revisions
+
+Revision1 source399d222e / runneraf780154 prepared without executing tests/build. Independent reviewer and manager identified runner substring `0 passed;` could accidentally match10/20passed. Revision2 runner35c6ced4 replaces that with an anchored Rust test summary regex and integer positive-passed/zero-failed check. Prior runner/pins retained as v1.
+
+Specialist's additional static source inspection found FileSystemSandboxPolicy::can_read_path_with_cwd/can_write_path_with_cwd resolve literal entries; deny globs are evaluated separately by ReadDenyMatcher and generated SBPL. The new test's .secret check was corrected to actual ReadDenyMatcher::new/is_read_denied with denied and allowed controls; original entries equality and literal deny/foreign read/write negatives remain. Revision3 source70822f93, unchanged production repair, current runner35c6ced4. Prior patch/source manifest/pins retained. These are pre-execution review changes, not failed test runs or weakened assertions. Current exact hashes in REVIEW_PINS.json; no tests/build run at this boundary.

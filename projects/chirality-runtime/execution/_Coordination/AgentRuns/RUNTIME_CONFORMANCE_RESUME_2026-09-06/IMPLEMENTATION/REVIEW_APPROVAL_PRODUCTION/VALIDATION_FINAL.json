@@ -1,0 +1,38 @@
+{
+  "CONTROLLED_FINAL": {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "tests/codex-session.test.ts",
+      "tests/codex-containment.test.ts",
+      "tests/codex-supervisor.test.ts",
+      "tests/approval-store.test.ts",
+      "tests/manager-approval.test.ts"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 3359,
+    "environment": "All CHIRALITY_* values omitted without recording"
+  },
+  "ADVERSARIAL_FINAL": {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "--config",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/vitest.independent.config.ts"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 443,
+    "environment": "All CHIRALITY_* values omitted without recording"
+  },
+  "STRICT_NOEMIT_FINAL": {
+    "command": [
+      "./node_modules/.bin/tsc",
+      "-p",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/tsconfig.check.json"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 685,
+    "environment": "All CHIRALITY_* values omitted without recording"
+  },
+  "sourceStable": true
+}

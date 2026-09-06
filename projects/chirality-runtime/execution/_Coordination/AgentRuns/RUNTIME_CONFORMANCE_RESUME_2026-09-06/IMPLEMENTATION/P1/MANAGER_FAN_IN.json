@@ -1,0 +1,10 @@
+{
+  "source": "tests/exact-boundary-conformance.test.ts",
+  "sourceHash": "e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383",
+  "outputContract": "verified reports, checks, seals; no source changes by review",
+  "review": "REVIEW_P1/REPAIR_1",
+  "verdict": "ADMIT_PARENT_BOUNDED_ACTUAL_ONLY",
+  "actual": "P1 Candidate1 matched rerun passed; final selected supplier rerun outstanding",
+  "derivative": true,
+  "acceptedProduction": false
+}

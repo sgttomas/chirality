@@ -1,0 +1,31 @@
+{
+  "checked": 1788724778.855956,
+  "owned_phase_records": [
+    {
+      "runner_pid": 90251,
+      "child_pid": 90252,
+      "owned_pgid": 90252,
+      "started": 1788723747.158836
+    },
+    {
+      "runner_pid": 91870,
+      "child_pid": 91871,
+      "owned_pgid": 91871,
+      "started": 1788723903.032705
+    },
+    {
+      "runner_pid": 93587,
+      "child_pid": 93589,
+      "owned_pgid": 93589,
+      "started": 1788723980.5768452
+    },
+    {
+      "runner_pid": 82716,
+      "child_pid": 82717,
+      "owned_pgid": 82717,
+      "started": 1788723240.272161
+    }
+  ],
+  "remaining_owned_group_members": [],
+  "scope": "process group metadata census; no termination performed; capture exited0"
+}

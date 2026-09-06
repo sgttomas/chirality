@@ -1,0 +1,22 @@
+[
+  {
+    "path": "packages/daemon/src/codex-transport-lifecycle.ts",
+    "sha256": "361eef00340fff883791a3b858504436f1979a11bd9e9ceb7a8acb4998e9a0f1",
+    "bytes": 6483
+  },
+  {
+    "path": "tests/codex-transport-lifecycle.test.ts",
+    "sha256": "b0b9c413690683545ff9e723fe04c007c68f54e5a6e99a5b7d2a7a550e345d48",
+    "bytes": 9594
+  },
+  {
+    "path": "packages/daemon/src/codex-supervisor.ts",
+    "sha256": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+    "bytes": 26967
+  },
+  {
+    "path": "tests/exact-process-runtime-conformance.test.ts",
+    "sha256": "672fc53ab7e52d0f8760665e6e38c98d2f4eb2a1dc4ea516b75b119dbd06eabe",
+    "bytes": 40848
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "files": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/codex-session.test.ts": "2d682ff9426de480a0579a4ecccbfdec38ab66fc015147b1ecf200f08e6f6b6d"
+  },
+  "controlledTests": "81 passed",
+  "fullStrictNoEmitExitCode": 0,
+  "actualCanariesRun": false,
+  "registeredBuildRun": false,
+  "askDeny": "unsupported dialect; decline not advertised in actual source-shaped callback"
+}

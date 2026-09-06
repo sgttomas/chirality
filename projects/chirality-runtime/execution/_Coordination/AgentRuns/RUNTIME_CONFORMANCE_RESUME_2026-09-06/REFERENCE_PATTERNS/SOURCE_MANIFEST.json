@@ -1,0 +1,154 @@
+{
+  "capturedAt": "2026-09-06T19:48:21.703843+00:00",
+  "sdkCodingAgentVersion": "0.82.0",
+  "sdkAgentCoreVersion": "0.82.0",
+  "t3codeCommit": "95d99373b74edfb3bfd092c61a15999a95727423",
+  "t3codeCommitterDate": "2026-09-06T19:44:41Z",
+  "method": "Read installed source and gh api exact-commit contents; no fetched code execution/install/provider account/inference",
+  "sources": [
+    {
+      "path": "projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/package.json",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/package.json",
+      "sha256": "031b6774e3c212780dce1ac1a4b78a186d385b7878dca1897b45bd557ac68492",
+      "bytes": 3561
+    },
+    {
+      "path": "projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/dist/core/agent-session.js",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/dist/core/agent-session.js",
+      "sha256": "dcc738a40b23c337a788422d370154299633a4770687190da3d05aa210f68968",
+      "bytes": 116116
+    },
+    {
+      "path": "projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-agent-core/package.json",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-agent-core/package.json",
+      "sha256": "5cf0d811474b3b31de7b57789ed32a99a6a6cb7d28423961890694cf34a39990",
+      "bytes": 1384
+    },
+    {
+      "path": "projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-agent-core/dist/agent.js",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-agent-core/dist/agent.js",
+      "sha256": "02e5f6dfcea09280d7c6818fd264dc9a1219087f1d6c49115752b7086f6f2b62",
+      "bytes": 15635
+    },
+    {
+      "path": "projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-agent-core/dist/agent-loop.js",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-agent-core/dist/agent-loop.js",
+      "sha256": "d3d20bc773ccc8d5f7cfe0eabf8b421ff3da8685617445b142d89a44457741bc",
+      "bytes": 22147
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "sha256": "d76120502d5cc724ca2782be933a166f10ff092ef8a440e5bbadea5aed8a6391",
+      "bytes": 26584
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+      "bytes": 48706
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/delegated-runtime.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/packages/core/src/delegated-runtime.ts",
+      "sha256": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+      "bytes": 32651
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/approval-store.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/packages/core/src/approval-store.ts",
+      "sha256": "4ac5d0197f528a6dce2dfd4cad007b4d806e622553ab921edcf24422fa1e1e91",
+      "bytes": 10978
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+      "bytes": 12421
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+      "sha256": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+      "bytes": 9037
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/local/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+      "sha256": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+      "bytes": 14041
+    },
+    {
+      "path": "tree.json",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/tree.json",
+      "sha256": "70f6c3665c1b4aec780193feae7d0d3eba3cb3410214ba9bf539ef5933669128",
+      "bytes": 5007702,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/orchestration/Layers/ProviderRuntimeIngestion.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/orchestration/Layers/ProviderRuntimeIngestion.ts",
+      "sha256": "7fb52053071620e71415144321eb834106709472bc35c7b51626602e6a7dde00",
+      "bytes": 82691,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/orchestration/Layers/ProviderRuntimeIngestion.approval.test.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/orchestration/Layers/ProviderRuntimeIngestion.approval.test.ts",
+      "sha256": "432bc998054f6c090c7f9eb5149dfb3aab6772af101808555754478aa2b6daf0",
+      "bytes": 2336,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/orchestration/Layers/ProjectionPipeline.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/orchestration/Layers/ProjectionPipeline.ts",
+      "sha256": "6cb31cef10f6edae2bad68ee3bca1866f45a20b5de8f4741c831f0028002917b",
+      "bytes": 77502,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/persistence/Layers/ProjectionPendingApprovals.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/persistence/Layers/ProjectionPendingApprovals.ts",
+      "sha256": "d22aa8621b7df1bf9b2294e3068e93778b04d8a266ff901078b33fff4fb3ae30",
+      "bytes": 5618,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/provider/Layers/CodexProvider.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/provider/Layers/CodexProvider.ts",
+      "sha256": "92dad00efdcea827def60d0a9c13841d4f0db2fa851eaea66c41c13f39f467e5",
+      "bytes": 22779,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/provider/Layers/CodexCollabRuntime.integration.test.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/provider/Layers/CodexCollabRuntime.integration.test.ts",
+      "sha256": "480189d58889e57844f889615b7a216a30f681d7b9066491c21fc40273aff22d",
+      "bytes": 29117,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/provider/Layers/CodexCollabWire.test.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/provider/Layers/CodexCollabWire.test.ts",
+      "sha256": "baf01d66d28719eed0d6f2faccf0b94e7072845b8c43f711f68ae0a468efb7ee",
+      "bytes": 7325,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    },
+    {
+      "path": "apps/server/src/provider/Layers/CodexSessionRuntime.ts",
+      "snapshot": "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/provider/Layers/CodexSessionRuntime.ts",
+      "sha256": "8f8ae973a07a5d39c5a3e4293ee5c411e4f9f104f9d7d65867e3c8b24aa39fbc",
+      "bytes": 92454,
+      "repository": "https://github.com/pingdotgg/t3code",
+      "commit": "95d99373b74edfb3bfd092c61a15999a95727423"
+    }
+  ]
+}

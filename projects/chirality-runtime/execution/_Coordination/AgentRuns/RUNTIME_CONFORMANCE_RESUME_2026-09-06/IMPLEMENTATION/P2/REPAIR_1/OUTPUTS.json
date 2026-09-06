@@ -1,0 +1,11 @@
+{
+  "CHECKS.log": "9516dc50c699061ef53735281639617ecaa02572ee6960c6596af82a8f3c0b09",
+  "INPUTS.json": "aa281e5f83fb04bb6cf52860886ac0f282c0d221eb445ac02d70fe8754234b52",
+  "REPORT.md": "4f514c414b6b3c883bb219c0aa428fb48e219867a248bb3aa689384e5e808c78",
+  "RUN_RECORD.md": "66c7d8c73909a4b31eb89262323cc9470aa048f284ecfefe5b49b09760ca3273",
+  "SOURCE_FREEZE.json": "76a62fa92a16a9e5b2bfbee806c2886149c3823b6c9c3cdaff5b8b20a7a1d3b5",
+  "exact-process-conformance.test.ts.postimage.source": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+  "exact-process-conformance.test.ts.preimage.source": "aaaebc5e663f4b1708cc27669b2980593858f069e091a5c1ec797a5cf014513e",
+  "process-response-provider.mjs.postimage.source": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+  "process-response-provider.mjs.preimage.source": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81"
+}

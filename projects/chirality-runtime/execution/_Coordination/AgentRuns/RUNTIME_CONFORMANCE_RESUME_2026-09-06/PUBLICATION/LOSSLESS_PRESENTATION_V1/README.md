@@ -1,0 +1,13 @@
+# Lossless evidence publication presentation
+
+The 60 exact evidence paths in `ORIGINALS.json` now contain whitespace-normalized, human-readable derivative presentations. The archive preserves all 318049 original bytes as strict base64 with repository-relative paths, original lengths and SHA256 values. Current presentation lengths and hashes are separate. This operation followed the parent execution grant, exact manager releases, supplier original70-file verification, and `../WHITESPACE_PROPOSAL_2/EXACT_TRANSFORM_V2.json` without source, test, supplier-binary, root-policy, attribute, or Git-index changes.
+
+Historical check records, reviewer manifests and seals still mean their original bytes; they were not rewritten. To verify an assertion `(path, expected hash)`, first hash the current file. If it differs, require the exact path and original hash in `ORIGINALS.json`, strict-decode `originalBase64`, and verify `originalBytes` and `originalSha256`. Any missing or mismatched entry fails resolution. Do not substitute a presentation hash for a historical one. Prior packaging-run maps remain independently applicable under their recorded schemas.
+
+A normalized patch presentation may lack format-required blank context spaces. Restore the archived original into owned scratch before mechanical application. Never restore historical evidence or source over current production files, newer Git state, or supplier binaries. Logs and source excerpts are presentation derivatives too; archive resolution supplies their exact execution/review identity.
+
+Normalization removes only ASCII trailing spaces/tabs and surplus terminal blank lines. The exact proposed presentation bytes and hashes bound the execution; no formatter, semantic change, acceptance act, migration or conformance repair occurred. Failed reviews, source tests, exact probes, and the protected-fixture screening rejection retain their original outcomes.
+
+`VERIFICATION.json` records strict original round trips, exact presentation hashes and unchanged non-target files. `HISTORICAL_RESOLUTION.json` checks selected actual historical manifests through the resolver above. `GLOBAL_WHITESPACE.json` records the subsequent whole-candidate check, including any new findings emitted outside these exact 60 paths. Any new finding requires a fresh bounded proposal; this receipt never authorizes blanket normalization.
+
+`SNAPSHOT.json` binds this new publication presentation package and the 60 current derivative paths. It is derivative evidence, not authoritative decomposition truth or a replacement for historical snapshots. OpenAI GPT-6; exact serving model ID unavailable; CHANGE under HELP_HUMAN, native role enforcement instruction-asserted.

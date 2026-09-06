@@ -1,0 +1,24 @@
+{
+  "allUntouchedSourcePinsStable": true,
+  "matches": {
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/network_approval.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/approvals.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/mod.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/approvals.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/bespoke_event_handling.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-protocol/src/protocol/v2/item.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/environment.rs": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_02/EXACT_NETWORK_CANARY.json": true
+  },
+  "preservedInvariants": {
+    "globalIdentifierExact": true,
+    "primaryThreadTurnEqualityExact": true,
+    "fullOriginalSignatureExact": true,
+    "explicitOfferedChoiceOnly": true,
+    "replyMappingUnchanged": true
+  },
+  "diagnosticFixturesUnchanged": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-conformance.test.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": true
+  }
+}

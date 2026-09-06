@@ -1,0 +1,10 @@
+{
+  "authority": "Parent /root explicit fixture calibration after existing API/source comparison",
+  "exclusiveOwner": "/root/conformance_manager/p2_process",
+  "allowedWriteTargets": [
+    "projects/chirality-runtime/tests/exact-process-runtime-conformance.test.ts"
+  ],
+  "objective": "Correlate real Codex pending-run rejection caused by explicit session close separately from public interrupt ACK, fulfilled generation-bound retirement, clean census and committed interrupted journal; do not require nonexistent returned event",
+  "constraints": "Wait reviewer frozen finding before source edits. Require exact captured original supervisor RuntimeError/code/reason/session-closed cause plus exact worker/generation and explicit interrupt. Generic error never cancellation proof. Preserve disappearance and durable assertions. Record public interrupted event not observed/event parity unresolved. No production/API changes just to satisfy fixture.",
+  "evidence": "PUBLIC_RETIREMENT/REPAIR_1/**; preserve initial source/report/seal; pure negative exact-cause regressions, source alias config unchanged unless necessary documented"
+}

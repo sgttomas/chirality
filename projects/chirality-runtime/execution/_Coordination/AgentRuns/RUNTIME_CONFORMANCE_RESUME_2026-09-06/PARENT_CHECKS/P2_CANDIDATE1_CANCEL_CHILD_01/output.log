@@ -1,0 +1,41 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-process-conformance.test.ts (9 tests | 1 failed) 9417ms
+   ✓ constructs fixed owned-PID probes without accepting arbitrary target syntax 1ms
+   ✓ constructs syntactically valid role-specific probe scripts without executing them 15ms
+   ✓ requires the exact configured turn-timeout cause and timer-consistent elapsed time 1ms
+   ✓ rejects a failed census even when stale or recovered process lists are empty 1ms
+   ✓ keeps failure diagnostics bounded without raw error bodies 0ms
+   ✓ rejects invalid provider scope before opening a local listener 0ms
+   ✓ requires standalone markers plus independent matching host files 1ms
+   ✓ measures first return once per issued call and ignores late history replays 0ms
+   × P2 actual exact App Server process boundary, deterministic local model > checks the explicitly selected bounded process profile 9398ms
+     → expected true to be false // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-process-conformance.test.ts > P2 actual exact App Server process boundary, deterministic local model > checks the explicitly selected bounded process profile
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/exact-process-conformance.test.ts:253:143
+    251|         assertHostMarkers(observations.hostMarkers[role], true);
+    252|         const after = await reconcileFresh('lifetime-disappearance'); …
+    253|         expect([...after.ownedGroup, ...after.detached].some(row => ro…
+       |                                                                                                                                               ^
+    254|       }
+    255|       observations.actionElapsedMs = Date.now() - actionStarted;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  12:44:20
+   Duration  9.68s (transform 74ms, setup 0ms, collect 104ms, tests 9.42s, environment 0ms, prepare 26ms)

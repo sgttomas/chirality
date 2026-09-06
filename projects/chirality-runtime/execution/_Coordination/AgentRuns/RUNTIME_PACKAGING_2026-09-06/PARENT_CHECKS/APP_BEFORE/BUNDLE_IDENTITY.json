@@ -1,0 +1,7 @@
+{
+  "path": "/private/tmp/runtime-packaging-20260906/parent/app-build-before/dist-electron/main.js",
+  "sha256": "7f61e7902cc311efb9698e33fdad9ead80f79f388cfc5839aaa92ed0997a3434",
+  "size": 1532804,
+  "piRequirePresent": true,
+  "limitation": "Node24 CommonJS execution of actual full App bundle with Electron fail-stop stub, not Electron process or registration acceptance"
+}

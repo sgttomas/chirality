@@ -1,0 +1,35 @@
+{
+  "agent": "/root/conformance_manager/review_approval_diagnostics",
+  "role": "Independent ephemeral Agent2 production reviewer; instruction-asserted; no delegation",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "parent": "/root/conformance_manager",
+  "executionClass": "delegated-harness-native",
+  "objective": "Review narrow actual-source-shaped network itemId and known unsupported structured decision validation in codex-session.ts plus controlled tests. Existing global identifiers, primary attribution, replay/signatures and P1 false shell snapshot readback must remain.",
+  "writeScope": [
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/**",
+    "/private/tmp/runtime-conformance-resume-20260906/review-approval-production/**"
+  ],
+  "prohibitions": [
+    "production/test edits",
+    "supplier execution",
+    "endpoint/network/provider activity",
+    "credentials/accounts",
+    "build/dist/Git mutations",
+    "status/hold/acceptance acts",
+    "cancel-to-deny/unavailable decline"
+  ],
+  "inputs": [
+    "manager BASIS/PLAN",
+    "APPROVAL_SCHEMA diagnosis and PRODUCTION_REPAIR when frozen",
+    "PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_02",
+    "retained supplier source read-only",
+    "Runtime relevant source/tests"
+  ],
+  "checks": [
+    "independent controlled regression",
+    "strict coherent noemit",
+    "independent grammar/security edge tests",
+    "source pins before/after"
+  ],
+  "timestampUtc": "2026-09-06T19:20:25.942454+00:00"
+}

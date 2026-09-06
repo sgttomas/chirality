@@ -1,0 +1,30 @@
+{
+  "derivative": true,
+  "issue": "Final summarize output was repo-relative although tool interprets output relative to run-root; resulting nested summary retained unchanged. Earlier nested event artifact also retained without merging, moving or deleting.",
+  "failedFinalSealCheck": "Missing root RUNTIME_TELEMETRY_FINAL.json detected before final seal",
+  "retainedNestedArtifacts": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RUNTIME_TELEMETRY_FINAL.json": "721647adec11c22fb28d691fbaab439a9debe4d44c21c3139ca6c2a1195991f0",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RUNTIME_EVENTS.jsonl": "c4d6977d416abdead19977db34e97c6e41879bd8b4da16784abaafa8252fffdf"
+  },
+  "rootSummaryInput": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RUNTIME_EVENTS.jsonl",
+    "sha256": "07d9fb4979a893377db06bf23b376c44726ea023a2d304d0532245f8d337166c"
+  },
+  "rootSummaryOutput": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RUNTIME_TELEMETRY_FINAL.json",
+    "sha256": "721647adec11c22fb28d691fbaab439a9debe4d44c21c3139ca6c2a1195991f0"
+  },
+  "command": [
+    "python3",
+    "tools/workflow_runtime/runtime_telemetry.py",
+    "summarize",
+    "--run-root",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION",
+    "--input",
+    "RUNTIME_EVENTS.jsonl",
+    "--output",
+    "RUNTIME_TELEMETRY_FINAL.json"
+  ],
+  "toolResult": "{\"status\": \"PASS\", \"events\": 54, \"sessions\": 27, \"output\": \"RUNTIME_TELEMETRY_FINAL.json\"}",
+  "coverage": "Partial retrospective coordination only; nested event stream not represented as complete execution telemetry"
+}

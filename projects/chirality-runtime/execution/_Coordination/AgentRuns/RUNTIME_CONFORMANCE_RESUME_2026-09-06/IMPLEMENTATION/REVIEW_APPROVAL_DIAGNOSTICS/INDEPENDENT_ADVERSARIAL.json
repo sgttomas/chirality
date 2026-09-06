@@ -1,0 +1,15 @@
+{
+  "files": 2,
+  "checks": 26,
+  "result": "PASS",
+  "execution": "Extracted unchanged pure helpers from both fixture files, transpiled in memory and invoked in VM; no imported runtime source or supplier/network/provider calls.",
+  "checksCovered": [
+    "Raw unknown values/IDs/methods/parameter keys reduced to bounded evidence",
+    "Closed accept/acceptForSession/cancel array unchanged; no decline invention",
+    "Duplicate decision observation",
+    "Foreign observed primary comparison false",
+    "Same original error identity for Error/null/primitive/object rejection",
+    "Observer throws cannot replace original error",
+    "Exactly one original invocation, unchanged worker/generation args"
+  ]
+}

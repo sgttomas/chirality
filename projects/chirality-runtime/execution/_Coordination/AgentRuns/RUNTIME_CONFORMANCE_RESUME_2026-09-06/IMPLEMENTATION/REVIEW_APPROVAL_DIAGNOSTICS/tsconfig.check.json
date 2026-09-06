@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@chirality/runtime-core": [
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/index.ts"
+      ],
+      "@chirality/runtime-contracts": [
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/contracts/src/index.ts"
+      ],
+      "@chirality/runtime-client": [
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/client/src/index.ts"
+      ]
+    }
+  },
+  "files": [
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-conformance.test.ts",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts"
+  ]
+}

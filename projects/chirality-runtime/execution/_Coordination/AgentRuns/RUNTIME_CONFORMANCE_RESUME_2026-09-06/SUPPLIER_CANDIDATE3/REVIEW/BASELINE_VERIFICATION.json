@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-09-06T19:25:32.023245+00:00",
+  "parentBriefSha256": "640f4bd9f056a9bd1b5a3e4e24bfe4b4f0470ea4d3f1134d6471d7c0b428b51e",
+  "inputPins": {
+    "IMPLEMENTATION/REVIEW_P3/ACTUAL_ALIAS_DIAGNOSIS/REPORT.md": true,
+    "IMPLEMENTATION/P3/REPAIR_4_DIAGNOSIS/REPORT.md": true,
+    "PARENT_CHECKS/P3_STAR_CANDIDATE2_02/EXACT_PROTECTED_star.json": true,
+    "SUPPLIER/MANAGER_RETURN.md": true,
+    "SUPPLIER/OUTPUT_MANIFEST.json": true
+  },
+  "sourceCount": 6416,
+  "sourceMismatches": [],
+  "retainedArtifacts": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-app-server",
+      "sha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server",
+      "sha256": "a3ac0445f8fab23c62a97f3c9c8e420f094b67927948c1cfa69390b6e0742f93",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server",
+      "sha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supply/app-server",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "matches": true
+    }
+  ],
+  "fsSandboxSha256": "6bd757ade4b4df954c30478fdeecf4de955ee94bc959d88e0b546b8a28228b4e"
+}

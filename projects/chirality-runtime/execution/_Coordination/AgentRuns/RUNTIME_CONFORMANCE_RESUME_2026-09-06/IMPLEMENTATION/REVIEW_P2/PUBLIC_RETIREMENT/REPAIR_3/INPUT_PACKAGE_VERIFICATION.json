@@ -1,0 +1,10 @@
+{
+  "AMENDMENT.json": true,
+  "CHECKS.log": true,
+  "INPUTS.json": true,
+  "REPORT.md": true,
+  "SOURCE_FREEZE.json": true,
+  "exact-process-runtime-conformance.postimage.source": true,
+  "exact-process-runtime-conformance.preimage.source": true,
+  "repair-draft.source": true
+}

@@ -1,0 +1,275 @@
+--- a/codex-rs/exec-server/src/fs_sandbox.rs
++++ b/codex-rs/exec-server/src/fs_sandbox.rs
+@@ -6,7 +6,6 @@
+ use codex_protocol::permissions::FileSystemPath;
+ use codex_protocol::permissions::FileSystemSandboxEntry;
+ use codex_protocol::permissions::FileSystemSandboxPolicy;
+-use codex_protocol::permissions::FileSystemSpecialPath;
+ use codex_protocol::permissions::NetworkSandboxPolicy;
+ use codex_sandboxing::SandboxCommand;
+ use codex_sandboxing::SandboxDirectSpawnTransformRequest;
+@@ -210,18 +209,9 @@
+     helper_read_roots: &[AbsolutePathBuf],
+     cwd: &std::path::Path,
+ ) {
+-    if !file_system_policy.has_full_disk_read_access() {
+-        let minimal_read_entry = FileSystemSandboxEntry::new(
+-            FileSystemPath::Special {
+-                value: FileSystemSpecialPath::Minimal,
+-            },
+-            FileSystemAccessMode::Read,
+-        );
+-        if !file_system_policy.entries.contains(&minimal_read_entry) {
+-            file_system_policy.entries.push(minimal_read_entry);
+-        }
+-    }
+-
++    // Preserve the caller's platform-default choice. Adding Minimal here would
++    // also grant ambient temporary-directory writes on macOS, broadening an
++    // explicitly restricted policy beyond the helper executable reads below.
+     for helper_read_root in helper_read_roots {
+         if file_system_policy.can_read_path_with_cwd(helper_read_root.as_path(), cwd) {
+             continue;
+@@ -420,28 +410,224 @@
+     use super::sandbox_cwd;
+
+     #[test]
+-    fn helper_permissions_enable_minimal_reads_for_restricted_profile() {
+-        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir().as_path())
+-            .expect("absolute cwd");
+-        let mut policy = restricted_policy(Vec::new());
+-
+-        add_helper_runtime_permissions(&mut policy, /*helper_read_roots*/ &[], cwd.as_path());
+-
+-        assert!(policy.include_platform_defaults());
+-    }
+-
+-    #[test]
+-    fn helper_permissions_enable_minimal_reads_for_restricted_profile_with_writes() {
+-        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir().as_path())
+-            .expect("absolute cwd");
++    fn helper_permissions_preserve_restricted_read_only_without_defaults() {
++        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir()).expect("absolute cwd");
++        let mut policy = restricted_policy(vec![path_entry(
++            cwd.join("immutable.txt"),
++            FileSystemAccessMode::Read,
++        )]);
++        let original = policy.clone();
++
++        add_helper_runtime_permissions(&mut policy, &[], cwd.as_path());
++
++        assert_eq!(policy, original);
++        assert!(!policy.include_platform_defaults());
++        assert!(policy.can_read_path_with_cwd(cwd.join("immutable.txt").as_path(), cwd.as_path()));
++        assert!(
++            !policy.can_write_path_with_cwd(cwd.join("immutable.txt").as_path(), cwd.as_path())
++        );
++    }
++
++    #[test]
++    fn helper_permissions_preserve_restricted_writes_without_defaults() {
++        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir()).expect("absolute cwd");
+         let mut policy = restricted_policy(vec![path_entry(
+             cwd.join("writable"),
+             FileSystemAccessMode::Write,
+         )]);
+-
+-        add_helper_runtime_permissions(&mut policy, /*helper_read_roots*/ &[], cwd.as_path());
+-
+-        assert!(policy.include_platform_defaults());
++        let original = policy.clone();
++
++        add_helper_runtime_permissions(&mut policy, &[], cwd.as_path());
++
++        assert_eq!(policy, original);
++        assert!(!policy.include_platform_defaults());
++        assert!(policy.can_write_path_with_cwd(cwd.join("writable/file").as_path(), cwd.as_path()));
++        assert!(!policy.can_read_path_with_cwd(cwd.join("foreign.txt").as_path(), cwd.as_path()));
++        assert!(!policy.can_write_path_with_cwd(cwd.join("foreign.txt").as_path(), cwd.as_path()));
++    }
++
++    #[test]
++    fn helper_permissions_preserve_explicit_minimal_and_unrestricted_profiles() {
++        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir()).expect("absolute cwd");
++        let helper = cwd.join("helper");
++        let mut minimal = restricted_policy(vec![special_entry(
++            FileSystemSpecialPath::Minimal,
++            FileSystemAccessMode::Read,
++        )]);
++        let original = minimal.clone();
++        add_helper_runtime_permissions(&mut minimal, &[], cwd.as_path());
++        assert_eq!(minimal, original);
++        assert!(minimal.include_platform_defaults());
++
++        for mut policy in [
++            FileSystemSandboxPolicy::unrestricted(),
++            FileSystemSandboxPolicy::external_sandbox(),
++        ] {
++            let original = policy.clone();
++            add_helper_runtime_permissions(
++                &mut policy,
++                std::slice::from_ref(&helper),
++                cwd.as_path(),
++            );
++            assert_eq!(policy, original);
++            assert!(policy.has_full_disk_read_access());
++            assert!(policy.has_full_disk_write_access());
++        }
++    }
++
++    #[test]
++    fn helper_permissions_preserve_declared_leaves_denies_and_project_writes() {
++        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir()).expect("absolute cwd");
++        let project = cwd.join("project");
++        let immutable = cwd.join("immutable.txt");
++        let denied = project.join("denied.txt");
++        let helper = cwd.join("bin/helper");
++        let entries = vec![
++            path_entry(project.clone(), FileSystemAccessMode::Write),
++            path_entry(immutable.clone(), FileSystemAccessMode::Read),
++            path_entry(denied.clone(), FileSystemAccessMode::Deny),
++            FileSystemSandboxEntry::new(
++                FileSystemPath::GlobPattern {
++                    pattern: project.join("*.secret").as_path().display().to_string(),
++                },
++                FileSystemAccessMode::Deny,
++            ),
++        ];
++        let mut policy = restricted_policy(entries.clone());
++        add_helper_runtime_permissions(&mut policy, std::slice::from_ref(&helper), cwd.as_path());
++        let mut expected = entries;
++        expected.push(path_entry(helper.clone(), FileSystemAccessMode::Read));
++        assert_eq!(policy.entries, expected);
++        assert!(!policy.include_platform_defaults());
++        assert!(
++            policy.can_write_path_with_cwd(project.join("allowed.txt").as_path(), cwd.as_path())
++        );
++        assert!(policy.can_read_path_with_cwd(immutable.as_path(), cwd.as_path()));
++        assert!(!policy.can_write_path_with_cwd(immutable.as_path(), cwd.as_path()));
++        for path in [denied, cwd.join("foreign.txt")] {
++            assert!(!policy.can_read_path_with_cwd(path.as_path(), cwd.as_path()));
++            assert!(!policy.can_write_path_with_cwd(path.as_path(), cwd.as_path()));
++        }
++        let deny_matcher =
++            codex_protocol::permissions::ReadDenyMatcher::new(&policy, cwd.as_path())
++                .expect("declared deny matcher");
++        assert!(deny_matcher.is_read_denied(project.join("key.secret").as_path()));
++        assert!(!deny_matcher.is_read_denied(project.join("allowed.txt").as_path()));
++        assert!(policy.can_read_path_with_cwd(helper.as_path(), cwd.as_path()));
++        for path in [helper.clone(), cwd.join("bin"), cwd.join("bin/sibling")] {
++            assert!(!policy.can_write_path_with_cwd(path.as_path(), cwd.as_path()));
++        }
++        assert!(!policy.can_read_path_with_cwd(cwd.join("bin").as_path(), cwd.as_path()));
++        assert!(!policy.can_read_path_with_cwd(cwd.join("bin/sibling").as_path(), cwd.as_path()));
++    }
++
++    #[cfg(target_os = "macos")]
++    #[test]
++    fn helper_seatbelt_preserves_explicit_platform_default_choice() {
++        // Inspect the real filesystem-helper transform without launching a helper.
++        let temp = tempfile::tempdir().expect("temp dir");
++        let root = AbsolutePathBuf::from_absolute_path(
++            std::fs::canonicalize(temp.path()).expect("canonical temp dir"),
++        )
++        .expect("absolute root");
++        let project = root.join("project");
++        let immutable = root.join("immutable.txt");
++        let helper = root.join("bin/helper");
++        std::fs::create_dir(project.as_path()).expect("project directory");
++        std::fs::create_dir(root.join("bin").as_path()).expect("helper directory");
++        std::fs::write(immutable.as_path(), "immutable").expect("immutable leaf");
++        std::fs::write(helper.as_path(), "helper fixture; never executed").expect("helper leaf");
++        let runtime_paths =
++            ExecServerRuntimePaths::new(helper.to_path_buf(), None).expect("runtime paths");
++        let runner = FileSystemSandboxRunner::new(runtime_paths);
++        for writable in [false, true] {
++            for defaults in [false, true] {
++                let mut entries = vec![path_entry(immutable.clone(), FileSystemAccessMode::Read)];
++                if writable {
++                    entries.push(path_entry(project.clone(), FileSystemAccessMode::Write));
++                }
++                if defaults {
++                    entries.push(special_entry(
++                        FileSystemSpecialPath::Minimal,
++                        FileSystemAccessMode::Read,
++                    ));
++                }
++                let policy = restricted_policy(entries);
++                let context = sandbox_context_with_cwd(&policy, PathUri::from_abs_path(&project));
++                let request = runner
++                    .sandbox_command(&context)
++                    .expect("helper sandbox command");
++                println!(
++                    "helper policy writable={writable} defaults={defaults}: {}",
++                    serde_json::to_string(&request.command).expect("command json")
++                );
++                assert_eq!(
++                    request.command.first().map(String::as_str),
++                    Some("/usr/bin/sandbox-exec")
++                );
++                let index = request
++                    .command
++                    .iter()
++                    .position(|arg| arg == "-p")
++                    .expect("policy flag");
++                let sbpl = &request.command[index + 1];
++                assert_eq!(
++                    sbpl.contains("; macOS platform defaults included"),
++                    defaults
++                );
++                for ambient in ["/tmp", "/private/tmp", "/var/tmp", "/private/var/tmp"] {
++                    assert_eq!(sbpl.contains(&format!("(subpath \"{ambient}\")")), defaults);
++                }
++                for leaf in [&immutable, &helper] {
++                    assert!(
++                        request.command.iter().any(|arg| {
++                            arg.starts_with("-DREADABLE_ROOT_")
++                                && arg.ends_with(&format!("={}", leaf.as_path().display()))
++                        }),
++                        "missing precise read leaf {leaf:?}"
++                    );
++                }
++                let writes = request
++                    .command
++                    .iter()
++                    .filter(|arg| {
++                        arg.strip_prefix("-DWRITABLE_ROOT_")
++                            .and_then(|rest| rest.split_once('='))
++                            .is_some_and(|(index, _)| {
++                                !index.is_empty() && index.bytes().all(|byte| byte.is_ascii_digit())
++                            })
++                    })
++                    .collect::<Vec<_>>();
++                assert_eq!(writes.len(), usize::from(writable));
++                if writable {
++                    assert!(writes[0].ends_with(&format!("={}", project.as_path().display())));
++                    let (excluded_key, _) = request
++                        .command
++                        .iter()
++                        .filter_map(|arg| {
++                            arg.strip_prefix("-D").and_then(|arg| arg.split_once('='))
++                        })
++                        .find(|(key, path)| {
++                            key.starts_with("WRITABLE_ROOT_")
++                                && key.contains("_EXCLUDED_")
++                                && *path == project.join(".codex").as_path().to_string_lossy()
++                        })
++                        .expect("project .codex read-only exclusion");
++                    assert!(sbpl.contains(&format!(
++                        "(require-not (literal (param \"{excluded_key}\")))"
++                    )));
++                    assert!(sbpl.contains(&format!(
++                        "(require-not (subpath (param \"{excluded_key}\")))"
++                    )));
++                }
++                for ancestor in [root.clone(), root.join("bin")] {
++                    assert!(!request.command.iter().any(|arg| {
++                        (arg.starts_with("-DREADABLE_ROOT_") || arg.starts_with("-DWRITABLE_ROOT_"))
++                            && arg.ends_with(&format!("={}", ancestor.as_path().display()))
++                    }));
++                }
++            }
++        }
+     }
+
+     #[test]

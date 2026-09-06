@@ -1,0 +1,11 @@
+{
+  "verdict": "FAIL startup-marker-absent",
+  "evidenceClass": "unaccepted Candidate1 diagnostic, not Candidate2 conformance",
+  "supplierSha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "passedAssertions": 36,
+  "startupMarker": "present,11bytes,exact synthetic contents; provenance requires source-stage diagnosis",
+  "sourceStable": true,
+  "cleanupFailures": 0,
+  "elapsedMs": 3051,
+  "nextOwner": "WORKING_ITEMS conformance manager bounded exact-source startup diagnosis; no enforcement/assertion weakening"
+}

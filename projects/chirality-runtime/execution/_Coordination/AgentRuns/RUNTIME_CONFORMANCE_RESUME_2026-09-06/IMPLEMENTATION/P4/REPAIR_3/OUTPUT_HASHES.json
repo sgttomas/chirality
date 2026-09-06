@@ -1,0 +1,10 @@
+{
+  "projects/chirality-runtime/tests/exact-role-conformance.test.ts": "8730309e7ab901953c8c0700f33b90bfb231d0de8492f317da5e8b852ce39d62",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/REPORT.md": "fa852b7cf6b34d66d5586bfa4336408ad0f4b908b015a408d614d7ea841f2519",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/exact-role-conformance.source": "4b72276d15f58899e0cdbc0f82fa8b082f04b975e95275d7d8104ffbe5b8dd30",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/SUPPLIER_SOURCE_HASHES.json": "346f53e3607341ff84cce6bbc3d8fb4fc78c5c94ad69625940724808f5853649",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/CHECK.log": "6b29b83f1c45a65eccd3ba96da3e59b753661874e1307569629c6c78578ebbc3",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/INPUT_HASHES.json": "0410ad1db84e8dce4aac3912f15b45daa7b0f94d5166e367806351e1b6f17e6e",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/AMENDMENT.json": "7081614b049a532c99fe785ad1aff0d51185f3f493c53441cace8dcc4ed7a28b"
+}

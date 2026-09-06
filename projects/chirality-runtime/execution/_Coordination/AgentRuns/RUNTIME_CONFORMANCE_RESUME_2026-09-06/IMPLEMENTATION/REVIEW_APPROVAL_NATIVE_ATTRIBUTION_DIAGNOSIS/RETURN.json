@@ -1,0 +1,16 @@
+{
+  "verdict": "READ_ONLY_DIAGNOSIS_COMPLETE",
+  "actualFailure": "FOREIGN_PRIMARY_TURN",
+  "callbackMatchesFixtureChildHash": true,
+  "existingMapSufficientForAuthorization": false,
+  "sourceEdited": false,
+  "testsExecuted": false,
+  "nativeImplementationAuthorized": false,
+  "smallestNextOption": "Bounded owned-fixture lifecycle metadata",
+  "ownerDiscussionRequiredFor": [
+    "New public/durable child schema",
+    "New registry/transitive ancestry protocol",
+    "Material actor/lifecycle redesign"
+  ],
+  "accepted": false
+}

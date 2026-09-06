@@ -1,0 +1,25 @@
+{
+  "status": "FINDING_REQUIRES_REPAIR",
+  "findings": [
+    "FINDING_1.md"
+  ],
+  "focused": {
+    "exitCode": 0,
+    "passed": 41
+  },
+  "independentGatedRepro": "late-approval.log",
+  "sourceBefore": {
+    "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "a87328babf6128351b3ce730ab5c9ad617ec9cb1f5c850670fa4d8d61bb54b55",
+    "projects/chirality-runtime/tests/delegated-runtime.test.ts": "48b3c5a3fb5c747ce6d0f571b6fbff3473c2edfefe9b20d6b4b2fb3732b2ff7c"
+  },
+  "sourceAfter": {
+    "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "a87328babf6128351b3ce730ab5c9ad617ec9cb1f5c850670fa4d8d61bb54b55",
+    "projects/chirality-runtime/tests/delegated-runtime.test.ts": "48b3c5a3fb5c747ce6d0f571b6fbff3473c2edfefe9b20d6b4b2fb3732b2ff7c"
+  },
+  "sourceUnchanged": true,
+  "reviewScope": "exact frozen twofile patch; no supplier; no global shutdown serialization admission",
+  "requiredNext": "author minimal late-tail retirement memoization, regression, fresh hash backcheck; parent registered build and actual public retirement canary remain pending",
+  "derivativeEvidence": true,
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving ID unavailable"
+}

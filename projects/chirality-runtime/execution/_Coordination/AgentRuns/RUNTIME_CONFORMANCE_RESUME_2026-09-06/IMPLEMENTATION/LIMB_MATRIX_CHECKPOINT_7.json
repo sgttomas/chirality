@@ -1,0 +1,175 @@
+{
+  "schema": "chirality-runtime-derivative-limb-matrix/v1",
+  "basis": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CAPABILITY_MATRIX.md": "e63053c38c19b651a5cbf25edd539c7a017073bf30c16cb4a28b9722852d8f34",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/NATIVE_CONFORMANCE/REMAINING_LIMBS/PLAN.md": "f7be8b813392266deb70b54c9e7ead8e4dcb4ef8bf42b7d16ddb361ded1a3d8c",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/BOUNDARY_1/EXACT_BOUNDARY_P1.json": "da89c974e248b8332ae9c43191cb21f9aeb0e8f486281925e95638b847cda2c5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/PROCESS_NORMAL_1/process-conformance.json": "2dd5afdfc8107f844c0f7f11cbcb65d5b705472d0afb7e9ffa7a6cd336863a01",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/ROLE_1/EXACT_ROLE_CANARY.json": "614b3a2883fe7f11172333bc4a967cd6a87a0a3a601e1740c58401b99495f326",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_INITIAL.json": "79f88835a213fdbeaa30aada6f4eb3736c250b539d236931ce71c726d8fe29ef",
+    "/private/tmp/runtime-conformance-resume-20260906/parent/p1-candidate1-01/EXACT_BOUNDARY_P1.json": "8cf4aefaab831e3ffb2ccf60d5d90775e6d108b2d78beb6838874e9f8d7f2c41",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE1_02/EXACT_BOUNDARY_P1.json": "be555070804d65d217f7ccbbc757698acdd78039af872a61022f2b5ede003eb3",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_NORMAL_01/process-conformance.json": "468d9bad23198a6c7ee804ae5fd9a56c09a6770b98b6914fb3ece94a944484a9",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_1.json": "6b1cf8a5ea57ef4eafcb67146e3e2b624f86ff3fdd3a2d448b284fb2b608b750",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_PRIMARY_01/process-conformance.json": "288eaaa2e9c4662692d9706af10f018e5794191a3d8a352bcb3d5f39c6475297",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_CHILD_01/process-conformance.json": "8efb3014edc55c9aafc91f5aa283d65d82da419b584172353f41791bec0e754a",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_TIMEOUT_PRIMARY_01/process-conformance.json": "4cd053023cc4b193ac3252750a8d53aace2c5e2277cec883a7e321fc9d59a750",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P4_CANDIDATE1_01/EXACT_ROLE_CANARY.json": "66ea5fc46d2f65915876a301e30be35214da19f9b8f3a475ae290132b0dbc8fd",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_2.json": "3b17ff9451bda5ed4f328a08e966d3dbb9d38ddcf72abe97cce899933b9b26f9",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_3.json": "9b8f37f0437c23b5b1fea1dcffaf67d7ffff86a709afe2fcf499783e5b164070",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P4_CANDIDATE2_01/CHECK.json": "a7d427244584b85408b2125bf9b894175840ec77f1055963898501a116467bd9",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P4_CANDIDATE2_01/EXACT_ROLE_CANARY.json": "6ba9ebf77e9d47fe928dff6574ea2f160a57a17dedb27e54dd4eb9a789d4ebec",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ON_CANDIDATE2_01/EXACT_NETWORK_CANARY.json": "bbaeee30ef3a0e4aba960b327bd8c70d25e5420fef956d222da48da75def3399",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ON_CANDIDATE2_01/CHECK.json": "6ccf440842aad68faefaea669cba3451db4fed6658cd61c65c7952726acf6b27",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_01/CHECK.json": "2732e418ad6a44620008f37964faa98e6124b54393cdf673e71b8b924b932aeb",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_01/PUBLIC_PROCESS_RETIREMENT.json": "7e246d236025fd68b58203f0a06656ea18e35fb0eab9fa5501a5a84a1ffad6f5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_01/CHECK.json": "8895d879ad7e4457a050d90ad538be9b34bc80e09926c44e3ed7af3c5acdbf2f",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_01/EXACT_PROTECTED_star.json": "9b0421d1dbc26694fe81ddbbc19e55cb0d7eda54a80ccf7b09189bc96d260eaa",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE2_01/EXACT_BOUNDARY_P1.json": "5f35c9f5dc25c92f4356d33b65d4adb6afb6fa4464f14c2b6aa64dd8493f4443",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE2_01/CHECK.json": "70411d05c21821ab9a55e94fb6c71bcc39498907b4da56be801388b23c5cd5fd",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_NORMAL_CANDIDATE2_01/CHECK.json": "4427b725941aef272fa5ced827074498f53a741e477aabd5cbb3768f20d41f0f",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_NORMAL_CANDIDATE2_01/PUBLIC_PROCESS_RETIREMENT.json": "cdc10f632d7714f7bb0ad1789c084a827537736992c5c19774fcb3ecac3bf6b0",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/EXACT_NETWORK_CANARY.json": "f90a627a575032ff30b3fd02ff3449ee2c13903ad599bc35ea934d39b5744bd5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/CHECK.json": "104be4a4bab53661cb3954e327e0d5e1f0065bf39b6e3b9b35fafb91300d570a",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_OFF_CANDIDATE2_01/EXACT_NETWORK_CANARY.json": "f42be4f519c5eb147bb97293c9f3a09cfed3dc5d135bccadd0f6b0c3a39b32ce",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_OFF_CANDIDATE2_01/CHECK.json": "8591287f1980570b99171e0bde719ca49fd1a606bc2d541311d80d92d53285ab",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_4.json": "718017bb5f01edd6cd24cb12d5fd0538dc7af0be5aacee500e10817e85042b9d",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_02/EXACT_PROTECTED_star.json": "0e65adf7884df5d5ed33e8f1063c1b8ecb6a2b9d454722ed7c58f447428fad0a",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_5.json": "2152e7d3c87023fb26aa6e32fb6d08dd6c0d96a15b72b8803914aff0be80c97e",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_02/PUBLIC_PROCESS_RETIREMENT.json": "025e2019e1526b5db4e848dad9f38841be136dfda5bd24d747c59aea702fe406",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_02/EXACT_NETWORK_CANARY.json": "6a5df130535bcc11aac6a1e3a912deb68392afbad2b93be53e4fd57b1c1749b1",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_6.json": "fb870167f63787b01e7df05abb8038db791c87bc91f05193566e90b73a383a91"
+  },
+  "derivative": true,
+  "notProductionAdmission": true,
+  "attribution": "OpenAI GPT-6 WORKING_ITEMS; exact serving ID unavailable; instruction-asserted role",
+  "rows": [
+    {
+      "limb": "effective-policy",
+      "historicalObservation": "Original and candidate strict readback; text and second-process resume.",
+      "remaining": "Complete remaining protected-pattern matrix and final integrated exact binding; actual P1 selected-candidate probe passed, acceptance remains separate.",
+      "currentResumeObservation": "Candidate2 actual P1 passes all3 tests,2606ms; startup absent, real primary/native reads, denials and environment checks, host unchanged, cleanup0, whole source stable. Earlier same-Candidate1 positive startup control and matched snapshot-disabled negative remain preserved. No supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.read",
+      "historicalObservation": "Candidate selected foreign/broker read denial and rooted work.",
+      "remaining": "Complete remaining protected-pattern matrix and final integrated exact binding; actual P1 selected-candidate probe passed, acceptance remains separate.",
+      "currentResumeObservation": "Candidate2 actual P1 passes all3 tests,2606ms; startup absent, real primary/native reads, denials and environment checks, host unchanged, cleanup0, whole source stable. Earlier same-Candidate1 positive startup control and matched snapshot-disabled negative remain preserved. No supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.file-change",
+      "historicalObservation": "Candidate real apply_patch rooted success and foreign denial.",
+      "remaining": "Resolve independently diagnosed actual foreign alias write defect; retain separate classifier/ambiguous absent evidence, then reviewed exact canary reruns.",
+      "currentResumeObservation": "Candidate2 star attempt02 executes all24 primary/native probes. Shell denials and positives pass; primary custom apply_patch ALIAS returns success and foreign target inode stays same while bytes/hash change29\u219221, alias remains symlink. This is observed foreign target mutation; exact supplier path independently under read-only diagnosis. Child alias later context mismatch is not denial proof. MATCH/LATE explicitly EPERM rejected but strict classifier false-negative; ABSENT generic Failed to write file remains ambiguous. Host unchanged=false,cleanup0,source stable; all other families held. No policy relaxation or supplier patch authorized. Independent exact-source diagnosis confirms helper Minimal injection enables undeclared temp defaults. Parent supplier manager owns separate Candidate3 repair/build; Candidate2 frozen. New fixture proposal and narrowed maintenance both screened/rejected, unchanged test4b891fb retained. No retry/reroute; classifier false-negative/ambiguous create unresolved.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.shell-write",
+      "historicalObservation": "Candidate actual rooted shell write; baseline abort control.",
+      "remaining": "Resolve independently diagnosed actual foreign alias write defect; retain separate classifier/ambiguous absent evidence, then reviewed exact canary reruns.",
+      "currentResumeObservation": "Candidate2 star attempt02 executes all24 primary/native probes. Shell denials and positives pass; primary custom apply_patch ALIAS returns success and foreign target inode stays same while bytes/hash change29\u219221, alias remains symlink. This is observed foreign target mutation; exact supplier path independently under read-only diagnosis. Child alias later context mismatch is not denial proof. MATCH/LATE explicitly EPERM rejected but strict classifier false-negative; ABSENT generic Failed to write file remains ambiguous. Host unchanged=false,cleanup0,source stable; all other families held. No policy relaxation or supplier patch authorized. Independent exact-source diagnosis confirms helper Minimal injection enables undeclared temp defaults. Parent supplier manager owns separate Candidate3 repair/build; Candidate2 frozen. New fixture proposal and narrowed maintenance both screened/rejected, unchanged test4b891fb retained. No retry/reroute; classifier false-negative/ambiguous create unresolved.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.network",
+      "historicalObservation": "Candidate public on positive and matched off denial; ask attempted but no prompt.",
+      "remaining": "Repair actual ask path; allow/deny/cancel and attributed public route.",
+      "currentResumeObservation": "Candidate2 actual OFF/ON controls pass. Diagnostic ask-allow02 confirms INVALID_CODEX_IDENTIFIER on70byte source-shaped opaque network itemId, with exact observed known choices accept,acceptForSession,allow-policy amendment,cancel. No decline offered. Bounded separate item validator/known skipped variant strictness repair now authorized exact twofiles with independent review; no global identity loosening, invented deny or cancel alias. Ask-deny unsupported actual dialect; public/native actual approvals unresolved. Parser repair c7692849 independently admitted107controlled38adversarial+strict; actual replay after registered build pending.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.process",
+      "historicalObservation": "Controlled tests and actual P2 normal attempt; aggregate failed on marker parsing.",
+      "remaining": "Repair standalone markers/timing, then lifecycle canaries; not exhaustive orphan proof.",
+      "currentResumeObservation": "Candidate2 public normal passes; cancel-primary attempt02 reaches real interrupt and retirement before outer cleanup, but owned shell/sleep separate PGID survive app-server close and retirement rejects DESCENDANT_RECONCILIATION_REQUIRED. Fixed Runtime correctly leaves journal prepared/no terminal. Healthy census/no reuse,2cleanup failures preserved, eventual fixture disappearance is not public proof. Independent source diagnosis: stdio SIGTERM bypasses supplier shutdown, owned stdin EOF reaches native thread/process cleanup. Shared bounded transport EOF/drain proposal pending; no unsafe census-derived signaling. Remaining same-mechanism profiles held.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.environment",
+      "historicalObservation": "P1 actual environment summaries passed, but aggregate profile failed.",
+      "remaining": "Complete remaining protected-pattern matrix and final integrated exact binding; actual P1 selected-candidate probe passed, acceptance remains separate.",
+      "currentResumeObservation": "Candidate2 actual P1 passes all3 tests,2606ms; startup absent, real primary/native reads, denials and environment checks, host unchanged, cleanup0, whole source stable. Earlier same-Candidate1 positive startup control and matched snapshot-disabled negative remain preserved. No supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.approval",
+      "historicalObservation": "Controlled durable decision/transport, manager routing, no-UI and late grant checks.",
+      "remaining": "Actual supplier ask prompt and decision execution; missing managed-requirements callback source gate identified.",
+      "currentResumeObservation": "Candidate2 actual OFF/ON controls pass. Diagnostic ask-allow02 confirms INVALID_CODEX_IDENTIFIER on70byte source-shaped opaque network itemId, with exact observed known choices accept,acceptForSession,allow-policy amendment,cancel. No decline offered. Bounded separate item validator/known skipped variant strictness repair now authorized exact twofiles with independent review; no global identity loosening, invented deny or cancel alias. Ask-deny unsupported actual dialect; public/native actual approvals unresolved. Parser repair c7692849 independently admitted107controlled38adversarial+strict; actual replay after registered build pending.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.role",
+      "historicalObservation": "Controlled role/reuse tests; actual P4 failed before vendor launch on missing fixture compatibility basis.",
+      "remaining": "Repair fixture and run exact roles; labels remain instruction asserted.",
+      "currentResumeObservation": "Candidate2 controlled public untyped/Agent0 complete; Agent1 and native actual reads pass but post-native-wait origin selection fails after appended lifecycle user text. All3 processes closed, cleanup0,whole source stable. Trusted origin registry and bounded owned child SessionMeta repair approved. No overall role profile pass, production role envelope or owner-live proof; role instruction-asserted. Strict origin and exact canonical first-SessionMeta repair4 independently admitted d029dc; actual rerun awaits shared-source generation freeze. Wrongdepth/basename review failures preserved.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.read",
+      "historicalObservation": "Candidate native child selected rooted/foreign read canaries.",
+      "remaining": "Complete remaining protected-pattern matrix and final integrated exact binding; actual P1 selected-candidate probe passed, acceptance remains separate.",
+      "currentResumeObservation": "Candidate2 actual P1 passes all3 tests,2606ms; startup absent, real primary/native reads, denials and environment checks, host unchanged, cleanup0, whole source stable. Earlier same-Candidate1 positive startup control and matched snapshot-disabled negative remain preserved. No supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.file-change",
+      "historicalObservation": "Candidate native child actual rooted patch and foreign denial.",
+      "remaining": "Resolve independently diagnosed actual foreign alias write defect; retain separate classifier/ambiguous absent evidence, then reviewed exact canary reruns.",
+      "currentResumeObservation": "Candidate2 star attempt02 executes all24 primary/native probes. Shell denials and positives pass; primary custom apply_patch ALIAS returns success and foreign target inode stays same while bytes/hash change29\u219221, alias remains symlink. This is observed foreign target mutation; exact supplier path independently under read-only diagnosis. Child alias later context mismatch is not denial proof. MATCH/LATE explicitly EPERM rejected but strict classifier false-negative; ABSENT generic Failed to write file remains ambiguous. Host unchanged=false,cleanup0,source stable; all other families held. No policy relaxation or supplier patch authorized. Independent exact-source diagnosis confirms helper Minimal injection enables undeclared temp defaults. Parent supplier manager owns separate Candidate3 repair/build; Candidate2 frozen. New fixture proposal and narrowed maintenance both screened/rejected, unchanged test4b891fb retained. No retry/reroute; classifier false-negative/ambiguous create unresolved.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.shell-write",
+      "historicalObservation": "Candidate native child actual rooted write.",
+      "remaining": "Resolve independently diagnosed actual foreign alias write defect; retain separate classifier/ambiguous absent evidence, then reviewed exact canary reruns.",
+      "currentResumeObservation": "Candidate2 star attempt02 executes all24 primary/native probes. Shell denials and positives pass; primary custom apply_patch ALIAS returns success and foreign target inode stays same while bytes/hash change29\u219221, alias remains symlink. This is observed foreign target mutation; exact supplier path independently under read-only diagnosis. Child alias later context mismatch is not denial proof. MATCH/LATE explicitly EPERM rejected but strict classifier false-negative; ABSENT generic Failed to write file remains ambiguous. Host unchanged=false,cleanup0,source stable; all other families held. No policy relaxation or supplier patch authorized. Independent exact-source diagnosis confirms helper Minimal injection enables undeclared temp defaults. Parent supplier manager owns separate Candidate3 repair/build; Candidate2 frozen. New fixture proposal and narrowed maintenance both screened/rejected, unchanged test4b891fb retained. No retry/reroute; classifier false-negative/ambiguous create unresolved.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.network",
+      "historicalObservation": "Fixture supports native-child path; public supplier primary positive now works.",
+      "remaining": "Actual native-child off/on/ask limbs not yet run.",
+      "currentResumeObservation": "Candidate2 primary actual OFF/ON pass and actual ask callback now observed, but no native-descendant network/approval profile run. Primary item-ID adaptation/decision dialect diagnosis precedes attributed native tests; no inferred native acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.process",
+      "historicalObservation": "Actual P2 native output and cleanup observed; aggregate failed on marker parsing.",
+      "remaining": "Repair fixture and complete lifecycle canaries; observed cleanup is not all-process proof.",
+      "currentResumeObservation": "Candidate2 public normal passes; cancel-primary attempt02 reaches real interrupt and retirement before outer cleanup, but owned shell/sleep separate PGID survive app-server close and retirement rejects DESCENDANT_RECONCILIATION_REQUIRED. Fixed Runtime correctly leaves journal prepared/no terminal. Healthy census/no reuse,2cleanup failures preserved, eventual fixture disappearance is not public proof. Independent source diagnosis: stdio SIGTERM bypasses supplier shutdown, owned stdin EOF reaches native thread/process cleanup. Shared bounded transport EOF/drain proposal pending; no unsafe census-derived signaling. Remaining same-mechanism profiles held.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.environment",
+      "historicalObservation": "P1 actual native environment summaries passed, but aggregate profile failed.",
+      "remaining": "Complete remaining protected-pattern matrix and final integrated exact binding; actual P1 selected-candidate probe passed, acceptance remains separate.",
+      "currentResumeObservation": "Candidate2 actual P1 passes all3 tests,2606ms; startup absent, real primary/native reads, denials and environment checks, host unchanged, cleanup0, whole source stable. Earlier same-Candidate1 positive startup control and matched snapshot-disabled negative remain preserved. No supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.approval",
+      "historicalObservation": "Native fixture prepared; no actual supplier request yet.",
+      "remaining": "Parentage-aware actual request attribution, allow/deny/cancel and absent-UI behavior.",
+      "currentResumeObservation": "Candidate2 primary actual OFF/ON pass and actual ask callback now observed, but no native-descendant network/approval profile run. Primary item-ID adaptation/decision dialect diagnosis precedes attributed native tests; no inferred native acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.role",
+      "historicalObservation": "Native association metadata available; P4 failed before vendor launch.",
+      "remaining": "Repair fixture and run native role checks; never mechanical non-delegation claim.",
+      "currentResumeObservation": "Candidate2 controlled public untyped/Agent0 complete; Agent1 and native actual reads pass but post-native-wait origin selection fails after appended lifecycle user text. All3 processes closed, cleanup0,whole source stable. Trusted origin registry and bounded owned child SessionMeta repair approved. No overall role profile pass, production role envelope or owner-live proof; role instruction-asserted. Strict origin and exact canonical first-SessionMeta repair4 independently admitted d029dc; actual rerun awaits shared-source generation freeze. Wrongdepth/basename review failures preserved.",
+      "accepted": false
+    },
+    {
+      "limb": "owner-live-native-delegation",
+      "historicalObservation": "Not attempted. Deterministic no-account manager plus live local Pi passed, a different evidence class.",
+      "remaining": "Explicit hosted account/provider action and accepted live limb; cannot be replaced by fixture evidence.",
+      "currentResumeObservation": "Unexecuted; no-account controlled public role and actual supplier action observations cannot substitute production/owner-live evidence.",
+      "accepted": false
+    }
+  ],
+  "checkpoint": "7: source parser and role fixture independently admitted; transport corrections pending; protected fixture maintenance screened twice and stopped"
+}

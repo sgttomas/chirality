@@ -46,7 +46,7 @@ const compatibilityValid = (value: RuntimeCompatibilityIdentity | undefined): bo
 export class DelegatedRuntime {
   private readonly preflights = new Map<string, { value: DelegatedPreflight; expires: number }>();
   private readonly active = new Set<string>();
-  private readonly interruptRetirements = new Map<string, Promise<void>>();
+  private readonly turnRetirements = new Map<string, Promise<void>>();
   private readonly interruptedTurns = new Set<string>();
   private readonly liveTurns = new Map<string, ApprovalBinding>();
   private readonly approvalCallbacks = new Map<string, { requestId: string; prompt: NetworkApprovalPrompt; sent: boolean }>();
@@ -234,10 +234,18 @@ export class DelegatedRuntime {
     const key = `${projectId}\0${request.turnId}`;
     if (!await this.isApprovalLive(live) || this.interruptedTurns.has(key)) throw new RuntimeError("FORBIDDEN", "Turn is no longer interruptible", 403);
     this.interruptedTurns.add(key);
-    const retirement = binding.supervisor.retire(live.turnId, live.workerGeneration);
-    this.interruptRetirements.set(key, retirement);
-    await retirement;
+    await this.retireWorker(binding, key, live.turnId, live.workerGeneration);
     return { interrupted: true as const, turnId: live.turnId, workerGeneration: live.workerGeneration };
+  }
+
+  private retireWorker(binding: DelegatedProjectBinding, key: string, workerId: string, generation: string): Promise<void> {
+    const previous = this.turnRetirements.get(key);
+    if (previous) return previous;
+    // Install the promise before invoking the supervisor. Interrupt, failure and
+    // completion must join the same attempt, including its rejection.
+    const retirement = Promise.resolve().then(() => binding.supervisor.retire(workerId, generation));
+    this.turnRetirements.set(key, retirement);
+    return retirement;
   }
 
   decideApproval(projectId: string, requestId: string, request: DelegatedApprovalDecisionRequest) {
@@ -355,27 +363,23 @@ export class DelegatedRuntime {
       if (this.closing) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated runtime is shutting down", 503);
       const worker = await binding.supervisor.acquire(request.turnId, binding.evidenceClass === "controlled-worker" ? request.prompt : JSON.stringify({ prompt: request.prompt, requestedRole, roleEvidence, ...(restart.threadId ? { resumeThreadId: restart.threadId } : {}) }));
       this.liveTurns.set(key, { ...identity, sessionId: request.turnId, turnId: request.turnId, workerGeneration: worker.generation });
-      let retired = false;
-      const retire = async () => {
-        if (retired) return;
-        const interruption = this.interruptRetirements.get(key);
-        if (interruption) await interruption;
-        else await binding.supervisor.retire(worker.workerId, worker.generation);
-        retired = true;
-      };
+      // Polling callbacks can outlive registry cleanup; retain their exact
+      // generation's settled attempt rather than recreating it afterward.
+      let retirementAttempt: Promise<void> | undefined;
+      const retire = () => retirementAttempt ??= this.retireWorker(binding, key, worker.workerId, worker.generation);
       try {
         let waiting = true;
         const resultPromise = binding.supervisor.wait(worker.workerId, worker.generation);
         void resultPromise.finally(() => { waiting = false; }).catch(() => {});
         const polling = (async () => { while (waiting && this.approvalPort(binding) && binding.approvals) { await this.syncApprovals(projectId, request.turnId); if (waiting) await new Promise(resolve => setTimeout(resolve, 25)); } })();
-        void polling.catch(() => { void retire(); });
+        void polling.catch(() => { void retire().catch(() => {}); });
         const result = await resultPromise;
         waiting = false; await polling;
         if (result.threadId !== undefined) {
           if (retirement.associateThread === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Durable thread association is unavailable", 503);
           await retirement.associateThread(request.turnId, result.threadId);
         }
-        // Process reconciliation must succeed before publishing a successful terminal.
+        // Process reconciliation must succeed before publishing any terminal.
         await retire();
         const terminal = await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : result.exitCode === 0 ? "completed" : "failed", recordedAt: new Date().toISOString() });
         const event = { schemaVersion: 2, eventId: randomUUID(), sequence: 0, timestamp: terminal.recordedAt, projectId, sessionId: request.turnId, turnId: request.turnId, attribution: actual,
@@ -384,13 +388,16 @@ export class DelegatedRuntime {
         if (!validateHarnessEventV2(event)) throw new RuntimeError("INTERNAL_FAILURE", "Invalid canonical v2 terminal projection", 500);
         return { terminal, output: result.stdout, evidenceClass: binding.evidenceClass, roleEvidence, event };
       } catch (error) {
+        // A transport outcome or interruption intent is not retirement evidence.
+        // Keep the prepared record unresolved when cleanup cannot be confirmed.
+        await retire();
         await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
         throw error;
       } finally {
         await retire();
       }
     } finally {
-      this.interruptRetirements.delete(key);
+      this.turnRetirements.delete(key);
       this.interruptedTurns.delete(key);
       for (const [callbackKey, callback] of this.approvalCallbacks) if (callbackKey.startsWith(`${key}\0`)) { this.approvalCallbacks.delete(callbackKey); this.approvalSends.delete(callback.requestId); }
       this.liveTurns.delete(key);

@@ -1,0 +1,6 @@
+{
+  "path": "/private/tmp/runtime-conformance-resume-20260906/parent/run_candidate2_profiles_v2.py",
+  "sha256": "179118e9e5521d09f87d268ae19b6118b1f53d534b382de862bdd272e4af05f2",
+  "difference": "Accept explicit two-digit fresh attempt suffix; all candidate, endpoint, test, stop-first-failure and copy behavior unchanged",
+  "parentOnly": true
+}

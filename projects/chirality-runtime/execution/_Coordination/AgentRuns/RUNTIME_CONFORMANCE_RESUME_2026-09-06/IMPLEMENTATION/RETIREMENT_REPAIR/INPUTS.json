@@ -1,0 +1,6 @@
+{
+  "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "542f699b98cf646bcd2d3e0be7254f6f20ac8c7120eda4e0bd9a530a4e6fd1c3",
+  "projects/chirality-runtime/tests/delegated-runtime.test.ts": "9648a53a0c67c00a0c4acc92f226b1cf7b2bfbd7ad98dde51116b54b32bf046e",
+  "projects/chirality-runtime/packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+  "projects/chirality-runtime/packages/contracts/src/delegated.ts": "d0e87d6d547ad33ef88739eb03d5c3bf5c006ca12b6743891c6744ba4c6d8d14"
+}

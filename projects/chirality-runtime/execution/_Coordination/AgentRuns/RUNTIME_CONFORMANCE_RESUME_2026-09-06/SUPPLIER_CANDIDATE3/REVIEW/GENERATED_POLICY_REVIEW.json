@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-09-06T19:44:32.819735+00:00",
+  "logSha256": "6f11d4f24cfac8509eafca71273e96279249a73a9d31062130f3a2d81be39a94",
+  "testSummary": [
+    "test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 224 filtered out; finished in 0.00s"
+  ],
+  "policies": [
+    {
+      "label": "helper policy writable=false defaults=false",
+      "sbplSha256": "a08037780a7fed75715211471a91568fd432148b898b3241a8c95a60d29a49b3",
+      "platformBundle": false,
+      "ambientTempSubtrees": {
+        "/tmp": false,
+        "/private/tmp": false,
+        "/var/tmp": false,
+        "/private/var/tmp": false
+      },
+      "readRoots": {
+        "READABLE_ROOT_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/immutable.txt",
+        "READABLE_ROOT_1": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/bin/helper"
+      },
+      "writeRoots": {},
+      "exclusions": {},
+      "rootOnlyCanonicalMetadataAllowance": true,
+      "networkOutboundRulePresent": false,
+      "actualHelperExecuted": false
+    },
+    {
+      "label": "helper policy writable=false defaults=true",
+      "sbplSha256": "5a61d34bb46b886b8f51d447e01af14991955b75e921f7a9b444ac749ef083da",
+      "platformBundle": true,
+      "ambientTempSubtrees": {
+        "/tmp": true,
+        "/private/tmp": true,
+        "/var/tmp": true,
+        "/private/var/tmp": true
+      },
+      "readRoots": {
+        "READABLE_ROOT_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/immutable.txt",
+        "READABLE_ROOT_1": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/bin/helper"
+      },
+      "writeRoots": {},
+      "exclusions": {},
+      "rootOnlyCanonicalMetadataAllowance": true,
+      "networkOutboundRulePresent": true,
+      "actualHelperExecuted": false
+    },
+    {
+      "label": "helper policy writable=true defaults=false",
+      "sbplSha256": "87244486b7033429f43fc44c55593f4d99ba0ee0113344716d251fd68b3f7409",
+      "platformBundle": false,
+      "ambientTempSubtrees": {
+        "/tmp": false,
+        "/private/tmp": false,
+        "/var/tmp": false,
+        "/private/var/tmp": false
+      },
+      "readRoots": {
+        "READABLE_ROOT_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/immutable.txt",
+        "READABLE_ROOT_1": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/project",
+        "READABLE_ROOT_2": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/bin/helper"
+      },
+      "writeRoots": {
+        "WRITABLE_ROOT_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/project"
+      },
+      "exclusions": {
+        "WRITABLE_ROOT_0_EXCLUDED_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/project/.codex"
+      },
+      "rootOnlyCanonicalMetadataAllowance": true,
+      "networkOutboundRulePresent": false,
+      "actualHelperExecuted": false
+    },
+    {
+      "label": "helper policy writable=true defaults=true",
+      "sbplSha256": "79adb7deff013bb95a9e21e3cb54b7ad291f070b35baae8328ceab2174b66bb4",
+      "platformBundle": true,
+      "ambientTempSubtrees": {
+        "/tmp": true,
+        "/private/tmp": true,
+        "/var/tmp": true,
+        "/private/var/tmp": true
+      },
+      "readRoots": {
+        "READABLE_ROOT_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/immutable.txt",
+        "READABLE_ROOT_1": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/project",
+        "READABLE_ROOT_2": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/bin/helper"
+      },
+      "writeRoots": {
+        "WRITABLE_ROOT_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/project"
+      },
+      "exclusions": {
+        "WRITABLE_ROOT_0_EXCLUDED_0": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/tmp/.tmpaEulak/project/.codex"
+      },
+      "rootOnlyCanonicalMetadataAllowance": true,
+      "networkOutboundRulePresent": true,
+      "actualHelperExecuted": false
+    }
+  ],
+  "limit": "base Seatbelt device/system primitives remain. No no-default ambient tmp grant; precise leaf roots and project write retained. Actual helper/action confinement remains parent-owned."
+}

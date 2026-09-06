@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-role-conformance.test.ts (9 tests) 5484ms
+   ✓ actual public role parity and native descent without implicit Chirality role assignment  5466ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  13:41:30
+   Duration  5.81s (transform 125ms, setup 0ms, collect 179ms, tests 5.48s, environment 0ms, prepare 22ms)

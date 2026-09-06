@@ -1,0 +1,23 @@
+{
+  "time": "2026-09-06T20:02:53.339754+00:00",
+  "source": "HELP_HUMAN actual parent execution, reported after original child reviews sealed; manager read cited interpretation/records, did not execute these profiles",
+  "basis": {
+    "PARENT_CHECKS/P1_CANDIDATE3_01/CHECK.json": "3955e3c35b6ce20b24c290fed557bd4c2b2e9df051fc128e332e7d7698254780",
+    "PARENT_CHECKS/P1_CANDIDATE3_01/EXACT_BOUNDARY_P1.json": "170a3d3d3d5ac00712eb12952e15da6e00586d46512627b8ea0dabee8ed4f152",
+    "PARENT_CHECKS/P3_STAR_CANDIDATE3_01/PARENT_INTERPRETATION.json": "aeecea75a03eacf7fb9bb463a272f6daeb0c3826f92a90579c52300461f9754e"
+  },
+  "artifact_sha256": "b2a7e321d1c64794761803ba8895a15fafeeae9ac17c34abce942a82edaf7d4a",
+  "parent_report": "Existing P1 PASS3; unchanged P3-star remains FAIL at known nested-EPERM classifier.",
+  "limited_observation": {
+    "P3_probes": 24,
+    "primary_and_child_alias": "Actual EPERM outputs recorded",
+    "positive_project_patch_controls": "Succeeded for both actors",
+    "monitored_host_foreign_alias": "Unchanged",
+    "sourceStable": true,
+    "cleanupFailures": 0,
+    "vendorProcessClosed": true,
+    "Candidate2_foreign_write_reproduced": false
+  },
+  "limits": "No screened fixture maintenance performed. P3 entire fixture FAIL stays FAIL. Generic absent-target write cause remains unresolved; other protected families held. These selected observations do not establish full protected-family conformance or supplier/source acceptance. Fresh actor-specific fixture requirements remain future proposals; no source or historical evidence revision.",
+  "closure_effect": "Bounded Candidate3 preparation is complete with later limited parent evidence appended separately; full Runtime/supplier acceptance remains pending."
+}

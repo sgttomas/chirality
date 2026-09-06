@@ -1,0 +1,87 @@
+import type { ChildProcess } from "node:child_process";
+import { RuntimeError } from "@chirality/runtime-contracts";
+import type { CodexSessionTransport } from "./codex-session.js";
+
+export const CODEX_TRANSPORT_CLOSE_BOUNDS_MS = Object.freeze({ eof: 1000, term: 500, finalClose: 2000 });
+export interface CodexTransportLifecycleEvent {
+  phase: "close-requested" | "stdin-eof" | "stdin-eof-finished" | "stdin-error" | "eof-grace-expired" | "term-grace-expired" | "signal" | "signal-error" | "exit" | "close" | "spawn-error" | "process-error" | "stderr-overflow" | "close-deadline";
+  at: number;
+  signal?: NodeJS.Signals;
+  code?: string;
+}
+
+/** Owns only the supplied detached ChildProcess and its original group, never census PIDs. */
+export function createCodexTransportLifecycle(child: ChildProcess, options: {
+  observe?: (event: CodexTransportLifecycleEvent) => void;
+} = {}): CodexSessionTransport {
+  const { stdin, stdout, stderr } = child;
+  if (!stdin || !stdout || !stderr) throw new RuntimeError("ENGINE_UNAVAILABLE", "Codex transport requires owned pipes", 503);
+  const originalPid = child.pid;
+  let exited = child.exitCode !== null || child.signalCode !== null;
+  let didClose = false, spawnFailed = false, stderrBytes = 0, stderrOverflow = false;
+  let closing: Promise<void> | undefined;
+  const emit = (event: Omit<CodexTransportLifecycleEvent, "at">) => {
+    // Diagnostics must not break cleanup or acquire signal authority.
+    try { options.observe?.({ ...event, at: Date.now() }); } catch {}
+  };
+  const code = (error: unknown) => {
+    const value = (error as NodeJS.ErrnoException)?.code;
+    return typeof value === "string" && /^[A-Z0-9_]{1,64}$/.test(value) ? value : "UNCLASSIFIED";
+  };
+  let resolveClosed!: () => void;
+  const closed = new Promise<void>(resolve => { resolveClosed = resolve; });
+  child.once("exit", () => { exited = true; emit({ phase: "exit" }); });
+  child.once("close", () => { didClose = true; exited = true; emit({ phase: "close" }); resolveClosed(); });
+  child.on("error", error => { if (originalPid === undefined) spawnFailed = true; emit({ phase: spawnFailed ? "spawn-error" : "process-error", code: code(error) }); });
+  // Keep asynchronous EPIPE handled, including when session shutdown has already begun.
+  stdin.on("error", error => emit({ phase: "stdin-error", code: code(error) }));
+  stdin.once("finish", () => emit({ phase: "stdin-eof-finished" }));
+  const signal = (value: NodeJS.Signals) => {
+    if (!originalPid || exited || didClose || spawnFailed || child.exitCode !== null || child.signalCode !== null) return;
+    emit({ phase: "signal", signal: value });
+    try { process.kill(-originalPid, value); }
+    catch (error) { emit({ phase: "signal-error", signal: value, code: code(error) }); if (code(error) !== "ESRCH") throw error; }
+  };
+  stderr.on("data", (bytes: Buffer | string) => {
+    stderrBytes += Buffer.byteLength(bytes);
+    if (stderrBytes > 65536 && !stderrOverflow) {
+      stderrOverflow = true;
+      emit({ phase: "stderr-overflow" });
+      try { signal("SIGKILL"); } catch { /* close/reconciliation still has to establish cleanup. */ }
+    }
+  });
+  const waitClosed = async (ms: number) => {
+    if (didClose) return true;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    try { return await Promise.race([closed.then(() => true), new Promise<false>(resolve => { timer = setTimeout(() => resolve(false), ms); })]); }
+    finally { clearTimeout(timer); }
+  };
+  const close = () => closing ??= Promise.resolve().then(async () => {
+    emit({ phase: "close-requested" });
+    // Drain without detaching the session parser; a child may flush its shutdown response.
+    stdout.resume();
+    if (!didClose && !exited && !spawnFailed) {
+      emit({ phase: "stdin-eof" });
+      try { if (!stdin.destroyed && !stdin.writableEnded) stdin.end(); }
+      catch (error) { emit({ phase: "stdin-error", code: code(error) }); }
+    }
+    if (await waitClosed(CODEX_TRANSPORT_CLOSE_BOUNDS_MS.eof)) return;
+    emit({ phase: "eof-grace-expired" });
+    let signalFailure: unknown;
+    try { signal("SIGTERM"); } catch (error) { signalFailure = error; }
+    if (await waitClosed(CODEX_TRANSPORT_CLOSE_BOUNDS_MS.term)) {
+      if (signalFailure) throw signalFailure;
+      return;
+    }
+    emit({ phase: "term-grace-expired" });
+    try { signal("SIGKILL"); } catch (error) { signalFailure ??= error; }
+    if (!(await waitClosed(CODEX_TRANSPORT_CLOSE_BOUNDS_MS.finalClose))) {
+      emit({ phase: "close-deadline" });
+      throw new RuntimeError("ENGINE_UNAVAILABLE", "Codex transport close deadline exceeded", 503, {
+        reason: "CODEX_TRANSPORT_CLOSE_TIMEOUT", signalFailure: signalFailure ? code(signalFailure) : undefined
+      });
+    }
+    if (signalFailure) throw signalFailure;
+  });
+  return { stdin, stdout, close };
+}

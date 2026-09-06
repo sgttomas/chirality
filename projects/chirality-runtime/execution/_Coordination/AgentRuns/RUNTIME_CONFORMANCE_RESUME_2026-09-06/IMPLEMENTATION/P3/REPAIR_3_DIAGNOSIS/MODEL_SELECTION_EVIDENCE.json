@@ -1,0 +1,13 @@
+{
+  "catalogPath": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/models-manager/models.json",
+  "catalogSha256": "c18214b1ba88ab9bd164753115324a7a29c0582e8d071f7b3babf749d892f549",
+  "runtimeDeterministicPresent": false,
+  "gpt54": {
+    "slug": "gpt-5.4",
+    "apply_patch_tool_type": "freeform",
+    "shell_type": "shell_command",
+    "experimental_supported_tools": []
+  },
+  "sourceFallback": "model_info_from_slug sets apply_patch_tool_type: None for missing/unknown slugs",
+  "handlerCondition": "environment_mode.has_environment() && turn_context.model_info.apply_patch_tool_type.is_some()"
+}

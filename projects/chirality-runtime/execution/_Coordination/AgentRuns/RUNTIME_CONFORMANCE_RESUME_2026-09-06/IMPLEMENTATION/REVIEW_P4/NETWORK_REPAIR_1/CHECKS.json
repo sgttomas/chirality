@@ -1,0 +1,28 @@
+{
+  "defaultSkip": {
+    "command": "env -u CHIRALITY_RUN_EXACT_NETWORK_RUNTIME ./node_modules/.bin/vitest run tests/exact-network-runtime-conformance.test.ts",
+    "exitCode": 0,
+    "passed": 6,
+    "skipped": 1
+  },
+  "noEmit": {
+    "command": "./node_modules/.bin/tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop --skipLibCheck tests/exact-network-runtime-conformance.test.ts",
+    "exitCode": 0
+  },
+  "semanticsComparison": {
+    "command_target_and_scenario": {
+      "byteIdenticalToAuthorizedPreimage": true,
+      "sha256": "c461cd5859a54f8b93192e0c86167a719e948cf25dec5e30901708828fed72b4"
+    },
+    "model_network_and_supplier": {
+      "byteIdenticalToAuthorizedPreimage": true,
+      "sha256": "0137e02766628759447a5629b5919b553e616e63c51ef51beeb99f1a01d8bb83"
+    },
+    "consent_approval_outcome": {
+      "byteIdenticalToAuthorizedPreimage": true,
+      "sha256": "7891fb64ead0863e2687e6f6e85e2694af3fbc92214e2627031b3906224bfd2d"
+    }
+  },
+  "supplierExecuted": false,
+  "networkExecuted": false
+}

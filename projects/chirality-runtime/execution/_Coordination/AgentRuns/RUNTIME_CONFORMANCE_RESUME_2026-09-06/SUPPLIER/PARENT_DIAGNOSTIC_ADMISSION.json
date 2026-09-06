@@ -1,0 +1,17 @@
+{
+  "decision": "ACCEPT_PARTIAL_DIAGNOSTIC_ADMISSION",
+  "manager": "/root/supplier_manager WORKING_ITEMS",
+  "child": "/root/supplier_manager/constraint_reviewer",
+  "basis": {
+    "REVIEW/PARENT_DIAGNOSTIC_ADMISSION.md": "ae17bdb78019e4626944aef3a4f35f841ab9745e2dbed8765e099b792d87aa6b",
+    "REVIEW/ARTIFACT_VERIFICATION.json": "8a89adf42c919de32532ef37ac506674ae31ff2c859d752b057a7e0a1967bb94",
+    "REVIEW/EXACT_SUITE_VERIFICATION.json": "b717e96b2d74ce51b9e9772af6e93ee84ab8b6b96eabf5077977938a8814c19b",
+    "MANAGER_POST_EXACT_VERIFICATION.json": "bee820cdedc6eabaa17d8b72dacf6157098d27b43b17cf953f0ab40ac55fa260"
+  },
+  "scope": "Parent-owned actual Candidate2 diagnostics under existing endpoint/owner constraints once Runtime repair freeze is independently verified",
+  "candidate_path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-app-server",
+  "sha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "bytes": 241188752,
+  "version": "0.149.0",
+  "limits": "Original policy suite remains FAIL4/3; other exact suites29/14/4pass; isolated fixture-adapted suite pending. No source/supplier/hold/lifecycle/release/account authority or full conformance granted. Rehash before parent launch. Candidate1 startup-file finding separate and unresolved by this source patch."
+}

@@ -1,0 +1,29 @@
+{
+  "capturedUtc": "2026-09-06T19:08:16.487267+00:00",
+  "sha256": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/AGENTS.md": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/loop/LOOP_INIT.md": "d9d644117688a896aba8a4496533b5fadadeb612b97dfd05d2796f7ad013b07b",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/BRIEF.md": "c827c494765f9ce51d0ade2eb089732ff5e1674eee9f769eed3263c6aee8a203",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/BASIS.json": "18e1770bbf0e55f496c2aabaa95581724d4a8923fa893c37ed5e106cd5bc38cb",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/PLAN.md": "760b06055f90258a99cc908818c2e48cbd23a00d8b7a98d025bd15948074aaac",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/approval-store.ts": "4ac5d0197f528a6dce2dfd4cad007b4d806e622553ab921edcf24422fa1e1e91",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-conformance.test.ts": "e3461c886ca6db2b2feed7e44a5cf3618737872c8a6f30d547f0063ee31e4613",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "baec50a52472f2691df400098cd5b531434628da9358617ab8ba32b22cdf9447",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/codex-session.test.ts": "692a585f4f00b0c53c3345338af6a7b65f76f8929735de963040d84a0c39ed4d",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/approval-store.test.ts": "31599f398ab4e5a586a512da9470b10ad507ebf9d781e62042d72bdb3dbe4c0b",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/network_approval.rs": "f9bd87c5b6629126d518bc4097ab8ef23b1ad049bc7732ed2c7acd11ff46464e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/approvals.rs": "a572c4322849ba5267a7315823413abd5c9b171c8cc15c0c39a80a23d442277e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/mod.rs": "e6218071821f7e1b3858d31c2a0aef5fa5b63dea0ab16dfbced716d825ddbcc9",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/approvals.rs": "efe1678b8e53feb750bc4e61939cca5950d66391385d986c1076f4c1db34c822",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/bespoke_event_handling.rs": "42e46071529deee6a38789319f641ed46d39f7aab260b0c973f74341f6d74f31",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-protocol/src/protocol/v2/item.rs": "95dd99bac8a2abdcc4ff9b7f92ea798e937bb3494c9764656f31513ff60488bb",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/CHECK.json": "104be4a4bab53661cb3954e327e0d5e1f0065bf39b6e3b9b35fafb91300d570a",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/EXACT_NETWORK_CANARY.json": "f90a627a575032ff30b3fd02ff3449ee2c13903ad599bc35ea934d39b5744bd5",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/output.log": "2261b54d0c7c14f8b0904c8b2b522f6c19970d210be2df851f22e373e386bd2e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/MANIFEST.json": "9c9cc7023e481c60121c5d0729cc40497d417f3c189a7a90c077d35040684aa8"
+  }
+}

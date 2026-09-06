@@ -1,0 +1,598 @@
+{
+  "scenario": "cancel-child",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "accountUsed": false,
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "sourceBefore": {
+    "tests/exact-process-conformance.test.ts": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+    "tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+  },
+  "verdict": "PROFILE_NOT_COMPLETED",
+  "publicRuntimeCancellationProven": false,
+  "processScope": "observed actual tool lineage only; no all-orphans proof",
+  "hostSentinelBefore": "e5c4c004a1c951d94520cbdb90e6258465e74a2d5253360e491d173ea02331f6",
+  "hostMarkersBefore": {
+    "primary": {
+      "started": null,
+      "foreground": null,
+      "signal-attempt": null,
+      "signal": null,
+      "ready": null,
+      "finished": null,
+      "signal-status": null,
+      "pid": null
+    },
+    "child": {
+      "started": null,
+      "foreground": null,
+      "signal-attempt": null,
+      "signal": null,
+      "ready": null,
+      "finished": null,
+      "signal-status": null,
+      "pid": null
+    }
+  },
+  "censusFailures": [],
+  "sibling": {
+    "pid": 55675,
+    "ppid": 55636,
+    "pgid": 55512,
+    "uid": 501,
+    "startIdentity": "Sun Sep 6 12:44:21 2026",
+    "positiveControlCount": 1
+  },
+  "policyDigest": "377ec99bd21f2e6ce221236f64e5591e17ccfae4bf1fb5a2196a291f74b8b168",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/usr/lib": "read",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-k5xEKy/project": "write",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-k5xEKy/broker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-k5xEKy/broker/worker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-k5xEKy/project/.codex": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "configuredTurnTimeoutMs": 30000,
+  "actionStartedAt": 1788720263020,
+  "readyObservedAt": 1788720263185,
+  "hostMarkersBeforeInterruption": {
+    "child": {
+      "started": "PROCESS_STARTED\n",
+      "foreground": "FOREGROUND_CHILD_DONE\n",
+      "signal-attempt": "SIGNAL_ATTEMPTED\n",
+      "signal": "SIGNAL_DENIED\n",
+      "ready": "PROCESS_READY\n",
+      "finished": null,
+      "signal-status": "1\n",
+      "pid": "55744\n"
+    }
+  },
+  "lifetimeIdentity": {
+    "pid": 55744,
+    "ppid": 55741,
+    "pgid": 55741,
+    "uid": 501,
+    "startIdentity": "Sun Sep 6 12:44:23 2026"
+  },
+  "beforeInterruption": {
+    "leader": {
+      "pid": 55677,
+      "ppid": 55636,
+      "pgid": 55677,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 12:44:21 2026"
+    },
+    "observed": 10,
+    "scans": 43,
+    "ownedGroup": [
+      {
+        "pid": 55677,
+        "ppid": 55636,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:21 2026"
+      }
+    ],
+    "detached": [
+      {
+        "pid": 55741,
+        "ppid": 55677,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55744,
+        "ppid": 55741,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      }
+    ],
+    "gone": [
+      {
+        "pid": 55729,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55732,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55733,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55734,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55735,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55736,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55739,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "interruptionRequestedAt": 1788720263204,
+  "terminalReceivedAt": 1788720263207,
+  "terminal": {
+    "value": {
+      "threadId": "01a07809-2f21-7992-a790-4c9be9838ccf",
+      "turnId": "01a07809-2f71-7860-aba3-80d21d9dbcc3",
+      "status": "interrupted",
+      "output": ""
+    }
+  },
+  "hostMarkers": {
+    "child": {
+      "started": "PROCESS_STARTED\n",
+      "foreground": "FOREGROUND_CHILD_DONE\n",
+      "signal-attempt": "SIGNAL_ATTEMPTED\n",
+      "signal": "SIGNAL_DENIED\n",
+      "ready": "PROCESS_READY\n",
+      "finished": null,
+      "signal-status": "1\n",
+      "pid": "55744\n"
+    }
+  },
+  "afterInterruptionBeforeFixtureCleanup": {
+    "leader": {
+      "pid": 55677,
+      "ppid": 55636,
+      "pgid": 55677,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 12:44:21 2026"
+    },
+    "observed": 10,
+    "scans": 44,
+    "ownedGroup": [
+      {
+        "pid": 55677,
+        "ppid": 55636,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:21 2026"
+      }
+    ],
+    "detached": [
+      {
+        "pid": 55741,
+        "ppid": 55677,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55744,
+        "ppid": 55741,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      }
+    ],
+    "gone": [
+      {
+        "pid": 55729,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55732,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55733,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55734,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55735,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55736,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55739,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "failurePhase": "process-observation",
+  "failure": {
+    "name": "AssertionError",
+    "code": "UNCLASSIFIED"
+  },
+  "siblingSignalCount": 1,
+  "providerRecords": [
+    {
+      "request": 1,
+      "who": "primary",
+      "outputs": [],
+      "receivedAt": 1788720263044
+    },
+    {
+      "request": 2,
+      "who": "primary",
+      "outputs": [
+        {
+          "callId": "process_call_1",
+          "issued": {
+            "who": "primary",
+            "kind": "spawn",
+            "issuedAt": 1788720263044
+          },
+          "output": "{\"agent_id\":\"01a07809-2f88-7a40-9153-b9dad63aeb8a\",\"nickname\":\"Kierkegaard\"}"
+        }
+      ],
+      "receivedAt": 1788720263137
+    },
+    {
+      "request": 3,
+      "who": "child",
+      "outputs": [],
+      "receivedAt": 1788720263144
+    }
+  ],
+  "providerFailures": [],
+  "issuedCalls": [
+    {
+      "callId": "process_call_1",
+      "who": "primary",
+      "kind": "spawn",
+      "issuedAt": 1788720263044
+    },
+    {
+      "callId": "process_call_2",
+      "who": "primary",
+      "kind": "wait",
+      "issuedAt": 1788720263137
+    },
+    {
+      "callId": "process_call_3",
+      "who": "child",
+      "kind": "probe",
+      "issuedAt": 1788720263144
+    }
+  ],
+  "hostMarkersAtCleanup": {
+    "primary": {
+      "started": null,
+      "foreground": null,
+      "signal-attempt": null,
+      "signal": null,
+      "ready": null,
+      "finished": null,
+      "signal-status": null,
+      "pid": null
+    },
+    "child": {
+      "started": "PROCESS_STARTED\n",
+      "foreground": "FOREGROUND_CHILD_DONE\n",
+      "signal-attempt": "SIGNAL_ATTEMPTED\n",
+      "signal": "SIGNAL_DENIED\n",
+      "ready": "PROCESS_READY\n",
+      "finished": null,
+      "signal-status": "1\n",
+      "pid": "55744\n"
+    }
+  },
+  "hostSentinelAfter": "e5c4c004a1c951d94520cbdb90e6258465e74a2d5253360e491d173ea02331f6",
+  "firstOutputTimings": [
+    {
+      "callId": "process_call_1",
+      "who": "primary",
+      "kind": "spawn",
+      "issuedAt": 1788720263044,
+      "firstReceivedAt": 1788720263137,
+      "firstOutputElapsedMs": 93,
+      "firstOutput": "{\"agent_id\":\"01a07809-2f88-7a40-9153-b9dad63aeb8a\",\"nickname\":\"Kierkegaard\"}"
+    },
+    {
+      "callId": "process_call_2",
+      "who": "primary",
+      "kind": "wait",
+      "issuedAt": 1788720263137,
+      "firstReceivedAt": null,
+      "firstOutputElapsedMs": null,
+      "firstOutput": null
+    },
+    {
+      "callId": "process_call_3",
+      "who": "child",
+      "kind": "probe",
+      "issuedAt": 1788720263144,
+      "firstReceivedAt": null,
+      "firstOutputElapsedMs": null,
+      "firstOutput": null
+    }
+  ],
+  "beforeFixtureCleanup": {
+    "leader": {
+      "pid": 55677,
+      "ppid": 55636,
+      "pgid": 55677,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 12:44:21 2026"
+    },
+    "observed": 10,
+    "scans": 45,
+    "ownedGroup": [
+      {
+        "pid": 55677,
+        "ppid": 55636,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:21 2026"
+      }
+    ],
+    "detached": [
+      {
+        "pid": 55741,
+        "ppid": 55677,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55744,
+        "ppid": 55741,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      }
+    ],
+    "gone": [
+      {
+        "pid": 55729,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55732,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55733,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55734,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55735,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55736,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55739,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "afterFixtureCleanup": {
+    "leader": {
+      "pid": 55677,
+      "ppid": 55636,
+      "pgid": 55677,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 12:44:21 2026"
+    },
+    "observed": 10,
+    "scans": 205,
+    "ownedGroup": [],
+    "detached": [],
+    "gone": [
+      {
+        "pid": 55677,
+        "ppid": 55636,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:21 2026"
+      },
+      {
+        "pid": 55729,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55732,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55733,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55734,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55735,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55736,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55739,
+        "ppid": 55677,
+        "pgid": 55677,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55741,
+        "ppid": 55677,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      },
+      {
+        "pid": 55744,
+        "ppid": 55741,
+        "pgid": 55741,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:44:23 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "sourceAfter": {
+    "tests/exact-process-conformance.test.ts": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+    "tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+  },
+  "supplyAfter": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "cleanupFailures": [],
+  "elapsedMs": 9385
+}

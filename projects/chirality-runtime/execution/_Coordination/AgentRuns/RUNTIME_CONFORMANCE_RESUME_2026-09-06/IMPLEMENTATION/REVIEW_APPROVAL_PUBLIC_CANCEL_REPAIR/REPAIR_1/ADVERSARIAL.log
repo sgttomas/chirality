@@ -1,0 +1,11 @@
+evalmachine.<anonymous>:50
+it('requires the actual interrupt acknowledgement to match this turn and worker generation', () => {
+^
+
+ReferenceError: it is not defined
+    at evalmachine.<anonymous>:50:1
+    at Script.runInContext (node:vm:149:12)
+    at Object.runInContext (node:vm:301:6)
+    at file:///Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PUBLIC_CANCEL_REPAIR/REPAIR_1/independent-audit.mjs:9:79
+
+Node.js v24.18.0

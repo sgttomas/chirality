@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-09-06T19:07:09.384259+00:00",
+  "testSourceReadOnly": "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts",
+  "testSha256": "e3482593af7c0dc031a91f157165a1c3c031bd59426c48b3217a9f1a02965942",
+  "inputHashes": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_01/EXACT_PROTECTED_star.json": "9b0421d1dbc26694fe81ddbbc19e55cb0d7eda54a80ccf7b09189bc96d260eaa",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/FILE_CHANGE_2/RESULT.json": "59c2ca64c33837eba8199cb88be5c379d5a2de73e1c1272a9d6b8ab209b609e0",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/apply_patch_spec.rs": "91b4e8669c54e00f16470eb0677b0002a180c10ca6dfe0607b93240426fa9eef",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/spec_plan.rs": "02fd1cfd12a76946c9d0fec10f6b990f0932cf8a6e693ea586a0fb11e06b7ce6",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/models-manager/src/model_info.rs": "ac0f35917888f3041737589a8df88924e9728a4967350531515d0d4f5c0a0744",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/models-manager/models.json": "c18214b1ba88ab9bd164753115324a7a29c0582e8d071f7b3babf749d892f549",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-codex-conformance.test.ts": "c4425a54ab3a010baf4679d4259a84ebe696d7ae1c83e9043914ca3d21c51439",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef"
+  },
+  "supplierExecuted": false,
+  "sourceEdits": false,
+  "evidenceStatus": "Derivative read-only diagnosis; cause inferred from exact retained source and historical working actual schema, not complete failed-run advertisement"
+}

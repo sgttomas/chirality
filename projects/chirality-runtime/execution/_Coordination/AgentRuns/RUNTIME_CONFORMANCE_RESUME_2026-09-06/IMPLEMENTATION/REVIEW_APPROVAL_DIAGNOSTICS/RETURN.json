@@ -1,0 +1,22 @@
+{
+  "timestampUtc": "2026-09-06T19:17:38.144842+00:00",
+  "reviewer": "/root/conformance_manager/review_approval_diagnostics",
+  "verdict": "ADMIT_BOUNDED_DIAGNOSTICS",
+  "blockingFindings": [],
+  "pureTests": {
+    "passed": 14,
+    "skippedExact": 2
+  },
+  "strictNoemit": "PASS_SOURCE_COHERENT",
+  "independentAdversarialChecks": 26,
+  "sourceStable": true,
+  "actualExecution": false,
+  "acceptance": false,
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "remaining": [
+    "Parent actual same-Candidate2 ask-allow diagnosis",
+    "Distinct unavailable decline capability disposition",
+    "Public/native-descendant conformance"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "files": {
+    "ADVERSARIAL.log": "8799459be9e51e0feda6ef46daf67c977e5f6dbdcfd6055aec5613babb3030a5",
+    "ADVERSARIAL_RETRY.json": "7d417b05ef797636d0ef80a4bac8a0359fdd14a9ab97e3ccd82c2071fe80af8b",
+    "ADVERSARIAL_RETRY.log": "3d8395a70ad901e3dc3def3670ede64c2b40ac0b2740a5b285502a34ce9564c1",
+    "FINAL_INPUTS.json": "b77fd3db3d08c07b65b58fcad4889edd263298c0c3bf5e19fe096871edf0acb6",
+    "PURE.log": "24b3f09dda609f810e7d3dfc7199d99755b18e4e2b2d9fa7168ccac2a40291f8",
+    "RETURN.json": "b3fa0ac4ffd6a70108a172b83a117181456ff8665025e9fe5a94886d38d5fc93",
+    "RETURN.md": "9934752040b419730304980c531794b913c1ddd3630baa047c55335f8f0e16ca",
+    "SOURCE_AFTER.json": "a89f553e70d9155aa2d55a1b247682ee1c4f0ef7f585422816f88a3f0c3420a5",
+    "SOURCE_BEFORE.json": "a89f553e70d9155aa2d55a1b247682ee1c4f0ef7f585422816f88a3f0c3420a5",
+    "STRICT_NOEMIT.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "VALIDATION.json": "e3ca7a8ff3b754a126c86f7447831e904e9679124be4e79ad6d9658e81c3a0f8",
+    "independent-audit-retry.mjs": "c215f005d6ebfc1a028949958b545146764b383f4c2d83e02754b204324df3a6",
+    "independent-audit.mjs": "1faa7fd2e2063bc3ff5d786d236fbfefb09ed23423ed1c1be8bd880d2fb13a75",
+    "tsconfig.check.json": "1e7a4fb59e1317e903067fbaf73a44fcefde5a299cc4f917d9a177a4db047887"
+  },
+  "originalV1Preserved": true,
+  "previousHarnessFailurePreserved": true
+}

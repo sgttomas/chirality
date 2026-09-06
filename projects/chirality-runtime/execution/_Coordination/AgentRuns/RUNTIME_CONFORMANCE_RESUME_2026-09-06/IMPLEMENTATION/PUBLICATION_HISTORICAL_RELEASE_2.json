@@ -1,0 +1,22 @@
+{
+  "derivative": true,
+  "status": "historical current audit repair under66df frozen; narrow followon uses new REPAIR_1 subtree",
+  "release": "lossless original archival + explicitly derivative publication presentation only",
+  "paths": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/PATCH.diff",
+      "originalSha256": "b45821d77ab6bdc0379c33601009475498962f9b99b6c12f0b452b5902d7e2e9",
+      "originalBytes": 16316
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/PURE_TESTS.log",
+      "originalSha256": "e3274c7f743c63073776c1ffbbd120e6e9c521ca1363f850e757f76750090920",
+      "originalBytes": 416
+    }
+  ],
+  "conditions": [
+    "Retain exact original bytes/hash accessible to original seals/review findings",
+    "Do not imply failed original audit fixture was admitted",
+    "No future writes by conformance owner to these2 files"
+  ]
+}

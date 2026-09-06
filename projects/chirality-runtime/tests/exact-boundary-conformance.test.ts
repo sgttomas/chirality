@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { chmod, copyFile, mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
+import { chmod, copyFile, lstat, mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { expect, it } from 'vitest';
 import { verifyExactSupply, createControlledSupplyVerifierForTests } from '../packages/core/src/exact-supply.js';
@@ -9,6 +9,27 @@ import { CodexTurnSession } from '../packages/daemon/src/codex-session.js';
 // @ts-ignore Standalone test peer is intentionally plain executable JavaScript.
 import { startBoundaryResponseProvider, summarizeBoundaryOutput } from './fixtures/boundary-response-provider.mjs';
 const quote = (value: string) => "'" + value.replaceAll("'", "'\\''") + "'";
+// Persist only bounded facts. Exception messages/stacks may contain supplier commands or ambient data.
+function safeFailure(error: unknown) {
+  return { kind: error instanceof Error ? 'Error' : 'non-Error', code: ['ENOENT', 'EACCES', 'EPERM', 'ETIMEDOUT'].includes(String((error as any)?.code)) ? String((error as any).code) : 'OTHER' };
+}
+function assertBoundary(observation: Record<string, unknown>, name: string, passed: boolean) {
+  const assertions = (observation.assertions ??= []) as { name: string; passed: boolean }[];
+  assertions.push({ name, passed });
+  if (!passed) { observation.failureAssertion = name; throw new Error('BOUNDARY_ASSERTION_FAILED'); }
+}
+function terminalFacts(output: string) {
+  return { bytes: Buffer.byteLength(output), sha256: createHash('sha256').update(output).digest('hex'), primaryCompleteMarker: /^BOUNDARY_PRIMARY_COMPLETE\r?$/m.test(output) };
+}
+it('retains the failed assertion and safe terminal facts without raw error/output', () => {
+  const observation: Record<string, unknown> = {};
+  assertBoundary(observation, 'terminal-status', true);
+  expect(() => assertBoundary(observation, 'terminal-output-marker', false)).toThrow('BOUNDARY_ASSERTION_FAILED');
+  expect(observation).toEqual({ assertions: [{ name: 'terminal-status', passed: true }, { name: 'terminal-output-marker', passed: false }], failureAssertion: 'terminal-output-marker' });
+  expect(terminalFacts('rejected command BOUNDARY_PRIMARY_COMPLETE').primaryCompleteMarker).toBe(false);
+  expect(terminalFacts('BOUNDARY_PRIMARY_COMPLETE\n').primaryCompleteMarker).toBe(true);
+  expect(JSON.stringify(safeFailure(new Error('SYNTHETIC_SECRET')))).not.toContain('SYNTHETIC_SECRET');
+});
 it('rejects echoed command markers as primary or native execution evidence', () => {
   expect(summarizeBoundaryOutput('exec_command failed for printf BOUNDARY_primary_START', 'primary').started).toBe(false);
   expect(summarizeBoundaryOutput('BOUNDARY_child_START\nBOUNDARY_ALLOWED:PASS\nBOUNDARY_child_FINISH', 'child')).toEqual({ started: true, finished: true, values: { ALLOWED: 'PASS' } });
@@ -28,6 +49,8 @@ it.runIf(process.env.CHIRALITY_RUN_EXACT_BOUNDARY === '1')('P1 actual primary an
   const pins = async () => Object.fromEntries(await Promise.all(sourcePaths.map(async path => [path, createHash('sha256').update(await readFile(path)).digest('hex')])));
   observation.sourcesBefore = await pins();
   let phase = 'setup';
+  const assert = (name: string, passed: boolean) => { phase = `assert:${name}`; assertBoundary(observation, name, passed); };
+  let inspectHost: (() => Promise<void>) | undefined;
   const ambientPrior = process.env.CHIRALITY_AMBIENT_CANARY;
   process.env.CHIRALITY_AMBIENT_CANARY = 'SYNTHETIC_PARENT_ONLY';
   try {
@@ -38,6 +61,24 @@ it.runIf(process.env.CHIRALITY_RUN_EXACT_BOUNDARY === '1')('P1 actual primary an
     await symlink(foreign, alias);
     const startupMarker = join(root, 'startup-ran');
     await writeFile(join(worker, '.zshenv'), `printf STARTUP_RAN > ${quote(startupMarker)}\n`, { mode: 0o600 });
+    const sentinelPaths = { ALLOWED: allowed, FOREIGN: foreign, BROKER: control, LITERAL: literal, CONFIG: config, ALIAS: alias, STARTUP_FILE: join(worker, '.zshenv') };
+    const hostHashes = async () => Object.fromEntries(await Promise.all(Object.entries(sentinelPaths).map(async ([name, path]) => [name, createHash('sha256').update(await readFile(path)).digest('hex')])));
+    observation.hostSentinelsBefore = await hostHashes();
+    inspectHost = async () => {
+      observation.hostSentinelsAfter = await hostHashes();
+      observation.hostSentinelsUnchanged = JSON.stringify(observation.hostSentinelsBefore) === JSON.stringify(observation.hostSentinelsAfter);
+      try {
+        const marker = await lstat(startupMarker);
+        const knownBytes = marker.isFile() && marker.size === Buffer.byteLength('STARTUP_RAN') ? (await readFile(startupMarker)).equals(Buffer.from('STARTUP_RAN')) : false;
+        observation.startupMarker = { present: true, regularFile: marker.isFile(), size: marker.size, expectedSyntheticBytes: knownBytes };
+        observation.startupFileExecuted = true; // Marker appearance fails closed; bytes are not disclosed.
+      } catch (error) {
+        if ((error as any)?.code !== 'ENOENT') throw error;
+        observation.startupMarker = { present: false }; observation.startupFileExecuted = false;
+      }
+    };
+    // Reverse-order cleanup inspects after vendor/peer closure and before base removal.
+    cleanup.splice(1, 0, async () => { try { await inspectHost!(); } catch (error) { observation.hostInspectionFailure = safeFailure(error); throw error; } });
     const binary = join(worker, 'app-server'); await copyFile(supplied, binary); await chmod(binary, 0o700); await verify(binary);
     cleanup.push(async () => { await verify(binary); await verify(supplied); observation.supplyRevalidated = true; });
     const policy = await prepareCodexNativePolicy({ canonicalRoot: root, codexHome: home, privateDirectory: worker, protectedPaths: [broker, literal], immutableReadRoots: ['/bin', '/usr/lib', '/usr/bin/curl', '/private/etc/ssl/openssl.cnf', '/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld'], commandNetworkPosture: 'off' });
@@ -71,29 +112,38 @@ it.runIf(process.env.CHIRALITY_RUN_EXACT_BOUNDARY === '1')('P1 actual primary an
     cleanup.push(() => actor.close());
     void (async () => { for await (const _event of actor.events()) { /* bounded actor drain */ } })().catch(() => {});
     phase = 'initialize-and-policy'; await actor.initialize(); await actor.verifyNativePolicy(policy.expectedPermissions);
-    const account = await actor.accountRead(); expect(account.hasAccount).toBe(false);
+    const account = await actor.accountRead(); assert('account-absent', account.hasAccount === false);
     phase = 'primary-and-native-probes'; const threadId = await actor.startThread({ cwd: root, model: 'runtime-deterministic', continuityChecked: true });
     const turnId = await actor.startTurn({ threadId, model: 'runtime-deterministic', text: 'Perform the deterministic boundary probe once, then delegate the matching native child probe and finish.' });
     const terminal = await actor.waitTurn(turnId); observation.terminalStatus = terminal.status; observation.nativeChildren = actor.nativeChildren();
     observation.probes = peer.records; observation.peerFailures = peer.failures;
-    expect(terminal.status).toBe('completed'); expect(terminal.output).toContain('BOUNDARY_PRIMARY_COMPLETE'); expect(peer.failures).toEqual([]);
-    expect(peer.records).toHaveLength(2);
+    observation.terminalOutput = terminalFacts(terminal.output);
+    phase = 'observe-host-after-turn'; await inspectHost();
+    assert('terminal-status', terminal.status === 'completed');
+    assert('terminal-output-marker', (observation.terminalOutput as ReturnType<typeof terminalFacts>).primaryCompleteMarker);
+    assert('peer-failures-empty', peer.failures.length === 0);
+    assert('probe-count', peer.records.length === 2);
     for (const who of ['primary', 'child']) {
-      const record = peer.records.find((row: any) => row.who === who); expect(record).toBeDefined();
-      expect(record.summary).toMatchObject({ started: true, finished: true, values: { ALLOWED: 'PASS', AMBIENT: 'ABSENT', CREDENTIAL_ENV: 'ABSENT', CWD: 'PASS', HOME: 'PASS', CODEX_HOME: 'PASS', TMPDIR: 'PASS' } });
-      for (const name of ['FOREIGN', 'BROKER', 'LITERAL', 'CONFIG', 'ALIAS']) expect(Number(record.summary.values[name])).toBeGreaterThan(0);
-      expect(record.elapsedMs).toBeLessThanOrEqual(10000);
+      const record = peer.records.find((row: any) => row.who === who);
+      assert(`${who}:record`, record !== undefined);
+      assert(`${who}:standalone-start-finish`, record.summary.started === true && record.summary.finished === true);
+      for (const [name, value] of Object.entries({ ALLOWED: 'PASS', AMBIENT: 'ABSENT', CREDENTIAL_ENV: 'ABSENT', CWD: 'PASS', HOME: 'PASS', CODEX_HOME: 'PASS', TMPDIR: 'PASS' })) assert(`${who}:${name}`, record.summary.values[name] === value);
+      for (const name of ['FOREIGN', 'BROKER', 'LITERAL', 'CONFIG', 'ALIAS']) assert(`${who}:${name}:denied`, Number(record.summary.values[name]) > 0);
+      assert(`${who}:probe-budget`, record.elapsedMs <= 10000);
     }
-    expect(actor.nativeChildren().length).toBeGreaterThan(0);
-    await expect(readFile(startupMarker)).rejects.toMatchObject({ code: 'ENOENT' }); observation.startupFileExecuted = false;
+    assert('native-child-present', actor.nativeChildren().length > 0);
+    assert('startup-marker-absent', observation.startupFileExecuted === false);
+    assert('host-sentinels-unchanged', observation.hostSentinelsUnchanged === true);
     observation.passed = true;
-  } catch { observation.failurePhase = phase; }
+  } catch (error) { observation.failurePhase = phase; observation.failure = safeFailure(error); }
   finally {
     if (ambientPrior === undefined) delete process.env.CHIRALITY_AMBIENT_CANARY; else process.env.CHIRALITY_AMBIENT_CANARY = ambientPrior;
-    let failures = 0; for (const fn of cleanup.reverse()) try { await fn(); } catch { failures++; }
+    let failures = 0;
+    for (const fn of cleanup.reverse()) try { await fn(); } catch { failures++; }
     observation.cleanupFailures = failures; observation.sourcesAfter = await pins(); observation.sourceStable = JSON.stringify(observation.sourcesBefore) === JSON.stringify(observation.sourcesAfter);
     observation.elapsedMs = Date.now() - started; observation.profileBudgetMs = 60000; observation.probeBudgetMs = 10000;
-    observation.passed = observation.passed === true && failures === 0 && observation.vendorProcessClosed === true && observation.sourceStable === true && observation.supplyRevalidated === true && Number(observation.elapsedMs) <= 60000;
+    observation.finalizationChecks = { hostSentinelsUnchanged: observation.hostSentinelsUnchanged === true, startupMarkerAbsent: observation.startupFileExecuted === false, cleanup: failures === 0, vendorProcessClosed: observation.vendorProcessClosed === true, sourceStable: observation.sourceStable === true, supplyRevalidated: observation.supplyRevalidated === true, profileBudget: Number(observation.elapsedMs) <= 60000 };
+    observation.passed = observation.passed === true && Object.values(observation.finalizationChecks as Record<string, boolean>).every(Boolean);
     await mkdir(evidenceDirectory, { recursive: true, mode: 0o700 }); await writeFile(join(evidenceDirectory, 'EXACT_BOUNDARY_P1.json'), JSON.stringify(observation, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
   }
   expect(observation.passed, 'See exact bounded read/environment evidence; no aggregate conformance claim').toBe(true);

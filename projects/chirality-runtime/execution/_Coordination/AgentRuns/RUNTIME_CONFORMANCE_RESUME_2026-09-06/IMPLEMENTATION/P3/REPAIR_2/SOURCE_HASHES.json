@@ -1,0 +1,25 @@
+{
+  "schema": "runtime-bounded-repair/v1",
+  "timestamp": "2026-09-06T18:52:31.310567+00:00",
+  "inputHashes": {
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/shell_spec.rs": "39e2d837cc76a1a2822363eb0932a8b1e2ac1188ee0fb38df9d57958e0b85320",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/spec_plan_tests.rs": "25bd0ce2761a40825bd0aab4a3420c79f937ec4e183783887dcea85b84ab10f4",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_1/OUTPUTS.sha256": "5fbd6c97505f5f9329920443db10ee91c7afedf28e753e3ec4229598a04350bb",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_CANDIDATE1_STAR_01/EXACT_PROTECTED_star.json": "4bb585d621257c37d93cba86ec3e8a79936672a2c5095f3e8377adc6f512f4c6",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_CANDIDATE1_STAR_01/CHECK.json": "94ea8845fd45483c6e29a7b32c8eb8406d0728c1169920edd135ebe5b5d977c7"
+  },
+  "sourceBefore": "540fd7ecc7909ec6c9327be8e4dbfc544babd65ed4645af51de1f7d4489e2f60",
+  "sourceAfter": "e3482593af7c0dc031a91f157165a1c3c031bd59426c48b3217a9f1a02965942",
+  "sourcePath": "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts",
+  "importAndComparisonHashesAtFreeze": {
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "projects/chirality-runtime/packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e",
+    "projects/chirality-runtime/tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "projects/chirality-runtime/tests/fixtures/boundary-response-provider.mjs": "48055c740343bf0b3ff443aa9a3f2478c15d6bd28239e91a74e95a6a5c2ff588",
+    "projects/chirality-runtime/tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81"
+  },
+  "supplierExecutedBySpecialist": false,
+  "sourceAcceptance": false,
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent2 role/nondelegation instruction-asserted"
+}

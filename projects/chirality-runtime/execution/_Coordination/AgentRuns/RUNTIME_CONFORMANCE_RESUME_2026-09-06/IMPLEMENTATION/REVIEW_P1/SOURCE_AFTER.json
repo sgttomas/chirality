@@ -1,0 +1,11 @@
+{
+  "sourceStable": true,
+  "sources": {
+    "projects/chirality-runtime/tests/exact-boundary-conformance.test.ts": "e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383",
+    "projects/chirality-runtime/tests/fixtures/boundary-response-provider.mjs": "48055c740343bf0b3ff443aa9a3f2478c15d6bd28239e91a74e95a6a5c2ff588",
+    "projects/chirality-runtime/tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "projects/chirality-runtime/packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  }
+}

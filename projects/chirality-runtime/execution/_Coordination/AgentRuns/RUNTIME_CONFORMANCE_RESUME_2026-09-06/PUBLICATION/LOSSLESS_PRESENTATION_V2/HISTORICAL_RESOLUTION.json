@@ -1,0 +1,42 @@
+{
+  "maps": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/LOSSLESS_PRESENTATION_V1/ORIGINALS.json": "fe07f43bee8e641eab4506d22b2b95160f692829c5bf159336d9d28f63c8a338",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/LOSSLESS_PRESENTATION_V2/ORIGINALS.json": "42bba244714bc635d270fbd4583a74fbe577bb69dea2580ddaedd9ce3f042494"
+  },
+  "manifests": [
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/OUTPUT_MANIFEST.json",
+      "sha256": "2845dc631ddf3fedebd838f25b9f194aad2a59d0b96f8f936c2792f7de3ff3a9",
+      "members": 70,
+      "direct": 67,
+      "originalArchiveResolved": 3,
+      "unresolved": []
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/OUTPUT_HASHES.json",
+      "sha256": "eb79828a2a234a6a0116f72a523d26cb52ff318f01197872663d1e239013b9e0",
+      "members": 46,
+      "direct": 41,
+      "originalArchiveResolved": 5,
+      "unresolved": []
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/REPAIR_1/OUTPUT_HASHES.json",
+      "sha256": "7c0f7524db1c1a9e6dae842d8f7b8fa41e7bd53d809d2c49f94063c5888f6786",
+      "members": 10,
+      "direct": 9,
+      "originalArchiveResolved": 1,
+      "unresolved": []
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PUBLIC_CANCEL_REPAIR/REPAIR_1/OUTPUTS.json",
+      "sha256": "417919829f98cd4b2d918d5a527246ce449dfba65f8be14523da75ccd6863bc2",
+      "members": 14,
+      "direct": 13,
+      "originalArchiveResolved": 1,
+      "unresolved": []
+    }
+  ],
+  "priorV1SnapshotSha256": "e7393669d3542e0f30e75acf18012477e9b8cdfda6e2b36abfa24a9db3e7a8c4",
+  "priorV1EntireSnapshotUnchanged": true
+}

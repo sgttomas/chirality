@@ -1,0 +1,8 @@
+{
+  "tests/exact-process-conformance.test.ts": "aaaebc5e663f4b1708cc27669b2980593858f069e091a5c1ec797a5cf014513e",
+  "tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+  "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+  "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+  "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+  "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+}

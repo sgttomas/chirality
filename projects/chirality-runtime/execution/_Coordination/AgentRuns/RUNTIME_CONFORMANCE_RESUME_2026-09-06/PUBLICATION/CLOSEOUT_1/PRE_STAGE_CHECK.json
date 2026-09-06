@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-09-06T20:11:52.561480+00:00",
+  "grantSha256": "83df6242afab935215aa8b650be2b291ada92f40b1d476d31677be1b73b67073",
+  "parentSnapshotVerified": true,
+  "pointerEdits": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+      "beforeSha256": "59780049ddfccefe69d9d5c802b217648159113c2220f91e48f07d0918a7dbf1",
+      "afterSha256": "bb8435b3b617812bb6bb1f7875f9e6a1697274371f0611d77bb9b82f78655ead"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_RECEIPTS.md",
+      "beforeSha256": "7504a180705eeec9df16d263d824497911c28c796875bdb3a6ecfb041c659899",
+      "afterSha256": "8ba7de3d37f3dd00fba8444071792cc3f25de2776a081d68df924eea22381802"
+    }
+  ],
+  "priorReceiptBytesPreserved": true,
+  "source22AllMatch": true,
+  "accepted43AllMatch": true,
+  "allChangedPathsRuntimeOnly": true,
+  "changedPathCountAtCheck": 1135,
+  "head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "originMain": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "sourceEdits": false,
+  "mergeAuthorized": false
+}

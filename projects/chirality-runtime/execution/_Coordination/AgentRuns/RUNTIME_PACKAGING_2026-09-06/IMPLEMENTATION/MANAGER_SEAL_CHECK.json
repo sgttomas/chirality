@@ -1,0 +1,198 @@
+{
+  "status": "PASS",
+  "count": 32,
+  "results": [
+    {
+      "path": "BARRIER_CHECK.log",
+      "expected": "f6c6bf18a7230952b66798df2c3ede6d1aaded781d6dbf00713015f7c1ebb99d",
+      "actual": "f6c6bf18a7230952b66798df2c3ede6d1aaded781d6dbf00713015f7c1ebb99d",
+      "match": true
+    },
+    {
+      "path": "COMMAND_RESULTS.json",
+      "expected": "695e39716e07ea69c38dac10c4470027580c16295b4833acb93e33312ddf2158",
+      "actual": "695e39716e07ea69c38dac10c4470027580c16295b4833acb93e33312ddf2158",
+      "match": true
+    },
+    {
+      "path": "CONTEXT_CHECK.json",
+      "expected": "c11a745f3cc6079637774515af9aaeb5cd102f018d0ef79b7c538cdc6d886c4e",
+      "actual": "c11a745f3cc6079637774515af9aaeb5cd102f018d0ef79b7c538cdc6d886c4e",
+      "match": true
+    },
+    {
+      "path": "DEPENDENCY.log",
+      "expected": "f42268b3e5423c540030db33d66ee07b216a81fcfdf88d26cb885397cfdec409",
+      "actual": "f42268b3e5423c540030db33d66ee07b216a81fcfdf88d26cb885397cfdec409",
+      "match": true
+    },
+    {
+      "path": "EVALUATION_BARRIER_PROBE.log",
+      "expected": "d23edf90068b15602e889b918fb820342b305550eee944fc8e3048a992aaaff9",
+      "actual": "d23edf90068b15602e889b918fb820342b305550eee944fc8e3048a992aaaff9",
+      "match": true
+    },
+    {
+      "path": "FOCUSED_ACCEPTANCE.log",
+      "expected": "02be092374f6bc82ca1d9ccc10b012d8245e858741eaf809626a73ff7af6212d",
+      "actual": "02be092374f6bc82ca1d9ccc10b012d8245e858741eaf809626a73ff7af6212d",
+      "match": true
+    },
+    {
+      "path": "FOCUSED_FINAL.log",
+      "expected": "91b67dcb1778935acc9a440a37198ab3825cd1dfac14242729aab3771f5421c7",
+      "actual": "91b67dcb1778935acc9a440a37198ab3825cd1dfac14242729aab3771f5421c7",
+      "match": true
+    },
+    {
+      "path": "FOCUSED_INITIAL.log",
+      "expected": "894b5628fa05fb0b480a3f4d923204f78032a7ff719b3d13277bc4251046b56b",
+      "actual": "894b5628fa05fb0b480a3f4d923204f78032a7ff719b3d13277bc4251046b56b",
+      "match": true
+    },
+    {
+      "path": "FOCUSED_PASS.log",
+      "expected": "26382d62bd2ae63f1f882a01be9e58e50db4fedf2196533072c629c5ac0cd787",
+      "actual": "26382d62bd2ae63f1f882a01be9e58e50db4fedf2196533072c629c5ac0cd787",
+      "match": true
+    },
+    {
+      "path": "FOCUSED_VERIFIED.log",
+      "expected": "cafe79fdef6aab8d858d9f972ef83095189220b9a325f80476f472bc8249ef17",
+      "actual": "cafe79fdef6aab8d858d9f972ef83095189220b9a325f80476f472bc8249ef17",
+      "match": true
+    },
+    {
+      "path": "NEW_TEST_DIFF.patch",
+      "expected": "7d621430c1e494fb0b2c9d39a810d526d8a036d823b980330e0de3e4e57b658d",
+      "actual": "7d621430c1e494fb0b2c9d39a810d526d8a036d823b980330e0de3e4e57b658d",
+      "match": true
+    },
+    {
+      "path": "POST_FIX_STARTUP.log",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    {
+      "path": "PRE_FIX.log",
+      "expected": "ed79fc24fd37771b2786adbfea823dd2a944ecdc5851a9a6f0b33099f910379a",
+      "actual": "ed79fc24fd37771b2786adbfea823dd2a944ecdc5851a9a6f0b33099f910379a",
+      "match": true
+    },
+    {
+      "path": "PRE_FIX_SOURCE.ts.txt",
+      "expected": "3057c424bb21afa4624374042ab8069da79d5b3d5b6209d403928e6622738cde",
+      "actual": "3057c424bb21afa4624374042ab8069da79d5b3d5b6209d403928e6622738cde",
+      "match": true
+    },
+    {
+      "path": "PRODUCTION_DIFF.patch",
+      "expected": "7f7b73cd63da4e03218866a3a49341d46f3649d78fc850a39f68930b321f00bb",
+      "actual": "7f7b73cd63da4e03218866a3a49341d46f3649d78fc850a39f68930b321f00bb",
+      "match": true
+    },
+    {
+      "path": "PRODUCTION_DIFF_CHECK.log",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    {
+      "path": "RETURN.md",
+      "expected": "61f9bcb0a4c505a469f50b6a422224ab2e0e33310a24807592bba54033c2957c",
+      "actual": "61f9bcb0a4c505a469f50b6a422224ab2e0e33310a24807592bba54033c2957c",
+      "match": true
+    },
+    {
+      "path": "SCOPE_STATUS.log",
+      "expected": "3bdd3d5d7362da62181efd83540e33061e0c773f7721935e91a0b2c6c9496fd4",
+      "actual": "3bdd3d5d7362da62181efd83540e33061e0c773f7721935e91a0b2c6c9496fd4",
+      "match": true
+    },
+    {
+      "path": "SOURCE_FREEZE.json",
+      "expected": "d0256bc67078b90f8bed96526852067e57c466d15d890f8134193153e5a4c930",
+      "actual": "d0256bc67078b90f8bed96526852067e57c466d15d890f8134193153e5a4c930",
+      "match": true
+    },
+    {
+      "path": "TYPECHECK_FINAL.log",
+      "expected": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "actual": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "match": true
+    },
+    {
+      "path": "TYPECHECK_FREEZE.log",
+      "expected": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "actual": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "match": true
+    },
+    {
+      "path": "TYPECHECK_INITIAL.log",
+      "expected": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "actual": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "expected": "d76120502d5cc724ca2782be933a166f10ff092ef8a440e5bbadea5aed8a6391",
+      "actual": "d76120502d5cc724ca2782be933a166f10ff092ef8a440e5bbadea5aed8a6391",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/pi-packaging.test.ts",
+      "expected": "b6417a32a3f2fa568bfa650f1c5975c2dc16ca0567025fce4e708a42e7032769",
+      "actual": "b6417a32a3f2fa568bfa650f1c5975c2dc16ca0567025fce4e708a42e7032769",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "expected": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+      "actual": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "expected": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf",
+      "actual": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/runtime-packaging-20260906/manager/implement/pre-fix-pi-turn-runtime.ts",
+      "expected": "3057c424bb21afa4624374042ab8069da79d5b3d5b6209d403928e6622738cde",
+      "actual": "3057c424bb21afa4624374042ab8069da79d5b3d5b6209d403928e6622738cde",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/runtime-packaging-20260906/manager/implement/pre-fix.cjs",
+      "expected": "de8adfcf9cfdb416dbee6fab48eb5dfb5b226a28184001ea795848e6b75fa8f0",
+      "actual": "de8adfcf9cfdb416dbee6fab48eb5dfb5b226a28184001ea795848e6b75fa8f0",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/runtime-packaging-20260906/manager/implement/post-fix.cjs",
+      "expected": "7a2e73c4bf8032b11746909f83aeef45124b48b8e951b627f72ae8223a8dcbc3",
+      "actual": "7a2e73c4bf8032b11746909f83aeef45124b48b8e951b627f72ae8223a8dcbc3",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/node_modules/@earendil-works/pi-ai/package.json",
+      "expected": "5ff1327178682b9a7a3224f8358eec187e97b5c3f3bd1e77bb45c310aab84865",
+      "actual": "5ff1327178682b9a7a3224f8358eec187e97b5c3f3bd1e77bb45c310aab84865",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/node_modules/@earendil-works/pi-coding-agent/package.json",
+      "expected": "031b6774e3c212780dce1ac1a4b78a186d385b7878dca1897b45bd557ac68492",
+      "actual": "031b6774e3c212780dce1ac1a4b78a186d385b7878dca1897b45bd557ac68492",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/node_modules/esbuild/package.json",
+      "expected": "d55d1d19fcc5b6079e4a71dd4111340c79c682bc36835ac7058a0c364c7db58a",
+      "actual": "d55d1d19fcc5b6079e4a71dd4111340c79c682bc36835ac7058a0c364c7db58a",
+      "match": true
+    }
+  ]
+}

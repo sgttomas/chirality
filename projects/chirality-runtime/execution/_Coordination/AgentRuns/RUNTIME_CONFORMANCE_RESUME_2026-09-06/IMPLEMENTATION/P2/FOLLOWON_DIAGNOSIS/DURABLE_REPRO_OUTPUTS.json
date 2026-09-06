@@ -1,0 +1,8 @@
+{
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/FOLLOWON_DIAGNOSIS/DURABLE_REPRO.source": "89bfb1b319eef7b6b7f1364d85c516770351f1bf326f3b629b2d9823869d64ab",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/FOLLOWON_DIAGNOSIS/DURABLE_REPRO.log": "f344c905f92696cd7816be6ea4490b95eb68836e44a55c0aa20549457c892d30",
+  "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "542f699b98cf646bcd2d3e0be7254f6f20ac8c7120eda4e0bd9a530a4e6fd1c3",
+  "projects/chirality-runtime/packages/core/dist/delegated-runtime.js": "14c8df30b5556d3a4e93545af07c25890ccb851cac064afbaf37df54b44d32b7",
+  "projects/chirality-runtime/packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+  "projects/chirality-runtime/packages/core/dist/worker-retirement.js": "8a7e70138b38d27e45d4c6541db2fe35399268896e2028198722b36b73340518"
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "./node_modules/.bin/tsc",
+    "--noEmit",
+    "--target",
+    "ES2022",
+    "--module",
+    "NodeNext",
+    "--moduleResolution",
+    "NodeNext",
+    "--strict",
+    "--noImplicitAny",
+    "false",
+    "--skipLibCheck",
+    "--esModuleInterop",
+    "tests/exact-network-conformance.test.ts",
+    "tests/exact-network-runtime-conformance.test.ts"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+  "exitCode": 0,
+  "limitation": "Initial strict noemit found two existing implicit-any line filter parameters; this invocation disables only noImplicitAny, leaves remaining strict checks enabled."
+}

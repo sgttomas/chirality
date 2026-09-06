@@ -1,0 +1,13 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "tests/pi-packaging.test.ts",
+    "tests/pi-turn-runtime.test.ts",
+    "tests/manager-pi-integration.test.ts",
+    "tests/exact-managed-pi-integration.test.ts"
+  ],
+  "exit": 0,
+  "utc": "2026-09-06T18:23:33.059599+00:00"
+}

@@ -1,0 +1,154 @@
+--- repair1
++++ repair2
+@@ -73,12 +73,122 @@
+   ]) expect(patchDenied(output), output).toBe(true);
+ });
+
++function checkedProtectedExecArguments(tool: any, args: Record<string, unknown>) {
++  const parameters = tool?.parameters, properties = parameters?.properties;
++  if (tool?.type !== 'function' || tool.name !== 'exec_command' || parameters?.type !== 'object' || !properties || typeof properties !== 'object' || Array.isArray(properties) || !Array.isArray(parameters.required) || !parameters.required.every((key: unknown) => typeof key === 'string')) throw new Error('Invalid actual exec advertisement');
++  const permitted = new Set(['cmd', 'workdir', 'shell', 'login', 'yield_time_ms']);
++  for (const key of parameters.required) if (!Object.hasOwn(args, key)) throw new Error(`Unmapped required exec argument: ${key}`);
++  for (const [key, value] of Object.entries(args)) {
++    if (!permitted.has(key)) throw new Error(`Forbidden exec argument: ${key}`);
++    if (!Object.hasOwn(properties, key)) throw new Error(`Unadvertised exec argument: ${key}`);
++    if (properties[key]?.type !== typeof value || (typeof value === 'number' && !Number.isFinite(value))) throw new Error(`Exec argument type mismatch: ${key}`);
++  }
++  if (typeof args.cmd !== 'string' || !args.cmd || ('login' in args && args.login !== false) || ('shell' in args && args.shell !== '/bin/sh') || ('yield_time_ms' in args && args.yield_time_ms !== 1000)) throw new Error('Unsafe bounded exec options');
++  return args;
++}
++function protectedExecArguments(tool: any, command: string, root: string) {
++  const properties = tool?.parameters?.properties;
++  const args: Record<string, unknown> = { cmd: command };
++  for (const [key, value] of Object.entries({ workdir: root, shell: '/bin/sh', login: false, yield_time_ms: 1000 })) {
++    if (properties && Object.hasOwn(properties, key)) args[key] = value;
++  }
++  // Policy compile/readback binds allow_login_shell=false independently. A
++  // supplier omitting that forbidden option is expected, not a missing grant.
++  return checkedProtectedExecArguments(tool, args);
++}
++
++// Exact actual Candidate1 advertisement extracted from PATCHED_1/RESULT.json;
++// REPAIR_2/OBSERVED_EXEC_SCHEMA.json retains source hash and JSON location.
++const observedProtectedExecSchema = {
++  "type": "function",
++  "name": "exec_command",
++  "description": "Runs a command in a PTY, returning output or a session ID for ongoing interaction.",
++  "strict": false,
++  "parameters": {
++    "type": "object",
++    "properties": {
++      "cmd": {
++        "type": "string",
++        "description": "Shell command to execute."
++      },
++      "justification": {
++        "type": "string",
++        "description": "User-facing approval question for `require_escalated`; omit otherwise."
++      },
++      "max_output_tokens": {
++        "type": "number",
++        "description": "Output token budget. Defaults to 10000 tokens; larger requests may be capped by policy."
++      },
++      "prefix_rule": {
++        "type": "array",
++        "description": "Reusable approval prefix for `cmd`, only with `sandbox_permissions: \"require_escalated\"`; for example [\"git\", \"pull\"].",
++        "items": {
++          "type": "string"
++        }
++      },
++      "sandbox_permissions": {
++        "type": "string",
++        "description": "Per-command sandbox override. Defaults to `use_default`; use `require_escalated` for unsandboxed execution.",
++        "enum": [
++          "use_default",
++          "require_escalated"
++        ]
++      },
++      "shell": {
++        "type": "string",
++        "description": "Shell binary to launch. Defaults to the user's default shell."
++      },
++      "tty": {
++        "type": "boolean",
++        "description": "True allocates a PTY for the command; false or omitted uses plain pipes."
++      },
++      "workdir": {
++        "type": "string",
++        "description": "Working directory for the command. Defaults to the turn cwd."
++      },
++      "yield_time_ms": {
++        "type": "number",
++        "description": "Wait before yielding output. Defaults to 10000 ms; effective range is 250-30000 ms."
++      }
++    },
++    "required": [
++      "cmd"
++    ],
++    "additionalProperties": false
++  }
++};
++it('P3 builds safe options from the exact observed exec advertisement without inventing login', () => {
++  const args = protectedExecArguments(observedProtectedExecSchema, 'printf SAFE', '/synthetic/root');
++  expect(args).toEqual({ cmd: 'printf SAFE', workdir: '/synthetic/root', shell: '/bin/sh', yield_time_ms: 1000 });
++  expect(Object.hasOwn(args, 'login')).toBe(false);
++  const noShell = structuredClone(observedProtectedExecSchema) as any; delete noShell.parameters.properties.shell;
++  expect(protectedExecArguments(noShell, 'printf SAFE', '/synthetic/root')).not.toHaveProperty('shell');
++  const withLogin = structuredClone(observedProtectedExecSchema) as any; withLogin.parameters.properties.login = { type: 'boolean' };
++  expect(protectedExecArguments(withLogin, 'printf SAFE', '/synthetic/root')).toHaveProperty('login', false);
++});
++it('P3 rejects unadvertised, forbidden, unknown-required and unsafe exec options', () => {
++  for (const [key, value] of Object.entries({ sandbox_permissions: 'require_escalated', justification: 'override', prefix_rule: ['sh'], additional_permissions: {}, environment_id: 'other', tty: true, unknown_option: true })) {
++    expect(() => checkedProtectedExecArguments(observedProtectedExecSchema, { cmd: 'printf SAFE', [key]: value })).toThrow('Forbidden exec argument');
++  }
++  expect(() => checkedProtectedExecArguments(observedProtectedExecSchema, { cmd: 'printf SAFE', login: false })).toThrow('Unadvertised exec argument');
++  const withLogin = structuredClone(observedProtectedExecSchema) as any; withLogin.parameters.properties.login = { type: 'boolean' };
++  expect(() => checkedProtectedExecArguments(withLogin, { cmd: 'printf SAFE', login: true })).toThrow('Unsafe bounded exec options');
++  expect(() => checkedProtectedExecArguments(observedProtectedExecSchema, { cmd: 'printf SAFE', shell: '/bin/zsh' })).toThrow('Unsafe bounded exec options');
++  expect(() => checkedProtectedExecArguments(observedProtectedExecSchema, { cmd: 'printf SAFE', yield_time_ms: 30000 })).toThrow('Unsafe bounded exec options');
++  const unknownRequired = structuredClone(observedProtectedExecSchema) as any; unknownRequired.parameters.required.push('new_required_option');
++  expect(() => protectedExecArguments(unknownRequired, 'printf SAFE', '/synthetic/root')).toThrow('Unmapped required exec argument');
++  const wrongType = structuredClone(observedProtectedExecSchema) as any; wrongType.parameters.properties.shell.type = 'boolean';
++  expect(() => protectedExecArguments(wrongType, 'printf SAFE', '/synthetic/root')).toThrow('Exec argument type mismatch');
++  expect(() => protectedExecArguments(undefined, 'printf SAFE', '/synthetic/root')).toThrow('Invalid actual exec advertisement');
++});
++
+ interface Issued { who: string; kind: string; startedAt?: number; method?: string; namespace?: string; target?: string }
+ interface Probe { who: string; callId: string; kind: string; target?: string; method?: string; namespace?: string; elapsedMs: number; output: string; outputSha256: string; summary?: ReturnType<typeof markers> }
+
+ async function startProtectedPeer(root: string, commandFor: (who: string) => string, patchesFor: (who: string) => { target: string; patch: string }[]) {
+   const issued = new Map<string, Issued>(), records: Probe[] = [], failures: string[] = [];
+   const controls: { who: string; callId: string; kind: string; output: string }[] = [];
++  const advertisedExecSchemas: { who: string; sha256: string; tool: unknown }[] = [];
+   let count = 0, overdue: ReturnType<typeof setTimeout> | undefined;
+   let abort = () => {};
+   const fail = (message: string) => { failures.push(message); abort(); };
+@@ -122,8 +232,8 @@
+       if (!own.some((entry: any) => entry.issued.kind === 'probe-shell')) {
+         if ([...issued.values()].some(entry => entry.who === who && entry.kind === 'probe-shell')) throw new Error('No shell resend without output');
+         const tool = tools.find((entry: any) => entry.type === 'function' && entry.name === 'exec_command');
+-        if (!tool?.parameters?.properties?.login || !tool.parameters.properties.shell) throw new Error('Explicit shell/login advertisement required');
+-        item = call(tool, { cmd: commandFor(who), login: false, shell: '/bin/sh', ...(tool.parameters.properties.workdir ? { workdir: root } : {}), ...(tool.parameters.properties.yield_time_ms ? { yield_time_ms: 1000 } : {}) }, 'probe-shell');
++        if (tool) advertisedExecSchemas.push({ who, sha256: digest(JSON.stringify(tool)), tool });
++        item = call(tool, protectedExecArguments(tool, commandFor(who), root), 'probe-shell');
+       } else if (nextPatch) {
+         const index = patchesFor(who).findIndex(patch => patch.target === nextPatch.target);
+         if ([...issued.values()].some(entry => entry.who === who && entry.kind === `probe-patch-${index}`)) throw new Error('No patch resend without output');
+@@ -146,7 +256,7 @@
+   });
+   server.requestTimeout = 10000;
+   await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', resolve); });
+-  return { baseUrl: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`, records, failures, issued, controls, setAbort(fn: () => void) { abort = fn; }, async close() { clearTimeout(overdue); server.closeAllConnections(); await new Promise<void>(resolve => server.close(() => resolve())); } };
++  return { baseUrl: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`, records, failures, issued, controls, advertisedExecSchemas, setAbort(fn: () => void) { abort = fn; }, async close() { clearTimeout(overdue); server.closeAllConnections(); await new Promise<void>(resolve => server.close(() => resolve())); } };
+ }
+
+ for (const family of families) it.runIf(process.env.CHIRALITY_RUN_EXACT_PROTECTED === '1' && (!process.env.CHIRALITY_EXACT_PROTECTED_FAMILY || process.env.CHIRALITY_EXACT_PROTECTED_FAMILY === family.id))(`P3 actual protected ${family.id} primary/native profile`, async () => {
+@@ -212,7 +322,7 @@
+       { target: 'FUTURE_DIRECTORY', patch: `*** Begin Patch\n*** Add File: ${hostPaths.FUTURE_DIRECTORY}\n+UNAUTHORIZED_${who}\n*** End Patch` },
+     ];
+     const peer = await startProtectedPeer(root, commandFor, patchesFor);
+-    cleanup.push(async () => { observation.probes = peer.records; observation.peerFailures = peer.failures; observation.nativeToolOutputs = peer.controls; observation.issuedCalls = [...peer.issued].map(([callId, value]) => ({ callId, ...value })); await peer.close(); });
++    cleanup.push(async () => { observation.probes = peer.records; observation.peerFailures = peer.failures; observation.nativeToolOutputs = peer.controls; observation.advertisedExecSchemas = peer.advertisedExecSchemas; observation.issuedCalls = [...peer.issued].map(([callId, value]) => ({ callId, ...value })); await peer.close(); });
+     phase = 'launch'; await verify(binary); const launch = await policy.launchArguments(binary);
+     const overrides = ['model_provider="runtime_deterministic"', 'model="runtime-deterministic"', 'model_providers.runtime_deterministic.name="Protected deterministic fixture"', `model_providers.runtime_deterministic.base_url=${JSON.stringify(peer.baseUrl)}`, 'model_providers.runtime_deterministic.wire_api="responses"', 'model_providers.runtime_deterministic.requires_openai_auth=false', 'model_providers.runtime_deterministic.supports_websockets=false', 'model_providers.runtime_deterministic.request_max_retries=0', 'model_providers.runtime_deterministic.stream_max_retries=0', 'features.multi_agent=true'];
+     const child = spawn(launch[0]!, [...launch.slice(1), ...overrides.flatMap(value => ['-c', value])], { cwd: root, env: policy.environment, detached: true, stdio: 'pipe' });

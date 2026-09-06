@@ -1,0 +1,13 @@
+{
+  "manifestSha256": "2845dc631ddf3fedebd838f25b9f194aad2a59d0b96f8f936c2792f7de3ff3a9",
+  "members": 70,
+  "mismatches": [],
+  "decision": "admit bounded parent diagnostics; supplier build/evidence node complete",
+  "candidateSha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "originalPolicySuite": "FAIL 4/3 retained",
+  "adaptedPolicySuite": "PASS 7/0 separate test-only source identity",
+  "supplierAcceptance": false,
+  "fullConformance": false,
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable"
+}

@@ -1,0 +1,10 @@
+--- a/builds/run.py
++++ b/builds/run.py
+@@ -1,6 +1,6 @@
+ import os,subprocess,sys,json,time
+ from pathlib import Path
+-root=Path('/private/tmp/runtime-execution-20260906/supplier-candidate')
++root=Path('/private/tmp/runtime-supplier-resume-20260906/FIXTURE_ADAPTED')
+ env={k:os.environ[k] for k in ['HOME','USER','LOGNAME'] if k in os.environ}
+ env.update(PATH=str(root/'toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin')+':'+str(root/'toolchain/bin')+':/usr/bin:/bin:/usr/sbin:/sbin',RUSTUP_HOME=str(root/'toolchain/rustup'),CARGO_HOME=str(root/'cache/cargo'),CARGO_TARGET_DIR=str(root/'builds/target'),TMPDIR=str(root/'tmp'),CARGO_BUILD_JOBS='4',CARGO_NET_GIT_FETCH_WITH_CLI='true',GIT_CONFIG_GLOBAL='/dev/null',GIT_CONFIG_NOSYSTEM='1',GIT_TERMINAL_PROMPT='0',LC_ALL='C',LANG='C')
+ v8=root/'cache/v8'

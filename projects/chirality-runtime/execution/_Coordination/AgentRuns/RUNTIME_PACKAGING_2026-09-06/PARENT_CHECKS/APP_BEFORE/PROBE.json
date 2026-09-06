@@ -1,0 +1,6 @@
+{
+  "code": "ERR_PACKAGE_PATH_NOT_EXPORTED",
+  "message": "No \"exports\" main defined in /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/package.json",
+  "boundaryReached": false,
+  "note": "Actual full App bundle Node/CommonJS import probe. Electron is a fail-stop stub: no Electron process, daemon, registration or provider execution."
+}

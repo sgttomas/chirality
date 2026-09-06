@@ -1,0 +1,116 @@
+{
+  "derivative": true,
+  "role": "WORKING_ITEMS instruction-asserted; OpenAI GPT-6 exact serving ID unavailable",
+  "verdict": "limited implementation integration admission; not supplier or lifecycle acceptance",
+  "manifests": [
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/OUTPUTS.json",
+      "sha256": "fba2a5cffca5577581febf5ae2086bc7541594ec02c5a85ca05d869c9739257c",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/packages/core/src/delegated-runtime.ts",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REGRESSION.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REVIEW_INPUTS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.test.ts.before.gz",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/RETURN.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.ts.before.gz",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/TYPECHECK.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/PATCH_FROM_HEAD.diff",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.ts.after.gz",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/INPUTS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/BRIEF.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REGRESSION_RED.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/tsconfig.check.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.test.ts.after.gz",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/FREEZE.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/TYPECHECK_SOURCE.log",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/OUTPUTS.json",
+      "sha256": "530e7233594cf290c7198451974e417ae104c4b5ea423b1ada2445eb3492169c",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/SOURCE_PINS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/RETURN.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/RETURN.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/typecheck.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/late-approval.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_RETIREMENT/REPAIR_1/focused.log",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual supplier lifetime profiles remain pending beyond public normal",
+    "Global close retirement serialization not admitted",
+    "Prepared journal remains restart barrier on failed retirement"
+  ]
+}

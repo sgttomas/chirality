@@ -1,0 +1,23 @@
+{
+  "schema": "runtime-bounded-repair/v1",
+  "timestamp": "2026-09-06T19:12:06.338270+00:00",
+  "inputHashes": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/AMENDMENT.md": "70a45f08640fe55fd5001cf4f6678f32400b81ccd63a2bcda36933edbbde9aa8",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3_DIAGNOSIS/REPORT.md": "5e8492aaf1381b0df3686e9be0a59dec22f9a7ad05e1a129e7792ceaffcd20f7",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3_DIAGNOSIS/OUTPUTS.sha256": "3a5327cee5aa8ced30347160068d51e602c96bb6fa0083c93e34cf480b244d90",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_2/OUTPUTS.sha256": "f225baf906933ef70e33f8c42d0b09c48c4ae4333b7f878705254c9f3378e234",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_01/EXACT_PROTECTED_star.json": "9b0421d1dbc26694fe81ddbbc19e55cb0d7eda54a80ccf7b09189bc96d260eaa"
+  },
+  "sourceBefore": "e3482593af7c0dc031a91f157165a1c3c031bd59426c48b3217a9f1a02965942",
+  "sourceAfter": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3",
+  "sourcePath": "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts",
+  "importHashesAtFreeze": {
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "projects/chirality-runtime/packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e",
+    "projects/chirality-runtime/tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef"
+  },
+  "supplierExecutedBySpecialist": false,
+  "sourceAcceptance": false,
+  "attribution": "OpenAI GPT-6; exact serving ID unavailable; Agent2 role/nondelegation instruction-asserted"
+}

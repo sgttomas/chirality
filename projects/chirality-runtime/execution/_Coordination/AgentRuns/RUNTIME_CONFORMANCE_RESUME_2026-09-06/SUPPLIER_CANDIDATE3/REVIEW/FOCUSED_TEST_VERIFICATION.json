@@ -1,0 +1,104 @@
+{
+  "timestamp": "2026-09-06T19:47:01.544909+00:00",
+  "records": {
+    "helper-tests": {
+      "exit": 0,
+      "elapsedSeconds": 89.60170125961304,
+      "logSha256": "6f11d4f24cfac8509eafca71273e96279249a73a9d31062130f3a2d81be39a94",
+      "receiptSha256": "e5d98e89374c18f7fa3acb58338eec682fa25370a68b369a8673b805bc35d515",
+      "sourceSha256": "30bad4478319c71373b0d943d810dd9e8eaa08501d68fa667fc7b130d791e3b3",
+      "runnerSha256": "a60caab58a4e9056c1e4ea3db8026daf165c16b1ec400cf8369b579ed698da28",
+      "summaries": [
+        [
+          "15",
+          "0"
+        ]
+      ],
+      "namedPassedTests": [
+        "fs_sandbox::tests::helper_env_preserves_corefoundation_text_encoding",
+        "fs_sandbox::tests::helper_env_carries_only_allowlisted_runtime_vars",
+        "fs_sandbox::tests::helper_env_preserves_path_for_system_bwrap_discovery_without_leaking_secrets",
+        "fs_sandbox::tests::helper_permissions_include_only_the_helper_executable",
+        "fs_sandbox::tests::helper_permissions_preserve_existing_writes",
+        "fs_sandbox::tests::helper_permissions_preserve_explicit_minimal_and_unrestricted_profiles",
+        "fs_sandbox::tests::helper_permissions_preserve_restricted_read_only_without_defaults",
+        "fs_sandbox::tests::helper_permissions_include_only_linux_sandbox_alias_executable",
+        "fs_sandbox::tests::helper_permissions_preserve_restricted_writes_without_defaults",
+        "fs_sandbox::tests::sandbox_cwd_rejects_cwd_dependent_profile_without_context_cwd",
+        "fs_sandbox::tests::sandbox_cwd_uses_context_cwd",
+        "fs_sandbox::tests::sandbox_cwd_rejects_non_native_context_cwd_without_fallback",
+        "fs_sandbox::tests::sandbox_exec_request_carries_helper_env",
+        "fs_sandbox::tests::helper_permissions_preserve_declared_leaves_denies_and_project_writes",
+        "fs_sandbox::tests::helper_seatbelt_preserves_explicit_platform_default_choice"
+      ],
+      "testExecutable": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/target/aarch64-apple-darwin/release/deps/codex_exec_server-77e292c2d04c7747",
+      "testExecutableSha256": "531b756d2802ca620b07455fc4def12a666b46c2769a9005cd524c9eb8694e3f",
+      "command": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)(deny file-write* (require-not (require-any (subpath \"/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3\") (literal \"/dev/null\"))))",
+        "cargo",
+        "test",
+        "--frozen",
+        "--release",
+        "--target",
+        "aarch64-apple-darwin",
+        "-p",
+        "codex-exec-server",
+        "--lib",
+        "fs_sandbox::tests",
+        "-j",
+        "4",
+        "--",
+        "--test-threads=4",
+        "--nocapture"
+      ],
+      "sourceAndLogAndRunnerAndReleasePinsVerified": true
+    },
+    "protected-glob-tests": {
+      "exit": 0,
+      "elapsedSeconds": 72.35521292686462,
+      "logSha256": "031589405908ba2e8d9b8191d5366aef911d7c6871fa7a2a8d91ea33f5039363",
+      "receiptSha256": "721d44e4280e6a57b63a07dd8911ab62a3de7785292b8a4f2ac5f87a4e3d07d1",
+      "sourceSha256": "30bad4478319c71373b0d943d810dd9e8eaa08501d68fa667fc7b130d791e3b3",
+      "runnerSha256": "a60caab58a4e9056c1e4ea3db8026daf165c16b1ec400cf8369b579ed698da28",
+      "summaries": [
+        [
+          "4",
+          "0"
+        ]
+      ],
+      "namedPassedTests": [
+        "seatbelt::tests::unreadable_globs_treat_unclosed_character_classes_as_literals",
+        "seatbelt::tests::unreadable_globs_support_brace_alternation",
+        "seatbelt::tests::unreadable_globs_support_backslash_escapes",
+        "seatbelt::tests::unreadable_globs_use_git_style_component_matching"
+      ],
+      "testExecutable": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/target/aarch64-apple-darwin/release/deps/codex_sandboxing-b01f8186d5f4b26a",
+      "testExecutableSha256": "2bc3808097905f604d295007505ced097c016512c28d64c16493174db26e39b0",
+      "command": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)(deny file-write* (require-not (require-any (subpath \"/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3\") (literal \"/dev/null\"))))",
+        "cargo",
+        "test",
+        "--frozen",
+        "--release",
+        "--target",
+        "aarch64-apple-darwin",
+        "-p",
+        "codex-sandboxing",
+        "--lib",
+        "unreadable_globs_",
+        "-j",
+        "4",
+        "--",
+        "--test-threads=4"
+      ],
+      "sourceAndLogAndRunnerAndReleasePinsVerified": true
+    }
+  },
+  "reviewerExecutedTests": false,
+  "sourceSuitesVerdict": "PASS focused helper15/protected4; initial helper14pass1fail remains historical",
+  "actualConfinementEstablished": false
+}

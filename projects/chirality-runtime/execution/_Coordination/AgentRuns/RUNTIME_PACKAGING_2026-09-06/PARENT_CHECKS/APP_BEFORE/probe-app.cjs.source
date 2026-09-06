@@ -1,0 +1,26 @@
+const Module = require('node:module');
+const fs = require('node:fs');
+const bundle = process.argv[2];
+const frontend = process.argv[3];
+const output = process.argv[4];
+const originalLoad = Module._load;
+const originalResolve = Module._resolveFilename;
+const reached = new Error('APP_IMPORT_GRAPH_REACHED_ELECTRON_BOUNDARY');
+reached.code = 'APP_IMPORT_GRAPH_REACHED_ELECTRON_BOUNDARY';
+Module._resolveFilename = function (request, parent, isMain, options) {
+  if (request.startsWith('@earendil-works/') || request === 'next' || request.startsWith('@anthropic-ai/')) {
+    return originalResolve.call(this, request, { paths: Module._nodeModulePaths(frontend) }, isMain, options);
+  }
+  return originalResolve.call(this, request, parent, isMain, options);
+};
+Module._load = function(request, parent, isMain) {
+  if (request === 'electron') return {app: new Proxy({}, {get() {throw reached;}})};
+  return originalLoad.call(this, request, parent, isMain);
+};
+try {require(bundle); throw new Error('Unexpected complete App execution');}
+catch(error) {
+ const record = {code: error.code ?? null, message: error.message, boundaryReached: error === reached, note: 'Actual full App bundle Node/CommonJS import probe. Electron is a fail-stop stub: no Electron process, daemon, registration or provider execution.'};
+ fs.writeFileSync(output, JSON.stringify(record, null, 2)+'\n');
+ console.log(JSON.stringify(record));
+ process.exitCode = error === reached ? 0 : 1;
+}

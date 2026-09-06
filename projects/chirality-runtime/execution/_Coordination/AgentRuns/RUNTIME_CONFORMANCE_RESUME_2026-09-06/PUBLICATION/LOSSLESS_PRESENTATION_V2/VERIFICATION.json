@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-09-06T20:04:45.057191+00:00",
+  "records": 4,
+  "originalBytes": 48176,
+  "allOriginalStrictRoundTrips": true,
+  "allPresentationHashesMatch": true,
+  "untransformedRuntimeFilesChecked": 2775,
+  "unexpectedChangedFiles": [],
+  "historicalSealsAndPriorMapUnchanged": true,
+  "executionGrant": "Parent explicit release of all4 final frozen author/reviewer/supplier log outputs after independent admission",
+  "proposalSha256": "4ae7c462faa5018d36f1ca87b7d597109997b5b70929902a52ad8f2d716c61b1",
+  "productionTestGitRootBinaryChanges": false
+}

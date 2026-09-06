@@ -1,0 +1,77 @@
+Harness pre-merge	Register app-dev with shared runtime	﻿2026-09-06T07:34:29.1113898Z ##[group]Run set -euo pipefail
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1114258Z ^[[36;1mset -euo pipefail^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1114518Z ^[[36;1mfor attempt in $(seq 1 90); do^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1114832Z ^[[36;1m  if [ -S "${CHIRALITY_RUNTIME_SOCKET_PATH}" ] \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1115218Z ^[[36;1m    && [ -f "${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" ]; then^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1115564Z ^[[36;1m    break^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1115888Z ^[[36;1m  fi^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1116136Z ^[[36;1m  sleep 1^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1116334Z ^[[36;1mdone^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1116511Z ^[[36;1m^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1116751Z ^[[36;1mif [ ! -S "${CHIRALITY_RUNTIME_SOCKET_PATH}" ] \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1117139Z ^[[36;1m  || [ ! -f "${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" ]; then^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1117531Z ^[[36;1m  echo "Shared runtime daemon did not become ready." >&2^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1118050Z ^[[36;1m  tail -n 200 /tmp/chirality-runtime-daemon.log || true^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1118413Z ^[[36;1m  exit 1^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1118651Z ^[[36;1mfi^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1118826Z ^[[36;1m^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1119011Z ^[[36;1mregistration="$(^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1119368Z ^[[36;1m  CHIRALITY_RUNTIME_TOKEN_FILE="${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1119922Z ^[[36;1m    node projects/chirality-app-dev/frontend/dist-runtime/chirality-cli.mjs \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1120350Z ^[[36;1m      project register \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1120788Z ^[[36;1m      --manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json" \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1121268Z ^[[36;1m      --approved-by github-actions \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1121867Z ^[[36;1m      --approval-reference harness-premerge-ci \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1122174Z ^[[36;1m      --json^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1122373Z ^[[36;1m)"^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1122695Z ^[[36;1mprintf '%s\n' "${registration}" >/tmp/chirality-runtime-registration.json^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1123097Z ^[[36;1mproject_token="$(^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1123766Z ^[[36;1m  node -e 'const fs=require("fs"); const v=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); if (!v.tokenFile) process.exit(1); process.stdout.write(v.tokenFile)' \^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1124499Z ^[[36;1m    /tmp/chirality-runtime-registration.json^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1124793Z ^[[36;1m)"^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1125169Z ^[[36;1m^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1125475Z ^[[36;1mecho "CHIRALITY_RUNTIME_TOKEN_FILE=${project_token}" >> "${GITHUB_ENV}"^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1125986Z ^[[36;1mecho "CHIRALITY_RUNTIME_PROJECT_ID=chirality-app-dev" >> "${GITHUB_ENV}"^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1126601Z ^[[36;1mecho "CHIRALITY_RUNTIME_PROJECT_ROOT=${GITHUB_WORKSPACE}/projects/chirality-app-dev" >> "${GITHUB_ENV}"^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1127292Z ^[[36;1mecho "HARNESS_PROJECT_ROOT=${GITHUB_WORKSPACE}/projects/chirality-app-dev" >> "${GITHUB_ENV}"^[[0m
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1167673Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1168042Z env:
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1168278Z   HARNESS_BASE_URL: http://127.0.0.1:3000
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1168584Z   CHIRALITY_HARNESS_PROVIDER: stub
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1168965Z   HARNESS_PROJECT_ROOT: /home/runner/work/_temp/chirality-harness-workroot
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1169495Z   CHIRALITY_RUNTIME_USER_DATA: /home/runner/work/_temp/chirality-runtime-user-data
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1170133Z   CHIRALITY_RUNTIME_SOCKET_PATH: /home/runner/work/_temp/chirality-runtime-user-data/runtime/control.sock
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1170913Z   CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE: /home/runner/work/_temp/chirality-runtime-user-data/runtime/auth/tokens/operator.token
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:34:29.1171717Z ##[endgroup]
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2745075Z Shared runtime daemon did not become ready.
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2764426Z Downloading Electron binary...
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2765370Z App threw an error during load
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2767424Z Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: No "exports" main defined in /home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/package.json
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2769670Z     at exportsNotFound (node:internal/modules/esm/resolve:318:10)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2770517Z     at packageExportsResolve (node:internal/modules/esm/resolve:609:13)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2771623Z     at resolveExports (node:internal/modules/cjs/loader:714:36)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2772434Z     at Module._findPath (node:internal/modules/cjs/loader:781:31)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2773076Z     at node:internal/modules/cjs/loader:1509:27
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2773858Z     at Module._resolveFilename (node:electron/js2c/browser_init:2:143860)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2774835Z     at wrapResolveFilename (node:internal/modules/cjs/loader:1078:27)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2775878Z     at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1102:10)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2777046Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1129:12)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2777852Z     at node:internal/modules/cjs/loader:1301:5
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2778907Z ^[[1m^[[47m^[[31mA JavaScript error occurred in the main process
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2779589Z ^[[30mUncaught Exception:
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2781719Z Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: No "exports" main defined in /home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/package.json
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2783497Z     at exportsNotFound (node:internal/modules/esm/resolve:318:10)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2784397Z     at packageExportsResolve (node:internal/modules/esm/resolve:609:13)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2785266Z     at resolveExports (node:internal/modules/cjs/loader:714:36)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2786098Z     at Module._findPath (node:internal/modules/cjs/loader:781:31)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2786802Z     at node:internal/modules/cjs/loader:1509:27
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2787575Z     at Module._resolveFilename (node:electron/js2c/browser_init:2:143860)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2788497Z     at wrapResolveFilename (node:internal/modules/cjs/loader:1078:27)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2789443Z     at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1102:10)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2790022Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1129:12)
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2790453Z     at node:internal/modules/cjs/loader:1301:5
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2791938Z ^[[0m[5100:0906/073436.094882:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2793553Z [5100:0906/073436.115236:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type:
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2794896Z [5100:0906/073436.115393:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2796238Z [5100:0906/073436.118846:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type:
+Harness pre-merge	Register app-dev with shared runtime	2026-09-06T07:35:59.2807806Z ##[error]Process completed with exit code 1.

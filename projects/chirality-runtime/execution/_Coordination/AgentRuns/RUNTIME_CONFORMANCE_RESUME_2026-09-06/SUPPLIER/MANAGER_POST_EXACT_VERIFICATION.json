@@ -1,0 +1,40 @@
+{
+  "source_files": 6416,
+  "source_mismatches": [],
+  "artifacts": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-app-server",
+      "sha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "match": true
+    }
+  ],
+  "exact_source_counts": {
+    "network-policy-tests": {
+      "passed": 4,
+      "failed": 3,
+      "filtered": 219
+    },
+    "network-approval-tests": {
+      "passed": 29,
+      "failed": 0,
+      "filtered": 2229
+    },
+    "network-constraints-tests": {
+      "passed": 14,
+      "failed": 0,
+      "filtered": 2244
+    },
+    "local-tests": {
+      "passed": 4,
+      "failed": 0,
+      "filtered": 83
+    }
+  },
+  "basis_receipt_sha256": "c74ade6f8934b86796a51533814815f47e8c128999243b342c4d775fef836209",
+  "scope": "Manager independently rehashed source/artifacts after exact tests; source tests not actual conformance; diagnostic admission still preserves failed policy suite."
+}

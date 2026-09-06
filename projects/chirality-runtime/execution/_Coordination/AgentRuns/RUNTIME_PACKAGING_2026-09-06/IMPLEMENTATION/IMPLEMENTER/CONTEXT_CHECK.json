@@ -1,0 +1,20 @@
+{
+  "AGENTS.md": true,
+  "agents/AGENT_WORKING_ITEMS.md": true,
+  "projects/chirality-runtime/AGENTS.md": true,
+  "projects/chirality-runtime/loop/LOOP_INIT.md": true,
+  "projects/chirality-runtime/software-workflow.json": true,
+  "projects/chirality-runtime/docs/PRD_AUTHORITY.md": true,
+  "projects/chirality-runtime/execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md": true,
+  "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md": true,
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/OWNER_DIRECTION.md": true,
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SPEC_FAN_IN.json": true,
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/PLAN_V2.md": true,
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION_AMENDMENT_11.json": true,
+  "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts": true,
+  "projects/chirality-runtime/packages/engine-pi-omlx/src/index.ts": true,
+  "projects/chirality-app-dev/frontend/scripts/build-electron.mjs": true,
+  "projects/chirality-app-dev/frontend/electron/runtime-host.ts": true,
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/PLAN_V1.json": true,
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/IMPLEMENTER_BRIEF.md": true
+}
