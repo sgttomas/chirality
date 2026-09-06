@@ -1,0 +1,302 @@
+{
+  "status": "FAIL",
+  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Settings', { exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <summary class=\"shell-root-chip\" title=\"/private/tmp/shell-integrated-v2-siy_4599\">Settings</summary>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <p class=\"api-key-hint\">…</p> from <section class=\"working-root-bar working-root-bar--workspace\">…</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <p class=\"api-key-hint\">…</p> from <section class=\"working-root-bar working-root-bar--workspace\">…</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <p class=\"api-key-hint\">…</p> from <section class=\"working-root-bar working-root-bar--workspace\">…</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+  "observations": [
+    {
+      "fonts": {
+        "status": "loaded",
+        "body": "plexSans, \"plexSans Fallback\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "700"
+          },
+          {
+            "family": "plexSans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexSerif",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSerif Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexMono",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexMono",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexMono Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Development indicator hidden using its own Preferences > Hide Dev Tools for this session UI; no product CSS or runtime state modified."
+    },
+    {
+      "label": "Nonempty initial transcript and fixed strip",
+      "measure": {
+        "x": 292,
+        "y": 39.59375,
+        "width": 620,
+        "height": 49.59375
+      },
+      "strip": {
+        "x": 0,
+        "y": 968,
+        "width": 1440,
+        "height": 32
+      },
+      "placeholder": "Message Working Items…"
+    },
+    {
+      "label": "Expanded settings",
+      "bounds": {
+        "details": {
+          "x": 18,
+          "y": 872.96875,
+          "width": 203,
+          "height": 23.265625,
+          "top": 872.96875,
+          "right": 221,
+          "bottom": 896.234375,
+          "left": 18
+        },
+        "panels": [
+          {
+            "tag": "SUMMARY",
+            "box": {
+              "x": 18,
+              "y": 872.96875,
+              "width": 203,
+              "height": 23.265625,
+              "top": 872.96875,
+              "right": 221,
+              "bottom": 896.234375,
+              "left": 18
+            },
+            "overflow": "visible"
+          },
+          {
+            "tag": "SECTION",
+            "box": {
+              "x": 12,
+              "y": 578.46875,
+              "width": 460,
+              "height": 339.53125,
+              "top": 578.46875,
+              "right": 472,
+              "bottom": 918,
+              "left": 12
+            },
+            "overflow": "auto"
+          }
+        ]
+      }
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    }
+  ],
+  "pageErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599&depth=3",
+      "method": "GET"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:3187/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/css/app/layout.css?v=1788667470355",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dece0821e8ed059f-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/webpack.js?v=1788667470355",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app-pages-internals.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/layout.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/not-found.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/page.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/main-app.js?v=1788667470355",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/icon.svg?38b9e59bfa97244d",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-integrated-v2-siy_4599&depth=3",
+      "status": 200
+    }
+  ]
+}

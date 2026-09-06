@@ -1,0 +1,43 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "APP_SHELL_CONVERGENCE_2026-09-06:PKG02:BROWSER_INTEGRATION05",
+  "operation": "dispatch",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "e00238621db7a00b036245962c21e3fc6ed75452",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-01",
+      "entry_path": "APP_SHELL_CONVERGENCE_2026-09-06:PKG02:BROWSER_INTEGRATION05",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-03",
+      "entry_path": "APP_SHELL_CONVERGENCE_2026-09-06:PKG02:BROWSER_INTEGRATION05",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-04",
+      "entry_path": "APP_SHELL_CONVERGENCE_2026-09-06:PKG02:BROWSER_INTEGRATION05",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "1b771032deb7517f3225cc3badc0995a6a312fb7628672d244109ffd6219ffa1",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-02-01",
+    "DEL-02-03",
+    "DEL-02-04"
+  ],
+  "verdict": "ALLOW"
+}

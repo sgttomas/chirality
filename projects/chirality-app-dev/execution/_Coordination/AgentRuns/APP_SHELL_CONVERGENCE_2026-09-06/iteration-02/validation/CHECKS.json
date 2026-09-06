@@ -1,0 +1,77 @@
+{
+  "basis": "c34bca30c57ef0f36de25d8065b8c1944431d48c",
+  "checks": [
+    {
+      "name": "receipt-after",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "exitCode": 0
+    },
+    {
+      "name": "app-hold",
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "reliance",
+        "--entry-path",
+        "APP_SHELL_CONVERGENCE:ITERATION02:RECORDS",
+        "--target",
+        "DEL-02-02",
+        "--target",
+        "DEL-02-03",
+        "--target",
+        "DEL-02-04",
+        "--target",
+        "DEL-02-05"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "exitCode": 0
+    },
+    {
+      "name": "self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "exitCode": 0
+    },
+    {
+      "name": "harness-pytest",
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "tools/practitioner_harness",
+        "-q"
+      ],
+      "cwd": ".",
+      "exitCode": 0
+    },
+    {
+      "name": "scoped-diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "<selected inventory>"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "selected-untracked-whitespace",
+      "exitCode": 0
+    }
+  ],
+  "frontend": "SKIPPED records-only selected diff; no product acceptance",
+  "finalGovernedReview": "PENDING actual fresh whole-tranche return"
+}

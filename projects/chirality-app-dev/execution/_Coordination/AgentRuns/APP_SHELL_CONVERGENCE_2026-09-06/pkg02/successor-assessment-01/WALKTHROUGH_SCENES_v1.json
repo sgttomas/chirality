@@ -1,0 +1,136 @@
+{
+  "source": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+  "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+  "one_based_scenes": [
+    {
+      "scene": 1,
+      "title": "New chat",
+      "state_literal": "{ fresh: true, hitFolder: true }"
+    },
+    {
+      "scene": 2,
+      "title": "Resting state",
+      "state_literal": "{ specified: true, hitFile: true }"
+    },
+    {
+      "scene": 3,
+      "title": "Document opens in the panel",
+      "state_literal": "{ specified: true, rail: 'doc', selFile: true, drag: true }"
+    },
+    {
+      "scene": 4,
+      "title": "Dragged wider",
+      "state_literal": "{ specified: true, rail: 'doc', railw: 470, drag: true, hitCtl: 'exp' }"
+    },
+    {
+      "scene": 5,
+      "title": "Expanded for reading",
+      "state_literal": "{ specified: true, rail: 'doc', railw: 700, mini: true, expanded: true, wide: true }"
+    },
+    {
+      "scene": 6,
+      "title": "Select and ask",
+      "state_literal": "{ specified: true, rail: 'doc', railw: 700, mini: true, expanded: true, wide: true, selection: true, hitAsk: true }"
+    },
+    {
+      "scene": 7,
+      "title": "Quote in the composer",
+      "state_literal": "{ specified: true, rail: 'doc', railw: 470, selection: true, quote: true, hitQuote: true, text: 'Does bid A\\'s curve cover this duty point too?' }"
+    },
+    {
+      "scene": 8,
+      "title": "Agent working, strip live",
+      "state_literal": "{ specified: true, running: true, followup: 'Does bid A\\'s curve cover this duty point too?', rail: 'doc', railw: 470, hitDetails: true }"
+    },
+    {
+      "scene": 9,
+      "title": "Activity in the panel",
+      "state_literal": "{ specified: true, running: true, followup: 'Does bid A\\'s curve cover this duty point too?', rail: 'activity', railw: 360 }"
+    },
+    {
+      "scene": 10,
+      "title": "Child session replay",
+      "state_literal": "{ specified: true, rail: 'child', railw: 420 }"
+    },
+    {
+      "scene": 11,
+      "title": "Organising chats",
+      "state_literal": "{ specified: true, hitChat: true, menu: true }"
+    },
+    {
+      "scene": 12,
+      "title": "Popped out",
+      "state_literal": "{ specified: true, popout: true }"
+    },
+    {
+      "scene": 13,
+      "title": "Account row",
+      "state_literal": "{ specified: true, hitAcct: true }"
+    },
+    {
+      "scene": 14,
+      "title": "Account popover",
+      "state_literal": "{ specified: true, pop: true, hitSettings: true }"
+    },
+    {
+      "scene": 15,
+      "title": "Settings in the panel",
+      "state_literal": "{ specified: true, rail: 'settings', railw: 380 }"
+    },
+    {
+      "scene": 16,
+      "title": "The ladder: chat, role, workflow",
+      "state_literal": "{ fresh: true, hitRung: true }"
+    },
+    {
+      "scene": 17,
+      "title": "Workflows view",
+      "state_literal": "{ specified: true, rail: 'workflows', railw: 340, hitOpen: true }"
+    },
+    {
+      "scene": 18,
+      "title": "Plan open",
+      "state_literal": "{ specified: true, rail: 'workflow', railw: 380, hitFollow: true }"
+    },
+    {
+      "scene": 19,
+      "title": "Chat steered by a workflow",
+      "state_literal": "{ wf: true, wfChat: true, rail: 'workflow', railw: 340 }"
+    },
+    {
+      "scene": 20,
+      "title": "Start a workflow from chat",
+      "state_literal": "{ fresh: true, spec: 'Start a workflow', rail: 'newwf', railw: 400, hitCreate: true }"
+    },
+    {
+      "scene": 21,
+      "title": "Assistant proposes a role",
+      "state_literal": "{ proposeSpec: true, hitCard: 'accept', agent: 'Assistant' }"
+    },
+    {
+      "scene": 22,
+      "title": "Chat with a role",
+      "state_literal": "{ proposeSpec: true, cardState: 'accepted', specified: true }"
+    },
+    {
+      "scene": 23,
+      "title": "The role proposes a workflow",
+      "state_literal": "{ proposeWf: true, hitCard: 'adjust', specified: true }"
+    },
+    {
+      "scene": 24,
+      "title": "Adjust: the same form, filled in",
+      "state_literal": "{ proposeWf: true, specified: true, rail: 'newwf', railw: 400, hitCreate: true }"
+    },
+    {
+      "scene": 25,
+      "title": "Not now",
+      "state_literal": "{ proposeSpec: true, cardState: 'declined' }"
+    },
+    {
+      "scene": 26,
+      "title": "Signed out, no local model",
+      "state_literal": "{ signedOut: true, localOff: true, pop: true, rail: 'settings', railw: 380 }"
+    }
+  ]
+}

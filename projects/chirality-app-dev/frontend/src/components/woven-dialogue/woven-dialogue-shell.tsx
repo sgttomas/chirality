@@ -29,13 +29,12 @@ import {
   writeWovenWorkspaceStateToStorage,
   type WovenWorkspaceState
 } from '../../lib/woven-dialogue/woven-workspace-state';
-import { useHarnessStreaming } from '../workspace/harness-events-provider';
+import { useHarnessStreaming, useHarnessEvents } from '../workspace/harness-events-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatPanel } from '../shell/chat-panel';
-import { PersonaPicker } from '../shell/persona-picker';
 import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 import { ShellFrame } from '../shell/shell-frame';
-import { ActivityShelf } from './activity-shelf';
+import { ActivityStrip } from './activity-shelf';
 import { CoordinationPanel } from './coordination-panel';
 import { RightPanel } from './right-panel';
 import { DialogueViewport } from './dialogue-viewport';
@@ -46,7 +45,7 @@ type WovenDialogueShellProps = {
   defaultSurface: WovenSurface;
 };
 
-type ResizeTarget = 'navigator' | 'coordination' | 'activity';
+type ResizeTarget = 'navigator' | 'coordination';
 
 function selectedReplayId(state: SelectedSessionReplayState): string | undefined {
   if (state.status === 'READY') {
@@ -67,6 +66,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const searchParams = useSearchParams();
   const { projectRoot } = useWorkspace();
   const streaming = useHarnessStreaming();
+  const { events } = useHarnessEvents();
+  const [binding, setBinding] = useState<{ root: string | null; locked: boolean }>({ root: null, locked: false });
+  const [folderSelectionPending, setFolderSelectionPending] = useState(false);
+  const [newChatRequest, setNewChatRequest] = useState(0);
   const runtimeEpoch = useRuntimeEpoch();
   const [primarySessionId, setPrimarySessionId] = useState<string>();
   const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(
@@ -75,11 +78,18 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [availableWidth, setAvailableWidth] = useState(1440);
   const workspaceRef = useRef<HTMLElement | null>(null);
   const [coordinationView, setCoordinationView] = useState<'session' | 'agents'>('agents');
-  const rightView = workspaceState.rightPanelView === 'agents' ? 'agents' : 'files';
+  const rightView = workspaceState.rightPanelView === 'workflows' || workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' ? workspaceState.rightPanelView : 'files';
   const widthKey = rightView === 'files' && workspaceState.openDocumentPath ? 'document' : rightView === 'agents' && coordinationView === 'session' ? 'session' : rightView;
   const rightWidth = workspaceState.rightPanelWidths?.[widthKey] ?? (widthKey === 'files' ? 300 : widthKey === 'agents' ? 360 : 480);
-  const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : workspaceState.navigatorWidth) - 444));
+  const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : clamp(workspaceState.navigatorWidth, 220, 360)) - 444));
   const [stateHydrated, setStateHydrated] = useState(false);
+  useEffect(() => {
+    if (!projectRoot || !stateHydrated) return;
+    setWorkspaceState(current => ({ ...current, knownRoots: [
+      { path: projectRoot, lastUsedAt: new Date().toISOString() },
+      ...(current.knownRoots ?? []).filter(root => root.path !== projectRoot)
+    ].slice(0, 50) }));
+  }, [projectRoot, stateHydrated]);
   const [sessions, setSessions] = useState<SessionRecord[]>([]);
   const [sessionsLoading, setSessionsLoading] = useState(false);
   const [sessionsError, setSessionsError] = useState<string | null>(null);
@@ -89,7 +99,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [replayState, setReplayState] = useState<SelectedSessionReplayState>({
     status: 'IDLE'
   });
-  const dialogueInputRef = useRef<HTMLInputElement | null>(null);
+  const dialogueInputRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
   const resizeRef = useRef<{
     target: ResizeTarget;
     startX: number;
@@ -280,7 +290,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     replayLoaderRef.current?.cancel();
     updateWorkspaceState({ selectedReplaySessionId: null });
     window.requestAnimationFrame(() => {
-      const input = document.querySelector<HTMLInputElement>('[data-chat-input="primary"]');
+      const input = document.querySelector<HTMLInputElement | HTMLTextAreaElement>('[data-chat-input="primary"]');
       dialogueInputRef.current = input;
       input?.focus();
     });
@@ -342,10 +352,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       if (target === 'coordination') restoreExpanded();
       const startValue =
         target === 'navigator'
-          ? workspaceState.navigatorWidth
-          : target === 'coordination'
-            ? rightWidth
-            : workspaceState.activityHeight;
+          ? clamp(workspaceState.navigatorWidth, 220, 360)
+          : rightWidth;
       resizeRef.current = {
         target,
         startX: event.clientX,
@@ -364,7 +372,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       }
       if (resize.target === 'navigator') {
         updateWorkspaceState({
-          navigatorWidth: clamp(resize.startValue + event.clientX - resize.startX, 220, 620),
+          navigatorWidth: clamp(resize.startValue + event.clientX - resize.startX, 220, 360),
           navigatorCollapsed: false
         });
       } else if (resize.target === 'coordination') {
@@ -373,11 +381,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           rightPanelWidths: { ...current.rightPanelWidths, [widthKey]: width },
           coordinationWidth: width, coordinationCollapsed: false
         }));
-      } else {
-        updateWorkspaceState({
-          activityHeight: clamp(resize.startValue - event.clientY + resize.startY, 120, 480),
-          activityCollapsed: false
-        });
+
       }
     };
     const handleUp = (): void => {
@@ -402,10 +406,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           key === 'Home'
             ? 220
             : key === 'End'
-              ? 620
-              : workspaceState.navigatorWidth + (key === 'ArrowRight' ? step : -step);
+              ? 360
+              : clamp(workspaceState.navigatorWidth, 220, 360) + (key === 'ArrowRight' ? step : -step);
         updateWorkspaceState({
-          navigatorWidth: clamp(value, 220, 620),
+          navigatorWidth: clamp(value, 220, 360),
           navigatorCollapsed: key === 'Home'
         });
       } else if (target === 'coordination') {
@@ -420,17 +424,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           coordinationWidth: clamp(value, 280, maximumRightWidth),
           coordinationCollapsed: key === 'Home'
         });
-      } else {
-        const value =
-          key === 'Home'
-            ? 120
-            : key === 'End'
-              ? 480
-              : workspaceState.activityHeight + (key === 'ArrowUp' ? step : -step);
-        updateWorkspaceState({
-          activityHeight: clamp(value, 120, 480),
-          activityCollapsed: key === 'Home'
-        });
+
       }
     },
     [updateWorkspaceState, workspaceState, rightWidth, widthKey, restoreExpanded, maximumRightWidth]
@@ -443,14 +437,14 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       navigatorCollapsed: true, coordinationCollapsed: false });
   };
   const stacked = availableWidth < 960;
-  const leftWidth = workspaceState.navigatorCollapsed ? 56 : Math.min(workspaceState.navigatorWidth, Math.max(220, availableWidth - 724));
+  const leftWidth = workspaceState.navigatorCollapsed ? 56 : Math.min(clamp(workspaceState.navigatorWidth, 220, 360), Math.max(220, availableWidth - 724));
   const visibleRightWidth = workspaceState.coordinationCollapsed ? 56 : Math.max(280, Math.min(
     workspaceState.rightPanelExpanded ? Math.round(availableWidth * 0.6 / 8) * 8 : rightWidth,
     availableWidth - leftWidth - 444
   ));
   const style = {
     ...(!stacked ? { gridTemplateColumns: `${leftWidth}px 12px minmax(420px, 1fr) 12px ${visibleRightWidth}px` } : {}),
-    '--woven-activity-height': `${workspaceState.activityCollapsed ? 68 : workspaceState.activityHeight}px`
+    '--woven-activity-height': '32px'
   } as CSSProperties;
   const replayVisible = replayState.status !== 'IDLE';
 
@@ -460,7 +454,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       title="Woven Dialogue"
       subtitle="A shared professional workspace where dialogue produces inspectable artifacts and governed work."
       variant="workspace"
-    >
+      folderLocked={binding.locked || streaming || folderSelectionPending}
+      onFolderSelectionPending={setFolderSelectionPending}
+      renderWorkspaceContent={({ reconnectControl, settingsControl }) => (
       <section ref={workspaceRef} className={`woven-workspace woven-t3-workspace${stacked ? ' is-stacked' : ''}`} style={style} data-woven-surface="dialogue">
         <style>{`
           .woven-t3-workspace .woven-right-panel { display:flex; flex-direction:column; min-width:0; height:100%; overflow:auto; }
@@ -474,10 +470,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           .woven-t3-workspace .tree-item-name { text-align:left; overflow-wrap:anywhere; min-width:0; }
           .woven-t3-workspace .tree-item-name[aria-current=true] { background:var(--ground); font-weight:600; }
           .shell--workspace:has(> .woven-t3-workspace.is-stacked) { height:auto; min-height:100vh; overflow:visible; }
-          .woven-t3-workspace.is-stacked { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(620px,70vh) auto auto 12px auto; height:auto; overflow:visible; }
+          .woven-t3-workspace.is-stacked { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(620px,70vh) auto auto 32px; height:auto; overflow:visible; }
           .woven-t3-workspace.is-stacked > .woven-dialogue-region { grid-column:1; grid-row:1; }
           .woven-t3-workspace.is-stacked > .woven-region--navigator { grid-column:1; grid-row:2; max-height:none; }
-          .woven-t3-workspace.is-stacked .woven-navigator { height:auto; grid-template-rows:auto auto 400px auto; }
+          .woven-t3-workspace.is-stacked .woven-navigator { height:auto; grid-template-rows:auto minmax(0,1fr) auto; }
           .woven-t3-workspace.is-stacked > .woven-region--coordination { grid-column:1; grid-row:3; height:520px; }
           .woven-t3-workspace.is-stacked > .woven-region.is-collapsed { display:flex; flex-direction:row; align-items:center; gap:0.75rem; height:auto; min-height:56px; max-height:none; padding:0.4rem 0.75rem; }
           .woven-t3-workspace.is-stacked > .woven-region.is-collapsed > .woven-region-toggle { position:static; inset:auto; transform:none; width:auto; max-width:none; min-height:36px; padding:0.4rem 0.65rem; color:var(--ink); flex:0 0 auto; }
@@ -485,23 +481,14 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           .woven-t3-workspace.is-stacked > .woven-region.is-collapsed > .woven-collapsed-label { position:static; writing-mode:horizontal-tb; transform:none; min-width:0; overflow-wrap:anywhere; }
           .woven-t3-workspace.is-stacked > .woven-resize-handle--vertical { display:none; }
           .woven-t3-workspace.is-stacked > .woven-resize-handle--horizontal { grid-column:1; grid-row:4; }
-          .woven-t3-workspace.is-stacked > .woven-activity { grid-column:1; grid-row:5; }
+          .woven-t3-workspace.is-stacked > .woven-activity-strip { grid-column:1; grid-row:4; }
         `}</style>
-        <main className="woven-dialogue-region" aria-label="Primary Dialogue" onInputCapture={(event) => {
-          if ((event.target as HTMLElement).matches?.('[data-chat-input="primary"]')) restoreExpanded();
-        }}>
+        <main className="woven-dialogue-region" aria-label="Primary Dialogue">
           <DialogueViewport
             primaryDialogue={
               <>
-                <div className="woven-dialogue-toolbar">
-                  <div>
-                    <p className="woven-eyebrow">Primary conversation</p>
-                    <h2>Dialogue</h2>
-                  </div>
-                  <PersonaPicker disabled={streaming} />
-                </div>
                 <Suspense fallback={<p className="panel-empty">Loading primary dialogue…</p>}>
-                  <ChatPanel onActiveSessionChange={setPrimarySessionId} />
+                  <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId} knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
                 </Suspense>
               </>
             }
@@ -525,10 +512,12 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               });
             }}
           >
-            {workspaceState.navigatorCollapsed ? (stacked ? 'Open Navigator' : <span aria-hidden="true">+</span>) : 'Close Navigator'}
+            {workspaceState.navigatorCollapsed ? <span className="woven-collapsed-brand" aria-hidden="true">C</span> : <span aria-hidden="true">‹</span>}
           </button>
           {!workspaceState.navigatorCollapsed ? (
             <Navigator
+              footerSlot={settingsControl}
+              onNewChat={() => { if (!streaming && !folderSelectionPending) setNewChatRequest(value => value + 1); }}
               activeSurface="dialogue"
               legacyHref={legacyHref}
               sessions={sessions}
@@ -542,7 +531,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               onSelectSession={loadReplay}
             />
           ) : (
-            <span className="woven-collapsed-label">Navigator</span>
+            <div className="woven-collapsed-settings">{settingsControl}</div>
           )}
         </div>
 
@@ -553,8 +542,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           aria-label="Resize Navigator"
           aria-orientation="vertical"
           aria-valuemin={220}
-          aria-valuemax={620}
-          aria-valuenow={workspaceState.navigatorWidth}
+          aria-valuemax={360}
+          aria-valuenow={clamp(workspaceState.navigatorWidth, 220, 360)}
           onPointerDown={(event) => {
             beginResize(event, 'navigator');
           }}
@@ -597,20 +586,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               : 'woven-region woven-region--coordination'
           }
         >
-          <button
-            type="button"
-            className="woven-region-toggle button-muted"
-            aria-label={workspaceState.coordinationCollapsed ? 'Open Coordination' : 'Close Coordination'}
-            onClick={() => {
-              updateWorkspaceState({
-                coordinationCollapsed: !workspaceState.coordinationCollapsed
-              });
-            }}
-          >
-            {workspaceState.coordinationCollapsed ? (stacked ? 'Open Coordination' : <span aria-hidden="true">+</span>) : 'Close Coordination'}
-          </button>
+          {workspaceState.coordinationCollapsed ? <button type="button" className="woven-region-toggle button-muted" aria-label="Open Coordination" onClick={() => updateWorkspaceState({ coordinationCollapsed: false })}>›</button> : null}
           {!workspaceState.coordinationCollapsed ? (
-            <RightPanel state={workspaceState} sessionOpen={coordinationView === 'session'}
+            <RightPanel folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
               replayState={replayState} recordedSessionIds={sessions.map(session => session.sessionId)}
               primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={loadReplay}
               onView={(view) => {
@@ -633,7 +611,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                 else if (rightView === 'agents' && coordinationView === 'session') setCoordinationView('agents');
                 else updateWorkspaceState({ coordinationCollapsed: true });
               }}
-              coordination={<CoordinationPanel
+              coordination={<CoordinationPanel embedded
               activeView={coordinationView}
               replaySlot={
                 replayVisible ? (
@@ -672,35 +650,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           )}
         </aside>
 
-        <div
-          className="woven-resize-handle woven-resize-handle--horizontal"
-          role="separator"
-          tabIndex={0}
-          aria-label="Resize Activity Shelf"
-          aria-orientation="horizontal"
-          aria-valuemin={120}
-          aria-valuemax={480}
-          aria-valuenow={workspaceState.activityHeight}
-          onPointerDown={(event) => {
-            beginResize(event, 'activity');
-          }}
-          onKeyDown={(event) => {
-            if (['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
-              event.preventDefault();
-              resizeByKeyboard('activity', event.key, event.shiftKey);
-            }
-          }}
-        />
-
-        <ActivityShelf
-          collapsed={workspaceState.activityCollapsed}
-          onToggleCollapsed={() => {
-            updateWorkspaceState({
-              activityCollapsed: !workspaceState.activityCollapsed
-            });
-          }}
-        />
+        <ActivityStrip reconnectControl={reconnectControl} running={streaming} events={events}
+          onOpenDetails={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'activity', coordinationCollapsed: false }); }} />
       </section>
-    </ShellFrame>
+      )}
+    />
   );
 }

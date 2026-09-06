@@ -1,0 +1,33 @@
+{
+  "schema": "source-freeze/v1",
+  "base": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+  "timestamp": "2026-09-06T03:03:17.978344+00:00",
+  "status": "FROZEN_FOR_REVIEW",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "sha256": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "03a438f15bdbcad621492c1edcaa3a56df291905c4d9cd284fadf56f877ba52b"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "sha256": "0f27c9b74be9e0149682b54213f11e86e088d90e261ee88afd52457c7d8379dd"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "sha256": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "5ce2238123a35cfc58db05c241df1ac5655d661849362d0ce95375a28e376d9d"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "c36110f1e9e69aecb5c80eb08d63cf0ff60440f8a00d1c7d51ccf3e5d7e792fe"
+    }
+  ],
+  "predecessor_manifest_sha256": "3914fada31bff6a49cb78b7b30f88e4b747eceeb7dd53ea4b2089eb07defe0f5"
+}

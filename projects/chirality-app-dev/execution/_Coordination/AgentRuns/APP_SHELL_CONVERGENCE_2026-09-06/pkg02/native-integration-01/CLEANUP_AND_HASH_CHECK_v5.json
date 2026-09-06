@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-09-06T04:58:48.591619+00:00",
+  "sourceMembersVerified": 25,
+  "compiledMembersVerified": 174,
+  "changedMembers": [],
+  "port3197ConnectResult": 1,
+  "isolatedPaths": [
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/control.sock",
+      "exists": false
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/project-native-proof.token",
+      "exists": false
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/operator.token",
+      "exists": false
+    },
+    {
+      "path": "/Users/ryan/Library/LaunchAgents/org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only.plist",
+      "exists": false
+    }
+  ],
+  "ownedPids": [
+    33059,
+    33057
+  ],
+  "pidCheck": "ps -p 33059,33057 -o pid=,comm= returned exit1 and no rows",
+  "finderCleanup": "Exact owned Finder windows31316 and31347 closed successfully",
+  "driverCleanup": "Electron and server exited; driver final wait missed already-delivered server exit event after signal, so driver was interrupted after independent PID exit verification. No surviving child was inferred from driver wait."
+}

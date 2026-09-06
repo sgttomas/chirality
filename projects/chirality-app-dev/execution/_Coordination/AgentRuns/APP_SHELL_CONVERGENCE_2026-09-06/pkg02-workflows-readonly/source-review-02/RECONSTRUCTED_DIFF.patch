@@ -1,0 +1,525 @@
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/api/working-root-workflow.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/api/working-root-workflow.test.ts
+new file mode 100644
+index 000000000..636fcd8ca
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/__tests__/api/working-root-workflow.test.ts
+@@ -0,0 +1,74 @@
++import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
++import { mkdir, mkdtemp, writeFile, symlink, rm, rename, open } from 'node:fs/promises';
++import path from 'node:path';
++import os from 'node:os';
++import { createHash } from 'node:crypto';
++const state = vi.hoisted(() => ({ instruction: '', swap: undefined as undefined | (() => Promise<void>) }));
++vi.mock('../../lib/harness/session-manager', () => ({ assertProjectRootAccessible: async (root: string) => root }));
++vi.mock('../../lib/harness/instruction-root', () => ({ resolveInstructionRootPath: () => state.instruction }));
++vi.mock('node:fs/promises', async importOriginal => {
++  const actual = await importOriginal<typeof import('node:fs/promises')>();
++  return { ...actual, opendir: async (...args: Parameters<typeof actual.opendir>) => {
++    if (state.swap) { const callback = state.swap; state.swap = undefined; await callback(); }
++    return actual.opendir(...args);
++  } };
++});
++import { GET } from '../../app/api/working-root/workflow/route';
++import * as route from '../../app/api/working-root/workflow/route';
++import { TEXT_LIMIT } from '../../app/api/working-root/file/file-policy';
++let base: string, root: string, workflows: string;
++beforeEach(async () => {
++  base = await mkdtemp(path.join(os.tmpdir(), 'chirality-workflow-test-'));
++  // macOS /var and /tmp aliases must be canonical before API comparisons.
++  const { realpath } = await import('node:fs/promises'); base = await realpath(base);
++  root = path.join(base, 'root'); state.instruction = path.join(base, 'instruction'); workflows = path.join(root, '.chirality/workflows');
++  await mkdir(root); await mkdir(state.instruction);
++});
++afterEach(async () => { state.swap = undefined; await rm(base, { recursive: true, force: true }); });
++const get = (name?: string, selectedRoot = root) => GET(new Request(`http://localhost/api/working-root/workflow?projectRoot=${encodeURIComponent(selectedRoot)}${name === undefined ? '' : `&name=${encodeURIComponent(name)}`}`));
++async function fixture(content = '# Design review\n\n1. Gather sources\n2. [gate] Review findings\n') { await mkdir(workflows, { recursive: true }); await writeFile(path.join(workflows, 'plan.md'), content); return content; }
++describe('contained workflow GET', () => {
++  it('is GET only and a missing workflow directory stays empty without creating it', async () => {
++    expect(Object.keys(route).sort()).toEqual(['GET', 'runtime']);
++    const response = await get(); expect(response.status).toBe(200); expect(await response.json()).toEqual({ projectRoot: root, files: [], directoryMissing: true });
++  });
++  it('lists actual file metadata and opens exact bytes with hash and no inferred workflow state', async () => {
++    const content = await fixture(); const list = await (await get()).json();
++    expect(list.files).toEqual([expect.objectContaining({ name: 'plan.md', path: '.chirality/workflows/plan.md', size: Buffer.byteLength(content) })]);
++    const response = await get('plan.md'); expect(response.headers.get('cache-control')).toBe('no-store');
++    expect(await response.json()).toEqual({ projectRoot: root, file: list.files[0], content, sha256: createHash('sha256').update(content).digest('hex') });
++  });
++  it.each(['../secret.md', '/secret.md', 'x/y.md', 'x\\y.md', '', 'x.txt', 'x\u0000.md'])('rejects non-basename target %s', async name => { await fixture(); expect((await get(name)).status).toBe(400); });
++  it('rejects duplicate and unknown parameters', async () => {
++    for (const tail of ['&name=a.md&name=b.md', '&target=a.md', '&projectRoot=other']) expect((await GET(new Request(`http://localhost/?projectRoot=${encodeURIComponent(root)}${tail}`))).status).toBe(400);
++  });
++  it('rejects instruction roots, aliases, missing roots and regular-file roots', async () => {
++    expect((await get(undefined, state.instruction)).status).toBe(409);
++    const alias = path.join(base, 'alias'); await symlink(state.instruction, alias); expect((await get(undefined, alias)).status).toBe(409);
++    expect((await get(undefined, path.join(base, 'missing'))).status).toBe(404);
++    await writeFile(path.join(base, 'file'), 'x'); expect((await get(undefined, path.join(base, 'file'))).status).toBe(404);
++  });
++  it.each(['.chirality', 'workflows', 'file'])('rejects symlink at %s, including in-root targets outside workflows', async kind => {
++    await fixture(); await mkdir(path.join(root, 'other')); await writeFile(path.join(root, 'other', 'secret.md'), 'secret');
++    if (kind === '.chirality') { await rm(path.join(root, '.chirality'), { recursive: true }); await symlink(path.join(root, 'other'), path.join(root, '.chirality')); }
++    if (kind === 'workflows') { await rm(workflows, { recursive: true }); await symlink(path.join(root, 'other'), workflows); }
++    if (kind === 'file') await symlink(path.join(root, 'other', 'secret.md'), path.join(workflows, 'escape.md'));
++    expect((await get()).status).toBeGreaterThanOrEqual(400);
++    if (kind === 'file') expect((await get('escape.md')).status).toBe(403);
++  });
++  it('never exposes foreign enumerated filenames during a directory swap', async () => {
++    await fixture(); const outside = path.join(base, 'foreign'); await mkdir(outside); await writeFile(path.join(outside, 'private-customer-name.md'), 'secret');
++    state.swap = async () => { await rename(workflows, `${workflows}-old`); await symlink(outside, workflows); };
++    const response = await get(); const text = await response.text(); expect(response.status).toBe(409); expect(text).not.toContain('private-customer'); expect(text).not.toContain('secret'); expect(text).not.toContain(outside);
++  });
++  it('does not silently truncate an oversized directory scan', async () => {
++    await fixture(); await Promise.all(Array.from({ length: 500 }, (_, i) => writeFile(path.join(workflows, `${i}.txt`), '')));
++    const response = await get(); expect(response.status).toBe(413); expect(await response.text()).toContain('500');
++  });
++  it('reports invalid text and limits without reading oversized content', async () => {
++    await fixture(); await writeFile(path.join(workflows, 'binary.md'), Buffer.from([0, 255])); expect((await get('binary.md')).status).toBe(415);
++    await writeFile(path.join(workflows, 'bad.md'), Buffer.from([255])); expect((await get('bad.md')).status).toBe(415);
++    const handle = await open(path.join(workflows, 'large.md'), 'w'); await handle.truncate(TEXT_LIMIT + 1); await handle.close(); expect((await get('large.md')).status).toBe(413);
++    await mkdir(path.join(workflows, 'directory.md')); expect((await get('directory.md')).status).toBe(403);
++  });
++});
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx
+index 906c74485..1b453c420 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx
+@@ -11,7 +11,7 @@ vi.mock('../../components/shell/file-tree-panel', () => ({ FileTreePanel: () =>
+ const handoff = vi.hoisted(() => vi.fn(async (_input: unknown) => {}));
+ vi.mock('../../components/shell/document-view', () => ({ handoffDocument: handoff, DocumentView: ({ target }: { target: string }) => <p>Document {target}</p> }));
+ const handlers = { onView: vi.fn(), onOpenFile: vi.fn(), onClose: vi.fn(), onExpand: vi.fn(), coordination: <p>Recorded agents and session content</p> };
+-it.each(['settings', 'workflows'] as const)('retains content for future stored %s views', view => {
++it.each(['settings'] as const)('retains content for future stored %s views', view => {
+   const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: view }} sessionOpen={false} />);
+   expect(html).toContain('Existing file contents'); expect(html).not.toContain('placeholder');
+ });
+@@ -72,3 +72,23 @@ it('reveals the root and the selected file through distinct bounded actions', as
+   expect(handoff).toHaveBeenLastCalledWith({ projectRoot: '/root', target: 'spec.md', action: 'reveal' });
+   act(() => tree.unmount());
+ });
++
++it('keeps four-view keyboard navigation and reveals the selected tab after changes', async () => {
++  const onView = vi.fn(); const focus = vi.fn(); const scrollIntoView = vi.fn(); const selectors: string[] = [];
++  const tabNode = { querySelector: (selector: string) => { selectors.push(selector); return { scrollIntoView }; } };
++  let tree!: ReactTestRenderer;
++  const props = { ...handlers, onView, sessionOpen: false };
++  const state = createDefaultWovenWorkspaceState();
++  await act(async () => { tree = create(<RightPanel {...props} state={state} />, { createNodeMock: element => element.props.role === 'tablist' ? tabNode : null }); });
++  const key = (value: string) => tree.root.findByProps({ role: 'tablist' }).props.onKeyDown({ key: value, preventDefault: vi.fn(), currentTarget: { querySelector: () => ({ focus }) } });
++  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.props['data-view'])).toEqual(['files', 'workflows', 'agents', 'activity']);
++  act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('workflows');
++  act(() => key('ArrowLeft')); expect(onView).toHaveBeenLastCalledWith('activity');
++  act(() => key('End')); expect(onView).toHaveBeenLastCalledWith('activity');
++  await act(async () => tree.update(<RightPanel {...props} state={{ ...state, rightPanelView: 'activity' }} />));
++  act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('files');
++  act(() => key('Home')); expect(onView).toHaveBeenLastCalledWith('files');
++  expect(focus).toHaveBeenCalledTimes(5); expect(selectors).toEqual(['[aria-selected="true"]', '[aria-selected="true"]']);
++  expect(scrollIntoView).toHaveBeenLastCalledWith({ block: 'nearest', inline: 'nearest' });
++  act(() => tree.unmount());
++});
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-workflows.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-workflows.test.tsx
+new file mode 100644
+index 000000000..5b732b7fc
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-workflows.test.tsx
+@@ -0,0 +1,40 @@
++import React from 'react';
++import { act, create, type ReactTestRenderer } from 'react-test-renderer';
++import { renderToStaticMarkup } from 'react-dom/server';
++import { afterEach, expect, it, vi } from 'vitest';
++import { WorkflowsView } from '../../components/woven-dialogue/workflows-view';
++import { WorkflowDetail } from '../../components/woven-dialogue/workflow-detail';
++const file = { name: 'review.md', path: '.chirality/workflows/review.md', size: 20, modifiedAt: '2026-09-06T00:00:00.000Z' };
++const response = (body: unknown, ok = true) => ({ ok, json: async () => body });
++afterEach(() => vi.unstubAllGlobals());
++it('opens the real listed filename and preserves plain unvalidated disclosure', async () => {
++  const fetch = vi.fn(async (_url: string) => response({ projectRoot: '/one', files: [file], directoryMissing: false })); vi.stubGlobal('fetch', fetch);
++  const onOpen = vi.fn(); let tree!: ReactTestRenderer;
++  await act(async () => { tree = create(<WorkflowsView projectRoot="/one" name={null} refresh={0} onOpen={onOpen} />); });
++  expect(JSON.stringify(tree.toJSON())).toContain('Plan details cannot be checked yet');
++  expect(tree.root.findByType('small').children.join('')).not.toContain('bytes');
++  expect(tree.root.findByType('small').children.join('')).toBe(new Date(file.modifiedAt).toLocaleDateString());
++  act(() => tree.root.findByType('button').props.onClick()); expect(onOpen).toHaveBeenCalledWith('review.md');
++  expect(fetch.mock.calls[0][0]).toContain('projectRoot=%2Fone');
++  act(() => tree.unmount());
++});
++it('discards stale folder results and aborts their requests', async () => {
++  let resolve!: (value: unknown) => void; const first = new Promise(r => { resolve = r; });
++  const fetch = vi.fn().mockReturnValueOnce(first).mockResolvedValue(response({ projectRoot: '/two', files: [], directoryMissing: true })); vi.stubGlobal('fetch', fetch);
++  let tree!: ReactTestRenderer; await act(async () => { tree = create(<WorkflowsView projectRoot="/one" name="old.md" refresh={0} onOpen={() => {}} />); });
++  await act(async () => tree.update(<WorkflowsView projectRoot="/two" name={null} refresh={0} onOpen={() => {}} />));
++  await act(async () => resolve(response({ projectRoot: '/one', file, content: 'PRIVATE OLD CONTENT', sha256: 'a'.repeat(64) })));
++  expect(JSON.stringify(tree.toJSON())).not.toContain('PRIVATE OLD CONTENT'); expect(fetch.mock.calls[0][1].signal.aborted).toBe(true);
++  act(() => tree.unmount());
++});
++it('shows errors and retries after refresh without implying an empty list', async () => {
++  vi.stubGlobal('fetch', vi.fn().mockResolvedValueOnce(response({ error: { message: 'Folder changed. Refresh.' } }, false)).mockResolvedValue(response({ projectRoot: '/one', files: [file], directoryMissing: false })));
++  let tree!: ReactTestRenderer; await act(async () => { tree = create(<WorkflowsView projectRoot="/one" name={null} refresh={0} onOpen={() => {}} />); });
++  expect(tree.root.findByProps({ role: 'alert' }).children.join('')).toContain('Refresh');
++  await act(async () => tree.update(<WorkflowsView projectRoot="/one" name={null} refresh={1} onOpen={() => {}} />));
++  expect(tree.root.findAllByProps({ role: 'alert' })).toHaveLength(0); act(() => tree.unmount());
++});
++it('renders readable Markdown with no executable HTML, links or image requests', () => {
++  const html = renderToStaticMarkup(<WorkflowDetail preview={{ projectRoot: '/one', file, sha256: 'a'.repeat(64), content: '# Review\n\n1. Gather sources\n2. [gate] Human review\n\n<script>alert(1)</script>\n\n[link](https://external.test) ![image](https://external.test/a.png)' }} />);
++  expect(html).toContain('<h1>Review</h1>'); expect(html).toContain('<ol>'); expect(html).not.toContain('<script'); expect(html).not.toContain('href='); expect(html).not.toContain('<img'); expect(html).toContain('[gate]'); expect(html).toContain(file.path);
++});
+diff --git a/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/route.ts b/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/route.ts
+new file mode 100644
+index 000000000..01c2cdc5e
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/route.ts
+@@ -0,0 +1,26 @@
++import { NextResponse } from 'next/server';
++import { assertProjectRootAccessible } from '../../../../lib/harness/session-manager';
++import { resolveInstructionRootPath } from '../../../../lib/harness/instruction-root';
++import { fileError, FilePolicyError, validateRevealRoot } from '../file/file-policy';
++import { listWorkflowFiles, readWorkflowFile } from './workflow-store';
++export const runtime = 'nodejs';
++export async function GET(request: Request): Promise<Response> {
++  const headers = { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' };
++  try {
++    const params = new URL(request.url).searchParams;
++    if ([...params.keys()].some(key => key !== 'projectRoot' && key !== 'name') || params.getAll('projectRoot').length !== 1 || params.getAll('name').length > 1)
++      throw new FilePolicyError('INVALID_REQUEST', 400, 'Choose a current folder and one workflow file.');
++    const selectedRoot = await assertProjectRootAccessible(params.get('projectRoot') ?? '');
++    const instruction = resolveInstructionRootPath();
++    const root = await validateRevealRoot({ projectRoot: selectedRoot }, instruction);
++    const body = params.has('name') ? await readWorkflowFile(root, params.get('name')!, instruction) : await listWorkflowFiles(root, instruction);
++    return NextResponse.json(body, { headers });
++  } catch (error) {
++    const typed = error as { type?: string; status?: number };
++    const result = typeof typed.type === 'string' && typeof typed.status === 'number'
++      ? { status: typed.status, body: { error: { code: typed.type, message: 'The current folder is unavailable or outside the allowed workspace. Choose another folder and retry.' } } }
++      : fileError(error);
++    // Never forward filesystem paths or arbitrary root-policy exception text.
++    return NextResponse.json(result.body, { status: result.status, headers });
++  }
++}
+diff --git a/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-read-contract.ts b/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-read-contract.ts
+new file mode 100644
+index 000000000..08bcab1e3
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-read-contract.ts
+@@ -0,0 +1,4 @@
++/** GET response shapes for contained file previews; no workflow authority is inferred. */
++export type WorkflowFile = { name: string; path: string; size: number; modifiedAt: string };
++export type WorkflowList = { projectRoot: string; files: WorkflowFile[]; directoryMissing: boolean };
++export type WorkflowPreview = { projectRoot: string; file: WorkflowFile; content: string; sha256: string };
+diff --git a/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-store.ts b/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-store.ts
+new file mode 100644
+index 000000000..a069a8422
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-store.ts
+@@ -0,0 +1,110 @@
++import { lstat, realpath, opendir } from 'node:fs/promises';
++import path from 'node:path';
++import { createHash } from 'node:crypto';
++import { FilePolicyError, openDocument, TEXT_LIMIT } from '../file/file-policy';
++import type { WorkflowFile, WorkflowList, WorkflowPreview } from './workflow-read-contract';
++
++// Bound directory work, including ignored entries. Oversized scans fail explicitly,
++// never return a truncated list as complete. This is a resource guard, not authority.
++const SCAN_LIMIT = 500;
++const changed = () => new FilePolicyError('WORKFLOW_CHANGED', 409, 'The workflow folder changed. Refresh and try again.');
++export function validateWorkflowName(name: string): void {
++  if (!name || !name.endsWith('.md') || /[\\/\x00-\x1f\x7f]/.test(name) || name === '.' || name === '..')
++    throw new FilePolicyError('INVALID_WORKFLOW_PATH', 400, 'Choose a Markdown file directly inside .chirality/workflows.');
++}
++async function boundary(root: string) {
++  const paths = [root, path.join(root, '.chirality'), path.join(root, '.chirality', 'workflows')];
++  const entries = [];
++  for (const target of paths) {
++    const info = await lstat(target);
++    if (info.isSymbolicLink() || !info.isDirectory() || await realpath(target) !== target)
++      throw new FilePolicyError('WORKFLOW_FOLDER_INVALID', 403, 'The workflow folder must use ordinary directories inside the current folder.');
++    entries.push({ target, dev: info.dev, ino: info.ino });
++  }
++  return entries;
++}
++type Boundary = Awaited<ReturnType<typeof boundary>>;
++async function unchanged(root: string, before: Boundary) {
++  const after = await boundary(root);
++  if (after.some((item, i) => item.ino !== before[i].ino || item.dev !== before[i].dev)) throw changed();
++}
++async function openContained(root: string, name: string, instruction: string, before: Boundary) {
++  validateWorkflowName(name);
++  await unchanged(root, before);
++  const target = `.chirality/workflows/${name}`;
++  const expected = path.join(root, target);
++  const entry = await lstat(expected);
++  if (!entry.isFile() || entry.isSymbolicLink()) throw new FilePolicyError('WORKFLOW_FILE_INVALID', 403, 'Only ordinary Markdown files in the workflow folder can be opened.');
++  const document = await openDocument({ projectRoot: root, target }, instruction);
++  try {
++    await unchanged(root, before);
++    const after = await lstat(expected);
++    if (document.canonicalRoot !== root || document.canonical !== expected || !after.isFile() || after.isSymbolicLink() ||
++        after.ino !== document.info.ino || after.dev !== document.info.dev || entry.ino !== after.ino || entry.dev !== after.dev) throw changed();
++    return document;
++  } catch (error) { await document.handle.close(); throw error; }
++}
++function metadata(name: string, info: { size: number; mtime: Date }): WorkflowFile {
++  return { name, path: `.chirality/workflows/${name}`, size: info.size, modifiedAt: info.mtime.toISOString() };
++}
++export async function listWorkflowFiles(root: string, instruction: string): Promise<WorkflowList> {
++  let before: Boundary;
++  try { before = await boundary(root); }
++  catch (error) {
++    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
++      // A disappeared root is not an empty workflow directory.
++      const rootInfo = await lstat(root);
++      if (!rootInfo.isDirectory() || rootInfo.isSymbolicLink() || await realpath(root) !== root) throw changed();
++      return { projectRoot: root, files: [], directoryMissing: true };
++    }
++    throw error;
++  }
++  const files: WorkflowFile[] = [];
++  try {
++    const directory = await opendir(before[2].target);
++    let count = 0;
++    for await (const entry of directory) {
++      if (++count > SCAN_LIMIT) throw new FilePolicyError('WORKFLOW_SCAN_LIMIT', 413, 'This folder is too large to list safely. Keep at most 500 entries in .chirality/workflows and refresh.');
++      if (!entry.name.endsWith('.md')) continue;
++      // Enumeration is only candidate discovery. Never expose a candidate name
++      // or its error until an independently contained regular descriptor exists.
++      const document = await openContained(root, entry.name, instruction, before);
++      try { files.push(metadata(entry.name, document.info)); }
++      finally { await document.handle.close(); }
++    }
++    await unchanged(root, before);
++    files.sort((a, b) => a.name.localeCompare(b.name));
++    return { projectRoot: root, files, directoryMissing: false };
++  } catch (error) {
++    if (error instanceof FilePolicyError && error.code === 'WORKFLOW_SCAN_LIMIT') throw error;
++    throw new FilePolicyError('WORKFLOW_SCAN_FAILED', 409, 'The workflow folder could not be listed safely. Check that it contains ordinary files, then refresh.');
++  }
++}
++export async function readWorkflowFile(root: string, name: string, instruction: string): Promise<WorkflowPreview> {
++  validateWorkflowName(name);
++  const before = await boundary(root);
++  const document = await openContained(root, name, instruction, before);
++  try {
++    const { handle, info } = document;
++    if (info.size > TEXT_LIMIT) throw new FilePolicyError('TEXT_LIMIT_EXCEEDED', 413, 'This plan exceeds the 10 MB preview limit. Open a smaller Markdown file.');
++    const bytes = Buffer.alloc(Math.min(info.size + 1, TEXT_LIMIT + 1));
++    let offset = 0;
++    while (offset < bytes.length) {
++      const read = await handle.read(bytes, offset, bytes.length - offset, offset);
++      if (!read.bytesRead) break;
++      offset += read.bytesRead;
++    }
++    const after = await handle.stat();
++    await unchanged(root, before);
++    const entry = await lstat(document.canonical);
++    if (!entry.isFile() || entry.isSymbolicLink() || entry.ino !== info.ino || entry.dev !== info.dev ||
++        after.size !== info.size || after.mtimeMs !== info.mtimeMs || after.ctimeMs !== info.ctimeMs || offset !== info.size) throw changed();
++    const contentBytes = bytes.subarray(0, offset);
++    let content: string;
++    try {
++      if (contentBytes.includes(0)) throw new Error('binary');
++      content = new TextDecoder('utf-8', { fatal: true }).decode(contentBytes);
++    } catch { throw new FilePolicyError('WORKFLOW_TEXT_INVALID', 415, 'This plan is not readable UTF-8 Markdown. Save it as a text file and retry.'); }
++    return { projectRoot: root, file: metadata(name, info), content, sha256: createHash('sha256').update(contentBytes).digest('hex') };
++  } finally { await document.handle.close(); }
++}
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
+index b996bf257..2d6414ac7 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
+@@ -1,5 +1,7 @@
+ 'use client';
+ 
++import { WorkflowsView } from './workflows-view';
++import styles from './workflows.module.css';
+ import { ActivityView } from './activity-shelf';
+ import React, { useEffect, useRef, useState } from 'react';
+ import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contracts';
+@@ -60,7 +62,7 @@ type Props = {
+   folderLocked?: boolean;
+   onFolderSelectionPending?: (pending: boolean) => void;
+   folderMismatch?: boolean;
+-  onView: (view: 'files' | 'agents' | 'activity') => void;
++  onView: (view: 'files' | 'workflows' | 'agents' | 'activity') => void;
+   onOpenFile: (path: string) => void;
+   onClose: () => void;
+   onExpand: () => void;
+@@ -75,15 +77,28 @@ type Props = {
+ export function RightPanel({ state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent }: Props): JSX.Element {
+   const { projectRoot } = useWorkspace();
+   const [refresh, setRefresh] = useState(0);
++  const tabsRef = useRef<HTMLDivElement>(null);
++  const [workflowSelection, setWorkflowSelection] = useState<{ root: string; name: string } | null>(null);
++  useEffect(() => { setWorkflowSelection(null); }, [projectRoot, folderMismatch]);
++  const workflowName = !folderMismatch && workflowSelection?.root === projectRoot ? workflowSelection.name : null;
+   const [copyStatus, setCopyStatus] = useState<string | null>(null);
+   const copyGeneration = useRef(0);
+   const sessionMenu = deriveSessionMenu(replayState, recordedSessionIds, primarySessionId, liveTurnActive);
+   const [menuError, setMenuError] = useState<string | null>(null);
+   // Future stored views must leave existing content reachable, never blank it.
+-  const view = state.rightPanelView === 'agents' || state.rightPanelView === 'activity' ? state.rightPanelView : 'files';
++  const view = state.rightPanelView === 'workflows' || state.rightPanelView === 'agents' || state.rightPanelView === 'activity' ? state.rightPanelView : 'files';
+   const target = view === 'files' ? state.openDocumentPath : null;
+-  const detailOpen = Boolean(target || (sessionOpen && view === 'agents'));
++  const detailOpen = Boolean(target || (sessionOpen && view === 'agents') || (view === 'workflows' && workflowName));
+   const sessionDetail = sessionOpen && view === 'agents';
++  useEffect(() => {
++    const tabs = tabsRef.current;
++    if (!tabs) return;
++    const revealSelected = () => tabs.querySelector<HTMLButtonElement>('[aria-selected="true"]')?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
++    revealSelected();
++    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(revealSelected);
++    observer?.observe(tabs);
++    return () => observer?.disconnect();
++  }, [view, detailOpen]);
+   useEffect(() => { copyGeneration.current++; setCopyStatus(null); setMenuError(null); }, [sessionMenu.id, target, view]);
+   const copy = async (value: string, label: string) => {
+     const generation = ++copyGeneration.current; setCopyStatus(null); setMenuError(null);
+@@ -94,19 +109,19 @@ export function RightPanel({ state, sessionOpen, folderLocked = false, onFolderS
+     } catch { if (generation === copyGeneration.current) setMenuError(`Unable to copy ${label.toLowerCase()}.`); }
+   };
+   return <section className="woven-right-panel" aria-label="Right panel">
+-    <header className="woven-region-header woven-right-panel-header">
+-      {target ? <nav aria-label="Document breadcrumb"><button onClick={() => onView('files')}>Files</button> › <span>{target}</span></nav> :
++    <header className={`woven-region-header woven-right-panel-header ${styles.header}`}>
++      {view === 'workflows' && workflowName ? <nav aria-label="Workflow breadcrumb"><button onClick={() => setWorkflowSelection(null)}>Workflows</button> › <span>{workflowName}</span></nav> : target ? <nav aria-label="Document breadcrumb"><button onClick={() => onView('files')}>Files</button> › <span>{target}</span></nav> :
+         sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Who is working</button> › Session</nav> :
+-        <div role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
++        <div ref={tabsRef} className={styles.tabs} role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
+           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+           event.preventDefault();
+-          const views = ['files', 'agents', 'activity'] as const;
+-          const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'activity' : views[(views.indexOf(view) + (event.key === 'ArrowRight' ? 1 : 2)) % 3];
++          const views = ['files', 'workflows', 'agents', 'activity'] as const;
++          const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'activity' : views[(views.indexOf(view) + (event.key === 'ArrowRight' ? 1 : views.length - 1)) % views.length];
+           onView(next);
+           event.currentTarget.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
+-        }}>{(['files', 'agents', 'activity'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
++        }}>{(['files', 'workflows', 'agents', 'activity'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
+           aria-controls="right-view-content" aria-selected={view === item} tabIndex={view === item ? 0 : -1}
+-          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'agents' ? 'Who is working' : 'Activity'}</button>)}</div>}
++          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'workflows' ? 'Workflows' : item === 'agents' ? 'Who is working' : 'Activity'}</button>)}</div>}
+       <div className="woven-right-panel-controls">
+         <details><summary aria-label="Panel menu" title="Panel menu">⋮</summary>
+           <div className="woven-panel-menu-content">
+@@ -132,12 +147,12 @@ export function RightPanel({ state, sessionOpen, folderLocked = false, onFolderS
+           </div>
+         </details>
+         <button type="button" aria-label={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} title={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} aria-pressed={state.rightPanelExpanded ?? false} onClick={onExpand}>{state.rightPanelExpanded ? '⤡' : '⤢'}</button>
+-        <button type="button" aria-label={detailOpen ? 'Close detail' : 'Collapse right panel'} onClick={onClose}>×</button></div>
++        <button type="button" aria-label={detailOpen ? 'Close detail' : 'Collapse right panel'} onClick={() => { if (view === 'workflows' && workflowName) setWorkflowSelection(null); else onClose(); }}>×</button></div>
+     </header>
+     {copyStatus ? <p role="status">{copyStatus}</p> : null}
+     {menuError ? <p role="alert">{menuError}</p> : null}
+     <div id="right-view-content" role={detailOpen ? undefined : 'tabpanel'} aria-labelledby={detailOpen ? undefined : `right-tab-${view}`} style={{ minHeight: 0, flex: 1, overflow: 'auto' }}>
+-      {view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
++      {view === 'workflows' ? folderMismatch ? <p role="alert">The chat is bound to a different folder. Workflows are unavailable until that folder is synchronized.</p> : projectRoot ? <WorkflowsView projectRoot={projectRoot} name={workflowName} refresh={refresh} onOpen={name => setWorkflowSelection({ root: projectRoot, name })} /> : <p>Choose a folder to see its workflow files.</p> : view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
+     </div>
+   </section>;
+ }
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflow-detail.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflow-detail.tsx
+new file mode 100644
+index 000000000..ce0cfd765
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflow-detail.tsx
+@@ -0,0 +1,20 @@
++import React from 'react';
++import ReactMarkdown from 'react-markdown';
++import remarkGfm from 'remark-gfm';
++import type { WorkflowPreview } from '../../app/api/working-root/workflow/workflow-read-contract';
++import styles from './workflows.module.css';
++export function WorkflowDetail({ preview }: { preview: WorkflowPreview }): JSX.Element {
++  return <>
++    <article className={styles.markdown} aria-label="Plan file preview"><ReactMarkdown skipHtml remarkPlugins={[remarkGfm]} components={{
++      // Files are untrusted input. Preview links are text, images never request
++      // remote or local resources, and task checkboxes remain inert.
++      a: ({ children }) => <span>{children}</span>,
++      img: ({ alt }) => <span>[Image{alt ? `: ${alt}` : ''}]</span>,
++      input: ({ checked }) => <input type="checkbox" disabled checked={Boolean(checked)} readOnly />
++    }}>{preview.content}</ReactMarkdown></article>
++    <details className={styles.provenance}><summary>File details</summary><dl>
++      <dt>Path</dt><dd>{preview.file.path}</dd><dt>Modified</dt><dd>{new Date(preview.file.modifiedAt).toLocaleString()}</dd>
++      <dt>Size</dt><dd>{preview.file.size.toLocaleString()} bytes</dd><dt>SHA-256</dt><dd>{preview.sha256}</dd>
++    </dl><p>This is a file preview. Its content does not confirm approvals or completed work.</p></details>
++  </>;
++}
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows-view.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows-view.tsx
+new file mode 100644
+index 000000000..88df7bdec
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows-view.tsx
+@@ -0,0 +1,33 @@
++'use client';
++import React, { useEffect, useState } from 'react';
++import type { WorkflowList, WorkflowPreview } from '../../app/api/working-root/workflow/workflow-read-contract';
++import { WorkflowDetail } from './workflow-detail';
++import styles from './workflows.module.css';
++type Props = { projectRoot: string; name: string | null; refresh: number; onOpen: (name: string) => void };
++export function WorkflowsView({ projectRoot, name, refresh, onOpen }: Props): JSX.Element {
++  const key = JSON.stringify([projectRoot, name, refresh]);
++  const [result, setResult] = useState<{ key: string; data?: WorkflowList | WorkflowPreview; error?: string } | null>(null);
++  useEffect(() => {
++    const controller = new AbortController(); let active = true;
++    const params = new URLSearchParams({ projectRoot }); if (name) params.set('name', name);
++    void fetch(`/api/working-root/workflow?${params}`, { signal: controller.signal, cache: 'no-store' })
++      .then(async response => {
++        const body = await response.json();
++        if (!response.ok) throw new Error(body.error?.message ?? 'The plans could not be read. Refresh to try again.');
++        if (body.projectRoot !== projectRoot) throw new Error('The folder changed. Refresh to read its plans.');
++        if (active) setResult({ key, data: body });
++      }).catch(error => { if (active) setResult({ key, error: error instanceof Error ? error.message : 'The plans could not be read. Refresh to try again.' }); });
++    return () => { active = false; controller.abort(); };
++  }, [projectRoot, name, refresh, key]);
++  const current = result?.key === key ? result : null;
++  return <div className={styles.view}>
++    <p className={styles.notice}>Plan details cannot be checked yet</p>
++    {!current ? <p role="status">Loading {name ? 'plan' : 'workflows'}…</p> : current.error ? <p role="alert">{current.error}</p> : current.data && 'content' in current.data ? <WorkflowDetail preview={current.data} /> : current.data && 'files' in current.data ? <>
++      <p className={styles.caption}>In this folder</p>
++      {current.data.files.length ? <ul className={styles.list}>{current.data.files.map(file => <li key={file.name}>
++        <button type="button" className={styles.file} onClick={() => onOpen(file.name)}><span>{file.name}</span><small>{new Date(file.modifiedAt).toLocaleDateString()}</small></button>
++      </li>)}</ul> : <p>No workflow files here yet. Plans are read from <code>.chirality/workflows</code> in this folder.</p>}
++      <p className={styles.foot}>Read-only · {current.data.files.length} {current.data.files.length === 1 ? 'file' : 'files'}</p>
++    </> : null}
++  </div>;
++}
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows.module.css b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows.module.css
+new file mode 100644
+index 000000000..bc3441010
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows.module.css
+@@ -0,0 +1,26 @@
++.view { display: flex; flex-direction: column; min-height: 100%; box-sizing: border-box; padding: 14px 16px; color: var(--ink); font-size: 13px; line-height: 1.55; overflow-wrap: anywhere; }
++.notice { color: var(--ink-soft); font-size: 12px; margin: 0 0 20px; }
++.caption { color: var(--ink-soft); font-size: 11px; margin: 0 0 8px; }
++.list { list-style: none; padding: 0; margin: 0; }
++.file { display: flex; flex-direction: column; gap: 5px; text-align: left; width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid var(--rule); background: transparent; color: inherit; cursor: pointer; border-radius: 0; }
++.file span { font-weight: 500; }
++.file small, .foot { color: var(--ink-soft); font-size: 11px; }
++.file:hover { background: var(--surface); }
++.file:focus-visible { outline: 2px solid var(--ink-soft); outline-offset: 2px; }
++.foot { margin-top: auto; padding-top: 20px; }
++.markdown { font-size: 13px; }
++.markdown h1 { font-size: 20px; font-weight: 500; margin: 0 0 18px; }
++.markdown h2 { font-size: 16px; font-weight: 500; margin-top: 22px; }
++.markdown h3 { font-size: 14px; }
++.markdown ol, .markdown ul { padding-left: 22px; }
++.markdown li { margin: 9px 0; }
++.markdown pre { white-space: pre-wrap; padding: 10px; border: 1px solid var(--rule); font-size: 11px; }
++.markdown table { border-collapse: collapse; display: block; overflow-x: auto; }
++.markdown td, .markdown th { padding: 6px; border: 1px solid var(--rule); }
++.provenance { margin-top: 24px; border-top: 1px solid var(--rule); padding-top: 12px; font-size: 11px; color: var(--ink-soft); }
++.provenance summary { cursor: pointer; }
++.provenance dt { margin-top: 8px; }
++.provenance dd { margin: 0; overflow-wrap: anywhere; }
++
++.header .tabs[role="tablist"] { flex: 1 1 0; min-width: 0; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
++.header .tabs [role="tab"] { flex: 0 0 auto; white-space: nowrap; }
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+index fe9f7f518..e1e668090 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+@@ -78,7 +78,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+   const [availableWidth, setAvailableWidth] = useState(1440);
+   const workspaceRef = useRef<HTMLElement | null>(null);
+   const [coordinationView, setCoordinationView] = useState<'session' | 'agents'>('agents');
+-  const rightView = workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' ? workspaceState.rightPanelView : 'files';
++  const rightView = workspaceState.rightPanelView === 'workflows' || workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' ? workspaceState.rightPanelView : 'files';
+   const widthKey = rightView === 'files' && workspaceState.openDocumentPath ? 'document' : rightView === 'agents' && coordinationView === 'session' ? 'session' : rightView;
+   const rightWidth = workspaceState.rightPanelWidths?.[widthKey] ?? (widthKey === 'files' ? 300 : widthKey === 'agents' ? 360 : 480);
+   const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : clamp(workspaceState.navigatorWidth, 220, 360)) - 444));

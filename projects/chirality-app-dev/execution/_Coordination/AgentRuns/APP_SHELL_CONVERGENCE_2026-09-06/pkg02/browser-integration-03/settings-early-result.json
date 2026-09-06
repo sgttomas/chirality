@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "observations": [
+    {
+      "fonts": {
+        "status": "loaded",
+        "body": "plexSans, \"plexSans Fallback\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "700"
+          },
+          {
+            "family": "plexSans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexSerif",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSerif Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexMono",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexMono",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexMono Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Development indicator hidden using its own Preferences > Hide Dev Tools for this session UI; no product CSS or runtime state modified."
+    },
+    {
+      "label": "Nonempty initial transcript and fixed strip",
+      "measure": {
+        "x": 292,
+        "y": 39.59375,
+        "width": 620,
+        "height": 49.59375
+      },
+      "strip": {
+        "x": 0,
+        "y": 968,
+        "width": 1440,
+        "height": 32
+      },
+      "placeholder": "Message Working Items…"
+    },
+    {
+      "label": "Expanded settings",
+      "bounds": {
+        "details": {
+          "x": 18,
+          "y": 872.96875,
+          "width": 203,
+          "height": 23.265625,
+          "top": 872.96875,
+          "right": 221,
+          "bottom": 896.234375,
+          "left": 18
+        },
+        "panels": [
+          {
+            "tag": "SUMMARY",
+            "box": {
+              "x": 18,
+              "y": 872.96875,
+              "width": 203,
+              "height": 23.265625,
+              "top": 872.96875,
+              "right": 221,
+              "bottom": 896.234375,
+              "left": 18
+            },
+            "overflow": "visible"
+          },
+          {
+            "tag": "SECTION",
+            "box": {
+              "x": 18,
+              "y": 525.4375,
+              "width": 460,
+              "height": 339.53125,
+              "top": 525.4375,
+              "right": 478,
+              "bottom": 864.96875,
+              "left": 18
+            },
+            "overflow": "auto"
+          }
+        ]
+      }
+    }
+  ]
+}

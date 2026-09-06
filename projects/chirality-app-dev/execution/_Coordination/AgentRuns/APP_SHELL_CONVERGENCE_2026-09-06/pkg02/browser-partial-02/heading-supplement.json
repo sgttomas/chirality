@@ -1,0 +1,30 @@
+{
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "Shell redesign checkpoint",
+      "size": "28.8px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    },
+    {
+      "tag": "H2",
+      "text": "What changed",
+      "size": "21.6px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Next checkpoint",
+      "size": "21.6px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    },
+    {
+      "tag": "H3",
+      "text": "Detailed check",
+      "size": "16.848px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    }
+  ],
+  "status": "PASS",
+  "note": "Original matrix heading selector had no matches; corrected semantic Document preview region selector. No source change."
+}

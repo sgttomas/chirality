@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react';
 import { deriveRuntimeConnectivityPresentation } from '../../lib/shell/runtime-connectivity';
 import { ApiKeySettings } from '../settings/api-key-settings';
 import { RuntimeSettings } from '../settings/runtime-settings';
@@ -61,7 +61,10 @@ type ShellFrameProps = {
   section: ShellSection;
   title: string;
   subtitle: string;
-  children: ReactNode;
+  children?: ReactNode;
+  folderLocked?: boolean;
+  onFolderSelectionPending?: (pending: boolean) => void;
+  renderWorkspaceContent?: (controls: { reconnectControl: ReactNode; settingsControl: ReactNode }) => ReactNode;
   variant?: 'default' | 'workspace';
 };
 
@@ -80,7 +83,10 @@ export function ShellFrame({
   title,
   subtitle,
   children,
-  variant = 'default'
+  variant = 'default',
+  folderLocked = false,
+  onFolderSelectionPending,
+  renderWorkspaceContent
 }: ShellFrameProps): JSX.Element {
   const pathname = usePathname();
   const {
@@ -93,6 +99,48 @@ export function ShellFrame({
     clearProjectRoot
   } = useWorkspace();
   const [draftPath, setDraftPath] = useState(projectRoot ?? '');
+  const settingsRef = useRef<HTMLDetailsElement | null>(null);
+  const positionSettings = useCallback(() => {
+    const disclosure = settingsRef.current;
+    if (!renderWorkspaceContent || !disclosure?.open) return;
+    const trigger = disclosure.querySelector('summary');
+    const panel = disclosure.querySelector<HTMLElement>('.working-root-bar');
+    if (!trigger || !panel) return;
+    const rect = trigger.getBoundingClientRect();
+    const above = Math.max(0, rect.top - 16);
+    const below = Math.max(0, window.innerHeight - rect.bottom - 16);
+    const opensAbove = above >= below;
+    panel.style.top = opensAbove ? 'auto' : `${rect.bottom + 8}px`;
+    panel.style.bottom = opensAbove ? `${window.innerHeight - rect.top + 8}px` : 'auto';
+    panel.style.left = `${Math.max(12, Math.min(rect.left, window.innerWidth - Math.min(460, window.innerWidth - 24) - 12))}px`;
+    panel.style.maxHeight = `${opensAbove ? above : below}px`;
+  }, [renderWorkspaceContent]);
+
+  useEffect(() => {
+    if (!renderWorkspaceContent || typeof document === 'undefined') return;
+    const dismissOutside = (event: PointerEvent) => {
+      const disclosure = settingsRef.current;
+      if (disclosure?.open && event.target instanceof Node && !disclosure.contains(event.target)) disclosure.open = false;
+    };
+    const dismissEscape = (event: KeyboardEvent) => {
+      const disclosure = settingsRef.current;
+      if (event.key === 'Escape' && disclosure?.open) {
+        disclosure.open = false;
+        disclosure.querySelector('summary')?.focus();
+      }
+    };
+    document.addEventListener('pointerdown', dismissOutside);
+    document.addEventListener('keydown', dismissEscape);
+    window.addEventListener('resize', positionSettings);
+    window.addEventListener('scroll', positionSettings, true);
+    return () => {
+      document.removeEventListener('pointerdown', dismissOutside);
+      document.removeEventListener('keydown', dismissEscape);
+      window.removeEventListener('resize', positionSettings);
+      window.removeEventListener('scroll', positionSettings, true);
+    };
+  }, [renderWorkspaceContent, positionSettings]);
+
 
   useEffect(() => {
     setDraftPath(projectRoot ?? '');
@@ -157,45 +205,18 @@ export function ShellFrame({
   }
 
   async function applyDraftPath(): Promise<void> {
+    if (folderLocked) return;
     const nextPath = draftPath.trim();
     if (!nextPath) {
       clearProjectRoot();
       return;
     }
 
-    await applyProjectRoot(nextPath);
+    onFolderSelectionPending?.(true);
+    try { await applyProjectRoot(nextPath); } finally { onFolderSelectionPending?.(false); }
   }
 
-  return (
-    <main className={variant === 'workspace' ? 'shell shell--workspace' : 'shell'}>
-      <header
-        className={
-          variant === 'workspace' ? 'shell-header shell-header--workspace' : 'shell-header'
-        }
-      >
-        <div className="shell-brand-row">
-          <img
-            src="/chirality-app-icon.svg"
-            alt=""
-            className="shell-brand-tile"
-            width={26}
-            height={26}
-          />
-          <span className="shell-wordmark">
-            Chira<em>lity</em>
-          </span>
-        </div>
-
-        <div className="shell-header-main">
-          <p className="shell-kicker">{section}</p>
-          <h1>{title}</h1>
-          <p className="shell-subtitle" title={subtitle}>
-            {subtitle}
-          </p>
-        </div>
-
-        <div className="shell-header-controls">
-          {runtimeIndicator ? (
+  const reconnectControl = (runtimeIndicator ? (
             <span className="shell-runtime-control">
               <button
                 type="button"
@@ -232,13 +253,14 @@ export function ShellFrame({
                     : `Runtime reported ${runtimeIndicator.label}`}
               </span>
             </span>
-          ) : null}
-
-          <details className="shell-root-disclosure">
+          ) : null);
+  const settingsControl = (<details ref={settingsRef} className="shell-root-disclosure" onToggle={positionSettings}>
             <summary className="shell-root-chip" title={currentRootLabel}>
+              {renderWorkspaceContent ? 'Settings' : <>
               <span className={rootDotClassName} aria-hidden="true" />
               <span className="shell-root-chip-key">root</span>
               <span className="shell-root-chip-value">{currentRootLabel}</span>
+              </>}
             </summary>
 
             <section
@@ -248,10 +270,12 @@ export function ShellFrame({
                   : 'working-root-bar'
               }
             >
-              <div className="working-root-fields">
+              {!renderWorkspaceContent ? (              <div className="working-root-fields">
+                {folderLocked ? <p>Folder is fixed for this chat. Start a new chat to change it.</p> : null}
                 <label htmlFor="project-root-input">Working Root (`projectRoot`)</label>
                 <div className="working-root-controls">
                   <input
+                    disabled={folderLocked}
                     id="project-root-input"
                     value={draftPath}
                     onChange={(event) => {
@@ -262,17 +286,18 @@ export function ShellFrame({
                     }}
                     placeholder="/absolute/path/to/execution/root"
                   />
-                  <button type="button" onClick={() => void applyDraftPath()}>
+                  <button type="button" disabled={folderLocked} onClick={() => void applyDraftPath()}>
                     Apply Path
                   </button>
                   <button
                     type="button"
+                    disabled={folderLocked}
                     className={hasElectronDirectoryPicker ? '' : 'button-muted'}
-                    onClick={() => void chooseProjectRoot()}
+                    onClick={() => { if (!folderLocked) { onFolderSelectionPending?.(true); void chooseProjectRoot().finally(() => onFolderSelectionPending?.(false)); } }}
                   >
                     Choose Folder
                   </button>
-                  <button type="button" className="button-muted" onClick={clearProjectRoot}>
+                  <button type="button" disabled={folderLocked} className="button-muted" onClick={() => { if (!folderLocked) clearProjectRoot(); }}>
                     Clear
                   </button>
                 </div>
@@ -280,7 +305,7 @@ export function ShellFrame({
                   Active root: {currentRootLabel}
                 </p>
                 {errorMessage ? <p className="working-root-error">{errorMessage}</p> : null}
-              </div>
+              </div>) : null}
 
               <details className="working-root-settings working-root-settings--disclosure">
                 <summary>Runtime &amp; credentials</summary>
@@ -290,7 +315,46 @@ export function ShellFrame({
                 </div>
               </details>
             </section>
-          </details>
+          </details>);
+  if (variant === 'workspace' && renderWorkspaceContent) {
+    return <main className="shell shell--workspace shell--stone">{renderWorkspaceContent({
+      reconnectControl,
+      settingsControl: <div className="woven-settings-controls">{settingsControl}<ThemeControl /></div>
+    })}</main>;
+  }
+
+  return (
+    <main className={variant === 'workspace' ? 'shell shell--workspace' : 'shell'}>
+      <header
+        className={
+          variant === 'workspace' ? 'shell-header shell-header--workspace' : 'shell-header'
+        }
+      >
+        <div className="shell-brand-row">
+          <img
+            src="/chirality-app-icon.svg"
+            alt=""
+            className="shell-brand-tile"
+            width={26}
+            height={26}
+          />
+          <span className="shell-wordmark">
+            Chira<em>lity</em>
+          </span>
+        </div>
+
+        <div className="shell-header-main">
+          <p className="shell-kicker">{section}</p>
+          <h1>{title}</h1>
+          <p className="shell-subtitle" title={subtitle}>
+            {subtitle}
+          </p>
+        </div>
+
+        <div className="shell-header-controls">
+          {reconnectControl}
+
+          {settingsControl}
 
           {variant === 'workspace' ? (
             <div className="shell-nav" aria-label="Current workspace">

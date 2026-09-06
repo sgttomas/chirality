@@ -1,0 +1,25 @@
+{
+  "manifestChecks": [
+    {
+      "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-applied-01/APPLIED_MANIFEST.json",
+      "sha256": "5241c5f9fc7d494b612f676ed0b47cb9f1e4f837dc97aba0c05d129886d7ee7b",
+      "memberCount": 6,
+      "allMatch": true
+    },
+    {
+      "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-candidate-01/FROZEN_MANIFEST.json",
+      "sha256": "631ff45ea8d1ba3ef125219185877bfdbf5402f57a6fea4092312e4de4b0b926",
+      "memberCount": 15,
+      "allMatch": true
+    },
+    {
+      "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg09-pdf/FINAL_MANIFEST.json",
+      "sha256": "e80b690cc74473fc039635979a7fbfec1fbba19ddd5b9f06ee774aa3b3d1e86e",
+      "memberCount": 11,
+      "allMatch": true
+    }
+  ],
+  "dependencyVerdict": "pkg02/dependency-review-01/RETURN.md COMMIT-SAFE three row pairs only",
+  "pdfVerdict": "pkg09-pdf/REVIEW_RETURN.md COMMIT-SAFE isolated candidate publication only",
+  "historicalSourceEvidence": "candidate directory copies of prior committed source, manifest and v10 review are evidence inputs, not current source edits or current source acceptance"
+}

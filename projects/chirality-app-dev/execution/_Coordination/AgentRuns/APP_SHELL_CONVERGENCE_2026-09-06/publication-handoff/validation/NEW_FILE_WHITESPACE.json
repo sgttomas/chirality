@@ -1,0 +1,4 @@
+{
+  "method": "git diff --no-index --check; empty-output exit1 means ordinary difference",
+  "findings": []
+}

@@ -1,0 +1,35 @@
+{
+  "status": "active execution graph, not standing work queue",
+  "base": "e00238621db7a00b036245962c21e3fc6ed75452",
+  "parentReceipt": "Receipt-250",
+  "parent": "/root HELP_HUMAN, no writes",
+  "sourceOwner": "/root/shell_pkg02 WORKING_ITEMS, one integration author",
+  "recordsOwner": "/root/shell_run_records ephemeral Agent2; iteration-03 only, no delegation",
+  "direction": "Extend initial partial checkpoint into full Milestone1 under accepted scope; final source review covers entire cumulative source diff",
+  "authorityObservation": {
+    "sourceCommit": "c34bca30c57ef0f36de25d8065b8c1944431d48c",
+    "PR": 735,
+    "mergeCommit": "5738637472b616665fb4fe5003c4dec077a12380",
+    "rulingSha256": "35587f5b9a018a7e263518f13c164ce0300518b4f4009b1a0c6725d215801ebc",
+    "evidence": "parent verified fetched main and successful exact-head CI34008606085/34008606065"
+  },
+  "ordering": [
+    "parent released one PKG02 author from accepted e002 baseline and observed D120 act",
+    "freeze cumulative source -> fresh independent review and scoped visual assessment -> applicable final registered checks",
+    "manager fan-in -> parent releases receipt/shared checks -> frozen whole-tranche review -> CHANGE local closeout"
+  ],
+  "limits": [
+    "no current receipt append or repeated global checks",
+    "no edits to prior frozen records",
+    "no Root acceptance inferred from routing",
+    "D121 remains held",
+    "new e002 and source publication payload not authorized by authority-only approval"
+  ],
+  "attribution": {
+    "engine": "Codex",
+    "provider": "OpenAI",
+    "model": "GPT-6 family per system; exact serving model unavailable",
+    "delegationClass": "delegated-harness-native",
+    "roleEnforcement": "instruction-asserted"
+  }
+}

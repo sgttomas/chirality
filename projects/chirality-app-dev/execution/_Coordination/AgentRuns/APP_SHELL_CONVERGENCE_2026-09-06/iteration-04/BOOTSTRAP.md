@@ -1,0 +1,9 @@
+# Iteration04 shared bootstrap
+
+Examined local HEAD: 8aaee11f6b0c96430e67d61b69452780210b3835. Git status was clean before these bootstrap writes. Prior iteration committed exactly550 reviewed paths; parent reports actual fresh whole-tranche COMMIT-SAFE preserved in its commit body. Receipt251 is the handoff cursor; receipt validator passes. This is local committed predecessor evidence, not public publication. Public push has not occurred for the new source/evidence payload.
+
+Live DEL-02-02-V3-04 remains the work surface. Its existing locus permits woven components, a K-PATH-2-contained workflow route restricted to .chirality/workflows, fixtures/tests and deliverable-local state. Parent released only a GET-only current-folder workflow list/open slice. Read dependencies and accepted predecessor evidence do not authorize workflow writes, ChatPanel edits, acceptance/position advances, provider/Root actions or live-session changes. Manager must enforce the actual full source fence and APP-HOLD preflight in its sealed implementation brief.
+
+Actual matched reference rendering against Walkthrough17/18 is required for this slice. Account/settings13–15/26 remain unfinished with their held markers; no T6 gate is waived. Prior partial shell residuals remain: actual Finder gesture proof, B1 accepted no-folder contract, D121 inline PDF, T4 broader dependencies, remaining workflow write/bind/acceptance paths and exact-source configured CI. Historical local premerge503 is not a new-source PASS. A1 frontend mutation requires a newly staged login-proof procedure and fresh owner execution for any future proof claim.
+
+This is derivative coordination, not a new standing queue or acceptance surface. No prior frozen files are edited; no Receipt252 append or global/frontend/native checks run here beyond the necessary read-only bootstrap receipt/hold checks. Final receipt/history/shared checks await terminal manager fan-in and explicit parent release.

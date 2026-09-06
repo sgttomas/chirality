@@ -1,0 +1,74 @@
+{
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "Shell redesign checkpoint",
+      "size": "28.8px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    },
+    {
+      "tag": "H2",
+      "text": "What changed",
+      "size": "21.6px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    },
+    {
+      "tag": "H2",
+      "text": "Next checkpoint",
+      "size": "21.6px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    },
+    {
+      "tag": "H3",
+      "text": "Detailed check",
+      "size": "16.848px",
+      "font": "plexSerif, \"plexSerif Fallback\", \"Iowan Old Style\", Palatino, Georgia, serif, \"Iowan Old Style\", Palatino, Georgia, serif"
+    }
+  ],
+  "controls": [
+    {
+      "box": {
+        "x": 1370.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26,
+        "top": 6.5,
+        "right": 1432,
+        "bottom": 32.5,
+        "left": 1370.125
+      },
+      "children": [
+        {
+          "x": 1370.125,
+          "y": 6.5,
+          "width": 24,
+          "height": 26,
+          "top": 6.5,
+          "right": 1394.125,
+          "bottom": 32.5,
+          "left": 1370.125
+        },
+        {
+          "x": 1396.125,
+          "y": 6.5,
+          "width": 16.671875,
+          "height": 26,
+          "top": 6.5,
+          "right": 1412.796875,
+          "bottom": 32.5,
+          "left": 1396.125
+        },
+        {
+          "x": 1414.796875,
+          "y": 6.5,
+          "width": 17.203125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1432,
+          "bottom": 32.5,
+          "left": 1414.796875
+        }
+      ]
+    }
+  ]
+}

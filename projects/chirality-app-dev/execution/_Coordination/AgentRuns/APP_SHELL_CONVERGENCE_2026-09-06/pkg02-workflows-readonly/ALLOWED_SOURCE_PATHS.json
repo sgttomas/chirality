@@ -1,0 +1,14 @@
+[
+  "frontend/src/components/woven-dialogue/right-panel.tsx",
+  "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+  "frontend/src/components/woven-dialogue/workflows-view.tsx",
+  "frontend/src/components/woven-dialogue/workflow-detail.tsx",
+  "frontend/src/components/woven-dialogue/workflows.module.css",
+  "frontend/src/app/api/working-root/workflow/route.ts",
+  "frontend/src/app/api/working-root/workflow/workflow-store.ts",
+  "frontend/src/app/api/working-root/workflow/workflow-read-contract.ts",
+  "frontend/src/__tests__/api/working-root-workflow.test.ts",
+  "frontend/src/__tests__/components/woven-workflows.test.tsx",
+  "frontend/src/__tests__/components/woven-right-panel.test.tsx",
+  "frontend/src/__tests__/components/woven-dialogue-shell.test.tsx"
+]

@@ -1,0 +1,25 @@
+{
+  "command": [
+    "gh",
+    "run",
+    "view",
+    "34006639232",
+    "--repo",
+    "sgttomas/chirality",
+    "--json",
+    "databaseId,headSha,conclusion,status,url,name,event"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "escalation": "sandbox network denied; exact read-only escalation succeeded",
+  "exit_code": 0,
+  "stdout": {
+    "conclusion": "success",
+    "databaseId": 34006639232,
+    "event": "pull_request",
+    "headSha": "5ffafd710430bf053d5cfaf11129ccc1aa3130e5",
+    "name": "governance-harness",
+    "status": "completed",
+    "url": "https://github.com/sgttomas/chirality/actions/runs/34006639232"
+  },
+  "stderr": ""
+}

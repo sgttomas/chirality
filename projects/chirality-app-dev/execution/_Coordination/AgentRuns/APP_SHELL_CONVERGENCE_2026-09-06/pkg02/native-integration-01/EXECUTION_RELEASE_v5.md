@@ -1,0 +1,11 @@
+# Native execution release on reviewed v5
+
+WORKING_ITEMS releases the existing sealed native brief's execution phase. APP-HOLD EXECUTION01 is ALLOW. Source-review-06 PASS SHA339e50711ecbe8f45fc52f2316f2acda04567b02cfb80e1ba4a82bb57887e8bb covers all25 SOURCE_MANIFEST_v5.json members SHA b7fd5e3ea0adf4f7f33371f338655643078746934ab3ab5efaa5ce0391139e9c. These replace v2 as execution inputs; old prep remains history.
+
+Registered typecheck and frontend-test passed (1709 passed,4 skipped). Build passed. Actual local premerge failed HTTP503; preserved failure and explicit permitted configured-CI deferral remain, not PASS. Required release-quality wrapper completed pass_with_skips with standalone Section9 PASS and explicit premerge skip. A fresh production rebuild after the dev premerge service is PASS, so production renderer files are no longer mixed with dev output. Browser/server and check service cleanup are complete.
+
+NATIVE_BUILD_MANIFEST_v5.json SHA39adf783a13d7b2e47984f3f67c29208fe51c2f380d0414f46cd825b3f86581a binds 174 compiled renderer/Electron members and all25 source identities. Verify it before launching. Use the built production renderer with an owned Next start server, not a dev server or another build. Do not modify compiled product bytes; only the previously approved owned Electron host bundle identity may change for isolation.
+
+Execute the sealed protocol plus PROTOCOL_SUPPLEMENT_v2.md and ISOLATED_ENVIRONMENT_v2.json. Both Main operator-token and HTTP project-token paths must remain isolated; no fallback to user runtime state. The native identity and initially empty Open Recent gate must pass before registration. No real account/session/daemon actions, no clearing user recents, no unrelated native Office/PDF proof. Exact current-root Reveal, menu/Open Recent, drop, negatives and offline reconnect claims must be evidence-bounded. Synthetic harness responses are UI fixtures, not runtime authority.
+
+Send the first verified native identity and actual offline reconnect screenshot promptly, then continue bounded folder proof. Report blockers early. No source mutation or publication. Close only owned windows/processes and preserve full cleanup/input/output evidence. Historical per-chat Reveal, no-folder runtime capability, packaged release and D121 remain unclaimed.

@@ -1,0 +1,33 @@
+{
+  "prior_packet_drift": [],
+  "outputs": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/WORKFLOWS_BRIEF_CANDIDATE_v1.md",
+      "sha256": "147650335094708917aabe3a5476285e7ea74107eb78221cb156b0367fa604a8"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/ACCOUNT_SETTINGS_QUALITY_ADDENDUM_v1.md",
+      "sha256": "d01b4eea0a3a83444aed7d12234b00cde8b90a5ff03f9d7c6cd073df1d305c4c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/BRIEF_PREPARATION_PREFLIGHT_v1.json",
+      "sha256": "2981412e4f8d31094df574f6ef8bc8cc203e2ef40462f6d241742cbe3ad398fe"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/brief_inventory_v1.py",
+      "sha256": "8bf608bbca05f5df6e27e1c54b9a194a9a6116098d92484f9b5a619e4ec2b85e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/BRIEF_INPUT_INVENTORY_v1.json",
+      "sha256": "e7e5c15dc868dbfdcfbaf6197e68e82a6f91ae8ed507c8c624dc80645f5add2e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/WALKTHROUGH_STEPS_EXTRACT_v1.txt",
+      "sha256": "1b3553c2697e54633586436e977fbc39eb66a330750994c7b3e33382bcbe5888"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/WALKTHROUGH_SCENES_v1.json",
+      "sha256": "b52ddd70f9056728411d3550fc80dc686d14e291ef6bbb984865c9961e694b68"
+    }
+  ]
+}

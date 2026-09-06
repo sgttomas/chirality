@@ -1,0 +1,75 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 21 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > discovers the exact model, executes one governed read tool, persists evidence, and finishes canonically
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > fails closed for bad authentication, empty/unknown models, malformed discovery, and redirects
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > maps 'malformed SSE JSON' to one redacted canonical failure and releases the turn
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > maps 'context exhaustion' to one redacted canonical failure and releases the turn
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > maps 'mid-stream disconnect' to one redacted canonical failure and releases the turn
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > maps 'completion redirect' to one redacted canonical failure and releases the turn
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > fails a malformed tool call without invoking the governed tool
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > interrupts a hung stream deterministically and emits one interrupted terminal outcome
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > times out a hung provider stream, aborts it, and releases the adapter for a later turn
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > recovers on a later turn after a disconnected provider and server restart
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > keeps a scripted Claude parent and real Pi child isolated during concurrent targeted interruption
+ FAIL  src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts > Desktop and CLI shared runtime daemon > rejects a CLI turn with the typed shared-session lock while Desktop is active
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > discovers exact model IDs with the oMLX bearer key
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > refuses redirects before following them
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > returns a typed and redacted error for HTTP 401
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > returns a typed and redacted error for HTTP 403
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > returns a typed and redacted error for HTTP 500
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > types malformed, empty, unknown-model, and offline failures without key leakage
+Error: listen EPERM: operation not permitted 127.0.0.1
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/27]⎯
+
+ FAIL  src/__tests__/integration/runtime-canonical-replay-restart.integration.test.ts > canonical replay across Desktop, CLI, and daemon restart > lazily preserves legacy manager/child records and replays one canonical hierarchy
+Error: listen EPERM: operation not permitted /var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-canonical-replay-Ls9CGt/runtime/control.sock
+ ❯ ../../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/src/runtime-daemon.ts:165:16
+ ❯ RuntimeDaemon.start ../../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/src/runtime-daemon.ts:162:13
+ ❯ src/__tests__/integration/runtime-canonical-replay-restart.integration.test.ts:328:5
+    326|     });
+    327|     activeDaemons.push(firstDaemon);
+    328|     await firstDaemon.start();
+       |     ^
+    329|     const desktopClient = new RuntimeClient({
+    330|       socketPath,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/27]⎯
+
+ FAIL  src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts > Desktop and CLI shared runtime daemon > shares one daemon, project credential, and session across both public clients
+Error: listen EPERM: operation not permitted /var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-desktop-cli-i2Lq9k/runtime/control.sock
+ ❯ ../../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/src/runtime-daemon.ts:165:16
+ ❯ RuntimeDaemon.start ../../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/src/runtime-daemon.ts:162:13
+ ❯ src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts:227:5
+    225|     const daemon = new RuntimeDaemon({ runtimeDirectory, socketPath, s…
+    226|     activeDaemons.push(daemon);
+    227|     await daemon.start();
+       |     ^
+    228|     const competingDaemon = new RuntimeDaemon({ runtimeDirectory, sock…
+    229|     await expect(competingDaemon.start()).rejects.toMatchObject({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/27]⎯
+
+ FAIL  src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts > Desktop and CLI shared runtime daemon > persists exactly one terminal outcome when daemon restart interrupts an in-flight model drain
+Error: listen EPERM: operation not permitted /var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/ch-md-JaoDos/runtime/control.sock
+ ❯ ../../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/src/runtime-daemon.ts:165:16
+ ❯ RuntimeDaemon.start ../../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/src/runtime-daemon.ts:162:13
+ ❯ src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts:374:30
+    372|     });
+    373|     activeDaemons.push(firstDaemon);
+    374|     const firstDaemonStart = await firstDaemon.start();
+       |                              ^
+    375|     const projectClient = new RuntimeClient({
+    376|       socketPath,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/27]⎯
+
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > discovers exact model IDs with the oMLX bearer key
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > refuses redirects before following them
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > returns a typed and redacted error for HTTP 401
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > returns a typed and redacted error for HTTP 403
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > returns a typed and redacted error for HTTP 500
+ FAIL  src/__tests__/lib/omlx-provider-config.test.ts > oMLX provider configuration > types malformed, empty, unknown-model, and offline failures without key leakage
+Error: Server is not running.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/27]⎯
+

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "swift",
+    "-module-cache-path",
+    "/private/tmp/chirality-native-shell-02gzaapq/swift-cache",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/owned_file_ax_v2.swift",
+    "41768",
+    "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515",
+    "Folder Beta"
+  ],
+  "exit": 0,
+  "stdout": "{\n  \"rows\" : [\n    {\n      \"depth\" : 0,\n      \"role\" : \"AXMenuBar\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 1,\n      \"role\" : \"AXMenuBarItem\",\n      \"title\" : \"File\"\n    },\n    {\n      \"depth\" : 2,\n      \"role\" : \"AXMenu\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 3,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"Open Recent\"\n    },\n    {\n      \"depth\" : 4,\n      \"role\" : \"AXMenu\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 5,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"Folder Alpha\"\n    },\n    {\n      \"depth\" : 5,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"Folder Beta\"\n    },\n    {\n      \"pressed\" : \"Folder Beta\",\n      \"result\" : 0\n    },\n    {\n      \"depth\" : 5,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 5,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"Clear Menu\"\n    },\n    {\n      \"depth\" : 3,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 3,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"Close Window\"\n    },\n    {\n      \"depth\" : 3,\n      \"role\" : \"AXMenuItem\",\n      \"title\" : \"Close All\"\n    },\n    {\n      \"depth\" : 0,\n      \"role\" : \"AXWindow\",\n      \"title\" : \"Chirality Workflow Shell\"\n    },\n    {\n      \"depth\" : 1,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"Chirality Workflow Shell\"\n    },\n    {\n      \"depth\" : 2,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 3,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 4,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 5,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 6,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 6,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 1,\n      \"role\" : \"AXButton\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 1,\n      \"role\" : \"AXButton\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 2,\n      \"role\" : \"AXGroup\",\n      \"title\" : \"\"\n    },\n    {\n      \"depth\" : 1,\n      \"role\" : \"AXButton\",\n      \"title\" : \"\"\n    }\n  ],\n  \"trusted\" : true\n}\n",
+  "stderr": ""
+}

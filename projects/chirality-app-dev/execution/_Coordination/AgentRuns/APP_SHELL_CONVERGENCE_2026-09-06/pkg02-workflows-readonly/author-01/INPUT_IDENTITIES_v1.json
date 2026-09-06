@@ -1,0 +1,41 @@
+{
+  "head": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "inputs": [
+    {
+      "path": "frontend/src/lib/workspace/governed-workflow.ts",
+      "sha256": "dbd3ff9b5ba20fc7aa66dd6677cdff96b00761d2b5ce35dcb5882d522b489768"
+    },
+    {
+      "path": "frontend/src/lib/harness/agent-roster.ts",
+      "sha256": "cb678e51c20321d376a68c874744b96a133ab89aa448846c78f4de61e2c37a87"
+    },
+    {
+      "path": "frontend/src/app/api/working-root/file/file-policy.ts",
+      "sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603"
+    },
+    {
+      "path": "frontend/src/app/api/working-root/file/route.ts",
+      "sha256": "c9a604c4803b399983b3c357be8d4fc7e0877ca100c408e5c41cf435053feba1"
+    },
+    {
+      "path": "frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "99d24bd27122aa59c679299025a16009a25ad2a4165a8103471a76d3fd0998f7"
+    },
+    {
+      "path": "frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "d2d7f56ed3c181bb30b29e205f422cb91b35465858ee3d896cf39751dc62c171"
+    },
+    {
+      "path": "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "afa8764f4f2a120b31d49ec913dec2175aea613c2c10173feac42a39aa64f3b1"
+    },
+    {
+      "path": "plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+      "sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45"
+    },
+    {
+      "path": "plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+      "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6"
+    }
+  ]
+}

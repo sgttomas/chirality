@@ -1,0 +1,39 @@
+
+> chirality-frontend@2.0.0 test
+> vitest run --testTimeout=15000
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+ ❯ src/__tests__/integration/pi-omlx-wire.integration.test.ts (11 tests | 11 failed) 35ms
+     × discovers the exact model, executes one governed read tool, persists evidence, and finishes canonically 9ms
+     × fails closed for bad authentication, empty/unknown models, malformed discovery, and redirects 2ms
+     × maps 'malformed SSE JSON' to one redacted canonical failure and releases the turn 2ms
+     × maps 'context exhaustion' to one redacted canonical failure and releases the turn 2ms
+     × maps 'mid-stream disconnect' to one redacted canonical failure and releases the turn 3ms
+     × maps 'completion redirect' to one redacted canonical failure and releases the turn 2ms
+     × fails a malformed tool call without invoking the governed tool 3ms
+     × interrupts a hung stream deterministically and emits one interrupted terminal outcome 3ms
+     × times out a hung provider stream, aborts it, and releases the adapter for a later turn 2ms
+     × recovers on a later turn after a disconnected provider and server restart 3ms
+     × keeps a scripted Claude parent and real Pi child isolated during concurrent targeted interruption 3ms
+{"status":"FAIL","summaryPath":"/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-daemon-proof-test-NYTg6c/evidence/summary.json"}
+ ❯ src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts (3 tests | 3 failed) 122ms
+     × shares one daemon, project credential, and session across both public clients 29ms
+     × persists exactly one terminal outcome when daemon restart interrupts an in-flight model drain 73ms
+     × rejects a CLI turn with the typed shared-session lock while Desktop is active 20ms
+ ❯ src/__tests__/integration/runtime-canonical-replay-restart.integration.test.ts (1 test | 1 failed) 76ms
+     × lazily preserves legacy manager/child records and replays one canonical hierarchy 76ms
+ ❯ src/__tests__/lib/omlx-provider-config.test.ts (14 tests | 6 failed) 13ms
+     × discovers exact model IDs with the oMLX bearer key 6ms
+     × refuses redirects before following them 2ms
+     × returns a typed and redacted error for HTTP 401 1ms
+     × returns a typed and redacted error for HTTP 403 1ms
+     × returns a typed and redacted error for HTTP 500 0ms
+     × types malformed, empty, unknown-model, and offline failures without key leakage 0ms
+
+ Test Files  4 failed | 167 passed | 1 skipped (172)
+      Tests  21 failed | 1669 passed | 4 skipped (1694)
+   Start at  21:09:43
+   Duration  3.91s (transform 5.58s, setup 0ms, import 9.32s, tests 19.03s, environment 8ms)
+

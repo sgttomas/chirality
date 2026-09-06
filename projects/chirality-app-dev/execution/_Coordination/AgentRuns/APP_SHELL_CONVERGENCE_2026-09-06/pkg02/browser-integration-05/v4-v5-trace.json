@@ -1,0 +1,102 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx",
+    "unchanged": false
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/shell-frame.test.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/folder-conveniences.test.ts",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/folder-preload.test.ts",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+    "unchanged": false
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/folder-select.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+    "unchanged": true
+  }
+]

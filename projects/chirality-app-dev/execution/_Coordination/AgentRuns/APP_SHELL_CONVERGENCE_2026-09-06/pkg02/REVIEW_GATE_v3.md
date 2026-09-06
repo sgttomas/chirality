@@ -1,0 +1,9 @@
+# Integration v3 review gate
+
+Input: 25-member SOURCE_MANIFEST_v3.json SHA256 9241484bdda05836a5e8163d42fe84b62ff620520cdeeb23b250e64ccb782824. Full independent source review, renderer proof and a later short keyboard diagnosis verified all source hashes unchanged and each stayed within its evidence scope.
+
+source-review-04/RETURN.md terminated BLOCK for historical assistant replies being relabelled from the currently selected persona. Return SHA256 f7565d50e0e4e4737952bfa9ddc7d8b1ea832d15ed83f55379d38cbc4444dabf. Its note that keyboard diagnosis was pending describes that report's terminal point and remains unchanged.
+
+browser-integration-03 verified the prior Settings repair with ordinary pointer toggle, Escape focus return and outside click, and captured eight Files/document width/theme images. It found draft loss using the fill path, correctly held pending ordinary keyboard diagnosis. browser-keyboard-01 then reproduced first-character loss through actual key events without fill or forced click: expanded first a vanished, later bc remained; non-expanded xyz remained. This later evidence confirms the input defect independently of the earlier automation observation. Owned browser/server cleanup, port refusal and unchanged hashes preceded author release.
+
+Manager disposition: reject v3 acceptance and return exactly speaker attribution and draft-before-expansion ordering to the sole author under REMEDIATION_v4_BRIEF.md. Preserve user-confirmed composition, folder-binding and Settings repairs. No new source loci, runtime/provider authority, persisted transcript truth or public action granted. A complete new freeze, fresh full-diff review, remaining browser/native proof and final checks remain required. Native execution stays held; its isolated identity and environment work remains preparation only.

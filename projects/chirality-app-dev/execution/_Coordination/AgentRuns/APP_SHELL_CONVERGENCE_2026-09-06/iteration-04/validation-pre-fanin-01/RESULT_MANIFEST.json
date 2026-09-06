@@ -1,0 +1,40 @@
+{
+  "phase": "pre-fan-in only",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/validation-pre-fanin-01/CALIBRATION.md",
+      "sha256": "406855ed2fb9bb31a1e9796a18c9e3f8c1bc60647597601c5b788c6154850d67",
+      "bytes": 1213
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/validation-pre-fanin-01/CHECKS.json",
+      "sha256": "d959a5f144c704e005805ed83469b1d12fe3b4276e9b448281c6aa6e26f20c10",
+      "bytes": 2235
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/validation-pre-fanin-01/corpus-status.txt",
+      "sha256": "921a96d8fcfa2c08c5659046e2dac4fa1d19fc07749beec041ae5d7c5a179351",
+      "bytes": 670
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/validation-pre-fanin-01/harness-pytest.txt",
+      "sha256": "0a48305e0bf06a5d709a3bc8592b93d10af620a8071d221adccefe937188e74f",
+      "bytes": 501
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/validation-pre-fanin-01/receipt-pre-append.txt",
+      "sha256": "910ba49406a7c19319d0ac52b538c2f4a763a89fcfeab57614a2de38785a5718",
+      "bytes": 164
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/validation-pre-fanin-01/self-check.txt",
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+      "bytes": 24824
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/validation-pre-fanin-01/tracked-app-whitespace.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

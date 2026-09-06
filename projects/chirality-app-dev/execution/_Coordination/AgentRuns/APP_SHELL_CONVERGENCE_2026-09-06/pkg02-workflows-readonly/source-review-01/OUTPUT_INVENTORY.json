@@ -1,0 +1,62 @@
+[
+  {
+    "path": "AFFECTED_CHECKS.json",
+    "sha256": "792c724e12f0bc857c075cd80ee3695352f9a6756a9565c80bd2e0cb1c05670d",
+    "bytes": 2503
+  },
+  {
+    "path": "APP_HOLD_DISPATCH.json",
+    "sha256": "778a24ce1f0d28e5b791ad399abf478c47067a8155db0f113a0562dd50e1d147",
+    "bytes": 835
+  },
+  {
+    "path": "BRIEF.md",
+    "sha256": "c7485c603b3700f13390a9bd850ffbb4c6e82cf7079289b48797ff4b1efbf6bb",
+    "bytes": 3540
+  },
+  {
+    "path": "COVERAGE.json",
+    "sha256": "afefd25c132790c4977719ff73cd8cf2f03af4e218b7471088a9c9e0bb4acd68",
+    "bytes": 5421
+  },
+  {
+    "path": "INPUT_INVENTORY.json",
+    "sha256": "16cf77f2ef70b23c27d32591c3d34595c0120d3b438afab25d6903308679a7b8",
+    "bytes": 7053
+  },
+  {
+    "path": "PREFLIGHT.json",
+    "sha256": "f364a108de803e7d6568302d0829d94db25a506b4f3c865d5ccaa26a733f3a53",
+    "bytes": 837
+  },
+  {
+    "path": "RECONSTRUCTED_DIFF.patch",
+    "sha256": "9a9e25e2ae849a679475ed06f4aee2c779061b129fa18b31f2fe0b3a856c94de",
+    "bytes": 39463
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "ef4a77ae9cf4ae53919966e38920bed37673ba54637c4bbf5de572c06b7c4b09",
+    "bytes": 3555
+  },
+  {
+    "path": "SCOPE.json",
+    "sha256": "35890814ab9867c0e07c40ff2024dc050b548b4da41399a0947846d5d7f4ff94",
+    "bytes": 2276
+  },
+  {
+    "path": "VERIFICATION_AFTER.json",
+    "sha256": "aeda7a8b9f80536cf0e3113a1c90f1ca91a2df95ac5236ee4508889252ced4e9",
+    "bytes": 3259
+  },
+  {
+    "path": "VERIFICATION_BEFORE.json",
+    "sha256": "12718794fd78f7e912a423eefd672e0328bb71c18fd5b4624da14c5ebb9be725",
+    "bytes": 4584
+  },
+  {
+    "path": "_run_records/TASK_RUN_2026-09-06_review.md",
+    "sha256": "32c2650635644aaa722cf586832c0040179c5107af78fb66fb537e37c9db4352",
+    "bytes": 1132
+  }
+]

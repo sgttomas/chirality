@@ -1,0 +1,78 @@
+{
+  "attributeBeforeSha256": "4945201be485013e079f0455ebb7c97857373f236b8e04643c6d4e6a6f2f2664",
+  "attributeAfterSha256": "a4b43ecb3b6ad0d3683492e790711f719696485ea7e00466708ef53a7d8d0b52",
+  "preservedOriginalRuleCount": 18,
+  "newLiteralRuleCount": 14,
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v1.patch",
+      "sha256": "9a9e25e2ae849a679475ed06f4aee2c779061b129fa18b31f2fe0b3a856c94de",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v1.patch:302: trailing whitespace.\n+ \n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v2.patch",
+      "sha256": "2fc948dec24a4aabe921c2992a3037dc6eedbdb2a4ded4c818624dc716c931c1",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v2.patch:328: trailing whitespace.\n+ \n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v1.txt",
+      "sha256": "b05d075497d1921bfdfa901d86d866f80918c4247e210d4a9b423ca3ca514e0a",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v1.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v2.txt",
+      "sha256": "18149e67efef86693cb70f21c8eb6f43af9c309cd80cec9d35ab5ece8d23545a",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v2.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v1.txt",
+      "sha256": "6a00fdcb5544a1d1d21aa8b0a1f339a709e21d07815b59f900b848ea757487d9",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v1.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v2.txt",
+      "sha256": "c62d07007fe390127bfbfcb7ab4043a50912d4ed4bad95c32b614e4ae93e1f6c",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v2.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v1.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v1.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v2.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v2.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v1.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v1.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v4.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v4.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/full_test.stdout.log",
+      "sha256": "06197a9395094389e31158b9ffa880cbf028d895cdd1156b83e20ef8f93661f6",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/full_test.stdout.log:14: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/typecheck.stdout.log",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/typecheck.stdout.log:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/RECONSTRUCTED_DIFF.patch",
+      "sha256": "9a9e25e2ae849a679475ed06f4aee2c779061b129fa18b31f2fe0b3a856c94de",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/RECONSTRUCTED_DIFF.patch:302: trailing whitespace.\n+ \n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/RECONSTRUCTED_DIFF.patch",
+      "sha256": "2fc948dec24a4aabe921c2992a3037dc6eedbdb2a4ded4c818624dc716c931c1",
+      "originalDiagnostic": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/RECONSTRUCTED_DIFF.patch:328: trailing whitespace.\n+ \n"
+    }
+  ]
+}

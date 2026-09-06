@@ -1,0 +1,1064 @@
+{
+  "steps": [
+    {
+      "label": "expanded before focus",
+      "value": "",
+      "identity": true,
+      "expanded": 1,
+      "events": []
+    },
+    {
+      "label": "expanded after ordinary focus click",
+      "value": "",
+      "identity": true,
+      "expanded": 1,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "first keyboard character",
+      "value": "a",
+      "identity": true,
+      "expanded": 0,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "a",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "a",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "a",
+          "value": "a"
+        },
+        {
+          "type": "keyup",
+          "key": "a",
+          "value": "a"
+        }
+      ]
+    },
+    {
+      "label": "subsequent keyboard characters",
+      "value": "abc",
+      "identity": true,
+      "expanded": 0,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "a",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "a",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "a",
+          "value": "a"
+        },
+        {
+          "type": "keyup",
+          "key": "a",
+          "value": "a"
+        },
+        {
+          "type": "keydown",
+          "key": "b",
+          "value": "a"
+        },
+        {
+          "type": "beforeinput",
+          "data": "b",
+          "value": "a"
+        },
+        {
+          "type": "input",
+          "data": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keyup",
+          "key": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keydown",
+          "key": "c",
+          "value": "ab"
+        },
+        {
+          "type": "beforeinput",
+          "data": "c",
+          "value": "ab"
+        },
+        {
+          "type": "input",
+          "data": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "c",
+          "value": "abc"
+        }
+      ]
+    },
+    {
+      "label": "keyboard cleared",
+      "value": "",
+      "identity": true,
+      "expanded": 0,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "a",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "a",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "a",
+          "value": "a"
+        },
+        {
+          "type": "keyup",
+          "key": "a",
+          "value": "a"
+        },
+        {
+          "type": "keydown",
+          "key": "b",
+          "value": "a"
+        },
+        {
+          "type": "beforeinput",
+          "data": "b",
+          "value": "a"
+        },
+        {
+          "type": "input",
+          "data": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keyup",
+          "key": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keydown",
+          "key": "c",
+          "value": "ab"
+        },
+        {
+          "type": "beforeinput",
+          "data": "c",
+          "value": "ab"
+        },
+        {
+          "type": "input",
+          "data": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "abc"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "abc"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "non-expanded first character",
+      "value": "x",
+      "identity": true,
+      "expanded": 0,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "a",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "a",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "a",
+          "value": "a"
+        },
+        {
+          "type": "keyup",
+          "key": "a",
+          "value": "a"
+        },
+        {
+          "type": "keydown",
+          "key": "b",
+          "value": "a"
+        },
+        {
+          "type": "beforeinput",
+          "data": "b",
+          "value": "a"
+        },
+        {
+          "type": "input",
+          "data": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keyup",
+          "key": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keydown",
+          "key": "c",
+          "value": "ab"
+        },
+        {
+          "type": "beforeinput",
+          "data": "c",
+          "value": "ab"
+        },
+        {
+          "type": "input",
+          "data": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "abc"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "abc"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "x",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "x",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "x",
+          "value": "x"
+        },
+        {
+          "type": "keyup",
+          "key": "x",
+          "value": "x"
+        }
+      ]
+    },
+    {
+      "label": "non-expanded subsequent characters",
+      "value": "xyz",
+      "identity": true,
+      "expanded": 0,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "a",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "a",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "a",
+          "value": "a"
+        },
+        {
+          "type": "keyup",
+          "key": "a",
+          "value": "a"
+        },
+        {
+          "type": "keydown",
+          "key": "b",
+          "value": "a"
+        },
+        {
+          "type": "beforeinput",
+          "data": "b",
+          "value": "a"
+        },
+        {
+          "type": "input",
+          "data": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keyup",
+          "key": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keydown",
+          "key": "c",
+          "value": "ab"
+        },
+        {
+          "type": "beforeinput",
+          "data": "c",
+          "value": "ab"
+        },
+        {
+          "type": "input",
+          "data": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "abc"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "abc"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "x",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "x",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "x",
+          "value": "x"
+        },
+        {
+          "type": "keyup",
+          "key": "x",
+          "value": "x"
+        },
+        {
+          "type": "keydown",
+          "key": "y",
+          "value": "x"
+        },
+        {
+          "type": "beforeinput",
+          "data": "y",
+          "value": "x"
+        },
+        {
+          "type": "input",
+          "data": "y",
+          "value": "xy"
+        },
+        {
+          "type": "keyup",
+          "key": "y",
+          "value": "xy"
+        },
+        {
+          "type": "keydown",
+          "key": "z",
+          "value": "xy"
+        },
+        {
+          "type": "beforeinput",
+          "data": "z",
+          "value": "xy"
+        },
+        {
+          "type": "input",
+          "data": "z",
+          "value": "xyz"
+        },
+        {
+          "type": "keyup",
+          "key": "z",
+          "value": "xyz"
+        }
+      ]
+    },
+    {
+      "label": "browser insertText path, not system clipboard paste",
+      "value": "Pasted input replacement",
+      "identity": true,
+      "expanded": 0,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "a",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "a",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "a",
+          "value": "a"
+        },
+        {
+          "type": "keyup",
+          "key": "a",
+          "value": "a"
+        },
+        {
+          "type": "keydown",
+          "key": "b",
+          "value": "a"
+        },
+        {
+          "type": "beforeinput",
+          "data": "b",
+          "value": "a"
+        },
+        {
+          "type": "input",
+          "data": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keyup",
+          "key": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keydown",
+          "key": "c",
+          "value": "ab"
+        },
+        {
+          "type": "beforeinput",
+          "data": "c",
+          "value": "ab"
+        },
+        {
+          "type": "input",
+          "data": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "abc"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "abc"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "x",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "x",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "x",
+          "value": "x"
+        },
+        {
+          "type": "keyup",
+          "key": "x",
+          "value": "x"
+        },
+        {
+          "type": "keydown",
+          "key": "y",
+          "value": "x"
+        },
+        {
+          "type": "beforeinput",
+          "data": "y",
+          "value": "x"
+        },
+        {
+          "type": "input",
+          "data": "y",
+          "value": "xy"
+        },
+        {
+          "type": "keyup",
+          "key": "y",
+          "value": "xy"
+        },
+        {
+          "type": "keydown",
+          "key": "z",
+          "value": "xy"
+        },
+        {
+          "type": "beforeinput",
+          "data": "z",
+          "value": "xy"
+        },
+        {
+          "type": "input",
+          "data": "z",
+          "value": "xyz"
+        },
+        {
+          "type": "keyup",
+          "key": "z",
+          "value": "xyz"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "xyz"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "xyz"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "xyz"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "xyz"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "xyz"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "xyz"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        },
+        {
+          "type": "blur",
+          "value": ""
+        },
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "Pasted input replacement",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "Pasted input replacement",
+          "value": "Pasted input replacement"
+        }
+      ]
+    },
+    {
+      "label": "synthetic composition events plus browser insertText, not native IME proof",
+      "value": "漢",
+      "identity": true,
+      "expanded": 0,
+      "events": [
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "a",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "a",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "a",
+          "value": "a"
+        },
+        {
+          "type": "keyup",
+          "key": "a",
+          "value": "a"
+        },
+        {
+          "type": "keydown",
+          "key": "b",
+          "value": "a"
+        },
+        {
+          "type": "beforeinput",
+          "data": "b",
+          "value": "a"
+        },
+        {
+          "type": "input",
+          "data": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keyup",
+          "key": "b",
+          "value": "ab"
+        },
+        {
+          "type": "keydown",
+          "key": "c",
+          "value": "ab"
+        },
+        {
+          "type": "beforeinput",
+          "data": "c",
+          "value": "ab"
+        },
+        {
+          "type": "input",
+          "data": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "c",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "abc"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "abc"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "abc"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "abc"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        },
+        {
+          "type": "keydown",
+          "key": "x",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "x",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "x",
+          "value": "x"
+        },
+        {
+          "type": "keyup",
+          "key": "x",
+          "value": "x"
+        },
+        {
+          "type": "keydown",
+          "key": "y",
+          "value": "x"
+        },
+        {
+          "type": "beforeinput",
+          "data": "y",
+          "value": "x"
+        },
+        {
+          "type": "input",
+          "data": "y",
+          "value": "xy"
+        },
+        {
+          "type": "keyup",
+          "key": "y",
+          "value": "xy"
+        },
+        {
+          "type": "keydown",
+          "key": "z",
+          "value": "xy"
+        },
+        {
+          "type": "beforeinput",
+          "data": "z",
+          "value": "xy"
+        },
+        {
+          "type": "input",
+          "data": "z",
+          "value": "xyz"
+        },
+        {
+          "type": "keyup",
+          "key": "z",
+          "value": "xyz"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "xyz"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "xyz"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "xyz"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "xyz"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "xyz"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "xyz"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        },
+        {
+          "type": "blur",
+          "value": ""
+        },
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "Pasted input replacement",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "Pasted input replacement",
+          "value": "Pasted input replacement"
+        },
+        {
+          "type": "keydown",
+          "key": "Meta",
+          "value": "Pasted input replacement"
+        },
+        {
+          "type": "keydown",
+          "key": "A",
+          "value": "Pasted input replacement"
+        },
+        {
+          "type": "keyup",
+          "key": "A",
+          "value": "Pasted input replacement"
+        },
+        {
+          "type": "keyup",
+          "key": "Meta",
+          "value": "Pasted input replacement"
+        },
+        {
+          "type": "keydown",
+          "key": "Backspace",
+          "value": "Pasted input replacement"
+        },
+        {
+          "type": "beforeinput",
+          "data": null,
+          "value": "Pasted input replacement"
+        },
+        {
+          "type": "input",
+          "data": null,
+          "value": ""
+        },
+        {
+          "type": "keyup",
+          "key": "Backspace",
+          "value": ""
+        },
+        {
+          "type": "blur",
+          "value": ""
+        },
+        {
+          "type": "focus",
+          "value": ""
+        },
+        {
+          "type": "beforeinput",
+          "data": "漢",
+          "value": ""
+        },
+        {
+          "type": "input",
+          "data": "漢",
+          "value": "漢"
+        }
+      ]
+    }
+  ],
+  "node": "v24.18.0",
+  "browser": "148.0.7778.96",
+  "pageErrors": []
+}

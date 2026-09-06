@@ -1,0 +1,14 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/MANAGER_RETURN_v2.md",
+    "sha256": "89790a933a9bf604f2e69c00814923eecd0fc0761611012d1e5b528bf52ba292"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/SOURCE_FINAL_CHECK_v2.json",
+    "sha256": "b3722ca35d6acbb26f805b1b1d0e6cd1df47a2beb39aa69e57e420f6cb2b8aed"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_run_records/SHELL_PRESENTATION_PARTIAL_2026-09-06.md",
+    "sha256": "6eb0954727d06ede5025691a9a854fdff877f5e3b891718571cc0673859e8ac6"
+  }
+]

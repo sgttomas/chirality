@@ -1,0 +1,166 @@
+{
+  "repo_root": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "head": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv",
+      "sha256": "b3fcca9e2ab6e5ee288a80fbf7e1b8f5869030b76edbb801070c27088808f2b1",
+      "bytes": 15997
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+      "sha256": "16e2596ac1c9d5d275774d0f647526efbde350e4ceb1a5903731720216542980",
+      "bytes": 19989
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv",
+      "sha256": "ba643b71d82e45502fe5aca02af69efc08702e7d8ce7369180a0993014edf644",
+      "bytes": 29221
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+      "sha256": "bca355e7c9e4735bbbcccda90ac313cc875524efebbddd9899fe3ac8ba48e7bb",
+      "bytes": 20679
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Dependencies.csv",
+      "sha256": "8e880e11478e04e66d7db245b8044007ced07b016d91a985216253547450ebee",
+      "bytes": 6954
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+      "sha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd",
+      "bytes": 9244
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+      "sha256": "4b17594e49156a3ab4dfa566830b8fa871c9de49c1680c0cf4d326012958649a",
+      "bytes": 29252
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+      "sha256": "16053333f23dd8905c5567eeae4151de03e56f77f58fa64d7c52d0dc30d249f0",
+      "bytes": 9235
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+      "sha256": "249ac0291f72ef8a84d0b51f18a2ffac9c2b486eeff58559c894d55e3fe03f76",
+      "bytes": 15892
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+      "sha256": "6e78e98c67cfeb5c75fafc626531e9f8af5624df4fb3ce9398e9b365e959ed5d",
+      "bytes": 18372
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+      "sha256": "fc05153fd49cc879f9dbc003268946b2d66a3697e165303fb2447e9b2df3c1c6",
+      "bytes": 40403
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/ACCOUNT_SETTINGS_QUALITY_ADDENDUM_v1.md",
+      "sha256": "d01b4eea0a3a83444aed7d12234b00cde8b90a5ff03f9d7c6cd073df1d305c4c",
+      "bytes": 6524
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/RETURN.md",
+      "sha256": "fb2ca5cd12f9965496b121b427dfa4b578d0a316341d82a0374502b89f96a2be",
+      "bytes": 10952
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/WORKFLOWS_BRIEF_CANDIDATE_v1.md",
+      "sha256": "147650335094708917aabe3a5476285e7ea74107eb78221cb156b0367fa604a8",
+      "bytes": 19921
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/AUTHOR_RETURN_v2.md",
+      "sha256": "f6b935cb8735a8a0537a09eb02d2f9eb65a9946f88a9e129cc59be5ece5e9f66",
+      "bytes": 2102
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/INTERFACE_FINDINGS_v1.md",
+      "sha256": "6361d291df1e7347e96b87cf04618f7a6d750d5fbf177d6b10427c8ed9bf9fee",
+      "bytes": 9480
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_MANIFEST_v2.json",
+      "sha256": "3f145c13ab1afff77feb53669f934ec587534871681144616aef483214fa8177",
+      "bytes": 2254
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/RETURN.md",
+      "sha256": "01aa1d3f680a8146f756e0e73fd95a62701ea2bcc23d1475aa6c7e2612703da4",
+      "bytes": 2190
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/final-checks-v2-host.json",
+      "sha256": "27bf15a86aceb4a8803b738fb0541b8af6536cd6e2c7db74ac67f0b7cedb18bc",
+      "bytes": 7902
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/RETURN.md",
+      "sha256": "2343cf3084bd400c60acb51fcc033d0bbf5581b734a685b87d427eee77036b44",
+      "bytes": 8133
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/ACCEPTED_PLAN.md",
+      "sha256": "69a6d00b16fbe82ac13c2029137445d5161858463b19b4bde869efa45a5f0efe",
+      "bytes": 7172
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "sha256": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a",
+      "bytes": 4602
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+      "sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603",
+      "bytes": 8582
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "99d24bd27122aa59c679299025a16009a25ad2a4165a8103471a76d3fd0998f7",
+      "bytes": 32683
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "4dec2c988d2ba495a69ca21f7eabdb53c9f42eefddfa2d33f5bc4231de90dc17",
+      "bytes": 6910
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "205b39a280d68a5ff1aaccf3e4a0a139904257f3d52db8536a4d3785dd5a5801",
+      "bytes": 28387
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/agent-roster.ts",
+      "sha256": "cb678e51c20321d376a68c874744b96a133ab89aa448846c78f4de61e2c37a87",
+      "bytes": 4336
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "sha256": "4f1fddb054b8d80c9aab113e93cee0b19923d9c81720b20ee0d279a657194837",
+      "bytes": 13907
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/workspace/governed-workflow.ts",
+      "sha256": "dbd3ff9b5ba20fc7aa66dd6677cdff96b00761d2b5ce35dcb5882d522b489768",
+      "bytes": 11981
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/types.ts",
+      "sha256": "7e035b3a7b1d50176b7f0605b62da9695502305a38d61e27b7c3799531de70e3",
+      "bytes": 8573
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/session.ts",
+      "sha256": "22e49ccf47a83e93d065a1d731a0e726cba6559f8436f78c3451d4db2fd8bf51",
+      "bytes": 1048
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/session-store.ts",
+      "sha256": "fe81bc9a51ad7ebbeb2c1486fc802dffafde434d4d56d677c17347893150ffad",
+      "bytes": 16143
+    }
+  ]
+}

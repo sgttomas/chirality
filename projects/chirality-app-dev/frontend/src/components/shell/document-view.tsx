@@ -376,7 +376,7 @@ function FileMarkdown({ content, target, onOpenDocument, onHeadings }: { content
   return <div className="chat-markdown" ref={contentRef}><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={components}>{content}</ReactMarkdown></div>;
 }
 
-function FileDocumentView({ target, onOpenDocument, expanded }: { target: string; onOpenDocument?: (path: string) => void; expanded?: boolean }): JSX.Element {
+function FileDocumentView({ target, onOpenDocument, expanded, presentation }: { target: string; onOpenDocument?: (path: string) => void; expanded?: boolean; presentation?: 'woven' }): JSX.Element {
   const { projectRoot } = useWorkspace();
   const [loaded, setLoaded] = useState<{ key: string; preview?: FilePreview; error?: string } | null>(null);
   const [reload, setReload] = useState(0);
@@ -412,9 +412,9 @@ function FileDocumentView({ target, onOpenDocument, expanded }: { target: string
   };
   const markdown = /\.(md|markdown)$/i.test(target);
   const csv = /\.csv$/i.test(target);
-  return <section className="panel panel--document" aria-label="Document preview">
-    <header className="panel-header"><h2>{headings.find(heading => heading.level === 1)?.title || preview?.name || target.split('/').at(-1)}</h2>
-      <button type="button" onClick={() => setReload(value => value + 1)}>Reload</button>
+  return <section className={`panel panel--document${presentation === 'woven' ? ' document-view--woven' : ''}`} aria-label="Document preview">
+    <header className="panel-header"><h2 className={presentation === 'woven' && headings.some(heading => heading.level === 1) ? 'sr-only' : undefined}>{headings.find(heading => heading.level === 1)?.title || preview?.name || target.split('/').at(-1)}</h2>
+      {presentation !== 'woven' ? <button type="button" onClick={() => setReload(value => value + 1)}>Reload</button> : null}
       {headings.length ? <details><summary>Headings</summary><nav aria-label="Document headings">{headings.map(heading => <button type="button" key={heading.id} onClick={() => {
         const element = Array.from(documentBodyRef.current?.querySelectorAll<HTMLElement>('[id]') ?? []).find(item => item.id === heading.id);
         element?.scrollIntoView({ block: 'nearest' }); element?.focus();
@@ -442,7 +442,7 @@ function FileDocumentView({ target, onOpenDocument, expanded }: { target: string
 }
 
 /** Optional file target extends, rather than replaces, the deliverable document viewer. */
-export function DocumentView({ target, onOpenDocument, expanded }: { target?: string; onOpenDocument?: (path: string) => void; expanded?: boolean } = {}): JSX.Element {
+export function DocumentView({ target, onOpenDocument, expanded, presentation }: { target?: string; onOpenDocument?: (path: string) => void; expanded?: boolean; presentation?: 'woven' } = {}): JSX.Element {
   const { projectRoot } = useWorkspace();
-  return target === undefined ? <LegacyDocumentView /> : <FileDocumentView key={`${projectRoot}:${target}`} target={target} onOpenDocument={onOpenDocument} expanded={expanded} />;
+  return target === undefined ? <LegacyDocumentView /> : <FileDocumentView key={`${projectRoot}:${target}`} target={target} onOpenDocument={onOpenDocument} expanded={expanded} presentation={presentation} />;
 }

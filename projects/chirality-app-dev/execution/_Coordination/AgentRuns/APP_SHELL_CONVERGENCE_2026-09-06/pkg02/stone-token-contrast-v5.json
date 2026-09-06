@@ -1,0 +1,171 @@
+{
+  "source": "projects/chirality-app-dev/frontend/src/app/globals.css",
+  "sourceSha256": "ba93d0a194ecb36b9cf3315d0299cd9852352003e344cfb8737432681ff45ff4",
+  "method": "sRGB relative luminance, (Lmax+0.05)/(Lmin+0.05)",
+  "claim": "Source-token text contrast calculation only; not a rendered opacity/compositing or whole-interface accessibility audit. Decorative rules and disabled controls excluded.",
+  "rows": [
+    {
+      "theme": "light",
+      "foregroundToken": "--ink",
+      "backgroundToken": "--ground",
+      "foreground": "#222120",
+      "background": "#f2f1ed",
+      "ratio": 14.2225,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--ink",
+      "backgroundToken": "--surface",
+      "foreground": "#222120",
+      "background": "#ffffff",
+      "ratio": 16.0745,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--ink-soft",
+      "backgroundToken": "--ground",
+      "foreground": "#5c5a55",
+      "background": "#f2f1ed",
+      "ratio": 6.0945,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--ink-soft",
+      "backgroundToken": "--surface",
+      "foreground": "#5c5a55",
+      "background": "#ffffff",
+      "ratio": 6.8882,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--ink-faint",
+      "backgroundToken": "--ground",
+      "foreground": "#706e68",
+      "background": "#f2f1ed",
+      "ratio": 4.5107,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--ink-faint",
+      "backgroundToken": "--surface",
+      "foreground": "#706e68",
+      "background": "#ffffff",
+      "ratio": 5.0981,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--brand-ink",
+      "backgroundToken": "--ground",
+      "foreground": "#4a3423",
+      "background": "#f2f1ed",
+      "ratio": 10.2846,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--brand-ink",
+      "backgroundToken": "--surface",
+      "foreground": "#4a3423",
+      "background": "#ffffff",
+      "ratio": 11.6238,
+      "normalText4_5": true
+    },
+    {
+      "theme": "light",
+      "foregroundToken": "--cta-ink",
+      "backgroundToken": "--cta",
+      "foreground": "#ffffff",
+      "background": "#222120",
+      "ratio": 16.0745,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--ink",
+      "backgroundToken": "--ground",
+      "foreground": "#e8e7e2",
+      "background": "#161615",
+      "ratio": 14.6241,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--ink",
+      "backgroundToken": "--surface",
+      "foreground": "#e8e7e2",
+      "background": "#1e1e1c",
+      "ratio": 13.4849,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--ink-soft",
+      "backgroundToken": "--ground",
+      "foreground": "#a5a49d",
+      "background": "#161615",
+      "ratio": 7.2405,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--ink-soft",
+      "backgroundToken": "--surface",
+      "foreground": "#a5a49d",
+      "background": "#1e1e1c",
+      "ratio": 6.6765,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--ink-faint",
+      "backgroundToken": "--ground",
+      "foreground": "#a09f98",
+      "background": "#161615",
+      "ratio": 6.8184,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--ink-faint",
+      "backgroundToken": "--surface",
+      "foreground": "#a09f98",
+      "background": "#1e1e1c",
+      "ratio": 6.2873,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--brand-ink",
+      "backgroundToken": "--ground",
+      "foreground": "#e8e7e2",
+      "background": "#161615",
+      "ratio": 14.6241,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--brand-ink",
+      "backgroundToken": "--surface",
+      "foreground": "#e8e7e2",
+      "background": "#1e1e1c",
+      "ratio": 13.4849,
+      "normalText4_5": true
+    },
+    {
+      "theme": "dark",
+      "foregroundToken": "--cta-ink",
+      "backgroundToken": "--cta",
+      "foreground": "#1a1a19",
+      "background": "#e8e7e2",
+      "ratio": 14.0661,
+      "normalText4_5": true
+    }
+  ],
+  "allDeclaredTextPairsPass": true
+}

@@ -1,0 +1,888 @@
+{
+  "schema": "native-build-binding/v1",
+  "generatedAt": "2026-09-06T04:43:30.838564+00:00",
+  "sourceManifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_MANIFEST_v5.json",
+  "sourceManifestSha256": "b7fd5e3ea0adf4f7f33371f338655643078746934ab3ab5efaa5ce0391139e9c",
+  "sourceMembersVerified": 25,
+  "buildEvidence": "native-production-build-v5-host.json",
+  "status": "FRESH_PRODUCTION_BUILD_PASS",
+  "excludedGeneratedPaths": [
+    ".next/cache",
+    ".next/standalone duplicate distribution",
+    ".next/diagnostics",
+    ".next/types",
+    ".next/trace runtime trace"
+  ],
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/BUILD_ID",
+      "sha256": "7ef45186cce6b76d4cda081f43eee62571193c0187ba6d0bce2a2d4805d7fc1a",
+      "bytes": 21
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/app-build-manifest.json",
+      "sha256": "15fe1b854795078ac1859376a73f17f9f62f0f767a192ce6a7cdf9165cf75c34",
+      "bytes": 9300
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/app-path-routes-manifest.json",
+      "sha256": "c9a21d52cd0b3dabe4f401473ecca047665218feaa3921c5010df593bf525005",
+      "bytes": 1518
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/build-manifest.json",
+      "sha256": "b7568b186bafd0e8230e6f2f8eb1de3f6edc363cad82bf6ebf999436dc67ea34",
+      "bytes": 995
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/export-marker.json",
+      "sha256": "82356527db218adb95bd1eca0ede6f3391165b38b22d667d064e62e6b539d974",
+      "bytes": 111
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/images-manifest.json",
+      "sha256": "aa214cfadf69e21be1f4300f1c33b0266167f3eb9108825ac6238b295ac510ad",
+      "bytes": 905
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/next-minimal-server.js.nft.json",
+      "sha256": "5f6c8c4b9e119c66f73827e60df157db868172bbc080db1eedd7381bb61d8cc5",
+      "bytes": 9772
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/next-server.js.nft.json",
+      "sha256": "d4eb7e8b975a2acdf0127d583b230b7f592657d907e6da65f35e9facd593808b",
+      "bytes": 46228
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/package.json",
+      "sha256": "091a04fa67c7907b98e106fcff8b964e13129754fce72d24f3025b97c4887fa3",
+      "bytes": 20
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/prerender-manifest.json",
+      "sha256": "502298deb8fb0f2d930c5723b030c392fe51c0ed72a78470a791d2924a492e15",
+      "bytes": 1209
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/react-loadable-manifest.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "bytes": 2
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/required-server-files.json",
+      "sha256": "0c24fa5548c6de816b86038f26fef5bed5a2c16d3b8868070447f68046cd1d5d",
+      "bytes": 9242
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/routes-manifest.json",
+      "sha256": "77addc3129582403770e9ce6635cfc4e1822b21e94221601257a0bdbf89cdb3d",
+      "bytes": 2367
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app-paths-manifest.json",
+      "sha256": "f5b74bc6a2f028e311425c9c55509e151f91f356e4c1701cf2cfe2ce6bf040af",
+      "bytes": 1812
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/_not-found/page.js",
+      "sha256": "76ef872e3dab24a200fd4be50204c38cf5dfc8f8462cb7a3cbdf8912f0672955",
+      "bytes": 15722
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/_not-found/page.js.nft.json",
+      "sha256": "354e411aa067a177c739c0a76681f10fa6498fe2d9af3b620f05f7e43c8f5da0",
+      "bytes": 7628
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/_not-found/page_client-reference-manifest.js",
+      "sha256": "5fd67344bbf18ef2813ae6f9d4c66f785833c920c0de74b7dc0a1e843e9c3155",
+      "bytes": 13752
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/agents/route.js",
+      "sha256": "e472728089c549a50e57107fd81986c20b0f40f9e90b16fc643597e35494444c",
+      "bytes": 6905
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/agents/route.js.nft.json",
+      "sha256": "d6d401b64bda1317ae8cc13ea88fccca1c867872605e0a5eccc1fbe581f5441c",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/agents/route_client-reference-manifest.js",
+      "sha256": "07d7746eee75e0c1e7aaf707b631f1b2ed23d983638f507b418b7a23a8522d75",
+      "bytes": 13770
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/interrupt/route.js",
+      "sha256": "2bb742ee3c1f5e70b41b03ef7aced69a85e661667c68f349507c4093fbc721ac",
+      "bytes": 6913
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/interrupt/route.js.nft.json",
+      "sha256": "d6d401b64bda1317ae8cc13ea88fccca1c867872605e0a5eccc1fbe581f5441c",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/interrupt/route_client-reference-manifest.js",
+      "sha256": "7fc6027e6064fb80e59cf0d232cbce5371a2340177fa864964cc422fbbe61187",
+      "bytes": 13776
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/permission/route.js",
+      "sha256": "69002df72c6b70d23992b03245fe606d2a020110fdbe33260b5e8ecf9f33f5e0",
+      "bytes": 7136
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/permission/route.js.nft.json",
+      "sha256": "d6d401b64bda1317ae8cc13ea88fccca1c867872605e0a5eccc1fbe581f5441c",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/permission/route_client-reference-manifest.js",
+      "sha256": "74d59f695064876f4ce8dfb40c9bcb092efa41e6e092943119bab4753727806f",
+      "bytes": 13778
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/scaffold/route.js",
+      "sha256": "4191b5102c2381263cc9d99dcc813a776779b7c02cdc7bff0b2c8ce97a34370b",
+      "bytes": 7053
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/scaffold/route.js.nft.json",
+      "sha256": "d6d401b64bda1317ae8cc13ea88fccca1c867872605e0a5eccc1fbe581f5441c",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/scaffold/route_client-reference-manifest.js",
+      "sha256": "3a751edf430c384c03e01e26346d62c1a2f80eaf5dce004300a1d6417902bfde",
+      "bytes": 13774
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/[id]/events/route.js",
+      "sha256": "8c2a14900a6667aab396fb2ba0ff4bbe11390e255b93d99612f467117fe40a51",
+      "bytes": 7080
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/[id]/events/route.js.nft.json",
+      "sha256": "56810183062061c593f0b01c3303ed8e8a93b7d40e98fe52293dde76029a5df0",
+      "bytes": 8808
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/[id]/events/route_client-reference-manifest.js",
+      "sha256": "180e792e67004019bddab133ea95cd989f67444e8bc8634c792449c491636e41",
+      "bytes": 13920
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/[id]/route.js",
+      "sha256": "64bbefbb869bb6a450267b7a014de6cd8d2f93077944be7f0f073447a72e0e10",
+      "bytes": 7113
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/[id]/route.js.nft.json",
+      "sha256": "8ab550862b178087b9fccc72456078e7941bf7f50b9650b450c865fcdbdf72e7",
+      "bytes": 8505
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/[id]/route_client-reference-manifest.js",
+      "sha256": "3f94e1d2e863c4f851992047097e86cca40c29571332dfad51348f6563673111",
+      "bytes": 13782
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/boot/route.js",
+      "sha256": "30a43c24601676c8984f0e893386a063dc1a2e94482e9d435432af71b21997c3",
+      "bytes": 6945
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/boot/route.js.nft.json",
+      "sha256": "8ab550862b178087b9fccc72456078e7941bf7f50b9650b450c865fcdbdf72e7",
+      "bytes": 8505
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/boot/route_client-reference-manifest.js",
+      "sha256": "12b99f1bfdc7502a049cd18d21b830aba793bb8e3e2ae328f6595d9035f95d50",
+      "bytes": 13782
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/create/route.js",
+      "sha256": "942773d2eb9ead3054f5f98684f8b7a901ec4285e1f6de4bd0d2cce1a5e407c3",
+      "bytes": 6981
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/create/route.js.nft.json",
+      "sha256": "8ab550862b178087b9fccc72456078e7941bf7f50b9650b450c865fcdbdf72e7",
+      "bytes": 8505
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/create/route_client-reference-manifest.js",
+      "sha256": "a527a771095ae1e3fe962143f75da061f4e226c281b73af263bf1637ee8f087a",
+      "bytes": 13786
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/list/route.js",
+      "sha256": "127845f4fdc29191f80534af72700ac637be8192960eaa822cd68a28e238a0c9",
+      "bytes": 6940
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/list/route.js.nft.json",
+      "sha256": "8ab550862b178087b9fccc72456078e7941bf7f50b9650b450c865fcdbdf72e7",
+      "bytes": 8505
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/session/list/route_client-reference-manifest.js",
+      "sha256": "6afaf6bec2f133201f836c1a720a3dca2c0020489ea429bc5a6eb05f2df38389",
+      "bytes": 13782
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/turn/route.js",
+      "sha256": "632a7a6cf3d70dfe0a959ff856437c993fff7b87af24ebd177992fb0938145a2",
+      "bytes": 7139
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/turn/route.js.nft.json",
+      "sha256": "d6d401b64bda1317ae8cc13ea88fccca1c867872605e0a5eccc1fbe581f5441c",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/harness/turn/route_client-reference-manifest.js",
+      "sha256": "fe3a9a9854a8ad377800e52df108a2ff1d07112c24dca72a475a8b7cf400c608",
+      "bytes": 13766
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/project/deliverables/route.js",
+      "sha256": "c51c7a8e3cf06e0bd2af29ef685f78706f2a8a792042e53f14b0b65e308ed7d6",
+      "bytes": 6956
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/project/deliverables/route.js.nft.json",
+      "sha256": "28c3533e2625632ab26460348c8570737e2e4b8557e93226dba226e0ebd0702a",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/project/deliverables/route_client-reference-manifest.js",
+      "sha256": "3c8c41dcdd622801b60544c6bc498f60fe01d61d5e400dac76d6a5b9b696449b",
+      "bytes": 13782
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/content/route.js",
+      "sha256": "52fff67d02e323b89c3e0cf514ce8dcff06c518d3741c0457098b5d8e35baa92",
+      "bytes": 7128
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/content/route.js.nft.json",
+      "sha256": "b6f1dfbd3887137aa1298889093b78d56e99658fe121e2fdc2887cf4e598292c",
+      "bytes": 8536
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/content/route_client-reference-manifest.js",
+      "sha256": "d04f2b25194c8af2a18c3ab6b7c76a35278a19cdec871f082e77ba9b4ab169cc",
+      "bytes": 13806
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/dependencies/route.js",
+      "sha256": "1c9c0366173fb4f8a227be093f4b58083353120a82e4045ce3f586c83ec36b03",
+      "bytes": 8170
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/dependencies/route.js.nft.json",
+      "sha256": "b6f1dfbd3887137aa1298889093b78d56e99658fe121e2fdc2887cf4e598292c",
+      "bytes": 8536
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/dependencies/route_client-reference-manifest.js",
+      "sha256": "e89eed63b391adb543a6b3ceacf360260fc63908f3c3e7f55a46eb6c2727020c",
+      "bytes": 13816
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/status/route.js",
+      "sha256": "fdfeada257d783f1c9cba32d52adcd3a343e58fafb4a293e3233c623e0bb16d1",
+      "bytes": 7049
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/status/route.js.nft.json",
+      "sha256": "b6f1dfbd3887137aa1298889093b78d56e99658fe121e2fdc2887cf4e598292c",
+      "bytes": 8536
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/status/route_client-reference-manifest.js",
+      "sha256": "09a475b65b285ae99eefbe918455a3072ba0e2ca6762017cd9813fff7bbbb408",
+      "bytes": 13804
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/status/transition/route.js",
+      "sha256": "49d3f03ce26b7e25f1b3a6f56d7e71b77858efb5c019c15f4514ea6dbefec2da",
+      "bytes": 7711
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/status/transition/route.js.nft.json",
+      "sha256": "d5fdf7486b03269a224a67e9cfacff39cecf7505807890595b7e1c336b09e9fb",
+      "bytes": 8842
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/deliverable/status/transition/route_client-reference-manifest.js",
+      "sha256": "6e0efcba7f581e025579afcea251b1bfc37a6aadb7d0e4cb1caef96c59d965c7",
+      "bytes": 13961
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/file/route.js",
+      "sha256": "4561806a6283220b99ad09f612dbc8af6ac4b3a2302c92d6428572aebd5d89e1",
+      "bytes": 12742
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/file/route.js.nft.json",
+      "sha256": "4058142499a0d30c4904d1826737c01e83c53e2274dbbff92d6d251e91ab9992",
+      "bytes": 9852
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/file/route_client-reference-manifest.js",
+      "sha256": "4bf1150f8e221b8f7e896f1fb4c1f7406bbc0586e12add49202eb01df920abbc",
+      "bytes": 13776
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/scope/route.js",
+      "sha256": "9c06c4837be943a994e928adffe48066675baf87eada1cadba8849d7dfe3cdad",
+      "bytes": 6946
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/scope/route.js.nft.json",
+      "sha256": "28c3533e2625632ab26460348c8570737e2e4b8557e93226dba226e0ebd0702a",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/scope/route_client-reference-manifest.js",
+      "sha256": "e9e5373b266a48f23af57315e254c90dd0d9fcf7181e91e4e2ae044d2b31c52d",
+      "bytes": 13778
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/tree/route.js",
+      "sha256": "a6f12caf9d5f5c17f7f30a012025d1b02c74b5b2ac525fc1dacd142192d5d51e",
+      "bytes": 7098
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/tree/route.js.nft.json",
+      "sha256": "28c3533e2625632ab26460348c8570737e2e4b8557e93226dba226e0ebd0702a",
+      "bytes": 8202
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/tree/route_client-reference-manifest.js",
+      "sha256": "47fc235245983fc5e6d0857aca593d3fcab43c5ed93207db14bf46476066a930",
+      "bytes": 13776
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/validate/route.js",
+      "sha256": "c24e7dce20123c136fca54fe253f08fcc73febda3f3e083de2ec5f922602b7a8",
+      "bytes": 7509
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/validate/route.js.nft.json",
+      "sha256": "4058142499a0d30c4904d1826737c01e83c53e2274dbbff92d6d251e91ab9992",
+      "bytes": 9852
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/validate/route_client-reference-manifest.js",
+      "sha256": "96a4dd9c8e875bd21338babc8d2b35eca841bf64a693844d299588f44e71aca1",
+      "bytes": 13784
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/chat/page.js",
+      "sha256": "32d2dd6861adc7d4d948c45e76bb32b79c4b0fb45a3521a628867db002862bb1",
+      "bytes": 18343
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/chat/page.js.nft.json",
+      "sha256": "01934f0db4ff202079a698e6fb3f61aa87f128077cfc6aa93019e5932c02c5eb",
+      "bytes": 7677
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/chat/page_client-reference-manifest.js",
+      "sha256": "46900736eda4c96fbe33c5fcb54611d150ce3da4b5f550ca9a0ae5d3c001391c",
+      "bytes": 13982
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/icon.svg.body",
+      "sha256": "3e7920928fba9e3ad7d0af7355bbef692f245a16d593037a90d5070d245156ae",
+      "bytes": 935
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/icon.svg.meta",
+      "sha256": "103e4320394fd44d24ca97ed894df48190ce2a320d59fc4d0148fe7e0036eae0",
+      "bytes": 218
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/icon.svg/route.js",
+      "sha256": "576326c76fda04634db4fe0f65cb58d7b625c279a55f3629382c9749741b875d",
+      "bytes": 8029
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/icon.svg/route.js.nft.json",
+      "sha256": "725d3ff9b299d5cfba016856010eb3679d1bafe520314e274e5c489656d0b38d",
+      "bytes": 7537
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/page.js",
+      "sha256": "8866a402b4ed3adec0623440eae80fa96fcd64c0b91f863403feda20aa1d88c4",
+      "bytes": 18546
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/page.js.nft.json",
+      "sha256": "6f4e379f8f2ea1158b9e5b0decc4719335c8ccb574e6d4457c7a61dff8251588",
+      "bytes": 7368
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/page_client-reference-manifest.js",
+      "sha256": "3bc2150ff4530e681bf4ba5a9018dfabb21ff97fb5e70218ad9774442036c110",
+      "bytes": 13632
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/pipeline/page.js",
+      "sha256": "e7a7e05da052ed478bc904367ceccf0aedf3a47f573461524951f6bac16163ce",
+      "bytes": 18025
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/pipeline/page.js.nft.json",
+      "sha256": "01934f0db4ff202079a698e6fb3f61aa87f128077cfc6aa93019e5932c02c5eb",
+      "bytes": 7677
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/pipeline/page_client-reference-manifest.js",
+      "sha256": "df44dca4309886ca035f40956c9c3381c989cc4224c4e9a29eb9876a5bad7ae8",
+      "bytes": 13989
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/workbench/page.js",
+      "sha256": "72b887bcd55d3d689df41f34449efe291c0d53d42b1cda158fea4e36e610e9d0",
+      "bytes": 18034
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/workbench/page.js.nft.json",
+      "sha256": "01934f0db4ff202079a698e6fb3f61aa87f128077cfc6aa93019e5932c02c5eb",
+      "bytes": 7677
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/workbench/page_client-reference-manifest.js",
+      "sha256": "4079ab649d40a2a77b4acd045ceabdc0faad4845ad9fa518938775e00c52e99c",
+      "bytes": 13992
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/104.js",
+      "sha256": "3c8643b1880378859f76329b83bf839d211db8e3ed36f505ddd8c1133dbd4f4e",
+      "bytes": 21463
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/331.js",
+      "sha256": "7b1afb0d7533386f232fe5564210c347e921d25583f1b823b725e2f4f24db451",
+      "bytes": 147015
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/444.js",
+      "sha256": "237aeaa16ca3dc474cffd472105ef4b61d5d759e78f86bdab24d5eab4782a041",
+      "bytes": 38819
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/45.js",
+      "sha256": "949aaccf84b27e3946203a8e35eaf3fe34cc41d458cc0b6df30f864628f6d76d",
+      "bytes": 523338
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/507.js",
+      "sha256": "90fa8480a9bf4293d0618a0da2ee58e934d6d5a1145ebc374b62c51c560478b1",
+      "bytes": 110865
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/611.js",
+      "sha256": "4cff3b245673ca04aad034c7666c410a155cb6d67a4d93757d47513dd9abe6bd",
+      "bytes": 69183
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/692.js",
+      "sha256": "86dc4470b71bb4da83df89cdfef5618e1af46d1526099b21951439781ec563d4",
+      "bytes": 31311
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/773.js",
+      "sha256": "46c75a87edf5f94c6f4552d3dbf9da9fdce17f03a0229e5a908d6c8f703c2ef4",
+      "bytes": 2571
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/933.js",
+      "sha256": "de4094372eb94d921595b52e4d064d47782bbd80cadc81b3d1bd60e6d2ffc5bf",
+      "bytes": 79422
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/chunks/983.js",
+      "sha256": "552f6f094acea80f8dbd4cee99ea0da0b3afa4f9f3811cf51ab5abbf9139b80f",
+      "bytes": 21200
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/functions-config-manifest.json",
+      "sha256": "f3907ae6dc696ddffbca9c653165e2c424f73d597ad4b3528c8e7eaf5da1c48f",
+      "bytes": 73
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/interception-route-rewrite-manifest.js",
+      "sha256": "fc5133e40acf09e6517b073ddd7b5c0c218d09938848902210f2cc13f08e1c81",
+      "bytes": 48
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/middleware-build-manifest.js",
+      "sha256": "860b991a5b80d75b43dc8f474f5100e3aa76133415fbc50093a73c3ad96d1eed",
+      "bytes": 921
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/middleware-manifest.json",
+      "sha256": "0a8520bc7e076f7ae717c2d62713990c83e8a3d74626f327a3844bc0504e210c",
+      "bytes": 83
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/middleware-react-loadable-manifest.js",
+      "sha256": "ad2e79ec91e2a5440840da3d8bd222c279b3b4c47e89a968327a66f6cb12eb82",
+      "bytes": 36
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/next-font-manifest.js",
+      "sha256": "cf70e6fe793d56aa5f63b9392086629fb12da4cb1a7b35cd1c98460fe2ca9fc4",
+      "bytes": 623
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/next-font-manifest.json",
+      "sha256": "34f5eba00bedf1b81a3527ee9342c2fb0132113fbb2a71d32219b0a7a1ceb872",
+      "bytes": 594
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages-manifest.json",
+      "sha256": "f42d20f0436b68c912daf5e35f6bf3c465fc626b3b07dee5d298bb3d3a636212",
+      "bytes": 100
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages/500.html",
+      "sha256": "65a6d96e21954e6a752722367c963d7077ac08cefaee4da90703e0f1a24dc337",
+      "bytes": 2007
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages/_app.js",
+      "sha256": "6dbdf683e20d67a8bbd1dde2642ce15b3332b2d83c382ecc016fe6496a480457",
+      "bytes": 3361
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages/_app.js.nft.json",
+      "sha256": "e03334f487c5ebfc2cfa1d78515aeba15ab4462f2d35e0c4c30676736e389ca3",
+      "bytes": 517
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages/_document.js",
+      "sha256": "430dc4b6c57859b3d85ea38f631ab930425f08eb56d45e912bfc34d0ae6fa5a6",
+      "bytes": 424
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages/_document.js.nft.json",
+      "sha256": "5c2ef2f0868b81ebb570b87e4190e1439722be38812ee1fcf12309c872ef2676",
+      "bytes": 7153
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages/_error.js",
+      "sha256": "9b561cb3b791496e88eca0d4ce34d92f8614a43a00cee50fb20a1a1719127d91",
+      "bytes": 80041
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/pages/_error.js.nft.json",
+      "sha256": "027e11c55c723b0bac79f224dacf1991ddf0f3a18b2a3fb8da4835b87e2d9d45",
+      "bytes": 7151
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/server-reference-manifest.js",
+      "sha256": "ce01006c00e1f63bcbfe41b3f7edd260d969b41d0a323b705c44e1ef9df13d8c",
+      "bytes": 123
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/server-reference-manifest.json",
+      "sha256": "e289bee407a182e4c20ce22eedba95d63d2deee1aab7a2ebe4f64bcaf71903a5",
+      "bytes": 84
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/webpack-runtime.js",
+      "sha256": "2bf3bc5656bcf0faba0cd2f43cc900331d48106455b450d9648106129559ec7a",
+      "bytes": 1484
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/150-eeb242d6fdd9f644.js",
+      "sha256": "888403f180888a2d4e83de759cd21c828b0db1628814c2b9cc9227b8d0b63df6",
+      "bytes": 99853
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/255-62902f04efbdd792.js",
+      "sha256": "5f6656dbfa5584e44f1d178c6b34a1a634b118956ba3fd7621ad7145d9bd6b01",
+      "bytes": 173532
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/35-80aff4ecd2fab935.js",
+      "sha256": "cf770fd725fb012a8313a7559a8475edc4d5f4ff1e2a896fc85e485c11bd1a27",
+      "bytes": 89509
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "sha256": "2c752a401191671d5bbbe7514f5828bbb0a7cc50bfbe77ddaf1b1ccba4412ed2",
+      "bytes": 173019
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/629-61a4773c370b93b9.js",
+      "sha256": "2b462da1475657f92c25ea5365be1205d68e9940a450955df6639ef128c3cec2",
+      "bytes": 166373
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/966-764889105078f50e.js",
+      "sha256": "6fd9257ed3f60fa8c55dee2bc15d59c99ccc8216d415200bfc4ef2ab15fe5ee6",
+      "bytes": 9770
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/_not-found/page-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/agents/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/interrupt/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/permission/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/scaffold/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/session/[id]/events/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/session/[id]/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/session/boot/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/session/create/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/session/list/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/harness/turn/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/project/deliverables/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/deliverable/content/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/deliverable/dependencies/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/deliverable/status/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/deliverable/status/transition/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/file/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/scope/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/tree/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/api/working-root/validate/route-aa7ec3a66bd12d19.js",
+      "sha256": "7eb5e67b670026cc46121b8271fe44048e7cc31a1543915038bc27a33d6c11b9",
+      "bytes": 207
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/chat/page-4e75388d34faff78.js",
+      "sha256": "0c0167f46b43bdea065cdfbf59159e43b01ba880a00a6052111fbeabcebc5f7b",
+      "bytes": 1109
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/layout-3dda1817848a3a86.js",
+      "sha256": "54b43be669f6ab5e718042fb3a2ed7f8c120f9b1491f8d94e6ea339e24b0d9a2",
+      "bytes": 3558
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/not-found-508ec9535816b597.js",
+      "sha256": "ab2ea81e667b6214e9069298bc790d0ad76ab74c2f05da8ada6e2d52e9a61490",
+      "bytes": 6280
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/page-c91f7664eeadd098.js",
+      "sha256": "9d56cf91a5485728879896fc6868a4925c6f30754a0c209cfd97bc5606266626",
+      "bytes": 1319
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/pipeline/page-68339a30d679498d.js",
+      "sha256": "11b22f4497af565ff6385bb716a8b80b80f412bbcc4c77d69123f006d5b22d08",
+      "bytes": 1305
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/app/workbench/page-b92e605cbba95344.js",
+      "sha256": "2e9450e5b32636b7af52d0668dc51ca2739c7cd396ed4676a4c2e72a36a82f03",
+      "bytes": 1301
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/framework-a6e0b7e30f98059a.js",
+      "sha256": "6a93c2b105626ffff48d2e3b2dbfc35f2443839504271b6651b6bcce5d651b2a",
+      "bytes": 139834
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/main-app-0bc332cb6cfcd293.js",
+      "sha256": "33b5aa2cdbe3edd6829419e8ed39ba34f24ab0dcb60c4f4899dee9fc92e522a7",
+      "bytes": 557
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/main-ea445326df25466f.js",
+      "sha256": "eab6900fdabac7d235a8d3c1a3129dd74cdc491ae1633bbbc21477628e92c881",
+      "bytes": 126253
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/pages/_app-7d307437aca18ad4.js",
+      "sha256": "797ae9e9f9ae364b4152a86f0ab44d686563124477b6cb31a0f0a803243767a3",
+      "bytes": 234
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/pages/_error-cb2a52f75f2162e2.js",
+      "sha256": "caa848d8df48ee6a9872ae21aa7679970d832c8d0aa3611c517214e562f8aadf",
+      "bytes": 218
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/polyfills-42372ed130431b0a.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "bytes": 112594
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/chunks/webpack-85ad8b5d421e98b6.js",
+      "sha256": "922583c881623a2cc914e6c195da7bad711000cd07749eac14cdbbf4e0f3644a",
+      "bytes": 3419
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/css/aa699bd407fda657.css",
+      "sha256": "1f484f7ae4f276dae48a5d8b3f9f207bfc29edf2d0f7bc5340377bcd7b7b08cd",
+      "bytes": 69649
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "bytes": 14708
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "bytes": 22588
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "bytes": 24252
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "sha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "bytes": 22832
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "sha256": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
+      "bytes": 24184
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "sha256": "d3f861b1ca55e50ca94de4c1756cb0d67c73de615172adf6b5b2078d939c723a",
+      "bytes": 20900
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "sha256": "6de912e531b6c98084f1b2d5e5a91bad77be4e68bc4e396e43c46fc435e5f3d9",
+      "bytes": 24356
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "sha256": "cb2c5eee2c0a43ff30d2365407c7bc8b20e3bd90720a4a64102ba0b328022a02",
+      "bytes": 19580
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "sha256": "e279e4f8baa0d4634d98868092f2198ae0dcd9e142c935822c385b9843352a9b",
+      "bytes": 20516
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/media/dece0821e8ed059f-s.p.woff2",
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+      "bytes": 14888
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/q41arTF0IYEtkHWy1go5P/_buildManifest.js",
+      "sha256": "6c3643efa784485bbd8096ba4f7630dc58291cd9784b738eefe37806fee89e06",
+      "bytes": 1355
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/static/q41arTF0IYEtkHWy1go5P/_ssgManifest.js",
+      "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+      "bytes": 80
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/dist-electron/main.js",
+      "sha256": "3eddeddd23ceeca11b9349b6ebed82e9deec7073de22880520312fc1e5c4dadd",
+      "bytes": 1419691
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/dist-electron/main.js.map",
+      "sha256": "6d16cf8bdd4037ffccdfef19a6e33cc1f53604c1094bc7a48ba7c5ec8ab7e829",
+      "bytes": 2619532
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/dist-electron/preload.js",
+      "sha256": "d48814bcaf3501742a38a6bff7358b0814a6d643f925fc2749fc96e346b7cba6",
+      "bytes": 4619
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/dist-electron/preload.js.map",
+      "sha256": "c8135051a88f2e3e741b3def47c56d8fb300c02c8be7f29b52c850d46987fc30",
+      "bytes": 16550
+    }
+  ]
+}

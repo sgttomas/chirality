@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import React, { FormEvent, useEffect, useMemo, useState } from 'react';
+import React, { FormEvent, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
   HarnessApiClientError,
   bootHarnessSession,
@@ -22,6 +22,8 @@ import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useHarnessEventActions } from '../workspace/harness-events-provider';
 import { useToolkit } from '../workspace/toolkit-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
+import { FolderSelect, getNativeFolderBridge } from './folder-select';
+import { PersonaPicker } from './persona-picker';
 import { ChatMarkdown } from './chat-markdown';
 import { FilePicker } from './file-picker';
 import { PermissionRequests } from './permission-requests';
@@ -30,6 +32,7 @@ import { useRuntimeEpoch } from './runtime-connectivity-provider';
 type ChatMessage = {
   id: string;
   role: 'operator' | 'assistant';
+  persona?: string;
   text: string;
   attachments?: UiAttachment[];
 };
@@ -37,6 +40,7 @@ type ChatMessage = {
 type ActiveSession = {
   sessionId: string;
   projectRoot: string;
+  selectedRootAtBinding: string;
   persona: string;
   mode: string;
 };
@@ -57,6 +61,7 @@ const OPERATOR_MODES: readonly OperatorModeOption[] = [
 ];
 
 const DEFAULT_OPERATOR_MODE = 'ask';
+const PLAIN_MODE_LABELS: Record<string, string> = { readOnly: 'Read only', ask: 'Ask before changes', workspaceWrite: 'Approve each write', bypass: 'Run on its own' };
 
 function readTextField(data: unknown): string | undefined {
   if (!data || typeof data !== 'object') {
@@ -120,11 +125,18 @@ function isHarnessEvent(value: unknown): value is HarnessEvent {
 }
 
 type ChatPanelProps = {
+  presentation?: 'woven';
+  knownRoots?: readonly { path: string; lastUsedAt: string }[];
+  newChatRequest?: number;
+  folderSelectionPending?: boolean;
+  onFolderSelectionPending?: (pending: boolean) => void;
+  onBindingChange?: (binding: { root: string | null; locked: boolean }) => void;
+  onDraftCaptured?: () => void;
   onActiveSessionChange?: (sessionId: string | undefined) => void;
 };
 
-export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.Element {
-  const { projectRoot } = useWorkspace();
+export function ChatPanel({ onDraftCaptured, onActiveSessionChange, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange }: ChatPanelProps = {}): JSX.Element {
+  const { projectRoot, applyProjectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
   const { appendEvent, clearEvents, setStreaming } = useHarnessEventActions();
   const pathname = usePathname();
@@ -135,15 +147,25 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
   const [draftStorageWarning, setDraftStorageWarning] = useState<string | null>(null);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [operatorMode, setOperatorMode] = useState<string>(DEFAULT_OPERATOR_MODE);
+  const [conversationBinding, setConversationBinding] = useState<{ projectRoot: string; selectedRootAtBinding: string } | null>(null);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [isRunning, setIsRunning] = useState(false);
+  const [nativeFolderError, setNativeFolderError] = useState<string | null>(null);
+  const nativeSelectionActive = useRef(false);
+  const [folderSyncError, setFolderSyncError] = useState<string | null>(null);
+  const composerRef = useRef<HTMLTextAreaElement | null>(null);
+  const bindingGeneration = useRef(0);
+  const canonicalTransition = useRef<{ from: string; to: string; persona: string; mode: string } | null>(null);
+  const previousContext = useRef<{ root: string | null; persona: string; mode: string } | null>(null);
+  const newChatSeen = useRef(newChatRequest);
   const [runtimeStatus, setRuntimeStatus] = useState<string | null>(null);
   const [runtimeError, setRuntimeError] = useState<HarnessUiError | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'seed-1',
       role: 'assistant',
-      text: 'Harness chat wiring is active. Select a Working Root and send a prompt.'
+      persona: resolvePersona(searchParams.get('agent')),
+      text: presentation === 'woven' ? 'What would you like to work on?' : 'Harness chat wiring is active. Select a Working Root and send a prompt.'
     }
   ]);
 
@@ -169,20 +191,22 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
     () => resolvePersona(searchParams.get('agent')),
     [searchParams]
   );
+  const personaLabel = activePersona.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
   const activeMode = useMemo(() => resolveMode(pathname), [pathname]);
 
+  const draftRoot = conversationBinding?.selectedRootAtBinding ?? projectRoot;
   const draftStorageKey = useMemo(() => {
-    if (!projectRoot) {
+    if (!draftRoot) {
       return null;
     }
-    return buildChatDraftStorageKey(projectRoot, activePersona, activeMode);
-  }, [projectRoot, activePersona, activeMode]);
+    return buildChatDraftStorageKey(draftRoot, activePersona, activeMode);
+  }, [draftRoot, activePersona, activeMode]);
 
   useEffect(() => {
     setActiveSession((existing) => {
       if (
         existing &&
-        existing.projectRoot === projectRoot &&
+        (existing.projectRoot === projectRoot || existing.selectedRootAtBinding === projectRoot) &&
         existing.persona === activePersona &&
         existing.mode === activeMode
       ) {
@@ -231,6 +255,64 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
     }
   }, [draftStorageKey, draft, attachments, draftStorageWritable]);
 
+  useEffect(() => {
+    const expected = canonicalTransition.current;
+    const previous = previousContext.current;
+    const isCanonicalSynchronization = expected && previous?.root === expected.from && projectRoot === expected.to && activePersona === expected.persona && activeMode === expected.mode;
+    if (!isCanonicalSynchronization) bindingGeneration.current++;
+    canonicalTransition.current = null;
+    previousContext.current = { root: projectRoot, persona: activePersona, mode: activeMode };
+  }, [projectRoot, activePersona, activeMode]);
+
+  useEffect(() => {
+    onBindingChange?.({ root: conversationBinding?.projectRoot ?? projectRoot, locked: Boolean(conversationBinding) || isRunning });
+  }, [conversationBinding, projectRoot, isRunning, onBindingChange]);
+
+  useEffect(() => {
+    const field = composerRef.current;
+    if (!field) return;
+    field.style.height = 'auto';
+    field.style.height = `${Math.min(field.scrollHeight, 132)}px`;
+  }, [draft]);
+
+  useEffect(() => {
+    if (newChatSeen.current === newChatRequest) return;
+    newChatSeen.current = newChatRequest;
+    if (isRunning || folderSelectionPending) return;
+    if ((draft.trim() || attachments.length) && !window.confirm('Start a new chat and discard the unsent draft and attachments?')) return;
+    bindingGeneration.current++;
+    setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); setMessages([]);
+    setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
+    // This clears only the current local view; no runtime record is deleted.
+    clearEvents();
+  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, clearEvents]);
+
+  const selectNativeFolder = useCallback(async (intent: { path?: string; error?: string }) => {
+    if (intent.error) { setNativeFolderError(intent.error); return; }
+    if (conversationBinding || isRunning || folderSelectionPending || nativeSelectionActive.current) {
+      setNativeFolderError('Start a new chat before opening another folder.'); return;
+    }
+    if (!intent.path) { setNativeFolderError('Drop a folder from Finder to choose it.'); return; }
+    nativeSelectionActive.current = true; onFolderSelectionPending?.(true); setNativeFolderError(null);
+    try {
+      if (!await applyProjectRoot(intent.path)) setNativeFolderError('This folder could not be selected.');
+    } finally { nativeSelectionActive.current = false; onFolderSelectionPending?.(false); }
+  }, [conversationBinding, isRunning, folderSelectionPending, applyProjectRoot, onFolderSelectionPending]);
+
+  useEffect(() => {
+    if (presentation !== 'woven') return;
+    return getNativeFolderBridge()?.subscribeOpen(intent => { void selectNativeFolder(intent); });
+  }, [presentation, selectNativeFolder]);
+
+  useEffect(() => {
+    if (presentation !== 'woven' || !projectRoot) return;
+    let cancelled = false;
+    void getNativeFolderBridge()?.registerRecent(projectRoot).then(result => {
+      if (!cancelled && !result.ok) setNativeFolderError(result.error ?? 'Unable to register this folder in Open Recent.');
+    }).catch(() => { if (!cancelled) setNativeFolderError('Unable to register this folder in Open Recent.'); });
+    return () => { cancelled = true; };
+  }, [presentation, projectRoot]);
+
   async function ensureSessionBooted(): Promise<ActiveSession> {
     if (!projectRoot) {
       throw new Error('Select a Working Root before sending a prompt.');
@@ -238,16 +320,18 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
 
     if (
       activeSession &&
-      activeSession.projectRoot === projectRoot &&
+      (activeSession.projectRoot === projectRoot || activeSession.selectedRootAtBinding === projectRoot) &&
       activeSession.persona === activePersona &&
       activeSession.mode === activeMode
     ) {
       return activeSession;
     }
 
+    const generation = bindingGeneration.current;
+    const selectedRootAtBinding = conversationBinding?.selectedRootAtBinding ?? projectRoot;
     setRuntimeStatus('Creating session...');
     const session = await createHarnessSession({
-      projectRoot,
+      projectRoot: conversationBinding?.projectRoot ?? projectRoot,
       persona: activePersona,
       mode: activeMode
     });
@@ -264,13 +348,28 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
           }
     );
 
+    if (generation !== bindingGeneration.current) throw new Error('The chat context changed while the session was starting.');
     const nextSession: ActiveSession = {
       sessionId: boot.session.sessionId,
-      projectRoot,
+      projectRoot: boot.session.projectRoot,
+      selectedRootAtBinding,
       persona: activePersona,
       mode: activeMode
     };
+    if (conversationBinding && nextSession.projectRoot !== conversationBinding.projectRoot) {
+      throw new Error('The new agent session returned a different folder. Start a new chat to use that folder.');
+    }
+    if (presentation === 'woven') {
+      setConversationBinding(existing => existing ?? { projectRoot: nextSession.projectRoot, selectedRootAtBinding });
+    }
     setActiveSession(nextSession);
+    if (presentation === 'woven' && nextSession.projectRoot !== projectRoot) {
+      canonicalTransition.current = { from: projectRoot, to: nextSession.projectRoot, persona: activePersona, mode: activeMode };
+      const applied = await applyProjectRoot(nextSession.projectRoot);
+      if (!applied) canonicalTransition.current = null;
+      if (generation !== bindingGeneration.current) throw new Error('The chat context changed while its folder was being synchronized.');
+      if (!applied) setFolderSyncError('The session is bound to its recorded folder, but file browsing could not switch to it. Start a new chat to choose a folder again.');
+    }
     return nextSession;
   }
 
@@ -291,12 +390,14 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
 
   async function submitDraft(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
+    if (isRunning || folderSelectionPending || nativeSelectionActive.current) return;
     const text = draft.trim();
 
     if (!text && attachments.length === 0) {
       return;
     }
 
+    const requestGeneration = bindingGeneration.current;
     const preservedDraft = draft;
     const preservedAttachments = attachments;
 
@@ -320,6 +421,7 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
     const assistantMessage: ChatMessage = {
       id: assistantId,
       role: 'assistant',
+      persona: activePersona,
       text: ''
     };
 
@@ -481,8 +583,10 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
       const uiError = toHarnessUiError(error);
       setRuntimeError(uiError);
       setRuntimeStatus(null);
-      setDraft(preservedDraft);
-      setAttachments(preservedAttachments);
+      if (requestGeneration === bindingGeneration.current) {
+        setDraft(preservedDraft);
+        setAttachments(preservedAttachments);
+      }
       setMessages((existing) =>
         existing.filter((item) => item.id !== operatorMessageId && item.id !== assistantId)
       );
@@ -493,8 +597,8 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
   }
 
   return (
-    <aside className="panel panel--chat">
-      <header className="panel-header">
+    <aside className={`panel panel--chat${presentation === 'woven' ? ' chat-panel--woven' : ''}`}>
+      {presentation !== 'woven' ? <header className="panel-header">
         <h2>Chat Panel</h2>
         <p className="chat-meta">
           Persona: {activePersona} | Section: {activeMode}
@@ -515,14 +619,15 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
             ))}
           </select>
         </label>
-      </header>
+      </header> : null}
 
       <div className="panel-body chat-transcript">
         {!projectRoot ? (
-          <p className="panel-empty">Select a Working Root before starting a harness turn.</p>
+          <p className="panel-empty">{presentation === 'woven' ? 'Choose a folder below to start a chat.' : 'Select a Working Root before starting a harness turn.'}</p>
         ) : null}
         {messages.map((message) => (
           <article key={message.id} className={`chat-bubble chat-bubble--${message.role}`}>
+            {presentation === 'woven' ? <p className="chat-speaker" title={message.role === 'assistant' ? message.persona : undefined}>{message.role === 'operator' ? 'You' : (message.persona ?? 'Assistant').toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}</p> : null}
             {message.text ? (
               message.role === 'assistant' ? (
                 <ChatMarkdown source={message.text} />
@@ -560,7 +665,7 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
           </div>
         ) : null}
 
-        <div className="chat-attachment-preview" aria-live="polite">
+        {presentation !== 'woven' ? (        <div className="chat-attachment-preview" aria-live="polite">
           <div className="chat-attachment-header">
             <strong>Attachments</strong>
             <div>
@@ -610,7 +715,7 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
               ))}
             </ul>
           )}
-        </div>
+        </div>) : null}
 
         {runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
 
@@ -628,11 +733,49 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
 
       <form
         className="chat-input-row"
+        onDragOver={presentation === 'woven' ? event => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); } : undefined}
+        onDrop={presentation === 'woven' ? event => {
+          event.preventDefault();
+          const bridge = getNativeFolderBridge();
+          const files = event.dataTransfer.files;
+          if (!bridge || files.length !== 1) { setNativeFolderError('Drop one folder from Finder to choose it.'); return; }
+          void selectNativeFolder({ path: bridge.pathForFile(files[0]) });
+        } : undefined}
         onSubmit={(event) => {
           void submitDraft(event);
         }}
       >
-        <input
+        {presentation === 'woven' && attachments.length ? <ul className="attachment-chip-list">{attachments.map(item => <li key={item.path} className="attachment-chip" title={item.path}>
+          <span>{item.displayName}</span><button type="button" aria-label={`Remove ${item.displayName}`} disabled={isRunning} onClick={() => setAttachments(current => current.filter(entry => entry.path !== item.path))}>×</button>
+        </li>)}</ul> : null}
+        <div className={presentation === 'woven' ? 'chat-composer-line' : 'chat-composer-line--legacy'}>
+        {presentation === 'woven' ? (        <textarea
+          ref={composerRef}
+          rows={1}
+          aria-label="Chat input"
+          data-chat-input="primary"
+          value={draft}
+          disabled={!projectRoot || isRunning || folderSelectionPending}
+          onKeyDown={event => {
+            if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+              event.preventDefault(); event.currentTarget.form?.requestSubmit();
+            }
+          }}
+          onCompositionEnd={event => {
+            setDraft(event.currentTarget.value);
+            onDraftCaptured?.();
+          }}
+          onChange={(event) => {
+            setDraft(event.target.value);
+            if (!(event.nativeEvent as InputEvent | undefined)?.isComposing) onDraftCaptured?.();
+            if (runtimeError) {
+              setRuntimeError(null);
+            }
+          }}
+          placeholder={
+            projectRoot ? presentation === 'woven' ? `Message ${personaLabel}…` : `Send prompt as ${activePersona}...` : presentation === 'woven' ? 'Choose a folder first…' : 'Select a Working Root first...'
+          }
+        />) : (        <input
           aria-label="Chat input"
           data-chat-input="primary"
           value={draft}
@@ -644,16 +787,18 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
             }
           }}
           placeholder={
-            projectRoot ? `Send prompt as ${activePersona}...` : 'Select a Working Root first...'
+            projectRoot ? presentation === 'woven' ? `Message ${personaLabel}…` : `Send prompt as ${activePersona}...` : presentation === 'woven' ? 'Choose a folder first…' : 'Select a Working Root first...'
           }
-        />
+        />)}
+        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending} onClick={() => setPickerOpen(true)}>⊕</button> : null}
         <button
           type="submit"
-          disabled={!projectRoot || isRunning || (!draft.trim() && attachments.length === 0)}
+          aria-label={isRunning ? 'Running' : 'Send'}
+          disabled={!projectRoot || isRunning || folderSelectionPending || (!draft.trim() && attachments.length === 0)}
         >
-          {isRunning ? 'Running...' : 'Send'}
+          {presentation === 'woven' ? '↑' : isRunning ? 'Running...' : 'Send'}
         </button>
-        <button
+        {presentation !== 'woven' || isRunning ? (        <button
           type="button"
           className="button-muted"
           onClick={() => {
@@ -662,8 +807,19 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
           disabled={!isRunning || !activeSession}
         >
           Interrupt
-        </button>
+        </button>) : null}
+        </div>
       </form>
+      {presentation === 'woven' ? <div className="chat-context" role="group" aria-label="Chat context">
+        <span>{conversationBinding ? 'Working in' : 'Start in'}</span>
+        <FolderSelect knownRoots={knownRoots} root={conversationBinding?.projectRoot ?? projectRoot} locked={Boolean(conversationBinding)} disabled={isRunning || folderSelectionPending} onPendingChange={onFolderSelectionPending} />
+        <span aria-hidden="true">·</span><PersonaPicker compact disabled={isRunning} />
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Operator mode</span><select value={operatorMode} disabled={isRunning} onChange={event => setOperatorMode(event.target.value)}>{OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
+        <span aria-hidden="true">·</span><span title="Delegation policy controls are not available yet">No delegation</span>
+        <span aria-hidden="true">·</span><span>Plain chat</span>
+        {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
+        {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}
+      </div> : null}
 
       <FilePicker
         open={pickerOpen}

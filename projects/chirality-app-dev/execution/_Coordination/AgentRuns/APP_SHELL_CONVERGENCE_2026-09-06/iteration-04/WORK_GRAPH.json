@@ -1,0 +1,43 @@
+{
+  "iteration": 4,
+  "base": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "parentReceipt": "Receipt-251",
+  "parent": "/root HELP_HUMAN",
+  "manager": "/root/shell_pkg02 WORKING_ITEMS PKG02",
+  "packageEvidence": "pkg02-workflows-readonly/**",
+  "sourceSlice": "DEL-02-02-V3-04 GET-only current-folder workflow list/open",
+  "sourceFence": "woven components, new contained GET workflow API, tests and DEL02-02-local evidence only; no ChatPanel, write endpoint, acceptance/provider/Root/live-session acts",
+  "recordsExecutor": "/root/shell_run_records ephemeral Agent2, no delegation",
+  "recordsFence": "iteration-04/**; later receipt/history only on final parent release",
+  "ordering": [
+    "manager sealed source brief -> bounded implementation -> source freeze",
+    "fresh complete source review and matched Walkthrough17/18 visual/function proof",
+    "manager registered checks and terminal fan-in -> parent shared finalization release",
+    "receipt/shared checks -> exact union freeze -> fresh whole-tranche review -> CHANGE local closeout"
+  ],
+  "publication": "HELD for exact new payload; no public action authorized here",
+  "bootstrapCheck": {
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "APP_SHELL_CONVERGENCE:ITERATION04:RECORDS",
+      "--target",
+      "DEL-02-02"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exitCode": 0,
+    "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"APP_SHELL_CONVERGENCE:ITERATION04:RECORDS\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"8aaee11f6b0c96430e67d61b69452780210b3835\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-02\",\n      \"entry_path\": \"APP_SHELL_CONVERGENCE:ITERATION04:RECORDS\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"c8ecabad7c2e60813ebe93a3bb010e5d6a73245044a79207c93dd11d89e623d0\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-02\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+    "stderr": ""
+  },
+  "attribution": {
+    "engine": "Codex",
+    "provider": "OpenAI",
+    "model": "GPT-6 family per parent system; exact serving identifier unavailable",
+    "roleEnforcement": "instruction-asserted",
+    "delegationClass": "delegated-harness-native"
+  }
+}

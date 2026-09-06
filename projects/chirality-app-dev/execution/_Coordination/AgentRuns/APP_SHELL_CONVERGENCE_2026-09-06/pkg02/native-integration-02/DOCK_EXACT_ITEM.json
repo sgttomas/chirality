@@ -1,0 +1,11 @@
+{
+  "command": [
+    "swift",
+    "-module-cache-path",
+    "/private/tmp/chirality-native-shell-02gzaapq/swift-cache",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/owned_dock.swift"
+  ],
+  "exit": 0,
+  "stdout": "Matched exact owned Dock URL /private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app\nshowMenu 0\n[\n  {\n    \"role\" : \"AXDockItem\",\n    \"title\" : \"Chirality Shell Evidence\"\n  },\n  {\n    \"role\" : \"AXMenu\",\n    \"title\" : \"\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Folder Beta\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Folder Alpha\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Chirality Workflow Shell\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Options\"\n  },\n  {\n    \"role\" : \"AXMenu\",\n    \"title\" : \"\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Keep in Dock\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Open at Login\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Show in Finder\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Show All Windows\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Hide\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Hide Others\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Quit\"\n  },\n  {\n    \"role\" : \"AXMenuItem\",\n    \"title\" : \"Force Quit\"\n  }\n]\n",
+  "stderr": ""
+}

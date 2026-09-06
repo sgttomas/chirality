@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "name": "receipt-after",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exitCode": 1
+    },
+    {
+      "name": "post-record-self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exitCode": 1
+    },
+    {
+      "name": "receipt-final",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "post-repair-self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "tracked-whitespace-final",
+      "exitCode": 0
+    },
+    {
+      "name": "selected-untracked-whitespace-final",
+      "exitCode": 0
+    },
+    {
+      "name": "package241/source11hashpreservation",
+      "exitCode": 0
+    }
+  ],
+  "retainedPreFanIn": "../validation-pre-fanin-01/RESULT_MANIFEST.json SHA75dce63cea04974b959126999b6051b45c12682a707a9e27cd46befdeac68e47;379pytest/corpus unchanged inputs",
+  "pending": "fresh whole-tranche COMMIT-SAFE/BLOCK; exact-stage/local closeout; configured actual-head CI and publication permission",
+  "initialFailures": "receipt-after and post-record-self-check failed on count-like scene notation; original outputs retained; repaired only current receipt summary and reran"
+}

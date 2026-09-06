@@ -1,0 +1,38 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/APP_HOLD_PREFLIGHT.json",
+    "sha256": "2e0515b73f31100eeac242787bac6d281f7245d3e6948e6aa9d56901605c3540"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/BRIEF.md",
+    "sha256": "5e85a7f6a7b583318928965c72ae2d604c71ca0bc3001f71b3c04ec3e5ddcdaa"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/FINAL_INPUT_CHECK.json",
+    "sha256": "c41aebf865e23f40a4fe085b25cffec5b320737aea463cdc9cd437b13632a7b2"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/INPUT_INVENTORY.json",
+    "sha256": "27e2866214324a0414245bd90d3906b7b5ebb588bed766c615d5d16f1dfecfb6"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/LIVE_CRITERIA.json",
+    "sha256": "3c4ad79a35adc875de216dd2f6576a357df39ffdb5fafc0f6f066d0e22534dd6"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/RELIANCE_PREFLIGHT.json",
+    "sha256": "f7e22d36b3b971d9b4b89f23195a6fa5186a921da82ae8de8ab322236d7f7203"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/RETURN.md",
+    "sha256": "fb2ca5cd12f9965496b121b427dfa4b578d0a316341d82a0374502b89f96a2be"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/SOURCE_VERIFICATION.json",
+    "sha256": "99244fe48cba95a8bd8085e302034d1f3cf507d17cbde2b45d0fba18267bd959"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/successor-assessment-01/inventory.py",
+    "sha256": "f5a84fa5bef2872db67b96feb0206dada1a1ae3e67d41664b4cbd44182239214"
+  }
+]

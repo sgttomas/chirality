@@ -1,0 +1,32 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows-view.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflow-detail.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows.module.css",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/route.ts",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-store.ts",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-read-contract.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/api/working-root-workflow.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-workflows.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/__tests__/api/working-root-workflow.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-workflows.test.tsx",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/route.ts",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-read-contract.ts",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-store.ts",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflow-detail.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows-view.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows.module.css",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

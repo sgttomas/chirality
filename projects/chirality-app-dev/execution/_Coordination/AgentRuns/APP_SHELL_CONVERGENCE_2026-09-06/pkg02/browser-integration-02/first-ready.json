@@ -1,0 +1,118 @@
+{
+  "status": "CAPTURED",
+  "browser": "148.0.7778.96",
+  "observations": [
+    {
+      "fonts": {
+        "status": "loaded",
+        "body": "plexSans, \"plexSans Fallback\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "700"
+          },
+          {
+            "family": "plexSans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexSerif",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSerif Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexMono",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexMono",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexMono Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          }
+        ]
+      }
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] rebuilding"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] done in 137ms"
+    }
+  ],
+  "pageErrors": []
+}

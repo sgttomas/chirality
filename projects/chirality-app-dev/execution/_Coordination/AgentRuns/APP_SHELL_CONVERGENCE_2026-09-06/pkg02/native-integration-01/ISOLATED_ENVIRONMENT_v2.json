@@ -1,0 +1,27 @@
+{
+  "status": "PREPARATION_ONLY_NOT_APPLIED",
+  "sharedElectronAndOwnedServerEnvironment": {
+    "CHIRALITY_USER_DATA": "/private/tmp/chirality-native-shell-02gzaapq/user-data",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/operator.token",
+    "CHIRALITY_RUNTIME_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/project-native-proof.token",
+    "CHIRALITY_RUNTIME_PROJECT_ID": "chirality-app-dev",
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+    "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only",
+    "CHIRALITY_LAUNCH_AGENTS_DIRECTORY": "/private/tmp/chirality-native-shell-02gzaapq/launch-agents",
+    "CHIRALITY_DAEMON_GUI_SPAWN": "0"
+  },
+  "inheritAllowlist": [
+    "PATH",
+    "HOME",
+    "TMPDIR",
+    "LANG",
+    "LC_CTYPE",
+    "__CF_USER_TEXT_ENCODING"
+  ],
+  "addAtRelease": [
+    "CHIRALITY_INSTRUCTION_ROOT = verified repository root",
+    "ELECTRON_RENDERER_URL = owned server origin"
+  ],
+  "mainAfterFailedBinding": "TOKEN_FILE and PROJECT_ROOT must be absent; SOCKET_PATH remains owned; PROJECT_ID remains chirality-app-dev"
+}

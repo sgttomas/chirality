@@ -1,0 +1,34 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "APP_SHELL_CONVERGENCE_2026-09-06:PKG02:WORKFLOWS_DISCOVERY",
+  "operation": "reliance",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-02",
+      "entry_path": "APP_SHELL_CONVERGENCE_2026-09-06:PKG02:WORKFLOWS_DISCOVERY",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-07-03",
+      "entry_path": "APP_SHELL_CONVERGENCE_2026-09-06:PKG02:WORKFLOWS_DISCOVERY",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "c8ecabad7c2e60813ebe93a3bb010e5d6a73245044a79207c93dd11d89e623d0",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-02-02",
+    "DEL-07-03"
+  ],
+  "verdict": "ALLOW"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "expected": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f",
+    "actual": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "expected": "03a438f15bdbcad621492c1edcaa3a56df291905c4d9cd284fadf56f877ba52b",
+    "actual": "03a438f15bdbcad621492c1edcaa3a56df291905c4d9cd284fadf56f877ba52b"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "expected": "0f27c9b74be9e0149682b54213f11e86e088d90e261ee88afd52457c7d8379dd",
+    "actual": "0f27c9b74be9e0149682b54213f11e86e088d90e261ee88afd52457c7d8379dd"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "expected": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312",
+    "actual": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "expected": "5ce2238123a35cfc58db05c241df1ac5655d661849362d0ce95375a28e376d9d",
+    "actual": "5ce2238123a35cfc58db05c241df1ac5655d661849362d0ce95375a28e376d9d"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "expected": "c36110f1e9e69aecb5c80eb08d63cf0ff60440f8a00d1c7d51ccf3e5d7e792fe",
+    "actual": "c36110f1e9e69aecb5c80eb08d63cf0ff60440f8a00d1c7d51ccf3e5d7e792fe"
+  }
+]

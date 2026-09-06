@@ -1,0 +1,77 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "expected": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f",
+    "actual": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "expected": "03a438f15bdbcad621492c1edcaa3a56df291905c4d9cd284fadf56f877ba52b",
+    "actual": "03a438f15bdbcad621492c1edcaa3a56df291905c4d9cd284fadf56f877ba52b"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "expected": "0e097cfd23e7774aa9efb06537ac1ccaa6826d3ea739d4f0f1fc5d0212d5deae",
+    "actual": "0e097cfd23e7774aa9efb06537ac1ccaa6826d3ea739d4f0f1fc5d0212d5deae"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+    "expected": "139f176acaccdd9217c09706e33f3cf0a93ae19f81b2e75edd8181d7323f9fc7",
+    "actual": "139f176acaccdd9217c09706e33f3cf0a93ae19f81b2e75edd8181d7323f9fc7"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "expected": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312",
+    "actual": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "expected": "e32caad4c63051bdeac282b31a3ad6606f966a5432a11628eb5a503a03ba2bd9",
+    "actual": "e32caad4c63051bdeac282b31a3ad6606f966a5432a11628eb5a503a03ba2bd9"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/folder-select.tsx",
+    "expected": "395d8282fcd2f80ef68ece4feb1f146b88c7a8872689fc3860320a729dd459be",
+    "actual": "395d8282fcd2f80ef68ece4feb1f146b88c7a8872689fc3860320a729dd459be"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx",
+    "expected": "76abab9d7bb5070d4a00ad8aea9393a7301f6b07e1962c35e6b48fe59c51287d",
+    "actual": "76abab9d7bb5070d4a00ad8aea9393a7301f6b07e1962c35e6b48fe59c51287d"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+    "expected": "dde07281e3ac859b944bc56b3dbc5751931ffff193325a0bca43fdac79784a16",
+    "actual": "dde07281e3ac859b944bc56b3dbc5751931ffff193325a0bca43fdac79784a16"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "expected": "55952baa470032a631dc2038555d5b87d9567f613f7f3066e57d8b5ee42e9a37",
+    "actual": "55952baa470032a631dc2038555d5b87d9567f613f7f3066e57d8b5ee42e9a37"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "expected": "70eabae3d7c52c7a529ac3241ad945553e5e83586deb60974f9891e958783691",
+    "actual": "70eabae3d7c52c7a529ac3241ad945553e5e83586deb60974f9891e958783691"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "expected": "4dec2c988d2ba495a69ca21f7eabdb53c9f42eefddfa2d33f5bc4231de90dc17",
+    "actual": "4dec2c988d2ba495a69ca21f7eabdb53c9f42eefddfa2d33f5bc4231de90dc17"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "expected": "85ecedaddb74d723848ad1cfc83419a38a8be1c54bd70e455b63ae007013bb83",
+    "actual": "85ecedaddb74d723848ad1cfc83419a38a8be1c54bd70e455b63ae007013bb83"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "expected": "a750b66be6410c2ace7f7edced1f3cc34cd2b59466c44eabc195cf42ed450fbd",
+    "actual": "a750b66be6410c2ace7f7edced1f3cc34cd2b59466c44eabc195cf42ed450fbd"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+    "expected": "ead76e3015bc7ca35ef1a04caa355eeb548b25e4d99cdd39f5bd3c2bd3ec5916",
+    "actual": "ead76e3015bc7ca35ef1a04caa355eeb548b25e4d99cdd39f5bd3c2bd3ec5916"
+  }
+]

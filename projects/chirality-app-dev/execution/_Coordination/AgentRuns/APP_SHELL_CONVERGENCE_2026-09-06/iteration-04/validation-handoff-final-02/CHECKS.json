@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "name": "receipt-final",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exitCode": 0
+    },
+    {
+      "name": "handoff-self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exitCode": 0
+    }
+  ],
+  "newArtifactWhitespace": "PASS, empty-output no-index exit1 ordinary difference",
+  "trackedWhitespace": "PASS",
+  "package241HashPreservation": "PASS",
+  "retainedPriorChecks": "validation-final-01 and validation-pre-fanin-01 immutable; no repeated source/frontend/pytest because only shared handoff/receipt changed",
+  "pending": "fresh whole-tranche review/local closeout; stop this session afterwards; no public action"
+}

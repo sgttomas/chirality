@@ -1,0 +1,52 @@
+{
+  "status": "PREPARED_NOT_LAUNCHED",
+  "changes": [
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/Info.plist",
+      "oldIdentifier": "com.github.Electron.framework",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.ed61ce77ae7f"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/Electron Helper (GPU).app/Contents/Info.plist",
+      "oldIdentifier": "com.github.Electron.helper",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.13ed062b212f"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/Electron Helper (Plugin).app/Contents/Info.plist",
+      "oldIdentifier": "com.github.Electron.helper",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.a2d652a22b32"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/Electron Helper (Renderer).app/Contents/Info.plist",
+      "oldIdentifier": "com.github.Electron.helper",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.36a917ea23a2"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/Electron Helper.app/Contents/Info.plist",
+      "oldIdentifier": "com.github.Electron.helper",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.e503c4b2d4f4"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/Mantle.framework/Versions/A/Resources/Info.plist",
+      "oldIdentifier": "com.electron.mantle",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.58cb8a096f74"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/Resources/Info.plist",
+      "oldIdentifier": "com.electron.reactive",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.b07aa83cc035"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/Info.plist",
+      "oldIdentifier": "com.github.Squirrel",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.d8c249896bc9"
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/Info.plist",
+      "oldIdentifier": "com.github.Electron",
+      "identifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515"
+    }
+  ],
+  "bundle": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app",
+  "executableSha256": "70c3ec7969ffc9d2fb3ecca620d5942784724c5d8c11cc1fdf3fbfa35f22dd18"
+}

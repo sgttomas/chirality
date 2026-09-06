@@ -1,0 +1,51 @@
+{
+  "phase": "post-record before exact union freeze; no self-approval",
+  "checks": [
+    {
+      "name": "receipt-after",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exitCode": 0
+    },
+    {
+      "name": "post-record-self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exitCode": 0
+    },
+    {
+      "name": "receipt-final",
+      "exitCode": 0
+    },
+    {
+      "name": "tracked-whitespace-final",
+      "exitCode": 0
+    },
+    {
+      "name": "selected-untracked-whitespace-after-exact-classification",
+      "exitCode": 0
+    },
+    {
+      "name": "package510/source25 hash preservation",
+      "exitCode": 0
+    }
+  ],
+  "reusedPreFanIn": "../validation-pre-fanin-01/RESULT_MANIFEST.json SHA15eb96d32ea7177740b440d2dc0b7d63d7420c3fe5f14f2c41d9dd8464e3b075;379pytest and corpus unchanged inputs, no repeated frontend/build commands",
+  "pending": "fresh whole-tranche COMMIT-SAFE/BLOCK, actual staged checks and local commit; exact-source configured CI and publication remain gated",
+  "retainedFindings": "55 WARN/4 REVIEW/zero BLOCK exact rowset unchanged from pre-fan-in; raw diagnostic/evaluator calibration preserved"
+}

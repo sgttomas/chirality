@@ -1,0 +1,755 @@
+{
+  "env": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "HOME": "/Users/ryan",
+    "TMPDIR": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/",
+    "LANG": "C.UTF-8",
+    "LC_CTYPE": "C.UTF-8",
+    "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x52",
+    "CHIRALITY_USER_DATA": "/private/tmp/chirality-native-shell-02gzaapq/user-data02",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/auth/tokens/operator.token",
+    "CHIRALITY_RUNTIME_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/auth/tokens/project-native-proof.token",
+    "CHIRALITY_RUNTIME_PROJECT_ID": "chirality-app-dev",
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+    "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only",
+    "CHIRALITY_LAUNCH_AGENTS_DIRECTORY": "/private/tmp/chirality-native-shell-02gzaapq/launch-agents",
+    "CHIRALITY_DAEMON_GUI_SPAWN": "0",
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "ELECTRON_RENDERER_URL": "http://127.0.0.1:3197"
+  },
+  "results": [
+    {
+      "fixtureRequest": "/api/harness/agents",
+      "input": null
+    },
+    {
+      "identity": {
+        "pid": 41768,
+        "packaged": false,
+        "userData": "/private/tmp/chirality-native-shell-02gzaapq/user-data02",
+        "versions": {
+          "node": "24.18.0",
+          "acorn": "8.16.0",
+          "ada": "3.4.4",
+          "amaro": "1.1.9",
+          "ares": "1.34.6",
+          "brotli": "1.2.0",
+          "cldr": "48.0",
+          "icu": "78.2",
+          "llhttp": "9.4.2",
+          "merve": "1.2.2",
+          "modules": "148",
+          "napi": "10",
+          "nbytes": "0.1.4",
+          "ncrypto": "0.0.1",
+          "nghttp2": "1.69.0",
+          "nghttp3": "",
+          "ngtcp2": "",
+          "openssl": "0.0.0",
+          "simdjson": "4.6.4",
+          "simdutf": "7.7.0",
+          "sqlite": "3.53.1",
+          "tz": "2025c",
+          "undici": "7.28.0",
+          "unicode": "17.0",
+          "uv": "1.52.1",
+          "uvwasi": "0.0.23",
+          "v8": "15.0.1240245-electron.0",
+          "zlib": "1.3.2.1-motley",
+          "zstd": "1.6.0",
+          "electron": "43.2.0",
+          "chrome": "150.0.7871.129"
+        },
+        "env": {
+          "CHIRALITY_USER_DATA": "/private/tmp/chirality-native-shell-02gzaapq/user-data02",
+          "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/control.sock",
+          "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/auth/tokens/operator.token",
+          "CHIRALITY_RUNTIME_PROJECT_ID": "chirality-app-dev",
+          "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only",
+          "CHIRALITY_LAUNCH_AGENTS_DIRECTORY": "/private/tmp/chirality-native-shell-02gzaapq/launch-agents",
+          "CHIRALITY_DAEMON_GUI_SPAWN": "0",
+          "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality"
+        }
+      },
+      "serverPid": 41761
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "const {app,BrowserWindow}=electron;const w=BrowserWindow.getAllWindows()[0];w.show();w.focus();app.focus({steal:true});return {bounds:w.getBounds(),visible:w.isVisible()};"
+      },
+      "result": {
+        "bounds": {
+          "x": 224,
+          "y": 139,
+          "width": 1280,
+          "height": 840
+        },
+        "visible": true
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "(()=>{window.__nativeEvents=[];for(const type of ['dragenter','dragover','drop'])document.addEventListener(type,e=>window.__nativeEvents.push({type,x:e.clientX,y:e.clientY,types:[...e.dataTransfer.types],files:[...e.dataTransfer.files].map(f=>({name:f.name,path:window.chirality.folders.pathForFile(f)}))}),true);return document.querySelector('[data-chat-input=primary]').getBoundingClientRect().toJSON();})()"
+      },
+      "result": {
+        "x": 301,
+        "y": 653.5,
+        "width": 556.1328125,
+        "height": 30,
+        "top": 653.5,
+        "right": 857.1328125,
+        "bottom": 683.5,
+        "left": 301
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "const w=electron.BrowserWindow.getAllWindows()[0];w.setBounds({x:420,y:70,width:900,height:700});w.focus();return w.getBounds();"
+      },
+      "result": {
+        "x": 420,
+        "y": 70,
+        "width": 900,
+        "height": 700
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({x:window.screenX,y:window.screenY,outer:window.outerHeight,inner:window.innerHeight,input:document.querySelector('[data-chat-input=primary]').getBoundingClientRect().toJSON()})"
+      },
+      "result": {
+        "x": 420,
+        "y": 70,
+        "outer": 700,
+        "inner": 668,
+        "input": {
+          "x": 35,
+          "y": 522.25,
+          "width": 753.1328125,
+          "height": 30,
+          "top": 522.25,
+          "right": 788.1328125,
+          "bottom": 552.25,
+          "left": 35
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({events:window.__nativeEvents,root:localStorage.getItem('chirality.projectRoot'),alerts:[...document.querySelectorAll('[role=alert]')].map(e=>e.innerText)})"
+      },
+      "result": {
+        "events": [],
+        "root": null,
+        "alerts": []
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "native-drag-result"
+      },
+      "result": "Choose a folder below to start a chat.\n\nWorking Items\n\nWhat would you like to work on?\n\n⊕\n↑\nStart in\n▱ Choose folder⌄\n·\nAGENT\nWorking Items\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n‹\nChirality\n＋ New chat\nCurrent chat\n\nNo recorded sessions.\n\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n\nChoose a folder to see its files.\n\nChoose folderNo folder\nRUNTIME\noffline\nRuntime reported offline\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "(()=>{const e=document.querySelector('[data-chat-input=primary]');return {html:e.outerHTML,ancestors:[e.parentElement,e.parentElement.parentElement].map(x=>({tag:x.tagName,cls:x.className,rect:x.getBoundingClientRect().toJSON()}))};})()"
+      },
+      "result": {
+        "html": "<textarea rows=\"1\" aria-label=\"Chat input\" data-chat-input=\"primary\" disabled=\"\" placeholder=\"Choose a folder first…\" style=\"height: 30px;\"></textarea>",
+        "ancestors": [
+          {
+            "tag": "DIV",
+            "cls": "chat-composer-line",
+            "rect": {
+              "x": 35,
+              "y": 522.25,
+              "width": 815,
+              "height": 30,
+              "top": 522.25,
+              "right": 850,
+              "bottom": 552.25,
+              "left": 35
+            }
+          },
+          {
+            "tag": "FORM",
+            "cls": "chat-input-row",
+            "rect": {
+              "x": 26,
+              "y": 513.25,
+              "width": 833,
+              "height": 48,
+              "top": 513.25,
+              "right": 859,
+              "bottom": 561.25,
+              "left": 26
+            }
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "document.querySelector('.chat-folder-select').open=true"
+      },
+      "result": true,
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "fill",
+        "name": "Folder path",
+        "value": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "Use folder"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "document.querySelector('.chat-folder-select').open=false"
+      },
+      "result": false,
+      "status": "PASS"
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "electron.app.focus({steal:true});electron.BrowserWindow.getAllWindows()[0].focus();return true;"
+      },
+      "result": true,
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "primary",
+        "value": "Synthetic binding probe. Do not contact a runtime."
+      },
+      "status": "PASS"
+    },
+    {
+      "fixtureRequest": "/api/harness/session/create",
+      "input": {
+        "projectRoot": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "persona": "WORKING_ITEMS",
+        "mode": "PORTAL"
+      }
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "Send"
+      },
+      "status": "PASS"
+    },
+    {
+      "fixtureRequest": "/api/harness/session/boot",
+      "input": {
+        "sessionId": "native-bound-fixture-02"
+      }
+    },
+    {
+      "fixtureRequest": "/api/harness/turn",
+      "input": {
+        "sessionId": "native-bound-fixture-02",
+        "message": "Synthetic binding probe. Do not contact a runtime.",
+        "attachments": [],
+        "opts": {
+          "mode": "ask"
+        }
+      }
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "synthetic-conversation-bound"
+      },
+      "result": "Working Items\n\nWhat would you like to work on?\n\nYou\n\nSynthetic binding probe. Do not contact a runtime.\n\nWorking Items\n\nSynthetic native binding fixture completed; no runtime session.\n\n⊕\n↑\nWorking in\n▱ Folder Alpha\n·\nAGENT\nWorking Items\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n‹\nChirality\n＋ New chat\nCurrent chat\nWORKING_ITEMS\nSep 6, 2026\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n▱\nFolder Alpha\nChoose folderFolder Alpha\nRUNTIME\noffline\nRuntime reported offline\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "primary",
+        "value": "Keep this draft bound to Alpha."
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({root:localStorage.getItem('chirality.projectRoot'),draft:document.querySelector('[data-chat-input=primary]').value,bound:document.querySelector('.chat-folder-fixed')?.innerText,alerts:[...document.querySelectorAll('[role=alert]')].map(e=>e.innerText)})"
+      },
+      "result": {
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "draft": "Keep this draft bound to Alpha.",
+        "bound": "▱ Folder Alpha",
+        "alerts": [
+          "Start a new chat before opening another folder."
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "bound-native-recent-rejected"
+      },
+      "result": "Working Items\n\nWhat would you like to work on?\n\nYou\n\nSynthetic binding probe. Do not contact a runtime.\n\nWorking Items\n\nSynthetic native binding fixture completed; no runtime session.\n\n⊕\n↑\nWorking in\n▱ Folder Alpha\n·\nAGENT\nWorking Items\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n\nStart a new chat before opening another folder.\n\n‹\nChirality\n＋ New chat\nCurrent chat\nWORKING_ITEMS\nSep 6, 2026\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n▱\nFolder Alpha\nChoose folderFolder Alpha\nRUNTIME\noffline\nRuntime reported offline\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({input:document.querySelector('[data-chat-input=primary]').getBoundingClientRect().toJSON(),events:window.__nativeEvents})"
+      },
+      "result": {
+        "input": {
+          "x": 35,
+          "y": 473.25,
+          "width": 753.1328125,
+          "height": 30,
+          "top": 473.25,
+          "right": 788.1328125,
+          "bottom": 503.25,
+          "left": 35
+        },
+        "events": []
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "return (async()=>{const wc=electron.BrowserWindow.getAllWindows()[0].webContents;wc.debugger.attach('1.3');try{const data={items:[],files:['/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03'],dragOperationsMask:1};for(const type of ['dragEnter','dragOver','drop'])await wc.debugger.sendCommand('Input.dispatchDragEvent',{type,x:300,y:537,data});return {method:'CDP Input.dispatchDragEvent',fixturePath:data.files[0]};}finally{wc.debugger.detach();}})();"
+      },
+      "result": {
+        "method": "CDP Input.dispatchDragEvent",
+        "fixturePath": "/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({events:window.__nativeEvents,root:localStorage.getItem('chirality.projectRoot'),draft:document.querySelector('[data-chat-input=primary]').value,alerts:[...document.querySelectorAll('[role=alert]')].map(e=>e.innerText)})"
+      },
+      "result": {
+        "events": [
+          {
+            "type": "dragenter",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          }
+        ],
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "draft": "Keep this draft bound to Alpha.",
+        "alerts": [
+          "Start a new chat before opening another folder."
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "return (async()=>{const wc=electron.BrowserWindow.getAllWindows()[0].webContents;wc.debugger.attach('1.3');try{const data={items:[],files:['/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03'],dragOperationsMask:1};for(const type of ['dragEnter','dragOver','drop'])await wc.debugger.sendCommand('Input.dispatchDragEvent',{type,x:300,y:488,data});return {method:'CDP Input.dispatchDragEvent',point:[300,488]};}finally{wc.debugger.detach();}})();"
+      },
+      "result": {
+        "method": "CDP Input.dispatchDragEvent",
+        "point": [
+          300,
+          488
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({events:window.__nativeEvents,root:localStorage.getItem('chirality.projectRoot'),draft:document.querySelector('[data-chat-input=primary]').value,alerts:[...document.querySelectorAll('[role=alert]')].map(e=>e.innerText)})"
+      },
+      "result": {
+        "events": [
+          {
+            "type": "dragenter",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragenter",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "drop",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": [
+              {
+                "name": "Native Proof Folder 03",
+                "path": "/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03"
+              }
+            ]
+          }
+        ],
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "draft": "Keep this draft bound to Alpha.",
+        "alerts": [
+          "Start a new chat before opening another folder."
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "primary",
+        "value": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "＋ New chat"
+      },
+      "status": "FAIL",
+      "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '＋ New chat', exact: true })\u001b[22m\n"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "return (async()=>{const wc=electron.BrowserWindow.getAllWindows()[0].webContents;const point=await wc.executeJavaScript(\"(()=>{const r=document.querySelector('[data-chat-input=primary]').getBoundingClientRect();return {x:r.x+50,y:r.y+15}})()\");wc.debugger.attach('1.3');try{const data={items:[],files:['/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03'],dragOperationsMask:1};for(const type of ['dragEnter','dragOver','drop'])await wc.debugger.sendCommand('Input.dispatchDragEvent',{type,...point,data});return {method:'CDP Input.dispatchDragEvent',point};}finally{wc.debugger.detach();}})();"
+      },
+      "result": {
+        "method": "CDP Input.dispatchDragEvent",
+        "point": {
+          "x": 85,
+          "y": 488.25
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "protocol-drop-valid-folder"
+      },
+      "result": "Working Items\n\nWhat would you like to work on?\n\nYou\n\nSynthetic binding probe. Do not contact a runtime.\n\nWorking Items\n\nSynthetic native binding fixture completed; no runtime session.\n\n⊕\n↑\nWorking in\n▱ Folder Alpha\n·\nAGENT\nWorking Items\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n\nStart a new chat before opening another folder.\n\n‹\nChirality\n＋ New chat\nCurrent chat\nWORKING_ITEMS\nSep 6, 2026\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n▱\nFolder Alpha\nChoose folderFolder Alpha\nRUNTIME\noffline\nRuntime reported offline\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({events:window.__nativeEvents,root:localStorage.getItem('chirality.projectRoot'),fixed:document.querySelector('.chat-folder-fixed')?.innerText})"
+      },
+      "result": {
+        "events": [
+          {
+            "type": "dragenter",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 537,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragenter",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "drop",
+            "x": 300,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": [
+              {
+                "name": "Native Proof Folder 03",
+                "path": "/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03"
+              }
+            ]
+          },
+          {
+            "type": "dragenter",
+            "x": 85,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 85,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 85,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "drop",
+            "x": 85,
+            "y": 488,
+            "types": [
+              "Files"
+            ],
+            "files": [
+              {
+                "name": "Native Proof Folder 03",
+                "path": "/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03"
+              }
+            ]
+          }
+        ],
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "fixed": "▱ Folder Alpha"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "New chat"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "return (async()=>{const wc=electron.BrowserWindow.getAllWindows()[0].webContents;const point=await wc.executeJavaScript(\"(()=>{const r=document.querySelector('[data-chat-input=primary]').getBoundingClientRect();return {x:r.x+50,y:r.y+15}})()\");wc.debugger.attach('1.3');try{const data={items:[],files:['/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03'],dragOperationsMask:1};for(const type of ['dragEnter','dragOver','drop'])await wc.debugger.sendCommand('Input.dispatchDragEvent',{type,...point,data});return {method:'CDP Input.dispatchDragEvent',point};}finally{wc.debugger.detach();}})();"
+      },
+      "result": {
+        "method": "CDP Input.dispatchDragEvent",
+        "point": {
+          "x": 85,
+          "y": 133.75
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "protocol-drop-unbound-success"
+      },
+      "result": "⊕\n↑\nStart in\n▱ Native Proof Folder 03⌄\n·\nAGENT\nWorking Items\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n‹\nChirality\n＋ New chat\nCurrent chat\nWORKING_ITEMS\nSep 6, 2026\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n▱\nNative Proof Folder 03\nChoose folderNative Proof Folder 03\nRUNTIME\noffline\nRuntime reported offline\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({root:localStorage.getItem('chirality.projectRoot'),fixed:document.querySelector('.chat-folder-fixed')?.innerText,events:window.__nativeEvents.slice(-4)})"
+      },
+      "result": {
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03",
+        "events": [
+          {
+            "type": "dragenter",
+            "x": 85,
+            "y": 133,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 85,
+            "y": 133,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "dragover",
+            "x": 85,
+            "y": 133,
+            "types": [
+              "Files"
+            ],
+            "files": []
+          },
+          {
+            "type": "drop",
+            "x": 85,
+            "y": 133,
+            "types": [
+              "Files"
+            ],
+            "files": [
+              {
+                "name": "Native Proof Folder 03",
+                "path": "/private/tmp/chirality-native-shell-02gzaapq/Drop Fixture/Native Proof Folder 03"
+              }
+            ]
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "cleanup": "owned app and server closed"
+    }
+  ]
+}

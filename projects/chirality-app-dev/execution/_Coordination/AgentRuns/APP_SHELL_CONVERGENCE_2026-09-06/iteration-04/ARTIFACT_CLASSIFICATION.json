@@ -1,0 +1,1453 @@
+{
+  "packageManifest": "5a6de3dfc2a4d3320a434cc77073043b806ef87496b69f14840dfab95083631d",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md",
+      "sha256": "770ac82da69e810085e6b7e7eec1d9921c8ba84e17bfaad6728cbebbc2adcd8a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+      "sha256": "deaca586b344632edb3c8123ba600059764165d71d02ae9706b6c8c988154877",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/WORKFLOWS_READ_ONLY_2026-09-06.md",
+      "sha256": "56b0115d62cb0a1d2fc28cc6af6e39274824e0717d4fa96b9c811c4ffe0d04ef",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/AFFECTED_CHECKS_v1.json",
+      "sha256": "fc9e261b59f9bc1b97ba69ea96a276e3586614d2081a6305a4da8df6bd4b8990",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/ALLOWED_SOURCE_PATHS.json",
+      "sha256": "99ee5632d42bd5ee67d2d22a747845636a2bc2811f0dc303174c9163a41ac2a3",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/APP_HOLD_CLOSEOUT.json",
+      "sha256": "a9dcd7d8ace2674f55dc25f567703110b60a95125ca0f106f9cb877f2bc4f0ac",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/APP_HOLD_DISPATCH.json",
+      "sha256": "98e2b044729c315e392abae222c24775f33e0970ad2d1d810712691940ab75df",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/ENTRY_IDENTITIES.json",
+      "sha256": "d04db4c3f41cfff0e1484a82b9bfc8b1a529a2a8a358eceba69445626a0ccad4",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/GRAPH_v1.md",
+      "sha256": "f970ac273b8c0c9d40a5167f44ccca2327824afd216bd0d6d084436e4963deee",
+      "classification": "operative rationale or attribution",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/MANAGER_FINAL_VERIFICATION_v2.json",
+      "sha256": "df54fd2022284fec9847370f57ad6ce33e6f06a6b8ec03bf958ab3c4f11eb758",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/MANAGER_FREEZE_CHECK_v1.json",
+      "sha256": "0d98a63176a9c48f0d9fcba27be50d9505517ceb7df74c5266c553fc21562a22",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/MANAGER_FREEZE_CHECK_v2.json",
+      "sha256": "323f24cca063b0dbcaf090711ca74e20564445dcdaca2af57955120378f56886",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/MANAGER_RETURN_v2.md",
+      "sha256": "07ca1c79af7318d41d7e996acf677d31e37b2385c0355b2fdab25fff07b10b38",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/REVIEW_GATE_v1.md",
+      "sha256": "b71c4b336cd445541de61448a9757d36ce2de05001ca87435d2adbb569f5ce70",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/SELECTION_AND_CHECKS_v1.md",
+      "sha256": "01fca2b30f41ee3c2788e44357e370262ee0d0ae25a2bb1593d424de81dd5ff3",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/SOURCE_REVIEW_ACCEPTANCE_v1.md",
+      "sha256": "1f001f4b064e9538cd1d0288e34190602d3b37a178710493452b8d76c82e6018",
+      "classification": "operative rationale or attribution",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/WALKTHROUGH_COMPARISON_v2.md",
+      "sha256": "0669feffdf920b82ce9f117362901c678528e2c32f6e57a97abac00989b10b36",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/APP_HOLD_REPAIR02.json",
+      "sha256": "e2a708640130d7a38c6659e4bba319f35db7c97b0a5ac99305db6252707490bc",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/AUTHOR_RETURN_v1.md",
+      "sha256": "811be6cc8b84cce90404f74de7bd7eb2436033e2511c2f30755b2da5cc709321",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/AUTHOR_RETURN_v2.md",
+      "sha256": "f6b935cb8735a8a0537a09eb02d2f9eb65a9946f88a9e129cc59be5ece5e9f66",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/BRIEF.md",
+      "sha256": "bd376421d46e9b2f6bfea79ef7af2d0e86aa7cd472bb631288c03f40486029e6",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/BRIEF_SUPPLEMENT_v1.md",
+      "sha256": "719353677d42fa3215b31fbfdeee84644ca2f747ed22d652ad647d95c0f67953",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/FREEZE_v1.md",
+      "sha256": "e8dfcdc5c077bdca93de8b6d9f57c9c403e4512bcd0dcd712729c77925e8e1ed",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/IMPLEMENTATION_RELEASE_v1.md",
+      "sha256": "016ac0ad32ae98069b9fb2f45731cd649d44450272aba15b00510825b2dcf956",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/INPUT_IDENTITIES_v1.json",
+      "sha256": "4f82f80dd4dab54e1ac7e9490ca2db97fa402bb041e340fc90a70a27ea56d07b",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/INTERFACE_FINDINGS_v1.md",
+      "sha256": "6361d291df1e7347e96b87cf04618f7a6d750d5fbf177d6b10427c8ed9bf9fee",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/PREFLIGHT.json",
+      "sha256": "fb75a1ccb71fde7df41bfdae6f678d5e206acc2ae26273119aee4c3aeb7e7ad1",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/REMEDIATION_v2.md",
+      "sha256": "d8a6b37c4ca1bdfacf73c210e2788ca9de0d058f7932ebf4b79429ece7dddb2c",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SCOPE_v1.json",
+      "sha256": "87d8f5473fdf4437605f40e793b44c995bce355d55e8d80729362f9c9ccfb1a6",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SCOPE_v2.json",
+      "sha256": "e9c1ece859fa7673f1df62c5d6a199c9095d4192fb8e99169798b3e195315791",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v1.patch",
+      "sha256": "9a9e25e2ae849a679475ed06f4aee2c779061b129fa18b31f2fe0b3a856c94de",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v2.patch",
+      "sha256": "2fc948dec24a4aabe921c2992a3037dc6eedbdb2a4ded4c818624dc716c931c1",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_MANIFEST_v1.json",
+      "sha256": "83ebdd33e8184119f0028d8406feef7ed9fb61c215402ed9f218fa06b21d15bd",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_MANIFEST_v2.json",
+      "sha256": "3f145c13ab1afff77feb53669f934ec587534871681144616aef483214fa8177",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/_run_records/TASK_RUN_2026-09-06_discovery.md",
+      "sha256": "34f89d58758930f5e9121de3901e6368e74d76f6b7d38f6ce929abc85352b3d4",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/_run_records/TASK_RUN_2026-09-06_implementation.md",
+      "sha256": "318e99a64955ba13d2bbd1ce26402e9ddb0e1c8b71ff82e36312bff05af4fde9",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/_run_records/TASK_RUN_2026-09-06_repair_v2.md",
+      "sha256": "607d778be189c12b29e8d73eb576867acab016baad5b1b109847aef70fbfe327",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v1.txt",
+      "sha256": "b05d075497d1921bfdfa901d86d866f80918c4247e210d4a9b423ca3ca514e0a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v2.txt",
+      "sha256": "18149e67efef86693cb70f21c8eb6f43af9c309cd80cec9d35ab5ece8d23545a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v1.txt",
+      "sha256": "6a00fdcb5544a1d1d21aa8b0a1f339a709e21d07815b59f900b848ea757487d9",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v2.txt",
+      "sha256": "c62d07007fe390127bfbfcb7ab4043a50912d4ed4bad95c32b614e4ae93e1f6c",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v1.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v2.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v1.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v2.txt",
+      "sha256": "82cad11bdb80dc70094cc8a4f76dde7a9c1edc9bb340b112e76622de4eead3b7",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v3.txt",
+      "sha256": "82cad11bdb80dc70094cc8a4f76dde7a9c1edc9bb340b112e76622de4eead3b7",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v4.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/APP_HOLD_DISPATCH.json",
+      "sha256": "fa6ec6ffefc2935eb503008b69e7f1b22f4c199b7560dd927dee1e6d24f48d9b",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/APP_HOLD_PRODUCT.json",
+      "sha256": "4620e8a8832b146b3196e844a957c26a5020785435606b9f03f91df929f28813",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/BRIEF.md",
+      "sha256": "089aa919cfceab825586024a811e367627a534154e426357887e712081a484c0",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/OUTPUT_MANIFEST.json",
+      "sha256": "8f80a9f80896646a2e2ef887a36bc282ec4da2d4eebddb00645325bd86e7aa8f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/PRODUCT_COMMANDS.md",
+      "sha256": "bc87408c4940993616072318dae1eea40af43ddf4ea4a8b608f2126508e1cf12",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/PRODUCT_RELEASE_v1.md",
+      "sha256": "1c86eddd26faceefc13c5bfe828a64c9edccda5f35dabb2d3a1db4578a196b22",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/REFERENCE_MANIFEST.json",
+      "sha256": "3409ed0bce041af5e3794f59d4e12fad148df94556d935533b86cef06f478fb4",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/REFERENCE_PREPARATION.md",
+      "sha256": "dafcd568e251f930da34b89caae0be1d103bf9a197a667d95f410db7ff9ca034",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/RETURN.md",
+      "sha256": "83ef41a563d14ff5fcbc673ccf5922d1508312f404a369e0c9b502643c54a29c",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/api-check.mjs",
+      "sha256": "ee1099dfdb6ba78675aea25dc331f461c42cacd9b4442591e6de45c1b489805e",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/api-check.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/api-check.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/api-result.json",
+      "sha256": "2b57369eb4d8dccee419ee5387131ec135317592887173761d7128843503da1a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/cleanup.json",
+      "sha256": "10784b53a1e1efc8d7265e459bfea36929267102c828d7628339def78a9795a9",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/edge-fixture.json",
+      "sha256": "3818629da7a8969025edc0105ef36bf641f1d0d04f26f3f9f34d4baea5dc3de5",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-detail-1180-dark.png",
+      "sha256": "187c4da12b94125e55b164e727d54ba0b20d93626a7af07d16f0d12f92d989bd",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-detail-1180-light.png",
+      "sha256": "bf4f1a27bd64d7d98f2ddd86429240c6b881403a62ad3e04d44338b407fdbbe3",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-detail-1440-dark.png",
+      "sha256": "dfdc26945b9957e8f7bd63ec4314dfb5ae8535e933639d7a1edf8a0495168dd6",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-detail-1440-light.png",
+      "sha256": "22a86c4aefe1dee08bf7d703244d921d644dcf1a87249a58119f17827883819c",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-detail-960-dark.png",
+      "sha256": "e14d81da65fd0cf96ed3230c5a6fa0b5991cc6a332ade2c35c68d7c43f548cf1",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-detail-960-light.png",
+      "sha256": "1658891679c30fefae15562645dbb54abe35e0d833bc62b4f6685a60ef1fb0b6",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-list-1180-dark.png",
+      "sha256": "72d95629dcbb998a4645a874034abe3a8877e1bf0c43b8118fc0c04647726840",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-list-1180-light.png",
+      "sha256": "c2f8c4c2ad5a346f8dae9df6247a3f1424c528ddece5a5c95f294b5c739dedc2",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-list-1440-dark.png",
+      "sha256": "6fe9fe4e7b76fe2abc33ccbe93044ce9d81a55280dba64adaaf7a5c28b478cf8",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-list-1440-light.png",
+      "sha256": "d96d079b05b68078e5356993cce07b7ed079a1a5289a7da6b94add2db0b1cb4a",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-list-960-dark.png",
+      "sha256": "4805c17f846d4b0f5e3645346fa74ca20b83c1d82cd562c5fc44edb297f45811",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/final-list-960-light.png",
+      "sha256": "b5263451c99827314224f2581f0843cfca5f620ce4dca17dc448421f65fab4c9",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/fixture-design-review.md",
+      "sha256": "745c26fec02b4c05b88aaacdbd6b4ec1de3ccbc3acfd86a1131779c77dd41b26",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/fixture.json",
+      "sha256": "4c73e8ac15074d9db96cfb16791f319f50b9754f92088dbe48fd03e6f0c19bd6",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/matrix-failure.png",
+      "sha256": "e3f53b08f8259ba1bc2c2a77b94177e9eca091e6b43a099ecab58f21a8f85528",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/matrix-result.json",
+      "sha256": "c4413e70af554e460f1d295de13da63f3b625cc66f42ac9c7ec632d414468881",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/matrix.mjs",
+      "sha256": "479595ac09dd9d1b85ba54990c683d6fef3ae8cb27b86ed4aa77e1e5d33d3ab5",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/matrix.stderr.log",
+      "sha256": "654b31adac0603b883d80c718950890507642897ca21ee316bb23a84cee73cea",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/matrix.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-detail-1180-light-rail.png",
+      "sha256": "a3977fee7086970cc654deda71b4e96d990aa7550f16a831eaf6dfc29e36dae3",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-detail-1180-light.png",
+      "sha256": "0e76f686926cb7a84dae145e89b05576a6afb5ea440e1b3c43f23288099feae9",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-first-result.json",
+      "sha256": "e3f9350fc6c762e5f1516e3ff60437c79b7dbd9247fba0744367de143508c444",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-first.mjs",
+      "sha256": "e50cbc22d880202a020d9e42a00b0d3dc7329ba8e1ecd68370cad7490afab84d",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-first.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-first.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-list-1180-light-rail.png",
+      "sha256": "b02106284da66b45f8b2b5aef1b9752e2288a151c1238d1a1aa9c985ccd874f9",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/product-list-1180-light.png",
+      "sha256": "38bb06aaf917a8c369154df5cf41def0b65d358dc963128b403cbe0dc2c29917",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-dark-full.png",
+      "sha256": "c87d88993943d27dbd681a3a0bb1d56d9883f7650fd8a37792ec94ea1284b779",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-dark-rail.png",
+      "sha256": "bb2031d22602351c0f6d00bac48415f88d10e9984de6311bbc5abda084b5c6aa",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-dark-shell.png",
+      "sha256": "b143363ead059a60f7378f027d21f80f66f4d0ac2b9b678058bb9b9cf0003c4c",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-light-full.png",
+      "sha256": "3d35e256d86ca8b069e36c76be21cc466779ddce2eb257ece45c4bf427eadaf4",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-light-rail.png",
+      "sha256": "18fd0ae8537bb051fcb00f07ef24515bd1b5453dba45345490ac9b3bbffc6dc5",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-light-shell.png",
+      "sha256": "3ce75a91fcad6727d1c9e2c7c81f151f250a22120d19fa3e1c4c49fd60c626f5",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-dark-full.png",
+      "sha256": "f89bfbca884712d219a8022382abc70623e06505607805b34178e5ce4bbb9db8",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-dark-rail.png",
+      "sha256": "7f24b5f8d77a2febeb321bffef56f00e099dcc2588b5a69e831184ee99d21587",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-dark-shell.png",
+      "sha256": "9717ab3171eb0fa80e652fa8001a252db4292640c4aa4ff030c7e41dd44030a2",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-light-full.png",
+      "sha256": "90c5a1f82e00b244bbdc114eca522a9ab2804ba4f736698621839e65b12e0bd6",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-light-rail.png",
+      "sha256": "aaba5db552c0c12fc5b9c835afc65ccbbc16ca61447f042f799fb78d03220f9b",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-light-shell.png",
+      "sha256": "a0fd77c91b9996ac14494e915b0558b4d3ffe58492f99f6f04930c62d49af80e",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-result.json",
+      "sha256": "cdafd5327869198d8b9167236cf8242bcbc1e22feac0d285138e2cd8e603959f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference.mjs",
+      "sha256": "b8d610d13b7468da89bb08373923d47ef22680e806362927d3bfc57940995d0c",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference.stderr.log",
+      "sha256": "751e3c9d93e46411ad7c4f3fb03a95248bd9a6601c8221a30b0c9cf4b9115764",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference2.mjs",
+      "sha256": "51b54c6ee6891fc6afa120fce4b7f24225bdb8475b3028daebb850e28a8174e5",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference2.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference2.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/source-after.json",
+      "sha256": "3e5442809765c42ee039efe327fabf8dcc4f6e412f547a2b679c9d87f8849c7d",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/source-before.json",
+      "sha256": "3e5442809765c42ee039efe327fabf8dcc4f6e412f547a2b679c9d87f8849c7d",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/APP_HOLD_DISPATCH.json",
+      "sha256": "4eeab934938997a098d0e5a61a97e874f8b0c1151038792b20dde69b30a80e70",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/BRIEF.md",
+      "sha256": "be2cf0234f536927e07dc487ed023bbae50947c211265a2007b466c0db68ba6a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/COMMANDS.md",
+      "sha256": "ca023de5a1c5befb27e191b9f08699a7c7d6fedc0bdb03fd8b3fea83fdd2d0d2",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/OUTPUT_MANIFEST.json",
+      "sha256": "971e1dbfe6eeca27393c7bda2f59132dac0a6935e0156a76f6a4921731d3e111",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/RETURN.md",
+      "sha256": "01aa1d3f680a8146f756e0e73fd95a62701ea2bcc23d1475aa6c7e2612703da4",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/api-check.mjs",
+      "sha256": "ee1099dfdb6ba78675aea25dc331f461c42cacd9b4442591e6de45c1b489805e",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/api-check.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/api-check.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/api-result.json",
+      "sha256": "a619558dc1a910792c768fefe2f6b30b345f102a3e195869661e1e1e3a742f98",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/cleanup.json",
+      "sha256": "38cd5b5ada93aa5cbe429488cb9a3e7569dcb458cecdbb1831b633b4a60dff95",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/edge-fixture.json",
+      "sha256": "238ca2041d73645ea551d451969ff4b94127c80034dc47cc93ef3edfca90f9aa",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-detail-1180-dark.png",
+      "sha256": "1d4eb110799fcbefd8116b4d98417ae6f03a89d9c68137f182cbd560673f9220",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-detail-1180-light.png",
+      "sha256": "8d41f299d3351eab2dea4bdb33e97eefa443f8703dad4ab8a7b55703f2e50e14",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-detail-1440-dark.png",
+      "sha256": "07498cafcd9a783a0f8dff72de4e79b91252421fb27716e81971bc5a2b15f489",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-detail-1440-light.png",
+      "sha256": "c465f25f9c9bf674f01d9fc533411ffcf3fb795d57f9706e9c5f8b79d0bc79e8",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-detail-960-dark.png",
+      "sha256": "3b9b9318c956e06bade42e5ddd617573c50b282e3b706e4ab9d02e1d3bbe0326",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-detail-960-light.png",
+      "sha256": "c8ce639b8f276cafdfab5736f9f6c2a6b68c2f9dfcdce14587a605fbc233d0af",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-list-1180-dark.png",
+      "sha256": "4d36f093520ed9b5115b9126daa9fa8bdaa76edd44843335755248c7ca2f7e6b",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-list-1180-light.png",
+      "sha256": "c4cc5e85a3ec78bec703e920db9c7424916d3685b053c82148ffc03c68893e1d",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-list-1440-dark.png",
+      "sha256": "cc65b530c4466270986f6bc3b3452dd9b2fb4799f4f969d368255101050cac2e",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-list-1440-light.png",
+      "sha256": "5964fe085d884d7b0df4e98cb96638735dd75bede5384ac3875c487accfda6b4",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-list-900-light.png",
+      "sha256": "cdf0d36b6a0ce9c9a8681a53ba7abecde30314f9b1892aea80f9443726190ad4",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-list-960-dark.png",
+      "sha256": "f7ff9beb063edea3fc2a09be0a20246d0cabc1a37f5df03497ea55b0bc7ae20b",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/final-list-960-light.png",
+      "sha256": "74192406e7dff5fc923ff95653e416fec4e1c73bef5c95237bd58882331a2051",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/fixture-files/Design review.md",
+      "sha256": "745c26fec02b4c05b88aaacdbd6b4ec1de3ccbc3acfd86a1131779c77dd41b26",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/fixture-files/Unsafe.md",
+      "sha256": "7d37dec60f533f875195eeb5173e94e20b96d19201e869a0b37195ff5db70d8a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/fixture-files/Unsupported.txt",
+      "sha256": "c479737f3c8fe8e73f2cc54b14449e7e11bec37543d8defcf94f3be3d6d1a600",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/fixture-files/Vendor comparison.md",
+      "sha256": "c9082f668e0a0d2b8edcf5fc4f6c72f1b4a56750f6d0ebb014efc6fc594a04d9",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/fixture.json",
+      "sha256": "238ca2041d73645ea551d451969ff4b94127c80034dc47cc93ef3edfca90f9aa",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-280-result.json",
+      "sha256": "e5dcae8de963f70ac6fe71d0bbaf1fb53029aa1452a1e86cbeb628bb9182236a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-280.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-280.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-340-result.json",
+      "sha256": "c42115201d300190f3abd37b93d0cf74eb8de2b0782881d88e50cb8d2dbd2800",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-340.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-340.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-fixed-280-result.json",
+      "sha256": "97c3867297ba4e770632f5b8d4aee1f584f8e8b97544c5d3e0c094398056600e",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-fixed-280.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-fixed-280.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-fixed-340-result.json",
+      "sha256": "824a5dd563c6024c3ca6708d66136638bb8cb35493d81013377147c2e627c7ff",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-fixed-340.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-fixed-340.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header-fixed.mjs",
+      "sha256": "c793706dfa3f38865a4c69931b3995ff94ea93c19f6627603819025a70baffcf",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/header.mjs",
+      "sha256": "e2edd118c736055b11a94c97592488607116d04e7e3d151e6fca8da3d862b874",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/matrix-result.json",
+      "sha256": "9cc3ddf5672738a36c9d2640d97fb2591c2c0196ef003b0653fac5f9653b7bd8",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/matrix.mjs",
+      "sha256": "a44c60483b339ef8f2b38b3fb39fb5dafe5eabf4b96def3d5a05466ba5ceb7ab",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/matrix.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/matrix.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/missing-workflows.png",
+      "sha256": "1610b6b2ea93f665b11d2f9d1d99ef4769341aad61b0785a4925652c417ac5f0",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-detail-1180-light-rail.png",
+      "sha256": "a3977fee7086970cc654deda71b4e96d990aa7550f16a831eaf6dfc29e36dae3",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-detail-1180-light.png",
+      "sha256": "f41c7ec334272264960ce49cbd12608df7e8c1ef3f33635791d4884893ecbc98",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first-failure.png",
+      "sha256": "5956c118fc77a964b1fb40dfe0fc65eacd19deb8a3ff87bc0620108bec543907",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first-result.json",
+      "sha256": "377ed0f572d0fd4e4d6c33990e769f5a23c2649c72726ed3694ecc0096c7062b",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first.mjs",
+      "sha256": "33bde24493697dc6604ed8bef23ad2625cfffcb86ed9ae6e94d5f4426a0d431c",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first.stderr.log",
+      "sha256": "976e9e1b1830a044a184d15bb9b50b147166810dd53c980a2de06b7988ee15f8",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first2-result.json",
+      "sha256": "9a42840f59e091794e78e8e0dddcdc968edd16a57d08fb2e362d38ac219fbf3b",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first2.mjs",
+      "sha256": "5e1a3f616707f02d81ebcb8ac533c04a518f9edb2b2bccea78e32de44f302c79",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first2.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first2.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-list-1180-light-rail.png",
+      "sha256": "91333d5e3ba73f7f6a34ee3c3a6e603a57171e2473011b036ff88bec4093ba8f",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-list-1180-light.png",
+      "sha256": "a458cf82136ac4e25330ae29803fd013349d1cb3440e743d9abc9f90098d670d",
+      "classification": "raw visual evidence",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/source-after.json",
+      "sha256": "473e4983a01cef933dd5da2b8858c2497342189c69f55ef2b8fec632802d9261",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/source-before.json",
+      "sha256": "473e4983a01cef933dd5da2b8858c2497342189c69f55ef2b8fec632802d9261",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/final-checks-v2-host.json",
+      "sha256": "27bf15a86aceb4a8803b738fb0541b8af6536cd6e2c7db74ac67f0b7cedb18bc",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/final-premerge-v2/summary.json",
+      "sha256": "e6325f65f0737d09bf7a10f63804dfbc6291e0a71abdcda3505cba8a30a4ddd3",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/COMMAND.json",
+      "sha256": "056f1471b1266d23b88c90a64c561a240c47f6d7718fcb97fbaf4d0e65d8df0a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/full_test.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/full_test.stdout.log",
+      "sha256": "06197a9395094389e31158b9ffa880cbf028d895cdd1156b83e20ef8f93661f6",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/premerge.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/premerge.stdout.log",
+      "sha256": "05eb4bee21e55fd27ad72e66d814636e193de3bfcc1356f970b74b00f3c2ba8d",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/section9.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/section9.stdout.log",
+      "sha256": "a380db8425ef520365393ae4b730db785907e5376259259f9b9c4ae29762e3bb",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/typecheck.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/typecheck.stdout.log",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/summary.json",
+      "sha256": "287bab6d9d7812ee417ff76f7e730abdc5a3db126139e050f06c18c2b70b1f6e",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/section9/manifest.json",
+      "sha256": "6a01eb393e93948a66a19fb5a172c38efd80cbd594f4aad827f67502e410b1b8",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/section9/summary.json",
+      "sha256": "f34603e5d2fde8f7e57dbd021d6c35f2dfb81823bf059a11c8a7f39c1e20ace4",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/stdout.log",
+      "sha256": "aa9b6f0ae9fc6272d9c22c8204b95c31499f52f01af0bf8ca80b1e4ed6c895fe",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/run_release_quality_v2.py",
+      "sha256": "b692b3d1933545fad285e7ba76fca1c7073dd181035bb58af8d20508d6fb8513",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/AFFECTED_CHECKS.json",
+      "sha256": "792c724e12f0bc857c075cd80ee3695352f9a6756a9565c80bd2e0cb1c05670d",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/APP_HOLD_DISPATCH.json",
+      "sha256": "778a24ce1f0d28e5b791ad399abf478c47067a8155db0f113a0562dd50e1d147",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/BRIEF.md",
+      "sha256": "c7485c603b3700f13390a9bd850ffbb4c6e82cf7079289b48797ff4b1efbf6bb",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/COVERAGE.json",
+      "sha256": "afefd25c132790c4977719ff73cd8cf2f03af4e218b7471088a9c9e0bb4acd68",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/INPUT_INVENTORY.json",
+      "sha256": "16cf77f2ef70b23c27d32591c3d34595c0120d3b438afab25d6903308679a7b8",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/OUTPUT_INVENTORY.json",
+      "sha256": "355e3d555b0238de812db766ee289d8e448a3dbb2702b51fc42645f048c80e65",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/PREFLIGHT.json",
+      "sha256": "f364a108de803e7d6568302d0829d94db25a506b4f3c865d5ccaa26a733f3a53",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/RECONSTRUCTED_DIFF.patch",
+      "sha256": "9a9e25e2ae849a679475ed06f4aee2c779061b129fa18b31f2fe0b3a856c94de",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/RETURN.md",
+      "sha256": "ef4a77ae9cf4ae53919966e38920bed37673ba54637c4bbf5de572c06b7c4b09",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/SCOPE.json",
+      "sha256": "35890814ab9867c0e07c40ff2024dc050b548b4da41399a0947846d5d7f4ff94",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/VERIFICATION_AFTER.json",
+      "sha256": "aeda7a8b9f80536cf0e3113a1c90f1ca91a2df95ac5236ee4508889252ced4e9",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/VERIFICATION_BEFORE.json",
+      "sha256": "12718794fd78f7e912a423eefd672e0328bb71c18fd5b4624da14c5ebb9be725",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/_run_records/TASK_RUN_2026-09-06_review.md",
+      "sha256": "32c2650635644aaa722cf586832c0040179c5107af78fb66fb537e37c9db4352",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/AFFECTED_CHECKS.json",
+      "sha256": "792c724e12f0bc857c075cd80ee3695352f9a6756a9565c80bd2e0cb1c05670d",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/APP_HOLD.json",
+      "sha256": "e411aa3ad8397cd859dd3c2e05325dd6f5c29c8735520778eea4f68c44a033f1",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/APP_HOLD_DISPATCH.json",
+      "sha256": "452abddaa714c4b5e2e35312d11341029891f2aca5c1a2bd3e8ab92c0780bfeb",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/BRIEF.md",
+      "sha256": "95056635c54354b8e52113befc74073b05a2830c039a524313da158d5fbf045a",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/DIFF_VERIFICATION.json",
+      "sha256": "c2f005a2f919b0bfee1d1c8d8f3ad39af7750b1549fbef15231afdd64be416d9",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/HASH_AFTER.json",
+      "sha256": "aa6f9e970aad93437e5f5fca70ad6435ca54c873b5b48c7d45c06b5624054820",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/HASH_BEFORE.json",
+      "sha256": "aa6f9e970aad93437e5f5fca70ad6435ca54c873b5b48c7d45c06b5624054820",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/INPUT_INVENTORY.json",
+      "sha256": "e23f5b9d0a7842a4d93a33d637debb5ebafd0ef885bfb632ee60f8722c1ea420",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/OUTPUT_INVENTORY.json",
+      "sha256": "4f53dd3dfdb2eb31aab44845338ab39e12422a60df2b6ab63b505bb059b61715",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/RECONSTRUCTED_DIFF.patch",
+      "sha256": "2fc948dec24a4aabe921c2992a3037dc6eedbdb2a4ded4c818624dc716c931c1",
+      "classification": "evidence driver or frozen source diff",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/RETURN.md",
+      "sha256": "2343cf3084bd400c60acb51fcc033d0bbf5581b734a685b87d427eee77036b44",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/SCOPE.json",
+      "sha256": "35890814ab9867c0e07c40ff2024dc050b548b4da41399a0947846d5d7f4ff94",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/_run_records/TASK_RUN_2026-09-06_review02.md",
+      "sha256": "cbab48d97f13a820ed3c74bd47ae4680c9c10e03e55efc04ca81afc0e8d8cd6d",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/APP_HOLD_DISPATCH.json",
+      "sha256": "fe6467db354de8c051959c099404467745538d009f3206df5943776aca5a4388",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/BRIEF.md",
+      "sha256": "9b158ec95d9f7e9ae0798ccb1c565a439bcfc4e605bd5cda23ea0752919397d0",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/HISTORICAL_REVEAL_BRIEF_CANDIDATE_v1.md",
+      "sha256": "dfb806d77130815fe777dd45563cfc6ff86647b0a359f5da8d3ae8450509f18b",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/HISTORICAL_REVEAL_OUTPUT_MANIFEST_v1.json",
+      "sha256": "0ddef49cf82c06e68d51aa57a986a65b4a4b44f31c64277930b60e8f5a149907",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/INPUT_INVENTORY_v1.json",
+      "sha256": "2b2829681f013a5e7bf0b6cc758783d1587c21b78b05009318d6fff277dcbee8",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_INPUT_INVENTORY_v1.json",
+      "sha256": "e85cc9482b97b555609a4b270ea96dba17fd2dcf409f23314ea84a6c49621cc1",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_OUTPUT_MANIFEST_v1.json",
+      "sha256": "26a7d6d500ef88c8305781affe531897c46d75d4782123b935dfd12c6e26acb6",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_PREDECESSOR_RECONCILIATION_v1.md",
+      "sha256": "7434c94fd604eb7901a2030e9a707c1e952437f6243c3158e0f85505886ce902",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_RELIANCE_PREFLIGHT_v1.json",
+      "sha256": "8bec41853c01e37440f77c8a4c17df20dc511b8654656d828813853cbac47ba3",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_SOURCE_TRACE_v1.json",
+      "sha256": "b13c442f2c43458b8b572af390813e400ccac9d925cd99359a8d80b3dd10981f",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/NEXT_STEPS_v1.md",
+      "sha256": "000ceb5ec88d273f03b432e377f667020f113b557262f8c07e4796edbb287548",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/OUTPUT_MANIFEST_v1.json",
+      "sha256": "6ee31504f7daf12aa6201404899fa5a20f9c5c7516742c50921c61c38478936e",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/RELIANCE_PREFLIGHT_v1.json",
+      "sha256": "e84eebb85286a9c592fabdf698420b579aeb00b087bb9188d4cb05971e23abae",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/SOURCE_CHECK_v1.json",
+      "sha256": "9de7003d699d62637cf7cf2496b4b781cc494d2d2dca4557ecfad9b83649cb58",
+      "classification": "mechanical output, manifest, observation or evidence narrative",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root-workflow.test.ts",
+      "sha256": "ee361a4fba39d2e3ab8dc3858cfb16edaba264a70c9ddaa46815ce6e1a5f6c33",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "sha256": "d134734016fe0d7544db3cf252c57cea1183dfbbf9ee8724fd0fcb1d50351923",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-workflows.test.tsx",
+      "sha256": "baa840713aef6abee831470a048723267fa1326ed6b03ff0e24b4fab9bb90d7e",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/route.ts",
+      "sha256": "f206a554686f2da2459db7892296029272745329e23056156c33b297054c15df",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-read-contract.ts",
+      "sha256": "de1dbbc16cc8d2a6eb07c57b37663bf9ea5772d7e2aada39667fabe0610bb011",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-store.ts",
+      "sha256": "5912538ad3a90c8ec6870479e14c640d3dd1fb4c4aa4479d32857db94e8fb539",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "33ada3e4d9b4ce3970c7c0e2ed07fad0020fac0fd152696762a4c41373cbcd70",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflow-detail.tsx",
+      "sha256": "4488d3a4e29526d505979077e09548b7a1f18920e6ce7e54b0ad65abc4246330",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows-view.tsx",
+      "sha256": "0f47a87cbd1e3bda048fd99d6a64568e96e377de326d86c46022829a5fd9ddd2",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows.module.css",
+      "sha256": "d2448e9837dae9b993f74b8587b9375281e8988fdb576418eecf901e23c57669",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "205b39a280d68a5ff1aaccf3e4a0a139904257f3d52db8536a4d3785dd5a5801",
+      "classification": "product source or registered test",
+      "provenance": "owning named author/reviewer/browser/check return and manifest; failed attempts retained"
+    }
+  ],
+  "calibration": "Raw logs/images/manifests are evidence outputs, not separate prose judgments. Operative rationale keeps its own authority and review contract. Classification does not claim comprehensive secret scanning.",
+  "publicationSensitivity": "source, internal instructions/reviews, command output, fixture paths and screenshots; no new public permission"
+}

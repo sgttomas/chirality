@@ -1,0 +1,10 @@
+{
+  "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/HISTORICAL_REVEAL_BRIEF_CANDIDATE_v1.md",
+  "sha256": "dfb806d77130815fe777dd45563cfc6ff86647b0a359f5da8d3ae8450509f18b",
+  "input_basis": [
+    "INPUT_INVENTORY_v1.json",
+    "SOURCE_CHECK_v1.json",
+    "MERGED_SOURCE_TRACE_v1.json",
+    "MERGED_INPUT_INVENTORY_v1.json"
+  ]
+}

@@ -1,0 +1,118 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+  },
+  {
+    "path": "agents/AGENT_TASK.md",
+    "sha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983"
+  },
+  {
+    "path": "skills/software-code-review/SKILL.md",
+    "sha256": "aae98f44d3f5d923e0879872a5c71e7133e9d109b0142dd9ff19aaac6e1fd031"
+  },
+  {
+    "path": "skills/software-code-review/BRIEF_SCHEMA.md",
+    "sha256": "f4622f020e60cd9e99958cf992f1acb7bd87145c212ff634d485745e03bbe8d8"
+  },
+  {
+    "path": "skills/software-code-review/TOOL_POLICY.md",
+    "sha256": "c06c32c9b08fe0e98329c1c670660135f84c1795a07a237a84f74e80306a5b26"
+  },
+  {
+    "path": "skills/software-code-review/QA_CHECKS.md",
+    "sha256": "b6fd4756bbf2775baedc83488bc88219362715f0aec79e9f9330ebf19a5e2dc8"
+  },
+  {
+    "path": "projects/chirality-app-dev/AGENTS.md",
+    "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5"
+  },
+  {
+    "path": "projects/chirality-app-dev/software-workflow.json",
+    "sha256": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/source-review-03/BRIEF.md",
+    "sha256": "b1c3c47b8b11861dad5db1ff57fd99a228a842b97d50e7e0d40eaf84eac75396"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/INTEGRATION_GRAPH_v4.md",
+    "sha256": "50adb29d9bd5b629a85a602bdc0bd9a8089dde232bd931c31216bb554c565ed4"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/BRIEF.md",
+    "sha256": "b5b2f4bfbbcd16fcf67daec753b44c8a6ea97875f1cfbdcdeaff8ea0237e6041"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/NATIVE_PROTOCOL_APPROVAL.md",
+    "sha256": "3b1febb38e57d3edc44fb85598acfb960bdd74abd0035ab1b79a92e719255c13"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_MANIFEST_v2.json",
+    "sha256": "e0db67285c8ee327ba981069f49e33986a687d9efb14c6a086c75f54ef9de8e1"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v2.patch",
+    "sha256": "0bec79b94a535da97a9ade47d985e9134fd78fbcdfbc8b89801a973501381954"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+    "sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+    "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-108_RULING_SCA_APP_010_SEATING_AND_SHELL_QUESTIONS_2026-09-04.md",
+    "sha256": "7ced5e05342de3425673990e5ab3bb37a202cd24198ec6427111ef68c31e64f8"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-120_RULING_PRESENTATION_SEAM_AND_NO_FOLDER_ROUTING_2026-09-06.md",
+    "sha256": "35587f5b9a018a7e263518f13c164ce0300518b4f4009b1a0c6725d215801ebc"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+    "sha256": "b4029b2b1a6edc91cecce4ed71b84fc030018821f3d84cd8dc98902cebb2eb63"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md",
+    "sha256": "0e64cb085ee7032844f3b09f05c5a3f29ba02344e3ce9369a8535657c793406b"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+    "sha256": "1b1c147b4df8ab13fa8968bfc2d59291d711a810504bf0e665e5cf273a52187e"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md",
+    "sha256": "9b7d45fe5441bdda8eb1bc7dde61d7db784231e0fa79f4c4d1e0a22e7c752acb"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+    "sha256": "84adf7d170d152cffcb0e6ba8076bb614ed38f51dfd114ac8af6313605fd1af2"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md",
+    "sha256": "2ebfe14aa3bf354b79111c5e0d4bc81b3e10e8292195d8c8aad5464a7f99cc8c"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/workspace/workspace-provider.tsx",
+    "sha256": "a3de36101a92dc06a34828fd5104294edd7b0456785b5cb9f12bd444a15bd7ae"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/tool-stream-view.tsx",
+    "sha256": "bcd08e4c01e7350e2805382c13e5a57ef990f3594bff08f90bb48249f01ad234"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/transcript-stream-view.tsx",
+    "sha256": "d6ac0121270161ead8aedb7d9b5d115436b146609b431897935a95a2f994a36a"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/subagent-stream-view.tsx",
+    "sha256": "0ad5f2a2f06a9e7daf9930cb4c5158ee30734eaab8fd31059785660e9e9ad3a5"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/ipc-sender-policy.ts",
+    "sha256": "7bcd48d3bdcc1cbe8e62f187d1dcf53c03160bdcc518283dc16aac051ff1180e"
+  }
+]

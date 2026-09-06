@@ -1,7 +1,7 @@
-import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, shell, Menu } from 'electron';
 import { spawn } from 'node:child_process';
 import { isAuthorizedSender } from './ipc-sender-policy';
-import { createDocumentHandoffHandler, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
+import { createDocumentHandoffHandler, validateRevealRoot, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
 import { existsSync, mkdirSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
@@ -71,6 +71,41 @@ type RendererProbeResult = {
 };
 
 const SELECT_DIRECTORY_CHANNEL = 'chirality:select-directory';
+const FOLDER_REGISTER_RECENT_CHANNEL = 'chirality:folder-register-recent';
+const FOLDER_OPEN_READY_CHANNEL = 'chirality:folder-open-ready';
+const FOLDER_OPEN_INTENT_CHANNEL = 'chirality:folder-open-intent';
+let pendingFolderIntent: string | undefined;
+let folderIntentGeneration = 0;
+let folderIntentReceiver: import('electron').WebContents | undefined;
+let folderIntentOrigin: string | undefined;
+let folderIntentRendererUrl: string | undefined;
+
+export async function registerRecentFolder(event: import('./ipc-sender-policy').IpcSenderEvent, input: unknown,
+  rendererOrigin: string, instructionRoot: string, register: (root: string) => void = root => app.addRecentDocument(root)
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!isAuthorizedSender(event, rendererOrigin)) return { ok: false, error: 'Unauthorized folder request.' };
+  try {
+    const root = await validateRevealRoot({ projectRoot: input }, instructionRoot);
+    register(root);
+    return { ok: true };
+  } catch (error) { return { ok: false, error: error instanceof Error ? error.message : 'Unable to register folder.' }; }
+}
+
+async function deliverFolderIntent(): Promise<void> {
+  const receiver = folderIntentReceiver;
+  if (!receiver || receiver.isDestroyed() || !folderIntentOrigin || !pendingFolderIntent) return;
+  if (!isAuthorizedSender({ senderFrame: { url: receiver.getURL() } }, folderIntentOrigin)) return;
+  const generation = folderIntentGeneration;
+  const requested = pendingFolderIntent;
+  pendingFolderIntent = undefined;
+  try {
+    const root = await validateRevealRoot({ projectRoot: requested }, resolveInstructionRootForProcess());
+    if (generation === folderIntentGeneration && receiver === folderIntentReceiver && !receiver.isDestroyed() && isAuthorizedSender({ senderFrame: { url: receiver.getURL() } }, folderIntentOrigin)) receiver.send(FOLDER_OPEN_INTENT_CHANNEL, { path: root });
+  } catch (error) {
+    if (generation === folderIntentGeneration && receiver === folderIntentReceiver && !receiver.isDestroyed() && isAuthorizedSender({ senderFrame: { url: receiver.getURL() } }, folderIntentOrigin)) receiver.send(FOLDER_OPEN_INTENT_CHANNEL, { error: error instanceof Error ? error.message : 'Unable to open this folder.' });
+  }
+}
+
 const RUNTIME_NETWORK_POLICY_ID = 'REQ-NET-001';
 const DEFAULT_RENDERER_PROBE_DELAY_MS = 1500;
 const DEFAULT_RENDERER_PROBE_TIMEOUT_MS = 8000;
@@ -687,6 +722,29 @@ async function initializeGui(): Promise<void> {
   // every one of them rejects senders from any other origin, so they cannot
   // exist before the origin does. The window is created after this, so no
   // renderer can invoke them in the gap.
+  folderIntentOrigin = rendererOrigin;
+  folderIntentRendererUrl = rendererUrl;
+  ipcMain.removeHandler(FOLDER_REGISTER_RECENT_CHANNEL);
+  ipcMain.handle(FOLDER_REGISTER_RECENT_CHANNEL, (event, input: unknown) =>
+    registerRecentFolder(event, input, rendererOrigin, resolveInstructionRootForProcess()));
+  ipcMain.removeHandler(FOLDER_OPEN_READY_CHANNEL);
+  ipcMain.handle(FOLDER_OPEN_READY_CHANNEL, event => {
+    if (!isAuthorizedSender(event, rendererOrigin)) return { ok: false };
+    folderIntentReceiver = event.sender;
+    void deliverFolderIntent();
+    return { ok: true };
+  });
+  if (process.platform === 'darwin') {
+    Menu.setApplicationMenu(Menu.buildFromTemplate([
+      { role: 'appMenu' },
+      { label: 'File', submenu: [
+        { label: 'Open Recent', role: 'recentDocuments', submenu: [{ role: 'clearRecentDocuments' }] },
+        { type: 'separator' }, { role: 'close' }
+      ] },
+      { role: 'editMenu' }, { role: 'viewMenu' }, { role: 'windowMenu' }
+    ]));
+  }
+
   ipcMain.removeHandler('chirality:document-handoff');
   ipcMain.handle('chirality:document-handoff', createDocumentHandoffHandler<import('electron').IpcMainInvokeEvent>({
     authorized: (event) => isAuthorizedSender(event, rendererOrigin),
@@ -961,6 +1019,18 @@ function spawnGuiFromDaemon(): void {
   }
   // Retire this process now that it has forked; see the note above.
   void shutdown(0, 'retire-after-gui-spawn');
+}
+
+if (!runtimeDaemonMode) {
+  app.on('open-file', (event, filePath) => {
+    event.preventDefault();
+    // One latest unhandled intent is retained during renderer startup. This is
+    // selection intent only; the renderer still validates and enforces chat lock.
+    folderIntentGeneration++;
+    pendingFolderIntent = filePath;
+    if (folderIntentRendererUrl && BrowserWindow.getAllWindows().length === 0) createMainWindow(folderIntentRendererUrl);
+    void deliverFolderIntent();
+  });
 }
 
 if (runtimeDaemonMode) {

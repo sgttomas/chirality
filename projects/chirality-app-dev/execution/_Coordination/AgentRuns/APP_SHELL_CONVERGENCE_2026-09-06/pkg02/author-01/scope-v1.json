@@ -1,0 +1,21 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

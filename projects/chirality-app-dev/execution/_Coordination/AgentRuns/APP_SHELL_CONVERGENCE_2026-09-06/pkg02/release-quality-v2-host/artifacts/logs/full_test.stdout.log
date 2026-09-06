@@ -1,0 +1,14 @@
+
+> chirality-frontend@2.0.0 test
+> vitest run --testTimeout=15000
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+{"status":"FAIL","summaryPath":"/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-daemon-proof-test-RfUWTr/evidence/summary.json"}
+
+ Test Files  171 passed | 1 skipped (172)
+      Tests  1690 passed | 4 skipped (1694)
+   Start at  21:11:25
+   Duration  4.02s (transform 5.81s, setup 0ms, import 9.55s, tests 24.08s, environment 9ms)
+

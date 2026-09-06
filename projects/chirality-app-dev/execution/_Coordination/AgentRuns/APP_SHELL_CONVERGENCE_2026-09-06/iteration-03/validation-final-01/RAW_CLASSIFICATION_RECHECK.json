@@ -1,0 +1,128 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/author-01/SOURCE_DIFF_v1.patch",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/author-01/SOURCE_DIFF_v1.patch: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/author-01/SOURCE_DIFF_v2.patch",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/author-01/SOURCE_DIFF_v2.patch: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v1.patch",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v1.patch: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v2.patch",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v2.patch: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v3.patch",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v3.patch: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v4.patch",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v4.patch: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v5.patch",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_DIFF_v5.patch: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v3.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v3.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v4.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v4.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v5-initial.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v5-initial.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v5.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/focused-remediation-v5.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-sandbox-failure/artifacts/logs/full_test.stderr.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-sandbox-failure/artifacts/logs/full_test.stderr.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-sandbox-failure/artifacts/logs/full_test.stdout.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-sandbox-failure/artifacts/logs/full_test.stdout.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-sandbox-failure/artifacts/logs/typecheck.stdout.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-sandbox-failure/artifacts/logs/typecheck.stdout.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v2-host/artifacts/logs/full_test.stdout.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v2-host/artifacts/logs/full_test.stdout.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v2-host/artifacts/logs/typecheck.stdout.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v2-host/artifacts/logs/typecheck.stdout.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v5-host/artifacts/logs/full_test.stdout.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v5-host/artifacts/logs/full_test.stdout.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v5-host/artifacts/logs/typecheck.stdout.log",
+    "checkAttr": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/release-quality-v5-host/artifacts/logs/typecheck.stdout.log: whitespace: unset\n",
+    "exitCode": 1,
+    "output": "",
+    "passed": true
+  }
+]

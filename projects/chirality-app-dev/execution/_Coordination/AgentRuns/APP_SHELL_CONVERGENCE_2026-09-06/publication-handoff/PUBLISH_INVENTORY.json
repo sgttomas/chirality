@@ -1,0 +1,19 @@
+{
+  "basis": "1341e11aa07d73945780f4ee412bbf4d6741907b",
+  "PR": "https://github.com/sgttomas/chirality/pull/736",
+  "paths": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/ADDENDUM.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/PUBLISH_INVENTORY.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/CHECKS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/NEW_FILE_WHITESPACE.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/SOURCE_AND_HISTORY_PRESERVATION.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/harness-pytest.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/receipt-after.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/receipt-before.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/self-check.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/validation/tracked-whitespace.txt",
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+  ],
+  "additionalEnvelope": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/UNION_MANIFEST.json",
+  "scope": "record-only owner-authorized handoff update; no source or prior frozen record changes"
+}

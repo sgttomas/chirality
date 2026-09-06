@@ -1,0 +1,7 @@
+# Screenshot-ready freeze v1
+
+11 source/test files frozen; SOURCE_MANIFEST_v1.json is the exact inventory and SOURCE_DIFF_v1.patch contains the complete source diff including added files against 8aaee11. No additional source mutation until manager repair release. Four direct suites passed 41 tests; typecheck-freeze-v1 is running at freeze dispatch (prior typecheck-v4 passed before the final selection-reset effect). No browser/server/build/native process launched.
+
+Actual UI: Files / Workflows / Who is working / Activity. Workflows lists current folder ordinary .md files, opens safe readable Markdown, preserves literal [gate] text without interpreting it, blocks all preview links/image fetches and HTML, exposes file details/hash collapsed. Exact disclosure: Plan details cannot be checked yet. Root mismatch blocks; stale fetch responses cannot replace another folder. Workflows detail back/close returns to list. Root changes clear local detail selection. No new state schema, settings adapter, follow/create/accept or provenance-currency assertion.
+
+Browser should use actual route over an owned canonical folder with .chirality/workflows/*.md, safe realistic ordinary Markdown files (not fake validated metadata); record raw content boundaries. Compare mock17/18 flat list, breadcrumb and readable plan honestly as partial. No imported file-policy/native/grammar/provider source changed. Known missing live policy/venue vocabulary remains discovery seam. A1 fresh owner-login proof restaging is required after this mutation.

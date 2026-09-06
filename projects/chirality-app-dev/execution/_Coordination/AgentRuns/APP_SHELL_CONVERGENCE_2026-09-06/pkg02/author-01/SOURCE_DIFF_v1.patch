@@ -1,0 +1,385 @@
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
+index 9dc07a543..d4e8b5bed 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
+@@ -87,6 +87,8 @@ describe('Woven Dialogue Navigator', () => {
+       />
+     );
+ 
++    expect(html).toContain('Chirality');
++    expect(html).not.toContain('File tree');
+     expect(html).toContain('href="/?legacy=1"');
+     expect(html).toContain('target="_blank"');
+     expect(html).toContain('Open legacy interface in a new window');
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+index a50449e15..7bfc4a908 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+@@ -106,7 +106,7 @@ describe('WovenDialogueShell composition', () => {
+   it.each(['dialogue', 'workbench', 'pipeline'] as const)('only mounts Dialogue even with historical %s surface input', (surface) => {
+     const html = renderToStaticMarkup(<WovenDialogueShell defaultSurface={surface} />);
+     expect(navigatorItemCount(html)).toBe(1);
+-    expect(html).toContain('<span>Dialogue</span>');
++    expect(html).toContain('<span>Current chat</span>');
+     expect(html).toContain('data-woven-surface="dialogue"');
+     expect(html).toContain('data-chat-panel="mounted"');
+     expect(html).not.toContain('data-focused-surface');
+diff --git a/projects/chirality-app-dev/frontend/src/app/globals.css b/projects/chirality-app-dev/frontend/src/app/globals.css
+index 058b67210..00db6bca2 100644
+--- a/projects/chirality-app-dev/frontend/src/app/globals.css
++++ b/projects/chirality-app-dev/frontend/src/app/globals.css
+@@ -3996,3 +3996,203 @@ button:disabled {
+   font-size: 0.82rem;
+   color: var(--ink-soft);
+ }
++
++
++/* SCA-APP-010 Stone presentation. Scope tokens to the woven workspace so the
++   compatibility interface retains its existing presentation contract. */
++.woven-workspace {
++  --ground: #f2f1ed;
++  --surface: #ffffff;
++  --card: #ffffff;
++  --composer: #ffffff;
++  --ink: #222120;
++  --ink-soft: #5c5a55;
++  --ink-faint: #706e68;
++  --rule: #e2e0da;
++  --rule-strong: #cfccc4;
++  --brand-ink: #4a3423;
++  --accent-soft: #efede8;
++  --cta: #222120;
++  --cta-ink: #ffffff;
++  font: 400 13.5px/1.5 var(--font-body);
++}
++:root[data-theme="dark"] .woven-workspace {
++  --ground: #161615;
++  --surface: #1e1e1c;
++  --card: #1e1e1c;
++  --composer: #1e1e1c;
++  --ink: #e8e7e2;
++  --ink-soft: #a5a49d;
++  --ink-faint: #a09f98;
++  --rule: #2b2b29;
++  --rule-strong: #3a3a37;
++  --brand-ink: #e8e7e2;
++  --accent-soft: #2a2a27;
++  --cta: #e8e7e2;
++  --cta-ink: #1a1a19;
++}
++@media (prefers-color-scheme: dark) {
++  :root[data-theme="system"] .woven-workspace {
++    --ground: #161615;
++    --surface: #1e1e1c;
++    --card: #1e1e1c;
++    --composer: #1e1e1c;
++    --ink: #e8e7e2;
++    --ink-soft: #a5a49d;
++    --ink-faint: #a09f98;
++    --rule: #2b2b29;
++    --rule-strong: #3a3a37;
++    --brand-ink: #e8e7e2;
++    --accent-soft: #2a2a27;
++    --cta: #e8e7e2;
++    --cta-ink: #1a1a19;
++  }
++}
++.woven-workspace button {
++  background: transparent;
++  color: var(--ink-soft);
++  box-shadow: none;
++}
++.woven-workspace button:hover { color: var(--ink); filter: none; }
++.woven-workspace .chat-input-row button[type="submit"] {
++  background: var(--cta);
++  color: var(--cta-ink);
++}
++.woven-workspace h2, .woven-workspace h3 {
++  font-family: var(--font-body);
++  font-size: 13.5px;
++  font-weight: 500;
++  letter-spacing: normal;
++}
++.woven-workspace .woven-dialogue-region,
++.woven-workspace .panel--chat { background: var(--surface); }
++.woven-workspace .woven-navigator {
++  padding: 14px 10px 10px;
++  gap: 16px;
++  grid-template-rows: auto minmax(0, 1fr) auto;
++  background: var(--ground);
++}
++.woven-navigator-brand {
++  padding: 0 8px;
++  font: 500 19px/1.2 var(--font-display);
++  letter-spacing: .01em;
++  color: var(--brand-ink);
++}
++.woven-workspace .woven-navigator-sections {
++  display: flex;
++  flex-direction: column;
++  min-height: 0;
++  overflow: auto;
++  gap: 12px;
++}
++.woven-workspace .woven-navigator-session {
++  border: 0;
++  border-radius: 6px;
++  padding: 7px 8px;
++  background: transparent;
++}
++.woven-workspace .woven-navigator-session[aria-pressed="true"] {
++  background: var(--accent-soft);
++}
++.woven-workspace .woven-compatibility {
++  margin: 0;
++  border-top: 1px solid var(--rule);
++  padding: 10px 8px 0;
++  font-size: 12px;
++}
++.woven-workspace .woven-right-panel {
++  display: flex;
++  flex-direction: column;
++  height: 100%;
++  min-width: 0;
++  min-height: 0;
++  background: var(--ground);
++}
++.woven-workspace .woven-right-panel-header {
++  min-height: 40px;
++  padding: 6px 8px 6px 14px;
++  gap: 6px;
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  flex-wrap: nowrap;
++  border-bottom: 1px solid var(--rule);
++}
++.woven-right-panel-header > nav,
++.woven-right-panel-header > [role="tablist"] {
++  min-width: 0;
++  overflow-wrap: anywhere;
++}
++.woven-right-panel-header > nav {
++  overflow: hidden;
++  text-overflow: ellipsis;
++  white-space: nowrap;
++}
++.woven-right-panel-header [role="tablist"] {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 4px;
++}
++.woven-right-panel-header button,
++.woven-right-panel-header summary {
++  border: 0;
++  padding: 4px 5px;
++  font-size: 12px;
++  border-radius: 4px;
++}
++.woven-right-panel-header [role="tab"][aria-selected="true"] {
++  color: var(--ink);
++  box-shadow: inset 0 -1px var(--accent);
++}
++.woven-right-panel-controls { display: flex; gap: 2px; flex: none; }
++.woven-right-panel-controls > details { position: relative; }
++.woven-right-panel-controls > details > summary {
++  cursor: pointer;
++  list-style: none;
++  min-width: 24px;
++  text-align: center;
++}
++.woven-right-panel-controls > details > summary::-webkit-details-marker { display: none; }
++.woven-right-panel-controls > details[open] {
++  z-index: 5;
++  background: var(--surface);
++}
++.woven-panel-menu-content {
++  position: absolute;
++  top: 100%;
++  right: 0;
++  z-index: 5;
++  width: min(240px, 75vw);
++  border: 1px solid var(--rule-strong);
++  border-radius: 8px;
++  padding: 5px;
++  background: var(--surface);
++  box-shadow: 0 8px 24px var(--shadow-strong);
++}
++.woven-panel-menu-content > button {
++  display: block;
++  width: 100%;
++  text-align: left;
++}
++.woven-panel-menu-content > p { padding: 4px 5px; font-size: 12px; }
++.woven-workspace .document-view--woven {
++  border: 0;
++  border-radius: 0;
++  background: var(--surface);
++  height: 100%;
++}
++.document-view--woven .panel-header { padding: 6px 18px; border: 0; }
++.document-view--woven .panel-header:has(> .sr-only:only-child) { padding: 0; }
++.document-view--woven .document-view-body { padding: 14px 18px; }
++.document-view--woven .document-view-body > p:first-child { font-size: 11.5px; color: var(--ink-faint); }
++.document-view--woven .sr-only {
++  position: absolute;
++  width: 1px;
++  height: 1px;
++  padding: 0;
++  margin: -1px;
++  overflow: hidden;
++  clip-path: inset(50%);
++  white-space: nowrap;
++  border: 0;
++}
+diff --git a/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx b/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx
+index 79f53db17..996e576aa 100644
+--- a/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx
+@@ -376,7 +376,7 @@ function FileMarkdown({ content, target, onOpenDocument, onHeadings }: { content
+   return <div className="chat-markdown" ref={contentRef}><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={components}>{content}</ReactMarkdown></div>;
+ }
+ 
+-function FileDocumentView({ target, onOpenDocument, expanded }: { target: string; onOpenDocument?: (path: string) => void; expanded?: boolean }): JSX.Element {
++function FileDocumentView({ target, onOpenDocument, expanded, presentation }: { target: string; onOpenDocument?: (path: string) => void; expanded?: boolean; presentation?: 'woven' }): JSX.Element {
+   const { projectRoot } = useWorkspace();
+   const [loaded, setLoaded] = useState<{ key: string; preview?: FilePreview; error?: string } | null>(null);
+   const [reload, setReload] = useState(0);
+@@ -412,9 +412,9 @@ function FileDocumentView({ target, onOpenDocument, expanded }: { target: string
+   };
+   const markdown = /\.(md|markdown)$/i.test(target);
+   const csv = /\.csv$/i.test(target);
+-  return <section className="panel panel--document" aria-label="Document preview">
+-    <header className="panel-header"><h2>{headings.find(heading => heading.level === 1)?.title || preview?.name || target.split('/').at(-1)}</h2>
+-      <button type="button" onClick={() => setReload(value => value + 1)}>Reload</button>
++  return <section className={`panel panel--document${presentation === 'woven' ? ' document-view--woven' : ''}`} aria-label="Document preview">
++    <header className="panel-header"><h2 className={presentation === 'woven' && headings.some(heading => heading.level === 1) ? 'sr-only' : undefined}>{headings.find(heading => heading.level === 1)?.title || preview?.name || target.split('/').at(-1)}</h2>
++      {presentation !== 'woven' ? <button type="button" onClick={() => setReload(value => value + 1)}>Reload</button> : null}
+       {headings.length ? <details><summary>Headings</summary><nav aria-label="Document headings">{headings.map(heading => <button type="button" key={heading.id} onClick={() => {
+         const element = Array.from(documentBodyRef.current?.querySelectorAll<HTMLElement>('[id]') ?? []).find(item => item.id === heading.id);
+         element?.scrollIntoView({ block: 'nearest' }); element?.focus();
+@@ -442,7 +442,7 @@ function FileDocumentView({ target, onOpenDocument, expanded }: { target: string
+ }
+ 
+ /** Optional file target extends, rather than replaces, the deliverable document viewer. */
+-export function DocumentView({ target, onOpenDocument, expanded }: { target?: string; onOpenDocument?: (path: string) => void; expanded?: boolean } = {}): JSX.Element {
++export function DocumentView({ target, onOpenDocument, expanded, presentation }: { target?: string; onOpenDocument?: (path: string) => void; expanded?: boolean; presentation?: 'woven' } = {}): JSX.Element {
+   const { projectRoot } = useWorkspace();
+-  return target === undefined ? <LegacyDocumentView /> : <FileDocumentView key={`${projectRoot}:${target}`} target={target} onOpenDocument={onOpenDocument} expanded={expanded} />;
++  return target === undefined ? <LegacyDocumentView /> : <FileDocumentView key={`${projectRoot}:${target}`} target={target} onOpenDocument={onOpenDocument} expanded={expanded} presentation={presentation} />;
+ }
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
+index 017be07d3..05bc6cc88 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
+@@ -7,7 +7,6 @@ import type {
+   WovenSessionSurfaceMap,
+   WovenWorkspaceSurface
+ } from '../../lib/woven-dialogue/woven-workspace-state';
+-import { FileTreePanel } from '../shell/file-tree-panel';
+ 
+ export type WovenSurface = WovenWorkspaceSurface;
+ 
+@@ -145,6 +144,7 @@ function SessionRow({
+             ? 'woven-navigator-session woven-navigator-session--live'
+             : 'woven-navigator-session'
+         }
++        title={`${entry.sessionId}${entry.surface ? ` · Recorded surface: ${entry.surface}` : ''}`}
+         data-session-id={entry.sessionId}
+         disabled={disabled || !onSelectSession}
+         aria-pressed={selected}
+@@ -161,7 +161,7 @@ function SessionRow({
+         ) : null}
+         <span className="woven-navigator-session-title">{entry.label}</span>
+         <span className="woven-navigator-session-when">{entry.when}</span>
+-        {entry.surface ? <small>Recorded surface: {entry.surface}</small> : null}
++
+       </button>
+     </li>
+   );
+@@ -187,18 +187,13 @@ export function Navigator({
+ 
+   return (
+     <nav className="woven-navigator" aria-label="Workspace Navigator">
+-      <header className="woven-region-header">
+-        <div>
+-          <p className="woven-eyebrow">Workspace</p>
+-          <h2>Navigator</h2>
+-        </div>
+-      </header>
++      <header className="woven-navigator-brand">Chirality</header>
+ 
+       <div className="woven-navigator-sections" aria-label="Workspace surfaces">
+         <button type="button" className="woven-nav-item woven-nav-item--active"
+           aria-current={activeSurface === 'dialogue' ? 'page' : undefined}
+           onClick={() => onOpenSurface('dialogue')}>
+-          <span>Dialogue</span><small>Primary human–agent conversation</small>
++          <span>Current chat</span>
+         </button>
+         <div className="woven-navigator-sessions">
+           {sessionsError ? <p className="panel-error" role="alert">{sessionsError}</p> : null}
+@@ -213,14 +208,9 @@ export function Navigator({
+         </div>
+       </div>
+ 
+-      <section className="woven-navigator-files" aria-label="Project files">
+-        <FileTreePanel />
+-      </section>
+-
+       <footer className="woven-compatibility">
+-        <p>Compatibility</p>
+-        <Link href={legacyHref} target="_blank" rel="noreferrer">
+-          Open legacy interface in a new window
++        <Link href={legacyHref} target="_blank" rel="noreferrer" aria-label="Open legacy interface in a new window">
++          Legacy interface ↗
+         </Link>
+       </footer>
+     </nav>
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
+index ef6c5c2fd..bbe266947 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
+@@ -90,9 +90,9 @@ export function RightPanel({ state, sessionOpen, onView, onOpenFile, onClose, on
+     } catch { if (generation === copyGeneration.current) setMenuError(`Unable to copy ${label.toLowerCase()}.`); }
+   };
+   return <section className="woven-right-panel" aria-label="Right panel">
+-    <header className="woven-region-header" style={{ flexWrap: 'wrap' }}>
++    <header className="woven-region-header woven-right-panel-header">
+       {target ? <nav aria-label="Document breadcrumb"><button onClick={() => onView('files')}>Files</button> › <span>{target}</span></nav> :
+-        sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Agents</button> › Session</nav> :
++        sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Who is working</button> › Session</nav> :
+         <div role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
+           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+           event.preventDefault();
+@@ -101,9 +101,10 @@ export function RightPanel({ state, sessionOpen, onView, onOpenFile, onClose, on
+           event.currentTarget.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
+         }}>{(['files', 'agents'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
+           aria-controls="right-view-content" aria-selected={view === item} tabIndex={view === item ? 0 : -1}
+-          onClick={() => onView(item)}>{item === 'files' ? 'Files' : 'Agents'}</button>)}</div>}
+-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+-        <details><summary aria-label="Panel menu">Menu</summary>
++          onClick={() => onView(item)}>{item === 'files' ? 'Files' : 'Who is working'}</button>)}</div>}
++      <div className="woven-right-panel-controls">
++        <details><summary aria-label="Panel menu" title="Panel menu">⋮</summary>
++          <div className="woven-panel-menu-content">
+           {sessionDetail ? <>
+             <button type="button" disabled={!sessionMenu.parentId || !onOpenParent}
+               aria-describedby={sessionMenu.parentDisabledReason ? 'session-parent-explanation' : undefined}
+@@ -123,14 +124,15 @@ export function RightPanel({ state, sessionOpen, onView, onOpenFile, onClose, on
+           {target && projectRoot ? <button type="button" onClick={() => {
+             void handoffDocument({ projectRoot, target, action: 'open' }).catch(error => setMenuError(error instanceof Error ? error.message : 'Unable to open file.'));
+           }}>Open in default app</button> : null}
++          </div>
+         </details>
+-        <button type="button" aria-pressed={state.rightPanelExpanded ?? false} onClick={onExpand}>{state.rightPanelExpanded ? 'Return panel' : 'Expand panel'}</button>
++        <button type="button" aria-label={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} title={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} aria-pressed={state.rightPanelExpanded ?? false} onClick={onExpand}>{state.rightPanelExpanded ? '⤡' : '⤢'}</button>
+         <button type="button" aria-label={detailOpen ? 'Close detail' : 'Collapse right panel'} onClick={onClose}>×</button></div>
+     </header>
+     {copyStatus ? <p role="status">{copyStatus}</p> : null}
+     {menuError ? <p role="alert">{menuError}</p> : null}
+     <div id="right-view-content" role={detailOpen ? undefined : 'tabpanel'} aria-labelledby={detailOpen ? undefined : `right-tab-${view}`} style={{ minHeight: 0, flex: 1, overflow: 'auto' }}>
+-      {view === 'files' ? target ? <DocumentView key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
++      {view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
+     </div>
+   </section>;
+ }

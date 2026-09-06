@@ -9,6 +9,7 @@ import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useRuntimeEpoch } from './runtime-connectivity-provider';
 
 type PersonaPickerProps = {
+  compact?: boolean;
   buildHref?: (persona: string) => string;
   disabled?: boolean;
   onPersonaSelected?: (persona: string) => void;
@@ -22,6 +23,7 @@ type PersonaPickerProps = {
  * agents are never offered — they run only via orchestration.
  */
 export function PersonaPicker({
+  compact = false,
   buildHref = buildDirectChatHref,
   disabled = false,
   onPersonaSelected
@@ -67,9 +69,10 @@ export function PersonaPicker({
 
   return (
     <div className="persona-picker">
-      <label htmlFor="persona-picker-select">Persona</label>
+      <label className={compact ? 'visually-hidden' : undefined} htmlFor="persona-picker-select">{compact ? 'Agent' : 'Persona'}</label>
       <select
         id="persona-picker-select"
+        title={compact ? selected : undefined}
         value={loading ? '' : selected}
         disabled={disabled || loading || personas.length === 0}
         onChange={(event) => {
@@ -84,13 +87,13 @@ export function PersonaPicker({
             silently offering a non-direct-chat agent. */}
         {!loading && !selectedInRoster ? (
           <option value={selected} disabled>
-            {selected} (unavailable)
+            {compact ? selected.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ') : selected} (unavailable)
           </option>
         ) : null}
         {personas.map((persona) => (
           <option key={persona.name} value={persona.name}>
-            {persona.name}
-            {persona.type === 0 ? ' · Type 0' : ' · Type 1'}
+            {compact ? persona.name.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ') : persona.name}
+            {!compact ? persona.type === 0 ? ' · Type 0' : ' · Type 1' : null}
           </option>
         ))}
       </select>

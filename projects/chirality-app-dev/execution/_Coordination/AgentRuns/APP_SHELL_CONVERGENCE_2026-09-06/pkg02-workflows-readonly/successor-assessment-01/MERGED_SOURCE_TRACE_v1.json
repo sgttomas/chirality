@@ -1,0 +1,93 @@
+{
+  "merge": "8e649eaa51c98459234512b87a3cf9042365dbd7\ne8df71bcc7a9b7f25358c02b72df8472129faf00 5ffafd710430bf053d5cfaf11129ccc1aa3130e5\nMerge pull request #733 from sgttomas/codex/app-loop-shell-20260905\n",
+  "main": "5738637472b616665fb4fe5003c4dec077a12380",
+  "head": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "merged_ancestor_main": true,
+  "merged_ancestor_head": true,
+  "T1": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+      "merged_sha256": "2e3cc7dc2017fa12b2916e8e2224b6cf61def45a84f1645ce11e6e952347f75a",
+      "original_T1_match": true,
+      "later_v10_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "merged_sha256": "237e069a4b6e70a95611ac1dc4983e7befc2ab12cd86705fea37e6ac8770cf83",
+      "original_T1_match": true,
+      "later_v10_match": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+      "merged_sha256": "fadb04734606c36b42ca7ce958586a8d3b8da8f1c62b8618f1f624da8ee7a78b",
+      "original_T1_match": true,
+      "later_v10_match": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "merged_sha256": "e1f43d52bc1c3a02b3d0d6009b09590e44d176ec45b503a38ecc48a2e57e0c5f",
+      "original_T1_match": false,
+      "later_v10_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "merged_sha256": "3975d98b20cd5d2439d9629cc0f5e2b40157bc1241eeeb78abe1a4cca84790df",
+      "original_T1_match": false,
+      "later_v10_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+      "merged_sha256": "cb3df477dbb29361a5d5885376111d6a37176675ec2564c4f0d931b60ca5f381",
+      "original_T1_match": true,
+      "later_v10_match": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "merged_sha256": "6c73d2de5a4ff13a470d61afcb2acdbae690ff45fbde273a7f6822542e084016",
+      "original_T1_match": true,
+      "later_v10_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+      "merged_sha256": "57c9be3c23da144ac17570f8a13866e625254a6f9d48f94b4350335b1c966e9f",
+      "original_T1_match": true,
+      "later_v10_match": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "merged_sha256": "7524a9e85deab54c5f99f43d548a1a5ca15f10409bcbe616f53b2c7c52361c7f",
+      "original_T1_match": true,
+      "later_v10_match": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+      "merged_sha256": "5b5d7439f7f5e946836907a828ec516291f6d93445914b76e96ac1eba4ceb841",
+      "original_T1_match": true,
+      "later_v10_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+      "merged_sha256": "31d839601bfe91bbbd7b49cc65972d7ca4cff15cb10183879632968132064230",
+      "original_T1_match": true,
+      "later_v10_match": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "merged_sha256": "47a5b59cefa3b8141cba367c4c5a4b1da0a51317c2cf039bd74c413ab8da3396",
+      "original_T1_match": false,
+      "later_v10_match": true
+    }
+  ],
+  "grammar": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/workspace/governed-workflow.ts",
+      "sha256": "dbd3ff9b5ba20fc7aa66dd6677cdff96b00761d2b5ce35dcb5882d522b489768",
+      "reviewed_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts",
+      "sha256": "1fc4c9f31fb06fe2ff2506403d073738be98a2760400f70dae28f408247b28d5",
+      "reviewed_match": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Existing right-panel host criterion DEP-02-05-015
+
+WORKING_ITEMS PKG-02 applied only the reviewed SatisfactionStatus and appended Notes delta for DEP-02-05-015, from PENDING to SATISFIED, under D59 S1 Reach2. Existing right-panel host source at5ffafd710 is merged and ancestor of base92ca3f1a; actual CI34006639218/34006639232 success at exacthead is bound in the candidate bundle. This is evidence against the unchanged host criterion, not fullT3/nativePDF completion or consumer implementation. RequiredMaturity, target, Statement, topology, lifecycle, Checking Approval SHA and Remaining unchanged.
+
+Fresh independent refutation-only verifier /root/shell_pkg02/dep_review01 returned COMMIT-SAFE in execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-review-01/RETURN.md. Candidate before/after rows and source/CI inventories remain frozen under sibling dependency-candidate-01. The historical candidate Notes retain their HELD-for-review wording; this application record supplies actual review outcome while preserving exact reviewed row bytes. Applied evidence is derivative; accepted D111 structural snapshot and pointers unchanged.
+
+Handoff: row application complete, governed local iteration checks/receipt/commit pending with parent. No consumer implementation may rely on uncommitted row. D120 main-observability remains separate; fullT3/PDF and T4 gate remain. Rerun if source or candidate changes. Attribution and applied hashes are in pkg02/dependency-applied-01.

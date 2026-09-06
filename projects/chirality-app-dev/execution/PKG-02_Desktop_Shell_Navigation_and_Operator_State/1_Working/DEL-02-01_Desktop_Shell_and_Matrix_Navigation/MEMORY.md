@@ -26,3 +26,9 @@ Separate App presentation-seam and Root no-folder-contract choices are proposed,
 ## 2026-09-06 — D-APP-120 owner direction recorded
 
 A1/B1 supersede the previous selection-pending note. The omitted presentation-locus addition is recorded but HELD until observed on fetched main. No-folder remains restricted pending separately accepted Root design; D121 remains unruled. This memory is context, not authority. See the D-APP-120 ruling dated 2026-09-06.
+
+## 2026-09-06 — T2 headerless shell and folder binding
+
+Headerless shell, Stone presentation, compact composer/context, plain persona labels and one reconnect/settings owner are implemented. Woven folder choice remains live before the first message and binds to the actual returned canonical root thereafter; persona changes retain that binding. New chat unlocks the folder. Canonical draft preservation, failed/stale binding transitions and legacy mutable-root compatibility are regression-tested. Native picker, actual Open Recent, exact owned Dock recents, selected-root Reveal and bound/pending native guards have evidence. Protocol-generated native-file drops reach the actual preload path and validate before binding or reject after binding; the actual Finder gesture remains unproved. Historical per-chat Reveal and functional no-folder operation remain residual. Temporary Settings/theme/legacy footer is explicitly not the final account row/popover or detailed right-panel Settings in Walkthrough scenes 13–15/26.
+
+Fresh full source review and final source checks are recorded in `_run_records/SHELL_CONVERGENCE_V5_2026-09-06.md`. Actual premerge 503/CI obligation, method-specific native residuals and Walkthrough gaps remain explicit. No Remaining, dependency, lifecycle or owner acceptance change; read live `_STATUS.md` before any successor work.

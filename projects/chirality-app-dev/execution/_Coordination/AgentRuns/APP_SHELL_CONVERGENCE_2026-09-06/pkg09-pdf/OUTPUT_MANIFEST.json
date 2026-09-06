@@ -1,0 +1,40 @@
+{
+  "status": "DRAFT_HELD",
+  "files": [
+    {
+      "path": "CANDIDATE_NOTICE.md",
+      "sha256": "8247edc9821cde2344d682ae4a76cd874e124d168c2307f9fbb86b4b6030f68a",
+      "bytes": 1866
+    },
+    {
+      "path": "HANDOFF_STATE.json",
+      "sha256": "9726f110f15e9c367d2229fd4ea2fa1bf216ad675cc5e5fc4d284045d545fd1a",
+      "bytes": 1622
+    },
+    {
+      "path": "INPUT_IDENTITIES.json",
+      "sha256": "9f31b0b6122bd9bd38760eb2332de75ad3e56023cfa4422b72452cf665f23d01",
+      "bytes": 3331
+    },
+    {
+      "path": "MECHANISM_AND_PROOF.md",
+      "sha256": "b3a48f8ffa5744281785f32a7abeaa5cfbd94291dffaa52f1899c24872a3785c",
+      "bytes": 10198
+    },
+    {
+      "path": "RATIONALE.md",
+      "sha256": "019142d52542b087495f33e5b2b9cf74892379e24ba1597d47f4bcc33d9997b9",
+      "bytes": 1951
+    },
+    {
+      "path": "STATUS.candidate.md",
+      "sha256": "2ec35d4c4ce2b2d59cea68642f5d9e67c09c8791ddd1fae9daedf5cf2b35c415",
+      "bytes": 18976
+    },
+    {
+      "path": "ScopeOfWork.candidate.md",
+      "sha256": "64ec78356238988066c6887c8a5e436e93cf6bfedd64f7f4b7b5df4d7f6499d4",
+      "bytes": 30509
+    }
+  ]
+}

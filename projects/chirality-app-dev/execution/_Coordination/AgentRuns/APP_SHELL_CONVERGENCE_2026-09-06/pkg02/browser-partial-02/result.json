@@ -1,0 +1,729 @@
+{
+  "status": "PASS",
+  "claim": "Early partial fixture presentation only; screenshots require independent visual inspection. Legacy header/composer/activity remain visible.",
+  "node": "v24.18.0",
+  "browser": "148.0.7778.96",
+  "observations": [
+    {
+      "fonts": {
+        "status": "loaded",
+        "body": "plexSans, \"plexSans Fallback\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "700"
+          },
+          {
+            "family": "plexSans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexSerif",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSerif Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexMono",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexMono",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexMono Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          }
+        ]
+      }
+    },
+    {
+      "label": "document 1440 Light",
+      "inputIdentity": true,
+      "primary": {
+        "x": 280,
+        "y": 860.3125,
+        "width": 480.109375,
+        "height": 35.6875
+      }
+    },
+    {
+      "label": "expand return 1440 Light",
+      "inputIdentity": true,
+      "primary": {
+        "x": 280,
+        "y": 860.3125,
+        "width": 480.109375,
+        "height": 35.6875
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "Light",
+      "rightControlBoxes": [
+        {
+          "x": 1370.125,
+          "y": 97.75,
+          "width": 24,
+          "height": 26
+        },
+        {
+          "x": 1396.125,
+          "y": 97.75,
+          "width": 16.671875,
+          "height": 26
+        },
+        {
+          "x": 1414.796875,
+          "y": 97.75,
+          "width": 17.203125,
+          "height": 26
+        }
+      ],
+      "document": {
+        "x": 961,
+        "y": 131.25,
+        "width": 479,
+        "height": 788.75
+      }
+    },
+    {
+      "label": "open menu hit testing",
+      "width": 1440,
+      "theme": "Light",
+      "menu": {
+        "bounds": {
+          "x": 1160.125,
+          "y": 155.75,
+          "width": 228,
+          "height": 26,
+          "top": 155.75,
+          "right": 1388.125,
+          "bottom": 181.75,
+          "left": 1160.125
+        },
+        "hit": true
+      }
+    },
+    {
+      "label": "document heading hierarchy",
+      "width": 1440,
+      "theme": "Light",
+      "headings": []
+    },
+    {
+      "label": "document 1440 Dark",
+      "inputIdentity": true,
+      "primary": {
+        "x": 280,
+        "y": 860.3125,
+        "width": 480.109375,
+        "height": 35.6875
+      }
+    },
+    {
+      "label": "expand return 1440 Dark",
+      "inputIdentity": true,
+      "primary": {
+        "x": 280,
+        "y": 860.3125,
+        "width": 480.109375,
+        "height": 35.6875
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "Dark",
+      "rightControlBoxes": [
+        {
+          "x": 1370.125,
+          "y": 97.75,
+          "width": 24,
+          "height": 26
+        },
+        {
+          "x": 1396.125,
+          "y": 97.75,
+          "width": 16.671875,
+          "height": 26
+        },
+        {
+          "x": 1414.796875,
+          "y": 97.75,
+          "width": 17.203125,
+          "height": 26
+        }
+      ],
+      "document": {
+        "x": 961,
+        "y": 131.25,
+        "width": 479,
+        "height": 788.75
+      }
+    },
+    {
+      "label": "open menu hit testing",
+      "width": 1440,
+      "theme": "Dark",
+      "menu": {
+        "bounds": {
+          "x": 1160.125,
+          "y": 155.75,
+          "width": 228,
+          "height": 26,
+          "top": 155.75,
+          "right": 1388.125,
+          "bottom": 181.75,
+          "left": 1160.125
+        },
+        "hit": true
+      }
+    },
+    {
+      "label": "document heading hierarchy",
+      "width": 1440,
+      "theme": "Dark",
+      "headings": []
+    },
+    {
+      "label": "document 960 Light",
+      "inputIdentity": true,
+      "primary": {
+        "x": 272.796875,
+        "y": 863.515625,
+        "width": 210.515625,
+        "height": 35.6875
+      }
+    },
+    {
+      "label": "expand return 960 Light",
+      "inputIdentity": true,
+      "primary": {
+        "x": 272.796875,
+        "y": 863.515625,
+        "width": 210.515625,
+        "height": 35.6875
+      }
+    },
+    {
+      "width": 960,
+      "theme": "Light",
+      "rightControlBoxes": [
+        {
+          "x": 890.125,
+          "y": 97.75,
+          "width": 24,
+          "height": 26
+        },
+        {
+          "x": 916.125,
+          "y": 97.75,
+          "width": 16.671875,
+          "height": 26
+        },
+        {
+          "x": 934.796875,
+          "y": 97.75,
+          "width": 17.203125,
+          "height": 26
+        }
+      ],
+      "document": {
+        "x": 681,
+        "y": 131.25,
+        "width": 279,
+        "height": 788.75
+      }
+    },
+    {
+      "label": "open menu hit testing",
+      "width": 960,
+      "theme": "Light",
+      "menu": {
+        "bounds": {
+          "x": 680.125,
+          "y": 155.75,
+          "width": 228,
+          "height": 26,
+          "top": 155.75,
+          "right": 908.125,
+          "bottom": 181.75,
+          "left": 680.125
+        },
+        "hit": true
+      }
+    },
+    {
+      "label": "document heading hierarchy",
+      "width": 960,
+      "theme": "Light",
+      "headings": []
+    },
+    {
+      "label": "document 960 Dark",
+      "inputIdentity": true,
+      "primary": {
+        "x": 272.796875,
+        "y": 863.515625,
+        "width": 210.515625,
+        "height": 35.6875
+      }
+    },
+    {
+      "label": "expand return 960 Dark",
+      "inputIdentity": true,
+      "primary": {
+        "x": 272.796875,
+        "y": 863.515625,
+        "width": 210.515625,
+        "height": 35.6875
+      }
+    },
+    {
+      "width": 960,
+      "theme": "Dark",
+      "rightControlBoxes": [
+        {
+          "x": 890.125,
+          "y": 97.75,
+          "width": 24,
+          "height": 26
+        },
+        {
+          "x": 916.125,
+          "y": 97.75,
+          "width": 16.671875,
+          "height": 26
+        },
+        {
+          "x": 934.796875,
+          "y": 97.75,
+          "width": 17.203125,
+          "height": 26
+        }
+      ],
+      "document": {
+        "x": 681,
+        "y": 131.25,
+        "width": 279,
+        "height": 788.75
+      }
+    },
+    {
+      "label": "open menu hit testing",
+      "width": 960,
+      "theme": "Dark",
+      "menu": {
+        "bounds": {
+          "x": 680.125,
+          "y": 155.75,
+          "width": 228,
+          "height": 26,
+          "top": 155.75,
+          "right": 908.125,
+          "bottom": 181.75,
+          "left": 680.125
+        },
+        "hit": true
+      }
+    },
+    {
+      "label": "document heading hierarchy",
+      "width": 960,
+      "theme": "Dark",
+      "headings": []
+    },
+    {
+      "label": "switch Who is working",
+      "inputIdentity": true,
+      "primary": {
+        "x": 272.796875,
+        "y": 863.515625,
+        "width": 210.515625,
+        "height": 35.6875
+      }
+    },
+    {
+      "label": "switch Files",
+      "inputIdentity": true,
+      "primary": {
+        "x": 272.796875,
+        "y": 863.515625,
+        "width": 210.515625,
+        "height": 35.6875
+      }
+    },
+    {
+      "label": "900px stacked footer repair",
+      "footer": {
+        "x": 10,
+        "y": 933.96875,
+        "width": 879,
+        "height": 30
+      }
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] rebuilding"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] done in 132ms"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] rebuilding"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] done in 87ms"
+    }
+  ],
+  "pageErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "method": "GET"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:3187/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/css/app/layout.css?v=1788663920928",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dece0821e8ed059f-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/chirality-app-icon.svg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/webpack.js?v=1788663920928",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app-pages-internals.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/layout.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/not-found.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/page.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/main-app.js?v=1788663920928",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/c7588b4907a8c3e4.webpack.hot-update.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/icon.svg?38b9e59bfa97244d",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/webpack.c7588b4907a8c3e4.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/22972fcf78e9c693.webpack.hot-update.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/webpack.22972fcf78e9c693.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&target=Readable%20note.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fshell-partial-v2-2rcjrxei&depth=3",
+      "status": 200
+    }
+  ]
+}

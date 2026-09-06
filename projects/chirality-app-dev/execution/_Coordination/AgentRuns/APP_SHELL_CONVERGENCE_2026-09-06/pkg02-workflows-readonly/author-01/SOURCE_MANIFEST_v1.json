@@ -1,0 +1,61 @@
+{
+  "base": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "frozenAt": "2026-09-06T05:45:41.607305+00:00",
+  "files": [
+    {
+      "path": "frontend/src/__tests__/api/working-root-workflow.test.ts",
+      "sha256": "ee361a4fba39d2e3ab8dc3858cfb16edaba264a70c9ddaa46815ce6e1a5f6c33",
+      "bytes": 6619
+    },
+    {
+      "path": "frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "sha256": "4f0cd186dcf92b4c78c63c8726ee50e5fc0eb7da5f0f145e437e764569ef8bdc",
+      "bytes": 7514
+    },
+    {
+      "path": "frontend/src/__tests__/components/woven-workflows.test.tsx",
+      "sha256": "343a0cf17438ac42ccf77de88cc999872c0f5b93ec47209b0973e2ba32ce1a5f",
+      "bytes": 3672
+    },
+    {
+      "path": "frontend/src/app/api/working-root/workflow/route.ts",
+      "sha256": "f206a554686f2da2459db7892296029272745329e23056156c33b297054c15df",
+      "bytes": 1867
+    },
+    {
+      "path": "frontend/src/app/api/working-root/workflow/workflow-read-contract.ts",
+      "sha256": "de1dbbc16cc8d2a6eb07c57b37663bf9ea5772d7e2aada39667fabe0610bb011",
+      "bytes": 394
+    },
+    {
+      "path": "frontend/src/app/api/working-root/workflow/workflow-store.ts",
+      "sha256": "5912538ad3a90c8ec6870479e14c640d3dd1fb4c4aa4479d32857db94e8fb539",
+      "bytes": 6387
+    },
+    {
+      "path": "frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "bdcbd42e2f3cdafc17ef35e3bef2338fb58fdf81eb3dc4d9614e4a275b415c19",
+      "bytes": 12325
+    },
+    {
+      "path": "frontend/src/components/woven-dialogue/workflow-detail.tsx",
+      "sha256": "4488d3a4e29526d505979077e09548b7a1f18920e6ce7e54b0ad65abc4246330",
+      "bytes": 1348
+    },
+    {
+      "path": "frontend/src/components/woven-dialogue/workflows-view.tsx",
+      "sha256": "4e4f1f37d8f7d8a2836dbcfb5a57f5d014c950e39859b3482b760c926685dd56",
+      "bytes": 2681
+    },
+    {
+      "path": "frontend/src/components/woven-dialogue/workflows.module.css",
+      "sha256": "4c8c1d978dc30155b6a1458eb8e86df705ea5c0ffa618ba5d783520f2949b1f1",
+      "bytes": 1695
+    },
+    {
+      "path": "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "205b39a280d68a5ff1aaccf3e4a0a139904257f3d52db8536a4d3785dd5a5801",
+      "bytes": 28387
+    }
+  ]
+}

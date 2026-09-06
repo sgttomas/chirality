@@ -1,0 +1,28 @@
+{
+  "finderWindow": 31379,
+  "iconAX": [
+    54,
+    196
+  ],
+  "nativeSelectionCommand": [
+    "native_mouse.swift",
+    "75",
+    "215"
+  ],
+  "selectionObserved": "Native Proof Folder 02",
+  "dragCommand": [
+    "native_mouse.swift",
+    "75",
+    "215",
+    "900",
+    "639"
+  ],
+  "dragObserved": "No renderer events; source absent afterward; destination unknown",
+  "ownedScratchSearch": "find exact basenames under /private/tmp/chirality-native-shell-02gzaapq; only Folder03 found",
+  "targetLaterObservation": {
+    "frontmostIsOwned": true,
+    "targetTopmostIsOwned": true,
+    "targetTopmostIsFinder": false
+  },
+  "cleanupController": "Interrupted after independently proving owned child exit and port closure"
+}

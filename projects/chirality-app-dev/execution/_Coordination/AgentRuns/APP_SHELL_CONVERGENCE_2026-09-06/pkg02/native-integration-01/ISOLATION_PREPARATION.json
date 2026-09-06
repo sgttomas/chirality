@@ -1,0 +1,18 @@
+{
+  "status": "PREPARATION_ONLY",
+  "created": "2026-09-06T04:02:37.263224+00:00",
+  "scratch": "/private/tmp/chirality-native-shell-02gzaapq",
+  "bundleIdentifier": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515",
+  "bundleName": "Chirality Shell Evidence",
+  "bundlePath": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app",
+  "launchAgentLabel": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only",
+  "fixtures": {
+    "Folder Alpha": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+    "Folder Beta": "/private/tmp/chirality-native-shell-02gzaapq/Folder Beta",
+    "Folder Pending": "/private/tmp/chirality-native-shell-02gzaapq/Folder Pending",
+    "not-a-folder.txt": "/private/tmp/chirality-native-shell-02gzaapq/not-a-folder.txt"
+  },
+  "archive": "/Users/ryan/Library/Caches/chirality/electron-dist/electron-v43.2.0-darwin-arm64.zip",
+  "archiveSha256": "ad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28",
+  "launched": false
+}

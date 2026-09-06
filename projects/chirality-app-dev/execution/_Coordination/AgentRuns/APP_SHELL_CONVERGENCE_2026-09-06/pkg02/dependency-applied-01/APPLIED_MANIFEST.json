@@ -1,0 +1,26 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv",
+    "sha256": "ba643b71d82e45502fe5aca02af69efc08702e7d8ce7369180a0993014edf644"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/RIGHT_PANEL_HOST_SATISFACTION_2026-09-06.md",
+    "sha256": "667cdff912cf30b61a742787532ef4a513dc820683ebdf26a22b9102a185ff89"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+    "sha256": "4b17594e49156a3ab4dfa566830b8fa871c9de49c1680c0cf4d326012958649a"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/RIGHT_PANEL_HOST_SATISFACTION_2026-09-06.md",
+    "sha256": "646bea4c776def26d901165567ef9b5520ad2a1fe8f9af744c8218cc4313e725"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+    "sha256": "249ac0291f72ef8a84d0b51f18a2ffac9c2b486eeff58559c894d55e3fe03f76"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/RIGHT_PANEL_HOST_SATISFACTION_2026-09-06.md",
+    "sha256": "22420db30770c1d86d8cff11dbdf0a57084213fb305457687e8916462ebb6c63"
+  }
+]

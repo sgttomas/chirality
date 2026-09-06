@@ -1,0 +1,40 @@
+{
+  "phase": "pre-fan-in only",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-03/validation-pre-fanin-01/CALIBRATION.md",
+      "sha256": "6cbf4ada503a2de81a500d54d5f205695ec9636707ee5785572298fe8cd9d9fa",
+      "bytes": 1463
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-03/validation-pre-fanin-01/CHECKS.json",
+      "sha256": "4cd64ad600cfa2c599b66c5c9ca88c49e68de172e913e06260ce1f1f89503c1e",
+      "bytes": 2500
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-03/validation-pre-fanin-01/corpus-status.txt",
+      "sha256": "921a96d8fcfa2c08c5659046e2dac4fa1d19fc07749beec041ae5d7c5a179351",
+      "bytes": 670
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-03/validation-pre-fanin-01/harness-pytest.txt",
+      "sha256": "80dcf26418a1fb8b56018a3c60b509432932b514b38ef5687cf03e2bba0e5886",
+      "bytes": 501
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-03/validation-pre-fanin-01/receipt-pre-append.txt",
+      "sha256": "910ba49406a7c19319d0ac52b538c2f4a763a89fcfeab57614a2de38785a5718",
+      "bytes": 164
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-03/validation-pre-fanin-01/self-check.txt",
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+      "bytes": 24824
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-03/validation-pre-fanin-01/tracked-app-diff-whitespace.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

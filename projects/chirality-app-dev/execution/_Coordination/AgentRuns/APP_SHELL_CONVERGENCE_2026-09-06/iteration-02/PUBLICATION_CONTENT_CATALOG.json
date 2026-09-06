@@ -1,0 +1,25 @@
+{
+  "scope": "this record-only iteration; combine with prior unpublished commit inventory for user authorization",
+  "categories": [
+    {
+      "kind": "live project metadata",
+      "contents": "three Dependencies.csv records and three deliverable-local execution records"
+    },
+    {
+      "kind": "internal execution evidence",
+      "contents": "agent identities, instruction briefs, rationales, review returns, scope candidate documents, tool command outputs, local workspace absolute paths and provenance"
+    },
+    {
+      "kind": "historical source evidence",
+      "contents": "two TSX component copies, previous source review and manifest, two prior GitHub CI metadata JSON files; no new product source"
+    },
+    {
+      "kind": "PDF policy draft",
+      "contents": "candidate ScopeOfWork/Remaining, proposed mechanism and future positive/negative proof requirements, input hashes; no policy adoption"
+    }
+  ],
+  "screenshots": "none selected",
+  "binaryFixtures": "none selected",
+  "publicPublication": "HELD; no approval inferred from prior exact commit authorization",
+  "securityClaim": "classification only; no comprehensive secret-detection claim"
+}

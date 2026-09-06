@@ -1,0 +1,516 @@
+{
+  "env": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "HOME": "/Users/ryan",
+    "TMPDIR": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/",
+    "LANG": "C.UTF-8",
+    "LC_CTYPE": "C.UTF-8",
+    "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x52",
+    "CHIRALITY_USER_DATA": "/private/tmp/chirality-native-shell-02gzaapq/user-data",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/operator.token",
+    "CHIRALITY_RUNTIME_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/project-native-proof.token",
+    "CHIRALITY_RUNTIME_PROJECT_ID": "chirality-app-dev",
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+    "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only",
+    "CHIRALITY_LAUNCH_AGENTS_DIRECTORY": "/private/tmp/chirality-native-shell-02gzaapq/launch-agents",
+    "CHIRALITY_DAEMON_GUI_SPAWN": "0",
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "ELECTRON_RENDERER_URL": "http://127.0.0.1:3197"
+  },
+  "results": [
+    {
+      "identity": {
+        "pid": 33059,
+        "packaged": false,
+        "userData": "/private/tmp/chirality-native-shell-02gzaapq/user-data",
+        "versions": {
+          "node": "24.18.0",
+          "acorn": "8.16.0",
+          "ada": "3.4.4",
+          "amaro": "1.1.9",
+          "ares": "1.34.6",
+          "brotli": "1.2.0",
+          "cldr": "48.0",
+          "icu": "78.2",
+          "llhttp": "9.4.2",
+          "merve": "1.2.2",
+          "modules": "148",
+          "napi": "10",
+          "nbytes": "0.1.4",
+          "ncrypto": "0.0.1",
+          "nghttp2": "1.69.0",
+          "nghttp3": "",
+          "ngtcp2": "",
+          "openssl": "0.0.0",
+          "simdjson": "4.6.4",
+          "simdutf": "7.7.0",
+          "sqlite": "3.53.1",
+          "tz": "2025c",
+          "undici": "7.28.0",
+          "unicode": "17.0",
+          "uv": "1.52.1",
+          "uvwasi": "0.0.23",
+          "v8": "15.0.1240245-electron.0",
+          "zlib": "1.3.2.1-motley",
+          "zstd": "1.6.0",
+          "electron": "43.2.0",
+          "chrome": "150.0.7871.129"
+        },
+        "env": {
+          "CHIRALITY_USER_DATA": "/private/tmp/chirality-native-shell-02gzaapq/user-data",
+          "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/control.sock",
+          "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/operator.token",
+          "CHIRALITY_RUNTIME_PROJECT_ID": "chirality-app-dev",
+          "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only",
+          "CHIRALITY_LAUNCH_AGENTS_DIRECTORY": "/private/tmp/chirality-native-shell-02gzaapq/launch-agents",
+          "CHIRALITY_DAEMON_GUI_SPAWN": "0",
+          "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality"
+        }
+      },
+      "serverPid": 33057
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "Array.from(document.querySelectorAll('button')).map(e=>({text:e.innerText,title:e.title,label:e.getAttribute('aria-label')}))"
+      },
+      "result": [
+        {
+          "text": "⊕",
+          "title": "Attach files",
+          "label": "Attach files"
+        },
+        {
+          "text": "↑",
+          "title": "",
+          "label": "Send"
+        },
+        {
+          "text": "",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "‹",
+          "title": "",
+          "label": "Close Navigator"
+        },
+        {
+          "text": "＋ New chat",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "Current chat",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "LIGHT",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "DARK",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "AUTO",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "Files",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "Who is working",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "Activity",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "⤢",
+          "title": "Expand panel",
+          "label": "Expand panel"
+        },
+        {
+          "text": "×",
+          "title": "",
+          "label": "Collapse right panel"
+        },
+        {
+          "text": "Choose folder",
+          "title": "",
+          "label": null
+        },
+        {
+          "text": "RUNTIME\noffline",
+          "title": "Runtime daemon unreachable: ENOENT: no such file or directory, lstat '/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/operator.token'. Check connection now.",
+          "label": "Check runtime connection; reported status: offline"
+        },
+        {
+          "text": "Details ›",
+          "title": "",
+          "label": null
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "Check runtime connection; reported status: offline"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({status:document.querySelector('.woven-activity-strip').innerText,bridge:typeof window.chirality.runtime})"
+      },
+      "result": {
+        "status": "RUNTIME\noffline\nChecking runtime connection; reported status remains offline\nIdle\nDetails ›",
+        "bridge": "object"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "Promise.all(['/private/tmp/chirality-native-shell-02gzaapq/missing','/private/tmp/chirality-native-shell-02gzaapq/not-a-folder.txt','/Users/ryan/.codex/worktrees/85d6/chirality'].map(async path=>({path,result:await window.chirality.folders.registerRecent(path)})))"
+      },
+      "result": [
+        {
+          "path": "/private/tmp/chirality-native-shell-02gzaapq/missing",
+          "result": {
+            "ok": false,
+            "error": "ENOENT: no such file or directory, realpath '/private/tmp/chirality-native-shell-02gzaapq/missing'"
+          }
+        },
+        {
+          "path": "/private/tmp/chirality-native-shell-02gzaapq/not-a-folder.txt",
+          "result": {
+            "ok": false,
+            "error": "Working Root must be a directory."
+          }
+        },
+        {
+          "path": "/Users/ryan/.codex/worktrees/85d6/chirality",
+          "result": {
+            "ok": false,
+            "error": "Working Root cannot be inside the instruction root."
+          }
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "async ({BrowserWindow}) => { const w=new BrowserWindow({show:false,webPreferences:{preload:'/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-electron/preload.js',contextIsolation:true,sandbox:true,nodeIntegration:false}});try{await w.loadURL('data:text/html,<title>Owned foreign sender</title>');return await w.webContents.executeJavaScript(\"window.chirality.folders.registerRecent('/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha')\");}finally{w.destroy();}}"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "document.querySelector('.chat-folder-select summary').click()"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "Choose folder…"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "typeof require"
+      },
+      "result": "undefined",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "after-native-picker"
+      },
+      "result": "Choose a folder below to start a chat.\n\nWorking Items\n\nWhat would you like to work on?\n\n⊕\n↑\nStart in\n▱ Choose folder⌄\nFolder path\nUse folderChoose folder…\n\nChoose a folder before sending a message.\n\n·\nAGENT\nWorking Items (unavailable)\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n‹\nChirality\n＋ New chat\nCurrent chat\n\nNo recorded sessions.\n\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n\nChoose a folder to see its files.\n\nChoose folderNo folder\nRUNTIME\noffline\nRuntime connection check failed: Runtime daemon is unreachable\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "typeof process.mainModule"
+      },
+      "result": "object",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "(async()=>{const {BrowserWindow}=process.mainModule.require('electron');const w=new BrowserWindow({show:false,webPreferences:{preload:'/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-electron/preload.js',contextIsolation:true,sandbox:true,nodeIntegration:false}});try{await w.loadURL('data:text/html,<title>Owned foreign sender</title>');return await w.webContents.executeJavaScript(\"window.chirality.folders.registerRecent('/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha')\");}finally{w.destroy();}})()"
+      },
+      "result": {
+        "ok": false,
+        "error": "Unauthorized folder request."
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "native-alpha-selected"
+      },
+      "result": "Working Items\n\nWhat would you like to work on?\n\n⊕\n↑\nStart in\n▱ Folder Alpha⌄\nKnown folders\nChoose a known folder…\n/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha\nFolder path\nUse folderChoose folder…\n\nChoose a folder before sending a message.\n\n·\nAGENT\nWorking Items (unavailable)\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n‹\nChirality\n＋ New chat\nCurrent chat\n\nNo recorded sessions.\n\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n▱\nFolder Alpha\nChoose folderFolder Alpha\nRUNTIME\noffline\nRuntime connection check failed: Runtime daemon is unreachable\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "fill",
+        "name": "Folder path",
+        "value": "/private/tmp/chirality-native-shell-02gzaapq/Folder Beta"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "Use folder"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "native-open-recent-alpha"
+      },
+      "result": "Working Items\n\nWhat would you like to work on?\n\n⊕\n↑\nStart in\n▱ Folder Alpha⌄\nKnown folders\nChoose a known folder…\n/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha\n/private/tmp/chirality-native-shell-02gzaapq/Folder Beta\nFolder path\nUse folderChoose folder…\n\nChoose a folder before sending a message.\n\n·\nAGENT\nWorking Items (unavailable)\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n‹\nChirality\n＋ New chat\nCurrent chat\n\nNo recorded sessions.\n\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n▱\nFolder Alpha\nChoose folderFolder Alpha\nRUNTIME\noffline\nRuntime connection check failed: Runtime daemon is unreachable\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({root:localStorage.getItem('chirality.projectRoot'),emptyFilePath:window.chirality.folders.pathForFile(new File(['inert'],'fixture.txt'))})"
+      },
+      "result": {
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "emptyFilePath": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "(()=>{document.querySelector('.chat-folder-select').open=false;return document.querySelector('[data-chat-input=primary]').getBoundingClientRect().toJSON();})()"
+      },
+      "result": {
+        "x": 301,
+        "y": 579.5,
+        "width": 556.1328125,
+        "height": 30,
+        "top": 579.5,
+        "right": 857.1328125,
+        "bottom": 609.5,
+        "left": 301
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "after-native-finder-drop"
+      },
+      "result": "Working Items\n\nWhat would you like to work on?\n\n⊕\n↑\nStart in\n▱ Folder Alpha⌄\n·\nAGENT\nWorking Items (unavailable)\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n‹\nChirality\n＋ New chat\nCurrent chat\n\nNo recorded sessions.\n\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\n⤢\n×\n▱\nFolder Alpha\nChoose folderFolder Alpha\nRUNTIME\noffline\nRuntime connection check failed: Runtime daemon is unreachable\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "(()=>{window.__nativeDrops=[];document.addEventListener('drop',e=>window.__nativeDrops.push({x:e.clientX,y:e.clientY,files:[...e.dataTransfer.files].map(f=>({name:f.name,path:window.chirality.folders.pathForFile(f)}))}),true);return {bounds:document.querySelector('.chat-composer').getBoundingClientRect().toJSON(),root:localStorage.getItem('chirality.projectRoot')};})()"
+      },
+      "status": "FAIL",
+      "error": "Error: page.evaluate: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:282)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:370)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:311:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({drops:window.__nativeDrops,screenX:window.screenX,screenY:window.screenY,outerHeight:window.outerHeight,innerHeight:window.innerHeight,input:document.querySelector('[data-chat-input=primary]').getBoundingClientRect().toJSON()})"
+      },
+      "result": {
+        "drops": [],
+        "screenX": 16,
+        "screenY": 26,
+        "outerHeight": 766,
+        "innerHeight": 734,
+        "input": {
+          "x": 301,
+          "y": 579.5,
+          "width": 556.1328125,
+          "height": 30,
+          "top": 579.5,
+          "right": 857.1328125,
+          "bottom": 609.5,
+          "left": 301
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({drops:window.__nativeDrops,root:localStorage.getItem('chirality.projectRoot'),alerts:[...document.querySelectorAll('[role=alert]')].map(e=>e.innerText)})"
+      },
+      "result": {
+        "drops": [],
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "alerts": []
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "[...document.querySelectorAll('button')].map(e=>({text:e.innerText,label:e.getAttribute('aria-label'),title:e.title})).filter(x=>x.label&&/menu/i.test(x.label))"
+      },
+      "result": [],
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "(()=>{const u=window.chirality.folders.subscribeOpen(()=>{});u();return {cleanupReturned:true};})()"
+      },
+      "result": {
+        "cleanupReturned": true
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "[...document.querySelectorAll('summary')].map(e=>({text:e.innerText,label:e.getAttribute('aria-label'),title:e.title}))"
+      },
+      "result": [
+        {
+          "text": "▱ Folder Alpha⌄",
+          "label": "Chat folder",
+          "title": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha"
+        },
+        {
+          "text": "Settings",
+          "label": null,
+          "title": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha"
+        },
+        {
+          "text": "",
+          "label": null,
+          "title": ""
+        },
+        {
+          "text": "⋮",
+          "label": "Panel menu",
+          "title": "Panel menu"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "document.querySelector('summary[aria-label=\"Panel menu\"]').click()"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "Reveal root in Finder"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "document.querySelector('.chat-folder-select').open=true"
+      },
+      "result": true,
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "click",
+        "name": "Choose folder…"
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "main",
+        "code": "process.mainModule.require('electron').app.emit('open-file',{preventDefault(){}},'/private/tmp/chirality-native-shell-02gzaapq/Folder Beta')"
+      },
+      "result": true,
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "page",
+        "code": "({root:localStorage.getItem('chirality.projectRoot'),alerts:[...document.querySelectorAll('[role=alert]')].map(e=>e.innerText)})"
+      },
+      "result": {
+        "root": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "alerts": [
+          "Start a new chat before opening another folder."
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "shot",
+        "name": "native-final-bounded"
+      },
+      "result": "Working Items\n\nWhat would you like to work on?\n\n⊕\n↑\nStart in\n▱ Folder Alpha⌄\nKnown folders\nChoose a known folder…\n/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha\n/private/tmp/chirality-native-shell-02gzaapq/Folder Beta\nFolder path\nUse folderChoose folder…\n\nChoose a folder before sending a message.\n\n·\nAGENT\nWorking Items (unavailable)\n·\nOperator mode\nRead only\nAsk before changes\nApprove each write\nRun on its own\n·\nNo delegation\n·\nPlain chat\n\nStart a new chat before opening another folder.\n\n‹\nChirality\n＋ New chat\nCurrent chat\n\nNo recorded sessions.\n\nSettings\nLIGHT\nDARK\nAUTO\nLegacy interface ↗\nFiles\nWho is working\nActivity\n⋮\nRefresh\nCopy root path\nReveal root in Finder\n⤢\n×\n▱\nFolder Alpha\nChoose folderFolder Alpha\nRUNTIME\noffline\nRuntime connection check failed: Runtime daemon is unreachable\nIdle\nDetails ›",
+      "status": "PASS"
+    },
+    {
+      "cleanup": "owned app and server closed"
+    }
+  ]
+}

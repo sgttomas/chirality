@@ -1,0 +1,19 @@
+{
+  "basis": "1341e11aa07d73945780f4ee412bbf4d6741907b",
+  "frontendTree": "0f262d4d32c08ac4a40e8314994337ddd51318a0",
+  "command": [
+    "git",
+    "diff",
+    "--exit-code",
+    "1341e11aa07d73945780f4ee412bbf4d6741907b",
+    "--",
+    "projects/chirality-app-dev/frontend"
+  ],
+  "exitCode": 0,
+  "trackedChanges": [
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+  ],
+  "allNewPathsContainedIn": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff",
+  "priorFrozenRecords": "no tracked changes except append-only receipt ledger",
+  "sourceAndPackages": "unchanged"
+}

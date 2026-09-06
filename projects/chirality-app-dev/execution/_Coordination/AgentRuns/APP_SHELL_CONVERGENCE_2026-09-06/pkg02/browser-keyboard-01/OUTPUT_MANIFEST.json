@@ -1,0 +1,67 @@
+[
+  {
+    "path": "APP_HOLD_PREFLIGHT.json",
+    "sha256": "33831e7326a399c18b9f49a2eef07df17b7c20da5a64dc70baff06fd1f2b1c2b",
+    "bytes": 1377
+  },
+  {
+    "path": "BRIEF.md",
+    "sha256": "91ae8b7ee27927dba7fcce162baca407b544c871dd977395a02cc7e4a65ceb60",
+    "bytes": 1356
+  },
+  {
+    "path": "COMMANDS.md",
+    "sha256": "4b615c119f7d5b87dffa09e303b17da413d5a176dc4fded4b738adb207410e27",
+    "bytes": 706
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "7cd76484faa2a828d6d0649a0a020a7140123b4bbbd383b65cf9e75d6868d4a1",
+    "bytes": 973
+  },
+  {
+    "path": "cleanup.json",
+    "sha256": "01df6560a9702f88f338c59b65a39a6cb39a7dd3e2b72a7a1573e438291efee4",
+    "bytes": 161
+  },
+  {
+    "path": "fixture.json",
+    "sha256": "af257b4ef6c8fcf145ad0543a2fafef35923dd68263a6438f6a286a564d82869",
+    "bytes": 1427
+  },
+  {
+    "path": "keyboard-result.json",
+    "sha256": "e2c43a7aae5d98a9fceb50cb13ea9b2fd53a598ca8a48ecdd63271c97f1a1e7b",
+    "bytes": 10383
+  },
+  {
+    "path": "keyboard-result.png",
+    "sha256": "922547d85b3865ebce80ce98cd3fbbf0071bd4134264b7d7e6f361f0b31e7abe",
+    "bytes": 56510
+  },
+  {
+    "path": "keyboard.mjs",
+    "sha256": "aebc277002cd88dfe3fa6155587c28efe2d4aa811ec985b012f2c08775d1181e",
+    "bytes": 4981
+  },
+  {
+    "path": "keyboard.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "keyboard.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "source-after.json",
+    "sha256": "5428a67ef9c36fe77288d0ece8c221c6c930d6e8d353934f07b6b32f1b39fce0",
+    "bytes": 6756
+  },
+  {
+    "path": "source-before.json",
+    "sha256": "5428a67ef9c36fe77288d0ece8c221c6c930d6e8d353934f07b6b32f1b39fce0",
+    "bytes": 6756
+  }
+]

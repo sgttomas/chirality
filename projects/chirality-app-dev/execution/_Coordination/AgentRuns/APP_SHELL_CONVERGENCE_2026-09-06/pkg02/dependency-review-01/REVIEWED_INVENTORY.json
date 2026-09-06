@@ -1,0 +1,107 @@
+[
+  {
+    "path": "CI_BINDING.md",
+    "sha256": "10be261b3250db8bf0d753470caae8e7cc84a090880b4b4bbb6dca2b5f2a0960",
+    "actual_sha256": "10be261b3250db8bf0d753470caae8e7cc84a090880b4b4bbb6dca2b5f2a0960",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "DEP-02-02-021.after.json",
+    "sha256": "bc5cc55e47e869c0440eab6f28393033f9ed880ce74cca3609c5997b727d547d",
+    "actual_sha256": "bc5cc55e47e869c0440eab6f28393033f9ed880ce74cca3609c5997b727d547d",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "DEP-02-02-021.before.json",
+    "sha256": "bcc20242e32373d80020ebe2ee7e5174e16b781401f72152b2e7da1ad556d018",
+    "actual_sha256": "bcc20242e32373d80020ebe2ee7e5174e16b781401f72152b2e7da1ad556d018",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "DEP-02-04-016.after.json",
+    "sha256": "e8c2f43afc62233b6bcd6020f0879b11a0a856c8212ff64a1bf1661d982ca0ec",
+    "actual_sha256": "e8c2f43afc62233b6bcd6020f0879b11a0a856c8212ff64a1bf1661d982ca0ec",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "DEP-02-04-016.before.json",
+    "sha256": "5153dfc0d206c026b41d7286f27e0be1098815933b715249c0cbe782f8392a53",
+    "actual_sha256": "5153dfc0d206c026b41d7286f27e0be1098815933b715249c0cbe782f8392a53",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "DEP-02-05-015.after.json",
+    "sha256": "278446094e2308a5153d2cb64e1092094d631eba8059ef9bc5a265769030d203",
+    "actual_sha256": "278446094e2308a5153d2cb64e1092094d631eba8059ef9bc5a265769030d203",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "DEP-02-05-015.before.json",
+    "sha256": "6fe8a475f235b0a75bbbc0315bb6447c300459a97097eb2b68de51855f695582",
+    "actual_sha256": "6fe8a475f235b0a75bbbc0315bb6447c300459a97097eb2b68de51855f695582",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "INPUT_MANIFEST.json",
+    "sha256": "7f3c287e10c0cc8feffcc2d0208e7beb840db4052a3928d5b0df1b196babe2cd",
+    "actual_sha256": "7f3c287e10c0cc8feffcc2d0208e7beb840db4052a3928d5b0df1b196babe2cd",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "RATIONALE.md",
+    "sha256": "d6fb291bc0906093517ca69f60138126c1531b55cbde5adcdccd8f53a72dca65",
+    "actual_sha256": "d6fb291bc0906093517ca69f60138126c1531b55cbde5adcdccd8f53a72dca65",
+    "match": true,
+    "coverage": "hash-only; author reasoning excluded"
+  },
+  {
+    "path": "REVIEW_RETURN.md",
+    "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+    "actual_sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "SOURCE_MANIFEST_v10.json",
+    "sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+    "actual_sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "ci-34006639218.json",
+    "sha256": "3a6dd15ed4f781611d8fed23f2f1fcea6b960b8841edeb3fa5feb2df0860e179",
+    "actual_sha256": "3a6dd15ed4f781611d8fed23f2f1fcea6b960b8841edeb3fa5feb2df0860e179",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "ci-34006639232.json",
+    "sha256": "e54f744979ea9374f60e80e47e7e6859093cb0789540137cc8ad29f5909b02f4",
+    "actual_sha256": "e54f744979ea9374f60e80e47e7e6859093cb0789540137cc8ad29f5909b02f4",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "right-panel.tsx",
+    "sha256": "ebd82c008561d2e4e8eb9ddbdc4306eb2c78d2dcc9867e7016faba628fd67664",
+    "actual_sha256": "ebd82c008561d2e4e8eb9ddbdc4306eb2c78d2dcc9867e7016faba628fd67664",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  },
+  {
+    "path": "woven-dialogue-shell.tsx",
+    "sha256": "47a5b59cefa3b8141cba367c4c5a4b1da0a51317c2cf039bd74c413ab8da3396",
+    "actual_sha256": "47a5b59cefa3b8141cba367c4c5a4b1da0a51317c2cf039bd74c413ab8da3396",
+    "match": true,
+    "coverage": "reviewed evidence or candidate data"
+  }
+]

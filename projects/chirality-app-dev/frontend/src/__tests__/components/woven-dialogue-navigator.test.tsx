@@ -87,6 +87,8 @@ describe('Woven Dialogue Navigator', () => {
       />
     );
 
+    expect(html).toContain('Chirality');
+    expect(html).not.toContain('File tree');
     expect(html).toContain('href="/?legacy=1"');
     expect(html).toContain('target="_blank"');
     expect(html).toContain('Open legacy interface in a new window');

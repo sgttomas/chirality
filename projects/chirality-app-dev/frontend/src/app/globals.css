@@ -3996,3 +3996,365 @@ button:disabled {
   font-size: 0.82rem;
   color: var(--ink-soft);
 }
+
+
+/* SCA-APP-010 Stone presentation. Scope tokens to the woven workspace so the
+   compatibility interface retains its existing presentation contract. */
+.woven-workspace {
+  --ground: #f2f1ed;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --composer: #ffffff;
+  --ink: #222120;
+  --ink-soft: #5c5a55;
+  --ink-faint: #706e68;
+  --rule: #e2e0da;
+  --rule-strong: #cfccc4;
+  --brand-ink: #4a3423;
+  --accent-soft: #efede8;
+  --cta: #222120;
+  --cta-ink: #ffffff;
+  font: 400 13.5px/1.5 var(--font-body);
+}
+:root[data-theme="dark"] .woven-workspace {
+  --ground: #161615;
+  --surface: #1e1e1c;
+  --card: #1e1e1c;
+  --composer: #1e1e1c;
+  --ink: #e8e7e2;
+  --ink-soft: #a5a49d;
+  --ink-faint: #a09f98;
+  --rule: #2b2b29;
+  --rule-strong: #3a3a37;
+  --brand-ink: #e8e7e2;
+  --accent-soft: #2a2a27;
+  --cta: #e8e7e2;
+  --cta-ink: #1a1a19;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] .woven-workspace {
+    --ground: #161615;
+    --surface: #1e1e1c;
+    --card: #1e1e1c;
+    --composer: #1e1e1c;
+    --ink: #e8e7e2;
+    --ink-soft: #a5a49d;
+    --ink-faint: #a09f98;
+    --rule: #2b2b29;
+    --rule-strong: #3a3a37;
+    --brand-ink: #e8e7e2;
+    --accent-soft: #2a2a27;
+    --cta: #e8e7e2;
+    --cta-ink: #1a1a19;
+  }
+}
+.woven-workspace button {
+  background: transparent;
+  color: var(--ink-soft);
+  box-shadow: none;
+}
+.woven-workspace button:hover { color: var(--ink); filter: none; }
+.woven-workspace .chat-input-row button[type="submit"] {
+  background: var(--cta);
+  color: var(--cta-ink);
+}
+.woven-workspace .panel-header h2,
+.woven-workspace .woven-region-header h2,
+.woven-workspace .woven-dialogue-toolbar h2,
+.woven-workspace .woven-activity-header h2 {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+.woven-workspace .woven-dialogue-region,
+.woven-workspace .panel--chat { background: var(--surface); }
+.woven-workspace .woven-navigator {
+  padding: 14px 10px 10px;
+  gap: 16px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--ground);
+}
+.woven-navigator-brand {
+  padding: 0 8px;
+  font: 500 19px/1.2 var(--font-display);
+  letter-spacing: .01em;
+  color: var(--brand-ink);
+}
+.woven-workspace .woven-navigator-sections {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+  gap: 12px;
+}
+.woven-workspace .woven-navigator-session {
+  border: 0;
+  border-radius: 6px;
+  padding: 7px 8px;
+  background: transparent;
+}
+.woven-workspace .woven-navigator-session[aria-pressed="true"] {
+  background: var(--accent-soft);
+}
+.woven-workspace .woven-compatibility {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+  padding: 10px 8px 0;
+  font-size: 12px;
+}
+.woven-workspace .woven-right-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: var(--ground);
+}
+.woven-workspace .woven-right-panel-header {
+  min-height: 40px;
+  padding: 6px 8px 6px 14px;
+  gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid var(--rule);
+}
+.woven-right-panel-header > nav,
+.woven-right-panel-header > [role="tablist"] {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.woven-right-panel-header > nav {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.woven-right-panel-header [role="tablist"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.woven-right-panel-header button,
+.woven-right-panel-header summary {
+  border: 0;
+  padding: 4px 5px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.woven-right-panel-header [role="tab"][aria-selected="true"] {
+  color: var(--ink);
+  box-shadow: inset 0 -1px var(--accent);
+}
+.woven-right-panel-controls { display: flex; gap: 2px; flex: none; }
+.woven-right-panel-controls > details { position: relative; }
+.woven-right-panel-controls > details > summary {
+  cursor: pointer;
+  list-style: none;
+  min-width: 24px;
+  text-align: center;
+}
+.woven-right-panel-controls > details > summary::-webkit-details-marker { display: none; }
+.woven-right-panel-controls > details[open] {
+  z-index: 5;
+  background: var(--surface);
+}
+.woven-panel-menu-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 5;
+  width: min(240px, 75vw);
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  padding: 5px;
+  background: var(--surface);
+  box-shadow: 0 8px 24px var(--shadow-strong);
+}
+.woven-panel-menu-content > button {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.woven-panel-menu-content > p { padding: 4px 5px; font-size: 12px; }
+.woven-workspace .document-view--woven {
+  border: 0;
+  border-radius: 0;
+  background: var(--surface);
+  height: 100%;
+}
+.document-view--woven .panel-header { padding: 6px 18px; border: 0; }
+.document-view--woven .panel-header:has(> .sr-only:only-child) { padding: 0; }
+.document-view--woven .document-view-body { padding: 14px 18px; }
+.document-view--woven .document-view-body > p:first-child { font-size: 11.5px; color: var(--ink-faint); }
+.document-view--woven .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The remaining shell inline stylesheet still describes the removed left file
+   tree as a 400px third row. Override that obsolete track in the stacked shell
+   without changing the shell's structural integration before D120 is active. */
+.woven-workspace.woven-t3-workspace.is-stacked .woven-navigator {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.woven-workspace .panel--file-tree,
+.woven-workspace .panel--chat {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.woven-workspace .panel--file-tree { background: transparent; }
+.woven-workspace .panel--file-tree > .panel-header {
+  border-bottom: 0;
+  padding: 8px 18px;
+}
+.woven-workspace .panel--file-tree > .panel-body { padding: 8px 12px; }
+.woven-workspace .tree-list { padding-left: 14px; gap: 2px; }
+.woven-workspace .panel--file-tree > .panel-body > .tree-list { padding-left: 0; }
+.woven-workspace .tree-item { min-width: 0; gap: 4px; }
+.woven-workspace .tree-toggle {
+  border: 0;
+  border-radius: 3px;
+  flex: none;
+}
+.woven-workspace .tree-item-icon {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-faint);
+  font-size: 9px;
+  padding: 0;
+  flex: none;
+}
+.woven-workspace .tree-item-name {
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 3px 5px;
+}
+.woven-workspace .tree-item-name:hover { background: var(--accent-soft); }
+.woven-workspace.woven-t3-workspace .tree-item-name[aria-current="true"] {
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 500;
+}
+.woven-workspace .tree-item-name:focus-visible,
+.woven-workspace .tree-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Headerless shell and compact conversation composition (D120). */
+.shell--stone { padding: 0; gap: 0; }
+.shell--stone > .woven-workspace { grid-template-rows: minmax(0, 1fr) 32px; }
+.shell--stone .woven-primary-dialogue { display: block; }
+.shell--stone .woven-dialogue-region { padding: 0; }
+.shell--stone .woven-primary-dialogue > .chat-panel--woven {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto auto;
+  background: var(--surface);
+}
+.shell--stone .chat-panel--woven > .chat-transcript { padding: 26px 40px; gap: 26px; }
+.chat-panel--woven .chat-bubble { border: 0; padding: 0; width: 100%; max-width: 620px; }
+.chat-panel--woven .chat-bubble .chat-speaker { font-size: 12.5px; font-weight: 600; margin-bottom: 8px; }
+.chat-panel--woven .chat-bubble p { font-size: 13.5px; line-height: 1.6; }
+.shell--stone .chat-panel--woven > .chat-composer-dock { padding: 0 40px; border: 0; }
+.shell--stone .chat-panel--woven > .chat-input-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  margin: 8px 40px 0;
+  padding: 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 12px;
+  background: var(--composer);
+}
+.chat-composer-line { display: flex; gap: 6px; align-items: flex-end; min-width: 0; }
+.chat-composer-line--legacy { display: contents; }
+.chat-composer-line textarea {
+  min-width: 0;
+  flex: 1;
+  width: 100%;
+  min-height: 30px;
+  max-height: 132px;
+  resize: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  padding: 4px 6px;
+  font: 400 13.5px/22px var(--font-body);
+  overflow-y: auto;
+}
+.chat-composer-line > button { border: 0; padding: 4px; min-height: 30px; }
+.chat-composer-line > button[type="submit"] { width: 30px; height: 30px; border-radius: 50%; flex: none; font-size: 18px; }
+.chat-composer-line > button:disabled { opacity: .45; }
+.chat-panel--woven .chat-context {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+  padding: 10px 40px 22px;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+.chat-context select { max-width: 190px; padding: 3px 6px; font-size: 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink-soft); }
+.chat-context .persona-picker { display: flex; margin: 0; min-width: 0; gap: 4px; }
+.chat-context .chat-mode-selector { margin: 0; }
+.chat-context .chat-folder-fixed { max-width: 240px; overflow-wrap: anywhere; color: var(--ink-soft); }
+.chat-folder-select { position: relative; min-width: 0; }
+.chat-folder-select > summary { cursor: pointer; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 7px; color: var(--ink-soft); list-style: none; }
+.chat-folder-select > summary::-webkit-details-marker { display: none; }
+.chat-folder-menu { position: absolute; bottom: calc(100% + 8px); left: 0; z-index: 10; width: min(300px, 65vw); padding: 12px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); box-shadow: 0 8px 24px var(--shadow-strong); }
+.chat-folder-menu input { display: block; width: 100%; min-width: 0; }
+.chat-folder-menu button { margin-top: 6px; }
+.chat-folder-menu p { font-size: 12px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.woven-new-chat { text-align: left; border: 0; padding: 6px 8px; }
+.woven-new-chat > span { color: var(--accent); }
+.shell--stone .woven-region--navigator > .woven-region-toggle { top: 8px; right: 8px; font-size: 18px; border: 0; background: transparent; }
+.shell--stone .woven-region--navigator.is-collapsed { display: flex; flex-direction: column; align-items: center; }
+.woven-collapsed-brand { font: 500 19px var(--font-display); }
+.woven-collapsed-settings { margin-top: auto; padding-bottom: 12px; }
+.woven-settings-controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.woven-settings-controls .shell-root-chip { border: 0; padding: 3px 0; background: transparent; }
+.woven-settings-controls .working-root-bar { position: fixed; top: auto; bottom: 82px; left: 12px; right: auto; width: min(460px, calc(100vw - 24px)); max-height: 70vh; overflow-y: auto; background: var(--surface); }
+.woven-settings-controls .shell-root-disclosure { position: relative; }
+.woven-activity-strip { grid-column: 1 / -1; grid-row: 2; display: flex; align-items: center; gap: 8px; height: 32px; min-height: 32px; padding: 0 14px; border-top: 1px solid var(--rule); background: var(--ground); color: var(--ink-soft); font-size: 12px; }
+.woven-activity-strip > button:last-child { margin-left: auto; border: 0; padding: 2px 4px; font-size: 12px; }
+.woven-activity-strip .shell-runtime-chip { padding: 2px; border: 0; background: transparent; }
+.woven-activity-strip .shell-runtime-chip-key,
+.woven-activity-strip .shell-runtime-chip-value { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.woven-activity-strip .shell-runtime-feedback { bottom: 100%; top: auto; }
+.woven-activity-view { padding: 10px 14px; }
+.woven-activity-tabs { display: flex; gap: 4px; margin-bottom: 10px; }
+.woven-activity-tabs button { border: 0; font-size: 12px; }
+.woven-activity-tabs [aria-pressed="true"] { color: var(--ink); box-shadow: inset 0 -1px var(--accent); }
+.shell--stone .woven-coordination { padding: 0; display: block; }
+@media (max-width: 1180px) {
+  .shell--stone .chat-panel--woven > .chat-transcript { padding: 22px 26px; }
+  .shell--stone .chat-panel--woven > .chat-composer-dock { padding: 0 26px; }
+  .shell--stone .chat-panel--woven > .chat-input-row { margin-left: 26px; margin-right: 26px; }
+  .chat-panel--woven .chat-context { padding-left: 26px; padding-right: 26px; }
+}
+
+.shell--stone .woven-right-panel #right-view-content > .panel--file-tree { height: 100%; }
+.shell--stone .chat-panel--woven .chat-bubble { max-width: 620px; }
+
+.woven-activity-filter { display: flex; gap: 6px; margin-bottom: 10px; }
+.woven-activity-filter input { min-width: 0; width: 100%; font-size: 12px; }
+.woven-activity-filter button { flex: none; padding: 4px 6px; font-size: 12px; }

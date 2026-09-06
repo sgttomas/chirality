@@ -419,7 +419,7 @@ export function createDefaultWovenWorkspaceState(): NormalizedWovenWorkspaceStat
     ...readAdditions({}),
     schema: WOVEN_WORKSPACE_SCHEMA,
     theme: DEFAULT_WOVEN_WORKSPACE_THEME,
-    navigatorWidth: 280,
+    navigatorWidth: 240,
     coordinationWidth: 360,
     activityHeight: 220,
     navigatorCollapsed: false,

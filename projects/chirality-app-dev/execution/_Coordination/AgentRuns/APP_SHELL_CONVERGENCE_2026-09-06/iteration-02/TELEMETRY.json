@@ -1,0 +1,53 @@
+{
+  "status": "observed events only; not a live status register",
+  "source": "parent HELP_HUMAN tool-event reports and referenced artifacts",
+  "delegationClass": "delegated-harness-native",
+  "roleEnforcement": "instruction-asserted",
+  "model": "GPT-6 family per parent system; exact serving identifier unavailable",
+  "tokenUsage": "unavailable",
+  "contextOccupancy": "unavailable",
+  "events": [
+    {
+      "instance": "/root/shell_pkg02/author01",
+      "event": "started then blocked during TASK normalization",
+      "cause": "missing explicit instruction-root, ScopePath and PROFILE_PATH",
+      "resolution": "resumed after pkg02/author-01/INVOCATION_SUPPLEMENT_v1.md"
+    },
+    {
+      "instance": "/root/shell_pkg02/author01",
+      "event": "completed bounded six-file source pass",
+      "acceptance": "not final acceptance; source manifest v1 bound by FREEZE_GRAPH_v2"
+    },
+    {
+      "instance": "/root/shell_pkg02/dep_review01",
+      "event": "completed COMMIT-SAFE",
+      "scope": "three frozen before/after dependency row pairs only",
+      "evidence": "../pkg02/dependency-review-01/RETURN.md"
+    },
+    {
+      "instance": "/root/shell_pkg02/source_review01",
+      "event": "observed running",
+      "scope": "same frozen source as browser checkpoint",
+      "evidence": "../pkg02/FREEZE_GRAPH_v2.md"
+    },
+    {
+      "instance": "/root/shell_pkg02/browser_partial01",
+      "event": "observed running",
+      "scope": "early design checkpoint; sole temporary Next server owner; no final checks claim",
+      "evidence": "../pkg02/FREEZE_GRAPH_v2.md"
+    },
+    {
+      "instance": "/root/shell_pdf_boundary",
+      "event": "completed candidate-only package with fresh COMMIT-SAFE",
+      "scope": "proposal publication only; D121 held",
+      "evidence": "../pkg09-pdf/FINAL_HANDOFF.md"
+    },
+    {
+      "instance": "/root/shell_run_change",
+      "event": "authority local commit completed; public push automatically rejected",
+      "commit": "c34bca30c57ef0f36de25d8065b8c1944431d48c",
+      "reason": "new internal execution records to public repository; prior explicit publication approval covered only 5ffafd710",
+      "consequence": "no PR or new CI; no retry or bypass; local independent work continues"
+    }
+  ]
+}

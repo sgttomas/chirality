@@ -1,0 +1,24 @@
+{
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "project_root": "projects/chirality-app-dev",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 3.92,
+      "exit_code": 0,
+      "id": "frontend-typecheck",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 typecheck\n> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false\n\n",
+      "timeout_seconds": 600.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "."
+}

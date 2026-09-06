@@ -1,0 +1,264 @@
+
+> chirality-frontend@2.0.0 validate:release-quality
+> npm run harness:validate:contract-deps && node ./scripts/validate-release-quality-evidence.mjs --skip-premerge Current frozen Workflows source registered premerge returned actual HTTP 503 for session list/create/boot without configured runtime daemon binding. App AGENTS permits configured PR CI deferral; this is not premerge PASS.
+
+
+> chirality-frontend@2.0.0 harness:validate:contract-deps
+> node ./scripts/assert-harness-contract-deps.mjs
+
+harness contract dependency lint passed
+
+> chirality-frontend@2.0.0 test
+> vitest run --testTimeout=15000
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+{"status":"FAIL","summaryPath":"/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-daemon-proof-test-q58Yqa/evidence/summary.json"}
+
+ Test Files  177 passed | 1 skipped (178)
+      Tests  1730 passed | 4 skipped (1734)
+   Start at  00:03:10
+   Duration  5.16s (transform 10.73s, setup 0ms, import 21.37s, tests 36.92s, environment 26ms)
+
+
+> chirality-frontend@2.0.0 typecheck
+> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false
+
+
+> chirality-frontend@2.0.0 harness:validate:section9
+> node ./scripts/validate-harness-section9.mjs
+
+HARNESS_SECTION9_CHECK_START=section9.runtime_engine_contract
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/engine-conformance.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  00:03:22
+   Duration  445ms (transform 234ms, setup 0ms, import 341ms, tests 28ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.adapter_turn_engine_event_log
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/turn-engine.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  00:03:23
+   Duration  219ms (transform 105ms, setup 0ms, import 130ms, tests 14ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.adapter_message_mapper
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-message-mapper.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  00:03:24
+   Duration  195ms (transform 83ms, setup 0ms, import 102ms, tests 18ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.session_event_replay
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/session-events.test.ts src/__tests__/lib/transcript-replay.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  00:03:24
+   Duration  153ms (transform 79ms, setup 0ms, import 100ms, tests 20ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.reliance_boundary_register
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/docs/reliance-boundary-register.test.ts src/__tests__/contract-pins.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  19 passed (19)
+   Start at  00:03:25
+   Duration  133ms (transform 59ms, setup 0ms, import 75ms, tests 11ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.settingsources_isolation
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-options-builder.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  00:03:25
+   Duration  430ms (transform 209ms, setup 0ms, import 311ms, tests 39ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.sdk_session_link_resume
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/session-manager.test.ts src/__tests__/lib/transcript-replay.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  35 passed (35)
+   Start at  00:03:26
+   Duration  435ms (transform 326ms, setup 0ms, import 451ms, tests 88ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.permission_overlay_hard_deny_precedence
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/permission-overlay.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  00:03:27
+   Duration  203ms (transform 81ms, setup 0ms, import 101ms, tests 23ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.tool_runtime_read_file
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-read-mcp.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  00:03:27
+   Duration  432ms (transform 193ms, setup 0ms, import 288ms, tests 68ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.chirality_mcp_status_dependencies
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/dependencies-register-contract.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  00:03:28
+   Duration  432ms (transform 232ms, setup 0ms, import 342ms, tests 74ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.path_containment_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/permission-overlay.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  00:03:29
+   Duration  219ms (transform 174ms, setup 0ms, import 215ms, tests 59ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.instruction_root_protection_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/harness-instruction-root.test.ts src/__tests__/scripts/verify-instruction-root-integrity.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  00:03:29
+   Duration  308ms (transform 78ms, setup 0ms, import 100ms, tests 192ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.tool_result_budget
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/chirality-hooks.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  4 passed (4)
+      Tests  33 passed (33)
+   Start at  00:03:30
+   Duration  223ms (transform 309ms, setup 0ms, import 393ms, tests 78ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.context_compaction_boundary
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/session-events.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  21 passed (21)
+   Start at  00:03:30
+   Duration  194ms (transform 129ms, setup 0ms, import 170ms, tests 37ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.subagent_governance_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/agent-runtime-contract.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  00:03:31
+   Duration  190ms (transform 89ms, setup 0ms, import 114ms, tests 48ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.domain_profile_validation
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/domain-profile-registry.test.ts src/__tests__/contract-pins.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  00:03:31
+   Duration  131ms (transform 75ms, setup 0ms, import 93ms, tests 12ms, environment 0ms)
+
+HARNESS_SECTION9_SUMMARY_PATH=/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json
+HARNESS_SECTION9_MANIFEST_PATH=/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json
+HARNESS_SECTION9_SOURCE_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/summary.json
+HARNESS_SECTION9_STATUS=pass
+HARNESS_SECTION9_TEST_COUNT=16
+RELEASE_QUALITY_SUMMARY_PATH=/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json
+RELEASE_QUALITY_STATUS=pass_with_skips
+RELEASE_QUALITY_PREMERGE_SKIPPED=true
+RELEASE_QUALITY_SECTION9_POLICY=standalone-blocking,premerge-report-only
