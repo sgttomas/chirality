@@ -71,8 +71,9 @@ describe("operator-only sign-in component (controlled fixture)", () => {
     finally { await f.close(); }
   });
   it("bounds a pending ceremony and denies production launch absent operator consent", async () => {
-    const f = await fixture("pending", undefined, 60);
-    try { await f.login.startLogin(); await expect.poll(async () => (await f.login.status()).state).toBe("failed"); }
+    // The ceremony budget includes a real child startup on contended CI workers.
+    const f = await fixture("pending", undefined, 1000);
+    try { await f.login.startLogin(); expect((await f.login.status()).state).toBe("pending"); await expect.poll(async () => (await f.login.status()).state, { timeout: 2000 }).toBe("failed"); }
     finally { await f.close(); }
     const login = new CodexLogin({ executablePath: "/invalid", canonicalRoot: "/invalid", codexHome: "/invalid/home", privateDirectory: "/invalid", providerNetworkConsent: { approvedBy: "", approvalReference: "" } });
     await expect(login.startLogin()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); await login.close();
