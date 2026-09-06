@@ -1,0 +1,41 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+    "sha256": "b3f9410945f4578f704471a47394e0299eb9fca4af5f70ccb2359bbf9925f879",
+    "dependency": "DEP-02-04-016"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv",
+    "sha256": "fd9b747956af24b6eba67ce670035aaf1b12d2d02e553f0ff504bfd2e0126dc4",
+    "dependency": "DEP-02-02-021"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+    "sha256": "1408edaa4cf79a1bf088cc187728eddf233f62112b35cdb770ea9a48fa50f9e7",
+    "dependency": "DEP-02-05-015"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "git_commit": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+    "sha256": "ebd82c008561d2e4e8eb9ddbdc4306eb2c78d2dcc9867e7016faba628fd67664",
+    "frozen_copy": "right-panel.tsx"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "git_commit": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+    "sha256": "47a5b59cefa3b8141cba367c4c5a4b1da0a51317c2cf039bd74c413ab8da3396",
+    "frozen_copy": "woven-dialogue-shell.tsx"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+    "git_commit": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+    "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+    "frozen_copy": "REVIEW_RETURN.md"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/SOURCE_MANIFEST_v10.json",
+    "git_commit": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+    "sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+    "frozen_copy": "SOURCE_MANIFEST_v10.json"
+  }
+]

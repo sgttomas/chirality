@@ -1,0 +1,37 @@
+{
+  "schema": "chirality-app-pkg09-pdf-draft-handoff/v1",
+  "run": "APP_SHELL_CONVERGENCE_2026-09-06",
+  "instance": "/root/shell_pdf_boundary",
+  "role": "WORKING_ITEMS",
+  "package": "PKG-09",
+  "deliverables": [
+    "DEL-09-06"
+  ],
+  "source_head": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+  "accepted_basis": "Existing live source/contracts and D108 PDF requirement, identities in INPUT_IDENTITIES.json; D121 remains proposal",
+  "derivative_package": true,
+  "closure": "BOUNDED_DRAFT_PREPARATION_COMPLETE",
+  "effect_status": "HELD",
+  "owner_case_selection": "NONE",
+  "validation": [
+    "APP-HOLD reliance ALLOW/CLEAR/NOT_HELD",
+    "Candidate originals and history mechanically preserved"
+  ],
+  "not_run": [
+    "product tests/build/native proof (outside brief)",
+    "fresh independent governed-record verifier (parent integration gate)"
+  ],
+  "blockers": [
+    "owner D121 policy selection and exact cross-package amendment",
+    "actual native built-in PDF feasibility proof"
+  ],
+  "rerun_requirements": [
+    "Refresh source/status/ID identities before seating",
+    "Fresh refutation-only review before governed integration",
+    "After authorization implement/freeze/whole-diff review/registered checks/native proof"
+  ],
+  "remaining_independent_work": "PKG02 shell convergence proceeds independently",
+  "next_owner": "HELP_HUMAN routes bounded candidate through owning instrument and owner decision",
+  "writes": "Only this draft instance directory",
+  "runtime_summary": "Single bounded manager; no children, native apps, builds, or background processes. Token/context occupancy not exposed."
+}

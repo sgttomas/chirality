@@ -1,0 +1,80 @@
+{
+  "head": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "bytes": 14994
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "bytes": 16986
+    },
+    {
+      "path": "projects/chirality-app-dev/software-workflow.json",
+      "sha256": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9",
+      "bytes": 1888
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md",
+      "sha256": "1fed47a10b3f480a545947e6cf1d60ef7e150f166caceb4a26c0267f92dde652",
+      "bytes": 28429
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+      "sha256": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0",
+      "bytes": 16686
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/MEMORY.md",
+      "sha256": "8498426a1d63e00761dbb2b9717193d8f94da887617713ee192e8a8411bdc823",
+      "bytes": 5406
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md",
+      "sha256": "fb1e9c288c795594efe0dd41cad6a3b1a83b7f46e43a479fd909f5ecf3cca4eb",
+      "bytes": 16595
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts",
+      "sha256": "c9c37b00b2d777ef96a1d1bd000b6690f1fdad54af88eb11931561d75522c1de",
+      "bytes": 23877
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "sha256": "b84851b97b59765322f50f7308fd0b84c18d1fb1f4bca695147657a75777df39",
+      "bytes": 34792
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+      "sha256": "c9a604c4803b399983b3c357be8d4fc7e0877ca100c408e5c41cf435053feba1",
+      "bytes": 6304
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+      "sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603",
+      "bytes": 8582
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "sha256": "1960d6d4df28adaaea4e304cb99820d0eff23863c113e0c25b1c4c6020533774",
+      "bytes": 3771
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+      "sha256": "99249b5d00d215a989aad884ac2ab1d0b4238d6e19e07cb8faa651b6212e2d51",
+      "bytes": 35256
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+      "sha256": "1da922fc5ade3e0129eb42008a2bb34b62e1c8a8d1378850b09ec30aebbfd7fa",
+      "bytes": 24050
+    }
+  ]
+}

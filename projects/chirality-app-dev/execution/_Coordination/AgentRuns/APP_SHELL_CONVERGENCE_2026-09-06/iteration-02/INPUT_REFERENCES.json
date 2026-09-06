@@ -1,0 +1,38 @@
+{
+  "status": "input references only; NOT a publication or union freeze",
+  "references": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-candidate-01/FROZEN_MANIFEST.json",
+      "sha256": "631ff45ea8d1ba3ef125219185877bfdbf5402f57a6fea4092312e4de4b0b926"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-review-01/RETURN.md",
+      "sha256": "dea142628e07af393403d28ca4b6e8363f261edafde76cce01ccd73d3f7dc038"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-review-01/REVIEWED_INVENTORY.json",
+      "sha256": "6a260b70039eecdd80f31fceed51a661331eb556cfc0f89d831f3879fcbb7085"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg09-pdf/FINAL_MANIFEST.json",
+      "sha256": "e80b690cc74473fc039635979a7fbfec1fbba19ddd5b9f06ee774aa3b3d1e86e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg09-pdf/FINAL_HANDOFF.md",
+      "sha256": "a4451c501ee0bf7077f3cc2a0215c86a50c519538550d72243bcf4b9ad425058"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg09-pdf/REVIEW_RETURN.md",
+      "sha256": "6cd635c4f89620f6f0caa526956c33090309212d05e486fc9b5a46070471086e"
+    }
+  ],
+  "candidateDependencyIDs": [
+    "DEP-02-02-021",
+    "DEP-02-04-016",
+    "DEP-02-05-015"
+  ],
+  "dependencyArtifactDirectory": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-candidate-01",
+  "actualDependencyReviewerDirectory": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-review-01",
+  "pdfCandidateDirectory": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg09-pdf",
+  "caution": "dependency-candidate-01/REVIEW_RETURN.md is copied historical v10 source review, not the fresh dependency verdict; use dependency-review-01/RETURN.md. Exact live CSV and publication paths await parent release."
+}

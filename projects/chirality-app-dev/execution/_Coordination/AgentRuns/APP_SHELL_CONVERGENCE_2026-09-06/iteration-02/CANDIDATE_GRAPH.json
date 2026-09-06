@@ -1,0 +1,46 @@
+{
+  "state": "CANDIDATE_ONLY",
+  "parent": "/root HELP_HUMAN",
+  "purpose": "Record reviewed three dependency-row dispositions and publish independently reviewed PDF amendment candidate; no source acceptance",
+  "examinedThrough": "c34bca30c57ef0f36de25d8065b8c1944431d48c",
+  "parentReceipt": "Receipt-249",
+  "nodes": [
+    {
+      "id": "/root/shell_pkg02",
+      "role": "WORKING_ITEMS PKG02",
+      "responsibility": "exact reviewed dependency-row application and owning records after parent release; source integration separately held from this record tranche"
+    },
+    {
+      "id": "/root/shell_pdf_boundary",
+      "role": "WORKING_ITEMS PKG09",
+      "responsibility": "completed isolated candidate preparation and independent review; no D121 policy selection"
+    },
+    {
+      "id": "/root/shell_run_records",
+      "role": "ephemeral Agent2",
+      "responsibility": "iteration02 shared records only; no checks or Receipt250 append until release"
+    },
+    {
+      "id": "future fresh final governed reviewer",
+      "role": "UNASSIGNED",
+      "responsibility": "exact frozen union review before landing"
+    },
+    {
+      "id": "/root/shell_run_change",
+      "role": "CHANGE",
+      "responsibility": "scoped closeout after acceptance"
+    }
+  ],
+  "requiredOrdering": [
+    "authority commit observed -> parent exact path release -> reviewed row application -> terminal checks/receipt append -> frozen exact union -> fresh whole-tranche review -> CHANGE"
+  ],
+  "excluded": [
+    "frontend source",
+    "source review acceptance",
+    "lifecycle",
+    "Root writes",
+    "D121 policy or scope acceptance",
+    "authority tranche frozen files"
+  ],
+  "publicationGate": "HELD: auto-review rejected public push of new internal records; no retry or bypass; parent will consolidate precise later publication approval request"
+}

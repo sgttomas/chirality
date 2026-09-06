@@ -1,0 +1,2 @@
+# Current remote CI binding
+Both exact read-only gh queries returned completed success for head5ffafd710430bf053d5cfaf11129ccc1aa3130e5; JSON records contain arguments, result and exit status. Initial sandbox attempt failed connecting to api.github.com, then exact command escalation succeeded. git merge-base --is-ancestor 5ffafd710 HEAD returned0 on base92ca3f1a. This evidence supplements the candidate source/review inputs. No workflow run was triggered, no remote state mutated.
