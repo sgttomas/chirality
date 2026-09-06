@@ -1,0 +1,54 @@
+{
+  "owner_record": {
+    "path": "plans/steers/root_runtime_migration_gate5_confirmation_2026-09-06.md",
+    "sha256": "11123cce6854447778a0d4fff81a50fb2ad5acb568c03d5af6c80d2a1ba67a08",
+    "commit": "576a1535ddf56c5ecbe69f7a44e140a776c46839"
+  },
+  "substitutions": {
+    "<ACTUAL_GATE5_RECORD_PATH>": "plans/steers/root_runtime_migration_gate5_confirmation_2026-09-06.md",
+    "<ACTUAL_GATE5_RECORD_SHA256>": "11123cce6854447778a0d4fff81a50fb2ad5acb568c03d5af6c80d2a1ba67a08",
+    "<PUBLISHED_GATE5_RECORD_COMMIT>": "576a1535ddf56c5ecbe69f7a44e140a776c46839"
+  },
+  "changes": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06/GOVERNANCE_STATE_EFFECTIVE_576a1535.json",
+      "template": "execution/_ScopeChange/SCA-005_2026-09-06_APPLICATION/Gate5_Effective_State_Template.json",
+      "template_sha256": "d72f1822a8de293bffb608d4af1aea57b43654bdbf08dc4a362ee279e066929c",
+      "before_sha256": null,
+      "after_sha256": "a54779343b6a9c9ef74664fd05efd05b7bae10a097106f3605560af8ef8c53ca",
+      "exact_template_substitutions": true
+    },
+    {
+      "path": "execution/_ScopeChange/_LATEST.md",
+      "template": "execution/_ScopeChange/SCA-005_2026-09-06_APPLICATION/Gate5_LATEST_Postimage_Template.md",
+      "template_sha256": "985264c27a02305b30ff726d736f975c241e015afe5f59b492a46fe0ac9410fb",
+      "before_sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c",
+      "after_sha256": "d9fe2eb5340e588f781b90caf7ec10dda24528fe71fb283ba7d7e2a7df0689f1",
+      "exact_template_substitutions": true
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "before_sha256": "aad59e473b3e8c7516920d0b1803486be271d2f887504ed9c7f90b5439b74f90",
+      "after_sha256": "e481e79f1dd28d41bf47db50c58fa1ad50ed14e559fc3975240b6862a31275d4",
+      "only_governance_state_reference_changed": true
+    },
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "before_sha256": "ff58975ca24f15bb84da5cce07c336f7e9e5108472d876ff83623768d89bb6fb",
+      "after_sha256": "5cc271f5027f0c80a69b81265ac1d3de288a81fed2418bf90be3cf1177d1e16b",
+      "only_governance_state_reference_changed": true
+    },
+    {
+      "path": "execution/_harness/surface_ownership.yaml",
+      "before_sha256": "1169dc1b371edd161b22a5f1ee731e0821e8eed714e07c652e066bf261ceb4e4",
+      "after_sha256": "e77e420cf20c54cd40bbdcfb3ae19dd0f2979737526c04312fd91f803e01a816",
+      "only_governance_state_reference_changed": true
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "before_sha256": "7a315344be8973c9dcc0a764107d9fa3ceeb30823b6df3a2364f5447d14d4d40",
+      "after_sha256": "a6de6a54e7a0aa3826a509a896598db8af6505c611434567db6a4cec18e9eb65",
+      "only_governance_state_reference_changed": true
+    }
+  ]
+}
