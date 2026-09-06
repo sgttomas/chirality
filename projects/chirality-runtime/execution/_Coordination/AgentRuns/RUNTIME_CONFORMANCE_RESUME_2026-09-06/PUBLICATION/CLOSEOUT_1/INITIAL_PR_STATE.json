@@ -1,0 +1,50 @@
+{
+  "baseRefName": "main",
+  "headRefName": "codex/runtime-packaging-integration",
+  "headRefOid": "3a6adfc2757c7de56a3f4ccc0e196e6442d20533",
+  "number": 738,
+  "state": "OPEN",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34057312619/job/101551452542",
+      "name": "Harness pre-merge",
+      "startedAt": "2026-09-06T20:13:30Z",
+      "status": "IN_PROGRESS",
+      "workflowName": "Harness Pre-merge Validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34057312440/job/101551451803",
+      "name": "harness",
+      "startedAt": "2026-09-06T20:13:30Z",
+      "status": "IN_PROGRESS",
+      "workflowName": "governance-harness"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34057312539/job/101551452115",
+      "name": "pec",
+      "startedAt": "2026-09-06T20:13:30Z",
+      "status": "IN_PROGRESS",
+      "workflowName": "pec-tests"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T20:13:28Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34057312441/job/101551452728",
+      "name": "Verify unsigned macOS artifact",
+      "startedAt": "2026-09-06T20:13:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Desktop Unsigned Artifact Verification"
+    }
+  ],
+  "url": "https://github.com/sgttomas/chirality/pull/738"
+}
