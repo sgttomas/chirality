@@ -1,0 +1,126 @@
+{
+  "utc": "2026-09-06T22:58:03.955809+00:00",
+  "base_commit": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "verified_manifests": [
+    {
+      "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/OUTPUT_MANIFEST.json",
+      "sha256": "a69c039ab90d41f159a4ccfa0aa11833dfd15e22f6c1b251857e447ec6a50f62",
+      "member_count": 80,
+      "mismatches": []
+    },
+    {
+      "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg09/OUTPUT_MANIFEST.json",
+      "sha256": "70a2e56721ae8ffc4c57519def9f1ad0d1e8dfa4ee6a493b59dbafb0f1f65765",
+      "member_count": 51,
+      "mismatches": []
+    },
+    {
+      "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/decisions/runtime-consumer-v1/OUTPUT_MANIFEST.json",
+      "sha256": "bb6a5ffa48bd42962cf8aa42e98fa665c7d66746db5dd28f7e7407d8a8461b1a",
+      "member_count": 20,
+      "mismatches": []
+    }
+  ],
+  "registered_checks": [
+    {
+      "id": "frontend-typecheck",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend"
+    },
+    {
+      "id": "frontend-test",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend"
+    },
+    {
+      "id": "frontend-build",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend"
+    },
+    {
+      "id": "app-hold-integrity",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "scan",
+        "--require-register-match"
+      ],
+      "cwd": "projects/chirality-app-dev"
+    },
+    {
+      "id": "harness-self-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": "."
+    },
+    {
+      "id": "harness-pytest",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": "."
+    }
+  ],
+  "configured_premerge": {
+    "status": "pass",
+    "testCount": 8,
+    "summary": "pkg09/CONFIGURED_PREMERGE_SUMMARY.json"
+  },
+  "source_review": "pkg02/REVIEW_RETURN.md (PASS exact seven frozen paths)",
+  "gui_proof": "pkg02/GUI_PROOF_RECORD.md; MANAGER_RETURN.md; GUI_CLEANUP.json",
+  "gui_verdict": "bounded current GUI/recorded historical Reveal/responsive proof, explicit residuals",
+  "secret_scan": {
+    "status": "pass",
+    "scannedFileCount": 11993,
+    "blockedFindingCount": 0,
+    "allowedFixtureFindingCount": 28,
+    "raw_summary_custody": "local-only if bulk under D99; compact result and exact raw hash retained",
+    "raw_summary_sha256": "6a5ed95c80fdcb14c24e6ea6962a63f79686f61ce416ba6fa7314653d785cc88"
+  },
+  "remaining_checks": [
+    "post-append receipt validator",
+    "finalrecord harness self-check and pytest",
+    "candidate added-text and tracked diff whitespace check",
+    "exact post-append scope/final freeze accepted by parent"
+  ],
+  "source_checks_rerun": "Not selected: exact reviewed/validated source identities unchanged",
+  "deferred_claims": [
+    "ordinary packaged identity/launch",
+    "Finder-to-composer drop",
+    "Dock gestures",
+    "live account/provider",
+    "full shell redesign or milestone closure",
+    "D122/D123 implementation before applicable gates",
+    "Runtime design implementation approval"
+  ]
+}

@@ -1,0 +1,10 @@
+--- projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md
++++ projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md
+@@ -16,3 +16,7 @@
+ - 2026-09-03 - DEL-02-05-V3-04 fake-state guards and post-revocation consistency executed via node L `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_L_2026-09-03/`; review PASS, no new scope, no lifecycle change. A1 requires re-staging and fresh owner proof before any future proof claim.
+ - 2026-09-04 - SCA-APP-010 seating and alignment (D-APP-108): Remaining items DEL-02-05-V3-05; read `_STATUS.md` with this file before any write; the applied decomposition row and the SCA-APP-010 Gate-5 Current Contract section in `ScopeOfWork.md` state the current responsibility; nothing here is authority. No lifecycle, Checking Approval SHA, dependency, product, or release change.
+ - 2026-09-05 - D-APP-109 dependency closure and context alignment: `Dependencies.csv` is current with the applied row L311; rows noted `CYCLE_PARTICIPATING` are non-gating until their SCC is resolved by a recorded move, so read the seated items' `Depends` lines and gates, not those rows, for executable ordering; `_CONTEXT.md` traceability and artifacts equal the applied row; read `_STATUS.md` with this file before any write; nothing here is authority.
++
++## 2026-09-06 — D-APP-122 A owner selection
++
++The owner selected "Runtime A; D122 A; D123 A". D-APP-122 A adopts only the account-host prerequisite and exact account/Settings presentation loci for DEL-02-05-V3-05. Consult its ruling and the exact application snapshot; this memory is non-authoritative. Effect remains HELD until the owner act is observable on fetched origin/main. No new source implementation, dependency satisfaction, full-item/lifecycle closure or publication is established. Existing residuals and gates remain; a later source freeze must use current identities. See `_run_records/D_APP_122_OWNER_SELECTION_2026-09-06.md`.

@@ -1,0 +1,30 @@
+{
+  "parent": "/root/resume_account_scope",
+  "shared_graph": "../../WORK_GRAPH_v7.json",
+  "nodes": [
+    {
+      "id": "candidate-author",
+      "writes": [
+        "account-scope/ruling-application-v1/**"
+      ]
+    },
+    {
+      "id": "fresh-refutation",
+      "role": "ephemeral Agent2",
+      "writes": [],
+      "status": "PREPARED_NOT_DISPATCHED",
+      "brief": "REFUTATION_BRIEF.md",
+      "brief_sha256": "4509b7f04fb1c8d32e4901fa00d492fd837ebfe7b344fc2150f4cd67bf59a668"
+    }
+  ],
+  "edges": [
+    [
+      "candidate-author",
+      "fresh-refutation"
+    ]
+  ],
+  "cycles": [],
+  "delegation": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted",
+  "effect": "candidate only; no live application/source/publication"
+}

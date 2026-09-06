@@ -1,0 +1,155 @@
+{
+  "schema": "app-shell-resume-work-graph/v1",
+  "created_at": "2026-09-06T18:14:13.219902+00:00",
+  "selection_authority": "AGENT_0",
+  "posture": "MIXED",
+  "delegation_class": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted",
+  "plan": "ORCHESTRATION_PLAN_v1.md",
+  "nodes": [
+    {
+      "id": "agent0",
+      "instance": "/root",
+      "role": "HELP_HUMAN",
+      "status": "SUPERVISING",
+      "writes": []
+    },
+    {
+      "id": "branch",
+      "instance": "/root/resume_change",
+      "role": "CHANGE",
+      "status": "BOOTSTRAP_COMPLETE",
+      "writes": [
+        "change/**",
+        "scoped Git operations"
+      ],
+      "return": "change/bootstrap/RETURN.md"
+    },
+    {
+      "id": "records",
+      "instance": "/root/resume_records",
+      "role": "ephemeral Agent2",
+      "status": "RECORDING",
+      "writes": [
+        "shared root run records excluding pkg02/**, pkg07/**, change/**"
+      ]
+    },
+    {
+      "id": "pkg02-discovery",
+      "instance": "/root/resume_pkg02",
+      "role": "WORKING_ITEMS PKG02",
+      "status": "DISCOVERY_CANDIDATE_ONLY",
+      "writes": [
+        "pkg02/**"
+      ],
+      "source_status": "HELD_PENDING_EXACT_FROZEN_BRIEF"
+    },
+    {
+      "id": "pkg07-grammar",
+      "instance": "/root/resume_pkg07",
+      "role": "WORKING_ITEMS PKG07",
+      "status": "RELEASED_RECORD_ONLY",
+      "writes": [
+        "pkg07/**",
+        "exact grammar-only deliverable reconciliation targets in manager brief"
+      ]
+    },
+    {
+      "id": "pkg02-source",
+      "instance": null,
+      "role": "package-selected executor",
+      "status": "PLANNED_NOT_DISPATCHED"
+    },
+    {
+      "id": "fresh-source-review",
+      "instance": null,
+      "role": "fresh TASK software-code-review",
+      "status": "PLANNED_NOT_DISPATCHED",
+      "writes": []
+    },
+    {
+      "id": "registered-gates-browser",
+      "instance": null,
+      "role": "package-owned validation",
+      "status": "PLANNED_NOT_DISPATCHED"
+    },
+    {
+      "id": "union-review",
+      "instance": null,
+      "role": "fresh refutation-only independent verifier",
+      "status": "PLANNED_NOT_DISPATCHED",
+      "writes": []
+    },
+    {
+      "id": "local-closeout",
+      "instance": "/root/resume_change",
+      "role": "CHANGE",
+      "status": "HELD_FINAL_UNION"
+    }
+  ],
+  "dependencies": [
+    {
+      "from": "branch",
+      "to": "records",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "branch",
+      "to": "pkg02-discovery",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "branch",
+      "to": "pkg07-grammar",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "pkg02-discovery",
+      "to": "pkg02-source",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "pkg02-source",
+      "to": "fresh-source-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "fresh-source-review",
+      "to": "registered-gates-browser",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "registered-gates-browser",
+      "to": "union-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "pkg07-grammar",
+      "to": "union-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "records",
+      "to": "union-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "union-review",
+      "to": "local-closeout",
+      "condition": "accepted predecessor evidence before dependent effect"
+    }
+  ],
+  "concurrency": [
+    [
+      "records",
+      "pkg02-discovery",
+      "pkg07-grammar"
+    ]
+  ],
+  "coordination": "parent-mediated only",
+  "cycles": [],
+  "source_gate": "exact frozen package brief, live authority/pins/APP-HOLD first",
+  "account_settings_gate": "whole-T2 boundary remains held; proposal only pending owner act",
+  "publication": "no new push/PR/merge authorized",
+  "a1_consequence": "all frontend mutation requires newly staged login-proof revision and fresh owner-executed proof for future claims"
+}

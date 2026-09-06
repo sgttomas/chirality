@@ -1,0 +1,24 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/revision03"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/revision03/APP_HOLD_DISPATCH.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/revision03/OUTPUT_IDENTITIES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/revision03/SOURCE_DIFF.patch",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/revision03/INPUT_IDENTITIES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/revision03/CHECKS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/revision03/_run_records/TASK_RUN_2026-09-06_revision03.md"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

@@ -1,0 +1,466 @@
+[
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001 CLM-004 CLM-005 REQ-027 REQ-028 REQ-029 REQ-030 REQ-038 REQ-041 REQ-042 REQ-043 REQ-044 REQ-045 REQ-046 REQ-047",
+    "acceptanceRefs": "AC-001",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 629
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001 CLM-004 CLM-005 REQ-027 REQ-028 REQ-029 REQ-030 REQ-038 REQ-041 REQ-042 REQ-043 REQ-044 REQ-045 REQ-046 REQ-047",
+    "acceptanceRefs": "AC-010",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 630
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001 CLM-004 CLM-005 REQ-027 REQ-028 REQ-029 REQ-030 REQ-038 REQ-041 REQ-042 REQ-043 REQ-044 REQ-045 REQ-046 REQ-047",
+    "acceptanceRefs": "AC-014",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 631
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-002",
+    "requirementClaimRefs": "REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 REQ-006 REQ-007 REQ-008 REQ-009 REQ-036",
+    "acceptanceRefs": "AC-002",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 632
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-002",
+    "requirementClaimRefs": "REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 REQ-006 REQ-007 REQ-008 REQ-009 REQ-036",
+    "acceptanceRefs": "AC-011",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 633
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-002 CLM-003 REQ-010 REQ-011 REQ-012 REQ-013 REQ-014 REQ-015 REQ-016 REQ-017 REQ-018 REQ-019 REQ-020 REQ-021 REQ-022 REQ-023 REQ-024 REQ-025 REQ-026 REQ-036",
+    "acceptanceRefs": "AC-003",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 634
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-002 CLM-003 REQ-010 REQ-011 REQ-012 REQ-013 REQ-014 REQ-015 REQ-016 REQ-017 REQ-018 REQ-019 REQ-020 REQ-021 REQ-022 REQ-023 REQ-024 REQ-025 REQ-026 REQ-036",
+    "acceptanceRefs": "AC-011",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 635
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-002 CLM-003 REQ-010 REQ-011 REQ-012 REQ-013 REQ-014 REQ-015 REQ-016 REQ-017 REQ-018 REQ-019 REQ-020 REQ-021 REQ-022 REQ-023 REQ-024 REQ-025 REQ-026 REQ-036",
+    "acceptanceRefs": "AC-012",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 636
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-004",
+    "requirementClaimRefs": "REQ-009 REQ-031 REQ-032 REQ-036 REQ-038",
+    "acceptanceRefs": "AC-004",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 637
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-004",
+    "requirementClaimRefs": "REQ-009 REQ-031 REQ-032 REQ-036 REQ-038",
+    "acceptanceRefs": "AC-011",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 638
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-005",
+    "requirementClaimRefs": "REQ-015 REQ-016 REQ-031 REQ-032 REQ-033 REQ-035 REQ-037 REQ-048 REQ-049 REQ-050",
+    "acceptanceRefs": "AC-005",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 639
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-005",
+    "requirementClaimRefs": "REQ-015 REQ-016 REQ-031 REQ-032 REQ-033 REQ-035 REQ-037 REQ-048 REQ-049 REQ-050",
+    "acceptanceRefs": "AC-006",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 640
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-005",
+    "requirementClaimRefs": "REQ-015 REQ-016 REQ-031 REQ-032 REQ-033 REQ-035 REQ-037 REQ-048 REQ-049 REQ-050",
+    "acceptanceRefs": "AC-010",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 641
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-005",
+    "requirementClaimRefs": "REQ-015 REQ-016 REQ-031 REQ-032 REQ-033 REQ-035 REQ-037 REQ-048 REQ-049 REQ-050",
+    "acceptanceRefs": "AC-015",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 642
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-006",
+    "requirementClaimRefs": "REQ-005 REQ-010 REQ-011 REQ-012 REQ-014 REQ-033 REQ-037 REQ-039 REQ-040",
+    "acceptanceRefs": "AC-006",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 643
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-006",
+    "requirementClaimRefs": "REQ-005 REQ-010 REQ-011 REQ-012 REQ-014 REQ-033 REQ-037 REQ-039 REQ-040",
+    "acceptanceRefs": "AC-012",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 644
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-007",
+    "requirementClaimRefs": "REQ-012 REQ-026 REQ-034 REQ-035 REQ-036 REQ-037",
+    "acceptanceRefs": "AC-007",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 645
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-007",
+    "requirementClaimRefs": "REQ-012 REQ-026 REQ-034 REQ-035 REQ-036 REQ-037",
+    "acceptanceRefs": "AC-010",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 646
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-007",
+    "requirementClaimRefs": "REQ-012 REQ-026 REQ-034 REQ-035 REQ-036 REQ-037",
+    "acceptanceRefs": "AC-011",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 647
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-008",
+    "requirementClaimRefs": "CLM-001 CLM-004 REQ-008 REQ-032 REQ-035 REQ-037 REQ-038 REQ-040",
+    "acceptanceRefs": "AC-008",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 648
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-008",
+    "requirementClaimRefs": "CLM-001 CLM-004 REQ-008 REQ-032 REQ-035 REQ-037 REQ-038 REQ-040",
+    "acceptanceRefs": "AC-010",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 649
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-009",
+    "requirementClaimRefs": "REQ-027 REQ-028 REQ-029 REQ-030 REQ-033 REQ-038 REQ-051 REQ-052",
+    "acceptanceRefs": "AC-009",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 650
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-009",
+    "requirementClaimRefs": "REQ-027 REQ-028 REQ-029 REQ-030 REQ-033 REQ-038 REQ-051 REQ-052",
+    "acceptanceRefs": "AC-013",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 651
+  },
+  {
+    "deliverable": "DEL-02-06",
+    "output": "OUT-009",
+    "requirementClaimRefs": "REQ-027 REQ-028 REQ-029 REQ-030 REQ-033 REQ-038 REQ-051 REQ-052",
+    "acceptanceRefs": "AC-016",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sourceLine": 652
+  },
+  {
+    "deliverable": "DEL-02-07",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001; REQ-001",
+    "acceptanceRefs": "AC-001",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+    "sourceLine": 179
+  },
+  {
+    "deliverable": "DEL-02-07",
+    "output": "OUT-002",
+    "requirementClaimRefs": "REQ-001, REQ-002, REQ-003",
+    "acceptanceRefs": "AC-002",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+    "sourceLine": 180
+  },
+  {
+    "deliverable": "DEL-02-07",
+    "output": "OUT-003",
+    "requirementClaimRefs": "REQ-004",
+    "acceptanceRefs": "AC-003",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+    "sourceLine": 181
+  },
+  {
+    "deliverable": "DEL-02-07",
+    "output": "OUT-004",
+    "requirementClaimRefs": "REQ-005, REQ-006",
+    "acceptanceRefs": "AC-004",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+    "sourceLine": 182
+  },
+  {
+    "deliverable": "DEL-02-07",
+    "output": "OUT-005",
+    "requirementClaimRefs": "REQ-007, REQ-008",
+    "acceptanceRefs": "AC-005",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+    "sourceLine": 183
+  },
+  {
+    "deliverable": "DEL-02-08",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001; CLM-002",
+    "acceptanceRefs": "AC-001",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+    "sourceLine": 164
+  },
+  {
+    "deliverable": "DEL-02-08",
+    "output": "OUT-002",
+    "requirementClaimRefs": "CLM-002; CLM-003",
+    "acceptanceRefs": "AC-002",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+    "sourceLine": 165
+  },
+  {
+    "deliverable": "DEL-02-08",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-003",
+    "acceptanceRefs": "AC-003",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+    "sourceLine": 166
+  },
+  {
+    "deliverable": "DEL-02-08",
+    "output": "OUT-004",
+    "requirementClaimRefs": "CLM-001; CLM-002",
+    "acceptanceRefs": "AC-004",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+    "sourceLine": 167
+  },
+  {
+    "deliverable": "DEL-02-08",
+    "output": "OUT-005",
+    "requirementClaimRefs": "CLM-004",
+    "acceptanceRefs": "AC-005",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+    "sourceLine": 168
+  },
+  {
+    "deliverable": "DEL-02-09",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001 REQ-001 REQ-002",
+    "acceptanceRefs": "AC-001",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "sourceLine": 172
+  },
+  {
+    "deliverable": "DEL-02-09",
+    "output": "OUT-002",
+    "requirementClaimRefs": "REQ-001 REQ-002",
+    "acceptanceRefs": "AC-002",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "sourceLine": 173
+  },
+  {
+    "deliverable": "DEL-02-09",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-002 REQ-003",
+    "acceptanceRefs": "AC-003",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "sourceLine": 174
+  },
+  {
+    "deliverable": "DEL-02-09",
+    "output": "OUT-004",
+    "requirementClaimRefs": "CLM-002 REQ-003",
+    "acceptanceRefs": "AC-004",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "sourceLine": 175
+  },
+  {
+    "deliverable": "DEL-02-09",
+    "output": "OUT-005",
+    "requirementClaimRefs": "CLM-003 REQ-004 REQ-005 REQ-006",
+    "acceptanceRefs": "AC-005",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "sourceLine": 176
+  },
+  {
+    "deliverable": "DEL-02-09",
+    "output": "OUT-006",
+    "requirementClaimRefs": "REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 REQ-006",
+    "acceptanceRefs": "AC-006",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "sourceLine": 177
+  },
+  {
+    "deliverable": "DEL-02-10",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001, CLM-002",
+    "acceptanceRefs": "AC-001",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+    "sourceLine": 205
+  },
+  {
+    "deliverable": "DEL-02-10",
+    "output": "OUT-002",
+    "requirementClaimRefs": "CLM-001",
+    "acceptanceRefs": "AC-002",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+    "sourceLine": 206
+  },
+  {
+    "deliverable": "DEL-02-10",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-002",
+    "acceptanceRefs": "AC-003",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+    "sourceLine": 207
+  },
+  {
+    "deliverable": "DEL-02-10",
+    "output": "OUT-004",
+    "requirementClaimRefs": "CLM-004",
+    "acceptanceRefs": "AC-004",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+    "sourceLine": 208
+  },
+  {
+    "deliverable": "DEL-02-10",
+    "output": "OUT-005",
+    "requirementClaimRefs": "CLM-005",
+    "acceptanceRefs": "AC-005",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+    "sourceLine": 209
+  },
+  {
+    "deliverable": "DEL-02-10",
+    "output": "OUT-006",
+    "requirementClaimRefs": "CLM-003",
+    "acceptanceRefs": "AC-006",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+    "sourceLine": 210
+  },
+  {
+    "deliverable": "DEL-02-11",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001",
+    "acceptanceRefs": "AC-001",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+    "sourceLine": 138
+  },
+  {
+    "deliverable": "DEL-02-11",
+    "output": "OUT-002",
+    "requirementClaimRefs": "CLM-001",
+    "acceptanceRefs": "AC-002",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+    "sourceLine": 139
+  },
+  {
+    "deliverable": "DEL-02-11",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-001 CLM-002",
+    "acceptanceRefs": "AC-003",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+    "sourceLine": 140
+  },
+  {
+    "deliverable": "DEL-02-11",
+    "output": "OUT-004",
+    "requirementClaimRefs": "CLM-001 CLM-002",
+    "acceptanceRefs": "AC-004",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+    "sourceLine": 141
+  },
+  {
+    "deliverable": "DEL-02-11",
+    "output": "OUT-005",
+    "requirementClaimRefs": "CLM-001 CLM-003",
+    "acceptanceRefs": "AC-005",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+    "sourceLine": 142
+  },
+  {
+    "deliverable": "DEL-02-12",
+    "output": "OUT-001",
+    "requirementClaimRefs": "CLM-001",
+    "acceptanceRefs": "AC-001",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+    "sourceLine": 203
+  },
+  {
+    "deliverable": "DEL-02-12",
+    "output": "OUT-002",
+    "requirementClaimRefs": "CLM-004",
+    "acceptanceRefs": "AC-002",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+    "sourceLine": 204
+  },
+  {
+    "deliverable": "DEL-02-12",
+    "output": "OUT-003",
+    "requirementClaimRefs": "CLM-002",
+    "acceptanceRefs": "AC-003",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+    "sourceLine": 205
+  },
+  {
+    "deliverable": "DEL-02-12",
+    "output": "OUT-004",
+    "requirementClaimRefs": "CLM-002",
+    "acceptanceRefs": "AC-004",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+    "sourceLine": 206
+  },
+  {
+    "deliverable": "DEL-02-12",
+    "output": "OUT-005",
+    "requirementClaimRefs": "CLM-003",
+    "acceptanceRefs": "AC-005",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+    "sourceLine": 207
+  },
+  {
+    "deliverable": "DEL-02-12",
+    "output": "OUT-006",
+    "requirementClaimRefs": "CLM-005",
+    "acceptanceRefs": "AC-006",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+    "sourceLine": 208
+  },
+  {
+    "deliverable": "DEL-02-12",
+    "output": "OUT-007",
+    "requirementClaimRefs": "CLM-005",
+    "acceptanceRefs": "AC-007",
+    "source": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+    "sourceLine": 209
+  }
+]

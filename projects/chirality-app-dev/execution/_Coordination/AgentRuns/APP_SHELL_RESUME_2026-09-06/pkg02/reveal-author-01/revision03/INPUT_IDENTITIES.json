@@ -1,0 +1,25 @@
+{
+  "basis": "revision02 frozen output; base ec491aee",
+  "members": [
+    {
+      "path": "frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "f26a091743af9cf26b57e2beefbf5bf018315d8f90362eb771d89f7e1a7ecab1",
+      "preimage_sha256": "4dec2c988d2ba495a69ca21f7eabdb53c9f42eefddfa2d33f5bc4231de90dc17"
+    },
+    {
+      "path": "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "sha256": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b",
+      "preimage_sha256": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f"
+    },
+    {
+      "path": "frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+      "sha256": "7e4f4ba8364d92d980ba6d154cce629094539f9121f1bb379e9624712c66f06d",
+      "preimage_sha256": null
+    },
+    {
+      "path": "frontend/src/app/globals.css",
+      "sha256": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+      "preimage_sha256": "ba93d0a194ecb36b9cf3315d0299cd9852352003e344cfb8737432681ff45ff4"
+    }
+  ]
+}

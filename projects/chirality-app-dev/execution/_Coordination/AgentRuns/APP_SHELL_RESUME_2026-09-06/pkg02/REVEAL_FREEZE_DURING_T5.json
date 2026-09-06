@@ -1,0 +1,22 @@
+{
+  "frontend/src/components/woven-dialogue/navigator.tsx": {
+    "actual": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450",
+    "expected": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450",
+    "match": true
+  },
+  "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx": {
+    "actual": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b",
+    "expected": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b",
+    "match": true
+  },
+  "frontend/src/__tests__/components/historical-chat-reveal.test.tsx": {
+    "actual": "9c988cfaaffc30d2d5650c2bd35768bdb25034f0fe487b74df5f46c99d34bc93",
+    "expected": "9c988cfaaffc30d2d5650c2bd35768bdb25034f0fe487b74df5f46c99d34bc93",
+    "match": true
+  },
+  "frontend/src/app/globals.css": {
+    "actual": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "expected": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "match": true
+  }
+}

@@ -1,0 +1,652 @@
+{
+  "status": "CANDIDATE_SPECIFICATION_NOT_EXECUTED",
+  "normalization": "Runtime projections; supplier event order is a proposed test schedule, not observed evidence",
+  "supplierIdentity": "must be filled with separately selected exact source,binary,protocol,containment pins before execution; Candidate2 results never transfer to Candidate3",
+  "canonicalDigest": "SHA256 UTF-8 sorted-key compact JSON for these candidate examples only",
+  "baseWireInput": {
+    "id": 7,
+    "method": "item/commandExecution/requestApproval",
+    "params": {
+      "threadId": "child-thread-1",
+      "turnId": "child-turn-1",
+      "itemId": "network#env-1#https#example.invalid#443#11111111-1111-4111-8111-111111111111",
+      "environmentId": "env-1",
+      "startedAtMs": 1000,
+      "networkApprovalContext": {
+        "host": "example.invalid",
+        "protocol": "https"
+      },
+      "availableDecisions": [
+        "accept",
+        "acceptForSession",
+        "cancel"
+      ]
+    }
+  },
+  "validatedPrivateAssociation": {
+    "transportGeneration": "generation-1",
+    "carrierThreadId": "primary-thread-1",
+    "carrierTurnId": "primary-turn-1",
+    "senderThreadId": "primary-thread-1",
+    "tool": "spawnAgent",
+    "status": "completed",
+    "receiverThreadIds": [
+      "child-thread-1"
+    ],
+    "spawnItemId": "spawn-1",
+    "childCurrentTurnId": "child-turn-1",
+    "authorityRevision": 1
+  },
+  "associationNote": "Synthetic semantic fixture; exact supplier closed enum/shape must be pinned before implementation",
+  "candidatePersistedRequest": {
+    "schema": "candidate-approval-request/1",
+    "requestId": "22222222-2222-4222-8222-222222222222",
+    "binding": {
+      "canonicalRoot": "/fixture/project-a",
+      "cwd": "/fixture/project-a",
+      "accountId": "fixture-account-a",
+      "accountEpoch": 1,
+      "policyDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sessionId": "runtime-session-1",
+      "turnId": "runtime-turn-1",
+      "workerGeneration": "generation-1",
+      "scopeDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "origin": {
+      "kind": "native-child",
+      "actorId": "actor-child-1",
+      "parentActorId": "actor-primary-1",
+      "actorTurnId": "actor-turn-child-1",
+      "parentTurnId": "runtime-turn-1",
+      "associationId": "association-1"
+    },
+    "requestedBy": "trusted-codex-supervisor",
+    "requestedAt": "2026-09-06T00:00:00.000Z",
+    "consentDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "networkApprovalContext": {
+      "host": "example.invalid",
+      "protocol": "https"
+    },
+    "availableDecisions": [
+      "allow",
+      "acceptForSession"
+    ],
+    "dialectId": "fixture-dialect-not-selected-supply",
+    "caveat": "A grant may unblock queued requests to the same destination."
+  },
+  "candidatePersistedDecision": {
+    "requestId": "22222222-2222-4222-8222-222222222222",
+    "requestDigest": "4ad19b61531f46b7d048472947c993c77496caa4f2a2e5865d7b748d078ba60b",
+    "decision": "allow",
+    "approvedBy": "human-fixture-1",
+    "explicitUserAct": true,
+    "decidedAt": "2026-09-06T00:00:01.000Z"
+  },
+  "candidateDecisionAPIInput": {
+    "requestId": "22222222-2222-4222-8222-222222222222",
+    "requestDigest": "4ad19b61531f46b7d048472947c993c77496caa4f2a2e5865d7b748d078ba60b",
+    "authorityRevision": 1,
+    "turnId": "runtime-turn-1",
+    "workerGeneration": "generation-1",
+    "decision": "allow",
+    "approvedBy": "human-fixture-1",
+    "explicitUserAct": true,
+    "compatibility": {
+      "compatibilityIdentity": "root-runtime-1",
+      "contractBasisSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "preflight": {
+      "compatibilityIdentity": "root-runtime-1",
+      "contractBasisSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "operationId": "approval:22222222-2222-4222-8222-222222222222",
+      "projectId": "project-a",
+      "daemonId": "fixture-daemon-1",
+      "nonce": "33333333-3333-4333-8333-333333333333"
+    }
+  },
+  "candidateSettlement": {
+    "requestId": "22222222-2222-4222-8222-222222222222",
+    "requestDigest": "4ad19b61531f46b7d048472947c993c77496caa4f2a2e5865d7b748d078ba60b",
+    "settledBy": "runtime-retirement-coordinator",
+    "reason": "runtime-retired",
+    "delivery": "not-sent",
+    "settledAt": "2026-09-06T00:00:02.000Z",
+    "workerGeneration": "generation-1",
+    "retirementJournalId": "fixture-journal-1"
+  },
+  "existingV2TerminalEvent": {
+    "schemaVersion": 2,
+    "eventId": "evt-1",
+    "sequence": 5,
+    "timestamp": "2026-09-06T00:00:02.000Z",
+    "projectId": "project-a",
+    "sessionId": "runtime-session-1",
+    "turnId": "runtime-turn-1",
+    "type": "turn.interrupted",
+    "data": {
+      "outcome": "interrupted"
+    }
+  },
+  "cases": [
+    {
+      "id": "F01_ordered_allow",
+      "steps": [
+        "owned-primary-start",
+        "validated-completed-spawn",
+        "child-turn-start",
+        "receive-base-wire",
+        "display-current",
+        "authenticated-human-allow",
+        "persist-intent",
+        "enqueue",
+        "write-callback-success"
+      ],
+      "expected": {
+        "publicPrompts": 1,
+        "wireReplies": [
+          {
+            "id": 7,
+            "result": {
+              "decision": "accept"
+            }
+          }
+        ],
+        "decision": {
+          "requestId": "22222222-2222-4222-8222-222222222222",
+          "requestDigest": "4ad19b61531f46b7d048472947c993c77496caa4f2a2e5865d7b748d078ba60b",
+          "decision": "allow",
+          "approvedBy": "human-fixture-1",
+          "explicitUserAct": true,
+          "decidedAt": "2026-09-06T00:00:01.000Z"
+        },
+        "response": {
+          "decisionRecorded": true,
+          "delivery": "sent",
+          "supplierApplied": "unknown"
+        },
+        "originSurvivesShutdown": true
+      }
+    },
+    {
+      "id": "F02_callback_before_association",
+      "steps": [
+        "owned-primary-start",
+        "child-turn-start",
+        "receive-base-wire",
+        "display",
+        "validated-completed-spawn@1500ms",
+        "display-current"
+      ],
+      "expected": {
+        "promptsBeforeJoin": 0,
+        "promptsAfterJoin": 1,
+        "sendCount": 0
+      }
+    },
+    {
+      "id": "F03_join_timeout",
+      "steps": [
+        "owned-primary-start",
+        "receive-base-wire",
+        "advance-monotonic-2001ms",
+        "late-spawn",
+        "human-allow"
+      ],
+      "expected": {
+        "publicPrompts": 0,
+        "sendCount": 0,
+        "settlement": "authority-unproven",
+        "retirementRequiredWithoutIsolatedCancel": true
+      }
+    },
+    {
+      "id": "F04_forged-carrier",
+      "steps": [
+        "establish-pending",
+        "apply:forged-carrier",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_mismatched-sender",
+      "steps": [
+        "establish-pending",
+        "apply:mismatched-sender",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_wait-as-spawn",
+      "steps": [
+        "establish-pending",
+        "apply:wait-as-spawn",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_conflicting-parent",
+      "steps": [
+        "establish-pending",
+        "apply:conflicting-parent",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_cycle",
+      "steps": [
+        "establish-pending",
+        "apply:cycle",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_unknown-tool",
+      "steps": [
+        "establish-pending",
+        "apply:unknown-tool",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_terminal-child",
+      "steps": [
+        "establish-pending",
+        "apply:terminal-child",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_replaced-child-turn",
+      "steps": [
+        "establish-pending",
+        "apply:replaced-child-turn",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_old-parent-turn",
+      "steps": [
+        "establish-pending",
+        "apply:old-parent-turn",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_old-generation",
+      "steps": [
+        "establish-pending",
+        "apply:old-generation",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_root-drift",
+      "steps": [
+        "establish-pending",
+        "apply:root-drift",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_account-epoch-drift",
+      "steps": [
+        "establish-pending",
+        "apply:account-epoch-drift",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_policy-drift",
+      "steps": [
+        "establish-pending",
+        "apply:policy-drift",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F04_consent-drift",
+      "steps": [
+        "establish-pending",
+        "apply:consent-drift",
+        "display-current",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "actionablePrompts": 0,
+        "decisionNotInvented": true
+      }
+    },
+    {
+      "id": "F05_typed_ids",
+      "steps": [
+        "receive-base-wire-number-id-7",
+        "receive-identical-body-string-id-7"
+      ],
+      "expected": {
+        "distinctCallbackKeys": [
+          "number:7",
+          "string:7"
+        ],
+        "noCoalescing": true,
+        "sendCount": 0
+      }
+    },
+    {
+      "id": "F06_duplicates",
+      "steps": [
+        "receive-base-wire",
+        "receive-identical-base-wire",
+        "receive-base-wire-changed-host"
+      ],
+      "expected": {
+        "firstTwoRequestRecords": 1,
+        "changedSignature": "reject",
+        "sendCount": 0
+      }
+    },
+    {
+      "id": "F07_response_race",
+      "steps": [
+        "pending-with-decline-offered",
+        "parallel-human-allow-and-deny",
+        "serialize-reservation"
+      ],
+      "expected": {
+        "immutableDecisions": 1,
+        "maxSendCount": 1,
+        "loser": "conflict",
+        "sameActorSameDecisionRetry": "return-recorded-delivery-no-resend"
+      }
+    },
+    {
+      "id": "F08_no_decline",
+      "steps": [
+        "receive-base-wire",
+        "human-deny",
+        "human-stop-runtime-turn"
+      ],
+      "expected": {
+        "deny": "reject-unadvertised",
+        "approvalDecisionFiles": 0,
+        "wireReplies": [],
+        "terminalEvent": {
+          "schemaVersion": 2,
+          "eventId": "evt-1",
+          "sequence": 5,
+          "timestamp": "2026-09-06T00:00:02.000Z",
+          "projectId": "project-a",
+          "sessionId": "runtime-session-1",
+          "turnId": "runtime-turn-1",
+          "type": "turn.interrupted",
+          "data": {
+            "outcome": "interrupted"
+          }
+        },
+        "settlement": "runtime-retired",
+        "providerResolvedClaim": false
+      }
+    },
+    {
+      "id": "F09_child_end_before_send",
+      "steps": [
+        "establish-pending",
+        "persist-human-intent",
+        "child-terminal",
+        "send-barrier"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "decisionRetained": true,
+        "delivery": "not-sent",
+        "parentTerminalCount": 0,
+        "parentMayContinueOnlyIfTransportContained": true
+      }
+    },
+    {
+      "id": "F10_parent_end_before_send",
+      "steps": [
+        "establish-pending",
+        "parent-interrupt",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "allDescendantCapabilitiesRevoked": true,
+        "primaryTerminalCount": 1,
+        "terminalEvent": {
+          "schemaVersion": 2,
+          "eventId": "evt-1",
+          "sequence": 5,
+          "timestamp": "2026-09-06T00:00:02.000Z",
+          "projectId": "project-a",
+          "sessionId": "runtime-session-1",
+          "turnId": "runtime-turn-1",
+          "type": "turn.interrupted",
+          "data": {
+            "outcome": "interrupted"
+          }
+        }
+      }
+    },
+    {
+      "id": "F11_shutdown_after_enqueue",
+      "steps": [
+        "establish-pending",
+        "persist-human-intent",
+        "enqueue",
+        "shutdown-before-write-callback",
+        "transport-error"
+      ],
+      "expected": {
+        "maxSendCount": 1,
+        "delivery": "unknown",
+        "automaticRetry": false,
+        "noDenyInvented": true,
+        "primaryTerminalCount": 1,
+        "settlementReason": "runtime-retired"
+      }
+    },
+    {
+      "id": "F12_supplier_resolves_first",
+      "steps": [
+        "establish-pending",
+        "serverRequest/resolved-for-number-7-and-child-thread-1",
+        "human-allow"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "providerResolved": true,
+        "decisionInferred": false
+      }
+    },
+    {
+      "id": "F13_disappearance_is_not_ack",
+      "steps": [
+        "establish-pending",
+        "local-child-capability-expires",
+        "pending-list-missing"
+      ],
+      "expected": {
+        "providerResolutionRecord": false,
+        "localSettlement": "expired",
+        "sendCount": 0
+      }
+    },
+    {
+      "id": "F14_queued_destination",
+      "steps": [
+        "two-distinct-live-requests-same-destination",
+        "human-allows-first",
+        "supplier-resolves-second"
+      ],
+      "expected": {
+        "humanDecisions": 1,
+        "secondDecisionInvented": false,
+        "caveatDisplayed": true,
+        "groupingEvidence": "requires-empirical-exact-pin-run-not-proven-by-spec"
+      }
+    },
+    {
+      "id": "F15_unknown_payload",
+      "steps": [
+        "receive-base-wire-plus-combined-command",
+        "receive-base-wire-plus-unknown-choice",
+        "receive-base-wire-with-malformed-network-item"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "rawProviderPersistence": false,
+        "publicPrompts": 0
+      }
+    },
+    {
+      "id": "F16_bounds",
+      "steps": [
+        "fill-32-waiting-joins",
+        "receive-33rd-unjoined-request"
+      ],
+      "expected": {
+        "publicPrompts": 0,
+        "sendCount": 0,
+        "silentTombstoneEviction": false,
+        "failClosed": true
+      }
+    },
+    {
+      "id": "F17_restart",
+      "steps": [
+        "pending-then-process-crash",
+        "journal-prepared",
+        "reconcile-terminal",
+        "restart-same-continuity"
+      ],
+      "expected": {
+        "primaryTerminalCount": 1,
+        "resumeAllowedOnlyAfterReconcile": true,
+        "inFlightApprovalReplay": false,
+        "oldGenerationDecision": "reject"
+      }
+    },
+    {
+      "id": "F18_schema",
+      "steps": [
+        "v2-event-with-added-origin",
+        "unknown-fifth-terminal",
+        "socks5Tcp-as-v2-approval-protocol",
+        "old-client-child-prompt"
+      ],
+      "expected": {
+        "v2Validator": "reject-all-expanded-events",
+        "oldClient": "child-feature-unavailable",
+        "silentDowngrade": false
+      }
+    },
+    {
+      "id": "F19_resumed_child",
+      "steps": [
+        "old-child-terminal",
+        "later-primary-turn",
+        "sendInput-or-resume-receiver-only",
+        "receive-child-request"
+      ],
+      "expected": {
+        "sendCount": 0,
+        "associationSufficient": false,
+        "requiresNewCurrentLifetimeEvidence": true
+      }
+    },
+    {
+      "id": "F20_shutdown_persist_failure",
+      "steps": [
+        "revoke-generation",
+        "settlement-write-fails",
+        "next-primary-action"
+      ],
+      "expected": {
+        "journal": "reconciliation-required",
+        "nextAction": "blocked",
+        "decisionInvented": false
+      }
+    }
+  ],
+  "syntheticIdentityCaveat": "All fixture roots, users, hashes, nonces, accounts and dialects are synthetic and supply no usable authority; harness must issue its own actual preflight."
+}

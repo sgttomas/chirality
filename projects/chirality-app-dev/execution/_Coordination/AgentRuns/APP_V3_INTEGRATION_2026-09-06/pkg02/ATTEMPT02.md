@@ -1,0 +1,1 @@
+Fixture setup failure: normal registration succeeded for two project IDs, but current App daemon port intentionally requires chirality-app-dev project ID. HTTP503 client not configured, no GUI launched. Owned daemon/server terminated. Retry keeps fixed App identity, one disposable registered working root with alpha/beta child folders. No contract change.

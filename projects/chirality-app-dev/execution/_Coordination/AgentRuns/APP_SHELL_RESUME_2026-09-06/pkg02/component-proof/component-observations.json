@@ -1,0 +1,27 @@
+{
+  "alerts": [
+    "Open the desktop app to use native document actions.",
+    "This chat has no valid recorded folder to reveal."
+  ],
+  "draft": "Unsaved fixture draft",
+  "focused": "Retry revealing folder for Research (missing-root)",
+  "rows": [
+    {
+      "height": 32,
+      "overflow": false,
+      "width": 200
+    },
+    {
+      "height": 32,
+      "overflow": false,
+      "width": 200
+    },
+    {
+      "height": 32,
+      "overflow": false,
+      "width": 200
+    }
+  ],
+  "selection": "none",
+  "theme": "dark"
+}

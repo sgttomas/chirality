@@ -1,0 +1,7 @@
+Downloading Electron binary...
+[chirality-desktop] 2026-09-06T22:26:41.509Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/ch-v3-28a8-20260906","pid":44640}
+[chirality-desktop] 2026-09-06T22:26:41.543Z [info] runtime.daemon.started {"socketPath":"/private/tmp/ch-v3-28a8-20260906/runtime/control.sock","runtimeDirectory":"/private/tmp/ch-v3-28a8-20260906/runtime"}
+[chirality-desktop] 2026-09-06T22:26:52.154Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":44640}
+[44640:0906/162652.156400:ERROR:content/browser/network_service_instance_impl.cc:721] Network service crashed or was terminated, restarting service.
+[44640:0906/162652.156708:ERROR:content/browser/gpu/gpu_process_host.cc:1089] GPU process exited unexpectedly: exit_code=15
+[chirality-desktop] 2026-09-06T22:26:52.157Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}

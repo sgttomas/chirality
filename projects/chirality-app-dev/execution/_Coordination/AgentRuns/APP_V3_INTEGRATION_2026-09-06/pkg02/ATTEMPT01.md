@@ -1,0 +1,1 @@
+Launch setup failure: custom socket path did not match daemon actual runtime-directory control.sock. Daemon started normally; readiness watched wrong path. Interrupted orchestrator; explicitly terminated owned daemon, preserved launch/script/log. No UI or registration occurred. Retry uses normal data/runtime/control.sock; no product repair.

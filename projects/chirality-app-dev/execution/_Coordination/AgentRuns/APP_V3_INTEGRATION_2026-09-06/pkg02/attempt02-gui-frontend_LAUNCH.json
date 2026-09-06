@@ -1,0 +1,25 @@
+{
+  "pid": 47065,
+  "command": [
+    "node",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/next/dist/bin/next",
+    "start",
+    "--hostname",
+    "127.0.0.1",
+    "--port",
+    "51296"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "environment_overrides": {
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "CHIRALITY_RUNTIME_USER_DATA": "/private/tmp/ch-v3-gui-20260906/data",
+    "CHIRALITY_USER_DATA": "/private/tmp/ch-v3-gui-20260906/data",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/ch-v3-gui-20260906/data/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/ch-v3-gui-20260906/data/runtime/auth/tokens/operator.token",
+    "CHIRALITY_RUNTIME_TOKEN_FILE": "/private/tmp/ch-v3-gui-20260906/data/runtime/auth/tokens/project-a010aa5d-0241-4931-82d5-de306b5c82d0.token",
+    "CHIRALITY_RUNTIME_PROJECT_ID": "app-v3-gui-alpha",
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": "/private/tmp/ch-v3-gui-20260906/alpha"
+  }
+}

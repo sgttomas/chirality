@@ -1,0 +1,11 @@
+{
+  "child": "/root/resume_account_scope/t5_strip_refutation",
+  "status": "DISPATCHED",
+  "role": "fresh ephemeral Agent2",
+  "writes": [],
+  "model": "inherited, exact runtime model unavailable",
+  "delegation": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted",
+  "brief": "REFUTATION_BRIEF.md",
+  "timestamp": "2026-09-06T18:47:55.627944+00:00"
+}

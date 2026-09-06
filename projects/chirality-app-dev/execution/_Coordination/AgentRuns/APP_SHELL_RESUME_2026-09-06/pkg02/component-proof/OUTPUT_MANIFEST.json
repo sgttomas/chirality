@@ -1,0 +1,142 @@
+[
+  {
+    "path": "BROWSER_ATTEMPT01.md",
+    "sha256": "5c0c3b8755805bcd4fd7195f1a4168371f43629a2cf22b26d05e8114956446d0"
+  },
+  {
+    "path": "BUILD_ATTEMPT01.md",
+    "sha256": "078bb424604ea252d10c73366dbdae44ec114810140f413981c3302f65d5b53b"
+  },
+  {
+    "path": "CLEANUP.json",
+    "sha256": "f2fc85ad1f2b32055a2359cedefb6a012b8d0834448d1c4315ce5994656c0ba9"
+  },
+  {
+    "path": "EARLY_VISUAL_CLAIM_RETRACTION.md",
+    "sha256": "07421612345f9ec971b6c568943ddd5d5b3f49332a69178904526c384306a9aa"
+  },
+  {
+    "path": "INPUTS.json",
+    "sha256": "993208100ef7fe9f4f32b94ebefe6ebc0a14a31dbfdbfd25bdbbf36ff757ed93"
+  },
+  {
+    "path": "PROOF_RECORD.md",
+    "sha256": "c6624e43d2cf918e2c79e1a7a5deca3fa7b9e7b62148480ef698cfcb56bb65b2"
+  },
+  {
+    "path": "build.cjs",
+    "sha256": "1e16a39481044f56cd155648f72685c28571a56fda7e2d0ec63aed0d9d255237"
+  },
+  {
+    "path": "build.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "build.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "build02.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "build02.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "component-observations.json",
+    "sha256": "78a08c1b371e4dcf30cc140031d71e87fbbb2908078cad5a0e05a052b3cbb250"
+  },
+  {
+    "path": "corrected-960-dark-AX.txt",
+    "sha256": "c8d8f8ab738519788bad1c236d6b74bb8fb922528c2a1e169e44d02afaff10e5"
+  },
+  {
+    "path": "corrected-960-dark-refusal.png",
+    "sha256": "5648e8237342db9313c642ccbb6d9b16ae70f112290d6a2e9d39c8271871144a"
+  },
+  {
+    "path": "corrected-960-light-refusal.png",
+    "sha256": "552ff6585733e7c47ce25e9bd316487d0c6ffcaf25f20cb1137548dce891bc4d"
+  },
+  {
+    "path": "corrected-light.png",
+    "sha256": "a4f1be8a077fad0d3722748d037698ae2f940b01e632262f9cfae524372a05a5"
+  },
+  {
+    "path": "early-AX.txt",
+    "sha256": "6d46675bc0de97ac3b8c125f52db462c695e9c8576856932d4927a2aa3a22ad6"
+  },
+  {
+    "path": "early-light.png",
+    "sha256": "7b4fefa00037099cb89d3ff56d39bf2b0457cbd3b0e41ad94b83c40e1549538c"
+  },
+  {
+    "path": "final-1440-dark.png",
+    "sha256": "c68dbe4bc1d28b17fee549dae0974e506da4a01db1993b089144388ce8aa0cbd"
+  },
+  {
+    "path": "final-1440-light.png",
+    "sha256": "efb5bd8173f76fd2fcc66d32b2ba8eb62645a65a98a9c19c878e9d3ee7679df0"
+  },
+  {
+    "path": "final-960-dark.png",
+    "sha256": "0e9d051686d1dfb021ceaebd5a2e94e64838486897ef5c01020cf1adb8b89e04"
+  },
+  {
+    "path": "final-960-light.png",
+    "sha256": "26305bdf32a7d3fd55fae704941175f3f732bf722048f379fef1160bbc42a9ca"
+  },
+  {
+    "path": "final-build.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "final-build.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "final-keyboard-AX.txt",
+    "sha256": "1037eaa8e3207baa69bb4d4f0f3a449d261b0dca5b2b63399bd3828ddd1d123e"
+  },
+  {
+    "path": "final-keyboard-refusal.png",
+    "sha256": "89cd312c6ae140821de1a2c37dbb9ef11ed0755dad933cdbdc4019e57c4fc307"
+  },
+  {
+    "path": "final-observations.json",
+    "sha256": "253c0aa187578e78aaaa05e269cd1e1130017b5597256ce55c0fac88511322dc"
+  },
+  {
+    "path": "fixture.js",
+    "sha256": "c1508383baa7f1a2a4366aefdc7cdb9aaa58abef347edc461fa0478d794d202f"
+  },
+  {
+    "path": "fixture.tsx",
+    "sha256": "d158be262a2ca5a9aa6287d0534a9fbb93c97fc0ef6d2bdc5a082df71d8ad603"
+  },
+  {
+    "path": "index.html",
+    "sha256": "e7616d0f7f2ae319b777d3c75c337beee1311b43f6a190eddd0aa5c4260b9d60"
+  },
+  {
+    "path": "keyboard-missing-root-AX.txt",
+    "sha256": "cb17777662a2fbcf303f37b40544452b583704150b33012f40bfa70b01a2d725"
+  },
+  {
+    "path": "keyboard-missing-root.png",
+    "sha256": "48250d19ddb323021df08a613d8443582ad21f40501bfa3283d124094d586992"
+  },
+  {
+    "path": "server.cjs",
+    "sha256": "14fac320ce6b19956e836e57e84b86db23ef6a9616b508d6d225fb8050b17da9"
+  },
+  {
+    "path": "server.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "server.stdout",
+    "sha256": "39556f71c256c3436b67672aeee0bc026380a2f1ce980ca910a56e2ff18a11e1"
+  }
+]

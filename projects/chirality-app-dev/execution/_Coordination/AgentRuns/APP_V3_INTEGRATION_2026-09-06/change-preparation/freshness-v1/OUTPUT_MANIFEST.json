@@ -1,0 +1,14 @@
+{
+  "COMMANDS.json": {
+    "sha256": "4fbd8508e4ba4038d876cab450c6d0ce5555e5313d9d892a7fe5e62bb6db9c85",
+    "bytes": 318171
+  },
+  "RESULT.json": {
+    "sha256": "04c3381ede7680d1893583871efb964355b8bd926ded247f3563f1b6c0459f90",
+    "bytes": 1159
+  },
+  "RETURN.md": {
+    "sha256": "f6b86a11c62062082852029af8c3a66e47bbc8de555ff51a3fc46c5ece1ec8e8",
+    "bytes": 806
+  }
+}

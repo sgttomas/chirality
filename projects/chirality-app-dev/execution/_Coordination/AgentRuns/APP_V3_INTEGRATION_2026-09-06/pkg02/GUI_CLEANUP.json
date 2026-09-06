@@ -1,0 +1,45 @@
+{
+  "processes": [
+    {
+      "name": "gui-desktop-proof",
+      "pid": 48391,
+      "alive_before": true,
+      "state_after": "",
+      "stopped": true
+    },
+    {
+      "name": "gui-desktop",
+      "pid": 47279,
+      "alive_before": false
+    },
+    {
+      "name": "gui-frontend",
+      "pid": 47270,
+      "alive_before": true,
+      "state_after": "",
+      "stopped": true
+    },
+    {
+      "name": "gui-daemon-restart",
+      "pid": 47698,
+      "alive_before": true,
+      "state_after": "",
+      "stopped": true
+    },
+    {
+      "name": "gui-daemon",
+      "pid": 47252,
+      "alive_before": false
+    }
+  ],
+  "socket_absent_before_removal": true,
+  "scratch_absent": true,
+  "port51404_connect_ex": 61,
+  "token_bytes_retained": false,
+  "browser_tab_closed": "730583379",
+  "viewport_reset": true,
+  "owned_finder_window_closed": true,
+  "user_finder_windows_untouched": true,
+  "proof_bundle_unchanged_retained": true,
+  "exit_codes": "processes were detached; clean shutdown logged, no invented exit codes"
+}

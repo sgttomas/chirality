@@ -1,0 +1,34 @@
+# MEMORY - DEL-02-01
+
+- 2026-08-15 — Closed the top-bar runtime reconnect residual with an accessible guarded chip action that reuses the existing desktop daemon `status` control and `onDaemonAvailable -> bindingSupervisor.refreshNow()` path. Snapshot state remains authoritative; secondary check failures are separately visible and announced. A fresh review BLOCK exposed the production `{ ok: true, daemon.running: false }` case, a bounded remediation added truthful feedback and a production-shaped regression test, and a new independent reviewer returned COMMIT-SAFE. Full frontend Vitest (1,121 passed, 4 skipped), typecheck, and build passed. No lifecycle, approval-SHA, runtime-contract, provider, release, or dependency change occurred.
+
+- 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-02-01: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
+
+## Decisions And Evidence
+
+- 2026-07-12 - D-APP-56 final code tranche implemented UPD-106 with a rendered ShellFrame PORTAL active-link assertion. No lifecycle transition occurred.
+
+- 2026-07-12 - D-APP-56 R5 P43 executed UPD-088 by annotating the historical INSP-03 REQ-001/REQ-011 conclusions with the landed ADQ-13 shell/key evidence. No lifecycle transition occurred.
+- 2026-07-12 - D-APP-56 R4-P39 reviewed CQ-F5 and preserved the Checking Approval SHA / D-APP-19 Authorization Basis as historical evidence; no repair was required. No lifecycle transition occurred.
+- 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
+- 2026-06-21 - ADQ-13 reconciled DEL-02-01 local kit wording to the accepted loop-first app state: PORTAL remains the primary header entry, WORKBENCH/PIPELINE are right-sidebar tertiary forms with preserved deep-link routes, and NORMATIVE/EVALUATIVE matrix cells focus the mounted live loop while OPERATIVE cells open Pipeline intent. Added AMD-01 render evidence for route wrappers, sidebar tertiary tabs, matrix disabled state, and stable `pkg::deliverable` launch keys. This does not change lifecycle state, dependency satisfaction, provider posture, release/distribution posture, professional approval, certification, sealing, authentication, code-compliance acceptance, or release-readiness claims.
+- 2026-07-12 - D-APP-56 R5 P40 executed UPD-068: REF-006 current-state kit/register wording now agrees with D-APP-38 MATCH; dated source-warning and assessment history is preserved. No lifecycle transition.
+
+- 2026-07-12 - D-APP-56 R5 P45 executed UPD-105: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
+- 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-02-01; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-09-04 - SCA-APP-010 seating and alignment (D-APP-108): Remaining items DEL-02-01-V3-01, DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-01-V3-04; read `_STATUS.md` with this file before any write; the applied decomposition row and the SCA-APP-010 Gate-5 Current Contract section in `ScopeOfWork.md` state the current responsibility; nothing here is authority. No lifecycle, Checking Approval SHA, dependency, product, or release change.
+- 2026-09-05 - D-APP-109 dependency closure and context alignment: `Dependencies.csv` is current with the applied row L307; rows noted `CYCLE_PARTICIPATING` are non-gating until their SCC is resolved by a recorded move, so read the seated items' `Depends` lines and gates, not those rows, for executable ordering; `_CONTEXT.md` traceability and artifacts equal the applied row; read `_STATUS.md` with this file before any write; nothing here is authority.
+
+## 2026-09-05 — D-APP-120 proposal prepared
+
+Separate App presentation-seam and Root no-folder-contract choices are proposed, not approved. Actual session create/list still requires a root/fixed project binding; knownRoots does not establish projectless or cross-project runtime capability. Woven-shell/activity-shelf seam needs explicit future scope and refreshed T3 postimage. See D-APP-120 packet and `_run_records/T2_CAPABILITY_PROPOSAL_2026-09-05.md`. Owner selections, governed review and parent integration remain pending; existing Remaining and lifecycle unchanged.
+
+## 2026-09-06 — D-APP-120 owner direction recorded
+
+A1/B1 supersede the previous selection-pending note. The omitted presentation-locus addition is recorded but HELD until observed on fetched main. No-folder remains restricted pending separately accepted Root design; D121 remains unruled. This memory is context, not authority. See the D-APP-120 ruling dated 2026-09-06.
+
+## 2026-09-06 — T2 headerless shell and folder binding
+
+Headerless shell, Stone presentation, compact composer/context, plain persona labels and one reconnect/settings owner are implemented. Woven folder choice remains live before the first message and binds to the actual returned canonical root thereafter; persona changes retain that binding. New chat unlocks the folder. Canonical draft preservation, failed/stale binding transitions and legacy mutable-root compatibility are regression-tested. Native picker, actual Open Recent, exact owned Dock recents, selected-root Reveal and bound/pending native guards have evidence. Protocol-generated native-file drops reach the actual preload path and validate before binding or reject after binding; the actual Finder gesture remains unproved. Historical per-chat Reveal and functional no-folder operation remain residual. Temporary Settings/theme/legacy footer is explicitly not the final account row/popover or detailed right-panel Settings in Walkthrough scenes 13–15/26.
+
+Fresh full source review and final source checks are recorded in `_run_records/SHELL_CONVERGENCE_V5_2026-09-06.md`. Actual premerge 503/CI obligation, method-specific native residuals and Walkthrough gaps remain explicit. No Remaining, dependency, lifecycle or owner acceptance change; read live `_STATUS.md` before any successor work.

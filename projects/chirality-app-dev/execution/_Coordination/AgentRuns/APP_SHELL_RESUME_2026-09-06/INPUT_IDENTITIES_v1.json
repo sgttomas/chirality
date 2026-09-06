@@ -1,0 +1,72 @@
+{
+  "schema": "sha256-input-inventory/v1",
+  "recorded_at": "2026-09-06T18:14:13.219902+00:00",
+  "repo_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "items": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "bytes": 10073
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md",
+      "sha256": "f9b02806eeab1a578e6729c41fc367074758a2b95cc0eda9c8d2edbda446f314",
+      "bytes": 2508
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "bytes": 16986
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/iteration-04/AGENT0_SESSION_HANDOFF.md",
+      "sha256": "1c9a42bd75e1e1aa28a0bfc1a4bd69be50d9992d846ed0ec16ed5edf9a539022",
+      "bytes": 9043
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/publication-handoff/ADDENDUM.md",
+      "sha256": "7b2fb23cb53a0fff4853222c58c84abd4128cf9b6ac179c1f380239ea6bb1c97",
+      "bytes": 5667
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/ACCEPTED_PLAN.md",
+      "sha256": "69a6d00b16fbe82ac13c2029137445d5161858463b19b4bde869efa45a5f0efe",
+      "bytes": 7172
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md",
+      "sha256": "729668896820ca15730f4e2969253cc15b29b696c5a8d99b503c054723e5b4dc",
+      "bytes": 36842
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+      "sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+      "bytes": 30613
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/_LATEST.md",
+      "sha256": "74d9b1d46acbc8b9e8664da9833340da634dec00abd034fc12940665a4d2e291",
+      "bytes": 78
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+      "sha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+      "bytes": 1917
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+      "bytes": 16290
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "sha256": "a6632bc5fe4ecf0bb21dede5a19c241e1d3aaede320fff473026dbefd3bf06fe",
+      "bytes": 585464
+    }
+  ]
+}

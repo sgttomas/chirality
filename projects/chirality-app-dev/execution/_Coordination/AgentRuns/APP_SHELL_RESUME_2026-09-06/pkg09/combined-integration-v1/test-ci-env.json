@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/run_registered_checks.py",
+    "projects/chirality-app-dev/software-workflow.json",
+    "--check",
+    "frontend-test",
+    "--output",
+    "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/projects/chirality-app-dev/frontend/artifacts/combined-integration-v1/FRONTEND_TEST_CI_ENV.json",
+    "--timeout-seconds",
+    "600"
+  ],
+  "cwd": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af",
+  "exit_code": 0,
+  "environment_change": "CHIRALITY_INSTRUCTION_ROOT omitted from product-test subprocess, matching CI; native agent launch declaration remains applicable to agent preflights."
+}

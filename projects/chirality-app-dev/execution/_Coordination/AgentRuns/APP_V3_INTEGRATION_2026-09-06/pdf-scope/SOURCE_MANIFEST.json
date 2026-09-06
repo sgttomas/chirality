@@ -1,0 +1,106 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+    "sha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+    "sha256": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md",
+    "sha256": "1fed47a10b3f480a545947e6cf1d60ef7e150f166caceb4a26c0267f92dde652"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts",
+    "sha256": "c9c37b00b2d777ef96a1d1bd000b6690f1fdad54af88eb11931561d75522c1de"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+    "sha256": "ff324e424c772f94bbd59e628ed60ea3ef2e9d7398960ae341f10d55bc9e65b7"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+    "sha256": "c9a604c4803b399983b3c357be8d4fc7e0877ca100c408e5c41cf435053feba1"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+    "sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/next/dist/server/send-response.js",
+    "sha256": "83b0e0e273ab2ac3b8ebb5ed1b52d11a938dc2fe52083892501318b4bcf38374"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/next/dist/server/pipe-readable.js",
+    "sha256": "5a04b6e84447a64e4e35a37bbb7f96a741f4e4201bed945820091077dc8ffb6a"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+    "sha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/_LATEST.md",
+    "sha256": "74d9b1d46acbc8b9e8664da9833340da634dec00abd034fc12940665a4d2e291"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md",
+    "sha256": "fb1e9c288c795594efe0dd41cad6a3b1a83b7f46e43a479fd909f5ecf3cca4eb"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "sha256": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+    "sha256": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/renderer-window-policy.test.ts",
+    "sha256": "49eac67079b39f5a9464e823f0fc88d7e86488b4b6c86ff0151c38b7eade2ae3"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+    "sha256": "45a4be9f51eef0234572039ffd82a694caab215f0b32ca3a9286a7d7e0aaff94"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+    "sha256": "29e3dfb263bd8da7228452bd412e652421b656ef48448be13a56d354a5d34e83"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+    "sha256": "1da922fc5ade3e0129eb42008a2bb34b62e1c8a8d1378850b09ec30aebbfd7fa"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+    "sha256": "99249b5d00d215a989aad884ac2ab1d0b4238d6e19e07cb8faa651b6212e2d51"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+    "sha256": "a92e42b559a39c65dff3d0836fa1d50918ffed00a4e8aa4ddb90a0fc427263b7"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/package.json",
+    "sha256": "6631309a689a1eab981836f661a101471586999afe939ea3fa280a3fc025ff3c"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/next/package.json",
+    "sha256": "b34d4a28509342ee7c2eafc9f8ec3d61cecbd4b69e03fb8f622f5c5d0c095cee"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+    "sha256": "63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/decisions/D121_REVIEW.md",
+    "sha256": "a5adb3084d73cec9f0fa8b4a41b9af90ec04d4207b6c3670d531825ea2d20548"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/electron/electron.d.ts",
+    "sha256": "fd1ad4bc25754908cf632e000cd33b9d07bda1186138da356cb86080ff77907b"
+  }
+]

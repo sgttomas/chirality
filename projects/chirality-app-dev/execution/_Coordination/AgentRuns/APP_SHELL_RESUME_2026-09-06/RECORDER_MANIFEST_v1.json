@@ -1,0 +1,196 @@
+{
+  "schema": "recorder-output-manifest/v1",
+  "scope": "shared run records only",
+  "items": [
+    {
+      "path": "BOOTSTRAP.md",
+      "sha256": "8d0547c09acbdd7a6246535166fc5be2b1a788b9de92bfb2f2acaf2591c9f20a",
+      "bytes": 5056
+    },
+    {
+      "path": "BOOTSTRAP_SUPPLEMENT_v1.md",
+      "sha256": "1d68aa15c2d0b089e6d3967ca32afc1b6bc2bf7d78f32b592d80d6e6d1857ee7",
+      "bytes": 1655
+    },
+    {
+      "path": "INPUT_IDENTITIES_v1.json",
+      "sha256": "84127b1d1929e74ab940d135a1c27a8091ecd0931e3c754950ff5271a905a4a1",
+      "bytes": 2901
+    },
+    {
+      "path": "ORCHESTRATION_PLAN_v1.md",
+      "sha256": "2fd3271c31cf183b24950020c3fc900f7c5cc8151f20b1ddd77cc8f7ff6ddb23",
+      "bytes": 5160
+    },
+    {
+      "path": "ORCHESTRATION_PLAN_v2.md",
+      "sha256": "a41af501087489267be7ac488b03ca24a78ab33cb3e9fd5e32572218ddf1c870",
+      "bytes": 3094
+    },
+    {
+      "path": "ORCHESTRATION_PLAN_v3.md",
+      "sha256": "b97f1d84036d0b3b047f17e6f61cfdf255dbd97ae68acd9abae1dca519bfd6eb",
+      "bytes": 1925
+    },
+    {
+      "path": "OWNER_STEER_SOURCE_v1.md",
+      "sha256": "ffee0ea00a3fcf40151dbade9022aa9156e55e648ec525fe2e806103ca456b7f",
+      "bytes": 2673
+    },
+    {
+      "path": "OWNER_STEER_v1.md",
+      "sha256": "9b1e15f81e5e6635dc7bf28e0085f5dfab02825cc3ffa5ee424e1caa3a33edd1",
+      "bytes": 2549
+    },
+    {
+      "path": "RECORDER_RETURN_v1.md",
+      "sha256": "d9361aec84347aaad48dfa925d6b66815e5d6e1ce81aca1d55cd19c8bd1d7538",
+      "bytes": 2075
+    },
+    {
+      "path": "WORK_GRAPH_v1.json",
+      "sha256": "c0fadfd0850446d5e62031fab78ee37dd5a429210f43f68d90a249055ee79691",
+      "bytes": 4356
+    },
+    {
+      "path": "WORK_GRAPH_v2.json",
+      "sha256": "9d6d3d7f9c540d2594aa1bc48b7d00d4ed27ecc1f12954b7b4f4bf0af1e1e7f8",
+      "bytes": 5611
+    },
+    {
+      "path": "WORK_GRAPH_v3.json",
+      "sha256": "752e979f884be962c2b704731d02d622b58359e27fd59996ae48a90f46131c83",
+      "bytes": 5773
+    },
+    {
+      "path": "instances/resume_account_scope/LAUNCH_BRIEF_v1.md",
+      "sha256": "0bc7d1151efd0019b41eef3a664a2e6753dacf03dc0e608a20ad78254e9f7e0e",
+      "bytes": 1152
+    },
+    {
+      "path": "instances/resume_account_scope/STATUS_v1.json",
+      "sha256": "1460ec53a11a588bd1b27e8d77f331dc78cf1322056dbefb400c07a1f2b74d01",
+      "bytes": 377
+    },
+    {
+      "path": "instances/resume_change/LAUNCH_BRIEF_v1.md",
+      "sha256": "3c830f4a7be3efd632e7bc0ee18ac90eb3c3a8f2ec9b575f4d092a9d172e5589",
+      "bytes": 1494
+    },
+    {
+      "path": "instances/resume_change/STATUS_v1.json",
+      "sha256": "27a7c16c606ec0c910ff004394ea7dac57be520afa7fa460a78920d3cec1fb4e",
+      "bytes": 477
+    },
+    {
+      "path": "instances/resume_pkg02/AMENDMENT_v2.md",
+      "sha256": "70ca90ff4324120084de1ce0b305a1b81ac7f18ba46736ee52a0aecf9d2f436e",
+      "bytes": 746
+    },
+    {
+      "path": "instances/resume_pkg02/AMENDMENT_v3.md",
+      "sha256": "e580d2d14d120de8db7e22df90eb1a42ab52f1dae7a21a452659af1fef1d83a1",
+      "bytes": 508
+    },
+    {
+      "path": "instances/resume_pkg02/LAUNCH_BRIEF_v1.md",
+      "sha256": "a85d7be023877a054dc5d2f5115b213d9f120057040ac6e5898eac7230ed8dc2",
+      "bytes": 1790
+    },
+    {
+      "path": "instances/resume_pkg02/STATUS_v1.json",
+      "sha256": "f44869042578d92fc21d1b489c2294b760e73b019a444405949f0b1158fb2972",
+      "bytes": 499
+    },
+    {
+      "path": "instances/resume_pkg07/LAUNCH_BRIEF_v1.md",
+      "sha256": "10e26490672e4562f45c645b9387df60fa412b3b231403ec4697d4967987b63b",
+      "bytes": 1674
+    },
+    {
+      "path": "instances/resume_pkg07/STATUS_v1.json",
+      "sha256": "1416d8b81d7e2520b23bc776758f2c0d2e79539e4189640674dd30452fe34d20",
+      "bytes": 489
+    },
+    {
+      "path": "instances/resume_records/LAUNCH_BRIEF_v1.md",
+      "sha256": "27b1a6b19c32a66c7b7a6b2713da75d6fea138d86200f2443d6e9fe373979dc8",
+      "bytes": 1598
+    },
+    {
+      "path": "instances/resume_records/STATUS_v1.json",
+      "sha256": "f31fadfcae5cdf40344342823d69853e5ebebef229e6eea9ee2e069ceea63682",
+      "bytes": 468
+    },
+    {
+      "path": "validation/bootstrap-recorder/COMMANDS_v1.json",
+      "sha256": "21afbd13f2d82dcaa45155ff1c1593fd127c41a6bf60a922ac6c949f090c6503",
+      "bytes": 1669
+    },
+    {
+      "path": "validation/bootstrap-recorder/MERGE_ANCESTRY.json",
+      "sha256": "5f388fb4f221a0d0350ff4d22b4871d3d02ad95970b32afa93e22d9821d7225b",
+      "bytes": 309
+    },
+    {
+      "path": "validation/bootstrap-recorder/PR736.command.json",
+      "sha256": "25efd1485d46416cff095c7dca86c20017400be92db3b8462b39d37401514c08",
+      "bytes": 490
+    },
+    {
+      "path": "validation/bootstrap-recorder/PR736.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/bootstrap-recorder/PR736.stdout.json",
+      "sha256": "ddfaf42ecae404e77595ffb5731bf7fb75081f2f5f93bf2d9e2258d4e78525d1",
+      "bytes": 1108
+    },
+    {
+      "path": "validation/bootstrap-recorder/TOOL_RESULTS.json",
+      "sha256": "821696a4a255e13b25e073cf68e65b2eb995b0966aa963ccaa4efcc546d4df03",
+      "bytes": 29078
+    },
+    {
+      "path": "validation/bootstrap-recorder/app-hold-reliance.raw.txt",
+      "sha256": "37e9637149ba47cac532c115e88f4fa8a525ae58404c3a4fe2c41b0e9864b7bd",
+      "bytes": 2113
+    },
+    {
+      "path": "validation/bootstrap-recorder/app-hold-reliance.stdout.json",
+      "sha256": "42b4912a898c68bf901f0e6907a35c59e43ed55dbec0cfcd0edfa0c5a069a5b7",
+      "bytes": 2114
+    },
+    {
+      "path": "validation/bootstrap-recorder/corpus-status.raw.txt",
+      "sha256": "921a96d8fcfa2c08c5659046e2dac4fa1d19fc07749beec041ae5d7c5a179351",
+      "bytes": 670
+    },
+    {
+      "path": "validation/bootstrap-recorder/corpus-status.stdout.txt",
+      "sha256": "2212a6f5cabefa42d55ea5bdfd1e23e512463e58df6a0582f5bc4a04a4f11a31",
+      "bytes": 671
+    },
+    {
+      "path": "validation/bootstrap-recorder/discovery-command-group.raw.txt",
+      "sha256": "eae7a834333576836c6c78aaae4c89f112adffead665b59c2cef650b9ea3ed93",
+      "bytes": 340
+    },
+    {
+      "path": "validation/bootstrap-recorder/discovery-command-group.stdout.txt",
+      "sha256": "49cae53f4480cf571da9d0199b83d5ad8878289c1c9b3b60b54f701f91330d01",
+      "bytes": 341
+    },
+    {
+      "path": "validation/bootstrap-recorder/self-check.raw.txt",
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+      "bytes": 24824
+    },
+    {
+      "path": "validation/bootstrap-recorder/self-check.stdout.txt",
+      "sha256": "afced26860e5f9aed31b6d93044c32628ef29340bf9a510a104b43fb27e4b5bd",
+      "bytes": 24825
+    }
+  ]
+}

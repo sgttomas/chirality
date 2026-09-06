@@ -1,0 +1,28 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/validate_change_scope.py",
+    "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "--allowed",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "--allowed",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+    "--allowed",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-presentation.test.tsx",
+    "--allowed",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-view-author-01",
+    "--path",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "--path",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+    "--path",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-presentation.test.tsx",
+    "--path",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-view-author-01"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "effective_environment": "inherited; no task overrides; secrets not recorded",
+  "exit_code": 0,
+  "stdout": "{\n  \"allowed\": [\n    \"projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx\",\n    \"projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx\",\n    \"projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-presentation.test.tsx\",\n    \"projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-view-author-01\"\n  ],\n  \"paths\": [\n    \"projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx\",\n    \"projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx\",\n    \"projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-presentation.test.tsx\",\n    \"projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-view-author-01\"\n  ],\n  \"schema\": \"chirality-change-scope/v1\",\n  \"status\": \"PASS\",\n  \"violations\": []\n}\n",
+  "stderr": ""
+}

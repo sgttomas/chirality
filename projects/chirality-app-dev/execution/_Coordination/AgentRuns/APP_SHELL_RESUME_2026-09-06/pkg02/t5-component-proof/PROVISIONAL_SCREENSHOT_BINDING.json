@@ -1,0 +1,11 @@
+{
+  "source_sha": "9ff9963613c34a9eff458bcdc6d6e2967e1314e619fc2b04b8a8cd31f533c3aa",
+  "bundle_sha": "021ac3d5d288376c2debc256a585a6b94fde1c806942d43a372f6e60ae7f6c6b",
+  "status": "provisional, source review BLOCK for completed lifecycle effect wording; no final source or T5 acceptance",
+  "screenshots": {
+    "actions-fonts-1440-light.png": "4e4eec50f0ce086dc486cac7dbf2ccbe146323f0266fd17becff837089ec41c7",
+    "tasks-provisional-960-light.png": "28e5ea9e0367b54676cbb07667c9fd1e4dadfa141f94ba9b368107f69f4fac6b",
+    "tasks-provisional-1440-light.png": "04384523eef408b311adace883db01c64be6968b4db41f38cea5735d2322d4f1",
+    "actions-1440-light.png": "befec7dfb057e5c2aadacd2c08dc4e8b0ba6d2bad73ffaeb667ec4997d41e028"
+  }
+}

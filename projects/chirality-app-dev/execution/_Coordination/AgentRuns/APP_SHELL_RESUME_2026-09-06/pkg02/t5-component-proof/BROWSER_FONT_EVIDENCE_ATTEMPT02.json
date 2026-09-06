@@ -1,0 +1,115 @@
+{
+  "recordedAt": "2026-09-06T18:50:58.540Z",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "fontStatus": "loading",
+  "faces": [
+    {
+      "family": "PlexProofMono",
+      "status": "loaded",
+      "weight": "400",
+      "style": "normal"
+    },
+    {
+      "family": "PlexProofMono",
+      "status": "loaded",
+      "weight": "500",
+      "style": "normal"
+    },
+    {
+      "family": "PlexProofSans",
+      "status": "unloaded",
+      "weight": "400",
+      "style": "italic"
+    },
+    {
+      "family": "PlexProofSans",
+      "status": "loaded",
+      "weight": "400",
+      "style": "normal"
+    },
+    {
+      "family": "PlexProofSans",
+      "status": "unloaded",
+      "weight": "500",
+      "style": "normal"
+    },
+    {
+      "family": "PlexProofSans",
+      "status": "loaded",
+      "weight": "600",
+      "style": "normal"
+    },
+    {
+      "family": "PlexProofSans",
+      "status": "unloaded",
+      "weight": "700",
+      "style": "normal"
+    },
+    {
+      "family": "PlexProofSerif",
+      "status": "unloaded",
+      "weight": "400",
+      "style": "italic"
+    },
+    {
+      "family": "PlexProofSerif",
+      "status": "loading",
+      "weight": "400",
+      "style": "normal"
+    },
+    {
+      "family": "PlexProofSerif",
+      "status": "loaded",
+      "weight": "600",
+      "style": "normal"
+    }
+  ],
+  "resources": [
+    {
+      "name": "http://127.0.0.1:3197/fonts.css",
+      "duration": 11.300000190734863,
+      "transferSize": 2114
+    },
+    {
+      "name": "http://127.0.0.1:3197/fonts/ibm-plex-serif-latin-600-normal.woff2",
+      "duration": 6.3999998569488525,
+      "transferSize": 20816
+    },
+    {
+      "name": "http://127.0.0.1:3197/fonts/ibm-plex-sans-latin-400-normal.woff2",
+      "duration": 6.1000001430511475,
+      "transferSize": 22888
+    },
+    {
+      "name": "http://127.0.0.1:3197/fonts/ibm-plex-mono-latin-500-normal.woff2",
+      "duration": 6.5,
+      "transferSize": 15188
+    },
+    {
+      "name": "http://127.0.0.1:3197/fonts/ibm-plex-sans-latin-600-normal.woff2",
+      "duration": 6.299999952316284,
+      "transferSize": 24552
+    },
+    {
+      "name": "http://127.0.0.1:3197/fonts/ibm-plex-mono-latin-400-normal.woff2",
+      "duration": 7.200000047683716,
+      "transferSize": 15008
+    }
+  ],
+  "sample": "Read file Writing file 0123456789",
+  "measurements": {
+    "PlexProofSans": 243.2477569580078,
+    "PlexProofSerif": 218.8984375,
+    "PlexProofMono": 316.7996826171875,
+    "Arial": 235.4140625,
+    "monospace": 317.8828125
+  },
+  "roleFonts": {
+    "body": "PlexProofSans, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+    "action": "PlexProofMono, ui-monospace, SFMono-Regular, Menlo, monospace"
+  }
+}

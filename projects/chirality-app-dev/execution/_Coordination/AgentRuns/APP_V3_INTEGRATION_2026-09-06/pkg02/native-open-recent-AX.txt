@@ -1,0 +1,11 @@
+Window: "Chirality Workflow Shell", App: Chirality Resume Proof.
+0 File, Secondary Actions: Cancel, Pick
+	1 menu Secondary Actions: Cancel
+		2 Open Recent
+			3 menu Secondary Actions: Cancel
+				4 beta
+				5 work
+				6 alpha
+				7 Clear Menu, ID: clearRecentDocuments:
+		8 Close Window, ID: performClose:
+		9 Close All, ID: closeAll:

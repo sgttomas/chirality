@@ -1,0 +1,46 @@
+{
+  "ASSESSMENT.md": {
+    "sha256": "36ce35149597588239db09bd8e3bb76602aced2b6f84d21a99186423fc575237",
+    "bytes": 4250
+  },
+  "BINARY_ASSETS.json": {
+    "sha256": "a997d093a4c3d598f963291e09fa955c0b5b32e400862d520dd128bb4c1f8ef6",
+    "bytes": 13499
+  },
+  "BRIEF.md": {
+    "sha256": "72530361a2508da263918671bf9e7018dc01270b6c230f6756c566f47372bc69",
+    "bytes": 645
+  },
+  "DUPLICATE_HASH_GROUPS.json": {
+    "sha256": "a4538d778ebd8809ddf1448c422d1f43ef99bb90b8cb8c5e35ebc23aa3cd31b7",
+    "bytes": 36350
+  },
+  "PROVENANCE_MANIFESTS.json": {
+    "sha256": "0bca81f5875d1381020b5e96e9a568ccd0c620b0361d2eec60a4bb0ce95e45eb",
+    "bytes": 19392
+  },
+  "PROVISIONAL_INVENTORY.json": {
+    "sha256": "89e8ca444a39a9992293464b6ff5a79c7b0b27ea1d5230c6d089ee3471d3aa07",
+    "bytes": 793286
+  },
+  "PROVISIONAL_PATHS.txt": {
+    "sha256": "3dce1212cb9e296116cac15b3405bcc9fad5f28d46ee9d4d585fe9d98d0df182",
+    "bytes": 139845
+  },
+  "PR_DESCRIPTION_DRAFT.md": {
+    "sha256": "9f7d840e05715cd80791851a45e9dd56956113c32d73d7818b8da0642b4b624a",
+    "bytes": 1085
+  },
+  "PR_TITLE.txt": {
+    "sha256": "c757a2c289989a053308aa3552644cfd9c3c08913a8a62b20958781ab91c073b",
+    "bytes": 59
+  },
+  "RETURN.md": {
+    "sha256": "5983591ea7d07425c3dd550963ae7d9e81f01a379929317e04ef4b33e9f6d677",
+    "bytes": 1141
+  },
+  "SUMMARY.json": {
+    "sha256": "34cd90ab8d07cc6f07dbcbc2bb45b823352442096ba6f793d6ac0726d89b10db",
+    "bytes": 9070
+  }
+}

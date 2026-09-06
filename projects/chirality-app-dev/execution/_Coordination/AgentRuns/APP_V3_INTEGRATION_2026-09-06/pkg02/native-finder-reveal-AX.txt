@@ -1,0 +1,73 @@
+Window: "ch-v3-gui-20260906", App: Finder.
+0 standard window ch-v3-gui-20260906, ID: FinderWindow, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Recents
+				5 row (selectable) Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Applications
+				8 row (selectable) Desktop
+				9 row (selectable) Documents
+				10 row (selectable) Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) iCloud Drive
+				13 row (selectable) Proton Drive
+				14 row (selectable) ryan
+				15 row (selectable) Macintosh HD
+				16 row (selectable) Eject, Description: eject, Value: Google Chrome
+				17 row (selectable) Eject, Description: eject, Value: T3 Code (Alpha) 0.0.38 Installer
+				18 row (selectable) AirDrop
+				19 row (selectable) Trash
+				20 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				21 row (selectable) Red
+				22 row (selectable) Orange
+				23 row (selectable) Yellow
+				24 row (selectable) Green
+				25 row (selectable) Blue
+				26 row (selectable) Purple
+				27 row (selectable) Gray
+				28 row (selectable) All Tags…
+			29 scroll bar (settable, float) 0
+				30 value indicator (settable, float) 0
+				31 increment arrow button
+				32 decrement arrow button
+				33 increment page button
+				34 decrement page button
+		35 splitter (disabled, settable, float) 189
+		36 scroll area
+			37 collection Description: icon view, ID: IconView
+				38 section (disabled)
+					39 image data, Secondary Actions: open
+					40 image (selected) work, Secondary Actions: open
+		41 unknown Details: status bar, ID: statusBar
+			42 text Value: 1 of 2 selected, 1.65 TB available, ID: statusBarText
+			43 slider (settable, float) Description: resize icon, Value: 24
+				44 value indicator (settable, float) 24
+	45 toolbar
+		46 container Back/Forward
+			47 button (disabled) back
+			48 button (disabled) forward
+		49 radio button Description: icon view, Value: 1
+		50 radio button Description: list view, Value: 0
+		51 radio button Description: column view, Value: 0
+		52 radio button Description: gallery view, Value: 0
+		53 menu button Description: Group, Help: Change the item grouping (hold down Option to change the sort), Secondary Actions: Move previous, Move next, Remove from toolbar
+		54 button Description: Share, Help: Share the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		55 button Description: Add Tags, Help: Edit Tags, Secondary Actions: Move previous, Move next, Remove from toolbar
+		56 menu button Description: Action, Help: Perform tasks with the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		57 button Search
+	58 close button
+	59 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	60 minimize button
+	61 text ch-v3-gui-20260906
+62 menu bar
+	63 Finder
+	64 File
+	65 Edit
+	66 View
+	67 Go
+	68 Window
+	69 Help
+
+The focused UI element is 37 collection Description: icon view, ID: IconView

@@ -1,0 +1,119 @@
+{
+  "utc": "2026-09-06T18:51:30.165810+00:00",
+  "metadata": {
+    "role": "CHANGE Agent 1",
+    "parent": "/root (HELP_HUMAN)",
+    "instance": "/root/resume_change",
+    "execution_class": "delegated-harness-native",
+    "role_enforcement": "instruction-asserted; role not mechanically enforced",
+    "engine": "Codex native harness",
+    "provider": "OpenAI",
+    "model": "GPT-6 (system identity; exact deployment ID unavailable)",
+    "substitutions": []
+  },
+  "fetch": {
+    "command": [
+      "git",
+      "fetch",
+      "origin"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "origin_main": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "branch": "codex/shell-redesign-resume-20260906",
+  "base_equals_upstream": true,
+  "base_ancestor_of_upstream": true,
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exit_code": 0,
+      "stdout": "codex/shell-redesign-resume-20260906\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout": " M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md\n M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md\n M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/MEMORY.md\n M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_STATUS.md\n M projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md\n M projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx\n M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx\n M projects/chirality-app-dev/frontend/src/app/globals.css\n M projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx\n M projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx\n?? projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/T1_MERGED_RECONCILIATION_2026-09-06.md\n?? projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_run_records/TASK_RUN_2026-09-06_APP_SHELL_RESUME_WORKFLOW_RECONCILIATION.md\n?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/\n?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-122_PACKET_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md\n?? projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-presentation.test.tsx\n?? projects/chirality-app-dev/frontend/src/__tests__/components/historical-chat-reveal.test.tsx\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "HEAD...origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "0\t0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--name-status",
+        "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "log",
+        "--format=%h %s",
+        "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4..origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

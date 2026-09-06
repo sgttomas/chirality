@@ -1,0 +1,23 @@
+{
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "project_root": "projects/chirality-app-dev",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 4.157,
+      "exit_code": 0,
+      "id": "frontend-test",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 test\n> vitest run\n\n\n RUN  v4.1.10 {WORKSPACE_ROOT}/projects/chirality-app-dev/frontend\n\n{\"status\":\"FAIL\",\"summaryPath\":\"{TMPDIR}/chirality-daemon-proof-test-phpmbC/evidence/summary.json\"}\n\n Test Files  177 passed | 1 skipped (178)\n      Tests  1730 passed | 4 skipped (1734)\n   Start at  14:59:24\n   Duration  3.93s (transform 5.87s, setup 0ms, import 10.73s, tests 23.65s, environment 8ms)\n\n",
+      "timeout_seconds": 600.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "."
+}

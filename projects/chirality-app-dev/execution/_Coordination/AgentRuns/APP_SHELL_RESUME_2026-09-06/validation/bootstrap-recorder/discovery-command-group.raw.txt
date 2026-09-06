@@ -1,0 +1,5 @@
+ec491aee1870a2a6a8eb2faf2919d4d5db5124b4
+ec491aee1870a2a6a8eb2faf2919d4d5db5124b4
+projects/chirality-app-dev/loop/LOOP_INIT.md
+projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied

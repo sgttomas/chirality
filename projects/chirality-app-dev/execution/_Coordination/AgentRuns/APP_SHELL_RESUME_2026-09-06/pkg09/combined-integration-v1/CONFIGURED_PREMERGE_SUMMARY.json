@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-09-06T20:58:52.696Z",
+  "harnessBaseUrl": "http://127.0.0.1:63839",
+  "projectRoot": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/projects/chirality-app-dev",
+  "requestedProjectRoot": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/projects/chirality-app-dev",
+  "stagedFromInstructionRoot": false,
+  "status": "pass",
+  "testCount": 8,
+  "results": [
+    {
+      "id": "setup.server_reachable",
+      "status": "pass",
+      "durationMs": 24,
+      "details": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "id": "regression.session_crud",
+      "status": "pass",
+      "durationMs": 11166,
+      "details": {
+        "sessionId": "5e9e25f0-452d-486d-9b09-58a89df28dfc",
+        "listedCount": 1
+      }
+    },
+    {
+      "id": "section8.boot_error_taxonomy",
+      "status": "pass",
+      "durationMs": 222,
+      "details": {
+        "checkedCodes": [
+          "SESSION_NOT_FOUND",
+          "SDK_FAILURE",
+          "BOOT_CONFORMANT",
+          "WORKING_ROOT_INACCESSIBLE"
+        ]
+      }
+    },
+    {
+      "id": "section8.smoke_stream",
+      "status": "pass",
+      "durationMs": 231,
+      "details": {
+        "eventCount": 8
+      }
+    },
+    {
+      "id": "section8.session_persistence_resume",
+      "status": "pass",
+      "durationMs": 297,
+      "details": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "engineSessionId": "stub_5ce87615-1a0c-42b8-a80e-c3b1e2f037bc"
+      }
+    },
+    {
+      "id": "section8.permissions_dontask",
+      "status": "pass",
+      "durationMs": 172,
+      "details": {
+        "denyEvents": 7,
+        "allowEvents": 9
+      }
+    },
+    {
+      "id": "section8.interrupt_sigint",
+      "status": "pass",
+      "durationMs": 228,
+      "details": {
+        "interruptStatus": 200
+      }
+    },
+    {
+      "id": "section8.sdk_native_stream",
+      "status": "pass",
+      "durationMs": 143,
+      "details": {
+        "eventCount": 8
+      }
+    }
+  ]
+}

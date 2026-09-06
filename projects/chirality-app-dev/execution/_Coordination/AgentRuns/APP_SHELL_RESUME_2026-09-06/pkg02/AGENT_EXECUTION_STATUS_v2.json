@@ -1,0 +1,36 @@
+{
+  "run": "APP_SHELL_RESUME_2026-09-06",
+  "manager": "/root/resume_pkg02",
+  "records": [
+    {
+      "role": "TASK software-bounded-implementation",
+      "scope": "reveal-author-01/revision03",
+      "status": "SUCCESS; source frozen",
+      "role_enforcement": "instruction-asserted",
+      "serving_model_id": "UNAVAILABLE"
+    },
+    {
+      "role": "TASK software-code-review",
+      "scope": "source-review-01",
+      "status": "BLOCK; repair required",
+      "role_enforcement": "instruction-asserted",
+      "serving_model_id": "UNAVAILABLE"
+    },
+    {
+      "role": "TASK software-code-review",
+      "scope": "source-review-02",
+      "status": "PASS; current four-path revision03 only",
+      "role_enforcement": "instruction-asserted",
+      "serving_model_id": "UNAVAILABLE"
+    },
+    {
+      "role": "ephemeral Agent2 refutation",
+      "scope": "t1-reconciliation",
+      "status": "fresh refuter02 COMMIT-SAFE; local application HELD for union/Git",
+      "role_enforcement": "instruction-asserted",
+      "serving_model_id": "UNAVAILABLE"
+    }
+  ],
+  "pending_candidate": "t5-view-author-01; graph release pending",
+  "owned_processes": "component server and Chrome tab cleaned; native not launched"
+}

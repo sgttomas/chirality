@@ -1,0 +1,92 @@
+{
+  "utc": "2026-09-06T21:53:45.453817+00:00",
+  "fetch": {
+    "argv": [
+      "git",
+      "fetch",
+      "origin"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "From github.com:sgttomas/chirality\n   49951af62..22a65b694  codex/runtime-packaging-integration -> origin/codex/runtime-packaging-integration\n"
+  },
+  "original_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "origin_main": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "divergence": "0\t0",
+  "sync": "NO_OP_ALREADY_EQUAL",
+  "published_head": "22a65b694007f4d96d33631cf33c2d611517a417",
+  "fetched_remote_head": "22a65b694007f4d96d33631cf33c2d611517a417",
+  "isolated_head": "22a65b694007f4d96d33631cf33c2d611517a417",
+  "parent": "49951af6237bbb8701c0a2cebcd8c30fbde75b8e",
+  "tree": "f2db3e2e92e5b2e362fccee9c830a0924d63542b",
+  "commit_object_payload_sha256": "ab945f3a37115b61f4a50cedd5c01ef0c257700d62e8b244c7ec4e6fef7a3a3c",
+  "tree_object_payload_sha256": "4511e9f3321c88283b2a65c8cd730a5fe209ad0d9686d09cbd178ae0b8ffea61",
+  "same_commit_as_prior_local_validation": true,
+  "config_sha256": "522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0",
+  "overlay_diff_sha256": "15280f40ae9d8e418c593e754ca3d1a5dace4b1cb4f9cf33c0e32c7f969e6fa2",
+  "app_delta": [
+    "M\tprojects/chirality-app-dev/frontend/tsconfig.electron.json"
+  ],
+  "original_dirty_paths_preserved": true,
+  "original_dirty_count": 806,
+  "isolated_status_preserved": true,
+  "isolated_clean": true,
+  "pr_state": "OPEN",
+  "mergeable": "MERGEABLE",
+  "merge_state": "CLEAN",
+  "checks": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:43:57Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945343/job/101563908825",
+      "name": "Verify unsigned macOS artifact",
+      "startedAt": "2026-09-06T21:43:57Z",
+      "status": "COMPLETED",
+      "workflowName": "Desktop Unsigned Artifact Verification"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:48:35Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945365/job/101563908290",
+      "name": "Harness pre-merge",
+      "startedAt": "2026-09-06T21:43:59Z",
+      "status": "COMPLETED",
+      "workflowName": "Harness Pre-merge Validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:45:45Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945374/job/101563908395",
+      "name": "harness",
+      "startedAt": "2026-09-06T21:43:59Z",
+      "status": "COMPLETED",
+      "workflowName": "governance-harness"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:45:10Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945336/job/101563908189",
+      "name": "pec",
+      "startedAt": "2026-09-06T21:43:59Z",
+      "status": "COMPLETED",
+      "workflowName": "pec-tests"
+    }
+  ],
+  "github_review_decision": "",
+  "publication_or_merge_performed": false,
+  "readiness": "Git/CI conditions pass for owner consideration; unsigned macOS verification skipped, substantive review and exact owner merge authorization remain separate",
+  "metadata": {
+    "role": "CHANGE Agent1",
+    "parent": "/root",
+    "instance": "/root/resume_change",
+    "engine": "Codex native harness",
+    "provider": "OpenAI",
+    "model": "GPT-6 system identity; exact deployment unavailable",
+    "execution_class": "delegated-harness-native",
+    "enforcement": "instruction-asserted"
+  }
+}

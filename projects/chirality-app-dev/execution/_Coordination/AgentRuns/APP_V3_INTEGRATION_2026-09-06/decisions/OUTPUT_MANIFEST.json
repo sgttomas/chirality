@@ -1,0 +1,449 @@
+{
+  "files": [
+    {
+      "path": "APP_CAPABILITY_DEPENDENCIES.md",
+      "bytes": 10797,
+      "sha256": "1b0826853f101c35c645e597527bf438d96d857488cf3d89779bccd7e822052c"
+    },
+    {
+      "path": "APP_HOLD.json",
+      "bytes": 5138,
+      "sha256": "228bb1fee31f78175c988fc55c18c144b33340fee2ed50ce94b900001ed2daec"
+    },
+    {
+      "path": "D121_REVIEW.md",
+      "bytes": 4338,
+      "sha256": "a5adb3084d73cec9f0fa8b4a41b9af90ec04d4207b6c3670d531825ea2d20548"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 1610,
+      "sha256": "ee144fc1aa8fdde30c135dfef50a8706ed64c85f76d4c7d6a04c7f4d6fef6583"
+    },
+    {
+      "path": "SEALED_BRIEF.md",
+      "bytes": 1881,
+      "sha256": "ab335f692afdca062f13553d9d948bdba541b0762b1502a3d1ac54b41a36be00"
+    },
+    {
+      "path": "SOURCE_MANIFEST.json",
+      "bytes": 27263,
+      "sha256": "32339941e1713e25ff1a8986ae435867e93b2f7c76d9a965e03988d783969985"
+    },
+    {
+      "path": "STATUS.json",
+      "bytes": 373,
+      "sha256": "e5214e1a3ab66d4991853abbb0ca8cad067045babca8dd9b31effd918dad6a2f"
+    },
+    {
+      "path": "sources/000_AGENTS.md",
+      "bytes": 18466,
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "sources/001_AGENT_HELP_HUMAN.md",
+      "bytes": 10073,
+      "sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981"
+    },
+    {
+      "path": "sources/002_AGENTS.md",
+      "bytes": 16986,
+      "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5"
+    },
+    {
+      "path": "sources/003_Dependencies.csv",
+      "bytes": 15997,
+      "sha256": "b3fcca9e2ab6e5ee288a80fbf7e1b8f5869030b76edbb801070c27088808f2b1"
+    },
+    {
+      "path": "sources/004_ScopeOfWork.md",
+      "bytes": 34076,
+      "sha256": "0e64cb085ee7032844f3b09f05c5a3f29ba02344e3ce9369a8535657c793406b"
+    },
+    {
+      "path": "sources/005__STATUS.md",
+      "bytes": 19989,
+      "sha256": "16e2596ac1c9d5d275774d0f647526efbde350e4ceb1a5903731720216542980"
+    },
+    {
+      "path": "sources/006_Dependencies.csv",
+      "bytes": 29221,
+      "sha256": "ba643b71d82e45502fe5aca02af69efc08702e7d8ce7369180a0993014edf644"
+    },
+    {
+      "path": "sources/007_ScopeOfWork.md",
+      "bytes": 36998,
+      "sha256": "a30ad4096e11bae24122c2255bf6e461a9cac21ec95d9398524c179bb54eaa07"
+    },
+    {
+      "path": "sources/008__STATUS.md",
+      "bytes": 17461,
+      "sha256": "20550b79e2c67dc5b21d1c342d5e56ce5c2afd7a23c42838e3e3f7b90c7361fe"
+    },
+    {
+      "path": "sources/009_Dependencies.csv",
+      "bytes": 6954,
+      "sha256": "8e880e11478e04e66d7db245b8044007ced07b016d91a985216253547450ebee"
+    },
+    {
+      "path": "sources/010_ScopeOfWork.md",
+      "bytes": 28534,
+      "sha256": "9b7d45fe5441bdda8eb1bc7dde61d7db784231e0fa79f4c4d1e0a22e7c752acb"
+    },
+    {
+      "path": "sources/011__STATUS.md",
+      "bytes": 9244,
+      "sha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd"
+    },
+    {
+      "path": "sources/012_Dependencies.csv",
+      "bytes": 29252,
+      "sha256": "4b17594e49156a3ab4dfa566830b8fa871c9de49c1680c0cf4d326012958649a"
+    },
+    {
+      "path": "sources/013_ScopeOfWork.md",
+      "bytes": 32494,
+      "sha256": "2ebfe14aa3bf354b79111c5e0d4bc81b3e10e8292195d8c8aad5464a7f99cc8c"
+    },
+    {
+      "path": "sources/014__STATUS.md",
+      "bytes": 10548,
+      "sha256": "ebb3294e52cde902190082f6fc14badb4437b23397ae9553e68eb6e79dd0915f"
+    },
+    {
+      "path": "sources/015_Dependencies.csv",
+      "bytes": 15892,
+      "sha256": "249ac0291f72ef8a84d0b51f18a2ffac9c2b486eeff58559c894d55e3fe03f76"
+    },
+    {
+      "path": "sources/016_ScopeOfWork.md",
+      "bytes": 33314,
+      "sha256": "83f206d623dd72130cab799e8e9216440635fb3cbe82ed8b17a6216092abf06f"
+    },
+    {
+      "path": "sources/017__STATUS.md",
+      "bytes": 20640,
+      "sha256": "01c256f2d508a53e238e34b436c63443deea73d7c9157976d360fe5238b8e472"
+    },
+    {
+      "path": "sources/018_Dependencies.csv",
+      "bytes": 6917,
+      "sha256": "3392fdadb112cc11547275977146c4d61a9e71e72012fe552548e8b04e60604c"
+    },
+    {
+      "path": "sources/019_ScopeOfWork.md",
+      "bytes": 28808,
+      "sha256": "af937db155c3c16a9db11f1455037857204041965e60d1915dae84dc0dd37e25"
+    },
+    {
+      "path": "sources/020__STATUS.md",
+      "bytes": 8928,
+      "sha256": "a71621abbed92abb07b9918fa8f9e15c4600e41b0f32beb97feaa89f171a0e2e"
+    },
+    {
+      "path": "sources/021_Dependencies.csv",
+      "bytes": 14734,
+      "sha256": "37dc1773fb3b55953167b9333187f7e6ebc486c43dafca3d899178181f0759d6"
+    },
+    {
+      "path": "sources/022_ScopeOfWork.md",
+      "bytes": 36413,
+      "sha256": "1651f6a7463a34a22fe21c4d1a7b01d28ffc8743ea20d53820dd38ac97d82bb4"
+    },
+    {
+      "path": "sources/023__STATUS.md",
+      "bytes": 6471,
+      "sha256": "9c766c922807ea62c5d0bf3a99f7f15c8dd49c76d3d3c644cfc299ed539c21c4"
+    },
+    {
+      "path": "sources/024_Dependencies.csv",
+      "bytes": 6619,
+      "sha256": "56eb0037b40bc05ca9c9a70fbfa57189e61d7f52b60264dfeabaf6398164e03c"
+    },
+    {
+      "path": "sources/025_ScopeOfWork.md",
+      "bytes": 33544,
+      "sha256": "76b51854f2ebe7e6b218b8122e796897625c3f9e9474c5772e68b0f347cf98c1"
+    },
+    {
+      "path": "sources/026__STATUS.md",
+      "bytes": 2534,
+      "sha256": "3f860c2abb8ccccfb40d6b38dfa7f25f2befe206179b0632ed493679efbbfaa9"
+    },
+    {
+      "path": "sources/027_Dependencies.csv",
+      "bytes": 12626,
+      "sha256": "1cb90e1ff30b50fb08c9f9f06aa65ad74ac63b92ab0ebbcecdf52ec93cde8034"
+    },
+    {
+      "path": "sources/028_ScopeOfWork.md",
+      "bytes": 33506,
+      "sha256": "68642f96957ca0c604e8812388cdf8c12f5456042bd6c8db39d588a1accc5e8e"
+    },
+    {
+      "path": "sources/029__STATUS.md",
+      "bytes": 5495,
+      "sha256": "d0103bc27b132e0f62c87403e103d8ca59f2042b3878a821ea5bb53cbccd2328"
+    },
+    {
+      "path": "sources/030_Dependencies.csv",
+      "bytes": 11123,
+      "sha256": "aec128ecb0369228520327eafe46a609facb6df3ec360bc5e3f3dcb42db2776a"
+    },
+    {
+      "path": "sources/031_ScopeOfWork.md",
+      "bytes": 37051,
+      "sha256": "5860e66f0e6199fec387c2a34e66d0ffc0c902af7a7b9a21ad17d9e3d9d28953"
+    },
+    {
+      "path": "sources/032__STATUS.md",
+      "bytes": 8380,
+      "sha256": "eed7060656633dfc18f4b17a29a72f2d569c5e17c21cd6096d77cdc600eb9446"
+    },
+    {
+      "path": "sources/033_Dependencies.csv",
+      "bytes": 15594,
+      "sha256": "090241fe899c9c57da14485b271fb3ed986ab2f9a12d8b95c87223b39023f4ca"
+    },
+    {
+      "path": "sources/034_ScopeOfWork.md",
+      "bytes": 33789,
+      "sha256": "a51ab9870cc490633f29a00096bdb6660d99a6aa63c25dca776228b3cfeb80e5"
+    },
+    {
+      "path": "sources/035__STATUS.md",
+      "bytes": 8396,
+      "sha256": "a8c351e66279af10cdca86bbd32e84c14fa3ded3412343f89eb88edcb29ac87d"
+    },
+    {
+      "path": "sources/036_Dependencies.csv",
+      "bytes": 6272,
+      "sha256": "5cf858be5ab54b0e8b773b27ee9a83af4ae51facbef493236d016a2d81f282b7"
+    },
+    {
+      "path": "sources/037_ScopeOfWork.md",
+      "bytes": 33234,
+      "sha256": "4b91d23341372bf422c186314e0cc3546d08b08a5ec5691d4037eaf09f94b3fb"
+    },
+    {
+      "path": "sources/038__STATUS.md",
+      "bytes": 2895,
+      "sha256": "0a99e66330b961ae383847cee4cd748bcbe299d470b12774802cf7b1ab35fb03"
+    },
+    {
+      "path": "sources/039_Dependencies.csv",
+      "bytes": 18292,
+      "sha256": "8b48a970881eb20460fc0d65db94d77f08d04a85cd2aaac3b90a9b9ba8b62135"
+    },
+    {
+      "path": "sources/040_ScopeOfWork.md",
+      "bytes": 41161,
+      "sha256": "041009ac09e0996185598aa14b92b1343d2c7f1e34eacc2db1499267f6db7c47"
+    },
+    {
+      "path": "sources/041__STATUS.md",
+      "bytes": 6106,
+      "sha256": "a31e918d4dcc692458821d85ac009374a1f67eae401b008f9e02fc3ee4a630c9"
+    },
+    {
+      "path": "sources/042_Dependencies.csv",
+      "bytes": 14074,
+      "sha256": "9c8e0405599f5077d450d92e8934c0664e25b5c193bb12e90d1c11b2af6a982f"
+    },
+    {
+      "path": "sources/043_ScopeOfWork.md",
+      "bytes": 35951,
+      "sha256": "4d6b48a06a5166c2a5644922ea303f85f68ab89f5d1d1eb4ee8f223258c5bb6c"
+    },
+    {
+      "path": "sources/044__STATUS.md",
+      "bytes": 6768,
+      "sha256": "d09d47ffe55c8edbf579557f7eee23df3d0ca55efa436009ad18a30c5c6b1d74"
+    },
+    {
+      "path": "sources/045_Dependencies.csv",
+      "bytes": 20843,
+      "sha256": "3cdd199b1fffe1be2cb7985d563a2f1be154aecfdaec6b3657a23c99751b0d96"
+    },
+    {
+      "path": "sources/046_ScopeOfWork.md",
+      "bytes": 29342,
+      "sha256": "68f22e5b7d2238f0323f20da48f23834c042cc9393db220d2e5e9e65c3952e68"
+    },
+    {
+      "path": "sources/047__STATUS.md",
+      "bytes": 5817,
+      "sha256": "b5c13af0c0f03a4021282f0882b199c3be052d7ecea1e86e0942022520981cde"
+    },
+    {
+      "path": "sources/048_Dependencies.csv",
+      "bytes": 12566,
+      "sha256": "8f482b56dd1e72cebf30615cb4104d8fbc8357a375cf29add648884d02e7e515"
+    },
+    {
+      "path": "sources/049_ScopeOfWork.md",
+      "bytes": 38050,
+      "sha256": "6de9f9d96b2723c51859748c1b13b3098c1d6650b209efb39f0af75cb798064b"
+    },
+    {
+      "path": "sources/050__STATUS.md",
+      "bytes": 12489,
+      "sha256": "53736b56cf01ae5db05038491c33e0421363411e402292b98b32c381fbc64682"
+    },
+    {
+      "path": "sources/051_Dependencies.csv",
+      "bytes": 7385,
+      "sha256": "70b4ef79271978b1b6d99ed34d768f8970ca67307ea819c024a2fe9138634042"
+    },
+    {
+      "path": "sources/052_ScopeOfWork.md",
+      "bytes": 38510,
+      "sha256": "3c39bb4fac92625e114fc8df48acb028e087a7bc98575216b6d4d29ff0e88588"
+    },
+    {
+      "path": "sources/053__STATUS.md",
+      "bytes": 5080,
+      "sha256": "279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700"
+    },
+    {
+      "path": "sources/054_Dependencies.csv",
+      "bytes": 6870,
+      "sha256": "931fabd6aa7bc591865b7bd0e8b3446d5a9f2c53a82347ee784432265f9cbfb1"
+    },
+    {
+      "path": "sources/055_ScopeOfWork.md",
+      "bytes": 28429,
+      "sha256": "1fed47a10b3f480a545947e6cf1d60ef7e150f166caceb4a26c0267f92dde652"
+    },
+    {
+      "path": "sources/056__STATUS.md",
+      "bytes": 16686,
+      "sha256": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0"
+    },
+    {
+      "path": "sources/057_WORK_GRAPH_v1.json",
+      "bytes": 4673,
+      "sha256": "bfe6f4f092d4ea74abb732cff372b14775da96f26429a3fa11e238cff71aad90"
+    },
+    {
+      "path": "sources/058_BRIEF_v3_decisions_v1.md",
+      "bytes": 1881,
+      "sha256": "ab335f692afdca062f13553d9d948bdba541b0762b1502a3d1ac54b41a36be00"
+    },
+    {
+      "path": "sources/059_D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md",
+      "bytes": 16791,
+      "sha256": "59aece85bcf99ae2ae666fd59f6e66d206d1a6e985f2c208f231474cd4af73f9"
+    },
+    {
+      "path": "sources/060_D-APP-117_PACKET_PER_ATTEMPT_DECISION_REPLAY_2026-09-05.md",
+      "bytes": 18521,
+      "sha256": "8e4ef9bbaebdcbb9b23c938bebc46f670abebd7aae5201d6cf459f6db3c6866c"
+    },
+    {
+      "path": "sources/061_D-APP-118_PACKET_FACADE_RETIREMENT_2026-09-05.md",
+      "bytes": 12172,
+      "sha256": "8eb3f39185a879d67fceb5c031bc292f8e24eac7cc2d85c70124d10663fe0411"
+    },
+    {
+      "path": "sources/062_D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md",
+      "bytes": 7104,
+      "sha256": "ac8188df139f9df18024a1dd8f3424256ad40582d9076ae47525b42e56610dd7"
+    },
+    {
+      "path": "sources/063_D-APP-120_PACKET_T2_NO_FOLDER_AND_WOVEN_SEAM_2026-09-05.md",
+      "bytes": 13086,
+      "sha256": "f2aef8d01b562028479260f977d34b5415e806f68effc19a5ea923482782f017"
+    },
+    {
+      "path": "sources/064_D-APP-120_RULING_PRESENTATION_SEAM_AND_NO_FOLDER_ROUTING_2026-09-06.md",
+      "bytes": 3439,
+      "sha256": "35587f5b9a018a7e263518f13c164ce0300518b4f4009b1a0c6725d215801ebc"
+    },
+    {
+      "path": "sources/065_D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md",
+      "bytes": 16595,
+      "sha256": "fb1e9c288c795594efe0dd41cad6a3b1a83b7f46e43a479fd909f5ecf3cca4eb"
+    },
+    {
+      "path": "sources/066_D-APP-122_PACKET_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md",
+      "bytes": 6990,
+      "sha256": "36921afa1100041fabc700ba5228a272bc2f7341e887c792fe1d9a3f4b1816cd"
+    },
+    {
+      "path": "sources/067_D-APP-122_RULING_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md",
+      "bytes": 4175,
+      "sha256": "8842b95600dff24a107ad2fab18d3fd270010e46d02344d41ca18c953c21c51a"
+    },
+    {
+      "path": "sources/068_D-APP-123_PACKET_ACTIVITY_STRIP_PRIMARY_SESSION_LOCUS_2026-09-06.md",
+      "bytes": 6308,
+      "sha256": "2e425bd2b9b6bb778aa49ca17b27365e36304cb6bfbaed70874571385c0029b7"
+    },
+    {
+      "path": "sources/069_D-APP-123_RULING_ACTIVITY_STRIP_PRIMARY_SESSION_LOCUS_2026-09-06.md",
+      "bytes": 4176,
+      "sha256": "91ce5c6bcd0a3a22638622715a81db660880dcb2a61bc560bd9817f79429fdd9"
+    },
+    {
+      "path": "sources/070__REGISTER.md",
+      "bytes": 106097,
+      "sha256": "f9cbb190d7823b7d41e9527fe1fcb0a61f3b1486074fbcf4990eb7976667c509"
+    },
+    {
+      "path": "sources/071_Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "bytes": 132164,
+      "sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61"
+    },
+    {
+      "path": "sources/072__LATEST.md",
+      "bytes": 78,
+      "sha256": "74d9b1d46acbc8b9e8664da9833340da634dec00abd034fc12940665a4d2e291"
+    },
+    {
+      "path": "sources/073__LATEST.md",
+      "bytes": 1917,
+      "sha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0"
+    },
+    {
+      "path": "sources/074_main.ts",
+      "bytes": 38554,
+      "sha256": "ff324e424c772f94bbd59e628ed60ea3ef2e9d7398960ae341f10d55bc9e65b7"
+    },
+    {
+      "path": "sources/075_preload.ts",
+      "bytes": 4602,
+      "sha256": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a"
+    },
+    {
+      "path": "sources/076_renderer-window-policy.ts",
+      "bytes": 23877,
+      "sha256": "c9c37b00b2d777ef96a1d1bd000b6690f1fdad54af88eb11931561d75522c1de"
+    },
+    {
+      "path": "sources/077_run-packaged-security-proof.mjs",
+      "bytes": 35256,
+      "sha256": "99249b5d00d215a989aad884ac2ab1d0b4238d6e19e07cb8faa651b6212e2d51"
+    },
+    {
+      "path": "sources/078_file-policy.ts",
+      "bytes": 8582,
+      "sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603"
+    },
+    {
+      "path": "sources/079_route.ts",
+      "bytes": 6304,
+      "sha256": "c9a604c4803b399983b3c357be8d4fc7e0877ca100c408e5c41cf435053feba1"
+    },
+    {
+      "path": "sources/080_document-view.tsx",
+      "bytes": 22804,
+      "sha256": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312"
+    },
+    {
+      "path": "sources/081_LOOP_INIT.md",
+      "bytes": 16290,
+      "sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf"
+    }
+  ]
+}

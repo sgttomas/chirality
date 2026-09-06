@@ -1,0 +1,50 @@
+{
+  "utc": "2026-09-06T20:50:33.162365+00:00",
+  "fetch": {
+    "argv": [
+      "git",
+      "fetch",
+      "origin"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "original_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "origin_main": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "sync": "NO_OP_ALREADY_EQUAL",
+  "pr": {
+    "baseRefName": "main",
+    "baseRefOid": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+    "headRefName": "codex/runtime-packaging-integration",
+    "headRefOid": "49951af6237bbb8701c0a2cebcd8c30fbde75b8e",
+    "isDraft": false,
+    "number": 738,
+    "state": "OPEN",
+    "title": "Fix Runtime Pi loading and Codex startup, approval, and retirement boundaries",
+    "url": "https://github.com/sgttomas/chirality/pull/738"
+  },
+  "original_dirty_count": 715,
+  "original_dirty_preserved": true,
+  "isolated_path": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af",
+  "isolated_branch": "codex/app-runtime-integration-20260906",
+  "isolated_head": "49951af6237bbb8701c0a2cebcd8c30fbde75b8e",
+  "isolated_clean": true,
+  "app_overlay_file": "projects/chirality-app-dev/frontend/tsconfig.electron.json",
+  "app_config_preimage_sha256": "8b8bfb49b7e9361cdbbcd94dbc4df31ccb16f3dda24c37b0859ef48639de23ec",
+  "current_app_config_sha256": "522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0",
+  "frozen_candidate_sha256": "522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0",
+  "overlay_applied": false,
+  "publication": false,
+  "metadata": {
+    "role": "CHANGE Agent1",
+    "instance": "/root/resume_change",
+    "parent": "/root",
+    "engine": "Codex native harness",
+    "provider": "OpenAI",
+    "model": "GPT-6 system identity; exact deployment unavailable",
+    "execution_class": "delegated-harness-native",
+    "enforcement": "instruction-asserted"
+  }
+}

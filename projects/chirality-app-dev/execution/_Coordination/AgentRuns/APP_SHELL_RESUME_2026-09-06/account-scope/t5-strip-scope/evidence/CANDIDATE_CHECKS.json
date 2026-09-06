@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": {
+    "frozen_files": true,
+    "live_status_preimage": true,
+    "exactly_one_locus_line_changed": true,
+    "reliance_allow": true,
+    "dispatch_allow": true
+  },
+  "candidate_freeze_sha256": "89cd6d3b8490ea52f105412003e2d2c567fa6812346eb60c0468d29d660e23e6"
+}

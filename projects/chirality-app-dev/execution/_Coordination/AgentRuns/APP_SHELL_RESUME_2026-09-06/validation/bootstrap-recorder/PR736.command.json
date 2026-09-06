@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "gh",
+    "pr",
+    "view",
+    "736",
+    "--repo",
+    "sgttomas/chirality",
+    "--json",
+    "number,state,headRefOid,mergeCommit,statusCheckRollup"
+  ],
+  "cwd": "{REPO_ROOT}",
+  "started_at": "2026-09-06T18:16:04.877857+00:00",
+  "finished_at": "2026-09-06T18:16:05.496407+00:00",
+  "exit_code": 0,
+  "environment": "inherited session; credentials and environment values intentionally not captured",
+  "stdout": "PR736.stdout.json",
+  "stderr": "PR736.stderr.txt"
+}

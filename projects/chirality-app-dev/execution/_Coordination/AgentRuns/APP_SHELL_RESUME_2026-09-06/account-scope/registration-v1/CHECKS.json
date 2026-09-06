@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": {
+    "live_packet_frozen": true,
+    "live_register_frozen": true,
+    "candidate_unchanged": true,
+    "prior_register_bytes_preserved": true,
+    "owner_selection_none": true
+  },
+  "git_diff_check_exit": 0
+}

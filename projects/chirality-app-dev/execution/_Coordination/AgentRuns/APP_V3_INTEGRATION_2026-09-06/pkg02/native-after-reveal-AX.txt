@@ -1,0 +1,91 @@
+Window: "Chirality Workflow Shell", App: Chirality Resume Proof.
+0 standard window Chirality Workflow Shell, Secondary Actions: Raise
+	1 container Chirality Workflow Shell
+		2 container
+			3 HTML content Chirality Workflow Shell, URL: 127.0.0.1:51404/
+				4 container
+					5 container Primary Dialogue
+						6 container
+							7 text Working Items
+							8 text What would you like to work on?
+							9 text You
+							10 text Owned stub verification: alpha session.
+							11 text Working Items
+							12 text Owned stub verification: alpha session.
+							13 text entry area (settable) Description: Chat input, Value: Unsaved native Reveal proof draft, Placeholder: Message Working Items…
+							14 button Attach files
+							15 button Send
+							16 container Chat context
+								17 text Working in
+								18 container /private/tmp/ch-v3-gui-20260906/work
+									19 text ▱  work
+								20 text AGENT
+								21 pop up button AGENT, Help: WORKING_ITEMS, Value: Working Items
+									22 (selected) Working Items
+								23 container
+									24 text Operator mode
+									25 pop up button Operator mode, Value: Ask before changes
+										26 (selected) Ask before changes
+								27 text No delegation
+								28 text Plain chat
+					29 button Close Navigator
+					30 container Workspace Navigator
+						31 text Chirality
+						32 container Workspace surfaces
+							33 button  New chat
+							34 button Current chat
+							35 content list Recorded sessions
+								36 container
+									37 toggle button Live session Working Items Sep 6, 2026, Help: WORKING_ITEMS · f2d81d80-0232-4dd5-b581-7ec8b531439d · Recorded surface: dialogue, Value: 0
+										38 image Live session
+										39 text Working Items
+										40 text Sep 6, 2026
+									41 button Description: Reveal folder for Working Items (f2d81d80-0232-4dd5-b581-7ec8b531439d), Help: Reveal in Finder · /private/tmp/ch-v3-gui-20260906/work
+						42 container
+							43 disclosure triangle Settings, Help: /private/tmp/ch-v3-gui-20260906/work
+								44 text Settings
+							45 container Theme
+								46 toggle button LIGHT, Value: 1
+								47 toggle button DARK, Value: 0
+								48 toggle button AUTO, Value: 0
+							49 link Description: Open legacy interface in a new window, Value: 127.0.0.1:51404/?legacy=1
+					50 splitter Description: Resize Navigator, Value: 240
+					51 splitter Description: Resize Coordination Panel, Value: 480
+					52 container Right panel
+						53 container
+							54 tab group Right panel views
+								55 tab (settable, integer) Files, Value: 0
+								56 tab (settable, integer) Workflows, Value: 0
+								57 tab (settable, integer) Who is working, Value: 0
+								58 tab (selected) Activity, Value: 1
+							59 disclosure triangle Description: Panel menu, Help: ⋮
+								60 text ⋮
+							61 toggle button Description: Expand panel, Value: 0
+							62 button Collapse right panel
+						63 container Activity
+							64 container Activity details
+								65 container Activity views
+									66 toggle button Actions, Value: 1
+									67 toggle button Events, Value: 0
+									68 toggle button Tasks, Value: 0
+								69 text field (settable) Description: Filter activity, Placeholder: Filter activity…
+								70 button Clear view
+								71 text No matching actions.
+					72 container Activity status
+						73 button Check runtime connection; reported status: connected
+							74 text RUNTIME
+							75 text connected
+						76 text Runtime reported connected
+						77 text Idle
+						78 button Details ›
+	79 close button
+	80 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	81 minimize button
+82 menu bar
+	83 Chirality Resume Proof
+	84 File
+	85 Edit
+	86 View
+	87 Window
+
+The focused UI element is 3 HTML content Chirality Workflow Shell, URL: 127.0.0.1:51404/

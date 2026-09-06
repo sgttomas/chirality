@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-09-06T19:58:31.656109+00:00",
+  "source": "actual parent dispatch report",
+  "graph": "WORK_GRAPH_v10.json",
+  "launches": [
+    {
+      "instance": "/root/resume_pkg09",
+      "role": "WORKING_ITEMS PKG09",
+      "status": "ACTUALLY_DISPATCHED_RELEASED",
+      "brief": "instances/resume_pkg09/LAUNCH_BRIEF_v1.md",
+      "brief_sha256": "c0e05942827dba72da11e5eb13b08bf24ff6b5b4b9032aea9259dc7a7c0c5abf",
+      "supplement": "instances/resume_pkg09/EXECUTION_SUPPLEMENT_v1.md"
+    },
+    {
+      "instance": "/root/resume_account_scope",
+      "role": "SCOPE_CHANGE",
+      "status": "FOLLOWUP_RELEASED_D124_RECORDING",
+      "amendment": "instances/resume_account_scope/AMENDMENT_v6.md",
+      "amendment_sha256": "1cf31f88beb26ef729ba3f5a15546a93817de0f23838a2c80b0fa280956ed7b5"
+    }
+  ],
+  "parent_app_hold": "actual DEL09-04 dispatch ALLOW previously reported; no raw command capture invented",
+  "status_at_dispatch": "work running; no final fan-in",
+  "publication": "HELD_NO_NEW_GRANT",
+  "broader_native_repair": "NOT_AUTHORIZED",
+  "model": "OpenAI GPT-6 family per system; exact serving ID unavailable",
+  "native_roles": "instruction-asserted"
+}

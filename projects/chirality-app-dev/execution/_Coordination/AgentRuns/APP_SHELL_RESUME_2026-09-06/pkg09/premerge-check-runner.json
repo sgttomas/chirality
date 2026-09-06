@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/run_registered_checks.py",
+    "projects/chirality-app-dev/software-workflow.json",
+    "--check",
+    "frontend-premerge",
+    "--output",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg09/PREMERGE_CHECK.json",
+    "--timeout-seconds",
+    "600"
+  ],
+  "cwd": ".",
+  "started": "2026-09-06T19:55:47.333734+00:00",
+  "finished": "2026-09-06T19:55:51.148091+00:00",
+  "exit_code": 1,
+  "environment": "inherited; no command-specific overrides",
+  "stdout": "premerge-check-runner.stdout",
+  "stderr": "premerge-check-runner.stderr"
+}

@@ -1,0 +1,28 @@
+{
+  "processes": [
+    {
+      "pid": 81438,
+      "SIGTERM": "sent"
+    },
+    {
+      "pid": 81439,
+      "SIGTERM": "sent"
+    },
+    {
+      "pid": 81467,
+      "SIGTERM": "already absent"
+    }
+  ],
+  "ports": [
+    {
+      "port": 3198,
+      "connect_ex": 61
+    },
+    {
+      "port": 3199,
+      "connect_ex": 61
+    }
+  ],
+  "Chrome": "owned tab730583375 closed, viewport reset via CUA",
+  "Finder": "No Finder window reached or created"
+}

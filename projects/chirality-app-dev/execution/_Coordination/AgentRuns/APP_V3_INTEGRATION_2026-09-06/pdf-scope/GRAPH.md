@@ -1,0 +1,1 @@
+Manager SCOPE_CHANGE author -> fresh bounded Agent2 reviewer -> manager fan-in -> parent owner slate. Parent graph v2 release applies. All preparation evidence only; source unchanged. Native delegation instruction-asserted. Model family GPT-6; exact served identifier not exposed. No substitution.

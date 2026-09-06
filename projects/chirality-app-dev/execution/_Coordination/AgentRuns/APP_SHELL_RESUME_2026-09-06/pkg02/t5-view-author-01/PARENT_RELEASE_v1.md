@@ -1,0 +1,3 @@
+# Parent execution release
+
+Actual HELP_HUMAN /root release: exact frozen T5 candidate 6fd9ebb78eb0239006b0541ae4ec2de982e50e87c53764846f8bb6dca65967dc under graphv4. Three source loci only; legacy shelf and strip bytes unchanged. WORK_GRAPH_v4 SHA67f243cf4795f116602091f1494219c3523f98dc8ed60e9e04533017c1e621dc; plan c668c24c108677badc3cec6a6686a8fe9b440a8926ee3f72714eb644311165c4; instances/resume_pkg02/AMENDMENT_v4.md SHA1f0f524c365ba9a119561193517c6be6a5d81e732f4559044a8b29ee408df9e7. Author then fresh full diff reviewer; isolated Chrome component proof. Runtime/account/main/publication scope unextended. Single serialized source/checks owner WORKING_ITEMS PKG02.

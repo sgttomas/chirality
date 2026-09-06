@@ -1,0 +1,13 @@
+{
+  "frontend": {
+    "pid": 28059,
+    "exit_code": 0
+  },
+  "daemon": {
+    "pid": 28046,
+    "exit_code": 0
+  },
+  "socket_exists_before_scratch_removal": false,
+  "scratch_absent": true,
+  "frontend_connect_ex": 61
+}

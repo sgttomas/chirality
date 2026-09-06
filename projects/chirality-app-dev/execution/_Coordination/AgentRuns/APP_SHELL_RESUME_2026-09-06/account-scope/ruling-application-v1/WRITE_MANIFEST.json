@@ -1,0 +1,103 @@
+{
+  "status": "CANDIDATE_ONLY_NOT_APPLIED",
+  "owner_response": "Runtime A; D122 A; D123 A",
+  "owner_response_sha256": "d831e1fba1143c29a2fce8f1e8172942ab33b31b268f15ae0457309ed3490235",
+  "records": [
+    {
+      "key": "D122_RULING.md",
+      "owner": "SCOPE_CHANGE",
+      "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-122_RULING_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md",
+      "preimage": "ABSENT",
+      "preimage_sha256": null,
+      "candidate": "candidate/D122_RULING.md",
+      "postimage_sha256": "8842b95600dff24a107ad2fab18d3fd270010e46d02344d41ca18c953c21c51a",
+      "action": "CREATE"
+    },
+    {
+      "key": "D123_RULING.md",
+      "owner": "SCOPE_CHANGE",
+      "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-123_RULING_ACTIVITY_STRIP_PRIMARY_SESSION_LOCUS_2026-09-06.md",
+      "preimage": "ABSENT",
+      "preimage_sha256": null,
+      "candidate": "candidate/D123_RULING.md",
+      "postimage_sha256": "91ce5c6bcd0a3a22638622715a81db660880dcb2a61bc560bd9817f79429fdd9",
+      "action": "CREATE"
+    },
+    {
+      "key": "REGISTER.md",
+      "owner": "SCOPE_CHANGE",
+      "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "preimage": "preimage/REGISTER.md",
+      "preimage_sha256": "55b1388ab10d4faf2098a0b5d42e04ba3a40e3fcea71bed54cda9a05252ee089",
+      "candidate": "candidate/REGISTER.md",
+      "postimage_sha256": "8a195ed9d08b812c4974d6abd590cb2d53b96b8a5cda3ef663765376b788b83d",
+      "action": "MODIFY"
+    },
+    {
+      "key": "DEL0205_STATUS.md",
+      "owner": "WORKING_ITEMS_PKG02",
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+      "preimage": "preimage/DEL0205_STATUS.md",
+      "preimage_sha256": "6e78e98c67cfeb5c75fafc626531e9f8af5624df4fb3ce9398e9b365e959ed5d",
+      "candidate": "candidate/DEL0205_STATUS.md",
+      "postimage_sha256": "01c256f2d508a53e238e34b436c63443deea73d7c9157976d360fe5238b8e472",
+      "action": "MODIFY"
+    },
+    {
+      "key": "DEL0205_MEMORY.md",
+      "owner": "WORKING_ITEMS_PKG02",
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+      "preimage": "preimage/DEL0205_MEMORY.md",
+      "preimage_sha256": "46e8e3930adc0c0f985fe9b03f5ae510f44e64a44123e1a49379d10681963773",
+      "candidate": "candidate/DEL0205_MEMORY.md",
+      "postimage_sha256": "3fcfc73bdabd57df74b2ff5fa285ba48b00ff3fbaac941b9c6eca39fd13ef0b6",
+      "action": "MODIFY"
+    },
+    {
+      "key": "DEL0205_RUN_RECORD.md",
+      "owner": "WORKING_ITEMS_PKG02",
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/D_APP_122_OWNER_SELECTION_2026-09-06.md",
+      "preimage": "ABSENT",
+      "preimage_sha256": null,
+      "candidate": "candidate/DEL0205_RUN_RECORD.md",
+      "postimage_sha256": "09fb826b979f51d17222ab6276627e3b9e5febdcdca82570f898ee05694c5050",
+      "action": "CREATE"
+    },
+    {
+      "key": "DEL0204_STATUS.md",
+      "owner": "WORKING_ITEMS_PKG02",
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+      "preimage": "preimage/DEL0204_STATUS.md",
+      "preimage_sha256": "16053333f23dd8905c5567eeae4151de03e56f77f58fa64d7c52d0dc30d249f0",
+      "candidate": "candidate/DEL0204_STATUS.md",
+      "postimage_sha256": "ebb3294e52cde902190082f6fc14badb4437b23397ae9553e68eb6e79dd0915f",
+      "action": "MODIFY"
+    },
+    {
+      "key": "DEL0204_MEMORY.md",
+      "owner": "WORKING_ITEMS_PKG02",
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md",
+      "preimage": "preimage/DEL0204_MEMORY.md",
+      "preimage_sha256": "27e1b055378816a51912788d79bd4c9c1fa0eb50ab9f2b558547572e8eaf20c2",
+      "candidate": "candidate/DEL0204_MEMORY.md",
+      "postimage_sha256": "fcbd050145f2d2395fa1078f3d13ec9ca2c64c49262d6d463c0c0b7768c0dbf9",
+      "action": "MODIFY"
+    },
+    {
+      "key": "DEL0204_RUN_RECORD.md",
+      "owner": "WORKING_ITEMS_PKG02",
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/D_APP_123_OWNER_SELECTION_2026-09-06.md",
+      "preimage": "ABSENT",
+      "preimage_sha256": null,
+      "candidate": "candidate/DEL0204_RUN_RECORD.md",
+      "postimage_sha256": "bb21621ab6731710b1d4d94fa870c490145ae611f8962f7ccae1afa822d573da",
+      "action": "CREATE"
+    }
+  ],
+  "application_order": [
+    "SCOPE_CHANGE coordination candidates on separate parent release",
+    "WORKING_ITEMS_PKG02 local candidates on separate parent release"
+  ],
+  "source_authority": "HELD until owner acts observable on fetched origin/main",
+  "publication": "NONE"
+}

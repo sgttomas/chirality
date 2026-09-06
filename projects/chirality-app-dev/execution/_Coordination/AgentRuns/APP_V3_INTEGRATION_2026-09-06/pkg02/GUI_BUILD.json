@@ -1,0 +1,10 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "exit_code": 0,
+  "environment": "CHIRALITY_* and API secrets removed; NEXT_TELEMETRY_DISABLED=1"
+}

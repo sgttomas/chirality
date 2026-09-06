@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checks": {
+    "candidate-v1/CANDIDATE_IDENTITIES.json": true,
+    "candidate-v1/CANDIDATE__STATUS.md": true,
+    "candidate-v1/INPUT_IDENTITIES.json": true,
+    "candidate-v1/PREIMAGE__STATUS.md": true,
+    "candidate-v1/PROPOSAL.md": true,
+    "candidate-v1/STATUS_DIFF.patch": true,
+    "live_status_preimage": true,
+    "prefix_unchanged": true,
+    "history_unchanged": true,
+    "exactly_three_changed_lines": true,
+    "candidate_hash": true,
+    "merged_work_ancestor": true
+  }
+}

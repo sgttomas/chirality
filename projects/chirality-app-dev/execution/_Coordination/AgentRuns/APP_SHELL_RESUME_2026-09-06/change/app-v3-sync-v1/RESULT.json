@@ -1,0 +1,42 @@
+{
+  "utc": "2026-09-06T22:22:32.702280+00:00",
+  "fetch": {
+    "argv": [
+      "git",
+      "fetch",
+      "origin"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "From github.com:sgttomas/chirality\n   ec491aee1..28a8ed32b  main       -> origin/main\n"
+  },
+  "working_root": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "repo_root": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "branch": "codex/shell-redesign-resume-20260906",
+  "head_before": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "head_after": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "origin_main": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "mode": "FAST_FORWARD_EXISTING_WORKTREE",
+  "before_dirty_count": 813,
+  "preserved_dirty_count": 813,
+  "all_original_pending_bytes_preserved": true,
+  "identical_overlap_absorbed": [
+    "projects/chirality-app-dev/frontend/tsconfig.electron.json"
+  ],
+  "index_clean": true,
+  "remaining_tracked_dirty_count": 16,
+  "upstream_changed_path_count": 1144,
+  "app_authority_changes": [],
+  "root_changes": [],
+  "runtime_governance_reinspection": [
+    "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+    "projects/chirality-runtime/loop/LOOP_RECEIPTS.md"
+  ],
+  "runtime_dependency_changes": [
+    "projects/chirality-runtime/package-lock.json",
+    "projects/chirality-runtime/package.json"
+  ],
+  "runtime_rebuild_performed": false,
+  "publication_performed": false,
+  "closure": "Synchronization CLOSED; parent live-authority selection and validation activation remain separate"
+}

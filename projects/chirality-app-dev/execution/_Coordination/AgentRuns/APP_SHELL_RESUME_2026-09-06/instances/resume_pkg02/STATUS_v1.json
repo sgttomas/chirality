@@ -1,0 +1,14 @@
+{
+  "instance": "/root/resume_pkg02",
+  "parent": "/root",
+  "role": "WORKING_ITEMS PKG02",
+  "recorded_at": "2026-09-06T18:14:13.219902+00:00",
+  "status": "DISCOVERY_CANDIDATE_RECORDS_RELEASED_SOURCE_HELD",
+  "evidence_source": "parent message; CHANGE bootstrap independently checked",
+  "engine": "Codex native harness",
+  "provider": "OpenAI",
+  "model": "GPT-6 family per system",
+  "exact_serving_model": "unavailable",
+  "role_enforcement": "instruction-asserted",
+  "future_verdict": null
+}

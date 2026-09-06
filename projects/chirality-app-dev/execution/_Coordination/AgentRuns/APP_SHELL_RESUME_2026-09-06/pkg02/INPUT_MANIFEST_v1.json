@@ -1,0 +1,33 @@
+{
+  "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "members": [
+    {
+      "path": "frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "4dec2c988d2ba495a69ca21f7eabdb53c9f42eefddfa2d33f5bc4231de90dc17"
+    },
+    {
+      "path": "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "sha256": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f"
+    },
+    {
+      "path": "frontend/electron/preload.ts",
+      "sha256": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a"
+    },
+    {
+      "path": "frontend/src/components/shell/document-view.tsx",
+      "sha256": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312"
+    },
+    {
+      "path": "plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+      "sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45"
+    },
+    {
+      "path": "plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md",
+      "sha256": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb"
+    },
+    {
+      "path": "plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+      "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6"
+    }
+  ]
+}

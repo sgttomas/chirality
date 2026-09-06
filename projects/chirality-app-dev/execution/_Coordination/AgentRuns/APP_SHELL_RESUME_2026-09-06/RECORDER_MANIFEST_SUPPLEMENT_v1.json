@@ -1,0 +1,10 @@
+{
+  "base_manifest": "RECORDER_MANIFEST_v1.json",
+  "items": [
+    {
+      "path": "CURRENT_ITERATION_BOUNDARY_v1.md",
+      "sha256": "9f87b0820b21df2b65c4114eac92110b19cf64c8393e9efae116d9a32f4e18cb",
+      "bytes": 1236
+    }
+  ]
+}

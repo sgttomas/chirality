@@ -1,0 +1,1 @@
+{"status": "FAIL", "output": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/projects/chirality-app-dev/frontend/artifacts/combined-integration-v1/REGISTERED_CHECKS.json", "checks": ["frontend-typecheck", "frontend-test", "frontend-build", "app-hold-integrity", "harness-self-check", "harness-pytest"]}

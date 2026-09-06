@@ -1,0 +1,23 @@
+{
+  "checks": [
+    "app-hold-integrity",
+    "frontend-test",
+    "frontend-typecheck",
+    "harness-self-check"
+  ],
+  "paths": [
+    "frontend/src/components/woven-dialogue/navigator.tsx",
+    "frontend/src/__tests__/components/historical-chat-reveal.test.tsx"
+  ],
+  "reasons": {
+    "frontend-test": [
+      "frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+      "frontend/src/components/woven-dialogue/navigator.tsx"
+    ],
+    "frontend-typecheck": [
+      "frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+      "frontend/src/components/woven-dialogue/navigator.tsx"
+    ]
+  },
+  "schema": "chirality-affected-checks/v1"
+}

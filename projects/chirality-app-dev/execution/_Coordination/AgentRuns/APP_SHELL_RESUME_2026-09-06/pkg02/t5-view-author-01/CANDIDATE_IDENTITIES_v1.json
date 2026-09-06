@@ -1,0 +1,10 @@
+{
+  "basis": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "brief": "6fd9ebb78eb0239006b0541ae4ec2de982e50e87c53764846f8bb6dca65967dc",
+  "preimages": {
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "5ead94ce6031e09162eccf1c01124bb97127b47b1c6be185bac0cdd13f3a7ac4",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx": "2378427d83b1dc2cef1424f4ea845910c0cb2a269e4a34b89844b68d309e3c3a"
+  },
+  "new_path": "frontend/src/__tests__/components/activity-view-presentation.test.tsx",
+  "dependency": "already-merged T1 and partial T3 host only; independent of Reveal/local reconciliation"
+}

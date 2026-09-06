@@ -1,0 +1,20 @@
+[chirality-desktop] 2026-09-06T22:32:12.241Z [info] desktop.gui.starting {"packaged":false,"userData":"/private/tmp/ch-v3-gui-20260906/data","socketPath":"/private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:32:12.242Z [info] runtime.socket_watch.started {"directory":"/private/tmp/ch-v3-gui-20260906/data/runtime"}
+[chirality-desktop] 2026-09-06T22:32:12.242Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-09-06T22:32:12.252Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-09-06T22:32:12.252Z"}
+[chirality-desktop] 2026-09-06T22:32:12.253Z [info] runtime.connectivity.bound {"priorFailedAttempts":0}
+[chirality-desktop] 2026-09-06T22:32:23.562Z [info] runtime.socket_watch.presence_changed {"present":false}
+[chirality-desktop] 2026-09-06T22:32:23.563Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":0,"lastError":"Runtime daemon stopped responding","changedAt":"2026-09-06T22:32:23.563Z"}
+[chirality-desktop] 2026-09-06T22:32:23.563Z [warn] runtime.connectivity.lost
+[chirality-desktop] 2026-09-06T22:32:23.564Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock","changedAt":"2026-09-06T22:32:23.564Z"}
+[chirality-desktop] 2026-09-06T22:32:23.564Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:32:24.567Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:32:26.570Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:32:31.573Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:32:41.576Z [error] runtime.connectivity.bind_failed {"attempt":5,"reason":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:32:51.579Z [error] runtime.connectivity.bind_failed {"attempt":6,"reason":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:33:01.582Z [error] runtime.connectivity.bind_failed {"attempt":7,"reason":"Unable to reach the Chirality runtime at /private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:33:04.916Z [info] runtime.socket_watch.presence_changed {"present":true}
+[chirality-desktop] 2026-09-06T22:33:04.920Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-09-06T22:33:04.920Z"}
+[chirality-desktop] 2026-09-06T22:33:04.920Z [info] runtime.connectivity.bound {"priorFailedAttempts":7}
+/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron exited with signal SIGTERM

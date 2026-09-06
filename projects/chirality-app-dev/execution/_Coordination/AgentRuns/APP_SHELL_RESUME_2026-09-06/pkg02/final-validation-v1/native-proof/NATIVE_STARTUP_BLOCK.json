@@ -1,0 +1,8 @@
+{
+  "status": "BLOCKED_BEFORE_WINDOW",
+  "pid": 81467,
+  "exception": "ERR_PACKAGE_PATH_NOT_EXPORTED: @earendil-works/pi-coding-agent, no exports main in CommonJS loader",
+  "cua": "getApp exact owned path timed out",
+  "cleanup": "SIGTERM to exact owned process group81467",
+  "proof_claim": "No actual IPC or Finder reveal achieved; frozen bridge/source untouched"
+}

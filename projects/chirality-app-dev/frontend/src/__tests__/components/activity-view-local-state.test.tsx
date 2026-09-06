@@ -5,7 +5,10 @@ import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 const state = vi.hoisted(() => ({ events: [] as HarnessEvent[] }));
 vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEvents: () => ({ events: state.events }) }));
 import { ActivityView, ActivityStrip } from '../../components/woven-dialogue/activity-shelf';
-import { ToolStreamList } from '../../components/shell/tool-stream-view';
+function actionRows(tree: ReturnType<typeof create>) {
+  const list = tree.root.findAllByProps({ 'aria-label': 'Actions' })[0];
+  return list ? list.findAll(node => node.type === 'li' && typeof node.props.className === 'string' && node.props.className.startsWith('harness-stream-item ')) : [];
+}
 function event(eventId: string, type: HarnessEvent['type'], data: Record<string, unknown>, sessionId = 'one'): HarnessEvent {
   return { schemaVersion: 1, eventId, sessionId, turnId: 'turn', timestamp: '2026-09-06T01:00:00Z', type, data };
 }
@@ -14,33 +17,38 @@ it('filters completed projections and clears only observed versions without chan
   const original = JSON.stringify(state.events);
   const tree = create(<ActivityView />);
   act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: 'read_file' } }));
-  expect(tree.root.findByType(ToolStreamList).props.rows).toMatchObject([{ toolName: 'read_file', status: 'completed' }]);
+  expect(actionRows(tree)).toHaveLength(1);
+  expect(actionRows(tree)[0].props.className).toContain('--completed');
+  expect(actionRows(tree)[0].findByProps({ title: 'read_file' }).children).toEqual(['Read action finished']);
   act(() => tree.root.findAllByType('button').find(button => button.children.includes('Clear view'))!.props.onClick());
-  expect(tree.root.findByType(ToolStreamList).props.rows).toEqual([]);
+  expect(actionRows(tree)).toHaveLength(0);
   expect(JSON.stringify(state.events)).toBe(original);
   act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: '' } }));
   state.events = [...state.events, event('start', 'tool.started', { toolUseId: 'tool', toolName: 'write_file' }, 'two')];
   act(() => tree.update(<ActivityView />));
-  expect(tree.root.findByType(ToolStreamList).props.rows).toMatchObject([{ toolName: 'write_file', status: 'running' }]);
+  expect(actionRows(tree)).toHaveLength(1);
+  expect(actionRows(tree)[0].props.className).toContain('--running');
+  expect(actionRows(tree)[0].findByProps({ title: 'write_file' }).children).toEqual(['Writing file']);
   state.events = [event('start', 'tool.started', { toolUseId: 'tool', toolName: 'updated_tool' }), ...state.events.slice(1)];
   act(() => tree.update(<ActivityView />));
-  expect(tree.root.findByType(ToolStreamList).props.rows[0].status).toBe('completed');
-  expect(tree.root.findByType(ToolStreamList).props.rows.map((row: { toolName: string }) => row.toolName)).toEqual(['updated_tool', 'write_file']);
+  expect(actionRows(tree)[0].props.className).toContain('--completed');
+  expect(actionRows(tree).map(row => row.findByProps({ className: 'harness-stream-name' }).props.title)).toEqual(['updated_tool', 'write_file']);
   act(() => tree.unmount());
 });
 
 it('keeps matching tool IDs in different sessions distinct and reveals a later completion after clear', () => {
   state.events = [event('start', 'tool.started', { toolUseId: 'same', toolName: 'read_file' }, 'one'), event('start', 'tool.started', { toolUseId: 'same', toolName: 'read_file' }, 'two')];
   const tree = create(<ActivityView />);
-  expect(tree.root.findByType(ToolStreamList).props.rows).toHaveLength(2);
+  expect(actionRows(tree)).toHaveLength(2);
   const strip = create(<ActivityStrip events={state.events} running onOpenDetails={() => {}} />);
   expect(JSON.stringify(strip.toJSON())).toContain('2 actions');
   act(() => tree.root.findAllByType('button').find(button => button.children.includes('Clear view'))!.props.onClick());
-  expect(tree.root.findByType(ToolStreamList).props.rows).toEqual([]);
+  expect(actionRows(tree)).toHaveLength(0);
   const completion = event('end', 'tool.completed', { toolUseId: 'same' }, 'one');
   state.events = [...state.events, completion];
   act(() => tree.update(<ActivityView />));
-  expect(tree.root.findByType(ToolStreamList).props.rows).toMatchObject([{ key: 'one:same', status: 'completed' }]);
+  expect(actionRows(tree)).toHaveLength(1);
+  expect(actionRows(tree)[0].props.className).toContain('--completed');
   expect(state.events).toHaveLength(3); expect(state.events[2]).toBe(completion);
   act(() => { tree.unmount(); strip.unmount(); });
 });

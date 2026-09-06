@@ -1,0 +1,17 @@
+{
+  "app": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/Chirality Resume Proof.app",
+  "electron_archive": {
+    "path": "/Users/ryan/Library/Caches/chirality/electron-dist/electron-v43.2.0-darwin-arm64.zip",
+    "sha256": "ad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28"
+  },
+  "files": {
+    "projects/chirality-app-dev/frontend/dist-electron/main.js": "2947a9ddbda767f5f58c4ac14477787febf81654a9d48bee4c7f3882b8f07721",
+    "projects/chirality-app-dev/frontend/dist-electron/preload.js": "d48814bcaf3501742a38a6bff7358b0814a6d643f925fc2749fc96e346b7cba6",
+    "projects/chirality-app-dev/frontend/electron/main.ts": "ff324e424c772f94bbd59e628ed60ea3ef2e9d7398960ae341f10d55bc9e65b7",
+    "projects/chirality-app-dev/frontend/electron/preload.ts": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/native-proof/proxy.cjs": "bf1af75b56951d00dafb771c4f6719c26fae7d79083810238519e73bffc83c11",
+    "projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/Chirality Resume Proof.app/Contents/Info.plist": "0e09f68e4c2f54fa9e0fb57b6444fb8f1edf4ca1d6ada481f14d283646b925e9"
+  },
+  "identity_only_changes": "Pinned Electron archive extracted App-local; identity-only Info.plist fields and normal development ad-hoc signing; production main/preload unchanged; un-packaged GUI only",
+  "roots": "Existing public directories, no mutation; synthetic sessions; not real project, multi-root-runtime or Finder drag proof"
+}

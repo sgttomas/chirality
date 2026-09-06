@@ -1,0 +1,45 @@
+{
+  "status": "PROPOSED_ONLY_NOT_APPLIED",
+  "locus": "frontend/tsconfig.electron.json",
+  "preimage_sha256": "8b8bfb49b7e9361cdbbcd94dbc4df31ccb16f3dda24c37b0859ef48639de23ec",
+  "candidate_sha256": "522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0",
+  "removed_source_aliases": {
+    "@chirality/engine-claude": [
+      "../../chirality-runtime/packages/engine-claude/src/index.ts"
+    ],
+    "@chirality/runtime-contracts": [
+      "../../chirality-runtime/packages/contracts/src/index.ts"
+    ],
+    "@chirality/runtime-contracts/*": [
+      "../../chirality-runtime/packages/contracts/src/harness/*"
+    ],
+    "@chirality/runtime-core": [
+      "../../chirality-runtime/packages/core/src/index.ts"
+    ],
+    "@chirality/runtime-daemon": [
+      "../../chirality-runtime/packages/daemon/src/index.ts"
+    ],
+    "@chirality/runtime-client": [
+      "../../chirality-runtime/packages/client/src/index.ts"
+    ],
+    "@chirality/runtime-cli": [
+      "../../chirality-runtime/packages/cli/src/index.ts"
+    ],
+    "@chirality/engine-pi-omlx": [
+      "../../chirality-runtime/packages/engine-pi-omlx/src/index.ts"
+    ]
+  },
+  "preserved": "All other compiler flags including strict, skipLibCheck, baseUrl and include unchanged. Package exports types point at compiled declarations from approved Runtime build. No Runtime source or suppression change.",
+  "validation": [
+    "registered frontend-typecheck",
+    "registered frontend-test",
+    "registered frontend-build",
+    "100% frozen diff fresh software-code-review",
+    "resolution trace proving @chirality package declarations, no Runtime src inclusion",
+    "registered frontend-premerge (actual binding availability calibrated)",
+    "harness-self-check",
+    "harness-pytest",
+    "app-hold-integrity"
+  ],
+  "owner": "Parent to route correct live deliverable/locus; not selected under current seven-source tranche"
+}

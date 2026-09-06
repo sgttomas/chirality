@@ -1,5 +1,7 @@
 # MEMORY - DEL-09-04
 
+- 2026-09-06 — D124 is present on merged main `28a8ed32ba83c5514ae2e65e9260833c1d46b7ef`. Current App integration includes the seven pending shell changes: both typechecks, 1,774 Vitest passed / 4 skipped, build, APP-HOLD, self-check and 379 pytest tests pass. Isolated actual Electron daemon registration and stub-provider premerge pass 8/8; owned processes exit0, socket and disposable tokens are removed. Prior 503/Pi-loading failures remain historical, resolved only for this verified registered headless setup. D124 remains open for parent final-union/local closeout; GUI, real-provider, live-login and release claims remain separate. See `_run_records/D_APP_124_MERGED_APP_V3_INTEGRATION_2026-09-06.md`.
+
 - 2026-08-21 — The owner-authorized PREPARE-THEN-OWNER tranche produced a
   reviewed two-phase actual-login proof candidate and minimal future procedure,
   recorded in `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`.
@@ -87,3 +89,5 @@
 - 2026-07-12 - D-APP-56 R5 P40 executed UPD-075, UPD-078: REF-006 current-state kit/register wording now agrees with D-APP-38 MATCH; dated source-warning and assessment history is preserved. No lifecycle transition.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-09-04; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
 - 2026-09-04 - SCA-APP-010 seating, outside the thirteen carriers (D-APP-108): Remaining items DEL-09-04-V3-02; read `_STATUS.md` with this file before any write; the applied decomposition row L381 (unchanged by SCA-APP-010) states the responsibility; this carrier was seated only and not aligned in this pass, so `ScopeOfWork.md` keeps its earlier pin and carries no SCA-APP-010 section; nothing here is authority. No lifecycle, Checking Approval SHA, dependency, product, or release change.
+
+- 2026-09-06 — D-APP-124 removes only the eight Runtime-source aliases from Electron typechecking so current built public declarations are consumed. Exact source review PASS, both compiler checks, 1,774 Vitest tests (4 skipped), build and harness checks PASS. Local premerge still fails HTTP 503 without Runtime binding; native startup failure remains historical/unrepaired. Parent final-union/Git closeout and PR-CI remain pending, with no publication or lifecycle act. See `_run_records/D_APP_124_COMPILER_DECLARATION_REPAIR_2026-09-06.md`.

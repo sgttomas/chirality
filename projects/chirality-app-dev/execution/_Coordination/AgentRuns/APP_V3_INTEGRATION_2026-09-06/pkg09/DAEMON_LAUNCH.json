@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/.bin/electron",
+    "--user-data-dir=/private/tmp/ch-v3-28a8-20260906",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-electron/main.js",
+    "--runtime-daemon"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "pid": 44624,
+  "environment_overrides": {
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "CHIRALITY_RUNTIME_USER_DATA": "/private/tmp/ch-v3-28a8-20260906",
+    "CHIRALITY_USER_DATA": "/private/tmp/ch-v3-28a8-20260906",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/ch-v3-28a8-20260906/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/ch-v3-28a8-20260906/runtime/auth/tokens/operator.token"
+  },
+  "started": "2026-09-06T22:26:38.763726+00:00"
+}

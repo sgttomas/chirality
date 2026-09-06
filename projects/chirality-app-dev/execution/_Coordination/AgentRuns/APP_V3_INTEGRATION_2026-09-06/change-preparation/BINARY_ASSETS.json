@@ -1,0 +1,314 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/asset-audit/embedded-png-v1/embedded-01-256x256-63c138f15647.png",
+    "bytes": 173796,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/asset-audit/embedded-png-v1/embedded-02-88x88-8f95af2791d4.png",
+    "bytes": 21137,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/asset-audit/embedded-png-v1/embedded-03-44x44-e5a3526260fa.png",
+    "bytes": 5297,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/asset-audit/embedded-png-v1/embedded-04-860x240-28e8c67571cb.png",
+    "bytes": 169967,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/asset-audit/embedded-png-v1/embedded-05-860x240-1f789877c188.png",
+    "bytes": 172188,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/asset-audit/embedded-png-v1/embedded-06-128x128-19112f1fa941.png",
+    "bytes": 45186,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/corrected-960-dark-refusal.png",
+    "bytes": 23642,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/corrected-960-light-refusal.png",
+    "bytes": 24058,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/corrected-light.png",
+    "bytes": 24248,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/early-light.png",
+    "bytes": 26532,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-1440-dark.png",
+    "bytes": 26275,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-1440-light.png",
+    "bytes": 26197,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-960-dark.png",
+    "bytes": 20957,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-960-light.png",
+    "bytes": 21334,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-keyboard-refusal.png",
+    "bytes": 24434,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/keyboard-missing-root.png",
+    "bytes": 25317,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/06ac09dcb8ec7d56-s.p.woff2",
+    "bytes": 14708,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/13a15bcdfeddab65-s.p.woff2",
+    "bytes": 22588,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/1cdb9a2cbcaafa7e-s.p.woff2",
+    "bytes": 24252,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/45cdbe8ded19ae08-s.p.woff2",
+    "bytes": 22832,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/4cdcd386d2ac59c8-s.p.woff2",
+    "bytes": 24184,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/59c64a9c0cb813b7-s.p.woff2",
+    "bytes": 20900,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/7c7f8877a12f66a2-s.p.woff2",
+    "bytes": 24356,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/c6a1f19cdccaf24c-s.p.woff2",
+    "bytes": 19580,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/dabe43dd9d5e4fb2-s.p.woff2",
+    "bytes": 20516,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/assets/dece0821e8ed059f-s.p.woff2",
+    "bytes": 14888,
+    "extension": ".woff2",
+    "kind": "font_asset"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/events-960-light.jpg",
+    "bytes": 38762,
+    "extension": ".jpg",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/reveal-1440-dark.jpg",
+    "bytes": 39660,
+    "extension": ".jpg",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/reveal-1440-light.jpg",
+    "bytes": 42800,
+    "extension": ".jpg",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/reveal-960-dark.jpg",
+    "bytes": 33151,
+    "extension": ".jpg",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/tasks-960-dark.jpg",
+    "bytes": 33334,
+    "extension": ".jpg",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/actions-1440-light.png",
+    "bytes": 40756,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/actions-fonts-1440-light.png",
+    "bytes": 42143,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/final-actions-1440-dark.png",
+    "bytes": 42796,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/final-actions-1440-light.png",
+    "bytes": 42881,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/final-resurfaced-960-light.png",
+    "bytes": 30792,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/final-tasks-960-dark.png",
+    "bytes": 37787,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/final-tasks-960-light.png",
+    "bytes": 38141,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/grid-attempt01-final-actions-1440-dark.png",
+    "bytes": 42796,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/grid-attempt01-final-actions-1440-light.png",
+    "bytes": 42881,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/grid-attempt01-final-resurfaced-960-light.png",
+    "bytes": 16488,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/grid-attempt01-final-tasks-1440-dark.png",
+    "bytes": 42064,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/grid-attempt01-final-tasks-960-dark.png",
+    "bytes": 23434,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/grid-attempt01-final-tasks-960-light.png",
+    "bytes": 23597,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/resurface-attempt01-960-light.png",
+    "bytes": 11946,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/revision03-actions-1440-dark.png",
+    "bytes": 42796,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/revision03-actions-1440-light.png",
+    "bytes": 42881,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/revision03-resurfaced-960-light.png",
+    "bytes": 30792,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/revision03-tasks-960-dark.png",
+    "bytes": 37686,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/revision03-tasks-960-light.png",
+    "bytes": 37946,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/tasks-provisional-1440-light.png",
+    "bytes": 42295,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/tasks-provisional-960-light.png",
+    "bytes": 23597,
+    "extension": ".png",
+    "kind": "screenshot_or_reference_image"
+  }
+]

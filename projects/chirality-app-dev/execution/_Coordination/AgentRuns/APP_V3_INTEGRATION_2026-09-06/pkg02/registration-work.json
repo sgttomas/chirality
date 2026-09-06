@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-runtime/chirality-cli.mjs",
+    "project",
+    "register",
+    "--manifest",
+    "/private/tmp/ch-v3-gui-20260906/work/chirality.project.json",
+    "--approved-by",
+    "owner-authorized-app-v3-gui-fixtures",
+    "--approval-reference",
+    "APP_V3_INTEGRATION_2026-09-06",
+    "--json"
+  ],
+  "exit_code": 0,
+  "result": {
+    "projectId": "chirality-app-dev",
+    "tokenFile": "/private/tmp/ch-v3-gui-20260906/data/runtime/auth/tokens/project-69a53886-c9f9-42fc-a22a-34e42118485e.token"
+  }
+}

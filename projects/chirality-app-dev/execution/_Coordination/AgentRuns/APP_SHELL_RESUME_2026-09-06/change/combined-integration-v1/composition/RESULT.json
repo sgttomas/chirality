@@ -1,0 +1,34 @@
+{
+  "utc": "2026-09-06T20:52:51.044545+00:00",
+  "original_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "origin_main": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "fresh_fetch_exit": 0,
+  "original_dirty_preserved": true,
+  "original_dirty_count": 728,
+  "isolated_path": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af",
+  "branch": "codex/app-runtime-integration-20260906",
+  "head": "22a65b694007f4d96d33631cf33c2d611517a417",
+  "parent": "49951af6237bbb8701c0a2cebcd8c30fbde75b8e",
+  "tree": "f2db3e2e92e5b2e362fccee9c830a0924d63542b",
+  "parent_tree": "73c3c595ea4934e73ee9f4bfb3792be26a497a32",
+  "config": "projects/chirality-app-dev/frontend/tsconfig.electron.json",
+  "preimage_sha256": "8b8bfb49b7e9361cdbbcd94dbc4df31ccb16f3dda24c37b0859ef48639de23ec",
+  "postimage_sha256": "522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0",
+  "full_index_binary_diff_sha256": "15280f40ae9d8e418c593e754ca3d1a5dace4b1cb4f9cf33c0e32c7f969e6fa2",
+  "changed_paths": [
+    "projects/chirality-app-dev/frontend/tsconfig.electron.json"
+  ],
+  "isolated_clean": true,
+  "validation_status": "NOT_STARTED",
+  "publication": false,
+  "metadata": {
+    "role": "CHANGE Agent1",
+    "instance": "/root/resume_change",
+    "parent": "/root",
+    "engine": "Codex native harness",
+    "provider": "OpenAI",
+    "model": "GPT-6 system identity; exact deployment unavailable",
+    "execution_class": "delegated-harness-native",
+    "enforcement": "instruction-asserted"
+  }
+}

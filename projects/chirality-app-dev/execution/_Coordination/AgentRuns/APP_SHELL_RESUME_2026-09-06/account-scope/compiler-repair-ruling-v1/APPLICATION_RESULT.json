@@ -1,0 +1,22 @@
+{
+  "status": "APPLIED_EXACT_OWNER_RULING_RECORD",
+  "timestamp": "2026-09-06T19:53:03.031604+00:00",
+  "executor": "/root/resume_account_scope",
+  "head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-124_RULING_ELECTRON_TYPECHECK_DECLARATION_REPAIR_2026-09-06.md",
+      "sha256": "375759e0e9575eead7ee6a67ca693be4b5587f5077839db95508535249a63283"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "f9cbb190d7823b7d41e9527fe1fcb0a61f3b1486074fbcf4990eb7976667c509"
+    }
+  ],
+  "register_preimage_sha256": "8a195ed9d08b812c4974d6abd590cb2d53b96b8a5cda3ef663765376b788b83d",
+  "existing_register_bytes_preserved": true,
+  "other_live_writes": [],
+  "source_application": "PKG09 owner; not performed by this agent",
+  "review_and_validation": "Pending; no success claimed",
+  "publication": "NONE"
+}

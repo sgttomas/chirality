@@ -1,0 +1,51 @@
+{
+  "role": "WORKING_ITEMS",
+  "package": "PKG-09",
+  "deliverable": "DEL-09-04",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "authority": "OWNER_STEER_v4.md",
+  "nodes": [
+    {
+      "id": "apply",
+      "owner": "resume_pkg09",
+      "write": [
+        "frontend/tsconfig.electron.json"
+      ]
+    },
+    {
+      "id": "review",
+      "owner": "fresh TASK software-code-review",
+      "depends": [
+        "apply"
+      ],
+      "write": []
+    },
+    {
+      "id": "checks",
+      "owner": "resume_pkg09",
+      "depends": [
+        "review"
+      ],
+      "write": [
+        "pkg09 evidence",
+        "ignored build outputs"
+      ]
+    },
+    {
+      "id": "metadata",
+      "owner": "resume_pkg09",
+      "depends": [
+        "checks",
+        "D124 coordination"
+      ],
+      "write": [
+        "DEL09-04 status/memory/runrecord"
+      ]
+    }
+  ],
+  "exclusions": [
+    "Runtime source",
+    "native startup repair",
+    "publication"
+  ]
+}

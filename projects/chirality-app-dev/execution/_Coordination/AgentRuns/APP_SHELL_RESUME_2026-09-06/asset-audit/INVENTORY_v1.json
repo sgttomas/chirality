@@ -1,0 +1,1430 @@
+{
+  "schema": "shell-reference-local-asset-audit/v1",
+  "recorded_at": "2026-09-06T18:21:12.005017+00:00",
+  "repo_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "method": "Local read, SHA256, HTMLParser, base64 PNG header dimensions, source inspection; no browser, renderer or network access.",
+  "python": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/README.md",
+      "sha256": "357470dcc187271549d21fe2ea00a27453650287d1e51b68b63a31041a807aa5",
+      "bytes": 8480
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/05_LOGO_AND_BRAND.md",
+      "sha256": "84b466fde1fea8418f41778a51ecadfde496322edeac14f6ec2aa508dc509d2b",
+      "bytes": 8343
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+      "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+      "bytes": 2202977
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference2.mjs",
+      "sha256": "51b54c6ee6891fc6afa120fce4b7f24225bdb8475b3028daebb850e28a8174e5",
+      "bytes": 2832
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/REFERENCE_PREPARATION.md",
+      "sha256": "dafcd568e251f930da34b89caae0be1d103bf9a197a667d95f410db7ff9ca034",
+      "bytes": 2172
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-result.json",
+      "sha256": "cdafd5327869198d8b9167236cf8242bcbc1e22feac0d285138e2cd8e603959f",
+      "bytes": 20615
+    }
+  ],
+  "packaged_assets_and_mock": [
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/chirality-logo-lockup-400-dark.png",
+      "sha256": "7b46f2fc38804b41a35013e09b4cf445e943baa24fca60ac097c230584fc8c6b",
+      "bytes": 2201229,
+      "readme_sha256": "7b46f2fc38804b41a35013e09b4cf445e943baa24fca60ac097c230584fc8c6b",
+      "matches_readme": true,
+      "png_dimensions": [
+        3669,
+        1024
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/chirality-logo-lockup-400-dark.svg",
+      "sha256": "14e22c3b6b8bdc45311d04d47562b3e7d5aaa37bf879357223bd64158233279c",
+      "bytes": 2772300,
+      "readme_sha256": "14e22c3b6b8bdc45311d04d47562b3e7d5aaa37bf879357223bd64158233279c",
+      "matches_readme": true
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/chirality-logo-lockup-400.png",
+      "sha256": "c687946e0bb2665e954fb63429ecbe43f4afdbccf45a07dd3ba51c1c39c17afb",
+      "bytes": 2201465,
+      "readme_sha256": "c687946e0bb2665e954fb63429ecbe43f4afdbccf45a07dd3ba51c1c39c17afb",
+      "matches_readme": true,
+      "png_dimensions": [
+        3669,
+        1024
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/chirality-logo-lockup-400.svg",
+      "sha256": "bebdf63bf55c8ab83ba85abcc2d0db090cde2ae498cf1fe4156147b1ace13ef3",
+      "bytes": 2772300,
+      "readme_sha256": "bebdf63bf55c8ab83ba85abcc2d0db090cde2ae498cf1fe4156147b1ace13ef3",
+      "matches_readme": true
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/painted-field-1024.png",
+      "sha256": "a3495dfa7ad1a8bbba9b7026d3e68964013b5cfb3e4364dee713285fd4a86616",
+      "bytes": 2044817,
+      "readme_sha256": "a3495dfa7ad1a8bbba9b7026d3e68964013b5cfb3e4364dee713285fd4a86616",
+      "matches_readme": true,
+      "png_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/painted-field-16.png",
+      "sha256": "b0fc9c26afa26ddafdec575b91a4e49fb58e4db73dd85cfaea14e41813114126",
+      "bytes": 885,
+      "readme_sha256": "b0fc9c26afa26ddafdec575b91a4e49fb58e4db73dd85cfaea14e41813114126",
+      "matches_readme": true,
+      "png_dimensions": [
+        16,
+        16
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/painted-field-256.png",
+      "sha256": "f38e405626c150ed88cfe4ef878930659a8d8247f323b51d803eb7130efaffef",
+      "bytes": 168939,
+      "readme_sha256": "f38e405626c150ed88cfe4ef878930659a8d8247f323b51d803eb7130efaffef",
+      "matches_readme": true,
+      "png_dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/painted-field-32.png",
+      "sha256": "dfe92ed3307e3394d402fceb6a6c939e824b630d8398d9ae2246cd3357060c2b",
+      "bytes": 2971,
+      "readme_sha256": "dfe92ed3307e3394d402fceb6a6c939e824b630d8398d9ae2246cd3357060c2b",
+      "matches_readme": true,
+      "png_dimensions": [
+        32,
+        32
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/painted-field-64.png",
+      "sha256": "4215f30a9088a9d712df52e3556f72d27ef0bafac6c6764e525f343812f339e3",
+      "bytes": 11245,
+      "readme_sha256": "4215f30a9088a9d712df52e3556f72d27ef0bafac6c6764e525f343812f339e3",
+      "matches_readme": true,
+      "png_dimensions": [
+        64,
+        64
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/painted-field-square-1024.png",
+      "sha256": "1f932536afd216d9f3fcd11feac3eb95595101cd69a945dcd9faf0b68f362d8b",
+      "bytes": 1855963,
+      "readme_sha256": "1f932536afd216d9f3fcd11feac3eb95595101cd69a945dcd9faf0b68f362d8b",
+      "matches_readme": true,
+      "png_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/assets/painted-field.icns",
+      "sha256": "adb22d8f286cbaf87a8da79dbbead589463a2c08bc71c26d9212ff863733c56a",
+      "bytes": 3787198,
+      "readme_sha256": "adb22d8f286cbaf87a8da79dbbead589463a2c08bc71c26d9212ff863733c56a",
+      "matches_readme": true
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+      "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+      "bytes": 2202977,
+      "readme_sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+      "matches_readme": true
+    }
+  ],
+  "unique_embedded_images": [
+    {
+      "sha256": "63c138f15647bce8ca236207a377adeb6d2ce5f15356b3895bce1d2949ef761b",
+      "mime": "image/png",
+      "bytes": 173796,
+      "dimensions": [
+        256,
+        256
+      ],
+      "occurrences": [
+        {
+          "line": 555,
+          "column": 67,
+          "tag": "img",
+          "width_attribute": "256",
+          "height_attribute": "256",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 231909,
+          "tag": "img",
+          "width_attribute": "128",
+          "height_attribute": "128",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 520776,
+          "tag": "img",
+          "width_attribute": "256",
+          "height_attribute": "256",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 752618,
+          "tag": "img",
+          "width_attribute": "128",
+          "height_attribute": "128",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 563,
+          "column": 50,
+          "tag": "img",
+          "width_attribute": "128",
+          "height_attribute": "128",
+          "style": null,
+          "class": "big"
+        },
+        {
+          "line": 563,
+          "column": 292668,
+          "tag": "img",
+          "width_attribute": "128",
+          "height_attribute": "128",
+          "style": null,
+          "class": "big"
+        }
+      ],
+      "role": "Logo panel size samples at displayed 256/128 and large desktop icon samples",
+      "byte_identical_packaged_assets": []
+    },
+    {
+      "sha256": "8f95af2791d49d3434873e70d58c9cbc65d0283050f3821ba53cc3dc01adec6b",
+      "mime": "image/png",
+      "bytes": 21137,
+      "dimensions": [
+        88,
+        88
+      ],
+      "occurrences": [
+        {
+          "line": 555,
+          "column": 463751,
+          "tag": "img",
+          "width_attribute": "64",
+          "height_attribute": "64",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 984460,
+          "tag": "img",
+          "width_attribute": "64",
+          "height_attribute": "64",
+          "style": null,
+          "class": null
+        }
+      ],
+      "role": "Logo panel mark samples displayed at64",
+      "byte_identical_packaged_assets": []
+    },
+    {
+      "sha256": "e5a3526260fa67475d198afdbcbe75455615a27f5c6823ec18ef7ea20da46a41",
+      "mime": "image/png",
+      "bytes": 5297,
+      "dimensions": [
+        44,
+        44
+      ],
+      "occurrences": [
+        {
+          "line": 555,
+          "column": 492046,
+          "tag": "img",
+          "width_attribute": "44",
+          "height_attribute": "44",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 499221,
+          "tag": "img",
+          "width_attribute": "32",
+          "height_attribute": "32",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 506396,
+          "tag": "img",
+          "width_attribute": "22",
+          "height_attribute": "22",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 513571,
+          "tag": "img",
+          "width_attribute": "16",
+          "height_attribute": "16",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 1012755,
+          "tag": "img",
+          "width_attribute": "44",
+          "height_attribute": "44",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 1019930,
+          "tag": "img",
+          "width_attribute": "32",
+          "height_attribute": "32",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 1027105,
+          "tag": "img",
+          "width_attribute": "22",
+          "height_attribute": "22",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 555,
+          "column": 1034280,
+          "tag": "img",
+          "width_attribute": "16",
+          "height_attribute": "16",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 566,
+          "column": 67,
+          "tag": "img",
+          "width_attribute": "22",
+          "height_attribute": "22",
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 566,
+          "column": 7269,
+          "tag": "img",
+          "width_attribute": "22",
+          "height_attribute": "22",
+          "style": null,
+          "class": null
+        }
+      ],
+      "role": "Logo panel samples displayed at44/32/22/16 and historical header-at22 reference",
+      "byte_identical_packaged_assets": []
+    },
+    {
+      "sha256": "28e8c67571cb183e74f1b115dc9f5d56695eaabfc69dd4beaa2000dc54309b11",
+      "mime": "image/png",
+      "bytes": 169967,
+      "dimensions": [
+        860,
+        240
+      ],
+      "occurrences": [
+        {
+          "line": 559,
+          "column": 82,
+          "tag": "img",
+          "width_attribute": null,
+          "height_attribute": null,
+          "style": "height:96px;width:auto",
+          "class": null
+        }
+      ],
+      "role": "Logo panel corporate lockup on light ground, displayed height96",
+      "byte_identical_packaged_assets": []
+    },
+    {
+      "sha256": "1f789877c188ebd39d3ef9d9ed294ffd323e5c691a4362aafdec1cb02e746562",
+      "mime": "image/png",
+      "bytes": 172188,
+      "dimensions": [
+        860,
+        240
+      ],
+      "occurrences": [
+        {
+          "line": 559,
+          "column": 226839,
+          "tag": "img",
+          "width_attribute": null,
+          "height_attribute": null,
+          "style": "height:96px;width:auto",
+          "class": null
+        }
+      ],
+      "role": "Logo panel corporate lockup on dark ground, displayed height96",
+      "byte_identical_packaged_assets": []
+    },
+    {
+      "sha256": "19112f1fa9415e452132374377570f7d3c48abe044ffa7f5ca2db9a116308da4",
+      "mime": "image/png",
+      "bytes": 45186,
+      "dimensions": [
+        128,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 563,
+          "column": 232051,
+          "tag": "img",
+          "width_attribute": null,
+          "height_attribute": null,
+          "style": null,
+          "class": null
+        },
+        {
+          "line": 563,
+          "column": 524669,
+          "tag": "img",
+          "width_attribute": null,
+          "height_attribute": null,
+          "style": null,
+          "class": null
+        }
+      ],
+      "role": "Logo panel Dock icon samples on light/dark desktops",
+      "byte_identical_packaged_assets": []
+    }
+  ],
+  "markup_references": [
+    {
+      "line": 2,
+      "tag": "link",
+      "attribute": "href",
+      "value": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap",
+      "kind": "external"
+    }
+  ],
+  "script_elements": [
+    {
+      "line": 605,
+      "src": null,
+      "inline": true
+    }
+  ],
+  "embedded_font_face_count": 0,
+  "walkthrough": {
+    "count": 26,
+    "titles": [
+      {
+        "one_based_step": 1,
+        "title": "New chat"
+      },
+      {
+        "one_based_step": 2,
+        "title": "Resting state"
+      },
+      {
+        "one_based_step": 3,
+        "title": "Document opens in the panel"
+      },
+      {
+        "one_based_step": 4,
+        "title": "Dragged wider"
+      },
+      {
+        "one_based_step": 5,
+        "title": "Expanded for reading"
+      },
+      {
+        "one_based_step": 6,
+        "title": "Select and ask"
+      },
+      {
+        "one_based_step": 7,
+        "title": "Quote in the composer"
+      },
+      {
+        "one_based_step": 8,
+        "title": "Agent working, strip live"
+      },
+      {
+        "one_based_step": 9,
+        "title": "Activity in the panel"
+      },
+      {
+        "one_based_step": 10,
+        "title": "Child session replay"
+      },
+      {
+        "one_based_step": 11,
+        "title": "Organising chats"
+      },
+      {
+        "one_based_step": 12,
+        "title": "Popped out"
+      },
+      {
+        "one_based_step": 13,
+        "title": "Account row"
+      },
+      {
+        "one_based_step": 14,
+        "title": "Account popover"
+      },
+      {
+        "one_based_step": 15,
+        "title": "Settings in the panel"
+      },
+      {
+        "one_based_step": 16,
+        "title": "The ladder: chat, role, workflow"
+      },
+      {
+        "one_based_step": 17,
+        "title": "Workflows view"
+      },
+      {
+        "one_based_step": 18,
+        "title": "Plan open"
+      },
+      {
+        "one_based_step": 19,
+        "title": "Chat steered by a workflow"
+      },
+      {
+        "one_based_step": 20,
+        "title": "Start a workflow from chat"
+      },
+      {
+        "one_based_step": 21,
+        "title": "Assistant proposes a role"
+      },
+      {
+        "one_based_step": 22,
+        "title": "Chat with a role"
+      },
+      {
+        "one_based_step": 23,
+        "title": "The role proposes a workflow"
+      },
+      {
+        "one_based_step": 24,
+        "title": "Adjust: the same form, filled in"
+      },
+      {
+        "one_based_step": 25,
+        "title": "Not now"
+      },
+      {
+        "one_based_step": 26,
+        "title": "Signed out, no local model"
+      }
+    ],
+    "source_lines": {
+      "STEPS": 936,
+      "renderWalk": 994,
+      "click_list": 1003,
+      "previous_next": 1008,
+      "keyboard": 1010,
+      "fit": 1018,
+      "tabs": 1030,
+      "theme": 1043
+    }
+  },
+  "historical_driver": {
+    "invocation_as_recorded": "node <browser-01>/reference.mjs exited1 due evaluator assertion; node <browser-01>/reference2.mjs exited0; prior exact host escalation after sandbox denial (historical only)",
+    "recorded_node": "v24.18.0",
+    "recorded_browser": "148.0.7778.96",
+    "driver_contract": "1800x1100 viewport; Walkthrough scenes17/18; light/dark; fullPage, shell and rail PNGs; logical1180x720 assertion; HTTPS route abort; finally browser.close",
+    "recorded_requests": [],
+    "recorded_errors": [],
+    "font_calibration": "Preparation prose says fallback and driver aborts HTTPS; result requests[] is empty and document.fonts reports both loaded/unloaded Plex faces. Computed family list/status does not prove glyph face. No guaranteed Plex or fully proven exclusive fallback claim.",
+    "captures": [
+      {
+        "scene": 17,
+        "theme": "light",
+        "logical_dimensions": [
+          1180,
+          720
+        ],
+        "rendered_box": {
+          "x": 313,
+          "y": 387,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 387,
+          "right": 1143,
+          "bottom": 893.440673828125,
+          "left": 313
+        },
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "computed_family_list": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "recorded_faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ]
+      },
+      {
+        "scene": 17,
+        "theme": "dark",
+        "logical_dimensions": [
+          1180,
+          720
+        ],
+        "rendered_box": {
+          "x": 313,
+          "y": 387,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 387,
+          "right": 1143,
+          "bottom": 893.440673828125,
+          "left": 313
+        },
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "computed_family_list": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "recorded_faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ]
+      },
+      {
+        "scene": 18,
+        "theme": "light",
+        "logical_dimensions": [
+          1180,
+          720
+        ],
+        "rendered_box": {
+          "x": 313,
+          "y": 345,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 345,
+          "right": 1143,
+          "bottom": 851.440673828125,
+          "left": 313
+        },
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "computed_family_list": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "recorded_faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ]
+      },
+      {
+        "scene": 18,
+        "theme": "dark",
+        "logical_dimensions": [
+          1180,
+          720
+        ],
+        "rendered_box": {
+          "x": 313,
+          "y": 345,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 345,
+          "right": 1143,
+          "bottom": 851.440673828125,
+          "left": 313
+        },
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "computed_family_list": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "recorded_faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ]
+      }
+    ],
+    "existing_screenshot_identities": [
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-dark-full.png",
+        "sha256": "c87d88993943d27dbd681a3a0bb1d56d9883f7650fd8a37792ec94ea1284b779",
+        "bytes": 245276
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-dark-rail.png",
+        "sha256": "bb2031d22602351c0f6d00bac48415f88d10e9984de6311bbc5abda084b5c6aa",
+        "bytes": 21889
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-dark-shell.png",
+        "sha256": "b143363ead059a60f7378f027d21f80f66f4d0ac2b9b678058bb9b9cf0003c4c",
+        "bytes": 86830
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-light-full.png",
+        "sha256": "3d35e256d86ca8b069e36c76be21cc466779ddce2eb257ece45c4bf427eadaf4",
+        "bytes": 246100
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-light-rail.png",
+        "sha256": "18fd0ae8537bb051fcb00f07ef24515bd1b5453dba45345490ac9b3bbffc6dc5",
+        "bytes": 21431
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-17-light-shell.png",
+        "sha256": "3ce75a91fcad6727d1c9e2c7c81f151f250a22120d19fa3e1c4c49fd60c626f5",
+        "bytes": 87523
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-dark-full.png",
+        "sha256": "f89bfbca884712d219a8022382abc70623e06505607805b34178e5ce4bbb9db8",
+        "bytes": 244838
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-dark-rail.png",
+        "sha256": "7f24b5f8d77a2febeb321bffef56f00e099dcc2588b5a69e831184ee99d21587",
+        "bytes": 26851
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-dark-shell.png",
+        "sha256": "9717ab3171eb0fa80e652fa8001a252db4292640c4aa4ff030c7e41dd44030a2",
+        "bytes": 94295
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-light-full.png",
+        "sha256": "90c5a1f82e00b244bbdc114eca522a9ab2804ba4f736698621839e65b12e0bd6",
+        "bytes": 245852
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-light-rail.png",
+        "sha256": "aaba5db552c0c12fc5b9c835afc65ccbbc16ca61447f042f799fb78d03220f9b",
+        "bytes": 26784
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-01/reference-18-light-shell.png",
+        "sha256": "a0fd77c91b9996ac14494e915b0558b4d3ffe58492f99f6f04930c62d49af80e",
+        "bytes": 95058
+      }
+    ],
+    "new_execution": false
+  },
+  "source_recreation_limit": "05_LOGO_AND_BRAND.md says scratch scripts were not kept; random quilting makes a pixel-exact original re-derivation not expected. Preserve committed masters; audit does not recreate them.",
+  "claims": {
+    "eleven_packaged_assets_match_readme": true,
+    "mock_matches_readme": true,
+    "six_unique_pngs": true,
+    "no_external_script_elements": true,
+    "no_missing_relative_markup_references": true,
+    "walkthrough_count26": true
+  }
+}

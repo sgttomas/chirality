@@ -1,0 +1,31 @@
+{
+  "parent_shared_graph": "../WORK_GRAPH_v2.json",
+  "parent": "/root/resume_account_scope",
+  "objective": "account candidate safe-to-register refutation",
+  "nodes": [
+    {
+      "id": "author",
+      "role": "SCOPE_CHANGE",
+      "writes": [
+        "account-scope/candidate-v1/**",
+        "account-scope/evidence/**"
+      ]
+    },
+    {
+      "id": "refutation-v1",
+      "role": "ephemeral Agent2",
+      "brief": "REFUTATION_BRIEF_v1.md",
+      "status": "PREPARED_NOT_DISPATCHED",
+      "writes": []
+    }
+  ],
+  "edges": [
+    [
+      "author",
+      "refutation-v1"
+    ]
+  ],
+  "scc_count": 0,
+  "enforcement": "instruction-asserted",
+  "effect": "candidate only; no implementation or publication"
+}

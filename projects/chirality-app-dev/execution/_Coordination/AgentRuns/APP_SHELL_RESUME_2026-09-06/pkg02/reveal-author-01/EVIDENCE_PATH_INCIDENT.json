@@ -1,0 +1,14 @@
+{
+  "incident": "Registered runner resolves relative output against workspace root, causing unauthorized evidence write",
+  "authorization": "Parent message authorized exact evidence move and newly created empty ancestor removal",
+  "original_path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/CHECKS_01.json",
+  "corrected_path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/CHECKS_01.json",
+  "before_sha256": "28217343e597837d8672bf5070e5ad48c8063167ba895004103eecf96dad8f75",
+  "after_sha256": "28217343e597837d8672bf5070e5ad48c8063167ba895004103eecf96dad8f75",
+  "removed_empty_directories": [
+    "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01",
+    "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02",
+    "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06"
+  ],
+  "prevention": "All subsequent runner outputs absolute"
+}

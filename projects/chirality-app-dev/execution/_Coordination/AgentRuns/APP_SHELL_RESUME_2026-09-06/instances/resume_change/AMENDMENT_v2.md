@@ -1,0 +1,3 @@
+# CHANGE amendment v2 — approved Runtime outputs only
+
+Owner selected “Runtime A; D122 A; D123 A”; RuntimeA is bounded by the exact slate. After parent release execute npm ci then npm run build in projects/chirality-runtime, ignored dependencies/build outputs only. No tracked source/lock changes, new branch/Git publication or expanded repair. Preserve current dirty run, capture exact command/cwd/environment/results/logs and output/source identities; return actual success/failure and tracked preservation. PKG02 existing-source final validation depends on actual success. No new push/PR/merge permission. Graph/planv7 and OWNER_STEER_v2.md govern; no unavailable telemetry invented.

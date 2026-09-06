@@ -1,0 +1,30 @@
+[
+  {
+    "path": "frontend/src/components/woven-dialogue/navigator.tsx",
+    "sha256": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450"
+  },
+  {
+    "path": "frontend/src/app/globals.css",
+    "sha256": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/fixture.tsx",
+    "sha256": "d158be262a2ca5a9aa6287d0534a9fbb93c97fc0ef6d2bdc5a082df71d8ad603"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/build.cjs",
+    "sha256": "1e16a39481044f56cd155648f72685c28571a56fda7e2d0ec63aed0d9d255237"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/server.cjs",
+    "sha256": "14fac320ce6b19956e836e57e84b86db23ef6a9616b508d6d225fb8050b17da9"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/index.html",
+    "sha256": "e7616d0f7f2ae319b777d3c75c337beee1311b43f6a190eddd0aa5c4260b9d60"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/fixture.js",
+    "sha256": "c1508383baa7f1a2a4366aefdc7cdb9aaa58abef347edc461fa0478d794d202f"
+  }
+]

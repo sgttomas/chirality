@@ -1,0 +1,3 @@
+# PKG02 direct-child amendment v2
+
+Parent /root HELP_HUMAN explicitly approved bounded T2 per-chat Reveal source after exact candidate freeze. Files named by parent: navigator.tsx, navigator test, optional historical-chat-reveal test. The manager must resolve exact file paths in its frozen brief; preserve recordedRoot versus providerRoot, existing bridge and sessions unchanged. Optional existing T2 display label fix only if live authorized locus/criterion substantiated. Account/settings source remains HELD. WORK_GRAPH_v2.json and ORCHESTRATION_PLAN_v2.md record current boundaries. This is a faithful reconstruction of parent's message, not claimed verbatim tool-call bytes. No general PKG02 source release. Other v1 constraints preserved.

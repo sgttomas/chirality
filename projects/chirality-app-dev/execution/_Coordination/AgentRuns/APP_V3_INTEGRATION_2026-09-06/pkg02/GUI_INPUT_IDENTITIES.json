@@ -1,0 +1,27 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/dist-electron/main.js",
+    "sha256": "1a03eda353fbb6811f6432c33b8bb4d9c725340e02d2835c749b085b549136a6",
+    "bytes": 1523381
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/dist-electron/preload.js",
+    "sha256": "d48814bcaf3501742a38a6bff7358b0814a6d643f925fc2749fc96e346b7cba6",
+    "bytes": 4619
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/Chirality Resume Proof.app/Contents/MacOS/Electron",
+    "sha256": "6042fb9b2e339c189c8bcf20bcdc80c1be7cc3e1c767a700f7d048b5f66657c8",
+    "bytes": 51936
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/Chirality Resume Proof.app/Contents/Info.plist",
+    "sha256": "0e09f68e4c2f54fa9e0fb57b6444fb8f1edf4ca1d6ada481f14d283646b925e9",
+    "bytes": 2511
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+    "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+    "bytes": 2202977
+  }
+]

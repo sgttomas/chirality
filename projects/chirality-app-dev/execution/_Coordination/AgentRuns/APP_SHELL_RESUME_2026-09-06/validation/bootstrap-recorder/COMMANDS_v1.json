@@ -1,0 +1,32 @@
+{
+  "commands": [
+    {
+      "name": "discovery-command-group",
+      "command": "git status --short; git rev-parse HEAD origin/main; git merge-base --is-ancestor 943dd268d69ae408c63228c4ba3fc35b113aeadc HEAD; git ls-tree --name-only HEAD projects/chirality-app-dev/loop/; python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": "{REPO_ROOT}",
+      "exit_code": 0,
+      "limitation": "group exit is final validator; ancestry separately proven in MERGE_ANCESTRY.json"
+    },
+    {
+      "name": "app-hold-reliance",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Scripts/app_hold.py check --operation reliance --entry-path HELP_HUMAN:APP_SHELL_RESUME_2026-09-06:RECORDS --target DEL-02-01 --target DEL-02-02 --target DEL-02-03 --target DEL-02-04 --target DEL-02-05 --target DEL-07-03",
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0
+    },
+    {
+      "name": "corpus-status",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0
+    },
+    {
+      "name": "self-check",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": "{REPO_ROOT}",
+      "exit_code": 0
+    }
+  ],
+  "effective_environment": "inherited session; PYTHONDONTWRITEBYTECODE=1 where shown; no credential/environment dump",
+  "capture": "exact combined tool text preserved in corresponding .raw.txt; command times not exposed/preserved, no timing claim",
+  "gate_posture": "bootstrap only; no frontend checks required; final closeout checks still pending"
+}

@@ -1,0 +1,7 @@
+[chirality-desktop] 2026-09-06T22:34:42.413Z [info] desktop.gui.starting {"packaged":false,"userData":"/private/tmp/ch-v3-gui-20260906/data","socketPath":"/private/tmp/ch-v3-gui-20260906/data/runtime/control.sock"}
+[chirality-desktop] 2026-09-06T22:34:42.415Z [info] runtime.socket_watch.started {"directory":"/private/tmp/ch-v3-gui-20260906/data/runtime"}
+[chirality-desktop] 2026-09-06T22:34:42.416Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-09-06T22:34:42.434Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-09-06T22:34:42.434Z"}
+[chirality-desktop] 2026-09-06T22:34:42.434Z [info] runtime.connectivity.bound {"priorFailedAttempts":0}
+[48391:0906/163938.050253:ERROR:content/browser/gpu/gpu_process_host.cc:1089] GPU process exited unexpectedly: exit_code=15
+[48391:0906/163938.052371:ERROR:content/browser/network_service_instance_impl.cc:721] Network service crashed or was terminated, restarting service.

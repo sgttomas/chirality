@@ -1,0 +1,9 @@
+# Orchestration plan v3 — bounded Reveal CSS inclusion
+
+Supersedes v2 only by adding parent's explicitly approved globals.css locus: exactly three existing nav/Reveal rules for PKG02's T2 source tranche, bound in its author brief v2. WORK_GRAPH_v3.json carries this inclusion. No other CSS/global theme change is granted. Exact package candidate/freeze and fresh review remain mandatory. All v2 ownership, account gates, independent work, A1, publication and D60/D64 attribution constraints remain. SelectionAuthority AGENT_0; Posture MIXED. This is the agent's bounded orchestration judgment under D-APP-64, OwnerCaseSelection NONE, IndependentVerifier PENDING, EffectStatus HELD for governed effect/landing. The alternative of unrelated global styling was rejected because no accepted criterion/locus was substantiated.
+
+Latest user steer, verbatim:
+
+> You need to be able to see all the assets used for screenshots and how they are invoked and referred to. Do you have what you need for that? And you aren’t trying to circumvent safeties with external websites, you’re trying to see a report that just happened to be written in HTML.
+
+Parent reports a read-only asset audit: mock SHA256 b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6; all eleven assets match README hashes; only Google Fonts CSS is external, no external scripts; six unique embedded PNG dimensions 256×256, 88×88, 44×44, 860×240 twice and 128×128; no missing relative asset references. Twenty-six STEPS feed renderWalk into frame, one-based data-n, previous/next/arrows, data-theme-of and fitting at 1180×720. Earlier browser01/reference2.mjs blocked HTTPS and captured full/shell/rail: existing screenshots have calibrated font fallback, not guaranteed Plex. These are explicitly parent-reported audit facts; no new render/browser retry is performed by this recorder. Shared asset audit, if captured, remains evidence only.

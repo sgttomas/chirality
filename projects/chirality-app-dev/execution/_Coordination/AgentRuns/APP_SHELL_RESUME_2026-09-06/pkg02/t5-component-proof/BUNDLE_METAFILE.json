@@ -1,0 +1,453 @@
+{
+  "inputs": {
+    "<define:process.env>": {
+      "bytes": 2,
+      "imports": []
+    },
+    "frontend/node_modules/react/cjs/react.development.js": {
+      "bytes": 87593,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/node_modules/react/index.js": {
+      "bytes": 190,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/cjs/react.development.js",
+          "kind": "require-call",
+          "original": "./cjs/react.development.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/node_modules/scheduler/cjs/scheduler.development.js": {
+      "bytes": 17497,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/node_modules/scheduler/index.js": {
+      "bytes": 198,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/scheduler/cjs/scheduler.development.js",
+          "kind": "require-call",
+          "original": "./cjs/scheduler.development.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/node_modules/react-dom/cjs/react-dom.development.js": {
+      "bytes": 1029622,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "require-call",
+          "original": "react"
+        },
+        {
+          "path": "frontend/node_modules/scheduler/index.js",
+          "kind": "require-call",
+          "original": "scheduler"
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/node_modules/react-dom/index.js": {
+      "bytes": 1363,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react-dom/cjs/react-dom.development.js",
+          "kind": "require-call",
+          "original": "./cjs/react-dom.development.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/node_modules/react-dom/client.js": {
+      "bytes": 619,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react-dom/index.js",
+          "kind": "require-call",
+          "original": "react-dom"
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/src/lib/shell/harness-event-views.ts": {
+      "bytes": 10590,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/transcript-replay.js": {
+      "bytes": 9042,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "frontend/src/lib/shell/harness-event-buffer.ts": {
+      "bytes": 696,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "frontend/node_modules/react/cjs/react-jsx-runtime.development.js": {
+      "bytes": 42700,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "require-call",
+          "original": "react"
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/node_modules/react/jsx-runtime.js": {
+      "bytes": 214,
+      "imports": [
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/cjs/react-jsx-runtime.development.js",
+          "kind": "require-call",
+          "original": "./cjs/react-jsx-runtime.development.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "frontend/src/components/workspace/harness-events-provider.tsx": {
+      "bytes": 4284,
+      "imports": [
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "frontend/src/lib/shell/harness-event-buffer.ts",
+          "kind": "import-statement",
+          "original": "../../lib/shell/harness-event-buffer"
+        },
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/jsx-runtime.js",
+          "kind": "import-statement",
+          "original": "react/jsx-runtime"
+        }
+      ],
+      "format": "esm"
+    },
+    "frontend/src/components/shell/subagent-stream-view.tsx": {
+      "bytes": 2296,
+      "imports": [
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "frontend/src/lib/shell/harness-event-views.ts",
+          "kind": "import-statement",
+          "original": "../../lib/shell/harness-event-views"
+        },
+        {
+          "path": "frontend/src/components/workspace/harness-events-provider.tsx",
+          "kind": "import-statement",
+          "original": "../workspace/harness-events-provider"
+        },
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/jsx-runtime.js",
+          "kind": "import-statement",
+          "original": "react/jsx-runtime"
+        }
+      ],
+      "format": "esm"
+    },
+    "frontend/src/components/shell/tool-stream-view.tsx": {
+      "bytes": 2478,
+      "imports": [
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "frontend/src/lib/shell/harness-event-views.ts",
+          "kind": "import-statement",
+          "original": "../../lib/shell/harness-event-views"
+        },
+        {
+          "path": "frontend/src/components/workspace/harness-events-provider.tsx",
+          "kind": "import-statement",
+          "original": "../workspace/harness-events-provider"
+        },
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/jsx-runtime.js",
+          "kind": "import-statement",
+          "original": "react/jsx-runtime"
+        }
+      ],
+      "format": "esm"
+    },
+    "frontend/src/components/shell/transcript-stream-view.tsx": {
+      "bytes": 3603,
+      "imports": [
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/transcript-replay.js",
+          "kind": "import-statement",
+          "original": "@chirality/runtime-contracts/transcript-replay"
+        },
+        {
+          "path": "frontend/src/components/workspace/harness-events-provider.tsx",
+          "kind": "import-statement",
+          "original": "../workspace/harness-events-provider"
+        },
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/jsx-runtime.js",
+          "kind": "import-statement",
+          "original": "react/jsx-runtime"
+        }
+      ],
+      "format": "esm"
+    },
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": {
+      "bytes": 12131,
+      "imports": [
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "frontend/src/lib/shell/harness-event-views.ts",
+          "kind": "import-statement",
+          "original": "../../lib/shell/harness-event-views"
+        },
+        {
+          "path": "../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/transcript-replay.js",
+          "kind": "import-statement",
+          "original": "@chirality/runtime-contracts/transcript-replay"
+        },
+        {
+          "path": "frontend/src/components/workspace/harness-events-provider.tsx",
+          "kind": "import-statement",
+          "original": "../workspace/harness-events-provider"
+        },
+        {
+          "path": "frontend/src/components/shell/subagent-stream-view.tsx",
+          "kind": "import-statement",
+          "original": "../shell/subagent-stream-view"
+        },
+        {
+          "path": "frontend/src/components/shell/tool-stream-view.tsx",
+          "kind": "import-statement",
+          "original": "../shell/tool-stream-view"
+        },
+        {
+          "path": "frontend/src/components/shell/transcript-stream-view.tsx",
+          "kind": "import-statement",
+          "original": "../shell/transcript-stream-view"
+        },
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/jsx-runtime.js",
+          "kind": "import-statement",
+          "original": "react/jsx-runtime"
+        }
+      ],
+      "format": "esm"
+    },
+    "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/fixture.tsx": {
+      "bytes": 2541,
+      "imports": [
+        {
+          "path": "frontend/node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "frontend/node_modules/react-dom/client.js",
+          "kind": "import-statement",
+          "original": "react-dom/client"
+        },
+        {
+          "path": "frontend/src/components/woven-dialogue/activity-shelf.tsx",
+          "kind": "import-statement",
+          "original": "../../../../../../frontend/src/components/woven-dialogue/activity-shelf"
+        },
+        {
+          "path": "frontend/src/components/workspace/harness-events-provider.tsx",
+          "kind": "import-statement",
+          "original": "../../../../../../frontend/src/components/workspace/harness-events-provider"
+        },
+        {
+          "path": "<define:process.env>",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "frontend/node_modules/react/jsx-runtime.js",
+          "kind": "import-statement",
+          "original": "react/jsx-runtime"
+        }
+      ],
+      "format": "esm"
+    }
+  },
+  "outputs": {
+    "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/fixture.js": {
+      "imports": [],
+      "exports": [],
+      "entryPoint": "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/fixture.tsx",
+      "inputs": {
+        "<define:process.env>": {
+          "bytesInOutput": 83
+        },
+        "frontend/node_modules/react/cjs/react.development.js": {
+          "bytesInOutput": 81072
+        },
+        "frontend/node_modules/react/index.js": {
+          "bytesInOutput": 289
+        },
+        "frontend/node_modules/scheduler/cjs/scheduler.development.js": {
+          "bytesInOutput": 17828
+        },
+        "frontend/node_modules/scheduler/index.js": {
+          "bytesInOutput": 301
+        },
+        "frontend/node_modules/react-dom/cjs/react-dom.development.js": {
+          "bytesInOutput": 955865
+        },
+        "frontend/node_modules/react-dom/index.js": {
+          "bytesInOutput": 321
+        },
+        "frontend/node_modules/react-dom/client.js": {
+          "bytesInOutput": 878
+        },
+        "frontend/node_modules/react/cjs/react-jsx-runtime.development.js": {
+          "bytesInOutput": 38493
+        },
+        "frontend/node_modules/react/jsx-runtime.js": {
+          "bytesInOutput": 313
+        },
+        "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/fixture.tsx": {
+          "bytesInOutput": 3553
+        },
+        "frontend/src/components/woven-dialogue/activity-shelf.tsx": {
+          "bytesInOutput": 9420
+        },
+        "frontend/src/lib/shell/harness-event-views.ts": {
+          "bytesInOutput": 3917
+        },
+        "../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/transcript-replay.js": {
+          "bytesInOutput": 8407
+        },
+        "frontend/src/components/workspace/harness-events-provider.tsx": {
+          "bytesInOutput": 2177
+        },
+        "frontend/src/lib/shell/harness-event-buffer.ts": {
+          "bytesInOutput": 193
+        },
+        "frontend/src/components/shell/subagent-stream-view.tsx": {
+          "bytesInOutput": 137
+        },
+        "frontend/src/components/shell/tool-stream-view.tsx": {
+          "bytesInOutput": 137
+        },
+        "frontend/src/components/shell/transcript-stream-view.tsx": {
+          "bytesInOutput": 3863
+        }
+      },
+      "bytes": 1131999
+    }
+  }
+}

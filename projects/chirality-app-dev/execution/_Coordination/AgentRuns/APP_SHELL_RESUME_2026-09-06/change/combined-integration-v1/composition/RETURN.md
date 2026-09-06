@@ -1,0 +1,7 @@
+# CHANGE immutable composition return
+
+Local validation snapshot CREATED: `22a65b694007f4d96d33631cf33c2d611517a417` on codex/app-runtime-integration-20260906 at `/private/tmp/chirality-app-runtime-integration-20260906-738-49951af`. Parent `49951af6237bbb8701c0a2cebcd8c30fbde75b8e` is the exact published PR738 source. Parent tree `73c3c595ea4934e73ee9f4bfb3792be26a497a32`; combined tree `f2db3e2e92e5b2e362fccee9c830a0924d63542b`.
+
+Commit contains exactly one path: `projects/chirality-app-dev/frontend/tsconfig.electron.json`, frozen postimage `522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0` from the original candidate. Full-index binary diff SHA256 `15280f40ae9d8e418c593e754ca3d1a5dace4b1cb4f9cf33c0e32c7f969e6fa2`. Original 728 dirty paths preserved byte-for-byte, original HEAD/main remain `ec491aee1870a2a6a8eb2faf2919d4d5db5124b4`, isolated checkout clean. Fresh fetch performed before Runtime basis reliance; own DEL09-04 reliance preflight passed. Exact command/log evidence recorded.
+
+This immutable composition is a derivative validation candidate: accepted main `ec491aee1870a2a6a8eb2faf2919d4d5db5124b4` plus published unmerged PR738 `49951af6237bbb8701c0a2cebcd8c30fbde75b8e` plus exact D124 config. No shell redesign source, authority, receipt or other file included. Preparation CLOSED; validation NOT STARTED. Parent may release validator against this exact SHA. No push, PR, merge/publication, main adoption or production closure performed. A1/final whole-run claims remain separate.

@@ -1,0 +1,8 @@
+{
+  "id": "regression.session_crud",
+  "status": "fail",
+  "startedAt": "2026-09-06T19:24:49.348Z",
+  "endedAt": "2026-09-06T19:24:49.474Z",
+  "durationMs": 126,
+  "error": "Session creation failed: HTTP 503"
+}

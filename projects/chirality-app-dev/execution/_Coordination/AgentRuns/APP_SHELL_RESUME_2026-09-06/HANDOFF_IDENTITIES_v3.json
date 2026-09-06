@@ -1,0 +1,52 @@
+{
+  "schema": "successor-handoff-core-identities/v3",
+  "recorded_at": "2026-09-06T20:00:56.513663+00:00",
+  "scope": "core references only; full52 member verification attributed to parent; no check rerun",
+  "items": [
+    {
+      "path": "OWNER_STEER_v3.md",
+      "sha256": "9e98e73abe927013be7aa619bb6026dcd28d893c9a3804dc425225b4fe027d9f",
+      "bytes": 726
+    },
+    {
+      "path": "OWNER_STEER_v4.md",
+      "sha256": "a2d1d340c0f41a2797251132b1376723ca651ed1fa9c87d6ffae3b3d82baa35b",
+      "bytes": 1331
+    },
+    {
+      "path": "PENDING_INPUT_HANDOFF_v3.md",
+      "sha256": "f388bd3bf02f57afcb68a60a7f450e1f67f790ec7222b69df2a6c04fcc00a1e3",
+      "bytes": 4542
+    },
+    {
+      "path": "V10_ACTUAL_LAUNCH_v1.json",
+      "sha256": "14585f634929fd2fcc5d0a8bd6bdde18458b58cabaed1f61c0a474910091bfab",
+      "bytes": 1185
+    },
+    {
+      "path": "pkg09/OUTPUT_MANIFEST.json",
+      "sha256": "85d243e36cb609f247b5fb9e7ff3e7d9238065cefce6153e8b53feadb2e2af85",
+      "bytes": 12563
+    },
+    {
+      "path": "pkg09/PREMERGE_CHECK.json",
+      "sha256": "d629600792d0bcd5136e0261c81467f9644e2acc363b066b6cb589cd14a3f8d3",
+      "bytes": 2643
+    },
+    {
+      "path": "pkg09/REGISTERED_CHECKS.json",
+      "sha256": "2acd86743e5c3ab7f1ff87ddd214e2b45b09c756f3eb4ce314158def195413a7",
+      "bytes": 76757
+    },
+    {
+      "path": "pkg09/RETURN.md",
+      "sha256": "fd18b775e36028cdc6639bb2dbe7b12ad28fd305cc6033ca8c915aa8f0569488",
+      "bytes": 2400
+    },
+    {
+      "path": "pkg09/REVIEW_02_RETURN.md",
+      "sha256": "204dbe60fb7ad91afc69861d050c7373482ac260988208df94e0644eec25f7ad",
+      "bytes": 4377
+    }
+  ]
+}

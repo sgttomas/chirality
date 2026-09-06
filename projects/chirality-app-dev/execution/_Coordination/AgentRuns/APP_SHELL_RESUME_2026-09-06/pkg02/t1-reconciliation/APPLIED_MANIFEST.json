@@ -1,0 +1,14 @@
+[
+  {
+    "path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+    "sha256": "20550b79e2c67dc5b21d1c342d5e56ce5c2afd7a23c42838e3e3f7b90c7361fe"
+  },
+  {
+    "path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md",
+    "sha256": "f25149cce31c46a05b9bcad912059bf14c90c5686a31faf4bdd3be2eefb40e56"
+  },
+  {
+    "path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/T1_MERGED_RECONCILIATION_2026-09-06.md",
+    "sha256": "c52d933f8e6c1929ae8c7d4e9d81042fcefbca639a417a42e238d58b6b7958f3"
+  }
+]

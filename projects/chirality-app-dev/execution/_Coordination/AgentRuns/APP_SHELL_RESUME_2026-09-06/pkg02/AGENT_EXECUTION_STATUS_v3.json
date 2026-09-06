@@ -1,0 +1,45 @@
+{
+  "manager": "/root/resume_pkg02",
+  "status": "HANDOFF_PENDING_FINAL_PARENT_GATES",
+  "children": [
+    {
+      "name": "reveal_author_01",
+      "terminal": "SUCCESS revision03"
+    },
+    {
+      "name": "source_review_01",
+      "terminal": "BLOCK repaired"
+    },
+    {
+      "name": "source_review_02",
+      "terminal": "PASS Reveal"
+    },
+    {
+      "name": "t1_refuter_01",
+      "terminal": "BLOCK rejected/repaired"
+    },
+    {
+      "name": "t1_refuter_02",
+      "terminal": "COMMIT-SAFE"
+    },
+    {
+      "name": "t5_view_author_01",
+      "terminal": "SUCCESS revision03"
+    },
+    {
+      "name": "t5_source_review_01",
+      "terminal": "BLOCK repaired"
+    },
+    {
+      "name": "t5_source_review_02",
+      "terminal": "PASS source, subsequent parent visual BLOCK"
+    },
+    {
+      "name": "t5_source_review_03",
+      "terminal": "PASS source"
+    }
+  ],
+  "role_enforcement": "instruction-asserted",
+  "serving_model_id": "UNAVAILABLE",
+  "owned_processes": "NONE; all component servers/tabs stopped; no native started"
+}

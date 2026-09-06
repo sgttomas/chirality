@@ -1,0 +1,87 @@
+{
+  "recorded_at": "2026-09-06T18:20:17.796710+00:00",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg07"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD",
+        "--",
+        "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/MEMORY.md\nprojects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_STATUS.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "reliance",
+        "--entry-path",
+        "APP_SHELL_RESUME_2026-09-06:PKG07:POST_EFFECT",
+        "--target",
+        "DEL-07-03"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+      "exit_code": 0,
+      "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"APP_SHELL_RESUME_2026-09-06:PKG07:POST_EFFECT\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"ec491aee1870a2a6a8eb2faf2919d4d5db5124b4\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-07-03\",\n      \"entry_path\": \"APP_SHELL_RESUME_2026-09-06:PKG07:POST_EFFECT\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"e84c8fdaca0c5120d730b6d3420877b433c335f957c7d28565b48530efc5de65\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-07-03\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "unchanged_input_count": 27,
+  "unchanged_inputs": [
+    "AGENTS.md",
+    "agents/AGENT_WORKING_ITEMS.md",
+    "projects/chirality-app-dev/AGENTS.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Assessment_INSP-03_DEL-07-03.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Dependencies.csv",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Evidence_ADQ-07_Document_Kit_Metadata_Scanner.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/ScopeOfWork.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_DEPENDENCIES.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_REFERENCES.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_SEMANTIC.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_SEMANTIC_LENSING.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_run_records/TASK_RUN_2026-09-05_APP_LOOP_SHELL_WORKFLOW_CONTRACT.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/FROZEN_HASHES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-review-r2/RETURN.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-59_RULING_2026-07-17.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/RUN_SUMMARY.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/_LATEST.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts",
+    "projects/chirality-app-dev/frontend/src/lib/workspace/governed-workflow.ts",
+    "projects/chirality-app-dev/loop/LOOP_INIT.md",
+    "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+    "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md",
+    "projects/chirality-app-dev/software-workflow.json"
+  ],
+  "candidate_to_live_equality": "PASS",
+  "lifecycle_approval_preserved": true,
+  "remaining_item_removed": true,
+  "new_run_record_verified": true,
+  "no_product_change": true,
+  "frontend_gates": "SKIPPED record-only; no source mutation",
+  "parent_closeout_checks": "PENDING parent-owned shared full harness/receipt checks and union review"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "COMPLETED",
+  "role": "Agent2",
+  "enforcement": "instruction-asserted",
+  "model": "exact served model unavailable",
+  "substitution": "none observed",
+  "source_basis": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "write_scope": "decisions/**",
+  "delegation": false,
+  "claim": "derivative assessment; D121 design-direction ready, implementation held"
+}

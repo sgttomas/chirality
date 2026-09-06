@@ -1,0 +1,29 @@
+{
+  "alerts": [
+    "Open the desktop app to use native document actions."
+  ],
+  "draft": "Unsaved fixture draft",
+  "focused": "Retry revealing folder for Working Items (reveal-alpha)",
+  "rows": [
+    {
+      "height": 32,
+      "overflow": false,
+      "width": 200
+    },
+    {
+      "height": 32,
+      "overflow": false,
+      "width": 200
+    },
+    {
+      "height": 32,
+      "overflow": false,
+      "width": 200
+    }
+  ],
+  "selection": "none",
+  "viewport": {
+    "height": 800,
+    "width": 960
+  }
+}

@@ -1,0 +1,21 @@
+# App integration fan-in v1
+
+Status: BOUNDED_APP_VALIDATION_ACCEPTED_WITH_RESIDUALS; final scoped Git closeout pending. Parent Agent0 accepted PKG09 checks and PKG02 bounded source/native/browser evidence. This recorder captures that disposition; it does not issue lifecycle or release acceptance. Source basis 28a8ed32ba83c5514ae2e65e9260833c1d46b7ef, branch codex/shell-redesign-resume-20260906.
+
+## Accepted upstream and evidence
+
+SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA remains OPEN_PENDING_DERIVATIVE_CLOSURE. Accepted dependency snapshot CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034 remains the dependency basis. Live deliverable Remaining sections govern. Graphs v1/v2 and coordination amendments record actual ownership. This package is derivative coordination/evidence, never decomposition truth.
+
+Parent verified initial9, PKG09 51, PKG02 80, decisions89 and PDF15 manifest members. Those are distinct packets, not one manufactured union count. Authoritative run evidence: pkg09/RETURN.md and REGISTERED_CHECKS.json; pkg02/MANAGER_RETURN.md, REVIEW_RETURN.md and GUI_PROOF_RECORD.md; decisions/RETURN.md; pdf-scope/DESIGN.md, review/RETURN.md and OUTPUT_MANIFEST.json. Fresh review covers all seven pending source files; identities stayed unchanged. Current run built/verified the earlier pending source increment, with no new product feature edits. Prior approved ruling records were preserved; Root/Runtime branch/source not modified by this App increment (read/build artifacts only).
+
+Runtime declarations built first; both App typechecks, Vitest, build, APP-HOLD, self-check, pytest and isolated configured native checks pass within exact evidence limits. PKG02 actual native picker/stub session/historical Reveal preserve the unsent beta draft and selection; Open Recent presence observed. Chrome 1440/960 both themes and honest empty Activity rendered. No synthetic Activity population or real-provider/account claim.
+
+Actual Finder-drop, Dock behavior and ordinary production launch identity remain unproved. Generic Electron selection correlated with daemon exit; no causal diagnosis is claimed. Existing unchanged isolated proof identity supports bounded native behavior only. Cleanup evidence establishes actual process/socket/port absence; detached exit codes unavailable. Prior failures preserved. A1 login staging remains invalid for a new claim; fresh exact staging and owner execution required.
+
+## Factual records and unresolved decisions
+
+PKG09 factual record postimages/diffs accepted by parent, pkg09-records-v1/RECORD_MANIFEST.json; D124 remains pending final scoped Git closeout. PKG02 factual History/MEMORY/new run-record return is now present in pkg02-records-v1/RETURN.md and APPLICATION.json; it reports Remaining/lifecycle/approval/dependency unchanged and is pending parent review at this snapshot. D121/D124 register factual update is applied under exact parent release, coordination/decision-register-application-v1/RESULT.json. D121 remains NONE/HELD/AWAITING_RULING, independently READY for owner bounded design-and-amendment decision only.
+
+PDF A-design and separate isolated A-proof choice versus defer remain owner choices. D122/D123 main observability remains held. Account/consent boundary, accepted no-folder execution context, Root instruction governance, child approval/lifecycle and exact supplier decisions are not silently resolved. Runtime's first response was a plan endorsement, not its design packet; clarified request sent, design still awaited. Consolidated owner slate is separate from this bounded App validation closeout.
+
+No public push, merge, supplier acceptance, release, pointer or lifecycle act is recorded. D99 local-only bulk-evidence policy remains applicable; CHANGE provisional inventory/draft remains subject to final fan-in and exact publication boundaries.

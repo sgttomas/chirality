@@ -1,0 +1,48 @@
+{
+  "utc": "2026-09-06T22:35:50.663321+00:00",
+  "policy": "D-APP-99 C3, owner ruled2026-08-17",
+  "supersedes": "change-preparation ASSESSMENT.md retain/defer interpretation only; originals preserved",
+  "base_commit": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "source_overlay": {
+    "frontend/src/components/woven-dialogue/navigator.tsx": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450",
+    "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b",
+    "frontend/src/__tests__/components/historical-chat-reveal.test.tsx": "9c988cfaaffc30d2d5650c2bd35768bdb25034f0fe487b74df5f46c99d34bc93",
+    "frontend/src/app/globals.css": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx": "a4ab8e1c94383944e9de76e07765ce41c4043d806cf94ee95d60a68ef17d7289",
+    "frontend/src/__tests__/components/activity-view-presentation.test.tsx": "df4e82fb485d08291d528e09af066653470945faa3a88142dbd9de9723254a19"
+  },
+  "status": "PROVISIONAL_FINAL_FREEZE_PENDING",
+  "candidate_files": 979,
+  "candidate_bytes": 12370860,
+  "local_only_files": 81,
+  "local_only_bytes": 68099367,
+  "local_only_reasons": {
+    "D99_EXCESS_CAPTURE_OR_EXTRACTED_REFERENCE_IMAGE": 37,
+    "D99_BULK_CAPTURE_TRACE_OR_IDENTITY_SNAPSHOT": 23,
+    "D99_GENERATED_BUNDLED_OUTPUT": 6,
+    "D99_GENERATED_FONT_ASSET": 10,
+    "D99_BULK_SINGLE_LINE_OR_TRACE_OUTPUT": 1,
+    "D99_SUPERSEDED_PROVISIONAL_BULK_INVENTORY": 4
+  },
+  "representative_image_paths": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-1440-light.png",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-960-dark.png",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/component-proof/final-keyboard-refusal.png",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/full-shell-proof/reveal-1440-dark.jpg",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/final-actions-1440-light.png",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/final-tasks-960-dark.png"
+  ],
+  "long_evidence_retained_with_reason": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/globals.css.before",
+      "lines": 4360,
+      "reason": "Exact source/patch/governance evidence retained to review bounded changes; splitting would obscure the complete accepted input or executed patch. This is a stated guideline justification, not an exemption from final fan-in."
+    }
+  ],
+  "ci_artifact_workflow_run_id": null,
+  "ci_custody_claim": "None; listed local-only bytes have not been uploaded to CI by this task",
+  "full_portable_evidence_bundle": false,
+  "all_local_bytes_preserved": true,
+  "stage_commit_publication_performed": false
+}

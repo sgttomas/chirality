@@ -1,0 +1,21 @@
+# PKG-09 App v3 integrated validation — bounded PASS
+
+WORKING_ITEMS /root/v3_pkg09; selected PKG-09 / DEL-09-04 D124 integration evidence. Basis is merged main 28a8ed32ba83c5514ae2e65e9260833c1d46b7ef plus the seven preserved unpublished App shell source/test changes. Accepted graph WORK_GRAPH_v1.json SHA-256 bfe6f4f092d4ea74abb732cff372b14775da96f26429a3fa11e238cff71aad90. Owner authorized staged App v3 execution. This manager used the evidence-only single-manager path; PKG-02 owns fresh independent source review and GUI proof. No child was dispatched.
+
+## Results
+
+Fresh git fetch/ancestor check passed before Runtime preparation and again before native reliance. Runtime exact-lock npm ci/build and App npm ci passed. Registered checks passed: both frontend/Electron typechecks; full Vitest 1,774 passed / 4 skipped across 179 passing files / one skipped; frontend production build; APP-HOLD integrity; practitioner self-check; pytest 379 passed. Product test/build environment explicitly omits agent-only CHIRALITY_INSTRUCTION_ROOT, preserving the previous run's environment lesson without repeating its failure.
+
+Actual macOS Electron headless daemon started with normal safeguards. Disposable registration of the actual App manifest succeeded, session-list API returned HTTP200, and all eight configured stub-provider premerge cases passed. Main/preload/runtime CLI and all Runtime declaration/build identities are recorded. All 3,276 frozen tracked Runtime/App frontend inputs plus untracked App source/test identities remained identical before checks and after native execution.
+
+Frontend PID44664 and daemon PID44624 exited0. Socket absent before scratch removal; /private/tmp/ch-v3-28a8-20260906 removed with disposable token bytes; loopback port51004 refused connection with code61. No user daemon, user profile, LaunchAgent, live-provider, protected-fixture maintenance, tracked product/configuration or Runtime source was modified. Build/process ownership released to PKG-02 via Agent0 after cleanup. The premerge Next dev server changed ignored .next outputs after the successful production build; a production-renderer consumer must rebuild under its transferred ownership if required.
+
+## D124 disposition and limits
+
+D124's exact compiler config postimage is present on merged main and current integrated typechecks pass. The old missing-binding503 and Pi ERR_PACKAGE_PATH_NOT_EXPORTED are resolved for this isolated registered headless integration; their historical failure artifacts remain unchanged. This does not establish native GUI, Finder interactions, live login, real-provider, supplier conformance, packaging or release readiness. PKG-02 GUI/source-review and Agent0 final-union/record/closeout remain open. No lifecycle, Checking Approval SHA, dependency, acceptance, publication or merge act occurred. DEL-09-04 records remain unchanged pending parent evidence review and release.
+
+## Reproduction and handoff
+
+validate.py reproduces exact-lock declaration preparation and registered checks; run_configured_premerge.py reproduces isolated daemon registration and configured premerge with cleanup. Both derive this checkout from git. Execute only after synchronization, fresh APP-HOLD and exclusive build/process ownership, and from the frozen source basis. Use a new absent disposable scratch path if the recorded path is occupied; do not remove unrelated state. Report output stays in ignored frontend/artifacts before its exact bytes are copied into this evidence directory. Native bootstrap explicitly provides the current instruction root, separate from the removed agent-only product-test variable. Token values are never retained; public token-file paths are historical and cannot be reused.
+
+Evidence is derivative of accepted owner direction and project snapshots, not authoritative decomposition. Source/configuration/declaration/dependency changes require appropriate reruns. Retained scripts, canonical output, effective override/removal descriptions, exact commands/cwd, versions, machine results, input/build hashes and manifest permit recomputation. Exact served model and token/context occupancy are unavailable; role/execution attribution is instruction-asserted, not mechanically enforced. Agent0 receives these results and owns cross-package fan-in. No further build mutation is planned by PKG09.

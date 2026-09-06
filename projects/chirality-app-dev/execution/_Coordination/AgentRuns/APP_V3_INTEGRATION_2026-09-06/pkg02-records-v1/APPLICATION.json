@@ -1,0 +1,43 @@
+{
+  "targets": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_run_records/APP_V3_INTEGRATION_2026-09-06.md",
+      "before_sha256": null,
+      "after_sha256": "3b7640a7f64a6cb43ebb660e94ebec0afbb23b41f3466cacfe4bb16266f1bbb5",
+      "created": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+      "before_sha256": "16e2596ac1c9d5d275774d0f647526efbde350e4ceb1a5903731720216542980",
+      "after_sha256": "d04e9e2f9c5c0f68cf25455bdc439d89761e59c5616a4b40b934ceef38ce2f29",
+      "created": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/MEMORY.md",
+      "before_sha256": "9cc3aff8de2f7a34ad4ab054ca157031395052d2325a1388a485bed58591e413",
+      "after_sha256": "e5d2ba474c83e77a0bded1866cfe44c3c6e739e9dfe0c6ff1096688ec7f74240",
+      "created": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/APP_V3_INTEGRATION_2026-09-06.md",
+      "before_sha256": null,
+      "after_sha256": "bc98f6a4e289b76d3d6cd667cf0fdbbde6fbb65fb614547b878890aa9885b5b5",
+      "created": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+      "before_sha256": "ebb3294e52cde902190082f6fc14badb4437b23397ae9553e68eb6e79dd0915f",
+      "after_sha256": "30d157be78246648b249a49dc10833e1414749e2f7aeeedb49eb5ba958eb272f",
+      "created": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md",
+      "before_sha256": "fcbd050145f2d2395fa1078f3d13ec9ca2c64c49262d6d463c0c0b7768c0dbf9",
+      "after_sha256": "ed240fb1cde44b7dae0787ee89464ff118617d99dbc7248449279bcce3640bd1",
+      "created": false
+    }
+  ],
+  "remaining_unchanged": true,
+  "lifecycle_approval_dependency_unchanged": true,
+  "old80packet_untouched": true
+}

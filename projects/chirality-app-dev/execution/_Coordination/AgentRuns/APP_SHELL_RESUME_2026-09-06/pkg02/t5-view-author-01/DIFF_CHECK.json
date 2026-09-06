@@ -1,0 +1,16 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "--",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-presentation.test.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "effective_environment": "inherited; no task overrides; secrets not recorded",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

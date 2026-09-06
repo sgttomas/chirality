@@ -1,0 +1,97 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+  "operation": "reliance",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-01",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-02",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-05",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-03-01",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-04-05",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-05-02",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-08-04",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-08-05",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-09-06",
+      "entry_path": "APP_V3_INTEGRATION:RUNTIME_CONSUMER",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "e8d4710dbac28bd4c2a1f0dd1e1f2bf954a850a6be651d5982f42e482af15bdf",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-05",
+    "DEL-03-01",
+    "DEL-04-05",
+    "DEL-05-02",
+    "DEL-08-04",
+    "DEL-08-05",
+    "DEL-09-06"
+  ],
+  "verdict": "ALLOW"
+}

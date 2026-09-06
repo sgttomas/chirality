@@ -1,0 +1,27 @@
+{
+  "child": "/root/resume_pkg07/grammar_refutation",
+  "parent": "/root/resume_pkg07",
+  "class": "delegated-harness-native",
+  "role": "ephemeral Agent2",
+  "enforcement": "instruction-asserted",
+  "status": "RUNNING",
+  "observed_at": "2026-09-06T18:15:27.162158+00:00",
+  "brief": "REVIEW_BRIEF_v1.md",
+  "brief_sha256": "b2e83978a438fe0fe5f09a011e13288ed93d73ef496441530d18f6af7f93a089",
+  "preflight_note": "initial exact same preflight ALLOW observed before actual dispatch in tool transcript; durable repeat captured after dispatch",
+  "preflight_argv": [
+    "python3",
+    "execution/_Scripts/app_hold.py",
+    "check",
+    "--operation",
+    "dispatch",
+    "--entry-path",
+    "APP_SHELL_RESUME_2026-09-06:PKG07:REFUTATION",
+    "--target",
+    "DEL-07-03"
+  ],
+  "preflight_exit": 0,
+  "preflight_stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"APP_SHELL_RESUME_2026-09-06:PKG07:REFUTATION\",\n  \"operation\": \"dispatch\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"ec491aee1870a2a6a8eb2faf2919d4d5db5124b4\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-07-03\",\n      \"entry_path\": \"APP_SHELL_RESUME_2026-09-06:PKG07:REFUTATION\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"dispatch\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"e84c8fdaca0c5120d730b6d3420877b433c335f957c7d28565b48530efc5de65\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-07-03\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+  "preflight_stderr": "",
+  "model": "OpenAI GPT-6 inherited; exact serving identifier/metrics unavailable"
+}

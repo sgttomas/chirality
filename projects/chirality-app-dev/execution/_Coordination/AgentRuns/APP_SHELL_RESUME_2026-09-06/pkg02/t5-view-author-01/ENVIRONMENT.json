@@ -1,0 +1,26 @@
+{
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "working_root": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "check_cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "env_overrides": {},
+  "secrets": "not captured",
+  "versions": {
+    "node --version": {
+      "exit_code": 0,
+      "stdout": "v24.18.0\n",
+      "stderr": ""
+    },
+    "npm --version": {
+      "exit_code": 0,
+      "stdout": "11.16.0\n",
+      "stderr": ""
+    },
+    "python3 --version": {
+      "exit_code": 0,
+      "stdout": "Python 3.13.14\n",
+      "stderr": ""
+    }
+  },
+  "node_and_npm_from_inherited_PATH": true,
+  "vitest_version": "4.1.10 (actual CHECKS_01 stdout)"
+}

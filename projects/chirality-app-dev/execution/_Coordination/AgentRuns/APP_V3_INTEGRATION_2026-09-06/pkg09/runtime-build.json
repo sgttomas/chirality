@@ -1,0 +1,16 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime",
+  "end": "2026-09-06T22:25:23.706979+00:00",
+  "environment_overrides": {
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+  "exit_code": 0,
+  "removed_environment_variable_names": [],
+  "start": "2026-09-06T22:25:22.485184+00:00"
+}

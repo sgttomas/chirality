@@ -1,0 +1,46 @@
+{
+  "status": "APPLIED_EXACT_COORDINATION_TARGETS",
+  "timestamp": "2026-09-06T19:33:49.011612+00:00",
+  "executor": "/root/resume_account_scope",
+  "base_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "application_freeze_sha256": "aa2d01bbf3056d41d55da7d9e87a8c4215945da8219261c7d869682eccd02caa",
+  "write_manifest_sha256": "d9e877cc72cfed207ba1adb881d96d7cd6ae50255c41ef5a937aef6cc1195cee",
+  "fresh_review_return_sha256": "7afc33b6b8ef52b93a76c652b7b951075a05e7963eae55413bd533caecd782b6",
+  "amendment_v5_sha256": "740f248fad3057045368ee80230876301300a59b6698fafd0ae173b1cba10a81",
+  "release": "Parent explicit release after actual COMMIT-SAFE and parent precondition verification; immutable amendment pre-review HELD text records its authoring state only.",
+  "preconditions": [
+    {
+      "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-122_RULING_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md",
+      "actual_preimage_sha256": null,
+      "expected_postimage_sha256": "8842b95600dff24a107ad2fab18d3fd270010e46d02344d41ca18c953c21c51a"
+    },
+    {
+      "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-123_RULING_ACTIVITY_STRIP_PRIMARY_SESSION_LOCUS_2026-09-06.md",
+      "actual_preimage_sha256": null,
+      "expected_postimage_sha256": "91ce5c6bcd0a3a22638622715a81db660880dcb2a61bc560bd9817f79429fdd9"
+    },
+    {
+      "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "actual_preimage_sha256": "55b1388ab10d4faf2098a0b5d42e04ba3a40e3fcea71bed54cda9a05252ee089",
+      "expected_postimage_sha256": "8a195ed9d08b812c4974d6abd590cb2d53b96b8a5cda3ef663765376b788b83d"
+    }
+  ],
+  "applied": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-122_RULING_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md",
+      "sha256": "8842b95600dff24a107ad2fab18d3fd270010e46d02344d41ca18c953c21c51a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-123_RULING_ACTIVITY_STRIP_PRIMARY_SESSION_LOCUS_2026-09-06.md",
+      "sha256": "91ce5c6bcd0a3a22638622715a81db660880dcb2a61bc560bd9817f79429fdd9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "8a195ed9d08b812c4974d6abd590cb2d53b96b8a5cda3ef663765376b788b83d"
+    }
+  ],
+  "other_live_writes": [],
+  "pkg02_application": "Separate owner; not performed by this executor",
+  "feature_effect": "HELD until fetched main observability and fresh selection",
+  "publication": "NONE"
+}

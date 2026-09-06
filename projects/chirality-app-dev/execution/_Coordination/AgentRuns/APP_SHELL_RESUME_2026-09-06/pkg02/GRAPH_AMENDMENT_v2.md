@@ -1,0 +1,1 @@
+Frozen author v2 adds only globals.css compact Reveal-row rules with parent explicit approval. Same single source owner and review/check/visual/native stages, no parallel CSS owner. All other exclusions preserved.

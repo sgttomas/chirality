@@ -1,0 +1,85 @@
+[
+  {
+    "label": "node-version",
+    "command": [
+      "node",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime",
+    "started_utc": "2026-09-06T19:20:19.546546+00:00",
+    "completed_utc": "2026-09-06T19:20:19.557450+00:00",
+    "exit_code": 0,
+    "stdout": "node-version.stdout.log",
+    "stderr": "node-version.stderr.log"
+  },
+  {
+    "label": "npm-version",
+    "command": [
+      "npm",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime",
+    "started_utc": "2026-09-06T19:20:19.557680+00:00",
+    "completed_utc": "2026-09-06T19:20:19.642976+00:00",
+    "exit_code": 0,
+    "stdout": "npm-version.stdout.log",
+    "stderr": "npm-version.stderr.log"
+  },
+  {
+    "label": "app-hold-preflight",
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "APP_SHELL_RESUME_2026-09-06:CHANGE_RUNTIME_PREPARATION",
+      "--target",
+      "DEL-02-01",
+      "--target",
+      "DEL-02-02",
+      "--target",
+      "DEL-02-03",
+      "--target",
+      "DEL-02-04",
+      "--target",
+      "DEL-02-05",
+      "--target",
+      "DEL-07-03"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "started_utc": "2026-09-06T19:20:19.643259+00:00",
+    "completed_utc": "2026-09-06T19:20:20.258432+00:00",
+    "exit_code": 0,
+    "stdout": "app-hold-preflight.stdout.log",
+    "stderr": "app-hold-preflight.stderr.log"
+  },
+  {
+    "label": "npm-ci",
+    "command": [
+      "npm",
+      "ci"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime",
+    "started_utc": "2026-09-06T19:20:20.258748+00:00",
+    "completed_utc": "2026-09-06T19:20:23.534317+00:00",
+    "exit_code": 0,
+    "stdout": "npm-ci.stdout.log",
+    "stderr": "npm-ci.stderr.log"
+  },
+  {
+    "label": "npm-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime",
+    "started_utc": "2026-09-06T19:20:23.534679+00:00",
+    "completed_utc": "2026-09-06T19:20:25.352337+00:00",
+    "exit_code": 0,
+    "stdout": "npm-build.stdout.log",
+    "stderr": "npm-build.stderr.log"
+  }
+]

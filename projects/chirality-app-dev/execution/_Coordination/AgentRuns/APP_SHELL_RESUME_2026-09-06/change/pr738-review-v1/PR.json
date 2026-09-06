@@ -1,0 +1,55 @@
+{
+  "baseRefName": "main",
+  "baseRefOid": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "headRefName": "codex/runtime-packaging-integration",
+  "headRefOid": "22a65b694007f4d96d33631cf33c2d611517a417",
+  "mergeStateStatus": "CLEAN",
+  "mergeable": "MERGEABLE",
+  "number": 738,
+  "reviewDecision": "",
+  "state": "OPEN",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:43:57Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945343/job/101563908825",
+      "name": "Verify unsigned macOS artifact",
+      "startedAt": "2026-09-06T21:43:57Z",
+      "status": "COMPLETED",
+      "workflowName": "Desktop Unsigned Artifact Verification"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:48:35Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945365/job/101563908290",
+      "name": "Harness pre-merge",
+      "startedAt": "2026-09-06T21:43:59Z",
+      "status": "COMPLETED",
+      "workflowName": "Harness Pre-merge Validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:45:45Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945374/job/101563908395",
+      "name": "harness",
+      "startedAt": "2026-09-06T21:43:59Z",
+      "status": "COMPLETED",
+      "workflowName": "governance-harness"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T21:45:10Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34061945336/job/101563908189",
+      "name": "pec",
+      "startedAt": "2026-09-06T21:43:59Z",
+      "status": "COMPLETED",
+      "workflowName": "pec-tests"
+    }
+  ],
+  "title": "Fix Runtime Pi loading and Codex startup, approval, and retirement boundaries",
+  "url": "https://github.com/sgttomas/chirality/pull/738"
+}

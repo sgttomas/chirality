@@ -1,0 +1,1 @@
+{"status": "PASS", "output": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/app-v3-integration-20260906/REGISTERED_CHECKS.json", "checks": ["frontend-typecheck", "frontend-test", "frontend-build", "app-hold-integrity", "harness-self-check", "harness-pytest"]}

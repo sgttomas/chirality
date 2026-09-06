@@ -1,0 +1,62 @@
+[
+  {
+    "path": "APP_HOLD.json",
+    "sha256": "2f5e361d0fad79b72a9e35e0e0d38305e768ed7558237ad8a3474776bbd790be"
+  },
+  {
+    "path": "CANDIDATE.patch",
+    "sha256": "e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32"
+  },
+  {
+    "path": "DESIGN.md",
+    "sha256": "c42f617eafd3cce21047d4cf5977fd058207ef55fd8b090b337b2422f62bc687"
+  },
+  {
+    "path": "GRAPH.md",
+    "sha256": "ad6775c99956053f2228336660595b6c4984bd54d6dcac999e4c28a6b711e122"
+  },
+  {
+    "path": "IMPACT.md",
+    "sha256": "371d795fa445c2184ff42e9a39d33f58c4e5acb69cc25a540270b436997c9d22"
+  },
+  {
+    "path": "PREPARATION_RECORD.md",
+    "sha256": "2f68381a63f5db13e3882d6fc70db5042f997c85045ab87c1100594c71abdd1b"
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "0eccdbd68b13038c303187f16d9ae75c6d5ae1879aa881209daed60d3b6be739"
+  },
+  {
+    "path": "REVIEW_BRIEF.md",
+    "sha256": "ca15c6624d13265dfc5011b1a1035837b3659507e85923423f03e40675b8bed3"
+  },
+  {
+    "path": "SOURCE_FRESHNESS.json",
+    "sha256": "f83e2e701e419aa40c23451dd00778775b86d80d873b62e9507e3136f9d5fbe4"
+  },
+  {
+    "path": "SOURCE_MANIFEST.json",
+    "sha256": "ddf28cda8378214315e651714e816c387be67993743233d3b4c0e1b6cbfbc64c"
+  },
+  {
+    "path": "review/APP_HOLD.json",
+    "sha256": "855ba33bec8a7ee18008bf24a7056cb6c718724a24f4306ba05b056d8df87b19"
+  },
+  {
+    "path": "review/RETURN.md",
+    "sha256": "fe6678bfefc3d10f6989d5f820fcdd0be0a87e1a9270d9bbdf2c2b11ee283f27"
+  },
+  {
+    "path": "review/RETURN_V1_NOT_READY.md",
+    "sha256": "a7d132d8af5d4c9d6b58e6643e7db9550e71fd5141acb147bfbc685f3fe8a8b5"
+  },
+  {
+    "path": "review/SOURCE_CHECKS_V1.json",
+    "sha256": "d22c9cd48347a473f31bcc5a2bb1db8a45bef8c23ae97c8be0bab0eb68f10304"
+  },
+  {
+    "path": "review/SOURCE_CHECKS_V2.json",
+    "sha256": "a6259b797631789d3ac440b2e925fb3220e7ef4c0c41469d5dde3fe573865dd9"
+  }
+]

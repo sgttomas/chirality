@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-runtime/chirality-cli.mjs",
+    "project",
+    "register",
+    "--manifest",
+    "/private/tmp/ch-v3-gui-20260906/beta/chirality.project.json",
+    "--approved-by",
+    "owner-authorized-app-v3-gui-fixtures",
+    "--approval-reference",
+    "APP_V3_INTEGRATION_2026-09-06",
+    "--json"
+  ],
+  "exit_code": 0,
+  "result": {
+    "projectId": "app-v3-gui-beta",
+    "tokenFile": "/private/tmp/ch-v3-gui-20260906/data/runtime/auth/tokens/project-d0c8253f-8215-4a17-b516-eb6072c11673.token"
+  }
+}

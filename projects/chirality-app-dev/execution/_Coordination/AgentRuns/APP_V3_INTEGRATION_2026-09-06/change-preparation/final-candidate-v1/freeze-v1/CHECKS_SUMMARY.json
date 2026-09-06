@@ -1,0 +1,100 @@
+{
+  "base_commit": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "ledger_sha256": "57ac41d09262e43aff7d5375dcc7a9e3e36a28bf6556584c0d2523806f4d7fc4",
+  "final_record_checks": [
+    {
+      "id": "receipt-after",
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T22:58:37.555173+00:00",
+      "end": "2026-09-06T22:58:40.025024+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "receipt-after.stdout",
+      "stderr": "receipt-after.stderr"
+    },
+    {
+      "id": "final-self-check",
+      "argv": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T22:58:40.025066+00:00",
+      "end": "2026-09-06T22:58:52.630043+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "final-self-check.stdout",
+      "stderr": "final-self-check.stderr"
+    },
+    {
+      "id": "final-pytest",
+      "argv": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T22:58:52.630103+00:00",
+      "end": "2026-09-06T22:59:19.575729+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "final-pytest.stdout",
+      "stderr": "final-pytest.stderr"
+    },
+    {
+      "id": "final-diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T22:59:19.575771+00:00",
+      "end": "2026-09-06T22:59:19.638730+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "final-diff-check.stdout",
+      "stderr": "final-diff-check.stderr"
+    }
+  ],
+  "source_hashes": {
+    "frontend/src/components/woven-dialogue/navigator.tsx": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450",
+    "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b",
+    "frontend/src/__tests__/components/historical-chat-reveal.test.tsx": "9c988cfaaffc30d2d5650c2bd35768bdb25034f0fe487b74df5f46c99d34bc93",
+    "frontend/src/app/globals.css": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx": "a4ab8e1c94383944e9de76e07765ce41c4043d806cf94ee95d60a68ef17d7289",
+    "frontend/src/__tests__/components/activity-view-presentation.test.tsx": "df4e82fb485d08291d528e09af066653470945faa3a88142dbd9de9723254a19"
+  },
+  "validation_index": "../VALIDATION_INDEX.json",
+  "verified_manager_members": {
+    "pkg02": 80,
+    "pkg09": 51,
+    "Runtime_consumer": 20
+  },
+  "source_tests_repeated": false,
+  "added_whitespace_method": "git diff --no-index --check: exit0/1 with empty stdout/stderr means no findings; tracked git diff --check",
+  "secret_scan": {
+    "status": "pass",
+    "scanned_files": 11993,
+    "blocked": 0,
+    "raw_sha256": "6a5ed95c80fdcb14c24e6ea6962a63f79686f61ce416ba6fa7314653d785cc88"
+  }
+}

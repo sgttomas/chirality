@@ -1,0 +1,30 @@
+{
+  "schema": "app-t5-view-source-candidate/v1",
+  "status": "FROZEN_FOR_FRESH_REVIEW",
+  "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "brief_sha256": "6fd9ebb78eb0239006b0541ae4ec2de982e50e87c53764846f8bb6dca65967dc",
+  "preimages": {
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "5ead94ce6031e09162eccf1c01124bb97127b47b1c6be185bac0cdd13f3a7ac4",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx": "2378427d83b1dc2cef1424f4ea845910c0cb2a269e4a34b89844b68d309e3c3a"
+  },
+  "new_path": "frontend/src/__tests__/components/activity-view-presentation.test.tsx",
+  "postimages": {
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "dbcead8e4589140524aeaa7eeb6c7d3753d7d8c998d2963ead4b1535c9a8c212",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx": "a4ab8e1c94383944e9de76e07765ce41c4043d806cf94ee95d60a68ef17d7289",
+    "frontend/src/__tests__/components/activity-view-presentation.test.tsx": "df4e82fb485d08291d528e09af066653470945faa3a88142dbd9de9723254a19"
+  },
+  "source_scope": [
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+    "frontend/src/__tests__/components/activity-view-presentation.test.tsx"
+  ],
+  "review": "fresh independent parent dispatch pending after actual review01 BLOCK repair",
+  "final_gates": "manager-owned; no whole T5 closure",
+  "revision": "02",
+  "repair_brief_sha256": "6b516773c6d85f3c70f5b9797f928bebd852a422c112b162d6b077aeff4c07d0",
+  "preceding_candidate_postimages": {
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "9ff9963613c34a9eff458bcdc6d6e2967e1314e619fc2b04b8a8cd31f533c3aa",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx": "c49d7e03c9e2e6fedf7a3ac89c5197809c201433d03893845f4e77425c9e9d71",
+    "frontend/src/__tests__/components/activity-view-presentation.test.tsx": "9f1c823d17e0245e9507c1082e3f7ba4439ffa06c2e9715b17795b9119c65f0b"
+  }
+}

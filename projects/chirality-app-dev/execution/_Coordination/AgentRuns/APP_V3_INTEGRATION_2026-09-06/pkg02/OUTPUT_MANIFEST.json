@@ -1,0 +1,405 @@
+{
+  "status": "frozen",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/ACTUAL_SESSION_LIST.json",
+      "sha256": "f7c0dd5533050c4e0efcb76fca85f7a098c8c96e6181ed97ec9b2084e453f7d2",
+      "bytes": 1214
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/ASSET_IDENTITIES.json",
+      "sha256": "77b3c9fcb6004cd3961ef16d5f3579f0b5138d0c09f3641020777ee3ef5e8ed9",
+      "bytes": 5370
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/ATTEMPT01.md",
+      "sha256": "d83cf6fcf44bed3dbd430cd94acefc9c0eb680601cdfd24d49d6c590d9569cf2",
+      "bytes": 343
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/ATTEMPT02.md",
+      "sha256": "1458bf31458a4c83713b6d7ad030f1545d078dc520ae1c8229e0f5a558cd5249",
+      "bytes": 357
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/BROWSER_DOM_ASSETS.json",
+      "sha256": "3cd4c76feeb42a824c48ce23a6bb941fd4f0ba09b15b17a88feee77fc5af5889",
+      "bytes": 1181
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/CAPABILITY_ASSESSMENT_v1.md",
+      "sha256": "f709d0d031ade61291631db1464bc9c000266a6196fcc64857739e469168e039",
+      "bytes": 3576
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/GUI_BUILD.json",
+      "sha256": "dd21a197f1c2998a0c912001c3c666e1a7b026fb591e829883d791b510ba7165",
+      "bytes": 250
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/GUI_CLEANUP.json",
+      "sha256": "d5d6847e7575da9b05124bf9cd7754b8a6b0ff16894318f2d359a1bcf86d1537",
+      "bytes": 1032
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/GUI_INPUT_IDENTITIES.json",
+      "sha256": "09af900f0b00eff06eb62e62816896efd12ba1771e986142ab17547f5742b988",
+      "bytes": 1066
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/GUI_PROOF_RECORD.md",
+      "sha256": "1964f09144bb80c19d0d0026e033a696dfa8929d92e866a9c6b75d10ea475c47",
+      "bytes": 5848
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/GUI_READY.json",
+      "sha256": "ce926e97a39cb66d329e397f101f33d561a6b58f94714a59bf89397aa8527a39",
+      "bytes": 367
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/MANAGER_RETURN.md",
+      "sha256": "eea6b62acc868032ab92cb32753f74790fbe3a7088ffcaec4b17a3f37e0dd820",
+      "bytes": 2718
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/PACKAGE_GRAPH_v1.json",
+      "sha256": "c7165e5367097da8523f63380f8583e68a787b53572ba6ff65d582e6024a210d",
+      "bytes": 916
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/REVIEW_BRIEF_v1.md",
+      "sha256": "5781012dd7374efd4a5bd0b77f47cf483672defcf9ec8b80cc55f384acd8c3f8",
+      "bytes": 1963
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/REVIEW_PREFLIGHT.json",
+      "sha256": "37e46f8e59183666c0a40e32b76afdf63dc60ae97c2c8b648b293ce23c791549",
+      "bytes": 1775
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/REVIEW_RETURN.md",
+      "sha256": "3af169bc63afdce4790ba761ea5edc9429efa2975e1fa1c3dad9e881cdf35314",
+      "bytes": 6693
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/SOURCE_DIFF_v1.patch",
+      "sha256": "8edf23cc34da82eba833b64a1ef236969960cd37fa70315c5a39e80156cdcb42",
+      "bytes": 46826
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/SOURCE_FREEZE_v1.json",
+      "sha256": "7e6886e297a862a3abc87b318b18c325e819441e72e84e410e53f82e31bcf462",
+      "bytes": 1467
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/SOURCE_POST_GUI.json",
+      "sha256": "7e6886e297a862a3abc87b318b18c325e819441e72e84e410e53f82e31bcf462",
+      "bytes": 1467
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/06ac09dcb8ec7d56-s.p.woff2",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "bytes": 14708
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/13a15bcdfeddab65-s.p.woff2",
+      "sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "bytes": 22588
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/1cdb9a2cbcaafa7e-s.p.woff2",
+      "sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "bytes": 24252
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/28d0eac0cbdc5313.css",
+      "sha256": "65ed3c6af817a3cdf9fa2ce750d64941655960cd71719f0fe6640b6852218bbe",
+      "bytes": 70056
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/3a36fb4c552ee67b.css",
+      "sha256": "048bd257523350b29bd267fb036d7b03e9c9c95c10de1004e4b4b69063d12121",
+      "bytes": 2157
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/45cdbe8ded19ae08-s.p.woff2",
+      "sha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "bytes": 22832
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/4cdcd386d2ac59c8-s.p.woff2",
+      "sha256": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
+      "bytes": 24184
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/59c64a9c0cb813b7-s.p.woff2",
+      "sha256": "d3f861b1ca55e50ca94de4c1756cb0d67c73de615172adf6b5b2078d939c723a",
+      "bytes": 20900
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/7c7f8877a12f66a2-s.p.woff2",
+      "sha256": "6de912e531b6c98084f1b2d5e5a91bad77be4e68bc4e396e43c46fc435e5f3d9",
+      "bytes": 24356
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/c6a1f19cdccaf24c-s.p.woff2",
+      "sha256": "cb2c5eee2c0a43ff30d2365407c7bc8b20e3bd90720a4a64102ba0b328022a02",
+      "bytes": 19580
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/dabe43dd9d5e4fb2-s.p.woff2",
+      "sha256": "e279e4f8baa0d4634d98868092f2198ae0dcd9e142c935822c385b9843352a9b",
+      "bytes": 20516
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/dece0821e8ed059f-s.p.woff2",
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+      "bytes": 14888
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt01-gui-daemon.log",
+      "sha256": "51d6e270c5e94ff6af7f73fb6c12034b507a5588cb8811bc5d8f0484431c0b75",
+      "bytes": 960
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt01-gui-daemon_LAUNCH.json",
+      "sha256": "f2e2d574a8702772151e62af89ae867cd46ceecfd035f297052802561451489f",
+      "bytes": 976
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt01-launch_gui.py",
+      "sha256": "4f6a02aef370f2acf02db7c1724aed481632dbbc48ea23357eedadd68f2f4c31",
+      "bytes": 4551
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-fixture-alpha.json",
+      "sha256": "b0625f7c2535c03aac839a8c640f35dbce796452511a64da6a90d3e5c407eb8b",
+      "bytes": 399
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-fixture-beta.json",
+      "sha256": "9ce720ae5f8fdc9c2b6583c3b3b84a8a47fdff6ee96cb9eeec6673482dcf1917",
+      "bytes": 397
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-gui-daemon.log",
+      "sha256": "a225bf99871bf4924268b378937080235066c991c36d213fe05506cf29caf9d2",
+      "bytes": 960
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-gui-daemon_LAUNCH.json",
+      "sha256": "843de5eb7de0ed8d2d48ded0c04778b1497e5be94aad1573c9f39310d4e217af",
+      "bytes": 989
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-gui-frontend.log",
+      "sha256": "3a5d120cd1c9eca6f829c39cc85b53cb79e3fffc425100b26df4ba73f55f9291",
+      "bytes": 145
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-gui-frontend_LAUNCH.json",
+      "sha256": "3b50b1a1aa1ec8004cde735ab8e813911d08414cc05ff908afaa4ccc35b6e8db",
+      "bytes": 1170
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-launch_gui.py",
+      "sha256": "b667505fdbf7d2751f668683b0ccf704a20ce56993b55444eac9c1a091944f21",
+      "bytes": 4564
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-registration-alpha.json",
+      "sha256": "150de130269367ea052192e50988b62a3e2b5445e27b814ebf7821eff6c0a31f",
+      "bytes": 614
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/attempt02-registration-beta.json",
+      "sha256": "2da3e5050de8828fda6aaf1defac6dc6db5da4c510129614048d9f194540ab73",
+      "bytes": 612
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/browser-1440-dark.png",
+      "sha256": "48dc891758492fa99ab351cf049da8ec5d8a26e96e95d5f17fe429ce1a455fd2",
+      "bytes": 35192
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/browser-1440-light.png",
+      "sha256": "53050defd03fbc7a8303af71a13b7fc8493f4614c3ef8b17a79ddd57165f4219",
+      "bytes": 37115
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/browser-960-dark-tasks.png",
+      "sha256": "32b8e16c661c2b6c9320840832e7887f4824be5b3582d74ed8966af8fdd88ce4",
+      "bytes": 28603
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/browser-960-light-events.png",
+      "sha256": "b0e92822c49638f8d2fdca902679fcadd9763a57b95ae51d695e08735ce03ea7",
+      "bytes": 33951
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/cleanup_gui.py",
+      "sha256": "41d7ae99daa04371cd0fbcb623f8c1777496ceb5a5b70e4ae5572005d1496d7b",
+      "bytes": 1702
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/fixture-alpha.json",
+      "sha256": "b0625f7c2535c03aac839a8c640f35dbce796452511a64da6a90d3e5c407eb8b",
+      "bytes": 399
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/fixture-beta.json",
+      "sha256": "9ce720ae5f8fdc9c2b6583c3b3b84a8a47fdff6ee96cb9eeec6673482dcf1917",
+      "bytes": 397
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/fixture-records/chirality.project.json",
+      "sha256": "2403333f071fd42707e923ae68d639a39a03dc15a8ef908152a82e78630c46bf",
+      "bytes": 399
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/fixture-records/notes.md",
+      "sha256": "b51085c0cc47cad194d7f0988b09a5d909f7725554ff1e77a55897b0b21c22b2",
+      "bytes": 75
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/fixture-work.json",
+      "sha256": "2403333f071fd42707e923ae68d639a39a03dc15a8ef908152a82e78630c46bf",
+      "bytes": 399
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-daemon-restart.log",
+      "sha256": "69550fb96ad90d69abeb2c66e5c56ae1730c1248e03b3ad9a60973b8d82eecdb",
+      "bytes": 960
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-daemon-restart_LAUNCH.json",
+      "sha256": "95c5c855b44bb287394a5ae18ee1fdc45ba553e2e34105710d5e544aa189eee3",
+      "bytes": 989
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-daemon.log",
+      "sha256": "35953e8d06ae79f7c2a958ca071cc762aa9a79cce52462105680962c33841cf8",
+      "bytes": 881
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-daemon_LAUNCH.json",
+      "sha256": "14e7884de1c05d6f732d557b8282a2f015c0e29b3bd1c7b73c1495020d09e9dd",
+      "bytes": 989
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-desktop-proof.log",
+      "sha256": "e5ca855e82050ab01f1dfc745ddd77d368a19030a225ecc1d4dd090b8148e1a7",
+      "bytes": 1003
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-desktop-proof_LAUNCH.json",
+      "sha256": "bad5f5997264fab578b64db38e0370159ee98c202e61aec288a61a5962172d07",
+      "bytes": 1485
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-desktop.log",
+      "sha256": "a5ee1f906fe8d71e650a996e214a21fe293a9b1d4332fd8cd61bd29f9549aff3",
+      "bytes": 3427
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-desktop_LAUNCH.json",
+      "sha256": "3cc5afd0823ee1921393f5c4988716a56c62df42f36a89145581d336a8aeb98a",
+      "bytes": 1302
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-frontend.log",
+      "sha256": "bcaea7fa396dc88e09b36e908896b950b2718210c142b22443a3091f4bb67942",
+      "bytes": 145
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-frontend_LAUNCH.json",
+      "sha256": "289191a610ed3025d645ff01d6f062b099f929b680cded37fa6752ed153678f6",
+      "bytes": 1170
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-production-build.stderr",
+      "sha256": "aab1d82eab08eaf0cf1686a75e4f27eb0758b9c5ab8d7a15b6eda3d48e61a147",
+      "bytes": 732
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/gui-production-build.stdout",
+      "sha256": "074f5b7ae61bc0f094271615e84ef8ccef6b86c563dee8444f03ba11fe429793",
+      "bytes": 3081
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/launch_gui.py",
+      "sha256": "3fedae0d831d9c499dcfbd745cf0c52c4aeac865aa5a4382c08a90dda392dce8",
+      "bytes": 4607
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-after-reveal-AX.txt",
+      "sha256": "b7ed6fcea5173fddeaaefb13946e809127533508707c0459c2a8e11f192501ec",
+      "bytes": 3849
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-finder-reveal-AX.txt",
+      "sha256": "8a068c8119568532418f56734fd0550482b70dd816a22e84a818f92dd9a42b06",
+      "bytes": 3158
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-finder-reveal.png",
+      "sha256": "617cdecd93e526fa74baa63b06b33dc5e1e901314530d6bf11ac4d561125ebfd",
+      "bytes": 41316
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-historical-beta-draft-AX.txt",
+      "sha256": "3791d410f89bbcfb44e38928c02bf16405ccee84614e65f14961ae9c07417e8e",
+      "bytes": 3606
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-historical-beta-draft.png",
+      "sha256": "3cab178677effc9230b462fbb5cb2d99b2a1fccacf0aac112bed0648ef1e6edf",
+      "bytes": 59260
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-initial.png",
+      "sha256": "5932419911632604820c0a5764c23368339ce67752c01421cafef2f58d8abe62",
+      "bytes": 61604
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-open-recent-AX.txt",
+      "sha256": "9688bfcd7487415394e3092636db6121e0c9ad3cc8c418f7ce81b238976b0d89",
+      "bytes": 334
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/native-recorded-draft.png",
+      "sha256": "601197abf3b318c0c09469fad234119bb9fd794f5e2f9b31b09d7de7ed2e1fa3",
+      "bytes": 67853
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/registration-alpha.json",
+      "sha256": "150de130269367ea052192e50988b62a3e2b5445e27b814ebf7821eff6c0a31f",
+      "bytes": 614
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/registration-alpha.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/registration-beta.json",
+      "sha256": "2da3e5050de8828fda6aaf1defac6dc6db5da4c510129614048d9f194540ab73",
+      "bytes": 612
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/registration-beta.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/registration-work.json",
+      "sha256": "577c5e99f0961940c0b45bb13da40e9acc1367d4475171db568daf22849b1134",
+      "bytes": 614
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/registration-work.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

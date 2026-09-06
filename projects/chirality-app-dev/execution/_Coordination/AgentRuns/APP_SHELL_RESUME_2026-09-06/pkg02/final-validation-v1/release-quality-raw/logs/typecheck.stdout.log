@@ -1,0 +1,125 @@
+
+> chirality-frontend@2.0.0 typecheck
+> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false
+
+../../chirality-runtime/packages/core/src/descendant-tracker.ts(21,5): error TS2769: No overload matches this call.
+  Overload 3 of 8, '(file: string, args: readonly string[] | null | undefined, options: ExecFileOptions | null | undefined): PromiseWithChild<{ stdout: string | NonSharedBuffer; stderr: string | NonSharedBuffer; }>', gave the following error.
+    Property 'NODE_ENV' is missing in type '{ PATH: string; LC_ALL: string; LANG: string; }' but required in type 'ProcessEnv'.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(31,30): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type 'ProcessEnv | {}' is not assignable to type 'ProcessEnv | undefined'.
+      Property 'NODE_ENV' is missing in type '{}' but required in type 'ProcessEnv'.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(34,83): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(35,36): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(35,99): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(35,112): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(37,11): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(41,11): error TS2339: Property 'stdout' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(42,11): error TS2339: Property 'stderr' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(43,11): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(45,13): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(46,13): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(46,28): error TS7006: Parameter 'exitCode' implicitly has an 'any' type.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(46,38): error TS7006: Parameter 'signal' implicitly has an 'any' type.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(55,60): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(55,90): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(56,64): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/core/src/process-supervisor.ts(65,11): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-containment.ts(88,7): error TS1360: Type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' does not satisfy the expected type 'ProcessEnv'.
+  Property 'NODE_ENV' is missing in type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' but required in type 'ProcessEnv'.
+../../chirality-runtime/packages/daemon/src/codex-containment.ts(258,154): error TS1360: Type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' does not satisfy the expected type 'ProcessEnv'.
+  Property 'NODE_ENV' is missing in type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' but required in type 'ProcessEnv'.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(57,75): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Property 'NODE_ENV' is missing in type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' but required in type 'ProcessEnv'.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(58,57): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(59,61): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(59,94): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(60,13): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(60,58): error TS2339: Property 'on' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(62,13): error TS2339: Property 'stderr' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(70,66): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(70,96): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(72,29): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-login.ts(72,50): error TS2339: Property 'stdout' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(152,90): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Property 'NODE_ENV' is missing in type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' but required in type 'ProcessEnv'.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(153,57): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(154,13): error TS2339: Property 'on' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(155,61): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(155,94): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(156,13): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(158,13): error TS2339: Property 'stderr' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(167,66): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(167,96): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(169,64): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(171,56): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(171,88): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-supervisor.ts(171,109): error TS2339: Property 'stdout' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(61,73): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Property 'NODE_ENV' is missing in type '{ PATH: string; HOME: string; CODEX_HOME: string; TMPDIR: string; }' but required in type 'ProcessEnv'.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(65,34): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(65,97): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(65,110): error TS2339: Property 'pid' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(67,104): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(67,119): error TS7006: Parameter 'exitCode' implicitly has an 'any' type.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(67,129): error TS7006: Parameter 'signal' implicitly has an 'any' type.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(68,9): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(69,9): error TS2339: Property 'once' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(70,9): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(71,9): error TS2339: Property 'stderr' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(72,9): error TS2339: Property 'stdout' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(95,39): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(99,15): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/codex-worker.ts(111,11): error TS2339: Property 'stdin' does not exist on type 'never'.
+  The intersection 'ChildProcessWithoutNullStreams & ChildProcessByStdio<Writable, Readable, Readable> & ... 7 more ... & ChildProcess' was reduced to 'never' because property 'stdin' has conflicting types in some constituents.
+../../chirality-runtime/packages/daemon/src/standalone.ts(164,9): error TS2741: Property 'NODE_ENV' is missing in type '{ CODEX_HOME: string; }' but required in type 'ProcessEnv'.

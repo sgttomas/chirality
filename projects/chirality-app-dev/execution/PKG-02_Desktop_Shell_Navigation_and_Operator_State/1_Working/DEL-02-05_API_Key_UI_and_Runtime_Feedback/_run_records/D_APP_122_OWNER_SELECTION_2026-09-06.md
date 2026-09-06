@@ -1,0 +1,15 @@
+# D-APP-122 A — owner selection and bounded metadata record
+
+Owner response, verbatim:
+
+> Runtime A; D122 A; D123 A
+
+Selection evidence: `execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/OWNER_STEER_v2.md`. This deliverable records only D-APP-122 A: account-host prerequisite and exact account/Settings presentation loci for DEL-02-05-V3-05. The exact approved proposal and new ruling govern; other slate clauses confer no additional scope here.
+
+EffectStatus: HELD until the owner act is observed on fetched origin/main. The application candidate places only the approved status delta plus this dated event history/memory/run evidence; owner choice occurred, but source implementation and full item acceptance did not. Parent review/application release, package ownership, exact preimage checks and final union closeout remain distinct. Current State and Checking Approval SHA remain unchanged. No dependency satisfaction, accepted pointer, SCA truth, Root, product source or publication act is made.
+
+Canonical candidate snapshot: `execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/account-scope/ruling-application-v1/`. Its write manifest provides exact original preimages and complete postimages for independent review/application. Refresh on any drift. Fresh review result is read from the actual snapshot return, never anticipated here.
+
+Accepted upstream: SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA; CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034; D108/D120. This run record is derivative operational evidence, not decomposition truth. No SCA/DepClosure rerun is caused by the unchanged accepted truth. Remaining work: merged owner observability, later selected source/evidence work under all standing gates, full deliverable residuals. No final frontend/source/whole-tranche validation pass is claimed here.
+
+SCOPE_CHANGE prepared the exact candidate under HELP_HUMAN; WORKING_ITEMS PKG02 owns its separately released local application. Native roles are instruction-asserted; no permission inheritance. Runtime/provider/model attribution is Codex/OpenAI GPT-6 family, exact model identifier unavailable.

@@ -1,0 +1,284 @@
+{
+  "schema": "app-shell-resume-work-graph/v5",
+  "created_at": "2026-09-06T18:44:05.008353+00:00",
+  "selection_authority": "AGENT_0",
+  "posture": "MIXED",
+  "delegation_class": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted",
+  "plan": "ORCHESTRATION_PLAN_v5.md",
+  "nodes": [
+    {
+      "id": "agent0",
+      "instance": "/root",
+      "role": "HELP_HUMAN",
+      "status": "SUPERVISING",
+      "writes": []
+    },
+    {
+      "id": "branch",
+      "instance": "/root/resume_change",
+      "role": "CHANGE",
+      "status": "BOOTSTRAP_COMPLETE",
+      "writes": [
+        "change/**",
+        "scoped Git operations"
+      ],
+      "return": "change/bootstrap/RETURN.md"
+    },
+    {
+      "id": "records",
+      "instance": "/root/resume_records",
+      "role": "ephemeral Agent2",
+      "status": "RECORDING",
+      "writes": [
+        "shared root run records excluding pkg02/**, pkg07/**, change/**"
+      ]
+    },
+    {
+      "id": "pkg02-discovery",
+      "instance": "/root/resume_pkg02",
+      "role": "WORKING_ITEMS PKG02",
+      "status": "PROPOSE_EXACT_REVEAL_FREEZE",
+      "writes": [
+        "pkg02/**"
+      ],
+      "source_status": "PARENT_APPROVED_BOUNDED_REVEAL_SUBJECT_TO_FREEZE"
+    },
+    {
+      "id": "pkg07-grammar",
+      "instance": "/root/resume_pkg07",
+      "role": "WORKING_ITEMS PKG07",
+      "status": "RELEASED_RECORD_ONLY",
+      "writes": [
+        "pkg07/**",
+        "exact grammar-only deliverable reconciliation targets in manager brief"
+      ]
+    },
+    {
+      "id": "pkg02-source",
+      "instance": "/root/resume_pkg02",
+      "role": "PKG02 WORKING_ITEMS-owned bounded execution",
+      "status": "REVEAL_APPROVED_FREEZE_FIRST",
+      "source_scope": [
+        "navigator.tsx",
+        "navigator test",
+        "optional historical-chat-reveal test",
+        "globals.css: exactly 3 existing navigation/Reveal presentation rules per manager author brief v2"
+      ],
+      "constraints": [
+        "recordedRoot versus providerRoot preserved",
+        "existing bridge only",
+        "no session mutation",
+        "optional T2 display label only with live scope substantiation",
+        "no unrelated CSS or global theme expansion"
+      ],
+      "exact_paths": "Owning manager candidate freeze must resolve these file names to exact project-relative paths before source writes."
+    },
+    {
+      "id": "fresh-source-review",
+      "instance": null,
+      "role": "fresh TASK software-code-review",
+      "status": "PLANNED_NOT_DISPATCHED",
+      "writes": []
+    },
+    {
+      "id": "registered-gates-browser",
+      "instance": null,
+      "role": "package-owned validation",
+      "status": "PLANNED_NOT_DISPATCHED"
+    },
+    {
+      "id": "union-review",
+      "instance": null,
+      "role": "fresh refutation-only independent verifier",
+      "status": "PLANNED_NOT_DISPATCHED",
+      "writes": []
+    },
+    {
+      "id": "local-closeout",
+      "instance": "/root/resume_change",
+      "role": "CHANGE",
+      "status": "HELD_FINAL_UNION"
+    },
+    {
+      "id": "account-scope",
+      "instance": "/root/resume_account_scope",
+      "role": "SCOPE_CHANGE",
+      "status": "CANDIDATE_ONLY",
+      "writes": [
+        "account-scope/**"
+      ],
+      "prohibited": [
+        "account source",
+        "live register before reviewed parent release",
+        "new accepted scope"
+      ]
+    },
+    {
+      "id": "pkg02-t5-activity-view",
+      "instance": "/root/resume_pkg02",
+      "role": "PKG02 WORKING_ITEMS sole integration owner",
+      "child_instance": null,
+      "child_instance_status": "not supplied; no child execution invented",
+      "status": "PARENT_SELECTED_FROZEN_PENDING_RELEASE",
+      "brief": "pkg02/t5-view-author-01/CANDIDATE_BRIEF_v1.md",
+      "brief_sha256": "6fd9ebb78eb0239006b0541ae4ec2de982e50e87c53764846f8bb6dca65967dc",
+      "source_scope": [
+        "frontend/src/components/woven-dialogue/activity-shelf.tsx (ActivityView-local only)",
+        "frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+        "frontend/src/__tests__/components/activity-view-presentation.test.tsx"
+      ],
+      "dependencies_basis": "already-merged T1 and right-panel host DEP-02-04-015/016 SATISFIED; independent of current Reveal and local record reconciliation",
+      "forbidden": [
+        "globals.css",
+        "ActivityStrip",
+        "legacy ActivityShelf",
+        "caller/library/schema mutation",
+        "primary-session strip seam"
+      ],
+      "execution_serialization": "PKG02 serializes author/check processes and owns shared integration",
+      "required_gates": [
+        "own APP-HOLD before reliance",
+        "fresh complete frozen source diff review",
+        "component browser proof",
+        "remaining registered/final union gates"
+      ]
+    },
+    {
+      "id": "t5-strip-scope-candidate",
+      "instance": "/root/resume_account_scope",
+      "role": "SCOPE_CHANGE",
+      "status": "ROUTED_PROPOSAL_ONLY_FROZEN_PENDING_RELEASE",
+      "input": "pkg02/T5_STRIP_SEAM_PROPOSAL_v1.md",
+      "input_sha256": "d7bdb1db014200e2b1b8459e65527e74fb265a791ffec54c3cdb6911dec3d599",
+      "writes": [
+        "account-scope/t5-strip-scope/**"
+      ],
+      "objective": "assess live T5/D120 boundary and prepare exact reviewed registration candidate for missing optional primarySessionId presentation caller locus",
+      "no_source_selection": true,
+      "prohibited": [
+        "registration before parent fan-in",
+        "owner ruling",
+        "live status/dependency/source/Root changes",
+        "state/provider/handler/runtime/IPC/vocabulary/event-semantics expansion",
+        "publication"
+      ],
+      "required_return": [
+        "exact live basis and boundary assessment",
+        "frozen exact status candidate",
+        "fresh independent read-only refutation",
+        "registration candidate and hashes"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "from": "branch",
+      "to": "records",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "branch",
+      "to": "pkg02-discovery",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "branch",
+      "to": "pkg07-grammar",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "pkg02-discovery",
+      "to": "pkg02-source",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "pkg02-source",
+      "to": "fresh-source-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "fresh-source-review",
+      "to": "registered-gates-browser",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "registered-gates-browser",
+      "to": "union-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "pkg07-grammar",
+      "to": "union-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "records",
+      "to": "union-review",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "union-review",
+      "to": "local-closeout",
+      "condition": "accepted predecessor evidence before dependent effect"
+    },
+    {
+      "from": "branch",
+      "to": "account-scope",
+      "condition": "branch bootstrap complete"
+    },
+    {
+      "from": "account-scope",
+      "to": "union-review",
+      "condition": "candidate return reviewed and claim status preserved"
+    },
+    {
+      "from": "branch",
+      "to": "pkg02-t5-activity-view",
+      "condition": "completed bootstrap plus parent release against verified exact frozen candidate"
+    },
+    {
+      "from": "pkg02-t5-activity-view",
+      "to": "fresh-source-review",
+      "condition": "complete ActivityView frozen diff included in source review coverage before final gates/fan-in"
+    },
+    {
+      "from": "branch",
+      "to": "t5-strip-scope-candidate",
+      "condition": "completed bootstrap, current input identity and parent route release"
+    },
+    {
+      "from": "t5-strip-scope-candidate",
+      "to": "union-review",
+      "condition": "any included candidate payload has parent fan-in and truthful proposal-only status"
+    }
+  ],
+  "concurrency": [
+    [
+      "records",
+      "pkg07-grammar",
+      "pkg02-discovery",
+      "account-scope"
+    ],
+    [
+      "pkg02-source",
+      "pkg02-t5-activity-view",
+      "pkg07-grammar",
+      "records"
+    ],
+    [
+      "pkg02-t5-activity-view",
+      "t5-strip-scope-candidate",
+      "records"
+    ]
+  ],
+  "coordination": "parent-mediated only",
+  "cycles": [],
+  "source_gate": "exact frozen package brief, live authority/pins/APP-HOLD first",
+  "account_settings_gate": "account source HELD; exact gate/locus amendment candidate by SCOPE_CHANGE only; owner act remains",
+  "publication": "no new push/PR/merge authorized",
+  "a1_consequence": "all frontend mutation requires newly staged login-proof revision and fresh owner-executed proof for future claims",
+  "supersedes": "WORK_GRAPH_v4.json",
+  "concurrency_note": "source loci are disjoint, but PKG02 serializes author/check processes; independence permits same iteration, not uncontrolled simultaneous writers",
+  "t5_strip_seam": "proposal-only assessment routed to existing SCOPE_CHANGE; source NOT_SELECTED, registration HELD until parent fan-in"
+}

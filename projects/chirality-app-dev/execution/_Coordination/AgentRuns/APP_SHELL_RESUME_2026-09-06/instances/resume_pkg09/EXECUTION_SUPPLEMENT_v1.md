@@ -1,0 +1,11 @@
+# PKG09 execution supplement — ready prerequisites and bounded validation
+
+Parent reports CHANGE sync-v2 complete: fresh fetch HEAD=origin/main ec491aee1870a2a6a8eb2faf2919d4d5db5124b4, ahead/behind0/0;625 dirty App paths,1696 tracked Runtime files and312 outputs preserved, no drift/rebuild. Ready prerequisite evidence: change/sync-v2/RETURN.md. Parent APP-HOLD dispatch DEL09-04 ALLOW and receipt validator PASS were actually observed; this is reported metadata, not an invented raw capture. Recorder owes no check rerun.
+
+Manager and fresh reviewer must each honor sync-before-Runtime-reference: read-only git fetch origin is permitted, then verify fetched origin/main remains an ancestor of HEAD before Runtime reliance. If upstream advanced beyond HEAD, pause Runtime reliance and route CHANGE synchronization through parent; do not independently integrate a shared dirty worktree. No additional human permission is needed for these read-only freshness checks.
+
+Exact current repair may execute after coordination recording and ready synchronization under existing explicit owner approval; do not wait for publication/main merge for this one repair. Source review is after the exact edit, with no additional proposal/candidate approval stop before dispatch. Preserve existing seven shell source paths and all unrelated dirty work. Native CJS/ESM repair, provider/Runtime behavior and package/lock edits remain excluded.
+
+Validate the exact config diff with aligned current dependencies. Build output identity comparison may determine UI render-rerun applicability: no UI source changed, and byte-identical relevant emitted assets do not require unnecessary full screenshot recapture. Record the comparison and its limitation rather than inventing a visual result. Preserve prior failures. Return a truthful bounded repair verdict/evidence even if unrelated native startup or configured-premerge whole-run gates remain held; those failures neither become PASS nor broaden repair scope.
+
+This supplements the frozen v10 launch brief with parent-reported actual readiness and precise validation limits. No new source scope, owner act or publication grant. All exact patch/ownership/A1/final-union obligations remain.

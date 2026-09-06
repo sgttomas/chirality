@@ -1,0 +1,164 @@
+{
+  "phase": "iteration01-progress, before source-manager fan-in and before receipt append",
+  "repo_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "branch": "codex/shell-redesign-resume-20260906",
+  "checks": [
+    {
+      "name": "receipt-pre-append",
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "explicit_environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-09-06T18:27:48.562518+00:00",
+      "finished_at": "2026-09-06T18:27:51.012495+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "receipt-pre-append.stdout.txt",
+          "sha256": "910ba49406a7c19319d0ac52b538c2f4a763a89fcfeab57614a2de38785a5718",
+          "bytes": 164
+        },
+        {
+          "path": "receipt-pre-append.stderr.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "corpus-status",
+      "argv": [
+        "python3",
+        "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+        "status"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "explicit_environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-09-06T18:27:48.562764+00:00",
+      "finished_at": "2026-09-06T18:27:48.586971+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "corpus-status.stdout.txt",
+          "sha256": "921a96d8fcfa2c08c5659046e2dac4fa1d19fc07749beec041ae5d7c5a179351",
+          "bytes": 670
+        },
+        {
+          "path": "corpus-status.stderr.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "self-check",
+      "argv": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "explicit_environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-09-06T18:27:48.563517+00:00",
+      "finished_at": "2026-09-06T18:28:01.757591+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "self-check.stdout.txt",
+          "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+          "bytes": 24824
+        },
+        {
+          "path": "self-check.stderr.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "harness-pytest",
+      "argv": [
+        "python3",
+        "-m",
+        "pytest",
+        "tools/practitioner_harness",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "cwd": ".",
+      "explicit_environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-09-06T18:27:48.564419+00:00",
+      "finished_at": "2026-09-06T18:28:17.540885+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "harness-pytest.stdout.txt",
+          "sha256": "31a20f1dfd8bd13c4ca536035f7569c7f6dfd1675ee935b35955835b15fcaad5",
+          "bytes": 501
+        },
+        {
+          "path": "harness-pytest.stderr.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "app-hold-reliance",
+      "argv": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "reliance",
+        "--entry-path",
+        "HELP_HUMAN:APP_SHELL_RESUME_2026-09-06:RECORDS:PROGRESS",
+        "--target",
+        "DEL-02-01",
+        "--target",
+        "DEL-02-02",
+        "--target",
+        "DEL-02-03",
+        "--target",
+        "DEL-02-04",
+        "--target",
+        "DEL-02-05",
+        "--target",
+        "DEL-07-03"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "explicit_environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-09-06T18:27:48.564517+00:00",
+      "finished_at": "2026-09-06T18:27:49.314045+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "app-hold-reliance.stdout.txt",
+          "sha256": "08033f28e0c125963714616639aff6eed25b8ee47b08a390dd0b94bb1c771334",
+          "bytes": 2176
+        },
+        {
+          "path": "app-hold-reliance.stderr.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    }
+  ],
+  "limitations": "No frontend typecheck/test/build, browser, runtime dependency install or sibling build performed. No final receipt/completion update or final union review claimed. Inherited environment values/secrets not captured. Worktree may contain concurrent package-owned edits; these are progress-time results."
+}

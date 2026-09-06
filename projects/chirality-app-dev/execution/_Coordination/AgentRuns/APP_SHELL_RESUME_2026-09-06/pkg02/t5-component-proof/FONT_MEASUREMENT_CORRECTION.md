@@ -1,0 +1,1 @@
+Attempt02 measured Serif400 even though rendered header uses Serif600; canvas measurement triggered an additional loading face after fonts.ready. Preserve actual fontStatus loading and do not use that Serif400 width as loaded-font proof. Final diagnostic uses actual rendered weights: Sans400, Mono500, Serif600. No source/CSS font asset change; only diagnostic sample corrected.

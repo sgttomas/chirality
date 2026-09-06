@@ -1,0 +1,18 @@
+{
+  "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md": {
+    "expected": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+    "actual": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61"
+  },
+  "execution/_ScopeChange/_LATEST.md": {
+    "expected": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+    "actual": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0"
+  },
+  "plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md": {
+    "expected": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45",
+    "actual": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45"
+  },
+  "plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md": {
+    "expected": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb",
+    "actual": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb"
+  }
+}

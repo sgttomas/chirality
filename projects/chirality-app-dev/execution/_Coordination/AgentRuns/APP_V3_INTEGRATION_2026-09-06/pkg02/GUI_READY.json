@@ -1,0 +1,17 @@
+{
+  "url": "http://127.0.0.1:51404",
+  "scratch": "/private/tmp/ch-v3-gui-20260906",
+  "roots": [
+    "/private/tmp/ch-v3-gui-20260906/work/alpha",
+    "/private/tmp/ch-v3-gui-20260906/work/beta"
+  ],
+  "process_ids": [
+    47252,
+    47270,
+    47279
+  ],
+  "source_unchanged": true,
+  "provider": "stub",
+  "api_list_status": 200,
+  "token_bytes_retained": false
+}

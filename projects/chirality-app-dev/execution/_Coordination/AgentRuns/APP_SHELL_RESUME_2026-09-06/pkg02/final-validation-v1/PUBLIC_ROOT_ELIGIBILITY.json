@@ -1,0 +1,23 @@
+[
+  {
+    "path": "/Applications",
+    "realpath": "/Applications",
+    "is_directory": true,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "path": "/System/Applications",
+    "realpath": "/System/Applications",
+    "is_directory": true,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "path": "/Users/Shared",
+    "realpath": "/Users/Shared",
+    "is_directory": true,
+    "readable": true,
+    "writable": true
+  }
+]
