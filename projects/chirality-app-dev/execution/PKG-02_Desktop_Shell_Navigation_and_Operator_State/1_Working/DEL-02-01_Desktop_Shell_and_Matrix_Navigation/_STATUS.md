@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-09-04
+**Last Updated:** 2026-09-06
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -58,6 +58,7 @@
   Removed when: merged with review PASS; a pop-out window would need a new owner ruling and its own item (Q5).
 
 ## History
+- 2026-09-06 - T2 headerless shell and folder binding implemented in the unchanged v5 candidate with fresh full source review PASS, final typecheck/test/build evidence and calibrated browser/native proof. Actual local premerge HTTP 503 requires configured CI; no full item, lifecycle or owner acceptance. See `_run_records/SHELL_CONVERGENCE_V5_2026-09-06.md` and the pinned Walkthrough comparison; all Remaining markers/removal conditions are retained.
 - 2026-09-05 - D-APP-120 proposal prepared for DEL-02-01-V3-01: separate owner choices for the omitted woven-shell/activity-shelf presentation seam and no-folder runtime-contract design/routing. Current create/list path still requires a root and fixed registered project binding; no hidden fallback or functional no-folder capability is claimed. Packet `execution/_Coordination/_DECISIONS/D-APP-120_PACKET_T2_NO_FOLDER_AND_WOVEN_SEAM_2026-09-05.md` and local `_run_records/T2_CAPABILITY_PROPOSAL_2026-09-05.md`; owner selections and governed review pending. No Remaining, lifecycle, Checking Approval SHA, dependency or capability change.
 - 2026-09-05 - D-APP-109 (owner direction 2026-09-05): dependency register re-extracted against the applied decomposition row L307 with the held edge proposals emitted as cycle-participating, non-gating rows (run `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/`); `_CONTEXT.md` Traceability, Anticipated Artifacts, and Source Authority aligned to the applied row. No Remaining, lifecycle, Checking Approval SHA, product, or release change.
 - 2026-09-04 - SCA-APP-010 shell-redesign seating (D-APP-108; owner adopted the seating list as presented): Remaining items seeded DEL-02-01-V3-01, DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-01-V3-04 (SELECTABLE: none) with gate, dependency, write-locus, check, and return contracts; ruled questions cited by item. `ScopeOfWork.md` re-pinned to the applied decomposition at `dbd812a52d5ed0cb3ed173f3aaaa68703a914291` with a SCA-APP-010 Gate-5 Current Contract section; `_CONTEXT.md` and `_REFERENCES.md` aligned (WI-001, WI-002, WI-003, WI-004, WI-005). Run evidence `execution/_Coordination/AgentRuns/APP_SCA_APP_010_SEATING_2026-09-04/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.

@@ -181,3 +181,30 @@ describe('ShellFrame', () => {
     expect(pressed).toEqual(['dark']);
   });
 });
+
+it('anchors woven Settings outside its trigger and dismisses with Escape or an outside pointer', async () => {
+  const handlers = new Map<string, (event: unknown) => void>();
+  class FixtureNode {}
+  const trigger = { getBoundingClientRect: () => ({ top: 700, bottom: 730, left: 24 }), focus: vi.fn() };
+  const panel = { style: {} as Record<string, string> };
+  const disclosure = { open: true, querySelector: (selector: string) => selector === 'summary' ? trigger : panel, contains: (target: unknown) => target === trigger };
+  vi.stubGlobal('Node', FixtureNode);
+  vi.stubGlobal('document', { documentElement: { setAttribute: vi.fn() }, addEventListener: (name: string, handler: (event: unknown) => void) => handlers.set(name, handler), removeEventListener: (name: string) => handlers.delete(name) });
+  vi.stubGlobal('window', { innerHeight: 800, innerWidth: 1000, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  setWorkspace();
+  const { ShellFrame } = await import('../../components/shell/shell-frame');
+  let tree!: ReactTestRenderer;
+  try {
+    act(() => { tree = renderer.create(<ShellFrame section="CHAT" title="Chat" subtitle="" variant="workspace" renderWorkspaceContent={({ settingsControl }) => settingsControl} />, { createNodeMock: element => element.props.className === 'shell-root-disclosure' ? disclosure : null }); });
+    tree.root.findByProps({ className: 'shell-root-disclosure' }).props.onToggle();
+    expect(panel.style.bottom).toBe('108px'); // Popup ends eight pixels before the trigger.
+    expect(panel.style.maxHeight).toBe('684px');
+    handlers.get('keydown')?.({ key: 'Escape' });
+    expect(disclosure.open).toBe(false); expect(trigger.focus).toHaveBeenCalledTimes(1);
+    disclosure.open = true;
+    handlers.get('pointerdown')?.({ target: new FixtureNode() });
+    expect(disclosure.open).toBe(false);
+    act(() => tree.unmount());
+    expect(handlers.size).toBe(0);
+  } finally { vi.unstubAllGlobals(); }
+});

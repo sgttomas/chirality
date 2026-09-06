@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ ''
+- 'Synthetic unsent draft for continuity verification.'
+
+    at file:///Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/browser-integration-03/matrix.mjs:50:379 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '',
+  expected: 'Synthetic unsent draft for continuity verification.',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

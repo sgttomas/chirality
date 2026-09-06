@@ -1,0 +1,26 @@
+{
+  "result": "VALIDATED_PARTIAL_FOR_FRESH_GOVERNED_REVIEW",
+  "basis": "e00238621db7a00b036245962c21e3fc6ed75452",
+  "packageManifestSha256": "529c7103df6ca844890dde494997c0f178401d6eebe2e6005cc5f03a57d2fb2c",
+  "packageMembers": 510,
+  "sourceMembers": 25,
+  "sourceReview": "PASS",
+  "sourceTests": "1709 passed, 4 skipped",
+  "globalPytest": "379 passed pre-fan-in",
+  "globalFindings": "55 WARN,4 REVIEW,zero BLOCK; unchanged from iteration02",
+  "processCleanup": "manager/native terminal records report all owned processes/windows closed, host refused port, owned socket/token/plist absent",
+  "finalUI": "headerless coherent partial; account/settings not complete",
+  "unresolved": [
+    "actual Finder gesture delivery",
+    "no-folder accepted contract B1",
+    "native inline PDF/D121",
+    "T4 broader predecessor and reference/quote features",
+    "T6 account/settings/chat organization gates",
+    "Workflows later integration",
+    "configured exact-source CI",
+    "new payload publication authorization",
+    "fresh whole-tranche governed review/local closeout"
+  ],
+  "modelTokenContext": "exact serving model, token usage and context occupancy unavailable",
+  "sourceFreeze": "no successor or source change after v5 reported"
+}

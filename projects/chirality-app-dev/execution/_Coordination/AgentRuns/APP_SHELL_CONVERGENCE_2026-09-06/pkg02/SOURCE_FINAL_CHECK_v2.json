@@ -1,0 +1,43 @@
+{
+  "head": "c34bca30c57ef0f36de25d8065b8c1944431d48c",
+  "source_manifest_sha256": "5b23c290d2a9d6a14daea7d2b25b7f45afcb04fe7922342a08ab9445df476abb",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "sha256": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f",
+      "actual_sha256": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "03a438f15bdbcad621492c1edcaa3a56df291905c4d9cd284fadf56f877ba52b",
+      "actual_sha256": "03a438f15bdbcad621492c1edcaa3a56df291905c4d9cd284fadf56f877ba52b",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "sha256": "0f27c9b74be9e0149682b54213f11e86e088d90e261ee88afd52457c7d8379dd",
+      "actual_sha256": "0f27c9b74be9e0149682b54213f11e86e088d90e261ee88afd52457c7d8379dd",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "sha256": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312",
+      "actual_sha256": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "5ce2238123a35cfc58db05c241df1ac5655d661849362d0ce95375a28e376d9d",
+      "actual_sha256": "5ce2238123a35cfc58db05c241df1ac5655d661849362d0ce95375a28e376d9d",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "c36110f1e9e69aecb5c80eb08d63cf0ff60440f8a00d1c7d51ccf3e5d7e792fe",
+      "actual_sha256": "c36110f1e9e69aecb5c80eb08d63cf0ff60440f8a00d1c7d51ccf3e5d7e792fe",
+      "match": true
+    }
+  ],
+  "result": "PASS"
+}

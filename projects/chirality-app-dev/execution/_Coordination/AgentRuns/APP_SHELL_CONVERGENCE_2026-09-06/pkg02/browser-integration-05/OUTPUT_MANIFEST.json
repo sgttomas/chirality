@@ -1,0 +1,97 @@
+[
+  {
+    "path": "APP_HOLD_PREFLIGHT.json",
+    "sha256": "ef33adf6af97365729b90c547cac6597665c5d05a8e4072698da2831ac997dc5",
+    "bytes": 1389
+  },
+  {
+    "path": "BRIEF.md",
+    "sha256": "fee30bd1bc93e971c766bf2d1b3c058bc62777c1e0461b4b046277b988ba7e43",
+    "bytes": 1853
+  },
+  {
+    "path": "COMMANDS.md",
+    "sha256": "cde824dd78b285c67d45201d24540bd121ba6a1fd87cbb61a2ce3d0c674049ae",
+    "bytes": 829
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "fb8f14395eddc397461f56895832e0c607671934ee4d983ee719195cf869549a",
+    "bytes": 1139
+  },
+  {
+    "path": "cleanup.json",
+    "sha256": "f53c8350bae42efc79479f3de8a1af41a50c2129a89abafbf19d6d85bd04ec01",
+    "bytes": 161
+  },
+  {
+    "path": "document-1440-light.png",
+    "sha256": "ae1a88f053aed84822a766212d8dd731a9f0cd20e2a8f050b1d332093d07ec10",
+    "bytes": 109295
+  },
+  {
+    "path": "evaluator.mjs",
+    "sha256": "c4bda94368412200866e2a6ee8de5aca153757dc3092d4d20a9988f41ca752a2",
+    "bytes": 8113
+  },
+  {
+    "path": "evaluator.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "evaluator.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "first-files-1440-light.png",
+    "sha256": "b7dbc6ed2c8711d0fa97f59cf98d43e1fd36a31d78f2f9bb7619d63f51d83c02",
+    "bytes": 60955
+  },
+  {
+    "path": "fixture-document.md",
+    "sha256": "70a62619fe20a822c56616fe4ea489bc801c84134025a24914a3d52e1547f76e",
+    "bytes": 468
+  },
+  {
+    "path": "fixture.json",
+    "sha256": "6247bc6b09591ea8440ac122bc264a1193abef5053767d478be5a10efb5d5db8",
+    "bytes": 1503
+  },
+  {
+    "path": "legacy-root-b.png",
+    "sha256": "591466133bd04fc965f67969a7890019848789d18859a8903a19be858927891b",
+    "bytes": 138831
+  },
+  {
+    "path": "result.json",
+    "sha256": "ff32cc577f664fbe05d3a62d0e62432b9e11bf2278e84ba93c0db07fcc69b97a",
+    "bytes": 14145
+  },
+  {
+    "path": "settings-early-result.json",
+    "sha256": "d3419566448489dfdc7a02924d6e2623cf35abdddf1dc8d44f9d5dd22d96ee28",
+    "bytes": 4006
+  },
+  {
+    "path": "settings-expanded-1440-light.png",
+    "sha256": "2e62013679df367bb71825f0dfd095f0887413e30d2fdca8ceb9663980b57bfc",
+    "bytes": 97040
+  },
+  {
+    "path": "source-after.json",
+    "sha256": "cfa66915fbb27fc67bbab3c095bd09c12ae5e4ce221586e4c6f8679f8e419388",
+    "bytes": 6756
+  },
+  {
+    "path": "source-before.json",
+    "sha256": "cfa66915fbb27fc67bbab3c095bd09c12ae5e4ce221586e4c6f8679f8e419388",
+    "bytes": 6756
+  },
+  {
+    "path": "v4-v5-trace.json",
+    "sha256": "0224fa31f36818d427ea9a555495e9a3b78d768e75f5864cf9d3242b0e8c45dd",
+    "bytes": 3183
+  }
+]

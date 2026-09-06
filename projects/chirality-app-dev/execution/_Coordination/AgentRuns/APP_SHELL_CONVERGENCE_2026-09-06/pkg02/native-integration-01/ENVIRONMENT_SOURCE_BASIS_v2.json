@@ -1,0 +1,33 @@
+{
+  "status": "READ_ONLY_PREPARATION_BASIS_NOT_EXECUTION_FREEZE",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "sha256": "ff324e424c772f94bbd59e628ed60ea3ef2e9d7398960ae341f10d55bc9e65b7"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/desktop-project-client.ts",
+      "sha256": "a3b2b99a9b5106e282bf631b707d3587bc098d28ad9093f03b11c73ed2910dde"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts",
+      "sha256": "29eeb34086adefa931d12ad6e7ad542a365127839f994c7883f50081a56f6409"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/desktop-daemon-posture.ts",
+      "sha256": "b1d67d0acf919e57bb5aacd30dd78e332c1c51d74adcfb22aae9b430c1146db6"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "sha256": "4f1fddb054b8d80c9aab113e93cee0b19923d9c81720b20ee0d279a657194837"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/cli/src/config.ts",
+      "sha256": "40cec2df6c21fa10a5a053ff6e40ea0b6d9d4a352208660cc01eb22f5fc7523e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "38a55c95ba2ffa488e46a1debb48939a4aa8af2da89b80777e9d28f6f0c4adf4"
+    }
+  ]
+}

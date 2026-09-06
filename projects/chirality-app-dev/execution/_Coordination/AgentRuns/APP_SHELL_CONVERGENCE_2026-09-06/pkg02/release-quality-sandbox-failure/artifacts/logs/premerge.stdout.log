@@ -1,0 +1,10 @@
+
+> chirality-frontend@2.0.0 harness:validate:premerge
+> node ./scripts/validate-harness-premerge.mjs
+
+HARNESS_VALIDATION_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/summary.json
+HARNESS_VALIDATION_STATUS=fail
+HARNESS_PREMERGE_ARTIFACT_PATH=/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
+HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/summary.json
+HARNESS_PREMERGE_STATUS=fail
+HARNESS_PREMERGE_TEST_COUNT=0

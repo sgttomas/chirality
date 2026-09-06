@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge, ipcRenderer, webUtils } from 'electron';
 import {
   RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
   RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
@@ -24,6 +24,19 @@ contextBridge.exposeInMainWorld('chirality', {
     node: process.versions.node
   },
   selectDirectory: () => ipcRenderer.invoke(SELECT_DIRECTORY_CHANNEL),
+  folders: {
+    registerRecent: (path: string) => ipcRenderer.invoke('chirality:folder-register-recent', path),
+    pathForFile: (file: File): string => {
+      try { return webUtils.getPathForFile(file); } catch { return ''; }
+    },
+    subscribeOpen: (listener: (intent: { path?: string; error?: string }) => void): (() => void) => {
+      let active = true;
+      const handler = (_event: unknown, intent: { path?: string; error?: string }) => { if (active) listener(intent); };
+      ipcRenderer.on('chirality:folder-open-intent', handler);
+      void ipcRenderer.invoke('chirality:folder-open-ready').catch(() => { if (active) listener({ error: 'Folder intent delivery is unavailable.' }); });
+      return () => { active = false; ipcRenderer.removeListener('chirality:folder-open-intent', handler); };
+    }
+  },
   document: {
     // Both Electron modes retain the current frame-denying renderer policy.
     inlinePdfPreview: false,

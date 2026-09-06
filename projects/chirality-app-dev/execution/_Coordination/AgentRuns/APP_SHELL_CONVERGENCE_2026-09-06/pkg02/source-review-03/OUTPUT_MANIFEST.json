@@ -1,0 +1,38 @@
+[
+  {
+    "path": "APP_HOLD_PREFLIGHT.json",
+    "sha256": "e77a54896c5738242cccf542c379c5f425a6547a1784635179af61869b0e4fd3"
+  },
+  {
+    "path": "BRIEF.md",
+    "sha256": "b1c3c47b8b11861dad5db1ff57fd99a228a842b97d50e7e0d40eaf84eac75396"
+  },
+  {
+    "path": "CONTEXT_INPUT_INVENTORY.json",
+    "sha256": "2ed2c00959ade30ba11fac8d05f5c74d42c2d0a7be6c416fabe398c3da636428"
+  },
+  {
+    "path": "INPUT_HASHES_AFTER.json",
+    "sha256": "3050bb5159ebfb115e39298ae30890d97bc73c0a3bc019ee05d95652df9bc7f3"
+  },
+  {
+    "path": "INPUT_HASHES_BEFORE.json",
+    "sha256": "3050bb5159ebfb115e39298ae30890d97bc73c0a3bc019ee05d95652df9bc7f3"
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "558b0126de201fbda67ee3d548a5ce31e259f2177eb53e44a78db243d13aca41"
+  },
+  {
+    "path": "_run_records/TASK_RUN_2026-09-06_0405.md",
+    "sha256": "e2bbfb981c99fee5e59616f5476f2d821663606f1c31bafea119b2ca7f60ec93"
+  },
+  {
+    "path": "affected-checks.json",
+    "sha256": "060aad843b762e3b8ba00a0f2b1d72de851e0835ba2e9c2efb134b999d4a35fe"
+  },
+  {
+    "path": "scope-check.json",
+    "sha256": "55ec0625cc7f0ab6afadeb1d04a1e7ee6900d8700225d442192909462614edbf"
+  }
+]

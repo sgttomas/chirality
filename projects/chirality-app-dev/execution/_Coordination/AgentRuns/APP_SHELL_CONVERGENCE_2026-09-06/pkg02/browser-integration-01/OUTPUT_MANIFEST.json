@@ -1,0 +1,77 @@
+[
+  {
+    "path": "fixture.json",
+    "sha256": "ad101f3a653b1064b05562e7c90579471aa085b62f8317db09a7dc7935165c82",
+    "bytes": 1433
+  },
+  {
+    "path": "files-1440-light.png",
+    "sha256": "52349e7ee79768f1eaef344ef471cbb4c1d9f4d31a3bde74a60dd52b8ea59b5e",
+    "bytes": 62235
+  },
+  {
+    "path": "source-before.json",
+    "sha256": "038b71792279a0072218984be668be28b60bad5625c997785f3f9dbcc2bf1ce0",
+    "bytes": 4039
+  },
+  {
+    "path": "source-after.json",
+    "sha256": "038b71792279a0072218984be668be28b60bad5625c997785f3f9dbcc2bf1ce0",
+    "bytes": 4039
+  },
+  {
+    "path": "COMMANDS.md",
+    "sha256": "58ff6254e38b311f66e3e6ae7b6b7c41499a0afea0505bd750d6bd156c5db5fb",
+    "bytes": 695
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "a2953ed5080a9ddc0a0588530c47c16d2ef607cb2a10e09421a2e5ea73571c4e",
+    "bytes": 1128
+  },
+  {
+    "path": "first-capture.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "cleanup.json",
+    "sha256": "aa97db21ddbedd19678ab37ed2073001d5c312a88a053f23a88e577a636f5046",
+    "bytes": 158
+  },
+  {
+    "path": "first-ready.json",
+    "sha256": "4c496706df3541ec288fc2f32a133746758a35e96355e10e74ffa2e9497ce8bc",
+    "bytes": 2927
+  },
+  {
+    "path": "BRIEF.md",
+    "sha256": "c5b055a76512df4bbb007390e3754af10c1a56090cd33d486d5b2012ec9b222f",
+    "bytes": 2281
+  },
+  {
+    "path": "first-capture.mjs",
+    "sha256": "46ff340bef48d8642aa8051e7082389261e92b223288a090e8b0fafa2c944ffa",
+    "bytes": 4463
+  },
+  {
+    "path": "first-capture.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "settings-1440-light.png",
+    "sha256": "ac745e0bba4a1872591d0c7ee5e2271377451cc6369ba19daa2241cac9d3c51e",
+    "bytes": 78603
+  },
+  {
+    "path": "fixture-document.md",
+    "sha256": "70a62619fe20a822c56616fe4ea489bc801c84134025a24914a3d52e1547f76e",
+    "bytes": 468
+  },
+  {
+    "path": "settings-geometry.json",
+    "sha256": "2f7aa970943216453b3c746d7673a4b628e8cb190f022d481f17a3e9f4153cd2",
+    "bytes": 12919
+  }
+]

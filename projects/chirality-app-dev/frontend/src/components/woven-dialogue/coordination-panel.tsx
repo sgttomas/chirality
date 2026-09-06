@@ -5,6 +5,7 @@ import type { RecordedAgentHierarchy } from '../../lib/woven-dialogue/contracts'
 import { AgentsProjection } from './agents-projection';
 
 type CoordinationPanelProps = {
+  embedded?: boolean;
   activeView: 'session' | 'agents';
   replaySlot?: React.ReactNode;
   hierarchy: RecordedAgentHierarchy;
@@ -19,6 +20,7 @@ type CoordinationPanelProps = {
 
 export function CoordinationPanel({
   activeView,
+  embedded = false,
   replaySlot,
   hierarchy,
   sessionsLoading,
@@ -31,7 +33,7 @@ export function CoordinationPanel({
 }: CoordinationPanelProps): JSX.Element {
   return (
     <section className="woven-coordination" aria-label="Coordination Panel">
-      <header className="woven-region-header">
+      {!embedded ? <header className="woven-region-header">
         <div>
           <p className="woven-eyebrow">Recorded coordination</p>
           <h2>Coordination</h2>
@@ -51,7 +53,7 @@ export function CoordinationPanel({
             </button>
           ))}
         </div>
-      </header>
+      </header> : null}
       <div className="woven-coordination-body">
         {activeView === 'session'
           ? replaySlot ?? (

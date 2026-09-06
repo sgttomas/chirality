@@ -1,0 +1,9 @@
+# Bounded legacy compatibility repair
+
+Same sole Agent2 TASK software-bounded-implementation, same exact source fence and invocation as integration brief. No new source loci, legacy feature, runtime/provider changes or delegation.
+
+source-review-05/RETURN.md is terminal BLOCK for one P2 compatibility regression, SHA256 5182089bd1749868a995f752122dc9dc1faf24350afa8bd153712988ce7121b3. All 25 v4 hashes and reconstructed full diff matched. Browser-integration-04 passed its bounded matrix and keyboard/Settings regressions on v4, then cleaned all owned browser/server processes and verified hashes/port refusal.
+
+Repair only the confirmed legacy root-change regression: enduring conversation binding currently applies to plain legacy ChatPanel, while legacy ShellFrame still permits Working Root changes and has no New chat callback. The next session and draft remain incorrectly tied to the old root. Constrain enduring conversation binding to woven presentation, or preserve existing legacy reset semantics with current APIs. Parent prefers this bounded compatibility restoration; do not add a legacy feature or alter the accepted woven lock, draft identity, origin metadata or input-restoration semantics.
+
+Add meaningful regression: legacy completed turn, root A to root B change, next session creation uses B and draft storage follows the existing per-root behavior; woven first-message binding still survives persona changes and rejects root changes until New chat. Inspect both presentation paths and keep prior root-race, origin and input tests passing. Run targeted feedback/typecheck only, then complete v5 source freeze with full diff, manifest, scope/whitespace and return. No full suite/build/native before fresh review. Preserve all prior candidate/proof history; source held after freeze. No lifecycle/publication/Remaining closure or runtime/no-folder capability claim.

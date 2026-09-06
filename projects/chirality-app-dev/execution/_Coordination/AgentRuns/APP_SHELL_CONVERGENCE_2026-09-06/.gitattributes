@@ -1,0 +1,19 @@
+# Exact immutable raw evidence classifications; see iteration-03/RAW_EVIDENCE_CLASSIFICATION_RATIONALE_v1.md
+pkg02/author-01/SOURCE_DIFF_v1.patch -whitespace
+pkg02/author-01/SOURCE_DIFF_v2.patch -whitespace
+pkg02/integration-01/SOURCE_DIFF_v1.patch -whitespace
+pkg02/integration-01/SOURCE_DIFF_v2.patch -whitespace
+pkg02/integration-01/SOURCE_DIFF_v3.patch -whitespace
+pkg02/integration-01/SOURCE_DIFF_v4.patch -whitespace
+pkg02/integration-01/SOURCE_DIFF_v5.patch -whitespace
+pkg02/integration-01/focused-remediation-v3.log -whitespace
+pkg02/integration-01/focused-remediation-v4.log -whitespace
+pkg02/integration-01/focused-remediation-v5-initial.log -whitespace
+pkg02/integration-01/focused-remediation-v5.log -whitespace
+pkg02/release-quality-sandbox-failure/artifacts/logs/full_test.stderr.log -whitespace
+pkg02/release-quality-sandbox-failure/artifacts/logs/full_test.stdout.log -whitespace
+pkg02/release-quality-sandbox-failure/artifacts/logs/typecheck.stdout.log -whitespace
+pkg02/release-quality-v2-host/artifacts/logs/full_test.stdout.log -whitespace
+pkg02/release-quality-v2-host/artifacts/logs/typecheck.stdout.log -whitespace
+pkg02/release-quality-v5-host/artifacts/logs/full_test.stdout.log -whitespace
+pkg02/release-quality-v5-host/artifacts/logs/typecheck.stdout.log -whitespace

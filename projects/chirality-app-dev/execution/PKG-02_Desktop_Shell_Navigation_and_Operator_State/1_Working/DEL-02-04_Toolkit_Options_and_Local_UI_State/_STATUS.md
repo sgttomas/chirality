@@ -1,7 +1,7 @@
 # Status: DEL-02-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-09-04
+**Last Updated:** 2026-09-06
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -34,6 +34,7 @@ remains:
   Removed when: merged with review PASS.
 
 ## History
+- 2026-09-06 - T5 fixed activity strip and Activity view implemented in the unchanged v5 candidate with fresh full source review PASS, final typecheck/test/build evidence and calibrated browser/native proof. Actual local premerge HTTP 503 requires configured CI; no full item, lifecycle or owner acceptance. See `_run_records/SHELL_CONVERGENCE_V5_2026-09-06.md` and the pinned Walkthrough comparison; all Remaining markers/removal conditions are retained.
 - 2026-09-05 - Additive-state partial closeout: final full-diff reviewPASS; full1636testsPASS/4skipped, typecheck/build/Section9/selfcheck/350pytest/holdPASS. Actual local premergeFAIL HTTP503 ENGINE_UNAVAILABLE missing daemon binding; source-bound branchCI owed. Parent integration/governed review/CHANGE pending; Activity strip/view and full Remaining/merge condition retained. See `_run_records/TASK_RUN_2026-09-05_ADDITIVE_STATE_PARTIAL.md`.
 - 2026-09-05 - Additive-state source fan-in: focused32testsPASS; full revised-diff review PASS after parent source challenge and independent P2 confirmation/repair retaining cross-root titles/rung hints. Global gates pending; partial obligation only. Prior records preserved in iteration3 instances/pkg02_fields.
 - 2026-09-05 - DEL-02-04-V3-01 partial additive-state implementation under APP_LOOP_SHELL_2026-09-05 iteration3: state module/library tests only; focused31testsPASS; source frozen for fresh review and parent global gates. See `_run_records/TASK_RUN_2026-09-05_ADDITIVE_STATE_PARTIAL.md`. Activity strip/view and consumer integration remain; full Remaining/merge condition and lifecycle unchanged. Frontend mutation requires A1 restage and fresh owner proof.

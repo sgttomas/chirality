@@ -1,0 +1,50 @@
+[
+  {
+    "args": [
+      "/usr/bin/ditto",
+      "-x",
+      "-k",
+      "/Users/ryan/Library/Caches/chirality/electron-dist/electron-v43.2.0-darwin-arm64.zip",
+      "/private/tmp/chirality-native-shell-02gzaapq/distribution"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "/usr/bin/codesign",
+      "--force",
+      "--deep",
+      "--sign",
+      "-",
+      "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app: replacing existing signature\n"
+  },
+  {
+    "args": [
+      "/usr/bin/codesign",
+      "--verify",
+      "--deep",
+      "--strict",
+      "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "/usr/bin/codesign",
+      "-d",
+      "--verbose=4",
+      "/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "Executable=/private/tmp/chirality-native-shell-02gzaapq/Chirality Shell Evidence.app/Contents/MacOS/Electron\nIdentifier=org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515\nFormat=app bundle with Mach-O thin (arm64)\nCodeDirectory v=20400 size=342 flags=0x2(adhoc) hashes=3+3 location=embedded\nVersionPlatform=1\nVersionMin=786432\nVersionSDK=1704960\nHash type=sha256 size=32\nCandidateCDHash sha256=54ee9ffb144e127b2691d11c6d177468d8671be3\nCandidateCDHashFull sha256=54ee9ffb144e127b2691d11c6d177468d8671be3f6340fc19afdef6b29931581\nHash choices=sha256\nCMSDigest=54ee9ffb144e127b2691d11c6d177468d8671be3f6340fc19afdef6b29931581\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=16384\nExecutable Segment flags=0x1\nPage size=16384\nCDHash=54ee9ffb144e127b2691d11c6d177468d8671be3\nSignature=adhoc\nInfo.plist entries=31\nTeamIdentifier=not set\nSealed Resources version=2 rules=13 files=10\nInternal requirements count=0 size=12\n"
+  }
+]

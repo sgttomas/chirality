@@ -61,10 +61,11 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => ({ projectRoot: '/repo/projects/chirality-app-dev' })
 }));
 vi.mock('../../components/workspace/harness-events-provider', () => ({
+  useHarnessEvents: () => ({ events: [] }),
   useHarnessStreaming: () => false
 }));
 vi.mock('../../components/shell/shell-frame', () => ({
-  ShellFrame: ({ children }: { children: React.ReactNode }) => <div>{children}</div>
+  ShellFrame: ({ children, renderWorkspaceContent }: { children?: React.ReactNode; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => <div>{renderWorkspaceContent ? renderWorkspaceContent({}) : children}</div>
 }));
 vi.mock('../../components/shell/chat-panel', () => ({
   ChatPanel: () => <div data-chat-panel="mounted" />
@@ -90,7 +91,8 @@ vi.mock('../../components/woven-dialogue/coordination-panel', () => ({
   )
 }));
 vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
-  ActivityShelf: () => <div data-activity-shelf="mounted" />
+  ActivityStrip: ({ onOpenDetails }: { onOpenDetails: () => void }) => <button onClick={onOpenDetails} data-activity-strip="mounted">Details</button>,
+  ActivityView: () => <div data-activity-view="mounted" />
 }));
 vi.mock('../../components/woven-dialogue/selected-session-replay-lens', () => ({
   SelectedSessionReplayLens: () => <div data-replay-lens="mounted" />

@@ -1,0 +1,37 @@
+[
+  {
+    "label": "immediately after fill",
+    "value": "",
+    "identity": true
+  },
+  {
+    "label": "after expansion restore",
+    "value": "",
+    "identity": true
+  },
+  {
+    "label": "after Details",
+    "value": "",
+    "identity": true
+  },
+  {
+    "label": "after filter",
+    "value": "",
+    "identity": true
+  },
+  {
+    "label": "after Clear view",
+    "value": "",
+    "identity": true
+  },
+  {
+    "label": "ordinary non-expanded fill",
+    "value": "Second diagnostic draft.",
+    "identity": true
+  },
+  {
+    "label": "after Files",
+    "value": "Second diagnostic draft.",
+    "identity": true
+  }
+]

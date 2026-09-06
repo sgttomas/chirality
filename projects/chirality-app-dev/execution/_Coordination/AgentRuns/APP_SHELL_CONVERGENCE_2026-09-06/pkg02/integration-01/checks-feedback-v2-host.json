@@ -1,0 +1,38 @@
+{
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "project_root": "projects/chirality-app-dev",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 4.161,
+      "exit_code": 0,
+      "id": "frontend-test",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 test\n> vitest run\n\n\n RUN  v4.1.10 {WORKSPACE_ROOT}/projects/chirality-app-dev/frontend\n\n{\"status\":\"FAIL\",\"summaryPath\":\"{TMPDIR}/chirality-daemon-proof-test-rlyrVC/evidence/summary.json\"}\n\n Test Files  173 passed | 1 skipped (174)\n      Tests  1697 passed | 4 skipped (1701)\n   Start at  21:48:35\n   Duration  3.89s (transform 5.83s, setup 0ms, import 10.08s, tests 22.21s, environment 8ms)\n\n",
+      "timeout_seconds": 600.0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 4.374,
+      "exit_code": 0,
+      "id": "frontend-typecheck",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 typecheck\n> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false\n\n",
+      "timeout_seconds": 600.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "."
+}

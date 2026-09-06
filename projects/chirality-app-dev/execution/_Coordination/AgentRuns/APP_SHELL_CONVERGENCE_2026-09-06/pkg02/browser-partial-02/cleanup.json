@@ -1,0 +1,7 @@
+{
+  "server_session": 63445,
+  "stop": "Ctrl-C exit0",
+  "browser": "Both browser instances closed in finally",
+  "host_loopback_connect_after_stop": 61,
+  "source_hashes_match": true
+}

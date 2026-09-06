@@ -40,17 +40,18 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => ({ projectRoot: shellState.projectRoot })
 }));
 vi.mock('../../components/workspace/harness-events-provider', () => ({
+  useHarnessEvents: () => ({ events: [] }),
   useHarnessStreaming: () => shellState.streaming
 }));
 vi.mock('../../components/shell/shell-frame', () => ({
-  ShellFrame: ({ children, title }: { children: React.ReactNode; title: string }) => (
-    <div data-shell-frame={title}>{children}</div>
+  ShellFrame: ({ children, title, renderWorkspaceContent }: { children?: React.ReactNode; title: string; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => (
+    <div data-shell-frame={title}>{renderWorkspaceContent ? renderWorkspaceContent({}) : children}</div>
   )
 }));
 vi.mock('../../components/shell/chat-panel', () => ({
-  ChatPanel: ({ onActiveSessionChange }: { onActiveSessionChange: (id: string) => void }) => {
+  ChatPanel: ({ onActiveSessionChange, onDraftCaptured }: { onActiveSessionChange: (id: string) => void; onDraftCaptured: () => void }) => {
     useEffect(() => { shellState.mounted++; onActiveSessionChange('primary'); return () => { shellState.unmounted++; }; }, [onActiveSessionChange]);
-    return <input data-chat-panel="mounted" data-chat-input="primary" />;
+    return <input data-chat-panel="mounted" data-chat-input="primary" onChange={onDraftCaptured} />;
   }
 }));
 vi.mock('../../components/shell/persona-picker', () => ({
@@ -83,7 +84,8 @@ vi.mock('../../lib/woven-dialogue/selected-session-replay', () => ({
   })
 }));
 vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
-  ActivityShelf: () => <div data-activity-shelf="mounted" />
+  ActivityStrip: ({ onOpenDetails }: { onOpenDetails: () => void }) => <button onClick={onOpenDetails} data-activity-strip="mounted">Details</button>,
+  ActivityView: () => <div data-activity-view="mounted" />
 }));
 vi.mock('../../components/woven-dialogue/selected-session-replay-lens', () => ({
   SelectedSessionReplayLens: ({ state, onReturnToPrimary, onRetry }: { state: { status: string }; onReturnToPrimary: () => void; onRetry: () => void }) => <section data-replay-lens={state.status}><button onClick={onReturnToPrimary}>Return to primary dialogue</button><button onClick={onRetry}>Retry</button></section>
@@ -106,14 +108,14 @@ describe('WovenDialogueShell composition', () => {
   it.each(['dialogue', 'workbench', 'pipeline'] as const)('only mounts Dialogue even with historical %s surface input', (surface) => {
     const html = renderToStaticMarkup(<WovenDialogueShell defaultSurface={surface} />);
     expect(navigatorItemCount(html)).toBe(1);
-    expect(html).toContain('<span>Dialogue</span>');
+    expect(html).toContain('<span>Current chat</span>');
     expect(html).toContain('data-woven-surface="dialogue"');
     expect(html).toContain('data-chat-panel="mounted"');
     expect(html).not.toContain('data-focused-surface');
     expect(html).not.toContain('data-workbench-surface');
     expect(html).not.toContain('data-pipeline-surface');
     expect(html).not.toContain('woven-navigator-chevron');
-    expect(html).not.toContain('hidden=');
+    expect(html).not.toMatch(/\shidden=/);
   });
 
   it('preserves controller identity and focusable composer through replay, panel controls, resize, and return', async () => {
@@ -137,7 +139,7 @@ describe('WovenDialogueShell composition', () => {
       expect(tree.root.findAll(node => Boolean(node.props['data-focused-surface']))).toHaveLength(0);
     };
     const click = (label: string) => act(() => { tree.root.findAllByType('button').find(button => (button.props['aria-label'] ?? button.children.join('')) === label)!.props.onClick(); });
-    click('Close Coordination');
+    act(() => tree.root.findByType(RightPanel).props.onClose());
     act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
     expect(tree.root.findByProps({ 'data-replay-lens': 'LOADING' })).toBeTruthy();
@@ -148,18 +150,21 @@ describe('WovenDialogueShell composition', () => {
     expect(shellState.replayLoad).toHaveBeenCalledTimes(2);
     act(() => shellState.replayNotify?.({ status: 'READY', projection: { selectedSessionId: 'recorded' } }));
     assertPrimary();
-    click('Agents'); assertPrimary();
+    click('Who is working'); assertPrimary();
     act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
     expect(shellState.replayLoad).toHaveBeenCalledTimes(2); assertPrimary();
-    click('Agents'); click('Session'); assertPrimary();
-    for (const region of ['Navigator', 'Coordination']) { click(`Close ${region}`); assertPrimary(); click(`Open ${region}`); assertPrimary(); }
-    for (const label of ['Resize Navigator', 'Resize Coordination Panel', 'Resize Activity Shelf']) {
+    click('Who is working'); act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded')); assertPrimary();
+    click('Close Navigator'); assertPrimary(); click('Open Navigator'); assertPrimary();
+    act(() => tree.root.findByType(RightPanel).props.onView('files'));
+    act(() => tree.root.findByType(RightPanel).props.onClose()); assertPrimary(); click('Open Coordination'); assertPrimary();
+    for (const label of ['Resize Navigator', 'Resize Coordination Panel']) {
       for (const key of ['Home', 'End', 'ArrowLeft']) {
         act(() => tree.root.findByProps({ 'aria-label': label }).props.onKeyDown({ key, shiftKey: false, preventDefault: vi.fn() }));
         assertPrimary();
       }
     }
+    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
     click('Return to primary dialogue');
     expect(focus).toHaveBeenCalled(); assertPrimary();
     expect(tree.root.findAll(node => Boolean(node.props['data-replay-lens']))).toHaveLength(0);
@@ -191,7 +196,7 @@ describe('WovenDialogueShell composition', () => {
     expect(state().rightPanelWidths.document).toBe(560);
     act(() => panel().props.onExpand());
     expect(state()).toMatchObject({ rightPanelExpanded: true, navigatorCollapsed: true, preExpandState: { rightWidth: 560, leftCollapsed: false } });
-    act(() => tree.root.findByProps({ 'aria-label': 'Primary Dialogue' }).props.onInputCapture({ target: { matches: () => true } }));
+    act(() => input.props.onChange());
     expect(state()).toMatchObject({ rightPanelExpanded: false, navigatorCollapsed: false, rightPanelWidths: { document: 560 } });
     act(() => panel().props.onView('files'));
     expect(state().openDocumentPath).toBeNull(); expect(resize().props['aria-valuenow']).toBe(316);
@@ -237,7 +242,7 @@ describe('WovenDialogueShell composition', () => {
       expect(tree.root.findByProps({ 'data-woven-surface': 'dialogue' }).props.className.includes('is-stacked')).toBe(width < 960);
       expect(tree.root.findByProps({ 'data-chat-input': 'primary' })).toBe(primary);
       expect(tree.root.findByProps({ 'data-document-view': 'mounted' })).toBeTruthy();
-      expect(tree.root.findByProps({ 'data-activity-shelf': 'mounted' })).toBeTruthy();
+      expect(tree.root.findByProps({ 'data-activity-strip': 'mounted' })).toBeTruthy();
     }
     // This tests measured state/identity only; browser scroll geometry is a separate manager-owned proof.
     act(() => tree.unmount());
@@ -249,24 +254,17 @@ describe('WovenDialogueShell composition', () => {
     vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'section' && element.props['data-woven-surface'] ? {} : null }); });
-    for (const panel of ['Navigator', 'Coordination']) {
-      act(() => tree.root.findByProps({ 'aria-label': `Close ${panel}` }).props.onClick());
-    }
+    act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
+    act(() => tree.root.findByType(RightPanel).props.onClose());
     for (const width of [1440, 960, 959, 860, 1440]) {
       act(() => measure([{ contentRect: { width } }]));
-      for (const panel of ['Navigator', 'Coordination']) {
-        const button = tree.root.findByProps({ 'aria-label': `Open ${panel}` });
-        if (width >= 960) {
-          expect(button.findByProps({ 'aria-hidden': 'true' }).children).toEqual(['+']);
-        } else {
-          expect(button.children).toEqual([`Open ${panel}`]);
-        }
-      }
+      expect(tree.root.findByProps({ 'aria-label': 'Open Navigator' }).findByProps({ className: 'woven-collapsed-brand' }).children).toEqual(['C']);
+      expect(tree.root.findByProps({ 'aria-label': 'Open Coordination' }).children).toEqual(['›']);
     }
-    for (const panel of ['Navigator', 'Coordination']) {
-      act(() => tree.root.findByProps({ 'aria-label': `Open ${panel}` }).props.onClick());
-      expect(tree.root.findByProps({ 'aria-label': `Close ${panel}` }).children).toEqual([`Close ${panel}`]);
-    }
+    act(() => tree.root.findByProps({ 'aria-label': 'Open Navigator' }).props.onClick());
+    act(() => tree.root.findByProps({ 'aria-label': 'Open Coordination' }).props.onClick());
+    expect(tree.root.findByType(Navigator)).toBeTruthy();
+    expect(tree.root.findByType(RightPanel)).toBeTruthy();
     // Rendered content/state is covered here; actual glyph visibility and geometry need browser proof.
     act(() => tree.unmount());
   });
@@ -282,16 +280,12 @@ describe('WovenDialogueShell composition', () => {
     act(() => tree.root.findByType(RightPanel).props.onOpenFile(`${shellState.projectRoot}/spec.md`));
     click('Expand panel'); expect(saved().rightPanelExpanded).toBe(true); assertPrimary();
     click('Return panel'); expect(saved().rightPanelExpanded).toBe(false); expect(saved().openDocumentPath).toBe('spec.md'); assertPrimary();
-    click('Close Coordination'); expect(saved()).toMatchObject({ coordinationCollapsed: true, openDocumentPath: 'spec.md' });
+    click('Close detail'); expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: null }); assertPrimary();
+    click('Collapse right panel'); expect(saved()).toMatchObject({ coordinationCollapsed: true, openDocumentPath: null });
     expect(tree.root.findAllByType(RightPanel)).toHaveLength(0); assertPrimary();
-    click('Close Navigator'); expect(saved()).toMatchObject({ navigatorCollapsed: true, coordinationCollapsed: true, openDocumentPath: 'spec.md' });
-    expect(tree.root.findAllByType(Navigator)).toHaveLength(0); assertPrimary();
-    expect(tree.root.findAllByProps({ className: 'woven-collapsed-label' }).map(label => label.children.join(''))).toEqual(['Navigator', 'Coordination']);
-    click('Open Navigator'); expect(saved()).toMatchObject({ navigatorCollapsed: false, coordinationCollapsed: true, openDocumentPath: 'spec.md' });
-    expect(tree.root.findAllByType(Navigator)).toHaveLength(1); expect(tree.root.findAllByType(RightPanel)).toHaveLength(0); assertPrimary();
-    click('Open Coordination'); expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: 'spec.md' }); assertPrimary();
-    act(() => tree.root.findByProps({ 'aria-label': 'Close detail' }).props.onClick());
-    expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: null, rightPanelView: 'files' }); assertPrimary();
+    click('Close Navigator'); expect(saved().navigatorCollapsed).toBe(true); assertPrimary();
+    click('Open Navigator'); expect(saved().navigatorCollapsed).toBe(false); assertPrimary();
+    click('Open Coordination'); expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: null }); assertPrimary();
     click('Expand panel'); expect(saved().rightPanelExpanded).toBe(true);
     act(() => tree.root.findByProps({ 'aria-label': 'Collapse right panel' }).props.onClick());
     expect(saved()).toMatchObject({ coordinationCollapsed: true, rightPanelExpanded: false, navigatorCollapsed: false }); assertPrimary();

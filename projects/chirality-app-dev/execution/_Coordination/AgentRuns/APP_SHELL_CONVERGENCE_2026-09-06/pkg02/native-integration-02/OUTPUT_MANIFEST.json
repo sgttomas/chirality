@@ -1,0 +1,162 @@
+{
+  "created": "2026-09-06T05:13:18.914970+00:00",
+  "status": "BOUNDED_RESIDUAL_PROOF",
+  "privateRawIncluded": false,
+  "files": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/APP_HOLD_DISPATCH.json",
+      "bytes": 815,
+      "sha256": "fe78e4c233e06076c9f8b82ff408cf020618095ee07ad1ef38440dbef90d3acb"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/BOUND_NATIVE_RECENT_BETA.json",
+      "bytes": 2905,
+      "sha256": "4e160478038235bc2916f0e8ac6721c29192434083c36f67ddb0a099186db8ea"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/BRIEF.md",
+      "bytes": 4749,
+      "sha256": "88b5488f11c3be35f43b1d2a0bfbb729bd35e691fa516b9a63700d2a85572ff4"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/CLEANUP_HOST.json",
+      "bytes": 855,
+      "sha256": "0c735c6ec22f208ce0ac80da61d7f948ada0eb6c09f6734d09138b745ab067f7"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/DOCK_EXACT_ITEM.json",
+      "bytes": 1760,
+      "sha256": "7173dd142bbcbca6b5ca625bfa582352d3aaedc7a9834a7d8e6bc2aa58915baf"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/DRAG_WINDOW_IDENTITY.json",
+      "bytes": 3346,
+      "sha256": "e31cd18ddd45b340fd9983c0f4ece090b1944a7a5a1aec07e4cf2a524d8b0af0"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/EXECUTION_v5.json",
+      "bytes": 26676,
+      "sha256": "99795d4f885d30767af0489b12163c6f298a7c3c5c51f6c7614e85bc1a4fffd6"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/FINDER_ICON_AX.json",
+      "bytes": 3246,
+      "sha256": "b5500a0f9ffb6bdf1b22ad1bada8f857b1c5b1905f60d68d0fc05fa8b7d43d2a"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/FINDER_ICON_AX_FRESH.json",
+      "bytes": 4404,
+      "sha256": "254fd0d5bd1876950b19fcabe924baac71bccfb13fde35d7128517bdb9fd6028"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/ISOLATED_ENVIRONMENT_v2.json",
+      "bytes": 1405,
+      "sha256": "ce51782b0f7e3737304fc312456a5a92c01bf8d860d5b800c3912e3d4d21794d"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/ISOLATION_PREPARATION.json",
+      "bytes": 1031,
+      "sha256": "abcedceb095978a980cdf99e304d3120ad4e62a886d503beb09fe8c26acc5b37"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/LIVE_IDENTITY.json",
+      "bytes": 3348,
+      "sha256": "6df8b22c2807418f7fdc533c9e0845d58a306847cb5cc68fea86f0f32d787c97"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/NATIVE_COMMAND_OBSERVATIONS.json",
+      "bytes": 725,
+      "sha256": "19114b7b24aff3a79cab7d8f6be9286d94b611ca9cfdb1726b1c9aef431fcf92"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/NATIVE_RETURN_v5_attempt02.md",
+      "bytes": 6597,
+      "sha256": "26a27f52e87543b186fa996aca851e1b3e3fb21ee1998e9d9fc330525dbadb94"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/PREFLIGHT_HASH_CHECK.json",
+      "bytes": 214,
+      "sha256": "7d1672cf6e5b82a8088645f9a2286c762d97c11367909e4fcd890e9757391ed8"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/SOURCE_BUILD_AND_FIXTURE_CHECK.json",
+      "bytes": 1298,
+      "sha256": "e11536db1b29d312e7e6bf92cf7884bd5d22750eefc449463c05f3ca6afff49e"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/bound-native-recent-rejected.png",
+      "bytes": 88620,
+      "sha256": "3cd79a780b7291b63d2a347ed184611fb4874a4c6bdf38a453305af3cf718b61"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/driver.mjs",
+      "bytes": 5521,
+      "sha256": "c750e2d4c973254db6f3b545583fb4a652061e8a9ac7ba9da0f8e808909655ea"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/fixture_finder_ax.swift",
+      "bytes": 1582,
+      "sha256": "9e7725f6878c3b6542a812e3b2a962daa40b45430c29e27239780291095c0a7d"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/native-drag-result.png",
+      "bytes": 63921,
+      "sha256": "26cddef0d3349ad877de9997b0a70c6d534a99927a1191089265da11f9e8e2b2"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/native_mouse.swift",
+      "bytes": 1063,
+      "sha256": "b9816727185363cdcb97bd208d13f6d6f3af508cfcb21d09345dcc4f887990af"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/offline-first-v5.png",
+      "bytes": 114263,
+      "sha256": "fa2b2e1d3573f52d3b5e4f3982dfd429ea7b2fbf3bda41e6543e5f617567107f"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/owned_dock.swift",
+      "bytes": 1601,
+      "sha256": "6abfdd5a3c4579e680729509fba2d530716c05bb62ce241b061fcb77f6328891"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/owned_file_ax_v2.swift",
+      "bytes": 1388,
+      "sha256": "1cc6cf9a027d83f02e70a4d9bb350d960f1048ca001265a84de778c3b33b3a2b"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/owned_identity.swift",
+      "bytes": 960,
+      "sha256": "afb32bd8edc20fc99375cd7216ef4ba3acf3ed5ea27c8f379229d902bcb386cd"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/protocol-drop-unbound-success.png",
+      "bytes": 83300,
+      "sha256": "d81869b4a0d28a74b2c2bf4efd365a52aefd0080b9dd7a35a7ebc482067d4f1b"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/protocol-drop-valid-folder.png",
+      "bytes": 88352,
+      "sha256": "2c373c72b322fbfa849b9f7470714f30cf471a24f2e0298547756abd5b0b54d6"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/server.stdout",
+      "bytes": 143,
+      "sha256": "10708c576af01135c5e2b6fad076103cf9a24550bb48e109d723946041947af9"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/startup-diagnostic.png",
+      "bytes": 114263,
+      "sha256": "fa2b2e1d3573f52d3b5e4f3982dfd429ea7b2fbf3bda41e6543e5f617567107f"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/synthetic-conversation-bound.png",
+      "bytes": 80903,
+      "sha256": "4af4e51253c92c6b8b99080b5532c94f367a7c5c30288f2f325b94b26705a1cf"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/target_visibility.swift",
+      "bytes": 838,
+      "sha256": "00eedf7b4d4b95c3d67355494a34623090e22c828463846c393b10dbad14e369"
+    }
+  ]
+}

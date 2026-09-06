@@ -1,0 +1,2323 @@
+diff --git a/projects/chirality-app-dev/frontend/electron/main.ts b/projects/chirality-app-dev/frontend/electron/main.ts
+index 9d0729d1e..18ebdadd8 100644
+--- a/projects/chirality-app-dev/frontend/electron/main.ts
++++ b/projects/chirality-app-dev/frontend/electron/main.ts
+@@ -1,7 +1,7 @@
+-import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
++import { app, BrowserWindow, dialog, ipcMain, shell, Menu } from 'electron';
+ import { spawn } from 'node:child_process';
+ import { isAuthorizedSender } from './ipc-sender-policy';
+-import { createDocumentHandoffHandler, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
++import { createDocumentHandoffHandler, validateRevealRoot, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
+ import { existsSync, mkdirSync } from 'node:fs';
+ import { stat } from 'node:fs/promises';
+ import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
+@@ -71,6 +71,41 @@ type RendererProbeResult = {
+ };
+ 
+ const SELECT_DIRECTORY_CHANNEL = 'chirality:select-directory';
++const FOLDER_REGISTER_RECENT_CHANNEL = 'chirality:folder-register-recent';
++const FOLDER_OPEN_READY_CHANNEL = 'chirality:folder-open-ready';
++const FOLDER_OPEN_INTENT_CHANNEL = 'chirality:folder-open-intent';
++let pendingFolderIntent: string | undefined;
++let folderIntentGeneration = 0;
++let folderIntentReceiver: import('electron').WebContents | undefined;
++let folderIntentOrigin: string | undefined;
++let folderIntentRendererUrl: string | undefined;
++
++export async function registerRecentFolder(event: import('./ipc-sender-policy').IpcSenderEvent, input: unknown,
++  rendererOrigin: string, instructionRoot: string, register: (root: string) => void = root => app.addRecentDocument(root)
++): Promise<{ ok: true } | { ok: false; error: string }> {
++  if (!isAuthorizedSender(event, rendererOrigin)) return { ok: false, error: 'Unauthorized folder request.' };
++  try {
++    const root = await validateRevealRoot({ projectRoot: input }, instructionRoot);
++    register(root);
++    return { ok: true };
++  } catch (error) { return { ok: false, error: error instanceof Error ? error.message : 'Unable to register folder.' }; }
++}
++
++async function deliverFolderIntent(): Promise<void> {
++  const receiver = folderIntentReceiver;
++  if (!receiver || receiver.isDestroyed() || !folderIntentOrigin || !pendingFolderIntent) return;
++  if (!isAuthorizedSender({ senderFrame: { url: receiver.getURL() } }, folderIntentOrigin)) return;
++  const generation = folderIntentGeneration;
++  const requested = pendingFolderIntent;
++  pendingFolderIntent = undefined;
++  try {
++    const root = await validateRevealRoot({ projectRoot: requested }, resolveInstructionRootForProcess());
++    if (generation === folderIntentGeneration && receiver === folderIntentReceiver && !receiver.isDestroyed() && isAuthorizedSender({ senderFrame: { url: receiver.getURL() } }, folderIntentOrigin)) receiver.send(FOLDER_OPEN_INTENT_CHANNEL, { path: root });
++  } catch (error) {
++    if (generation === folderIntentGeneration && receiver === folderIntentReceiver && !receiver.isDestroyed() && isAuthorizedSender({ senderFrame: { url: receiver.getURL() } }, folderIntentOrigin)) receiver.send(FOLDER_OPEN_INTENT_CHANNEL, { error: error instanceof Error ? error.message : 'Unable to open this folder.' });
++  }
++}
++
+ const RUNTIME_NETWORK_POLICY_ID = 'REQ-NET-001';
+ const DEFAULT_RENDERER_PROBE_DELAY_MS = 1500;
+ const DEFAULT_RENDERER_PROBE_TIMEOUT_MS = 8000;
+@@ -687,6 +722,29 @@ async function initializeGui(): Promise<void> {
+   // every one of them rejects senders from any other origin, so they cannot
+   // exist before the origin does. The window is created after this, so no
+   // renderer can invoke them in the gap.
++  folderIntentOrigin = rendererOrigin;
++  folderIntentRendererUrl = rendererUrl;
++  ipcMain.removeHandler(FOLDER_REGISTER_RECENT_CHANNEL);
++  ipcMain.handle(FOLDER_REGISTER_RECENT_CHANNEL, (event, input: unknown) =>
++    registerRecentFolder(event, input, rendererOrigin, resolveInstructionRootForProcess()));
++  ipcMain.removeHandler(FOLDER_OPEN_READY_CHANNEL);
++  ipcMain.handle(FOLDER_OPEN_READY_CHANNEL, event => {
++    if (!isAuthorizedSender(event, rendererOrigin)) return { ok: false };
++    folderIntentReceiver = event.sender;
++    void deliverFolderIntent();
++    return { ok: true };
++  });
++  if (process.platform === 'darwin') {
++    Menu.setApplicationMenu(Menu.buildFromTemplate([
++      { role: 'appMenu' },
++      { label: 'File', submenu: [
++        { label: 'Open Recent', role: 'recentDocuments', submenu: [{ role: 'clearRecentDocuments' }] },
++        { type: 'separator' }, { role: 'close' }
++      ] },
++      { role: 'editMenu' }, { role: 'viewMenu' }, { role: 'windowMenu' }
++    ]));
++  }
++
+   ipcMain.removeHandler('chirality:document-handoff');
+   ipcMain.handle('chirality:document-handoff', createDocumentHandoffHandler<import('electron').IpcMainInvokeEvent>({
+     authorized: (event) => isAuthorizedSender(event, rendererOrigin),
+@@ -963,6 +1021,18 @@ function spawnGuiFromDaemon(): void {
+   void shutdown(0, 'retire-after-gui-spawn');
+ }
+ 
++if (!runtimeDaemonMode) {
++  app.on('open-file', (event, filePath) => {
++    event.preventDefault();
++    // One latest unhandled intent is retained during renderer startup. This is
++    // selection intent only; the renderer still validates and enforces chat lock.
++    folderIntentGeneration++;
++    pendingFolderIntent = filePath;
++    if (folderIntentRendererUrl && BrowserWindow.getAllWindows().length === 0) createMainWindow(folderIntentRendererUrl);
++    void deliverFolderIntent();
++  });
++}
++
+ if (runtimeDaemonMode) {
+   // `activate` in the daemon is the direct signature of macOS resolving a launch
+   // of the app bundle against this headless instance instead of starting the GUI.
+diff --git a/projects/chirality-app-dev/frontend/electron/preload.ts b/projects/chirality-app-dev/frontend/electron/preload.ts
+index 2b9615a3f..d2b9fae78 100644
+--- a/projects/chirality-app-dev/frontend/electron/preload.ts
++++ b/projects/chirality-app-dev/frontend/electron/preload.ts
+@@ -1,4 +1,4 @@
+-import { contextBridge, ipcRenderer } from 'electron';
++import { contextBridge, ipcRenderer, webUtils } from 'electron';
+ import {
+   RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
+   RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
+@@ -24,6 +24,19 @@ contextBridge.exposeInMainWorld('chirality', {
+     node: process.versions.node
+   },
+   selectDirectory: () => ipcRenderer.invoke(SELECT_DIRECTORY_CHANNEL),
++  folders: {
++    registerRecent: (path: string) => ipcRenderer.invoke('chirality:folder-register-recent', path),
++    pathForFile: (file: File): string => {
++      try { return webUtils.getPathForFile(file); } catch { return ''; }
++    },
++    subscribeOpen: (listener: (intent: { path?: string; error?: string }) => void): (() => void) => {
++      let active = true;
++      const handler = (_event: unknown, intent: { path?: string; error?: string }) => { if (active) listener(intent); };
++      ipcRenderer.on('chirality:folder-open-intent', handler);
++      void ipcRenderer.invoke('chirality:folder-open-ready').catch(() => { if (active) listener({ error: 'Folder intent delivery is unavailable.' }); });
++      return () => { active = false; ipcRenderer.removeListener('chirality:folder-open-intent', handler); };
++    }
++  },
+   document: {
+     // Both Electron modes retain the current frame-denying renderer policy.
+     inlinePdfPreview: false,
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
+index 9dc07a543..d4e8b5bed 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
+@@ -87,6 +87,8 @@ describe('Woven Dialogue Navigator', () => {
+       />
+     );
+ 
++    expect(html).toContain('Chirality');
++    expect(html).not.toContain('File tree');
+     expect(html).toContain('href="/?legacy=1"');
+     expect(html).toContain('target="_blank"');
+     expect(html).toContain('Open legacy interface in a new window');
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx
+index a3576e177..d54d87d30 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx
+@@ -61,10 +61,11 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
+   useWorkspace: () => ({ projectRoot: '/repo/projects/chirality-app-dev' })
+ }));
+ vi.mock('../../components/workspace/harness-events-provider', () => ({
++  useHarnessEvents: () => ({ events: [] }),
+   useHarnessStreaming: () => false
+ }));
+ vi.mock('../../components/shell/shell-frame', () => ({
+-  ShellFrame: ({ children }: { children: React.ReactNode }) => <div>{children}</div>
++  ShellFrame: ({ children, renderWorkspaceContent }: { children?: React.ReactNode; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => <div>{renderWorkspaceContent ? renderWorkspaceContent({}) : children}</div>
+ }));
+ vi.mock('../../components/shell/chat-panel', () => ({
+   ChatPanel: () => <div data-chat-panel="mounted" />
+@@ -90,7 +91,8 @@ vi.mock('../../components/woven-dialogue/coordination-panel', () => ({
+   )
+ }));
+ vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
+-  ActivityShelf: () => <div data-activity-shelf="mounted" />
++  ActivityStrip: ({ onOpenDetails }: { onOpenDetails: () => void }) => <button onClick={onOpenDetails} data-activity-strip="mounted">Details</button>,
++  ActivityView: () => <div data-activity-view="mounted" />
+ }));
+ vi.mock('../../components/woven-dialogue/selected-session-replay-lens', () => ({
+   SelectedSessionReplayLens: () => <div data-replay-lens="mounted" />
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+index a50449e15..6dba7bde2 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+@@ -40,11 +40,12 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
+   useWorkspace: () => ({ projectRoot: shellState.projectRoot })
+ }));
+ vi.mock('../../components/workspace/harness-events-provider', () => ({
++  useHarnessEvents: () => ({ events: [] }),
+   useHarnessStreaming: () => shellState.streaming
+ }));
+ vi.mock('../../components/shell/shell-frame', () => ({
+-  ShellFrame: ({ children, title }: { children: React.ReactNode; title: string }) => (
+-    <div data-shell-frame={title}>{children}</div>
++  ShellFrame: ({ children, title, renderWorkspaceContent }: { children?: React.ReactNode; title: string; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => (
++    <div data-shell-frame={title}>{renderWorkspaceContent ? renderWorkspaceContent({}) : children}</div>
+   )
+ }));
+ vi.mock('../../components/shell/chat-panel', () => ({
+@@ -83,7 +84,8 @@ vi.mock('../../lib/woven-dialogue/selected-session-replay', () => ({
+   })
+ }));
+ vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
+-  ActivityShelf: () => <div data-activity-shelf="mounted" />
++  ActivityStrip: ({ onOpenDetails }: { onOpenDetails: () => void }) => <button onClick={onOpenDetails} data-activity-strip="mounted">Details</button>,
++  ActivityView: () => <div data-activity-view="mounted" />
+ }));
+ vi.mock('../../components/woven-dialogue/selected-session-replay-lens', () => ({
+   SelectedSessionReplayLens: ({ state, onReturnToPrimary, onRetry }: { state: { status: string }; onReturnToPrimary: () => void; onRetry: () => void }) => <section data-replay-lens={state.status}><button onClick={onReturnToPrimary}>Return to primary dialogue</button><button onClick={onRetry}>Retry</button></section>
+@@ -106,14 +108,14 @@ describe('WovenDialogueShell composition', () => {
+   it.each(['dialogue', 'workbench', 'pipeline'] as const)('only mounts Dialogue even with historical %s surface input', (surface) => {
+     const html = renderToStaticMarkup(<WovenDialogueShell defaultSurface={surface} />);
+     expect(navigatorItemCount(html)).toBe(1);
+-    expect(html).toContain('<span>Dialogue</span>');
++    expect(html).toContain('<span>Current chat</span>');
+     expect(html).toContain('data-woven-surface="dialogue"');
+     expect(html).toContain('data-chat-panel="mounted"');
+     expect(html).not.toContain('data-focused-surface');
+     expect(html).not.toContain('data-workbench-surface');
+     expect(html).not.toContain('data-pipeline-surface');
+     expect(html).not.toContain('woven-navigator-chevron');
+-    expect(html).not.toContain('hidden=');
++    expect(html).not.toMatch(/\shidden=/);
+   });
+ 
+   it('preserves controller identity and focusable composer through replay, panel controls, resize, and return', async () => {
+@@ -137,7 +139,7 @@ describe('WovenDialogueShell composition', () => {
+       expect(tree.root.findAll(node => Boolean(node.props['data-focused-surface']))).toHaveLength(0);
+     };
+     const click = (label: string) => act(() => { tree.root.findAllByType('button').find(button => (button.props['aria-label'] ?? button.children.join('')) === label)!.props.onClick(); });
+-    click('Close Coordination');
++    act(() => tree.root.findByType(RightPanel).props.onClose());
+     act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
+     expect(tree.root.findByProps({ 'data-replay-lens': 'LOADING' })).toBeTruthy();
+@@ -148,18 +150,21 @@ describe('WovenDialogueShell composition', () => {
+     expect(shellState.replayLoad).toHaveBeenCalledTimes(2);
+     act(() => shellState.replayNotify?.({ status: 'READY', projection: { selectedSessionId: 'recorded' } }));
+     assertPrimary();
+-    click('Agents'); assertPrimary();
++    click('Who is working'); assertPrimary();
+     act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
+     expect(shellState.replayLoad).toHaveBeenCalledTimes(2); assertPrimary();
+-    click('Agents'); click('Session'); assertPrimary();
+-    for (const region of ['Navigator', 'Coordination']) { click(`Close ${region}`); assertPrimary(); click(`Open ${region}`); assertPrimary(); }
+-    for (const label of ['Resize Navigator', 'Resize Coordination Panel', 'Resize Activity Shelf']) {
++    click('Who is working'); act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded')); assertPrimary();
++    click('Close Navigator'); assertPrimary(); click('Open Navigator'); assertPrimary();
++    act(() => tree.root.findByType(RightPanel).props.onView('files'));
++    act(() => tree.root.findByType(RightPanel).props.onClose()); assertPrimary(); click('Open Coordination'); assertPrimary();
++    for (const label of ['Resize Navigator', 'Resize Coordination Panel']) {
+       for (const key of ['Home', 'End', 'ArrowLeft']) {
+         act(() => tree.root.findByProps({ 'aria-label': label }).props.onKeyDown({ key, shiftKey: false, preventDefault: vi.fn() }));
+         assertPrimary();
+       }
+     }
++    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+     click('Return to primary dialogue');
+     expect(focus).toHaveBeenCalled(); assertPrimary();
+     expect(tree.root.findAll(node => Boolean(node.props['data-replay-lens']))).toHaveLength(0);
+@@ -237,7 +242,7 @@ describe('WovenDialogueShell composition', () => {
+       expect(tree.root.findByProps({ 'data-woven-surface': 'dialogue' }).props.className.includes('is-stacked')).toBe(width < 960);
+       expect(tree.root.findByProps({ 'data-chat-input': 'primary' })).toBe(primary);
+       expect(tree.root.findByProps({ 'data-document-view': 'mounted' })).toBeTruthy();
+-      expect(tree.root.findByProps({ 'data-activity-shelf': 'mounted' })).toBeTruthy();
++      expect(tree.root.findByProps({ 'data-activity-strip': 'mounted' })).toBeTruthy();
+     }
+     // This tests measured state/identity only; browser scroll geometry is a separate manager-owned proof.
+     act(() => tree.unmount());
+@@ -249,24 +254,17 @@ describe('WovenDialogueShell composition', () => {
+     vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+     let tree!: ReactTestRenderer;
+     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'section' && element.props['data-woven-surface'] ? {} : null }); });
+-    for (const panel of ['Navigator', 'Coordination']) {
+-      act(() => tree.root.findByProps({ 'aria-label': `Close ${panel}` }).props.onClick());
+-    }
++    act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
++    act(() => tree.root.findByType(RightPanel).props.onClose());
+     for (const width of [1440, 960, 959, 860, 1440]) {
+       act(() => measure([{ contentRect: { width } }]));
+-      for (const panel of ['Navigator', 'Coordination']) {
+-        const button = tree.root.findByProps({ 'aria-label': `Open ${panel}` });
+-        if (width >= 960) {
+-          expect(button.findByProps({ 'aria-hidden': 'true' }).children).toEqual(['+']);
+-        } else {
+-          expect(button.children).toEqual([`Open ${panel}`]);
+-        }
+-      }
+-    }
+-    for (const panel of ['Navigator', 'Coordination']) {
+-      act(() => tree.root.findByProps({ 'aria-label': `Open ${panel}` }).props.onClick());
+-      expect(tree.root.findByProps({ 'aria-label': `Close ${panel}` }).children).toEqual([`Close ${panel}`]);
++      expect(tree.root.findByProps({ 'aria-label': 'Open Navigator' }).findByProps({ className: 'woven-collapsed-brand' }).children).toEqual(['C']);
++      expect(tree.root.findByProps({ 'aria-label': 'Open Coordination' }).children).toEqual(['›']);
+     }
++    act(() => tree.root.findByProps({ 'aria-label': 'Open Navigator' }).props.onClick());
++    act(() => tree.root.findByProps({ 'aria-label': 'Open Coordination' }).props.onClick());
++    expect(tree.root.findByType(Navigator)).toBeTruthy();
++    expect(tree.root.findByType(RightPanel)).toBeTruthy();
+     // Rendered content/state is covered here; actual glyph visibility and geometry need browser proof.
+     act(() => tree.unmount());
+   });
+@@ -282,16 +280,12 @@ describe('WovenDialogueShell composition', () => {
+     act(() => tree.root.findByType(RightPanel).props.onOpenFile(`${shellState.projectRoot}/spec.md`));
+     click('Expand panel'); expect(saved().rightPanelExpanded).toBe(true); assertPrimary();
+     click('Return panel'); expect(saved().rightPanelExpanded).toBe(false); expect(saved().openDocumentPath).toBe('spec.md'); assertPrimary();
+-    click('Close Coordination'); expect(saved()).toMatchObject({ coordinationCollapsed: true, openDocumentPath: 'spec.md' });
++    click('Close detail'); expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: null }); assertPrimary();
++    click('Collapse right panel'); expect(saved()).toMatchObject({ coordinationCollapsed: true, openDocumentPath: null });
+     expect(tree.root.findAllByType(RightPanel)).toHaveLength(0); assertPrimary();
+-    click('Close Navigator'); expect(saved()).toMatchObject({ navigatorCollapsed: true, coordinationCollapsed: true, openDocumentPath: 'spec.md' });
+-    expect(tree.root.findAllByType(Navigator)).toHaveLength(0); assertPrimary();
+-    expect(tree.root.findAllByProps({ className: 'woven-collapsed-label' }).map(label => label.children.join(''))).toEqual(['Navigator', 'Coordination']);
+-    click('Open Navigator'); expect(saved()).toMatchObject({ navigatorCollapsed: false, coordinationCollapsed: true, openDocumentPath: 'spec.md' });
+-    expect(tree.root.findAllByType(Navigator)).toHaveLength(1); expect(tree.root.findAllByType(RightPanel)).toHaveLength(0); assertPrimary();
+-    click('Open Coordination'); expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: 'spec.md' }); assertPrimary();
+-    act(() => tree.root.findByProps({ 'aria-label': 'Close detail' }).props.onClick());
+-    expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: null, rightPanelView: 'files' }); assertPrimary();
++    click('Close Navigator'); expect(saved().navigatorCollapsed).toBe(true); assertPrimary();
++    click('Open Navigator'); expect(saved().navigatorCollapsed).toBe(false); assertPrimary();
++    click('Open Coordination'); expect(saved()).toMatchObject({ coordinationCollapsed: false, openDocumentPath: null }); assertPrimary();
+     click('Expand panel'); expect(saved().rightPanelExpanded).toBe(true);
+     act(() => tree.root.findByProps({ 'aria-label': 'Collapse right panel' }).props.onClick());
+     expect(saved()).toMatchObject({ coordinationCollapsed: true, rightPanelExpanded: false, navigatorCollapsed: false }); assertPrimary();
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx
+index 42638a6ca..906c74485 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx
+@@ -5,12 +5,13 @@ import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contra
+ import { afterEach, expect, it, vi } from 'vitest';
+ import { RightPanel } from '../../components/woven-dialogue/right-panel';
+ import { createDefaultWovenWorkspaceState } from '../../lib/woven-dialogue/woven-workspace-state';
++vi.mock('../../components/woven-dialogue/activity-shelf', () => ({ ActivityView: () => <p>Activity details</p> }));
+ vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: () => ({ projectRoot: '/root' }) }));
+ vi.mock('../../components/shell/file-tree-panel', () => ({ FileTreePanel: () => <p>Existing file contents</p> }));
+ const handoff = vi.hoisted(() => vi.fn(async (_input: unknown) => {}));
+ vi.mock('../../components/shell/document-view', () => ({ handoffDocument: handoff, DocumentView: ({ target }: { target: string }) => <p>Document {target}</p> }));
+ const handlers = { onView: vi.fn(), onOpenFile: vi.fn(), onClose: vi.fn(), onExpand: vi.fn(), coordination: <p>Recorded agents and session content</p> };
+-it.each(['activity', 'settings', 'workflows'] as const)('retains content for future stored %s views', view => {
++it.each(['settings', 'workflows'] as const)('retains content for future stored %s views', view => {
+   const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: view }} sessionOpen={false} />);
+   expect(html).toContain('Existing file contents'); expect(html).not.toContain('placeholder');
+ });
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts
+index 3e2fb9f23..01c199472 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts
++++ b/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts
+@@ -46,7 +46,7 @@ describe('Woven Dialogue workspace state', () => {
+       chatArchived: [], chatGroups: [], groupsCollapsed: [], knownRoots: [], chatRung: {},
+       schema: WOVEN_WORKSPACE_SCHEMA,
+       theme: 'light',
+-      navigatorWidth: 280,
++      navigatorWidth: 240,
+       coordinationWidth: 360,
+       activityHeight: 220,
+       navigatorCollapsed: false,
+diff --git a/projects/chirality-app-dev/frontend/src/app/globals.css b/projects/chirality-app-dev/frontend/src/app/globals.css
+index 058b67210..2cbedfdc3 100644
+--- a/projects/chirality-app-dev/frontend/src/app/globals.css
++++ b/projects/chirality-app-dev/frontend/src/app/globals.css
+@@ -3996,3 +3996,365 @@ button:disabled {
+   font-size: 0.82rem;
+   color: var(--ink-soft);
+ }
++
++
++/* SCA-APP-010 Stone presentation. Scope tokens to the woven workspace so the
++   compatibility interface retains its existing presentation contract. */
++.woven-workspace {
++  --ground: #f2f1ed;
++  --surface: #ffffff;
++  --card: #ffffff;
++  --composer: #ffffff;
++  --ink: #222120;
++  --ink-soft: #5c5a55;
++  --ink-faint: #706e68;
++  --rule: #e2e0da;
++  --rule-strong: #cfccc4;
++  --brand-ink: #4a3423;
++  --accent-soft: #efede8;
++  --cta: #222120;
++  --cta-ink: #ffffff;
++  font: 400 13.5px/1.5 var(--font-body);
++}
++:root[data-theme="dark"] .woven-workspace {
++  --ground: #161615;
++  --surface: #1e1e1c;
++  --card: #1e1e1c;
++  --composer: #1e1e1c;
++  --ink: #e8e7e2;
++  --ink-soft: #a5a49d;
++  --ink-faint: #a09f98;
++  --rule: #2b2b29;
++  --rule-strong: #3a3a37;
++  --brand-ink: #e8e7e2;
++  --accent-soft: #2a2a27;
++  --cta: #e8e7e2;
++  --cta-ink: #1a1a19;
++}
++@media (prefers-color-scheme: dark) {
++  :root[data-theme="system"] .woven-workspace {
++    --ground: #161615;
++    --surface: #1e1e1c;
++    --card: #1e1e1c;
++    --composer: #1e1e1c;
++    --ink: #e8e7e2;
++    --ink-soft: #a5a49d;
++    --ink-faint: #a09f98;
++    --rule: #2b2b29;
++    --rule-strong: #3a3a37;
++    --brand-ink: #e8e7e2;
++    --accent-soft: #2a2a27;
++    --cta: #e8e7e2;
++    --cta-ink: #1a1a19;
++  }
++}
++.woven-workspace button {
++  background: transparent;
++  color: var(--ink-soft);
++  box-shadow: none;
++}
++.woven-workspace button:hover { color: var(--ink); filter: none; }
++.woven-workspace .chat-input-row button[type="submit"] {
++  background: var(--cta);
++  color: var(--cta-ink);
++}
++.woven-workspace .panel-header h2,
++.woven-workspace .woven-region-header h2,
++.woven-workspace .woven-dialogue-toolbar h2,
++.woven-workspace .woven-activity-header h2 {
++  font-family: var(--font-body);
++  font-size: 13.5px;
++  font-weight: 500;
++  letter-spacing: normal;
++}
++.woven-workspace .woven-dialogue-region,
++.woven-workspace .panel--chat { background: var(--surface); }
++.woven-workspace .woven-navigator {
++  padding: 14px 10px 10px;
++  gap: 16px;
++  grid-template-rows: auto minmax(0, 1fr) auto;
++  background: var(--ground);
++}
++.woven-navigator-brand {
++  padding: 0 8px;
++  font: 500 19px/1.2 var(--font-display);
++  letter-spacing: .01em;
++  color: var(--brand-ink);
++}
++.woven-workspace .woven-navigator-sections {
++  display: flex;
++  flex-direction: column;
++  min-height: 0;
++  overflow: auto;
++  gap: 12px;
++}
++.woven-workspace .woven-navigator-session {
++  border: 0;
++  border-radius: 6px;
++  padding: 7px 8px;
++  background: transparent;
++}
++.woven-workspace .woven-navigator-session[aria-pressed="true"] {
++  background: var(--accent-soft);
++}
++.woven-workspace .woven-compatibility {
++  margin: 0;
++  border-top: 1px solid var(--rule);
++  padding: 10px 8px 0;
++  font-size: 12px;
++}
++.woven-workspace .woven-right-panel {
++  display: flex;
++  flex-direction: column;
++  height: 100%;
++  min-width: 0;
++  min-height: 0;
++  background: var(--ground);
++}
++.woven-workspace .woven-right-panel-header {
++  min-height: 40px;
++  padding: 6px 8px 6px 14px;
++  gap: 6px;
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  flex-wrap: nowrap;
++  border-bottom: 1px solid var(--rule);
++}
++.woven-right-panel-header > nav,
++.woven-right-panel-header > [role="tablist"] {
++  min-width: 0;
++  overflow-wrap: anywhere;
++}
++.woven-right-panel-header > nav {
++  overflow: hidden;
++  text-overflow: ellipsis;
++  white-space: nowrap;
++}
++.woven-right-panel-header [role="tablist"] {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 4px;
++}
++.woven-right-panel-header button,
++.woven-right-panel-header summary {
++  border: 0;
++  padding: 4px 5px;
++  font-size: 12px;
++  border-radius: 4px;
++}
++.woven-right-panel-header [role="tab"][aria-selected="true"] {
++  color: var(--ink);
++  box-shadow: inset 0 -1px var(--accent);
++}
++.woven-right-panel-controls { display: flex; gap: 2px; flex: none; }
++.woven-right-panel-controls > details { position: relative; }
++.woven-right-panel-controls > details > summary {
++  cursor: pointer;
++  list-style: none;
++  min-width: 24px;
++  text-align: center;
++}
++.woven-right-panel-controls > details > summary::-webkit-details-marker { display: none; }
++.woven-right-panel-controls > details[open] {
++  z-index: 5;
++  background: var(--surface);
++}
++.woven-panel-menu-content {
++  position: absolute;
++  top: 100%;
++  right: 0;
++  z-index: 5;
++  width: min(240px, 75vw);
++  border: 1px solid var(--rule-strong);
++  border-radius: 8px;
++  padding: 5px;
++  background: var(--surface);
++  box-shadow: 0 8px 24px var(--shadow-strong);
++}
++.woven-panel-menu-content > button {
++  display: block;
++  width: 100%;
++  text-align: left;
++}
++.woven-panel-menu-content > p { padding: 4px 5px; font-size: 12px; }
++.woven-workspace .document-view--woven {
++  border: 0;
++  border-radius: 0;
++  background: var(--surface);
++  height: 100%;
++}
++.document-view--woven .panel-header { padding: 6px 18px; border: 0; }
++.document-view--woven .panel-header:has(> .sr-only:only-child) { padding: 0; }
++.document-view--woven .document-view-body { padding: 14px 18px; }
++.document-view--woven .document-view-body > p:first-child { font-size: 11.5px; color: var(--ink-faint); }
++.document-view--woven .sr-only {
++  position: absolute;
++  width: 1px;
++  height: 1px;
++  padding: 0;
++  margin: -1px;
++  overflow: hidden;
++  clip-path: inset(50%);
++  white-space: nowrap;
++  border: 0;
++}
++
++/* The remaining shell inline stylesheet still describes the removed left file
++   tree as a 400px third row. Override that obsolete track in the stacked shell
++   without changing the shell's structural integration before D120 is active. */
++.woven-workspace.woven-t3-workspace.is-stacked .woven-navigator {
++  grid-template-rows: auto minmax(0, 1fr) auto;
++}
++.woven-workspace .panel--file-tree,
++.woven-workspace .panel--chat {
++  border: 0;
++  border-radius: 0;
++  box-shadow: none;
++}
++.woven-workspace .panel--file-tree { background: transparent; }
++.woven-workspace .panel--file-tree > .panel-header {
++  border-bottom: 0;
++  padding: 8px 18px;
++}
++.woven-workspace .panel--file-tree > .panel-body { padding: 8px 12px; }
++.woven-workspace .tree-list { padding-left: 14px; gap: 2px; }
++.woven-workspace .panel--file-tree > .panel-body > .tree-list { padding-left: 0; }
++.woven-workspace .tree-item { min-width: 0; gap: 4px; }
++.woven-workspace .tree-toggle {
++  border: 0;
++  border-radius: 3px;
++  flex: none;
++}
++.woven-workspace .tree-item-icon {
++  border: 0;
++  border-radius: 0;
++  background: transparent;
++  color: var(--ink-faint);
++  font-size: 9px;
++  padding: 0;
++  flex: none;
++}
++.woven-workspace .tree-item-name {
++  border: 0;
++  border-radius: 4px;
++  background: transparent;
++  font-size: 12.5px;
++  font-weight: 400;
++  line-height: 1.5;
++  padding: 3px 5px;
++}
++.woven-workspace .tree-item-name:hover { background: var(--accent-soft); }
++.woven-workspace.woven-t3-workspace .tree-item-name[aria-current="true"] {
++  background: var(--accent-soft);
++  color: var(--ink);
++  font-weight: 500;
++}
++.woven-workspace .tree-item-name:focus-visible,
++.woven-workspace .tree-toggle:focus-visible {
++  outline: 2px solid var(--accent);
++  outline-offset: 1px;
++}
++
++/* Headerless shell and compact conversation composition (D120). */
++.shell--stone { padding: 0; gap: 0; }
++.shell--stone > .woven-workspace { grid-template-rows: minmax(0, 1fr) 32px; }
++.shell--stone .woven-primary-dialogue { display: block; }
++.shell--stone .woven-dialogue-region { padding: 0; }
++.shell--stone .woven-primary-dialogue > .chat-panel--woven {
++  display: grid;
++  grid-template-rows: minmax(0, 1fr) auto auto auto;
++  background: var(--surface);
++}
++.shell--stone .chat-panel--woven > .chat-transcript { padding: 26px 40px; gap: 26px; }
++.chat-panel--woven .chat-bubble { border: 0; padding: 0; width: 100%; max-width: 620px; }
++.chat-panel--woven .chat-bubble .chat-speaker { font-size: 12.5px; font-weight: 600; margin-bottom: 8px; }
++.chat-panel--woven .chat-bubble p { font-size: 13.5px; line-height: 1.6; }
++.shell--stone .chat-panel--woven > .chat-composer-dock { padding: 0 40px; border: 0; }
++.shell--stone .chat-panel--woven > .chat-input-row {
++  display: flex;
++  flex-direction: column;
++  align-items: stretch;
++  gap: 6px;
++  margin: 8px 40px 0;
++  padding: 8px;
++  border: 1px solid var(--rule-strong);
++  border-radius: 12px;
++  background: var(--composer);
++}
++.chat-composer-line { display: flex; gap: 6px; align-items: flex-end; min-width: 0; }
++.chat-composer-line--legacy { display: contents; }
++.chat-composer-line textarea {
++  min-width: 0;
++  flex: 1;
++  width: 100%;
++  min-height: 30px;
++  max-height: 132px;
++  resize: none;
++  border: 0;
++  border-radius: 0;
++  background: transparent;
++  color: var(--ink);
++  padding: 4px 6px;
++  font: 400 13.5px/22px var(--font-body);
++  overflow-y: auto;
++}
++.chat-composer-line > button { border: 0; padding: 4px; min-height: 30px; }
++.chat-composer-line > button[type="submit"] { width: 30px; height: 30px; border-radius: 50%; flex: none; font-size: 18px; }
++.chat-composer-line > button:disabled { opacity: .45; }
++.chat-panel--woven .chat-context {
++  display: flex;
++  align-items: center;
++  flex-wrap: wrap;
++  gap: 6px;
++  min-width: 0;
++  padding: 10px 40px 22px;
++  font-size: 12.5px;
++  color: var(--ink-faint);
++}
++.chat-context select { max-width: 190px; padding: 3px 6px; font-size: 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink-soft); }
++.chat-context .persona-picker { display: flex; margin: 0; min-width: 0; gap: 4px; }
++.chat-context .chat-mode-selector { margin: 0; }
++.chat-context .chat-folder-fixed { max-width: 240px; overflow-wrap: anywhere; color: var(--ink-soft); }
++.chat-folder-select { position: relative; min-width: 0; }
++.chat-folder-select > summary { cursor: pointer; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 7px; color: var(--ink-soft); list-style: none; }
++.chat-folder-select > summary::-webkit-details-marker { display: none; }
++.chat-folder-menu { position: absolute; bottom: calc(100% + 8px); left: 0; z-index: 10; width: min(300px, 65vw); padding: 12px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); box-shadow: 0 8px 24px var(--shadow-strong); }
++.chat-folder-menu input { display: block; width: 100%; min-width: 0; }
++.chat-folder-menu button { margin-top: 6px; }
++.chat-folder-menu p { font-size: 12px; }
++.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
++.woven-new-chat { text-align: left; border: 0; padding: 6px 8px; }
++.woven-new-chat > span { color: var(--accent); }
++.shell--stone .woven-region--navigator > .woven-region-toggle { top: 8px; right: 8px; font-size: 18px; border: 0; background: transparent; }
++.shell--stone .woven-region--navigator.is-collapsed { display: flex; flex-direction: column; align-items: center; }
++.woven-collapsed-brand { font: 500 19px var(--font-display); }
++.woven-collapsed-settings { margin-top: auto; padding-bottom: 12px; }
++.woven-settings-controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
++.woven-settings-controls .shell-root-chip { border: 0; padding: 3px 0; background: transparent; }
++.woven-settings-controls .working-root-bar { position: fixed; top: auto; bottom: 82px; left: 12px; right: auto; width: min(460px, calc(100vw - 24px)); max-height: 70vh; overflow-y: auto; background: var(--surface); }
++.woven-settings-controls .shell-root-disclosure { position: relative; }
++.woven-activity-strip { grid-column: 1 / -1; grid-row: 2; display: flex; align-items: center; gap: 8px; height: 32px; min-height: 32px; padding: 0 14px; border-top: 1px solid var(--rule); background: var(--ground); color: var(--ink-soft); font-size: 12px; }
++.woven-activity-strip > button:last-child { margin-left: auto; border: 0; padding: 2px 4px; font-size: 12px; }
++.woven-activity-strip .shell-runtime-chip { padding: 2px; border: 0; background: transparent; }
++.woven-activity-strip .shell-runtime-chip-key,
++.woven-activity-strip .shell-runtime-chip-value { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
++.woven-activity-strip .shell-runtime-feedback { bottom: 100%; top: auto; }
++.woven-activity-view { padding: 10px 14px; }
++.woven-activity-tabs { display: flex; gap: 4px; margin-bottom: 10px; }
++.woven-activity-tabs button { border: 0; font-size: 12px; }
++.woven-activity-tabs [aria-pressed="true"] { color: var(--ink); box-shadow: inset 0 -1px var(--accent); }
++.shell--stone .woven-coordination { padding: 0; display: block; }
++@media (max-width: 1180px) {
++  .shell--stone .chat-panel--woven > .chat-transcript { padding: 22px 26px; }
++  .shell--stone .chat-panel--woven > .chat-composer-dock { padding: 0 26px; }
++  .shell--stone .chat-panel--woven > .chat-input-row { margin-left: 26px; margin-right: 26px; }
++  .chat-panel--woven .chat-context { padding-left: 26px; padding-right: 26px; }
++}
++
++.shell--stone .woven-right-panel #right-view-content > .panel--file-tree { height: 100%; }
++.shell--stone .chat-panel--woven .chat-bubble { max-width: 620px; }
++
++.woven-activity-filter { display: flex; gap: 6px; margin-bottom: 10px; }
++.woven-activity-filter input { min-width: 0; width: 100%; font-size: 12px; }
++.woven-activity-filter button { flex: none; padding: 4px 6px; font-size: 12px; }
+diff --git a/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx b/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx
+index 1cc32f544..8404ccfd2 100644
+--- a/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx
+@@ -1,7 +1,7 @@
+ 'use client';
+ 
+ import { usePathname, useSearchParams } from 'next/navigation';
+-import React, { FormEvent, useEffect, useMemo, useState } from 'react';
++import React, { FormEvent, useEffect, useMemo, useRef, useState, useCallback } from 'react';
+ import {
+   HarnessApiClientError,
+   bootHarnessSession,
+@@ -22,6 +22,8 @@ import { resolvePersona } from '../../lib/shell/persona-resolution';
+ import { useHarnessEventActions } from '../workspace/harness-events-provider';
+ import { useToolkit } from '../workspace/toolkit-provider';
+ import { useWorkspace } from '../workspace/workspace-provider';
++import { FolderSelect, getNativeFolderBridge } from './folder-select';
++import { PersonaPicker } from './persona-picker';
+ import { ChatMarkdown } from './chat-markdown';
+ import { FilePicker } from './file-picker';
+ import { PermissionRequests } from './permission-requests';
+@@ -37,6 +39,7 @@ type ChatMessage = {
+ type ActiveSession = {
+   sessionId: string;
+   projectRoot: string;
++  selectedRootAtBinding: string;
+   persona: string;
+   mode: string;
+ };
+@@ -57,6 +60,7 @@ const OPERATOR_MODES: readonly OperatorModeOption[] = [
+ ];
+ 
+ const DEFAULT_OPERATOR_MODE = 'ask';
++const PLAIN_MODE_LABELS: Record<string, string> = { readOnly: 'Read only', ask: 'Ask before changes', workspaceWrite: 'Approve each write', bypass: 'Run on its own' };
+ 
+ function readTextField(data: unknown): string | undefined {
+   if (!data || typeof data !== 'object') {
+@@ -120,11 +124,17 @@ function isHarnessEvent(value: unknown): value is HarnessEvent {
+ }
+ 
+ type ChatPanelProps = {
++  presentation?: 'woven';
++  knownRoots?: readonly { path: string; lastUsedAt: string }[];
++  newChatRequest?: number;
++  folderSelectionPending?: boolean;
++  onFolderSelectionPending?: (pending: boolean) => void;
++  onBindingChange?: (binding: { root: string | null; locked: boolean }) => void;
+   onActiveSessionChange?: (sessionId: string | undefined) => void;
+ };
+ 
+-export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.Element {
+-  const { projectRoot } = useWorkspace();
++export function ChatPanel({ onActiveSessionChange, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange }: ChatPanelProps = {}): JSX.Element {
++  const { projectRoot, applyProjectRoot } = useWorkspace();
+   const { optsPayload } = useToolkit();
+   const { appendEvent, clearEvents, setStreaming } = useHarnessEventActions();
+   const pathname = usePathname();
+@@ -137,13 +147,21 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+   const [operatorMode, setOperatorMode] = useState<string>(DEFAULT_OPERATOR_MODE);
+   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
+   const [isRunning, setIsRunning] = useState(false);
++  const [nativeFolderError, setNativeFolderError] = useState<string | null>(null);
++  const nativeSelectionActive = useRef(false);
++  const [folderSyncError, setFolderSyncError] = useState<string | null>(null);
++  const composerRef = useRef<HTMLTextAreaElement | null>(null);
++  const bindingGeneration = useRef(0);
++  const canonicalTransition = useRef<{ from: string; to: string; persona: string; mode: string } | null>(null);
++  const previousContext = useRef<{ root: string | null; persona: string; mode: string } | null>(null);
++  const newChatSeen = useRef(newChatRequest);
+   const [runtimeStatus, setRuntimeStatus] = useState<string | null>(null);
+   const [runtimeError, setRuntimeError] = useState<HarnessUiError | null>(null);
+   const [messages, setMessages] = useState<ChatMessage[]>([
+     {
+       id: 'seed-1',
+       role: 'assistant',
+-      text: 'Harness chat wiring is active. Select a Working Root and send a prompt.'
++      text: presentation === 'woven' ? 'What would you like to work on?' : 'Harness chat wiring is active. Select a Working Root and send a prompt.'
+     }
+   ]);
+ 
+@@ -169,20 +187,22 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+     () => resolvePersona(searchParams.get('agent')),
+     [searchParams]
+   );
++  const personaLabel = activePersona.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
+   const activeMode = useMemo(() => resolveMode(pathname), [pathname]);
+ 
++  const draftRoot = activeSession?.selectedRootAtBinding ?? projectRoot;
+   const draftStorageKey = useMemo(() => {
+-    if (!projectRoot) {
++    if (!draftRoot) {
+       return null;
+     }
+-    return buildChatDraftStorageKey(projectRoot, activePersona, activeMode);
+-  }, [projectRoot, activePersona, activeMode]);
++    return buildChatDraftStorageKey(draftRoot, activePersona, activeMode);
++  }, [draftRoot, activePersona, activeMode]);
+ 
+   useEffect(() => {
+     setActiveSession((existing) => {
+       if (
+         existing &&
+-        existing.projectRoot === projectRoot &&
++        (existing.projectRoot === projectRoot || existing.selectedRootAtBinding === projectRoot) &&
+         existing.persona === activePersona &&
+         existing.mode === activeMode
+       ) {
+@@ -231,6 +251,64 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+     }
+   }, [draftStorageKey, draft, attachments, draftStorageWritable]);
+ 
++  useEffect(() => {
++    const expected = canonicalTransition.current;
++    const previous = previousContext.current;
++    const isCanonicalSynchronization = expected && previous?.root === expected.from && projectRoot === expected.to && activePersona === expected.persona && activeMode === expected.mode;
++    if (!isCanonicalSynchronization) bindingGeneration.current++;
++    canonicalTransition.current = null;
++    previousContext.current = { root: projectRoot, persona: activePersona, mode: activeMode };
++  }, [projectRoot, activePersona, activeMode]);
++
++  useEffect(() => {
++    onBindingChange?.({ root: activeSession?.projectRoot ?? projectRoot, locked: Boolean(activeSession) || isRunning });
++  }, [activeSession, projectRoot, isRunning, onBindingChange]);
++
++  useEffect(() => {
++    const field = composerRef.current;
++    if (!field) return;
++    field.style.height = 'auto';
++    field.style.height = `${Math.min(field.scrollHeight, 132)}px`;
++  }, [draft]);
++
++  useEffect(() => {
++    if (newChatSeen.current === newChatRequest) return;
++    newChatSeen.current = newChatRequest;
++    if (isRunning || folderSelectionPending) return;
++    if ((draft.trim() || attachments.length) && !window.confirm('Start a new chat and discard the unsent draft and attachments?')) return;
++    bindingGeneration.current++;
++    setActiveSession(null); setDraft(''); setAttachments([]); setMessages([]);
++    setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
++    // This clears only the current local view; no runtime record is deleted.
++    clearEvents();
++  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, clearEvents]);
++
++  const selectNativeFolder = useCallback(async (intent: { path?: string; error?: string }) => {
++    if (intent.error) { setNativeFolderError(intent.error); return; }
++    if (activeSession || isRunning || folderSelectionPending || nativeSelectionActive.current) {
++      setNativeFolderError('Start a new chat before opening another folder.'); return;
++    }
++    if (!intent.path) { setNativeFolderError('Drop a folder from Finder to choose it.'); return; }
++    nativeSelectionActive.current = true; onFolderSelectionPending?.(true); setNativeFolderError(null);
++    try {
++      if (!await applyProjectRoot(intent.path)) setNativeFolderError('This folder could not be selected.');
++    } finally { nativeSelectionActive.current = false; onFolderSelectionPending?.(false); }
++  }, [activeSession, isRunning, folderSelectionPending, applyProjectRoot, onFolderSelectionPending]);
++
++  useEffect(() => {
++    if (presentation !== 'woven') return;
++    return getNativeFolderBridge()?.subscribeOpen(intent => { void selectNativeFolder(intent); });
++  }, [presentation, selectNativeFolder]);
++
++  useEffect(() => {
++    if (presentation !== 'woven' || !projectRoot) return;
++    let cancelled = false;
++    void getNativeFolderBridge()?.registerRecent(projectRoot).then(result => {
++      if (!cancelled && !result.ok) setNativeFolderError(result.error ?? 'Unable to register this folder in Open Recent.');
++    }).catch(() => { if (!cancelled) setNativeFolderError('Unable to register this folder in Open Recent.'); });
++    return () => { cancelled = true; };
++  }, [presentation, projectRoot]);
++
+   async function ensureSessionBooted(): Promise<ActiveSession> {
+     if (!projectRoot) {
+       throw new Error('Select a Working Root before sending a prompt.');
+@@ -238,13 +316,15 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+ 
+     if (
+       activeSession &&
+-      activeSession.projectRoot === projectRoot &&
++      (activeSession.projectRoot === projectRoot || activeSession.selectedRootAtBinding === projectRoot) &&
+       activeSession.persona === activePersona &&
+       activeSession.mode === activeMode
+     ) {
+       return activeSession;
+     }
+ 
++    const generation = bindingGeneration.current;
++    const selectedRootAtBinding = projectRoot;
+     setRuntimeStatus('Creating session...');
+     const session = await createHarnessSession({
+       projectRoot,
+@@ -264,13 +344,22 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+           }
+     );
+ 
++    if (generation !== bindingGeneration.current) throw new Error('The chat context changed while the session was starting.');
+     const nextSession: ActiveSession = {
+       sessionId: boot.session.sessionId,
+-      projectRoot,
++      projectRoot: boot.session.projectRoot,
++      selectedRootAtBinding,
+       persona: activePersona,
+       mode: activeMode
+     };
+     setActiveSession(nextSession);
++    if (presentation === 'woven' && nextSession.projectRoot !== selectedRootAtBinding) {
++      canonicalTransition.current = { from: selectedRootAtBinding, to: nextSession.projectRoot, persona: activePersona, mode: activeMode };
++      const applied = await applyProjectRoot(nextSession.projectRoot);
++      if (!applied) canonicalTransition.current = null;
++      if (generation !== bindingGeneration.current) throw new Error('The chat context changed while its folder was being synchronized.');
++      if (!applied) setFolderSyncError('The session is bound to its recorded folder, but file browsing could not switch to it. Start a new chat to choose a folder again.');
++    }
+     return nextSession;
+   }
+ 
+@@ -291,12 +380,14 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+ 
+   async function submitDraft(event: FormEvent<HTMLFormElement>): Promise<void> {
+     event.preventDefault();
++    if (isRunning || folderSelectionPending || nativeSelectionActive.current) return;
+     const text = draft.trim();
+ 
+     if (!text && attachments.length === 0) {
+       return;
+     }
+ 
++    const requestGeneration = bindingGeneration.current;
+     const preservedDraft = draft;
+     const preservedAttachments = attachments;
+ 
+@@ -481,8 +572,10 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+       const uiError = toHarnessUiError(error);
+       setRuntimeError(uiError);
+       setRuntimeStatus(null);
+-      setDraft(preservedDraft);
+-      setAttachments(preservedAttachments);
++      if (requestGeneration === bindingGeneration.current) {
++        setDraft(preservedDraft);
++        setAttachments(preservedAttachments);
++      }
+       setMessages((existing) =>
+         existing.filter((item) => item.id !== operatorMessageId && item.id !== assistantId)
+       );
+@@ -493,8 +586,8 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+   }
+ 
+   return (
+-    <aside className="panel panel--chat">
+-      <header className="panel-header">
++    <aside className={`panel panel--chat${presentation === 'woven' ? ' chat-panel--woven' : ''}`}>
++      {presentation !== 'woven' ? <header className="panel-header">
+         <h2>Chat Panel</h2>
+         <p className="chat-meta">
+           Persona: {activePersona} | Section: {activeMode}
+@@ -515,14 +608,15 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+             ))}
+           </select>
+         </label>
+-      </header>
++      </header> : null}
+ 
+       <div className="panel-body chat-transcript">
+         {!projectRoot ? (
+-          <p className="panel-empty">Select a Working Root before starting a harness turn.</p>
++          <p className="panel-empty">{presentation === 'woven' ? 'Choose a folder below to start a chat.' : 'Select a Working Root before starting a harness turn.'}</p>
+         ) : null}
+         {messages.map((message) => (
+           <article key={message.id} className={`chat-bubble chat-bubble--${message.role}`}>
++            {presentation === 'woven' ? <p className="chat-speaker" title={message.role === 'assistant' ? activePersona : undefined}>{message.role === 'operator' ? 'You' : activePersona.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}</p> : null}
+             {message.text ? (
+               message.role === 'assistant' ? (
+                 <ChatMarkdown source={message.text} />
+@@ -560,7 +654,7 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+           </div>
+         ) : null}
+ 
+-        <div className="chat-attachment-preview" aria-live="polite">
++        {presentation !== 'woven' ? (        <div className="chat-attachment-preview" aria-live="polite">
+           <div className="chat-attachment-header">
+             <strong>Attachments</strong>
+             <div>
+@@ -610,7 +704,7 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+               ))}
+             </ul>
+           )}
+-        </div>
++        </div>) : null}
+ 
+         {runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
+ 
+@@ -628,11 +722,44 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+ 
+       <form
+         className="chat-input-row"
++        onDragOver={presentation === 'woven' ? event => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); } : undefined}
++        onDrop={presentation === 'woven' ? event => {
++          event.preventDefault();
++          const bridge = getNativeFolderBridge();
++          const files = event.dataTransfer.files;
++          if (!bridge || files.length !== 1) { setNativeFolderError('Drop one folder from Finder to choose it.'); return; }
++          void selectNativeFolder({ path: bridge.pathForFile(files[0]) });
++        } : undefined}
+         onSubmit={(event) => {
+           void submitDraft(event);
+         }}
+       >
+-        <input
++        {presentation === 'woven' && attachments.length ? <ul className="attachment-chip-list">{attachments.map(item => <li key={item.path} className="attachment-chip" title={item.path}>
++          <span>{item.displayName}</span><button type="button" aria-label={`Remove ${item.displayName}`} disabled={isRunning} onClick={() => setAttachments(current => current.filter(entry => entry.path !== item.path))}>×</button>
++        </li>)}</ul> : null}
++        <div className={presentation === 'woven' ? 'chat-composer-line' : 'chat-composer-line--legacy'}>
++        {presentation === 'woven' ? (        <textarea
++          ref={composerRef}
++          rows={1}
++          aria-label="Chat input"
++          data-chat-input="primary"
++          value={draft}
++          disabled={!projectRoot || isRunning || folderSelectionPending}
++          onKeyDown={event => {
++            if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
++              event.preventDefault(); event.currentTarget.form?.requestSubmit();
++            }
++          }}
++          onChange={(event) => {
++            setDraft(event.target.value);
++            if (runtimeError) {
++              setRuntimeError(null);
++            }
++          }}
++          placeholder={
++            projectRoot ? presentation === 'woven' ? `Message ${personaLabel}…` : `Send prompt as ${activePersona}...` : presentation === 'woven' ? 'Choose a folder first…' : 'Select a Working Root first...'
++          }
++        />) : (        <input
+           aria-label="Chat input"
+           data-chat-input="primary"
+           value={draft}
+@@ -644,16 +771,18 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+             }
+           }}
+           placeholder={
+-            projectRoot ? `Send prompt as ${activePersona}...` : 'Select a Working Root first...'
++            projectRoot ? presentation === 'woven' ? `Message ${personaLabel}…` : `Send prompt as ${activePersona}...` : presentation === 'woven' ? 'Choose a folder first…' : 'Select a Working Root first...'
+           }
+-        />
++        />)}
++        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending} onClick={() => setPickerOpen(true)}>⊕</button> : null}
+         <button
+           type="submit"
+-          disabled={!projectRoot || isRunning || (!draft.trim() && attachments.length === 0)}
++          aria-label={isRunning ? 'Running' : 'Send'}
++          disabled={!projectRoot || isRunning || folderSelectionPending || (!draft.trim() && attachments.length === 0)}
+         >
+-          {isRunning ? 'Running...' : 'Send'}
++          {presentation === 'woven' ? '↑' : isRunning ? 'Running...' : 'Send'}
+         </button>
+-        <button
++        {presentation !== 'woven' || isRunning ? (        <button
+           type="button"
+           className="button-muted"
+           onClick={() => {
+@@ -662,8 +791,19 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
+           disabled={!isRunning || !activeSession}
+         >
+           Interrupt
+-        </button>
++        </button>) : null}
++        </div>
+       </form>
++      {presentation === 'woven' ? <div className="chat-context" role="group" aria-label="Chat context">
++        <span>{activeSession ? 'Working in' : 'Start in'}</span>
++        <FolderSelect knownRoots={knownRoots} root={activeSession?.projectRoot ?? projectRoot} locked={Boolean(activeSession)} disabled={isRunning || folderSelectionPending} onPendingChange={onFolderSelectionPending} />
++        <span aria-hidden="true">·</span><PersonaPicker compact disabled={isRunning} />
++        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Operator mode</span><select value={operatorMode} disabled={isRunning} onChange={event => setOperatorMode(event.target.value)}>{OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
++        <span aria-hidden="true">·</span><span title="Delegation policy controls are not available yet">No delegation</span>
++        <span aria-hidden="true">·</span><span>Plain chat</span>
++        {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
++        {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}
++      </div> : null}
+ 
+       <FilePicker
+         open={pickerOpen}
+diff --git a/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx b/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx
+index 79f53db17..996e576aa 100644
+--- a/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx
+@@ -376,7 +376,7 @@ function FileMarkdown({ content, target, onOpenDocument, onHeadings }: { content
+   return <div className="chat-markdown" ref={contentRef}><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={components}>{content}</ReactMarkdown></div>;
+ }
+ 
+-function FileDocumentView({ target, onOpenDocument, expanded }: { target: string; onOpenDocument?: (path: string) => void; expanded?: boolean }): JSX.Element {
++function FileDocumentView({ target, onOpenDocument, expanded, presentation }: { target: string; onOpenDocument?: (path: string) => void; expanded?: boolean; presentation?: 'woven' }): JSX.Element {
+   const { projectRoot } = useWorkspace();
+   const [loaded, setLoaded] = useState<{ key: string; preview?: FilePreview; error?: string } | null>(null);
+   const [reload, setReload] = useState(0);
+@@ -412,9 +412,9 @@ function FileDocumentView({ target, onOpenDocument, expanded }: { target: string
+   };
+   const markdown = /\.(md|markdown)$/i.test(target);
+   const csv = /\.csv$/i.test(target);
+-  return <section className="panel panel--document" aria-label="Document preview">
+-    <header className="panel-header"><h2>{headings.find(heading => heading.level === 1)?.title || preview?.name || target.split('/').at(-1)}</h2>
+-      <button type="button" onClick={() => setReload(value => value + 1)}>Reload</button>
++  return <section className={`panel panel--document${presentation === 'woven' ? ' document-view--woven' : ''}`} aria-label="Document preview">
++    <header className="panel-header"><h2 className={presentation === 'woven' && headings.some(heading => heading.level === 1) ? 'sr-only' : undefined}>{headings.find(heading => heading.level === 1)?.title || preview?.name || target.split('/').at(-1)}</h2>
++      {presentation !== 'woven' ? <button type="button" onClick={() => setReload(value => value + 1)}>Reload</button> : null}
+       {headings.length ? <details><summary>Headings</summary><nav aria-label="Document headings">{headings.map(heading => <button type="button" key={heading.id} onClick={() => {
+         const element = Array.from(documentBodyRef.current?.querySelectorAll<HTMLElement>('[id]') ?? []).find(item => item.id === heading.id);
+         element?.scrollIntoView({ block: 'nearest' }); element?.focus();
+@@ -442,7 +442,7 @@ function FileDocumentView({ target, onOpenDocument, expanded }: { target: string
+ }
+ 
+ /** Optional file target extends, rather than replaces, the deliverable document viewer. */
+-export function DocumentView({ target, onOpenDocument, expanded }: { target?: string; onOpenDocument?: (path: string) => void; expanded?: boolean } = {}): JSX.Element {
++export function DocumentView({ target, onOpenDocument, expanded, presentation }: { target?: string; onOpenDocument?: (path: string) => void; expanded?: boolean; presentation?: 'woven' } = {}): JSX.Element {
+   const { projectRoot } = useWorkspace();
+-  return target === undefined ? <LegacyDocumentView /> : <FileDocumentView key={`${projectRoot}:${target}`} target={target} onOpenDocument={onOpenDocument} expanded={expanded} />;
++  return target === undefined ? <LegacyDocumentView /> : <FileDocumentView key={`${projectRoot}:${target}`} target={target} onOpenDocument={onOpenDocument} expanded={expanded} presentation={presentation} />;
+ }
+diff --git a/projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx b/projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx
+index 89c0c3992..787a71502 100644
+--- a/projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx
+@@ -26,6 +26,7 @@ type TreeResponse = {
+ };
+ 
+ type TreeNodeViewProps = {
++  compact?: boolean;
+   node: TreeNode;
+   expandedByPath: Record<string, boolean>;
+   onToggle: (nodePath: string) => void;
+@@ -33,7 +34,7 @@ type TreeNodeViewProps = {
+   selectedPath?: string | null;
+ };
+ 
+-function TreeNodeView({ node, expandedByPath, onToggle, onOpenFile, selectedPath }: TreeNodeViewProps): JSX.Element {
++function TreeNodeView({ compact = false, node, expandedByPath, onToggle, onOpenFile, selectedPath }: TreeNodeViewProps): JSX.Element {
+   const hasChildren = node.kind === 'directory' && Boolean(node.children?.length);
+   const isExpanded = hasChildren ? (expandedByPath[node.path] ?? true) : true;
+   const icon = node.kind === 'directory' ? 'DIR' : node.kind === 'symlink' ? 'LNK' : 'FILE';
+@@ -57,7 +58,7 @@ function TreeNodeView({ node, expandedByPath, onToggle, onOpenFile, selectedPath
+             {' '}
+           </span>
+         )}
+-        <span className="tree-item-icon">{icon}</span>
++        <span className="tree-item-icon" aria-hidden={compact || undefined}>{compact ? node.kind === 'directory' ? '▱' : node.kind === 'symlink' ? '↗' : '▤' : icon}</span>
+         {node.kind === 'file' && onOpenFile ? (
+           <button type="button" className="tree-item-name" title={node.path}
+             aria-current={selectedPath === node.path ? 'true' : undefined}
+@@ -70,7 +71,7 @@ function TreeNodeView({ node, expandedByPath, onToggle, onOpenFile, selectedPath
+       {hasChildren && isExpanded ? (
+         <ul className="tree-list">
+           {node.children?.map((child) => (
+-            <TreeNodeView
++            <TreeNodeView compact={compact}
+               key={child.path}
+               node={child}
+               expandedByPath={expandedByPath}
+@@ -88,7 +89,7 @@ function TreeNodeView({ node, expandedByPath, onToggle, onOpenFile, selectedPath
+   );
+ }
+ 
+-export function FileTreePanel({ onOpenFile, selectedPath }: { onOpenFile?: (path: string) => void; selectedPath?: string | null } = {}): JSX.Element {
++export function FileTreePanel({ onOpenFile, selectedPath, presentation, folderLocked = false, onFolderSelectionPending }: { presentation?: 'woven'; onFolderSelectionPending?: (pending: boolean) => void; folderLocked?: boolean; onOpenFile?: (path: string) => void; selectedPath?: string | null } = {}): JSX.Element {
+   const { projectRoot, chooseProjectRoot, hasElectronDirectoryPicker, errorMessage } = useWorkspace();
+   // The preload capability is client-only; keep SSR and the first client render identical.
+   const [mounted, setMounted] = useState(false);
+@@ -255,16 +256,16 @@ export function FileTreePanel({ onOpenFile, selectedPath }: { onOpenFile?: (path
+ 
+     return (
+       <ul className="tree-list">
+-        <TreeNodeView node={tree} expandedByPath={expandedByPath} onToggle={toggleExpanded} onOpenFile={onOpenFile} selectedPath={selectedPath} />
++        <TreeNodeView compact={presentation === 'woven'} node={tree} expandedByPath={expandedByPath} onToggle={toggleExpanded} onOpenFile={onOpenFile} selectedPath={selectedPath} />
+       </ul>
+     );
+-  }, [projectRoot, loading, error, tree, expandedByPath, toggleExpanded, onOpenFile, selectedPath]);
++  }, [projectRoot, loading, error, tree, expandedByPath, toggleExpanded, onOpenFile, selectedPath, presentation]);
+ 
+   return (
+     <aside className="panel panel--file-tree" style={{ display: 'grid', gridTemplateRows: 'auto minmax(0, 1fr) auto' }}>
+-      <header className="panel-header" style={{ gridRow: 1 }}>
++      {presentation !== 'woven' ? <header className="panel-header" style={{ gridRow: 1 }}>
+         <h2>File Tree</h2>
+-      </header>
++      </header> : null}
+       <div className="panel-body" style={{ gridRow: 2 }} onKeyDown={(event) => {
+         if (!['ArrowDown', 'ArrowUp'].includes(event.key)) return;
+         const buttons = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('button.tree-item-name'));
+@@ -273,7 +274,7 @@ export function FileTreePanel({ onOpenFile, selectedPath }: { onOpenFile?: (path
+         event.preventDefault();
+         buttons[Math.max(0, Math.min(buttons.length - 1, index + (event.key === 'ArrowDown' ? 1 : -1)))]?.focus();
+       }}>{panelBody}</div>
+-      <footer style={{ gridRow: 3, padding: '0.65rem 1rem', borderTop: '1px solid var(--rule)', overflowWrap: 'anywhere' }}><button type="button" disabled={!directoryPickerAvailable} onClick={() => { void chooseProjectRoot(); }}>Choose folder</button>
++      <footer style={{ gridRow: 3, padding: '0.65rem 1rem', borderTop: '1px solid var(--rule)', overflowWrap: 'anywhere' }}><button type="button" disabled={!directoryPickerAvailable || folderLocked} onClick={() => { if (!folderLocked) { onFolderSelectionPending?.(true); void chooseProjectRoot().finally(() => onFolderSelectionPending?.(false)); } }}>Choose folder</button>
+         <span title={projectRoot ?? undefined}>{projectRoot ? projectRoot.split('/').filter(Boolean).at(-1) ?? '/' : 'No folder'}</span>
+         {!directoryPickerAvailable ? <p>Choose a folder using the folder selector above.</p> : null}
+         {errorMessage ? <p role="alert">{errorMessage}</p> : null}
+diff --git a/projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx b/projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx
+index a8c75c388..5328bf83a 100644
+--- a/projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx
+@@ -9,6 +9,7 @@ import { resolvePersona } from '../../lib/shell/persona-resolution';
+ import { useRuntimeEpoch } from './runtime-connectivity-provider';
+ 
+ type PersonaPickerProps = {
++  compact?: boolean;
+   buildHref?: (persona: string) => string;
+   disabled?: boolean;
+   onPersonaSelected?: (persona: string) => void;
+@@ -22,6 +23,7 @@ type PersonaPickerProps = {
+  * agents are never offered — they run only via orchestration.
+  */
+ export function PersonaPicker({
++  compact = false,
+   buildHref = buildDirectChatHref,
+   disabled = false,
+   onPersonaSelected
+@@ -67,9 +69,10 @@ export function PersonaPicker({
+ 
+   return (
+     <div className="persona-picker">
+-      <label htmlFor="persona-picker-select">Persona</label>
++      <label className={compact ? 'visually-hidden' : undefined} htmlFor="persona-picker-select">{compact ? 'Agent' : 'Persona'}</label>
+       <select
+         id="persona-picker-select"
++        title={compact ? selected : undefined}
+         value={loading ? '' : selected}
+         disabled={disabled || loading || personas.length === 0}
+         onChange={(event) => {
+@@ -84,13 +87,13 @@ export function PersonaPicker({
+             silently offering a non-direct-chat agent. */}
+         {!loading && !selectedInRoster ? (
+           <option value={selected} disabled>
+-            {selected} (unavailable)
++            {compact ? selected.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ') : selected} (unavailable)
+           </option>
+         ) : null}
+         {personas.map((persona) => (
+           <option key={persona.name} value={persona.name}>
+-            {persona.name}
+-            {persona.type === 0 ? ' · Type 0' : ' · Type 1'}
++            {compact ? persona.name.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ') : persona.name}
++            {!compact ? persona.type === 0 ? ' · Type 0' : ' · Type 1' : null}
+           </option>
+         ))}
+       </select>
+diff --git a/projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx b/projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx
+index 35d5384a6..b471c3a19 100644
+--- a/projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx
+@@ -61,7 +61,10 @@ type ShellFrameProps = {
+   section: ShellSection;
+   title: string;
+   subtitle: string;
+-  children: ReactNode;
++  children?: ReactNode;
++  folderLocked?: boolean;
++  onFolderSelectionPending?: (pending: boolean) => void;
++  renderWorkspaceContent?: (controls: { reconnectControl: ReactNode; settingsControl: ReactNode }) => ReactNode;
+   variant?: 'default' | 'workspace';
+ };
+ 
+@@ -80,7 +83,10 @@ export function ShellFrame({
+   title,
+   subtitle,
+   children,
+-  variant = 'default'
++  variant = 'default',
++  folderLocked = false,
++  onFolderSelectionPending,
++  renderWorkspaceContent
+ }: ShellFrameProps): JSX.Element {
+   const pathname = usePathname();
+   const {
+@@ -157,45 +163,18 @@ export function ShellFrame({
+   }
+ 
+   async function applyDraftPath(): Promise<void> {
++    if (folderLocked) return;
+     const nextPath = draftPath.trim();
+     if (!nextPath) {
+       clearProjectRoot();
+       return;
+     }
+ 
+-    await applyProjectRoot(nextPath);
++    onFolderSelectionPending?.(true);
++    try { await applyProjectRoot(nextPath); } finally { onFolderSelectionPending?.(false); }
+   }
+ 
+-  return (
+-    <main className={variant === 'workspace' ? 'shell shell--workspace' : 'shell'}>
+-      <header
+-        className={
+-          variant === 'workspace' ? 'shell-header shell-header--workspace' : 'shell-header'
+-        }
+-      >
+-        <div className="shell-brand-row">
+-          <img
+-            src="/chirality-app-icon.svg"
+-            alt=""
+-            className="shell-brand-tile"
+-            width={26}
+-            height={26}
+-          />
+-          <span className="shell-wordmark">
+-            Chira<em>lity</em>
+-          </span>
+-        </div>
+-
+-        <div className="shell-header-main">
+-          <p className="shell-kicker">{section}</p>
+-          <h1>{title}</h1>
+-          <p className="shell-subtitle" title={subtitle}>
+-            {subtitle}
+-          </p>
+-        </div>
+-
+-        <div className="shell-header-controls">
+-          {runtimeIndicator ? (
++  const reconnectControl = (runtimeIndicator ? (
+             <span className="shell-runtime-control">
+               <button
+                 type="button"
+@@ -232,13 +211,14 @@ export function ShellFrame({
+                     : `Runtime reported ${runtimeIndicator.label}`}
+               </span>
+             </span>
+-          ) : null}
+-
+-          <details className="shell-root-disclosure">
++          ) : null);
++  const settingsControl = (<details className="shell-root-disclosure">
+             <summary className="shell-root-chip" title={currentRootLabel}>
++              {renderWorkspaceContent ? 'Settings' : <>
+               <span className={rootDotClassName} aria-hidden="true" />
+               <span className="shell-root-chip-key">root</span>
+               <span className="shell-root-chip-value">{currentRootLabel}</span>
++              </>}
+             </summary>
+ 
+             <section
+@@ -248,10 +228,12 @@ export function ShellFrame({
+                   : 'working-root-bar'
+               }
+             >
+-              <div className="working-root-fields">
++              {!renderWorkspaceContent ? (              <div className="working-root-fields">
++                {folderLocked ? <p>Folder is fixed for this chat. Start a new chat to change it.</p> : null}
+                 <label htmlFor="project-root-input">Working Root (`projectRoot`)</label>
+                 <div className="working-root-controls">
+                   <input
++                    disabled={folderLocked}
+                     id="project-root-input"
+                     value={draftPath}
+                     onChange={(event) => {
+@@ -262,17 +244,18 @@ export function ShellFrame({
+                     }}
+                     placeholder="/absolute/path/to/execution/root"
+                   />
+-                  <button type="button" onClick={() => void applyDraftPath()}>
++                  <button type="button" disabled={folderLocked} onClick={() => void applyDraftPath()}>
+                     Apply Path
+                   </button>
+                   <button
+                     type="button"
++                    disabled={folderLocked}
+                     className={hasElectronDirectoryPicker ? '' : 'button-muted'}
+-                    onClick={() => void chooseProjectRoot()}
++                    onClick={() => { if (!folderLocked) { onFolderSelectionPending?.(true); void chooseProjectRoot().finally(() => onFolderSelectionPending?.(false)); } }}
+                   >
+                     Choose Folder
+                   </button>
+-                  <button type="button" className="button-muted" onClick={clearProjectRoot}>
++                  <button type="button" disabled={folderLocked} className="button-muted" onClick={() => { if (!folderLocked) clearProjectRoot(); }}>
+                     Clear
+                   </button>
+                 </div>
+@@ -280,7 +263,7 @@ export function ShellFrame({
+                   Active root: {currentRootLabel}
+                 </p>
+                 {errorMessage ? <p className="working-root-error">{errorMessage}</p> : null}
+-              </div>
++              </div>) : null}
+ 
+               <details className="working-root-settings working-root-settings--disclosure">
+                 <summary>Runtime &amp; credentials</summary>
+@@ -290,7 +273,46 @@ export function ShellFrame({
+                 </div>
+               </details>
+             </section>
+-          </details>
++          </details>);
++  if (variant === 'workspace' && renderWorkspaceContent) {
++    return <main className="shell shell--workspace shell--stone">{renderWorkspaceContent({
++      reconnectControl,
++      settingsControl: <div className="woven-settings-controls">{settingsControl}<ThemeControl /></div>
++    })}</main>;
++  }
++
++  return (
++    <main className={variant === 'workspace' ? 'shell shell--workspace' : 'shell'}>
++      <header
++        className={
++          variant === 'workspace' ? 'shell-header shell-header--workspace' : 'shell-header'
++        }
++      >
++        <div className="shell-brand-row">
++          <img
++            src="/chirality-app-icon.svg"
++            alt=""
++            className="shell-brand-tile"
++            width={26}
++            height={26}
++          />
++          <span className="shell-wordmark">
++            Chira<em>lity</em>
++          </span>
++        </div>
++
++        <div className="shell-header-main">
++          <p className="shell-kicker">{section}</p>
++          <h1>{title}</h1>
++          <p className="shell-subtitle" title={subtitle}>
++            {subtitle}
++          </p>
++        </div>
++
++        <div className="shell-header-controls">
++          {reconnectControl}
++
++          {settingsControl}
+ 
+           {variant === 'workspace' ? (
+             <div className="shell-nav" aria-label="Current workspace">
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx
+index 6e33ab066..217c3babb 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx
+@@ -1,9 +1,13 @@
+ 'use client';
+ 
+-import React, { useState } from 'react';
+-import { SubagentStreamView } from '../shell/subagent-stream-view';
+-import { ToolStreamView } from '../shell/tool-stream-view';
+-import { TranscriptStreamView } from '../shell/transcript-stream-view';
++import React, { useMemo, useState } from 'react';
++import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
++import { deriveToolActivity, deriveSubagentActivity } from '../../lib/shell/harness-event-views';
++import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
++import { useHarnessEvents } from '../workspace/harness-events-provider';
++import { SubagentStreamView, SubagentStreamList } from '../shell/subagent-stream-view';
++import { ToolStreamView, ToolStreamList } from '../shell/tool-stream-view';
++import { TranscriptStreamView, TranscriptStreamList } from '../shell/transcript-stream-view';
+ 
+ type ActivityTab = 'tools' | 'events' | 'children';
+ 
+@@ -69,3 +73,55 @@ export function ActivityShelf({
+     </section>
+   );
+ }
++
++/** Fixed status line; counts describe the observed buffer, never inferred work. */
++export function ActivityStrip({ reconnectControl, onOpenDetails, running, events }: {
++  reconnectControl?: React.ReactNode; onOpenDetails: () => void; running: boolean; events: readonly HarnessEvent[];
++}): JSX.Element {
++  const actions = deriveToolActivity(events).length;
++  const children = deriveSubagentActivity(events).length;
++  const start = [...events].reverse().find(event => event.type === 'turn.started');
++  const end = start ? [...events].reverse().find(event => event.sessionId === start.sessionId && Boolean(start.turnId) && event.turnId === start.turnId && ['turn.completed', 'turn.failed', 'turn.interrupted'].includes(event.type) && Date.parse(event.timestamp) >= Date.parse(start.timestamp)) : undefined;
++  const elapsed = start && end ? Math.max(0, Date.parse(end.timestamp) - Date.parse(start.timestamp)) : undefined;
++  return <div className="woven-activity-strip" aria-label="Activity status">
++    {reconnectControl}
++    <span role="status">{running ? 'Working' : 'Idle'}{actions || children ? ` · ${actions} actions · ${children} children observed` : ''}{elapsed !== undefined && Number.isFinite(elapsed) ? ` · Last turn: ${(elapsed / 1000).toFixed(1)} s` : ''}</span>
++    <button type="button" onClick={onOpenDetails}>Details ›</button>
++  </div>;
++}
++
++export function ActivityView(): JSX.Element {
++  const [tab, setTab] = useState<ActivityTab>('tools');
++  const [filter, setFilter] = useState('');
++  const [clearedVersions, setClearedVersions] = useState<ReadonlyMap<string, string>>(new Map());
++  const { events } = useHarnessEvents();
++  // Project the complete lifecycle before applying local visibility. Clearing
++  // a row must not discard its completion event when a retained event updates.
++  const projected = useMemo(() => {
++    const sessions = new Map<string, HarnessEvent[]>();
++    for (const event of events) sessions.set(event.sessionId, [...(sessions.get(event.sessionId) ?? []), event]);
++    return {
++      tools: [...sessions].flatMap(([session, source]) => deriveToolActivity(source).map(row => ({ ...row, key: `${session}:${row.key}` }))),
++      children: [...sessions].flatMap(([session, source]) => deriveSubagentActivity(source).map(row => ({ ...row, key: `${session}:${row.key}` }))),
++      transcript: [...sessions].flatMap(([session, source]) => deriveTranscriptView(source).items.map(row => ({ ...row, key: `${session}:${row.key}` })))
++    };
++  }, [events]);
++  const query = filter.trim().toLocaleLowerCase();
++  const visible = (kind: string, row: { key: string }) => clearedVersions.get(`${kind}:${row.key}`) !== JSON.stringify(row) && (!query || JSON.stringify(row).toLocaleLowerCase().includes(query));
++  const clearView = () => setClearedVersions(new Map([
++    ...projected.tools.map(row => [`tools:${row.key}`, JSON.stringify(row)] as const),
++    ...projected.children.map(row => [`children:${row.key}`, JSON.stringify(row)] as const),
++    ...projected.transcript.map(row => [`transcript:${row.key}`, JSON.stringify(row)] as const)
++  ]));
++  return <section className="woven-activity-view" aria-label="Activity details">
++    <div className="woven-activity-tabs" aria-label="Activity views">
++      {TABS.map(item => <button type="button" key={item.id} aria-pressed={tab === item.id}
++        onClick={() => setTab(item.id)}>{item.id === 'tools' ? 'Actions' : item.label}</button>)}
++    </div>
++    <div className="woven-activity-filter">
++      <input aria-label="Filter activity" placeholder="Filter activity…" value={filter} onChange={event => setFilter(event.target.value)} />
++      <button type="button" onClick={clearView}>Clear view</button>
++    </div>
++    {tab === 'tools' ? <ToolStreamList rows={projected.tools.filter(row => visible('tools', row))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <SubagentStreamList rows={projected.children.filter(row => visible('children', row))} />}
++  </section>;
++}
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx
+index ba45138bb..691831bd9 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx
+@@ -5,6 +5,7 @@ import type { RecordedAgentHierarchy } from '../../lib/woven-dialogue/contracts'
+ import { AgentsProjection } from './agents-projection';
+ 
+ type CoordinationPanelProps = {
++  embedded?: boolean;
+   activeView: 'session' | 'agents';
+   replaySlot?: React.ReactNode;
+   hierarchy: RecordedAgentHierarchy;
+@@ -19,6 +20,7 @@ type CoordinationPanelProps = {
+ 
+ export function CoordinationPanel({
+   activeView,
++  embedded = false,
+   replaySlot,
+   hierarchy,
+   sessionsLoading,
+@@ -31,7 +33,7 @@ export function CoordinationPanel({
+ }: CoordinationPanelProps): JSX.Element {
+   return (
+     <section className="woven-coordination" aria-label="Coordination Panel">
+-      <header className="woven-region-header">
++      {!embedded ? <header className="woven-region-header">
+         <div>
+           <p className="woven-eyebrow">Recorded coordination</p>
+           <h2>Coordination</h2>
+@@ -51,7 +53,7 @@ export function CoordinationPanel({
+             </button>
+           ))}
+         </div>
+-      </header>
++      </header> : null}
+       <div className="woven-coordination-body">
+         {activeView === 'session'
+           ? replaySlot ?? (
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
+index 017be07d3..96af022f4 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
+@@ -7,7 +7,6 @@ import type {
+   WovenSessionSurfaceMap,
+   WovenWorkspaceSurface
+ } from '../../lib/woven-dialogue/woven-workspace-state';
+-import { FileTreePanel } from '../shell/file-tree-panel';
+ 
+ export type WovenSurface = WovenWorkspaceSurface;
+ 
+@@ -30,6 +29,8 @@ export type NavigatorSessionGroups = {
+ };
+ 
+ type NavigatorProps = {
++  footerSlot?: React.ReactNode;
++  onNewChat?: () => void;
+   activeSurface: WovenSurface;
+   legacyHref: string;
+   onOpenSurface: (surface: WovenSurface) => void;
+@@ -145,6 +146,7 @@ function SessionRow({
+             ? 'woven-navigator-session woven-navigator-session--live'
+             : 'woven-navigator-session'
+         }
++        title={`${entry.sessionId}${entry.surface ? ` · Recorded surface: ${entry.surface}` : ''}`}
+         data-session-id={entry.sessionId}
+         disabled={disabled || !onSelectSession}
+         aria-pressed={selected}
+@@ -161,7 +163,7 @@ function SessionRow({
+         ) : null}
+         <span className="woven-navigator-session-title">{entry.label}</span>
+         <span className="woven-navigator-session-when">{entry.when}</span>
+-        {entry.surface ? <small>Recorded surface: {entry.surface}</small> : null}
++
+       </button>
+     </li>
+   );
+@@ -169,6 +171,8 @@ function SessionRow({
+ 
+ export function Navigator({
+   activeSurface,
++  footerSlot,
++  onNewChat,
+   legacyHref,
+   onOpenSurface,
+   sessions = EMPTY_SESSIONS,
+@@ -187,18 +191,14 @@ export function Navigator({
+ 
+   return (
+     <nav className="woven-navigator" aria-label="Workspace Navigator">
+-      <header className="woven-region-header">
+-        <div>
+-          <p className="woven-eyebrow">Workspace</p>
+-          <h2>Navigator</h2>
+-        </div>
+-      </header>
++      <header className="woven-navigator-brand">Chirality</header>
+ 
+       <div className="woven-navigator-sections" aria-label="Workspace surfaces">
++        {onNewChat ? <button type="button" className="woven-new-chat" disabled={selectionDisabled} onClick={onNewChat}><span aria-hidden="true">＋</span> New chat</button> : null}
+         <button type="button" className="woven-nav-item woven-nav-item--active"
+           aria-current={activeSurface === 'dialogue' ? 'page' : undefined}
+           onClick={() => onOpenSurface('dialogue')}>
+-          <span>Dialogue</span><small>Primary human–agent conversation</small>
++          <span>Current chat</span>
+         </button>
+         <div className="woven-navigator-sessions">
+           {sessionsError ? <p className="panel-error" role="alert">{sessionsError}</p> : null}
+@@ -213,14 +213,10 @@ export function Navigator({
+         </div>
+       </div>
+ 
+-      <section className="woven-navigator-files" aria-label="Project files">
+-        <FileTreePanel />
+-      </section>
+-
+       <footer className="woven-compatibility">
+-        <p>Compatibility</p>
+-        <Link href={legacyHref} target="_blank" rel="noreferrer">
+-          Open legacy interface in a new window
++        {footerSlot}
++        <Link href={legacyHref} target="_blank" rel="noreferrer" aria-label="Open legacy interface in a new window">
++          Legacy interface ↗
+         </Link>
+       </footer>
+     </nav>
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
+index ef6c5c2fd..b996bf257 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx
+@@ -1,5 +1,6 @@
+ 'use client';
+ 
++import { ActivityView } from './activity-shelf';
+ import React, { useEffect, useRef, useState } from 'react';
+ import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contracts';
+ import { guardRecordedSessionSelection } from '../../lib/woven-dialogue/guarded-session-selection';
+@@ -56,7 +57,10 @@ export function deriveSessionMenu(
+ type Props = {
+   state: WovenWorkspaceState;
+   sessionOpen: boolean;
+-  onView: (view: 'files' | 'agents') => void;
++  folderLocked?: boolean;
++  onFolderSelectionPending?: (pending: boolean) => void;
++  folderMismatch?: boolean;
++  onView: (view: 'files' | 'agents' | 'activity') => void;
+   onOpenFile: (path: string) => void;
+   onClose: () => void;
+   onExpand: () => void;
+@@ -68,7 +72,7 @@ type Props = {
+   liveTurnActive?: boolean;
+   onOpenParent?: (sessionId: string) => void;
+ };
+-export function RightPanel({ state, sessionOpen, onView, onOpenFile, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent }: Props): JSX.Element {
++export function RightPanel({ state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent }: Props): JSX.Element {
+   const { projectRoot } = useWorkspace();
+   const [refresh, setRefresh] = useState(0);
+   const [copyStatus, setCopyStatus] = useState<string | null>(null);
+@@ -76,7 +80,7 @@ export function RightPanel({ state, sessionOpen, onView, onOpenFile, onClose, on
+   const sessionMenu = deriveSessionMenu(replayState, recordedSessionIds, primarySessionId, liveTurnActive);
+   const [menuError, setMenuError] = useState<string | null>(null);
+   // Future stored views must leave existing content reachable, never blank it.
+-  const view = state.rightPanelView === 'agents' ? 'agents' : 'files';
++  const view = state.rightPanelView === 'agents' || state.rightPanelView === 'activity' ? state.rightPanelView : 'files';
+   const target = view === 'files' ? state.openDocumentPath : null;
+   const detailOpen = Boolean(target || (sessionOpen && view === 'agents'));
+   const sessionDetail = sessionOpen && view === 'agents';
+@@ -90,20 +94,22 @@ export function RightPanel({ state, sessionOpen, onView, onOpenFile, onClose, on
+     } catch { if (generation === copyGeneration.current) setMenuError(`Unable to copy ${label.toLowerCase()}.`); }
+   };
+   return <section className="woven-right-panel" aria-label="Right panel">
+-    <header className="woven-region-header" style={{ flexWrap: 'wrap' }}>
++    <header className="woven-region-header woven-right-panel-header">
+       {target ? <nav aria-label="Document breadcrumb"><button onClick={() => onView('files')}>Files</button> › <span>{target}</span></nav> :
+-        sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Agents</button> › Session</nav> :
++        sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Who is working</button> › Session</nav> :
+         <div role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
+           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+           event.preventDefault();
+-          const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'agents' : view === 'files' ? 'agents' : 'files';
++          const views = ['files', 'agents', 'activity'] as const;
++          const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'activity' : views[(views.indexOf(view) + (event.key === 'ArrowRight' ? 1 : 2)) % 3];
+           onView(next);
+           event.currentTarget.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
+-        }}>{(['files', 'agents'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
++        }}>{(['files', 'agents', 'activity'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
+           aria-controls="right-view-content" aria-selected={view === item} tabIndex={view === item ? 0 : -1}
+-          onClick={() => onView(item)}>{item === 'files' ? 'Files' : 'Agents'}</button>)}</div>}
+-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+-        <details><summary aria-label="Panel menu">Menu</summary>
++          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'agents' ? 'Who is working' : 'Activity'}</button>)}</div>}
++      <div className="woven-right-panel-controls">
++        <details><summary aria-label="Panel menu" title="Panel menu">⋮</summary>
++          <div className="woven-panel-menu-content">
+           {sessionDetail ? <>
+             <button type="button" disabled={!sessionMenu.parentId || !onOpenParent}
+               aria-describedby={sessionMenu.parentDisabledReason ? 'session-parent-explanation' : undefined}
+@@ -123,14 +129,15 @@ export function RightPanel({ state, sessionOpen, onView, onOpenFile, onClose, on
+           {target && projectRoot ? <button type="button" onClick={() => {
+             void handoffDocument({ projectRoot, target, action: 'open' }).catch(error => setMenuError(error instanceof Error ? error.message : 'Unable to open file.'));
+           }}>Open in default app</button> : null}
++          </div>
+         </details>
+-        <button type="button" aria-pressed={state.rightPanelExpanded ?? false} onClick={onExpand}>{state.rightPanelExpanded ? 'Return panel' : 'Expand panel'}</button>
++        <button type="button" aria-label={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} title={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} aria-pressed={state.rightPanelExpanded ?? false} onClick={onExpand}>{state.rightPanelExpanded ? '⤡' : '⤢'}</button>
+         <button type="button" aria-label={detailOpen ? 'Close detail' : 'Collapse right panel'} onClick={onClose}>×</button></div>
+     </header>
+     {copyStatus ? <p role="status">{copyStatus}</p> : null}
+     {menuError ? <p role="alert">{menuError}</p> : null}
+     <div id="right-view-content" role={detailOpen ? undefined : 'tabpanel'} aria-labelledby={detailOpen ? undefined : `right-tab-${view}`} style={{ minHeight: 0, flex: 1, overflow: 'auto' }}>
+-      {view === 'files' ? target ? <DocumentView key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
++      {view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
+     </div>
+   </section>;
+ }
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+index f75ef9d18..1a004dccd 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+@@ -29,13 +29,12 @@ import {
+   writeWovenWorkspaceStateToStorage,
+   type WovenWorkspaceState
+ } from '../../lib/woven-dialogue/woven-workspace-state';
+-import { useHarnessStreaming } from '../workspace/harness-events-provider';
++import { useHarnessStreaming, useHarnessEvents } from '../workspace/harness-events-provider';
+ import { useWorkspace } from '../workspace/workspace-provider';
+ import { ChatPanel } from '../shell/chat-panel';
+-import { PersonaPicker } from '../shell/persona-picker';
+ import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
+ import { ShellFrame } from '../shell/shell-frame';
+-import { ActivityShelf } from './activity-shelf';
++import { ActivityStrip } from './activity-shelf';
+ import { CoordinationPanel } from './coordination-panel';
+ import { RightPanel } from './right-panel';
+ import { DialogueViewport } from './dialogue-viewport';
+@@ -46,7 +45,7 @@ type WovenDialogueShellProps = {
+   defaultSurface: WovenSurface;
+ };
+ 
+-type ResizeTarget = 'navigator' | 'coordination' | 'activity';
++type ResizeTarget = 'navigator' | 'coordination';
+ 
+ function selectedReplayId(state: SelectedSessionReplayState): string | undefined {
+   if (state.status === 'READY') {
+@@ -67,6 +66,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+   const searchParams = useSearchParams();
+   const { projectRoot } = useWorkspace();
+   const streaming = useHarnessStreaming();
++  const { events } = useHarnessEvents();
++  const [binding, setBinding] = useState<{ root: string | null; locked: boolean }>({ root: null, locked: false });
++  const [folderSelectionPending, setFolderSelectionPending] = useState(false);
++  const [newChatRequest, setNewChatRequest] = useState(0);
+   const runtimeEpoch = useRuntimeEpoch();
+   const [primarySessionId, setPrimarySessionId] = useState<string>();
+   const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(
+@@ -75,11 +78,18 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+   const [availableWidth, setAvailableWidth] = useState(1440);
+   const workspaceRef = useRef<HTMLElement | null>(null);
+   const [coordinationView, setCoordinationView] = useState<'session' | 'agents'>('agents');
+-  const rightView = workspaceState.rightPanelView === 'agents' ? 'agents' : 'files';
++  const rightView = workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' ? workspaceState.rightPanelView : 'files';
+   const widthKey = rightView === 'files' && workspaceState.openDocumentPath ? 'document' : rightView === 'agents' && coordinationView === 'session' ? 'session' : rightView;
+   const rightWidth = workspaceState.rightPanelWidths?.[widthKey] ?? (widthKey === 'files' ? 300 : widthKey === 'agents' ? 360 : 480);
+-  const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : workspaceState.navigatorWidth) - 444));
++  const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : clamp(workspaceState.navigatorWidth, 220, 360)) - 444));
+   const [stateHydrated, setStateHydrated] = useState(false);
++  useEffect(() => {
++    if (!projectRoot || !stateHydrated) return;
++    setWorkspaceState(current => ({ ...current, knownRoots: [
++      { path: projectRoot, lastUsedAt: new Date().toISOString() },
++      ...(current.knownRoots ?? []).filter(root => root.path !== projectRoot)
++    ].slice(0, 50) }));
++  }, [projectRoot, stateHydrated]);
+   const [sessions, setSessions] = useState<SessionRecord[]>([]);
+   const [sessionsLoading, setSessionsLoading] = useState(false);
+   const [sessionsError, setSessionsError] = useState<string | null>(null);
+@@ -89,7 +99,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+   const [replayState, setReplayState] = useState<SelectedSessionReplayState>({
+     status: 'IDLE'
+   });
+-  const dialogueInputRef = useRef<HTMLInputElement | null>(null);
++  const dialogueInputRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
+   const resizeRef = useRef<{
+     target: ResizeTarget;
+     startX: number;
+@@ -280,7 +290,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+     replayLoaderRef.current?.cancel();
+     updateWorkspaceState({ selectedReplaySessionId: null });
+     window.requestAnimationFrame(() => {
+-      const input = document.querySelector<HTMLInputElement>('[data-chat-input="primary"]');
++      const input = document.querySelector<HTMLInputElement | HTMLTextAreaElement>('[data-chat-input="primary"]');
+       dialogueInputRef.current = input;
+       input?.focus();
+     });
+@@ -342,10 +352,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+       if (target === 'coordination') restoreExpanded();
+       const startValue =
+         target === 'navigator'
+-          ? workspaceState.navigatorWidth
+-          : target === 'coordination'
+-            ? rightWidth
+-            : workspaceState.activityHeight;
++          ? clamp(workspaceState.navigatorWidth, 220, 360)
++          : rightWidth;
+       resizeRef.current = {
+         target,
+         startX: event.clientX,
+@@ -364,7 +372,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+       }
+       if (resize.target === 'navigator') {
+         updateWorkspaceState({
+-          navigatorWidth: clamp(resize.startValue + event.clientX - resize.startX, 220, 620),
++          navigatorWidth: clamp(resize.startValue + event.clientX - resize.startX, 220, 360),
+           navigatorCollapsed: false
+         });
+       } else if (resize.target === 'coordination') {
+@@ -373,11 +381,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           rightPanelWidths: { ...current.rightPanelWidths, [widthKey]: width },
+           coordinationWidth: width, coordinationCollapsed: false
+         }));
+-      } else {
+-        updateWorkspaceState({
+-          activityHeight: clamp(resize.startValue - event.clientY + resize.startY, 120, 480),
+-          activityCollapsed: false
+-        });
++
+       }
+     };
+     const handleUp = (): void => {
+@@ -402,10 +406,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           key === 'Home'
+             ? 220
+             : key === 'End'
+-              ? 620
+-              : workspaceState.navigatorWidth + (key === 'ArrowRight' ? step : -step);
++              ? 360
++              : clamp(workspaceState.navigatorWidth, 220, 360) + (key === 'ArrowRight' ? step : -step);
+         updateWorkspaceState({
+-          navigatorWidth: clamp(value, 220, 620),
++          navigatorWidth: clamp(value, 220, 360),
+           navigatorCollapsed: key === 'Home'
+         });
+       } else if (target === 'coordination') {
+@@ -420,17 +424,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           coordinationWidth: clamp(value, 280, maximumRightWidth),
+           coordinationCollapsed: key === 'Home'
+         });
+-      } else {
+-        const value =
+-          key === 'Home'
+-            ? 120
+-            : key === 'End'
+-              ? 480
+-              : workspaceState.activityHeight + (key === 'ArrowUp' ? step : -step);
+-        updateWorkspaceState({
+-          activityHeight: clamp(value, 120, 480),
+-          activityCollapsed: key === 'Home'
+-        });
++
+       }
+     },
+     [updateWorkspaceState, workspaceState, rightWidth, widthKey, restoreExpanded, maximumRightWidth]
+@@ -443,14 +437,14 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+       navigatorCollapsed: true, coordinationCollapsed: false });
+   };
+   const stacked = availableWidth < 960;
+-  const leftWidth = workspaceState.navigatorCollapsed ? 56 : Math.min(workspaceState.navigatorWidth, Math.max(220, availableWidth - 724));
++  const leftWidth = workspaceState.navigatorCollapsed ? 56 : Math.min(clamp(workspaceState.navigatorWidth, 220, 360), Math.max(220, availableWidth - 724));
+   const visibleRightWidth = workspaceState.coordinationCollapsed ? 56 : Math.max(280, Math.min(
+     workspaceState.rightPanelExpanded ? Math.round(availableWidth * 0.6 / 8) * 8 : rightWidth,
+     availableWidth - leftWidth - 444
+   ));
+   const style = {
+     ...(!stacked ? { gridTemplateColumns: `${leftWidth}px 12px minmax(420px, 1fr) 12px ${visibleRightWidth}px` } : {}),
+-    '--woven-activity-height': `${workspaceState.activityCollapsed ? 68 : workspaceState.activityHeight}px`
++    '--woven-activity-height': '32px'
+   } as CSSProperties;
+   const replayVisible = replayState.status !== 'IDLE';
+ 
+@@ -460,7 +454,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+       title="Woven Dialogue"
+       subtitle="A shared professional workspace where dialogue produces inspectable artifacts and governed work."
+       variant="workspace"
+-    >
++      folderLocked={binding.locked || streaming || folderSelectionPending}
++      onFolderSelectionPending={setFolderSelectionPending}
++      renderWorkspaceContent={({ reconnectControl, settingsControl }) => (
+       <section ref={workspaceRef} className={`woven-workspace woven-t3-workspace${stacked ? ' is-stacked' : ''}`} style={style} data-woven-surface="dialogue">
+         <style>{`
+           .woven-t3-workspace .woven-right-panel { display:flex; flex-direction:column; min-width:0; height:100%; overflow:auto; }
+@@ -474,10 +470,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           .woven-t3-workspace .tree-item-name { text-align:left; overflow-wrap:anywhere; min-width:0; }
+           .woven-t3-workspace .tree-item-name[aria-current=true] { background:var(--ground); font-weight:600; }
+           .shell--workspace:has(> .woven-t3-workspace.is-stacked) { height:auto; min-height:100vh; overflow:visible; }
+-          .woven-t3-workspace.is-stacked { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(620px,70vh) auto auto 12px auto; height:auto; overflow:visible; }
++          .woven-t3-workspace.is-stacked { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(620px,70vh) auto auto 32px; height:auto; overflow:visible; }
+           .woven-t3-workspace.is-stacked > .woven-dialogue-region { grid-column:1; grid-row:1; }
+           .woven-t3-workspace.is-stacked > .woven-region--navigator { grid-column:1; grid-row:2; max-height:none; }
+-          .woven-t3-workspace.is-stacked .woven-navigator { height:auto; grid-template-rows:auto auto 400px auto; }
++          .woven-t3-workspace.is-stacked .woven-navigator { height:auto; grid-template-rows:auto minmax(0,1fr) auto; }
+           .woven-t3-workspace.is-stacked > .woven-region--coordination { grid-column:1; grid-row:3; height:520px; }
+           .woven-t3-workspace.is-stacked > .woven-region.is-collapsed { display:flex; flex-direction:row; align-items:center; gap:0.75rem; height:auto; min-height:56px; max-height:none; padding:0.4rem 0.75rem; }
+           .woven-t3-workspace.is-stacked > .woven-region.is-collapsed > .woven-region-toggle { position:static; inset:auto; transform:none; width:auto; max-width:none; min-height:36px; padding:0.4rem 0.65rem; color:var(--ink); flex:0 0 auto; }
+@@ -485,7 +481,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           .woven-t3-workspace.is-stacked > .woven-region.is-collapsed > .woven-collapsed-label { position:static; writing-mode:horizontal-tb; transform:none; min-width:0; overflow-wrap:anywhere; }
+           .woven-t3-workspace.is-stacked > .woven-resize-handle--vertical { display:none; }
+           .woven-t3-workspace.is-stacked > .woven-resize-handle--horizontal { grid-column:1; grid-row:4; }
+-          .woven-t3-workspace.is-stacked > .woven-activity { grid-column:1; grid-row:5; }
++          .woven-t3-workspace.is-stacked > .woven-activity-strip { grid-column:1; grid-row:4; }
+         `}</style>
+         <main className="woven-dialogue-region" aria-label="Primary Dialogue" onInputCapture={(event) => {
+           if ((event.target as HTMLElement).matches?.('[data-chat-input="primary"]')) restoreExpanded();
+@@ -493,15 +489,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           <DialogueViewport
+             primaryDialogue={
+               <>
+-                <div className="woven-dialogue-toolbar">
+-                  <div>
+-                    <p className="woven-eyebrow">Primary conversation</p>
+-                    <h2>Dialogue</h2>
+-                  </div>
+-                  <PersonaPicker disabled={streaming} />
+-                </div>
+                 <Suspense fallback={<p className="panel-empty">Loading primary dialogue…</p>}>
+-                  <ChatPanel onActiveSessionChange={setPrimarySessionId} />
++                  <ChatPanel presentation="woven" onActiveSessionChange={setPrimarySessionId} knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
+                 </Suspense>
+               </>
+             }
+@@ -525,10 +514,12 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+               });
+             }}
+           >
+-            {workspaceState.navigatorCollapsed ? (stacked ? 'Open Navigator' : <span aria-hidden="true">+</span>) : 'Close Navigator'}
++            {workspaceState.navigatorCollapsed ? <span className="woven-collapsed-brand" aria-hidden="true">C</span> : <span aria-hidden="true">‹</span>}
+           </button>
+           {!workspaceState.navigatorCollapsed ? (
+             <Navigator
++              footerSlot={settingsControl}
++              onNewChat={() => { if (!streaming && !folderSelectionPending) setNewChatRequest(value => value + 1); }}
+               activeSurface="dialogue"
+               legacyHref={legacyHref}
+               sessions={sessions}
+@@ -542,7 +533,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+               onSelectSession={loadReplay}
+             />
+           ) : (
+-            <span className="woven-collapsed-label">Navigator</span>
++            <div className="woven-collapsed-settings">{settingsControl}</div>
+           )}
+         </div>
+ 
+@@ -553,8 +544,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           aria-label="Resize Navigator"
+           aria-orientation="vertical"
+           aria-valuemin={220}
+-          aria-valuemax={620}
+-          aria-valuenow={workspaceState.navigatorWidth}
++          aria-valuemax={360}
++          aria-valuenow={clamp(workspaceState.navigatorWidth, 220, 360)}
+           onPointerDown={(event) => {
+             beginResize(event, 'navigator');
+           }}
+@@ -597,20 +588,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+               : 'woven-region woven-region--coordination'
+           }
+         >
+-          <button
+-            type="button"
+-            className="woven-region-toggle button-muted"
+-            aria-label={workspaceState.coordinationCollapsed ? 'Open Coordination' : 'Close Coordination'}
+-            onClick={() => {
+-              updateWorkspaceState({
+-                coordinationCollapsed: !workspaceState.coordinationCollapsed
+-              });
+-            }}
+-          >
+-            {workspaceState.coordinationCollapsed ? (stacked ? 'Open Coordination' : <span aria-hidden="true">+</span>) : 'Close Coordination'}
+-          </button>
++          {workspaceState.coordinationCollapsed ? <button type="button" className="woven-region-toggle button-muted" aria-label="Open Coordination" onClick={() => updateWorkspaceState({ coordinationCollapsed: false })}>›</button> : null}
+           {!workspaceState.coordinationCollapsed ? (
+-            <RightPanel state={workspaceState} sessionOpen={coordinationView === 'session'}
++            <RightPanel folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
+               replayState={replayState} recordedSessionIds={sessions.map(session => session.sessionId)}
+               primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={loadReplay}
+               onView={(view) => {
+@@ -633,7 +613,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+                 else if (rightView === 'agents' && coordinationView === 'session') setCoordinationView('agents');
+                 else updateWorkspaceState({ coordinationCollapsed: true });
+               }}
+-              coordination={<CoordinationPanel
++              coordination={<CoordinationPanel embedded
+               activeView={coordinationView}
+               replaySlot={
+                 replayVisible ? (
+@@ -672,35 +652,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           )}
+         </aside>
+ 
+-        <div
+-          className="woven-resize-handle woven-resize-handle--horizontal"
+-          role="separator"
+-          tabIndex={0}
+-          aria-label="Resize Activity Shelf"
+-          aria-orientation="horizontal"
+-          aria-valuemin={120}
+-          aria-valuemax={480}
+-          aria-valuenow={workspaceState.activityHeight}
+-          onPointerDown={(event) => {
+-            beginResize(event, 'activity');
+-          }}
+-          onKeyDown={(event) => {
+-            if (['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
+-              event.preventDefault();
+-              resizeByKeyboard('activity', event.key, event.shiftKey);
+-            }
+-          }}
+-        />
+-
+-        <ActivityShelf
+-          collapsed={workspaceState.activityCollapsed}
+-          onToggleCollapsed={() => {
+-            updateWorkspaceState({
+-              activityCollapsed: !workspaceState.activityCollapsed
+-            });
+-          }}
+-        />
++        <ActivityStrip reconnectControl={reconnectControl} running={streaming} events={events}
++          onOpenDetails={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'activity', coordinationCollapsed: false }); }} />
+       </section>
+-    </ShellFrame>
++      )}
++    />
+   );
+ }
+diff --git a/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts b/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts
+index b76ea60e9..bc7910442 100644
+--- a/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts
++++ b/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts
+@@ -419,7 +419,7 @@ export function createDefaultWovenWorkspaceState(): NormalizedWovenWorkspaceStat
+     ...readAdditions({}),
+     schema: WOVEN_WORKSPACE_SCHEMA,
+     theme: DEFAULT_WOVEN_WORKSPACE_THEME,
+-    navigatorWidth: 280,
++    navigatorWidth: 240,
+     coordinationWidth: 360,
+     activityHeight: 220,
+     navigatorCollapsed: false,
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx
+@@ -0,0 +1,30 @@
++import React from 'react';
++import { act, create } from 'react-test-renderer';
++import { expect, it, vi } from 'vitest';
++import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
++const state = vi.hoisted(() => ({ events: [] as HarnessEvent[] }));
++vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEvents: () => ({ events: state.events }) }));
++import { ActivityView } from '../../components/woven-dialogue/activity-shelf';
++import { ToolStreamList } from '../../components/shell/tool-stream-view';
++function event(eventId: string, type: HarnessEvent['type'], data: Record<string, unknown>, sessionId = 'one'): HarnessEvent {
++  return { schemaVersion: 1, eventId, sessionId, turnId: 'turn', timestamp: '2026-09-06T01:00:00Z', type, data };
++}
++it('filters completed projections and clears only observed versions without changing the shared event buffer', () => {
++  state.events = [event('start', 'tool.started', { toolUseId: 'tool', toolName: 'read_file' }), event('end', 'tool.completed', { toolUseId: 'tool' })];
++  const original = JSON.stringify(state.events);
++  const tree = create(<ActivityView />);
++  act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: 'read_file' } }));
++  expect(tree.root.findByType(ToolStreamList).props.rows).toMatchObject([{ toolName: 'read_file', status: 'completed' }]);
++  act(() => tree.root.findAllByType('button').find(button => button.children.includes('Clear view'))!.props.onClick());
++  expect(tree.root.findByType(ToolStreamList).props.rows).toEqual([]);
++  expect(JSON.stringify(state.events)).toBe(original);
++  act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: '' } }));
++  state.events = [...state.events, event('start', 'tool.started', { toolUseId: 'new', toolName: 'write_file' }, 'two')];
++  act(() => tree.update(<ActivityView />));
++  expect(tree.root.findByType(ToolStreamList).props.rows).toMatchObject([{ toolName: 'write_file', status: 'running' }]);
++  state.events = [event('start', 'tool.started', { toolUseId: 'tool', toolName: 'updated_tool' }), ...state.events.slice(1)];
++  act(() => tree.update(<ActivityView />));
++  expect(tree.root.findByType(ToolStreamList).props.rows[0].status).toBe('completed');
++  expect(tree.root.findByType(ToolStreamList).props.rows.map((row: { toolName: string }) => row.toolName)).toEqual(['updated_tool', 'write_file']);
++  act(() => tree.unmount());
++});
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx
+@@ -0,0 +1,107 @@
++import React, { useSyncExternalStore } from 'react';
++import { act, create, type ReactTestRenderer } from 'react-test-renderer';
++import { beforeEach, afterEach, expect, it, vi } from 'vitest';
++import { buildChatDraftStorageKey } from '../../lib/harness/chat-draft';
++
++const state = vi.hoisted(() => ({ root: '/chosen/subfolder', listeners: new Set<() => void>(),
++  create: vi.fn(), boot: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), streaming: vi.fn(),
++  nativeListener: undefined as ((intent: { path?: string; error?: string }) => void) | undefined
++}));
++vi.mock('next/navigation', () => ({ usePathname: () => '/chat', useSearchParams: () => new URLSearchParams(), useRouter: () => ({ replace: vi.fn() }) }));
++vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: () => ({
++  projectRoot: useSyncExternalStore(listener => { state.listeners.add(listener); return () => state.listeners.delete(listener); }, () => state.root),
++  applyProjectRoot: state.apply, chooseProjectRoot: vi.fn(async () => false), hasElectronDirectoryPicker: false, errorMessage: null
++}) }));
++vi.mock('../../components/workspace/toolkit-provider', () => ({ useToolkit: () => ({ optsPayload: undefined }) }));
++vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEventActions: () => ({ appendEvent: state.append, clearEvents: state.clear, setStreaming: state.streaming }) }));
++vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0 }));
++vi.mock('../../components/shell/persona-picker', () => ({ PersonaPicker: () => <span>Working Items</span> }));
++vi.mock('../../components/shell/file-picker', () => ({ FilePicker: () => null }));
++vi.mock('../../components/shell/permission-requests', () => ({ PermissionRequests: () => null }));
++vi.mock('../../components/shell/chat-markdown', () => ({ ChatMarkdown: ({ source }: { source: string }) => <p>{source}</p> }));
++vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
++import { ChatPanel } from '../../components/shell/chat-panel';
++
++let tree: ReactTestRenderer | undefined;
++let values: Map<string, string>;
++let writes: [string, string][];
++const canonicalKey = buildChatDraftStorageKey('/canonical', 'WORKING_ITEMS', 'CHAT');
++const canonicalDraft = JSON.stringify({ draft: 'Unrelated canonical draft', attachments: [] });
++function root(value: string) { state.root = value; for (const listener of state.listeners) listener(); }
++function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>(done => { resolve = done; }); return { promise, resolve }; }
++async function mount(props: Partial<React.ComponentProps<typeof ChatPanel>> = {}) { await act(async () => { tree = create(<ChatPanel presentation="woven" {...props} />); }); }
++async function type(value: string) { await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value } }); }); }
++async function submit() { await act(async () => { tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }); }); }
++function assertCanonicalUntouched() { expect(values.get(canonicalKey)).toBe(canonicalDraft); expect(writes.filter(([key]) => key === canonicalKey)).toEqual([]); }
++beforeEach(() => {
++  vi.clearAllMocks(); state.root = '/chosen/subfolder'; state.listeners.clear(); state.nativeListener = undefined;
++  values = new Map([[canonicalKey, canonicalDraft]]); writes = [];
++  vi.stubGlobal('window', { confirm: vi.fn(() => true), localStorage: { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => { writes.push([key, value]); values.set(key, value); }, removeItem: (key: string) => values.delete(key) }, chirality: { folders: {
++    registerRecent: vi.fn(async () => ({ ok: true })), pathForFile: vi.fn(() => ''), subscribeOpen: (listener: typeof state.nativeListener) => { state.nativeListener = listener; return () => { state.nativeListener = undefined; }; }
++  } } });
++  state.create.mockResolvedValue({ sessionId: 'bound' });
++  state.boot.mockResolvedValue({ session: { sessionId: 'bound', projectRoot: '/canonical' } });
++  state.apply.mockImplementation(async (value: string) => { root(value); return true; });
++  state.stream.mockRejectedValue(new Error('Fixture turn failure'));
++});
++afterEach(() => { if (tree) act(() => tree!.unmount()); tree = undefined; vi.unstubAllGlobals(); });
++
++it('uses the returned canonical root without migrating or overwriting either conversation draft', async () => {
++  const pending = deferred<boolean>(); state.stream.mockImplementation(() => pending.promise);
++  await mount(); await type('Keep my failed prompt'); await submit();
++  expect(state.root).toBe('/canonical'); assertCanonicalUntouched();
++  expect(tree!.root.findByProps({ className: 'chat-folder-fixed' }).props.title).toBe('/canonical');
++  await act(async () => pending.resolve(false));
++  await type('Second prompt'); state.stream.mockRejectedValue(new Error('Failed again')); await submit();
++  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
++  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Second prompt');
++  assertCanonicalUntouched();
++});
++it('retains the actual binding and failed draft when provider synchronization refuses', async () => {
++  state.apply.mockResolvedValue(false); const binding = vi.fn();
++  await mount({ onBindingChange: binding }); await type('Keep this prompt'); await submit();
++  expect(state.root).toBe('/chosen/subfolder'); expect(binding).toHaveBeenLastCalledWith({ root: '/canonical', locked: true });
++  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this prompt');
++  expect(JSON.stringify(tree!.toJSON())).toContain('file browsing could not switch'); assertCanonicalUntouched();
++});
++it('rejects a stale boot result after an unrelated folder change without restoring its old draft', async () => {
++  const boot = deferred<unknown>(); state.boot.mockReturnValue(boot.promise);
++  await mount(); await type('Old context prompt'); await submit();
++  await act(async () => root('/other'));
++  await act(async () => boot.resolve({ session: { sessionId: 'old', projectRoot: '/canonical' } }));
++  expect(state.apply).not.toHaveBeenCalled(); expect(state.stream).not.toHaveBeenCalled();
++  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).not.toBe('Old context prompt'); assertCanonicalUntouched();
++});
++it('rejects a stale synchronization completion after a different folder transition', async () => {
++  const applied = deferred<boolean>(); state.apply.mockReturnValue(applied.promise);
++  await mount(); await type('Old context prompt'); await submit();
++  await act(async () => root('/other'));
++  await act(async () => applied.resolve(false));
++  expect(state.stream).not.toHaveBeenCalled();
++  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).not.toBe('Old context prompt'); assertCanonicalUntouched();
++});
++it('blocks native folder intent while bound or pending and blocks Send during pending selection', async () => {
++  await mount({ folderSelectionPending: true }); await type('Pending'); await submit();
++  expect(state.create).not.toHaveBeenCalled();
++  await act(async () => state.nativeListener?.({ path: '/native-folder' })); expect(state.apply).not.toHaveBeenCalled();
++  await act(async () => tree!.update(<ChatPanel presentation="woven" folderSelectionPending={false} />));
++  await submit(); const calls = state.apply.mock.calls.length;
++  await act(async () => state.nativeListener?.({ path: '/native-folder' })); expect(state.apply).toHaveBeenCalledTimes(calls);
++});
++it('keeps Enter submission distinct from Shift+Enter and IME composition', async () => {
++  await mount(); const submit = vi.fn(); const preventDefault = vi.fn(); const handler = tree!.root.findByType('textarea').props.onKeyDown;
++  handler({ key: 'Enter', shiftKey: true, nativeEvent: { isComposing: false }, preventDefault, currentTarget: { form: { requestSubmit: submit } } });
++  handler({ key: 'Enter', shiftKey: false, nativeEvent: { isComposing: true }, preventDefault, currentTarget: { form: { requestSubmit: submit } } });
++  expect(submit).not.toHaveBeenCalled();
++  handler({ key: 'Enter', shiftKey: false, nativeEvent: { isComposing: false }, preventDefault, currentTarget: { form: { requestSubmit: submit } } });
++  expect(submit).toHaveBeenCalledTimes(1); expect(preventDefault).toHaveBeenCalledTimes(1);
++});
++
++it('rejects empty and multiple-file drops without invoking folder validation', async () => {
++  await mount(); const drop = tree!.root.findByType('form').props.onDrop;
++  await act(async () => drop({ preventDefault: vi.fn(), dataTransfer: { files: [] } }));
++  await act(async () => drop({ preventDefault: vi.fn(), dataTransfer: { files: [{}, {}] } }));
++  await act(async () => drop({ preventDefault: vi.fn(), dataTransfer: { files: [{}] } }));
++  expect(state.apply).not.toHaveBeenCalled();
++  expect(JSON.stringify(tree!.toJSON())).toContain('Drop a folder');
++});
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/__tests__/electron/folder-conveniences.test.ts
+@@ -0,0 +1,25 @@
++import { afterAll, beforeAll, expect, it, vi } from 'vitest';
++import { mkdtemp, mkdir, writeFile, symlink, rm, realpath } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import path from 'node:path';
++const native = vi.hoisted(() => ({ recent: vi.fn() }));
++vi.mock('electron', () => ({ app: { whenReady: () => new Promise(() => {}), on: vi.fn(), addRecentDocument: native.recent }, BrowserWindow: {}, dialog: {}, ipcMain: {}, shell: {}, Menu: {} }));
++import { registerRecentFolder } from '../../../electron/main';
++let base: string, root: string, instruction: string;
++const beforeSignals = { SIGINT: process.listeners('SIGINT'), SIGTERM: process.listeners('SIGTERM') };
++beforeAll(async () => { base = await mkdtemp(path.join(tmpdir(), 'chirality-folder-ipc-')); root = path.join(base, 'root'); instruction = path.join(base, 'instruction'); await mkdir(root); await mkdir(instruction); await writeFile(path.join(root, 'file.txt'), 'fixture'); await symlink(instruction, path.join(base, 'instruction-link')); });
++afterAll(async () => { await rm(base, { recursive: true, force: true }); for (const signal of ['SIGINT', 'SIGTERM'] as const) for (const listener of process.listeners(signal)) if (!beforeSignals[signal].includes(listener)) process.removeListener(signal, listener); });
++it('registers a canonical validated directory and rejects untrusted senders before filesystem effects', async () => {
++  const origin = 'http://localhost:3000'; const event = { senderFrame: { url: `${origin}/chat` } }; const register = vi.fn();
++  expect(await registerRecentFolder(event, root, origin, instruction, register)).toEqual({ ok: true }); expect(register).toHaveBeenCalledWith(await realpath(root));
++  register.mockClear();
++  for (const sender of [{}, { senderFrame: { url: 'https://example.invalid/' } }, { senderFrame: { url: 'file:///tmp/a' } }]) expect(await registerRecentFolder(sender, root, origin, instruction, register)).toMatchObject({ ok: false });
++  expect(register).not.toHaveBeenCalled();
++});
++it('refuses regular files, missing directories, relative paths and instruction aliases without adding recents', async () => {
++  const register = vi.fn(); const origin = 'http://localhost:3000'; const event = { senderFrame: { url: origin } };
++  for (const invalid of [path.join(root, 'file.txt'), path.join(root, 'missing'), 'relative', instruction, path.join(base, 'instruction-link'), null, {}, '/bad\u0000path']) expect(await registerRecentFolder(event, invalid, origin, instruction, register)).toMatchObject({ ok: false });
++  expect(register).not.toHaveBeenCalled();
++  expect(await registerRecentFolder(event, root, origin, instruction, () => { throw new Error('Native refusal'); })).toEqual({ ok: false, error: 'Native refusal' });
++  expect(native.recent).not.toHaveBeenCalled();
++});
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/__tests__/electron/folder-preload.test.ts
+@@ -0,0 +1,23 @@
++import { beforeEach, expect, it, vi } from 'vitest';
++const mocks = vi.hoisted(() => ({ exposed: undefined as unknown, invoke: vi.fn(async () => ({ ok: true })), on: vi.fn(), removeListener: vi.fn(), getPathForFile: vi.fn() }));
++vi.mock('electron', () => ({ contextBridge: { exposeInMainWorld: (_name: string, value: unknown) => { mocks.exposed = value; } }, ipcRenderer: { invoke: mocks.invoke, on: mocks.on, removeListener: mocks.removeListener }, webUtils: { getPathForFile: mocks.getPathForFile } }));
++import '../../../electron/preload';
++type Bridge = { folders: { registerRecent: (path: string) => Promise<unknown>; pathForFile: (file: File) => string; subscribeOpen: (listener: (intent: unknown) => void) => () => void } };
++beforeEach(() => vi.clearAllMocks());
++it('forwards only the folder path for registration and uses Electron file extraction without inventing paths', async () => {
++  const bridge = (mocks.exposed as Bridge).folders;
++  await bridge.registerRecent('/chosen'); expect(mocks.invoke).toHaveBeenCalledWith('chirality:folder-register-recent', '/chosen');
++  const file = {} as File; mocks.getPathForFile.mockReturnValue('/native/folder'); expect(bridge.pathForFile(file)).toBe('/native/folder'); expect(mocks.getPathForFile).toHaveBeenCalledWith(file);
++  mocks.getPathForFile.mockImplementation(() => { throw new TypeError('Not a File'); }); expect(bridge.pathForFile(null as unknown as File)).toBe('');
++  mocks.getPathForFile.mockReturnValue(''); expect(bridge.pathForFile(file)).toBe('');
++});
++it('delivers only the intent payload, registers readiness after listening and unsubscribes the exact listener', () => {
++  const listener = vi.fn(); const stop = (mocks.exposed as Bridge).folders.subscribeOpen(listener);
++  expect(mocks.on).toHaveBeenCalledWith('chirality:folder-open-intent', expect.any(Function));
++  expect(mocks.invoke).toHaveBeenCalledWith('chirality:folder-open-ready');
++  expect(mocks.on.mock.invocationCallOrder[0]).toBeLessThan(mocks.invoke.mock.invocationCallOrder[0]);
++  const handler = mocks.on.mock.calls[0][1]; const privileged = { sender: 'privileged' }; const intent = { path: '/chosen' };
++  handler(privileged, intent); expect(listener).toHaveBeenCalledTimes(1); expect(listener).toHaveBeenCalledWith(intent);
++  stop(); expect(mocks.removeListener).toHaveBeenCalledWith('chirality:folder-open-intent', handler);
++  handler(privileged, { path: '/later' }); expect(listener).toHaveBeenCalledTimes(1);
++});
+--- /dev/null
++++ b/projects/chirality-app-dev/frontend/src/components/shell/folder-select.tsx
+@@ -0,0 +1,44 @@
++'use client';
++
++import React, { useEffect, useState } from 'react';
++import { useWorkspace } from '../workspace/workspace-provider';
++
++export type NativeFolderBridge = {
++  registerRecent: (path: string) => Promise<{ ok: boolean; error?: string }>;
++  pathForFile: (file: File) => string;
++  subscribeOpen: (listener: (intent: { path?: string; error?: string }) => void) => () => void;
++};
++export function getNativeFolderBridge(): NativeFolderBridge | undefined {
++  return typeof window === 'undefined' ? undefined : (window as unknown as { chirality?: { folders?: NativeFolderBridge } }).chirality?.folders;
++}
++
++export function FolderSelect({ locked, root, disabled, knownRoots = [], onPendingChange }: {
++  knownRoots?: readonly { path: string; lastUsedAt: string }[];
++  locked: boolean; root: string | null; disabled: boolean; onPendingChange?: (pending: boolean) => void;
++}): JSX.Element {
++  const { applyProjectRoot, chooseProjectRoot, hasElectronDirectoryPicker, errorMessage } = useWorkspace();
++  const [path, setPath] = useState(root ?? '');
++  const [pending, setPending] = useState(false);
++  const [mounted, setMounted] = useState(false);
++  useEffect(() => { setMounted(true); }, []);
++  useEffect(() => { setPath(root ?? ''); }, [root]);
++  const choose = async (native: boolean, candidate = path) => {
++    if (locked || disabled || pending) return;
++    setPending(true); onPendingChange?.(true);
++    try { if (native) await chooseProjectRoot(); else if (candidate.trim()) await applyProjectRoot(candidate.trim()); }
++    finally { setPending(false); onPendingChange?.(false); }
++  };
++  const label = root ? root.split('/').filter(Boolean).at(-1) ?? '/' : 'Choose folder';
++  if (locked) return <span className="chat-folder-fixed" title={root ?? undefined}>▱ {label}</span>;
++  return <details className="chat-folder-select">
++    <summary aria-label="Chat folder" title={root ?? 'Choose a folder before sending'}>▱ {label}⌄</summary>
++    <div className="chat-folder-menu">
++      {knownRoots.length ? <label>Known folders<select aria-label="Known folders" value="" disabled={disabled || pending} onChange={event => { if (event.target.value) void choose(false, event.target.value); }}><option value="">Choose a known folder…</option>{knownRoots.map(item => <option key={item.path} value={item.path}>{item.path}</option>)}</select></label> : null}
++      <label>Folder path<input aria-label="Folder path" value={path} disabled={disabled || pending} onChange={event => setPath(event.target.value)} /></label>
++      <button type="button" disabled={disabled || pending || !path.trim()} onClick={() => void choose(false)}>Use folder</button>
++      <button type="button" disabled={disabled || pending || !mounted || !hasElectronDirectoryPicker} onClick={() => void choose(true)}>Choose folder…</button>
++      <p>Choose a folder before sending a message.</p>
++      {errorMessage ? <p role="alert">{errorMessage}</p> : null}
++    </div>
++  </details>;
++}

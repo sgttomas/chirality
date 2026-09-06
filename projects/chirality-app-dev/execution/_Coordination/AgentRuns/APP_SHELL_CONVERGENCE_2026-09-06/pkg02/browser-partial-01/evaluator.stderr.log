@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Error: strict mode violation: getByRole('heading', { name: 'Shell redesign checkpoint', exact: true }) resolved to 2 elements:
+    1) <h2 class="sr-only">Shell redesign checkpoint</h2> aka locator('h2').filter({ hasText: 'Shell redesign checkpoint' })
+    2) <h1 tabindex="-1" id="document-heading-0">Shell redesign checkpoint</h1> aka locator('#document-heading-0')
+
+Call log:
+[2m  - waiting for getByRole('heading', { name: 'Shell redesign checkpoint', exact: true }) to be visible[22m
+
+    at /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/browser-partial-01/evaluator.mjs:44:155 {
+  log: [
+    "  - waiting for getByRole('heading', { name: 'Shell redesign checkpoint', exact: true }) to be visible"
+  ]
+}
+
+Node.js v24.18.0

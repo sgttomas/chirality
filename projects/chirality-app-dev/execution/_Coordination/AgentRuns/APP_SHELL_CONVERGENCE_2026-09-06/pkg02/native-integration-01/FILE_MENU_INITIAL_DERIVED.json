@@ -1,0 +1,48 @@
+{
+  "status": "DERIVED_REDACTED",
+  "sourceSha256": "b350dcd72435fcf6d3ea9bdff37778b09d9798478dd4bd4730559af3b9eed5cd",
+  "privateRawPath": "/private/tmp/chirality-native-shell-02gzaapq/private-initial-ax.json",
+  "exclusion": "Initial owned-app menu traversal included system Apple menu; original retained privately and excluded from publication. Only File subtree retained here. No menu actions occurred.",
+  "rows": [
+    {
+      "depth": 1,
+      "role": "AXMenuBarItem",
+      "title": "File"
+    },
+    {
+      "depth": 2,
+      "role": "AXMenu",
+      "title": ""
+    },
+    {
+      "depth": 3,
+      "role": "AXMenuItem",
+      "title": "Open Recent"
+    },
+    {
+      "depth": 4,
+      "role": "AXMenu",
+      "title": ""
+    },
+    {
+      "depth": 5,
+      "role": "AXMenuItem",
+      "title": "Clear Menu"
+    },
+    {
+      "depth": 3,
+      "role": "AXMenuItem",
+      "title": ""
+    },
+    {
+      "depth": 3,
+      "role": "AXMenuItem",
+      "title": "Close Window"
+    },
+    {
+      "depth": 3,
+      "role": "AXMenuItem",
+      "title": "Close All"
+    }
+  ]
+}

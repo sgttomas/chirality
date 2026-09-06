@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-09-06T05:15:12.802262+00:00",
+  "manifests": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/integration-01/SOURCE_MANIFEST_v5.json",
+      "sha256": "b7fd5e3ea0adf4f7f33371f338655643078746934ab3ab5efaa5ce0391139e9c",
+      "members": 25,
+      "mismatches": []
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/NATIVE_BUILD_MANIFEST_v5.json",
+      "sha256": "39adf783a13d7b2e47984f3f67c29208fe51c2f380d0414f46cd825b3f86581a",
+      "members": 174,
+      "mismatches": []
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-01/OUTPUT_MANIFEST_v5.json",
+      "sha256": "7388e24366b0580bfbb9562484f3adac8c8d243e5e6e361b7e17decf23819325",
+      "members": 56,
+      "mismatches": []
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/native-integration-02/OUTPUT_MANIFEST.json",
+      "sha256": "b2b84fd9d46ef921632b783df548e70886b912fbb5f13b4bd848ceb4f8137730",
+      "members": 31,
+      "mismatches": []
+    }
+  ],
+  "local_status_invariants": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+      "remaining_unchanged": true,
+      "lifecycle_checking_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+      "remaining_unchanged": true,
+      "lifecycle_checking_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+      "remaining_unchanged": true,
+      "lifecycle_checking_unchanged": true
+    }
+  ],
+  "whitespace": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "status": "PASS"
+}

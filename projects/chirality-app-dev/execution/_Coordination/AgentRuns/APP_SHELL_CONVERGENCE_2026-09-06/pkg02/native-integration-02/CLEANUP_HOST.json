@@ -1,0 +1,34 @@
+{
+  "pidCheck": {
+    "command": [
+      "ps",
+      "-p",
+      "41768,41761",
+      "-o",
+      "pid=,comm="
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "port3197ConnectResult": 61,
+  "paths": [
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/control.sock",
+      "exists": false
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/auth/tokens/operator.token",
+      "exists": false
+    },
+    {
+      "path": "/private/tmp/chirality-native-shell-02gzaapq/user-data02/runtime/auth/tokens/project-native-proof.token",
+      "exists": false
+    },
+    {
+      "path": "/Users/ryan/Library/LaunchAgents/org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only.plist",
+      "exists": false
+    }
+  ],
+  "ownedFinderWindow31379": "closed"
+}

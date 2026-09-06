@@ -1,0 +1,130 @@
+{
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "expected": "ff324e424c772f94bbd59e628ed60ea3ef2e9d7398960ae341f10d55bc9e65b7",
+      "actual": "ff324e424c772f94bbd59e628ed60ea3ef2e9d7398960ae341f10d55bc9e65b7"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "expected": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a",
+      "actual": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+      "expected": "2378427d83b1dc2cef1424f4ea845910c0cb2a269e4a34b89844b68d309e3c3a",
+      "actual": "2378427d83b1dc2cef1424f4ea845910c0cb2a269e4a34b89844b68d309e3c3a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx",
+      "expected": "2ffe871f34b80c5e925499b53fcacbf8e5412fc4276efa6dc1e66b843d338a73",
+      "actual": "2ffe871f34b80c5e925499b53fcacbf8e5412fc4276efa6dc1e66b843d338a73"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/shell-frame.test.tsx",
+      "expected": "685ae077256d720e9d7a06627b7667bdf4660e1dd34961d299e2cc13d2db6756",
+      "actual": "685ae077256d720e9d7a06627b7667bdf4660e1dd34961d299e2cc13d2db6756"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "expected": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f",
+      "actual": "24d7d8a5c22d2c32a108ef277bbb81e30ae780ce920d4c9a108ef21062484f1f"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "expected": "b21c16a91694a4524d97ffc5a75737a415385372cc8a10de8b1ff955c8d4e879",
+      "actual": "b21c16a91694a4524d97ffc5a75737a415385372cc8a10de8b1ff955c8d4e879"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "expected": "594f54051787a08200e03562131738eb8650ca8eddc0693dd8f9734a3dfa0899",
+      "actual": "594f54051787a08200e03562131738eb8650ca8eddc0693dd8f9734a3dfa0899"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "expected": "83644f518e81affc80cee12d28df4d928434108b62fb530ad5a1b0f5b278dd3d",
+      "actual": "83644f518e81affc80cee12d28df4d928434108b62fb530ad5a1b0f5b278dd3d"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/folder-conveniences.test.ts",
+      "expected": "6db7414b5668ab8cc9b00225477bd55c90789448621710f07933a0481e2b4888",
+      "actual": "6db7414b5668ab8cc9b00225477bd55c90789448621710f07933a0481e2b4888"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/folder-preload.test.ts",
+      "expected": "30cbdb33d516a40dd004730797c3a6c7895b2d7f3383c491761073c80fa44160",
+      "actual": "30cbdb33d516a40dd004730797c3a6c7895b2d7f3383c491761073c80fa44160"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+      "expected": "657a2a93cc5fb34b3c8592a9800f0e1cab55b389dee5330301826b26b4f62617",
+      "actual": "657a2a93cc5fb34b3c8592a9800f0e1cab55b389dee5330301826b26b4f62617"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "expected": "ba93d0a194ecb36b9cf3315d0299cd9852352003e344cfb8737432681ff45ff4",
+      "actual": "ba93d0a194ecb36b9cf3315d0299cd9852352003e344cfb8737432681ff45ff4"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "expected": "99d24bd27122aa59c679299025a16009a25ad2a4165a8103471a76d3fd0998f7",
+      "actual": "99d24bd27122aa59c679299025a16009a25ad2a4165a8103471a76d3fd0998f7"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "expected": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312",
+      "actual": "41dff2659b04b8410baea7a2be2fe16e541f79304c2c0d634d9b00c7a6ea5312"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+      "expected": "3624217d98781053ec5fe7b34480e4dd5278cf668461fd7ab24c2522620fe78c",
+      "actual": "3624217d98781053ec5fe7b34480e4dd5278cf668461fd7ab24c2522620fe78c"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/folder-select.tsx",
+      "expected": "9dacf2458eb8e24a5bc9c476dc1346ff3f251c74de040556a7b17904962c31fe",
+      "actual": "9dacf2458eb8e24a5bc9c476dc1346ff3f251c74de040556a7b17904962c31fe"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx",
+      "expected": "6bedfb610d8d6969ed23ec633dfc40157af79b4d64aedc619e9c868a66649e23",
+      "actual": "6bedfb610d8d6969ed23ec633dfc40157af79b4d64aedc619e9c868a66649e23"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+      "expected": "bc95396dcdd74e2da85d97c0374f1cd4ac00726f6fec63464128aaa17b939ec6",
+      "actual": "bc95396dcdd74e2da85d97c0374f1cd4ac00726f6fec63464128aaa17b939ec6"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+      "expected": "5ead94ce6031e09162eccf1c01124bb97127b47b1c6be185bac0cdd13f3a7ac4",
+      "actual": "5ead94ce6031e09162eccf1c01124bb97127b47b1c6be185bac0cdd13f3a7ac4"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "expected": "70eabae3d7c52c7a529ac3241ad945553e5e83586deb60974f9891e958783691",
+      "actual": "70eabae3d7c52c7a529ac3241ad945553e5e83586deb60974f9891e958783691"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "expected": "4dec2c988d2ba495a69ca21f7eabdb53c9f42eefddfa2d33f5bc4231de90dc17",
+      "actual": "4dec2c988d2ba495a69ca21f7eabdb53c9f42eefddfa2d33f5bc4231de90dc17"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "expected": "d2d7f56ed3c181bb30b29e205f422cb91b35465858ee3d896cf39751dc62c171",
+      "actual": "d2d7f56ed3c181bb30b29e205f422cb91b35465858ee3d896cf39751dc62c171"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "expected": "afa8764f4f2a120b31d49ec913dec2175aea613c2c10173feac42a39aa64f3b1",
+      "actual": "afa8764f4f2a120b31d49ec913dec2175aea613c2c10173feac42a39aa64f3b1"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+      "expected": "ead76e3015bc7ca35ef1a04caa355eeb548b25e4d99cdd39f5bd3c2bd3ec5916",
+      "actual": "ead76e3015bc7ca35ef1a04caa355eeb548b25e4d99cdd39f5bd3c2bd3ec5916"
+    }
+  ],
+  "all_match": true
+}

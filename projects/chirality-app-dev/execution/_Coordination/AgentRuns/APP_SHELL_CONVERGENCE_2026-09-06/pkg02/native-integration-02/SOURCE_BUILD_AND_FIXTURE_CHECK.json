@@ -1,0 +1,53 @@
+{
+  "sourceCount": 25,
+  "compiledCount": 174,
+  "changedMembers": [],
+  "fixtureRequests": [
+    {
+      "fixtureRequest": "/api/harness/agents",
+      "input": null
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    },
+    {
+      "fixtureRequest": "/api/harness/session/create",
+      "input": {
+        "projectRoot": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+        "persona": "WORKING_ITEMS",
+        "mode": "PORTAL"
+      }
+    },
+    {
+      "fixtureRequest": "/api/harness/session/boot",
+      "input": {
+        "sessionId": "native-bound-fixture-02"
+      }
+    },
+    {
+      "fixtureRequest": "/api/harness/turn",
+      "input": {
+        "sessionId": "native-bound-fixture-02",
+        "message": "Synthetic binding probe. Do not contact a runtime.",
+        "attachments": [],
+        "opts": {
+          "mode": "ask"
+        }
+      }
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    },
+    {
+      "fixtureRequest": "/api/harness/session/list",
+      "input": null
+    }
+  ],
+  "claims": "Synthetic route responses only; actual runtime offline; original source and compiled bytes unchanged"
+}

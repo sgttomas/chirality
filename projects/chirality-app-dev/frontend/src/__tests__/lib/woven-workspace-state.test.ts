@@ -46,7 +46,7 @@ describe('Woven Dialogue workspace state', () => {
       chatArchived: [], chatGroups: [], groupsCollapsed: [], knownRoots: [], chatRung: {},
       schema: WOVEN_WORKSPACE_SCHEMA,
       theme: 'light',
-      navigatorWidth: 280,
+      navigatorWidth: 240,
       coordinationWidth: 360,
       activityHeight: 220,
       navigatorCollapsed: false,

@@ -25,3 +25,9 @@ DEL-02-04-V3-01 additive fields implemented within state module and existing lib
 Source fan-in update: focused32testsPASS and final full-diff review PASS after parent-challenged, independently confirmed title/rung retention repair. Historical first PASS was superseded by a P2 finding, now resolved. Global gates remain pending. See local run record and iteration3 REVIEW_PROVENANCE_NOTE_v1.md.
 
 Final partial closeout: source reviewPASS; focused32/full1636testsPASS (4skipped), typecheck/build/Section9/selfcheck/350pytest/holdPASS. Actual local premergeFAIL HTTP503 missing daemon binding; new-source boundCI owed after commit/push. Parent integration/governed review/CHANGE remain. No full-item or lifecycle closure. See local run record and iteration3 manager handoff.
+
+## 2026-09-06 — T5 fixed activity strip and Activity view
+
+The old resizable shelf is replaced by a fixed 32px strip and right-panel Activity view. Action/child counts and timing derive from observed projections with truthful unavailable fallbacks. Lifecycle projection precedes local filtering; Clear preserves shared history, later completion can reappear, and matching tool IDs remain distinct across sessions. Existing pure list renderers are reused. Additive convenience fields retain the existing schema and authority boundary. Browser matrix establishes composition and empty-history interactions; populated lifecycle behavior is established by focused tests, not a claimed live model session.
+
+Fresh full source review and final source checks are recorded in `_run_records/SHELL_CONVERGENCE_V5_2026-09-06.md`. Actual premerge 503/CI obligation, method-specific native residuals and Walkthrough gaps remain explicit. No Remaining, dependency, lifecycle or owner acceptance change; read live `_STATUS.md` before any successor work.

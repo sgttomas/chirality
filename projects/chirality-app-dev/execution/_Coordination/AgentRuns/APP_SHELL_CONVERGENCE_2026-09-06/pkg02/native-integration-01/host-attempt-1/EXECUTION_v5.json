@@ -1,0 +1,30 @@
+{
+  "env": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "HOME": "/Users/ryan",
+    "TMPDIR": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/",
+    "LANG": "C.UTF-8",
+    "LC_CTYPE": "C.UTF-8",
+    "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x52",
+    "CHIRALITY_USER_DATA": "/private/tmp/chirality-native-shell-02gzaapq/user-data",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/operator.token",
+    "CHIRALITY_RUNTIME_TOKEN_FILE": "/private/tmp/chirality-native-shell-02gzaapq/user-data/runtime/auth/tokens/project-native-proof.token",
+    "CHIRALITY_RUNTIME_PROJECT_ID": "chirality-app-dev",
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": "/private/tmp/chirality-native-shell-02gzaapq/Folder Alpha",
+    "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515.status-only",
+    "CHIRALITY_LAUNCH_AGENTS_DIRECTORY": "/private/tmp/chirality-native-shell-02gzaapq/launch-agents",
+    "CHIRALITY_DAEMON_GUI_SPAWN": "0",
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "ELECTRON_RENDERER_URL": "http://127.0.0.1:3197"
+  },
+  "results": [
+    {
+      "status": "FAIL",
+      "error": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-chat-input=\"primary\"]') to be visible\u001b[22m\n"
+    },
+    {
+      "cleanup": "owned app and server closed"
+    }
+  ]
+}

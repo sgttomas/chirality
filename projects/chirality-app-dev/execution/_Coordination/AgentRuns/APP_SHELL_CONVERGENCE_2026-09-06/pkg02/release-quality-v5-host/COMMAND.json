@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "validate:release-quality",
+    "--",
+    "--skip-premerge",
+    "Registered local premerge failed with session/list/create/boot HTTP503 and no configured runtime daemon binding; App AGENTS permits configured PR CI deferral. This is not a premerge PASS."
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "exit_code": 0,
+  "host_escalation": "Registered fixture checks require loopback sockets",
+  "binding_environment_present": {
+    "CHIRALITY_RUNTIME_SOCKET_PATH": false,
+    "CHIRALITY_RUNTIME_TOKEN_FILE": false,
+    "CHIRALITY_RUNTIME_PROJECT_ID": false,
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": false
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "kind": "terminal observed event ledger",
+  "eventTiming": "exact dispatch timestamps unavailable; ordered observations summarized from actual manager/parent returns",
+  "model": "GPT-6 family per parent system; exact serving ID unavailable",
+  "delegationClass": "delegated-harness-native",
+  "roleEnforcement": "instruction-asserted",
+  "events": [
+    {
+      "event": "first source checkpoint repaired and validated",
+      "evidence": "pkg02/MANAGER_RETURN_v2.md",
+      "status": "historical partial, superseded by v5 source"
+    },
+    {
+      "event": "D120 authority observed and one-author full composition continuation released",
+      "evidence": "iteration-03/WORK_GRAPH.json"
+    },
+    {
+      "event": "source reviewers found binding/persona/input/legacy compatibility defects; author repaired them",
+      "evidence": "pkg02/source-review-03 through source-review-06 and integration-01 history",
+      "status": "failed reviews retained; final06PASS"
+    },
+    {
+      "event": "v5 complete25member source freeze independently reviewed PASS",
+      "evidence": "pkg02/source-review-06/RETURN.md",
+      "sha256": "339e50711ecbe8f45fc52f2316f2acda04567b02cfb80e1ba4a82bb57887e8bb"
+    },
+    {
+      "event": "final package tests/build/Section9 passed; actual premerge503 retained",
+      "evidence": "pkg02/MANAGER_RETURN_v5.md",
+      "status": "1709passed/4skipped; configured exact-source CI owed"
+    },
+    {
+      "event": "native attempt01 and02 terminal with scoped actual controls and protocol-drop success",
+      "evidence": [
+        "pkg02/native-integration-01/NATIVE_RETURN_v5.md",
+        "pkg02/native-integration-02/NATIVE_RETURN_v5_attempt02.md"
+      ],
+      "residual": "actual Finder gesture not proved; no private system-menu raw selected"
+    },
+    {
+      "event": "owner confirmed visual direction and later required recurring Walkthrough checks",
+      "evidence": [
+        "iteration-03/STEER_AND_RUNTIME_RESPONSE_SUPPLEMENT_v1.md",
+        "iteration-03/WALKTHROUGH_QUALITY_STEER_SUPPLEMENT_v1.md"
+      ]
+    },
+    {
+      "event": "runtime B1 design recommendation received after safer public-only routing",
+      "evidence": "iteration-03/ROUTING_EVIDENCE.md and STEER_AND_RUNTIME_RESPONSE_SUPPLEMENT_v1.md",
+      "status": "recommendation, not accepted capability"
+    },
+    {
+      "event": "all package children terminal; parent accepted bounded partial fan-in",
+      "evidence": "pkg02/MANAGER_RETURN_v5.md",
+      "status": "no successor dispatched by this executor; fresh governed review/local closeout pending"
+    }
+  ]
+}

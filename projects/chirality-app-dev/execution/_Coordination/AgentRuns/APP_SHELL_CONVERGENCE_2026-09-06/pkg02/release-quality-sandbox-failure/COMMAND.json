@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "validate:release-quality"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "exit_code": 1,
+  "result": "FAIL: sandbox fixture listen EPERM and direct wrapper premerge no live server; not positive acceptance",
+  "runtime_binding_presence": {
+    "CHIRALITY_RUNTIME_SOCKET_PATH": false,
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": false,
+    "CHIRALITY_RUNTIME_PROJECT_ID": false
+  }
+}

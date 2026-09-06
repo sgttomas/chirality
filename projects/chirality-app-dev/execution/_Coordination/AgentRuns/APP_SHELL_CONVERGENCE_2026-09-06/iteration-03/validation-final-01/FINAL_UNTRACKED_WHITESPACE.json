@@ -1,0 +1,14 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--no-index",
+    "--check",
+    "--",
+    "/dev/null",
+    "<each selected untracked path>"
+  ],
+  "checked": 519,
+  "ordinaryEmptyOutputExit1": "difference, not whitespace failure",
+  "findings": []
+}

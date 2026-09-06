@@ -5,12 +5,13 @@ import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contra
 import { afterEach, expect, it, vi } from 'vitest';
 import { RightPanel } from '../../components/woven-dialogue/right-panel';
 import { createDefaultWovenWorkspaceState } from '../../lib/woven-dialogue/woven-workspace-state';
+vi.mock('../../components/woven-dialogue/activity-shelf', () => ({ ActivityView: () => <p>Activity details</p> }));
 vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: () => ({ projectRoot: '/root' }) }));
 vi.mock('../../components/shell/file-tree-panel', () => ({ FileTreePanel: () => <p>Existing file contents</p> }));
 const handoff = vi.hoisted(() => vi.fn(async (_input: unknown) => {}));
 vi.mock('../../components/shell/document-view', () => ({ handoffDocument: handoff, DocumentView: ({ target }: { target: string }) => <p>Document {target}</p> }));
 const handlers = { onView: vi.fn(), onOpenFile: vi.fn(), onClose: vi.fn(), onExpand: vi.fn(), coordination: <p>Recorded agents and session content</p> };
-it.each(['activity', 'settings', 'workflows'] as const)('retains content for future stored %s views', view => {
+it.each(['settings', 'workflows'] as const)('retains content for future stored %s views', view => {
   const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: view }} sessionOpen={false} />);
   expect(html).toContain('Existing file contents'); expect(html).not.toContain('placeholder');
 });

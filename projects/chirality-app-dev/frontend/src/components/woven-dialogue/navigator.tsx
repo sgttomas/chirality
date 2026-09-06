@@ -7,7 +7,6 @@ import type {
   WovenSessionSurfaceMap,
   WovenWorkspaceSurface
 } from '../../lib/woven-dialogue/woven-workspace-state';
-import { FileTreePanel } from '../shell/file-tree-panel';
 
 export type WovenSurface = WovenWorkspaceSurface;
 
@@ -30,6 +29,8 @@ export type NavigatorSessionGroups = {
 };
 
 type NavigatorProps = {
+  footerSlot?: React.ReactNode;
+  onNewChat?: () => void;
   activeSurface: WovenSurface;
   legacyHref: string;
   onOpenSurface: (surface: WovenSurface) => void;
@@ -145,6 +146,7 @@ function SessionRow({
             ? 'woven-navigator-session woven-navigator-session--live'
             : 'woven-navigator-session'
         }
+        title={`${entry.sessionId}${entry.surface ? ` · Recorded surface: ${entry.surface}` : ''}`}
         data-session-id={entry.sessionId}
         disabled={disabled || !onSelectSession}
         aria-pressed={selected}
@@ -161,7 +163,7 @@ function SessionRow({
         ) : null}
         <span className="woven-navigator-session-title">{entry.label}</span>
         <span className="woven-navigator-session-when">{entry.when}</span>
-        {entry.surface ? <small>Recorded surface: {entry.surface}</small> : null}
+
       </button>
     </li>
   );
@@ -169,6 +171,8 @@ function SessionRow({
 
 export function Navigator({
   activeSurface,
+  footerSlot,
+  onNewChat,
   legacyHref,
   onOpenSurface,
   sessions = EMPTY_SESSIONS,
@@ -187,18 +191,14 @@ export function Navigator({
 
   return (
     <nav className="woven-navigator" aria-label="Workspace Navigator">
-      <header className="woven-region-header">
-        <div>
-          <p className="woven-eyebrow">Workspace</p>
-          <h2>Navigator</h2>
-        </div>
-      </header>
+      <header className="woven-navigator-brand">Chirality</header>
 
       <div className="woven-navigator-sections" aria-label="Workspace surfaces">
+        {onNewChat ? <button type="button" className="woven-new-chat" disabled={selectionDisabled} onClick={onNewChat}><span aria-hidden="true">＋</span> New chat</button> : null}
         <button type="button" className="woven-nav-item woven-nav-item--active"
           aria-current={activeSurface === 'dialogue' ? 'page' : undefined}
           onClick={() => onOpenSurface('dialogue')}>
-          <span>Dialogue</span><small>Primary human–agent conversation</small>
+          <span>Current chat</span>
         </button>
         <div className="woven-navigator-sessions">
           {sessionsError ? <p className="panel-error" role="alert">{sessionsError}</p> : null}
@@ -213,14 +213,10 @@ export function Navigator({
         </div>
       </div>
 
-      <section className="woven-navigator-files" aria-label="Project files">
-        <FileTreePanel />
-      </section>
-
       <footer className="woven-compatibility">
-        <p>Compatibility</p>
-        <Link href={legacyHref} target="_blank" rel="noreferrer">
-          Open legacy interface in a new window
+        {footerSlot}
+        <Link href={legacyHref} target="_blank" rel="noreferrer" aria-label="Open legacy interface in a new window">
+          Legacy interface ↗
         </Link>
       </footer>
     </nav>

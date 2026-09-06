@@ -1,0 +1,238 @@
+[
+  {
+    "width": 1440,
+    "navigator": [
+      {
+        "text": "Chirality",
+        "bounds": {
+          "x": 10,
+          "y": 62,
+          "width": 219,
+          "height": 22.796875,
+          "top": 62,
+          "right": 229,
+          "bottom": 84.796875,
+          "left": 10
+        },
+        "grid": "22.7969px 763.203px 30px"
+      },
+      {
+        "text": "Current chatWORKING_ITEMSSep 5, 2026HELP_HUMANSep 4, 2026",
+        "bounds": {
+          "x": 10,
+          "y": 100.796875,
+          "width": 219,
+          "height": 763.203125,
+          "top": 100.796875,
+          "right": 229,
+          "bottom": 864,
+          "left": 10
+        },
+        "grid": "22.7969px 763.203px 30px"
+      },
+      {
+        "text": "Legacy interface ↗",
+        "bounds": {
+          "x": 10,
+          "y": 880,
+          "width": 219,
+          "height": 30,
+          "top": 880,
+          "right": 229,
+          "bottom": 910,
+          "left": 10
+        },
+        "grid": "22.7969px 763.203px 30px"
+      }
+    ],
+    "controls": [
+      {
+        "text": "Close Navigator",
+        "aria": "Close Navigator",
+        "bounds": {
+          "x": 120.171875,
+          "y": 58.390625,
+          "width": 108.4375,
+          "height": 30.46875,
+          "top": 58.390625,
+          "right": 228.609375,
+          "bottom": 88.859375,
+          "left": 120.171875
+        },
+        "hit": "<button type=\"button\" class=\"woven-region-toggle button-muted\" aria-label=\"Close Navigator\">Close Navigator</button>"
+      },
+      {
+        "text": "Close Coordination",
+        "aria": "Close Coordination",
+        "bounds": {
+          "x": 1305.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875,
+          "top": 54.390625,
+          "right": 1429.609375,
+          "bottom": 84.859375,
+          "left": 1305.046875
+        },
+        "hit": "<button type=\"button\" class=\"woven-region-toggle button-muted\" aria-label=\"Close Coordination\">Close Coordination</button>"
+      }
+    ]
+  },
+  {
+    "width": 960,
+    "navigator": [
+      {
+        "text": "Chirality",
+        "bounds": {
+          "x": 10,
+          "y": 62,
+          "width": 215,
+          "height": 22.796875,
+          "top": 62,
+          "right": 225,
+          "bottom": 84.796875,
+          "left": 10
+        },
+        "grid": "22.7969px 763.203px 30px"
+      },
+      {
+        "text": "Current chatWORKING_ITEMSSep 5, 2026HELP_HUMANSep 4, 2026",
+        "bounds": {
+          "x": 10,
+          "y": 100.796875,
+          "width": 215,
+          "height": 763.203125,
+          "top": 100.796875,
+          "right": 225,
+          "bottom": 864,
+          "left": 10
+        },
+        "grid": "22.7969px 763.203px 30px"
+      },
+      {
+        "text": "Legacy interface ↗",
+        "bounds": {
+          "x": 10,
+          "y": 880,
+          "width": 215,
+          "height": 30,
+          "top": 880,
+          "right": 225,
+          "bottom": 910,
+          "left": 10
+        },
+        "grid": "22.7969px 763.203px 30px"
+      }
+    ],
+    "controls": [
+      {
+        "text": "Close Navigator",
+        "aria": "Close Navigator",
+        "bounds": {
+          "x": 116.171875,
+          "y": 58.390625,
+          "width": 108.4375,
+          "height": 30.46875,
+          "top": 58.390625,
+          "right": 224.609375,
+          "bottom": 88.859375,
+          "left": 116.171875
+        },
+        "hit": "<button type=\"button\" class=\"woven-region-toggle button-muted\" aria-label=\"Close Navigator\">Close Navigator</button>"
+      },
+      {
+        "text": "Close Coordination",
+        "aria": "Close Coordination",
+        "bounds": {
+          "x": 825.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875,
+          "top": 54.390625,
+          "right": 949.609375,
+          "bottom": 84.859375,
+          "left": 825.046875
+        },
+        "hit": "<button type=\"button\" class=\"woven-region-toggle button-muted\" aria-label=\"Close Coordination\">Close Coordination</button>"
+      }
+    ]
+  },
+  {
+    "width": 900,
+    "navigator": [
+      {
+        "text": "Chirality",
+        "bounds": {
+          "x": 10,
+          "y": 762,
+          "width": 879,
+          "height": 22.796875,
+          "top": 762,
+          "right": 889,
+          "bottom": 784.796875,
+          "left": 10
+        },
+        "grid": "22.7969px 117.172px 400px 0px"
+      },
+      {
+        "text": "Current chatWORKING_ITEMSSep 5, 2026HELP_HUMANSep 4, 2026",
+        "bounds": {
+          "x": 10,
+          "y": 800.796875,
+          "width": 879,
+          "height": 117.171875,
+          "top": 800.796875,
+          "right": 889,
+          "bottom": 917.96875,
+          "left": 10
+        },
+        "grid": "22.7969px 117.172px 400px 0px"
+      },
+      {
+        "text": "Legacy interface ↗",
+        "bounds": {
+          "x": 10,
+          "y": 933.96875,
+          "width": 879,
+          "height": 400,
+          "top": 933.96875,
+          "right": 889,
+          "bottom": 1333.96875,
+          "left": 10
+        },
+        "grid": "22.7969px 117.172px 400px 0px"
+      }
+    ],
+    "controls": [
+      {
+        "text": "Close Navigator",
+        "aria": "Close Navigator",
+        "bounds": {
+          "x": 780.171875,
+          "y": 758.390625,
+          "width": 108.4375,
+          "height": 30.46875,
+          "top": 758.390625,
+          "right": 888.609375,
+          "bottom": 788.859375,
+          "left": 780.171875
+        },
+        "hit": "<button type=\"button\" class=\"woven-region-toggle button-muted\" aria-label=\"Close Navigator\">Close Navigator</button>"
+      },
+      {
+        "text": "Close Coordination",
+        "aria": "Close Coordination",
+        "bounds": {
+          "x": 765.046875,
+          "y": 1366.359375,
+          "width": 124.5625,
+          "height": 30.46875,
+          "top": 1366.359375,
+          "right": 889.609375,
+          "bottom": 1396.828125,
+          "left": 765.046875
+        }
+      }
+    ]
+  }
+]

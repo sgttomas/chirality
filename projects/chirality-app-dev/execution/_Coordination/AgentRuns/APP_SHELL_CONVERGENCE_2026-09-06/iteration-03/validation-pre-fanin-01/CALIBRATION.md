@@ -1,0 +1,7 @@
+# Pre-fan-in check calibration
+
+All five recorded commands exited 0: receipt pre-append validator, authority corpus status, self-check, practitioner-harness pytest and tracked App diff whitespace. These results do not mark the source iteration complete. Package manager frontend/native gates and final fan-in remain separate; no receipt was appended.
+
+Self-check retains 55 WARN and 4 REVIEW findings, zero BLOCK. Its exact WARN/REVIEW/BLOCK finding-row set equals iteration-02/validation/self-check.txt; no new finding row appeared. The retained REVIEW findings concern the DomainEngines D-T0-06 proposal/ruling title conflict, RULINGS_PUBLISHED draft wording, and a machine-absolute path in historical PEC validation evidence. WARN findings include unresolved source references. Exit0 is the harness gate result, not a claim these review matters are resolved. No out-of-scope repairs or waivers were performed.
+
+App authority corpus v20 reports all eight MATCH and no drift. Whitespace command inspects the current tracked App diff only, not untracked artifacts; final selected union/staged checks remain owed. Source v5 independent PASS and manifest identity supplied in CHECKS.json establish the parent release context, not global-check ownership over source/native acceptance. Exact ambient environment is not dumped to avoid disclosing unrelated secrets; each invocation's explicit PYTHONDONTWRITEBYTECODE setting, command, cwd and timestamps are recorded.

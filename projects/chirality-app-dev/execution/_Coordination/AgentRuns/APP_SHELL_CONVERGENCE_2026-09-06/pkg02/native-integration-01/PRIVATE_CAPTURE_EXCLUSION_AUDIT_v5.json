@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": [
+    "No duplicate original system menu rows in public JSON/text/log artifacts",
+    "Private raw is outside repository under owned scratch",
+    "File-only derived evidence retains original hash"
+  ],
+  "excludedPrivatePath": "/private/tmp/chirality-native-shell-02gzaapq/private-initial-ax.json"
+}

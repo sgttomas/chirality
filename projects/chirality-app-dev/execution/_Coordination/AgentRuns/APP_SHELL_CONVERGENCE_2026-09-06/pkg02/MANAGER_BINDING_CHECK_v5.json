@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-09-06T05:02:10.177595+00:00",
+  "checks": [
+    {
+      "manifest": "integration-01/SOURCE_MANIFEST_v5.json",
+      "sha256": "b7fd5e3ea0adf4f7f33371f338655643078746934ab3ab5efaa5ce0391139e9c",
+      "members": 25,
+      "mismatches": []
+    },
+    {
+      "manifest": "NATIVE_BUILD_MANIFEST_v5.json",
+      "sha256": "39adf783a13d7b2e47984f3f67c29208fe51c2f380d0414f46cd825b3f86581a",
+      "members": 174,
+      "mismatches": []
+    },
+    {
+      "manifest": "native-integration-01/OUTPUT_MANIFEST_v5.json",
+      "sha256": "7388e24366b0580bfbb9562484f3adac8c8d243e5e6e361b7e17decf23819325",
+      "members": 56,
+      "mismatches": []
+    }
+  ],
+  "status": "PASS"
+}

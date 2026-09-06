@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-09-06T04:10:34.011383+00:00",
+  "files": [
+    {
+      "path": "APP_HOLD_PREFLIGHT.json",
+      "sha256": "56e00c165c73197f2129cedd7a4849850c757f145ee42676370e95d720fba32d",
+      "bytes": 1385
+    },
+    {
+      "path": "BRIEF.md",
+      "sha256": "52977889082511f3f0370fae6a946fa38b039155795bed33fe8c6b332abc597a",
+      "bytes": 3792
+    },
+    {
+      "path": "ENVIRONMENT_SOURCE_BASIS_v2.json",
+      "sha256": "3279f12b864ee4f50b94db3354d947ac9e2a2755eb7ae18ca3f5b07c1549392f",
+      "bytes": 1339
+    },
+    {
+      "path": "ISOLATED_ENVIRONMENT_v2.json",
+      "sha256": "7f811fe105d8bebeaf85e115909ed9b492845028c27754cf5bf377de9f41c9e4",
+      "bytes": 1397
+    },
+    {
+      "path": "ISOLATION_PREPARATION.json",
+      "sha256": "abcedceb095978a980cdf99e304d3120ad4e62a886d503beb09fe8c26acc5b37",
+      "bytes": 1031
+    },
+    {
+      "path": "PREPARATION_MANIFEST.json",
+      "sha256": "3f1f5f2b23e91818f8ce47c79f62d0eb7761849fbeef964ba9cd3df6431d7aa5",
+      "bytes": 1228
+    },
+    {
+      "path": "PREPARATION_RETURN.md",
+      "sha256": "b966456dcb6b52aad9571512c700a8ea80be50c35149b24fd46d6ce41b3d99bb",
+      "bytes": 1856
+    },
+    {
+      "path": "PROTOCOL.md",
+      "sha256": "93a10a6ef9694d3944360f03cb0a021f3f22cf02114c2bb095b2b6a94ca66d91",
+      "bytes": 4775
+    },
+    {
+      "path": "PROTOCOL_SUPPLEMENT_v2.md",
+      "sha256": "14a1c10421d9caa2cbde4224648afd8eb77c8bca2dbdf111bd774e19b56172b8",
+      "bytes": 4364
+    },
+    {
+      "path": "owned_identity.swift",
+      "sha256": "afb32bd8edc20fc99375cd7216ef4ba3acf3ed5ea27c8f379229d902bcb386cd",
+      "bytes": 960
+    },
+    {
+      "path": "prepare_bundle.py",
+      "sha256": "7fe15060681fabe297df8b8d33e6dbf5f18ae2da0200787b0d3ce82a232b4b1c",
+      "bytes": 2320
+    }
+  ]
+}

@@ -1,0 +1,485 @@
+{
+  "html": "<div class=\"woven-settings-controls\"><details class=\"shell-root-disclosure\" open=\"\"><summary class=\"shell-root-chip\" title=\"/private/tmp/shell-integrated-i4gdku29\">Settings</summary><section class=\"working-root-bar working-root-bar--workspace\"><div class=\"working-root-fields\"><label for=\"project-root-input\">Working Root (`projectRoot`)</label><div class=\"working-root-controls\"><input id=\"project-root-input\" placeholder=\"/absolute/path/to/execution/root\" value=\"/private/tmp/shell-integrated-i4gdku29\" style=\"\"><button type=\"button\">Apply Path</button><button type=\"button\" class=\"button-muted\">Choose Folder</button><button type=\"button\" class=\"button-muted\">Clear</button></div><p class=\"working-root-current\" title=\"/private/tmp/shell-integrated-i4gdku29\">Active root: <!-- -->/private/tmp/shell-integrated-i4gdku29</p></div><details class=\"working-root-settings working-root-settings--disclosure\"><summary>Runtime &amp; credentials</summary><div class=\"working-root-settings-disclosure-body\"><section class=\"runtime-settings\" aria-labelledby=\"runtime-settings-title\"><h3 class=\"api-key-settings-title\" id=\"runtime-settings-title\">Shared Runtime</h3><p class=\"runtime-status\" data-running=\"false\">Checking...</p><p class=\"api-key-hint\">Runtime controls are available only in Chirality Desktop.</p></section><div class=\"api-key-settings\"><h3 class=\"api-key-settings-title\">Anthropic API Key</h3><p class=\"api-key-status\" data-source=\"unknown\" data-storage=\"unknown\" data-answer=\"status\">Checking...</p><p class=\"api-key-hint\">Running outside Electron. Set the <code>ANTHROPIC_API_KEY</code> environment variable to configure the API key.</p></div><div class=\"api-key-settings\"><h3 class=\"api-key-settings-title\">oMLX API Key</h3><p class=\"api-key-status\" data-source=\"unknown\" data-storage=\"unknown\" data-answer=\"status\">Checking...</p><p class=\"api-key-hint\">Running outside Electron. Set the <code>CHIRALITY_OMLX_API_KEY</code> environment variable to configure the API key.</p></div></div></details></section></details><div class=\"shell-theme\" role=\"group\" aria-label=\"Theme\"><button type=\"button\" class=\"shell-theme-option\" data-theme-option=\"light\" aria-pressed=\"true\">Light</button><button type=\"button\" class=\"shell-theme-option\" data-theme-option=\"dark\" aria-pressed=\"false\">Dark</button><button type=\"button\" class=\"shell-theme-option\" data-theme-option=\"system\" aria-pressed=\"false\">Auto</button></div></div>",
+  "children": [
+    {
+      "tag": "DETAILS",
+      "text": "SettingsWorking Root (`projectRoot`)Apply PathChoose FolderClearActive root: /pr",
+      "box": {
+        "x": 18,
+        "y": 872.96875,
+        "width": 203,
+        "height": 23.265625,
+        "top": 872.96875,
+        "right": 221,
+        "bottom": 896.234375,
+        "left": 18
+      },
+      "hit": true
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Settings",
+      "box": {
+        "x": 18,
+        "y": 872.96875,
+        "width": 203,
+        "height": 23.265625,
+        "top": 872.96875,
+        "right": 221,
+        "bottom": 896.234375,
+        "left": 18
+      },
+      "hit": true
+    },
+    {
+      "tag": "SECTION",
+      "text": "Working Root (`projectRoot`)Apply PathChoose FolderClearActive root: /private/tm",
+      "box": {
+        "x": 18,
+        "y": 670.515625,
+        "width": 460,
+        "height": 202.453125,
+        "top": 670.515625,
+        "right": 478,
+        "bottom": 872.96875,
+        "left": 18
+      },
+      "hit": false
+    },
+    {
+      "tag": "DIV",
+      "text": "Working Root (`projectRoot`)Apply PathChoose FolderClearActive root: /private/tm",
+      "box": {
+        "x": 35,
+        "y": 685.90625,
+        "width": 426,
+        "height": 124.609375,
+        "top": 685.90625,
+        "right": 461,
+        "bottom": 810.515625,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "LABEL",
+      "text": "Working Root (`projectRoot`)",
+      "box": {
+        "x": 35,
+        "y": 685.90625,
+        "width": 426,
+        "height": 15.84375,
+        "top": 685.90625,
+        "right": 461,
+        "bottom": 701.75,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "DIV",
+      "text": "Apply PathChoose FolderClear",
+      "box": {
+        "x": 35,
+        "y": 708.9375,
+        "width": 426,
+        "height": 74.546875,
+        "top": 708.9375,
+        "right": 461,
+        "bottom": 783.484375,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "box": {
+        "x": 35,
+        "y": 708.9375,
+        "width": 324.8125,
+        "height": 33.4375,
+        "top": 708.9375,
+        "right": 359.8125,
+        "bottom": 742.375,
+        "left": 35
+      },
+      "hit": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Apply Path",
+      "box": {
+        "x": 367.8125,
+        "y": 708.9375,
+        "width": 93.1875,
+        "height": 33.4375,
+        "top": 708.9375,
+        "right": 461,
+        "bottom": 742.375,
+        "left": 367.8125
+      },
+      "hit": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Choose Folder",
+      "box": {
+        "x": 35,
+        "y": 750.375,
+        "width": 112.671875,
+        "height": 33.109375,
+        "top": 750.375,
+        "right": 147.671875,
+        "bottom": 783.484375,
+        "left": 35
+      },
+      "hit": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Clear",
+      "box": {
+        "x": 155.671875,
+        "y": 750.375,
+        "width": 60.109375,
+        "height": 33.109375,
+        "top": 750.375,
+        "right": 215.78125,
+        "bottom": 783.484375,
+        "left": 155.671875
+      },
+      "hit": true
+    },
+    {
+      "tag": "P",
+      "text": "Active root: /private/tmp/shell-integrated-i4gdku29",
+      "box": {
+        "x": 35,
+        "y": 790.671875,
+        "width": 426,
+        "height": 15.84375,
+        "top": 790.671875,
+        "right": 461,
+        "bottom": 806.515625,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "DETAILS",
+      "text": "Runtime & credentialsShared RuntimeChecking...Runtime controls are available onl",
+      "box": {
+        "x": 35,
+        "y": 824.109375,
+        "width": 426,
+        "height": 31.859375,
+        "top": 824.109375,
+        "right": 461,
+        "bottom": 855.96875,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Runtime & credentials",
+      "box": {
+        "x": 35,
+        "y": 838.703125,
+        "width": 426,
+        "height": 17.265625,
+        "top": 838.703125,
+        "right": 461,
+        "bottom": 855.96875,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "DIV",
+      "text": "Shared RuntimeChecking...Runtime controls are available only in Chirality Deskto",
+      "box": {
+        "x": 35,
+        "y": 867.15625,
+        "width": 426,
+        "height": 260.09375,
+        "top": 867.15625,
+        "right": 461,
+        "bottom": 1127.25,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "SECTION",
+      "text": "Shared RuntimeChecking...Runtime controls are available only in Chirality Deskto",
+      "box": {
+        "x": 35,
+        "y": 867.15625,
+        "width": 426,
+        "height": 83.46875,
+        "top": 867.15625,
+        "right": 461,
+        "bottom": 950.625,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "H3",
+      "text": "Shared Runtime",
+      "box": {
+        "x": 35,
+        "y": 867.15625,
+        "width": 426,
+        "height": 20.390625,
+        "top": 867.15625,
+        "right": 461,
+        "bottom": 887.546875,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "P",
+      "text": "Checking...",
+      "box": {
+        "x": 35,
+        "y": 893.9375,
+        "width": 426,
+        "height": 15.84375,
+        "top": 893.9375,
+        "right": 461,
+        "bottom": 909.78125,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "P",
+      "text": "Runtime controls are available only in Chirality Desktop.",
+      "box": {
+        "x": 35,
+        "y": 913.78125,
+        "width": 426,
+        "height": 15.84375,
+        "top": 913.78125,
+        "right": 461,
+        "bottom": 929.625,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "DIV",
+      "text": "Anthropic API KeyChecking...Running outside Electron. Set the ANTHROPIC_API_KEY ",
+      "box": {
+        "x": 35,
+        "y": 966.625,
+        "width": 426,
+        "height": 78.3125,
+        "top": 966.625,
+        "right": 461,
+        "bottom": 1044.9375,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "H3",
+      "text": "Anthropic API Key",
+      "box": {
+        "x": 35,
+        "y": 966.625,
+        "width": 426,
+        "height": 20.390625,
+        "top": 966.625,
+        "right": 461,
+        "bottom": 987.015625,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "P",
+      "text": "Checking...",
+      "box": {
+        "x": 35,
+        "y": 993.40625,
+        "width": 426,
+        "height": 15.84375,
+        "top": 993.40625,
+        "right": 461,
+        "bottom": 1009.25,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "P",
+      "text": "Running outside Electron. Set the ANTHROPIC_API_KEY environment variable to conf",
+      "box": {
+        "x": 35,
+        "y": 1013.25,
+        "width": 426,
+        "height": 31.6875,
+        "top": 1013.25,
+        "right": 461,
+        "bottom": 1044.9375,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "CODE",
+      "text": "ANTHROPIC_API_KEY",
+      "box": {
+        "x": 264.140625,
+        "y": 1015.359375,
+        "width": 109.453125,
+        "height": 11.78125,
+        "top": 1015.359375,
+        "right": 373.59375,
+        "bottom": 1027.140625,
+        "left": 264.140625
+      },
+      "hit": false
+    },
+    {
+      "tag": "DIV",
+      "text": "oMLX API KeyChecking...Running outside Electron. Set the CHIRALITY_OMLX_API_KEY ",
+      "box": {
+        "x": 35,
+        "y": 1048.9375,
+        "width": 426,
+        "height": 78.3125,
+        "top": 1048.9375,
+        "right": 461,
+        "bottom": 1127.25,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "H3",
+      "text": "oMLX API Key",
+      "box": {
+        "x": 35,
+        "y": 1048.9375,
+        "width": 426,
+        "height": 20.390625,
+        "top": 1048.9375,
+        "right": 461,
+        "bottom": 1069.328125,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "P",
+      "text": "Checking...",
+      "box": {
+        "x": 35,
+        "y": 1075.71875,
+        "width": 426,
+        "height": 15.84375,
+        "top": 1075.71875,
+        "right": 461,
+        "bottom": 1091.5625,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "P",
+      "text": "Running outside Electron. Set the CHIRALITY_OMLX_API_KEY environment variable to",
+      "box": {
+        "x": 35,
+        "y": 1095.5625,
+        "width": 426,
+        "height": 31.6875,
+        "top": 1095.5625,
+        "right": 461,
+        "bottom": 1127.25,
+        "left": 35
+      },
+      "hit": false
+    },
+    {
+      "tag": "CODE",
+      "text": "CHIRALITY_OMLX_API_KEY",
+      "box": {
+        "x": 264.140625,
+        "y": 1097.671875,
+        "width": 140.0625,
+        "height": 11.78125,
+        "top": 1097.671875,
+        "right": 404.203125,
+        "bottom": 1109.453125,
+        "left": 264.140625
+      },
+      "hit": false
+    },
+    {
+      "tag": "DIV",
+      "text": "LightDarkAuto",
+      "box": {
+        "x": 18,
+        "y": 904.234375,
+        "width": 203,
+        "height": 24.765625,
+        "top": 904.234375,
+        "right": 221,
+        "bottom": 929,
+        "left": 18
+      },
+      "hit": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Light",
+      "box": {
+        "x": 19,
+        "y": 905.234375,
+        "width": 53.640625,
+        "height": 22.765625,
+        "top": 905.234375,
+        "right": 72.640625,
+        "bottom": 928,
+        "left": 19
+      },
+      "hit": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Dark",
+      "box": {
+        "x": 72.640625,
+        "y": 905.234375,
+        "width": 49.984375,
+        "height": 22.765625,
+        "top": 905.234375,
+        "right": 122.625,
+        "bottom": 928,
+        "left": 72.640625
+      },
+      "hit": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Auto",
+      "box": {
+        "x": 122.625,
+        "y": 905.234375,
+        "width": 49.328125,
+        "height": 22.765625,
+        "top": 905.234375,
+        "right": 171.953125,
+        "bottom": 928,
+        "left": 122.625
+      },
+      "hit": true
+    }
+  ]
+}

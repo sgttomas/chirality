@@ -1,0 +1,41 @@
+{
+  "kind": "observed past events, not current acceptance",
+  "source": "parent event report plus inspected pkg02/MANAGER_RETURN_v2.md and browser-partial-02/RETURN.md",
+  "metrics": "exact serving model, token usage and context occupancy unavailable",
+  "events": [
+    {
+      "event": "iteration02 record tranche committed locally",
+      "commit": "e00238621db7a00b036245962c21e3fc6ed75452",
+      "scope": "58 selected paths; unpushed at iteration03 entry"
+    },
+    {
+      "event": "authority PR735 merged after CI success and fetched-main ruling observation",
+      "merge": "5738637472b616665fb4fe5003c4dec077a12380",
+      "CI": [
+        "34008606085",
+        "34008606065"
+      ],
+      "source": "parent actual verification"
+    },
+    {
+      "event": "initial six-file presentation checkpoint completed after remediation",
+      "sourceManifestSha256": "5b23c290d2a9d6a14daea7d2b25b7f45afcb04fe7922342a08ab9445df476abb",
+      "review": "source-review01 BLOCK retained; source-review02 PASS",
+      "tests": "1690 PASS, 4 skipped; socket-EPERM sandbox failure retained before exact host rerun",
+      "build": "PASS",
+      "premerge": "FAIL HTTP503 missing service binding; deferred to configured CI, not a PASS",
+      "browser": "partial02 bounded PASS, nine screenshots; initial heading zero-match measurement retained and corrected by supplement; not complete design fidelity",
+      "cleanup": "manager reports owned browsers/server stopped"
+    },
+    {
+      "event": "B1 initial detailed routing rejected; safer public-only request successfully delivered",
+      "record": "ROUTING_EVIDENCE.md",
+      "acceptance": "no Root acceptance or private disclosure"
+    },
+    {
+      "event": "parent released full Milestone1 single-author continuation",
+      "basis": "accepted local e002 predecessor and fetched-main D120",
+      "reviewConsequence": "new cumulative source freeze and final review/checks required; previous checkpoint is historical evidence"
+    }
+  ]
+}

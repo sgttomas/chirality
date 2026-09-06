@@ -1,0 +1,9 @@
+# Preparation return
+
+Verdict: PREPARED, EXECUTION HELD. No product writes or native/browser/server/build launches occurred. The parent reports a root-lock review finding in candidate v2; this packet does not bind execution to that candidate. A revised reviewed source manifest and fresh build are required.
+
+Prepared a unique fixture app identity, three inert folders, one non-directory negative fixture, a bundle preparation script and an exact-PID native identity/window helper. The Python preparation script passes an AST syntax check; neither script was executed. The original Electron archive and installed application remain untouched. The prior driver and AX/CGWindow helper sources were inspected. The broad prior owner-name inventory is replaced with an exact-PID check.
+
+The proposed identity is org.chirality.evidence.shell.b82a474ad3b1423f9778bbccf659b515. PROTOCOL.md records the isolation gate: owned copied bundle metadata and signature, live NSRunningApplication bundle/executable URLs, and an initially empty OS Open Recent menu before registering any folder. This protocol is checkable, but isolation is not yet empirically verified. Temporary userData is supplementary only. The protocol never clears recents.
+
+Outputs are preparation derivatives of the sealed brief, native protocol approval, D108 Q9 and D120 B1. No acceptance, lifecycle effect or closure of native convenience criteria is asserted. Rerun requires parent execution release, new immutable attempt directory and current source/build hashes; native menu, picker/drop, IPC negatives, lock rejection, offline reconnect and owned cleanup remain unexecuted. Parent owns acceptance and global records. Agent2 ephemeral evidence role, no delegation; native role enforcement is instruction-asserted. Exact serving model/provider identifiers and token metrics were not exposed.

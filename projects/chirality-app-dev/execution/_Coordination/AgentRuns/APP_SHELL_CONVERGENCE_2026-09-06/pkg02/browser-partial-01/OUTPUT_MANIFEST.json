@@ -1,0 +1,112 @@
+[
+  {
+    "path": "fixture.json",
+    "sha256": "85e40115b4580aab3deaae3f72ccb7e4e7822d9c3ad9c819615d7b1a43777907",
+    "bytes": 1424
+  },
+  {
+    "path": "diagnostic.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "diagnostic-files-900-light.png",
+    "sha256": "8aa4dbf311e0da561baa6352db8e8470b3f94f05134e68f9406786ae2b47ac81",
+    "bytes": 93783
+  },
+  {
+    "path": "result.json",
+    "sha256": "ef3ff159f7cf734b73407b4740dba484fced537f655758fc3563b7d4aab2c5f0",
+    "bytes": 8202
+  },
+  {
+    "path": "files-1440-light.png",
+    "sha256": "96f5d5cd2e0749420190f718da5ce68be37ffe5be073577f7be6cdbeb5cc0b12",
+    "bytes": 95927
+  },
+  {
+    "path": "evaluator.mjs",
+    "sha256": "0364f7c04d03f23d0fda8b183a161bb9c42be2d4557285845d6a1c1c3cdc9065",
+    "bytes": 6076
+  },
+  {
+    "path": "source-before.json",
+    "sha256": "545af0361a9bb78a034ba69c15666e67357524abc76bd7fde4160d17b27007e0",
+    "bytes": 1616
+  },
+  {
+    "path": "source-after.json",
+    "sha256": "545af0361a9bb78a034ba69c15666e67357524abc76bd7fde4160d17b27007e0",
+    "bytes": 1616
+  },
+  {
+    "path": "COMMANDS.md",
+    "sha256": "fc9a2ee8634901a06b08eba1779662da437962de37696e6396da055fff3c300e",
+    "bytes": 1307
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "82cb7728956e93895b0e629cb3a45182f6acb1bfc46a6a93683fdb67c8a4278e",
+    "bytes": 1884
+  },
+  {
+    "path": "evaluator.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "cleanup.json",
+    "sha256": "72a508bd70098b93998a624c07f3fb7034f6295fcb3997620c11f6f8c9cdbd62",
+    "bytes": 313
+  },
+  {
+    "path": "diagnostic.mjs",
+    "sha256": "c47c1ddbfda3b482daf92e1064c59484e3bd2765da673d5bc482ef58ed659ae0",
+    "bytes": 2279
+  },
+  {
+    "path": "sandbox-launch-failure.json",
+    "sha256": "d9c29359b6751ec2a3f53a11eecce3e5e5dd259da39677ea1cd379624938491c",
+    "bytes": 4659
+  },
+  {
+    "path": "diagnostic.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "diagnostic.json",
+    "sha256": "13fe0f5ba3048e55a1bef6797644a6b655784e7ae9c34fa22dcf8790ee1e9655",
+    "bytes": 6075
+  },
+  {
+    "path": "diagnostic-files-1440-light.png",
+    "sha256": "c1066bdcfdb2a122abae87902b3c53393d0aae858123d2e2e63868d02536d172",
+    "bytes": 95934
+  },
+  {
+    "path": "BRIEF.md",
+    "sha256": "3903ec3aab03854e8e12a9d9994e8be3ddb356c62ecfe6581b25ecd404030454",
+    "bytes": 2763
+  },
+  {
+    "path": "failure.png",
+    "sha256": "590fb18a168d045a6d8906e9508e3c3db60f5c0858ed21290181dcd06119fcd3",
+    "bytes": 128641
+  },
+  {
+    "path": "evaluator.stderr.log",
+    "sha256": "29eae867cf34f3b0bf922617a02d7ad3736d9406949296023c213f3d9a3e6d1f",
+    "bytes": 915
+  },
+  {
+    "path": "fixture-document.md",
+    "sha256": "c564b22a65ae0423911526f379483727469de2fb517a1537b85c0f1409da0f29",
+    "bytes": 395
+  },
+  {
+    "path": "diagnostic-files-960-light.png",
+    "sha256": "c894d0183390671689e36b85c629041f878d61d7ed554d5ff16be49b67bc0395",
+    "bytes": 87925
+  }
+]
