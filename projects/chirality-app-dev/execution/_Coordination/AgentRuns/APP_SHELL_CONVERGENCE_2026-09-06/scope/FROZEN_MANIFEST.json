@@ -1,0 +1,45 @@
+{
+  "base": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/MEMORY.md",
+      "sha256": "84aa2af419e388dfc50d321ed1eba44904b0db4301c446c6e69fb13e22a42d17"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+      "sha256": "b4029b2b1a6edc91cecce4ed71b84fc030018821f3d84cd8dc98902cebb2eb63"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_run_records/D120_SCOPE_APPLICATION_2026-09-06.md",
+      "sha256": "c81f4d8e7a856f690cd975a031251ec03677edb5298340fab99514d91a68a0f4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/ACCEPTED_PLAN.md",
+      "sha256": "69a6d00b16fbe82ac13c2029137445d5161858463b19b4bde869efa45a5f0efe"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/APP_HOLD_DISPATCH.json",
+      "sha256": "0dcc1617cb6081f80342e017bd6ebf045ac3c79b8569e7e58c8ec4d209f511df"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/HANDOFF.md",
+      "sha256": "438a7528b48c08718848da85b028a6970f1dfbcd41fed5a8f93870a124ecb2fa"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/RATIONALE.md",
+      "sha256": "f1bfa83e91a9cd652e98d9240a36b585b728efc499daa9eef8e602a8469b0394"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/ROOT_NO_FOLDER_REQUEST_DRAFT.md",
+      "sha256": "cea47044b2e6b7472487174ff84eee9fd7107861baf9c6fe3cdc18c6555198f9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-120_RULING_PRESENTATION_SEAM_AND_NO_FOLDER_ROUTING_2026-09-06.md",
+      "sha256": "35587f5b9a018a7e263518f13c164ce0300518b4f4009b1a0c6725d215801ebc"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "2f6fa79a4477a59f245fe96c40101a5f2badb060fbc1cd6df550e58657ecb8a4"
+    }
+  ]
+}

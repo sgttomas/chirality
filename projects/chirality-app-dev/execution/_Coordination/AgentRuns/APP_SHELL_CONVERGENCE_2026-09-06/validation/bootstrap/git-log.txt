@@ -1,0 +1,20 @@
+92ca3f1a6 Merge pull request #734 from sgttomas/codex/runtime-readiness
+8e649eaa5 Merge pull request #733 from sgttomas/codex/app-loop-shell-20260905
+b7937ecd4 Refresh Runtime entry and prepare bounded specification activation
+5ffafd710 Add bounded workspace document viewing and native handoff
+e8df71bcc Merge pull request #730 from sgttomas/codex/piping-physics-audit
+2aae37e70 Merge pull request #732 from sgttomas/codex/runtime-effective-publication
+d25d51fca Publish confirmed runtime migration effective governance state
+576a1535d Merge pull request #731 from sgttomas/codex/runtime-gate5-confirmation
+43ca308ef Record owner Gate 5 confirmation for runtime migration
+3adad1834 docs(piping): record verified physics audit repairs and remaining decisions
+1d71433e2 Merge pull request #729 from sgttomas/codex/runtime-governance-propagation
+b520e0f1f Apply approved runtime governance migration for Gate 5 review
+3e2d2b539 fix(piping): align result metadata and verification consumers
+0ab12975f fix(piping): repair audited solver and stress recovery behavior
+394a80e15 Merge pull request #728 from sgttomas/codex/pec-remaining-corpus-20260905
+8209bc54e Merge pull request #727 from sgttomas/codex/runtime-project-migration
+a5b41a1d9 Record Gate 4 approval and authorized PR 727 merge
+1882efc4d docs(pec): publish full-corpus report and D-PEC-83/84 proposals
+1841da577 Record Gate 3 approval and reviewed migration propagation plan
+1aadcc61b Record Gate 2 acceptance and prepare reviewed Gate 3 amendments
