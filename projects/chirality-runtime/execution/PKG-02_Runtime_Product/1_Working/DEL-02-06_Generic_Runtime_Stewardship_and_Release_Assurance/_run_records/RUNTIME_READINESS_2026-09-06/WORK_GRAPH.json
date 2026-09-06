@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "status": "CANDIDATE_NOT_DISPATCHED",
+  "package": "PKG-02_Runtime_Product",
+  "deliverables": [
+    "DEL-02-06"
+  ],
+  "run_id": "DEL-02-06-RUNTIME-SPEC-001",
+  "posture": "MIXED",
+  "nodes": [
+    {
+      "id": "N0",
+      "dependencies": [],
+      "write_subdirectory": "basis",
+      "form": "ephemeral Agent 2 generalist",
+      "status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "N1",
+      "dependencies": [
+        "N0"
+      ],
+      "write_subdirectory": "inventory",
+      "form": "ephemeral Agent 2 generalist",
+      "status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "N2",
+      "dependencies": [
+        "N0"
+      ],
+      "write_subdirectory": "clients",
+      "form": "ephemeral Agent 2 generalist",
+      "status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "N3",
+      "dependencies": [
+        "N0"
+      ],
+      "write_subdirectory": "evidence",
+      "form": "ephemeral Agent 2 generalist",
+      "status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "N4",
+      "dependencies": [
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "write_subdirectory": "integration",
+      "form": "ephemeral Agent 2 generalist",
+      "status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "N5",
+      "dependencies": [
+        "N4"
+      ],
+      "write_subdirectory": null,
+      "form": "ephemeral Agent 2 generalist",
+      "status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "N6",
+      "dependencies": [
+        "N5"
+      ],
+      "write_subdirectory": "handoff",
+      "form": "ephemeral Agent 2 generalist",
+      "status": "NOT_DISPATCHED"
+    }
+  ]
+}
