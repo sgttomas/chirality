@@ -1,0 +1,5 @@
+# Final integrated V3 subject
+
+V3 supersedes V2 as the proposed review selector only. Prior seals and bytes remain preserved. FINAL_SUBJECT_SELECTOR.csv retains the ten explicit overrides of V1, now selecting the final104 predicate register with SOW-047 Disposition=REPLACE_NAMED_PREDICATE and the corresponding exact control routes. The source104 successor map already uses TRANSFER_OR_REHOME with an explicit replacement rule, not RETAIN_SUBSTANCE, so no source disposition contradicts this correction.
+
+V2 Supersession_Delta.csv and Supersession_Map.csv remain the selected current246-row proposed map pair and their actual registered validation remains applicable: the predicate text is unchanged by this disposition-label correction. The final owner decision is Gate3_Amendment_Preview.md here. Candidate approval/application status remains pending. Original CANON indexes/journals document their historical candidate version; wherever their postimage references conflict with this final selector, the selector's exact selected paths/hashes govern the review subject. No silent post-approval edit is authorized.

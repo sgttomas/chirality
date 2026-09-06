@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "fixtureOnly": true,
+  "operationalRegistration": false,
+  "projectId": "chirality-runtime",
+  "manifestHash": "7300f3b5706286e41635586787e16827f409658e9cba2f1922cc2862ab90b821",
+  "roots": {
+    "workingRoot": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "instructionRoot": "/Users/ryan/.codex/worktrees/341e/chirality"
+  },
+  "enabledAdapterIds": []
+}

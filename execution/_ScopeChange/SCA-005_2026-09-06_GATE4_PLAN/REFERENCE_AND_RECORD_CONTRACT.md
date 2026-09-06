@@ -1,0 +1,13 @@
+# Publication references and actual metadata
+
+Approved payload bytes stay byte-identical. Their candidate-era status text remains provenance; it is not silently edited to say accepted. _AUTHORITY.md, PRD_AUTHORITY.md and MIGRATION_APPLICATION.md are new record wrappers, not new normative sources.
+
+Each wrapper must state: “Substantive authority is the exact approved Gate3 V3 subject at commit1aadcc61b2739fdca25c4b07259655836516baa4. The owner approved that complete package, including runtime decomposition and PRD revision rule. Candidate-era readiness labels in those preserved payloads describe their preparation time. The actual acceptance record governs acceptance status only. Product activation, effective ownership and release require their separate actual acts.” Record whether this approval is yet reachable from fetched origin/main; do not equate chat approval with merged publication.
+
+Runtime docs/PRD_AUTHORITY.md explicitly maps each bare companion filename in PRD.md to ../execution/_Decomposition/<filename>, and SOURCE_SCOPE_REQUIREMENTS to that directory. Runtime _Decomposition/_AUTHORITY.md maps scope-evidence names identically beside its own file. Reference wrappers must list the actual copied file paths and SHA256 values from approved POSTIMAGE_PATHS plus V3 overrides. No symlink can widen containment, and no rewrite of historical source references is allowed.
+
+For the two runtime entry files, append only: “Current migration acceptance/application status: execution/_Coordination/MIGRATION_APPLICATION.md (project-relative). That actual record supersedes candidate-era status statements above only as far as its evidenced acts; it grants no product activation or release.” Keep existing history. HANDOFF_STATE is a current record and may be replaced with actual stage/holds/next-owning-workflow facts, never invented Gate5 success.
+
+Evidence-only fields allowed at record creation: actual execution date/time; actual owner-record path; already-approved Gate3 commit/hash; actual Gate4 decision path/hash; published path/hash; command/exit/evidence path; actual branch/commit; M2/G4 manifest and notices; source/target counts; later owner Gate5/effect/pointer record if and only if it exists. Any unavailable field is PENDING, not a guessed value. No approved substantive bytes, IDs, hold values, prior dates or source labels may be substituted.
+
+Root PRD may be replaced only after the approved named immutable Revision8 artifact verifies SHA256 d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4 and the actual superseding instrument binds both predecessor and selected successor SHA256. The narrow D13 rule is accepted substance; actual replacement still waits for Gate4-approved Gate5 application.

@@ -36,8 +36,13 @@ ROOT_DIRS = [
     "tools",
     "docs",
     "init",
-    "runtime",
 ]
+
+# Preserve the public runtime/ projection while its canonical workspace lives
+# in a project. Only software workspace members export, never project custody.
+RUNTIME_ROOT = REPO_ROOT / "projects" / "chirality-runtime"
+RUNTIME_FILES = ["README.md", "package.json", "package-lock.json", "tsconfig.json", "tsconfig.base.json"]
+RUNTIME_DIRS = ["packages", "tests"]
 
 EXCLUDED_PUBLIC_PATHS = {
     ".github/workflows/harness-premerge.yml",
@@ -217,6 +222,11 @@ def sanitize_text_files(stage: Path) -> int:
 def build_stage(stage: Path) -> int:
     missing = [name for name in ROOT_FILES + ROOT_DIRS if not (REPO_ROOT / name).exists()]
     missing.extend(
+        str((RUNTIME_ROOT / name).relative_to(REPO_ROOT))
+        for name in RUNTIME_FILES + RUNTIME_DIRS
+        if not (RUNTIME_ROOT / name).exists()
+    )
+    missing.extend(
         str(source.relative_to(REPO_ROOT))
         for source in PUBLIC_ROOT_FILES.values()
         if not source.exists()
@@ -244,6 +254,13 @@ def build_stage(stage: Path) -> int:
 
     for name in ROOT_DIRS:
         copy_tree(REPO_ROOT / name, stage / name, name)
+
+    runtime_stage = stage / "runtime"
+    runtime_stage.mkdir(parents=True)
+    for name in RUNTIME_FILES:
+        shutil.copy2(RUNTIME_ROOT / name, runtime_stage / name)
+    for name in RUNTIME_DIRS:
+        copy_tree(RUNTIME_ROOT / name, runtime_stage / name, f"runtime/{name}")
 
     write_public_init_prompt(stage)
 

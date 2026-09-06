@@ -1,0 +1,8 @@
+{
+  "parent_closures": 6,
+  "source_carriers": 53,
+  "scope_predicates": 104,
+  "unique_successors": 53,
+  "errors": [],
+  "probe_correction": "Earlier v3 probe interpreted ActiveAfterAcceptance as identity for T rows; it is a disposition label. Qualified source ID is explicit in main/register and derived here from Class T. Expected historical trace status changes preserve original values in Historical fields."
+}

@@ -61,20 +61,24 @@ export function verifyPackagedRuntimeSources({
   const requiredDesktopSources = [
     'electron/main.ts',
     'electron/runtime-host.ts',
-    'runtime/packages/client/src/client.ts',
-    'runtime/packages/daemon/src/runtime-daemon.ts',
-    'runtime/packages/engine-claude/src/index.ts',
-    'runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts'
+    'chirality-runtime/packages/client/src/client.ts',
+    'chirality-runtime/packages/daemon/src/runtime-daemon.ts',
+    'chirality-runtime/packages/engine-claude/src/index.ts',
+    'chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts'
   ];
   const requiredCliSources = [
-    'runtime/packages/cli/src/bin.ts',
-    'runtime/packages/cli/src/cli.ts',
-    'runtime/packages/client/src/client.ts'
+    'chirality-runtime/packages/cli/src/bin.ts',
+    'chirality-runtime/packages/cli/src/cli.ts',
+    'chirality-runtime/packages/client/src/client.ts'
   ];
   const forbiddenCliSources = [
+    // Reject stale pre-migration server sources as well as the current project.
     'runtime/packages/daemon/src/runtime-daemon.ts',
     'runtime/packages/engine-claude/src/index.ts',
     'runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts',
+    'chirality-runtime/packages/daemon/src/runtime-daemon.ts',
+    'chirality-runtime/packages/engine-claude/src/index.ts',
+    'chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts',
     'electron/runtime-host.ts'
   ];
   const requiredPackagedEntries = ['/dist-electron/main.js', '/dist-electron/main.js.map'];

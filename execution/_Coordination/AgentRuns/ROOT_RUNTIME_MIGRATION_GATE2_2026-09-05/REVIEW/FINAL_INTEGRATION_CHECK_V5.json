@@ -1,0 +1,10 @@
+{
+  "combined_sha256": "c3886a44d42c938978f5c081af5145cd2618468420f06afc7337f94d2efcb1eb",
+  "files": 296,
+  "selector_overrides": 10,
+  "delta_rows": 246,
+  "D13_bindings": 2,
+  "control_routes": 46,
+  "errors": [],
+  "remaining_finding": "Selected CANON SOW047 Disposition still RETAIN_SUBSTANCE; author notified to make explicit semantic-change classification."
+}

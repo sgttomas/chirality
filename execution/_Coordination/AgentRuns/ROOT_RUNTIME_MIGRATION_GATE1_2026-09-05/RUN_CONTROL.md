@@ -1,0 +1,5 @@
+# Gate 1 confirmation and impact preparation
+
+Owner confirms Gate 1; exact transcription and subject at plans/steers/root_runtime_migration_gate1_confirmation_2026-09-05.md. Parent /root HELP_HUMAN integrates record/checks/Git on existing codex/runtime-project-migration and PR727. Scope: records only, no accepted truth or project writes. Model GPT-6, exact serving ID unavailable; Agent 0 role not mechanically enforced.
+
+Graph v1: TERMINAL_FAN_OUT_IN, selected by Agent 0 within owner direction. Actual SCOPE_CHANGE child runtime_migration_gate2 owns only new inactive execution/_ScopeChange/SCA-005_2026-09-05_2315/ phase snapshot, Gate 1 log and Gate 2 assessment. Parent owns this run, owner transcription and next Root receipt. No shared writes. Sealed child brief/return live in that snapshot. No pointer moves or later-gate confirmations. On return verify scope, source identities, required impact tables, dependency analysis and explicit findings before publication. All temporary output stays in the run scratchpad.

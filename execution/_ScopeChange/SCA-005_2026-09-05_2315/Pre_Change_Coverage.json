@@ -1,0 +1,60 @@
+{
+  "run_label": "ROOT_RUNTIME_MIGRATION_BASELINE_2026-09-05",
+  "timestamp": "2026-09-05T22:54:52.597688+00:00",
+  "decomp_variant": "SOFTWARE",
+  "repository_basis": "5068899690ab2580fa3360f751f63952e6bdc563",
+  "expected_source_snapshot": "execution/_ScopeChange/SCA-004_2026-08-22_1749",
+  "expected_handoff_phase": "Pending runtime migration Gate 1 baseline; NOT_CONFIRMED",
+  "decomposition_path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "1.3 ACCEPTED CURRENT BASIS",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 6,
+    "deliverables": 53,
+    "objectives": 7,
+    "scope_items": 104,
+    "ledger_rows": 104
+  },
+  "partitions_declared": 6,
+  "partitions_found": 6,
+  "production_units_declared": 53,
+  "production_units_found": 53,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 15,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "FAIL",
+  "handoff_state_status": "WARN",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 4,
+  "issues_warning": 7,
+  "issues_info": 176,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 53
+  },
+  "overall_status": "BLOCKERS",
+  "closure_readiness": "FAIL",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  },
+  "accepted_seven_surface_identity": {
+    "chirality_root_scope_ledger_v1_0.csv": true,
+    "chirality_root_trace_reverse_v1_0.csv": true,
+    "chirality_root_prd_coverage_forward_v1_0.csv": true,
+    "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": true,
+    "chirality_root_objective_register_v1_0.csv": true,
+    "chirality_root_coverage_telemetry_v1_0.md": true,
+    "chirality_root_deliverable_register_v1_0.csv": true
+  },
+  "source_paths_equal_pinned_main": true,
+  "source_paths_compared": 785,
+  "gate_1_confirmed": false
+}

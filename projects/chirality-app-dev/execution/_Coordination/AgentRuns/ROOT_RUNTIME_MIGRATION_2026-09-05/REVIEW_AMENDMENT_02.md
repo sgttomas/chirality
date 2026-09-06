@@ -1,0 +1,2 @@
+# Review freeze amendment 02
+Full test after host escalation found one migration fixture residual: contract-pins.manifest.ts still demanded old Root CI working-directory. Manager changed only that expected location to projects/chirality-runtime. Frozen V2 is FROZEN_APP_DIFF_V2.patch.gz plus FROZEN_APP_FILES_V2.json, eight paths; original seven remain byte-identical. Reviewer must cover 100% V2 and bind those hashes, with manager final full-test rerun. No new authority or code behavior change.

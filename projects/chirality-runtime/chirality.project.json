@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "chirality.project/v1",
+  "projectId": "chirality-runtime",
+  "displayName": "Chirality Runtime",
+  "workingRoot": ".",
+  "instructionRoot": "../..",
+  "agentsOverlay": "AGENTS.md",
+  "defaultExecutionRoot": "execution",
+  "profiles": {
+    "domain": [],
+    "capability": [],
+    "dataBoundary": []
+  },
+  "enabledAdapterIds": [],
+  "embeddedUi": {
+    "declared": false
+  },
+  "legacySessionRoots": []
+}

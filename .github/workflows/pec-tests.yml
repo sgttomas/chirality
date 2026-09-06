@@ -1,6 +1,6 @@
 # PEC project test suite (coverage ruling, 2026-07-31): 356 tests across
 # the core/server/agent-sidecar workspaces previously ran nowhere
-# automatically. Runs on changes to projects/pec/** only.
+# automatically. Also runs when its shared runtime dependency changes.
 name: pec-tests
 
 on:
@@ -8,6 +8,7 @@ on:
     paths:
       - ".github/workflows/pec-tests.yml"
       - "projects/pec/**"
+      - "projects/chirality-runtime/**"
   workflow_dispatch:
 
 permissions:
@@ -25,11 +26,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           filter: blob:none
-          # runtime/ is required: @pec/server depends on
-          # @chirality/runtime-client via file:../../../runtime/packages/client
+          # The runtime project is required: @pec/server depends on
+          # runtime-client/contracts via file:../../chirality-runtime/packages/.
           sparse-checkout: |
             projects/pec
-            runtime
+            projects/chirality-runtime
       - uses: actions/setup-node@v4
         with:
           # engines requires >= 23.6 (native TS type-stripping)
@@ -37,12 +38,12 @@ jobs:
           cache: npm
           cache-dependency-path: |
             projects/pec/package-lock.json
-            runtime/package-lock.json
+            projects/chirality-runtime/package-lock.json
       - name: Build shared runtime (dist consumed by the file dependency)
         run: |
           npm ci
           npm run build
-        working-directory: runtime
+        working-directory: projects/chirality-runtime
       - name: Install dependencies
         run: npm ci
         working-directory: projects/pec

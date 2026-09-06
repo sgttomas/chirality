@@ -1,0 +1,14 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--cached",
+    "--check"
+  ],
+  "exit_code": 2,
+  "result": "FAIL",
+  "cause": "16 newly authored or copied authority candidate CSV paths contain CRLF",
+  "commit_performed": false,
+  "source_changed": false,
+  "required_followup": "lossless postimage packaging or parsed-row-preserving normalization; rehash and restage then rerun"
+}

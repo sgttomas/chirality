@@ -1,0 +1,2 @@
+ID,Severity,Path,Line,Finding,RequiredCorrection,Status
+G3-REV-001,REVIEW,execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/PRD_ROOT.md,261,"OBJ-4 success condition requires F1–F3 observed, although these remain containment failure, loop bypass and self-authorization falsifiers. This reverses predecessor unobserved condition.",Say falsifiers remain unobserved over declared observation population with recorded observation evidence; regenerate dependent seals.,OPEN

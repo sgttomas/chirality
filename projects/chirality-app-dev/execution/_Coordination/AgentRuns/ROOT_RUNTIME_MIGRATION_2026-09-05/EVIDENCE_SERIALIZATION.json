@@ -1,0 +1,104 @@
+{
+  "format": "gzip",
+  "reason": "Preserve raw whitespace-bearing logs and frozen diff bytes while satisfying candidate text whitespace gate",
+  "artifacts": [
+    {
+      "raw_path": "CHECKS/build.log",
+      "stored_path": "CHECKS/build.log.gz",
+      "raw_sha256": "7e12f4826787e3f3d09c4e0658d125ac7fa6849857a7def08d518db6aa69ecd2",
+      "stored_sha256": "64ffc2e7c41687ad827a4026033c23103d7590c6a397d5d2af3321f754030c22",
+      "raw_bytes": 3227,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/npm-ci-online.log",
+      "stored_path": "CHECKS/npm-ci-online.log.gz",
+      "raw_sha256": "6cff0f3b8190481e62d9db7645beb3e1656795aa0871b67cd07b69f2757dc42d",
+      "stored_sha256": "ce010f0e1aa84e40745b77ddd470471bc156096a7852684bac5b2c5a4ba07904",
+      "raw_bytes": 1428,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/npm-ci.log",
+      "stored_path": "CHECKS/npm-ci.log.gz",
+      "raw_sha256": "9cb9a2467fedd04a0e0fcb5ab77e08d37ae2f32a42df44b8312fa8dcc3c4e041",
+      "stored_sha256": "821e102d12a082f558f779e43c7e73f5691006c62ce82e39e8e0be0c090cee5b",
+      "raw_bytes": 1475,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/pack.log",
+      "stored_path": "CHECKS/pack.log.gz",
+      "raw_sha256": "fd1c2fbfa90a421656fb230dfbd38d57048817b3bcb7fd2ab1c2dbdc389c2175",
+      "stored_sha256": "701d4b51eb793b3ca9a09355c2b6619209a0d24c5a6c5e314f91da7db000e1a5",
+      "raw_bytes": 15919,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/self-check.log",
+      "stored_path": "CHECKS/self-check.log.gz",
+      "raw_sha256": "312f9caa7ea9b31c983a56f438719ea9be4b449d85b1112433b388bdeee046a4",
+      "stored_sha256": "c22a35f35a515308c81f3eb47d7d3ad3c2845b0443642a9310952bcd9189eaea",
+      "raw_bytes": 24824,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/test-host-v2.log",
+      "stored_path": "CHECKS/test-host-v2.log.gz",
+      "raw_sha256": "f89aaefcafce121f27d0361fba4c3aba1a83e9250060338a025195385ec33650",
+      "stored_sha256": "048e3963f0a90e875b6a03479c48fe32252bacf6c5a8c3ecb793d01daded122a",
+      "raw_bytes": 486,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/test-host.log",
+      "stored_path": "CHECKS/test-host.log.gz",
+      "raw_sha256": "47b16ebbd361ef8c3c381d76b3778504c843c2ee26368a1f48636d9a1d1a180f",
+      "stored_sha256": "552d33df7b1340e28149916395ecfc0828b9ad262fe5d50908ed602f8f031181",
+      "raw_bytes": 1519,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/test.log",
+      "stored_path": "CHECKS/test.log.gz",
+      "raw_sha256": "5b30f930ca83e0240dcee20cd0e7898db948b5df6ed7e99ceb283f0f8e625d2c",
+      "stored_sha256": "bb9ac23fb9622504aaa2372b333679851db4a274666e6ccc3006fa03cd4aaa78",
+      "raw_bytes": 10729,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "CHECKS/typecheck.log",
+      "stored_path": "CHECKS/typecheck.log.gz",
+      "raw_sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "stored_sha256": "1e006974a61f3a8be2e35e1e8dfdfb36a363a2ec5b7917d844a8b101d99cce04",
+      "raw_bytes": 136,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "FROZEN_APP_DIFF.patch",
+      "stored_path": "FROZEN_APP_DIFF.patch.gz",
+      "raw_sha256": "5902b85bc6f2918926ce91f207a4eee8afe8207b20670162d24cb630a693232a",
+      "stored_sha256": "045f7c7673756ea923016008d58afffd68d91db56e58beeb9592f27ba2767c1d",
+      "raw_bytes": 15519,
+      "gzip_mtime": 0
+    },
+    {
+      "raw_path": "FROZEN_APP_DIFF_V2.patch",
+      "stored_path": "FROZEN_APP_DIFF_V2.patch.gz",
+      "raw_sha256": "81a85a9359c34637909235369df2480947d1418c0491172945908260fa90c048",
+      "stored_sha256": "610bcd985d0ad5150e811258e38f052820f44644e66d705df7fc7e8107e541b6",
+      "raw_bytes": 16473,
+      "gzip_mtime": 0
+    }
+  ],
+  "v2_source_hashes_unchanged": {
+    "projects/chirality-app-dev/frontend/package-lock.json": true,
+    "projects/chirality-app-dev/frontend/package.json": true,
+    "projects/chirality-app-dev/frontend/packages/harness-contract/package.json": true,
+    "projects/chirality-app-dev/frontend/scripts/build-electron.mjs": true,
+    "projects/chirality-app-dev/frontend/scripts/verify-packaged-dependency-boundary.mjs": true,
+    "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts": true,
+    "projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-packaged-dependency-boundary.test.ts": true,
+    "projects/chirality-app-dev/frontend/tsconfig.electron.json": true
+  }
+}

@@ -9,7 +9,7 @@ on:
       - "projects/chirality-app-dev/frontend/**"
       - "projects/chirality-app-dev/docs/**"
       - "projects/chirality-app-dev/chirality.project.json"
-      - "runtime/**"
+      - "projects/chirality-runtime/**"
       - "agents/**"
       - "AGENTS.md"
       - "CLAUDE.md"
@@ -42,11 +42,11 @@ jobs:
           node-version: "24"
           cache: npm
           cache-dependency-path: |
-            runtime/package-lock.json
+            projects/chirality-runtime/package-lock.json
             projects/chirality-app-dev/frontend/package-lock.json
 
       - name: Install and build shared runtime
-        working-directory: runtime
+        working-directory: projects/chirality-runtime
         run: |
           npm ci
           npm run build

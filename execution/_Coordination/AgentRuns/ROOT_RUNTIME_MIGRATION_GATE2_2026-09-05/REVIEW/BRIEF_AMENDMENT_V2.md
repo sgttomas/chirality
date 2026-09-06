@@ -1,0 +1,3 @@
+# Brief amendment v2 — canonical polarity correction
+Parent authorized fresh corrected CANON subject FINAL_ARTIFACTS.sha256 a1f1bf61c36cb57ab0ec5b2039dfdbf0389c3522ba9d71ef5ecdd4253face988; PRD postimage SHA256 7bc0925e697a3ee0a5b08d73ba6744d588e5f8944f12bf8dda12fb2dec246506. Original reviewed subject retained under CANON/REVIEW_CORRECTION_V1/PREIMAGES.
+Checked exact seal and bounded PRD diff. G3-REV-001 corrected: failure falsifiers remain unobserved, supported by recorded observation evidence. No other PRD line changes. Finding resolved in this new subject; original finding/report remain immutable. Whole-package verdict still pending frozen SOURCE/top integration.

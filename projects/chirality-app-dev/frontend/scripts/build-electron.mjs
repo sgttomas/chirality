@@ -5,7 +5,7 @@ import { build } from 'esbuild';
 
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(frontendRoot, '..', '..', '..');
-const runtimeRoot = path.join(repositoryRoot, 'runtime');
+const runtimeRoot = path.join(repositoryRoot, 'projects', 'chirality-runtime');
 
 const runtimeEntries = {
   '@chirality/engine-claude': path.join(

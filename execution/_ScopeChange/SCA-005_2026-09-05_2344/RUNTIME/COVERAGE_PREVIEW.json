@@ -1,0 +1,41 @@
+{
+  "PackageRole": "derived publication artifact; candidate preview",
+  "Revision": "1.0-candidate",
+  "Date": "2026-09-05",
+  "ScopeItemCount": 1,
+  "PackageCount": 1,
+  "DeliverableCount": 7,
+  "ObjectiveCount": 4,
+  "UnassignedScopeItems": 0,
+  "ScopeItemsWithoutDeliverableMapping": 0,
+  "UnmappedObjectives": 0,
+  "ContextEnvelopeCounts": {
+    "S": 0,
+    "M": 7,
+    "L": 0,
+    "XL": 0
+  },
+  "InheritedRequirementCount": 66,
+  "ActivatedDeliverables": 0,
+  "OutstandingCompatibilityHolds": 9,
+  "HistoricalHeldMarkers": 10,
+  "DependencyEdges": {
+    "runtime": 6,
+    "root_governance": 2
+  },
+  "OpenIssuesByType": {
+    "acceptance": [
+      "OI-01"
+    ],
+    "propagation": [
+      "OI-02"
+    ],
+    "derivatives": [
+      "OI-03"
+    ],
+    "historical_findings": [
+      "OI-04"
+    ]
+  },
+  "Verdict": "STRUCTURAL_PREVIEW_NOT_ACCEPTED_NOT_PRODUCT_CONFORMANCE"
+}

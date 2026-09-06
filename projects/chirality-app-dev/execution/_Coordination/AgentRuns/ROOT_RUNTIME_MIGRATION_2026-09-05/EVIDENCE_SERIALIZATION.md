@@ -1,0 +1,4 @@
+# Evidence serialization amendment
+Root final whitespace validation rejected raw log trailing spaces and frozen Git diff context-space lines. The manager losslessly compressed every CHECKS/*.log and FROZEN*.patch into a same-named .gz file using gzip mtime=0. EVIDENCE_SERIALIZATION.json records original and stored SHA-256 identities, byte counts and decompression checks. Decompress before examining the original text; raw bytes are unchanged.
+
+Artifact references in the sealed brief, review amendment, manager return and reviewer return now name .gz storage. The reviewer return is otherwise verbatim; its stated patch SHA-256 is the decompressed reviewed V2 patch, not gzip container bytes. These editorial path substitutions do not change review findings, freeze identity, source bytes or authority. All eight V2 source hashes were rechecked unchanged. No new source review is required for this serialization-only change.

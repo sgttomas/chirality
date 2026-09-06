@@ -57,7 +57,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
           'echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"'
       },
       { kind: 'contains', value: 'runtime/package-lock.json' },
-      { kind: 'contains', value: 'working-directory: runtime' },
+      { kind: 'contains', value: 'working-directory: projects/chirality-runtime' },
       { kind: 'contains', value: 'npm run build' },
       { kind: 'contains', value: 'dist-electron/main.js --runtime-daemon' },
       { kind: 'contains', value: '--no-sandbox' },

@@ -1,0 +1,7 @@
+{
+  "receipt": 136,
+  "prior_prefix_sha256": "de7c46a06f25afe66ad01afaaa64610cba2d4600c12561c108de6db5a37c6c5f",
+  "prior_prefix_bytes": 538148,
+  "prefix_equal_origin_main": true,
+  "appended_receipts": 1
+}

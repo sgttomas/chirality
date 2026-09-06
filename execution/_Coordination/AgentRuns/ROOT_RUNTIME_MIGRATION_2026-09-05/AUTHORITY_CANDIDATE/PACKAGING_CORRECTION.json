@@ -1,0 +1,104 @@
+{
+  "reason": "Pre-publication staged diff check detected CRLF trailing whitespace in authored candidate CSVs. Normalize serialization to LF only; parsed rows verified equal.",
+  "prior_manifest": "ARTIFACTS.sha256",
+  "prior_manifest_sha256": "b662821d3b70474c0794c87b7cd7e1f43450515e1ad2e22152e17ab0f91469cf",
+  "prior_status": "SUPERSEDED_HISTORICAL_PREPUBLICATION_SEAL",
+  "changes": [
+    {
+      "path": "RUNTIME_OBJECTIVE_REGISTER.csv",
+      "before_sha256": "e44e75a87ab568e68b4e0efd5bcfc74976abb1bbfe15459aa7c9d09a992278d5",
+      "after_sha256": "2b564362716a8480163f061d92c868698e58a19f682c87f39e66c998b02bfcea",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "HOLD_SUCCESSOR_MAP.csv",
+      "before_sha256": "9ee201e335416c9f3d75983970a704d47b8c5656af544535e34773c00bface5b",
+      "after_sha256": "635fa7f9a05f0a1d17dc47e4db12e142433b11cdc7894708935d0515659ab882",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "ACCEPTED_EVIDENCE_CONTINUITY.csv",
+      "before_sha256": "da8d7864aede25f979f1ecd8309e9ea789e8b29a2c4fa607cb4586c7ae41c1c5",
+      "after_sha256": "866d643ed3b496b2835d1b5b1d536ac5a857239ebfb8a67132ed59c8b6c4ca8d",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "SOURCE_STATUS_POSTIMAGES.csv",
+      "before_sha256": "3299553753e126e9e160424cb08c59a43133d1457db03edb4f5627d8a71ae9da",
+      "after_sha256": "b423194d7fe27334e0d6b60ec393368c90fd1546e220a0d839a44a0dab708f45",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "ROOT_6_PACKAGE_CLOSURE.csv",
+      "before_sha256": "a251e405b6e7edcabafc0e096bc473dc61bde96980f05403147c9a88b8ef4820",
+      "after_sha256": "c3356309ef10dd1be7b92977c974919fc217c3e655d71e4f005d8e5ab72260b4",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "GOVERNANCE_46_CONTROLS.csv",
+      "before_sha256": "ece1987c44c498744365b05c2b590bf9687793804a49925bc13f2f5168c50e07",
+      "after_sha256": "a724b9d6f0e572767d87a8153f36535ac4072c53ccb8be95eb18341062bc0588",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "SOURCE_CONTRACTS.csv",
+      "before_sha256": "e6a9d707813f891a16244765cfd7a9f0daa9fa17eb70b4571d168b118b81b9a0",
+      "after_sha256": "771624f30552849873f11e3d305b3102d2f2bb4730a94306fbed6a7a5ccad0da",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "ROOT_53_DISPOSITIONS.csv",
+      "before_sha256": "fd5404eef468ebe6d398872a4ab4989e679bed8fbb22654ddec8aa1b4d9a1822",
+      "after_sha256": "eaf7899d1f4559c263205d871da699a22fd3dd82f9cfdc9964d7c5e651d966e0",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "RUNTIME_SCOPE_LEDGER.csv",
+      "before_sha256": "c12ca4e249eb2da863f9cda398bae7a5de7fb2cb3dab4a69ea6a94e5ce446ba8",
+      "after_sha256": "5525ba848478a1bfa2664cbdf243e0521f887877bd92171a600fc7929283a0a7",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "RUNTIME_DELIVERABLE_REGISTER.csv",
+      "before_sha256": "5860901dfbdc41b216eb9b43f0fe9e3196d973d187f2a2f0ac2d1c44816b1583",
+      "after_sha256": "53e0e62bf24bf7e466035313b1b5c66bdb0cfebd43d1eed85ed05b5a453cdcbd",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "SCOPE_104_SUCCESSOR_MAP.csv",
+      "before_sha256": "d73203ff62a401228e4426adead25554ccee0b2b86984c1649c95ec17087c487",
+      "after_sha256": "2a7011ff18ff43c971578b5fdc95adb1bc2b39b52de12dc5886bc31067548586",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "POSTIMAGES/execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "before_sha256": "6f3e8ebea441ae7732855f66e74ff96bbd8b2a469ab5acd085752f6e551233d9",
+      "after_sha256": "b609d31ba86248a49499bef402914b424194eee1968ca7782a2da95b6155c093",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "POSTIMAGES/execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+      "before_sha256": "8ae031740f29aaa32caa7af1c29064a0fb4c5d95eab507975e7086e71ba0ba21",
+      "after_sha256": "05a54f3eaf3457f38caea126ec47eb7bc59b2d1fb6e5970cbb0f63e0a0a033c7",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "POSTIMAGES/execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+      "before_sha256": "dd3305fe7b4e71a2a243f4f32c66f35c1285a04dab20edb4ac701cccbd305d96",
+      "after_sha256": "eff6e71694fdf204198daa5ce08b27664c5544cd2120d2ef593766196f5acda8",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "POSTIMAGES/execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+      "before_sha256": "534050b64f7d5025c8d47fe8abba85618f185e3b333d1732ee713507b6ca010d",
+      "after_sha256": "7568d8fa84fec3b83dff03eef511e5559edb47c32b5f6b75acf9967b12c9543d",
+      "parsed_rows_equal": true
+    },
+    {
+      "path": "POSTIMAGES/execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "before_sha256": "54d0b0234f816638b546786e30604e0621b8c8a6b1b37e0201405925d14df5b4",
+      "after_sha256": "8c48ec48a6dd63465419491618f98666b0fff0d97dcb1eb3f6e3c362020297c9",
+      "parsed_rows_equal": true
+    }
+  ]
+}

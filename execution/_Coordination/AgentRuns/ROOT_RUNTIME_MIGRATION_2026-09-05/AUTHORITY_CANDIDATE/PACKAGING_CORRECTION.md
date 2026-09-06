@@ -1,0 +1,3 @@
+# Pre-publication CSV packaging correction
+
+The original ARTIFACTS.sha256 is preserved as a historical pre-publication seal and is superseded by FINAL_ARTIFACTS.sha256. Newly authored CSVs, including prospective CSV post-images, used CRLF serialization. They now use LF; every parsed CSV row is identical. No accepted source file, instruction prose, status post-image, bootstrap byte or semantic disposition changed. PACKAGING_CORRECTION.json records every old/new digest. Existing compressed unified diffs remain the original semantic review evidence; their hunks normalize line terminators and still describe the same row/field changes. For exact application bytes use final post-images and FINAL_ARTIFACTS.sha256.

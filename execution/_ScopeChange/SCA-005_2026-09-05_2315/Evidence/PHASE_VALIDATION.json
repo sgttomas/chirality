@@ -1,0 +1,11 @@
+{
+  "action_count": 242,
+  "sequential": true,
+  "runtime_additions": 7,
+  "governance_additions": 46,
+  "csv_lf": true,
+  "baseline_byte_equal": true,
+  "no_postchange_artifact": true,
+  "no_live_pointer_write": true,
+  "scope": "phase record only"
+}

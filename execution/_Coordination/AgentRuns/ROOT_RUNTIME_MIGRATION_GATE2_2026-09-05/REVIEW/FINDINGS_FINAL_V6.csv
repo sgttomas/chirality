@@ -1,0 +1,3 @@
+ID,Severity,Finding,FinalDisposition,Evidence
+G3-REV-001,REVIEW,OBJ4 required failure falsifiers observed,RESOLVED,Corrected CANON PRD line261 remains in selected D13 postimage; failure falsifiers unobserved with observation evidence
+G3-REV-002,REVIEW,D13 addendum changed substantive SOW047 predicate but retained RETAIN_SUBSTANCE label,RESOLVED,FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv SOW047 now REPLACE_NAMED_PREDICATE; bounded one-cell diff verified

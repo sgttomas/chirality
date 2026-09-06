@@ -1,0 +1,17 @@
+# Runtime project migration — run control v1
+
+Owner direction (Ryan Tufts, 2026-09-05), verbatim: “Merge PR #726 then proceed with the migration.” PR #726 head cbbafb445fd96610fb1cb2b8db3cdf421a9d9af1 passed CI and was owner-proxy merged at 5068899690ab2580fa3360f751f63952e6bdc563. New branch codex/runtime-project-migration starts at that fetched main. The owner-directed migration uses the reviewed plan's proposed in-repository projects/chirality-runtime destination. Earlier no-project-write preparation fences are superseded only for the migration paths the plan identifies; no unrelated project work is opened.
+
+Parent /root HELP_HUMAN, OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced. Native delegation, role and non-delegation evidence are instruction-asserted. The root AGENTS hierarchy governs actual child execution. User has authorized preparation and migration implementation within the plan; no future PR merge, runtime feature implementation/release, operational account/state mutation or blanket scope/lifecycle gate waiver is inferred.
+
+Graph v1: SUPERVISED_MANY_TO_MANY, selection HUMAN objective / Agent 0 bounded decomposition. Parent serially relocates only 79 tracked runtime files, then runtime verification and App/PEC consumer implementation run independently of exact governance-transfer package preparation. Parent owns Root CI/G4, integration, final review, receipt/Git. Each implementer gets a sealed disjoint write scope; actual read-only software-code-review follows frozen App diff before publication. Failed checks hold affected consumers and publication; unrelated authorized preparation continues.
+
+The formal source/destination authority transition is prepared as exact candidate post-images; currently accepted PRD/decomposition/_LATEST and lifecycle records remain untouched until their exact owning acceptance gates. Root has temporary product custody until the recorded transfer becomes effective. Branch code relocation is a migration candidate, not product-release acceptance. Exact scope and authority packages must be reviewable at closeout; do not claim Root governance-only retirement merely from moving files.
+
+Write partition:
+- Parent: move runtime/ tracked sources to projects/chirality-runtime; Root .github/workflows migration paths, one G4 manifest, this run integration evidence and Root receipt. No operational data moves.
+- Runtime child: destination code/config/README/package locks/tests and its return; no project governance/decomposition nor App/PEC writes.
+- Consumer child: planned App frontend dependency/build/packaging paths and PEC dependency/lock paths, project-local migration authorization/evidence; no runtime implementation or Root canon/workflows.
+- Governance child: exact candidate Root/source/destination PRD/authority/decomposition/propagation package within this run's AUTHORITY_CANDIDATE only, plus return. No accepted source or pointer mutation.
+
+Scratchpad only /private/tmp/root-runtime-migration-20260905. Validate with real package/consumer builds/tests, independent App diff review, Root G0–G4/entrypoints/whitespace/affected tests, source conservation and scope/identity checks. Tool/profile constraints must be read; actual hold preflights precede consumers. No fake gate confirmations or brief-as-run evidence. Next human acts are exact authority acceptance and any new PR merge if required by the completed candidate; prepare all authorized reviewable work first.

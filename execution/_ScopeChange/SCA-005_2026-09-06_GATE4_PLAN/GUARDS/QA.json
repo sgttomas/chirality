@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "WRITE_PATH_INVENTORY.csv",
+      "rows": 36,
+      "expected": 36,
+      "pass": true
+    },
+    {
+      "check": "ACCEPTANCE_CHECKS.csv",
+      "rows": 25,
+      "expected": 25,
+      "pass": true
+    },
+    {
+      "check": "all five live legacy guards",
+      "pass": true
+    },
+    {
+      "check": "UTF8/LF/trailing whitespace",
+      "pass": true
+    }
+  ],
+  "successor_implementation_tests": "NOT_RUN; plan only"
+}

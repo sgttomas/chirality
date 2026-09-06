@@ -1,0 +1,11 @@
+{
+  "source_preimages_unchanged": true,
+  "source_postimages_match": true,
+  "source_rows_conserved": true,
+  "source_original_columns_conserved": true,
+  "candidate_only": true,
+  "independent_review": "PARENT_PENDING",
+  "source_unique_successors": 53,
+  "new_candidate_csv_lf": true,
+  "byte_preserved_CRLF_preimages_gzip": 2
+}

@@ -1,0 +1,13 @@
+# Gate 2 acceptance / Gate 3 preparation fan-in
+
+Owner statement: “I confirm acceptance of the Gate 2 impact assessment.” The exact transcription in plans/steers/root_runtime_migration_gate2_acceptance_2026-09-05.md binds accepted impact phase SCA-005_2026-09-05_2315 and reviewed HEAD b5cbf28f7b314f70fd932c4d38f73853d47f0928. It accepts Gate 2 only.
+
+Actual native managers runtime_gate3_canon (HELPS_HUMANS), runtime_gate3_destination (SOFTWARE_DECOMP), and runtime_gate3_scope (SCOPE_CHANGE) produced disjoint candidate surfaces. Fresh ephemeral Agent 2 runtime_gate3_review independently reviewed the integrated subject. Its final REVIEW/FINAL_REVIEW_V6.md is PASS with zero outstanding actionable findings; the falsifier polarity and D-13 disposition findings were corrected with earlier subjects preserved. No mock child execution or mechanical role enforcement is claimed.
+
+Current exact subject: execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/FINAL_SUBJECT_SELECTOR.csv and COMBINED_ARTIFACTS.sha256, digest 547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3. Parent independently verified all 302 members, exact accepted PRD predecessor bytes and LF-only new CSVs. Ten explicit overrides resolve earlier candidate references. V2's validated 246-row supersession delta/map remains selected. Historical manifests are evidence of their named versions, not competing current selectors.
+
+The proposed amendment retains six historical parents/53 carriers, maps 104 scope rows to seven runtime successors and 46 governance responsibilities, and preserves 66 inherited runtime requirements, nine holds, accepted semantic identities and historical evidence. No live source canon/decomposition/status/pointer is changed this iteration. The narrow D-13 exception expressly preserves the exact accepted Revision 8 artifact before any approved replacement of the docs/PRD_ROOT.md placement; it does not invalidate historical accepted publications.
+
+Step 0, G0–G4, practitioner status/self-check, instruction entrypoints and 682 affected tests passed (CHECKS.json and FINAL_GUARD_CHECKS.json). Existing source audit gaps/warnings remain disclosed. Publication hygiene and committed-range G4 are checked separately before push and recorded in PR #727. No new instruction-surface edit is introduced by these nested candidate records.
+
+Attribution: OpenAI GPT-6, exact serving model ID unavailable. Primary /root acts HELP_HUMAN; Agent 0 role is not mechanically enforced. Native descendant roles/non-delegation are instruction-asserted. Parent performs integration and routine CHANGE closeout; no separate CHANGE child claimed.

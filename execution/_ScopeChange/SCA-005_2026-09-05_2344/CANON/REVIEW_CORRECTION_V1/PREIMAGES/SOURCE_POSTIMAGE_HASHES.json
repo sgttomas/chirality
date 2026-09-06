@@ -1,0 +1,30 @@
+[
+  {
+    "SourcePath": "docs/PRD_ROOT.md",
+    "SourceSHA256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+    "PostimagePath": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/PRD_ROOT.md",
+    "PostimageSHA256": "1b8f79b8246d0034cba2415c68abfad13100505a8e5eb9c43614476de03744e8",
+    "Class": "UNACCEPTED_EXACT_POSTIMAGE"
+  },
+  {
+    "SourcePath": "docs/DIRECTIVE.md",
+    "SourceSHA256": "6372f235f16d10936f71a7863eedfed13804528c578978c71c94e55485dc7259",
+    "PostimagePath": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/DIRECTIVE.md",
+    "PostimageSHA256": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+    "Class": "UNACCEPTED_EXACT_POSTIMAGE"
+  },
+  {
+    "SourcePath": "docs/SPEC.md",
+    "SourceSHA256": "f666385e3d79a9634db58087d8b1bd4c4e60bd02ab0ab78fe866d7d911350143",
+    "PostimagePath": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/SPEC.md",
+    "PostimageSHA256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+    "Class": "UNACCEPTED_EXACT_POSTIMAGE"
+  },
+  {
+    "SourcePath": "docs/TYPES.md",
+    "SourceSHA256": "977e1ad44e2c3783036eec597abd0be9827209150aa113d80e5915ab20a87662",
+    "PostimagePath": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/TYPES.md",
+    "PostimageSHA256": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+    "Class": "UNACCEPTED_EXACT_POSTIMAGE"
+  }
+]

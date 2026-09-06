@@ -1,0 +1,7 @@
+# Final integrated V2 review subject
+
+CANDIDATE ONLY. The original phase FINAL_ARTIFACTS.sha256 and ADDENDUM_REVIEW/ARTIFACTS.sha256 remain unchanged. FINAL_SUBJECT_SELECTOR.csv selects10 exact replacements; all unoverridden V1 subject files retain their hashes. The selected PRD fullpostimage is ADDENDUM_REVIEW/PRD_ROOT_D13_POSTIMAGE.md, not CANON's V1 PRD. The selected104-row predicate register includes D13/SOW047. The original Supersession_Delta/Map are historical superseded review versions; only the V2 pair is current for this proposed approval. The action inventory still has242 actions; D160 and D225 already exist and remain bound. No new scope entity or action number is needed.
+
+The complete owner decision is Gate3_Amendment_Preview.md in this directory. It expressly includes the narrow D13 exception and actual immutable predecessor. Governance_Control_Authority_Bindings.csv routes all46 controls to the final predicates and GOV0408 to the exact addendum. Any parent acceptance statement must bind this V2 combined subject, not the earlier seal alone. _STATUS propagation, actual guard/setup application and Gate4/5 remain pending.
+
+No approved text requires an invisible substitution. The exact acceptance/application record supplies actual metadata separately, and future publication must consume the selected hashes. No accepted source, snapshot, pointer or project was modified here.

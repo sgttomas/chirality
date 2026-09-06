@@ -1,0 +1,31 @@
+{
+  "generation_command": [
+    "python3",
+    "tools/coordination/accumulate_supersession_map.py",
+    "--prior-map",
+    "execution/_ScopeChange/SCA-002_2026-07-29_0800/Supersession_Map.csv",
+    "--delta",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V2/Supersession_Delta.csv",
+    "--output-map",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V2/Supersession_Map.csv"
+  ],
+  "exit": 0,
+  "stdout": "Wrote supersession map: execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V2/Supersession_Map.csv\nRows: 246\nFindings: 0 total, 0 blocking\n",
+  "check_command": [
+    "python3",
+    "tools/coordination/accumulate_supersession_map.py",
+    "--prior-map",
+    "execution/_ScopeChange/SCA-002_2026-07-29_0800/Supersession_Map.csv",
+    "--delta",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V2/Supersession_Delta.csv",
+    "--output-map",
+    "/private/tmp/root-runtime-migration-20260905/gate3/scope/map-check-v2.csv",
+    "--check-map",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V2/Supersession_Map.csv"
+  ],
+  "check_exit": 0,
+  "check_stdout": "Wrote supersession map: /private/tmp/root-runtime-migration-20260905/gate3/scope/map-check-v2.csv\nRows: 246\nFindings: 0 total, 0 blocking\n",
+  "candidate_only": true,
+  "rows": 246,
+  "normalization": "new candidate CRLF serializer output normalized to LF, semantic check passes; old maps untouched"
+}

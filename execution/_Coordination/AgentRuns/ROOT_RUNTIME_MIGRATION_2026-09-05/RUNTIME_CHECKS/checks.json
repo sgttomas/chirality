@@ -1,0 +1,36 @@
+[
+  {
+    "command": "npm ci",
+    "cwd": "projects/chirality-runtime",
+    "exit": 0,
+    "evidence": "Captured tool output: 61 packages added in 963 ms. npm allow-scripts warnings for esbuild@0.28.1 and fsevents@2.3.3; no install failure."
+  },
+  {
+    "command": "npm run typecheck --prefix projects/chirality-runtime",
+    "exit": 0,
+    "log": "typecheck.log.gz"
+  },
+  {
+    "command": "npm run build --prefix projects/chirality-runtime",
+    "exit": 0,
+    "log": "build.log.gz"
+  },
+  {
+    "command": "npm test --prefix projects/chirality-runtime",
+    "sandbox": "default",
+    "exit": 1,
+    "passed": 61,
+    "failed": 18,
+    "log": "test-sandbox.log.gz",
+    "finding": "Local socket listen EPERM; retried with approved escalation."
+  },
+  {
+    "command": "npm test --prefix projects/chirality-runtime",
+    "sandbox": "require_escalated",
+    "exit": 0,
+    "passed": 79,
+    "failed": 0,
+    "files_passed": 9,
+    "log": "test.log.gz"
+  }
+]

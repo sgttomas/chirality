@@ -1,0 +1,14 @@
+{
+  "seal": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3",
+  "files": 302,
+  "selector": 10,
+  "errors": [],
+  "predicate_changes": [
+    {
+      "row": 46,
+      "key": "Disposition",
+      "old": "RETAIN_SUBSTANCE",
+      "new": "REPLACE_NAMED_PREDICATE"
+    }
+  ]
+}

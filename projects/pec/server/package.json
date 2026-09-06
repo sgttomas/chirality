@@ -10,8 +10,8 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@chirality/runtime-client": "file:../../../runtime/packages/client",
-    "@chirality/runtime-contracts": "file:../../../runtime/packages/contracts"
+    "@chirality/runtime-client": "file:../../chirality-runtime/packages/client",
+    "@chirality/runtime-contracts": "file:../../chirality-runtime/packages/contracts"
   },
   "devDependencies": {
     "typescript": "^5.8.3",

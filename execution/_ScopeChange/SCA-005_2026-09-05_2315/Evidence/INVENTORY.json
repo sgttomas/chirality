@@ -1,0 +1,21 @@
+{
+  "actions": 242,
+  "action_types": {
+    "REMOVE": 59,
+    "ADD": 54,
+    "MODIFY": 129
+  },
+  "source_carriers": 53,
+  "source_packages": 6,
+  "scope_rows": 104,
+  "runtime_successors": 7,
+  "governance_successors": 46,
+  "lexical_reference_rows": 245819,
+  "reference_classes": {
+    "HISTORICAL_OR_CANDIDATE_PRESERVE": 167802,
+    "FOREIGN_OR_METHOD_REFERENCE_REVIEW": 76460,
+    "ACTIVE_SOURCE_REVIEW": 1557
+  },
+  "estimate_schedule_paths": 26,
+  "paired_status_reads": 53
+}

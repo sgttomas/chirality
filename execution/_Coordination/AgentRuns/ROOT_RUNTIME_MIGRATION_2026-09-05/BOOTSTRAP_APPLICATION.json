@@ -1,0 +1,32 @@
+[
+  {
+    "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/BOOTSTRAP/chirality.project.json",
+    "destination": "projects/chirality-runtime/chirality.project.json",
+    "sha256": "7300f3b5706286e41635586787e16827f409658e9cba2f1922cc2862ab90b821",
+    "status": "inactive_candidate_scaffolding"
+  },
+  {
+    "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/BOOTSTRAP/AGENTS.md",
+    "destination": "projects/chirality-runtime/AGENTS.md",
+    "sha256": "22a404553a5bd9ffede0a29bb25a0485585ceac97da5613afe5d9c86e2636660",
+    "status": "inactive_candidate_scaffolding"
+  },
+  {
+    "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/BOOTSTRAP/loop/LOOP_INIT.md",
+    "destination": "projects/chirality-runtime/loop/LOOP_INIT.md",
+    "sha256": "66ecf50c0cef392888138e2136669aa5433cf435e1ac662faf5ca734b0b57ffb",
+    "status": "inactive_candidate_scaffolding"
+  },
+  {
+    "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/BOOTSTRAP/docs/PRD.md",
+    "destination": "projects/chirality-runtime/docs/PRD.md",
+    "sha256": "4e18527e5dc15583068277ea2ea94d5bfe4fa31dff80d77d6192318a82bf28a0",
+    "status": "inactive_candidate_scaffolding"
+  },
+  {
+    "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/BOOTSTRAP/execution/_Coordination/HANDOFF_STATE.md",
+    "destination": "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+    "sha256": "55aa47a1d7a17455c4ce7f41ed556d1ad12e5a2e57bd4ef6b2dc7b094db861bd",
+    "status": "inactive_candidate_scaffolding"
+  }
+]
