@@ -57,10 +57,20 @@ async function launch(role: string, configPath: string, expectReady = true) {
         else if (exited) { clearInterval(interval); clearTimeout(timer); reject(new Error(`job exited before readiness: ${stderr}`)); }
       }, 10);
     });
+  } else {
+    // Expected startup rejection is a bounded process operation too.
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    try {
+      await Promise.race([exit, new Promise<never>((_, reject) => {
+        timer = setTimeout(() => reject(new Error(`job rejection timeout: ${stderr}`)), 5000);
+      })]);
+    } finally { clearTimeout(timer); }
   }
   return { child, stop, exit, output: () => ({ stdout, stderr }) };
 }
 
+// Composite cases may start/stop three jobs; each operation retains its own 5s bound.
+// The 30s test ceiling sums those budgets and is not a production latency allowance.
 describe("actual two-job standalone runtime", () => {
   it("retires an eager process generation promptly and permanently rejects later capture", async () => {
     const moduleUrl = pathToFileURL(resolve("packages/core/dist/runtime-conformance.js")).href;
@@ -87,7 +97,7 @@ describe("actual two-job standalone runtime", () => {
     await expect(lstat(join(f.config.runtimeDirectory, f.config.daemonSocket))).rejects.toMatchObject({ code: "ENOENT" });
     await expect(lstat(join(f.config.runtimeDirectory, f.config.supervisorSocket))).rejects.toMatchObject({ code: "ENOENT" });
     await expect(lstat(credentialPath)).rejects.toMatchObject({ code: "ENOENT" });
-  });
+  }, 30_000);
   it("rotates credentials across supervisor jobs and starts the daemon with the new generation", async () => {
     const f = await fixture();
     const first = await launch("supervisor", f.configPath);
@@ -103,7 +113,7 @@ describe("actual two-job standalone runtime", () => {
     await client.grantDelegatedConsent("project", compatibility, { posture: "off", approvedBy: "fixture-owner", explicitUserAct: true });
     expect((await client.runDelegatedTurn("project", compatibility, { turnId: "new-generation", prompt: "again" })).terminal.outcome).toBe("completed");
     await daemon.stop(); await next.stop();
-  });
+  }, 30_000);
   it.each(["forged", "nonprivate"] as const)("refuses a %s supervisor credential at daemon startup", async variant => {
     const f = await fixture(); await launch("supervisor", f.configPath);
     const path = join(f.config.runtimeDirectory, f.config.supervisorCredential);
@@ -120,7 +130,7 @@ describe("actual two-job standalone runtime", () => {
     } finally {
       await writeFile(path, original, { mode: 0o600 }); await chmod(path, 0o600);
     }
-  });
+  }, 30_000);
   it("does not rotate a live supervisor credential when a duplicate job is refused", async () => {
     const f = await fixture(); await launch("supervisor", f.configPath);
     const path = join(f.config.runtimeDirectory, f.config.supervisorCredential);
@@ -128,13 +138,13 @@ describe("actual two-job standalone runtime", () => {
     const duplicate = await launch("supervisor", f.configPath, false);
     expect(await duplicate.exit).toMatchObject({ code: 1 });
     expect(await readFile(path, "utf8")).toBe(original);
-  });
+  }, 30_000);
   it("does not implicitly register the configured project", async () => {
     const f = await fixture(false); await launch("supervisor", f.configPath);
     const daemon = await launch("daemon", f.configPath, false);
     expect(await daemon.exit).toMatchObject({ code: 1 });
     await expect(lstat(join(f.config.runtimeDirectory, "projects", "registry.json"))).rejects.toMatchObject({ code: "ENOENT" });
-  });
+  }, 30_000);
   it("refuses a credential symlink before opening the daemon", async () => {
     const f = await fixture(); await launch("supervisor", f.configPath);
     const path = join(f.config.runtimeDirectory, f.config.supervisorCredential), target = join(f.config.runtimeDirectory, "copied.json");
@@ -143,7 +153,7 @@ describe("actual two-job standalone runtime", () => {
     expect(await daemon.exit).toMatchObject({ code: 1 });
     // Restore so the supervisor can perform its own epoch-checked teardown.
     await rm(path); await writeFile(path, await readFile(target), { mode: 0o600 });
-  });
+  }, 30_000);
   it("seats hosted-validation only with a dedicated worker-private subtree", async () => {
     const f = await fixture();
     const privateDirectory = join(f.config.runtimeDirectory, "worker"); await mkdir(privateDirectory, { mode: 0o700 });
