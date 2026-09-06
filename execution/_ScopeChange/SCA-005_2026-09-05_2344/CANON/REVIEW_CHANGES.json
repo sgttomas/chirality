@@ -1,0 +1,188 @@
+[
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "title",
+    "Before": "# Product Requirements Document — Chirality Root (the root product)",
+    "After": "# Governance Requirements Charter — Chirality Root (retained PRD lineage)"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "identity heading",
+    "Before": "## 1. Product identity and genus",
+    "After": "## 1. Governance identity and retained genus history"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "historical genus",
+    "Before": "**ID-0 — Ruled genus. [OWNER_DECLARED — owner ruling of record]**",
+    "After": "**ID-0 — Historical ruled genus. [OWNER_DECLARED — preserved owner ruling of record]**"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "genus successor",
+    "Before": "**What this ruling does and does not do [CLARIFIED].** It settles the genus\n**for this PRD**. It does **not** amend `docs/DIRECTIVE.md` §1 — that clause\nis ratified governance and remains **in force as written** until a separate\nexact-prose, human-gated concordance act supersedes it (§9.1, follow-on\nobligation (a)). Until then this document records the ruling and the\ndivergence honestly rather than claiming DIRECTIVE has been amended.\n\n",
+    "After": "**Prospective identity reconciliation.** The quoted RD-1 genus remains an exact historical owner act. After effective migration, Root is the canonical human-governed repository control plane and shared instruction/tool steward; the generative operating form remains a governance method, not a continuing Root product working-root exception. This exact amendment prospectively supersedes the Root product implication of RD-1 as carried by D-GOV-22/23/24; it does not rewrite those records. DIRECTIVE §1 must adopt the paired exact successor paragraph before concordance can be claimed.\n\n**PRD §1 ID-1 replacement"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "concordance history",
+    "Before": "### 1.2 Genus wording — ruled and concordant",
+    "After": "### 1.2 Historical genus concordance before this migration"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "authority limit heading",
+    "Before": "### 1.3 What the root product structurally is not",
+    "After": "### 1.3 Authority limit"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "readiness and seven objectives",
+    "Before": "**v1 boundary. [PROPOSED in Rev 5; accepted by D-GOV-22]** Chirality Root **v1** is the state in which\n(a) the D-GOV-21 §6 sequence has closed through step 9 — root packages\nmaterialized from an accepted root decomposition with G0–G4 registered and\npassing; (b) the root product's own governed loop has carried at least one\ncomplete deliverable stream end to end; and (c) at least one situated working\nroot operates on the same instruction basis with a recorded convergence path.\n**Completeness is claimed only for this boundary** — not for every future\nChirality possibility. A later redefinition requires its own attributable\namendment.\n\nAll seven objectives were **PROPOSED in Rev 5 and accepted by D-GOV-22**.\nTheir labels record provenance of origin, not present inertness. Detailed\nacceptance tests remain downstream (D-GOV-15 / D-GOV-16 machinery); what\nsuccess *means* lives here.\n\n| # | Objective | v1 success condition (testable) |\n|---|---|---|\n| **OBJ-1** | **Coherent and discoverable normative authority.** A reader can determine what governs, from the repository alone. | For every governance surface in the instruction root, a reader can determine without asking a person: which document is authoritative for a given question, whether it is ratified, and what superseded it. No ratified clause has an unrecorded conflicting live variant. *(C-1 and C-2 are historical closed examples; §10.2.)* |\n| **OBJ-2** | **Governed production of professional knowledge work.** The product carries work **to** an issuance decision; the accountable human issues it. | At least one complete deliverable stream runs end to end — decomposition → package/deliverable → checking → issuance decision — where **every consequential acceptance, reliance, and issuance judgment is performed by an accountable human**, and every governed claim carries provenance sufficient for a reviewer to determine reliance. Deterministic guards, fan-in gates, and structural validation gates remain lawful **non-human** gates: they gate on objective preconditions and hygiene and never make the acceptance or issuance judgment (K-GATE-1 with its D-GOV-02 note; K-AUTH-1). Demonstrated at root and in at least one situated working root. |\n| **OBJ-3** | **The human evaluation and iteration loops close.** Humans can evaluate and redirect on evidence. | **Two conditions, one universal and one sampled.** **(i) Structural completeness — universal:** *every* accepted change has a retrievable linkage from files alone between the evidence that informed it, the ruling that accepted it, and the state it changed. A missing link is a defect regardless of sampling. **(ii) Retrieval usability — sampled:** the linkage can be *followed* within a bounded time, verified as a retrieval exercise where **the time threshold and the tranche sample are fixed and recorded before the evaluation runs** — not chosen after seeing results. Completeness is a property of the record; usability is measured, not asserted. |\n| **OBJ-4** | **Safe self-application without self-authorization.** The root develops itself without granting itself authority. | Through v1: falsifiers F1–F3 unobserved; every root capability consumed by root development was accepted through the basis or an explicitly accepted predecessor; G0–G4 registered and passing at every materialization. |\n| **OBJ-5** | **Situated specialization with governed convergence.** Variants specialize; useful patterns come back lawfully. | **(i)** At least one candidate pattern originating in a situated working root reaches a **complete promotion disposition — accepted, rejected, or deferred with its evidence recorded** — through the developmental machinery with its evidence linkage intact. **A rejection or reasoned deferral satisfies this**: the objective tests that the pathway works, not that any candidate deserves promotion; no promotion is forced to pass v1. **(ii)** **Every root change that claims variant-derived provenance used the governed promotion path.** *(Stated positively and checkably against changes that make the claim — rather than as an unprovable negative about all changes by every possible route.)* |\n| **OBJ-6** | **Coordination remains intelligible as concurrent activity grows.** Concurrency does not outrun legibility. | **Population and observation boundary:** root-product development runs — the run records under this loop's `execution/_Coordination/`. Situated working roots' coordination remains their own surface and is out of scope here; **any future aggregated cross-root coordination layer would be a new product function, not implied by this objective.** **Condition:** for every run record present in that population, its declared write ownership, dependencies, and pending gates are reconstructible from the recorded state, and runs that were interrupted, abandoned, or crashed are **detectable as stale or orphaned** rather than silently indistinguishable from live ones. Concurrent sibling write targets are disjoint or serialized. No run's effect is discoverable only from chat history. |\n| **OBJ-7** | **File-native continuity and recoverability.** Nothing load-bearing lives outside the checkout. | The full governed state — decisions, approvals, scope, evidence, and each loop's current position — survives loss of every non-file substrate (chat context, model memory, daemon state, local caches) and is recoverable from the checkout alone. |\n\n**[CLARIFIED]** OBJ-1 through OBJ-7 are objectives of the *product*, not of any\nsingle tranche. They are the intended source for the objective derivation\nthat `docs/DECOMPOSITION_STANDARD.md` I7 requires; unmapped objectives at\ndecomposition time are surfaced as open issues, never silently dropped.\n\n",
+    "After": "**Governance readiness boundary. [PROSPECTIVE successor to the D-GOV-22 v1 boundary]** Root readiness requires (a) accepted coverage of all 46 retained governance duties and all 104 historical scope dispositions; (b) an actually completed bounded governance/instruction change with source discovery, declared scope, checks, independent review, owner acceptance and Git closeout; and (c) an actual runtime-project governed run with recorded shared-instruction convergence. G0–G4 must validate the declared governance/historical mode. These are evidence obligations, not conditions falsely claimed complete by preparing successor records. The previous Root-product end-to-end stream and materialization predicates cease to be future Root requirements at effective retirement; their historical results remain preserved.\n\nThe seven stable objective IDs remain reserved. The unchanged discoverability, evidence-linkage, promotion and continuity duties retain their accepted substance and provenance; the specifically replaced clauses below require this new attributable act. Project product acceptance remains the owning project's responsibility.\n\n| # | Objective | Governance success condition (testable) |\n|---|---|---|\n| **OBJ-1** | **Coherent and discoverable normative authority.** A reader can determine what governs, from the repository alone. | For every governance surface in the instruction root, a reader can determine without asking a person: which document is authoritative for a given question, whether it is ratified, and what superseded it. No ratified clause has an unrecorded conflicting live variant. *(C-1 and C-2 are historical closed examples; §10.2.)* |\n| **OBJ-2** | **Governed production supported by accountable governance.** | GOV-03-06 demonstrates a bounded Root governance/instruction change through declared scope, implementation, independent checking and human acceptance. GOV-06-08 demonstrates actual bounded runtime-project operation on the accepted instruction basis. Every consequential acceptance, reliance and issuance judgment remains accountable-human work; objective tool preconditions remain lawful non-human gates. Root does not need a new product deliverable stream. |\n| **OBJ-3** | **The human evaluation and iteration loops close.** Humans can evaluate and redirect on evidence. | **Two conditions, one universal and one sampled.** **(i) Structural completeness — universal:** *every* accepted change has a retrievable linkage from files alone between the evidence that informed it, the ruling that accepted it, and the state it changed. A missing link is a defect regardless of sampling. **(ii) Retrieval usability — sampled:** the linkage can be *followed* within a bounded time, verified as a retrieval exercise where **the time threshold and the tranche sample are fixed and recorded before the evaluation runs** — not chosen after seeing results. Completeness is a property of the record; usability is measured, not asserted. |\n| **OBJ-4** | **Governed instruction self-maintenance without self-authorization.** | F1–F3 are observed for the declared governance run population; no newly produced capability becomes the run's governing basis before acceptance; governance G0–G4 pass for each applicable change. Historical materialization findings stay historical. GOV-06-01 supplies the evidence contract. |\n| **OBJ-5** | **Situated specialization with governed convergence.** Variants specialize; useful patterns come back lawfully. | **(i)** At least one candidate pattern originating in a situated working root reaches a **complete promotion disposition — accepted, rejected, or deferred with its evidence recorded** — through the developmental machinery with its evidence linkage intact. **A rejection or reasoned deferral satisfies this**: the objective tests that the pathway works, not that any candidate deserves promotion; no promotion is forced to pass v1. **(ii)** **Every root change that claims variant-derived provenance used the governed promotion path.** *(Stated positively and checkably against changes that make the claim — rather than as an unprovable negative about all changes by every possible route.)* |\n| **OBJ-6** | **Reconstructible Root governance concurrency.** | For every Root governance run record under execution/_Coordination/, write ownership, dependencies and pending gates are reconstructible; interrupted, abandoned and crashed runs are detectably stale/orphaned. Sibling targets are disjoint or serialized. Cross-project references convey coordination, not ownership of client production or a new aggregated product function. GOV-06-02 supplies the review contract. |\n| **OBJ-7** | **File-native continuity and recoverability.** Nothing load-bearing lives outside the checkout. | The full governed state — decisions, approvals, scope, evidence, and each loop's current position — survives loss of every non-file substrate (chat context, model memory, daemon state, local caches) and is recoverable from the checkout alone. |\n\nThe runtime-owned partition of product objectives is carried by its separately accepted charter and seven-carrier decomposition. Root governance coverage uses the 46 control instruments and source mapping; ordinary project decomposition still conforms to I7. An unmapped duty is an open defect, not permission to omit it. These replacements do not assert that any old demonstration passed.\n\n"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "four categories ownership",
+    "Before": "**[OWNER_DECLARED]** The root product is constituted by four categories\n*(Agent 0 synthesis of in-session owner framing; not verbatim)*:",
+    "After": "**[PROSPECTIVE successor]** Four functional categories describe Root governance and its relationships to project work; they do not constitute a continuing Root product decomposition:"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "operative partition",
+    "Before": "| **Operative product** | The instruction surface, agents, skills, tools, harness, and runtime that do work |",
+    "After": "| **Operative work** | Root instruction/tool stewardship and independently owned project products, including the runtime |"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "development machinery",
+    "Before": "| **Developmental machinery** | The governance harness, decision records, loops, and guards by which the product changes itself |",
+    "After": "| **Developmental machinery** | Governance harness, decision records, loops and guards for accountable changes under each owning scope |"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "category coverage",
+    "Before": "- They **do not prescribe four packages.** Nothing in this PRD determines the\n  decomposition's partition; that is `docs/DECOMPOSITION_STANDARD.md` work at\n  a later, human-gated stage. See D-15 for the only coverage obligation this\n  PRD proposes.",
+    "After": "- They **do not prescribe four packages** or authorize new Root product materialization. D-15 requires governance-control coverage; project product partitions remain subject to the ordinary decomposition pipeline."
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "requirements heading",
+    "Before": "## 5. Stable product requirements",
+    "After": "## 5. Stable governance requirements"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "D-12",
+    "Before": "| **D-12** | Developmental machinery is **product scope**, not surrounding process — a legitimate target of decomposition, deliverables, and acceptance rather than exempt overhead. | CLARIFIED — interpretation of §4.1 against D-GOV-21 packet §5.3 (\"these guards are preconditions, not future tooling\") |",
+    "After": "| **D-12** | Developmental machinery is substantive governed work, with an accountable owner, declared scope, evidence and acceptance; it is not exempt overhead. Root instruction/tool changes use M2/G4 tranches and retained control duties. Project developmental products use their accepted product scope. No Root product decomposition is required merely to maintain shared governance. | PROSPECTIVE — migration successor; requires exact owner acceptance and effective application |"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "D-15",
+    "Before": "| **D-15** | The first root decomposition demonstrates **coverage across all four categories** of §4.1 — each category has decomposition coverage or a recorded, reasoned deferral. This constrains coverage demonstration only; it does **not** prescribe the partition (§4.3). | **PROPOSED** — strikeable without affecting any other commitment |",
+    "After": "| **D-15** | All four functional categories in §4.1 have traceable coverage in the 46 governance controls or a recorded reasoned unresolved disposition, with all seven runtime responsibilities accounted for in the separately accepted runtime project. This replaces only the first-Root-decomposition coverage predicate; it neither declares controls satisfied nor waives any project decomposition pipeline. | PROSPECTIVE — migration successor; requires exact owner acceptance and effective application |"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "architecture heading",
+    "Before": "#### D-GOV-20 shared-runtime architecture — prospective ownership successor with preserved boundaries",
+    "After": "#### Shared-runtime architecture — exact ownership successor with retained boundary transcription"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "sequence and self maintenance",
+    "Before": "### 6.1 The ruled sequence and current disposition\n\n**[CLARIFIED — current disposition of the D-GOV-21 §6 sequence]**\nD-GOV-22 closed the PRD-adoption stage. D-GOV-25 accepted the first Root\ndecomposition and released Root Project Setup; its subsequent owner-gated\nmaterialization created the Root `PKG-*` / `DEL-*` structure behind G0–G4.\nD-GOV-27 records all 45 deliverables at `INITIALIZED`. The sequence is no\nlonger a pending materialization fence, but its containment contract and\nguards remain standing requirements for Root self-development. Rev 6 enters\nthrough the same rule: product-requirement adoption first, then separately\ngated SCOPE_CHANGE.\n\n### 6.2 Self-application discipline\n\n**[TRANSCRIBED]** What makes self-application safe rather than circular is\nthat a root node may not consume a capability produced by root development\nbefore that capability was accepted through the basis or an explicitly\naccepted predecessor (falsifier F3). Deterministic guards and human gates\nsupply containment; **neither supplies authorization** — the M2 gate \"does not\nitself grant authorization\" (K-AUTH-1).\n\n",
+    "After": "### 6.1 Historical materialization and prospective retirement\n\nD-GOV-22/25/27 and later accepted scope amendments remain the historical authority for Root product adoption and materialization. Their historical counts and lifecycle observations are not rewritten. After exact successor acceptance, all 53 source carriers and six parent packages retire non-destructively; source IDs remain reserved and files remain evidence. Exactly seven runtime carriers and 46 accepted governance duties must exist before source retirement becomes effective. No Root product queue is reactivated to perform the migration.\n\n### 6.2 Governance self-maintenance discipline\n\nRoot instruction/tool work remains within declared and independently authorized tranches. No run may consume its newly produced capability as an accepted governing basis before accountable acceptance. Frozen basis, scope checks, independent evidence and human gates remain mandatory where applicable; neither containment nor G4 supplies authorization. Until effective transfer and retirement, Root retains temporary custody under the current accepted instruments. The proposed governance mode is not a fallback around an unready product guard.\n\n#### The exact-candidate-SHA procedure"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "section6 heading",
+    "Before": "## 6. Self-application and concurrency direction",
+    "After": "## 6. Governance self-maintenance and concurrency direction"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "concurrency scope",
+    "Before": "**[TRANSCRIBED]** Four accepted mechanisms make concurrent root development\nsafe:",
+    "After": "**[PROSPECTIVE scope reconciliation]** The four accepted mechanisms continue to constrain Root governance work:"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "variant exception",
+    "Before": "framework governance. No variant inherits the D-GOV-21 root exception, and the\nexception extends to no other working root.",
+    "After": "framework governance. The retired D-GOV-21 Root product exception extends to no project; explicitly governed in-tree v1 registration and external v2 registration retain their distinct containment contracts."
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "falsifiers",
+    "Before": "**[TRANSCRIBED — D-GOV-21 packet §9]** Falsifiers of the *containment* of\nself-application, adopted here as product-level falsifiers of ID-1:\n\n- **F1 — Containment failure.** Root self-development corrupts a shared\n  instruction surface out from under a situated loop in a way the superseded\n  separation would have prevented, and M1–M6/G0–G4 did not detect or gate it.\n- **F2 — Loop bypass.** Root development proceeds outside the root governed\n  loop — work materialized without a current workplan pointer, receipts, and\n  the M2/G4/M6 machinery engaged.\n- **F3 — Self-authorization.** A root node consumes a capability produced by\n  root development before that capability was accepted.\n\n**[PROPOSED in Rev 5; accepted by D-GOV-22]** Falsifiers of the *fidelity* of\nself-application:\n\n- **F4 — Requirements drift.** At the close of the first root decomposition,\n  an accepted scope unit cannot be traced to a PRD requirement or objective,\n  or a PRD requirement or objective has neither coverage nor a recorded\n  deferral.\n- **F5 — Concordance failure.** The adopted PRD and `docs/DIRECTIVE.md` §1\n  come to say incompatible things about what the root product is, without a\n  recorded superseding act on one of them.\n- **F6 — Label decay.** A provenance label changes without a superseding\n  instrument, or a PROPOSED item is relied upon as though adopted.\n\n",
+    "After": "**[PROSPECTIVE successor observation contracts]** The six stable falsifier IDs remain reserved. Historical findings remain attached to their original subjects; no replacement relabels a finding PASS.\n\n- **F1 — Containment failure.** A Root governance/instruction change corrupts the shared instruction basis relied on by a project, and the applicable declared-scope/frozen-basis/G0–G4/M6 controls fail to detect or gate the change.\n- **F2 — Loop bypass.** Root governance work proceeds without the standing session-init, deterministic intent-plan pointer, append-only receipts and applicable independently authorized M2/G4/M6 change machinery.\n- **F3 — Self-authorization.** A Root governance run consumes its newly produced capability as accepted governing basis before that capability's actual acceptance.\n- **F4 — Requirements drift.** An accepted retained duty has no traceable governance successor or explicit unresolved disposition, or a transferred runtime scope row cannot be traced to its accepted project charter. Historical first-decomposition coverage remains evidence; it does not substitute for this current map.\n- **F5 — Concordance failure.** The accepted Root charter and DIRECTIVE §1 contradict each other about ownership or identity without an explicit superseding act.\n- **F6 — Label decay.** A provenance label changes without a superseding instrument, or an unaccepted proposed item is relied upon as adopted.\n\n### 8.3 Release authority"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "release ownership",
+    "Before": "**[PROPOSED in Rev 5; accepted by D-GOV-22]** Release is a **separately\nhuman-gated lifecycle judgment** over\nwhether the current product state may be released — the third judgment of\n§4.2. It draws on **both** operative evidence and developmental evidence, and\nis informed by validation results, decomposition coverage, and guard state.\n**None of those releases Chirality Root mechanically**, and none of them\nconstitutes the judgment. Release occurs only when the owner performs the\napplicable explicit release act.\n\n",
+    "After": "**[PROSPECTIVE ownership successor; human gate retained]** Root instruction/tool publication and runtime product release are separately scoped human judgments. Root governance retains universal release policy and its own instruction-release assurance (GOV-06-07); the runtime project assembles its product release evidence and proposal. Each accountable human judges the actual release subject using operative and developmental evidence, applicable coverage and guard state. No CI result, migration, merge, control record or owner transfer is itself release approval. Universal K-AUTH-1 and existing client-specific release gates remain unchanged.\n\n"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "governance jurisdiction",
+    "Before": "Ruling on the root product's own governance: authoring binding governance records, ratifying, superseding.",
+    "After": "Ruling on shared repository governance: authoring binding governance records, ratifying, superseding."
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "invariant scope",
+    "Before": "the binding constraint set the root product must continue to satisfy",
+    "After": "the binding constraint set Root governance and project work must continue to satisfy"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "predecessor control heading",
+    "Before": "### 10.5 Current document control — Revision 8",
+    "After": "### 10.5 Predecessor document control — Revision 8 (current until successor effect)"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "remove obsolete append-only semantic overlay",
+    "Before": "## Prospective successor application — remaining named product predicates\n\n**PRD §3 v1 boundary and OBJ-2/4/5/6 replacement.** Root governance readiness requires accepted successor control coverage for all retained duties, validated governance containment/dispatch/entry controls, and a complete evidence-to-owner-act-to-applied-state chain for a bounded governance/instruction change. It does not require Root to materialize or operate a new product deliverable stream. GOV-03-06, GOV-04-10, GOV-06-01, GOV-06-02, GOV-06-06, GOV-06-07 and GOV-06-08 supply the exact replacement demonstration and release predicates. OBJ-1/3/7's discoverability, evidence linkage and currency duties remain; their runtime product partition transfers to the runtime project's objective register. No old demonstration is marked passed by this amendment.\n\n**PRD §5.3 D-14 and §§6–8 product-predicate replacement.** Shared governance, instruction maintenance, audit, export and development controls remain substantive duties, with exact successor homes and unresolved evidence recorded by GOVERNANCE_46_CONTROLS.csv. Root product-specific coverage, self-application and situated-root demonstration predicates are replaced only by the seven D-control texts. Universal project decomposition standards, human judgments, invariant conformance and epistemic falsifiers remain. A migrated directory, a passing test or a prepared control does not establish closure or release.\n\n",
+    "After": "## Prospective successor revision record\n\n"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "owner history heading",
+    "Before": "## 9. Owner decisions — all five RULED",
+    "After": "## 9. Historical owner decisions — five predecessor decisions RULED"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "runtime direction owner",
+    "Before": "Under D-GOV-20, Chirality’s executable agent harness is a root-owned\n`runtime/` workspace. One opt-in per-user daemon owns engines, credentials,",
+    "After": "At effective transfer, Chirality’s executable agent harness is owned by the\n`projects/chirality-runtime/` product project. This prospectively supersedes only\nD-GOV-20’s Root ownership/location proposition; Root retains shared governance.\nOne opt-in per-user daemon owns engines, credentials,"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "execution root",
+    "Before": "The root product's execution instance is `REPO_ROOT/execution` (D-GOV-21).",
+    "After": "After effective retirement, `REPO_ROOT/execution` retains Root governance coordination and historical product evidence only. It is not eligible for new active Root package/deliverable materialization. Source IDs remain reserved; accepted retirement maps exclude them from active product selection."
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "runtime title",
+    "Before": "## 14. Root-Owned Shared Runtime",
+    "After": "## 14. Shared Runtime Product and Governance Boundary"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "runtime owner",
+    "Before": "The root `runtime/` workspace contains versioned contracts, provider-neutral",
+    "After": "The `projects/chirality-runtime/` project owns versioned contracts, provider-neutral"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "Independent review V1 failure-falsifier success condition correction",
+    "Before": "F1–F3 are observed for the declared governance run population",
+    "After": "Failure falsifiers F1–F3 remain unobserved in the declared governance run population, supported by recorded observation evidence"
+  }
+]

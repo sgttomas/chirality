@@ -1,0 +1,8 @@
+# Handoff state
+
+- Accepted upstream: origin/main 5068899690ab2580fa3360f751f63952e6bdc563; Root PRD Revision 8/decomposition 1.3/SCA-004; accepted Gate 2 impact phase SCA-005_2026-09-05_2315 seal 717c517ef28feef3e3aff10f2e707e25690a83b4b690157a7bbc9419e18376b1, bound by the exact owner acceptance record.
+- Derivative status: Gate 3 candidate and independent review are decision support, not accepted decomposition truth. Current V3 selector/seal is named in FAN_IN.md; prior candidate versions remain immutable history.
+- Closure verdict: GATE2_ACCEPTED_GATE3_REVIEW_READY. Candidate preparation and independent review complete; owner amendment approval is pending.
+- Next owner: Ryan Tufts, for one explicit exact bundled Gate 3 decision covering source retirement, Root canon/46 controls, runtime charter and all seven destination decomposition subjects, historical-gap treatment, and narrow D-13 publication exception. See FINAL_INTEGRATION_V3/Gate3_Amendment_Preview.md.
+- Remaining work: Gate 4 propagation plan approval, actual guard/fixture/setup/registration implementation and exact status propagation, Gate 5 actual post-state audits/concordance, derivative dependency/estimate/schedule reconciliation and acceptance. Root retains temporary custody. Nine holds remain; no activation/release, _LATEST move or PR merge is authorized by Gate 2 acceptance.
+- Rerun requirements: if reviewed source hashes or final selected bytes change, reassess affected impact and independent review; validate actual future applied state rather than treating candidate checks as post-state evidence. Four historical snapshot gaps and seven production warnings remain governed by the unaccepted proposed treatment.

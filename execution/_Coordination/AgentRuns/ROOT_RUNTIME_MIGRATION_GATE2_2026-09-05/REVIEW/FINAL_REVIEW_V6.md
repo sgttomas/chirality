@@ -1,0 +1,31 @@
+# Independent Gate 3 amendment review — final v6
+
+**Verdict: PASS for exact Gate 3 amendment review. Zero outstanding actionable findings in the selected subject.** This is a bounded independent review verdict, not owner approval, propagation permission, current product conformance or migration closure.
+
+## Exact reviewed subject
+
+SCA-005 phase execution/_ScopeChange/SCA-005_2026-09-05_2344, selected by FINAL_INTEGRATION_V3/FINAL_SUBJECT_SELECTOR.csv and bound by FINAL_INTEGRATION_V3/COMBINED_ARTIFACTS.sha256 digest **547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3**. Verified all302 manifest members and all10 selector prior/current hashes. Earlier base275-file subject, corrected CANON and runtime seals, explicit D13 addendum, V2 machine maps and V3 disposition correction were independently inspected in sequence. Original subjects remain preserved, not presented as previously corrected.
+
+The explicit D13 narrow publication exception is part of this proposed owner choice. The selected PRD postimage SHA256 is 3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f. Actual accepted Revision8 bytes remain at the addendum's named immutable path, SHA256 d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4. Review does not adjudicate historical accepted publications as invalid; exact new wording removes reliance on interpreting the previous D13 same-path prohibition.
+
+## Review coverage and evidence
+
+- Read root doctrine, SCOPE_CHANGE Gate3 and DECOMPOSITION_STANDARD; accepted Gate2 impact; exact canon changes, source retirement postimages, runtime charter/decomposition and final binding/publication instruments. Scope and authority review includes map→actual subject comparisons, not just file existence.
+- Verified 60 source before/postimage hashes against current live files: seven decomposition/companion surfaces and53 status previews. Live sources remain unchanged. Authority register/ledger/objective original columns remain; forward/reverse status changes explicitly preserve original status and deferral fields. Future status previews are labelled Gate4-only and confer no current retirement.
+- Independently reconciled six complete parent child/ledger sets,53 unique successors,104 source dispositions and forward/reverse mappings. All95 historical IN rows have named successors; nine OUT classifications remain. Stable source IDs and historical parents are preserved. Zero active Root product is an expressly proposed historical-registration contract, not a fabricated ordinary project conformance result.
+- Verified all46 control hashes and binding routes. Final adjunct explicitly resolves legacy AUTHORITY_AMENDMENT references to the reviewed successor instrument; named SOW predicates govern conflicting product/genus/readiness wording. All46 final routes use V3 predicates; GOV04-08 additionally binds the D13 exception. Unaffected source duties remain incorporated and OPEN_UNASSESSED.
+- Runtime has one flat package, seven qualified stable carriers, four objective partitions and66 distinct inherited requirements. Requirement text/line anchors and seven whole source copies independently match pinned source bytes. Scope, outputs, evaluation matrices and REQ027 restrictions remain incorporated; migration does not permit held implementation. No-self-authorization and file-native recovery remain explicit.
+- Six runtime evidence fan-ins and two governance edges remain; no invented inter-carrier ordering. Nine outstanding holds remain, with R16-B separately disposing the historical tenth relationship; TM-ROOT-122 closure does not close TM-ROOT-106. Accepted semantic/compatibility identity and operational-state exclusions remain unchanged.
+- Canon expressly distinguishes Root instruction/governance stewardship from runtime product ownership, preserves Root D7 intent pointer, M2/G4 and client authority, and distinguishes in-tree v1 from disjoint external v2 containment. Guard contracts require fail-closed historical-mode behavior and positive/negative checks at later implementation.
+- V2 selected246-row supersession delta/map includes actual D160 SOW047 replacement and D225 D13 binding; inspected recorded registered-tool generation/check outcomes. No missing prior SCA004 map is fabricated. Historical gap treatment is expressly part of the requested owner decision; seven production warnings,15 missing source objective values and required derivative reruns remain disclosed.
+- Publication preserves exact reviewed bytes with separately attributable acceptance/application metadata and explicit reference-resolution placement under Gate4. No implicit unseen normative rewrite is approved. Final owner preview explicitly includes runtime charter/all seven destination decomposition subjects and the narrow D13 exception. No seven historical gate conversations are invented.
+
+## Findings and calibration
+
+G3-REV-001: fixed reversed OBJ4 falsifier polarity; exact corrected line independently checked. G3-REV-002: fixed D13 SOW047 disposition classification; exact one-cell correction independently checked. Final findings register records both resolved.
+
+Early reviewer probes over-reported a README path mismatch, intentional historical trace-status changes and generic runtime disposition labels. These were reviewer probe assumptions, not candidate defects. Corrected evidence is SEAL_CHECK_V1_CORRECTED.json and INTEGRATED_MAP_CHECK_V3_CORRECTED.json; original probe records remain for transparency. Final seal/selector check has zero mismatches.
+
+The substantive transfer is not yet applied. Root retains temporary custody until accepted successors and approved, validated effective propagation. Gate4 exact implementation/setup/metadata plan, Gate5 independent actual post-state audit, derivative/estimate/ordering reconciliation and owner acceptance remain required. Pending work is not silently deferred or judged passed by this review. Product release, client compatibility acceptance, held source/implementation acts, pointer moves and PR merge remain outside this verdict.
+
+Reviewer: /root/runtime_gate3_review, fresh ephemeral Agent2; OpenAI GPT-6, exact serving model ID unavailable. Native role and non-delegation instruction-asserted; Agent0 role not mechanically enforced. No live edits, Git mutations, acceptance acts or child delegation.

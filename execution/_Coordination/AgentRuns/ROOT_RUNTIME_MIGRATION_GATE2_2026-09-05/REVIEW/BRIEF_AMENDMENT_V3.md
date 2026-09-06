@@ -1,0 +1,2 @@
+# Brief amendment v3 — full integrated freeze
+Parent authorizes final SOURCE/top integration review at execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_ARTIFACTS.sha256 digest41b29c12d0ef1078b8efd344d8159284fba9f76569d77897cdfac080d46a7f65,275files. Earlier corrected CANON and unchanged RUNTIME are included. Read all named SOURCE/top artifacts and exact source comparisons; no live edits or changed write scope. Integrated verdict must bind this subject or a later explicitly refrozen correction.

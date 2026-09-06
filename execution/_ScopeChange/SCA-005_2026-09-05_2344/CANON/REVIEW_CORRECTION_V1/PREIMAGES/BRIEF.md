@@ -1,0 +1,8 @@
+# Sealed brief — Gate 3 canon and governance
+Role: HELPS_HUMANS Agent 1, native delegation instruction-asserted. Parent /root HELP_HUMAN. OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced.
+Objective: exact complete prospective canon/Root-governance amendment subject after accepted Gate 2, with full postimages, row-specific supersession evidence, preserved history and concrete guard contracts. No application or ruling.
+Basis: HEAD b5cbf28f7b314f70fd932c4d38f73853d47f0928; accepted main 5068899690ab2580fa3360f751f63952e6bdc563; exact Gate 2 acceptance plans/steers/root_runtime_migration_gate2_acceptance_2026-09-05.md. Impact SHA d788c0ab58e353ad516ae0633fc5c029086a4d9b0a023b5a893817e06d165d84; seal 717c517ef28feef3e3aff10f2e707e25690a83b4b690157a7bbc9419e18376b1.
+Tools: read, bounded shell, write own subtree, native coordination. No child dispatch needed for this bounded manager design task; independent parent review remains required.
+Write scope: execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/ only; scratch /private/tmp/root-runtime-migration-20260905/gate3/canon. No Git, live docs/tools/projects, old snapshots or pointer writes.
+Outputs: exact four canon postimages, source/postimage hashes, before/after journal, deterministic lossless gzip diffs, 46-control reference hashes, exact scope predicates, successor authority instrument, guard contracts, checks and honest return.
+Acceptance: verify basis hashes; full journal reconstructs every postimage from live source; all 46 controls resolve unchanged; 104 source rows accounted for; candidate status and no gate/hold/release inflation; actual application remains blocked on its owning acceptance and checks.

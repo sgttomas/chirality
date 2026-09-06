@@ -1,0 +1,14 @@
+{
+  "registered_source_packages": 6,
+  "registered_source_deliverables": 53,
+  "ledger_rows": 104,
+  "source_objectives": 7,
+  "unique_successors": 53,
+  "parent_child_total": 53,
+  "all_parent_children_resolve": true,
+  "all_ledger_parent_bindings_resolve": true,
+  "IN_successor_rows": 95,
+  "source_status_previews": 53,
+  "actual_metadata_writes": 0,
+  "formal_gate3_acceptance": false
+}

@@ -1,0 +1,315 @@
+ChangeID,SourcePath,SourceAnchor,OldFact,NewFact,PostimagePath,Condition,AuthoritySubject
+CANON-001,docs/PRD_ROOT.md,lines 1..2 exclusive,"# Product Requirements Document — Chirality Root (the root product)
+","# Governance Requirements Charter — Chirality Root (retained PRD lineage)
+
+> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-002,docs/PRD_ROOT.md,lines 97..98 exclusive,"## 1. Product identity and genus
+","## 1. Governance identity and retained genus history
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-003,docs/PRD_ROOT.md,lines 101..102 exclusive,"**ID-0 — Ruled genus. [OWNER_DECLARED — owner ruling of record]** The owner
+","**ID-0 — Historical ruled genus. [OWNER_DECLARED — preserved owner ruling of record]** The owner
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-004,docs/PRD_ROOT.md,lines 114..120 exclusive,"**What this ruling does and does not do [CLARIFIED].** It settles the genus
+**for this PRD**. It does **not** amend `docs/DIRECTIVE.md` §1 — that clause
+is ratified governance and remains **in force as written** until a separate
+exact-prose, human-gated concordance act supersedes it (§9.1, follow-on
+obligation (a)). Until then this document records the ruling and the
+divergence honestly rather than claiming DIRECTIVE has been amended.
+","**Prospective identity reconciliation.** The quoted RD-1 genus remains an exact historical owner act. After effective migration, Root is the canonical human-governed repository control plane and shared instruction/tool steward; the generative operating form remains a governance method, not a continuing Root product working-root exception. This exact amendment prospectively supersedes the Root product implication of RD-1 as carried by D-GOV-22/23/24; it does not rewrite those records. DIRECTIVE §1 must adopt the paired exact successor paragraph before concordance can be claimed.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-005,docs/PRD_ROOT.md,lines 121..129 exclusive,"**ID-1 — Dual nature. [OWNER_DECLARED]** The root product both **governs the
+production of professional knowledge work** and is a **normative,
+self-applying instance of a generative development pattern**: it develops
+itself under the same governance it prescribes. This is the same duality the
+ruled genus expresses as ""application environment **and** generative
+operating form"". *(Agent 0 synthesis of in-session owner framing carried
+through a context compaction; not warranted verbatim. Owner confirms or
+corrects at adoption.)*
+","**PRD §1 ID-1 replacement — Governance and instruction stewardship.** Chirality Root is the human-governed repository control plane and the steward of shared instructions, tools and governance. Project roots own their product contracts, implementations, delivery scope and product evidence. Root maintains its own instructions through governed change tranches; that responsibility does not require or create a continuing Root product decomposition.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-006,docs/PRD_ROOT.md,lines 130..144 exclusive,"**ID-1a — The self-application half is independently accepted. [TRANSCRIBED]**
+D-GOV-21 (RULED 2026-07-25) makes the repository root both the shared
+instruction root and the working root for development of the root product
+(D-GOV-21 §Effects item 1; packet §2 item 1; `docs/DIRECTIVE.md` §2.6 as
+amended). The owner ruling of record, verbatim from the decision record's
+ruling fence:
+
+> I rule APPROVED for O-A against candidate SHA c038c493e871c95871823281b45890ba9404624b
+
+AcceptedCandidateSHA `c038c493e871c95871823281b45890ba9404624b`;
+PublicationSHA `75b7aa6d1fb019846ac76fb775df2fc1652ab8a8`;
+EffectiveSHA `ee42157290618e3f84be0e0b651c041387ad6ee0`. The owner's
+*characterization* of this as a ""generative development pattern"" remains
+OWNER_DECLARED.
+","**PRD §1 ID-1a replacement — Explicit retirement of the product exception.** D-GOV-21's independently accepted Root product working-root exception remains historical and governs temporary custody until the effective transfer and retirement acts. On effective retirement, Root ceases to be an active product working root and root execution/ ceases to be an active product materialization surface. It remains the home of governance coordination and preserved historical product evidence. Separately authorized instruction changes continue under M2/G4; they do not acquire authorization merely from containment or from this declaration.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-007,docs/PRD_ROOT.md,lines 166..167 exclusive,"### 1.2 Genus wording — ruled and concordant
+","### 1.2 Historical genus concordance before this migration
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-008,docs/PRD_ROOT.md,lines 178..179 exclusive,"### 1.3 What the root product structurally is not
+","### 1.3 Authority limit
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-009,docs/PRD_ROOT.md,lines 230..231 exclusive,"| **Root-governance authority** | Ruling on the root product's own governance: authoring binding governance records, ratifying, superseding. | K-AUTH-1; D-GOV-04 identity matching against `docs/governance_harness/human_actors.md` |
+","| **Root-governance authority** | Ruling on shared repository governance: authoring binding governance records, ratifying, superseding. | K-AUTH-1; D-GOV-04 identity matching against `docs/governance_harness/human_actors.md` |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-010,docs/PRD_ROOT.md,lines 275..284 exclusive,"**v1 boundary. [PROPOSED in Rev 5; accepted by D-GOV-22]** Chirality Root **v1** is the state in which
+(a) the D-GOV-21 §6 sequence has closed through step 9 — root packages
+materialized from an accepted root decomposition with G0–G4 registered and
+passing; (b) the root product's own governed loop has carried at least one
+complete deliverable stream end to end; and (c) at least one situated working
+root operates on the same instruction basis with a recorded convergence path.
+**Completeness is claimed only for this boundary** — not for every future
+Chirality possibility. A later redefinition requires its own attributable
+amendment.
+","**Governance readiness boundary. [PROSPECTIVE successor to the D-GOV-22 v1 boundary]** Root readiness requires (a) accepted coverage of all 46 retained governance duties and all 104 historical scope dispositions; (b) an actually completed bounded governance/instruction change with source discovery, declared scope, checks, independent review, owner acceptance and Git closeout; and (c) an actual runtime-project governed run with recorded shared-instruction convergence. G0–G4 must validate the declared governance/historical mode. These are evidence obligations, not conditions falsely claimed complete by preparing successor records. The previous Root-product end-to-end stream and materialization predicates cease to be future Root requirements at effective retirement; their historical results remain preserved.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-011,docs/PRD_ROOT.md,lines 285..289 exclusive,"All seven objectives were **PROPOSED in Rev 5 and accepted by D-GOV-22**.
+Their labels record provenance of origin, not present inertness. Detailed
+acceptance tests remain downstream (D-GOV-15 / D-GOV-16 machinery); what
+success *means* lives here.
+","The seven stable objective IDs remain reserved. The unchanged discoverability, evidence-linkage, promotion and continuity duties retain their accepted substance and provenance; the specifically replaced clauses below require this new attributable act. Project product acceptance remains the owning project's responsibility.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-012,docs/PRD_ROOT.md,lines 290..291 exclusive,"| # | Objective | v1 success condition (testable) |
+","| # | Objective | Governance success condition (testable) |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-013,docs/PRD_ROOT.md,lines 293..294 exclusive,"| **OBJ-2** | **Governed production of professional knowledge work.** The product carries work **to** an issuance decision; the accountable human issues it. | At least one complete deliverable stream runs end to end — decomposition → package/deliverable → checking → issuance decision — where **every consequential acceptance, reliance, and issuance judgment is performed by an accountable human**, and every governed claim carries provenance sufficient for a reviewer to determine reliance. Deterministic guards, fan-in gates, and structural validation gates remain lawful **non-human** gates: they gate on objective preconditions and hygiene and never make the acceptance or issuance judgment (K-GATE-1 with its D-GOV-02 note; K-AUTH-1). Demonstrated at root and in at least one situated working root. |
+","| **OBJ-2** | **Governed production supported by accountable governance.** | GOV-03-06 demonstrates a bounded Root governance/instruction change through declared scope, implementation, independent checking and human acceptance. GOV-06-08 demonstrates actual bounded runtime-project operation on the accepted instruction basis. Every consequential acceptance, reliance and issuance judgment remains accountable-human work; objective tool preconditions remain lawful non-human gates. Root does not need a new product deliverable stream. |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-014,docs/PRD_ROOT.md,lines 295..296 exclusive,"| **OBJ-4** | **Safe self-application without self-authorization.** The root develops itself without granting itself authority. | Through v1: falsifiers F1–F3 unobserved; every root capability consumed by root development was accepted through the basis or an explicitly accepted predecessor; G0–G4 registered and passing at every materialization. |
+","| **OBJ-4** | **Governed instruction self-maintenance without self-authorization.** | Failure falsifiers F1–F3 remain unobserved in the declared governance run population, supported by recorded observation evidence; no newly produced capability becomes the run's governing basis before acceptance; governance G0–G4 pass for each applicable change. Historical materialization findings stay historical. GOV-06-01 supplies the evidence contract. |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-015,docs/PRD_ROOT.md,lines 297..298 exclusive,"| **OBJ-6** | **Coordination remains intelligible as concurrent activity grows.** Concurrency does not outrun legibility. | **Population and observation boundary:** root-product development runs — the run records under this loop's `execution/_Coordination/`. Situated working roots' coordination remains their own surface and is out of scope here; **any future aggregated cross-root coordination layer would be a new product function, not implied by this objective.** **Condition:** for every run record present in that population, its declared write ownership, dependencies, and pending gates are reconstructible from the recorded state, and runs that were interrupted, abandoned, or crashed are **detectable as stale or orphaned** rather than silently indistinguishable from live ones. Concurrent sibling write targets are disjoint or serialized. No run's effect is discoverable only from chat history. |
+","| **OBJ-6** | **Reconstructible Root governance concurrency.** | For every Root governance run record under execution/_Coordination/, write ownership, dependencies and pending gates are reconstructible; interrupted, abandoned and crashed runs are detectably stale/orphaned. Sibling targets are disjoint or serialized. Cross-project references convey coordination, not ownership of client production or a new aggregated product function. GOV-06-02 supplies the review contract. |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-016,docs/PRD_ROOT.md,lines 300..304 exclusive,"**[CLARIFIED]** OBJ-1 through OBJ-7 are objectives of the *product*, not of any
+single tranche. They are the intended source for the objective derivation
+that `docs/DECOMPOSITION_STANDARD.md` I7 requires; unmapped objectives at
+decomposition time are surfaced as open issues, never silently dropped.
+","The runtime-owned partition of product objectives is carried by its separately accepted charter and seven-carrier decomposition. Root governance coverage uses the 46 control instruments and source mapping; ordinary project decomposition still conforms to I7. An unmapped duty is an open defect, not permission to omit it. These replacements do not assert that any old demonstration passed.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-017,docs/PRD_ROOT.md,lines 323..325 exclusive,"**[OWNER_DECLARED]** The root product is constituted by four categories
+*(Agent 0 synthesis of in-session owner framing; not verbatim)*:
+","**[PROSPECTIVE successor]** Four functional categories describe Root governance and its relationships to project work; they do not constitute a continuing Root product decomposition:
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-018,docs/PRD_ROOT.md,lines 329..331 exclusive,"| **Operative product** | The instruction surface, agents, skills, tools, harness, and runtime that do work |
+| **Developmental machinery** | The governance harness, decision records, loops, and guards by which the product changes itself |
+","| **Operative work** | Root instruction/tool stewardship and independently owned project products, including the runtime |
+| **Developmental machinery** | Governance harness, decision records, loops and guards for accountable changes under each owning scope |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-019,docs/PRD_ROOT.md,lines 395..399 exclusive,"- They **do not prescribe four packages.** Nothing in this PRD determines the
+  decomposition's partition; that is `docs/DECOMPOSITION_STANDARD.md` work at
+  a later, human-gated stage. See D-15 for the only coverage obligation this
+  PRD proposes.
+","- They **do not prescribe four packages** or authorize new Root product materialization. D-15 requires governance-control coverage; project product partitions remain subject to the ordinary decomposition pipeline.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-020,docs/PRD_ROOT.md,lines 402..403 exclusive,"## 5. Stable product requirements
+","## 5. Stable governance requirements
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-021,docs/PRD_ROOT.md,lines 421..422 exclusive,"| **N-2** | The invariant catalog is the binding constraint set the root product must continue to satisfy. **Incorporated by reference**: the catalog governs its own membership; this PRD maintains no parallel list of `K-*` IDs. | TRANSCRIBED — `docs/CONTRACT.md` §1; K-AGENTS-1 live-registry principle |
+","| **N-2** | The invariant catalog is the binding constraint set Root governance and project work must continue to satisfy. **Incorporated by reference**: the catalog governs its own membership; this PRD maintains no parallel list of `K-*` IDs. | TRANSCRIBED — `docs/CONTRACT.md` §1; K-AGENTS-1 live-registry principle |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-022,docs/PRD_ROOT.md,lines 435..436 exclusive,"| **O-2** | The product operates through **three layers**, each with a distinct authority boundary: **(a) instruction artifacts** — agent instruction packages, skills, and governance documents carrying semantic authority contracts, constraining behaviour by declared scope; **(b) deterministic tools** — computed, repeatable operations producing facts and findings, *never a substitute for semantic judgment*; **(c) the root `runtime/` executable substrate** — daemon, clients, adapters, sessions, and transport, which executes and carries work but whose **transport never grants project authority** and whose user-data state is operational, not project truth. | TRANSCRIBED — `AGENTS.md` (Tool row; §Shared Runtime Doctrine); `docs/DIRECTIVE.md` §7; `docs/CONTRACT.md` §1.13. |
+","| **O-2** | Chirality operates through instruction artifacts, deterministic tools and executable runtime. Root owns shared instruction/tool governance; projects/chirality-runtime owns the runtime product. Tools compute findings and never substitute for semantic judgment. Runtime transport executes and carries work but never grants project authority; user-data runtime state remains operational rather than project truth. | PROSPECTIVE — exact runtime migration successor; inactive until accepted effect |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-023,docs/PRD_ROOT.md,lines 442..445 exclusive,"| **O-9** | The instruction root is separated from the working root, with **exactly one** governed exception — the root product's working root is the repository root, and root `execution/` is its execution root, **eligible** for `PKG-*`/`DEL-*` only from an accepted root decomposition derived from an adopted PRD and only while the guards pass. The replacement containment contract (mechanisms M1–M7 and guards G0–G4 with the §5.3 gate ordering) is required and **incorporated by reference** to D-GOV-21 §5. | TRANSCRIBED — D-GOV-21 §Effects 1–4; packet §5; `docs/DIRECTIVE.md` §2.6; `docs/SPEC.md` §0.2.2, §1; `docs/TYPES.md` §1.4 |
+| **O-10** | The operative product's boundary is exactly the three layers of O-2. **No fourth machine execution substrate is claimed; none of the three operative layers holds or grants project authority, which remains with attributable human acts under the governed record.** This is why an instruction-surface change is a governance act rather than a code change. | CLARIFIED — interpretation of O-1, O-2 and the D-GOV-21 M2 gate, with K-AUTH-1. |
+| **O-11** | **Continuing Root stewardship of the generic runtime.** Consequential work on generic `runtime/` semantics requires a Root-owned scope carrier and declared write locus; preserves all authority, security, residency, exclusion, and implementation-gate boundaries ruled by D-GOV-20, including the architecture transcribed below; produces versioned-contract, affected-client conformance or migration, and regression evidence proportionate to the change; and returns release disposition to an accountable human. App, PEC, or another client's implementation work does not transfer ownership of generic runtime semantics away from Root. | **PROPOSED — new in Rev 6; inert until a D-GOV-28 owner ruling.** Supports OBJ-1, OBJ-2, OBJ-4, and OBJ-7. D-GOV-20 is the ruled architectural basis; D-T0-23 is a coordinating Tier-0 counterpart, not incorporated as Root authority. |
+","| **O-9** | Product work executes under its declared project working root. Root governance/instruction work executes only under separately authorized repository change scopes, with M2/G4 on shared instruction surfaces. After effective retirement, the D-GOV-21 Root product materialization exception is closed to new activation. Historical Root product files remain non-selectable evidence, and the runtime project does not inherit an instruction-write exception. | PROSPECTIVE — exact runtime migration successor; inactive until accepted effect |
+| **O-10** | The instruction, tool and runtime layers remain distinct; no fourth machine substrate is claimed and no layer grants project authority. Shared governance responsibility is not runtime product ownership. Root instruction changes remain governance acts with accountable human acceptance. | PROSPECTIVE — exact runtime migration successor; inactive until accepted effect |
+| **O-11** | Continuing stewardship of the generic runtime belongs to projects/chirality-runtime. Consequential runtime semantic work requires its accepted project scope carrier, declared write locus and actual implementation gates. The project owns versioned contracts, affected-client conformance or migration fan-in, regression and release evidence, and returns release disposition to its accountable human. App, PEC or another client's implementation does not transfer runtime ownership to that client. Root retains repository governance and cross-project coordination, not permanent runtime semantic or product-release custody. | PROSPECTIVE — exact runtime migration successor; inactive until accepted effect |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-024,docs/PRD_ROOT.md,lines 446..447 exclusive,"#### D-GOV-20 shared-runtime architecture — verbatim boundary transcription
+","#### Shared-runtime architecture — exact ownership successor with retained boundary transcription
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-025,docs/PRD_ROOT.md,lines 448..449 exclusive,"The following statements are **TRANSCRIBED** byte-for-byte from
+","The unchanged statements below retain their source authority in
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-026,docs/PRD_ROOT.md,lines 453..454 exclusive,"Their authority is D-GOV-20, not this candidate.
+","Item 1 is the exact prospective migration replacement; unchanged statements retain D-GOV-20 authority and any actual later amendments. The migration candidate itself is not an owner act.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-027,docs/PRD_ROOT.md,lines 455..456 exclusive,"1. Chirality’s executable agent harness becomes a root-owned `runtime/` workspace with provider-neutral contracts, orchestration, daemon, client, CLI, and safe engine adapters.
+","1. Chirality's executable agent harness is the projects/chirality-runtime product workspace with provider-neutral contracts, orchestration, daemon, client, CLI and safe engine adapters. The runtime project owns product semantics, implementation and release evidence; Root owns shared governance and instruction policy. Items 2–10 and security, residency, preserved-authority, exclusions and implementation gates remain subject to their existing later accepted amendments; changing the location and owning project supplies no additional capability.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-028,docs/PRD_ROOT.md,lines 481..482 exclusive,"| **D-7** | Root-product development runs through a governed loop with a session-init contract, a deterministic standing-plan pointer, and an append-only receipts log. **Coordination surfaces carry no authority merely because they exist**; on disagreement with a live source, the live source governs and the delta is recorded. | TRANSCRIBED — `execution/_Coordination/LOOP_INIT.md`; `CURRENT_WORKPLAN.md`; standing workplan §Authority basis |
+","| **D-7** | Root governance runs through its session-init contract, deterministic intent-plan pointer and append-only receipts. Coordination records do not acquire authority from existence. Current owner steers and accepted instruments govern; discrepancies are recorded. The runtime project maintains its own accepted product entry and evidence. | PROSPECTIVE — exact runtime migration successor; inactive until accepted effect |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-029,docs/PRD_ROOT.md,lines 486..487 exclusive,"| **D-12** | Developmental machinery is **product scope**, not surrounding process — a legitimate target of decomposition, deliverables, and acceptance rather than exempt overhead. | CLARIFIED — interpretation of §4.1 against D-GOV-21 packet §5.3 (""these guards are preconditions, not future tooling"") |
+","| **D-12** | Developmental machinery is substantive governed work, with an accountable owner, declared scope, evidence and acceptance; it is not exempt overhead. Root instruction/tool changes use M2/G4 tranches and retained control duties. Project developmental products use their accepted product scope. No Root product decomposition is required merely to maintain shared governance. | PROSPECTIVE — migration successor; requires exact owner acceptance and effective application |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-030,docs/PRD_ROOT.md,lines 489..490 exclusive,"| **D-15** | The first root decomposition demonstrates **coverage across all four categories** of §4.1 — each category has decomposition coverage or a recorded, reasoned deferral. This constrains coverage demonstration only; it does **not** prescribe the partition (§4.3). | **PROPOSED** — strikeable without affecting any other commitment |
+","| **D-15** | All four functional categories in §4.1 have traceable coverage in the 46 governance controls or a recorded reasoned unresolved disposition, with all seven runtime responsibilities accounted for in the separately accepted runtime project. This replaces only the first-Root-decomposition coverage predicate; it neither declares controls satisfied nor waives any project decomposition pipeline. | PROSPECTIVE — migration successor; requires exact owner acceptance and effective application |
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-031,docs/PRD_ROOT.md,lines 546..547 exclusive,"## 6. Self-application and concurrency direction
+","## 6. Governance self-maintenance and concurrency direction
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-032,docs/PRD_ROOT.md,lines 548..549 exclusive,"### 6.1 The ruled sequence and current disposition
+","### 6.1 Historical materialization and prospective retirement
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-033,docs/PRD_ROOT.md,lines 550..559 exclusive,"**[CLARIFIED — current disposition of the D-GOV-21 §6 sequence]**
+D-GOV-22 closed the PRD-adoption stage. D-GOV-25 accepted the first Root
+decomposition and released Root Project Setup; its subsequent owner-gated
+materialization created the Root `PKG-*` / `DEL-*` structure behind G0–G4.
+D-GOV-27 records all 45 deliverables at `INITIALIZED`. The sequence is no
+longer a pending materialization fence, but its containment contract and
+guards remain standing requirements for Root self-development. Rev 6 enters
+through the same rule: product-requirement adoption first, then separately
+gated SCOPE_CHANGE.
+","D-GOV-22/25/27 and later accepted scope amendments remain the historical authority for Root product adoption and materialization. Their historical counts and lifecycle observations are not rewritten. After exact successor acceptance, all 53 source carriers and six parent packages retire non-destructively; source IDs remain reserved and files remain evidence. Exactly seven runtime carriers and 46 accepted governance duties must exist before source retirement becomes effective. No Root product queue is reactivated to perform the migration.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-034,docs/PRD_ROOT.md,lines 560..561 exclusive,"### 6.2 Self-application discipline
+","### 6.2 Governance self-maintenance discipline
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-035,docs/PRD_ROOT.md,lines 562..568 exclusive,"**[TRANSCRIBED]** What makes self-application safe rather than circular is
+that a root node may not consume a capability produced by root development
+before that capability was accepted through the basis or an explicitly
+accepted predecessor (falsifier F3). Deterministic guards and human gates
+supply containment; **neither supplies authorization** — the M2 gate ""does not
+itself grant authorization"" (K-AUTH-1).
+","Root instruction/tool work remains within declared and independently authorized tranches. No run may consume its newly produced capability as an accepted governing basis before accountable acceptance. Frozen basis, scope checks, independent evidence and human gates remain mandatory where applicable; neither containment nor G4 supplies authorization. Until effective transfer and retirement, Root retains temporary custody under the current accepted instruments. The proposed governance mode is not a fallback around an unready product guard.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-036,docs/PRD_ROOT.md,lines 598..600 exclusive,"**[TRANSCRIBED]** Four accepted mechanisms make concurrent root development
+safe: fine-grained write ownership with disjoint or serialized targets (M1);
+","**[PROSPECTIVE scope reconciliation]** The four accepted mechanisms continue to constrain Root governance work: fine-grained write ownership with disjoint or serialized targets (M1);
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-037,docs/PRD_ROOT.md,lines 622..624 exclusive,"framework governance. No variant inherits the D-GOV-21 root exception, and the
+exception extends to no other working root. Domain engines own authoritative
+","framework governance. The retired D-GOV-21 Root product exception extends to no project; explicitly governed in-tree v1 registration and external v2 registration retain their distinct containment contracts. Domain engines own authoritative
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-038,docs/PRD_ROOT.md,lines 680..682 exclusive,"**[TRANSCRIBED — D-GOV-21 packet §9]** Falsifiers of the *containment* of
+self-application, adopted here as product-level falsifiers of ID-1:
+","**[PROSPECTIVE successor observation contracts]** The six stable falsifier IDs remain reserved. Historical findings remain attached to their original subjects; no replacement relabels a finding PASS.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-039,docs/PRD_ROOT.md,lines 683..704 exclusive,"- **F1 — Containment failure.** Root self-development corrupts a shared
+  instruction surface out from under a situated loop in a way the superseded
+  separation would have prevented, and M1–M6/G0–G4 did not detect or gate it.
+- **F2 — Loop bypass.** Root development proceeds outside the root governed
+  loop — work materialized without a current workplan pointer, receipts, and
+  the M2/G4/M6 machinery engaged.
+- **F3 — Self-authorization.** A root node consumes a capability produced by
+  root development before that capability was accepted.
+
+**[PROPOSED in Rev 5; accepted by D-GOV-22]** Falsifiers of the *fidelity* of
+self-application:
+
+- **F4 — Requirements drift.** At the close of the first root decomposition,
+  an accepted scope unit cannot be traced to a PRD requirement or objective,
+  or a PRD requirement or objective has neither coverage nor a recorded
+  deferral.
+- **F5 — Concordance failure.** The adopted PRD and `docs/DIRECTIVE.md` §1
+  come to say incompatible things about what the root product is, without a
+  recorded superseding act on one of them.
+- **F6 — Label decay.** A provenance label changes without a superseding
+  instrument, or a PROPOSED item is relied upon as though adopted.
+","- **F1 — Containment failure.** A Root governance/instruction change corrupts the shared instruction basis relied on by a project, and the applicable declared-scope/frozen-basis/G0–G4/M6 controls fail to detect or gate the change.
+- **F2 — Loop bypass.** Root governance work proceeds without the standing session-init, deterministic intent-plan pointer, append-only receipts and applicable independently authorized M2/G4/M6 change machinery.
+- **F3 — Self-authorization.** A Root governance run consumes its newly produced capability as accepted governing basis before that capability's actual acceptance.
+- **F4 — Requirements drift.** An accepted retained duty has no traceable governance successor or explicit unresolved disposition, or a transferred runtime scope row cannot be traced to its accepted project charter. Historical first-decomposition coverage remains evidence; it does not substitute for this current map.
+- **F5 — Concordance failure.** The accepted Root charter and DIRECTIVE §1 contradict each other about ownership or identity without an explicit superseding act.
+- **F6 — Label decay.** A provenance label changes without a superseding instrument, or an unaccepted proposed item is relied upon as adopted.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-040,docs/PRD_ROOT.md,lines 707..715 exclusive,"**[PROPOSED in Rev 5; accepted by D-GOV-22]** Release is a **separately
+human-gated lifecycle judgment** over
+whether the current product state may be released — the third judgment of
+§4.2. It draws on **both** operative evidence and developmental evidence, and
+is informed by validation results, decomposition coverage, and guard state.
+**None of those releases Chirality Root mechanically**, and none of them
+constitutes the judgment. Release occurs only when the owner performs the
+applicable explicit release act.
+","**[PROSPECTIVE ownership successor; human gate retained]** Root instruction/tool publication and runtime product release are separately scoped human judgments. Root governance retains universal release policy and its own instruction-release assurance (GOV-06-07); the runtime project assembles its product release evidence and proposal. Each accountable human judges the actual release subject using operative and developmental evidence, applicable coverage and guard state. No CI result, migration, merge, control record or owner transfer is itself release approval. Universal K-AUTH-1 and existing client-specific release gates remain unchanged.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-041,docs/PRD_ROOT.md,lines 730..731 exclusive,"## 9. Owner decisions — all five RULED
+","## 9. Historical owner decisions — five predecessor decisions RULED
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-042,docs/PRD_ROOT.md,lines 1076..1077 exclusive,"### 10.5 Current document control — Revision 8
+","### 10.5 Predecessor document control — Revision 8 (current until successor effect)
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-043,docs/PRD_ROOT.md,lines 1088..1088 exclusive,,"
+## Prospective successor revision record
+
+**PRD §10 prospective document control.** On actual acceptance/application, add a new current revision record identifying this exact amendment and applied bytes; preserve Revision 8 and its acceptance history. Regenerate the current concordance and source-currency derivatives against the accepted successor corpus. Until that act the current accepted PRD remains Revision 8. This candidate does not silently relabel old PROPOSED-origin obligations or erase their provenance.
+
+
+## Migration revision control — prospective, not adopted
+
+The preceding historical adoption records retain their original dates, labels and claims. They do not supply acceptance for this revision. This candidate is the exact prospective successor charter after effective transfer; pending acceptance, Revision 8 remains current. The final owner act must bind the reviewed candidate commit and manifest digest, preserve the prior immutable PRD bytes in their accepted snapshot/Git lineage, and separately identify publication and effective application. No acceptance/publication/effect identifier is fabricated here. Current provenance counts, source-currency and concordance derivatives must be regenerated against accepted successor bytes; old annex counts describe their named predecessor revisions only. D-14 remains an unsatisfied tool/evidence duty where its implementation is absent. Applying these postimages requires the same-tranche M2/G4 manifest, routed notices, allowed export regeneration and exact owning gates.
+",CANON/POSTIMAGES/docs/PRD_ROOT.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-044,docs/DIRECTIVE.md,lines 2..2 exclusive,,"
+> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-045,docs/DIRECTIVE.md,lines 13..14 exclusive,"Chirality Root is the canonical human-governed application environment and generative operating form for governed professional knowledge work. It contains a filesystem-native agent operating system together with the normative basis, developmental machinery, evidence, and human judgment by which that operating system is formed and governed (RD-1 ruled genus, adopted through D-GOV-22). It is maintained as the public canonical instruction and product repository whose root is the **shared instruction surface** — a release-managed agent operating system (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`; enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27) — that serves separately versioned project and domain **working roots**, explicitly governed in-tree projects, and — under the D-GOV-21 exception — the root product's own working root at the repository root. The same instruction surface is also packaged as a desktop harness that runs agents against a user-selected working folder.
+","Chirality Root is the canonical human-governed instruction and governance repository for governed professional knowledge work. It maintains the release-managed agent operating system, normative basis, change machinery, evidence and accountable human decisions that serve project and domain working roots. Runtime product ownership belongs to projects/chirality-runtime. Root governance and instruction self-maintenance use separately authorized repository change scopes; historical Root product evidence remains preserved after its active product exception is retired.
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-046,docs/DIRECTIVE.md,lines 76..77 exclusive,"The instruction root (release-managed agent operating system) is physically separated from the working root (user-controlled project state). This ensures that the rules governing agent behavior are stable across projects while execution remains fully filesystem-native. See §2.6. The root product itself is the one governed exception: its working root is the repository root (D-GOV-21).
+","Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-047,docs/DIRECTIVE.md,lines 199..200 exclusive,"The system separates the **instruction root** (the release-managed agent operating system) from the **working root** (the project state agents read and write) — with the single D-GOV-21 exception that the root product's working root is the repository root:
+","Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-048,docs/DIRECTIVE.md,lines 202..203 exclusive,"- **Working root:** the filesystem location where agents execute and create or update governed state. One instruction root serves **many** separately versioned working repositories, selected project/domain packs, explicitly governed in-tree projects, or user-selected folders under the desktop harness. Under D-GOV-21, the repository root is additionally the working root for the root product itself.
+","- **Working root:** the selected project/domain directory in which governed product state is read and written. Explicit in-tree v1 and disjoint external v2 registration retain their own validated containment contracts. Root governance changes use separately authorized scopes, not continuing product materialization.
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-049,docs/DIRECTIVE.md,lines 204..205 exclusive,"This preserves a single stable agent operating system across many projects and domains while keeping execution fully filesystem-native in user-controlled state. A working root MUST NOT be located inside the instruction root. Exception (D-GOV-21): the repository root is itself the working root for development of the root product, with root `execution/` as its execution root, under the replacement containment contract of D-GOV-21. No other working root may be located inside the instruction root.
+","Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-050,docs/DIRECTIVE.md,lines 300..302 exclusive,"| Instruction root separate from working root (root product excepted per D-GOV-21) | Agent instructions are release-managed; project data is user-controlled; root-product development excepted per D-GOV-21 |
+| One shared instruction root serves many working roots | A single release-managed agent OS governs many projects and domains without per-workspace instruction drift; the instruction root additionally serves as the root product's own working root (D-GOV-21) |
+","| Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |
+| Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-051,docs/DIRECTIVE.md,lines 318..320 exclusive,"Under D-GOV-20, Chirality’s executable agent harness is a root-owned
+`runtime/` workspace. One opt-in per-user daemon owns engines, credentials,
+","At effective transfer, Chirality’s executable agent harness is owned by the
+`projects/chirality-runtime/` product project. This prospectively supersedes only
+D-GOV-20’s Root ownership/location proposition; Root retains shared governance.
+One opt-in per-user daemon owns engines, credentials,
+",CANON/POSTIMAGES/docs/DIRECTIVE.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-052,docs/SPEC.md,lines 2..2 exclusive,,"
+> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-053,docs/SPEC.md,lines 32..33 exclusive,"Chirality runs in deployment shapes that share one path model: root-product development in this repository, registered project or domain checkouts, and the desktop harness pointed at a user-selected folder. The instruction root and writable checkout may be the same repository only for explicitly governed in-tree work; external working repositories keep them physically disjoint.
+","Chirality supports separately scoped Root governance/instruction changes, explicitly governed in-tree v1 projects, registered external v2 projects/domains and desktop-selected working folders. Root governance is not a continuing product working root after accepted retirement. Instruction reads and write containment follow the chosen deployment dialect.
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-054,docs/SPEC.md,lines 44..45 exclusive,"`REPO_ROOT` is the active writable Git checkout. For an external project or domain repository it is that repository, not the Chirality repository supplying instructions. In Chirality root-product development, `REPO_ROOT` is also the instruction root under the D-GOV-21 exception.
+","`REPO_ROOT` is the active writable Git checkout. Root governance instruction changes act on the repository only under separate explicit scope/M2 authority. Product WORKING_ROOT remains the selected project directory; external projects use their own checkout with disjoint runtime-declared instructions.
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-055,docs/SPEC.md,lines 50..51 exclusive,"`WORKING_ROOT` is the project or domain workspace an agent is scoped to — a selected pack in an external repository, an explicitly governed in-tree project, or the user-selected folder under the desktop harness. It is where governed project truth lives (`{EXECUTION_ROOT}`, tool roots, deliverables, decomposition state). For the root product only, `WORKING_ROOT` is `REPO_ROOT` (D-GOV-21).
+","`WORKING_ROOT` is the selected project or domain workspace, explicitly governed in-tree project, or desktop-selected folder. It contains governed product truth and remains subject to ScopePath containment. Historical Root product execution is retained evidence after accepted retirement; Root governance maintenance uses separately authorized repository scopes.
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-056,docs/SPEC.md,lines 54..55 exclusive,"- A working root MUST NOT be the shared instruction surface itself, except that the root product's working root is the repository root under D-GOV-21; agents operating in any working root MUST NOT write to `agents/`, `skills/`, `tools/`, or root `docs/` except through an explicit, separately-authorized repo-wide instruction change (root-product instruction changes obtain that authorization through an independently owner-authorized, human-gated repo-wide change tranche satisfying the D-GOV-21 M2 containment and evidence conditions; the M2 gate does not itself grant authorization).
+","- Project writes MUST remain within the selected WORKING_ROOT. Explicit in-tree v1 instruction references may resolve outside it, but never grant instruction writes. External v2 instruction roots MUST be physically disjoint. Root instruction changes require independently owner-authorized M2/G4 tranches; containment itself grants no authority.
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-057,docs/SPEC.md,lines 80..82 exclusive,"| `{INSTRUCTION_ROOT}` | runtime-declared | the shared instruction surface; the Chirality checkout, packaged app resources, or `REPO_ROOT` for root-product development |
+| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the selected project/domain pack or user-selected folder; for the root product only, `REPO_ROOT` (D-GOV-21) |
+","| `{INSTRUCTION_ROOT}` | runtime-declared | the shared instruction surface; the Chirality checkout, packaged app resources, or the separately governed repository instruction root |
+| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the selected project/domain pack or user-selected folder; Root governance maintenance is separately scoped and is not project product execution |
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-058,docs/SPEC.md,lines 99..100 exclusive,"An execution instance is a self-contained project workspace rooted at `{EXECUTION_ROOT}/` (which resolves `WORKING_ROOT`-relative; see §0.2–0.3). The execution root contains packages (work partitions) and tool roots (derived/operational outputs). The root product's execution instance is `REPO_ROOT/execution` (D-GOV-21).
+","An execution instance is a self-contained project workspace rooted at `{EXECUTION_ROOT}/` (which resolves `WORKING_ROOT`-relative; see §0.2–0.3). The execution root contains packages (work partitions) and tool roots (derived/operational outputs). After effective retirement, `REPO_ROOT/execution` retains Root governance coordination and historical product evidence only. It is not eligible for new active Root package/deliverable materialization. Source IDs remain reserved; accepted retirement maps exclude them from active product selection.
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-059,docs/SPEC.md,lines 886..887 exclusive,"## 14. Root-Owned Shared Runtime
+","## 14. Shared Runtime Product and Governance Boundary
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-060,docs/SPEC.md,lines 888..889 exclusive,"The root `runtime/` workspace contains versioned contracts, provider-neutral
+","The `projects/chirality-runtime/` project owns versioned contracts, provider-neutral
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-061,docs/SPEC.md,lines 995..995 exclusive,,"
+## Prospective Root execution registration successor
+
+Root execution/ hosts governance coordination, successor assurance records and historical product evidence. It is not eligible for new active Root PKG/DEL materialization after effective product retirement. Ordinary project execution roots retain SPEC's package/deliverable and lifecycle contracts. Product retirement is tracked in the accepted archive/disposition register and excluded from active scanners; no source directory is deleted and IDs remain reserved.
+
+
+### Root historical-product mode — migration-specific extension
+
+After the exact transfer/retirement act, a Root adapter may declare governance-only mode only with the accepted 53-carrier/104-scope/six-parent disposition register and 46 control references. RETIRED is a migration-specific historical Root registration value, never an active project lifecycle value. No source file is deleted. Root active scanners reject these historical carriers as dispatch targets and reject new Root product materialization. Ordinary project lifecycle and ScopePath checks remain unchanged. Governance/instruction tool invocations require explicit authorized repository scopes and their own containment contract; this extension grants no project write escape and no implicit WORKING_ROOT=REPO_ROOT fallback. Successor G0–G3 must enforce this contract before the mode becomes usable; G4 remains mandatory on its instruction surfaces.
+",CANON/POSTIMAGES/docs/SPEC.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-062,docs/TYPES.md,lines 2..2 exclusive,,"
+> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
+",CANON/POSTIMAGES/docs/TYPES.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md
+CANON-063,docs/TYPES.md,lines 50..53 exclusive,"| **Instruction Root** (`INSTRUCTION_ROOT`) | The shared, release-managed agent operating system — `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27). Runtime-declared through `CHIRALITY_INSTRUCTION_ROOT` for V2 external projects; the app bundle in desktop builds; `= REPO_ROOT` for root-product development (see `DIRECTIVE.md` §2.6). |
+| **Working Root** (`WORKING_ROOT`) | The selected writable project or domain pack within `REPO_ROOT`, an explicitly governed in-tree project, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. For the root product only, the repository root is its own working root (D-GOV-21). |
+| **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. For the root product, `REPO_ROOT/execution` (D-GOV-21). |
+","| **Instruction Root** (`INSTRUCTION_ROOT`) | The shared, release-managed agent operating system — `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27). Runtime-declared through `CHIRALITY_INSTRUCTION_ROOT` for V2 external projects; the app bundle in desktop builds; the separately governed repository instruction root for Root instruction maintenance (see `DIRECTIVE.md` §2.6). |
+| **Working Root** (`WORKING_ROOT`) | The selected writable project or domain pack within `REPO_ROOT`, an explicitly governed in-tree project, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. Root governance maintenance is separately scoped and is not a continuing product working root after accepted retirement. |
+| **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. Root execution/ retains governance coordination and historical product evidence; project execution roots own active product state. |
+",CANON/POSTIMAGES/docs/TYPES.md,Exact owner acceptance plus effective propagation,SUCCESSOR_INSTRUMENT.md

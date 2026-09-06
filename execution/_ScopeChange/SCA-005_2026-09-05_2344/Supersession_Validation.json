@@ -1,0 +1,35 @@
+{
+  "generation_command": [
+    "python3",
+    "tools/coordination/accumulate_supersession_map.py",
+    "--prior-map",
+    "execution/_ScopeChange/SCA-002_2026-07-29_0800/Supersession_Map.csv",
+    "--delta",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/Supersession_Delta.csv",
+    "--output-map",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/Supersession_Map.csv"
+  ],
+  "exit_code": 0,
+  "stdout": "Wrote supersession map: execution/_ScopeChange/SCA-005_2026-09-05_2344/Supersession_Map.csv\nRows: 245\nFindings: 0 total, 0 blocking\n",
+  "stderr": "",
+  "LF_normalization": "New candidate serialization only; no historical files changed",
+  "check_command": [
+    "python3",
+    "tools/coordination/accumulate_supersession_map.py",
+    "--prior-map",
+    "execution/_ScopeChange/SCA-002_2026-07-29_0800/Supersession_Map.csv",
+    "--delta",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/Supersession_Delta.csv",
+    "--output-map",
+    "/private/tmp/root-runtime-migration-20260905/gate3/scope/map-check.csv",
+    "--check-map",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/Supersession_Map.csv"
+  ],
+  "check_exit_code": 0,
+  "check_stdout": "Wrote supersession map: /private/tmp/root-runtime-migration-20260905/gate3/scope/map-check.csv\nRows: 245\nFindings: 0 total, 0 blocking\n",
+  "prior_map_sha256": "fbce84915dc72f188f6860ae49a5f56acfaa5c1a6ec4158f4ceec1f92154c13e",
+  "candidate_only": true,
+  "SCA004_missing_map": "preserved baseline historical gap; no absent bindings invented",
+  "delta_rows": 245,
+  "bound_actions": 184
+}

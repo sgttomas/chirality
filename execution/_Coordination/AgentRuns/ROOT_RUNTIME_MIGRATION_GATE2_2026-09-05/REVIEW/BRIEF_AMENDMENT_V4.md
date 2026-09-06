@@ -1,0 +1,2 @@
+# Brief amendment v4 — explicit D13 publication choice
+Parent authorizes ADDENDUM_REVIEW sealed df29945929e599a8f5c49138fa65569436f36fa83a41bd7be3d3db5bec5e6c58 as additional explicit owner choice, without declaring prior accepted publications invalid. Review four replacement postimages, named immutable actual Revision8 copy, and integration bindings. Base275-file subject stays unchanged; selector supersedes only explicitly named files. No live edits, acceptance, publication or write-scope extension.

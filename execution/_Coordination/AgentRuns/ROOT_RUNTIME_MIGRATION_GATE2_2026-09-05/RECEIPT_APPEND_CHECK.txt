@@ -1,0 +1,1 @@
+Prior ledger byte prefix preserved; next free receipt was 139; exactly one Receipt 139 appended.

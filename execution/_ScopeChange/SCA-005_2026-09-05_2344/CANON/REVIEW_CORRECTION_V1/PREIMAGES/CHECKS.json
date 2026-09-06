@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Gate2 source and seal hashes verified during build",
+    "four live source hashes unchanged",
+    "all journal operations reconstruct full exact postimages",
+    "four deterministic gzip diffs roundtrip",
+    "46 referenced control hashes match",
+    "104 unique scope predicates",
+    "LF-only CSV",
+    "D8 merge and D14 source-currency rows byte-identical"
+  ],
+  "calibration": "Mechanical packaging checks only; parent independent semantic review and actual owner gates remain."
+}

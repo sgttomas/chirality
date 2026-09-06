@@ -1,0 +1,60 @@
+{
+  "seal": "df29945929e599a8f5c49138fa65569436f36fa83a41bd7be3d3db5bec5e6c58",
+  "errors": [],
+  "changes": [
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "rows": 104,
+      "delta": [
+        {
+          "row": 46,
+          "key": "ExactSuccessorPredicate",
+          "old": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; the adopted bytes are never overwritten at their path and each revision is a new attributable act.",
+          "new": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; immutable accepted revision artifacts are never overwritten. The canonical docs/PRD_ROOT.md placement may be replaced only after its exact immediate predecessor is preserved at a named immutable revision path and the owner instrument binds prior and successor hashes; the migration predecessor is execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/ACCEPTED_ROOT_PRD_REV8.md. Each revision remains a new attributable act; no other immutable artifact path gains this exception."
+        },
+        {
+          "row": 46,
+          "key": "SuccessorPredicateSource",
+          "old": "CANON/SCOPE_PREDICATE_SUCCESSORS.csv row SOW-047",
+          "new": "execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/D13_Amendment.md exact SOW-047 successor"
+        }
+      ]
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/SCOPE_104_SUCCESSOR_MAP.csv",
+      "rows": 104,
+      "delta": [
+        {
+          "row": 46,
+          "key": "ReplacementRule",
+          "old": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; the adopted bytes are never overwritten at their path and each revision is a new attributable act.",
+          "new": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; immutable accepted revision artifacts are never overwritten. The canonical docs/PRD_ROOT.md placement may be replaced only after its exact immediate predecessor is preserved at a named immutable revision path and the owner instrument binds prior and successor hashes; the migration predecessor is execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/ACCEPTED_ROOT_PRD_REV8.md. Each revision remains a new attributable act; no other immutable artifact path gains this exception."
+        },
+        {
+          "row": 46,
+          "key": "ExactPredicateSource",
+          "old": "CANON/SCOPE_PREDICATE_SUCCESSORS.csv SOW-047",
+          "new": "execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/D13_Amendment.md exact SOW-047 successor"
+        }
+      ]
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SCOPE_PREDICATE_SUCCESSORS.csv",
+      "rows": 104,
+      "delta": [
+        {
+          "row": 46,
+          "key": "ExactSuccessorPredicate",
+          "old": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; the adopted bytes are never overwritten at their path and each revision is a new attributable act.",
+          "new": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; immutable accepted revision artifacts are never overwritten. The canonical docs/PRD_ROOT.md placement may be replaced only after its exact immediate predecessor is preserved at a named immutable revision path and the owner instrument binds prior and successor hashes; the migration predecessor is execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/ACCEPTED_ROOT_PRD_REV8.md. Each revision remains a new attributable act; no other immutable artifact path gains this exception."
+        },
+        {
+          "row": 46,
+          "key": "CanonAnchor",
+          "old": "Retained accepted source requirement; original qualified historical identity",
+          "new": "PRD \u00a75.3 D-13 as amended by ADDENDUM_REVIEW/D13_Amendment.md"
+        }
+      ]
+    }
+  ]
+}

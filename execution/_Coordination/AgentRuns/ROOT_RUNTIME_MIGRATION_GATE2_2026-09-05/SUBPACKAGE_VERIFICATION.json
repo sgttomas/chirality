@@ -1,0 +1,12 @@
+[
+  {
+    "folder": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON",
+    "seal_sha256": "3f94ad5d303c0d8e2f9e71deb2ea29c49b5cd3ffe0ecb427957a1f81c0a53d00",
+    "all_entries_verified": true
+  },
+  {
+    "folder": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME",
+    "seal_sha256": "91788693581ac490b7b6489d3d08df27ca34a8503beed6e5bd95fbfba5f0b899",
+    "all_entries_verified": true
+  }
+]
