@@ -104,18 +104,22 @@ describe("actual two-job standalone runtime", () => {
     expect((await client.runDelegatedTurn("project", compatibility, { turnId: "new-generation", prompt: "again" })).terminal.outcome).toBe("completed");
     await daemon.stop(); await next.stop();
   });
-  it("refuses a forged or nonprivate supervisor credential at daemon startup", async () => {
+  it.each(["forged", "nonprivate"] as const)("refuses a %s supervisor credential at daemon startup", async variant => {
     const f = await fixture(); await launch("supervisor", f.configPath);
     const path = join(f.config.runtimeDirectory, f.config.supervisorCredential);
     const original = await readFile(path, "utf8");
-    const forged = JSON.parse(original); forged.credential.token = "a".repeat(64);
-    await writeFile(path, JSON.stringify(forged), { mode: 0o600 });
-    const rejected = await launch("daemon", f.configPath, false);
-    expect(await rejected.exit).toMatchObject({ code: 1 });
-    await writeFile(path, original, { mode: 0o600 }); await chmod(path, 0o644);
-    const nonprivate = await launch("daemon", f.configPath, false);
-    expect(await nonprivate.exit).toMatchObject({ code: 1 });
-    await chmod(path, 0o600);
+    try {
+      if (variant === "forged") {
+        const forged = JSON.parse(original); forged.credential.token = "a".repeat(64);
+        await writeFile(path, JSON.stringify(forged), { mode: 0o600 });
+      } else {
+        await chmod(path, 0o644);
+      }
+      const rejected = await launch("daemon", f.configPath, false);
+      expect(await rejected.exit).toMatchObject({ code: 1 });
+    } finally {
+      await writeFile(path, original, { mode: 0o600 }); await chmod(path, 0o600);
+    }
   });
   it("does not rotate a live supervisor credential when a duplicate job is refused", async () => {
     const f = await fixture(); await launch("supervisor", f.configPath);
