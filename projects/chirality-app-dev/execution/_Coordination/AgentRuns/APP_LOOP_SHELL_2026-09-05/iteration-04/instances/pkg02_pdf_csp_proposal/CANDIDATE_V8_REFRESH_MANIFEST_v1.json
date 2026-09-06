@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+      "sha256": "ad894d2c5b0ffba72f129992f1db73f009434841b350efc720c32c8c54ed9378",
+      "bytes": 3303
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v8.json",
+      "sha256": "68682296be124eb88f5f56fc6a73a9da9779bcd846365597e657a1716f9d29ca",
+      "bytes": 4793
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision8/REVIEW_RETURN.md",
+      "sha256": "71c759c8d28683e8ba394eef901973a51a545d048b8e7c904f1a2a9fb58009ec",
+      "bytes": 10552
+    }
+  ]
+}

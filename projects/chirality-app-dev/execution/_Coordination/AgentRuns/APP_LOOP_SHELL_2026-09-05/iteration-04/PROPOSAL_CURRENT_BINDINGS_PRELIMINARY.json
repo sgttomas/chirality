@@ -1,0 +1,30 @@
+{
+  "rows": [
+    {
+      "id": 120,
+      "row": "| D-APP-120 | Separately authorize omitted T2 woven presentation seam and choose no-folder capability routing or defer | DEL-02-01-V3-01 App seam; Root no-folder contract requires separate owning instrument | AWAITING_RULING | OwnerCaseSelection NONE; proposal only; EffectStatus HELD; verifier PENDING | `execution/_Coordination/_DECISIONS/D-APP-120_PACKET_T2_NO_FOLDER_AND_WOVEN_SEAM_2026-09-05.md` |",
+      "sha256": "4dde44c2222d4e40e35fa3aca8dd7787b25b9f7cfbfe21ef2987eebb7192cf3c"
+    },
+    {
+      "id": 121,
+      "row": "| D-APP-121 | Bounded same-origin built-in PDF CSP seam or explicit temporary handoff defer | DEL-02-03-V3-01; DEL-09-06 security interface | AWAITING_RULING | OwnerCaseSelection NONE; proposal only; EffectStatus HELD; IndependentVerifier PENDING | `execution/_Coordination/_DECISIONS/D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md` |",
+      "sha256": "dff5f54420f6d28ba9ff7e89f50b53482e982742edca74ec8265dfb7fdc8e477"
+    }
+  ],
+  "test_only_refresh_manifests": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/FINAL_TEST_ONLY_BINDING_MANIFEST_v1.json",
+      "sha256": "03d54570e06b2d6b5afffaebb5cd9217e136cd2ca7329c36e22b52a91d6745e7",
+      "entries": 2,
+      "mismatches": []
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_TEST_ONLY_BINDING_MANIFEST_v1.json",
+      "sha256": "5c3330bd518a66b4782bcf846e3dfd967999472208729254d93e068ac6ff7ebb",
+      "entries": 2,
+      "mismatches": []
+    }
+  ],
+  "effect": "Proposal owner selections NONE; no implementation/policy/routing grant; prior versions preserved",
+  "status": "Preliminary finalfreeze waits actual returns"
+}

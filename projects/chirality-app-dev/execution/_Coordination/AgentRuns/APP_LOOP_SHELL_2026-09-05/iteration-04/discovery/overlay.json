@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "git",
+    "ls-tree",
+    "-r",
+    "--name-only",
+    "HEAD",
+    "projects/chirality-app-dev/loop/"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "started_at": "2026-09-05T22:00:23.445065+00:00",
+  "ended_at": "2026-09-05T22:00:23.450016+00:00",
+  "exit_code": 0,
+  "stdout": "projects/chirality-app-dev/loop/LOOP_INIT.md\nprojects/chirality-app-dev/loop/LOOP_RECEIPTS.md\n",
+  "stderr": "",
+  "stdout_sha256": "345dd627e4b76e118e4f42ab8f23853740bc4c9e538f03ac8ba31f3fa9b1ace2",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

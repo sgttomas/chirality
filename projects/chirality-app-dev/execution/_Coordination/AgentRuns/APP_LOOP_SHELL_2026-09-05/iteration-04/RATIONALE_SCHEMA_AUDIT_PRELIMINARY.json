@@ -1,0 +1,635 @@
+{
+  "status": "STRUCTURAL_PRESENCE_CHECK_ONLY_NOT_GOVERNED_VERDICT",
+  "items": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/MANAGER_ACTIVATION_CANDIDATE_v2.md",
+      "sha256": "784d956def940648f879ee62c30e2c07becad8c6eb10b49621a85b6fe785937e",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING required fresh governed review; no verifier verdict exists yet; not NOT_REQUIRED."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/PROPOSED_PLAN_v1.md",
+      "sha256": "403d9bc282d6deed1b61a0c17b2d5700acec891c66b2351559fb68a4fc631b42",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING required fresh governed verifier; no COMMIT-SAFE/BLOCK return exists yet, so effect remains HELD."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/FINAL_MANAGER_FANIN_v1.md",
+      "sha256": "ac55f299f945f58aaf9036fc3c527b29bcaae434ae9c6720f0588d49a62d443b",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING required parent fresh governed review of proposal package. Independent source reviewer /root/pkg02/t3_review is separately backchecking final product candidate; neither outcome is anticipated."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/MANAGER_DISPATCH_RATIONALE_v1.md",
+      "sha256": "feeb707194af4b6403324c1f5c0e6608004ae9c0ecd8fda353aba090d7ed514e",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING parent fresh governed refutation; no COMMIT-SAFE or owner selection exists."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/RATIONALE.md",
+      "sha256": "122b7f3e934d1ea9cedb30bc7882cdcffa3129946753ed8c8440bd2ebcc556a9",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING \u2014 fresh governed independent verification required before effects; no COMMIT-SAFE or PASS claimed."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_MANAGER_FANIN_v1.md",
+      "sha256": "54955d53cc9eec46890713e39d214cdd108c62ec6f51658847e81b8bde883049",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING required parent fresh governed review of proposal package. Independent source reviewer /root/pkg02/t3_review is separately backchecking final product candidate; neither outcome is anticipated."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/MANAGER_LOCAL_HISTORY_AMENDMENT_v1.md",
+      "sha256": "8c97944c5f9b3a5450d1be420fd00283d7a66b341b0d447bcdcb4d5665fd16dc",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING parent fresh governed COMMIT-SAFE/BLOCK; no verdict yet and no NOT_REQUIRED claim."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/RATIONALE.md",
+      "sha256": "c36612cf054763cfd0854b440158bd1c23541610e876fa77601ee45b08814d5a",
+      "field_counts": {
+        "OwnerStandingApproval": 2,
+        "AgentJudgment": 2,
+        "SelectedOutcome": 2,
+        "JudgedBy": 2,
+        "OwnerCaseSelection": 2,
+        "RejectedAlternatives": 2,
+        "RationaleArtifact": 2,
+        "IndependentVerifier": 2,
+        "EffectStatus": 2,
+        "PreservedGates": 2
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING \u2014 parent must dispatch fresh governed verifier; no return exists or is anticipated as COMMIT-SAFE.",
+        "IndependentVerifier: PENDING \u2014 parent must dispatch fresh governed verifier; no return exists or is anticipated as COMMIT-SAFE."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD",
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/revision-01/RATIONALE.md",
+      "sha256": "ed59f967a23209e934cd8b302f32e766226f6e17f50c8683dc4199414cfed735",
+      "field_counts": {
+        "OwnerStandingApproval": 2,
+        "AgentJudgment": 2,
+        "SelectedOutcome": 2,
+        "JudgedBy": 2,
+        "OwnerCaseSelection": 2,
+        "RejectedAlternatives": 2,
+        "RationaleArtifact": 2,
+        "IndependentVerifier": 2,
+        "EffectStatus": 2,
+        "PreservedGates": 2
+      },
+      "missing_fields": [],
+      "historical": true,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING \u2014 parent must dispatch fresh governed verifier; no return exists or is anticipated as COMMIT-SAFE.",
+        "IndependentVerifier: PENDING \u2014 parent must dispatch fresh governed verifier; no return exists or is anticipated as COMMIT-SAFE."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD",
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/FILE_VIEW_BOUNDARY_RATIONALE_v1.md",
+      "sha256": "d1c105680582007e93dec91fa84d76c479dac2a21a28a29cebefcb110e2ceca3",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING required fresh source reviewer and parent refutation-only governed COMMIT-SAFE/BLOCK; no verdict anticipated or NOT_REQUIRED claim."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/IMAGE_HEADER_DISPOSITION_v1.md",
+      "sha256": "9227004df3480101ebfaa48dc6e663c017990138e82ec07264c7b4dab7355675",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: Initial source reviewer /root/pkg02/t3_review CHANGES_REQUESTED remains historical. Fresh whole-revised-diff review required, including actual final headers; parent governed refutation pending. No PASS implied."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/MANAGER_PLAN_RATIONALE_v1.md",
+      "sha256": "2b0de5c2206a8f548d7c31ced7013cb9c2eec0bb3209c22fe671991039928f11",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING required actual fresh TASK software review and parent fresh refutation-only governed COMMIT-SAFE/BLOCK return. No verdict exists or NOT_REQUIRED calibration is asserted at this pre-dispatch freeze."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/PDF_CSP_FALLBACK_AMENDMENT_v1.md",
+      "sha256": "c07a4a96a5ba3c7ca9b16ccc9286082bc967a792788d29d6d111d237daad2cc8",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING fresh TASK software-code-review over the complete frozen source including this fallback; parent governed refutation remains required. No PASS or owner acceptance is inferred."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/RECONNECT_TEST_AMENDMENT_v1.md",
+      "sha256": "a1c0d56f7a2bd0caa4c51b85241eae97eff4383d46daf304feac703abdd6d5c6",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: prior whole-source revision3 PASS remains historical; actual global suite then exposed two stale test assumptions. Fresh independent full revised-candidate review is required with this failure/preimage visible; parent governed review pending. No anticipated PASS."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVEAL_MENU_PLACEMENT_RATIONALE_v1.md",
+      "sha256": "3fa34895e895443e59a752fcb980cd067d74091bdd6c79036b18d811b6aa99d3",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: /root/pkg02/t3_review full revision3 PASS at reviewer/revision3/REVIEW_RETURN.md SHA502a26289528111f8e7970efd21bce5b4ebaa8b766f68e3dca334770118de26b. Reviewer clarification requested separately; parent final governed refutation and actual native usability proof remain pending. Source PASS is not acceptance."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVIEW_REPAIR_AMENDMENT_v1.md",
+      "sha256": "d9e98bfdf022ba89809554dd2d84f4dff05075b35fee0c2ec903e966bf2d7118",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: /root/pkg02/t3_review reported the clipping and menu findings directly; its full initial review record is pending at amendment freeze. Preserve that initial review as historical. Fresh whole-revised-diff review and parent governed refutation are required before landing; no anticipated PASS."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/T3_COMPLETENESS_AMENDMENT_v1.md",
+      "sha256": "5ce4165f1e50b0c74014715446a4f58225868aa4132b3e1e31aac06b742bf1a4",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: initial /root/pkg02/t3_review CHANGES_REQUESTED at reviewer/REVIEW_RETURN.md; its scope and source findings remain historical. Fresh entire-revised-diff software review and parent governed refutation required; no future verdict inferred."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/NEGATIVE_SENDER_PLAN_v1.md",
+      "sha256": "1e268ec9cd98f365f4a455a53ad82cc081a33abec80de93e1e659713908fe3ad",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: source reviewer /root/pkg02/t3_review has assessed the actual sender boundary; final tests-only backcheck, global gates and parent governed/native evidence review remain pending. No native execution or outcome is anticipated here."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/SETUP_RATIONALE_v1.md",
+      "sha256": "b272ec71aa9558173e47faf6c64577eac3b29ede494fc8c21a0071ca4b5cdbf3",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: PENDING required parent governed COMMIT-SAFE/BLOCK; actual setup output hash verification is factual evidence, not independent verdict."
+      ],
+      "effect_lines": [
+        "EffectStatus: HELD"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/REVIEW_RETURN.md",
+      "sha256": "106b4c76da7436bc57596a3d364cab1895034feeea6864b73c0c3acd09f2d362",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: this fresh source review is the actual independent whole-diff review; parent governed refutation/COMMIT-SAFE remains pending. R1 is not repaired or re-reviewed here."
+      ],
+      "effect_lines": [
+        "EffectStatus: reviewer-record-only effect completed; source and governed landing remain HELD pending repair, fresh review and parent gates."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/_run_records/TASK_RUN_2026-09-05_review.md",
+      "sha256": "d4d821a08a1fefdf650ca55659b7dbace3098f4598478d86b240265d04ea2447",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: this fresh source review is the actual independent whole-diff review; parent governed refutation/COMMIT-SAFE remains pending. R1 is not repaired or re-reviewed here."
+      ],
+      "effect_lines": [
+        "EffectStatus: reviewer-record-only effect completed; source and governed landing remain HELD pending repair, fresh review and parent gates."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/CLARIFICATION_MENU_PLACEMENT.md",
+      "sha256": "0448e89e6b0ef2e454443a2928e3744a86a8fc60d53b8570e24671798233e7c9",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: actual read-only reviewer clarification; parent governed refutation and actual native verification remain pending."
+      ],
+      "effect_lines": [
+        "EffectStatus: clarification record only; no source or accepted target effect."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/REVIEW_RETURN.md",
+      "sha256": "502a26289528111f8e7970efd21bce5b4ebaa8b766f68e3dca334770118de26b",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: this is the actual independent full-source review; parent governed refutation/COMMIT-SAFE still pending, with no invented future outcome or NOT_REQUIRED claim."
+      ],
+      "effect_lines": [
+        "EffectStatus: reviewer records completed only; governed source landing/reliance HELD for parent checks/refutation and full-item residual handling."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/_run_records/TASK_RUN_2026-09-05_review_v3.md",
+      "sha256": "a238cc7ea307bcedb868e36a5dc7de3da0745d842cfb1db5dd8c5baba8a52968",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: this is the actual independent full-source review; parent governed refutation/COMMIT-SAFE still pending, with no invented future outcome or NOT_REQUIRED claim."
+      ],
+      "effect_lines": [
+        "EffectStatus: reviewer records completed only; governed source landing/reliance HELD for parent checks/refutation and full-item residual handling."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision4/REVIEW_RETURN.md",
+      "sha256": "16855e0e23ea21007f93222416683e9336a0ac0217ac356ecaf60f7ddba0a907",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: this is the actual independent whole-candidate reviewer return; parent governed refutation remains pending."
+      ],
+      "effect_lines": [
+        "EffectStatus: reviewer-record effect complete; source landing/reliance HELD for parent verification/refutation; no full-item closure."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision4/_run_records/TASK_RUN_2026-09-05_review_v4.md",
+      "sha256": "71f67057b391604be2813bf294ebe77a75a6f8c2f4a93875faebc1a329919f21",
+      "field_counts": {
+        "OwnerStandingApproval": 1,
+        "AgentJudgment": 1,
+        "SelectedOutcome": 1,
+        "JudgedBy": 1,
+        "OwnerCaseSelection": 1,
+        "RejectedAlternatives": 1,
+        "RationaleArtifact": 1,
+        "IndependentVerifier": 1,
+        "EffectStatus": 1,
+        "PreservedGates": 1
+      },
+      "missing_fields": [],
+      "historical": false,
+      "verifier_lines": [
+        "IndependentVerifier: this is the actual independent whole-candidate reviewer return; parent governed refutation remains pending."
+      ],
+      "effect_lines": [
+        "EffectStatus: reviewer-record effect complete; source landing/reliance HELD for parent verification/refutation; no full-item closure."
+      ]
+    }
+  ],
+  "missing_field_files": [],
+  "direct_citations": "Each operative exercise rationale must be directly named by Receipt248; historical versions retained with chronology, not treated as current verdict"
+}

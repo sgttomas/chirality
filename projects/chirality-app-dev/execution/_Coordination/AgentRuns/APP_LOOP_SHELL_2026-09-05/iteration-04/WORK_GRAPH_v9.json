@@ -1,0 +1,134 @@
+{
+  "version": 9,
+  "status": "PARTIAL_IMPLEMENTATION_AND_PROOF_COMPLETE_FINAL_GOVERNED_REVIEW_PENDING",
+  "base": "239c8f2a53397f88f16e3d56ecbba9af83829246",
+  "previous_immutable_graph": "WORK_GRAPH_v8.json",
+  "sequence": "SEQUENCING_AMENDMENT_v7.3.md",
+  "source_frozen": true,
+  "source_inventory_count": 18,
+  "source_changed_count": 15,
+  "nodes": [
+    {
+      "id": "I4-N1",
+      "role": "WORKING_ITEMS /root/pkg02 then /root/pkg02_finish",
+      "status": "MANAGER_ACTIVATION_AND_REPLACEMENT_COMPLETE",
+      "evidence": "MANAGER_ACTIVATION_CANDIDATE_v2.md; MANAGER_RECOVERY_AMENDMENT_v8.md",
+      "depends_on": [],
+      "scope": "Initial planning/dispatch prerequisite only; final manager fan-in is distinct I4-N1F below."
+    },
+    {
+      "id": "I4-N2",
+      "role": "bounded TASK authors",
+      "status": "V10_FROZEN_IMPLEMENTATION_COMPLETE_FULL_ITEM_OPEN",
+      "evidence": "instances/pkg02_t3/recovery-author-v10/SOURCE_MANIFEST_v10.json",
+      "depends_on": [
+        "I4-N1"
+      ]
+    },
+    {
+      "id": "I4-N3",
+      "role": "fresh TASK source reviewer",
+      "status": "ACTUAL_SOURCE_PASS",
+      "evidence": "instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+      "depends_on": [
+        "I4-N2"
+      ]
+    },
+    {
+      "id": "I4-N4D",
+      "role": "global validation executor",
+      "status": "ACTUAL_LOCAL_REQUIRED_GATES_PASS_EXCEPT_PREMERGE_FAIL503_CI_OWED",
+      "evidence": "validation/REVISION10_PROVISIONAL_MANIFEST.json",
+      "depends_on": [
+        "I4-N2"
+      ],
+      "sequence": "Concurrent execution under v7.3; final acceptance required actual N3 PASS/current identities."
+    },
+    {
+      "id": "I4-N4P",
+      "role": "replacement manager browser/native proof",
+      "status": "ACTUAL_SCOPED_PROOF_AND_CLEANUP_COMPLETE_FULL_T3_OPEN",
+      "evidence": "instances/pkg02_t3/recovery-01/PACKAGE_MANIFEST_v10.json",
+      "depends_on": [
+        "I4-N3",
+        "I4-N4D"
+      ],
+      "limits": "Development-host native proof; raw evaluator failure/retry preserved; no packaged proof or inline native PDF; functional visual checks are not mock fidelity."
+    },
+    {
+      "id": "I4-P2",
+      "role": "bounded T2 packet preparation",
+      "status": "PREPARED_AWAITING_RULING",
+      "decision": "D-APP-120",
+      "depends_on": [],
+      "evidence": "instances/pkg02_t2_proposal/FINAL_V10_SOURCE_REFRESH_v1.json"
+    },
+    {
+      "id": "I4-P3",
+      "role": "bounded PDF policy packet preparation",
+      "status": "PREPARED_AWAITING_RULING",
+      "decision": "D-APP-121",
+      "depends_on": [],
+      "evidence": "instances/pkg02_pdf_csp_proposal/FINAL_V10_SOURCE_REFRESH_v1.json"
+    },
+    {
+      "id": "I4-N1F",
+      "role": "replacement WORKING_ITEMS final package fan-in",
+      "status": "PARTIAL_HANDOFF_COMPLETE",
+      "depends_on": [
+        "I4-N4P",
+        "I4-P2",
+        "I4-P3"
+      ],
+      "evidence": "instances/pkg02_t3/recovery-01/MANAGER_PARTIAL_HANDOFF_v10.json"
+    },
+    {
+      "id": "I4-N5I",
+      "role": "HELP_HUMAN shared integration via /root/run_records",
+      "status": "RECORD_INTEGRATED_RECEIPT_AND_ORDINARY_DIFF_PASS_STAGED_AND_GOVERNED_REVIEW_PENDING",
+      "depends_on": [
+        "I4-N1F"
+      ],
+      "evidence": "HANDOFF_STATE.md",
+      "checks": "integration-01/SHARED_RECORD_INTEGRATION.json; artifact-classification-01/RECEIPT_CITATION_CORRECTION.json"
+    },
+    {
+      "id": "I4-N5R",
+      "role": "fresh context refutation-only governed reviewer",
+      "status": "PENDING_ACTUAL_DISPATCH_AND_RETURN",
+      "depends_on": [
+        "I4-N5I"
+      ],
+      "no_anticipatory_verdict": true
+    },
+    {
+      "id": "I4-N6",
+      "role": "CHANGE",
+      "status": "PENDING_GOVERNED_PASS_AND_FULL_STAGED_CHECK",
+      "depends_on": [
+        "I4-N5R"
+      ],
+      "scope": "Scoped commit/push only; no owner merge."
+    },
+    {
+      "id": "I4-N7",
+      "role": "configured branch CI executor",
+      "status": "OWED_AFTER_REVIEWED_COMMIT_PUSH",
+      "depends_on": [
+        "I4-N6"
+      ],
+      "limits": "No anticipated PASS or predecessor consumption; Step0 rederives next lawful scope."
+    }
+  ],
+  "manager_recovery": "MANAGER_RECOVERY_AMENDMENT_v8.md and MANAGER_RECOVERY_ATTRIBUTION_SUPPLEMENT_v1.md; later bounded author repairs separately activated",
+  "source_writers": "All source frozen; recorder edits no product/carrier files.",
+  "authority": "D108/SCA-APP-010 accepted basis and D111 accepted DepClosure unchanged; evidence derivative; no lifecycle/dependency/pointer/CheckingApprovalSHA or owner act.",
+  "partial_residuals": [
+    "Native in-panel PDF required by D108 remains blocked by existingCSP; D121 AWAITING_RULING, no waiver.",
+    "D120 no-folder/presentation seam remains AWAITING_RULING; no owner choice inferred.",
+    "Independent alignment identifies substantial presentation drift: duplicateNavigator/rightFileTree, extraCoordinationclose row and nestedwrapper, duplicateDocumenttitle/reload, oldheader/composer/palette, Navigator620max versus360target.",
+    "T2/T3 coherent composition correction then lawfulT5strip requires parent nextscope; no newsource authorized here. T4/T6/T7 and workflow families notcompleted by currentFilesproof.",
+    "ExactnextheadCI, finalgovernedpackage review and ownermerge/Remainingremoval stillowed. No lifecycle/CheckingSHA/dependency/pointer/Root/provider/release/commit/push effects."
+  ],
+  "model_attribution": "OpenAI GPT-6 per session; exact serving ID unavailable; native role instruction-asserted. Context replacement is not an asserted model substitution."
+}

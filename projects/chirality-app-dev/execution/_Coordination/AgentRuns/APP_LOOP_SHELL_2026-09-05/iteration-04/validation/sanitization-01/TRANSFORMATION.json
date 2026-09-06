@@ -1,0 +1,21 @@
+{
+  "target": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/tests-01/full-tests.output.json",
+  "canonical_source": "projects/chirality-app-dev/frontend/src/__tests__/lib/omlx-provider-config.test.ts",
+  "canonical_source_sha256": "fafe9aaa5f8a1ae9b92dd47f7fd49dbc9655d72f8450649c5d8d480a405276b3",
+  "source_line_1based": 54,
+  "source_byte_offset": 1617,
+  "fixture_byte_length": 31,
+  "fixture_sha256": "1d954a78086c3a173161b0ed3f0bbcd1b7c9f590c2b29191b7b656f34210c573",
+  "escaping": "UTF-8 bytes of json.dumps(decoded UTF-8 fixture, ensure_ascii=True)[1:-1]",
+  "capture_byte_offset": 18631,
+  "encoded_length": 31,
+  "marker": "[REDACTED_SYNTHETIC_FIXTURE_SHA256_1d954a78086c3a173161b0ed3f0bbcd1b7c9f590c2b29191b7b656f34210c573]",
+  "preimage_sha256": "631a23663972bd1fbe7ed1831282dfd29e2c364d867c34f4eb1690584889c0a6",
+  "postimage_sha256": "4ac93ff2b8c2e0cf6197cdc9ab3630983bc8cc1ef019547ce88127175098ddca",
+  "historical_manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/tests-01/evidence-sha256.json",
+  "historical_manifest_sha256": "4d0616ae0aeda8e4786ab680cf103c764fc78eafcc5f3ad0222e20ea30616678",
+  "historical_manifest_status": "Preserved immutable; target entry describes original preimage and intentionally no longer matches sanitized candidate path. This map supersedes only that entry.",
+  "authority": "Parent explicit bounded candidate-evidence correction; no accepted snapshot amended",
+  "independent_verifier": "PENDING",
+  "security_gate": "PENDING actual rerun after exclusive proof slot"
+}

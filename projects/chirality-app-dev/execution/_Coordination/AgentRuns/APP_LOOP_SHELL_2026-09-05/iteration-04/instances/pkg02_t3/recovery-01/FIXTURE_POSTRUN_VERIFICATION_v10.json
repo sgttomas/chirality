@@ -1,0 +1,133 @@
+{
+  "files": [
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Long path document provenance document provenance document provenance document provenance document provenance /Long filename requiring bounded wrapping.md",
+      "expected": "d715eb043d812e12884fef422f92a8ad8b4f019ac3dd6b7ba76424e567a48e31",
+      "actual": "d715eb043d812e12884fef422f92a8ad8b4f019ac3dd6b7ba76424e567a48e31",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Preview.docx",
+      "expected": "fc72d26b5f0659902b8ee4cdae8721e5bd8250ffabb650c4a4dbdaeabae3b5e7",
+      "actual": "fc72d26b5f0659902b8ee4cdae8721e5bd8250ffabb650c4a4dbdaeabae3b5e7",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Preview.pdf",
+      "expected": "3879981f98de0fe29a285fcf33801fe0c376204732dc07304651e57e55060b82",
+      "actual": "3879981f98de0fe29a285fcf33801fe0c376204732dc07304651e57e55060b82",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Preview.pptx",
+      "expected": "95411c09445858bb91d1c6e39a5ff3c944352775298741d32e753abed6f23a71",
+      "actual": "95411c09445858bb91d1c6e39a5ff3c944352775298741d32e753abed6f23a71",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Preview.xlsx",
+      "expected": "18d8328ec634b03f8242f92c96d776dd1eaa80e6a017b89f893e84c0b37cecc0",
+      "actual": "18d8328ec634b03f8242f92c96d776dd1eaa80e6a017b89f893e84c0b37cecc0",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Readable note.md",
+      "expected": "4401790317742f912aac771d56242c74bc48157666c4d98c1ef1930bb9021288",
+      "actual": "4401790317742f912aac771d56242c74bc48157666c4d98c1ef1930bb9021288",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/data.csv",
+      "expected": "50d394664842b075c1ca842a466a49a78eaedbe92be427c45d8de37f85bc51a7",
+      "actual": "50d394664842b075c1ca842a466a49a78eaedbe92be427c45d8de37f85bc51a7",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/oversized.txt",
+      "expected": "e2be3b83c289189dd311afb0db7a79ec8cfbb993ca5267315b437e41edccec98",
+      "actual": "e2be3b83c289189dd311afb0db7a79ec8cfbb993ca5267315b437e41edccec98",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/plain.txt",
+      "expected": "3e67a16416744d1f42cc91bbf709b7c0828f566aeb7de65724f204c8ffad5a84",
+      "actual": "3e67a16416744d1f42cc91bbf709b7c0828f566aeb7de65724f204c8ffad5a84",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/unsupported.bin",
+      "expected": "630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd",
+      "actual": "630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Deep.json",
+      "expected": "ab1c74fb5a6fe2350be523ae86f987de1b122ca700cf1a831a30e9621b24b587",
+      "actual": "ab1c74fb5a6fe2350be523ae86f987de1b122ca700cf1a831a30e9621b24b587",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Folded.json",
+      "expected": "466c99987f36e62f61f3e92ae750ab81d3e5be77bf85b2f4a228b00b87f48e76",
+      "actual": "466c99987f36e62f61f3e92ae750ab81d3e5be77bf85b2f4a228b00b87f48e76",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Headings and links.md",
+      "expected": "d1449487c2ed4501a58e0ec69c7de14621ea6bfdfe6021574e1061c75c5bd9d0",
+      "actual": "d1449487c2ed4501a58e0ec69c7de14621ea6bfdfe6021574e1061c75c5bd9d0",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Image-only.svg",
+      "expected": "ef3e99c803e8d2a192dc48420949c2c090ff68bdbcf25144efedd645e9ef6151",
+      "actual": "ef3e99c803e8d2a192dc48420949c2c090ff68bdbcf25144efedd645e9ef6151",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Long filename for readable metadata and breadcrumb wrapping with all content accessible.md",
+      "expected": "3bf9a9fdd5c13d15ffe184d12a344d272ace2d6997e30a42a0c4681f6bf37579",
+      "actual": "3bf9a9fdd5c13d15ffe184d12a344d272ace2d6997e30a42a0c4681f6bf37579",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Malformed.json",
+      "expected": "cb7a468b30010402e566bf71e7cc7aa78fd73f29e5601362a805d67e2414bab6",
+      "actual": "cb7a468b30010402e566bf71e7cc7aa78fd73f29e5601362a805d67e2414bab6",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Oversized image.png",
+      "expected": "0e2e6a4d414ff19cf87c7f7c74e2b5ccb5991eee639c6356d446a535868bea50",
+      "actual": "0e2e6a4d414ff19cf87c7f7c74e2b5ccb5991eee639c6356d446a535868bea50",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.gif",
+      "expected": "26ff789e532c9b3886eced9f31442bfb4344ba14190c7d8af2b25a8c6147a6db",
+      "actual": "26ff789e532c9b3886eced9f31442bfb4344ba14190c7d8af2b25a8c6147a6db",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.jpg",
+      "expected": "b1d66255bedb40dcc5357d468928205c319a2c7e0d429dae706f0dae11223c80",
+      "actual": "b1d66255bedb40dcc5357d468928205c319a2c7e0d429dae706f0dae11223c80",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.png",
+      "expected": "19328dd49648ff8c28203092c16b996edb76c7efa50b9637293f14297d64799e",
+      "actual": "19328dd49648ff8c28203092c16b996edb76c7efa50b9637293f14297d64799e",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.webp",
+      "expected": "da22e0a2bcd7cb15206f4081db87d4f4c44224c6fbcfdbcd628abf4e8e669719",
+      "actual": "da22e0a2bcd7cb15206f4081db87d4f4c44224c6fbcfdbcd628abf4e8e669719",
+      "match": true
+    }
+  ],
+  "all_match": true,
+  "word_temporary_lock_absent": true,
+  "preparation_failure": "First comparison treated original manifest relative paths as absolute and raised FileNotFoundError before any write; corrected root joining and additional absolute entries here."
+}

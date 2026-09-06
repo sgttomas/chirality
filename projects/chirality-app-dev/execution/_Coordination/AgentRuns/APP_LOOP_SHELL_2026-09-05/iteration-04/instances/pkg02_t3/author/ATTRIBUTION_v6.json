@@ -1,0 +1,23 @@
+{
+  "role": "TASK Agent2",
+  "agent": "/root/pkg02/t3_author",
+  "engine": "Codex",
+  "provider": "OpenAI",
+  "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+  "substitutions": [],
+  "OwnerStandingApproval": "D-APP-64 \u00a73",
+  "AgentJudgment": "EXECUTE_SCOPED_TREE_LAYOUT_REPAIR",
+  "SelectedOutcome": "Explicit header/body/footer allocation and usable stacked tree body",
+  "JudgedBy": "TASK /root/pkg02/t3_author",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": [
+    "force-click bypass",
+    "z-index masking",
+    "deleting distinct semantics",
+    "global CSS expansion"
+  ],
+  "RationaleArtifact": "../TREE_LAYOUT_AMENDMENT_v1.md",
+  "IndependentVerifier": "Parent visual challenge plus manager actual geometry; fresh review pending",
+  "EffectStatus": "SOURCE_FROZEN_REVIEW_PENDING",
+  "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance"
+}

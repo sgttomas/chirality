@@ -1,0 +1,21 @@
+{
+  "role": "TASK Agent2",
+  "agent": "/root/pkg02/t3_author",
+  "engine": "Codex",
+  "provider": "OpenAI",
+  "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+  "substitutions": [],
+  "OwnerStandingApproval": "D-APP-64 \u00a73",
+  "AgentJudgment": "EXECUTE_SEALED_REVIEW_REPAIR_REVISION3",
+  "SelectedOutcome": "Scoped scrollability repair and recorded Session menu actions, no invented metadata",
+  "JudgedBy": "TASK /root/pkg02/t3_author",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": [
+    "scope expansion",
+    "native proof by mocks"
+  ],
+  "RationaleArtifact": "../REVIEW_REPAIR_AMENDMENT_v1.md",
+  "IndependentVerifier": "Initial review CHANGES_REQUESTED; fresh revised whole-diff review PENDING",
+  "EffectStatus": "HELD",
+  "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance"
+}

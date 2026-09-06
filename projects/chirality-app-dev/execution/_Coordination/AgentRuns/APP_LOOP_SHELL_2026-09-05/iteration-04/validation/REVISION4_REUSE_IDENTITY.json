@@ -1,0 +1,14 @@
+{
+  "original17identical": true,
+  "all18source_match": true,
+  "build_artifact_mismatches": [],
+  "build_artifacts": {
+    "dist-electron/main.js": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+    "dist-electron/preload.js": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+    "dist-runtime/chirality-cli.mjs": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+  },
+  "source_manifest_sha256": "597de7442f28240a482a110278ca195c6032579ade51d3bff8ecb0add206abab",
+  "review_sha256": "16855e0e23ea21007f93222416683e9336a0ac0217ac356ecaf60f7ddba0a907",
+  "cumulative_diff_json_sha256": "14f65665a556efc89d9dfcc6d3e8888095c64611f5d34272166f727de06bdce2",
+  "reuse": "Prior build/Section9/Root350pytest unchanged inputs; full tests/typecheck repeat after exact test-only repair"
+}

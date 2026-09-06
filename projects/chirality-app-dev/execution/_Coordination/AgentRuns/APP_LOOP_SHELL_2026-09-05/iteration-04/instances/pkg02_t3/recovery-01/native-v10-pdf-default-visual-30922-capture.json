@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/usr/sbin/screencapture",
+    "-x",
+    "-o",
+    "-l",
+    "30922",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-pdf-default-visual-30922.png"
+  ],
+  "window": {
+    "kCGWindowAlpha": 1,
+    "kCGWindowBounds": {
+      "Height": 778,
+      "Width": 821,
+      "X": 4,
+      "Y": 30
+    },
+    "kCGWindowIsOnscreen": true,
+    "kCGWindowLayer": 0,
+    "kCGWindowMemoryUsage": 2368,
+    "kCGWindowName": "Preview.pdf",
+    "kCGWindowNumber": 30922,
+    "kCGWindowOwnerName": "Preview",
+    "kCGWindowOwnerPID": 32383,
+    "kCGWindowSharingState": 1,
+    "kCGWindowStoreType": 1
+  },
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

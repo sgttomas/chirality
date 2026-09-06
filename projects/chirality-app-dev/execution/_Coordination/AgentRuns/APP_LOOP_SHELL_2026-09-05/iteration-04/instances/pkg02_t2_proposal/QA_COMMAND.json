@@ -1,0 +1,12 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_status": 0,
+  "stdout": "",
+  "stderr": "",
+  "scope": "whole working tree whitespace only; not product acceptance"
+}

@@ -1,0 +1,5 @@
+{
+  "compared_inputs": 138,
+  "drift": [],
+  "reuse": "Root350pytest and selfcheck basic-01 PASS reused for unchanged governed tool/runtime inputs; final integrated records still require terminal checks"
+}

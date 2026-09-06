@@ -1,0 +1,27 @@
+{
+  "packet_sha256": "fb1e9c288c795594efe0dd41cad6a3b1a83b7f46e43a479fd909f5ecf3cca4eb",
+  "refresh_bindings": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/FINAL_REFRESH_MANIFEST_v1.json",
+      "sha256": "5d29146a09005857ef88c0d95573a2f15f9ee739734e153a2dd1d5d6ad5aa13b",
+      "entries_verified": 6
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_REFRESH_MANIFEST_v1.json",
+      "sha256": "c7e7acbc9c4b4b5da1ba8a8ba3c84e62e92618921c43240a17f61d53e9a6b1e9",
+      "entries_verified": 6
+    }
+  ],
+  "register_before_sha256": "9f615ff575b899079aedf07665d46e6ed4409a2bb536fbade0a83f66cd1855e0",
+  "register_after_sha256": "ecac0daf7176aa76e36a476cb0c97680855497b99863ce27cbe002d83c23726f",
+  "exact_row": "| D-APP-121 | Bounded same-origin built-in PDF CSP seam or explicit temporary handoff defer | DEL-02-03-V3-01; DEL-09-06 security interface | AWAITING_RULING | OwnerCaseSelection NONE; proposal only; EffectStatus HELD; IndependentVerifier PENDING | `execution/_Coordination/_DECISIONS/D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md` |",
+  "checks": [
+    "ID absent",
+    "singleauthorizedpacket",
+    "sixcolumns",
+    "AWAITING_RULING",
+    "historicbytespreserved"
+  ],
+  "diff_check_exit": 0,
+  "scope": "Proposal only, owner choices NONE, PDF builtin blocked; source review/global/native outcomes pending"
+}

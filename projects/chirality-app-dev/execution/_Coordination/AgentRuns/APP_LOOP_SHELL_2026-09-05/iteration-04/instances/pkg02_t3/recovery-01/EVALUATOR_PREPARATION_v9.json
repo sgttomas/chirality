@@ -1,0 +1,10 @@
+{
+  "source_evaluator": "browser/state-matrix-proof.mjs",
+  "source_sha256": "0ef7d929e00d067bc41e53b34358a82ffd8a650ea9a0fbf6eb6db52e534a9849",
+  "new_evaluator": "browser/state-matrix-proof-v9.mjs",
+  "new_sha256": "661f17f83c373f03038ebb3630e1ab622ec50894d0e3d04cf71f8448040982ba",
+  "change": "Add20 actual screenshot captures at expanded and Files-return states; preserve40case actions/assertions and20 collapsed captures. All40PNG require actual visual review.",
+  "full_browser": "Use existing proof.mjs unchanged with cached full Chromium instead of headless shell so PDF can be visually reviewed; prior headless screenshot not PDFdisplay evidence.",
+  "environment": "new runner explicitly allowlists only nonsecret base environment and isolated fixture/runtime overrides; exact logs captured; no inherited provider credentials",
+  "status": "PREPARED_NOT_EXECUTED;await nextfrozenreview/globalbuild/proofslot"
+}

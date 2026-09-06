@@ -1,0 +1,28 @@
+{
+  "status": "PROPOSED_HELD_NO_AUTHORS",
+  "ci_run": 33994563156,
+  "ci_status_at_discovery": "parent-reported in_progress",
+  "nodes": [
+    {
+      "id": "I4-G0",
+      "scope": "parent actualCI/dependency/authority gate"
+    },
+    {
+      "id": "I4-P1",
+      "scope": "PKG02 T3 manager scoped preparation",
+      "depends_on": [
+        "I4-G0"
+      ]
+    },
+    {
+      "id": "I4-P2",
+      "scope": "bounded T2 capability/seam proposal only",
+      "depends_on": [
+        "I4-G0"
+      ]
+    }
+  ],
+  "shared_write_rule": "No source writers activated; future Electron/woven ownership must serialize",
+  "rationale": "PROPOSED_PLAN_v1.md",
+  "accepted_pointer_changes": "none"
+}

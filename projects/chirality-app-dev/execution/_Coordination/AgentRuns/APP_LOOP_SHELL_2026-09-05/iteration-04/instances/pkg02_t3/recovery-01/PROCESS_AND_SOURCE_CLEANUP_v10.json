@@ -1,0 +1,79 @@
+{
+  "processes": {
+    "server-v10-host": {
+      "exit": {
+        "finished": "2026-09-06T01:48:43.791362+00:00",
+        "exit": 0,
+        "process_reaped": true,
+        "stdout_sha256": "5e979bddf4b3972dc618f198601974aa925a61b9c7bfffe450e9c6c36ec1eff4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "pid": 12916,
+      "alive": false
+    },
+    "native-v10-host": {
+      "exit": {
+        "finished": "2026-09-06T01:48:43.777643+00:00",
+        "exit": 0,
+        "process_reaped": true,
+        "stdout_sha256": "7afcd3c9152e4d8ffdacb9e66a5345a722b3c99c4275c7ac13fb0de05cd4c10b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "pid": 14662,
+      "alive": false
+    },
+    "full-origin-v10": {
+      "exit": {
+        "finished": "2026-09-06T01:37:52.918263+00:00",
+        "exit": 0,
+        "process_reaped": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "pid": 13127,
+      "alive": false
+    },
+    "full-pdf-settled-v10": {
+      "exit": {
+        "finished": "2026-09-06T01:39:51.865483+00:00",
+        "exit": 0,
+        "process_reaped": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "pid": 14296,
+      "alive": false
+    },
+    "state-settled-v10": {
+      "exit": {
+        "finished": "2026-09-06T01:38:40.535321+00:00",
+        "exit": 0,
+        "process_reaped": true,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "pid": 13264,
+      "alive": false
+    },
+    "hydration-capability-v10": {
+      "exit": {
+        "finished": "2026-09-06T01:37:22.060852+00:00",
+        "exit": 0,
+        "process_reaped": true,
+        "stdout_sha256": "d72251286f47c66d459519f2c4a2af7c1e1c00fb6d5aa01359c3ed6fdfcd52ea",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "pid": 12939,
+      "alive": false
+    }
+  },
+  "all18_source_exact": true,
+  "isolated_targets_absent": [
+    "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/control.sock",
+    "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/auth/tokens/operator.token",
+    "/Users/ryan/Library/LaunchAgents/com.chirality.t3-proof-ac3dexfs.plist"
+  ],
+  "native_main_pid": 14663,
+  "fixture_windows": "Targeted AX closes documented; no onscreen owned windows after cleanup. Offscreen CG cache may retain closed window metadata; actual AX verification used.",
+  "preexisting": "Existing apps never quit. Preexisting Finder/Word/Excel window identities retained; Preview empty Open dialog dismissed by normal external PDF opening, original user documents not present/touched."
+}

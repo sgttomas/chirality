@@ -1,0 +1,94 @@
+{
+  "verdict": "REQUIRED_BOUNDED_NATIVE_OBSERVATIONS_PASS_WITH_HISTORICAL_EVALUATOR_FAILURE_RETAINED",
+  "raw_result_status": "FAIL",
+  "raw_result_sha256": "b3aad0d96a0bcb28dcf6e737c1c9fbb5d10e53ba91858a04e7eef976cb868671",
+  "page_errors": [],
+  "identity": {
+    "pid": 14663,
+    "electron": "43.2.0",
+    "chrome": "150.0.7871.129",
+    "node": "24.18.0",
+    "packaged": false,
+    "userData": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data",
+    "argv": [
+      "/private/tmp/app-loop-t3-native-ac3dexfs/runtime/Electron.app/Contents/MacOS/Electron",
+      "--inspect=0",
+      "--remote-debugging-port=0",
+      "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-electron/main.js"
+    ],
+    "socketPath": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/control.sock",
+    "operatorTokenFile": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/auth/tokens/operator.token",
+    "launchAgentLabel": "com.chirality.t3-proof-ac3dexfs"
+  },
+  "commands": 25,
+  "visual_inputs": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-docx-visual-30916.png",
+      "sha256": "bc473f734ec51a30356d81163bfff4ef3346ada7c2fd2c8f5dd99825cd56390b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-xlsx-settled-visual-30916.png",
+      "sha256": "a03086f616886c2828d4018a0679c9e9045636190054175e435adb19a47ed0fa"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-pptx-visual-30916.png",
+      "sha256": "fb4be0695fe09043bf661093ccf6117d4c376064e83ce697f58ea53cdbeec054"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-pdf-default-visual-30922.png",
+      "sha256": "f943ef2e445f62a5abe5b5a4203e0c07844af2c4e67cc1aa2ded86b3b4bc5c09"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-docx-default-visual-30929.png",
+      "sha256": "9ab078a6ade98b3be18909d2a531eb772745806ae375cd8b9367462c6217a8b3"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-reveal-file-visual-30935.png",
+      "sha256": "c7c4d8f88f0ac49469a4820b51a3d7682509b0d43cac61e1612b05b281bc5c6f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-root-reveal-visual-30941.png",
+      "sha256": "56fab1a9e073edd6fe6b9c4898e683f584b53c16edddcdaff3507e59996eed74"
+    }
+  ],
+  "observed": [
+    "DOCX heading and native preview text visibly rendered in macOS Quick Look.",
+    "XLSX fixture label/value42 visibly rendered in Quick Look.",
+    "PPTX fixture title/native slide text visibly rendered in Quick Look.",
+    "PDF fixture title/body visibly rendered in external Preview.",
+    "DOCX fixture title/body visibly rendered in external Word.",
+    "Finder file reveal visibly selected Preview.docx; root reveal visibly selected fixtures within scratch parent.",
+    "Actual foreign inert sender using current preload/securepreferences rejected UNAUTHORIZED_SENDER; postnegative inventory no external document windows.",
+    "Traversal/absolute/missing native paths rejected; actual SVG decoded900x400, script marker absent and external probe absent.",
+    "Native PDF explicitly unavailable and no iframe; no inline-native PDF claim."
+  ],
+  "calibrations": [
+    {
+      "failure": "First XLSX Quick Look showed No items selected",
+      "basis": "Driver calls closeFilePreview then opens next preview within~80ms. Separating file-selection/close and next real Quick Look button at tool boundaries yielded visible XLSX; no source mutation.",
+      "limit": "Timing race attributable to artificial evaluator close/reopen sequence; retained failedimage. No blanket native fast-switch guarantee."
+    },
+    {
+      "failure": "First reveal-root command timed out30s",
+      "basis": "Previous Reveal file leaves native details element open; file view reused it. Driver blindly clicked summary and closed menu. Captured screenshot shows menu closed, source right-panel.tsx106-122 preserves details open state; subsequent same command opens menu and actual Finderrootselected visible.",
+      "limit": "Raw result remains FAIL; retry is separately recorded, never rewritten."
+    },
+    {
+      "failure": "Read-only Finder osascript timed out10s",
+      "basis": "Killed at exact timeout, no repeat/permission inferred. Actual selected rows visually verified; trusted direct AX metadata/targetedclose used forcleanup."
+    },
+    {
+      "failure": "Prior v9 inventory did not show QuickLook",
+      "basis": "Old printed inventory restricted layer0; actual v10panel appears layer3. Initial v9 absence is not accepted productfailure."
+    }
+  ],
+  "cleanup": [
+    "PROCESS_AND_SOURCE_CLEANUP_v10.json",
+    "native-v10-final-cleanup-inventory.json",
+    "native-v10-final-finder-ax.json",
+    "native-v10-word-closed-verification.json",
+    "FIXTURE_POSTRUN_VERIFICATION_v10.json"
+  ],
+  "preexisting_window_calibration": "Preexisting applications never quit or documents edited. Preview empty Open dialog was dismissed by normal PDF opening; scratch PDF closed. Baseline Finder/Word/Excel preserved; offscreen CG caches distinguished from actual AX openwindows.",
+  "scope": "Developmenthost app.isPackaged=false only. No realprovider/account/runtime/lifecycle actions; no packaged proof; fullT3/designacceptance remains held."
+}

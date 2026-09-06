@@ -1,0 +1,159 @@
+{
+  "files": [
+    {
+      "path": "1440-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "36da675184c6d04ad2e81234cb5c82afe3a52d37bb47e1f8fb1ee949e55a9e18",
+      "bytes": 125744
+    },
+    {
+      "path": "1440-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "adac257b8ecdc2510e6a2b91b9a830a864c44b14694a4ef814b1d82d983d3f35",
+      "bytes": 105837
+    },
+    {
+      "path": "1440-light-coordination-collapse-open-collapsed.png",
+      "sha256": "9f0c25986ceaea6bdcfbd23b879b9b600119d01fb29149e4f21d659236a5f3c6",
+      "bytes": 127473
+    },
+    {
+      "path": "1440-light-navigator-collapse-open-collapsed.png",
+      "sha256": "ac75219b72a86ac558839821f8bce499ca7afdd4e3bb3a733e379309d6bac520",
+      "bytes": 106889
+    },
+    {
+      "path": "840-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "edc6ae3e396069fd5b066d62f45368d31630fe83632c8f12ef59e773b9e15a35",
+      "bytes": 124170
+    },
+    {
+      "path": "840-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "ada9bf8235261f36c1b5e4ad775e7b01f0694cc12fdc73eda9e3ec411b83fd14",
+      "bytes": 95565
+    },
+    {
+      "path": "840-dark-navigator-collapse-open-failure.png",
+      "sha256": "c0dbf07c304ffb7f186b0753dae5e1cb2e8fad732f82ceff5513c377e0a5ab1a",
+      "bytes": 95489
+    },
+    {
+      "path": "840-light-coordination-collapse-open-collapsed.png",
+      "sha256": "580bb902e827f040f0ab3c74a9a089c523fc37a1a2d6b50ed71857347d30ba45",
+      "bytes": 124090
+    },
+    {
+      "path": "840-light-navigator-collapse-open-collapsed.png",
+      "sha256": "91d24392bbe572854ac845d3432772b025710d1a47b9f86bdaee7461cc97f30e",
+      "bytes": 96043
+    },
+    {
+      "path": "840-light-navigator-collapse-open-failure.png",
+      "sha256": "05768369bae44dbf95089b2a0988f620a11d8c87f2da464c5a09125a805e9714",
+      "bytes": 96039
+    },
+    {
+      "path": "860-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "f9a1f10fe93498c9da1d58cb45c1fb394ed5efb81807caa8454fbaae154ff104",
+      "bytes": 123642
+    },
+    {
+      "path": "860-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "9482dfe67c963d94c2df5686fbc64c2d922ea78fda3c553b16fbfb873dec9932",
+      "bytes": 95205
+    },
+    {
+      "path": "860-dark-navigator-collapse-open-failure.png",
+      "sha256": "015cb045097a944c7f484b7a44a865f30ec85dbf3de67e7187b1b1f670caca8c",
+      "bytes": 95133
+    },
+    {
+      "path": "860-light-coordination-collapse-open-collapsed.png",
+      "sha256": "7f30b949867db00c9a9729500187b316b6d78062a6bd2926b8878b570207e1b7",
+      "bytes": 123716
+    },
+    {
+      "path": "860-light-navigator-collapse-open-collapsed.png",
+      "sha256": "f073bd8a9d5251109e78d68818ed16f0b72a4b69364a67ee8c7999675360543f",
+      "bytes": 95614
+    },
+    {
+      "path": "860-light-navigator-collapse-open-failure.png",
+      "sha256": "7bf9c9bb7e94be488725b2d64694407abd5ee12064c704e6985b86cafec2e6c0",
+      "bytes": 95612
+    },
+    {
+      "path": "900-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "00d52a088267198544ee300c499da6bd7092de3dfac6fae37f18354cdfe8dcb5",
+      "bytes": 126488
+    },
+    {
+      "path": "900-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "3cb3862b688aba39b4062400c99ec43905c6c6723ccda09d748602a85d6d47b7",
+      "bytes": 97349
+    },
+    {
+      "path": "900-dark-navigator-collapse-open-failure.png",
+      "sha256": "e80f79a984aea922fbd591b29d85abe6d33a345e59799c62ed43947b9a62472b",
+      "bytes": 97271
+    },
+    {
+      "path": "900-light-coordination-collapse-open-collapsed.png",
+      "sha256": "9eedeac0b57d6c5dd0600fef051c4d405147094d343e181b7fb4a3e1a31b285c",
+      "bytes": 126899
+    },
+    {
+      "path": "900-light-navigator-collapse-open-collapsed.png",
+      "sha256": "a9df75640395e82cda14bf7025902f0c42255591afc5f6395d1ea35e3d3a5076",
+      "bytes": 97908
+    },
+    {
+      "path": "900-light-navigator-collapse-open-failure.png",
+      "sha256": "5505f454ce7a0778ab0673158b2d9f810cabd7ea1bd41bb91f5807e8d35fa428",
+      "bytes": 97903
+    },
+    {
+      "path": "960-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "7aeb3a8a7b36d0b2252ceebedde2b7f73a203d4c541dae40b8d8ed0e0168a3de",
+      "bytes": 114517
+    },
+    {
+      "path": "960-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "8d474fc63d03fc32933b967e0677f42e62662700c798dcb1d5d3539605516497",
+      "bytes": 99846
+    },
+    {
+      "path": "960-light-coordination-collapse-open-collapsed.png",
+      "sha256": "cb919c2db44c201a1c338329d2c035cdd05d075ae2eccbcd13b83b65921a90e5",
+      "bytes": 116250
+    },
+    {
+      "path": "960-light-navigator-collapse-open-collapsed.png",
+      "sha256": "43cc5d85cd10b4dd9cdf489e9d9416e2393bf29399db18cff319bf010c70548e",
+      "bytes": 100312
+    },
+    {
+      "path": "MANAGER_DIAGNOSTIC_RETURN_v1.json",
+      "sha256": "891d8379cf81c3ef0881e974a51d37231a49c5d687bc694402ff32d0725de77c",
+      "bytes": 3442
+    },
+    {
+      "path": "input-fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "input-script.mjs",
+      "sha256": "55553ac5b5ed26d4a0f52bde5f983d0634cf95ef1ec11ba486ca6a53a2ab0d42",
+      "bytes": 6031
+    },
+    {
+      "path": "result.json",
+      "sha256": "9429af7cedf88155b7625c088d1880bdfa6643cf1561d95ea964836657b36ac4",
+      "bytes": 603904
+    },
+    {
+      "path": "source-manifest.json",
+      "sha256": "1f08040dfa2ce6d6cc9ec6d0e46ebd5d84814ceb08ba44da7ee15ad241bf81ec",
+      "bytes": 4793
+    }
+  ]
+}

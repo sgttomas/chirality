@@ -1,0 +1,6 @@
+# Exact captured bytes; attribution and observed classes: artifact-classification-01/RATIONALE.md
+instances/pkg02_t3/recovery-author-v9/FOCUSED_TEST.stdout.log whitespace=-blank-at-eof
+instances/pkg02_t3/recovery-author-v10/FOCUSED_TEST.stdout.log whitespace=-blank-at-eof
+instances/pkg02_t3/recovery-author-v9/REPAIR_DIFF_v9.diff whitespace=-trailing-space
+instances/pkg02_t3/recovery-author-v10/REPAIR_DIFF_v10.diff whitespace=-trailing-space
+instances/pkg02_t3/native/fixture-bytes/Preview.pdf whitespace=-trailing-space

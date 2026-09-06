@@ -1,0 +1,707 @@
+{
+  "status": "FAIL",
+  "identity": {
+    "pid": 14663,
+    "electron": "43.2.0",
+    "chrome": "150.0.7871.129",
+    "node": "24.18.0",
+    "packaged": false,
+    "userData": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data",
+    "argv": [
+      "/private/tmp/app-loop-t3-native-ac3dexfs/runtime/Electron.app/Contents/MacOS/Electron",
+      "--inspect=0",
+      "--remote-debugging-port=0",
+      "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-electron/main.js"
+    ],
+    "socketPath": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/control.sock",
+    "operatorTokenFile": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/auth/tokens/operator.token",
+    "launchAgentLabel": "com.chirality.t3-proof-ac3dexfs"
+  },
+  "commands": [
+    {
+      "command": {
+        "action": "negative-sender"
+      },
+      "timestamp": "2026-09-06T01:41:12.327Z",
+      "probe": {
+        "id": 2,
+        "url": "data:text/html,<title>T3 inert unauthorized sender fixture</title>",
+        "response": {
+          "ok": false,
+          "error": {
+            "code": "UNAUTHORIZED_SENDER",
+            "message": "Document action rejected for this sender."
+          }
+        },
+        "config": {
+          "show": false,
+          "contextIsolation": true,
+          "sandbox": true,
+          "nodeIntegration": false
+        }
+      },
+      "note": "Actual main IPC refused hidden inert foreign sender; owned probe window destroyed.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "negative-paths"
+      },
+      "timestamp": "2026-09-06T01:41:12.405Z",
+      "responses": [
+        {
+          "target": "../outside",
+          "result": {
+            "ok": false,
+            "error": {
+              "code": "INVALID_REQUEST",
+              "message": "Expected an absolute root and a relative file path without traversal."
+            }
+          }
+        },
+        {
+          "target": "/etc/passwd",
+          "result": {
+            "ok": false,
+            "error": {
+              "code": "INVALID_REQUEST",
+              "message": "Expected an absolute root and a relative file path without traversal."
+            }
+          }
+        },
+        {
+          "target": "missing.docx",
+          "result": {
+            "ok": false,
+            "error": {
+              "code": "FILE_NOT_FOUND",
+              "message": "File or Working Root no longer exists."
+            }
+          }
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "file",
+        "name": "Preview.docx"
+      },
+      "timestamp": "2026-09-06T01:41:18.439Z",
+      "text": "Preview.docx\nReload\n\nPreview.docx · 36,647 bytes · Modified 2026-09-05T22:16:26.394Z\n\nPreview this Office document with Quick Look.\n\nQuick LookOpen in default app",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "quick-look"
+      },
+      "timestamp": "2026-09-06T01:41:18.497Z",
+      "note": "Actual renderer button invoked; native display inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "file",
+        "name": "Preview.xlsx"
+      },
+      "timestamp": "2026-09-06T01:41:47.715Z",
+      "text": "Preview.xlsx\nReload\n\nPreview.xlsx · 4,901 bytes · Modified 2026-09-05T22:16:26.397Z\n\nPreview this Office document with Quick Look.\n\nQuick LookOpen in default app",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "quick-look"
+      },
+      "timestamp": "2026-09-06T01:41:47.796Z",
+      "note": "Actual renderer button invoked; native display inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "file",
+        "name": "Preview.pptx"
+      },
+      "timestamp": "2026-09-06T01:42:15.578Z",
+      "text": "Preview.pptx\nReload\n\nPreview.pptx · 28,369 bytes · Modified 2026-09-05T22:16:26.403Z\n\nPreview this Office document with Quick Look.\n\nQuick LookOpen in default app",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "quick-look"
+      },
+      "timestamp": "2026-09-06T01:42:15.655Z",
+      "note": "Actual renderer button invoked; native display inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "quick-look"
+      },
+      "timestamp": "2026-09-06T01:42:46.227Z",
+      "note": "Actual renderer button invoked; native display inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "file",
+        "name": "Preview.xlsx"
+      },
+      "timestamp": "2026-09-06T01:43:05.936Z",
+      "text": "Preview.xlsx\nReload\n\nPreview.xlsx · 4,901 bytes · Modified 2026-09-05T22:16:26.397Z\n\nPreview this Office document with Quick Look.\n\nQuick LookOpen in default app",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "quick-look"
+      },
+      "timestamp": "2026-09-06T01:43:19.926Z",
+      "note": "Actual renderer button invoked; native display inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "file",
+        "name": "Preview.pdf"
+      },
+      "timestamp": "2026-09-06T01:43:26.389Z",
+      "text": "Preview.pdf\nReload\n\nPreview.pdf · 1,420 bytes · Modified 2026-09-05T22:16:26.381Z\n\nPDF preview is unavailable here. Open this file in its default app.\n\nOpen in default app",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "screenshot",
+        "name": "pdf-unavailable"
+      },
+      "timestamp": "2026-09-06T01:43:26.469Z",
+      "note": "Renderer screenshot only; native panel requires native UI capture.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "default-app"
+      },
+      "timestamp": "2026-09-06T01:43:26.545Z",
+      "note": "Actual renderer button invoked; default-app display inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "file",
+        "name": "Preview.docx"
+      },
+      "timestamp": "2026-09-06T01:44:09.135Z",
+      "text": "Preview.docx\nReload\n\nPreview.docx · 36,647 bytes · Modified 2026-09-05T22:16:26.394Z\n\nPreview this Office document with Quick Look.\n\nQuick LookOpen in default app",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "default-app"
+      },
+      "timestamp": "2026-09-06T01:44:09.211Z",
+      "note": "Actual renderer button invoked; default-app display inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "reveal"
+      },
+      "timestamp": "2026-09-06T01:44:45.307Z",
+      "note": "Actual renderer Document-menu Reveal invoked; Finder fixture selection inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "reveal-root"
+      },
+      "timestamp": "2026-09-06T01:45:44.422Z",
+      "status": "FAIL",
+      "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Reveal root in Finder', exact: true })\n"
+    },
+    {
+      "command": {
+        "action": "screenshot",
+        "name": "root-reveal-evaluator-hold"
+      },
+      "timestamp": "2026-09-06T01:47:11.224Z",
+      "note": "Renderer screenshot only; native panel requires native UI capture.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "reveal-root"
+      },
+      "timestamp": "2026-09-06T01:47:40.826Z",
+      "note": "Actual root Reveal menu invoked; Finder selection inspection pending.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "file",
+        "name": "Image-only.svg"
+      },
+      "timestamp": "2026-09-06T01:48:21.588Z",
+      "text": "Image-only.svg\nReload\n\nImage-only.svg · 368 bytes · Modified 2026-09-05T22:46:31.461Z\n\nOpen in default app",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "image-safety"
+      },
+      "timestamp": "2026-09-06T01:48:21.632Z",
+      "image": {
+        "complete": true,
+        "width": 900,
+        "height": 400,
+        "src": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Image-only.svg&content=image"
+      },
+      "note": "Actual image decoding in Electron renderer with unchanged product policy; SVG script marker absent and nested external probe not requested. No OS opening of the adversarial SVG.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "screenshot",
+        "name": "svg-image-only"
+      },
+      "timestamp": "2026-09-06T01:48:21.644Z",
+      "note": "Renderer screenshot only; native panel requires native UI capture.",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "close-preview"
+      },
+      "timestamp": "2026-09-06T01:48:43.594Z",
+      "status": "PASS"
+    },
+    {
+      "command": {
+        "action": "finish"
+      },
+      "timestamp": "2026-09-06T01:48:43.595Z",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "warning",
+      "text": "%cElectron Security Warning (Insecure Content-Security-Policy) font-weight: bold; This renderer process has either no Content Security\n  Policy set or a policy with \"unsafe-eval\" enabled. This exposes users of\n  this app to unnecessary security risks.\n\nFor more information and help, consult\nhttps://electronjs.org/docs/tutorial/security.\nThis warning will not show up\nonce the app is packaged."
+    },
+    {
+      "type": "warning",
+      "text": "%cElectron Security Warning (Insecure Content-Security-Policy) font-weight: bold; This renderer process has either no Content Security\n  Policy set or a policy with \"unsafe-eval\" enabled. This exposes users of\n  this app to unnecessary security risks.\n\nFor more information and help, consult\nhttps://electronjs.org/docs/tutorial/security.\nThis warning will not show up\nonce the app is packaged."
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    }
+  ],
+  "resourceRequests": [
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/dece0821e8ed059f-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/harness/agents?directChat=1",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Preview.docx",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/dece0821e8ed059f-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/css/63fa183a95290d3c.css",
+      "resourceType": "stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:39119/chirality-app-icon.svg",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/webpack-85ad8b5d421e98b6.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/255-62902f04efbdd792.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/main-app-0bc332cb6cfcd293.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/629-61a4773c370b93b9.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/966-764889105078f50e.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/204-83899a2572eff241.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/35-fb0020e8c53a6b59.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/app/page-759fc91914cea16f.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/app/layout-3dda1817848a3a86.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/app/not-found-67e15b9d8876788f.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/harness/agents?directChat=1",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Preview.docx",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Preview.xlsx",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Preview.pptx",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Preview.xlsx",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Preview.pdf",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Preview.docx",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Image-only.svg",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Image-only.svg&content=image",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    }
+  ],
+  "claim": "Actual isolated macOS Electron development-host UI and native IPC. Native display requires separately captured visual inspection. No packaged-artifact, inline-PDF or live-runtime claim.",
+  "cleanup": "Owned Electron app closed through Playwright; independently verify process exit and native fixture windows."
+}

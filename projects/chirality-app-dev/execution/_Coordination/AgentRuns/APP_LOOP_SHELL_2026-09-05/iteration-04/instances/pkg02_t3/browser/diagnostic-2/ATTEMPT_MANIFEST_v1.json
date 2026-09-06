@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "path": "diagnostic-2/collapsed-ax.txt",
+      "sha256": "6153a0b50aa920b964aa7d83aa5b36ab17a93dbecb409c8a3d951010fb3ef701",
+      "bytes": 3924
+    },
+    {
+      "path": "diagnostic-2/document-1440-light.png",
+      "sha256": "ed7d4be05963f0314d8f042ba0b7a840c4d52f72a7c607c4099c259bd780c501",
+      "bytes": 168464
+    },
+    {
+      "path": "diagnostic-2/failure.png",
+      "sha256": "edcba84dcac2c15f0b3d6be139ea3c3fa6efb136ad876601f4df603fd1b5a1ce",
+      "bytes": 129373
+    },
+    {
+      "path": "diagnostic-2/files-1440-light.png",
+      "sha256": "3a3e19ddfe79f23cbcfb9f44034194929e8e26ffcbb87a8ef34812ab799bb4c0",
+      "bytes": 188866
+    },
+    {
+      "path": "diagnostic-2/input-fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "diagnostic-2/input-script.mjs",
+      "sha256": "813bba45b971c98adb737947649806afae28d6c3a4f536e61facc5d1523bd055",
+      "bytes": 16945
+    },
+    {
+      "path": "diagnostic-2/result.json",
+      "sha256": "abe098efda835adc98977ae19d966b60cb71b4e1ef123a68c183f2c8c0de76fb",
+      "bytes": 6332
+    },
+    {
+      "path": "diagnostic-2/source-manifest.json",
+      "sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+      "bytes": 4793
+    }
+  ]
+}

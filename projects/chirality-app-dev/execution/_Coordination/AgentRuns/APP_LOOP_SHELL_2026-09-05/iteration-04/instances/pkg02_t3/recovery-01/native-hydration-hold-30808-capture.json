@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/usr/sbin/screencapture",
+    "-x",
+    "-o",
+    "-l",
+    "30808",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-hydration-hold-30808.png"
+  ],
+  "window": {
+    "kCGWindowAlpha": 1,
+    "kCGWindowBounds": {
+      "Height": 822,
+      "Width": 1280,
+      "X": 16,
+      "Y": 26
+    },
+    "kCGWindowIsOnscreen": true,
+    "kCGWindowLayer": 0,
+    "kCGWindowMemoryUsage": 2368,
+    "kCGWindowName": "Chirality Workflow Shell",
+    "kCGWindowNumber": 30808,
+    "kCGWindowOwnerName": "Electron",
+    "kCGWindowOwnerPID": 87300,
+    "kCGWindowSharingState": 1,
+    "kCGWindowStoreType": 1
+  },
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

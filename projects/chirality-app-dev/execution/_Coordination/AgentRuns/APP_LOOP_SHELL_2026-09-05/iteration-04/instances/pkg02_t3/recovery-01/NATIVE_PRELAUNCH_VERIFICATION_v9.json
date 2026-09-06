@@ -1,0 +1,9 @@
+{
+  "archive": "PASS exact suppliedSHA",
+  "executable": "PASS exact suppliedSHA",
+  "main": "PASS exactf82b",
+  "preload": "PASS exact124a",
+  "startup_policy": "native/STARTUP_CURRENT_BUNDLE_BINDING_v2.json unchanged exact main; developmentGUI,isolatedsocket/token/userData,HOME preserved,uniqueLaunchAgent absent checked driver",
+  "preexisting_windows": "NATIVE_INVENTORY_HOST_01.json exact CGWindow inventory beforelaunch; no existingChirality/Electron window; preserve existingPreviewOpen/Word/Excel/Finder windows",
+  "browser": "full-origin-v9 PASS49/0errors and PDFvisible; state-settled capture check running; no sourcewrite"
+}

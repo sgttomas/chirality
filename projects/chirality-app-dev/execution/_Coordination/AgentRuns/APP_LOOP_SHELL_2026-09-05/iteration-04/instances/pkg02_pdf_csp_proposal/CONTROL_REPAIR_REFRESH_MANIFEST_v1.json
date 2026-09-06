@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+      "sha256": "bf733312e8ac8d9ff3ae696252370fc16c88ac88f490d89a5ab0fc4a4af68a2e",
+      "bytes": 3112
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v5.json",
+      "sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+      "bytes": 4793
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision5/REVIEW_RETURN.md",
+      "sha256": "cb359571dc29169516206645015d2a3fad089eeb0f0fcd5b2d9d7547d5d5b191",
+      "bytes": 10490
+    }
+  ]
+}

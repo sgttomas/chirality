@@ -1,0 +1,9 @@
+{
+  "ACTIVATION_FINAL_v5.json": "e77168c1b0e3bffde0f9c60a1602de9eb7b657a7ff8e79236388d10ff8230e6c",
+  "run_checks_v5.py": "c8fa4e429b7c3806b55684714352123159084b2cabe1dfe0a93abc5e725a1e09",
+  "REVISION5_BASIC_REUSE.json": "fcdcff42f05d3d6644eb9969067af94ddc747b91337afe4c6823d4b975caefe7",
+  "REVISION5_RETURN.json": "7fff7bb45588817ff6e54ecc090a655155c1fc598f6bfb628f80947ea916672b",
+  "release-03/evidence-sha256.json": "11c9d9df7b68005b59db9f2635ce55a4dc17bd2899fa6d33b1e91fba820aa794",
+  "build-02/evidence-sha256.json": "b6d31b181c03327130e8f2af654dbbdbebef4cef8fc45f0babc40723fe0a6203",
+  "security-02/evidence-sha256.json": "75d14951fa68eb5312ce4b2a6fe5a72a39e1997c2436c2b9af96036945554b61"
+}

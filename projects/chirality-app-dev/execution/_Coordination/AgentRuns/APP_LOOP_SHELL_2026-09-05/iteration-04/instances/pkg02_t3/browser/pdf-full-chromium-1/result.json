@@ -1,0 +1,540 @@
+{
+  "status": "PDF_RENDER_INSPECTION_PENDING",
+  "browser": "148.0.7778.96",
+  "observations": [
+    {
+      "label": "initial Files and primary",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 638.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "actual markdown response rendered",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 478.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 1440px Light",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 478.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 1440,
+      "theme": "Light",
+      "boxes": [
+        {
+          "x": 1305.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 1290.0625,
+          "y": 91.25,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 1403.21875,
+          "y": 91.25,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 1440px Dark",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 478.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 1440,
+      "theme": "Dark",
+      "boxes": [
+        {
+          "x": 1305.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 1290.0625,
+          "y": 91.25,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 1403.21875,
+          "y": 91.25,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 960px Light",
+      "primary": {
+        "x": 273.796875,
+        "y": 861.765625,
+        "width": 208.515625,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 960,
+      "theme": "Light",
+      "boxes": [
+        {
+          "x": 825.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 734.796875,
+          "y": 136.359375,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 847.953125,
+          "y": 136.359375,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 960px Dark",
+      "primary": {
+        "x": 273.796875,
+        "y": 861.765625,
+        "width": 208.515625,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 960,
+      "theme": "Dark",
+      "boxes": [
+        {
+          "x": 825.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 734.796875,
+          "y": 136.359375,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 847.953125,
+          "y": 136.359375,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 900px Light",
+      "primary": {
+        "x": 25.796875,
+        "y": 21.765625,
+        "width": 688.515625,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 900,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 900,
+      "theme": "Light",
+      "boxes": [
+        {
+          "x": 765.046875,
+          "y": 446.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 750.0625,
+          "y": 483.25,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 863.21875,
+          "y": 483.25,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 900px Dark",
+      "primary": {
+        "x": 25.796875,
+        "y": 21.765625,
+        "width": 688.515625,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 900,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 900,
+      "theme": "Dark",
+      "boxes": [
+        {
+          "x": 765.046875,
+          "y": 446.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 750.0625,
+          "y": 483.25,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 863.21875,
+          "y": 483.25,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "expanded document retains primary",
+      "primary": {
+        "x": 97,
+        "y": 858.5625,
+        "width": 278.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "composer input restores expanded panel",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 478.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "keyboard document resize",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 462.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "actual pointer resize",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 392.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "actual PDF endpoint bytes and standalone browser iframe; visual inspection pending",
+      "pass": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/harness/agents",
+      "mocked": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/harness/session/list",
+      "mocked": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/project/deliverables",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    }
+  ],
+  "pageErrors": [
+    "TypeError: Cannot read properties of null (reading 'setItem')"
+  ]
+}

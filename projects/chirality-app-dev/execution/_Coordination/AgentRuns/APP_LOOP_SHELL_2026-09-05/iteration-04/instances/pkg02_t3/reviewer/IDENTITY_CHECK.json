@@ -1,0 +1,74 @@
+{
+  "manifest_sha256": "af2cc08a7e30dd4fa8b3da91013b7f7fc78c8e6a18231598b1c40f34a4fe9d82",
+  "brief_sha256": "cc055901ea9c61402d97814e4091622c82eb8924515981a884f703832d301f20",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/document-handoff.test.ts",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "match": true
+    }
+  ]
+}

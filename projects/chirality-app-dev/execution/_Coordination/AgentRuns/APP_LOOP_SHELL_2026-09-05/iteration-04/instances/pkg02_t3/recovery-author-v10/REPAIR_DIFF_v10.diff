@@ -1,0 +1,85 @@
+--- v9/projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx
++++ v10/projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx
+@@ -1,10 +1,11 @@
+ import React from 'react';
+-import { act, create, type ReactTestRenderer } from 'react-test-renderer';
++import { renderToStaticMarkup } from 'react-dom/server';
++import { act, create, type ReactTestRenderer, type ReactTestRendererJSON } from 'react-test-renderer';
+ import { afterEach, expect, it, vi } from 'vitest';
+ import { FileTreePanel } from '../../components/shell/file-tree-panel';
+ const workspace = vi.hoisted(() => ({ projectRoot: '/root' as string | null, chooseProjectRoot: vi.fn(async () => true), hasElectronDirectoryPicker: true, errorMessage: null }));
+ vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: () => workspace }));
+-afterEach(() => vi.unstubAllGlobals());
++afterEach(() => { vi.unstubAllGlobals(); workspace.projectRoot = '/root'; workspace.hasElectronDirectoryPicker = true; workspace.chooseProjectRoot.mockClear(); });
+ it('opens regular files, toggles directories and preserves inert legacy files', async () => {
+   vi.stubGlobal('window', { setInterval: vi.fn(), clearInterval: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn() });
+   vi.stubGlobal('document', { addEventListener: vi.fn(), removeEventListener: vi.fn() });
+@@ -58,3 +59,43 @@
+   expect(footer.findByType('span').props.title).toBe('/root');
+   act(() => tree.unmount());
+ });
++
++
++it('matches SSR and the native first client commit before enabling the mounted folder chooser', async () => {
++  workspace.projectRoot = null;
++  workspace.hasElectronDirectoryPicker = false;
++  const serverMarkup = renderToStaticMarkup(<FileTreePanel />);
++  expect(serverMarkup).toContain('disabled=""');
++  expect(serverMarkup).toContain('Choose a folder using the folder selector above.');
++
++  workspace.hasElectronDirectoryPicker = true;
++  // Deliberately create outside act: capture the synchronous first commit before passive effects.
++  const tree = create(<FileTreePanel />);
++  const initialClientTree = tree.toJSON();
++  const toElement = (node: ReactTestRendererJSON | string): React.ReactNode => typeof node === 'string'
++    ? node : React.createElement(node.type, node.props, ...(node.children ?? []).map(toElement));
++  expect(Array.isArray(initialClientTree)).toBe(false);
++  expect(renderToStaticMarkup(toElement(initialClientTree as ReactTestRendererJSON))).toBe(serverMarkup);
++  const chooseButton = () => tree.root.findByType('footer').findByType('button');
++  expect(chooseButton().props.disabled).toBe(true);
++
++  await act(async () => {});
++  expect(chooseButton().props.disabled).toBe(false);
++  expect(tree.root.findAllByType('p').some(node => node.children.includes('Choose a folder using the folder selector above.'))).toBe(false);
++  workspace.chooseProjectRoot.mockClear();
++  await act(async () => chooseButton().props.onClick());
++  expect(workspace.chooseProjectRoot).toHaveBeenCalledOnce();
++  act(() => tree.unmount());
++  // This checks server/initial-client structure and postmount behavior; production hydration is a separate proof.
++});
++
++it('retains the folder selector fallback after mounting in a browser without the native picker', async () => {
++  workspace.projectRoot = null;
++  workspace.hasElectronDirectoryPicker = false;
++  let tree!: ReactTestRenderer;
++  await act(async () => { tree = create(<FileTreePanel />); });
++  expect(tree.root.findByType('footer').findByType('button').props.disabled).toBe(true);
++  expect(tree.root.findAllByType('p').some(node => node.children.includes('Choose a folder using the folder selector above.'))).toBe(true);
++  expect(workspace.chooseProjectRoot).not.toHaveBeenCalled();
++  act(() => tree.unmount());
++});
+--- v9/projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx
++++ v10/projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx
+@@ -90,6 +90,10 @@
+ 
+ export function FileTreePanel({ onOpenFile, selectedPath }: { onOpenFile?: (path: string) => void; selectedPath?: string | null } = {}): JSX.Element {
+   const { projectRoot, chooseProjectRoot, hasElectronDirectoryPicker, errorMessage } = useWorkspace();
++  // The preload capability is client-only; keep SSR and the first client render identical.
++  const [mounted, setMounted] = useState(false);
++  const directoryPickerAvailable = mounted && hasElectronDirectoryPicker;
++  useEffect(() => { setMounted(true); }, []);
+   const [tree, setTree] = useState<TreeNode | null>(null);
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState<string | null>(null);
+@@ -269,9 +273,9 @@
+         event.preventDefault();
+         buttons[Math.max(0, Math.min(buttons.length - 1, index + (event.key === 'ArrowDown' ? 1 : -1)))]?.focus();
+       }}>{panelBody}</div>
+-      <footer style={{ gridRow: 3, padding: '0.65rem 1rem', borderTop: '1px solid var(--rule)', overflowWrap: 'anywhere' }}><button type="button" disabled={!hasElectronDirectoryPicker} onClick={() => { void chooseProjectRoot(); }}>Choose folder</button>
++      <footer style={{ gridRow: 3, padding: '0.65rem 1rem', borderTop: '1px solid var(--rule)', overflowWrap: 'anywhere' }}><button type="button" disabled={!directoryPickerAvailable} onClick={() => { void chooseProjectRoot(); }}>Choose folder</button>
+         <span title={projectRoot ?? undefined}>{projectRoot ? projectRoot.split('/').filter(Boolean).at(-1) ?? '/' : 'No folder'}</span>
+-        {!hasElectronDirectoryPicker ? <p>Choose a folder using the folder selector above.</p> : null}
++        {!directoryPickerAvailable ? <p>Choose a folder using the folder selector above.</p> : null}
+         {errorMessage ? <p role="alert">{errorMessage}</p> : null}
+       </footer>
+     </aside>

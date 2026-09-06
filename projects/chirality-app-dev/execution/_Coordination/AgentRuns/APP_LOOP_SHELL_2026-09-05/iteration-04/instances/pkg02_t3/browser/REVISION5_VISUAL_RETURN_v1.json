@@ -1,0 +1,49 @@
+{
+  "status": "PARTIAL_BROWSER_PROOF_NEW_LAYOUT_FAILURE",
+  "source": "author/SOURCE_MANIFEST_v5.json",
+  "global_handoff_verified": true,
+  "attempt3": "31 scripted observation groups PASS; no pageErrors or console errors. This is not full render acceptance.",
+  "visual_inspection": {
+    "observer": "WORKING_ITEMS /root/pkg02",
+    "controls": "1440 light controls disjoint,960 metadata readable,900 dark controls disjoint with primary earlier in reachable stacked document.",
+    "images_json": "SVG marker visible, folded JSON literal keys visible; actual image decode/script/external-fetch/download assertions passed.",
+    "PDF": "Headless-shell blank, no display claim. Cached full Chromium148.0.7778.96 actual PDF viewer toolbar/page1/1 and fixture content visible in pdf-full-chromium-1/pdf-full-chromium-final.png; standalone browser only, no Electron/native inline proof.",
+    "new_failure": "Parent source challenge identified900 File Tree clipping. Manager independently visually confirmed and measured body27.1875px/scrollHeight628, footer82.109375px starting same y as body. Existing2row grid plus newfooter and stacked cap produce unusable listing; ordinary Picture.png click timed out."
+  },
+  "source_changes": false,
+  "owned_server": {
+    "session": 97771,
+    "startup": "Ready117ms",
+    "stop": "Ctrl-C",
+    "exitCode": 0
+  },
+  "browser_sessions": [
+    {
+      "id": 99767,
+      "exitCode": 1,
+      "attempt": "attempt2 evaluator name mismatch"
+    },
+    {
+      "id": 79134,
+      "exitCode": 1,
+      "attempt": "diagnostic2 intentional stop"
+    },
+    {
+      "id": 59349,
+      "exitCode": 0,
+      "attempt": "attempt3"
+    },
+    {
+      "id": 39463,
+      "exitCode": 0,
+      "attempt": "pdf-full-chromium1"
+    },
+    {
+      "id": 54660,
+      "exitCode": 1,
+      "attempt": "tree900 diagnostic pointer failure"
+    }
+  ],
+  "native_launched": false,
+  "remaining": "Controlled source repair requested, fresh full candidate review and appropriate gates/rebuild then browser/native retry. D108 Electron inline PDF residual and exact-source CI remain."
+}

@@ -1,0 +1,34 @@
+{
+  "global_manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/REVISION10_PROVISIONAL_MANIFEST.json",
+  "sha256": "92e77b4ffa2374deed7aeb633feda255517e3193223b3f36b5671848c30ec032",
+  "all_manifest_entries_exact": true,
+  "all3_bundles_exact": true,
+  "actual_return": {
+    "revision": 10,
+    "source_manifest_sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+    "all18_current_identities_match": true,
+    "review": "PENDING actual parent fan-in; execution concurrent under v7.3; no acceptance claimed",
+    "full_tests": "1689PASS4skip,171filesPASS1skip",
+    "typecheck": "PASS",
+    "section9": "PASS16",
+    "premerge": "FAIL503 ENGINE_UNAVAILABLE missing daemon binding; configured exact-head CI owed",
+    "wrapper": "FAIL; premerge and downstream Section8 summary consistency",
+    "build": "PASS Next/Electron",
+    "bundles": {
+      "dist-electron/main.js": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+      "dist-electron/preload.js": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+      "dist-runtime/chirality-cli.mjs": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+    },
+    "next_sha256": {
+      ".next/BUILD_ID": "453511aaa4ba335ea00ccf113dc8e61de7dc23350a81cce850e3977b926d823c",
+      ".next/build-manifest.json": "811da699ca890e8f543a95b3a3c41a1e02be62c2e47d30f95c74c761437d83c5",
+      ".next/app-build-manifest.json": "9f21c5a53e114064ae50f5e64b75ff8828f7ea4a93c41840b1412ea7174948d6"
+    },
+    "security": "PASS security-06; final proof/integration evidence scan remains later",
+    "basic_reuse": "closeout-01 selfcheck/350pytest reused; all865 recorded input identities unchanged in REVISION10_CLOSEOUT_REUSE.json",
+    "cleanup": "owned server stopped0; all build/security processes completed; no owned processes",
+    "native_or_browser_authorized_by_executor": false,
+    "remaining": "actual fresh source reviewPASS/current identity fan-in, manager actual browser/native proof, terminal record checks, configuredCI, partialPDF boundary"
+  },
+  "review": "PENDING actual review; no browser/native launched"
+}

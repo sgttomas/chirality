@@ -1,0 +1,71 @@
+{
+  "status": "ACTUAL_PREFREEZE_RECORD_CHECKS_PASS_FULL_STAGED_AND_GOVERNED_REVIEW_PENDING",
+  "head": "239c8f2a53397f88f16e3d56ecbba9af83829246",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "source_inventory_verified": 18,
+  "source_changed_paths": 15,
+  "manager_artifacts_verified": 1069,
+  "scope_path_count_before_this_output_and_freeze": 1881,
+  "all_paths_inside_App": true,
+  "text_count_all_suffixes": 1421,
+  "binary_count": 460,
+  "raw_findings_exactly_classified": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/FOCUSED_TEST.stdout.log",
+      "sha256": "e70bad3e0057af3b3b6bbfc0bd98355fce5183b341e44c957107f2bef075215b",
+      "trailing_space_lines": [],
+      "blank_at_eof": true,
+      "exact_classification": "-blank-at-eof"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/REPAIR_DIFF_v10.diff",
+      "sha256": "89f4298434d1e91f504e4da38fd6694f1b074145ab6db8d59c015de7910d4e81",
+      "trailing_space_lines": [
+        64
+      ],
+      "blank_at_eof": false,
+      "exact_classification": "-trailing-space"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/FOCUSED_TEST.stdout.log",
+      "sha256": "5f704fc671bb49c700428dc5624c80a5e829a87d00d8062e2ddc9e66adbad683",
+      "trailing_space_lines": [],
+      "blank_at_eof": true,
+      "exact_classification": "-blank-at-eof"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/REPAIR_DIFF_v9.diff",
+      "sha256": "4e27eee969b21c4bceea6166d4c412f63ff1f4fa8a718de8e7ad74b6b28792db",
+      "trailing_space_lines": [
+        15
+      ],
+      "blank_at_eof": false,
+      "exact_classification": "-trailing-space"
+    }
+  ],
+  "unclassified_new_text_findings": [],
+  "calibration": "Tracked changed lines checked by unaltered HEAD diff check; all new UTF8 non-NUL text regardless suffix checked in full. Attributes affect only four canonical raw artifacts; full unaltered staged check remains CHANGE-owned. This new lossless JSON and freeze manifest postdate scan; both are record output, not product changes. Source/native gates were not rerun."
+}

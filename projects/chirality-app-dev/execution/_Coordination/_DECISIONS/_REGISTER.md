@@ -136,6 +136,10 @@ This register tracks human-gated decisions for the active app-integration loop. 
 
 | D-APP-119 | Authorize exact organisation-layer common App boot seam and proposed local pin configuration, or defer DEL-07-01-V3-01 implementation | DEL-07-01-V3-01 App helper/boot scope; exact added frontend/electron/main.ts import/call only; no Root-wide enforcement | AWAITING_RULING | Pending owner question; no response or direction recorded | `execution/_Coordination/_DECISIONS/D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md` |
 
+| D-APP-120 | Separately authorize omitted T2 woven presentation seam and choose no-folder capability routing or defer | DEL-02-01-V3-01 App seam; Root no-folder contract requires separate owning instrument | AWAITING_RULING | OwnerCaseSelection NONE; proposal only; EffectStatus HELD; verifier PENDING | `execution/_Coordination/_DECISIONS/D-APP-120_PACKET_T2_NO_FOLDER_AND_WOVEN_SEAM_2026-09-05.md` |
+
+| D-APP-121 | Bounded same-origin built-in PDF CSP seam or explicit temporary handoff defer | DEL-02-03-V3-01; DEL-09-06 security interface | AWAITING_RULING | OwnerCaseSelection NONE; proposal only; EffectStatus HELD; IndependentVerifier PENDING | `execution/_Coordination/_DECISIONS/D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md` |
+
 ## Decision Preparation Rules
 
 - Prepare a packet only when the selected tranche is blocked by the decision.

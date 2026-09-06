@@ -1,0 +1,128 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "84cdd9620f8226422dd68099239023cdf4dbf1b276c4ae4562fb025821793131",
+    "diff_sha256": "2a7fa11bc85ed57f9594e0e7db16bbfd730ad09f661912fe885ca9f0dfb4c049"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "61dc59cfe26b2ce73fb4b6d3d34f955e16c60b5838e77a6868975fd7cb334759",
+    "diff_sha256": "7bee457f14288071a466e5489a162755315a4d3334d5887a5bcc8acbe27906c2"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "2fa07c18d399ccef6cbc513b6ed39279d98b4a6883b3e20f34df6a1cfb2ddcd8"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "343d3572e7b3231eac7297d4002295fd93dde389f0b53304b06f8aca7fe3014b"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "d0de69eb6d455e3d8974af936a138a7d89925dd4f1e8343099ed4e6726d452c9"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "2e3cc7dc2017fa12b2916e8e2224b6cf61def45a84f1645ce11e6e952347f75a",
+    "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "b7bc2114df48e6b045ba9a5ab22043a9cc779532b6e7623c30e0c34aab9830d3",
+    "diff_sha256": "f0a35b0f10adb7dcf62502ace23510824b02d1e62aff010c0da379c19d2adf7d"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "bb5d6e95c8a4da231c30d722814b9d349e9d0f37a888da17dc7e334de5075a95",
+    "diff_sha256": "4aa434c6881af1e1c717ba68e1744ef0988e892944f0bc0da5755e604094ae3f"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "f18d0135b64324c21f13e30aa3d887cd46ac0155e94929e7cd8dc1cf0fddbfc0"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/document-handoff.test.ts",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "d614c60cae40a618cbbb95fecfe64e09548f2f74eec71654419df18799b15587"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "be1934f28a3563498d44d537a07ecad662e54c79b16bd78cd2fc1a47360c67e4"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "c51b9de528b26f26b5b3442845d292f83ff072838171436ab1bf27ba3f249ceb"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "9dfe17e734a6f76d5470792ef4d62daeea51d8005dfaa5e6fe7341b8cd0120b1",
+    "diff_sha256": "1c86b992e02e02271fcf5bd4cb93c208fe9de1dd1922e1f4fa4043847d0fce22"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "6d5ef9b406e3aa07d4421dfa71323de040981daea0d2c8a2eef55fa854d5af67",
+    "diff_sha256": "7ca354ecc3bb462975067390c55a8bb108e90fff6372fe68421ec41b2bb5447f"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "6c73d2de5a4ff13a470d61afcb2acdbae690ff45fbde273a7f6822542e084016",
+    "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "matches_full_diff": true,
+    "preimage_present": false,
+    "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diff_sha256": "c1cc77a74470af7c32a7ea0db72e62087df6f9fdac098206ba7be16254590da3"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "5b5d7439f7f5e946836907a828ec516291f6d93445914b76e96ac1eba4ceb841",
+    "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "matches_full_diff": true,
+    "preimage_present": true,
+    "preimage_sha256": "62c4cc6e34b63cb375f6a89d41ac9633ee42b779679c6434cab7849585e28ad6",
+    "diff_sha256": "7791c1658495cc520366667449f2060f71ded7b3580c665941f499a24ae6dbe9"
+  }
+]

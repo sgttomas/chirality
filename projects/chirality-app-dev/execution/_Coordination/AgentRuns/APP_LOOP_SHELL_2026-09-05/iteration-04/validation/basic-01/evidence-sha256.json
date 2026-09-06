@@ -1,0 +1,18 @@
+{
+  "app-hold-integrity.output.json": "7dcf88cb4ec7c0c02034293ac79236ecd6c780dd532c83c42826fa013753a898",
+  "commands.json": "2e1e97bc5ca272a36f91a7b345a9f8cb3ee6263de8eabe28b1b076bf7a2ced87",
+  "diff-check.output.json": "a272df39879a637078952730002957e09aef980bf50b9203423f44255eab4086",
+  "environment.json": "031c89c5ab9b77a5d44146287c08d5ae5272afb3f57369d7137ac536d7af7c61",
+  "final-inventory-identities.json": "cf2e39ad2757803cc7e884f7a0d66a3cd90602fc0d664493f4f539a5e250490e",
+  "freeze-verification.json": "612c4f94a4588a48a7115f0f8832b1e446058620d5614aef6583f8bcede9ca12",
+  "git-head.output.json": "95f63559ffa97bc38759491ff08032dc2ffeb91cd8874cdbc5e577b445083e24",
+  "git-status.output.json": "68698446f7ef12949b387fc12805982df1bc788f15fe6dc2856499d1ae08f974",
+  "harness-pytest.output.json": "5998f6628968f22131df379a0dc507e5a7d0ba97030e1c12b09287cd204f0c1a",
+  "harness-selfcheck.output.json": "0e64c3c291799c5c09bfd9c3267aeca68a75a2cc324444c46557c7df87f3f9b9",
+  "node.output.json": "20395d044baf3beb372dc4a72ce0e4aaf178cc88a2894602e4b172f71cc50d42",
+  "npm.output.json": "e69c7d7dc320a244d25cd6088890e68f05b110dd1a16aa739f6713fe1d6ed22b",
+  "python.output.json": "21e386d26ec395c9501aa5c2a249d2aaf701729aaa3905c8ccb98cd86059266f",
+  "receipt-validator.output.json": "08360a313ce8e2cf8e993258d7a9c943b1c2f1c25cba86995d16d8e0580f3a15",
+  "source-sha256.json": "e451838d695a08bd05fcf54db1c6e166a2eda89e32347734131d975254b20101",
+  "source-stability.json": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+}

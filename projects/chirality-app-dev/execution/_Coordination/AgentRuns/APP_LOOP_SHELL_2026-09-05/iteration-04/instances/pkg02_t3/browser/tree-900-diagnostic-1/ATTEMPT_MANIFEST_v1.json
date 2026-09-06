@@ -1,0 +1,74 @@
+{
+  "files": [
+    {
+      "path": "browser/tree-900-diagnostic-1/document-1440-light.png",
+      "sha256": "3ce1d64bde0badbbd3d32702a96c8b8efa2ffc74db2d6f5935479858ccf11b66",
+      "bytes": 168471
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/failure.png",
+      "sha256": "f3e9ee1311018e1ac962bec9fccd199c3438accfb6cd8ff8fb92e1d68229b89e",
+      "bytes": 132269
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/files-1440-light.png",
+      "sha256": "21abbb6739709463bccc9b1b503a60ef7b5ecd8f9d94cd4d48f3fcd344c32faa",
+      "bytes": 188860
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/input-fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/input-script.mjs",
+      "sha256": "9d6be470c710e1a2c7f3096f3c30df0af5a4a066e962fc4e6b617e924d6f16f4",
+      "bytes": 17945
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/panel-controls-1440-dark.png",
+      "sha256": "ce463e95f7352b04e255642ea82a5f4c159606b62d4246f9ef83b3383a98f77f",
+      "bytes": 167324
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/panel-controls-1440-light.png",
+      "sha256": "26f4af72a4315c7e85eb13947a0994e051b519379e8ff75d283f82f69667c549",
+      "bytes": 169252
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/panel-controls-900-light.png",
+      "sha256": "f3e9ee1311018e1ac962bec9fccd199c3438accfb6cd8ff8fb92e1d68229b89e",
+      "bytes": 132269
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/panel-controls-960-dark.png",
+      "sha256": "9d8b51c4c4db5532dfad363a6f5c1b6c8a7a24646ba3032cb1cad8e3afef33b1",
+      "bytes": 157562
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/panel-controls-960-light.png",
+      "sha256": "62592e58a3b1fb9531422e62dec285786ce74f10dc3b2ce17e34f54ee8cb486c",
+      "bytes": 158673
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/result.json",
+      "sha256": "35e90bde1c672de529e12864e3bfaeb1f4e573bfdcef12e48b7caad8b2e6ef05",
+      "bytes": 15778
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/source-manifest.json",
+      "sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+      "bytes": 4793
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/tree-ax.txt",
+      "sha256": "3b9bd68c61cee4ce5cef82e3f6711fd0ab29e80724e6451d55318e08bef6f818",
+      "bytes": 1577
+    },
+    {
+      "path": "browser/tree-900-diagnostic-1/tree-geometry.json",
+      "sha256": "aa4a2be4238e23c723c27f6f595229f779fcd97ece710ded7902026ea90f40b5",
+      "bytes": 1129
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "task": "v10 browser/native proof sequence",
+  "source_manifest_sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+  "preconditions": [
+    "Fresh actual18 source reviewPASS",
+    "Parent global current build/check outcomes and owned cleanup",
+    "Source/bundle/cache identity verification",
+    "Fresh native baseline immediately before native launch"
+  ],
+  "sequence": [
+    {
+      "mode": "browser",
+      "script": "hydration-capability-diagnostic-v9.mjs",
+      "acceptance": "Both baseline and inert capability cases have zero actual pageErrors on rebuilt v10; no localStorage initialization."
+    },
+    {
+      "mode": "browser",
+      "script": "proof-origin-scoped-v9.mjs",
+      "acceptance": "49 actual observations; pageErrors empty; fullChromium actualPDF page and all other current screenshots reviewed."
+    },
+    {
+      "mode": "browser",
+      "script": "state-matrix-settled-v9.mjs",
+      "acceptance": "40 cases/40 settled screenshots, actual callbacks/layout assertions and visual review."
+    },
+    {
+      "mode": "native",
+      "script": "native-proof-v10.mjs",
+      "acceptance": "Zero startup page errors, actual production-built preload/main in developmenthost, native Office Quick Look/default PDF/doc/Finder visible checks, inert sender/invalidpaths refused, image-only checks; native inlinePDF explicitunavailable."
+    }
+  ],
+  "capture_policy": "Bounded CLI CGWindow named apps including Quick Look; only new fixture-owned window screenshots after exact inventory; no CUA and no unrelated window capture. Baseline windows retained.",
+  "cleanup": "Close owned Quick Look through Electron; close only newly opened exact scratch documents/Finder windows; finish owned Electron and STOP owned Next; verify exact processes/windows gone and isolated socket/token/LaunchAgent remain absent.",
+  "remaining": "Full T3 partial because native in-panel PDF requires D121 owner policy ruling; D120/D121 AWAITING_RULING no edits. Localpremerge missingdaemon binding503 remains separate exactnextheadCI obligation.",
+  "runtime_credentials": "Clean explicit allowlist env, HOME preserved, stub server provider, isolated scratch socket/operator token/userData/LaunchAgent; no lifecycle/account/provider calls."
+}

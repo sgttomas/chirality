@@ -1,0 +1,32 @@
+{
+  "decision": "D-APP-121",
+  "prior_binding": "FINAL_TEST_ONLY_FREEZE_BINDING_v1.json",
+  "current_manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v5.json",
+  "current_manifest_sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+  "changed_vs_v4": [
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "other16_identical": true,
+  "all18_current_match": true,
+  "semantic_disposition": "The PDF policy/endpoint/main/preload/pins/proof references remain unchanged. The three scoped shell CSS declarations repair control placement only; native inline PDF remains blocked and the complete coherent policy candidate remains proposed with stated feasibility and validation obligations.",
+  "calibration": "Candidate source revision5, not accepted postimage. Fresh source review PASS cb359571dc29169516206645015d2a3fad089eeb0f0fcd5b2d9d7547d5d5b191; real browser attempt1 failed controls overlap, repair review does not establish actual geometry/native/global/CI PASS. All draft packets, original observations and earlier refresh bindings remain immutable. Parent register/integrated review/owner choice remain separate.",
+  "attribution": {
+    "OwnerStandingApproval": "D-APP-64 \u00a73 within activated record-only proposal scopes",
+    "AgentJudgment": "EVIDENCE_REBIND_PROPOSAL_FACTS_UNCHANGED",
+    "SelectedOutcome": "Bind existing proposal calibration to actual revised source freeze without changing packet option or criteria.",
+    "JudgedBy": "WORKING_ITEMS /root/pkg02",
+    "OwnerCaseSelection": "NONE",
+    "RejectedAlternatives": "Silently treat stale prior identity as current; rewrite draft history; infer source PASS as owner or native-policy acceptance.",
+    "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+    "IndependentVerifier": "Actual /root/pkg02/t3_review revision5 source PASS; proposal delta governed review remains parent pending.",
+    "EffectStatus": "Supplemental draft evidence only; governed landing and owner case selection HELD.",
+    "PreservedGates": "All D64\u00a75.1 classes, source fence, exact packet scope, no policy or Root grant, preserved proposals/records, actual globals/build/browser/native/CI, independent governed review and owner decision."
+  },
+  "lenses": {
+    "Ontology": "Current candidate source identity differs from accepted proposal authority.",
+    "Epistemology": "All18 hash check plus direct actual CSS delta and independent source review justify unchanged proposal facts, not actual usability.",
+    "Praxeology": "Preserve prior records and append immutable current binding before parent register integration.",
+    "Axiology": "Keep source chronology and owner choices explicit without disguising failed proof."
+  }
+}

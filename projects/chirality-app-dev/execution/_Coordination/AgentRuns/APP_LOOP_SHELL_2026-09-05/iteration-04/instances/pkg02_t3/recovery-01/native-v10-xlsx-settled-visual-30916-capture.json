@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/usr/sbin/screencapture",
+    "-x",
+    "-o",
+    "-l",
+    "30916",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-xlsx-settled-visual-30916.png"
+  ],
+  "window": {
+    "kCGWindowAlpha": 1,
+    "kCGWindowBounds": {
+      "Height": 243,
+      "Width": 370,
+      "X": 471,
+      "Y": 315
+    },
+    "kCGWindowIsOnscreen": true,
+    "kCGWindowLayer": 3,
+    "kCGWindowMemoryUsage": 2368,
+    "kCGWindowName": "",
+    "kCGWindowNumber": 30916,
+    "kCGWindowOwnerName": "Electron",
+    "kCGWindowOwnerPID": 14663,
+    "kCGWindowSharingState": 1,
+    "kCGWindowStoreType": 1
+  },
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

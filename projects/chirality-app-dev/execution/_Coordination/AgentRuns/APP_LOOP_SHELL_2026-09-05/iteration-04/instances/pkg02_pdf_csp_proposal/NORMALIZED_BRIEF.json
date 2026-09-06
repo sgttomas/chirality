@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "run-id": "TASK_RUN_pkg02_pdf_csp_proposal_2026-09-05_1640",
+    "timestamp": "2026-09-05T22:34:02.086552+00:00",
+    "run-status": "PENDING",
+    "control-surface": "MERGED",
+    "scope-path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal",
+    "task-profile": "NONE",
+    "task-skill": "proposal-format",
+    "resolved-skill-path": "/Users/ryan/.codex/worktrees/85d6/chirality/skills/proposal-format",
+    "resolved-skill-version": "1",
+    "resolved-task-profile-requirement": "NONE",
+    "companion-files": [
+      "BRIEF_SCHEMA.md (found)",
+      "TOOL_POLICY.md (found)",
+      "QA_CHECKS.md (found)"
+    ],
+    "allowed-tools": [
+      "read-only shell/files/Git/source inspection",
+      "APP-HOLD",
+      "exact record editors"
+    ],
+    "write-authorization": "ALLOWED_WRITE_TARGETS",
+    "runtime-overrides": {
+      "DELIVERABLE_PATH": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI",
+      "MaxProposals": 1,
+      "ProductionFormat": "SOW_V1"
+    }
+  },
+  "input_brief": "# Sealed TASK D121 PDF/CSP proposal brief v1\nRequestedBy: WORKING_ITEMS PKG02\nCHIRALITY_INSTRUCTION_ROOT: {REPO_ROOT}\nWorkingRoot: {REPO_ROOT}/projects/chirality-app-dev\nScopePath: {WORKING_ROOT}/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal\nTaskSkill: proposal-format\nApplyEdits: true (exact authorized proposal records only)\nRuntimeOverrides:\n DELIVERABLE_PATH: {WORKING_ROOT}/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI\n MaxProposals: 1\nAllowedWriteTargets:\n - {WORKING_ROOT}/execution/_Coordination/_DECISIONS/D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md\n - {WORKING_ROOT}/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_run_records/T3_PDF_CSP_PROPOSAL_2026-09-05.md\n - {ScopePath}/** except this sealed brief and manager-owned artifacts\nAllowedTools: read-only shell/files/Git/source inspection; APP-HOLD; exact record editors. No product edits, application launch, network, Git index/commit/push, external messages or delegation. Parent explicitly authorizes cross-deliverable/source evidence reads and this exact shared packet beyond skill's single-deliverable default.\nTasks:\n - Read root/project AGENTS, actual TASK and proposal-format skill, DAPP121_PACKET_SCOPE_DRAFT_v1.md (parent explicitly activated despite candidate title), D64 full schema, D108 PDF choice, D98 version authority, live DEL02-03 Remaining/SOW and DEL09-06 security sources. Normalize TASK record before effects. Recheck D121 ID immediately before packet creation; collision returns blocker, no ID invention. Re-run APP-HOLD dispatch/reliance DEL02-03.\n - Inspect actual renderer-window-policy.ts and main response handling; contract-pins.manifest.ts, renderer-window-policy.test.ts, run-packaged-security-proof.mjs and its test. Explain frame-src and frame-ancestors blockers in development/packaged modes. D98 version permission is not a policy change grant. No bypass in main/endpoint or changed tests/pins now.\n - Write owner-ready PROPOSAL with exact future paths and coherent smallest policy semantics: only bounded same-origin PDF endpoint as inline destination; path/query/content eligibility; top-level frame ancestry versus eligible PDF response ancestry; existing single nonce and isolation/navigation/egress controls. CSP alone does not enforce query or MIME restrictions. Source/endpoint validation and response policy ownership must be explicit. Identify unresolved design constraints rather than inventing proven solutions. Preserve foreign frame/arbitrary resource/traversal/instruction-root negatives.\n - Present narrow policy/scope amendment versus explicit defer with temporary usable OS handoff. Defer is not existing owner acceptance replacing D108's in-panel PDF requirement. No new dependencies/Root/release authority. State precise tests/pin/proof updates and mandatory actual packaged built-in PDF display/negative controls; mocked callbacks and standalone browser display are not native PDF proof.\n - Current T3 author concurrently implements truthful Electron unavailable-preview/default-app fallback within existing17-file fence. Its source may change: cite fixed policy bytes and mark draft-source identities for final refresh. Do not edit/freeze author files. Current T3 remains partial, original Remaining/lifecycle unchanged.\n - Record all10 D64 fields and four lenses: OwnerCaseSelection NONE, IndependentVerifier honestly PENDING required, EffectStatus HELD with actual draft records distinguished. Parent alone later integrates actual register; proposed row under own instance only. No owner routing message now.\nExpectedOutputs: exact packet and local runrecord; TASK normalized/run record; RATIONALE.md; source identity inventory and exact cited bytes; commands/evidence JSON; PROPOSED_REGISTER_ROW.md; sorted recomputable manifest; RETURN.md naming derivative status, accepted upstream, remaining choices and fresh review pending. Preserve manager artifacts/history. Use JSON for lossless raw diffs, not whitespace-invalid patch markdown.\n",
+  "instruction_root": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "working_root": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "brief_sha256": "4dfeff6c9da63afbaa7938c0c24cf5676c54151095ec15b8c0d23bc2a6a382af",
+  "control_precedence": "Parent explicitly activates scope draft; inline runtime direction updates source freeze status; sealed scope retained",
+  "tool_policy": "Brief semantic allowlist active; skill frontmatter allowed-tools absent; no deterministic preferred first",
+  "schema": "All TASK frontmatter populated; SOW_V1 resolved from existing ScopeOfWork.md"
+}

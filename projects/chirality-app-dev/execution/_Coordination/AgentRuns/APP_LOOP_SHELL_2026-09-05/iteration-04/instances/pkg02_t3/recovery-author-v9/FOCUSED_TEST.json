@@ -1,0 +1,28 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/__tests__/components/woven-dialogue-shell.test.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "exit_code": 0,
+  "timestamp": "2026-09-06T00:54:13.014799+00:00",
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "NODE_ENV": null,
+    "CI": null,
+    "TZ": null,
+    "NODE_OPTIONS": null
+  },
+  "environment_note": "Inherited environment; listed non-secret command-affecting variables, no overrides. No credential environment recorded.",
+  "versions": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "python": "Python 3.13.14"
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "stdout": "FOCUSED_TEST.stdout.log",
+  "stderr": "FOCUSED_TEST.stderr.log",
+  "command_calibration": "Parent explicitly corrected sealed brief check typo; authorized test path is src/__tests__/components/woven-dialogue-shell.test.tsx."
+}

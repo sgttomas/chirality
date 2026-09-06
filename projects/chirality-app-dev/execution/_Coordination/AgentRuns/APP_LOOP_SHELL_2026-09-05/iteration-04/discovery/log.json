@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "git",
+    "log",
+    "--oneline",
+    "-20"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "started_at": "2026-09-05T22:00:21.655071+00:00",
+  "ended_at": "2026-09-05T22:00:21.661274+00:00",
+  "exit_code": 0,
+  "stdout": "239c8f2a5 Add bounded shell workspace state with per-chat retention\n50b70f47f Reconcile toolkit prerequisite to verified shell CI evidence\n03e61f38f Implement dialogue shell invariant and workflow contracts\n044a009e2 Merge pull request #720 from sgttomas/claude/app-owner-intent-of-record\n6dfe38cba record(app): D-APP-115 owner intent of record carried from the retired workplan overlay; Receipt 244\n6d4cc9089 Merge pull request #719 from sgttomas/claude/app-loop-handoff-hygiene\n77f210cf4 hygiene(app): D-APP-114 handoff hygiene; DAG control pointer to the 1034 snapshot; Remaining markers normalized; DEL-09-02 stale reference fixed; two loop clauses; workplan overlay retired to plans/workplans/\n7458e9c1e Merge pull request #718 from sgttomas/claude/loop-init-d-app-113-residuals\n186015f05 loop(app): D-APP-113 residuals of the second dry run; state-anchored register grep at Step 0; explicit gating semantics at Step 1\n70041862b Merge pull request #717 from sgttomas/claude/loop-init-consolidation-d-app-112\na8136f3e7 loop(app): D-APP-112 ruled on the owner's merge direction; register row RULED, ruling record, Receipt 241 gate outcome\n9abbbbe46 loop(app): D-APP-112 item B, run-based PR boundary; one branch per run, one commit and one receipt per iteration, one PR at terminus; predecessor items observable on the run's branch\n1aefb6d59 loop(app): D-APP-112 rewrap one Step 1 line; refresh candidate hash\n25476a6cb loop(app): D-APP-112 third cut from a fresh-operator dry run; repair the Step 0 harness status command; add the five clauses the operator lacked\nec6296b56 loop(app): D-APP-112 packet byte-count formatting\nd44a4d7ea loop(app): D-APP-112 rewrap one Step 1 line; refresh candidate hash in packet and Receipt 241\n3821fcc39 loop(app): D-APP-112 second cut reorders LOOP_INIT.md map-then-limits-then-protocol; deliverable path named in the header and at Step 1\n81c39d9a8 loop(app): D-APP-112 proposal consolidates loop/LOOP_INIT.md to what the agent cannot discover (386 to 242 lines); candidate applied for owner ruling\n7cb41194f Merge pull request #716 from sgttomas/claude/sca-app-010-pointers-d-app-111\n709372736 pointers(app): D-APP-111 accept the SCA-APP-010 closure, coverage, and reconciliation snapshots as the loop's pointers\n",
+  "stderr": "",
+  "stdout_sha256": "d761841716d7a445531d5b5e55ffb0cafe623c8c54fe338d45c0faedc20c2e91",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

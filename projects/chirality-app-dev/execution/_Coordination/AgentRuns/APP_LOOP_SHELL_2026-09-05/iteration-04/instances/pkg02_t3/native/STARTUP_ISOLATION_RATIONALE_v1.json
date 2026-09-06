@@ -1,0 +1,31 @@
+{
+  "status": "PREPARED_NOT_LAUNCHED",
+  "sourceCitations": [
+    "frontend/electron/main.ts94-129 userData override before ready;560-590 runtime control paths and project binding;610-731 GUI startup;850-863 mode branch",
+    "frontend/electron/desktop-project-client.ts45-58 deletes inherited project token/root before bind, projectStatus readonly",
+    "frontend/electron/runtime-control-ipc.ts131-151 unique label lifecycle constructor; explicit actions only",
+    "frontend/dist-electron/main.js35508-35600 actual bundled LaunchAgent constructor no side effect/status stat+launchctl print; install/start/stop separate explicit methods"
+  ],
+  "sourceBundleSHA256": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+  "scriptSHA256": "bdd68cd03aed4042a5f4563ed167365e92033576a70aafad892048f043b05085",
+  "effectiveIsolation": "Minimal process environment whitelist; inherited HOME/PATH retained unchanged, no provider/account/runtime env inherited. Explicit scratch userData/socket/operator-token and unique LaunchAgent label, absent before launch. No daemon mode, no auth/provider/chat/model/daemon mutations; GUI binding calls isolated missing socket and only reports disconnected. ActualappisPackagedfalse means no CLI launcher install. RuntimeHost is called only in daemon branch which is not entered.",
+  "limitation": "LaunchAgents directory itself remains user home by existing code. Unique absent label prevents status from naming existing job; constructor does not write. No lifecycle install/start/stop/uninstall invoked. After proof verify no unique plist/token/socket created and owned process cleanup. This is not a private running daemon cohort or runtime functionality proof.",
+  "attribution": {
+    "OwnerStandingApproval": "D-APP-64 \u00a73 and parent explicitly authorized isolated official Electron proof",
+    "AgentJudgment": "SELECT_ISOLATED_GUI_ONLY_VERIFICATION",
+    "SelectedOutcome": "Use existing documented environment seams to isolate runtime resources and avoid all lifecycle/account actions.",
+    "JudgedBy": "WORKING_ITEMS /root/pkg02 after parent startup-isolation challenge",
+    "OwnerCaseSelection": "NONE",
+    "RejectedAlternatives": "Rely solely on userData while inheriting external socket/token/label; install a daemon cohort unnecessarily; change HOME/Root/profile/policy; call runtime mutations.",
+    "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/STARTUP_ISOLATION_RATIONALE_v1.json",
+    "IndependentVerifier": "Parent source/authority assessment and final governed review pending; actual effective startup identities/proof not yet observed.",
+    "EffectStatus": "Prepared fixture evaluator only, no native execution; held for exclusive proof slot after source review/gates.",
+    "PreservedGates": "All D64\u00a75.1 classes, exact official cached runtime/source identity, no account/provider/Root/policy/source/dependency mutation, no existing app/job changes, actual native display/sender/path proof and owned cleanup, final independent/global/CI gates."
+  },
+  "lenses": {
+    "Ontology": "Isolated GUI/handoff evidence differs from runtime-daemon capability and packaged distribution.",
+    "Epistemology": "Actual built constructor/mode branches and environment overrides support prelaunch isolation; effective identities and cleanup still need observation.",
+    "Praxeology": "Freeze recipe, ensure private targets absent, launch only after slot, record effective env/argv and exact native actions, cleanup owned resources only.",
+    "Axiology": "Prevent incidental access to user runtime/account state while obtaining honest native handoff evidence."
+  }
+}

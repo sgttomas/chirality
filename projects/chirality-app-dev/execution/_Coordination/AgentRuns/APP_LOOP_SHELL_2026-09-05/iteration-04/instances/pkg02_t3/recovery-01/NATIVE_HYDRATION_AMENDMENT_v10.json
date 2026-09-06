@@ -1,0 +1,71 @@
+{
+  "cleanup": {
+    "native-v9-host": {
+      "finished": "2026-09-06T01:25:42.998711+00:00",
+      "exit": 0,
+      "process_reaped": true,
+      "stdout_sha256": "0799ff93948c77527aef1fe2bcca3d975cfcabff8fb2a05de393c41da8c3fbad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "server-v9-host": {
+      "finished": "2026-09-06T01:25:43.014650+00:00",
+      "exit": 0,
+      "process_reaped": true,
+      "stdout_sha256": "709861dbca74ac16bfb1fdb31a42ce2216c3cdfe6e82bde122db53b3c15384d1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hydration-server-v9": {
+      "finished": "2026-09-06T01:27:32.615569+00:00",
+      "exit": 0,
+      "process_reaped": true,
+      "stdout_sha256": "b212e98d344f9933f6d2986c6746779e348d5dc5e742807f8f32fb5d9b95b8e7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hydration-capability-v9": {
+      "finished": "2026-09-06T01:27:17.618607+00:00",
+      "exit": 0,
+      "process_reaped": true,
+      "stdout_sha256": "b3c94b976543cbaf42c89c7a1cf543c53f410f7f2596b40952e2baf263f0919f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "AllowedWriteTargets": [
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx"
+  ],
+  "Preimages": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+      "sha256": "bd625949c1fbdcb62c5e5629f80efa6aee2c100c3f8813ebfc16e3909283add2"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+      "sha256": "9ea10e5389c29aeb22b6f318621a72672fb0b6666cfe882a2feaf1ecbc165767"
+    }
+  ],
+  "source18_exact_before_dispatch": true,
+  "OwnerStandingApproval": "D-APP-64 \u00a73 within activated DEL02-03 T3; actual parent bounded repair message",
+  "AgentJudgment": "SELECT_AND_ADVANCE",
+  "SelectedOutcome": "Make FileTreePanel directory-picker capability hydration-stable locally, with matching SSR and initial client structure and postmount native enablement.",
+  "JudgedBy": "WORKING_ITEMS /root/pkg02_finish after direct screenshot inspection and HELP_HUMAN confirmation",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": "Suppress hydration warnings/errors; modify shared WorkspaceProvider; discard native failure; accept callback-only Quick Look; expand source scope.",
+  "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/NATIVE_HYDRATION_AMENDMENT_v10.json",
+  "IndependentVerifier": "PENDING fresh TASK software-code-review over100% next frozen source diff; no anticipated PASS",
+  "EffectStatus": "HELD",
+  "DraftEffects": "Parent-authorized ordinary two-path repair dispatch; source acceptance and whole T3 remain held.",
+  "PreservedGates": "D64 classes1-10,F-APP1-5,APP-HOLD,exact18source scope, globalCSS read-only, complete source review/global/build/browser/native/exactheadCI,A1restage, no owner/lifecycle/CheckingSHA/dependency/pointer/Root/provider/release/merge effects or waiver",
+  "Ontology": "Server/client structural identity differs from postmount desktop capability.",
+  "Epistemology": "Actual native React418 twice; bounded production browser baseline zero errors versus inert preload capability one418 without any fixture localStorage init. Exact source footer removes paragraph on first native client render. Original native evaluator stored only error strings, so original event timestamps/stacks are unavailable; separate diagnostic preserves actual stack/time.",
+  "Praxeology": "All owned proof processes cleaned; sealed two-path TASK repair, fresh whole-source review/global gates, browser/native reruns.",
+  "Axiology": "Preserve desktop folder access and truthful browser fallback without shared contract or policy changes.",
+  "diagnostic": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/hydration-capability-v9/result.json",
+    "sha256": "89d4d36b3068bd02de9bdc0a063c6afc223cb6ca14608f0c6d0928b4e0ce7d33"
+  },
+  "native_failure": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/native-v9-host/result.json",
+    "sha256": "4e9dc52501a2d30d3dbf8f749474ff7e0119711e53600f97a492e2a683baebad"
+  },
+  "native_visual": "Captured current fixture window; no Quick Look display visible. No visual pass."
+}

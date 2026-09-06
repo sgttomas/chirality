@@ -1,0 +1,115 @@
+{
+  "status": "COMPLETE",
+  "requests": [
+    "file:///Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  ],
+  "errors": [],
+  "states": [
+    {
+      "step": 1,
+      "title": "New chat"
+    },
+    {
+      "step": 2,
+      "title": "Resting state"
+    },
+    {
+      "step": 3,
+      "title": "Document opens in the panel"
+    },
+    {
+      "step": 4,
+      "title": "Dragged wider"
+    },
+    {
+      "step": 5,
+      "title": "Expanded for reading"
+    },
+    {
+      "step": 6,
+      "title": "Select and ask"
+    },
+    {
+      "step": 7,
+      "title": "Quote in the composer"
+    },
+    {
+      "step": 8,
+      "title": "Agent working, strip live"
+    },
+    {
+      "step": 9,
+      "title": "Activity in the panel"
+    },
+    {
+      "step": 10,
+      "title": "Child session replay"
+    },
+    {
+      "step": 11,
+      "title": "Organising chats"
+    },
+    {
+      "step": 12,
+      "title": "Popped out"
+    },
+    {
+      "step": 13,
+      "title": "Account row"
+    },
+    {
+      "step": 14,
+      "title": "Account popover"
+    },
+    {
+      "step": 15,
+      "title": "Settings in the panel"
+    },
+    {
+      "step": 16,
+      "title": "The ladder: chat, role, workflow"
+    },
+    {
+      "step": 17,
+      "title": "Workflows view"
+    },
+    {
+      "step": 18,
+      "title": "Plan open"
+    },
+    {
+      "step": 19,
+      "title": "Chat steered by a workflow"
+    },
+    {
+      "step": 20,
+      "title": "Start a workflow from chat"
+    },
+    {
+      "step": 21,
+      "title": "Assistant proposes a role"
+    },
+    {
+      "step": 22,
+      "title": "Chat with a role"
+    },
+    {
+      "step": 23,
+      "title": "The role proposes a workflow"
+    },
+    {
+      "step": 24,
+      "title": "Adjust: the same form, filled in"
+    },
+    {
+      "step": 25,
+      "title": "Not now"
+    },
+    {
+      "step": 26,
+      "title": "Signed out, no local model"
+    }
+  ],
+  "productRuntimeProof": false
+}

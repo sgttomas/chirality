@@ -1,0 +1,24 @@
+{
+  "packet_sha256": "f2aef8d01b562028479260f977d34b5415e806f68effc19a5ea923482782f017",
+  "manifest_sha256": "ea169cc7652a9cab4d26b8850a047c9cf28991cd611620834e7865f3afb44101",
+  "entries_verified": 49,
+  "preimage_register_sha256": "1cb711a031778a749ffd4b590641e3ed8056a242227bec86ad3b27be92d9536d",
+  "postimage_register_sha256": "9f615ff575b899079aedf07665d46e6ed4409a2bb536fbade0a83f66cd1855e0",
+  "row_source": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/PROPOSED_REGISTER_ROW.md",
+  "row": "| D-APP-120 | Separately authorize omitted T2 woven presentation seam and choose no-folder capability routing or defer | DEL-02-01-V3-01 App seam; Root no-folder contract requires separate owning instrument | AWAITING_RULING | OwnerCaseSelection NONE; proposal only; EffectStatus HELD; verifier PENDING | `execution/_Coordination/_DECISIONS/D-APP-120_PACKET_T2_NO_FOLDER_AND_WOVEN_SEAM_2026-09-05.md` |",
+  "checks": [
+    "ID absent",
+    "single matching authorized packet",
+    "six columns",
+    "AWAITING_RULING",
+    "exact manager row",
+    "all historical register bytes preserved"
+  ],
+  "boundary": "Separate App seam vs Root no-folder choices; NONE selected; no routing/product/owneract",
+  "diff_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "final_governed_review": "PENDING"
+}

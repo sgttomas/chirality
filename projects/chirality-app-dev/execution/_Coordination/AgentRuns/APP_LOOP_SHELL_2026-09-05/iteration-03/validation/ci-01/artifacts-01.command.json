@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "repos/sgttomas/chirality/actions/runs/33994563156/artifacts"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "start": "2026-09-05T22:02:23.022957+00:00",
+  "end": "2026-09-05T22:02:23.429432+00:00",
+  "duration_seconds": 0.4063776661641896,
+  "exit_code": 0,
+  "environment": "existing gh authentication; no credential values captured",
+  "redaction_applied": false,
+  "stdout_sha256": "ade625e390657d195d988eefec7fa24a9f0742346f2c33ff0c6832af9a2b73e3",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

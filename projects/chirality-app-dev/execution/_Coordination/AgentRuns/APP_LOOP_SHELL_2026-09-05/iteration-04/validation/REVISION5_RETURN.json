@@ -1,0 +1,37 @@
+{
+  "revision": 5,
+  "source_manifest_sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+  "review_sha256": "cb359571dc29169516206645015d2a3fad089eeb0f0fcd5b2d9d7547d5d5b191",
+  "all18_current_identities_match": true,
+  "full_tests": {
+    "passed": 1685,
+    "skipped": 4,
+    "files_passed": 171,
+    "files_skipped": 1
+  },
+  "typecheck": "PASS",
+  "standalone_section9": "PASS16",
+  "local_premerge": "FAIL503 ENGINE_UNAVAILABLE daemon client not configured; configured exact-head CI owed",
+  "wrapper": "FAIL, premerge plus downstream missing Section8 summary consistency",
+  "build": "PASS Next and Electron",
+  "build_artifacts": {
+    "dist-electron/main.js": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+    "dist-electron/preload.js": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+    "dist-runtime/chirality-cli.mjs": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+  },
+  "next_artifact_sha256": {
+    ".next/BUILD_ID": "66892607cb39897433c03bb00f74a62af56756e904eb650062833d9197438371",
+    ".next/build-manifest.json": "70fd05b22411a04d8162ca43ef71c76c52b8e1694940c42677a64f1a3df8f8f9",
+    ".next/app-build-manifest.json": "dd5a7bfd5df70141a6a7e41773e2131ba26ac0d47bec596903fbe16e26d31d0c"
+  },
+  "security": "PASS security-02, final new proof/integration evidence may require rescan",
+  "sanitization": "executor exact reconstruction PASS; independent review remains separate",
+  "root_checks_reuse": "basic-01 350pytest/selfcheck PASS;138 recorded tool/runtime inputs unchanged",
+  "owned_processes": "all completed; registered service stopped exit0; no native/browser launched",
+  "remaining": [
+    "manager browser/native retry",
+    "terminal integrated receipt/diff checks",
+    "fresh configured CI at next committed source",
+    "D108 inline PDF remains partial/blocked; no whole item acceptance"
+  ]
+}

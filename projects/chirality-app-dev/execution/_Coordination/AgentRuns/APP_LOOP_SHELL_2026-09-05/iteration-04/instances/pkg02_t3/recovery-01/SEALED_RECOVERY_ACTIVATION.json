@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-09-06T00:48:03.074906+00:00",
+  "instance": "/root/pkg02_finish",
+  "parent": "/root",
+  "replaces": "/root/pkg02",
+  "role": "WORKING_ITEMS Agent1; instruction-asserted; delegated-harness-native",
+  "provider": "OpenAI",
+  "model": "GPT-6 family per developer; exact serving model unavailable",
+  "engine": "Codex native descendant facility; exact engine ID unavailable",
+  "activation": {
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/MANAGER_RECOVERY_AMENDMENT_v8.md",
+    "sha256": "1d573bb10c9a45f2cf91a29d896563bfdc22ea9ccffe7cd899aafb9f6252d92b"
+  },
+  "objective": "Finish revision8 browser/native proof and partial package evidence; attribution supplement; no source mutation",
+  "scope": "new immutable records inside pkg02_t3; final permitted manager/proposal evidence after exact scope read; DEL02-03 partial local handoff only",
+  "exclusions": [
+    "source writes",
+    "shared registers/receipts/pointers",
+    "Git mutations",
+    "runtime/provider/account actions",
+    "native PDF policy waiver",
+    "sibling messages"
+  ],
+  "outputs": [
+    "actual browser/native evidence or actual blocker",
+    "18-record attribution supplement",
+    "partial package handoff/manifest",
+    "owned cleanup"
+  ],
+  "acceptance": "Exact frozen18 inputs; actual visual/native evidence; no fullT3 closure; D120/D121 AWAITING_RULING; parent final review required",
+  "source_pins": {
+    "author/SOURCE_MANIFEST_v8.json": "68682296be124eb88f5f56fc6a73a9da9779bcd846365597e657a1716f9d29ca",
+    "author/SOURCE_DIFF_v8.json": "70c811c91f6c6e6234b5ac0e7b5a932cc83068c31adad2f3cb8c7cb25c7c8405",
+    "reviewer/revision8/REVIEW_RETURN.md": "71c759c8d28683e8ba394eef901973a51a545d048b8e7c904f1a2a9fb58009ec"
+  },
+  "source18_verified": true,
+  "bundles": {
+    "dist-electron/main.js": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+    "dist-electron/preload.js": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+    "dist-runtime/chirality-cli.mjs": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+  },
+  "recovered_process": {
+    "pid": 38095,
+    "ppid": 67940,
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+    "listen": "127.0.0.1:39119",
+    "native_matches": 0,
+    "ownership": "parent grants predecessor proof process; directory and listening address observed via escalated lsof"
+  },
+  "process_inventory": "ps sandbox operation not permitted, exact escalation exit0; lsof exit0; no launches performed",
+  "effect": "EFFECTIVE recovery execution activation only; no acceptance or source effect"
+}

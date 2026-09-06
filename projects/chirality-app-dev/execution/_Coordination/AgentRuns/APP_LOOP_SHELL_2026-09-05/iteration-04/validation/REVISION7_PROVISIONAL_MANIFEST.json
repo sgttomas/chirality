@@ -1,0 +1,8 @@
+{
+  "REVISION7_PROVISIONAL_RETURN.json": "ac0e05ed9c6954c19f21a483b8cdb2562b92cf32f941939d49c6a90f8e5b8bed",
+  "ACTIVATION_PROVISIONAL_v7.json": "3802e6cba3ceed8f9f5649755dfdbcb9fd9096e5479fca0a0240a9e19c0cf7f0",
+  "run_checks_v7.py": "ca3dd21efcf2f43bd1fbc1c76da64531c686c2ce29c98dcb7cc510dfbb328eac",
+  "release-05/evidence-sha256.json": "0401122ca16bd5e567bbbfa32aa9c43593c9d37314789ebe32e8df57f497d85c",
+  "build-04/evidence-sha256.json": "2b45d4be024ba1f84a68dc1fe048d48e09fbfb9dfb5062a991c5ec9533b4d42d",
+  "security-03/evidence-sha256.json": "46af83c268049a9e20d6f6625e02d615d38c510eebe8489148c2435c9f2e0437"
+}

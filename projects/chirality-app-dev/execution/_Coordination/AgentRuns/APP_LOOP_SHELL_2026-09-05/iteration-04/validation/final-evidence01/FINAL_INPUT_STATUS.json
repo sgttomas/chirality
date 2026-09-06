@@ -1,0 +1,12 @@
+{
+  "root_input_count": 865,
+  "root_input_drift": [],
+  "source_count": 18,
+  "source_drift": [],
+  "source_manifest_sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+  "security_status": "pass",
+  "frontend_gate_reuse": "v10 fulltests/typecheck/Section9/build actualPASS remain current if source stable; actual review/manager acceptance separately owned",
+  "local_premerge": "FAIL503 missingdaemon / configured exact-head CI owed",
+  "remaining": "final manager manifest identity check, receipt and full staged checks CHANGE-owned",
+  "owned_processes": "none; no test/build/native/browser performed"
+}

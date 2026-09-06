@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_TEST_ONLY_FREEZE_BINDING_v1.json",
+      "sha256": "3cb08d193a4942621e26fff20fb17dc0104bc72a57cdbb038af2a017bf7b5044",
+      "bytes": 1045
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v4.json",
+      "sha256": "597de7442f28240a482a110278ca195c6032579ade51d3bff8ecb0add206abab",
+      "bytes": 4793
+    }
+  ]
+}

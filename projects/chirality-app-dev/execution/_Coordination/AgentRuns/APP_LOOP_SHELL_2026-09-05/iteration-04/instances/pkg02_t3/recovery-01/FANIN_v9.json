@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-06T01:09:13.430074+00:00",
+  "source18_exact": true,
+  "pins": {
+    "recovery-author-v9/SOURCE_MANIFEST_v9.json": "9dea8df1cf9ce4170ee5e2fc1a0aa45c8030bc35c24e21139b8df666c278b15a",
+    "recovery-reviewer-v9/REVIEW_RETURN.md": "b8601823189d3e08109edc1a9110c2434ea5dfa80f990d1197681289881bb1af"
+  },
+  "global_manifest": "validation/REVISION9_PROVISIONAL_MANIFEST.json",
+  "global_sha256": "8cf42c0db1d94723f298ba9814e32f5c6073c56ce20ad761bb66049189eb766f",
+  "actual_global": "1687PASS4skip,typecheck/Section9/build/securityPASS;localpremerge503FAIL,exactheadCIowed;parent reports all ownedprocesses cleaned",
+  "review": "actual fresh100%sourcePASS read and current identity verified",
+  "slot": "parent explicit conditional grant now satisfied for browser/native proof only",
+  "interruption": {
+    "tool": "mcp__cua_repl.js",
+    "code": "getApp Preview/Word/Excel/Finder sequential batch",
+    "result": "aborted by user after705.6seconds; no returned window inventory",
+    "effects": "may have selected/activated existing apps; no proof launch or fixture opening was requested",
+    "calibration": "not idle wait_agent; no app/window baseline acceptance from absent output"
+  }
+}

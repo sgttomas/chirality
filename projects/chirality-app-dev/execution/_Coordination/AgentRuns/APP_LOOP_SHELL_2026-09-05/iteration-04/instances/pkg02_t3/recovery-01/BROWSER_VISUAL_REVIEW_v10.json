@@ -1,0 +1,21 @@
+{
+  "status": "PASS_BOUNDED_FUNCTIONAL_ACCESSIBILITY_ONLY",
+  "full": {
+    "path": "browser/full-origin-v10/result.json",
+    "observations": 49,
+    "pageErrors": 0
+  },
+  "state": {
+    "path": "browser/state-settled-v10/result.json",
+    "cases": 40
+  },
+  "visual_review": "Current state33 exact same screenshot bytes as directly reviewed v9 plus7 actual changed PNGs viewed in2 contact sheets. Current full18 identical screenshot bytes reused plus9 changed PNGs viewed in3 contact sheets. Premature PDF blank explicitly rejected; separate full-pdf-settled-v10 rerun49PASS screenshot actually viewed atfullsize shows Chromium page1 text/controls.",
+  "pdf_settle_calibration": "1500ms bounded paint wait is scheduling assistance only; actual screenshot visual inspection establishes positive display, not delay or callback alone.",
+  "source_manifest_sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+  "limits": "Does not establish mock/design fidelity; parent independent alignment reports significant departures. No native/packagedPDF/provider/live-runtime/fullT3 acceptance.",
+  "prior_visual": "BROWSER_VISUAL_REVIEW_v9.json",
+  "comparisons": [
+    "FULL_BROWSER_VISUAL_COMPARISON_v10.json",
+    "STATE_VISUAL_COMPARISON_v10.json"
+  ]
+}

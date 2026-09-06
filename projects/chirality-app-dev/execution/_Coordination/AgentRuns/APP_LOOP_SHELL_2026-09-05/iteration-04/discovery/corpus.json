@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "python3",
+    "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+    "status"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "started_at": "2026-09-05T22:00:23.469156+00:00",
+  "ended_at": "2026-09-05T22:00:23.488375+00:00",
+  "exit_code": 0,
+  "stdout": "corpus current_version: v20\n  [MATCH] docs/DIRECTIVE.md            snapshot=50b816d5be74 live=50b816d5be74\n  [MATCH] docs/CONTRACT.md             snapshot=51ec0d4872dd live=51ec0d4872dd\n  [MATCH] docs/SPEC.md                 snapshot=c2fb9ecbbc37 live=c2fb9ecbbc37\n  [MATCH] docs/TYPES.md                snapshot=a8cdc94d39e1 live=a8cdc94d39e1\n  [MATCH] docs/PLAN.md                 snapshot=3741bb7ec389 live=3741bb7ec389\n  [MATCH] docs/PRD.md                  snapshot=87ced649beae live=87ced649beae\n  [MATCH] AGENT_SOFTWARE_DECOMP.md     snapshot=ad849d9a9274 live=ad849d9a9274\n  [MATCH] AGENT_DOMAIN_ENGINE.md       snapshot=bb2df7178d7b live=bb2df7178d7b\nno drift.\n",
+  "stderr": "",
+  "stdout_sha256": "921a96d8fcfa2c08c5659046e2dac4fa1d19fc07749beec041ae5d7c5a179351",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,19 @@
+{
+  "engine": "Codex desktop native descendant",
+  "model_family": "GPT-6, as declared in current developer instructions",
+  "provider_serving_identifier": "unavailable",
+  "exact_serving_model_identifier": "unavailable",
+  "substitution": "none observed or requested",
+  "delegation_class": "delegated-harness-native",
+  "role": "TASK Agent 2, instruction-asserted, role not mechanically enforced",
+  "agent_id": "/root/pkg02_finish/desktop_reopen_reviewer",
+  "python": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+  "platform": "darwin",
+  "command_environment": {
+    "inheritance": "inherited session environment; no overrides; no credential values recorded",
+    "CHIRALITY_INSTRUCTION_ROOT_environment": null,
+    "instruction_root_resolution": "original author and prior review briefs explicitly declare {REPO_ROOT}; resolved from read-only git rev-parse",
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources"
+  },
+  "limitations": "exact backend/provider serving identity is not exposed; no provider API or credential check used"
+}

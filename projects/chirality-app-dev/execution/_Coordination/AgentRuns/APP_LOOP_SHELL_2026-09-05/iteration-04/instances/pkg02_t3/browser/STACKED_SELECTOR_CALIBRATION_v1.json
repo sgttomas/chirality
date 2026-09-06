@@ -1,0 +1,8 @@
+{
+  "status": "PREPARED_PENDING_ACTUAL_V8_AX",
+  "reason": "Revision8 suppresses decorative pseudo-plus only in stacked collapse while literal button text stays Open Coordination. Desktop name previously observed Open Coordination+ remains.",
+  "before": "getByRole('button', { name: 'Open Coordination+', exact: true })",
+  "after": "getByRole('button', { name: /^Open Coordination\\+?$/ })",
+  "limits": "Exact anchored literal existing name, optional observed decorative plus; ordinary click/no force. Actual40case matrix captures fresh collapsed AX before fullproof reliance.",
+  "prior": "COLLAPSED_SELECTOR_CALIBRATION_v1.json and all attempted scripts remain immutable."
+}

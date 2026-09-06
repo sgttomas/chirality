@@ -1,0 +1,177 @@
+{
+  "timestamp": "2026-09-05T23:01:53.525331+00:00",
+  "source_freeze": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v3.json",
+  "source_freeze_sha256": "7d0e73bbeaa7962c1d21422dc7ee735b41e8b6f7c3917f490563f6114cbec381",
+  "all17_source_identities_match": true,
+  "entries": [
+    {
+      "path": "AGENTS.md",
+      "draft_sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "current_sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "changed": false
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "draft_sha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+      "current_sha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+      "changed": false
+    },
+    {
+      "path": "skills/proposal-format/SKILL.md",
+      "draft_sha256": "27e1cbc79487cb413607ac59211d6b2ba16c94a08ebbc18bdad1745eec59c72a",
+      "current_sha256": "27e1cbc79487cb413607ac59211d6b2ba16c94a08ebbc18bdad1745eec59c72a",
+      "changed": false
+    },
+    {
+      "path": "skills/proposal-format/BRIEF_SCHEMA.md",
+      "draft_sha256": "d5d2768677cf8664fe40dda5d3e0304b5918d3e76fe031c28e1a965419e0515f",
+      "current_sha256": "d5d2768677cf8664fe40dda5d3e0304b5918d3e76fe031c28e1a965419e0515f",
+      "changed": false
+    },
+    {
+      "path": "skills/proposal-format/TOOL_POLICY.md",
+      "draft_sha256": "48557e12fdd936e26461a519fff0e041da11d8b76735c4cb8ec663a251d7c801",
+      "current_sha256": "48557e12fdd936e26461a519fff0e041da11d8b76735c4cb8ec663a251d7c801",
+      "changed": false
+    },
+    {
+      "path": "skills/proposal-format/QA_CHECKS.md",
+      "draft_sha256": "88bbb4fb57b7f2f5b7cdc436f80b56235df3cfba7b1761590ffccb3edf9a6f39",
+      "current_sha256": "88bbb4fb57b7f2f5b7cdc436f80b56235df3cfba7b1761590ffccb3edf9a6f39",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "draft_sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "current_sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "draft_sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+      "current_sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/AUTHOR_BRIEF_v1.md",
+      "draft_sha256": "17546c43820ffbcf755288e6e84c74186d2848fb6b4f8418c3509ab100b2dd14",
+      "current_sha256": "17546c43820ffbcf755288e6e84c74186d2848fb6b4f8418c3509ab100b2dd14",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/T2_PACKET_SCOPE_DRAFT_v1.md",
+      "draft_sha256": "1ce2afb272deb39749c1eb0e781866ca33c1e6ac629b594e05a770c03d28c621",
+      "current_sha256": "1ce2afb272deb39749c1eb0e781866ca33c1e6ac629b594e05a770c03d28c621",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md",
+      "draft_sha256": "0e64cb085ee7032844f3b09f05c5a3f29ba02344e3ce9369a8535657c793406b",
+      "current_sha256": "0e64cb085ee7032844f3b09f05c5a3f29ba02344e3ce9369a8535657c793406b",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+      "draft_sha256": "a744e0b32e7f364afc4837adacbe373cd75c6c98dd61ad9b62b11bfa1b5c88ab",
+      "current_sha256": "48b7f2caa4192ee570ad6abec7642dc7c7b014d6337723631592aef98a82141d",
+      "changed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+      "draft_sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45",
+      "current_sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md",
+      "draft_sha256": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb",
+      "current_sha256": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+      "draft_sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+      "current_sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "draft_sha256": "9fd980e5a311a5f89bc3038cbcdfea93b30012c426ce8cdbe64df176c9a18812",
+      "current_sha256": "9fd980e5a311a5f89bc3038cbcdfea93b30012c426ce8cdbe64df176c9a18812",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+      "draft_sha256": "282a1d9819367b5d96ca22bf158631d8def471f39b632ac73205d2226672d2be",
+      "current_sha256": "282a1d9819367b5d96ca22bf158631d8def471f39b632ac73205d2226672d2be",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "draft_sha256": "62c4cc6e34b63cb375f6a89d41ac9633ee42b779679c6434cab7849585e28ad6",
+      "current_sha256": "99f929e3bbbe67466f82a3c491dab90ce0e8203a2ae66947f2f69c936c02bbc4",
+      "changed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/workspace/workspace-provider.tsx",
+      "draft_sha256": "a3de36101a92dc06a34828fd5104294edd7b0456785b5cb9f12bd444a15bd7ae",
+      "current_sha256": "a3de36101a92dc06a34828fd5104294edd7b0456785b5cb9f12bd444a15bd7ae",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/create/route.ts",
+      "draft_sha256": "4c26f1d4a340658636a735504aaa1a236713d1c7098c13fc67a3f39ea8733dc4",
+      "current_sha256": "4c26f1d4a340658636a735504aaa1a236713d1c7098c13fc67a3f39ea8733dc4",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/list/route.ts",
+      "draft_sha256": "cde64bc519a52e2f8291c163f89b3f94e1794b2e49e1fdd1241792b5d1bacecd",
+      "current_sha256": "cde64bc519a52e2f8291c163f89b3f94e1794b2e49e1fdd1241792b5d1bacecd",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/validate/route.ts",
+      "draft_sha256": "1db079c12cf035005b48b71804226c8f3f197eea0c58e70290a76af6d7c228b0",
+      "current_sha256": "1db079c12cf035005b48b71804226c8f3f197eea0c58e70290a76af6d7c228b0",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "draft_sha256": "4f1fddb054b8d80c9aab113e93cee0b19923d9c81720b20ee0d279a657194837",
+      "current_sha256": "4f1fddb054b8d80c9aab113e93cee0b19923d9c81720b20ee0d279a657194837",
+      "changed": false
+    },
+    {
+      "path": "runtime/packages/contracts/src/session.ts",
+      "draft_sha256": "22e49ccf47a83e93d065a1d731a0e726cba6559f8436f78c3451d4db2fd8bf51",
+      "current_sha256": "22e49ccf47a83e93d065a1d731a0e726cba6559f8436f78c3451d4db2fd8bf51",
+      "changed": false
+    },
+    {
+      "path": "runtime/packages/contracts/src/project.ts",
+      "draft_sha256": "4c7fd9c8a25f5dc5a1f16684d397089162c8edf69ff5f850b2ee4590e6f24e92",
+      "current_sha256": "4c7fd9c8a25f5dc5a1f16684d397089162c8edf69ff5f850b2ee4590e6f24e92",
+      "changed": false
+    },
+    {
+      "path": "runtime/packages/contracts/src/harness/types.ts",
+      "draft_sha256": "7e035b3a7b1d50176b7f0605b62da9695502305a38d61e27b7c3799531de70e3",
+      "current_sha256": "7e035b3a7b1d50176b7f0605b62da9695502305a38d61e27b7c3799531de70e3",
+      "changed": false
+    },
+    {
+      "path": "runtime/packages/core/src/session-store.ts",
+      "draft_sha256": "fe81bc9a51ad7ebbeb2c1486fc802dffafde434d4d56d677c17347893150ffad",
+      "current_sha256": "fe81bc9a51ad7ebbeb2c1486fc802dffafde434d4d56d677c17347893150ffad",
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+      "draft_sha256": "1a54024e5a3ad88100cd866f59fa220283a38b326baca8c77401ead98b57eb08",
+      "current_sha256": "1a54024e5a3ad88100cd866f59fa220283a38b326baca8c77401ead98b57eb08",
+      "changed": false
+    }
+  ],
+  "classification": "Comparison to final T3 author candidate, not accepted source baseline. Source review/global/native/CHANGE still pending; proposals remain undecided."
+}

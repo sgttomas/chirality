@@ -1,0 +1,74 @@
+{
+  "schema": "bounded-governed-review-delta/v1",
+  "frozen_at_utc": "2026-09-06T02:18:36.206108+00:00",
+  "status": "FROZEN_TERMINAL_CORRECTION_NO_FINAL_VERDICT",
+  "original_freeze": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/REVIEW_FREEZE_v1.json",
+    "sha256": "a9e683b4759455441258badce8c3b5a17ac1357f05efa0b7f7d68f4645df677a",
+    "target_count": 1883
+  },
+  "changed_original_count": 2,
+  "new_terminal_count_including_this_inventory": 6,
+  "delta_hashed_path_count": 7,
+  "delta_total_paths_including_this_inventory": 8,
+  "union_target_count": 1889,
+  "self_exclusion": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/artifact-classification-02/DELTA_FREEZE_v1.json",
+  "self_identity": "Parent actual dispatch binds this file SHA256; no self-hash fixed point.",
+  "claim_brief": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/artifact-classification-02/DELTA_REVIEW_BRIEF.md",
+    "sha256": "503bd5545c4e87efa0b852693c95b5123c562e552198851d4da9fd3cf15240b8"
+  },
+  "original_preservation": "All original1883 targets checked; only two explicitly authorized postimages differ. PDF/source/manager/freeze and prior raw rules remain identical.",
+  "entries": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/.gitattributes",
+      "change": "MODIFIED_FROM_ORIGINAL_FREEZE",
+      "before_sha256": "e6e2f93a3ebae0b939d1c187c2e9b89e3bdd11ffa275a6193f2928ecb84f7efe",
+      "sha256": "9da591e9e410e093e4faebd80b67c28b2c04fe2184aef3de0338dc96457acb95",
+      "bytes": 524
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/artifact-classification-02/DELTA_REVIEW_BRIEF.md",
+      "change": "NEW_TERMINAL_RECORD",
+      "before_sha256": null,
+      "sha256": "503bd5545c4e87efa0b852693c95b5123c562e552198851d4da9fd3cf15240b8",
+      "bytes": 2839
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/artifact-classification-02/FAILURE_AND_PREIMAGES.json",
+      "change": "NEW_TERMINAL_RECORD",
+      "before_sha256": null,
+      "sha256": "0a8e34aec2c755454fa5e7514e4af8e22ef6ef07cdcd6b9624e930cf8ff33193",
+      "bytes": 7489
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/artifact-classification-02/GOVERNED_REVIEW_BLOCK_PARENT_TRANSCRIPTION.md",
+      "change": "NEW_TERMINAL_RECORD",
+      "before_sha256": null,
+      "sha256": "39e95be097176c56c9f7dc20421e89b4764c5f4552bae82a65931a1c35552add",
+      "bytes": 1718
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/artifact-classification-02/POSTCHECKS.json",
+      "change": "NEW_TERMINAL_RECORD",
+      "before_sha256": null,
+      "sha256": "e4a373761e05b37964ea7e139cb5c95d9b444b69eb7d90c470ea1f6a8ad4e4e9",
+      "bytes": 4747
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/artifact-classification-02/RATIONALE.md",
+      "change": "NEW_TERMINAL_RECORD",
+      "before_sha256": null,
+      "sha256": "f0d7fb50a298cf492d849210417375b84fdea25f2142643c0d5b5681ccd14645",
+      "bytes": 3624
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "change": "MODIFIED_FROM_ORIGINAL_FREEZE",
+      "before_sha256": "66a69b657d490e3cc4db5a3431ea8ea9a326c3cf83110bccc9dbadb4427c6df1",
+      "sha256": "10945e1033b8550c63860219b06f4f35014f414e3721eb80db3b597113c3c2a8",
+      "bytes": 574565
+    }
+  ],
+  "next": "CHANGE stages exactly these modifications/new files plus this inventory; same fresh reviewer backchecks original+delta union and full unaltered cached check. Actual final COMMIT-SAFE belongs in commit-body; no more recursive record edits planned."
+}

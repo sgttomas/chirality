@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-05T22:18:05.688949+00:00",
+  "sources": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+      "frozen_sha256": "282a1d9819367b5d96ca22bf158631d8def471f39b632ac73205d2226672d2be",
+      "current_sha256": "282a1d9819367b5d96ca22bf158631d8def471f39b632ac73205d2226672d2be",
+      "changed": false,
+      "observed_snapshot": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/source-bytes/16_shell-frame.tsx"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "frozen_sha256": "62c4cc6e34b63cb375f6a89d41ac9633ee42b779679c6434cab7849585e28ad6",
+      "current_sha256": "3ad677577ce7c230517b9cdc6e9a80f0e98780abacb6c607ec1de57e0789a12f",
+      "changed": true,
+      "observed_snapshot": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/source-bytes/17_woven-dialogue-shell.tsx"
+    }
+  ],
+  "requirement": "Refresh and review against accepted T3 postimage before source work; preserve original observed bytes."
+}

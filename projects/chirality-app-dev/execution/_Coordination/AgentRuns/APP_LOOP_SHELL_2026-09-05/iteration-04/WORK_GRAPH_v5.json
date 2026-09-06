@@ -1,0 +1,80 @@
+{
+  "version": 5,
+  "status": "T3_DISPATCHED_T2_RECORD_ONLY_PROPOSAL_ACTIVATED",
+  "base": "239c8f2a53397f88f16e3d56ecbba9af83829246",
+  "predecessor_ci": "PREDECESSOR_CI_BINDING.json",
+  "activation_brief": "MANAGER_ACTIVATION_CANDIDATE_v2.md",
+  "activation_sha256": "784d956def940648f879ee62c30e2c07becad8c6eb10b49621a85b6fe785937e",
+  "nodes": [
+    {
+      "id": "I4-N1",
+      "role": "WORKING_ITEMS PKG02",
+      "scope": "T3 exact child inventories, native setup, carrier/evidence and single integration ownership",
+      "depends_on": []
+    },
+    {
+      "id": "I4-N2",
+      "role": "TASK author(s)",
+      "scope": "Exact child filenames in permitted T3 loci; overlapping writes serialized",
+      "depends_on": [
+        "I4-N1"
+      ]
+    },
+    {
+      "id": "I4-N3",
+      "role": "fresh TASK software-code-review",
+      "scope": "Whole frozen product diff",
+      "depends_on": [
+        "I4-N2"
+      ]
+    },
+    {
+      "id": "I4-N4",
+      "role": "validation executor(s)",
+      "scope": "Actual browser/native + registered full source/harness checks; process slots serialized",
+      "depends_on": [
+        "I4-N3"
+      ]
+    },
+    {
+      "id": "I4-N5",
+      "role": "parent integration/fresh governed review",
+      "scope": "Shared record/check fan-in and truthful Receipt248",
+      "depends_on": [
+        "I4-N4"
+      ]
+    },
+    {
+      "id": "I4-N6",
+      "role": "CHANGE",
+      "scope": "Full staged check/scoped commit/push",
+      "depends_on": [
+        "I4-N5"
+      ]
+    },
+    {
+      "id": "I4-P2",
+      "role": "PKG02 bounded packet preparer",
+      "scope": "D-APP-120 proposal exact packet/newlocalrunrecord/instance only; no source/status/memory; separate seam vs Rootcapability choices",
+      "depends_on": [],
+      "status": "PROPOSAL_PREPARED_REGISTER_AWAITING_RULING",
+      "activation_scope_sha256": "1ce2afb272deb39749c1eb0e781866ca33c1e6ac629b594e05a770c03d28c621",
+      "decision_id": "D-APP-120 provisional pending collision recheck",
+      "integration_owner": "Parent register; manager exact packet/instance only",
+      "integration_evidence": "DAPP120_REGISTER_INTEGRATION.json"
+    },
+    {
+      "id": "I4-P3",
+      "role": "PKG02 bounded proposal preparer",
+      "status": "ACTIVATED_PARENT_REPORTED",
+      "scope": "D121 exact record-only PDF/CSP packet/newrunrecord/instance under approved draft",
+      "activation_scope_sha256": "c4694488fb6acaadc47c5efef1792bbcec1e34ac1efc680d64932b4d6fe0bc66",
+      "depends_on": []
+    }
+  ],
+  "native_setup": "Verified existing lock-pinned Electron43.2.0 cache only; disposable scratch/user-data/owned processes; no source/dependency/config mutation",
+  "no_source_expansion": "workspace-state read-only, no globals or unlisted shared helpers",
+  "verdicts": "No T3 execution/check/review verdict anticipated",
+  "amendment": "GRAPH_AMENDMENT_v5_DAPP121_ACTIVATED.md",
+  "T3_objective_chronology": "Original full T3 remains; in-panel PDF now explicitly blocked on CSP ownergate; current implementation expected partial, no handoff substitution accepted"
+}

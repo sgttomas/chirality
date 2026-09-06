@@ -1,0 +1,50 @@
+{
+  "status": "ACTUAL_PREINTEGRATION_IDENTITY_AND_GUARD_CHECKS",
+  "manifest_checks": [
+    {
+      "manifest": "instances/pkg02_t3/recovery-01/PACKAGE_MANIFEST_v10.json",
+      "sha256": "1b90e562af58efe410c16cdc6ad722f80002cb335a566d0f0a9f6bdb8d0cec74",
+      "entry_count": 1069,
+      "mismatches": []
+    },
+    {
+      "manifest": "instances/pkg02_t3/recovery-author-v10/SOURCE_MANIFEST_v10.json",
+      "sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+      "entry_count": 18,
+      "mismatches": []
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "reliance",
+        "--entry-path",
+        "HELP_HUMAN:APP_LOOP_SHELL_2026-09-05:ITERATION04:RECORD_INTEGRATION",
+        "--target",
+        "DEL-02-01",
+        "--target",
+        "DEL-02-03"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+      "exit_code": 0,
+      "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"HELP_HUMAN:APP_LOOP_SHELL_2026-09-05:ITERATION04:RECORD_INTEGRATION\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"239c8f2a53397f88f16e3d56ecbba9af83829246\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-01\",\n      \"entry_path\": \"HELP_HUMAN:APP_LOOP_SHELL_2026-09-05:ITERATION04:RECORD_INTEGRATION\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    },\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-03\",\n      \"entry_path\": \"HELP_HUMAN:APP_LOOP_SHELL_2026-09-05:ITERATION04:RECORD_INTEGRATION\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"e087a1994906c5b515d58d655060e966ca86ccdba4002b14825eb0beb5f702cb\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-01\",\n    \"DEL-02-03\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

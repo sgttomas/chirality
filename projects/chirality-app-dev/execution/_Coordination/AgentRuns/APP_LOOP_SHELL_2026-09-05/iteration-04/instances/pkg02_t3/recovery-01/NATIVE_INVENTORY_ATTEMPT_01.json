@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/swift",
+    "-module-cache-path",
+    "/private/tmp/app-loop-t3-native-ac3dexfs/swift-cache",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/window_inventory.swift"
+  ],
+  "exit": 0,
+  "stdout": "[\n\n]\n",
+  "stderr": ""
+}

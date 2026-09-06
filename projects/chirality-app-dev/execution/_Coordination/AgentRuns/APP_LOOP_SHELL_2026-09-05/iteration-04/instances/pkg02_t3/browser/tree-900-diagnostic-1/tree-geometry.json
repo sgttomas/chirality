@@ -1,0 +1,56 @@
+{
+  "panel": {
+    "tag": "ASIDE",
+    "class": "panel panel--file-tree",
+    "x": 12,
+    "y": 276.265625,
+    "width": 875,
+    "height": 88.3125,
+    "clientHeight": 86,
+    "scrollHeight": 134,
+    "overflow": "visible",
+    "flex": "0 1 auto",
+    "minHeight": "0px"
+  },
+  "children": [
+    {
+      "tag": "HEADER",
+      "class": "panel-header",
+      "x": 13,
+      "y": 277.265625,
+      "width": 873,
+      "height": 52.015625,
+      "clientHeight": 51,
+      "scrollHeight": 51,
+      "overflow": "visible",
+      "flex": "0 1 auto",
+      "minHeight": "auto"
+    },
+    {
+      "tag": "DIV",
+      "class": "panel-body",
+      "x": 13,
+      "y": 329.28125,
+      "width": 873,
+      "height": 27.1875,
+      "clientHeight": 27,
+      "scrollHeight": 628,
+      "overflow": "auto",
+      "flex": "0 1 auto",
+      "minHeight": "0px"
+    },
+    {
+      "tag": "FOOTER",
+      "class": "",
+      "x": 13,
+      "y": 329.28125,
+      "width": 873,
+      "height": 82.109375,
+      "clientHeight": 82,
+      "scrollHeight": 82,
+      "overflow": "visible",
+      "flex": "0 1 auto",
+      "minHeight": "auto"
+    }
+  ]
+}

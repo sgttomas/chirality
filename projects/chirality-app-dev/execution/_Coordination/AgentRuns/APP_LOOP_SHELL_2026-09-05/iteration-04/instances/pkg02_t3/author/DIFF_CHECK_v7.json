@@ -1,0 +1,30 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "--",
+    "projects/chirality-app-dev/frontend/electron/main.ts",
+    "projects/chirality-app-dev/frontend/electron/preload.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/electron/document-handoff.test.ts",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+    "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

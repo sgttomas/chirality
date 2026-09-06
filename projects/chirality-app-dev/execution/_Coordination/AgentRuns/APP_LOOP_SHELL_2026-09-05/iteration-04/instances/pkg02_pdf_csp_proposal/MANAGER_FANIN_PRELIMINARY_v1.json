@@ -1,0 +1,19 @@
+{
+  "verdict": "RECORD_AUTHORING_VERIFIED_PENDING_FINAL_SOURCE_REFRESH_AND_FRESH_GOVERNED_REVIEW",
+  "checks": [
+    {
+      "manifest": "ARTIFACT_HASHES.sha256",
+      "sha256": "9868ab1013c1613a45218456d2f79cba0c6993a318101e83ca21b4659d645bcb",
+      "entries": 12,
+      "mismatches": []
+    },
+    {
+      "manifest": "ARTIFACT_HASHES_V2.sha256",
+      "sha256": "9a1cd9131198a4954275d3c19498875468dae38de7ba43ebed0a8c46f6bb63b2",
+      "entries": 5,
+      "mismatches": []
+    }
+  ],
+  "correction": "Manager found live Remaining trace citation mismatch; author preserved v1 packet and corrected source trace. Proposed policy criteria remain explicitly proposed.",
+  "scope": "No source/policy effect or owner case acceptance; final source refresh pending author revision3."
+}

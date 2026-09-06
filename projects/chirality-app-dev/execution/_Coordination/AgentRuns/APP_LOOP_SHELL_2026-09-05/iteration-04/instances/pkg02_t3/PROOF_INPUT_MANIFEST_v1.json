@@ -1,0 +1,91 @@
+{
+  "status": "PREPARED_NOT_EXECUTED",
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v4.json",
+      "sha256": "597de7442f28240a482a110278ca195c6032579ade51d3bff8ecb0add206abab",
+      "bytes": 4793
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/proof.mjs",
+      "sha256": "58c77acb7862a63f4a9aa43b21f7e93d9e10e65d4fe164fcf1d4226f2dc29cb3",
+      "bytes": 12999
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/ADDITIONAL_FIXTURE_MANIFEST.json",
+      "sha256": "84ebc8d0c25852753ab5ab4fb171f524d0c465b7504bc56b1e2b731232204a9d",
+      "bytes": 2413
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/FIXTURE_MANIFEST.json",
+      "sha256": "258f85165cf5665fbe0df1f472bb71703cdf8a2e1e6eb2e0fccfd17a07020106",
+      "bytes": 2914
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/NEGATIVE_SENDER_PLAN_v1.md",
+      "sha256": "1e268ec9cd98f365f4a455a53ad82cc081a33abec80de93e1e659713908fe3ad",
+      "bytes": 3316
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/SETUP_RESULT.json",
+      "sha256": "e750ea96858865565203786c6b1a16490bbff7d3ce93e2994b5bc1b094565993",
+      "bytes": 1109
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/native-proof.mjs",
+      "sha256": "951aad876fbb048f5b1e1b11bed22fb412c735ba2db2a25c72793a5328b08343",
+      "bytes": 10235
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision4/REVIEW_RETURN.md",
+      "sha256": "16855e0e23ea21007f93222416683e9336a0ac0217ac356ecaf60f7ddba0a907",
+      "bytes": 10080
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/BUILD_ID",
+      "sha256": "da47110510ee552318ca8f819f95dfdb82127382ce7e800961bc13a012f2f0f6",
+      "bytes": 21
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/app-build-manifest.json",
+      "sha256": "da98a42ab69dfae4e4cd7eb9286860865cc39b53bf3d5ba29f73a40e408a081c",
+      "bytes": 9300
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/build-manifest.json",
+      "sha256": "98b67ca5404685133599f376fa7e1ea0e96dd9acc6f468cbbb8c9738e1f48606",
+      "bytes": 995
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/.next/server/app/api/working-root/file/route.js",
+      "sha256": "4561806a6283220b99ad09f612dbc8af6ac4b3a2302c92d6428572aebd5d89e1",
+      "bytes": 12742
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/dist-electron/main.js",
+      "sha256": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+      "bytes": 1415587
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/dist-electron/preload.js",
+      "sha256": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+      "bytes": 3773
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package-lock.json",
+      "sha256": "717d541fe6ee090aae79d4a386bbde1c8ff6ee136a50242d956500d76e80a458",
+      "bytes": 425652
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "sha256": "5f81bcb08c6fadf1f5f1cbd80020cf707e434184990dc5a0a4040fc6f933a9cc",
+      "bytes": 6464
+    }
+  ],
+  "calibration": "Native/browser execution still awaits parent fullsuitePASS and exclusive slot. Builtproduct inputs are current original17 unchanged from successfulbuild; actual execution manifest will recapture identities and preserve any repaired evaluator versions."
+}

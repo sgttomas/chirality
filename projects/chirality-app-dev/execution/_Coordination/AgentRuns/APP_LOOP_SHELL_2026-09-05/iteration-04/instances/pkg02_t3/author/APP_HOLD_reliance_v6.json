@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "execution/_Scripts/app_hold.py",
+    "check",
+    "--operation",
+    "reliance",
+    "--entry-path",
+    "TASK:PKG02:T3:AUTHOR:REVISION6",
+    "--target",
+    "DEL-02-03"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"TASK:PKG02:T3:AUTHOR:REVISION6\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"239c8f2a53397f88f16e3d56ecbba9af83829246\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-03\",\n      \"entry_path\": \"TASK:PKG02:T3:AUTHOR:REVISION6\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"e087a1994906c5b515d58d655060e966ca86ccdba4002b14825eb0beb5f702cb\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-03\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+  "stderr": ""
+}

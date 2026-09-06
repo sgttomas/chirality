@@ -1,0 +1,505 @@
+{
+  "status": "PREPARATION_ONLY_NOT_FINAL_FREEZE_OR_ACCEPTANCE",
+  "receipt_candidate": {
+    "Receipt-ID": 248,
+    "Examined-Through": "239c8f2a53397f88f16e3d56ecbba9af83829246",
+    "Parent-Receipt": 247,
+    "Gate-Outcome": "PENDING manager handoff and integration; no ledger entry written",
+    "Pointers": "Final direct rationale and supplement citations must be reconciled from candidate list below within instrument limit before append."
+  },
+  "independently_verified_manifests": [
+    {
+      "manifest": "validation/REVISION10_PROVISIONAL_MANIFEST.json",
+      "sha256": "92e77b4ffa2374deed7aeb633feda255517e3193223b3f36b5671848c30ec032",
+      "verified_direct_entries": [
+        {
+          "path": "validation/REVISION10_PROVISIONAL_RETURN.json",
+          "sha256": "d98c962a1b553749eae1bbc06168b3a1305900930279216f7aa673e09e3abcb6"
+        },
+        {
+          "path": "validation/REVISION10_CLOSEOUT_REUSE.json",
+          "sha256": "fc120bca3c8c3617ca7b77229428c676bd515bf11109f45660fbf561ed481901"
+        },
+        {
+          "path": "validation/ACTIVATION_PROVISIONAL_v10.json",
+          "sha256": "9539efa86fce2d5bd7ffd4209cb7b5f21c80027924336708cfc9dcd7af9cd5fd"
+        },
+        {
+          "path": "validation/run_checks_v10.py",
+          "sha256": "85e3f816d05b7b4a681aa2ae7ef20fbd5b370d63dc44382e954217d91b8ccdb3"
+        },
+        {
+          "path": "validation/release-08/evidence-sha256.json",
+          "sha256": "74e57d1b5ecf92c2571f60246b9007cc33d90b5dfd06fd3bcc8d1ccb4253b0b5"
+        },
+        {
+          "path": "validation/build-07/evidence-sha256.json",
+          "sha256": "f7ac74e002b01895fb0066b6e1095b694848b06446245ba8dcee94b0847275ca"
+        },
+        {
+          "path": "validation/security-06/evidence-sha256.json",
+          "sha256": "962a35d4568024c4f40907fedcc81505181c5a6142b434e6fe62d245421e230c"
+        }
+      ]
+    },
+    {
+      "manifest": "validation/final-evidence01/SUPPLEMENTAL_MANIFEST.json",
+      "sha256": "d54a92387ce8b14489b5e5e0b67fc28109f782899144d701cdc2cef7c4be9eda",
+      "verified_direct_entries": [
+        {
+          "path": "validation/final-evidence01/FINAL_INPUT_STATUS.json",
+          "sha256": "1238fcd0ed3ab2ab4a2624299523f762b371f2efa04c331a3e532a1c0741792d"
+        },
+        {
+          "path": "validation/final-evidence01/evidence-sha256.json",
+          "sha256": "461749f8c2e797f2ac1a6a247b6b4813d0415fbba59d3797c406ad55c85106ee"
+        }
+      ]
+    }
+  ],
+  "source_manifest": {
+    "path": "instances/pkg02_t3/recovery-author-v10/SOURCE_MANIFEST_v10.json",
+    "sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4"
+  },
+  "source_review": {
+    "path": "instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+    "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+    "actual_scope": "source PASS; governed effect HELD and full item partial"
+  },
+  "global_actual": {
+    "revision": 10,
+    "source_manifest_sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+    "all18_current_identities_match": true,
+    "review": "PENDING actual parent fan-in; execution concurrent under v7.3; no acceptance claimed",
+    "full_tests": "1689PASS4skip,171filesPASS1skip",
+    "typecheck": "PASS",
+    "section9": "PASS16",
+    "premerge": "FAIL503 ENGINE_UNAVAILABLE missing daemon binding; configured exact-head CI owed",
+    "wrapper": "FAIL; premerge and downstream Section8 summary consistency",
+    "build": "PASS Next/Electron",
+    "bundles": {
+      "dist-electron/main.js": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+      "dist-electron/preload.js": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+      "dist-runtime/chirality-cli.mjs": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+    },
+    "next_sha256": {
+      ".next/BUILD_ID": "453511aaa4ba335ea00ccf113dc8e61de7dc23350a81cce850e3977b926d823c",
+      ".next/build-manifest.json": "811da699ca890e8f543a95b3a3c41a1e02be62c2e47d30f95c74c761437d83c5",
+      ".next/app-build-manifest.json": "9f21c5a53e114064ae50f5e64b75ff8828f7ea4a93c41840b1412ea7174948d6"
+    },
+    "security": "PASS security-06; final proof/integration evidence scan remains later",
+    "basic_reuse": "closeout-01 selfcheck/350pytest reused; all865 recorded input identities unchanged in REVISION10_CLOSEOUT_REUSE.json",
+    "cleanup": "owned server stopped0; all build/security processes completed; no owned processes",
+    "native_or_browser_authorized_by_executor": false,
+    "remaining": "actual fresh source reviewPASS/current identity fan-in, manager actual browser/native proof, terminal record checks, configuredCI, partialPDF boundary"
+  },
+  "final_security_actual": {
+    "root_input_count": 865,
+    "root_input_drift": [],
+    "source_count": 18,
+    "source_drift": [],
+    "source_manifest_sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+    "security_status": "pass",
+    "frontend_gate_reuse": "v10 fulltests/typecheck/Section9/build actualPASS remain current if source stable; actual review/manager acceptance separately owned",
+    "local_premerge": "FAIL503 missingdaemon / configured exact-head CI owed",
+    "remaining": "final manager manifest identity check, receipt and full staged checks CHANGE-owned",
+    "owned_processes": "none; no test/build/native/browser performed"
+  },
+  "security_boundary": "The cited scan covers its recorded inputs. New manager and integration prose may postdate it; no blanket claim that future artifacts were scanned. Manifest direct-entry hashes verified here; this is not a fresh execution of global gates.",
+  "parent_reported_proof_awaiting_final_manager_binding": {
+    "browser": "current full49/state40/hydration0 PASS",
+    "native": "Office QuickLook, external PDF and DOCX, Finder file and root visibly confirmed; SVG probes none; negative sender and path checks PASS; inline native PDF unavailable",
+    "history": "first root reveal FAIL retained; evaluator menu-close retry actual PASS. No source failure inferred from initial evaluator result.",
+    "cleanup": "owned Electron and Next processes reaped with exit0; fixture windows closed; baseline Preview empty Open dialog dismissed by opening fixture, no user document touched"
+  },
+  "remaining_boundaries": [
+    "Final replacement manager handoff and complete immutable manifest not yet supplied for acceptance",
+    "Final manager/native/browser/proposal/current-source identity fan-in still required",
+    "Terminal receipt and ordinary diff checks after authorized integration; full staged check and independent final governed refutation still owed",
+    "Local premerge FAIL503 remains failure; new-source exact-head branch CI owed after reviewed commit/push",
+    "Native inline PDF blocked by independent owner-policy question D-APP-121; no substitute acceptance",
+    "D-APP-116 through D-APP-121 remain AWAITING_RULING; no new owner act",
+    "Design partial: duplicate left tree, repeated controls/title, T2 Stone/header/composer, T5 strip and T6 residuals; functional visual checks do not establish mock fidelity",
+    "No dependency, lifecycle, accepted pointer or CheckingApprovalSHA changes; A1 requires fresh stage and owner execution for future login proof",
+    "Prior immutable history and uncommitted iteration3 CI additions preserved; no PR or loop terminus inferred"
+  ],
+  "exact_rationale_candidates": [
+    {
+      "path": "MANAGER_ACTIVATION_CANDIDATE_v2.md",
+      "sha256": "784d956def940648f879ee62c30e2c07becad8c6eb10b49621a85b6fe785937e",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "PROPOSED_PLAN_v1.md",
+      "sha256": "403d9bc282d6deed1b61a0c17b2d5700acec891c66b2351559fb68a4fc631b42",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "SEQUENCING_AMENDMENT_v7.3.md",
+      "sha256": "a51264bd99ed197c6ff71af06289fdc5b8b516868d416b9aead6097e533bcd68",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "SEQUENCING_AMENDMENT_v7.md",
+      "sha256": "031d17f1ce2c90c7a8da4d7e8919e244a031a046b464f32b9f1225d0cc18a89a",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "SEQUENCING_EXTENSION_v7.2.md",
+      "sha256": "7196af9d39de2ff2599e9612a3f2535e13b8b028a27d2dd37e24a05d9a836b31",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "USER_COMPARISON_STEER_DISPOSITION_v1.md",
+      "sha256": "5b2f42ab7e800e4feddcb2732526c4a0f9ffe78a32c56e8d0850da83642a62c6",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+      "sha256": "ad894d2c5b0ffba72f129992f1db73f009434841b350efc720c32c8c54ed9378",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/CITED_BYTES.json",
+      "sha256": "da1f17cfcef40204c7e6c3c9ba195cab466e626380e5b46f7117f2fd660f5bbc",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+      "sha256": "bf733312e8ac8d9ff3ae696252370fc16c88ac88f490d89a5ab0fc4a4af68a2e",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/FINAL_MANAGER_FANIN_v1.md",
+      "sha256": "ac55f299f945f58aaf9036fc3c527b29bcaae434ae9c6720f0588d49a62d443b",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/FINAL_V10_SOURCE_REFRESH_v1.json",
+      "sha256": "ad7294b507249bd5b2ea89ac3d65a8b1cb6814fd92f68f5e43161206a3a9e214",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/MANAGER_DISPATCH_RATIONALE_v1.md",
+      "sha256": "feeb707194af4b6403324c1f5c0e6608004ae9c0ecd8fda353aba090d7ed514e",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/QA.json",
+      "sha256": "d731c417e63f42e4eb253fd08d60c29461b9db942b879fbaba62a05a6271d35a",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_pdf_csp_proposal/RATIONALE.md",
+      "sha256": "122b7f3e934d1ea9cedb30bc7882cdcffa3129946753ed8c8440bd2ebcc556a9",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+      "sha256": "92e17e881f218a5fc7e721444fcffe614bb633ce2afc17b24b634c3217b07b3d",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+      "sha256": "c5f1474a1549ef0c7d49e175a30278aec3ec38bb239d9794885c00fc5d6ff162",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/FINAL_MANAGER_FANIN_v1.md",
+      "sha256": "54955d53cc9eec46890713e39d214cdd108c62ec6f51658847e81b8bde883049",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/FINAL_V10_SOURCE_REFRESH_v1.json",
+      "sha256": "7cfd8547b22b9deb25f26bd09be428b12a160d504157325eb9082646d55380d6",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/MANAGER_LOCAL_HISTORY_AMENDMENT_v1.md",
+      "sha256": "8c97944c5f9b3a5450d1be420fd00283d7a66b341b0d447bcdcb4d5665fd16dc",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/RATIONALE.md",
+      "sha256": "c36612cf054763cfd0854b440158bd1c23541610e876fa77601ee45b08814d5a",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/revision-01/RATIONALE.md",
+      "sha256": "ed59f967a23209e934cd8b302f32e766226f6e17f50c8683dc4199414cfed735",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t2_proposal/source-bytes/14_D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+      "sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/CONTROL_OVERLAP_AMENDMENT_v1.md",
+      "sha256": "c74ac0810f7bc9263a20357f2111e73bea753b48ce54387d17bc2f7835beddcd",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/FILE_VIEW_BOUNDARY_RATIONALE_v1.md",
+      "sha256": "d1c105680582007e93dec91fa84d76c479dac2a21a28a29cebefcb110e2ceca3",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/IMAGE_HEADER_DISPOSITION_v1.md",
+      "sha256": "9227004df3480101ebfaa48dc6e663c017990138e82ec07264c7b4dab7355675",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/LOWER_BREAKPOINT_AMENDMENT_v1.md",
+      "sha256": "e2638d971813d1565d048825aec901f237c644c9ae1a2c2ad71027984b349670",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/MANAGER_PLAN_RATIONALE_v1.md",
+      "sha256": "2b0de5c2206a8f548d7c31ced7013cb9c2eec0bb3209c22fe671991039928f11",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/PDF_CSP_FALLBACK_AMENDMENT_v1.md",
+      "sha256": "c07a4a96a5ba3c7ca9b16ccc9286082bc967a792788d29d6d111d237daad2cc8",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/RECONNECT_TEST_AMENDMENT_v1.md",
+      "sha256": "a1c0d56f7a2bd0caa4c51b85241eae97eff4383d46daf304feac703abdd6d5c6",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/REVEAL_MENU_PLACEMENT_RATIONALE_v1.md",
+      "sha256": "3fa34895e895443e59a752fcb980cd067d74091bdd6c79036b18d811b6aa99d3",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/REVIEW_REPAIR_AMENDMENT_v1.md",
+      "sha256": "d9e98bfdf022ba89809554dd2d84f4dff05075b35fee0c2ec903e966bf2d7118",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/STACKED_COLLAPSE_AMENDMENT_v1.md",
+      "sha256": "f7e73c26e5c5645fdeb5fe8f63e2d0118e528e604b1a42e516e9da47496311bf",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/T3_COMPLETENESS_AMENDMENT_v1.md",
+      "sha256": "5ce4165f1e50b0c74014715446a4f58225868aa4132b3e1e31aac06b742bf1a4",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/TREE_LAYOUT_AMENDMENT_v1.md",
+      "sha256": "20d0ace8aa5f13a07957ed11ccd18fbaa7bd9c2e1d690cb4c825486e40512ebb",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION.json",
+      "sha256": "c6c71f5223659ad989906b8d8220cb3b68e8ba5aa250ac70ef9a2b5f83f9f16f",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v2.json",
+      "sha256": "257f4e7ef53c86bf2268c1614d27ea0aa663ed789fe50f781ca800efbfd8f2fa",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v3.json",
+      "sha256": "3bcb81d00f6ba0f1b9258835885fadcf4a757fbb53da2d818b15a78c7c133ed7",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v3_final.json",
+      "sha256": "87dd8b24892d92d23e2df177d4dd838c1edb718086f19cc8d33bf018e4682559",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v4.json",
+      "sha256": "088a702a65c076649ac9960f5e7b3142923285d00c84ab3dae9ae509ef220119",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v5.json",
+      "sha256": "1b8cc4afe25661957ee4921d8ccc13da0c01b0d0d01c0637d9bb84e1e9ac2e7d",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v6.json",
+      "sha256": "c6f49b96867eb616c12d8d44cda51e760378d2aafd6d5d95b9cd5cb8bb706219",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v7.json",
+      "sha256": "e537bb35fbda4fbd2f4baceeae6dee7f4f346c172c46a3d887981749cdebedb1",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/author/ATTRIBUTION_v8.json",
+      "sha256": "9a309660152f0e7695e1b4d9883f4acd002f824e3eb9a4d73ced52f7c0fb3785",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/native/NEGATIVE_SENDER_PLAN_v1.md",
+      "sha256": "1e268ec9cd98f365f4a455a53ad82cc081a33abec80de93e1e659713908fe3ad",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/native/SETUP_RATIONALE_v1.md",
+      "sha256": "b272ec71aa9558173e47faf6c64577eac3b29ede494fc8c21a0071ca4b5cdbf3",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/native/STARTUP_ISOLATION_RATIONALE_v1.json",
+      "sha256": "0af71bc6a886e333f71af85a38d0dd72fe5cf75c627812008ea496c002ee9b30",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-01/D64_ATTRIBUTION_SUPPLEMENT_18_v1.json",
+      "sha256": "879bb702d632c902235ff371fd4e079d967aa70eef00173b03c05d2f9ad57d84",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-01/D64_JSON_ATTRIBUTION_SUPPLEMENT_9_v1.json",
+      "sha256": "6204f5ca0830480a196171bb8eba72c1cff98f8bbf0c9603f1272aa42cbb88df",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-01/D64_PROPOSAL_ATTRIBUTION_SUPPLEMENT_2_v1.json",
+      "sha256": "efdc6a242731430bd9166e25015c36f6145c6b149bdd75d5f6a8cfafb184ee54",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-01/DESKTOP_REOPEN_AMENDMENT_v1.json",
+      "sha256": "dd54c811e13a6a9165b8c047d46b1202d54a1fb86e34f433d77820386b9bda16",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-01/MANAGER_PARTIAL_HANDOFF_v10.json",
+      "sha256": "78b03589c306a5a147e52279c983ef8bce4bf2f8db1e572bf08548dd3f54385f",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-01/NATIVE_HYDRATION_AMENDMENT_v10.json",
+      "sha256": "db4e62098166ffcd12d02fde281cf6432d8aad11be564b8a81d9fc1bf1c4bea7",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-author-v10/D64_DECISION_RECORD.json",
+      "sha256": "a1ac58b8cf288d115f86e848ff64a876b1d5c1527283bfd8676cba5e1b151feb",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-author-v9/D64_DECISION_RECORD.json",
+      "sha256": "7cce224d7882067af5f5f1705b35e0e0cf2f9a507d3d41edc17096425dc15565",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+      "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-reviewer-v10/_run_records/TASK_RUN_2026-09-06_review_v10.md",
+      "sha256": "0eaaf43faec9637ed1afa87bc1fe7cbefa77260f61e3fc2d6a1d81abb611d391",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-reviewer-v9/REVIEW_RETURN.md",
+      "sha256": "b8601823189d3e08109edc1a9110c2434ea5dfa80f990d1197681289881bb1af",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-reviewer-v9/_run_records/TASK_RUN_2026-09-06_review_v9.md",
+      "sha256": "4460f42bc5f23cc51108d416bc3780fd6902517e44accd4fceeb4eaf452e5905",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/REVIEW_RETURN.md",
+      "sha256": "106b4c76da7436bc57596a3d364cab1895034feeea6864b73c0c3acd09f2d362",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/_run_records/TASK_RUN_2026-09-05_review.md",
+      "sha256": "d4d821a08a1fefdf650ca55659b7dbace3098f4598478d86b240265d04ea2447",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision3/CLARIFICATION_MENU_PLACEMENT.md",
+      "sha256": "0448e89e6b0ef2e454443a2928e3744a86a8fc60d53b8570e24671798233e7c9",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision3/REVIEW_RETURN.md",
+      "sha256": "502a26289528111f8e7970efd21bce5b4ebaa8b766f68e3dca334770118de26b",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision3/_run_records/TASK_RUN_2026-09-05_review_v3.md",
+      "sha256": "a238cc7ea307bcedb868e36a5dc7de3da0745d842cfb1db5dd8c5baba8a52968",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision4/REVIEW_RETURN.md",
+      "sha256": "16855e0e23ea21007f93222416683e9336a0ac0217ac356ecaf60f7ddba0a907",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision4/_run_records/TASK_RUN_2026-09-05_review_v4.md",
+      "sha256": "71f67057b391604be2813bf294ebe77a75a6f8c2f4a93875faebc1a329919f21",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision5/REVIEW_RETURN.md",
+      "sha256": "cb359571dc29169516206645015d2a3fad089eeb0f0fcd5b2d9d7547d5d5b191",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision5/_run_records/TASK_RUN_2026-09-05_review_v5.md",
+      "sha256": "18811d5ef5163538e81d98f49f6538b10af74afd461ded02da9c8fe7cac87112",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision6/REVIEW_RETURN.md",
+      "sha256": "aa4a00776160b1a1f323af7ec40419994a7ef573ea2fce9ceea9b9eea9b8b3e2",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision6/_run_records/TASK_RUN_2026-09-05_review_v6.md",
+      "sha256": "60c6e7c1e7e8b7835d75f82c3c04806e5c7cf253a4ae759655159a9230e1b34e",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision7/REVIEW_RETURN.md",
+      "sha256": "ec2b215a34e921704d446c784e232040a518048ed5e9ec5d373adaf2b9bf68a2",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision7/_run_records/TASK_RUN_2026-09-06_review_v7.md",
+      "sha256": "9cd885a6a448a1fbb5c95c56da1338dcb4706e7c7c7fe9b7588c0c2524064887",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision8/REVIEW_RETURN.md",
+      "sha256": "71c759c8d28683e8ba394eef901973a51a545d048b8e7c904f1a2a9fb58009ec",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "instances/pkg02_t3/reviewer/revision8/_run_records/TASK_RUN_2026-09-06_review_v8.md",
+      "sha256": "a39ca2eb3f96536a7dcc44936c762d37c500b3a7e8d999c2ab2f9a3a0a5499d1",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "validation/sanitization-01/ATTRIBUTION_SUPPLEMENT_v1.md",
+      "sha256": "73765b19ae8ce977aa95e2d77bc16dc56977bc0a634d1c8f98a91830c6764fbf",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    },
+    {
+      "path": "validation/sanitization-01/RATIONALE.md",
+      "sha256": "230eed1605fd52f7753e546160acea415c4ecd99ae53e0c0f305a844dcfa632a",
+      "status": "candidate; final exercise and supplement coverage audit pending manager handoff"
+    }
+  ],
+  "citation_finalization": "Candidates include embedded judgments and historical versions; use exact direct citations to operative exercises plus supplements preserving covered historical judgments. No omission or citation waiver is authorized. Final reconciliation awaits final manager bytes.",
+  "attribution": "/root/run_records bounded native Agent2 evidence preparation; parent reports explicitly separated from independently checked artifact identities; no new governance judgment or execution authorization."
+}

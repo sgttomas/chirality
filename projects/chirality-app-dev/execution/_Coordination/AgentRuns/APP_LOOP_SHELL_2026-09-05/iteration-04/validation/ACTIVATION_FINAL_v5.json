@@ -1,0 +1,12 @@
+{
+  "parent_go": true,
+  "freeze_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v5.json",
+  "freeze_sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+  "review_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision5/REVIEW_RETURN.md",
+  "review_sha256": "cb359571dc29169516206645015d2a3fad089eeb0f0fcd5b2d9d7547d5d5b191",
+  "review_verdict": "PASS",
+  "inventory_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/AUTHOR_SOURCE_INVENTORY_v2.json",
+  "inventory_sha256": "95ce7032a3746d26913b1190f73fc17da83d53b9a812eb59dbd449532d4b6f3a",
+  "diff_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_DIFF_v5.json",
+  "diff_sha256": "72dd0bc7336923f477748676bc8e2694e7059e356a5fb56242019689202c88a7"
+}

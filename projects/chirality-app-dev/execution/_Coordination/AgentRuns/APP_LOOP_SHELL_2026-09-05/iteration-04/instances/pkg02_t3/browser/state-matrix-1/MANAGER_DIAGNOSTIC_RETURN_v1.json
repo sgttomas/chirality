@@ -1,0 +1,122 @@
+{
+  "status": "REJECTED_REVISION7_DIAGNOSTIC_ONLY",
+  "cases": 40,
+  "action_pass": 34,
+  "failures": [
+    {
+      "width": 900,
+      "theme": "light",
+      "action": "navigator-collapse-open",
+      "navigator": {
+        "x": 0,
+        "y": 474,
+        "width": 900,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 137,
+        "overflow": "hidden",
+        "minHeight": "0px",
+        "maxHeight": "none"
+      }
+    },
+    {
+      "width": 900,
+      "theme": "dark",
+      "action": "navigator-collapse-open",
+      "navigator": {
+        "x": 0,
+        "y": 474,
+        "width": 900,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 137,
+        "overflow": "hidden",
+        "minHeight": "0px",
+        "maxHeight": "none"
+      }
+    },
+    {
+      "width": 860,
+      "theme": "light",
+      "action": "navigator-collapse-open",
+      "navigator": {
+        "x": 0,
+        "y": 474,
+        "width": 860,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 137,
+        "overflow": "hidden",
+        "minHeight": "0px",
+        "maxHeight": "none"
+      }
+    },
+    {
+      "width": 860,
+      "theme": "dark",
+      "action": "navigator-collapse-open",
+      "navigator": {
+        "x": 0,
+        "y": 474,
+        "width": 860,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 137,
+        "overflow": "hidden",
+        "minHeight": "0px",
+        "maxHeight": "none"
+      }
+    },
+    {
+      "width": 840,
+      "theme": "light",
+      "action": "navigator-collapse-open",
+      "navigator": {
+        "x": 0,
+        "y": 474,
+        "width": 840,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 137,
+        "overflow": "hidden",
+        "minHeight": "0px",
+        "maxHeight": "none"
+      }
+    },
+    {
+      "width": 840,
+      "theme": "dark",
+      "action": "navigator-collapse-open",
+      "navigator": {
+        "x": 0,
+        "y": 474,
+        "width": 840,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 137,
+        "overflow": "hidden",
+        "minHeight": "0px",
+        "maxHeight": "none"
+      }
+    }
+  ],
+  "pageErrors": [],
+  "visual_inspection": {
+    "observer": "WORKING_ITEMS /root/pkg02",
+    "inspected": [
+      "900-light-navigator-collapse-open-failure.png",
+      "900-light-coordination-collapse-open-collapsed.png"
+    ],
+    "finding": "Navigator disappears at collapsedheight0; actual ordinary reopening fails. Coordination is reopenable but retains520px empty stacked area; proposed compact stacked strip arrangement sent to parent, not yet sourcegrant. Existing desktop legacy blank-looking toggle appearance is distinct from newly stacked height behavior."
+  },
+  "authority_calibration": "Target\u00a71 table specifies56px collapsed strips in horizontal layout and below960 stacking; proposed compact horizontal stacked arrangement is ordinary implementation interpretation, not explicit owner-stated56px collapsed height. No whole renderPASS from action results.",
+  "cleanup": {
+    "serverSession": 87706,
+    "serverExitCode": 0,
+    "browserSession": 44950,
+    "browserExitCode": 0,
+    "nativeLaunched": false
+  },
+  "sourceEffects": false,
+  "remaining": "Parent scoped repair disposition, actual fresh whole source review/gates/rebuilt full render/native evidence; originalR3sourcefinding and all earlierfailures retained."
+}

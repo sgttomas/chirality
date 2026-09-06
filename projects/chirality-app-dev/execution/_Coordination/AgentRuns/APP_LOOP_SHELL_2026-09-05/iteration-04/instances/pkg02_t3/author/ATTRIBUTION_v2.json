@@ -1,0 +1,21 @@
+{
+  "role": "TASK Agent2",
+  "agent": "/root/pkg02/t3_author",
+  "engine": "Codex",
+  "provider": "OpenAI",
+  "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+  "substitutions": [],
+  "OwnerStandingApproval": "D-APP-64 \u00a73",
+  "AgentJudgment": "EXECUTE_SEALED_PDF_FALLBACK_REVISION2",
+  "SelectedOutcome": "Truthful Electron PDF fallback; D108 in-panel requirement remains blocked",
+  "JudgedBy": "TASK /root/pkg02/t3_author",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": [
+    "scope expansion",
+    "native proof by mocks"
+  ],
+  "RationaleArtifact": "../PDF_CSP_FALLBACK_AMENDMENT_v1.md",
+  "IndependentVerifier": "PENDING fresh complete revised source review",
+  "EffectStatus": "HELD",
+  "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance"
+}

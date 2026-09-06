@@ -1,0 +1,6 @@
+{
+  "original": "browser/full-origin-v10/pdf-browser-1440-light.png",
+  "observed": "Blank plugin area after networkidle; no visible PDF positive accepted.",
+  "delta": "Add bounded1500ms plugin paint settle before PDF screenshot; unchanged endpoint, all pageerror/assertions and full49 action proof.",
+  "acceptance": "Actual current screenshot must show PDF page/controls, otherwise blocker; no nativePDF claim."
+}

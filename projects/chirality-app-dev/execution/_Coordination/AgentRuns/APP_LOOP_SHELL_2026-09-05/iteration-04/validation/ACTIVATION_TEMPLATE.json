@@ -1,0 +1,10 @@
+{
+  "parent_go": false,
+  "freeze_path": "PARENT_FINAL_FREEZE_PATH_REQUIRED",
+  "freeze_sha256": "PENDING_FINAL_BYTES",
+  "review_path": "FRESH_WHOLE_SOURCE_REVIEW_PATH_REQUIRED",
+  "review_sha256": "PENDING_FINAL_BYTES",
+  "review_verdict": "PENDING",
+  "inventory_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/AUTHOR_SOURCE_INVENTORY_v1.json",
+  "inventory_sha256": "VERIFY_FINAL_INVENTORY_AT_ACTIVATION"
+}

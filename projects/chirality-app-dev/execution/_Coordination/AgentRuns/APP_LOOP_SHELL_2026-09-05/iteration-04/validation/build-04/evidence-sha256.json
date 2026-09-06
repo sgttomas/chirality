@@ -1,0 +1,15 @@
+{
+  "built-artifact-identities.json": "031f388d54af094c814ecf08ec735d8e245240b6c3f33fef2f7602d01ce8c2c4",
+  "commands.json": "241c3b7dbde585735f829dec45e05c024b2a0f74d6705c2f616d93e1c0336111",
+  "environment.json": "16cdca94093bdf0a7348da1a65b5b32a76244c27cc57ac87bfd1b726fcde70a9",
+  "final-inventory-identities.json": "b686e75e90d95dacdc24f62ee475e708edc939b5f27b84ce5d61125d365be96d",
+  "freeze-verification.json": "d78d740bd45ba46dd9200c74e205879245e8f5444e68fab3562c773f647cdc90",
+  "frontend-build.output.json": "f583adbb601c001a7212338572fccf765720e379fc94e065af1c69d1fc73b93a",
+  "git-head.output.json": "95f63559ffa97bc38759491ff08032dc2ffeb91cd8874cdbc5e577b445083e24",
+  "git-status.output.json": "e5e1bf04960ab80dc3c8229738c05c37ed2836d9647c99848e6481a3ff7a583b",
+  "node.output.json": "20395d044baf3beb372dc4a72ce0e4aaf178cc88a2894602e4b172f71cc50d42",
+  "npm.output.json": "e69c7d7dc320a244d25cd6088890e68f05b110dd1a16aa739f6713fe1d6ed22b",
+  "python.output.json": "21e386d26ec395c9501aa5c2a249d2aaf701729aaa3905c8ccb98cd86059266f",
+  "source-sha256.json": "92c17ee492c096ab583798f92f5b2faf02c80b1a8586e30852ab0671598da607",
+  "source-stability.json": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+}

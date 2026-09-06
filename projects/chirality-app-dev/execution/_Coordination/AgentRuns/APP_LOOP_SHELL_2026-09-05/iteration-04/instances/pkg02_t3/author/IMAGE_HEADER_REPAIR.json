@@ -1,0 +1,7 @@
+{
+  "timestamp": "2026-09-05T22:55:00.599974+00:00",
+  "detection": "Manager challenged missing frame-ancestors in resource CSP override; author agreed. Earlier tests only verified draft literal, not equivalent policy.",
+  "disposition_sha256": "9227004df3480101ebfaa48dc6e663c017990138e82ec07264c7b4dab7355675",
+  "selected_effect": "Remove resource CSP override; retain existing host policy and img-only attachment/nosniff. Browser effects remain unproved.",
+  "superseded_draft": "../IMAGE_HEADER_SUPERSEDED_DRAFT_v1.json"
+}

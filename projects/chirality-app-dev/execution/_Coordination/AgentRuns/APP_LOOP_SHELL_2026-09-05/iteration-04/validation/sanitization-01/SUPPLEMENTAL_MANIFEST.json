@@ -1,0 +1,7 @@
+{
+  "sanitization-01/BACKCHECK.json": "2bbaa692abbb2c5acd5270b693767aa7c0d23bff646289f1240556b9a37e5bec",
+  "sanitization-01/RATIONALE.md": "230eed1605fd52f7753e546160acea415c4ecd99ae53e0c0f305a844dcfa632a",
+  "sanitization-01/TRANSFORMATION.json": "5ad38f3b1b8db722587face1905b7eab03d6c8a583661f7d71e3304446f60966",
+  "sanitization-01/verify_reconstruction.py": "b1f05345b8f792ee474f6574372bbcf89c0f142015fe5285764570fac3c2e488",
+  "tests-01/full-tests.output.json": "4ac93ff2b8c2e0cf6197cdc9ab3630983bc8cc1ef019547ce88127175098ddca"
+}

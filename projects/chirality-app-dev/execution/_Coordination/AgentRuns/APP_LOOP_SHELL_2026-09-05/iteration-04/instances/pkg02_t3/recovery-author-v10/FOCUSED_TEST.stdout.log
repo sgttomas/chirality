@@ -1,0 +1,13 @@
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/components/file-tree-panel.test.tsx
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  19:30:25
+   Duration  165ms (transform 60ms, setup 0ms, import 83ms, tests 14ms, environment 0ms)
+

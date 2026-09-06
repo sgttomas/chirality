@@ -1,0 +1,140 @@
+{
+  "basis": "239c8f2a53397f88f16e3d56ecbba9af83829246",
+  "manifest_sha256": "af2cc08a7e30dd4fa8b3da91013b7f7fc78c8e6a18231598b1c40f34a4fe9d82",
+  "reviewed_changed_files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "sha256": "0ad3661e01857cd61289037a83e5129d7a1b951edebc38fd0dc1a25d704342f3",
+      "bytes": 34736,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "sha256": "cf75052ee1cde6cb75c7b0d64bad08abc03cf6735004361adc30e11b80d9aec9",
+      "bytes": 3711,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+      "sha256": "dd629a18441f6ef205d456f6aff68b377d68029205a800db5db645adb34a71d5",
+      "bytes": 5962,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+      "sha256": "8cc79a8848bff840d52482fb3bab6ca5f67fdfeeaf547c708dccc34296857b2f",
+      "bytes": 6495,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+      "sha256": "c5e74d32c1fbecca78628741614e9561dd4ffb991772cdc5265b1ff4c482471f",
+      "bytes": 1849,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "0c91bbeddceef7dfd9bb92f6a9061f62731fcfcfe301efcafae33354349b7e55",
+      "bytes": 12499,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "sha256": "a1f53047230394800ca32dbda5700458205539503d915de218761aac9df11864",
+      "bytes": 1954,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/document-handoff.test.ts",
+      "sha256": "17e332b3043bc4f72fd77f5e3be024b80aba56277e96060d220b32c82974af4e",
+      "bytes": 4157,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+      "sha256": "f6e10d0b4c0697b5a8ae1e0f66c03fc1de1d2d3bef1d9cc8c23267cd0a8a83a5",
+      "bytes": 6565,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+      "sha256": "15647daf80610095d818e0ca0fb9cca83d100ac8907bd50b13e552b48bad9fb7",
+      "bytes": 4412,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "sha256": "8529cfa6710ebc66acc3cdfe07eda1c1ecfe45ada483f36027a429131f18ef7a",
+      "bytes": 13913,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+      "sha256": "d90ee4935afd5cfa8fcf8edce387e1e95fe2499a3f23cc83063888321c8a0368",
+      "bytes": 8421,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "beb85da306ee944eefc374a43171d14b6ef98465727b6ff21a004f080e7bf2cd",
+      "bytes": 4360,
+      "changed": true,
+      "reviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "ca5c5ff36a6cef7bf2fb3946248b5ab12588d54ce43e5c7e4666380962e16319",
+      "bytes": 26636,
+      "changed": true,
+      "reviewed": true
+    }
+  ],
+  "unchanged_identity_and_caller_files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+      "sha256": "2e3cc7dc2017fa12b2916e8e2224b6cf61def45a84f1645ce11e6e952347f75a",
+      "bytes": 1993,
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "sha256": "6c73d2de5a4ff13a470d61afcb2acdbae690ff45fbde273a7f6822542e084016",
+      "bytes": 2310,
+      "changed": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+      "sha256": "5b5d7439f7f5e946836907a828ec516291f6d93445914b76e96ac1eba4ceb841",
+      "bytes": 7638,
+      "changed": false
+    }
+  ],
+  "callers": [
+    "shell-frame.tsx",
+    "globals.css relevant layout rules",
+    "woven-workspace-state.ts normalization/persistence/root clearing",
+    "coordination-panel.tsx",
+    "selected-session-replay-lens.tsx",
+    "dialogue-viewport.tsx",
+    "session-manager.ts assertProjectRootAccessible",
+    "instruction-root.ts interface",
+    "ipc-sender-policy.ts",
+    "working-root/tree/route.ts",
+    "workspace/filesystem.ts tree contract",
+    "chat-markdown.tsx",
+    "ansi.ts",
+    "tsconfig.electron.json"
+  ]
+}

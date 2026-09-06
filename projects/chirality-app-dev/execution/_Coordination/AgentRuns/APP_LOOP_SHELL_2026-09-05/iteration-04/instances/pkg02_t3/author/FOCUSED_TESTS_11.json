@@ -1,0 +1,25 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/__tests__/api/working-root/file-route.test.ts",
+    "src/__tests__/electron/document-handoff.test.ts",
+    "src/__tests__/components/document-view.test.tsx",
+    "src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "src/__tests__/components/woven-right-panel.test.tsx",
+    "src/__tests__/components/file-tree-panel.test.tsx",
+    "src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "timestamp": "2026-09-05T23:33:35.787564+00:00",
+  "effective_environment": {
+    "network": "none",
+    "native": "mock callbacks only",
+    "fixture_directory": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/fixtures"
+  },
+  "exit_code": 0,
+  "stdout": "\n> chirality-frontend@2.0.0 test\n> vitest run src/__tests__/api/working-root/file-route.test.ts src/__tests__/electron/document-handoff.test.ts src/__tests__/components/document-view.test.tsx src/__tests__/components/woven-dialogue-shell.test.tsx src/__tests__/components/woven-dialogue-controls.test.tsx src/__tests__/components/woven-right-panel.test.tsx src/__tests__/components/file-tree-panel.test.tsx src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx\n\n\n RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend\n\n\n Test Files  8 passed (8)\n      Tests  58 passed (58)\n   Start at  17:33:35\n   Duration  351ms (transform 783ms, setup 0ms, import 1.13s, tests 211ms, environment 0ms)\n\n",
+  "stderr": ""
+}

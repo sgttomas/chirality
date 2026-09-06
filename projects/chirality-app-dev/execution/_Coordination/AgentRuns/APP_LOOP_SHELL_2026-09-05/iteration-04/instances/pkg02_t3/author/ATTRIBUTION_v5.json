@@ -1,0 +1,23 @@
+{
+  "role": "TASK Agent2",
+  "agent": "/root/pkg02/t3_author",
+  "engine": "Codex",
+  "provider": "OpenAI",
+  "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+  "substitutions": [],
+  "OwnerStandingApproval": "D-APP-64 \u00a73",
+  "AgentJudgment": "EXECUTE_SCOPED_CONTROL_OVERLAP_REPAIR",
+  "SelectedOutcome": "Own flow area for shell collapse control with distinct existing detail-return and expand actions",
+  "JudgedBy": "TASK /root/pkg02/t3_author",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": [
+    "force-click bypass",
+    "z-index masking",
+    "deleting distinct semantics",
+    "global CSS expansion"
+  ],
+  "RationaleArtifact": "../CONTROL_OVERLAP_AMENDMENT_v1.md",
+  "IndependentVerifier": "Actual browser failure visually confirmed by manager and parent; fresh whole candidate review PENDING",
+  "EffectStatus": "SOURCE_FROZEN_REVIEW_PENDING",
+  "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance"
+}

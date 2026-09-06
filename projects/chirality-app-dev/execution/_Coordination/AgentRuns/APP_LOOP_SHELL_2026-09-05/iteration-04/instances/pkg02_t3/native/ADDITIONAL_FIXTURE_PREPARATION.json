@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/create_additional_fixtures.py"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0,
+  "stdout_artifact": "ADDITIONAL_FIXTURE_MANIFEST.json",
+  "stderr": "",
+  "claim": "Benign local rendering fixtures; SVG active-content markers are negative controls that must not execute or fetch. No application/browser/server process launched.",
+  "oversized_recipe": "Picture.png exact retained bytes followed by 2097153 NUL bytes; generator retained; full oversized bytes remain scoped scratch until proof cleanup."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "PASS",
+  "final_receipt_after_append": "OWED",
+  "full_staged_check": "OWED CHANGE-owned",
+  "no_frontend_process_checks": true
+}

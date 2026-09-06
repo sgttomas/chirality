@@ -1,0 +1,39 @@
+{
+  "receipt_before_sha256": "b52feba1d40ace942c9c13cd6dd974d7cf8231e0e0b9f1b776a1144e9edadc34",
+  "receipt_after_sha256": "5d7bb2c63c5a06834bd22f40ba9042b263aa669a98a47470e75d7d2f929dfc45",
+  "prior_receipt_bytes_preserved": true,
+  "appended_receipt_sha256": "0c8e2ca23dd5955a372480de5e4901018d8f775ff130f426fd467625cfeaabfd",
+  "appended_receipt_bytes_excluding_heading": 2989,
+  "completion_log_before_sha256": "a12a4e96d778331825ddd12711d3d8e9f079bb3784c5a1f4b583766560e487e9",
+  "completion_log_after_sha256": "f3e18cbea81ef0e41bfad693eaa59e2a52e7667418fce3f8f757ed89a75f89e0",
+  "prior_completion_log_bytes_preserved": true,
+  "preappend_validator": {
+    "exit_code": 0,
+    "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+    "stderr": ""
+  },
+  "postappend_checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "calibration": "Ordinary diff check excludes untracked bytes; full candidate all-suffix diagnostic and CHANGE full staged check remain required. No final governed verdict is asserted."
+}

@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-09-05T22:12:53.382186+00:00",
+  "scratch": "/private/tmp/app-loop-t3-native-ac3dexfs",
+  "argv": [
+    "/usr/bin/ditto",
+    "-x",
+    "-k",
+    "/Users/ryan/Library/Caches/chirality/electron-dist/electron-v43.2.0-darwin-arm64.zip",
+    "/private/tmp/app-loop-t3-native-ac3dexfs/runtime"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "archive": {
+    "path": "/Users/ryan/Library/Caches/chirality/electron-dist/electron-v43.2.0-darwin-arm64.zip",
+    "sha256": "ad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28",
+    "bytes": 122090802
+  },
+  "executable": {
+    "path": "/private/tmp/app-loop-t3-native-ac3dexfs/runtime/Electron.app/Contents/MacOS/Electron",
+    "sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874",
+    "bytes": 33968
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64"
+  },
+  "launch": "NOT_STARTED awaiting source/buildslot",
+  "cleanup": "PENDING final owned proof; extraction retained in scoped scratch"
+}

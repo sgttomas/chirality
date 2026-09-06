@@ -1,0 +1,118 @@
+{
+  "status": "ACTUAL_BOUNDED_DELTA_CHECKS_COMPLETE_PENDING_STAGE_AND_INDEPENDENT_BACKCHECK",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "check-attr",
+        "diff",
+        "whitespace",
+        "--",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/fixture-bytes/Preview.pdf"
+      ],
+      "exit_code": 0,
+      "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/fixture-bytes/Preview.pdf: diff: unspecified\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/fixture-bytes/Preview.pdf: whitespace: -trailing-space\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "pdf_post_sha256": "3879981f98de0fe29a285fcf33801fe0c376204732dc07304651e57e55060b82",
+  "pdf_unchanged": true,
+  "prior_four_attribute_rules_preserved": true,
+  "prior_receipts_prefix_preserved": true,
+  "current_receipt248_bytes_excluding_heading": 3075,
+  "original_freeze_sha256": "a9e683b4759455441258badce8c3b5a17ac1357f05efa0b7f7d68f4645df677a",
+  "original_frozen_paths_changed": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/.gitattributes",
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+  ],
+  "source18_and_manager1069_unchanged": true,
+  "encoding_independent_new_and_staged_added_paths_scanned": 1872,
+  "observed_classified_raw_findings": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/fixture-bytes/Preview.pdf",
+      "sha256": "3879981f98de0fe29a285fcf33801fe0c376204732dc07304651e57e55060b82",
+      "trailing_lines": [
+        19,
+        30,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        58
+      ],
+      "blank_at_eof": false,
+      "exact_classification": "-trailing-space"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/FOCUSED_TEST.stdout.log",
+      "sha256": "e70bad3e0057af3b3b6bbfc0bd98355fce5183b341e44c957107f2bef075215b",
+      "trailing_lines": [],
+      "blank_at_eof": true,
+      "exact_classification": "-blank-at-eof"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/REPAIR_DIFF_v10.diff",
+      "sha256": "89f4298434d1e91f504e4da38fd6694f1b074145ab6db8d59c015de7910d4e81",
+      "trailing_lines": [
+        64
+      ],
+      "blank_at_eof": false,
+      "exact_classification": "-trailing-space"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/FOCUSED_TEST.stdout.log",
+      "sha256": "5f704fc671bb49c700428dc5624c80a5e829a87d00d8062e2ddc9e66adbad683",
+      "trailing_lines": [],
+      "blank_at_eof": true,
+      "exact_classification": "-blank-at-eof"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/REPAIR_DIFF_v9.diff",
+      "sha256": "4e27eee969b21c4bceea6166d4c412f63ff1f4fa8a718de8e7ad74b6b28792db",
+      "trailing_lines": [
+        15
+      ],
+      "blank_at_eof": false,
+      "exact_classification": "-trailing-space"
+    }
+  ],
+  "unclassified_findings": [],
+  "calibration": "Cached command exited0 using current worktree attributes, but the index still has the old attribute/receipt bytes and new terminal files are unstaged. This is provisional command evidence, NOT the final full staged gate. CHANGE must stage the exact delta and rerun unchanged command, then same fresh reviewer backchecks union. No source tests or native observations repeated."
+}

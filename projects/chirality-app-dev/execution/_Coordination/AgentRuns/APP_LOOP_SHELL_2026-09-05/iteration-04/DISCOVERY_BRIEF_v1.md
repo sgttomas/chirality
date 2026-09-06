@@ -1,0 +1,7 @@
+# Iteration4 sealed discovery brief v1
+
+Parent HELP_HUMAN authorizes Step0 read-only discovery/control proposal only, no authors or implementation activation. Exact write root this iteration-04 subtree only; no prior immutable iteration, shared receipt/register/carrier/source, foreign-loop, index/fetch or child writes. Prewrite observation clean HEAD239c8f2a53397f88f16e3d56ecbba9af83829246; origin/main39f51f1cd712b86c67c57270457fc09066eadb1c. CHANGE reports fresh fetch; recorder independently reads refs/diff without fetch. New Root steer readable on origin/main for boundaries only; no App adoption inferred.
+
+Execute LOOP_INIT Step0 command set, receipt validator before cursor, committed-overlay discovery, notices/register/Remaining inventories, corpus/harness checks, exact source pins and APP-HOLD before selected carrier reliance. Preserve canonical nonsecret command metadata and lossless JSON streams. CI33994563156 in progress per parent; no successor readiness or CI PASS assumed. Candidate discussion T3 DEL02-03-V3-01 and bounded T2 no-folder/omitted-seam proposal remains parent decision. No Receipt248 or standing work queue.
+
+Record full D64 attribution schema and four lenses for proposals, effect HELD and no independent verifier verdict until actual. Every frontend mutation invalidates staged login-proof procedure; future proof needs new stage/fresh owner execution under A1. Native OpenAI GPT-6 exact serving ID unavailable; role instruction-asserted, Agent2 no delegation.

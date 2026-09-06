@@ -1,0 +1,23 @@
+{
+  "role": "TASK Agent2",
+  "agent": "/root/pkg02/t3_author",
+  "engine": "Codex",
+  "provider": "OpenAI",
+  "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+  "substitutions": [],
+  "OwnerStandingApproval": "D-APP-64 \u00a73",
+  "AgentJudgment": "EXECUTE_TESTS_ONLY_RECONNECT_REPAIR",
+  "SelectedOutcome": "Align actual view/recorded-selection setup while preserving reconnect counts and primary identity",
+  "JudgedBy": "TASK /root/pkg02/t3_author",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": [
+    "production change to satisfy stale tests",
+    "deleting assertions",
+    "mocking whole RightPanel",
+    "changing original17 hashes or built bundles"
+  ],
+  "RationaleArtifact": "../RECONNECT_TEST_AMENDMENT_v1.md",
+  "IndependentVerifier": "Prior whole-source v3 review PASS historical; fresh entire revised candidate review PENDING",
+  "EffectStatus": "HELD",
+  "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance"
+}
