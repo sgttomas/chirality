@@ -1,0 +1,36 @@
+# Governance-only configuration; operational effect follows the referenced governance state.
+guards:
+  G1:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_root_harness_adapter.py
+    tests: tools/validation/test_validate_root_harness_adapter.py
+    state_surface: execution/_harness/adapter.yaml
+    schema: root-harness-adapter/v1
+  G2:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_root_surface_ownership.py
+    tests: tools/validation/test_validate_root_surface_ownership.py
+    state_surface: execution/_harness/surface_ownership.yaml
+    schema: root-surface-ownership/v1
+  G3:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_root_work_graph_dispatch.py
+    tests: tools/validation/test_validate_root_work_graph_dispatch.py
+    state_surface: execution/_harness/work_graph.yaml
+    schema: root-work-graph/v1
+    dispatch_mode: --work-graph PATH --brief PATH [--brief PATH ...]
+  G4:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_instruction_tranche_manifest.py
+    tests: tools/validation/test_validate_instruction_tranche_manifest.py
+    state_surface: docs/governance_harness/tranche_manifests/
+    schema: instruction-tranche-manifest/v1
+    diff_mode: --base REF --head REF [--tranche ID]
+mode: governance-only
+governance_state:
+  path: execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_PENDING.json
+  sha256: db606ddc4e143b87d6a487c79501a366afb27b753f406bd3d6e496a0d6cececd

@@ -241,3 +241,20 @@ def test_live_repo_state_passes():
     """G1 must PASS on the 53-file live tree after the seven R7 transitions."""
     code, _ = g1.check(g1.repo_root())
     assert code == 0
+
+from test_root_governance_state import complete, put
+import pytest
+
+def full_governance_adapter(root,state,config):
+    data={**config,'schema':'root-harness-adapter/v1','product':'chirality-root','working_root':'.','execution_root':'execution','prd':'docs/PRD_ROOT.md','coordination':'execution/_Coordination/CURRENT_WORKPLAN.md','decision_register':'docs/governance_harness/_DECISIONS/_REGISTER.md','loop_init':'execution/_Coordination/LOOP_INIT.md','receipts':'execution/_Coordination/LOOP_RECEIPTS.md','status_glob':'execution/PKG-*/1_Working/DEL-*/_STATUS.md','parser_dialect':'root-historical-v1','states':['RETIRED'],'exclude_globs':['.archive/**'],'baselines':{'status_files':53,'status_mismatch':0,'pinned_at':state['gate4']['commit']}}
+    for key in ['prd','coordination','decision_register','loop_init','receipts']:put(root,data[key],'Fixture pointer target\n')
+    return data
+
+def test_governance_adapter_full_published_subject(complete):
+    root,state,config,_=complete;data=full_governance_adapter(root,state,config)
+    put(root,str(g1.ADAPTER_RELPATH),yaml.safe_dump(data));assert g1.check(root)[0]==0
+
+@pytest.mark.parametrize('field',['prd','coordination','decision_register','loop_init','receipts','mode','parser_dialect','states','exclude_globs','status_glob','baselines'])
+def test_governance_adapter_each_required_surface(complete,field):
+    root,state,config,_=complete;data=full_governance_adapter(root,state,config);data.pop(field)
+    put(root,str(g1.ADAPTER_RELPATH),yaml.safe_dump(data));assert g1.check(root)[0]==1

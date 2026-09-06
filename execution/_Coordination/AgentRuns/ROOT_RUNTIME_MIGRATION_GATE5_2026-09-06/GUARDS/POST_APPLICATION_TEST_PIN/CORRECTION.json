@@ -1,0 +1,11 @@
+{
+  "change": "Accepted SCA-005 live observation pin: 53 historical RETIRED; zero active product carriers; no DAG/activation grant. Test-only correction following actual application.",
+  "path": "tools/practitioner_harness/test_root_adoption.py",
+  "preimage_sha256": "f21c0029c0f005840b2be3d7931dd932f1c64ee3a52f1517ca072243c2b8a768",
+  "postimage_sha256": "64e5f2e88ad5030e0c868ee99e63546426991ce1e16bdd9cfc67a1376e597534",
+  "strict_application_subject_pins_file": false,
+  "operational_code_changed": false,
+  "prior_output_manifest_preserved": "../OUTPUT_FILES.sha256",
+  "prior_artifact_manifest_preserved": "../FINAL_ARTIFACTS.sha256",
+  "application_subject_and_journal": "Unmodified; test file is absent from both strict tested_files and fixture_suites arrays."
+}

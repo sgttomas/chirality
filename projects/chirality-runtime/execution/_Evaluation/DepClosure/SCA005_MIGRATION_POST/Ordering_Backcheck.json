@@ -1,0 +1,15 @@
+{
+  "seal": "3bffb22f758fbdc4a8eac44c7756cb77bea9fa070d6779a33581795322c81e4e",
+  "members_verified": 13,
+  "qualified_nodes": 10,
+  "edges": 8,
+  "runtime_edges": 6,
+  "governance_edges": 2,
+  "cycles": 0,
+  "streams": 8,
+  "historical_base_sum": 1012,
+  "remaining_effort": "UNKNOWN",
+  "owner_acceptance": "PENDING_NEW_DERIVATIVE",
+  "verdict": "PASS_MAPPING_ONLY",
+  "pricing_audit": "NOT_PERFORMED_OUT_OF_SCOPE"
+}

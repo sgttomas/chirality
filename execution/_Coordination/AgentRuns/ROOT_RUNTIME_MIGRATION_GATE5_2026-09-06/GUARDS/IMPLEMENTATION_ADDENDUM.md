@@ -1,0 +1,3 @@
+# Bounded setup inspection implementation delta
+
+The approved runtime adapter could not be inspected through the practitioner CLI because PROJECT_ALIASES/OBSERVABLE_PROJECTS omitted its new project. HELP_HUMAN directed the necessary conditional setup integration: add runtime/chirality-runtime aliases resolving projects/chirality-runtime and observation entries in tools/practitioner_harness/harness.py. Runtime remains an ordinary project; no daemon registration, activation, DAG, lifecycle or effective transfer is granted. Existing root-adoption test file adds alias regression, and the guard G4 manifest covers the additional instruction path. This is caller seating for the already-approved project, not a new product function.

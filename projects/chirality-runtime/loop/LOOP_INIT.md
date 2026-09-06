@@ -9,3 +9,5 @@ Status: CANDIDATE_SETUP; no accepted product execution queue. Paths below are pr
 5. Project write containment excludes Root instructions and sibling projects. M2/G4 instruction changes and App/PEC changes need their separately scoped owners. No operational account, credential, user-data, socket or registration mutation follows from reading this manifest.
 6. First return: source/branch state; actual accepted authority versus candidate files; exact authorized migration scope; checks/evidence available; blocked product gates and next lawful work. If no current grant applies, return the blocked state without inventing implementation tasks.
 7. Record actual checks and a durable handoff with model attribution and accepted/candidate distinction. Human acceptance and PR merge remain actual owner acts under shared CHANGE and the governing run's closeout contract.
+
+Current migration acceptance/application status: execution/_Coordination/MIGRATION_APPLICATION.md (project-relative). That actual record supersedes candidate-era status statements above only as far as its evidenced acts; it grants no product activation or release.

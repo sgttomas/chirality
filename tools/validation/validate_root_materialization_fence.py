@@ -32,6 +32,7 @@ not inspect package contents, nested structure, or any other working root.
 from __future__ import annotations
 
 import subprocess
+import root_governance_state as governance
 import sys
 from pathlib import Path
 
@@ -88,6 +89,19 @@ def load_registration(root: Path) -> dict[str, dict[str, object]] | None:
 
 def check(root: Path) -> tuple[int, list[str]]:
     """Returns (exit_code, report_lines)."""
+    try:
+        import yaml
+        mode_path = root / REGISTRATION_RELPATH
+        mode_data = yaml.safe_load(mode_path.read_text()) if mode_path.is_file() else {}
+        if isinstance(mode_data, dict):
+            if governance.check_mode(mode_data):
+                return _check_governance_g0(root, mode_data)
+        elif mode_path.is_file():
+            raise governance.GovernanceError('Root state is not a mapping')
+    except yaml.YAMLError as exc:
+        return 1, ['unparseable Root state: ' + str(exc)]
+    except (governance.GovernanceError, ValueError, OSError) as exc:
+        return 1, ['G0 BLOCK: ' + str(exc)]
     lines: list[str] = []
     children = materialized_children(root)
     if not children:
@@ -131,6 +145,37 @@ def check(root: Path) -> tuple[int, list[str]]:
         f"{REGISTRATION_RELPATH}; materialization gate satisfied."
     )
     return 0, lines
+
+
+def _check_governance_g0(root: Path, data: dict) -> tuple[int, list[str]]:
+    try:
+        state=governance.load_governance_state(root,data,verify_statuses=governance.status_verification(root,data))
+        expected={str(Path(r['path']).parent) for r in state['source_statuses']}
+        packages={r['source_package'] for r in state['source_statuses']}
+        actual_packages={p.name for p in (root/'execution').glob('PKG-*') if p.is_dir()}
+        if actual_packages!=packages: raise governance.GovernanceError('unexpected/missing Root package')
+        def deliverable_evidence(path):
+            relative=str(path.relative_to(root))
+            return any(relative.startswith(base+'/_run_records/') for base in expected)
+        actual={str(p.relative_to(root)) for pkg in actual_packages for p in (root/'execution'/pkg).rglob('DEL-*') if p.is_dir() and not deliverable_evidence(p)}
+        # Registered tool roots hold immutable/candidate evidence, not active materialization.
+        evidence_roots={'_Aggregation','_Change','_Coordination','_Decomposition','_Estimates','_Evaluation','_Reconciliation','_Archive','_Scripts','_Sources','_LocalIndexes','_DomainEngines','_Schedule','_ScopeChange','_harness'}
+        for container in (root/'execution').iterdir():
+            if not container.is_dir() or container.name in evidence_roots: continue
+            for item in [container,*container.rglob('*')]:
+                if not item.is_dir() or deliverable_evidence(item): continue
+                rel=str(item.relative_to(root))
+                if item.name.startswith('DEL-'): actual.add(rel)
+                if item.name.startswith('PKG-') and rel not in {'execution/'+p for p in packages}:
+                    raise governance.GovernanceError('nested or unregistered Root package')
+        if actual!=expected: raise governance.GovernanceError('unexpected/missing nested or direct Root carrier')
+        guards=data.get('guards',{})
+        for name in REQUIRED_GUARDS:
+            if guards.get(name,{}).get('registered') is not True or guards.get(name,{}).get('status')!='passing':
+                raise governance.GovernanceError(name+' registration not passing')
+        return 0,['G0 PASS: exact governance/historical census validated; stage='+state['stage']+'; no production authorization']
+    except (governance.GovernanceError, OSError, ValueError, KeyError, TypeError) as exc:
+        return 1,['G0 BLOCK: '+str(exc)]
 
 
 def main() -> int:

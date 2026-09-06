@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-09-06T00:46:44.345936+00:00",
+  "g4_schema": {
+    "command": "python3 tools/validation/validate_instruction_tranche_manifest.py",
+    "exit_code": 0,
+    "output": "G4_INITIAL.txt"
+  },
+  "control_copy_evidence": "CONTROLS_PUBLICATION.json",
+  "canon_status": "NOT_APPLIED_WAITING_SECOND_RELEASE",
+  "semantic_audit": "PARENT_WILL_DISPATCH_AFTER_CUTOVER",
+  "receiving_pin_inventory": "RECEIVING_PIN_FINDINGS.md"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "GR-01",
+    "severity": "high",
+    "file": "tools/scaffolding/write_status.sh",
+    "finding": "Logical pwd source prefix permits symlink alias outside execution to create a Root source status under explicit governance mode.",
+    "evidence": "SYMLINK_WRITER_REPRO.json",
+    "status": "REPORTED_FIX_PENDING"
+  },
+  {
+    "id": "GR-02",
+    "severity": "high",
+    "file": "tools/validation/root_governance_state.py",
+    "finding": "Effective stage does not distinguish Gate5 owner act from Gate4: caller-selected expected effect SHA and any published reference can reuse Gate4. No confirmed application object binding.",
+    "evidence": "static effective branch review",
+    "status": "REPORTED_FIX_PENDING"
+  },
+  {
+    "id": "GR-03",
+    "severity": "medium",
+    "file": "tools/validation/root_governance_state.py",
+    "finding": "Transaction validator reads status while real applicator journal writes state=APPLIED; completed live journal fails effective dispatch.",
+    "evidence": "static producer/consumer mismatch",
+    "status": "REPORTED_FIX_PENDING"
+  },
+  {
+    "id": "GR-04",
+    "severity": "high",
+    "file": "tools/scaffolding/apply_root_retirement.py",
+    "finding": "Recursive path harvesting accepts arbitrary unknown fields pointing at ignored operational files and copies them into prospective scratch.",
+    "evidence": "PROSPECTIVE_COPY_REPRO.json (synthetic data; Git inventory mocked)",
+    "status": "REPORTED_FIX_PENDING"
+  },
+  {
+    "id": "GR-05",
+    "severity": "medium",
+    "file": "tools/scaffolding/apply_root_retirement.py",
+    "finding": "CLI evidence-dir has no approved scope containment validation; dry-run creates chosen external directory and writes execution logs there.",
+    "evidence": "static execute evidence.mkdir and CLI resolve path",
+    "status": "REPORTED_FIX_PENDING"
+  },
+  {
+    "id": "GR-06",
+    "severity": "high",
+    "file": "tools/validation/root_governance_state.py",
+    "finding": "Mutable held_capabilities accepted without exact nine-hold source identity binding.",
+    "evidence": "initial static read; subsequent code derives nine holds from pinned HOLD_SUCCESSOR_MAP",
+    "status": "FIX_SEEN_AWAIT_FROZEN_VERIFICATION"
+  }
+]

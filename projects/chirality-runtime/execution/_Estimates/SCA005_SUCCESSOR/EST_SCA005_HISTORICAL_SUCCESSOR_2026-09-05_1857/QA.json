@@ -1,0 +1,99 @@
+{
+  "historical_manifest_checks": [
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-02-06_ESTIMATE.md",
+      "ExpectedSHA256": "0ffb02bb0aefdc9daecbcfe573a96856d9d2be4d0b33697d4b046d974bb7d929",
+      "ActualSHA256": "0ffb02bb0aefdc9daecbcfe573a96856d9d2be4d0b33697d4b046d974bb7d929",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-02-07_ESTIMATE.md",
+      "ExpectedSHA256": "9079b3f42d4033e6ac0bdcfb36fa401c4a225ec1162a1af11e9ae55b27f2a23b",
+      "ActualSHA256": "9079b3f42d4033e6ac0bdcfb36fa401c4a225ec1162a1af11e9ae55b27f2a23b",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-02-08_ESTIMATE.md",
+      "ExpectedSHA256": "44f4bd3df61d17edebba5a1fc8fdd3b0f963676d609299a6e2a6ce1e1d987573",
+      "ActualSHA256": "44f4bd3df61d17edebba5a1fc8fdd3b0f963676d609299a6e2a6ce1e1d987573",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-02-09_ESTIMATE.md",
+      "ExpectedSHA256": "a17da203767d03375a80f05835cc2ebc121c5e04d963f5fe41756ec5b5967a72",
+      "ActualSHA256": "a17da203767d03375a80f05835cc2ebc121c5e04d963f5fe41756ec5b5967a72",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-02-10_ESTIMATE.md",
+      "ExpectedSHA256": "3e50fda3d4132a4eb632688492e120623549cdd84c28babde50ba53204617d6e",
+      "ActualSHA256": "3e50fda3d4132a4eb632688492e120623549cdd84c28babde50ba53204617d6e",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-02-11_ESTIMATE.md",
+      "ExpectedSHA256": "e489e5bdfe9e9132855bfe1c142a985fbe77de6556e7b7cf75e96955795a8792",
+      "ActualSHA256": "e489e5bdfe9e9132855bfe1c142a985fbe77de6556e7b7cf75e96955795a8792",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-02-12_ESTIMATE.md",
+      "ExpectedSHA256": "0eaf3e1e35ac164ea4bff4cd98b886005c7a7b19d60139a083036dae6f17a1be",
+      "ActualSHA256": "0eaf3e1e35ac164ea4bff4cd98b886005c7a7b19d60139a083036dae6f17a1be",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/DEL-04-11_ESTIMATE.md",
+      "ExpectedSHA256": "c7766f1a0f61fc0d3c59d6c308436902c875849300568cb2056c80388d4dfb3d",
+      "ActualSHA256": "c7766f1a0f61fc0d3c59d6c308436902c875849300568cb2056c80388d4dfb3d",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/ESTIMATE_METHOD.md",
+      "ExpectedSHA256": "18ca936c77b573f1c29e530264d3505e1abf7a9047f4b3a8cb207d5ac574dd3d",
+      "ActualSHA256": "18ca936c77b573f1c29e530264d3505e1abf7a9047f4b3a8cb207d5ac574dd3d",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/INPUT_HASHES.csv",
+      "ExpectedSHA256": "a838553fe1dc8267702d5a9df3578cc6935ecdda819505ca6b22b5ecb8fe5df5",
+      "ActualSHA256": "a838553fe1dc8267702d5a9df3578cc6935ecdda819505ca6b22b5ecb8fe5df5",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/RETURN.md",
+      "ExpectedSHA256": "6ac93dc50bb5f6a0a45a5320283bb0a0de6cbc0e533fb6d481e23d106bf3953a",
+      "ActualSHA256": "6ac93dc50bb5f6a0a45a5320283bb0a0de6cbc0e533fb6d481e23d106bf3953a",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/REVIEW.md",
+      "ExpectedSHA256": "2ae917a7531ea29870c1bb3792f2c00fe928754a2e64649883f12e1ff1db9aa7",
+      "ActualSHA256": "2ae917a7531ea29870c1bb3792f2c00fe928754a2e64649883f12e1ff1db9aa7",
+      "Match": true
+    },
+    {
+      "Path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/SUMMARY.md",
+      "ExpectedSHA256": "788341ba427dcd9ee789de2a718ae15b93e8f2389d8ea3f8ee7de307fb9b27c5",
+      "ActualSHA256": "788341ba427dcd9ee789de2a718ae15b93e8f2389d8ea3f8ee7de307fb9b27c5",
+      "Match": true
+    }
+  ],
+  "stream_count": 8,
+  "line_count": 46,
+  "base": 1012,
+  "low": 560,
+  "high": 1464,
+  "runtime_base": 920,
+  "governance_base": 92,
+  "line_range_recalculation": "46/46 match source half-up rule",
+  "provenance_percent": 100,
+  "method_histogram": {
+    "HISTORICAL": 46
+  },
+  "inputs_unchanged": true,
+  "current_remaining": "UNKNOWN",
+  "excluded_held_effort": "UNKNOWN",
+  "owner_disposition": "PENDING",
+  "pointer_updated": false
+}

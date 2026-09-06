@@ -1,0 +1,9 @@
+WBS_PackageID,WBS_DeliverableID,CBS,Currency,Amount_Total,Low_Total,High_Total,LineCount,ProvenanceCompletenessPct,Notes
+chirality-runtime::PKG-02_Runtime_Product,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,116,63,169,10,100,Historical allocation only; current remaining UNKNOWN.
+chirality-runtime::PKG-02_Runtime_Product,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,180,94,266,5,100,Historical allocation only; current remaining UNKNOWN.
+chirality-runtime::PKG-02_Runtime_Product,chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,100,57,143,5,100,Historical allocation only; current remaining UNKNOWN.
+chirality-runtime::PKG-02_Runtime_Product,chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,148,82,214,6,100,Historical allocation only; current remaining UNKNOWN.
+chirality-runtime::PKG-02_Runtime_Product,chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,144,88,200,6,100,Historical allocation only; current remaining UNKNOWN.
+chirality-runtime::PKG-02_Runtime_Product,chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,136,72,200,5,100,Historical allocation only; current remaining UNKNOWN.
+chirality-runtime::PKG-02_Runtime_Product,chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,96,51,141,5,100,Historical allocation only; current remaining UNKNOWN.
+root::GOV-04,root::GOV-04-11,HISTORICAL_OUTPUT_EFFORT,EFFORT_HOURS,92,53,131,4,100,Historical allocation only; current remaining UNKNOWN.

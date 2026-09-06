@@ -1,0 +1,23 @@
+{
+  "schema": "source-preimage-storage/v1",
+  "historical_journal_unchanged": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/journal.json",
+  "entries": [
+    {
+      "historical_journal_backup_path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "current_storage_path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv.gz",
+      "encoding": "gzip",
+      "raw_sha256": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+      "stored_sha256": "6e11522db13c67ffa76993e43057f89fe5310b6ed3d4b2dd4df744dd181b445c",
+      "reader_rule": "Decompress gzip, verify raw_sha256 equals original journal before_sha256; do not normalize recovered CRLF bytes."
+    },
+    {
+      "historical_journal_backup_path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+      "current_storage_path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv.gz",
+      "encoding": "gzip",
+      "raw_sha256": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+      "stored_sha256": "93bc93de169a61c1b1c0e016005402a704f264b32857a8d40a6d287c55e8948a",
+      "reader_rule": "Decompress gzip, verify raw_sha256 equals original journal before_sha256; do not normalize recovered CRLF bytes."
+    }
+  ],
+  "meaning": "Storage-only relocation of two historical preimages. Original journal names are logical raw-preimage identifiers resolved through this index. All journal/subject/state/config bytes remain unchanged."
+}

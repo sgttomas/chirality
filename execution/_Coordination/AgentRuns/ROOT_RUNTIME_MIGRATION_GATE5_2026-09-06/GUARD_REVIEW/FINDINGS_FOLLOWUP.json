@@ -1,0 +1,24 @@
+[
+  {
+    "id": "GR-07",
+    "severity": "high",
+    "file": "tools/validation/validate_root_work_graph_dispatch.py",
+    "finding": "Runtime capability list only compares literal held IDs; unknown aliases or non-string entries remain eligible without an accepted positive eligibility instrument.",
+    "status": "REPORTED_AWAIT_FREEZE"
+  },
+  {
+    "id": "GR-08",
+    "severity": "high",
+    "file": "tools/scaffolding/apply_root_retirement.py",
+    "finding": "Final APPLIED journal publication is outside rollback try; publication failure leaves applied postimages and APPLYING journal, and exact rerun refuses.",
+    "evidence": "FINAL_JOURNAL_FAILURE_REPRO.json",
+    "status": "REPRODUCED_FIX_PENDING"
+  },
+  {
+    "id": "GR-02b",
+    "severity": "high",
+    "file": "tools/validation/root_governance_state.py",
+    "finding": "Initial Gate5 repair binds journal/subject but must also bind current successor/config state to the exact confirmed application subject; otherwise changing runtime scope plus binding hash can reuse prior confirmation.",
+    "status": "REPORTED_AWAIT_FREEZE"
+  }
+]

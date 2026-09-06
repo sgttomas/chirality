@@ -1,0 +1,336 @@
+{
+  "GUARDS/OUTPUT_FILES.sha256": {
+    "sha256": "a0f3e3d124cb0e5fb059e9e4fd2864f07b288f314fad2472371667b31283a3f6",
+    "count": 25,
+    "mismatches": [
+      {
+        "path": "tools/scaffolding/apply_root_retirement.py",
+        "expected": "e7f74cb000b6cbcc47278e2baaae50925b716b6504c7916b5e498b4cd531de0f",
+        "actual": "2ecd76ef0afcd0d0a73b9a43adabdfd252cf88662b45891497ba068194c3602b",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/test_apply_root_retirement.py",
+        "expected": "048c72e37e7517ece0912dca5ba5bb3a58811fe488f794f53bd3655501759b0d",
+        "actual": "362d40d8cce25f65bb17be7f9c7883b8ca8d5677d4e990533f2d3e205586abad",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/test_root_governance_state.py",
+        "expected": "3ec1ac51affc60250e8bc77cd5fbfc83e098396e87cf4362f900922682134d31",
+        "actual": "d38af6997c31deda4be6afe595682972f2e1ff7e3a5f9ed1321033e02e1cd05d",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/test_validate_root_materialization_fence.py",
+        "expected": "81196b0cbe554e65803b7cb7a7ac3f57a8848b7c8aa5a13722f488ca28b1bef4",
+        "actual": "f53315f181dd736dd6f5dcd4a546218ed8e88c890b5c7af3e32d63cb48e1e0be",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/validate_root_materialization_fence.py",
+        "expected": "07a4ffac150227fcd5c97bb15e9cd0b9f9b089aef1e9e658b06966cfcda3d3fe",
+        "actual": "60749e08fcf8e43eb8cf8150830ee4ee8615e4e6c889f79d0e8fb6e5e2b8a722",
+        "matches": false
+      }
+    ],
+    "rows": [
+      {
+        "path": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-GATE4-GUARDS-20260906.yaml",
+        "expected": "2e86835ccbabcd0c7e50fb120de8d0142442d86a368d4dbda098e41ecf6fd530",
+        "actual": "2e86835ccbabcd0c7e50fb120de8d0142442d86a368d4dbda098e41ecf6fd530",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/adapter_loader.py",
+        "expected": "40443b32cbbbcd3ad900e34d63f26a4e336ed95d390191230a6ad83af3429e82",
+        "actual": "40443b32cbbbcd3ad900e34d63f26a4e336ed95d390191230a6ad83af3429e82",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/adapter_project.py",
+        "expected": "652b1741a308a9f5b0313731b3c439ee5be30b458bf2d9f92a03174bfc6353c9",
+        "actual": "652b1741a308a9f5b0313731b3c439ee5be30b458bf2d9f92a03174bfc6353c9",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/cmd_brief.py",
+        "expected": "91a04ecff3bc6a0bbb673ca21c38c55273660af9c6c753656e8d963ce48ea8a7",
+        "actual": "91a04ecff3bc6a0bbb673ca21c38c55273660af9c6c753656e8d963ce48ea8a7",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/cmd_next.py",
+        "expected": "457a0ad0e62157f7d05342121946b7f3de7e64e69daa01df95cf7152ffc725f9",
+        "actual": "457a0ad0e62157f7d05342121946b7f3de7e64e69daa01df95cf7152ffc725f9",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/cmd_status.py",
+        "expected": "651badb3ba75e8901bfc525f39fd415101ff7a8559ae8d98792159a252e5bade",
+        "actual": "651badb3ba75e8901bfc525f39fd415101ff7a8559ae8d98792159a252e5bade",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/harness.py",
+        "expected": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+        "actual": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/root_historical_status.py",
+        "expected": "2f4c25faeccfab6eba5df6001ae7359316d471897e2a88561c8b6612fcfce61b",
+        "actual": "2f4c25faeccfab6eba5df6001ae7359316d471897e2a88561c8b6612fcfce61b",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/test_adapter_loader.py",
+        "expected": "2dc9f237e23fd017a8f3e45507702124b88bfa767da488d6f254b509cd43c4ca",
+        "actual": "2dc9f237e23fd017a8f3e45507702124b88bfa767da488d6f254b509cd43c4ca",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/test_root_adoption.py",
+        "expected": "f21c0029c0f005840b2be3d7931dd932f1c64ee3a52f1517ca072243c2b8a768",
+        "actual": "f21c0029c0f005840b2be3d7931dd932f1c64ee3a52f1517ca072243c2b8a768",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/test_root_historical_status.py",
+        "expected": "d851cc0d4bd97ae05f13fe8db36bc2c6726d11ba8849d569a548564cfd9572af",
+        "actual": "d851cc0d4bd97ae05f13fe8db36bc2c6726d11ba8849d569a548564cfd9572af",
+        "matches": true
+      },
+      {
+        "path": "tools/practitioner_harness/test_write_status_guard.py",
+        "expected": "b65f44c7d42abe4ac4ad8952b99c1a2702cbcdc66e21908ad23b2dfe6af4c21a",
+        "actual": "b65f44c7d42abe4ac4ad8952b99c1a2702cbcdc66e21908ad23b2dfe6af4c21a",
+        "matches": true
+      },
+      {
+        "path": "tools/scaffolding/apply_root_retirement.py",
+        "expected": "e7f74cb000b6cbcc47278e2baaae50925b716b6504c7916b5e498b4cd531de0f",
+        "actual": "2ecd76ef0afcd0d0a73b9a43adabdfd252cf88662b45891497ba068194c3602b",
+        "matches": false
+      },
+      {
+        "path": "tools/scaffolding/write_status.sh",
+        "expected": "b6194cc0b6a12b949583fd7b211594da0bbd8d6ead136b1ec01533d5700852ed",
+        "actual": "b6194cc0b6a12b949583fd7b211594da0bbd8d6ead136b1ec01533d5700852ed",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/root_governance_state.py",
+        "expected": "ac4cf6f341c10dd423e99ef64bee2ef822bca45cbc3096f66c08aec1804ab373",
+        "actual": "ac4cf6f341c10dd423e99ef64bee2ef822bca45cbc3096f66c08aec1804ab373",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_apply_root_retirement.py",
+        "expected": "048c72e37e7517ece0912dca5ba5bb3a58811fe488f794f53bd3655501759b0d",
+        "actual": "362d40d8cce25f65bb17be7f9c7883b8ca8d5677d4e990533f2d3e205586abad",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/test_root_governance_state.py",
+        "expected": "3ec1ac51affc60250e8bc77cd5fbfc83e098396e87cf4362f900922682134d31",
+        "actual": "d38af6997c31deda4be6afe595682972f2e1ff7e3a5f9ed1321033e02e1cd05d",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/test_validate_root_harness_adapter.py",
+        "expected": "cc7a38495bbff432756f1a8b56d9c73a99886aad2dc22435851bf83746bf1fc1",
+        "actual": "cc7a38495bbff432756f1a8b56d9c73a99886aad2dc22435851bf83746bf1fc1",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_validate_root_materialization_fence.py",
+        "expected": "81196b0cbe554e65803b7cb7a7ac3f57a8848b7c8aa5a13722f488ca28b1bef4",
+        "actual": "f53315f181dd736dd6f5dcd4a546218ed8e88c890b5c7af3e32d63cb48e1e0be",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/test_validate_root_surface_ownership.py",
+        "expected": "2c84f7bde071a499b79ffa2ddaf955d002c4dfe1bbadd703f0a89ccccdf5b404",
+        "actual": "2c84f7bde071a499b79ffa2ddaf955d002c4dfe1bbadd703f0a89ccccdf5b404",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_validate_root_work_graph_dispatch.py",
+        "expected": "eb687300fa98b1a8f107c8eaff42a345f87596d2cdb6c64cc59e565e5879a01a",
+        "actual": "eb687300fa98b1a8f107c8eaff42a345f87596d2cdb6c64cc59e565e5879a01a",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_root_harness_adapter.py",
+        "expected": "142e68372b1b75ad878e006750a78c01665a3fdd54065b6f6d038dfb20a9f03f",
+        "actual": "142e68372b1b75ad878e006750a78c01665a3fdd54065b6f6d038dfb20a9f03f",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_root_materialization_fence.py",
+        "expected": "07a4ffac150227fcd5c97bb15e9cd0b9f9b089aef1e9e658b06966cfcda3d3fe",
+        "actual": "60749e08fcf8e43eb8cf8150830ee4ee8615e4e6c889f79d0e8fb6e5e2b8a722",
+        "matches": false
+      },
+      {
+        "path": "tools/validation/validate_root_surface_ownership.py",
+        "expected": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630",
+        "actual": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_root_work_graph_dispatch.py",
+        "expected": "a23ff1ddf37d36f8fe413b87812d97de9655ecd0082d8eb77562a7cf2db53c02",
+        "actual": "a23ff1ddf37d36f8fe413b87812d97de9655ecd0082d8eb77562a7cf2db53c02",
+        "matches": true
+      }
+    ]
+  },
+  "INTEGRATION/APPLICATION_SUBJECT.json": {
+    "sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9",
+    "count": 19,
+    "mismatches": [
+      {
+        "path": "execution/_harness/adapter.yaml",
+        "expected": "b1395d402b0ab2c2b02ff1ad29ce3a631870e8633b85497cc473ea7e36f6b5c0",
+        "actual": "71f603ad463c14dbba6b02806d67cfc4d859219ff828812fb37de35e78025f3c",
+        "matches": false
+      },
+      {
+        "path": "execution/_harness/root_guards.yaml",
+        "expected": "442613ff6f7495b550b68f590c73ad70e3b819050debe8d0f7295663517877d7",
+        "actual": "f24ba6deb262f3cf0b469491a03f062b9faa21bdcdd088a623e649c8919ce4c2",
+        "matches": false
+      },
+      {
+        "path": "execution/_harness/surface_ownership.yaml",
+        "expected": "32ec79df0564cc28b0d4d2c3d79d8f853413f386840d75bb2ef309e806151f0a",
+        "actual": "18ff8241d96e3d6e1c94e6bb7a39f5f5a7ad7444c9bb5685467ab3da512e932b",
+        "matches": false
+      },
+      {
+        "path": "execution/_harness/work_graph.yaml",
+        "expected": "eccbfcb7478006bfb9265c93f8d64afed77ed4074fb81834759b5cde28481c01",
+        "actual": "29dc3e35b92418f9cccbdc693aee7cc30943f505415952b57c8f291a647b54cc",
+        "matches": false
+      }
+    ],
+    "rows": [
+      {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_PREPARED.json",
+        "expected": "6b03bec1f8f59c02913ebe91a2fd9f15f17fbb94d1659754a85c98a045c50cf0",
+        "actual": "6b03bec1f8f59c02913ebe91a2fd9f15f17fbb94d1659754a85c98a045c50cf0",
+        "matches": true
+      },
+      {
+        "path": "execution/_harness/adapter.yaml",
+        "expected": "b1395d402b0ab2c2b02ff1ad29ce3a631870e8633b85497cc473ea7e36f6b5c0",
+        "actual": "71f603ad463c14dbba6b02806d67cfc4d859219ff828812fb37de35e78025f3c",
+        "matches": false
+      },
+      {
+        "path": "execution/_harness/root_guards.yaml",
+        "expected": "442613ff6f7495b550b68f590c73ad70e3b819050debe8d0f7295663517877d7",
+        "actual": "f24ba6deb262f3cf0b469491a03f062b9faa21bdcdd088a623e649c8919ce4c2",
+        "matches": false
+      },
+      {
+        "path": "execution/_harness/surface_ownership.yaml",
+        "expected": "32ec79df0564cc28b0d4d2c3d79d8f853413f386840d75bb2ef309e806151f0a",
+        "actual": "18ff8241d96e3d6e1c94e6bb7a39f5f5a7ad7444c9bb5685467ab3da512e932b",
+        "matches": false
+      },
+      {
+        "path": "execution/_harness/work_graph.yaml",
+        "expected": "eccbfcb7478006bfb9265c93f8d64afed77ed4074fb81834759b5cde28481c01",
+        "actual": "29dc3e35b92418f9cccbdc693aee7cc30943f505415952b57c8f291a647b54cc",
+        "matches": false
+      },
+      {
+        "path": "tools/scaffolding/apply_root_retirement.py",
+        "expected": "2ecd76ef0afcd0d0a73b9a43adabdfd252cf88662b45891497ba068194c3602b",
+        "actual": "2ecd76ef0afcd0d0a73b9a43adabdfd252cf88662b45891497ba068194c3602b",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/root_governance_state.py",
+        "expected": "ac4cf6f341c10dd423e99ef64bee2ef822bca45cbc3096f66c08aec1804ab373",
+        "actual": "ac4cf6f341c10dd423e99ef64bee2ef822bca45cbc3096f66c08aec1804ab373",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_apply_root_retirement.py",
+        "expected": "362d40d8cce25f65bb17be7f9c7883b8ca8d5677d4e990533f2d3e205586abad",
+        "actual": "362d40d8cce25f65bb17be7f9c7883b8ca8d5677d4e990533f2d3e205586abad",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_root_governance_state.py",
+        "expected": "d38af6997c31deda4be6afe595682972f2e1ff7e3a5f9ed1321033e02e1cd05d",
+        "actual": "d38af6997c31deda4be6afe595682972f2e1ff7e3a5f9ed1321033e02e1cd05d",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_validate_instruction_tranche_manifest.py",
+        "expected": "f60566db9034522454cc73c22127d273a79558d1d98725a978e1c8bb5f55b289",
+        "actual": "f60566db9034522454cc73c22127d273a79558d1d98725a978e1c8bb5f55b289",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_validate_root_harness_adapter.py",
+        "expected": "cc7a38495bbff432756f1a8b56d9c73a99886aad2dc22435851bf83746bf1fc1",
+        "actual": "cc7a38495bbff432756f1a8b56d9c73a99886aad2dc22435851bf83746bf1fc1",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_validate_root_materialization_fence.py",
+        "expected": "f53315f181dd736dd6f5dcd4a546218ed8e88c890b5c7af3e32d63cb48e1e0be",
+        "actual": "f53315f181dd736dd6f5dcd4a546218ed8e88c890b5c7af3e32d63cb48e1e0be",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_validate_root_surface_ownership.py",
+        "expected": "2c84f7bde071a499b79ffa2ddaf955d002c4dfe1bbadd703f0a89ccccdf5b404",
+        "actual": "2c84f7bde071a499b79ffa2ddaf955d002c4dfe1bbadd703f0a89ccccdf5b404",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/test_validate_root_work_graph_dispatch.py",
+        "expected": "eb687300fa98b1a8f107c8eaff42a345f87596d2cdb6c64cc59e565e5879a01a",
+        "actual": "eb687300fa98b1a8f107c8eaff42a345f87596d2cdb6c64cc59e565e5879a01a",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_instruction_tranche_manifest.py",
+        "expected": "be7ec317ddd283dfd00f6bf8c4042b11bccc18f9da0f336e33ddc94d56317f58",
+        "actual": "be7ec317ddd283dfd00f6bf8c4042b11bccc18f9da0f336e33ddc94d56317f58",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_root_harness_adapter.py",
+        "expected": "142e68372b1b75ad878e006750a78c01665a3fdd54065b6f6d038dfb20a9f03f",
+        "actual": "142e68372b1b75ad878e006750a78c01665a3fdd54065b6f6d038dfb20a9f03f",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_root_materialization_fence.py",
+        "expected": "60749e08fcf8e43eb8cf8150830ee4ee8615e4e6c889f79d0e8fb6e5e2b8a722",
+        "actual": "60749e08fcf8e43eb8cf8150830ee4ee8615e4e6c889f79d0e8fb6e5e2b8a722",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_root_surface_ownership.py",
+        "expected": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630",
+        "actual": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630",
+        "matches": true
+      },
+      {
+        "path": "tools/validation/validate_root_work_graph_dispatch.py",
+        "expected": "a23ff1ddf37d36f8fe413b87812d97de9655ecd0082d8eb77562a7cf2db53c02",
+        "actual": "a23ff1ddf37d36f8fe413b87812d97de9655ecd0082d8eb77562a7cf2db53c02",
+        "matches": true
+      }
+    ]
+  }
+}

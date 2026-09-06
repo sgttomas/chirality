@@ -1,0 +1,3 @@
+# Candidate-only dry run 1
+
+All seven pinned fixture file invocations returned zero, but later guard-manager review found direct Python invocation did not ensure pytest collection. This is NOT evidence that all seven suites executed; a corrected pytest-based attempt is required. Prospective guard execution then refused an unrelated tracked historical symlink. No live target was modified. This failed attempt is preserved; the implementation owner is correcting safe omission of unrelated historical links while retaining governed-path refusal. GPT-6; exact serving model ID unavailable; SCOPE_CHANGE role instruction-asserted, Agent 0 not mechanically enforced.

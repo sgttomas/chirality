@@ -1,0 +1,2 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+DEP-AUD-001,WARNING,ID normalization / orphan-isolate reporting,DEL-02-06..DEL-02-12,,,Evidence/orphans.csv; Registry_Backcheck.json aliases; tools/coordination/analyze_dep_closure.py normalize_id/load_all_edges/find_orphans,HELPS_HUMANS: align discovery and graph aliases via accepted identities; distinguish missing targets from isolated nodes; regression test full-slug SOFTWARE IDs; preserve current raw finding until scoped repair/rerun.

@@ -1,0 +1,8 @@
+{
+  "tools/scaffolding/write_status.sh": "43df6b1c1f9fd086489ab948b290430488ea49dd1d11df142d0c6e0f1c7ee937",
+  "tools/validation/root_governance_state.py": "0dfe6b707ff62fb54ad502a3c5c810ddcdf2c12c5ca262f4770ed2483cf7b876",
+  "tools/scaffolding/apply_root_retirement.py": "fc31186fd54982309163e5199cba770bf88c512c2d1d3cb7fa89651566d5ff56",
+  "tools/practitioner_harness/root_historical_status.py": "2f4c25faeccfab6eba5df6001ae7359316d471897e2a88561c8b6612fcfce61b",
+  "tools/validation/validate_root_work_graph_dispatch.py": "1464e0b5a1e8818b9409d63c71167aaad829c03187c33869715d3a4275b4a12d",
+  "tools/validation/validate_root_surface_ownership.py": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630"
+}

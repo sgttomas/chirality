@@ -67,7 +67,10 @@ def run_status_project(repo_root: Path, project_root: Path) -> Report:
 
     # Status distribution.
     dist = Counter((f.current_state or "«missing»").upper() for f in obs.files)
-    report.md("## Deliverable status distribution (Current State fields)")
+    report.md("## Historical source census (not active workload)" if manifest.historical_root()
+              else "## Deliverable status distribution (Current State fields)")
+    if manifest.historical_root():
+        report.md("Root mode: governance-only. Historical sources have no production eligibility; recorded state is observation, not effect confirmation.")
     report.md("")
     report.md("| State | Count |")
     report.md("|---|---|")

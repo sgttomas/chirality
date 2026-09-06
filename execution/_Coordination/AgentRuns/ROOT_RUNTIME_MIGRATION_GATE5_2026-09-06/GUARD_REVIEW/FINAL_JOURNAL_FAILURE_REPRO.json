@@ -1,0 +1,7 @@
+{
+  "error": "injected final journal publication failure",
+  "source": "post",
+  "journal_state": "APPLYING",
+  "fixture_only": true,
+  "validation_mocked": true
+}

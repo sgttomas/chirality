@@ -1,8 +1,8 @@
 # Chirality Runtime — proposed product charter and PRD
 
-Status: CANDIDATE_NOT_ACCEPTED. Proposed home: projects/chirality-runtime/docs/PRD.md. Owner direction selects deliberate migration; this proposed contract is not an accepted product baseline. Accountable human: Ryan Tufts. Project ID: chirality-runtime. Working root: projects/chirality-runtime; execution root: execution/ within it. Shared instructions are read through the repository instruction root under the explicit in-tree v1 dialect.
+Status: GATE3_REVIEW_NOT_ACCEPTED. Proposed home: projects/chirality-runtime/docs/PRD.md. Owner direction selects deliberate migration; this proposed contract is not an accepted product baseline. Accountable human: Ryan Tufts. Project ID: chirality-runtime. Working root: projects/chirality-runtime; execution root: execution/ within it. Shared instructions are read through the repository instruction root under the explicit in-tree v1 dialect.
 
-Candidate reference base: every candidate CSV, `SOURCE_CONTRACTS.csv` and `SOURCE_SCOPE_REQUIREMENTS/` named below resolves within repository-relative `execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/`, not beside this proposed project PRD. These are proposal/evidence references, not accepted project registrations.
+Review references resolve beside this file in the inactive SCA-005 Gate3 RUNTIME/ package. On accepted publication, companion registers, source evidence and the ownership overlay reside under the project's execution/_Decomposition/; this PRD refers there. Exact publication destinations are in POSTIMAGE_PATHS.csv. These are candidates, not accepted project registrations.
 
 ## Purpose and ownership
 
@@ -10,7 +10,7 @@ The runtime project owns generic runtime contracts and semantics, seven package 
 
 ## Scope and success conditions
 
-RUNTIME_DELIVERABLE_REGISTER.csv is the exact proposed seven-carrier responsibility partition under PKG-02_Runtime_Product. Retain DEL-02-06 through DEL-02-12 full IDs, qualified by chirality-runtime, and reserve their Root historical identities. RUNTIME_SCOPE_LEDGER.csv carries the runtime partition of source SOW-104; linked source objective and carrier requirements remain traceable through SOURCE_CONTRACTS.csv and SOURCE_SCOPE_REQUIREMENTS/. No other source Root duty transfers silently. Runtime owns semantic integration and assurance, supervisor/purpose-limited control, exact supply pinning, hosted account/consent boundary, event/approval API, retirement/restart/terminal reconciliation, and conformance/release fan-in.
+RUNTIME_DELIVERABLE_REGISTER.csv is the exact proposed seven-carrier responsibility partition under PKG-02_Runtime_Product. Retain DEL-02-06 through DEL-02-12 full IDs, qualified by chirality-runtime, and reserve their Root historical identities. RUNTIME_SCOPE_LEDGER.csv carries the runtime partition of source SOW-104; linked source objective and carrier requirements remain traceable through SOURCE_PINS.csv and SOURCE_SCOPE_REQUIREMENTS/. No other source Root duty transfers silently. Runtime owns semantic integration and assurance, supervisor/purpose-limited control, exact supply pinning, hosted account/consent boundary, event/approval API, retirement/restart/terminal reconciliation, and conformance/release fan-in.
 
 Success means each accepted obligation has complete scope/contract trace, implementation or an explicit hold, proportionate verification, affected-client disposition and accountable acceptance. A structurally valid decomposition is not product conformance. Transferred product work remains inactive until the owning activation and actual named gates pass. Existing migration-only authorization permits the reviewed path relocation and checks without satisfying the held implementation/source identities.
 
@@ -31,3 +31,11 @@ Keep @chirality package names and API identities stable during relocation. Consu
 ## Acceptance subject
 
 Adopt only against the exact charter, seven-carrier register, scope/objective maps, inherited requirement hashes, hold map and accepted source/destination transfer instrument. Validate project containment, actual clean build/tests, consumer closure, contract/identity conservation and governance propagation. Neither this PRD nor migration CI supplies the final product-release act.
+
+## Measurable inherited objectives and delivery boundary
+
+The four explicitly partitioned objectives in RUNTIME_OBJECTIVE_REGISTER.csv preserve discoverable authority (OBJ-001), bounded governed production and human issuance (OBJ-002), no self-authorization and accepted prerequisites (OBJ-004), and file-native governed-state recovery (OBJ-007). Each carries its exact Root source wording. Historical demonstration duties and deferrals remain with their named governance successors and are not counted as runtime completion.
+
+One flat PKG-02 package contains seven M-envelope carriers. IN scope is the runtime partition of SOW-104 with all numbered requirements, outputs and evidence criteria incorporated from pinned source contracts. OUT: client UI/hosting, Root instruction-system ownership, unrelated product work, credentials/operational state in recovery corpus, and every excluded or held behavior. No new scope is minted by migration.
+
+The proposed effective act must pair source retirement, sole destination ownership, exact charter/decomposition acceptance and validated propagation; until then Root keeps temporary custody. Release decisions remain separate. Required setup, dependency/estimate/ordering reconstruction and independent audits must consume the accepted basis; this PRD does not mark them complete or waive findings.

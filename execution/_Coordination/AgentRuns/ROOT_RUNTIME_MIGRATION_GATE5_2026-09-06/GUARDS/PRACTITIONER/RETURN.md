@@ -1,0 +1,11 @@
+# Practitioner return
+
+Implemented H01-H06 within the assigned 11 code/test paths. Root schema remains v1 with explicit governance-only mode, root-historical-v1 dialect, [RETIRED] states, and shared governance_state resolution. Legacy omitted-mode Root remains on the frozen parser. Ordinary project historical dialect/mode/RETIRED declarations refuse. Global prose-bullet-v1 bytes are unchanged.
+
+Root prepared observation requires exact preimages, without retirement classification. Applied-pending-confirmation/effective observation requires exact postimages and the final approved SCA-005 retirement assertion. Parent clarified that this separate final record is the historical retirement assertion; original History remains unchanged. Source census must match exact shared source paths; escaping symlinks refuse. Status/drift show historical census, never active workload. Direct next/brief calls refuse every governance-only stage. Generic write_status denies Root execution writes before override; ordinary lifecycle remains unchanged.
+
+Validation: 373 practitioner tests passed in 25.31s, exit0. Raw output pytest.log; frozen parser comparison and diff check passed. FILES.sha256 identifies tested code. Positive 53-record fixtures and mutations cover historical record/current mismatch, altered hash/census, missing effect, prepared state, production bypass, symlink escape, ordinary project extensions and forced Root write. Existing ordinary-project transition and frozen parser tests passed.
+
+Limit: normalized shared-authority results are mocked in historical component fixtures, explicitly not owner evidence or complete shared resolver integration. Parent must run integrated fixtures with actual root_governance_state.py, final configuration, accepted subject and exact effect. At this return the parent-owned shared module has not yet been present during tests. Existing live Root fixture remains the unchanged 53 INITIALIZED basis; update its exact pin only when approved application is seated. No source status, YAML config, authority, project or Git writes made.
+
+Model GPT-6, serving model id unavailable. Agent2 instruction-asserted; Agent0 role not mechanically enforced. No delegation, fabricated acceptance, pointer move, or product eligibility claim.

@@ -1,0 +1,73 @@
+{
+  "production_sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+  "source_sha256": "e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176",
+  "status_sha256": "81c335b6908ee9cf26e25866c594ac96b0d8354f737d96c8bf476589eac34bd9",
+  "paired_memory": {},
+  "author_validation_sha256": "8730a4fe770d50dd12d7b702fef7356125cf5dc593bd3dc456b7691f99220541",
+  "definitions": {
+    "REQ": {
+      "source_count": 6,
+      "destination_count": 6,
+      "missing": [],
+      "changed": {}
+    },
+    "CLM": {
+      "source_count": 3,
+      "destination_count": 3,
+      "missing": [],
+      "changed": {}
+    },
+    "OUT": {
+      "source_count": 6,
+      "destination_count": 6,
+      "missing": [],
+      "changed": {}
+    },
+    "VER": {
+      "source_count": 0,
+      "destination_count": 0,
+      "missing": [],
+      "changed": {}
+    },
+    "AC": {
+      "source_count": 0,
+      "destination_count": 6,
+      "missing": [],
+      "changed": {}
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 6,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 107,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the `HostedEngineConsentPort` contract within the account/consent boundary. Evaluation is HUMAN_REVIEW against CLM-001 REQ-001 REQ-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 108,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for root-private `CODEX_HOME`, ambient-home exclusion, continuity, and no cross-root/account/policy-digest consent. Evaluation is HUMAN_REVIEW against REQ-001 REQ-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 109,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the `K-ROLE-2` digest schema and truthful role-posture distinctions. Evaluation is HUMAN_REVIEW against CLM-002 REQ-003.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 110,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for Agent 0/1/2 parity and the labelled Agent 2/TASK fallback without a mechanism-proven overclaim. Evaluation is HUMAN_REVIEW against CLM-002 REQ-003.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 111,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the three postures, default, prompt content, grouping caveat, explicit-user-act condition, and labelled on-state. Evaluation is HUMAN_REVIEW against CLM-003 REQ-004 REQ-005 REQ-006.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-006\",\n      \"output_refs\": [\n        \"OUT-006\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-006\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 112,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted isolation, consent, and continuity evidence; no completion claim until that evidence is accepted. Evaluation is HUMAN_REVIEW against REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 REQ-006.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-09\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+        "--show-not-checkable"
+      ],
+      "exit": 0,
+      "stdout": "\nContracts: 1 (0 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ]
+}

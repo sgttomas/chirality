@@ -1,0 +1,6 @@
+{
+  "tools/validation/validate_root_surface_ownership.py": "5d755ff5b2ee357694517c3ba8b4d0d7bba0acc671dfc5b784516257b8669b4a",
+  "tools/validation/test_validate_root_surface_ownership.py": "e74bdf75f241cc5a781393a5479af336e4724a5385d34e08732010547d2e6c4a",
+  "tools/validation/validate_root_work_graph_dispatch.py": "9b9f7864c390a4789ae75bd4cb305cdfebba97f4d88c66d7c85832d1a2d2c7d8",
+  "tools/validation/test_validate_root_work_graph_dispatch.py": "e7b3f4bc4ae5b96b1c4be9926a58fe88f2521a3d0ad1d88688fe1949f655dc7b"
+}

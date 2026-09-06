@@ -1,0 +1,26 @@
+{
+  "schema": "root-governance-authority-inputs/v1",
+  "gate3": {
+    "path": "plans/steers/root_runtime_migration_gate3_approval_2026-09-05.md",
+    "sha256": "b7b42b35e20ff1350e3879cb6e6c06297e593e28c70afb42df2fac3cd5a10a8a",
+    "commit": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+    "subject_sha256": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3"
+  },
+  "gate4": {
+    "path": "plans/steers/root_runtime_migration_gate4_approval_2026-09-05.md",
+    "sha256": "7c20f795e254ba1cff69c2fd36f53f59463b160e3cb91879b9aa16b1c54a8ef8",
+    "commit": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+    "subject_sha256": "917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd"
+  },
+  "gate5": null,
+  "selected_subject": {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/COMBINED_ARTIFACTS.sha256",
+    "sha256": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3"
+  },
+  "propagation_plan": {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/FINAL_ARTIFACTS.sha256",
+    "sha256": "917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd"
+  },
+  "publication_verified": true,
+  "authority_stage": "GATE4_EXECUTION_AUTHORIZED_GATE5_CONFIRMATION_PENDING"
+}

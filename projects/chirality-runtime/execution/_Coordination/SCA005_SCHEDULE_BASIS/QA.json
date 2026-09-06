@@ -1,0 +1,15 @@
+{
+  "runtime_registers": 7,
+  "runtime_unique_edges": 6,
+  "governance_edges": 2,
+  "combined_nodes": 10,
+  "combined_edges": 8,
+  "cycles": 0,
+  "historical_streams": 8,
+  "historical_base_hours": 1012,
+  "current_remaining": "UNKNOWN",
+  "raw_tool_orphans": 7,
+  "qualified_runtime_orphans": 0,
+  "orphan_discrepancy": "bare inventory ID versus accepted full-slug graph ID",
+  "owner_acceptance": "PENDING"
+}

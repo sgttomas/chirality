@@ -1,0 +1,15 @@
+{
+  "root_preimage_hashes": {
+    "docs/PRD_ROOT.md": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+    "docs/DIRECTIVE.md": "6372f235f16d10936f71a7863eedfed13804528c578978c71c94e55485dc7259",
+    "docs/SPEC.md": "f666385e3d79a9634db58087d8b1bd4c4e60bd02ab0ab78fe866d7d911350143",
+    "docs/TYPES.md": "977e1ad44e2c3783036eec597abd0be9827209150aa113d80e5915ab20a87662"
+  },
+  "tracked_project_files_considered": 11519,
+  "exact_preimage_pin_matches": 2,
+  "live_candidate_matches": [],
+  "app_corpus_command_exit": 0,
+  "app_corpus_source_resolution": "project-local docs and two unchanged Root agents; NOT Root canon",
+  "note": "Exact hash scan identifies direct current-preimage pins only; historical pins retained. Semantic path-reference adoption separately assessed; absence does not prove no transitive dependency.",
+  "reviewed_disposition": "Both matches are dated August3 Root SCA003 notices, explicitly non-authoritative and requiring no App/PEC action by themselves; preserve historical before/after hashes."
+}

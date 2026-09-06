@@ -7,6 +7,16 @@ that maps root packages and deliverables to declared write targets finer than
 the checkout (M1). The register itself is instantiated later, by root Project
 Setup (packet §6 step 8); this tranche ships capability only.
 
+Governance mode
+---------------
+With mode: governance-only, governance_state is a hash-pinned accepted map.
+Entries are exact successor IDs, kind governance-control or runtime-carrier,
+and project root or chirality-runtime. Runtime entries observe that separate
+project's custody; they do not authorize Root dispatch. Each write target must
+be covered by the accepted successor's write_targets. Historical read_targets
+remain permitted. Canonical path checks include existing symlink ancestors of
+missing outputs; only literal paths and final /** tails are accepted.
+
 Design of record (state surface, schema, semantics)
 ---------------------------------------------------
 State surface: `{REPO_ROOT}/execution/_harness/surface_ownership.yaml`,
@@ -273,6 +283,104 @@ def is_contained_tree(child: Path, parent: Path) -> bool:
     return resolved_child != resolved_parent
 
 
+def canonical_target(root: Path, target: str) -> Path:
+    """Resolve a conservative glob prefix, including existing symlink ancestors.
+
+    Only whole-segment ** tails are accepted in governance mode. A prefix such
+    as tools* cannot be treated as the narrower tools directory.
+    """
+    from root_governance_state import GovernanceError, safe_path
+    if not isinstance(target, str) or not target or "\\" in target:
+        raise GovernanceError("write target must be a relative POSIX path")
+    parts = target.split("/")
+    if "**" in parts:
+        if parts[-1] != "**" or parts.count("**") != 1:
+            raise GovernanceError("only a final /** glob is supported")
+        target = "/".join(parts[:-1])
+    if any(c in target for c in "*?[") or target in ("", "."):
+        raise GovernanceError("write scope must have a literal non-root prefix")
+    return safe_path(root, target, allow_missing=True)
+
+
+def canonical_covered(root: Path, target: str, declared: list[str]) -> bool:
+    from root_governance_state import GovernanceError
+    path = canonical_target(root, target)
+    for candidate in declared:
+        base = canonical_target(root, candidate)
+        if path == base or (candidate.endswith("/**") and path.is_relative_to(base)):
+            return True
+    return False
+
+
+def check_governance(root: Path, data: dict) -> tuple[int, list[str]]:
+    """Validate successor ownership; historical custody is read-only.
+
+    The shared state resolver verifies accepted successor identities and effect.
+    This register cannot create successors or enlarge their accepted scopes.
+    """
+    from root_governance_state import GovernanceError, load_governance_state, status_verification
+    failures: list[str] = []
+    try:
+        if data.get("schema") != REGISTER_SCHEMA:
+            raise GovernanceError("unknown ownership schema")
+        state = load_governance_state(root, data, verify_statuses=status_verification(root, data))
+        successors = {row["target"]: row for row in state["successors"]}
+        entries = data.get("entries")
+        if not isinstance(entries, list):
+            raise GovernanceError("entries must be a list")
+        seen: set[str] = set()
+        for entry in entries:
+            if not isinstance(entry, dict):
+                raise GovernanceError("ownership entry must be a mapping")
+            owner = entry.get("id")
+            if not isinstance(owner, str) or owner not in successors or owner in seen:
+                raise GovernanceError(f"unknown, retired or duplicate owner {owner!r}")
+            seen.add(owner)
+            successor = dict(successors[owner])
+            successor["project"] = "root" if owner in state["governance_ids"] else "chirality-runtime"
+            successor["kind"] = "governance-control" if successor["project"] == "root" else "runtime-carrier"
+            if entry.get("kind") != successor["kind"] or entry.get("project") != successor["project"]:
+                raise GovernanceError(f"{owner}: successor kind/project mismatch")
+            targets = entry.get("write_targets")
+            if not isinstance(targets, list) or not targets:
+                raise GovernanceError(f"{owner}: scoped write_targets required")
+            for target in targets:
+                path = canonical_target(root, target)
+                if not canonical_covered(root, target, successor["write_targets"]):
+                    raise GovernanceError(f"{owner}: target outside accepted successor scope: {target!r}")
+                runtime = (root / "projects/chirality-runtime").resolve()
+                projects = (root / "projects").resolve()
+                old_runtime = (root / "runtime").resolve()
+                if path == old_runtime or path.is_relative_to(old_runtime):
+                    raise GovernanceError("legacy runtime write ownership is forbidden")
+                if successor["project"] == "root":
+                    if path == projects or path.is_relative_to(projects):
+                        raise GovernanceError("Root governance is not a client product write grant")
+                    if any(part.startswith(("PKG-", "DEL-")) for part in path.relative_to(root.resolve()).parts):
+                        raise GovernanceError("historical Root production trees are read-only")
+                elif successor["project"] == "chirality-runtime":
+                    if not path.is_relative_to(runtime) or path == runtime:
+                        raise GovernanceError("runtime carrier target outside runtime project")
+                else:
+                    raise GovernanceError("unknown successor project")
+                if intersects_instruction_surface(target) and entry.get("instruction_surface") is not True:
+                    raise GovernanceError("instruction write target requires M2 classification")
+            if not isinstance(entry.get("instruction_surface"), bool):
+                raise GovernanceError("instruction_surface must be boolean")
+            reads = entry.get("read_targets", [])
+            if not isinstance(reads, list):
+                raise GovernanceError("read_targets must be a list")
+            for target in reads:
+                canonical_target(root, target)
+        if seen != set(successors):
+            raise GovernanceError("ownership entries must cover exact accepted successor set")
+    except (GovernanceError, KeyError, TypeError, ValueError, OSError) as exc:
+        failures.append(str(exc))
+    if failures:
+        return 1, ["G2 BLOCK: governance ownership invalid", *failures]
+    return 0, ["G2 PASS: accepted successor scopes; historical read custody only"]
+
+
 def check(root: Path) -> tuple[int, list[str]]:
     """Returns (exit_code, report_lines). 0 PASS, 1 BLOCK, 2 operational."""
     lines: list[str] = []
@@ -318,6 +426,11 @@ def check(root: Path) -> tuple[int, list[str]]:
             f"G2 BLOCK: register {REGISTER_RELPATH.as_posix()} top level is not a mapping."
         )
         return 1, lines
+
+    if data.get("mode") == "governance-only":
+        return check_governance(root, data)
+    if "mode" in data or "governance_state" in data:
+        return 1, ["G2 BLOCK: unknown or incomplete governance mode"]
 
     failures: list[str] = []
     notes: list[str] = []

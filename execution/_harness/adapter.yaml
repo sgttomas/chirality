@@ -1,50 +1,24 @@
-# Root harness adapter — G1 state surface (D-GOV-21 §5.3, packet §6 step 8).
-#
-# Instantiated by root Project Setup. Gives root `execution/` the same
-# deterministic status/drift surface the project working roots have.
-# Guard: tools/validation/validate_root_harness_adapter.py
-#
-# NOTE: this is `root-harness-adapter/v1`, NOT the projects'
-# `practitioner-harness-adapter/v1`. Adoption of the root into the
-# practitioner harness (PROJECT_ALIASES / loader relpath) is a separately
-# authorized open item and is not claimed here.
-
+# Governance-only configuration; operational effect follows the referenced governance state.
 schema: root-harness-adapter/v1
 product: chirality-root
-
-# D-GOV-21 / docs/SPEC.md §0.2.2: for the root product WORKING_ROOT == REPO_ROOT.
-working_root: "."
+working_root: .
 execution_root: execution
-
-# Declared pointers (repo-relative; all verified present at instantiation).
 prd: docs/PRD_ROOT.md
 coordination: execution/_Coordination/CURRENT_WORKPLAN.md
 decision_register: docs/governance_harness/_DECISIONS/_REGISTER.md
-
-# Root SPEC layout: docs/SPEC.md §1 / §2 —
-# {EXECUTION_ROOT}/{PKG-ID}_{PkgLabel}/1_Working/{DEL-ID}_{DelLabel}/_STATUS.md
 status_glob: execution/PKG-*/1_Working/DEL-*/_STATUS.md
-
-# Canonical lifecycle states, docs/SPEC.md §3.2 (verbatim, in ruled order).
-# SEMANTIC_READY is optional in the lifecycle but is a valid state.
 states:
-  - OPEN
-  - INITIALIZED
-  - SEMANTIC_READY
-  - IN_PROGRESS
-  - CHECKING
-  - ISSUED
-
-parser_dialect: prose-bullet-v1
-
+- RETIRED
+parser_dialect: root-historical-v1
 exclude_globs:
-  - ".archive/**"
-
+- .archive/**
 baselines:
-  # Repinned by the SCA-004 Phase-3 R7 acceptance tranche (2026-08-23):
-  # 6 packages and 53 deliverables at accepted decomposition revision 1.3,
-  # with all 53 statuses INITIALIZED. Count and state distribution measured
-  # after the seven owner-accepted carrier lifecycle transitions.
   status_files: 53
   status_mismatch: 0
-  pinned_at: 3389adabfa2919b66f64bbd9cd04d7d29b9838b4
+  pinned_at: 8209bc54e0d133b19437c93b184cd50ba3d43489
+mode: governance-only
+governance_state:
+  path: execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json
+  sha256: 68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86
+loop_init: execution/_Coordination/LOOP_INIT.md
+receipts: execution/_Coordination/LOOP_RECEIPTS.md

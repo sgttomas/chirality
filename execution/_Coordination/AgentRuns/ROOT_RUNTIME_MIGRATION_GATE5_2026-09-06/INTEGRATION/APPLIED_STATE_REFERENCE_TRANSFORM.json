@@ -1,0 +1,36 @@
+{
+  "state": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+    "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86"
+  },
+  "changes": [
+    {
+      "target": "execution/_harness/adapter.yaml",
+      "before_snapshot": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/adapter.yaml",
+      "before_sha256": "b1395d402b0ab2c2b02ff1ad29ce3a631870e8633b85497cc473ea7e36f6b5c0",
+      "after_sha256": "aad59e473b3e8c7516920d0b1803486be271d2f887504ed9c7f90b5439b74f90",
+      "only_semantic_change": "governance_state reference now pins immutable completed journal; stage unchanged applied_pending_confirmation and Gate5 null"
+    },
+    {
+      "target": "execution/_harness/root_guards.yaml",
+      "before_snapshot": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/root_guards.yaml",
+      "before_sha256": "442613ff6f7495b550b68f590c73ad70e3b819050debe8d0f7295663517877d7",
+      "after_sha256": "ff58975ca24f15bb84da5cce07c336f7e9e5108472d876ff83623768d89bb6fb",
+      "only_semantic_change": "governance_state reference now pins immutable completed journal; stage unchanged applied_pending_confirmation and Gate5 null"
+    },
+    {
+      "target": "execution/_harness/surface_ownership.yaml",
+      "before_snapshot": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/surface_ownership.yaml",
+      "before_sha256": "32ec79df0564cc28b0d4d2c3d79d8f853413f386840d75bb2ef309e806151f0a",
+      "after_sha256": "1169dc1b371edd161b22a5f1ee731e0821e8eed714e07c652e066bf261ceb4e4",
+      "only_semantic_change": "governance_state reference now pins immutable completed journal; stage unchanged applied_pending_confirmation and Gate5 null"
+    },
+    {
+      "target": "execution/_harness/work_graph.yaml",
+      "before_snapshot": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/work_graph.yaml",
+      "before_sha256": "eccbfcb7478006bfb9265c93f8d64afed77ed4074fb81834759b5cde28481c01",
+      "after_sha256": "7a315344be8973c9dcc0a764107d9fa3ceeb30823b6df3a2364f5447d14d4d40",
+      "only_semantic_change": "governance_state reference now pins immutable completed journal; stage unchanged applied_pending_confirmation and Gate5 null"
+    }
+  ]
+}

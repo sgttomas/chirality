@@ -1,0 +1,9 @@
+{
+  "command": "python3 -m pytest -q tools/practitioner_harness",
+  "exit_code": 0,
+  "result": "373 passed in 25.31s",
+  "scope": "Complete practitioner suite including explicit component-fixture authority mocks; not an integrated live effective-state acceptance",
+  "diff_check_exit": 0,
+  "frozen_prose_bullet_v1_unchanged": true,
+  "frozen_parser_sha256": "5974a633e33b19031a9e43ab2b08bde3e7b1217b01f76bbc7238170da79dd78a"
+}

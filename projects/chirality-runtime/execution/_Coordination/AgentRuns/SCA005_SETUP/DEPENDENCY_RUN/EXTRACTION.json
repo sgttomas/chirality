@@ -1,0 +1,145 @@
+{
+  "timestamp": "2026-09-06T00:59:58.877209+00:00",
+  "old_dependency_hashes": {
+    "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance": {
+      "Dependencies.csv": null,
+      "_DEPENDENCIES.md": "31361e78110058c9616dd78b971277f65a9f53a8ac6ca5b17e0a0897046e8f0a"
+    },
+    "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control": {
+      "Dependencies.csv": null,
+      "_DEPENDENCIES.md": "d6625e353de0a46cae01b566e03420e720e3a0d7f7524ecd863f215bbda54650"
+    },
+    "DEL-02-08_Exact_Supply_and_Protocol_Pinning": {
+      "Dependencies.csv": null,
+      "_DEPENDENCIES.md": "4a07e7cb6505f261f4c32fe9b0567460394e17ab5849f2a5875a4dfd13cd2684"
+    },
+    "DEL-02-09_Hosted_Account_and_Consent_Boundary": {
+      "Dependencies.csv": null,
+      "_DEPENDENCIES.md": "a446709d372d0ab58a84c05aff0995a140400ef9bd35a041745f8aa13cdc3b56"
+    },
+    "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2": {
+      "Dependencies.csv": null,
+      "_DEPENDENCIES.md": "96d70ea46455bf02122ac1b9b829a6bf7e1d14d8bcce443024f1e610e8a1490a"
+    },
+    "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation": {
+      "Dependencies.csv": null,
+      "_DEPENDENCIES.md": "157d55051f355d02f3043c6ce3304aaa8a4383d2551416258c310a4d942eb4e8"
+    },
+    "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in": {
+      "Dependencies.csv": null,
+      "_DEPENDENCIES.md": "f8b1c5879a01d376709081c0af176385aa96e30981d4ca95a1fa138d0879dbc6"
+    }
+  },
+  "unique_runtime_edges": [
+    [
+      "chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+    ],
+    [
+      "chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+    ],
+    [
+      "chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+    ],
+    [
+      "chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+    ],
+    [
+      "chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+    ],
+    [
+      "chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+    ]
+  ],
+  "root_edges_outside_scope": [
+    {
+      "Predecessor": "root::GOV-04-05",
+      "Consumer": "root::GOV-04-11",
+      "Class": "GATING_EVIDENCE_FAN_IN",
+      "Location": "Root governance control dependency surface",
+      "Basis": "Preserved mapping of DEL-04-05 and DEL-05-02 receipt-validator inputs"
+    },
+    {
+      "Predecessor": "root::GOV-05-02",
+      "Consumer": "root::GOV-04-11",
+      "Class": "GATING_EVIDENCE_FAN_IN",
+      "Location": "Root governance control dependency surface",
+      "Basis": "Preserved mapping of DEL-04-05 and DEL-05-02 receipt-validator inputs"
+    }
+  ],
+  "counts": {
+    "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance": {
+      "total": 12,
+      "anchors": 6,
+      "execution": 6
+    },
+    "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control": {
+      "total": 7,
+      "anchors": 6,
+      "execution": 1
+    },
+    "DEL-02-08_Exact_Supply_and_Protocol_Pinning": {
+      "total": 7,
+      "anchors": 6,
+      "execution": 1
+    },
+    "DEL-02-09_Hosted_Account_and_Consent_Boundary": {
+      "total": 7,
+      "anchors": 6,
+      "execution": 1
+    },
+    "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2": {
+      "total": 7,
+      "anchors": 6,
+      "execution": 1
+    },
+    "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation": {
+      "total": 7,
+      "anchors": 6,
+      "execution": 1
+    },
+    "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in": {
+      "total": 7,
+      "anchors": 6,
+      "execution": 1
+    }
+  },
+  "new_hashes": {
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Dependencies.csv": "cb18ba653eabe6b0b97076edfe95a27b1c0245d274bf2d0daae1d2d8256e961a",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md": "35da229801c890c6402ef744f8e92a04737ad2adc438f163b9acb241b9f91347",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/Dependencies.csv": "b57a8c9e5b3927588ffa0f7b7c7478c9bd90f3ce792a4d52085a713d29aac406",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md": "528298a41b27c199819a9d1f4afc3bf2d57bf5a55d5c78a76d57793511aac0c3",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/Dependencies.csv": "537e72d3d45a1c3bb7d39390806b44d540ac3fc0167afadcb5f157f430501749",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_DEPENDENCIES.md": "31772d53da4a14f66b97df12a32f36c2685f117569b2f730fe9401e331af6208",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/Dependencies.csv": "765c2a276c05597abac51cdfbd45a07e106c862742a0011b63fdc2119802431e",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_DEPENDENCIES.md": "1d05a942ec32ea4c895c7e9b258262b063b73264736d431b27d5e6ab8bb56437",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/Dependencies.csv": "c9655065bd5621f5f05f4fe33c544b364afb5de7cdd455f72348596e31bb6e69",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_DEPENDENCIES.md": "6e59828615393e1dd414f3d6a6170b33ab2a5433775406c3feb9cc47859cd354",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/Dependencies.csv": "2fa6da889235ef6dcb61277c81adf2d9c921cf7e448f788f0f44a0bc0250ae4e",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_DEPENDENCIES.md": "dc899a1e253a40152c7bcf46aa97d44f84097cec2238e85844186b8159bb2fee",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/Dependencies.csv": "c720613378d3bc53492ed2690bce8e785cf2dffcff9a8d45d7de9d7271806394",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_DEPENDENCIES.md": "ee87c492c6175ec4b07298d2bd5d80d63ec51d1e1b58d1f05887b10bc2908f31"
+  },
+  "method": "ANCHOR pass completed before EXECUTION pass; exact declared mirrors only; nongating coordination in indexes not CSV",
+  "final_hashes": {
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Dependencies.csv": "cb18ba653eabe6b0b97076edfe95a27b1c0245d274bf2d0daae1d2d8256e961a",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md": "b770cfd2d8a91e4a68c5107fb1348db833f7cdf90ff9e102680881f8b1fa759c",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/Dependencies.csv": "b57a8c9e5b3927588ffa0f7b7c7478c9bd90f3ce792a4d52085a713d29aac406",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md": "ddfae4e18b2b463d7d1b2ed83c2448bffbd6bc81c00c1dbf28e45f819b9efd9b",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/Dependencies.csv": "537e72d3d45a1c3bb7d39390806b44d540ac3fc0167afadcb5f157f430501749",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_DEPENDENCIES.md": "3158abbc2dde3e8e30f0408f0491d4868102ba37b864e548b0bfb426bb7fe9e9",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/Dependencies.csv": "765c2a276c05597abac51cdfbd45a07e106c862742a0011b63fdc2119802431e",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_DEPENDENCIES.md": "549ae75936d071912291e6b2aa75dae075c6fe7abc5191f090cdb333c61df822",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/Dependencies.csv": "c9655065bd5621f5f05f4fe33c544b364afb5de7cdd455f72348596e31bb6e69",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_DEPENDENCIES.md": "3aaf63c2fe47d37ca13c56a0288654864378936a66428ee1c65f1757c2ea191c",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/Dependencies.csv": "2fa6da889235ef6dcb61277c81adf2d9c921cf7e448f788f0f44a0bc0250ae4e",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_DEPENDENCIES.md": "4e5412eb82fbe127206630b5003f5e49f6742297317ed2f06c76f74aaf2c8b84",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/Dependencies.csv": "c720613378d3bc53492ed2690bce8e785cf2dffcff9a8d45d7de9d7271806394",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_DEPENDENCIES.md": "f355b082717b1c239682986d25ce4a69372c5cf50fd9c16a4e74aa8a8d385539"
+  }
+}

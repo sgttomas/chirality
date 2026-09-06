@@ -1,0 +1,30 @@
+RUN_STATUS: SUCCESS
+ControlSurface: FILE
+TaskProfile: NONE
+TaskSkill: scope-of-work
+ScopePath: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary
+ResolvedSkillPath: /Users/ryan/.codex/worktrees/341e/chirality/skills/scope-of-work
+ResolvedSkillVersion: 1
+ResolvedTaskProfileRequirement: NONE
+CompanionFiles: BRIEF_SCHEMA.md (found), TOOL_POLICY.md (found), QA_CHECKS.md (found)
+ToolPolicyCompliance: PASS
+WriteAuthorization: ALLOWED_WRITE_TARGETS
+AllowedTools / ToolsUsed:
+- python3 tools/scope_of_work/validate_scope_of_work.py
+- python3 tools/scope_of_work/derive_review_checklist.py
+- python3 tools/scope_of_work/check_boundary_owner_resolution.py
+RuntimeOverrides: MODE=INIT; SOURCE_STATE=OPEN; STATUS_POLICY=NO_STATUS_TOUCH; DECOMP_VARIANT=SOFTWARE; RENDER_HTML=false; SOW-104; OBJ-001, OBJ-002, OBJ-004, OBJ-007.
+
+Outputs: ScopeOfWork.md and exact brief, Validation.json, deterministic JSON in Review_Checklist.md, RETURN.md and TASK run record.
+MISSING: none.
+NEEDS_HUMAN_RULING: none for authoring. Independent review and acceptance remain separate, not claimed.
+DEPENDENCY_NOTES: Declared downstream DEL-02-06 only. No new dependency or maturity inferred.
+AppliedChanges: Initialized six-output contract; all six numbered REQ definitions preserved text-identically. Three CLM and six AX definitions retained. Exact overlay adjusts product locus/ownership, compatibility hold disposition and current application; root-private CODEX_HOME, ambient exclusion and client-root consent boundaries remain unchanged. Source accepted-state metadata removed rather than represented as current acceptance. Six inherited evidence expectations normalized one-for-one into AC-001..006 with accountable-human review against the same cited claims/requirements. Validation.json records each correspondence. No performance threshold or implementation method added. Initial NOT_SPECIFIED schema failures retained in command evidence; final SOW_V1 validates with no issues. Deterministic checklist repeats byte-identically. Boundary-owner check exits 0, reports zero checkable whole requirements; semantic check separately recorded, not overclaimed. Inputs including status remain byte-identical. No conversion, mapping, parity, finalizer, rendering, status touch or source-history edits.
+
+QA: conversion-only items 2,5–7,10–12,14,17 NOT_APPLICABLE; HTML item15 NOT_APPLICABLE. Applicable structural checks pass; source-grounded content fidelity and substrate outcome distinguished from later evidence acceptance. OPEN remains unchanged. Fresh independent review is required before parent relies on authoring closure.
+
+GPT-6; serving model ID unavailable. Native evidence instruction-asserted; Agent 0 role not mechanically enforced.
+
+source_sha256: e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176
+production_sha256: 6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9
+status_sha256: 81c335b6908ee9cf26e25866c594ac96b0d8354f737d96c8bf476589eac34bd9

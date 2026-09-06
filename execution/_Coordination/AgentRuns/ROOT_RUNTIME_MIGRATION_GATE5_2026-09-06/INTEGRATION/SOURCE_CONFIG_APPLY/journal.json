@@ -1,0 +1,73 @@
+{
+  "schema": "root-source-config-application/v1",
+  "state": "APPLIED_PENDING_RETIREMENT",
+  "gate5_effect": "PENDING",
+  "writes": [
+    {
+      "path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "before_sha256": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+      "after_sha256": "75859776995a069c467426c5610a319a43e11757d967f04483b30d6a6eaf103e",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md"
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+      "before_sha256": "bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c",
+      "after_sha256": "2db8762e14e597f5f3a562547096ef2bf1d75c365f1ec172d9c098b69dbc4e34",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md"
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "before_sha256": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+      "after_sha256": "f1435cef362613b763460af644f9ad5ecf3d4dbabaa161bdfeaf04c5b3cc7ee2",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+      "before_sha256": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+      "after_sha256": "d8b60825cd84432735ebb2b582724f020d7f0394f4f99b757dc81667cabb1695",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_objective_register_v1_0.csv"
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+      "before_sha256": "9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f",
+      "after_sha256": "21773154edc8d26af7f3fd5bea32e55f79f528680aef7f73ed0c71a6bc97a8ad",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv"
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "before_sha256": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+      "after_sha256": "4ee705aad6be9803eb847fcb4fc1a257d8fd2c45b8293c58e3b0451b8cbc2b71",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv"
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+      "before_sha256": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+      "after_sha256": "063d380a26ddc69f18891faed2f25d9e4990650986eb04aa291a0dff4cc0ec20",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv"
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "before_sha256": "71f603ad463c14dbba6b02806d67cfc4d859219ff828812fb37de35e78025f3c",
+      "after_sha256": "b1395d402b0ab2c2b02ff1ad29ce3a631870e8633b85497cc473ea7e36f6b5c0",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_harness/adapter.yaml"
+    },
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "before_sha256": "f24ba6deb262f3cf0b469491a03f062b9faa21bdcdd088a623e649c8919ce4c2",
+      "after_sha256": "442613ff6f7495b550b68f590c73ad70e3b819050debe8d0f7295663517877d7",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_harness/root_guards.yaml"
+    },
+    {
+      "path": "execution/_harness/surface_ownership.yaml",
+      "before_sha256": "18ff8241d96e3d6e1c94e6bb7a39f5f5a7ad7444c9bb5685467ab3da512e932b",
+      "after_sha256": "32ec79df0564cc28b0d4d2c3d79d8f853413f386840d75bb2ef309e806151f0a",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_harness/surface_ownership.yaml"
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "before_sha256": "29dc3e35b92418f9cccbdc693aee7cc30943f505415952b57c8f291a647b54cc",
+      "after_sha256": "eccbfcb7478006bfb9265c93f8d64afed77ed4074fb81834759b5cde28481c01",
+      "backup": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGES/execution/_harness/work_graph.yaml"
+    }
+  ]
+}

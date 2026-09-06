@@ -131,6 +131,11 @@ class AdapterManifest:
     working_root: str = ""
     execution_root: str = ""
     baseline_pinned_at: str = ""
+    mode: str = "legacy"
+    governance_state: dict = field(default_factory=dict)
+
+    def historical_root(self) -> bool:
+        return self.kind == KIND_ROOT and self.mode == "governance-only"
 
     def declares_dag_pointer(self) -> bool:
         """False when the loaded schema registers no DAG pointer surface. A
@@ -192,6 +197,8 @@ def _plain_int(value: object, label: str, manifest_path: Path) -> int:
 
 
 def _project_manifest(data: dict, project_root: Path, manifest_path: Path) -> AdapterManifest:
+    if "mode" in data or "governance_state" in data or data.get("parser_dialect") == "root-historical-v1" or "RETIRED" in data.get("states", []):
+        raise HarnessOperationalError("Root historical mode/RETIRED is not an ordinary project lifecycle.")
     missing = [k for k in REQUIRED_KEYS if k not in data]
     if missing:
         raise HarnessOperationalError(
@@ -232,6 +239,20 @@ def _root_manifest(data: dict, project_root: Path, manifest_path: Path) -> Adapt
         raise HarnessOperationalError(
             f"Adapter manifest {manifest_path} missing required keys: {missing}"
         )
+
+    if "governance_state" in data and "mode" not in data:
+        raise HarnessOperationalError("Root governance_state requires explicit governance-only mode.")
+    mode = data.get("mode", "legacy")
+    if mode not in ("legacy", "governance-only") or ("mode" in data and mode == "legacy"):
+        raise HarnessOperationalError(f"Unknown explicit Root mode: {mode!r}")
+    governance_state = {}
+    if mode == "governance-only":
+        if data.get("parser_dialect") != "root-historical-v1" or data.get("states") != ["RETIRED"]:
+            raise HarnessOperationalError("Governance Root requires root-historical-v1 and states [RETIRED].")
+        from root_historical_status import resolve_state
+        governance_state = resolve_state(project_root, data)
+    elif data.get("parser_dialect") != "prose-bullet-v1" or "RETIRED" in data.get("states", []):
+        raise HarnessOperationalError("Legacy Root requires the frozen ordinary lifecycle parser.")
 
     working_root = _nonempty_str(data, "working_root", manifest_path)
     if working_root != ".":
@@ -321,6 +342,8 @@ def _root_manifest(data: dict, project_root: Path, manifest_path: Path) -> Adapt
         working_root=working_root,
         execution_root=execution_root,
         baseline_pinned_at=pinned_at.strip(),
+        mode=mode,
+        governance_state=governance_state,
     )
 
 

@@ -1,0 +1,3 @@
+# Packaging-only successor
+
+Original audit seal `835e20315704cc10d9c58ede44a80fc573169a707c6dbd77dc20b4b05355c702` is preserved at PACKAGING_HISTORY_CRLF/ORIGINAL_ARTIFACTS.sha256. Original changed CSV bytes are retained losslessly as deterministic gzip members under that history directory. Current CSV CRLF sequences were normalized to LF; every parsed row and field is identical. PACKAGING_REPAIR.json binds before/after hashes, archive paths and exact checks. Audit verdict, findings and source inputs remain unchanged. This successor packaging record is parent-authorized and performs no Git, source or pointer mutation.

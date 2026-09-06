@@ -1,0 +1,152 @@
+{
+  "estimate_seal": "92d195f0d3b18eb317c18d1620d9bc4be19658d28e4f2399ae81c93a8bb8b5d2",
+  "ordering_seal": "9f7fd74052f020ad296b94c5810508805302905129011416a237cf3d85f66558",
+  "checks": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/ARTIFACT_HASHES.before_packaging.csv.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Assumptions_Log.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Blockers.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Change_Log.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Commands.json",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Decision_Log.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Detail.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Historical_Stream_Notes.before_packaging.md.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Historical_Stream_Notes.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/PACKAGING_CORRECTION.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/QA.json",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/QA_Report.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Run_Brief.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Run_Context.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Scope_Resolved.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Source_Hashes.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Source_Index.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Source_To_Successor.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/Summary.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857/WBS_CBS_Matrix.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/ARTIFACTS.sha256.before_packaging.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/INPUT_HASHES.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/INPUT_HASHES.csv.before_packaging.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/ORDERING_EDGES.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/PACKAGING_CORRECTION.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/QA.json",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/RETURN.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/SCHEDULE_BASIS.md",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/WORK_STREAMS.csv",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/bidirectional_pairs.csv.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/closure_summary.json.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/coverage.csv.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/hubs.csv.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/id_normalization.csv.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/orphans.csv.gz",
+      "pass": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/scc_summary.csv.gz",
+      "pass": true
+    }
+  ],
+  "all_pass": true,
+  "scope": "Packaging/current member integrity only, no acceptance or estimate endorsement"
+}

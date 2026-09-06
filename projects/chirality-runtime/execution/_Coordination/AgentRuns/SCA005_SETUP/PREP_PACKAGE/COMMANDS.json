@@ -1,0 +1,24 @@
+{
+  "command": [
+    "tools/scaffolding/scaffold_package.sh",
+    "projects/chirality-runtime/execution",
+    "PKG-02",
+    "Runtime_Product"
+  ],
+  "exit_code": 0,
+  "stdout": "Package: projects/chirality-runtime/execution/PKG-02_Runtime_Product\nCreated: 9 subfolders\nAlready existed: 0 subfolders\n",
+  "stderr": "",
+  "created_paths": [
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/0_References",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/0_References/_Archive",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/_Archive",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/2_Checking",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/2_Checking/From",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/2_Checking/To",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/3_Issued",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/3_Issued/_Archive"
+  ],
+  "preexisting_paths": [],
+  "missing_paths": []
+}

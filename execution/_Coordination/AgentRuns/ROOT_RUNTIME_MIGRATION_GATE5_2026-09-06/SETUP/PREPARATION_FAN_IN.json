@@ -1,0 +1,51 @@
+[
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "fileset_exit": 0,
+    "output": "PASS: DEL-02-06 \u2014 all 5 minimum viable files present\n",
+    "status": "# Status: DEL-02-06\n\n**Current State:** OPEN\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n",
+    "semantic_bytes": 0
+  },
+  {
+    "deliverable": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "fileset_exit": 0,
+    "output": "PASS: DEL-02-07 \u2014 all 5 minimum viable files present\n",
+    "status": "# Status: DEL-02-07\n\n**Current State:** OPEN\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n",
+    "semantic_bytes": 250
+  },
+  {
+    "deliverable": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "fileset_exit": 0,
+    "output": "PASS: DEL-02-08 \u2014 all 5 minimum viable files present\n",
+    "status": "# Status: DEL-02-08\n\n**Current State:** OPEN\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n",
+    "semantic_bytes": 224
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "fileset_exit": 0,
+    "output": "PASS: DEL-02-09 \u2014 all 5 minimum viable files present\n",
+    "status": "# Status: DEL-02-09\n\n**Current State:** OPEN\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n",
+    "semantic_bytes": 0
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "fileset_exit": 0,
+    "output": "PASS: DEL-02-10 \u2014 all 5 minimum viable files present\n",
+    "status": "# Status: DEL-02-10\n\n**Current State:** OPEN\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n",
+    "semantic_bytes": 0
+  },
+  {
+    "deliverable": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "fileset_exit": 0,
+    "output": "PASS: DEL-02-11 \u2014 all 5 minimum viable files present\n",
+    "status": "# Status: DEL-02-11\n\n**Current State:** OPEN\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n",
+    "semantic_bytes": 266
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "fileset_exit": 0,
+    "output": "PASS: DEL-02-12 \u2014 all 5 minimum viable files present\n",
+    "status": "# Status: DEL-02-12\n\n**Current State:** OPEN\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n",
+    "semantic_bytes": 0
+  }
+]

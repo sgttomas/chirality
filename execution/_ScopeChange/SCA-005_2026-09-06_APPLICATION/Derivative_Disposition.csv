@@ -1,0 +1,13 @@
+DerivativePackage,ActualState,Evidence,Disposition
+Root trace/telemetry,CURRENT_AUDITED,execution/_Evaluation/DecompCoverage/SCA005_MIGRATION_POST/coverage_summary.json,500 structural PASS; zero failures; retained GOV0411 debt
+Runtime coverage,CURRENT_AUDITED,projects/chirality-runtime/execution/_Evaluation/DecompCoverage/SCA005_MIGRATION_POST/coverage_summary.json,183 checks PASS; owner effect pending
+Dependency extraction,CURRENT_CANDIDATE,projects/chirality-runtime/execution/_Evaluation/DepClosure/SCA005_MIGRATION_POST/,Topology PASS; analyzer full-slug dialect warning; no actual orphan/cycle; new owner acceptance pending
+Governance dependencies,CURRENT_APPLIED,execution/_Coordination/GovernanceControls/_DEPENDENCIES.csv,Two evidence edges retained; no product activation
+Historical effort estimate,CURRENT_CANDIDATE,projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/,"1012 base hours (560–1464), runtime920/GOV92; remaining UNKNOWN; owner acceptance pending"
+Ordering basis,CURRENT_CANDIDATE,projects/chirality-runtime/execution/_Coordination/SCA005_SCHEDULE_BASIS/,"Ten qualified nodes/eight edges; no cycles, calendar or staffing; owner acceptance pending"
+Canon concordance,CURRENT_AUDITED,execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/GOVERNANCE_AUDIT/Governance_Audit_Report.md,PASS_WITH_RETAINED_WARNING: inherited DIRECTIVE delegation wording; separate follow-on
+Project mirrors/corpora,ROUTED_RECEIVING_DISPOSITION_PENDING,execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/AUTHORITY/RETURN.md,App corpus8MATCH; actual pin inventory reviewed; notices do not confer receiving acceptance
+Public export,CURRENT_STAGED_NOT_PUBLISHED,execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/EXPORT/FINAL_VERIFICATION.json,864 staged files;79runtime exact; no governance leak/zero findings; publication separate
+Technical consumers,CURRENT_TESTED,execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/FINAL_CHECKS/AFFECTED_FINAL.json,825 tests and9subtests PASS; earlier stale live-fixture failure preserved and superseded; no code/subject/journal change
+Semantic compatibility evidence,CURRENT_REHASHED,execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/SETUP/SUCCESSOR_READY.json,Seven accepted subject hashes preserved; root-runtime-1 epoch1; nine holds unchanged
+Final SCA closure,OWNER_CONFIRMATION_PENDING,execution/_ScopeChange/SCA-005_2026-09-06_APPLICATION/Handoff_State.md,"Application, audits and final checks complete; actual owner Gate5/effect/pointer acts not inferred"

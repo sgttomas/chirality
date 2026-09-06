@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "tools/practitioner_harness/harness.py",
+    "status",
+    "--project",
+    "chirality-runtime"
+  ],
+  "exit": 0,
+  "stderr": "",
+  "harness_sha256": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+  "adapter_sha256": "fb70f812656bf51c217dfa104dc96a733fdb713a9071d563a447ca4fd27fff7e"
+}

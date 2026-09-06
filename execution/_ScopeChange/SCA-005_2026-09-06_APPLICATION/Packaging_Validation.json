@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "csv_line_endings": "LF; registered raw CRLF preserved gzip mtime0",
+  "json_parse": "PASS",
+  "trailing_whitespace": "NONE",
+  "approved_plan_and_actions": "BYTE_IDENTICAL",
+  "post_audit_copy": "BYTE_IDENTICAL",
+  "supersession_backcheck": "246 rows zero findings after LF packaging",
+  "owner_gate5_confirmation": false,
+  "pointer_unchanged_sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c"
+}

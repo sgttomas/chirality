@@ -1,0 +1,5 @@
+# Decisions and calibration
+
+Use approved historical/governance semantics, not an unsupported ordinary active-product audit mode. Compare exact postimages and preserved original fields; require every source successor, qualified runtime identity, full parent set and control binding. Read existing memory before statuses; one DEL0206 memory exists and was read. Parse GOV0408's two semicolon-separated authority paths independently. Runtime authority targets are carrier directories; governance targets are files.
+
+Parent released Root audit only after actual APPLIED journal. Waited for actual application handoff update before assessing phase truth. Old pointer intentionally untouched; no historical gap repair or owner confirmation fabricated. Preserve all old source contracts, warnings and output incompleteness. Output-root naming follows approved EVIDENCE_OUTPUT_SCOPES over supplemental alias. No source/tool/Git changes or delegation. Assembly corrections precede immutable publication only.

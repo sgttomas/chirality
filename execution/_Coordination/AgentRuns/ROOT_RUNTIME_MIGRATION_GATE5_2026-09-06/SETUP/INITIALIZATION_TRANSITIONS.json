@@ -1,0 +1,156 @@
+[
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "folder": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "production_sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+    "review_sha256": "9f8a7447968d1fe6a504d5bf2c5b8ff51253c43e517fce54b850c72c965fa2a2",
+    "before_status_sha256": "17d86d0bce7a8ef3521e75e7f2d043737e9d3e77838aa0d1d6c3a8f14757b499",
+    "memory_files": {},
+    "validation_exit": 0,
+    "validation_output": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance\",\n  \"valid\": true\n}\n",
+    "transition_command": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "INITIALIZED",
+      "PROJECT_SETUP"
+    ],
+    "transition_exit": 0,
+    "transition_stdout": "Status: DEL-02-06 \u2192 INITIALIZED (by PROJECT_SETUP)\n",
+    "transition_stderr": "",
+    "after_status_sha256": "c93e87740020dd3fc3f42f174ae53c1645fca424b306298a41201a893cd1b045",
+    "after_status": "# Status: DEL-02-06\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n- 2026-09-05 \u2014 State set to INITIALIZED (PROJECT_SETUP)\n"
+  },
+  {
+    "deliverable": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "folder": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "production_sha256": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+    "review_sha256": "91ca1371fbade8d5e435643b92dc9fe3fc5ad982966c28491d20b3a751fb60c3",
+    "before_status_sha256": "d1e0d70e3c48635825e93216fc3d15a371b806946a6abfe748958993d4dc1a51",
+    "memory_files": {},
+    "validation_exit": 0,
+    "validation_output": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control\",\n  \"valid\": true\n}\n",
+    "transition_command": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "INITIALIZED",
+      "PROJECT_SETUP"
+    ],
+    "transition_exit": 0,
+    "transition_stdout": "Status: DEL-02-07 \u2192 INITIALIZED (by PROJECT_SETUP)\n",
+    "transition_stderr": "",
+    "after_status_sha256": "eada926bd8805936c379f617e762a78b01e4504d328f49e48a8917245a3868d9",
+    "after_status": "# Status: DEL-02-07\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n- 2026-09-05 \u2014 State set to INITIALIZED (PROJECT_SETUP)\n"
+  },
+  {
+    "deliverable": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "folder": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "production_sha256": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+    "review_sha256": "8d7a26ac01bf70b70e37f9a2ed45ae97695c761fe1618041a8b0117d595fd194",
+    "before_status_sha256": "17ac3660114f4abca90c45bbe6e8f83102f04a89756f84321a118754181bef9a",
+    "memory_files": {},
+    "validation_exit": 0,
+    "validation_output": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning\",\n  \"valid\": true\n}\n",
+    "transition_command": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "INITIALIZED",
+      "PROJECT_SETUP"
+    ],
+    "transition_exit": 0,
+    "transition_stdout": "Status: DEL-02-08 \u2192 INITIALIZED (by PROJECT_SETUP)\n",
+    "transition_stderr": "",
+    "after_status_sha256": "85d3a30170848951c63e757ff7b25ebf499283984404d3e8c3fec217a5b0ee6b",
+    "after_status": "# Status: DEL-02-08\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n- 2026-09-05 \u2014 State set to INITIALIZED (PROJECT_SETUP)\n"
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "folder": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "production_sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+    "review_sha256": "5ae31ce5120afa32490db31d85ce664bfabbe05731265ad10b8d4686e8dc2030",
+    "before_status_sha256": "81c335b6908ee9cf26e25866c594ac96b0d8354f737d96c8bf476589eac34bd9",
+    "memory_files": {},
+    "validation_exit": 0,
+    "validation_output": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary\",\n  \"valid\": true\n}\n",
+    "transition_command": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "INITIALIZED",
+      "PROJECT_SETUP"
+    ],
+    "transition_exit": 0,
+    "transition_stdout": "Status: DEL-02-09 \u2192 INITIALIZED (by PROJECT_SETUP)\n",
+    "transition_stderr": "",
+    "after_status_sha256": "6027f60f46e0d04fa45c2199a80091d39799c6495d6ee19a46a50e3da231ed04",
+    "after_status": "# Status: DEL-02-09\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n- 2026-09-05 \u2014 State set to INITIALIZED (PROJECT_SETUP)\n"
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "folder": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "production_sha256": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+    "review_sha256": "4177be8dc882e933bbf27a46f8a9ef5e95b65d012b4f0229853022dae830b0b2",
+    "before_status_sha256": "6411207b6a4f4a58c07137a93732f846f46bd6f661f4f22d452416436be93809",
+    "memory_files": {},
+    "validation_exit": 0,
+    "validation_output": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2\",\n  \"valid\": true\n}\n",
+    "transition_command": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "INITIALIZED",
+      "PROJECT_SETUP"
+    ],
+    "transition_exit": 0,
+    "transition_stdout": "Status: DEL-02-10 \u2192 INITIALIZED (by PROJECT_SETUP)\n",
+    "transition_stderr": "",
+    "after_status_sha256": "d7d7a043932d9082fdee3f2b96653cafe0a6a8137527be482ec161f9e2229c23",
+    "after_status": "# Status: DEL-02-10\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n- 2026-09-05 \u2014 State set to INITIALIZED (PROJECT_SETUP)\n"
+  },
+  {
+    "deliverable": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "folder": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "production_sha256": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+    "review_sha256": "1e130f685a35b00b6af7199169e800c1eba32e34cdda5eed0dc7a1087bafbaab",
+    "before_status_sha256": "cd817ad1b20b4e74bc8e7a725824d7b62fa92be6be40af25bde52e4613ac6711",
+    "memory_files": {},
+    "validation_exit": 0,
+    "validation_output": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation\",\n  \"valid\": true\n}\n",
+    "transition_command": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "INITIALIZED",
+      "PROJECT_SETUP"
+    ],
+    "transition_exit": 0,
+    "transition_stdout": "Status: DEL-02-11 \u2192 INITIALIZED (by PROJECT_SETUP)\n",
+    "transition_stderr": "",
+    "after_status_sha256": "8fa445cdd73a02b7b398cb2af21f9b47663ef94edd6d258aa4c8685c07c22550",
+    "after_status": "# Status: DEL-02-11\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n- 2026-09-05 \u2014 State set to INITIALIZED (PROJECT_SETUP)\n"
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "folder": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "production_sha256": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b",
+    "review_sha256": "5b51fecb24b99f38af0825c0056b1a9d3ecdd2551e1adbd463aaad5ce49b881f",
+    "before_status_sha256": "3f77f77ea5fd064709dc8e36b26a5e65aceba773c4c4fcc3f4050adeefab8f0e",
+    "memory_files": {},
+    "validation_exit": 0,
+    "validation_output": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in\",\n  \"valid\": true\n}\n",
+    "transition_command": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "INITIALIZED",
+      "PROJECT_SETUP"
+    ],
+    "transition_exit": 0,
+    "transition_stdout": "Status: DEL-02-12 \u2192 INITIALIZED (by PROJECT_SETUP)\n",
+    "transition_stderr": "",
+    "after_status_sha256": "ae1a5408353fe1539709df1cd3d25a453cdd6efbdc5551b275cbe3edab9291ba",
+    "after_status": "# Status: DEL-02-12\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-05\n\n## History\n- 2026-09-05 \u2014 State set to OPEN (PREPARATION)\n- 2026-09-05 \u2014 State set to INITIALIZED (PROJECT_SETUP)\n"
+  }
+]

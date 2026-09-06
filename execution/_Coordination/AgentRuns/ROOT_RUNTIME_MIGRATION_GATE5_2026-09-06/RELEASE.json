@@ -1,0 +1,16 @@
+{
+  "pr": 727,
+  "merge_commit": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+  "merged_at": "2026-09-06T00:40:46Z",
+  "approved_head": "a5b41a1d9fba3df4f273662a432e92ef16a971a6",
+  "checks": {
+    "governance": "PASS 1m31s",
+    "app": "PASS 2m10s",
+    "pec": "PASS 58s"
+  },
+  "branch": "codex/runtime-governance-propagation",
+  "gate4_record": "plans/steers/root_runtime_migration_gate4_approval_2026-09-05.md",
+  "record_sha256": "7c20f795e254ba1cff69c2fd36f53f59463b160e3cb91879b9aa16b1c54a8ef8",
+  "published_record_matches": true,
+  "gate5_confirmation": "PENDING"
+}

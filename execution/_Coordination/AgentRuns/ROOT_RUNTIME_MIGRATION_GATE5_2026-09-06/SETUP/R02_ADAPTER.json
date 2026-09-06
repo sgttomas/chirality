@@ -1,0 +1,22 @@
+{
+  "R02": "PASS_ISOLATED_ORDINARY_ADAPTER_FIXTURE",
+  "carrier_count": 7,
+  "negative_cases": [
+    {
+      "case": "root-schema",
+      "rejected": true,
+      "reason": "Adapter manifest /private/tmp/root-runtime-migration-20260905/gate5-adapter/chirality-runtime/_harness/adapter.yaml declares schema 'root-harness-adapter/v1', but this location is registered for 'practitioner-harness-adapter/v1'; location and schema must agree \u2014 the loader refuses rather than falling back to the other shape."
+    },
+    {
+      "case": "root-mode",
+      "rejected": true,
+      "reason": "Root historical mode/RETIRED is not an ordinary project lifecycle."
+    },
+    {
+      "case": "retired-state",
+      "rejected": true,
+      "reason": "Root historical mode/RETIRED is not an ordinary project lifecycle."
+    }
+  ],
+  "limits": "No live adapter or runtime registration added; fixture acceptance does not approve evidence, maturity or release."
+}

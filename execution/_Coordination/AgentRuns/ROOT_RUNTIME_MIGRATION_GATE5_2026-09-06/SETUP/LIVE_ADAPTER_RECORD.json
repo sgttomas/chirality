@@ -1,0 +1,10 @@
+{
+  "path": "projects/chirality-runtime/_harness/adapter.yaml",
+  "sha256": "fb70f812656bf51c217dfa104dc96a733fdb713a9071d563a447ca4fd27fff7e",
+  "authority": "Gate4 GUARDS/WRITE_PATH_INVENTORY.csv conditional ordinary adapter target",
+  "choice": "Seat for actual runtime observation",
+  "state_count": 7,
+  "lifecycle": "INITIALIZED",
+  "operational_registry": "UNCHANGED",
+  "CLI_alias_status": "parent guard owner notified; direct cmd_status invocation executed"
+}

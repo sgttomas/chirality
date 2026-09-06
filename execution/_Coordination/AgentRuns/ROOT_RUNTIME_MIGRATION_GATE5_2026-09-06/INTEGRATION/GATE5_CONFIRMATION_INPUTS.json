@@ -1,0 +1,45 @@
+{
+  "schema": "gate5-confirmation-inputs/v1",
+  "status": "REVIEW_INPUTS_ONLY_NOT_OWNER_ACCEPTANCE",
+  "effect_subject": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATION_SUBJECT.json",
+    "sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9"
+  },
+  "completed_application": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+    "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203"
+  },
+  "current_pending_state": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+    "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86"
+  },
+  "exact_live_postimages": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/LIVE_64_POSTIMAGE_PARITY.json",
+    "sha256": "69af950d5033b3070f8d76872a24634841f29e1299ce49b5eae99e1412f0138e"
+  },
+  "effect_configuration": [
+    {
+      "target": "execution/_harness/adapter.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/adapter.yaml",
+      "sha256": "b1395d402b0ab2c2b02ff1ad29ce3a631870e8633b85497cc473ea7e36f6b5c0"
+    },
+    {
+      "target": "execution/_harness/root_guards.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/root_guards.yaml",
+      "sha256": "442613ff6f7495b550b68f590c73ad70e3b819050debe8d0f7295663517877d7"
+    },
+    {
+      "target": "execution/_harness/surface_ownership.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/surface_ownership.yaml",
+      "sha256": "32ec79df0564cc28b0d4d2c3d79d8f853413f386840d75bb2ef309e806151f0a"
+    },
+    {
+      "target": "execution/_harness/work_graph.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/work_graph.yaml",
+      "sha256": "eccbfcb7478006bfb9265c93f8d64afed77ed4074fb81834759b5cde28481c01"
+    }
+  ],
+  "required_owner_record": "A distinct actual owner Gate5 confirmation must name both exact application subject SHA256 and completed journal SHA256 and be published on origin/main before an effective state can pass. No existing Gate3/Gate4 record qualifies.",
+  "future_state_change": "Only after that published owner act: stage effective; actual gate5 path/hash/commit/subject_sha256; effect_subject and effect_subject_sha256; effect_configuration exact tested snapshots. Existing selected subjects, Gate3/4 refs, all53 bindings and completed journal unchanged. Four YAMLs may change only governance_state reference.",
+  "activation": "No runtime activation included; separate project authorization remains required."
+}

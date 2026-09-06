@@ -1,0 +1,12 @@
+{
+  "stage": "after_7source_4config_before_status",
+  "status_writes": 0,
+  "cause": "Pinned governance authority wrapper changed during canon application",
+  "expected": {
+    "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+    "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+  },
+  "observed_sha256": "a070ce75d220e52854ac77af5ee583a4a5fcc3579c49b6b1b0c60bf2476509d6",
+  "tool_exit": 1,
+  "action": "Hold pending parent restoration of exact wrapper; preserve substantive canon completion separately"
+}

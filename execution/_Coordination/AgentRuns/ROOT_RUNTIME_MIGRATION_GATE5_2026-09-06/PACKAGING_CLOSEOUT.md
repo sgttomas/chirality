@@ -1,0 +1,3 @@
+# Final packaging correction
+
+Default staged diff check found CRLF-only findings in new audit CSVs and two exact historical CSV preimages; the earlier untracked candidate check had passed. Audit CSV parsed rows are unchanged and original bytes preserved gzip. Exact preimages are now gzip with a storage index resolving historical journal paths and original decompressed hashes. Historical seals remain distinguishable; final successor seals are recorded in INTEGRATION/PACKAGING_SUCCESSOR.json and the application Derivative_Packaging_Successors.json. No live postimage, application subject, journal or pending state changed. Parent fan-in and Receipt142 cite current publication seals. Final default staged/committed whitespace checks must pass before push.

@@ -1,0 +1,12 @@
+{
+  "schema": "scope-application-supersession-evidence/v1",
+  "stage": "prepared_application_pending",
+  "basis": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V2/Supersession_Map.csv",
+  "basis_sha256": "122462fb34561bd8301dbae7610a66cb40f236cce7196be0c7790c9c42b04668",
+  "method": "registered accumulate_supersession_map.py --prior-map accepted Gate3 selected V2 map --check-map same selected map",
+  "exit_code": 0,
+  "rows": 246,
+  "findings": 0,
+  "historical_limit": "Carries exactly the owner-approved SCA-005 bindings and approved prior recoverability disposition; does not invent unrecoverable pre-SCA-005 rows. No new substantive supersession introduced during execution.",
+  "packaging": "Registered tool CRLF outputs preserved losslessly as .registered_raw.gz; current application CSV uses LF with identical parsed rows. Accepted prior map bytes untouched."
+}

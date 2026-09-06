@@ -1,0 +1,111 @@
+{
+  "production_sha256": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+  "source_sha256": "d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430",
+  "status_sha256": "17ac3660114f4abca90c45bbe6e8f83102f04a89756f84321a118754181bef9a",
+  "paired_memory": {},
+  "author_validation_sha256": "a7b64ac8e86bcdbd70a489cbb6550a9145a4274dd55ca03fbaf0706787b7e767",
+  "definitions": {
+    "REQ": {
+      "source_count": 0,
+      "destination_count": 0,
+      "missing": [],
+      "changed": {}
+    },
+    "CLM": {
+      "source_count": 4,
+      "destination_count": 4,
+      "missing": [],
+      "changed": {
+        "CLM-001": {
+          "source": "\u2014 Accepted allocation.** The applied deliverable-register row assigns `SOW-104` and `OBJ-001`, `OBJ-002`, `OBJ-004`, and `OBJ-007` to this `API_CONTRACT` carrier with Context Envelope `M`.",
+          "destination": "** \u2014 Accepted allocation. The applied deliverable-register row assigns `SOW-104` and `OBJ-001`, `OBJ-002`, `OBJ-004`, and `OBJ-007` to this `API_CONTRACT` carrier with Context Envelope `M`."
+        },
+        "CLM-002": {
+          "source": "\u2014 Exact-pin boundary.** The accepted row and carrier context require exact App Server supply and protocol pinning, separately enumerated OpenAI account, model, and turn service endpoints, and no change to a deferred pin.",
+          "destination": "** \u2014 Exact-pin boundary. The accepted row and carrier context require exact App Server supply and protocol pinning, separately enumerated OpenAI account, model, and turn service endpoints, and no change to a deferred pin."
+        },
+        "CLM-003": {
+          "source": "\u2014 A7 carriage.** Each canonical root chooses under consent among: no command network by default; ask per destination through routed `networkApprovalContext` showing visible host and protocol, with the caveat that a grant may unblock queued requests to the same destination and `acceptForSession` allowed only by explicit user act; or labelled command network on through `network_access = true`. OpenAI account, model, and turn service endpoints remain separately enumerated. G-APPR proves prompt delivery and observes destination grouping empirically at the exact pin.",
+          "destination": "** \u2014 A7 carriage. Each canonical root chooses under consent among: no command network by default; ask per destination through routed `networkApprovalContext` showing visible host and protocol, with the caveat that a grant may unblock queued requests to the same destination and `acceptForSession` allowed only by explicit user act; or labelled command network on through `network_access = true`. OpenAI account, model, and turn service endpoints remain separately enumerated. G-APPR proves prompt delivery and observes destination grouping empirically at the exact pin."
+        },
+        "CLM-004": {
+          "source": "\u2014 Blockers remain.** This deliverable makes no pin amendment; `TM-ROOT-106` and `TM-ROOT-122` remain separate G1 blockers.",
+          "destination": "** \u2014 Blockers remain. This deliverable makes no pin amendment; `TM-ROOT-106` remains a G1 blocker; R18 closed `TM-ROOT-122`."
+        }
+      }
+    },
+    "OUT": {
+      "source_count": 5,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {
+        "OUT-001": {
+          "source": "\u2014 Exact supply manifest and protocol pin contract.** A bounded contract identifying the exact App Server supply and protocol basis addressed by the deliverable.",
+          "destination": "** \u2014 Exact supply manifest and protocol pin contract. A bounded contract identifying the exact App Server supply and protocol basis addressed by the deliverable."
+        },
+        "OUT-002": {
+          "source": "\u2014 Enumerated OpenAI service-endpoint policy.** A separate account, model, and turn service-endpoint enumeration that does not treat those endpoints as command-network authority.",
+          "destination": "** \u2014 Enumerated OpenAI service-endpoint policy. A separate account, model, and turn service-endpoint enumeration that does not treat those endpoints as command-network authority."
+        },
+        "OUT-003": {
+          "source": "\u2014 Three-posture G-APPR exact-pin fixtures.** Evidence fixtures for prompt delivery and empirical destination-grouping observation under each accepted per-root command-network posture.",
+          "destination": "** \u2014 Three-posture G-APPR exact-pin fixtures. Evidence fixtures for prompt delivery and empirical destination-grouping observation under each accepted per-root command-network posture."
+        },
+        "OUT-004": {
+          "source": "\u2014 G-WIRE and G-SUPPLY conformance fixtures.** Exact-pin evidence for the supply and wire boundaries named by the accepted deliverable row.",
+          "destination": "** \u2014 G-WIRE and G-SUPPLY conformance fixtures. Exact-pin evidence for the supply and wire boundaries named by the accepted deliverable row."
+        },
+        "OUT-005": {
+          "source": "\u2014 Pin-drift evidence and refusal cases.** Evidence that preserves pin drift as a visible failure condition and does not silently amend a pin.",
+          "destination": "** \u2014 Pin-drift evidence and refusal cases. Evidence that preserves pin drift as a visible failure condition and does not silently amend a pin."
+        }
+      }
+    },
+    "VER": {
+      "source_count": 0,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    },
+    "AC": {
+      "source_count": 0,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 5,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-08-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 99,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644\"\n      },\n      \"text\": \"Exact supply manifest and protocol pin contract bind the evaluated exact pin, with no pin amendment. Verified by VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-08-VER-001\",\n          \"source_line\": 135,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Review the manifest and protocol contract against the evaluated exact supply/protocol pin and its no-amendment boundary.\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-08-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 100,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644\"\n      },\n      \"text\": \"OpenAI account, model and turn service endpoints are separately enumerated and confer no command-network authority. Verified by VER-002.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-002\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-08-VER-002\",\n          \"source_line\": 136,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Review the endpoint policy for separate account, model and turn enumeration and separation from command-network consent.\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-08-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 101,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644\"\n      },\n      \"text\": \"Three-posture exact-pin fixtures establish prompt delivery and empirical destination grouping, including routed networkApprovalContext, visible host/protocol, queued-request grouping caveat and explicit-user-act-only acceptForSession. Verified by VER-003.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-003\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-08-VER-003\",\n          \"source_line\": 137,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Inspect the empirical exact-pin G-APPR fixtures for all three A7 postures and each ask-posture context, visibility, grouping and consent boundary.\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-08-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 102,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644\"\n      },\n      \"text\": \"G-WIRE and G-SUPPLY conformance fixtures bind the same exact supply/protocol basis. Verified by VER-004.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-004\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-08-VER-004\",\n          \"source_line\": 138,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Inspect G-WIRE and G-SUPPLY fixture evidence for conformance tied to the same exact supply/protocol basis.\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-08-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 103,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644\"\n      },\n      \"text\": \"Pin-drift and refusal evidence preserves TM-ROOT-106 as a G1 blocker, records R18 closure of TM-ROOT-122, and records no pin amendment or silent substitution. Verified by VER-005.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-005\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-08-VER-005\",\n          \"source_line\": 139,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Review drift and refusal cases against the actual blocker dispositions and the no-amendment/no-substitution boundary.\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-08\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+        "--show-not-checkable"
+      ],
+      "exit": 0,
+      "stdout": "\nContracts: 1 (1 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ]
+}

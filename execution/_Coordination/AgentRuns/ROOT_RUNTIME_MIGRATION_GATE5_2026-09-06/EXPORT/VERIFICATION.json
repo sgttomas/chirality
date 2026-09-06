@@ -1,0 +1,14 @@
+{
+  "command": "python3 exports/chirality-app/export_public.py --stage-dir /private/tmp/root-runtime-migration-20260905/gate5/public-export",
+  "exit_code": 0,
+  "staged_files": 864,
+  "runtime_files": 79,
+  "runtime_bytes_match": true,
+  "runtime_governance_excluded": true,
+  "boundary_findings": 0,
+  "publication": "NOT_PERFORMED",
+  "generated_target_delta": [
+    "exports/chirality-app/export-manifest.csv",
+    "exports/chirality-app/export-report.md"
+  ]
+}

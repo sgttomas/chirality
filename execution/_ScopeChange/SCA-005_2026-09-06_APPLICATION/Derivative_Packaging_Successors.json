@@ -1,0 +1,23 @@
+{
+  "schema": "migration-packaging-successor/v1",
+  "prior_application_seal": "0b47baecc4460807b645b9ae508cad7e68b93ed4212790c0876915ee32e65f9a",
+  "prior_integration_seal": "da920a79ea1b6d72325ad59121ae39389df0acbbb1a87fd3e0a02ef2dfb622a7",
+  "prior_seal_status": "Historical V1, preserved as FINAL_ARTIFACTS.PRE_PACKAGING_V1.sha256; superseded for current publication by newly issued FINAL_ARTIFACTS.sha256. Historical raw preimages recover exactly through storage index.",
+  "preimage_storage_index": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/SOURCE_CONFIG_APPLY/PREIMAGE_STORAGE_INDEX.json",
+    "sha256": "3dc4679330e6672153b45374582dba1f97b89283dcfcff403d2ef56bc9f390fa"
+  },
+  "current_derivative_manifests": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/GOVERNANCE_AUDIT/FINAL_ARTIFACTS.sha256",
+      "sha256": "0cf19437b11c9dc8ab9ec0c10a5606971c6e1d3e263c4e835bb1049b81c1f6af",
+      "record": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/GOVERNANCE_AUDIT/PACKAGING_LF_NORMALIZATION.json"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DepClosure/SCA005_MIGRATION_POST/ARTIFACTS.sha256",
+      "sha256": "2042b9608f0a093019fedeeea69f5e0d6997e6fc78c7652b2aee774354bd6adb",
+      "record": "projects/chirality-runtime/execution/_Evaluation/DepClosure/SCA005_MIGRATION_POST/PACKAGING_REPAIR.json"
+    }
+  ],
+  "change_scope": "Packaging only; two raw CRLF source preimages compressed losslessly; derivative CSV rows unchanged. All live approved postimages, retirement and source/config journals, tested subject, states and configs unchanged. No approval or closure act."
+}

@@ -1,0 +1,17 @@
+{
+  "reason": "Necessary actual TASK and immutable repair evidence; parent confirmed bounded implementation delta",
+  "paths": [
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/SCA005_INIT_REPAIR1/Brief.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/SCA005_INIT_REPAIR1/RETURN.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/SCA005_INIT_REPAIR1/Review_Checklist.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/SCA005_INIT_REPAIR1/Validation.json",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/TASK_RUN_2026-09-06_0100.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/TASK_RUN_2026-09-06_0130.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_run_records/TASK_RUN_2026-09-06_0100.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/TASK_RUN_2026-09-06_0100.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_run_records/TASK_RUN_2026-09-06_0100.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_run_records/TASK_RUN_2026-09-06_0100.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_run_records/TASK_RUN_2026-09-06_0100.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/TASK_RUN_2026-09-06_0100.md"
+  ]
+}

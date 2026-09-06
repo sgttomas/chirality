@@ -1,0 +1,14 @@
+{
+  "change": "CRLF to LF packaging normalization only",
+  "file": "Governance_Audit_IssueLog.csv",
+  "preimage_sha256": "2d04f392ad0e9aa3b0ad0ebc389e7df5db41064f2b4356683b9050c9ee76c033",
+  "postimage_sha256": "933f3e0b3b32d2625fb7ce16146eca77626b9ab868c71f616c70d2ae908c7760",
+  "parsed_rows_identical": true,
+  "data_rows": 1,
+  "original_gzip": "Governance_Audit_IssueLog.csv.PRE_LF.gz",
+  "original_gzip_sha256": "213cb27353307ab3aa824cc9adf403eccb35a0488ee2b4b0c5af0c8a9cf833dd",
+  "prior_seal": "FINAL_ARTIFACTS.PRE_LF.sha256",
+  "prior_seal_sha256": "4ef066560e07eaa1c91e230fc0a628800f88953ce8aa0e00abee4584cd5661df",
+  "semantic_edits": false,
+  "git_mutations": false
+}
