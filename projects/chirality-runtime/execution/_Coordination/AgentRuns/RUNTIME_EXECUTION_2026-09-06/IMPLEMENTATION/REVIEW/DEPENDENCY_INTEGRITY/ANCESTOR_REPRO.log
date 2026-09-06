@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/DEPENDENCY_INTEGRITY/ancestor-resolution-repro.test.ts (2 tests) 8ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:57:09
+   Duration  248ms (transform 70ms, setup 0ms, collect 94ms, tests 8ms, environment 0ms, prepare 33ms)

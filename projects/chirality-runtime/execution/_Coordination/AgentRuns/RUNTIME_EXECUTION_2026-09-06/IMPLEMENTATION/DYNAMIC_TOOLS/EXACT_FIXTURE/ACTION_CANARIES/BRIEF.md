@@ -1,0 +1,7 @@
+# Action canaries — parent-only empirical candidate runs
+
+Parent release: exact fixture file-change/native descendant and separate command-network canaries. Owned paths: tests/exact-codex-conformance.test.ts, tests/fixtures/response-provider.mjs, new tests/exact-network-conformance.test.ts, small tests helpers, and this evidence directory. Existing exact fixture/provider are temporarily frozen for parent paired baseline; work begins in new network fixture only. No product edits. No vendor/network/account operations by child.
+
+Staged network objective: actual exact accepted supplier or explicit unaccepted candidate, real named policy and effective readback, owned loopback model and separate destination, bounded real curl command, actual SupervisorServer/Client network approval methods with trusted test-only no-account factory. Independent off/on/ask-allow/ask-deny/ask-cancel runs record destination hits, real requested destination/decision, return marker and cleanup. No policy widening to conceal denied loopback. The exact curl executable read is explicit tool support, not a network grant. Primary command network proof is separate from native descendant and file-change proof; staged evidence must say which actually ran.
+
+OpenAI GPT-6; exact serving model ID unavailable. Ephemeral Agent 2, role instruction-asserted; Agent 0 and Agent 2 not mechanically enforced. No delegation. Tests run by child are syntax/typecheck and offline validation only. Parent owns actual candidate/build source pins and empirical runs.

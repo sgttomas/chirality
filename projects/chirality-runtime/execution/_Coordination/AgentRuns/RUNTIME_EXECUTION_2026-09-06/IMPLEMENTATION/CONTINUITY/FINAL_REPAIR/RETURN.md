@@ -1,0 +1,11 @@
+# Final continuity repair return
+
+Executor: OpenAI GPT-6, exact serving model ID unavailable; bounded Agent 2, instruction-asserted role, not mechanically enforced. Scope limited to the two assigned implementation/test files and this evidence directory. Parent owns contract and broker updates.
+
+The review's association/terminal race is repaired by making the immutable terminal the authority for whether a separate thread association participates in recovery. A terminal without threadDigest does not read an unbound late association, so even a malformed late file cannot invalidate the committed terminal or enable resume. A terminal with a digest still requires the exact valid matching association. Terminal retries return the already-committed terminal before consulting any late association. associateThread rejects a mismatch against a prepared thread before publication and reports a race-lost late association without rewriting terminal evidence.
+
+Optional rolePolicyDigest is validated as lowercase 64-hex SHA256 and included in the immutable prepared basis. Same-turn re-preparation with a changed or removed digest conflicts. restart with an expected digest resumes only when the recorded digest also matches; mismatch or legacy absence yields a fresh thread. Existing calls without an expected digest retain their prior behavior. Role-aware callers must pass the expected digest, which the parent is threading through the broker.
+
+`npm run build`: PASS. `npx vitest run tests/worker-retirement.test.ts`: PASS, 19 tests. New tests cover 30 actual concurrent association/terminalization interleavings with every terminal readable, exact terminal-bound resume selection, deterministic unbound/malformed late association, strict bound association corruption, no-publication prepared-thread mismatch, and immutable/missing/different/malformed role-policy digests. Existing multi-process terminal publication, crash, replay, identity and symlink tests remain passing.
+
+Pre-repair bytes are preserved losslessly. Current output hashes and source snapshots pin the repair. Parent independent backcheck and integrated checks remain required. No account, network, operational state, acceptance or lifecycle action occurred.

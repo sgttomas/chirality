@@ -1,0 +1,16 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/runtime-dependencies.test.ts (12 tests) 115ms
+ ✓ tests/runtime-conformance.test.ts (44 tests) 38681ms
+   ✓ never admits self-asserted passing records when external status is unknown  8790ms
+   ✓ never admits self-asserted passing records when external status is revoked  3859ms
+   ✓ even a controlled accepted lookup cannot substitute fixture bytes for the real accepted supply  3923ms
+   ✓ rejects nonprivate/symlink records and stale actual source before acceptance lookup  11497ms
+   ✓ derives all first-party runtime package artifacts instead of accepting a caller-selected subset  2310ms
+   ✓ exposes the same non-resettable production capture across calls without claiming loaded-module proof  8206ms
+
+ Test Files  2 passed (2)
+      Tests  56 passed (56)
+   Start at  23:56:19
+   Duration  38.97s (transform 121ms, setup 0ms, collect 222ms, tests 38.80s, environment 0ms, prepare 95ms)

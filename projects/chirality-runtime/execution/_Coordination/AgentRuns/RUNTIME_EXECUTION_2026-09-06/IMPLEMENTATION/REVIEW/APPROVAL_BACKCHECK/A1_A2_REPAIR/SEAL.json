@@ -1,0 +1,13 @@
+{
+  "schema": "runtime-independent-review-seal/v1",
+  "status": "A1_A2_CLOSED_FOR_PINNED_IMPLEMENTATION",
+  "files": {
+    "BRIEF.md": "ac737acc00989113e83a3cdcfed4d15dc48f4096e59d9f34fa4229f02d088aa2",
+    "RETURN.md": "e84d4b2fd93d48d7b34ae49402606a8d23e2697d17bbeeaa8baa7604a2bfd880",
+    "SOURCE_DRIFT.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "SOURCE_PINS.json": "83c00c487c4fd9df4ca1fe721d0c37c724c1ab7afd672f6c35b5eaab19065b0f",
+    "focused-suite.log": "2b1555a5917bfa21c7886d913c18e23f73a35649cf167fad5dcc90d4cd6ea41f",
+    "repro-backcheck.log": "f6fe53a085f6e57c67798da37d1c136675e5a52c64548978aae3950d5d447efd",
+    "transport-backcheck.test.ts.source": "387544bfe260032972044b706375f867421f5038ed80eac036836a2c19660337"
+  }
+}

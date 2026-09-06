@@ -1,0 +1,20 @@
+{
+  "discovery-1.json": "b1c44610cd920c5a700705dfbfbffccb38db2c40106534012e86ea1629b292a2",
+  "discovery-2.json": "a44e77ef5ac1f6810788d12053845886411eb3ce632b7e6ec3b2f3eb75bc571a",
+  "discovery-3.json": "ee7aab27f2c55a4ab42906589f686551ac4ccf8abb74bca3972a0fcd9c47016d",
+  "discovery-4.json": "2a838dbd6ace69b5806d72c8973c1e09d44b96fe988ff7cb15f6c0c887c02aca",
+  "discovery-5.json": "af831e0c7242081337cd7af60a7190e73d113cc3d34f2e87606d050edcea4fae",
+  "discovery-6.json": "6617b51c01a9556c8a1d847d9ceb93c0b00ed8bf8477c44ebda66ab2b2fc7361",
+  "discovery-7.json": "4812f369f9ce334e606cc6e8f0a6d8625093dfd654e16bd915cd2ff2f426ae42",
+  "discovery-8.json": "5a85e7a8d607ecf300bd54382a042907d483addc0fb5b1c21a19b2762bd2a0e1",
+  "dynamic-1.json": "663e6c8fb26c3753fa23278786b54ab723ecbee5185859f9e4a7547bc891578a",
+  "exercise-1.json": "a5cc006aba77de35ca6ed0f3278ab301d8b8671b6dfdfdd4101cd74d11d4a735",
+  "exercise-2-crash-summary.json": "f2642d80fabc1fd56d6217c28b1834d867d8387130dc1b3187d808a9bf7d1eb8",
+  "exercise-2.json": "860015e4128136edcd8f9d47f15a79e08613960e5a37f3b651c0e7298bba2330",
+  "exercise-3.json": "ac59c86865d9e8b4af98cab46463099489f0aa9beac37d8c2440988383ea072b",
+  "literal-root-RESULTS.json": "1f07f7f130274c8e8e6850e547599f4807edf3778332c8fdd928151dccb58e6c",
+  "literal-root-both.sb": "bd23d2982c58e598c5aba94ffcccbcef47ca5141b3565f7c1445845a8f42b0fc",
+  "literal-root-data.sb": "6d37b70200c2771366974604078d6ad860f87e32bd19f347aa08e81b60f40add",
+  "literal-root-none.sb": "61e6851c7c6c58bd9b06156210a853c82044bd19728298dac38e8cb64f896cf5",
+  "system-diagnostic-1.json": "3b99005e9f74a1e49d24278496aaa1c1b4d0a5f6b70d1c9395b13d91a9d93ea9"
+}

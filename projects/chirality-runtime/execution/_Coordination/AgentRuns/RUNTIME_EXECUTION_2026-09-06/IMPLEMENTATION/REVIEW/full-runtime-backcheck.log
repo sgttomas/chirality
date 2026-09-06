@@ -1,0 +1,36 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ packages/cli/test/runtime-jobs.test.ts (5 tests) 3ms
+ ✓ tests/omlx-client.test.ts (1 test) 3ms
+ ✓ packages/client/test/client.test.ts (4 tests) 76ms
+ ✓ tests/exact-supply.test.ts (9 tests) 106ms
+ ✓ packages/cli/test/cli.test.ts (26 tests) 56ms
+ ✓ tests/supervisor.test.ts (10 tests) 423ms
+ ✓ tests/session-and-residency.test.ts (5 tests) 443ms
+ ✓ tests/contracts-and-project.test.ts (10 tests) 571ms
+ ✓ tests/hosted-consent.test.ts (11 tests) 938ms
+ ✓ tests/worker-retirement.test.ts (13 tests) 1095ms
+ ✓ tests/turn-hardening.test.ts (8 tests) 1274ms
+ ✓ tests/agent1-run.test.ts (9 tests) 1667ms
+   ✓ governed Agent 1 local-child pilot > runs exactly one read-only Agent 2, records parentage/model epoch, and requires review  476ms
+ ✓ tests/delegated-runtime.test.ts (9 tests) 1733ms
+   ✓ opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads  496ms
+ ✓ tests/runtime-daemon-signal.test.ts (2 tests) 2152ms
+   ✓ runtime daemon process signal shutdown > tears down within a bound when SIGTERM arrives with an incomplete request held open  2151ms
+ ✓ tests/daemon.test.ts (15 tests) 14010ms
+   ✓ Unix-domain runtime daemon > forces an incomplete ordinary request at the exact production grace and cleans metadata  2041ms
+   ✓ Unix-domain runtime daemon > forces stubborn SSE transport without waiting on interrupt acknowledgement and degrades  2038ms
+   ✓ Unix-domain runtime daemon > expires pre-identity Agent 1 cancellation at force and forbids a late interrupt  2083ms
+   ✓ Unix-domain runtime daemon > interrupts once when Agent 1 identity appears in a later pre-force event  2033ms
+   ✓ Unix-domain runtime daemon > isolates late prior-generation iterator events after a successful forced stop and restart  2109ms
+   ✓ Unix-domain runtime daemon > caps post-force transport settlement at 500 ms before reporting cleanup failure  2516ms
+
+ Test Files  15 passed (15)
+      Tests  137 passed (137)
+   Start at  20:58:08
+   Duration  14.44s (transform 752ms, setup 0ms, collect 2.60s, tests 24.55s, environment 2ms, prepare 639ms)

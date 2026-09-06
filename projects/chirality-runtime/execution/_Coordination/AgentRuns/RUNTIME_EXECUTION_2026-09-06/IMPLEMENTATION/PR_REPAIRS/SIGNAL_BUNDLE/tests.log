@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/runtime-daemon-signal.test.ts (2 tests) 2153ms
+   ✓ runtime daemon process signal shutdown > tears down within a bound when SIGTERM arrives with an incomplete request held open  2149ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  00:41:11
+   Duration  2.52s (transform 46ms, setup 0ms, collect 42ms, tests 2.15s, environment 0ms, prepare 71ms)

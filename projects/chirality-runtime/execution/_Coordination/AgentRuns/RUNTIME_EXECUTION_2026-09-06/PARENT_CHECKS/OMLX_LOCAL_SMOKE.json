@@ -1,0 +1,46 @@
+{
+  "evidence_class": "local-provider-smoke-and-runtime-control-client",
+  "endpoint": "http://127.0.0.1:8000/v1",
+  "model": "Qwen3.6-35B-A3B-8bit",
+  "authorization": "User supplied local endpoint and credential for testing; credential not retained in this record",
+  "checks": {
+    "unauthenticated_models_http": 401,
+    "authenticated_models_http": 200,
+    "authenticated_status_http": 200,
+    "completion": "RUNTIME_LOCAL_OK",
+    "finish_reason": "stop",
+    "input_tokens": 20,
+    "output_tokens": 4,
+    "elapsed_seconds": 2.51,
+    "runtime_OmlxClient_listStatus": {
+      "kind": "llm",
+      "loaded": true,
+      "loading": false
+    }
+  },
+  "executed_client_sha256": "f270fc372d8d7341229a6f664c976b119d9b8db96dab382dbc8ffad16d86f42a",
+  "limitations": [
+    "Provider inference and Runtime control client only; not proof of full Pi runtime turn integration",
+    "No external hosted provider or account tested"
+  ],
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced",
+  "responses_endpoint_probe": {
+    "http_status": 200,
+    "reported_status": "completed",
+    "output_token_limit": 128,
+    "output_tokens": 128,
+    "requested_marker_observed": false,
+    "calibration": "Endpoint accepts Responses requests; bounded request did not produce requested marker. Model content not retained."
+  },
+  "responses_non_thinking_probe": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "http_status": 200,
+    "reported_status": "completed",
+    "exact_marker": true,
+    "input_tokens": 21,
+    "output_tokens": 5,
+    "calibration": "Direct provider endpoint only; no Codex transport claim"
+  }
+}

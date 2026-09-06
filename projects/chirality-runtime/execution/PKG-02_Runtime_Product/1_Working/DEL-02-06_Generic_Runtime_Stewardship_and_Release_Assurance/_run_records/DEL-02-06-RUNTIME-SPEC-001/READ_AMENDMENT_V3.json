@@ -1,0 +1,21 @@
+{
+  "purpose": "Parent-accepted technical audit exact evidence for N4 continuation; current user direction authorizes routine scoped diagnosis reads; no human approval needed",
+  "pins": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/REPORT.md",
+      "sha256": "fe2d28387ef684fd442941f5b8ca4964548228e74921578b3f89d6dc0d31b0d0"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/SOURCE_INVENTORY.json",
+      "sha256": "f1a25e912b91c558b448e228416d3d7b458fd1317da91d5e9507769253bd22fa"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/CHECKS.json",
+      "sha256": "a04436e4cca8070f46a98bb7d5be3bf90997df9a5c9173d0229c8b9046539fdd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/ARTIFACTS.sha256",
+      "sha256": "cb0972d9d6b59728ddf61554d8471726ed74b8b511a42ffbd61d61351515c48a"
+    }
+  ]
+}

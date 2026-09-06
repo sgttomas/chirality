@@ -1,0 +1,14 @@
+{
+  "kind": "future evidence diagnostic calibration",
+  "reason": "Top-level supplier ProcessFailed may omit command stdout. Missing captured START/FINISH alone does not establish failure before shell startup. Known exit134 remains separately evidenced.",
+  "change": "Future commandDiagnostic classification is markers-not-observed, preserving historical result bytes and source pins.",
+  "scope": [
+    "tests/exact-network-conformance.test.ts",
+    "tests/exact-network-runtime-conformance.test.ts"
+  ],
+  "sourcePins": {
+    "tests/exact-network-conformance.test.ts": "e3461c886ca6db2b2feed7e44a5cf3618737872c8a6f30d547f0063ee31e4613",
+    "tests/exact-network-runtime-conformance.test.ts": "f1b16b761ba5aaedd6a25d22ed84aca8292946c0b2929aa18953c0ea58bca9b3"
+  },
+  "attribution": "OpenAI GPT-6 WORKING_ITEMS; exact serving model ID unavailable; role not mechanically enforced"
+}

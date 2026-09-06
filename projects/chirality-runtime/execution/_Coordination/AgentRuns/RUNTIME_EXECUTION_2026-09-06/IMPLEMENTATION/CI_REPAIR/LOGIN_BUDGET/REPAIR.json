@@ -1,0 +1,5 @@
+{
+  "ci_run": 34019134427,
+  "failure": "60ms login ceremony timeout expired during actual child startup; 467 passed, 16 skipped, one failed",
+  "change": "Test-only ceremony timeout 1000ms, status poll 2000ms; assert pending before timed failure; production timeout unchanged; six focused tests passed"
+}

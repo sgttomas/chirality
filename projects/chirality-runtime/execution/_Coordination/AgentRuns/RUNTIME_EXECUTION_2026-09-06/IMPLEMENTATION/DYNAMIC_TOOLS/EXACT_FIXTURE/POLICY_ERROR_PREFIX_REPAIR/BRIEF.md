@@ -1,0 +1,1 @@
+Parent observed actual NETWORK_ON_3 exec_command failed for prefix; repair bounded supplier diagnostics only, regress exact prior sanitized value. No vendor/network calls; OpenAI GPT-6 serving ID unavailable, Agent0/2 not mechanically enforced, instruction-asserted Agent2.

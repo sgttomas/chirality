@@ -1,0 +1,9 @@
+{
+  "archive_bytes": 71843308,
+  "archive_sha256": "35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032",
+  "members": [
+    "codex-app-server-aarch64-apple-darwin"
+  ],
+  "payload_sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+  "payload_bytes": 179721344
+}

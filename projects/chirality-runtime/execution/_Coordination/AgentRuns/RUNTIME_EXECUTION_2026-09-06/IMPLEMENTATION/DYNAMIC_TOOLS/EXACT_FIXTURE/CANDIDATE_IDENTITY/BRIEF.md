@@ -1,0 +1,5 @@
+# Candidate identity test seam
+
+Parent expressly released optional CHIRALITY_EXACT_CANDIDATE_SHA256 and CHIRALITY_EXACT_CANDIDATE_SIZE, both or error, to verify parent-built baseline/patch candidates before and after identical exact conformance scenarios. Allowed writes: tests/exact-codex-conformance.test.ts and this evidence directory. Reuse existing controlled fixture verifier where suitable; never edit accepted supplier pin or production verifier/constructors. Candidate output must be supplier-candidate-unaccepted; source version does not establish accepted identity. No vendor/account/network invocation by child. Parent owns empirical invocation and build provenance.
+
+Ephemeral Agent 2, OpenAI GPT-6, exact serving model ID unavailable. Agent 0 and Agent 2 roles are not mechanically enforced; instruction-asserted role, no delegation. Validate environment pair and controlled byte checks offline, run typecheck, preserve defaults/postures/wire/resume/native/dynamic limbs and prior seals.

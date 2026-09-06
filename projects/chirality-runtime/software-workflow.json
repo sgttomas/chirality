@@ -1,0 +1,38 @@
+{
+  "schema": "chirality-software-workflow/v1",
+  "project_root": ".",
+  "workspace_root": ".",
+  "checks": {
+    "typecheck": {
+      "cwd": ".",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ]
+    },
+    "unit": {
+      "cwd": ".",
+      "command": [
+        "npm",
+        "test"
+      ]
+    }
+  },
+  "always_checks": [
+    "typecheck",
+    "unit"
+  ],
+  "path_rules": [
+    {
+      "paths": [
+        "packages/**",
+        "tests/**"
+      ],
+      "checks": [
+        "typecheck",
+        "unit"
+      ]
+    }
+  ]
+}

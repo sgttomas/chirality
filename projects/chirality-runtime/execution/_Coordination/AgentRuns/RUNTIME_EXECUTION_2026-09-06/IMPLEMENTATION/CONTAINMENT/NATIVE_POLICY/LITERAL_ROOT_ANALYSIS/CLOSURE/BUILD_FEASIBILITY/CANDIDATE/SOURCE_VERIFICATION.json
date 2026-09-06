@@ -1,0 +1,44 @@
+[
+  {
+    "path": "codex-rs/Cargo.toml",
+    "expected": "a3669102a1d1305b4b243b0fc6bd6bca9629ed9e5aa74b42936aba386c9805b4",
+    "actual": "a3669102a1d1305b4b243b0fc6bd6bca9629ed9e5aa74b42936aba386c9805b4",
+    "match": true
+  },
+  {
+    "path": "codex-rs/Cargo.lock",
+    "expected": "0c32858e9c47d0acf82735c8620c96840a5381152eec63acad15d1acadb9edad",
+    "actual": "0c32858e9c47d0acf82735c8620c96840a5381152eec63acad15d1acadb9edad",
+    "match": true
+  },
+  {
+    "path": "codex-rs/rust-toolchain.toml",
+    "expected": "570656042681cfd8795403a455baf9a33035331a07db0645e866bbcea89a3d64",
+    "actual": "570656042681cfd8795403a455baf9a33035331a07db0645e866bbcea89a3d64",
+    "match": true
+  },
+  {
+    "path": "codex-rs/app-server/Cargo.toml",
+    "expected": "b2720f2e3484846055564de2ec3efbc8cb3261a2275fcaaee270d80a359c0ae8",
+    "actual": "b2720f2e3484846055564de2ec3efbc8cb3261a2275fcaaee270d80a359c0ae8",
+    "match": true
+  },
+  {
+    "path": "codex-rs/sandboxing/src/seatbelt_base_policy.sbpl",
+    "expected": "9a7a181ac5fab3e8fcecfeeec280f8b0d4fd60c852cf71cdf3b5c65d02401e0c",
+    "actual": "9a7a181ac5fab3e8fcecfeeec280f8b0d4fd60c852cf71cdf3b5c65d02401e0c",
+    "match": true
+  },
+  {
+    "path": ".github/workflows/rust-release.yml",
+    "expected": "8c617e18825d43d29d59af75419d9e7b40594256d3225c0cf39b7abde745a6c9",
+    "actual": "8c617e18825d43d29d59af75419d9e7b40594256d3225c0cf39b7abde745a6c9",
+    "match": true
+  },
+  {
+    "path": ".github/actions/setup-rusty-v8/action.yml",
+    "expected": "ec4107dfd69f6034d34a558df2c85191a9e6d03dfedf3bce7a94bb0fb0de85b0",
+    "actual": "ec4107dfd69f6034d34a558df2c85191a9e6d03dfedf3bce7a94bb0fb0de85b0",
+    "match": true
+  }
+]

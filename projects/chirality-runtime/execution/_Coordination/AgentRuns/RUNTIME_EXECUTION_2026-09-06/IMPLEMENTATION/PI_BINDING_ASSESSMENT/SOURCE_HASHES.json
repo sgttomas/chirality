@@ -1,0 +1,16 @@
+{
+  "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts": "531f69c42c87d799b2b9aecec4bbfb96e2a1210dcd17135542c3483b48a9c208",
+  "projects/chirality-runtime/packages/engine-pi-omlx/src/omlx-client.ts": "2025db32a48dc261bb6d0b753cfa99b99a4ad97a85f795a8930cac8af6b3f306",
+  "projects/chirality-runtime/packages/daemon/src/standalone.ts": "c029822fb65e7b3c7778299b4b8dde04fcbb59f8ba780bf77471ad529cbbbd61",
+  "projects/chirality-runtime/packages/core/src/engine-registry.ts": "17016dcc2bebe45876fef96db3288af3fa8051054643cc06ea315a923c66f7de",
+  "projects/chirality-runtime/packages/core/src/turn-coordinator.ts": "992d501b49629b88cb72e42ad2c54d7934859da7e3a822259c68151e3ab3715b",
+  "projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts": "c51d2b6a173f300acedee468f8e51b29cea2bd946bcdec300eaaa4a3d06a8e5d",
+  "projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/package.json": "031b6774e3c212780dce1ac1a4b78a186d385b7878dca1897b45bd557ac68492",
+  "projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/dist/core/sdk.d.ts": "b191c43d39aee7b38ad822ed1e895ee9800d8ecd932b768c073ce50f59afadac",
+  "projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/dist/core/resource-loader.d.ts": "623ff174a2782522b71fbf1a2ac820b7d33775c082553ddacb6265b4916e3709",
+  "projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/dist/core/model-runtime.d.ts": "03a9ef9ca08c01abd97767695265ac53c2927dece2e218b1ceadaecaf66fa0ab",
+  "projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/dist/core/provider-composer.d.ts": "e9b7caed4d8953ecdec6d198e1d9de40d0c427306136e1d1704aa8b2c31512ef",
+  "projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-ai/dist/api/openai-completions.js": "0d50250fe2931e66e2078279a397814202e1ecddee58faf4b8bc04c278da177a",
+  "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts": "dd333f02d092dad05d15fb0936fb00f48ee89f75ec530bcfb74db32468f6f728",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/OMLX_LOCAL_SMOKE.json": "62d2caa6667eddeeee67a779bdf0318dd48043015ffb136f4948a8bf39b217e2"
+}

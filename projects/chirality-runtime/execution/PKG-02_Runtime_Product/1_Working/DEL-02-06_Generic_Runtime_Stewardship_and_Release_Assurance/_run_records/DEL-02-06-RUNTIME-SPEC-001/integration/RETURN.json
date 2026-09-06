@@ -1,0 +1,19 @@
+{
+  "node": "N4",
+  "agent": "/root/runtime_spec_execution/n4_integration",
+  "model": "OpenAI GPT-6",
+  "exact_serving_model_id": "unavailable",
+  "role": "Agent 2 instruction-asserted; not mechanically enforced",
+  "status": "INTEGRATED_NO_SEMANTIC_CHANGE_READY_FOR_REVIEW",
+  "implementation_authority": "Current user direction; subsequent manager-sealed brief/profile; no new activation request",
+  "execution_claim": "No production edits/tests; parent technical baseline attributed separately",
+  "outputs": [
+    "HOLD_MAP.csv",
+    "IMPLEMENTATION_TRANCHE.md",
+    "INPUT_PINS.json",
+    "INTEGRATION.md",
+    "SELF_CHECK.json",
+    "TBD_DISPOSITIONS.csv"
+  ],
+  "next": "N5 independent review, N6 fan-in then same-branch implementation continuation"
+}

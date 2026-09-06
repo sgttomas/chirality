@@ -1,0 +1,73 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/runtime-dependencies.test.ts (19 tests) 162ms
+ ❯ tests/runtime-conformance.test.ts (44 tests | 1 failed) 40144ms
+   ✓ mechanically inspects a complete immutable record without creating admission or owner acceptance 5ms
+   ✓ rejects missing/unattempted/failed required limb effective-policy 3ms
+   ✓ rejects missing/unattempted/failed required limb primary.read 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.file-change 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.shell-write 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.network 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.process 3ms
+   ✓ rejects missing/unattempted/failed required limb primary.environment 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.approval 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.role 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.read 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.file-change 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.shell-write 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.network 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.process 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.environment 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.approval 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.role 3ms
+   ✓ rejects missing/unattempted/failed required limb owner-live-native-delegation 2ms
+   ✓ invalidates changed binding policyDigest 10ms
+   ✓ invalidates changed binding configDigest 3ms
+   ✓ invalidates changed binding sourceDigest 2ms
+   ✓ invalidates changed binding packageDigest 2ms
+   ✓ invalidates changed binding activationId 2ms
+   ✓ invalidates changed binding gateIdentity 2ms
+   ✓ invalidates changed binding accountId 2ms
+   ✓ invalidates changed binding accountEpoch 2ms
+   ✓ invalidates changed binding accountDigest 2ms
+   ✓ invalidates changed binding consentVersion 2ms
+   ✓ invalidates changed binding canonicalRoot 2ms
+   ✓ invalidates changed binding cwd 2ms
+   ✓ invalidates changed binding executablePath 2ms
+   ✓ rejects expired/future evidence, unknown fields and controlled evidence labels 2ms
+   ✓ binds source/package order, actual bytes and canonical paths, rejecting aliases and directories 3ms
+   ✓ never admits self-asserted passing records when external status is unknown  9712ms
+   ✓ never admits self-asserted passing records when external status is revoked  3995ms
+   ✓ even a controlled accepted lookup cannot substitute fixture bytes for the real accepted supply  4013ms
+   ✓ rejects nonprivate/symlink records and stale actual source before acceptance lookup  18177ms
+   ✓ file acceptance requires exact externally pinned owner act and observes revocation on every lookup 5ms
+   ✓ derives all first-party runtime package artifacts instead of accepting a caller-selected subset  4137ms
+   ✓ permanently poisons a captured generation on changed bytes, even after restoration and new verifier construction 7ms
+   ✓ invalidates inventory additions and identity-only replacement, not just content digests 7ms
+   ✓ retains startup capture failure without unhandled rejection or reset by a later verifier 4ms
+   × exposes the same non-resettable production capture across calls without claiming loaded-module proof 4ms
+     → Runtime conformance is missing, stale, incomplete or not externally accepted
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/runtime-conformance.test.ts > exposes the same non-resettable production capture across calls without claiming loaded-module proof
+RuntimeError: Runtime conformance is missing, stale, incomplete or not externally accepted
+ ❯ deny packages/core/src/runtime-conformance.ts:10:20
+      8| import { ACCEPTED_SUPPLY, verifyExactSupply } from "./exact-supply.js";
+      9|
+     10| const deny = () => new RuntimeError("ENGINE_UNAVAILABLE", "Runtime con…
+       |                    ^
+     11| const hash = (value: string | Buffer) => createHash("sha256").update(v…
+     12| const digest = (value: unknown): value is string => typeof value === "…
+ ❯ ArtifactGeneration.check packages/core/src/runtime-conformance.ts:244:43
+ ❯ captureRuntimeConformanceGeneration packages/core/src/runtime-conformance.ts:251:52
+ ❯ tests/runtime-conformance.test.ts:111:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 62 passed (63)
+   Start at  00:01:27
+   Duration  40.55s (transform 187ms, setup 0ms, collect 304ms, tests 40.31s, environment 0ms, prepare 118ms)

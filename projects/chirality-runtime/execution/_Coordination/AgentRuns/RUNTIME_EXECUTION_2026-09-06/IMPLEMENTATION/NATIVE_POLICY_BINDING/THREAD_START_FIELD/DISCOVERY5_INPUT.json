@@ -1,0 +1,181 @@
+{
+  "evidenceClass": "exact-app-server-deterministic-model",
+  "accountUsed": false,
+  "providerEndpoint": "loopback-only-configured",
+  "externalEgressEnforcement": "NOT_ESTABLISHED_BY_THIS_TEST",
+  "supplySha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+  "expectedPermissions": {
+    "filesystem": {
+      "/bin": "read",
+      "/usr/lib": "read",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/project": "write",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/broker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/broker/worker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/project/.codex": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "permissionProfile": "chirality_6ce24703980ddf17862417f9",
+  "rpcRequests": [
+    {
+      "id": 1,
+      "method": "initialize"
+    },
+    {
+      "id": 2,
+      "method": "config/read"
+    },
+    {
+      "id": 3,
+      "method": "account/read"
+    },
+    {
+      "id": 4,
+      "method": "config/read"
+    },
+    {
+      "id": 5,
+      "method": "thread/start"
+    }
+  ],
+  "nativePolicyReadbacks": [
+    {
+      "selectedProfile": {
+        "description": null,
+        "extends": null,
+        "workspace_roots": null,
+        "filesystem": {
+          "glob_scan_max_depth": null,
+          "/bin": "read",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/broker": "deny",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/broker/worker": "deny",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/project": "write",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/project/.codex": "deny",
+          "/usr/lib": "read"
+        },
+        "network": {
+          "enabled": false,
+          "proxy_url": null,
+          "enable_socks5": null,
+          "socks_url": null,
+          "enable_socks5_udp": null,
+          "allow_upstream_proxy": null,
+          "dangerously_allow_non_loopback_proxy": null,
+          "dangerously_allow_all_unix_sockets": null,
+          "mode": null,
+          "domains": null,
+          "unix_sockets": null,
+          "allow_local_binding": null,
+          "mitm": null
+        }
+      },
+      "permissionShape": {
+        "present": true,
+        "isTable": true,
+        "keyCount": 1,
+        "hasProfiles": false,
+        "hasSelectedProfile": true
+      },
+      "hostSettings": {
+        "allow_login_shell": false,
+        "approval_policy": "never",
+        "features": {
+          "multi_agent": true,
+          "plugins": false,
+          "remote_plugin": false,
+          "auth_elicitation": true,
+          "mcp_2026_07_28": false,
+          "memories": false,
+          "mentions_v2": true,
+          "remote_control": false,
+          "tool_suggest": true
+        }
+      },
+      "otherConfigFieldCount": 92
+    },
+    {
+      "selectedProfile": {
+        "description": null,
+        "extends": null,
+        "workspace_roots": null,
+        "filesystem": {
+          "glob_scan_max_depth": null,
+          "/bin": "read",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/broker": "deny",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/broker/worker": "deny",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/project": "write",
+          "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-mfrc6X/project/.codex": "deny",
+          "/usr/lib": "read"
+        },
+        "network": {
+          "enabled": false,
+          "proxy_url": null,
+          "enable_socks5": null,
+          "socks_url": null,
+          "enable_socks5_udp": null,
+          "allow_upstream_proxy": null,
+          "dangerously_allow_non_loopback_proxy": null,
+          "dangerously_allow_all_unix_sockets": null,
+          "mode": null,
+          "domains": null,
+          "unix_sockets": null,
+          "allow_local_binding": null,
+          "mitm": null
+        }
+      },
+      "permissionShape": {
+        "present": true,
+        "isTable": true,
+        "keyCount": 1,
+        "hasProfiles": false,
+        "hasSelectedProfile": true
+      },
+      "hostSettings": {
+        "allow_login_shell": false,
+        "approval_policy": "never",
+        "features": {
+          "multi_agent": true,
+          "plugins": false,
+          "remote_plugin": false,
+          "auth_elicitation": true,
+          "mcp_2026_07_28": false,
+          "memories": false,
+          "mentions_v2": true,
+          "remote_control": false,
+          "tool_suggest": true
+        }
+      },
+      "otherConfigFieldCount": 92
+    }
+  ],
+  "account": {
+    "authRequired": false,
+    "hasAccount": false
+  },
+  "rpcErrors": [
+    {
+      "id": 5,
+      "method": "thread/start",
+      "code": -32602,
+      "message": "`permissionProfile` is no longer supported for `thread/start`; use `permissions` with a named profile id instead",
+      "dataPresent": false
+    }
+  ],
+  "verdict": "FAIL",
+  "error": "Codex rejected the requested operation",
+  "cleanupTerminationRequested": true,
+  "process": {
+    "exitCode": null,
+    "signal": "SIGKILL"
+  },
+  "stderr": {
+    "text": "",
+    "bytesObserved": 0,
+    "truncated": false,
+    "redaction": "known bearer/key/token patterns; isolated empty home only"
+  },
+  "requests": [],
+  "providerFailures": []
+}

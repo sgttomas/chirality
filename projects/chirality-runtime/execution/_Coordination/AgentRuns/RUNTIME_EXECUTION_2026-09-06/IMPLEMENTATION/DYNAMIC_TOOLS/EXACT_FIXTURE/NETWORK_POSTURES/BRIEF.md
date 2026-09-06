@@ -1,0 +1,5 @@
+# AM11 follow-on — posture-selectable exact fixture
+
+Parent runtime_implementation_manager explicitly released fixture-only support for trusted CHIRALITY_EXACT_COMMAND_POSTURE=off|ask-per-destination|on. Only tests/exact-codex-conformance.test.ts and this evidence directory are written. Bind the same value to native policy compiler and actor, keep generated exact policy readback verification, preserve default off plus native/dynamic/discovery/resume limbs, and label evidence phases. No account, vendor process or network execution by this child. Parent executes actual exact supplier tests. Configuration/text/resume evidence never establishes command/network enforcement or approval conformance.
+
+Ephemeral Agent 2, OpenAI GPT-6; exact serving model ID unavailable. Agent 0 and Agent 2 roles are not mechanically enforced; this role is instruction-asserted. No delegation. Check option validation without network, workspace and explicit test-file typecheck. Preserve previous seals using preimage above.

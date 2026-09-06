@@ -1,0 +1,22 @@
+[
+  {
+    "directory": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/cargo/git/checkouts/crossterm-ce0318b92aca4e8d/45fecb9",
+    "commit": "45fecb9508105988f42fe6ff0441783ed3717f92"
+  },
+  {
+    "directory": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/cargo/git/checkouts/nucleo-425d994cd74b3654/4253de9",
+    "commit": "4253de9faabb4e5c6d81d946a5e35a90f87347ee"
+  },
+  {
+    "directory": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/cargo/git/checkouts/rules_rust-7226a686fb7656c8/b56cbaa",
+    "commit": "b56cbaa8465e74127f1ea216f813cd377295ad81"
+  },
+  {
+    "directory": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/cargo/git/checkouts/tokio-tungstenite-ea4445d9acecae62/0e5b2d7",
+    "commit": "0e5b2d73aa18dd9f0a50ee9ff199d5aef7594186"
+  },
+  {
+    "directory": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/cargo/git/checkouts/tungstenite-rs-006aed970da0a0a9/4fffad3",
+    "commit": "4fffad30fe373adbdcffab9545e9e9bf4f2fc19f"
+  }
+]

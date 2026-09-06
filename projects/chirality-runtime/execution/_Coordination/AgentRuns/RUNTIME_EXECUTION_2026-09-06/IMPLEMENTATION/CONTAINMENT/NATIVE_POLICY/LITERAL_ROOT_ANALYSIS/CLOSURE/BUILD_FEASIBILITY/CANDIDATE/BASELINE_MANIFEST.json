@@ -1,0 +1,19 @@
+{
+  "phase": "baseline",
+  "artifacts": [
+    {
+      "name": "codex-app-server",
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server",
+      "bytes": 241191088,
+      "sha256": "a3ac0445f8fab23c62a97f3c9c8e420f094b67927948c1cfa69390b6e0742f93",
+      "file": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server: Mach-O 64-bit executable arm64"
+    },
+    {
+      "name": "codex-code-mode-host",
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-code-mode-host",
+      "bytes": 75471112,
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "file": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-code-mode-host: Mach-O 64-bit executable arm64"
+    }
+  ]
+}

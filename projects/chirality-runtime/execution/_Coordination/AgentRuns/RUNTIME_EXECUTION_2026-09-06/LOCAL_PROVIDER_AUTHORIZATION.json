@@ -1,0 +1,14 @@
+{
+  "authority": "Current user offered a running local oMLX server, identified 127.0.0.1:8000, and supplied its API key for Runtime testing. User chose direct key sharing after the optional file-path request.",
+  "endpoint": "http://127.0.0.1:8000/v1",
+  "discovered_exact_model": "Qwen3.6-35B-A3B-8bit",
+  "scope": "Bounded synthetic local-provider and Runtime integration tests. Parent alone uses the credential in process memory; no secret copied to durable evidence or repository.",
+  "not_implied": [
+    "Hosted OpenAI account login",
+    "External model inference",
+    "Model family or version ratification",
+    "Release or hold disposition"
+  ],
+  "supersedes": "Optional request for a local credential-file path is no longer needed.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/delegated-runtime.test.ts (34 tests | 33 skipped) 285ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 33 skipped (34)
+   Start at  01:02:34
+   Duration  1.46s (transform 266ms, setup 0ms, collect 860ms, tests 285ms, environment 0ms, prepare 52ms)

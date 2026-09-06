@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/APPROVAL_BACKCHECK/A3_REPAIR/concurrent-delegation-backcheck.test.ts (1 test) 3ms
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/APPROVAL_BACKCHECK/A3_REPAIR/failed-child-review-backcheck.test.ts (1 test) 3ms
+ ✓ tests/agent1-run-coordinator.test.ts (26 tests) 242ms
+ ✓ tests/manager-pi-integration.test.ts (4 tests) 576ms
+
+ Test Files  4 passed (4)
+      Tests  32 passed (32)
+   Start at  23:19:10
+   Duration  1.78s (transform 450ms, setup 0ms, collect 1.36s, tests 825ms, environment 1ms, prepare 246ms)

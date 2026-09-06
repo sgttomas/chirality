@@ -1,0 +1,29 @@
+{
+  "purpose": "Lossless presentation map for Linux CI repair evidence; historical seals retain original-byte meanings",
+  "changes": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CI_REPAIR/APPROVAL_LIFETIME/tests-final.log",
+      "originalSha256": "92462353f2813f52fe8065f1eb55f6a5652cf517f9389429487b3520afdd37f4",
+      "presentationSha256": "5ccac351f0167fb70a3d1fdbf58a1bb19c374378fc6d227a0ce9ac6a461cd029",
+      "originalBytesBase64": "CiBSVU4gIHYzLjIuNyAvVXNlcnMvcnlhbi8uY29kZXgvd29ya3RyZWVzLzM0MWUvY2hpcmFsaXR5L3Byb2plY3RzL2NoaXJhbGl0eS1ydW50aW1lCgog4pyTIHRlc3RzL2RlbGVnYXRlZC1ydW50aW1lLnRlc3QudHMgKDM0IHRlc3RzIHwgMzMgc2tpcHBlZCkgMjg1bXMKCiBUZXN0IEZpbGVzICAxIHBhc3NlZCAoMSkKICAgICAgVGVzdHMgIDEgcGFzc2VkIHwgMzMgc2tpcHBlZCAoMzQpCiAgIFN0YXJ0IGF0ICAwMTowMjozNAogICBEdXJhdGlvbiAgMS40NnMgKHRyYW5zZm9ybSAyNjZtcywgc2V0dXAgMG1zLCBjb2xsZWN0IDg2MG1zLCB0ZXN0cyAyODVtcywgZW52aXJvbm1lbnQgMG1zLCBwcmVwYXJlIDUybXMpCgo="
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CI_REPAIR/APPROVAL_LIFETIME/tests-sealed.log",
+      "originalSha256": "7ebb0cb4b1fec5afff3af1042c9fb3fe28ff7a71ccaab5189060872c0dda62cd",
+      "presentationSha256": "3027adab6b85a174e15fed9589dc1d32f9ed5142db342669ba65d1f29a872fc7",
+      "originalBytesBase64": "CiBSVU4gIHYzLjIuNyAvVXNlcnMvcnlhbi8uY29kZXgvd29ya3RyZWVzLzM0MWUvY2hpcmFsaXR5L3Byb2plY3RzL2NoaXJhbGl0eS1ydW50aW1lCgog4pyTIHRlc3RzL2RlbGVnYXRlZC1ydW50aW1lLnRlc3QudHMgKDM0IHRlc3RzIHwgMzMgc2tpcHBlZCkgMjgybXMKCiBUZXN0IEZpbGVzICAxIHBhc3NlZCAoMSkKICAgICAgVGVzdHMgIDEgcGFzc2VkIHwgMzMgc2tpcHBlZCAoMzQpCiAgIFN0YXJ0IGF0ICAwMTowMzoxMAogICBEdXJhdGlvbiAgMS40NnMgKHRyYW5zZm9ybSAyNzBtcywgc2V0dXAgMG1zLCBjb2xsZWN0IDg3NG1zLCB0ZXN0cyAyODJtcywgZW52aXJvbm1lbnQgMG1zLCBwcmVwYXJlIDY3bXMpCgo="
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CI_REPAIR/APPROVAL_LIFETIME/tests.log",
+      "originalSha256": "c39415c0acf42efe80cc039adc0708788406de5baf16b85f095bc14fe8ee066d",
+      "presentationSha256": "b78190fd3451cdebd34b1aac6cea6f8d75de1e7eb2056f591bc122d717660c24",
+      "originalBytesBase64": "CiBSVU4gIHYzLjIuNyAvVXNlcnMvcnlhbi8uY29kZXgvd29ya3RyZWVzLzM0MWUvY2hpcmFsaXR5L3Byb2plY3RzL2NoaXJhbGl0eS1ydW50aW1lCgog4pyTIHRlc3RzL2RlbGVnYXRlZC1ydW50aW1lLnRlc3QudHMgKDM0IHRlc3RzIHwgMzMgc2tpcHBlZCkgMjg2bXMKCiBUZXN0IEZpbGVzICAxIHBhc3NlZCAoMSkKICAgICAgVGVzdHMgIDEgcGFzc2VkIHwgMzMgc2tpcHBlZCAoMzQpCiAgIFN0YXJ0IGF0ICAwMTowMjowMgogICBEdXJhdGlvbiAgMS43NXMgKHRyYW5zZm9ybSAyODltcywgc2V0dXAgMG1zLCBjb2xsZWN0IDEuMjFzLCB0ZXN0cyAyODZtcywgZW52aXJvbm1lbnQgMG1zLCBwcmVwYXJlIDU3bXMpCgo="
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CI_REPAIR/IMMUTABLE_PLATFORM/LOCAL_CHECK.log",
+      "originalSha256": "7dc7eb0f5082c0abc25eda3973b2f31e74ce3a7af5d9468f72a7522fc643b8fb",
+      "presentationSha256": "8599ec62c06a615e6fd7a8d02b19f53fdb7ab9c3d55a30373ebb60eff97dd0d7",
+      "originalBytesBase64": "CiBSVU4gIHYzLjIuNyAvVXNlcnMvcnlhbi8uY29kZXgvd29ya3RyZWVzLzM0MWUvY2hpcmFsaXR5L3Byb2plY3RzL2NoaXJhbGl0eS1ydW50aW1lCgog4pyTIHRlc3RzL2NvZGV4LWltbXV0YWJsZS1maWxlLnRlc3QudHMgKDQgdGVzdHMgfCAxIHNraXBwZWQpIDdtcwoKIFRlc3QgRmlsZXMgIDEgcGFzc2VkICgxKQogICAgICBUZXN0cyAgMyBwYXNzZWQgfCAxIHNraXBwZWQgKDQpCiAgIFN0YXJ0IGF0ICAwMTowMTozNQogICBEdXJhdGlvbiAgMzA5bXMgKHRyYW5zZm9ybSA3MW1zLCBzZXR1cCAwbXMsIGNvbGxlY3QgNjltcywgdGVzdHMgN21zLCBlbnZpcm9ubWVudCAwbXMsIHByZXBhcmUgNThtcykKCg=="
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "BRIEF.md": "05c91e05d017c13295b7ed46703c8c6566d21d161e58438f222a279d8944e088",
+  "DESIGN.md": "ede5e1fe4dbeb04d2c6d6ee86a7d8e6305ea552c9ed061cf9fd09192e3973ec0",
+  "PROPOSED_NETWORK.patch": "a7088d48ec601eb4af47f2f890470c7501c67ba683f5b89ca56044f8e0091502",
+  "PROPOSED_NO_SESSION_TEST.patch": "0f55835f698bdba7cc236aae4b03dc7624ffbe532d72fda4759f446e34c337da",
+  "PROPOSED_TEST.patch": "4fcbba1b513ecef64619ad8db7c3dde7c763f08edd4a5723819f7d53b724534d",
+  "RETURN.md": "ecc9b12321e47537250807506aa1e715bbe3e4b0d8fa960d31ba3beb4adbb802",
+  "SOURCE_PINS.json": "9983f4dc38a30c1a35ca05c47f074d3be67ff7c76d8e7309c078abce252d1fe1",
+  "core__src__config__mod.rs.gz": "40f863cc6aef0196d12fb83b05bc7fd77d1cefbf0ccf06f8e50b4975763f0d71",
+  "core__src__config__network_proxy_spec.rs.gz": "9dbe2888b744ff5bceaf4f9acdb0dfff2a97048fcc65ea193b81c906f9ed7456",
+  "core__src__session__session.rs.gz": "04d516e1c4dcbaac6d69099a7c932edc83f1de1f937a0a4e8ef3a52803427925",
+  "core__src__tools__network_approval.rs.gz": "a9d4812a6ff586238c5e57fdc22603a54669a52e3b65808913eae78683273e4b",
+  "network-proxy__src__network_policy.rs.gz": "8f1316b8701c5a9a4f3b51a0f082af049ec04ac896a8e51b7976ebb5dc9377f3"
+}

@@ -1,0 +1,6 @@
+{
+  "source": "projects/chirality-runtime/packages/core/src/agent1-run-coordinator.ts",
+  "sha256": "d0e8483df38d837a52c371b1a150a766046de44d17f0da66e5fd34c1415d27e7",
+  "role": "ephemeral Agent2 instruction-asserted; not mechanically enforced",
+  "model": "OpenAI GPT-6 exact serving ID unavailable"
+}

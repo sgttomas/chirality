@@ -1,0 +1,13 @@
+{
+  "schema": "runtime-independent-review-seal/v1",
+  "status": "A3_CLOSED_FOR_PINNED_SOURCES",
+  "files": {
+    "BRIEF.md": "4a5b66f59ef5707d83173f4dde40b31704705d3b40751b10b1487e6d42e34362",
+    "RETURN.md": "ea6e8b3a20a478785e5bee01d17ba7c7a509651ebe5b0cdcf8eab621a78a08a9",
+    "SOURCE_DRIFT.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "SOURCE_PINS.json": "ecde3c27734dafabb901f993dd2460b29fb0094af7ac5d424dc02b940e0718bb",
+    "concurrent-delegation-backcheck.test.ts.source": "954b5d8ef14cf5429c081c225dc13364acd464fb831320406f54d8910a66647b",
+    "failed-child-review-backcheck.test.ts.source": "8d10e5a41b5ef32ad10dd89f47eaeb7288eacdec783cbf0ef7e446038f28eef4",
+    "tests.log": "8c51e2758c8470c4462f8d4670fbfcaa87bd980107ebf16d7dca58b9891901c2"
+  }
+}

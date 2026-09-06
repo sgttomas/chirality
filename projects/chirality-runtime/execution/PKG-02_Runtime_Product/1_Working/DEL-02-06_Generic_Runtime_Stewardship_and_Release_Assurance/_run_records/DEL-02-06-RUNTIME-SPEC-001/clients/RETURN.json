@@ -1,0 +1,20 @@
+{
+  "node": "N2",
+  "agent": "/root/runtime_spec_execution/n2_clients",
+  "model": "OpenAI GPT-6",
+  "exact_model_id": "unavailable",
+  "role_enforcement": "instruction-asserted",
+  "finished_utc": "2026-09-06T02:41:44.132266+00:00",
+  "verdict": "READY_FOR_MANAGER_REVIEW",
+  "classes": {
+    "AFFECTED": 2,
+    "UNRESOLVED": 1,
+    "NOT_AFFECTED": 2,
+    "PROSPECTIVE_ONLY": 0
+  },
+  "tests_executed": false,
+  "production_or_foreign_writes": false,
+  "holds_remaining": 9,
+  "tier0_disposition": "CONTINUE_SEPARATE_WITH_EXPLICIT_COORDINATION_ONLY",
+  "additional_activation_approval_requested": false
+}

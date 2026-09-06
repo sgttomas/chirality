@@ -1,0 +1,13 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run packages/cli/test/cli.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ packages/cli/test/cli.test.ts (30 tests) 24ms
+
+ Test Files  1 passed (1)
+      Tests  30 passed (30)
+   Start at  21:58:47
+   Duration  228ms (transform 65ms, setup 0ms, collect 86ms, tests 24ms, environment 0ms, prepare 23ms)

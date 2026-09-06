@@ -1,0 +1,772 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/codex-containment.test.ts (3 tests | 1 failed) 45ms
+   × actual macOS Codex containment > contains shell and subprocess access offline and preserves supplied account files 31ms
+     → {"status":71,"signal":null,"output":[null,"","sandbox-exec: sandbox_apply: Operation not permitted\n"],"pid":32611,"stdout":"","stderr":"sandbox-exec: sandbox_apply: Operation not permitted\n"}: expected 71 to be +0 // Object.is equality
+   ✓ actual macOS Codex containment > rejects unsafe directory permissions and incomplete consent 2ms
+   ✓ native policy compiler only > compiles stable named policy without provider execution and excludes broker control 12ms
+ ❯ tests/supervisor.test.ts (12 tests | 12 failed) 14ms
+   × private process supervisor > runs trusted child through socket, caches terminal result, fences and retires 4ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-glJrzu/control.sock
+   × private process supervisor > checks token owner epoch generation and operation on every request 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-SKcKTk/control.sock
+   × private process supervisor > does not replace active owner; a new server epoch invalidates previous token 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-VQAStj/control.sock
+   × private process supervisor > recovers a real crashed socket owner with new credentials 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-0CK5YS/control.sock
+   × private process supervisor > binds authentication to the operation and worker generation 0ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-jlUKDi/control.sock
+   × private process supervisor > bounds worker lifetime and kills stubborn children during retirement 0ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-pWFqfu/control.sock
+   × private process supervisor > caps output and terminates flooding child 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-ZOVBdb/control.sock
+   × private process supervisor > rejects spawn failure without returning a phantom worker and bounds retained inventory 4ms
+     → worker spawn failed
+   × private process supervisor > kills inherited-pipe descendants when the leader exits normally 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-svmfFL/control.sock
+   × private process supervisor > rejects symlink control directories 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-OQU5TH/control.sock
+   × keeps login commands on the private authenticated capability channel 0ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-login-Yx1IY2/s.sock
+   × preserves bounded descendant reconciliation diagnostics through the private socket 0ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-nrkVpL/control.sock
+ ✓ tests/pi-turn-runtime.test.ts (21 tests) 142ms
+ ❯ tests/delegated-runtime.test.ts (30 tests | 30 failed) 55ms
+   × opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads 5ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-yH7rYZ/s/s.sock
+   × opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-hlmgup/s/s.sock
+   × opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-Y9jn3A/s/s.sock
+   × opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-ibUVYz/s/s.sock
+   × opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-8kB4zL/s/s.sock
+   × keeps issued operation and configured identity immutable against caller mutation 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-s1cLu2/s/s.sock
+   × returns typed safe mismatch for malicious compatibility fields 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-XC6bsn/s/s.sock
+   × fences worker acquisition when shutdown occurs during consent read 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-9jKzQu/s/s.sock
+   × starts a fresh daemon generation without reusing old admissions 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-Q3qU0h/s/s.sock
+   × drains admitted consent publication before successful close 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-VOxk2x/s/s.sock
+   × rejects object and null turn requests with typed invalid request errors 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-1Y1Jp7/s/s.sock
+   × binds daemon identity and rejects a mismatched configured project root 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-G02K6g/s/s.sock
+   × offers and executes explicit untyped with canonical v2 evidence 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-NeGSPH/s/s.sock
+   × offers and executes explicit agent0 with canonical v2 evidence 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-reU1SJ/s/s.sock
+   × offers and executes explicit agent1 with canonical v2 evidence 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-h3csEi/s/s.sock
+   × offers and executes explicit agent2 with canonical v2 evidence 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-M40vqB/s/s.sock
+   × offers and executes explicit task with canonical v2 evidence 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-l3hsm2/s/s.sock
+   × exposes configured on honestly and rejects unknown roles 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-vBL5j6/s/s.sock
+   × routes existing approvals only, preserves generation binding and never claims provider application 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-TtRisy/s/s.sock
+   × interrupts an active exact worker once and records the closed interrupted terminal 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-U6POnx/s/s.sock
+   × permits operator login without a pre-existing account and confines bypass admissions to login 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-y2y8yA/s/s.sock
+   × rejects unsafe login URL output without sending arbitrary port fields 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-tNnlWu/s/s.sock
+   × rejects malformed interruption and approval identities without coercion 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-4BcRly/s/s.sock
+   × allows exact live-turn interruption after hosted launch verification becomes unavailable 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-BL7nSt/s/s.sock
+   × binds selected role policy to retirement and passes it to resume selection 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-amC0LR/s/s.sock
+   × cancels and drains a login startup racing daemon stop without returning a live login 2ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-3Aw04i/s/s.sock
+   × cancels a current login on shutdown and cannot admit another start 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-C8MQxx/s/s.sock
+   × reports degraded shutdown within grace when configured login cancellation cannot drain 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-8MyHst/s/s.sock
+   × requires explicit on consent matching the immutable configured worker posture 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-G3ncxH/s/s.sock
+   × does not commit completed when worker retirement reports unresolved descendants 1ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-pwEXzl/s/s.sock
+ ✓ tests/codex-supervisor.test.ts (22 tests) 637ms
+ ✓ tests/codex-session.test.ts (22 tests) 1364ms
+ ❯ tests/descendant-tracker.test.ts (3 tests | 1 failed) 2351ms
+   ✓ retains observed detached descendants and rejects reused identities without signaling 1ms
+   ✓ bounds census and closes its timer without treating stale observation as closure proof 0ms
+   × observes an actual detached descendant after its controlled leader exits 2349ms
+     → spawn EPERM
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 44 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/codex-containment.test.ts > actual macOS Codex containment > contains shell and subprocess access offline and preserves supplied account files
+AssertionError: {"status":71,"signal":null,"output":[null,"","sandbox-exec: sandbox_apply: Operation not permitted\n"],"pid":32611,"stdout":"","stderr":"sandbox-exec: sandbox_apply: Operation not permitted\n"}: expected 71 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 71
+
+ ❯ tests/codex-containment.test.ts:30:73
+     28|       expect(nested.stderr).toContain('sandbox_apply');
+     29|       const compatibleNested = run(`/usr/bin/sandbox-exec -f ${shellQu…
+     30|       expect(compatibleNested.status, JSON.stringify(compatibleNested)…
+       |                                                                         ^
+     31|       const allowed = run(`echo permitted > ${shellQuote(join(root, 'a…
+     32|       expect(allowed.status, JSON.stringify(allowed)).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-yH7rYZ/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:53:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-hlmgup/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:62:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-Y9jn3A/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:68:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-ibUVYz/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:76:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-8kB4zL/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:84:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > keeps issued operation and configured identity immutable against caller mutation
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-s1cLu2/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:94:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > returns typed safe mismatch for malicious compatibility fields
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-XC6bsn/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:106:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > fences worker acquisition when shutdown occurs during consent read
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-9jKzQu/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:113:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > starts a fresh daemon generation without reusing old admissions
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-Q3qU0h/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:132:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > drains admitted consent publication before successful close
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-VOxk2x/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:142:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > rejects object and null turn requests with typed invalid request errors
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-1Y1Jp7/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:162:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > binds daemon identity and rejects a mismatched configured project root
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-G02K6g/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:169:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > offers and executes explicit untyped with canonical v2 evidence
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-NeGSPH/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:177:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > offers and executes explicit agent0 with canonical v2 evidence
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-reU1SJ/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:177:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > offers and executes explicit agent1 with canonical v2 evidence
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-h3csEi/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:177:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > offers and executes explicit agent2 with canonical v2 evidence
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-M40vqB/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:177:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > offers and executes explicit task with canonical v2 evidence
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-l3hsm2/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:177:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > exposes configured on honestly and rejects unknown roles
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-vBL5j6/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:188:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > routes existing approvals only, preserves generation binding and never claims provider application
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-TtRisy/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:194:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > interrupts an active exact worker once and records the closed interrupted terminal
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-U6POnx/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:217:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > permits operator login without a pre-existing account and confines bypass admissions to login
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-y2y8yA/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:236:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > rejects unsafe login URL output without sending arbitrary port fields
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-tNnlWu/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:252:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > rejects malformed interruption and approval identities without coercion
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-4BcRly/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:257:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > allows exact live-turn interruption after hosted launch verification becomes unavailable
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-BL7nSt/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:264:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > binds selected role policy to retirement and passes it to resume selection
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-amC0LR/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:280:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > cancels and drains a login startup racing daemon stop without returning a live login
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-3Aw04i/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:297:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > cancels a current login on shutdown and cannot admit another start
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-C8MQxx/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:313:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > reports degraded shutdown within grace when configured login cancellation cannot drain
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-8MyHst/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:328:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > requires explicit on consent matching the immutable configured worker posture
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-G3ncxH/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:348:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/44]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > does not commit completed when worker retirement reports unresolved descendants
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-pwEXzl/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/delegated-runtime.test.ts:28:18
+ ❯ tests/delegated-runtime.test.ts:359:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/44]⎯
+
+ FAIL  tests/descendant-tracker.test.ts > observes an actual detached descendant after its controlled leader exits
+Error: spawn EPERM
+ ❯ DescendantTracker.censusProcesses [as census] packages/core/src/descendant-tracker.ts:19:28
+     17| export async function censusProcesses(): Promise<ProcessIdentity[]> {
+     18|   if (!['darwin', 'linux'].includes(process.platform)) throw new Error…
+     19|   const { stdout } = await execFileAsync('/bin/ps', [process.platform …
+       |                            ^
+     20|     encoding: 'utf8', maxBuffer: 2 * 1024 * 1024, timeout: 2000,
+     21|     env: { PATH: '/usr/bin:/bin', LC_ALL: 'C', LANG: 'C' },
+ ❯ DescendantTracker.scan packages/core/src/descendant-tracker.ts:73:31
+ ❯ DescendantTracker.sample packages/core/src/descendant-tracker.ts:68:25
+ ❯ DescendantTracker.start packages/core/src/descendant-tracker.ts:55:16
+ ❯ tests/descendant-tracker.test.ts:36:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > runs trusted child through socket, caches terminal result, fences and retires
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-glJrzu/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:34:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > checks token owner epoch generation and operation on every request
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-SKcKTk/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:53:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > does not replace active owner; a new server epoch invalidates previous token
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-VQAStj/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:68:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > recovers a real crashed socket owner with new credentials
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-0CK5YS/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:80:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > binds authentication to the operation and worker generation
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-jlUKDi/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:95:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > bounds worker lifetime and kills stubborn children during retirement
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-pWFqfu/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:107:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > caps output and terminates flooding child
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-ZOVBdb/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:118:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > rejects spawn failure without returning a phantom worker and bounds retained inventory
+Error: worker spawn failed
+ ❯ ProcessSupervisor.acquire packages/core/src/process-supervisor.ts:63:13
+     61|       await entry.tracker?.stop();
+     62|       if (this.entries.get(workerId) === entry) this.entries.delete(wo…
+     63|       throw new Error("worker spawn failed");
+       |             ^
+     64|     }
+     65|     child.stdin.end(input);
+ ❯ tests/supervisor.test.ts:131:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > kills inherited-pipe descendants when the leader exits normally
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-svmfFL/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:138:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/44]⎯
+
+ FAIL  tests/supervisor.test.ts > private process supervisor > rejects symlink control directories
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-OQU5TH/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:148:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/44]⎯
+
+ FAIL  tests/supervisor.test.ts > keeps login commands on the private authenticated capability channel
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-login-Yx1IY2/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ tests/supervisor.test.ts:158:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/44]⎯
+
+ FAIL  tests/supervisor.test.ts > preserves bounded descendant reconciliation diagnostics through the private socket
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/sup-nrkVpL/control.sock
+ ❯ packages/daemon/src/supervisor-server.ts:127:87
+    125|     });
+    126|   });
+    127|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    128|   await chmod(options.socketPath, 0o600);
+    129|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:127:9
+ ❯ fixture tests/supervisor.test.ts:18:18
+ ❯ tests/supervisor.test.ts:177:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/44]⎯
+
+
+ Test Files  4 failed | 3 passed (7)
+      Tests  44 failed | 69 passed (113)
+   Start at  22:48:39
+   Duration  2.54s (transform 438ms, setup 0ms, collect 1.61s, tests 4.61s, environment 0ms, prepare 181ms)

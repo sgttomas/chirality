@@ -1,0 +1,36 @@
+{
+  "checked_at_utc": "2026-09-06T02:41:26.189271+00:00",
+  "node": "N1",
+  "agent": "/root/runtime_spec_execution/n1_inventory",
+  "model": "OpenAI GPT-6",
+  "exact_serving_model_id": "unavailable",
+  "role": "Agent 2 instruction-asserted; not mechanically enforced",
+  "source_pins": [
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/protocol.ts",
+      "sha256": "1d8d329fb2f296de30aa13c04f5d528efa717a762b49936000a9b162f50bfa9e",
+      "actual_sha256": "1d8d329fb2f296de30aa13c04f5d528efa717a762b49936000a9b162f50bfa9e",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/errors.ts",
+      "sha256": "75d30b4139c8ba11264cb1165c4e51401cbc9c930770e8cb966513509b6b1501",
+      "actual_sha256": "75d30b4139c8ba11264cb1165c4e51401cbc9c930770e8cb966513509b6b1501",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "38a55c95ba2ffa488e46a1debb48939a4aa8af2da89b80777e9d28f6f0c4adf4",
+      "actual_sha256": "38a55c95ba2ffa488e46a1debb48939a4aa8af2da89b80777e9d28f6f0c4adf4",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/cli/src/cli.ts",
+      "sha256": "77e2601afd3ee286444925fa08b1f890760f69e71b56c3feee690d034a4a53f5",
+      "actual_sha256": "77e2601afd3ee286444925fa08b1f890760f69e71b56c3feee690d034a4a53f5",
+      "match": true
+    }
+  ],
+  "execution_tests": "NOT_RUN: inventory inspection only",
+  "production_writes": false
+}

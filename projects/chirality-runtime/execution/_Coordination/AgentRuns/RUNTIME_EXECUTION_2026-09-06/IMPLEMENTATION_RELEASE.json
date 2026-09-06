@@ -1,0 +1,16 @@
+{
+  "authority": "OWNER_DIRECTION.md",
+  "plan": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/PLAN_V2.md",
+  "plan_sha256": "04fea102c787cae87b931302ef5a6e3023f9fb0157af3215ca5c72cab6ab2d6e",
+  "release": "FOUNDATIONS_AND_PARALLEL_IMPLEMENTATION",
+  "nodes": [
+    "CONTRACTS",
+    "SUPERVISOR",
+    "CONTINUITY"
+  ],
+  "integration_gate": "Spec manager accepted N4/N5 fan-in before final integration claims; foundations use already accepted contracts and audit only. No unaccepted spec predecessor consumed.",
+  "instructions": "Execute exact plan paths/profile/checks now; v2 is opt-in engineering API, not accepted stable replacement. Final integration requires review and full regression. No hold lift, vendor conformance or release claim.",
+  "parent": "/root HELP_HUMAN",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "role_enforcement": "not mechanically enforced"
+}

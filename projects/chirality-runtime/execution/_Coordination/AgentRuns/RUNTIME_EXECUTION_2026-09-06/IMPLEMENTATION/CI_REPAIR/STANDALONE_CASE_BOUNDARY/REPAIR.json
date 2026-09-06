@@ -1,0 +1,8 @@
+{
+  "authority": "Owner request to publish a full PR; bounded parent closeout repair",
+  "finding": "Linux rerun34018299959 attempt2 passed466 tests but combined forged/nonprivate startup test exceeded total5s at5083ms. Previous same-head Linux run passed all Runtime tests.",
+  "change": "Split independent forged and nonprivate startup scenarios using it.each. Each retains default5s test deadline, original process readiness/cleanup limits and exit1 assertion. Restore original credential in finally. No production change or timing relaxation.",
+  "beforeSha256": "796f53a42ecd0c770fb43e336cae524e5c0796898ce4c38fef21844197b63f70",
+  "afterSha256": "b6abdcab5794cf1fb911797b850af1285576e19fc746a4b054628d278d8fa938",
+  "attribution": "HELP_HUMAN OpenAI GPT-6; exact serving model ID unavailable; Agent0 role not mechanically enforced"
+}

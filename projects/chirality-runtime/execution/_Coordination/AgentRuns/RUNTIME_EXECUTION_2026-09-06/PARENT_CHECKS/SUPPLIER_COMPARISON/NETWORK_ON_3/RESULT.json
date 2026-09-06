@@ -1,0 +1,89 @@
+{
+  "schema": "chirality-exact-primary-network/v1",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "supplySize": 241191088,
+  "scenario": "on",
+  "commandNetworkPosture": "on",
+  "launchEvidence": "test-only-no-account-exact-vendor-factory",
+  "managerModel": "owned-loopback-deterministic-Responses",
+  "target": "owned-loopback-HTTP",
+  "approvalEvidence": "primary-private-protocol-only",
+  "storedAttributionProven": false,
+  "nativeDescendantNetworkProven": false,
+  "accountUsed": false,
+  "passed": false,
+  "sourcesBefore": {
+    "tests/exact-network-conformance.test.ts": "21b97482c92bab69707029dd0e84889fdd9737db0aca0932e4de61e7a9559806",
+    "packages/daemon/src/codex-session.ts": "b9ccb1e032df24b0b48f59ff5ba8e83a2d539ad5520b4c1fd45e401058a7e272",
+    "packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+    "packages/daemon/src/codex-containment.ts": "a0a7447929bc07627aa12fe582af27df2cfd1151af4051abcd04f479eb5324a7",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30"
+  },
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/private/etc/ssl/openssl.cnf": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/enc-PrH9Xh/p": "write",
+      "/private/tmp/enc-PrH9Xh/p/.codex": "deny",
+      "/private/tmp/enc-PrH9Xh/r": "deny",
+      "/private/tmp/enc-PrH9Xh/r/w": "deny"
+    },
+    "network": {
+      "enabled": true,
+      "proxy_url": "http://127.0.0.1:0",
+      "enable_socks5": true,
+      "socks_url": "http://127.0.0.1:0",
+      "enable_socks5_udp": true,
+      "allow_upstream_proxy": false,
+      "dangerously_allow_non_loopback_proxy": false,
+      "dangerously_allow_all_unix_sockets": false,
+      "mode": "full",
+      "domains": {
+        "*": "allow"
+      },
+      "unix_sockets": {},
+      "allow_local_binding": false
+    }
+  },
+  "commandElapsedMs": 62,
+  "commandBudgetMs": 10000,
+  "commandWithinBudget": true,
+  "syntheticCommandOutput": {
+    "text": "exec_command failed for `/bin/zsh -c \"printf 'NETWORK_COMMAND_STARTED\n'; /usr/bin/curl --silent --show-error --max-time 8 --noproxy '' 'http://127.0.0.1:64122/canary'; curl_status=\"'$?; printf '\"'\nNETWORK_COMMAND_FINISHED:%s\n' \\\"\"'$curl_status\"'`: ProcessFailed { message: \"Network access to \\\"127.0.0.1\\\" was blocked: local/private network addresses are blocked by the sandbox policy.\" }",
+    "truncated": false,
+    "scope": "owned-loopback curl command; isolated no-account worker; known credential patterns scrubbed",
+    "stream": "vendor tool combined output"
+  },
+  "commandDiagnostic": {
+    "classification": "command-incomplete",
+    "reportedCurlError": null,
+    "shellExitCode": null,
+    "outputBytes": 388,
+    "started": true,
+    "finished": false
+  },
+  "processClosed": true,
+  "successfulTerminal": true,
+  "modelRequests": 2,
+  "supplyRevalidated": true,
+  "destinationHits": 0,
+  "commandReturnedMarker": false,
+  "approvalCount": 0,
+  "serverRequests": [],
+  "profileElapsedMs": 5328,
+  "profileBudgetMs": 60000,
+  "profileWithinBudget": true,
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-network-conformance.test.ts": "21b97482c92bab69707029dd0e84889fdd9737db0aca0932e4de61e7a9559806",
+    "packages/daemon/src/codex-session.ts": "b9ccb1e032df24b0b48f59ff5ba8e83a2d539ad5520b4c1fd45e401058a7e272",
+    "packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+    "packages/daemon/src/codex-containment.ts": "a0a7447929bc07627aa12fe582af27df2cfd1151af4051abcd04f479eb5324a7",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30"
+  },
+  "sourceStable": true
+}

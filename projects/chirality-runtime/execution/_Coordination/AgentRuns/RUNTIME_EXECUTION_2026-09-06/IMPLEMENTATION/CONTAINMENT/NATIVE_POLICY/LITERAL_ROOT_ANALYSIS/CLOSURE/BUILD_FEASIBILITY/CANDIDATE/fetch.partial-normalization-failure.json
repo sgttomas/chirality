@@ -1,0 +1,31 @@
+{
+  "phase": "fetch",
+  "command": [
+    "cargo",
+    "fetch",
+    "--locked",
+    "--target",
+    "aarch64-apple-darwin"
+  ],
+  "exit": 101,
+  "elapsed_seconds": 1.3632409572601318,
+  "environment": {
+    "HOME": "/Users/ryan",
+    "USER": "ryan",
+    "LOGNAME": "ryan",
+    "PATH": "/private/tmp/runtime-execution-20260906/supplier-candidate/toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin:/private/tmp/runtime-execution-20260906/supplier-candidate/toolchain/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "RUSTUP_HOME": "/private/tmp/runtime-execution-20260906/supplier-candidate/toolchain/rustup",
+    "CARGO_HOME": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/cargo",
+    "CARGO_TARGET_DIR": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/target",
+    "TMPDIR": "/private/tmp/runtime-execution-20260906/supplier-candidate/tmp",
+    "CARGO_BUILD_JOBS": "4",
+    "CARGO_NET_GIT_FETCH_WITH_CLI": "true",
+    "GIT_CONFIG_GLOBAL": "/dev/null",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_TERMINAL_PROMPT": "0",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "RUSTY_V8_ARCHIVE": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/v8/librusty_v8_ptrcomp_sandbox_release_aarch64-apple-darwin.a.gz",
+    "RUSTY_V8_SRC_BINDING_PATH": "/private/tmp/runtime-execution-20260906/supplier-candidate/cache/v8/src_binding_ptrcomp_sandbox_release_aarch64-apple-darwin.rs"
+  }
+}

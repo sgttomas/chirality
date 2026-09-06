@@ -1,0 +1,3 @@
+# Independent manager approval routing review
+
+OpenAI GPT-6; serving ID unavailable. Actual Agent2 instruction-asserted/not mechanically enforced. Read-only product review of frozen manager approval registration, shared store/controller, private RPC, public facade and client/CLI. Evidence writes only here. Controlled tests permitted; no vendor/account/provider calls, owner acts, product edits or delegation. Conformance dependency-extension changes excluded. Check facade non-execution, exact compatibility, explicit-user authority, revocation/consent/account/generation and actual Pi child denial.

@@ -1,0 +1,3 @@
+# Generation repair independent backcheck
+
+OpenAI GPT-6; exact serving ID unavailable. Actual Agent2 instruction-asserted/not mechanically enforced. Read-only repair scope core/runtime-conformance.ts and tests/runtime-conformance.test.ts. Review frozen generation capture/permanent poison and actual verifier placement, controlled tests only, no product writes/vendor/account/owner acts. Parent additionally requests accepted-source interpretation of installed Pi dependency integrity; read accepted release plan and Runtime SOW, distinguish required results from recommended mechanism. Only evidence writes here. Manager ask-route ongoing changes excluded.

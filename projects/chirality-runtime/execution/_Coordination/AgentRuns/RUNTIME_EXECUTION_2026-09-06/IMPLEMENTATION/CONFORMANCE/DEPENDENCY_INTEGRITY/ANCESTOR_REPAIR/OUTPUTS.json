@@ -1,0 +1,18 @@
+[
+  {
+    "path": "packages/core/src/runtime-dependencies.ts",
+    "sha256": "6265140149676e86e41eb9b776bec0aed430bc316b2d6daa3d0c4aad17701187"
+  },
+  {
+    "path": "tests/runtime-dependencies.test.ts",
+    "sha256": "ff667e79e3e1c8a4aa14cc21b4770eb6bf6efd5c0d5b3d0455bfdb32dba6b148"
+  },
+  {
+    "path": "packages/core/dist/runtime-dependencies.js",
+    "sha256": "1f3dbde8ad4b7d85786a1d74ab6a3b0c17e6e397aaae1d98469e2199f3d401c4"
+  },
+  {
+    "path": "packages/core/src/runtime-conformance.ts",
+    "sha256": "689e20b61843bc4de1928e9e5dbf52a66278b85b5caa9ebaae59566f22c753ef"
+  }
+]

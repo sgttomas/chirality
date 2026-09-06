@@ -1,0 +1,149 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/standalone.test.ts (11 tests | 7 failed) 35190ms
+   × actual two-job standalone runtime > executes client consent and turn through two separate jobs and cleans SIGTERM sockets 5012ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × actual two-job standalone runtime > rotates credentials across supervisor jobs and starts the daemon with the new generation 5020ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × actual two-job standalone runtime > refuses a forged or nonprivate supervisor credential at daemon startup 5013ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × actual two-job standalone runtime > does not rotate a live supervisor credential when a duplicate job is refused 5014ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × actual two-job standalone runtime > does not implicitly register the configured project 5014ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × actual two-job standalone runtime > refuses a credential symlink before opening the daemon 5013ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ actual two-job standalone runtime > seats hosted-validation only with a dedicated worker-private subtree 40ms
+   ✓ actual two-job standalone runtime > actual sandbox cannot read or write sibling broker credentials 33ms
+   ✓ actual two-job standalone runtime > refuses unknown public-network or production-mode configuration 14ms
+   ✓ actual two-job standalone runtime > rejects unsafe config mode, symlink aliases and escaping storage 14ms
+   × starts a real local-only daemon job without any Codex supervisor credential 5004ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/standalone.test.ts > actual two-job standalone runtime > executes client consent and turn through two separate jobs and cleans SIGTERM sockets
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/standalone.test.ts:64:3
+     62|
+     63| describe("actual two-job standalone runtime", () => {
+     64|   it("executes client consent and turn through two separate jobs and c…
+       |   ^
+     65|     const f = await fixture();
+     66|     const supervisor = await launch("supervisor", f.configPath);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/standalone.test.ts > actual two-job standalone runtime > rotates credentials across supervisor jobs and starts the daemon with the new generation
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/standalone.test.ts:84:3
+     82|     await expect(lstat(credentialPath)).rejects.toMatchObject({ code: …
+     83|   });
+     84|   it("rotates credentials across supervisor jobs and starts the daemon…
+       |   ^
+     85|     const f = await fixture();
+     86|     const first = await launch("supervisor", f.configPath);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/standalone.test.ts > actual two-job standalone runtime > refuses a forged or nonprivate supervisor credential at daemon startup
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/standalone.test.ts:100:3
+     98|     await daemon.stop(); await next.stop();
+     99|   });
+    100|   it("refuses a forged or nonprivate supervisor credential at daemon s…
+       |   ^
+    101|     const f = await fixture(); await launch("supervisor", f.configPath…
+    102|     const path = join(f.config.runtimeDirectory, f.config.supervisorCr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/standalone.test.ts > actual two-job standalone runtime > does not rotate a live supervisor credential when a duplicate job is refused
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/standalone.test.ts:113:3
+    111|     await chmod(path, 0o600);
+    112|   });
+    113|   it("does not rotate a live supervisor credential when a duplicate jo…
+       |   ^
+    114|     const f = await fixture(); await launch("supervisor", f.configPath…
+    115|     const path = join(f.config.runtimeDirectory, f.config.supervisorCr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/standalone.test.ts > actual two-job standalone runtime > does not implicitly register the configured project
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/standalone.test.ts:121:3
+    119|     expect(await readFile(path, "utf8")).toBe(original);
+    120|   });
+    121|   it("does not implicitly register the configured project", async () =…
+       |   ^
+    122|     const f = await fixture(false); await launch("supervisor", f.confi…
+    123|     const daemon = await launch("daemon", f.configPath, false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/standalone.test.ts > actual two-job standalone runtime > refuses a credential symlink before opening the daemon
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/standalone.test.ts:127:3
+    125|     await expect(lstat(join(f.config.runtimeDirectory, "projects", "re…
+    126|   });
+    127|   it("refuses a credential symlink before opening the daemon", async (…
+       |   ^
+    128|     const f = await fixture(); await launch("supervisor", f.configPath…
+    129|     const path = join(f.config.runtimeDirectory, f.config.supervisorCr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/standalone.test.ts > starts a real local-only daemon job without any Codex supervisor credential
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/standalone.test.ts:186:1
+    184| });
+    185|
+    186| it("starts a real local-only daemon job without any Codex supervisor c…
+       | ^
+    187|   const f = await fixture();
+    188|   const server = createServer((_req, res) => { res.setHeader("content-…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "tests/standalone.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "starts a real local-only daemon job without any Codex supervisor credential". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 4 passed (11)
+     Errors  1 error
+   Start at  00:41:22
+   Duration  36.17s (transform 224ms, setup 0ms, collect 848ms, tests 35.19s, environment 0ms, prepare 35ms)

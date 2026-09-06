@@ -1,0 +1,17 @@
+{
+  "schema": "runtime-independent-review-seal/v1",
+  "status": "CHANGES_REQUIRED",
+  "files": {
+    "BRIEF.md": "28322db28d72ad3d4c20bdb72c1082a12ec81bb4124725cf7aee7f0e82571681",
+    "FINDINGS.md": "1134fd3c8ef03a2b86cd1f89a0085160212642c0c567c2ae4e61ef61a2297e8c",
+    "RETURN.md": "63ddc0d2bef34c56ab419fb214c4955e85fc7a2ab821eb13219c9f479e11006a",
+    "REVIEW_DRIFT.json": "de36d8f8175b3f7a657d9f2ac18c24f69d76df1836936849fff3cebef75b47b0",
+    "SOURCE_PINS.json": "c306bcc52d0d7a79266925fc3478259a6128ec141d8129436513422db485e25c",
+    "focused-suite-unsandboxed.log": "f55d5f5e9b2f8dc1166393afe25db2d03e3d6aecca033c925582db5c6ac1b087",
+    "focused-suite.log": "72495ba864024771e551b2d54c18d1db2fb6ea44eb4e63f1b5ef73ea2d99f869",
+    "persistence-repro.log": "1841925cfc04b75bdb5a86e9f954e65d5903442df21612761c909fc176ad77c9",
+    "persistence-repro.test.ts.source": "3404a33cd6b2c4ef801f9faed8cb5ca006c69491f3a5474af8ccdc7dbd48e3f3",
+    "repro.log": "99f502cfbed7212e33c4587b6da00622a5ad913469f0c0cfb5b4d1e7868e8c67",
+    "review-repro.test.ts.source": "89e13deddfc01dbbdc8db76e1edfb8eb14c568b81f195292bbec34be78d6603d"
+  }
+}

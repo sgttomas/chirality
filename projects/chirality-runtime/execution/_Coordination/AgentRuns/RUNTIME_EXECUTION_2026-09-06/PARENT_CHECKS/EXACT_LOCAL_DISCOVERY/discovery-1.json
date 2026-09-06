@@ -1,0 +1,11 @@
+{
+  "evidenceClass": "exact-app-server-deterministic-model",
+  "accountUsed": false,
+  "providerEndpoint": "loopback-only-configured",
+  "externalEgressEnforcement": "NOT_ESTABLISHED_BY_THIS_TEST",
+  "supplySha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+  "verdict": "FAIL",
+  "error": "Codex transport ended",
+  "requests": [],
+  "providerFailures": []
+}

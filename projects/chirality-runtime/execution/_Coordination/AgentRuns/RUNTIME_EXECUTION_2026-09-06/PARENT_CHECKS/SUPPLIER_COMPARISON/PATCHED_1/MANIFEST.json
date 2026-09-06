@@ -1,0 +1,8 @@
+{
+  "files": {
+    "RESULT.json": "e78f2f18d64d58bc475fc105058d844f947b4ff6612e7cb35b5198e9bb54241f",
+    "output.log": "16aa86930c9fcca6bccc5393f9e8731946fca9dfe0ed1d05b9fff861246950ec",
+    "CHECK.json": "42e3ce68397de0b13089d3d8ef597eebc012d323da10a88f039765a42cb06100"
+  },
+  "meaning": "Patched unaccepted supplier passes real primary/native-child shell writes and foreign/broker read denials, plus cross-process resume. Paired original-source build failed all four shell calls with exit134. Source stable during this check; no release acceptance."
+}

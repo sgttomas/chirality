@@ -1,0 +1,29 @@
+import { it, expect, vi } from 'vitest';
+import { GovernedAgent1RunCoordinator } from '../../../../../../../packages/core/src/agent1-run-coordinator.ts';
+import { CodexAgent1ManagerPort } from '../../../../../../../packages/daemon/src/codex-manager.ts';
+it('reproduces in-flight persistence overwriting terminal after bounded drain', async () => {
+ const realTimeout = globalThis.setTimeout;
+ const timer = vi.spyOn(globalThis,'setTimeout').mockImplementation(((fn:any,ms:any,...args:any[])=>realTimeout(fn,ms===120000 ? 30 : ms,...args)) as any);
+ let unblock!:()=>void; const blocked = new Promise<void>(resolve=>unblock=resolve);
+ let active=false, interrupted=0, polls=0; const records:any[]=[]; const sessions = new Map<string,any>();
+ const channel:any={ startManager:async()=>({workerId:'w',generation:'g',pid:1,state:'running'}), nextManager:async()=> { if(polls++) throw Error('unexpected'); return {kind:'callback',callId:'c',threadId:'t',turnId:'u',name:'delegate_agent',args:{sealedBrief:'read'}};}, replyManager:async()=>{}, retire:async()=>{} };
+ const manager = new CodexAgent1ManagerPort({channel,loadInstructions:async()=> 'instructions'});
+ const coordinator:any = new GovernedAgent1RunCoordinator({
+ hookDrainTimeoutMs:20, projects:{requireAuthorized:async()=>({canonicalRoot:'/fixture',enabledAdapterIds:['codex-app-server','pi']})},
+ resolveManagerSelection:async()=>({adapterId:'codex-app-server',providerId:'openai',model:'hosted'}), manager,
+ sessions:{create:async(input:any)=>{const s={...input,sessionId:input.role,projectRoot:'/fixture'};sessions.set(s.sessionId,s);return s;},get:async(_p:any,id:any)=>sessions.get(id),update:async(s:any)=>sessions.set(s.sessionId,s),appendEvent:async(_p:any,e:any)=>e,persistEvent:async()=>{}},
+ residency:{status:async()=>({phase:'READY',managedModelId:'local',epoch:{epochId:'e'}})},
+ tools:{bind:async()=>async()=>{}},
+ turns:{interrupt:async()=>{interrupted++;},async *run(){active=true;try {await blocked;yield {type:'chat:complete',data:{text:'late child'}};yield {type:'process:exit',data:{exitCode:0}};}finally{active=false;}}}
+ } as any);
+ coordinator.listManagerDefinitions=async()=>[{agentId:'WORKING_ITEMS',agentType:1}];
+ let pendingWrite=false; coordinator.persistAgentRun=async(_p:any,_r:any,record:any)=>{if(record.child && record.status==='running' && !pendingWrite){pendingWrite=true;await blocked;}records.push(structuredClone(record));};
+ coordinator.readFileTool=async()=>({tool:{},receipt:{completed:()=>true}});
+ try {
+ const events=[];for await(const e of coordinator.run('p',{brief:'run',approvalReference:'approved',localModel:'local',readOnlyTool:{name:'read_file',relativePath:'file'}}))events.push(e);
+ expect(events.at(-1)).toMatchObject({type:'process:exit',data:{exitCode:1}});
+ expect(records.at(-1).status).toBe('failed');expect(active).toBe(false);expect(records.at(-1).reconciliationRequired).toBe(true);
+ unblock();await new Promise(resolve=>realTimeout(resolve,10));
+ expect(records.at(-1)).toMatchObject({status:'running',child:{status:'launched'}});
+ } finally {unblock();timer.mockRestore();}
+});

@@ -1,0 +1,25 @@
+{
+  "authority": "OWNER_DIRECTION.md and existing accepted release plan action-enforcement design; this is ordinary implementation, not owner semantic amendment",
+  "accepted_source": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+  "source_sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a",
+  "source_lines": [
+    542,
+    543,
+    544,
+    545,
+    546,
+    547,
+    548,
+    552,
+    553
+  ],
+  "scope": "Replace experimentally chosen whole-provider sandbox with accepted trusted daemon-owned exact AppServer and kernel-enforced primary/descendant action policy. Preserve root-only writes, explicit immutable read roots, no platform-default blanket grant, root-local scratch, account/control separation, login-shell off, default command-network off, closed client RPC boundary and truthful native-role labels. Bind exact named profile explicitly to each thread/turn and inherited native actions, verifying actual pinned protocol. No fallback that weakens accepted properties.",
+  "additional_write_paths": [
+    "projects/chirality-runtime/tests/exact-codex-conformance.test.ts",
+    "projects/chirality-runtime/tests/fixtures/response-provider.mjs"
+  ],
+  "existing_paths": "Native policy compiler/session/supervisor and tests may change within earlier released paths.",
+  "deterministic_execution_scope": "Real exact 0.149.0 AppServer against a local fake Responses provider bound only to loopback ephemeral port, in isolated scratch with empty private account home. Fake model may drive explicit harmless primary/descendant canaries against synthetic files. No external provider/account/model service, ambient credentials or user-data canaries. Retain exact request/policy/tool evidence with raw prompt/secret minimization; test actual AppServer, never fake its success. Binary stays outside git. command/exec is preliminary only, never full turn-path evidence.",
+  "live_limb": "Owner-authenticated representative native delegation remains pending explicit provider/account/model authorization already requested; no such call authorized here.",
+  "parent": "/root HELP_HUMAN; OpenAI GPT-6; exact serving ID unavailable; Agent0 role not mechanically enforced"
+}

@@ -1,0 +1,32 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ packages/cli/test/cli.test.ts (33 tests) 48ms
+ ✓ tests/codex-manager.test.ts (9 tests) 91ms
+ ✓ tests/codex-supervisor.test.ts (23 tests) 972ms
+ ✓ tests/manager-approval-integration.test.ts (4 tests) 1293ms
+   ✓ routes an actual manager prompt through approval-only public controls for allow  376ms
+   ✓ routes an actual manager prompt through approval-only public controls for acceptForSession  302ms
+   ✓ does not carry cancelled or changed-consent manager approval authority  328ms
+ ✓ tests/approval-store.test.ts (21 tests) 2005ms
+   ✓ asks for exact attributed approval, preserving durable session choice without auto-granting another request  367ms
+ ✓ tests/manager-pi-integration.test.ts (4 tests) 902ms
+   ✓ real coordinator creates, binds, executes and reviews actual SDK Pi child without seeded sessions  327ms
+ ✓ tests/delegated-runtime.test.ts (34 tests) 9267ms
+   ✓ opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads  314ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1058ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2028ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2029ms
+ ✓ tests/standalone.test.ts (11 tests) 9372ms
+   ✓ actual two-job standalone runtime > executes client consent and turn through two separate jobs and cleans SIGTERM sockets  1365ms
+   ✓ actual two-job standalone runtime > rotates credentials across supervisor jobs and starts the daemon with the new generation  1897ms
+   ✓ actual two-job standalone runtime > refuses a forged or nonprivate supervisor credential at daemon startup  1782ms
+   ✓ actual two-job standalone runtime > does not rotate a live supervisor credential when a duplicate job is refused  1159ms
+   ✓ actual two-job standalone runtime > does not implicitly register the configured project  1147ms
+   ✓ actual two-job standalone runtime > refuses a credential symlink before opening the daemon  1192ms
+   ✓ starts a real local-only daemon job without any Codex supervisor credential  694ms
+
+ Test Files  8 passed (8)
+      Tests  139 passed (139)
+   Start at  23:38:35
+   Duration  11.42s (transform 1.19s, setup 0ms, collect 7.06s, tests 23.95s, environment 1ms, prepare 552ms)

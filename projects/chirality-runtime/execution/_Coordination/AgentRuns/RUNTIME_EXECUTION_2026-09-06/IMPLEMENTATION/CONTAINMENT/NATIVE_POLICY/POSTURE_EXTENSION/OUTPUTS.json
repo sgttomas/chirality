@@ -1,0 +1,6 @@
+{
+  "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "592e397cea81b015dc4b2135c114217c48f5d58ce9db9d26094982131172cce3",
+  "projects/chirality-runtime/tests/codex-containment.test.ts": "c9c5c5f4a6c35afa3bbd39bf5d3c088c75cde537d7951f00f767002e2eeb2adf",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/POSTURE_EXTENSION/RETURN.md": "6c9495991c4fdc9e5e2ca001bae4c055f228851724f7f4fcad0bb877594581de",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/POSTURE_EXTENSION/tests.log": "52d2a6f120bde6569c4ada0763674be728d2cc28e09974b9602edd53cc7c4461"
+}

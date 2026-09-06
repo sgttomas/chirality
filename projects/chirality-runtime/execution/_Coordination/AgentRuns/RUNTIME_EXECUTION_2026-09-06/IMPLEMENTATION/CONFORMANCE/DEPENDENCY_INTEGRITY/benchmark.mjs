@@ -1,0 +1,16 @@
+import { readdir, realpath } from "node:fs/promises";
+import { join } from "node:path";
+import { pathToFileURL } from "node:url";
+const root = await realpath(process.cwd());
+const roots = (await readdir(join(root, "packages"))).sort().map(name => join(root, "packages", name));
+const { inventoryRuntimeDependencies } = await import(pathToFileURL(join(root, "packages/core/dist/runtime-dependencies.js")).href);
+let started = performance.now();
+const inventory = await inventoryRuntimeDependencies(root, [root, ...roots]);
+const inventoryMs = performance.now() - started;
+started = performance.now();
+const conformance = await import(pathToFileURL(join(root, "packages/core/dist/runtime-conformance.js")).href);
+const first = await conformance.captureRuntimeConformanceGeneration();
+const startupAndFirstCheckMs = performance.now() - started;
+started = performance.now();
+await conformance.captureRuntimeConformanceGeneration();
+console.log(JSON.stringify({ node: process.version, workspacePackages: roots.length, workspaceRootManifests: 1, totalPackages: inventory.packageCount, dependencyFiles: inventory.fileCount, dependencyBytes: inventory.byteCount, inventoryMs, startupAndFirstCheckMs, unchangedCheckMs: performance.now() - started, evidence: first.evidence }, null, 2));

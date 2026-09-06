@@ -1,0 +1,11 @@
+{
+  "removed": [
+    "artifact.tar.gz",
+    "app-server",
+    "home",
+    "work",
+    "tmp"
+  ],
+  "artifact_files_remain": false,
+  "external_forbidden_canary_exists": false
+}

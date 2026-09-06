@@ -1,0 +1,30 @@
+import { afterEach, beforeEach, expect, it } from "vitest";
+import { mkdtemp, realpath, rm, writeFile, mkdir, symlink } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { createPiTurnRuntime } from "../../../../../../../packages/engine-pi-omlx/src/pi-turn-runtime.js";
+import { createPiReadTool } from "../../../../../../../packages/engine-pi-omlx/src/pi-read-tool.js";
+import type { AgentEngineRunInput, UIEvent } from "@chirality/runtime-contracts";
+let directory: string, root: string, transcript: string, input: AgentEngineRunInput;
+beforeEach(async () => {
+  directory = await realpath(await mkdtemp(join(tmpdir(), "pi-port-")));
+  root = join(directory, "project"); transcript = join(directory, "control", "transcripts");
+  await mkdir(root); await mkdir(transcript, { recursive: true, mode: 0o700 });
+  input = { session: { sessionId: "fixture-session", projectRoot: root, persona: "TASK", mode: "WORK", agentType: 2, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }, message: "Read the fixture if necessary and answer.", opts: { model: "fixture-model", tools: ["read_file"], maxTurns: 4, persona: "TASK", mode: "WORK" }, turnId: "fixture-turn" };
+});
+afterEach(async () => { await rm(directory, { recursive: true, force: true }); });
+const answer = (content: string, model = "fixture-model") => new Response(JSON.stringify({ model, choices: [{ message: { role: "assistant", content }, finish_reason: "stop" }], usage: { prompt_tokens: 3, completion_tokens: 2 } }), { status: 200 });
+function runtime(fetchImpl: typeof fetch, extra = {}) { return createPiTurnRuntime({ canonicalRoot: root, baseUrl: "http://127.0.0.1:12345/v1", model: { id: "fixture-model", contextWindow: 8192, maxTokens: 64 }, fetchImpl, ...extra }); }
+async function run(port: ReturnType<typeof runtime>) { const events: UIEvent[] = []; for await (const event of port.startTurn(input, { credential: "synthetic-fixture-key", disableBuiltIns: true, disableAmbientResources: true, transcriptRoot: transcript })) events.push(event); return events; }
+it.each(['parentSessionId','childKind','orchestrationRunId'])("fences actual governed marker %s before SDK/fallback and after lease release",async marker=>{
+ let calls=0;const port=runtime(async()=>{calls++;return answer('should not run');});
+ (input.session as any)[marker]=marker==='childKind'?'ephemeral-generalist':'governed-identity';
+ try {
+ await expect(port.preflight(input,'synthetic-fixture-key')).rejects.toThrow('bound Runtime read callback');
+ await expect(run(port)).rejects.toThrow('bound Runtime read callback');expect(calls).toBe(0);
+ const file=join(root,'selected.txt');await writeFile(file,'selected');
+ const release=await port.toolBindings.bind(input.session.sessionId,[{name:'read_file',description:'bound',inputSchema:{type:'object',properties:{},additionalProperties:false},permission:{effect:'allow',operation:'read',roots:[file]},async execute(){throw Error('must not run');}}]);
+ await release();delete (input.session as any)[marker];
+ await expect(port.preflight(input,'synthetic-fixture-key')).rejects.toThrow('fresh Runtime session');await expect(run(port)).rejects.toThrow('fresh Runtime session');expect(calls).toBe(0);
+ }finally{await port.close();}
+});

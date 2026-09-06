@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-pi-live-partial-integration/v1",
+  "model": "Qwen3.6-35B-A3B-8bit",
+  "adapter": "pi",
+  "sdkVersion": "0.82.0",
+  "provider": "omlx",
+  "endpoint": "literal-loopback-8000",
+  "passed": true,
+  "boundedReadObserved": true,
+  "markerObserved": true,
+  "finalStatus": "completed",
+  "diagnostics": [],
+  "scope": "real-client-daemon-SDK-local-provider with synthetic pre-admitted governed Agent2",
+  "productionManagerEntryProven": false,
+  "credentialStorage": "memory-only",
+  "rawProviderEvidencePersisted": false,
+  "tmRoot106Disposition": "unchanged"
+}

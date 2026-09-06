@@ -1,0 +1,15 @@
+# Containment return
+
+Executor: OpenAI GPT-6 ephemeral Agent 2; exact serving ID unavailable; role instruction-asserted, not mechanically enforced. No delegation.
+
+Implemented `prepareCodexContainment` with explicit canonical project/private directories, private owner/mode checks, isolated HOME/CODEX_HOME/TMPDIR and minimal environment; no inherited account variables or SSH_AUTH_SOCK. Returns sandbox profile, sandbox-exec prefix args, conservative Codex config, executable-path gate and cleanup limited to the newly created session directory. Caller must verify exact supply digest/signature and use launchArguments before launch. Caller must not pass arbitrary inherited file descriptors or merge ambient environment.
+
+The profile denies content reads outside enumerated system code roots, canonical project and supplied private directory. It denies writes outside project/private directory (except /dev/null), securityd Mach lookup and, by default, all network operations. Filesystem metadata remains visible. A literal root-directory read is necessary for macOS dyld; this does not grant descendant content reads. Code must fail closed if sandbox-exec cannot install the profile.
+
+Actual offline subprocess tests passed on macOS: shell project write, unrelated temporary sibling content read and write rejection, project symlink escape read rejection, nc local socket creation rejection, external executable rejection, private directory permission rejection, incomplete operator-consent rejection and account sentinel survival after cleanup. No model, external network or account operation was attempted. Securityd denial is present in the profile; tests deliberately do not query real account/Keychain contents. Do not claim an actual Keychain account test.
+
+Initial nested-sandbox run failed at sandbox_apply; reruns used approved host test execution. Early strict read profiles aborted dyld before shell startup. Minimal experiments isolated a required literal '/' directory-read permission; broad temporary system directory experiments were discarded. Final tests perform real shell and nc subprocess operations, not merely profile text assertions.
+
+Provider transport is OFF by default. Optional consent is a provenance record supplied by trusted operator configuration only; its shape alone does not authenticate an owner. Production caller must authenticate and pin its consent record, never derive it from a client flag. If provider transport is enabled, this outer process profile allows network for descendants too. The returned `commandNetworkBoundary = configuration-only` explicitly records that Codex workspace network false is not mechanical proof of command network denial in hosted mode. This file makes no stronger guarantee, and no hosted operation was tested.
+
+Config is authority supplied by the caller at launch; its values must override untrusted project settings and actual effective Codex configuration must be inspected by the supervisor before accepting a turn. Exact supply/session protocol verification is owned by the supervisor sibling. No activation, hold release or production readiness claim is made here.

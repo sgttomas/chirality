@@ -1,0 +1,7 @@
+{
+  "runId": 34018800589,
+  "headPrefix": "44e1b55af",
+  "rawSha256": "00591d1fb369fb18b97eb86532e312709567b44215cb6013f0d0c9a8d165e6a5",
+  "presentationSha256": "5d25417dff396101641c47ea5c67874b7287d0e6af90f36da67351f60d955d0c",
+  "result": "Rotation composite test5128ms exceeded accidental whole-test5s;467pass16skip"
+}

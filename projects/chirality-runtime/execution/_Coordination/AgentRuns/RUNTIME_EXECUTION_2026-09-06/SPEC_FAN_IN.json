@@ -1,0 +1,14 @@
+{
+  "manager": "/root/runtime_spec_execution",
+  "run": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001",
+  "seal": "e498c4d632becc14c0a0205c591892ced83edfa4e4513a3a737ac0820bd132be",
+  "members": 65,
+  "verified": true,
+  "verdict": "ADMIT_IMPLEMENTATION_CONTINUATION",
+  "remaining_conditions": [
+    "isolatedv2guards",
+    "no legacybypass",
+    "no fullv1conformanceclaim",
+    "account/client/cutover/release distinct"
+  ]
+}

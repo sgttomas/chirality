@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/daemon.test.ts (15 tests | 14 skipped) 39ms
+ ✓ tests/standalone.test.ts (12 tests | 11 skipped) 48ms
+
+ Test Files  2 passed (2)
+      Tests  2 passed | 25 skipped (27)
+   Start at  00:50:03
+   Duration  1.13s (transform 339ms, setup 0ms, collect 1.67s, tests 87ms, environment 0ms, prepare 105ms)

@@ -1,0 +1,1 @@
+Parent-authorized discovery5 exact method-specific field repair. Only thread/start uses permissions; no inference for resume/turn. Own actor/tests +this evidence, no vendor execution. GPT-6 instruction-asserted Agent2 serving ID unavailable.

@@ -1,0 +1,16 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/codex-supervisor.test.ts (23 tests) 1034ms
+ ✓ tests/codex-session.test.ts (35 tests) 3015ms
+   ✓ persistent known-method Codex actor (controlled provider) > rejects merged grants, missing denies, network changes and host-side overrides on readback  527ms
+ ✓ tests/delegated-runtime.test.ts (34 tests) 9552ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1079ms
+   ✓ binds selected role policy to retirement and passes it to resume selection  308ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2031ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2035ms
+
+ Test Files  3 passed (3)
+      Tests  92 passed (92)
+   Start at  23:14:21
+   Duration  11.50s (transform 664ms, setup 0ms, collect 2.50s, tests 13.60s, environment 0ms, prepare 271ms)

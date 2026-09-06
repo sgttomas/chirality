@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/codex-containment.test.ts (3 tests) 184ms
+ ✓ tests/codex-supervisor.test.ts (23 tests) 812ms
+ ✓ tests/codex-session.test.ts (38 tests) 2881ms
+   ✓ persistent known-method Codex actor (controlled provider) > rejects merged grants, missing denies, network changes and host-side overrides on readback  364ms
+
+ Test Files  3 passed (3)
+      Tests  64 passed (64)
+   Start at  00:05:36
+   Duration  3.29s (transform 277ms, setup 0ms, collect 476ms, tests 3.88s, environment 0ms, prepare 190ms)

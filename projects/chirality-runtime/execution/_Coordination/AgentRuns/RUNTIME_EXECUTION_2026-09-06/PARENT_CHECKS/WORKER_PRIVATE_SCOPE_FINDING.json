@@ -1,0 +1,10 @@
+{
+  "status": "OPEN_AT_REVIEW; manager notified for repair",
+  "source": [
+    "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts"
+  ],
+  "finding": "Standalone hosted configuration passes the entire runtimeDirectory as worker privateDirectory while containment permits read/write to privateDirectory. Supervisor/client credentials and journals can therefore lie in the allowed worker subtree.",
+  "required_repair": "Allocate a dedicated worker-private subtree disjoint from broker supervisor/client credentials, journals and config; require actual foreign control-file read/write denials. Preserve provider-enabled command network as unverified configuration-only until actual evidence.",
+  "reviewer": "/root HELP_HUMAN OpenAI GPT-6; exact serving ID unavailable; role not mechanically enforced"
+}

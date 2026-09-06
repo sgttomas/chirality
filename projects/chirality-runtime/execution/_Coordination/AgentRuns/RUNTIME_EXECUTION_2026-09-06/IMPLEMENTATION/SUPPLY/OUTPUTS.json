@@ -1,0 +1,4 @@
+{
+  "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e",
+  "tests/exact-supply.test.ts": "81307860842fd1d98a51238688de6c415f78fe053340b7a5d03730216c63d5fa"
+}

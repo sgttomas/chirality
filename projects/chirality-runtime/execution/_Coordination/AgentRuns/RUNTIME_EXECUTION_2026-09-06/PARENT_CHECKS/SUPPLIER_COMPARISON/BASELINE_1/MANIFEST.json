@@ -1,0 +1,10 @@
+{
+  "resultSha256": "98f721f6316522d282045a935b3e878e23c18640ed01c60388ba08b69bc5490d",
+  "testExitCode": 1,
+  "meaning": "Unmodified locally built source baseline fails required project write canary; paired control, not passing conformance.",
+  "executablePath": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server",
+  "supplierSha256": "a3ac0445f8fab23c62a97f3c9c8e420f094b67927948c1cfa69390b6e0742f93",
+  "size": 241191088,
+  "acceptedSupplyChanged": false,
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

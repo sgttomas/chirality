@@ -1,0 +1,19 @@
+{
+  "status": "Candidate native-posture compiler revised after independent review; production conformance remains separately gated",
+  "changes": [
+    "Explicit network_proxy feature false/off and true/ask,on; table enabled alone does not start proxy.",
+    "Policy digest version3 includes feature state and complete expected network/approval settings.",
+    "Canonical immutable regular-file reads permitted; curl leaf checked without adding parentdirectory."
+  ],
+  "sourceBasis": "Exact source commit758ef40f50c1a458425c7cfbf1eb12cbc07af0b0; permissions.rs120-130,507-519; features/src/lib.rs NetworkProxy; network-proxy reserved listeners/environment",
+  "checks": [
+    "Native compiler controlled test passed after feature fix and exact-file read support.",
+    "Earlier full3 containment tests passed outside enclosing sandbox; no repeat kernel claim from later purecompiler test.",
+    "Parent exact ASK_1 and ON_1 config/text/resume observed; not networkcommandconformance."
+  ],
+  "sourcePins": {
+    "packages/daemon/src/codex-containment.ts": "879e80de4aadd8c3a67656ebf056c31972969e9f8e4a2bc668d6bb83636e6649",
+    "tests/codex-containment.test.ts": "f9367f9ede25e75a1f02f51404e64a84b7569e451469c2a2ec8a990bdb49069e"
+  },
+  "historicalEvidence": "CHECKS.json and original preimages retain earlier candidate hashes/assumptions; this record supersedes the implicit proxy-start assumption."
+}

@@ -1,0 +1,5 @@
+{
+  "exit": 1,
+  "stdout": "",
+  "stderr": "python3: error: couldn't create cache file '/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/xcrun_db-gs3aH1kg' (errno=Operation not permitted)\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nPermissionError: [Errno 1] Operation not permitted\n"
+}

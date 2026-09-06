@@ -1,0 +1,20 @@
+{
+  "packages/daemon/src/codex-session.ts": "f8ff20a83d794d0cccfb6c7a31ee8d81f72cdf7abad40ff7dc2fcd840e82c012",
+  "packages/daemon/src/codex-supervisor.ts": "6c96b27a66c469bbbdd00d4f31a9db73a35d20e6040aa331826f23e93083ec0f",
+  "packages/daemon/src/codex-login.ts": "31753ae41c77ea317c5d1ad7f915f81d790ab3377768f5d878a25287c156f357",
+  "packages/daemon/src/codex-containment.ts": "51eda462da8b3cb18b44f743a7e1022c9fb16caa1b1a46998aa8cb31f37d1603",
+  "packages/daemon/src/codex-worker.ts": "0954da134c0074ead083b2ea5ca34970d9536ff4eafdb921c4c5dcf7789c7030",
+  "packages/daemon/src/standalone.ts": "5d43fb0915183143e4cae7d2aa8f195c4c34e787148f761691fa5f341b72a35d",
+  "packages/daemon/src/standalone-bin.ts": "cfc3e93a22675c0847b2037a9eab3d594d2fab5ea4d06eaaa5d4afb0402f404c",
+  "packages/daemon/src/runtime-daemon.ts": "6b3893a2adb237b9676c5c68bec8b0a93a9bde75e679f4374108be2895a0f2dd",
+  "packages/daemon/src/supervisor-server.ts": "164ebcc42bd9c329ea122569800d6f072ffade5d17ca362390250cedc6adc3a3",
+  "packages/core/src/delegated-runtime.ts": "be2e370878ddd37322b9db91cc93186821ea64d2b7c52132e36eb6ad408e8af7",
+  "packages/core/src/worker-retirement.ts": "cbcd87d486d4c3626ae75454d314292ef0d6a728b0da6f7263266051d2db67ab",
+  "packages/core/src/role-policy.ts": "96db623331afcd4d83c0ee8d13d0e63363657165596761e7f5f611c559056f0c",
+  "packages/core/src/approval-store.ts": "d28f83f9fbc3fa822539ee03f8bc3854532c7c45924a681ad73207b45fb36a56",
+  "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e",
+  "packages/contracts/src/v2-events.ts": "57871a577546156ea9701bad96d8594ac85bc7cf597d90bde1a2f018cf54b15e",
+  "packages/contracts/src/delegated.ts": "b531cdab31531df897652f6826cc0999d58e2b6cd180ac62e3c5632d49abefc6",
+  "packages/client/src/client.ts": "8e40b4f567ace00093d2121daf4d03f6c7e2eff4d90ab0cc9db189387b5f6e57",
+  "packages/cli/src/cli.ts": "0540effe339830e49cf732a3091dcfb38fac400890dbe95896c550052646d107"
+}

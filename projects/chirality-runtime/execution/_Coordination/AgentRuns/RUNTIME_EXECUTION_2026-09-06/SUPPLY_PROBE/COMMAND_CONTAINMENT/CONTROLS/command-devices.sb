@@ -1,0 +1,11 @@
+(version 1)
+(allow default)
+(deny network*)
+(deny file-write*)
+(allow file-write* (subpath "/private/tmp/runtime-execution-20260906/supply"))
+(deny file-read* (subpath "/Users/ryan"))
+(deny mach-lookup (global-name "com.apple.securityd"))
+
+(allow file-write-data (literal "/dev/null") (literal "/dev/zero") (subpath "/dev/fd"))
+(allow file-write* (literal "/dev/ptmx"))
+(allow file-write* (require-all (regex #"^/dev/ttys[0-9]+") (extension "com.apple.sandbox.pty")))

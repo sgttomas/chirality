@@ -1,0 +1,65 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/delegated-runtime.test.ts packages/cli/test/cli.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ packages/cli/test/cli.test.ts (30 tests | 1 failed) 25ms
+   ✓ chirality CLI > runs an Agent 1 request from a brief file and emits UIEvent NDJSON 3ms
+   ✓ chirality CLI > accepts a session-turn request through stdin and keeps human output non-JSON 0ms
+   ✓ chirality CLI > propagates a failed session turn process exit 0ms
+   ✓ chirality CLI > rejects an Agent 1 stream that ends without process:exit 0ms
+   ✓ chirality CLI > has no credential command surface 0ms
+   ✓ chirality CLI > does not reject ordinary request paths or model IDs containing credential-like words 1ms
+   ✓ chirality CLI > renders and installs a private opt-in LaunchAgent without a model argument 9ms
+   ✓ chirality CLI > escapes executable and log paths in the LaunchAgent plist 0ms
+   ✓ chirality CLI > renders KeepAlive=true so launchd also restarts after a clean exit 0ms
+   ✓ chirality CLI > omits KeepAlive entirely when restarts are not wanted 0ms
+   ✓ chirality CLI > pins EnvironmentVariables, RunAtLoad and ThrottleInterval when supplied 0ms
+   ✓ chirality CLI > omits the EnvironmentVariables block when no variables are pinned 0ms
+   ✓ chirality CLI > keeps the historical plist as the default so existing callers are unchanged 0ms
+   ✓ chirality CLI > routes an overridden label through the plist path, service name and plist body 6ms
+   ✓ chirality CLI > kickstarts only when bootstrap did not itself start the job 0ms
+   ✓ chirality CLI > still fails loudly when bootstrap fails for a reason other than already-loaded 1ms
+   ✓ resolveRuntimeLaunchAgentOptions > pins a self-describing job environment: runtime directory, label and posture 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > pins the isolated label into the job so children cannot escape isolation 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > resolves a relative runtime directory so a plist never carries one 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > reads the full posture from the environment 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > pins the configured instruction root into the managed daemon 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > accepts the documented false spellings for RunAtLoad 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > omits unrecognised or blank values so each option keeps its default 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > rejects a negative throttle interval 0ms
+   ✓ resolveRuntimeLaunchAgentOptions > renders the intended plist end to end from environment alone 0ms
+   ✓ preserves every compatibility mismatch machine field on CLI stderr 0ms
+   ✓ routes explicit operator login through the daemon client without opening a browser 0ms
+   ✓ offers explicit Agent2 delegated CLI turns without assigning a model from role 0ms
+   ✓ requires an explicit CLI consent act before contacting the daemon 0ms
+   × keeps delegated approval attribution and unapplied result explicit 3ms
+     → expected 2 to be +0 // Object.is equality
+ ✓ tests/delegated-runtime.test.ts (29 tests) 6898ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1001ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2026ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2029ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/cli/test/cli.test.ts > keeps delegated approval attribution and unapplied result explicit
+AssertionError: expected 2 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 2
+
+ ❯ packages/cli/test/cli.test.ts:692:126
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 58 passed (59)
+   Start at  21:56:47
+   Duration  7.25s (transform 189ms, setup 0ms, collect 323ms, tests 6.92s, environment 0ms, prepare 70ms)

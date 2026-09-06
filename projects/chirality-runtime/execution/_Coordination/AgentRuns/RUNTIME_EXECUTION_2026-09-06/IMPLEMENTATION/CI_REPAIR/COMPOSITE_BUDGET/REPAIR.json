@@ -1,0 +1,8 @@
+{
+  "authority": "Owner full-PR closeout; bounded parent test repair",
+  "basis": "Repeated Linux aggregate failures of distinct multi-job scenarios at5s; latest rotation starts3 jobs and timed out5128ms while single operations completed.",
+  "change": "Only6 multi-job test declarations (7 parameterized cases) receive30s composite ceiling for up to3 readiness+3 shutdown budgets. Every readiness/stop remains5s; expected-rejection launches now explicitly bound exit to5s. All auth/generation/exit/cleanup assertions retained. No production code or accepted native10s/60s limits change.",
+  "beforeSha256": "b6abdcab5794cf1fb911797b850af1285576e19fc746a4b054628d278d8fa938",
+  "afterSha256": "ab697a4a8949de40d00e0cf85e7162453061636b8ba03469ca6ac0f41b530a4b",
+  "attribution": "HELP_HUMAN OpenAI GPT-6; exact serving model ID unavailable; Agent0 role not mechanically enforced"
+}

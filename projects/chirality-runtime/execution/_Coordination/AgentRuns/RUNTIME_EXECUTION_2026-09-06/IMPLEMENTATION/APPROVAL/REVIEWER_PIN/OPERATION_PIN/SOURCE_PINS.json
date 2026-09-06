@@ -1,0 +1,8 @@
+{
+  "commit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "files": {
+    "codex-rs/app-server/src/request_processors/thread_processor.rs": "49269190a4962d74e51678774c07b2e06bb19e54806f7fecf0cc1ef2250fa8d4",
+    "codex-rs/app-server-protocol/src/protocol/v2/thread.rs": "27b068150d650ec6da10cd811cd176a72dd7844d701ff351989f4423032a0e07",
+    "codex-rs/app-server-protocol/src/protocol/v2/turn.rs": "3d76c3154f5d092eb2460fa77f1e8befdf4255447afb741724658afbf30a7704"
+  }
+}

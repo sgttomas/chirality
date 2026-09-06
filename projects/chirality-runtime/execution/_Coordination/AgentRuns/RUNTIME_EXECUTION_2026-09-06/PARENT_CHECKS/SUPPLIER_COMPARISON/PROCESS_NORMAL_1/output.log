@@ -1,0 +1,41 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-process-conformance.test.ts (2 tests | 1 failed) 3691ms
+   ✓ constructs fixed owned-PID probes without accepting arbitrary target syntax 1ms
+   × P2 actual exact App Server process boundary, deterministic local model > checks the explicitly selected bounded process profile 3689ms
+     → expected 'Chunk ID: 0ed8c4\nWall time: 0.0000 s…' to contain 'PROCESS_STARTEDFOREGROUND_CHILD_DONES…'
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-process-conformance.test.ts > P2 actual exact App Server process boundary, deterministic local model > checks the explicitly selected bounded process profile
+AssertionError: expected 'Chunk ID: 0ed8c4\nWall time: 0.0000 s…' to contain 'PROCESS_STARTEDFOREGROUND_CHILD_DONES…'
+
+- Expected
++ Received
+
+- PROCESS_STARTEDFOREGROUND_CHILD_DONESIGNAL_DENIEDPROCESS_FINISHED
++ Chunk ID: 0ed8c4
++ Wall time: 0.0000 seconds
++ Process exited with code 0
++ Original token count: 48
++ Output:
++ Error opening /private/var/select/sh: Operation not permitted
++ PROCESS_STARTEDError opening /private/var/select/sh: Operation not permitted
++ FOREGROUND_CHILD_DONESIGNAL_DENIEDPROCESS_FINISHED
+
+ ❯ tests/exact-process-conformance.test.ts:81:66
+     79|           const returned = provider.records.flatMap((record: any) => r…
+     80|           expect(returned.length).toBeGreaterThan(0);
+     81|           for (const output of returned) { expect(output.output).toCon…
+       |                                                                  ^
+     82|         }
+     83|       } else {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  00:11:49
+   Duration  4.00s (transform 103ms, setup 0ms, collect 139ms, tests 3.69s, environment 0ms, prepare 39ms)

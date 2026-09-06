@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "stdout": "{\"id\":1,\"result\":{\"userAgent\":\"chirality_runtime_offline_probe/0.149.0 (Mac OS 26.6.2; arm64) unknown (chirality_runtime_offline_probe; 0.0.0)\",\"codexHome\":\"/private/tmp/runtime-execution-20260906/supply/home\",\"platformFamily\":\"unix\",\"platformOs\":\"macos\"}}\n{\"method\":\"remoteControl/status/changed\",\"params\":{\"status\":\"disabled\",\"serverName\":\"Ryans-MacBook-Pro.local\",\"installationId\":\"5835c8ad-e246-41e4-8d50-4b1280883dc1\",\"environmentId\":null},\"emittedAtMs\":1788663319905}\n",
+  "stderr": ""
+}

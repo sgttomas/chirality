@@ -1,0 +1,24 @@
+{
+  "amendment": 9,
+  "authority": "OWNER_DIRECTION.md: complete ordinary Runtime implementation; local oMLX testing explicitly authorized by user",
+  "basis": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/PI_BINDING_ASSESSMENT/ASSESSMENT.md",
+  "basis_sha256": "bd4a177f90fd4c56e4f5d6c9ebf34be93991fda013fa48f00f903a585d7ae663",
+  "additional_write_paths": [
+    "packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+    "packages/engine-pi-omlx/src/pi-read-tool.ts",
+    "packages/engine-pi-omlx/src/pi-event-mapper.ts",
+    "tests/pi-turn-runtime.test.ts",
+    "tests/pi-omlx-integration.test.ts",
+    "packages/engine-pi-omlx/package.json",
+    "packages/engine-pi-omlx/src/index.ts",
+    "packages/daemon/package.json",
+    "packages/daemon/tsconfig.json",
+    "packages/daemon/src/standalone.ts",
+    "tests/standalone.test.ts",
+    "package-lock.json"
+  ],
+  "path_base": "projects/chirality-runtime",
+  "scope": "Implement the assessed concrete exact Pi 0.82.0 SDK port, bounded read tool, closed event mapping, opt-in local-only daemon composition and real registered-engine integration tests. Runtime-local dependency locks only. Preserve pilot authority and strict loopback transport; no ambient resource/tool loading, global fetch patch, automatic model fallback or lifecycle promotion. Parent owns live credential use; children use synthetic providers only. Serialize overlapping standalone edits. Existing authorized integration paths may change as needed.",
+  "acceptance": "Real client-daemon-Pi-local fake provider turn plus interruption, read containment and redirect refusal; full regression and independent review. Parent subsequently performs live oMLX limb. TM-ROOT-106 remains unresolved release authority; candidate implementation does not dispose it.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

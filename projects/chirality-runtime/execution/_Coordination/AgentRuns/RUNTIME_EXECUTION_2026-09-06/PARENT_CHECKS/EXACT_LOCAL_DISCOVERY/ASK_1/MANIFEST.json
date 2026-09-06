@@ -1,0 +1,12 @@
+{
+  "resultSha256": "cdcd250905e80c4ebf473f10a9187873e7a0bbb17d040a69602bc11a9df1139d",
+  "sourceHashesAfter": {
+    "packages/daemon/src/codex-containment.ts": "fced959621926958f658310eeb470c43c4069fa9da67c0bfc58235fa7e349585",
+    "packages/daemon/src/codex-session.ts": "b9ccb1e032df24b0b48f59ff5ba8e83a2d539ad5520b4c1fd45e401058a7e272",
+    "tests/exact-codex-conformance.test.ts": "0a7bea28ef31d40bf4cb9e8c2b248b78362e55fd065a89b9aae20ed98428a283",
+    "tests/fixtures/response-provider.mjs": "c0e1c240f7416ddbb2aac96b137cfbd0cef24a0f70199e03bb786bb9e4ff8304"
+  },
+  "beforeHashesCaptured": false,
+  "result": "PASS: exact native ask policy readback, text turn and cross-process resume only; no network command or kernel enforcement proof",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

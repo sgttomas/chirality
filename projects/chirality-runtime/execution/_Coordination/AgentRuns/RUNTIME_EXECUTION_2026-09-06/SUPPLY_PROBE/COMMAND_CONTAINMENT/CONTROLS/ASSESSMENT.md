@@ -1,0 +1,11 @@
+# Follow-up control calibration
+
+The earlier observed App Server command sandbox failure is real. It is not proof of a universal macOS nested-sandbox prohibition. Direct /usr/bin/true controls show identical outer/inner profiles succeed; distinct profiles tested here fail with sandbox_apply EPERM, including a strictly tighter inner profile. Original diagnostic read/write/Keychain/network restrictions were preserved for every App Server invocation. Controlled true-only profile variations contain no account/provider calls.
+
+Official current App Server documentation recommends readOnlyAccess for restricted reads, but the exact 0.149.0 parser rejects that field and directs permissionProfile instead. An empty permissionProfile map is rejected as requiring a string. permissionProfile/list returns the three built-in IDs; a private named profile with :minimal reads, scratch work/tmp writes, denied user-home reads and command network disabled parses, but command execution still returns exitCode71. A variant permitting only standard null/zero/fd/PTY device operations did not fix the failure. Baseline private config was restored after tests.
+
+No forbidden user path was read, no credential used, no network enabled for App Server, no model called, and no command success or containment conformance is claimed from these failures. The observed problem is the tested composition of distinct outer and vendor-generated command policies. It remains unresolved; do not remove the outer boundary or substitute danger-full-access to conceal it. A new architecture/policy decision is not presumed until a concrete compliant remedy or required change is identified. Current provider text validation and tool-capable validation remain separate.
+
+Documentation sources (method/config hints only, never exact-pin proof): https://learn.chatgpt.com/docs/app-server and https://learn.chatgpt.com/docs/config-file/config-reference . Local static string inspection of the exact payload identified embedded Seatbelt policy text and standard device operations; that is not a generated-profile or execution proof. No binary is included.
+
+Attribution: /root HELP_HUMAN, OpenAI GPT-6; exact serving ID unavailable; Agent0 role not mechanically enforced. Local diagnostic scripts are bounded evidence, not product APIs.

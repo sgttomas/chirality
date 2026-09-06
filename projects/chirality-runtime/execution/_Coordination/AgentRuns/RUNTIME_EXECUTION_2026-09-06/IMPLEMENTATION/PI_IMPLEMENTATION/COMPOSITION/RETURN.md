@@ -1,0 +1,15 @@
+# Composition return
+
+OpenAI GPT-6; exact serving model ID unavailable. Agent 2 role instruction-asserted, not mechanically enforced. No delegation.
+
+Implemented strict `local-engine-only` tagged private configuration. It permits only daemon role and has no Codex supervisor credential, worker executable, or CODEX_HOME fields. Requires prior project registration, disjoint canonical project/runtime roots, explicit literal loopback endpoint, exact model/limits, private model-selection approvalReference, and a 0600 owner-only JSON credential record `{providerId:"omlx",credential:"..."}`. Symlinks, unknown fields, remote endpoints and overlapping broker controls reject. Runtime files remain private.
+
+Real OmlxClient + ResidencyCoordinator + createPiTurnRuntime + createPiOmlxEngineAdapter are registered into RuntimeService. Exactly one already-loaded LLM must match the configured model; coordinator adopts that selection with the explicit approval reference. load/unload reject, no fallback. Adapter retains Agent2 and exactly-one-read-tool guards. Transport/resource/read enforcement lives in the separately owned Pi port, not this composition.
+
+`startLocalDaemon(config: LocalStandaloneConfig, injectedCredentials?: ProviderCredentialPort)` exports the same production composition for parent-authorized memory-only credential use. Injected mode validates the private configuration and project boundary without reading or writing credentialFile. No provider secret is returned by the factory. File-backed CLI delegates to the identical factory.
+
+Validation: npm run build PASS. Vitest tests/pi-omlx-integration.test.ts and tests/standalone.test.ts PASS: 16 tests total. Actual Pi0.82 SDK with disposable authenticated loopback provider: model read tool-call -> actual bounded file read -> second model completion -> authenticated client canonical SSE. Interrupt cancels a pending real SDK HTTP completion. Exact nonresident startup denies without load/unload. File and memory-only credentials both tested. Actual standalone-bin local-only child process starts without supervisor and exits with SIGTERM; previous two-job regression cases pass.
+
+Important operational precondition: integration seeds a governed Agent2 session via SessionStore and explicitly records this assumption. Public RuntimeService.createSession still correctly forbids direct Agent2 creation. Existing Agent1RunCoordinator can create governed local children but needs actual Agent1ManagerRuntimePort and RuntimeToolBindingPort; this local-only factory does not yet compose those. Therefore this result proves execution of pre-admitted governed children, not a complete human-to-manager operational entry. Parent notified. No local Agent1, ambient resources, user credentials, actual local server, or hosted provider were used.
+
+TM-ROOT-106 remains open; candidate Pi0.82 execution is not a version/family acceptance disposition. No owner ruling, lifecycle transition, installation or publication performed. Parent fan-in and operational entry composition remain.

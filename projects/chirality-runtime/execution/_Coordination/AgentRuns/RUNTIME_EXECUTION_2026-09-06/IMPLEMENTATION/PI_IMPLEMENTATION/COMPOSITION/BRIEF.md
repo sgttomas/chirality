@@ -1,0 +1,3 @@
+# Local Pi/oMLX composition
+
+Parent AMENDMENT9 release. OpenAI GPT-6; exact serving model ID unavailable. Agent 2 role instruction-asserted, not mechanically enforced; no delegation. Write scope standalone.ts, standalone.test.ts, pi-omlx-integration.test.ts and this evidence directory only. Implement tagged local-engine-only daemon using real Pi SDK adapter, exact resident model, one bounded read tool, explicit private loopback credential. Controlled loopback provider fixtures only; no operational account or credential use. TM-ROOT-106 remains open. Validate authenticated client SSE and interruption, privacy and no supervisor dependency.

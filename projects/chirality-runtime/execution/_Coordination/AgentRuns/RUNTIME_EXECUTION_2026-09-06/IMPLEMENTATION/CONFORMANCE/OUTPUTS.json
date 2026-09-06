@@ -1,0 +1,9 @@
+{
+  "packages/core/src/runtime-conformance.ts": "c55fc6a67fd2f3f9392220b0fce1add166488dd1fa64c1e405ced2aa6180bb4a",
+  "packages/core/src/index.ts": "e0cff467a9dfb9ee63fedfa4f8800010a464b37c40cca7f05d219307a25a62cc",
+  "packages/daemon/src/codex-supervisor.ts": "3d01e4a7d53acbdfeb30ef375b5760977f9ca07c4789b78d665a56ad17529f69",
+  "packages/daemon/src/standalone.ts": "8785ecabfad2ace598ce868cb16cca287cf6e2db564a2246dad17c5d8104bcab",
+  "tests/runtime-conformance.test.ts": "0b2645d966a122e8e8e88430fc651f60ea48c20349e4f1023fe51dc4df2cb127",
+  "tests/codex-supervisor.test.ts": "4ab83338568e3246628570cf58950803b61b897b808160878d1e387e5f654415",
+  "tests/standalone.test.ts": "a5afbf4cd198c454d51d9f7c5a08bf80862ba04a1dc812ddc244862703f2b1d5"
+}

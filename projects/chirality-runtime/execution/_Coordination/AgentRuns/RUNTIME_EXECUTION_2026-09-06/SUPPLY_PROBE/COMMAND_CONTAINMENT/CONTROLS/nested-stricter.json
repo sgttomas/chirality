@@ -1,0 +1,17 @@
+[
+  {
+    "inner": "matrix2-network-home.sb",
+    "exit_code": 71,
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "inner": "matrix2-network-write.sb",
+    "exit_code": 71,
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "inner": "matrix2-network-keychain.sb",
+    "exit_code": 71,
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  }
+]

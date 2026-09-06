@@ -1,0 +1,1 @@
+Independent A1/A2 repair backcheck only: proxy feature compiler/digest/effective actor readback and asynchronous transport failure. Controlled tests, no product writes or real providers/vendor. Parent confirmed source freeze. Core A3 findings remain open and are excluded from this verdict. Attribution OpenAI GPT-6, serving ID unavailable; Agent 2 instruction-asserted.

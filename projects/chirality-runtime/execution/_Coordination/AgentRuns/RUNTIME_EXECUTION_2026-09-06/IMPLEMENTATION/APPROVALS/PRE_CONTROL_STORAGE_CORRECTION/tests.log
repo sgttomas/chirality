@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/approval-store.test.ts (19 tests) 552ms
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  21:23:27
+   Duration  740ms (transform 51ms, setup 0ms, collect 68ms, tests 552ms, environment 0ms, prepare 24ms)

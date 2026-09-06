@@ -1,0 +1,5 @@
+# P2 process fixture follow-on
+
+Parent bounded Agent2 dispatch after containment initial handoff. OpenAI GPT-6; exact serving ID unavailable; role instruction-asserted/not mechanically enforced. Own tests/exact-process-conformance.test.ts and tests/fixtures/process-response-provider.mjs only, plus this PROCESS evidence. Read remaining-limbs PLAN.md P2 and initial PROCESS RETURN/seal. Preserve initial artifacts. Improve bounded diagnostics and cleanup reliability; controlled construction/protocol checks only. Parent alone may execute the exact vendor opt-in. No vendor/account/external calls, installation, product implementation edits or owner acts. Private actor cancellation/timeout does not establish public Runtime cancellation.
+
+Acceptance: failure phase and cleanup facts survive cleanup errors; only actually owned sibling/group signals, no model-reported PID signals; start/end and identity checks distinguish command denial from startup failure. Source/supply/profile/timing evidence remains explicit, actual candidate remains unaccepted. Report any actual native-child survival as an unresolved observation, never widen cleanup authority.

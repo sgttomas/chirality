@@ -1,0 +1,16 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/standalone.test.ts (12 tests) 9934ms
+   ✓ actual two-job standalone runtime > executes client consent and turn through two separate jobs and cleans SIGTERM sockets  1474ms
+   ✓ actual two-job standalone runtime > rotates credentials across supervisor jobs and starts the daemon with the new generation  2129ms
+   ✓ actual two-job standalone runtime > refuses a forged or nonprivate supervisor credential at daemon startup  2097ms
+   ✓ actual two-job standalone runtime > does not rotate a live supervisor credential when a duplicate job is refused  1223ms
+   ✓ actual two-job standalone runtime > does not implicitly register the configured project  1126ms
+   ✓ actual two-job standalone runtime > refuses a credential symlink before opening the daemon  1140ms
+   ✓ starts a real local-only daemon job without any Codex supervisor credential  609ms
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  00:48:30
+   Duration  10.79s (transform 194ms, setup 0ms, collect 723ms, tests 9.93s, environment 0ms, prepare 31ms)

@@ -1,0 +1,37 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-codex-conformance.test.ts (8 tests | 1 failed) 3728ms
+   ✓ bounds the local fake Responses peer and captures schemas without retaining prompts 20ms
+   ✓ uses observed namespace call fields and stages shell diagnostics before descendant dispatch 12ms
+   ✓ selects only the advertised harmless dynamic review tool and verifies its result marker 3ms
+   ✓ sequences managed delegation and review using returned child identity and marker 5ms
+   ✓ scrubs credential-shaped stderr while retaining launch diagnostics 0ms
+   ✓ validates the trusted exact command posture without silently widening defaults 1ms
+   ✓ requires a complete strict candidate identity and detects changed controlled bytes without executing them 4ms
+   × opt-in accepted exact supplier or unaccepted candidate with deterministic local model > runs actual primary and native descendant actions under the named policy 3683ms
+     → expected 'failed' to be 'completed' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-codex-conformance.test.ts > opt-in accepted exact supplier or unaccepted candidate with deterministic local model > runs actual primary and native descendant actions under the named policy
+AssertionError: expected 'failed' to be 'completed' // Object.is equality
+
+Expected: "completed"
+Received: "failed"
+
+ ❯ tests/exact-codex-conformance.test.ts:310:31
+    308|       const terminal = await actor.waitTurn(turnId);
+    309|       observations.terminal = terminal; observations.policy = { profil…
+    310|       expect(terminal.status).toBe('completed'); expect(provider.failu…
+       |                               ^
+    311|       if (dynamicOnly) {
+    312|         expect(terminal.output).toContain('DETERMINISTIC_DYNAMIC_COMPL…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  23:34:58
+   Duration  4.08s (transform 104ms, setup 0ms, collect 134ms, tests 3.73s, environment 0ms, prepare 49ms)

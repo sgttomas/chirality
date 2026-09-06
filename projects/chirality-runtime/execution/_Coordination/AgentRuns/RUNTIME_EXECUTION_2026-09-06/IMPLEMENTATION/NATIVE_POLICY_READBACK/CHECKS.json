@@ -1,0 +1,9 @@
+{
+  "typecheck": {
+    "exit_code": 0
+  },
+  "session_tests": {
+    "passed": 16,
+    "exit_code": 0
+  }
+}

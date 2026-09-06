@@ -1,0 +1,11 @@
+{
+  "packages/daemon/src/codex-manager.ts": "fa4801798bbaefb72278085706782e731bc642b8036c7da4a875ab5275299812",
+  "packages/daemon/src/standalone.ts": "8785ecabfad2ace598ce868cb16cca287cf6e2db564a2246dad17c5d8104bcab",
+  "packages/daemon/src/runtime-daemon.ts": "1142590160e744eed7d1c96406f95f9934c199d25f39f3c5e38bf22bbeb6ffad",
+  "packages/daemon/src/codex-supervisor.ts": "3d01e4a7d53acbdfeb30ef375b5760977f9ca07c4789b78d665a56ad17529f69",
+  "packages/core/src/agent1-run-coordinator.ts": "3f50333a7cf1c826a0fa6735eda54da01b767c9b4d9dc4b67e705f1af35ae8ec",
+  "packages/core/src/delegated-runtime.ts": "e37e3aa041f50f6ee813eba3b4516a92ca432db9518adbc7fe93205d36dcba9d",
+  "packages/core/src/approval-store.ts": "1d0c057007121c406e59235170dbbc60efad64318e9086ba1709bd9f16fca850",
+  "packages/client/src/client.ts": "958a50d18f4a337cf75ac93cc538cb93e53e0a18776ea272c6e1395e3c959866",
+  "packages/contracts/src/delegated.ts": "47af5982b036c78a3a3f86fe649d18339296b0875255ba117ae36e93e99e53e5"
+}

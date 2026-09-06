@@ -1,0 +1,19 @@
+{
+  "authority": "OWNER_DIRECTION.md",
+  "scope": "Exact supply verification, known-method-only JSONL adapter handshake, render-only two-job composition and usage documentation. No install/account/modelturn/pin change or unsupported protocol inference. Actual providerexecution requires verified hardenvelope and appropriate liveaccount act.",
+  "additional_write_paths": [
+    "projects/chirality-runtime/packages/core/src/exact-supply.ts",
+    "projects/chirality-runtime/packages/daemon/src/codex-worker.ts",
+    "projects/chirality-runtime/packages/cli/src/runtime-jobs.ts",
+    "projects/chirality-runtime/tests/exact-supply.test.ts",
+    "projects/chirality-runtime/tests/codex-worker.test.ts",
+    "projects/chirality-runtime/packages/cli/test/runtime-jobs.test.ts",
+    "projects/chirality-runtime/packages/cli/src/launch-agent.ts",
+    "projects/chirality-runtime/packages/cli/src/index.ts",
+    "projects/chirality-runtime/packages/daemon/src/index.ts",
+    "projects/chirality-runtime/packages/core/src/index.ts",
+    "projects/chirality-runtime/README.md"
+  ],
+  "prerequisite": "ParentverifiedN0N6spec, currentintegratedcandidate5testsPASS; supply probe actualfacts consumed on validatedreturn only.",
+  "parent": "/root HELP_HUMAN"
+}

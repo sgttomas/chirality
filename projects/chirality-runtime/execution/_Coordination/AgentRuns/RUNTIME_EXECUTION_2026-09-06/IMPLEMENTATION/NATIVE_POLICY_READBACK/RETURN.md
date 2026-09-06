@@ -1,0 +1,11 @@
+# Effective native policy readback
+
+verifyNativePolicy(expectedPermissions) accepts one trusted exact filesystem/network table, copies and freezes it, derives the unique bounded project write root, and invokes observed config/read with includeLayers:true and cwd. It requires exact selected config.permissions[boundProfile] equality including keys; missing denies, additional paths/presets, extra profile-table properties and network mismatches reject. Digest alone supplies no enforcement evidence.
+
+Safe host posture requires approval_policy never, login shells false, plugins feature false, empty/null hooks/MCP/notify/plugin/profile overlays, and no project configuration except the expected project's trusted marker. Missing selected policy rejects. Caller cannot replace the trusted expected table. Readback repeats automatically before thread/start, thread/resume and every turn/start. Thread creation cwd must equal the verified project write root. Raw config/account data are not exposed in results or errors.
+
+Actual source basis: SUPPLY_PROBE/interactive.json contains observed config/read result.config/origins/layers envelope. Its base permissions value was null, so this evidence does not claim a positively observed exact-payload selected named table. Parent's actual controlled-provider probe must confirm the compiled table's effective representation before reliance.
+
+Validation: workspace typecheck PASS;16 actual controlled-process session tests PASS (906ms). Added exact readback framing, extra grant/preset/missing deny/network mismatch and hooks/MCP/notify/project overrides, expected-table replacement refusal, and drift introduced between thread admission and turn prevented before turn request. Existing native profile bindings/persistence/login isolation/terminal tests remain passing.
+
+Time-of-check limitation: the vendor may reload mutable configuration after config/read and before an operation. Highest-precedence launch configuration plus immediate per-operation reads reduce drift but do not establish atomic vendor configuration sealing. No kernel or provider proof is inferred. No actual provider invocation/account/network. Prior actor/test bytes preserved and prior seals unchanged. GPT-6 Agent2, exact serving ID unavailable, role instruction-asserted/not mechanically enforced, no delegation.

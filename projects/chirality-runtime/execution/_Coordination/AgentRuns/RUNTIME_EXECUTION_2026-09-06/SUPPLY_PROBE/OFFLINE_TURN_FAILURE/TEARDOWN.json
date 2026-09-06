@@ -1,0 +1,9 @@
+{
+  "failure_home_exists": false,
+  "failure_work_exists": false,
+  "failure_tmp_exists": false,
+  "account_was_null": true,
+  "auth_file_after": false,
+  "process_exit": 0,
+  "terminal_turn_observed": false
+}

@@ -1,0 +1,34 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-role-conformance.test.ts (2 tests | 1 failed) 373ms
+   ✓ preserves native namespace and refuses an invented native function 1ms
+   × actual public role parity and native descent without implicit Chirality role assignment 372ms
+     → Exact role fixture failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-role-conformance.test.ts > actual public role parity and native descent without implicit Chirality role assignment
+AssertionError: Exact role fixture failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-role-conformance.test.ts:148:83
+    146|     await mkdir(evidence, { recursive: true, mode: 0o700 }); await wri…
+    147|   }
+    148|   expect(result.passed, 'Exact role fixture failed; inspect calibrated…
+       |                                                                                   ^
+    149| }, 70000);
+    150|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  00:18:29
+   Duration  929ms (transform 218ms, setup 0ms, collect 294ms, tests 373ms, environment 0ms, prepare 68ms)

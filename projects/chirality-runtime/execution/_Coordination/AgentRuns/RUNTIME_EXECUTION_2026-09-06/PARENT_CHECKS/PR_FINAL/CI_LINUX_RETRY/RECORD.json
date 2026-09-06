@@ -1,0 +1,18 @@
+{
+  "runId": 34018299959,
+  "headPrefix": "364ef57fd",
+  "attempt1": "Runtime suite passed; App Electron binary download failed before daemon readiness",
+  "attempt2": "Runtime466 passed16 skipped; combined credential-startup scenario timed out5083ms against5s; platform and approval repairs passed",
+  "logs": [
+    {
+      "attempt": 1,
+      "rawSha256": "3006c3e10b9d69768cc877ff76b1b55a86b093c47a10cf1db411d9497e98d505",
+      "presentationSha256": "8095e8a73065ea3e9ca163da1875069124e992ee2e02ff5b54f8279045d6e2ad"
+    },
+    {
+      "attempt": 2,
+      "rawSha256": "4eefaf93d51a923380b5312f80eafce57e98376977d207f0b0c0de37f136354b",
+      "presentationSha256": "4d7653646462ffbb01cea2c0710b5b8ead0b57704628539a66029dc7a38c7898"
+    }
+  ]
+}

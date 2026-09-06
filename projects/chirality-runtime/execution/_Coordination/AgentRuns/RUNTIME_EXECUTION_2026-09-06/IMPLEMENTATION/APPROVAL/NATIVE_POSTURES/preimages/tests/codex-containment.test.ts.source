@@ -1,0 +1,117 @@
+import { describe, expect, it } from 'vitest';
+import { mkdtemp, mkdir, realpath, readFile, writeFile, rm, access, symlink, chmod } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { prepareCodexContainment, prepareCodexNativePolicy } from '../packages/daemon/src/codex-containment.js';
+
+describe.skipIf(process.platform !== 'darwin')('actual macOS Codex containment', () => {
+  it('contains shell and subprocess access offline and preserves supplied account files', async () => {
+    const base = await mkdtemp(join(await realpath(tmpdir()), 'containment-test-'));
+    const root = join(base, 'project'); const priv = join(base, 'private'); const home = join(priv, 'codex');
+    await mkdir(root); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
+    const outside = join(base, 'unrelated'); await writeFile(outside, 'not-readable');
+    await writeFile(join(home, 'sentinel'), 'preserve');
+    try {
+      const prepared = await prepareCodexContainment({ canonicalRoot: root, privateDirectory: priv, codexHome: home });
+      const run = (command: string) => spawnSync('/usr/bin/sandbox-exec', [...prepared.args, '/bin/sh', '-c', command], { env: prepared.environment, cwd: root, encoding: 'utf8' });
+      const shellQuote = (s: string) => "'" + s.replaceAll("'", "'\\''") + "'";
+      const control = join(base, 'broker-control'); await mkdir(control, { mode: 0o700 });
+      const credential = join(control, 'credential'); await writeFile(credential, 'synthetic-control-secret');
+      const controlRead = run(`/bin/cat ${shellQuote(credential)}`);
+      expect(controlRead.status).not.toBe(0); expect(controlRead.stdout).not.toContain('synthetic-control-secret');
+      const controlWrite = run(`echo corrupted > ${shellQuote(credential)}`);
+      expect(controlWrite.status).not.toBe(0); expect(await readFile(credential, 'utf8')).toBe('synthetic-control-secret');
+      const nested = run(`/usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /usr/bin/true`);
+      // This inner allow-default profile requests rights absent from the outer profile.
+      expect(nested.status, JSON.stringify(nested)).not.toBe(0);
+      expect(nested.stderr).toContain('sandbox_apply');
+      const compatibleNested = run(`/usr/bin/sandbox-exec -f ${shellQuote(prepared.sandboxProfilePath)} /usr/bin/true`);
+      expect(compatibleNested.status, JSON.stringify(compatibleNested)).toBe(0);
+      const allowed = run(`echo permitted > ${shellQuote(join(root, 'allowed'))}`);
+      expect(allowed.status, JSON.stringify(allowed)).toBe(0);
+      expect((await readFile(join(root, 'allowed'), 'utf8')).trim()).toBe('permitted');
+      const deniedWrite = run(`echo forbidden > ${shellQuote(join(base, 'outside-write'))}`);
+      expect(deniedWrite.status).not.toBe(0); await expect(access(join(base, 'outside-write'))).rejects.toThrow();
+      await symlink(outside, join(root, 'escape'));
+      const escaped = run(`/bin/cat ${shellQuote(join(root, 'escape'))}`);
+      expect(escaped.status).not.toBe(0); expect(escaped.stdout).not.toContain('not-readable');
+      const deniedRead = run(`/bin/cat ${shellQuote(outside)}`);
+      expect(deniedRead.status).not.toBe(0); expect(deniedRead.stdout).not.toContain('not-readable');
+      // A real subprocess attempts a local socket. No external host/account is contacted.
+      const network = run('/usr/bin/nc -l 127.0.0.1 0');
+      expect(network.status).not.toBe(0); expect(network.stderr).toMatch(/permitted|permission/i);
+      await expect(prepared.launchArguments('/bin/sh')).rejects.toThrow('within');
+      expect(prepared.config.allow_login_shell).toBe(false);
+      expect(prepared.commandNetworkBoundary).toBe('outer-sandbox-denied');
+      expect(prepared.environment).not.toHaveProperty('SSH_AUTH_SOCK');
+      await prepared.cleanup();
+      expect(await readFile(join(home, 'sentinel'), 'utf8')).toBe('preserve');
+    } finally { await rm(base, { recursive: true, force: true }); }
+  });
+  it('rejects unsafe directory permissions and incomplete consent', async () => {
+    const base = await mkdtemp(join(await realpath(tmpdir()), 'containment-invalid-'));
+    const root = join(base, 'root'); const priv = join(base, 'private'); const home = join(priv, 'codex'); await mkdir(root); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
+    try {
+      await expect(prepareCodexContainment({ canonicalRoot: root, privateDirectory: priv, codexHome: home, providerNetworkConsent: { approvedBy: '', approvalReference: 'ref' } })).rejects.toThrow('consent');
+      await chmod(priv, 0o755);
+      await expect(prepareCodexContainment({ canonicalRoot: root, privateDirectory: priv, codexHome: home })).rejects.toThrow('inaccessible');
+    } finally { await rm(base, { recursive: true, force: true }); }
+  });
+});
+
+
+describe.skipIf(process.platform !== 'darwin')('native policy compiler only', () => {
+  it('compiles stable named policy without provider execution and excludes broker control', async () => {
+    const base = await mkdtemp(join(await realpath(tmpdir()), 'native-policy-'));
+    const root = join(base, 'project'); const control = join(base, 'broker'); const priv = join(control, 'worker'); const home = join(priv, 'codex');
+    await mkdir(root); await mkdir(control, { mode: 0o700 }); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
+    await writeFile(join(home, 'sentinel'), 'preserve');
+    const protectedFile = join(root, 'protected.txt'); await writeFile(protectedFile, 'do-not-touch');
+    const options = { canonicalRoot: root, privateDirectory: priv, codexHome: home, immutableReadRoots: ['/System', '/usr/bin'], protectedPaths: [control, protectedFile] };
+    try {
+      const first = await prepareCodexNativePolicy(options);
+      const second = await prepareCodexNativePolicy({ ...options, immutableReadRoots: ['/usr/bin', '/System', '/System'] });
+      const patterns = ['packages/*/private.env', 'secrets/**/*.key', 'env?.txt', 'config[ab].txt'].map(pattern => root + '/' + pattern);
+      const patternPolicy = await prepareCodexNativePolicy({ ...options, protectedPaths: [control, ...patterns] });
+      for (const pattern of patterns) expect(patternPolicy.expectedPermissions.filesystem[pattern]).toBe('deny');
+      expect(patternPolicy.policyDigest).not.toBe(first.policyDigest);
+      await patternPolicy.cleanup();
+      await expect(prepareCodexNativePolicy({ ...options, protectedPaths: [control, base + '/*/outside'] })).rejects.toThrow('canonical project');
+      const enabled = await prepareCodexNativePolicy({ ...options, commandNetworkPosture: 'on' });
+      expect(enabled.policyDigest).not.toBe(first.policyDigest);
+      expect(enabled.expectedPermissions.network.enabled).toBe(true);
+      expect(first.expectedPermissions.network.enabled).toBe(false);
+      expect(enabled.configToml).toContain('network_access=true');
+      await enabled.cleanup();
+      expect(first.policyDigest).toBe(second.policyDigest); expect(first.scratchDirectory).not.toBe(second.scratchDirectory);
+      expect(first.permissionProfile).toBe(second.permissionProfile);
+      expect(first.configToml).toContain(`${JSON.stringify(control)}="deny"`);
+      expect(first.expectedPermissions.filesystem[protectedFile]).toBe('deny');
+      expect(first.expectedPermissions.filesystem[join(root, '.codex')]).toBe('deny');
+      await expect(access(join(root, '.codex'))).rejects.toThrow();
+      const futureAlias = join(base, 'future-alias'); await symlink(root, futureAlias);
+      await expect(prepareCodexNativePolicy({ ...options, protectedPaths: [control, join(futureAlias, 'not-created')] })).rejects.toThrow('aliased');
+      const future = await prepareCodexNativePolicy({ ...options, protectedPaths: [control, join(root, 'future', 'secret')] });
+      expect(future.expectedPermissions.filesystem[join(root, 'future', 'secret')]).toBe('deny'); await future.cleanup();
+      expect(first.configToml).toContain(`${JSON.stringify(priv)}="deny"`);
+      expect(first.configToml).toContain(`${JSON.stringify(root)}="write"`);
+      expect(first.configOverrides.filter(item => item.startsWith('permissions=')).length).toBe(1);
+      expect(first.configOverrides.some(item => item.startsWith('permissions.'))).toBe(false);
+      expect(first.configOverrides.some(item => item.startsWith('projects.'))).toBe(false);
+      expect(first.configToml).toContain('features.remote_plugin=false');
+      expect(first.configToml).not.toContain(':minimal'); expect(first.configToml).not.toContain('platform');
+      expect(first.environment.TMPDIR).toBe(first.scratchDirectory);
+      expect(first.scratchDirectory.startsWith(root + '/')).toBe(true);
+      expect(first.enforcementEvidence).toBe('NOT_PROVEN_G_SBX');
+      expect(first.environment).not.toHaveProperty('SSH_AUTH_SOCK');
+      await first.cleanup(); await second.cleanup();
+      expect(await readFile(join(home, 'sentinel'), 'utf8')).toBe('preserve');
+      await expect(access(first.scratchDirectory)).rejects.toThrow();
+      await expect(prepareCodexNativePolicy({ ...options, immutableReadRoots: ['/private/tmp'] })).rejects.toThrow('system-code');
+      await expect(prepareCodexNativePolicy({ ...options, protectedPaths: [root] })).rejects.toThrow();
+      const alias = join(base, 'alias'); await symlink(root, alias);
+      await expect(prepareCodexNativePolicy({ ...options, canonicalRoot: alias })).rejects.toThrow('canonical');
+    } finally { await rm(base, { recursive: true, force: true }); }
+  });
+});

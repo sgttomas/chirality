@@ -1,0 +1,16 @@
+{
+  "manifest_url": "https://github.com/openai/codex/releases/download/rusty-v8-v150.4.0/rusty_v8_ptrcomp_sandbox_release_aarch64-apple-darwin.sha256",
+  "manifest_sha256": "4079b4b84a8b4fcf34a2a5ca7f080dffd0e1b53404b0032087b821e247febb43",
+  "files": [
+    {
+      "url": "https://github.com/openai/codex/releases/download/rusty-v8-v150.4.0/librusty_v8_ptrcomp_sandbox_release_aarch64-apple-darwin.a.gz",
+      "sha256": "00adbb48798848c77550441c68673a5e8529b8e1b73eabcdee232cb39b40f4a1",
+      "bytes": 23542428
+    },
+    {
+      "url": "https://github.com/openai/codex/releases/download/rusty-v8-v150.4.0/src_binding_ptrcomp_sandbox_release_aarch64-apple-darwin.rs",
+      "sha256": "ca5adf0cf89c9a70ad460ae73648b2fe89b74aa113b3cb7f757b6a02b758394f",
+      "bytes": 39895
+    }
+  ]
+}

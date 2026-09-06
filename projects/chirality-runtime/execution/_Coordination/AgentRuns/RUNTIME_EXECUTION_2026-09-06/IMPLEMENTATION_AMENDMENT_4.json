@@ -1,0 +1,13 @@
+{
+  "authority": "OWNER_DIRECTION.md",
+  "scope": "Implement exact-supply Codex supervisor adapter and concrete containment, integrated with standalone private supervisor and daemon admission for an explicitly configured hosted-validation mode. Code and controlled tests only until separate user authorization/account step. Do not infer execution authorization from an ordinary request/config flag. Accepted DEL-02-09 default-off is command network posture; provider transport permission is separately required for the pending live smoke. Unknown approval methods fail closed. Validate actual subprocess containment and do not claim config labels alone enforce boundaries. Raw ProcessSupervisor cannot become production by a flag.",
+  "additional_write_paths": [
+    "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+    "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+    "projects/chirality-runtime/tests/codex-containment.test.ts"
+  ],
+  "existing_scopes": "May integrate within previously released standalone/config, delegated service and index paths.",
+  "live_test_status": "User authorization/model question pending; no actual hosted turn, account login or network use authorized by this amendment.",
+  "parent": "/root HELP_HUMAN; OpenAI GPT-6; exact serving ID unavailable; role not mechanically enforced"
+}

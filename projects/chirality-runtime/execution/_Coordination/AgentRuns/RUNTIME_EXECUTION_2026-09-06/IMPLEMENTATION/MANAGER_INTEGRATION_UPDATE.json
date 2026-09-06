@@ -1,0 +1,52 @@
+{
+  "schema": "runtime.manager.integration-update.v1",
+  "basis": "../IMPLEMENTATION_AMENDMENT_11.json",
+  "attribution": {
+    "model": "OpenAI GPT-6",
+    "servingModelId": "unavailable",
+    "role": "WORKING_ITEMS Agent 1; instruction-asserted, not mechanically enforced"
+  },
+  "objective": "Finish ordinary Runtime integration before publication; retain exact-source and owner boundaries.",
+  "exclusiveOwnership": {
+    "continuity": [
+      "packages/core/src/agent1-run-coordinator.ts",
+      "tests/agent1-run-coordinator.test.ts",
+      "tests/manager-pi-integration.test.ts"
+    ],
+    "supervisor": [
+      "tests/exact-codex-conformance.test.ts",
+      "tests/fixtures/response-provider.mjs",
+      "tests/exact-managed-pi-integration.test.ts"
+    ],
+    "approval_store": [
+      "IMPLEMENTATION/APPROVAL/PROVIDER_INTEGRATION (plan only until exact source ownership fan-in)"
+    ],
+    "final_code_review": [
+      "IMPLEMENTATION/REVIEW/ACCUMULATED (read-only product review)"
+    ],
+    "manager": [
+      "README.md",
+      "IMPLEMENTATION/CAPABILITY_MATRIX.md"
+    ]
+  },
+  "limitations": [
+    "No accepted supplier hash replacement, signing, operational account action, hold lift, release, Root or sibling write.",
+    "All live credentials/provider and exact vendor execution belong to parent.",
+    "Parent preserves original evidence and performs unified whitespace representation packaging after source freeze."
+  ],
+  "checks": {
+    "cliHelpAndApprovalRoutes": {
+      "command": "npx vitest run packages/cli/test/cli.test.ts",
+      "result": "31 passed"
+    },
+    "liveManagedPi": {
+      "source": "Parent /private/tmp/runtime-execution-20260906/pi-managed-live-1",
+      "result": "Passed actual coordinator and live Pi; controlled manager explicitly labelled; source stable then, subsequent core repair requires final dependent check."
+    },
+    "exactDynamic": {
+      "source": "Parent /private/tmp/runtime-execution-20260906/exact-dynamic-1",
+      "result": "Passed actual dynamic review callback and second-process resume; no shell conformance claim."
+    }
+  },
+  "readmeSha256": "f7e871cf479cbb684265bb4e928265b2e55605beafbd7bf94475b79eaca7e609"
+}

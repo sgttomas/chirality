@@ -1,0 +1,12 @@
+{
+  "packages/daemon/src/codex-session.ts": "f98e466283e6f1346fdb67f97f847258f3a1b7a146715132b87930fb6496c593",
+  "packages/daemon/src/codex-supervisor.ts": "914eff42e359a2332e5c433a1da149c911f8f6cb32e3fe8c2ecb9906c1ee7361",
+  "packages/daemon/src/supervisor-server.ts": "7e3c45a841f04171ed3aa628f6f17185c8c3dbc696d6488e47674190a7d9824e",
+  "packages/core/src/approval-store.ts": "1d0c057007121c406e59235170dbbc60efad64318e9086ba1709bd9f16fca850",
+  "packages/core/src/delegated-runtime.ts": "e37e3aa041f50f6ee813eba3b4516a92ca432db9518adbc7fe93205d36dcba9d",
+  "packages/contracts/src/delegated.ts": "47af5982b036c78a3a3f86fe649d18339296b0875255ba117ae36e93e99e53e5",
+  "packages/client/src/client.ts": "958a50d18f4a337cf75ac93cc538cb93e53e0a18776ea272c6e1395e3c959866",
+  "tests/codex-session.test.ts": "a1053e984ae498bd519098b6b2cfefad1d1130d11fdfdc23bb61e0ad05dbb8fb",
+  "tests/delegated-runtime.test.ts": "1b16ab4f13677b56df704d304945f46114ac22b9df974bcf870961facfdb3196",
+  "tests/approval-store.test.ts": "31599f398ab4e5a586a512da9470b10ad507ebf9d781e62042d72bdb3dbe4c0b"
+}

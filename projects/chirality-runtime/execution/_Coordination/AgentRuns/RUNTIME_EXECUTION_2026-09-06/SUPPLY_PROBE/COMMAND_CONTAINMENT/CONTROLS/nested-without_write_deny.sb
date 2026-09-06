@@ -1,0 +1,6 @@
+(version 1)
+(allow default)
+(deny network*)
+(allow file-write* (subpath "/private/tmp/runtime-execution-20260906/supply"))
+(deny file-read* (subpath "/Users/ryan"))
+(deny mach-lookup (global-name "com.apple.securityd"))

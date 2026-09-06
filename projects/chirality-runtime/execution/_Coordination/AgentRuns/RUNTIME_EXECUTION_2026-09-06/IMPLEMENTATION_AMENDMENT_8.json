@@ -1,0 +1,9 @@
+{
+  "authority": "OWNER_DIRECTION.md and accepted release-plan process lifetime/reconciliation requirements",
+  "additional_write_paths": [
+    "projects/chirality-runtime/packages/core/src/descendant-tracker.ts",
+    "projects/chirality-runtime/tests/descendant-tracker.test.ts"
+  ],
+  "scope": "Bounded metadata-only owned-descendant tracking and generation/start-identity-fenced reconciliation integrated into existing supervisors. Never signal unrelated or PID-reused processes. Exercise real owned detach/reparent fixture and surface observational gaps; polling does not prove absence of arbitrarily fast escapes. No broad process cleanup, operational host scan retention or new lifecycle acceptance.",
+  "parent": "/root HELP_HUMAN; OpenAI GPT-6; exact serving ID unavailable; role not mechanically enforced"
+}

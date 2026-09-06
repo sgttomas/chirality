@@ -1,0 +1,9 @@
+# AMENDMENT11 — exact manager / live Pi composition fixture
+
+Parent release: runtime_implementation_manager, ordinary implementation follow-on after exactdynamic1 passed. Ephemeral Agent 2; OpenAI GPT-6, exact serving model ID unavailable. Agent 0 and Agent 2 roles are not mechanically enforced; this role is instruction-asserted. No delegation.
+
+Write scope: tests/exact-codex-conformance.test.ts, tests/fixtures/response-provider.mjs, new tests/exact-managed-pi-integration.test.ts, this evidence directory only. Build an opt-in parent-executable exact accepted App Server → private supervisor → CodexAgent1ManagerPort → governed coordinator → real Pi / resident oMLX → review fixture. Deterministic loopback manager Responses model is explicitly substituted. No injected manager or seeded session. Parent alone executes vendor or network calls; child performs static and no-network synthetic checks. No credentials in evidence; oMLX credential stays in parent process memory. Preserve original exact/discovery/native/resume tests. Private broker credentials are disposable and cleanup-owned. No release, account, signature or hosted-manager proof is claimed.
+
+Acceptance: actual governed child parentage, bounded read marker, accepted actual review callback, completed manager/child, exact supply verified before and after, process/socket cleanup, safe evidence with source pins. Production deterministic-model launch seam requires manager/continuity coordination; do not bypass account checks or call controlled launch production.
+
+Parent follow-on explicitly approved existing controlledForTests trusted launch seam with allowUnauthenticatedModel true only in that test constructor and actual authRequired false. Production owner added the seam; no production edits by this child. This proves exact vendor runtime transport under named policy and real broker/coordinator composition, not the hosted-account startup boundary.

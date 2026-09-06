@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/MANAGER_APPROVAL_ROUTING/late-grant-repro.test.ts (2 tests) 3184ms
+   ✓ independently fails closed when no client supplies a decision before the manager deadline  3054ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:39:07
+   Duration  3.67s (transform 176ms, setup 0ms, collect 240ms, tests 3.18s, environment 0ms, prepare 45ms)

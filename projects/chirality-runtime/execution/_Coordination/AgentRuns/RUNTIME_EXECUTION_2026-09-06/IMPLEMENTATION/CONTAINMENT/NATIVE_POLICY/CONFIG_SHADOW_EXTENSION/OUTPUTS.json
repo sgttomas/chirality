@@ -1,0 +1,5 @@
+{
+  "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "a551755b18f0188352cafb877b021b798f9fb2fc47625594a036fd4c43b49dc3",
+  "projects/chirality-runtime/tests/codex-containment.test.ts": "f9e80a75422893376c1881977ae0d980f3c287ce89f26d2fab77fe266c4794f1",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/CONFIG_SHADOW_EXTENSION/RETURN.md": "cb47b1a6640ff79056de13e4f5f3b0f6cdcb08b24146cf2c0728dc7f9e24bf30"
+}

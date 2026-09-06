@@ -1,0 +1,18 @@
+{
+  "packages/core/src/runtime-conformance.ts": {
+    "before": "c55fc6a67fd2f3f9392220b0fce1add166488dd1fa64c1e405ced2aa6180bb4a",
+    "after": "6b13060029cb957a4259c9a72daa8a34802457f261277a0d121be9ade680043d"
+  },
+  "packages/daemon/src/codex-supervisor.ts": {
+    "before": "3d01e4a7d53acbdfeb30ef375b5760977f9ca07c4789b78d665a56ad17529f69",
+    "after": "81b9c6a4b4e5a68cc55d73ca121f75d5faa34cd0e1ebacc95f8219e9b8821d42"
+  },
+  "packages/daemon/src/standalone.ts": {
+    "before": "8785ecabfad2ace598ce868cb16cca287cf6e2db564a2246dad17c5d8104bcab",
+    "after": "de9a9f25fa3fec9106159bfd57282350fbb3c97259aeb52bcd4025347864b917"
+  },
+  "tests/runtime-conformance.test.ts": {
+    "before": "0b2645d966a122e8e8e88430fc651f60ea48c20349e4f1023fe51dc4df2cb127",
+    "after": "36f66525570dac3f7051a50adb748403019c08524d0a03418485b2606bc4ee3e"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "authority": "OWNER_DIRECTION.md; accepted DEL-02-07 REQ007/008, DEL-02-09 REQ002..006, DEL-02-10 CLM001..005",
+  "scope": "Implement remaining ordinary role offerings/policy digest, all-three-posture consent representation, closed HarnessEvent v2 projection and attributed durable approval request/decision API. Integrate into existing daemon/client path; unknown provider approval requests remain fail-closed until actual observed adapter mapping. Do not invent vendor wire or claim authority from untrusted payloads. No new semantic ruling or live account use.",
+  "additional_write_paths": [
+    "projects/chirality-runtime/packages/contracts/src/v2-events.ts",
+    "projects/chirality-runtime/packages/core/src/approval-store.ts",
+    "projects/chirality-runtime/packages/core/src/role-policy.ts",
+    "projects/chirality-runtime/tests/v2-contracts.test.ts",
+    "projects/chirality-runtime/tests/approval-store.test.ts",
+    "projects/chirality-runtime/tests/role-policy.test.ts"
+  ],
+  "existing_paths": "Integration allowed in previously released delegated contracts, client/core/daemon routes and actor; all changes Runtime-local.",
+  "parent": "/root HELP_HUMAN; OpenAI GPT-6; exact serving ID unavailable; Agent0 role not mechanically enforced"
+}

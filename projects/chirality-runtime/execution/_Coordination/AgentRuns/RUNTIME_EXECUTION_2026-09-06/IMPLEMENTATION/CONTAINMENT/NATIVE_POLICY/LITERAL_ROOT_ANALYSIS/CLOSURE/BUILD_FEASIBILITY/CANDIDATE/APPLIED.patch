@@ -1,0 +1,13 @@
+diff --git a/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl b/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
+index 99f43e4..54172ee 100644
+--- a/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
++++ b/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
+@@ -6,6 +6,8 @@
+
+ ; start with closed-by-default
+ (deny default)
++; Allow dyld to open only the canonical root directory, not its descendants.
++(allow file-read-data (require-all (literal "/") (vnode-type DIRECTORY)))
+
+ ; child processes inherit the policy of their parent
+ (allow process-exec)

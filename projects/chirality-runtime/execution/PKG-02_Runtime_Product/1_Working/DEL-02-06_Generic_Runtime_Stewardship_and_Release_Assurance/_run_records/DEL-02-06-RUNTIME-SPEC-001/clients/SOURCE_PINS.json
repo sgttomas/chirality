@@ -1,0 +1,77 @@
+[
+  {
+    "id": "S1",
+    "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/AFFECTED_CLIENT_CENSUS_CANDIDATE_V2.md",
+    "sha256": "2bff966d3806078472370cfd0e7f1546064660f325d4a0e2534a71a1a67c7d13"
+  },
+  {
+    "id": "S2",
+    "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-005_2026-07-26_2334_Root_Runtime_Client_Boundary/RUN_SUMMARY.md",
+    "sha256": "bce5b987049d08476988fe705bfcaeb1d723f68cc1cd11928c726fbb059c7621"
+  },
+  {
+    "id": "S3",
+    "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61"
+  },
+  {
+    "id": "S4",
+    "path": "projects/pec/AGENTS.md",
+    "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846"
+  },
+  {
+    "id": "S5",
+    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+    "sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72"
+  },
+  {
+    "id": "S6",
+    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25"
+  },
+  {
+    "id": "S7",
+    "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+    "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+  },
+  {
+    "id": "S8",
+    "path": "_DomainEngines/_DECISIONS/D-T0-07_contract_versioning.md",
+    "sha256": "5fb96fdcf2bb0db660bff84d80abb57ecadfb420f57cfda61cd5782972204851"
+  },
+  {
+    "id": "S9",
+    "path": "_DomainEngines/_DECISIONS/D-T0-09_flow_a_contract_version_value.md",
+    "sha256": "544d7517d97b6a5e446fc784b10671ad7d5a0fc70b6d9ae4194c7adbaf6dec7a"
+  },
+  {
+    "id": "S10",
+    "path": "_DomainEngines/_DECISIONS/D-T0-23_shared_runtime_domain_convergence.md",
+    "sha256": "0629e16da62a68ce9648432dfa7293a426fe7278cea1efa43da2a6a00a624ae5"
+  },
+  {
+    "id": "S11",
+    "path": "projects/chirality-runtime/execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv",
+    "sha256": "635fa7f9a05f0a1d17dc47e4db12e142433b11cdc7894708935d0515659ab882"
+  },
+  {
+    "id": "S12",
+    "path": "projects/chirality-runtime/packages/client/src/client.ts",
+    "sha256": "38a55c95ba2ffa488e46a1debb48939a4aa8af2da89b80777e9d28f6f0c4adf4"
+  },
+  {
+    "id": "S13",
+    "path": "projects/chirality-runtime/packages/cli/src/cli.ts",
+    "sha256": "77e2601afd3ee286444925fa08b1f890760f69e71b56c3feee690d034a4a53f5"
+  },
+  {
+    "id": "S14",
+    "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09"
+  },
+  {
+    "id": "S15",
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/OWNER_DIRECTION.md",
+    "sha256": "899a42cd51a691a628832b7ffdbfccdfedb4b9b3b71396c0679bc20c47c27ff4"
+  }
+]

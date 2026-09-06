@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/daemon.test.ts (15 tests | 14 skipped) 2028ms
+   ✓ Unix-domain runtime daemon > forces an incomplete ordinary request at the exact production grace and cleans metadata  2027ms
+ ✓ tests/delegated-runtime.test.ts (34 tests | 33 skipped) 2055ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2054ms
+
+ Test Files  2 passed (2)
+      Tests  2 passed | 47 skipped (49)
+   Start at  00:44:05
+   Duration  3.44s (transform 424ms, setup 0ms, collect 2.09s, tests 4.08s, environment 0ms, prepare 142ms)

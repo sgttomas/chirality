@@ -1,0 +1,9 @@
+{
+  "packages/contracts/src/delegated.ts": "b531cdab31531df897652f6826cc0999d58e2b6cd180ac62e3c5632d49abefc6",
+  "packages/contracts/src/index.ts": "83d4a023c952a660b9c0c30aa0d3f80337e258e3ae0a5f03e1451ad091104a75",
+  "packages/core/src/delegated-runtime.ts": "be2e370878ddd37322b9db91cc93186821ea64d2b7c52132e36eb6ad408e8af7",
+  "packages/core/src/index.ts": "70d96688bf6db7fbaef695b7b3811f300c44450f812ef36b6aa0340e65fa6c34",
+  "packages/daemon/src/runtime-daemon.ts": "6b3893a2adb237b9676c5c68bec8b0a93a9bde75e679f4374108be2895a0f2dd",
+  "packages/client/src/client.ts": "8e40b4f567ace00093d2121daf4d03f6c7e2eff4d90ab0cc9db189387b5f6e57",
+  "tests/delegated-runtime.test.ts": "41d30146bb178ca440be80605a9e6408874f718b3aabd358ef9076a049ce082d"
+}

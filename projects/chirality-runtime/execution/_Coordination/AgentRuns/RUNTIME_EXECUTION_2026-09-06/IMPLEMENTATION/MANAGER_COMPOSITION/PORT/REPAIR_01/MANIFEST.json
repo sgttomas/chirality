@@ -1,0 +1,7 @@
+{
+  "authority": "IMPLEMENTATION_AMENDMENT_11.json and REPAIR_01/BRIEF.md",
+  "files": {
+    "packages/daemon/src/codex-manager.ts": "fa4801798bbaefb72278085706782e731bc642b8036c7da4a875ab5275299812",
+    "tests/codex-manager.test.ts": "05b0c6de3d3d8357e611c28d0f7eadcc376cfba3c7c5f99d05eb0ac91e42bc49"
+  }
+}

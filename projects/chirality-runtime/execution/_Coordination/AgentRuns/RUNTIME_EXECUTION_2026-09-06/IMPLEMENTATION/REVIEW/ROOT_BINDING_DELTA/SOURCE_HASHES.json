@@ -1,0 +1,5 @@
+{
+  "packages/core/src/delegated-runtime.ts": "cc51b01f93f00b4396fc395ae9a370202f16e4d2f66fa97614bd4e1d6cb82169",
+  "packages/daemon/src/runtime-daemon.ts": "1e7c7447a0bef774809e642563f08ad0a14abdff7a83624cd1aaf09a64268dda",
+  "tests/delegated-runtime.test.ts": "df3a3d09d3ae95360a460659e9049af9dfb32b92bb2d01d10d8c5ace45792622"
+}

@@ -1,0 +1,93 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/daemon.test.ts (15 tests | 1 failed | 14 skipped) 20ms
+   ↓ Unix-domain runtime daemon > revokes every superseded project credential during re-registration
+   ↓ Unix-domain runtime daemon > uses private files, authenticates, and preserves UIEvent SSE wire format
+   ↓ Unix-domain runtime daemon > returns a typed non-200 response when a stream fails before its first event
+   ↓ Unix-domain runtime daemon > interrupts and drains a disconnected SSE turn through canonical terminal persistence
+   ↓ Unix-domain runtime daemon > fails closed for a non-socket or ambiguous live owner record
+   ↓ Unix-domain runtime daemon > coalesces lifecycle transitions and supports an authenticated same-instance restart
+   ↓ Unix-domain runtime daemon > closes completed keep-alive transport during a graceful stop without interruption
+   × Unix-domain runtime daemon > forces an incomplete ordinary request at the exact production grace and cleans metadata 19ms
+     → listen EPERM: operation not permitted /var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/ch-force-nYuQRR/runtime/control.sock
+   ↓ Unix-domain runtime daemon > interrupts a live SSE once after closing admission and drains it during grace
+   ↓ Unix-domain runtime daemon > forces stubborn SSE transport without waiting on interrupt acknowledgement and degrades
+   ↓ Unix-domain runtime daemon > expires pre-identity Agent 1 cancellation at force and forbids a late interrupt
+   ↓ Unix-domain runtime daemon > interrupts once when Agent 1 identity appears in a later pre-force event
+   ↓ Unix-domain runtime daemon > isolates late prior-generation iterator events after a successful forced stop and restart
+   ↓ Unix-domain runtime daemon > caps post-force transport settlement at 500 ms before reporting cleanup failure
+   ↓ Unix-domain runtime daemon > retries only incomplete cleanup and never removes a foreign owner record
+ ❯ tests/delegated-runtime.test.ts (34 tests | 1 failed | 33 skipped) 9ms
+   ↓ opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads
+   ↓ opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields
+   ↓ opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing
+   ↓ opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay
+   ↓ opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim
+   ↓ keeps issued operation and configured identity immutable against caller mutation
+   ↓ returns typed safe mismatch for malicious compatibility fields
+   ↓ fences worker acquisition when shutdown occurs during consent read
+   ↓ starts a fresh daemon generation without reusing old admissions
+   ↓ drains admitted consent publication before successful close
+   ↓ rejects object and null turn requests with typed invalid request errors
+   ↓ binds daemon identity and rejects a mismatched configured project root
+   ↓ offers and executes explicit untyped with canonical v2 evidence
+   ↓ offers and executes explicit agent0 with canonical v2 evidence
+   ↓ offers and executes explicit agent1 with canonical v2 evidence
+   ↓ offers and executes explicit agent2 with canonical v2 evidence
+   ↓ offers and executes explicit task with canonical v2 evidence
+   ↓ exposes configured on honestly and rejects unknown roles
+   ↓ routes existing approvals only, preserves generation binding and never claims provider application
+   ↓ interrupts an active exact worker once and records the closed interrupted terminal
+   ↓ permits operator login without a pre-existing account and confines bypass admissions to login
+   ↓ rejects unsafe login URL output without sending arbitrary port fields
+   ↓ rejects malformed interruption and approval identities without coercion
+   ↓ allows exact live-turn interruption after hosted launch verification becomes unavailable
+   ↓ binds selected role policy to retirement and passes it to resume selection
+   ↓ cancels and drains a login startup racing daemon stop without returning a live login
+   ↓ cancels a current login on shutdown and cannot admit another start
+   × reports degraded shutdown within grace when configured login cancellation cannot drain 8ms
+     → listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-aXFiub/s/s.sock
+   ↓ requires explicit on consent matching the immutable configured worker posture
+   ↓ does not commit completed when worker retirement reports unresolved descendants
+   ↓ routes explicit allow through client, authenticated daemon, durable store, private supervisor and actual actor reply
+   ↓ routes explicit deny through client, authenticated daemon, durable store, private supervisor and actual actor reply
+   ↓ routes explicit acceptForSession through client, authenticated daemon, durable store, private supervisor and actual actor reply
+   ↓ carries provider cancellation into immutable resolution and refuses a queued explicit grant
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/daemon.test.ts > Unix-domain runtime daemon > forces an incomplete ordinary request at the exact production grace and cleans metadata
+Error: listen EPERM: operation not permitted /var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/ch-force-nYuQRR/runtime/control.sock
+ ❯ packages/daemon/src/runtime-daemon.ts:174:16
+ ❯ RuntimeDaemon.start packages/daemon/src/runtime-daemon.ts:171:13
+ ❯ tests/daemon.test.ts:530:21
+    528|     const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, sock…
+    529|     active.push(daemon);
+    530|     const started = await daemon.start();
+       |                     ^
+    531|     const token = (await readFile(started.operatorTokenFile, "utf8")).…
+    532|     const pending = await openIncompleteRequest(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > reports degraded shutdown within grace when configured login cancellation cannot drain
+Error: listen EPERM: operation not permitted /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/dr-aXFiub/s/s.sock
+ ❯ packages/daemon/src/supervisor-server.ts:144:87
+    142|     });
+    143|   });
+    144|   await new Promise<void>((resolve, reject) => { server.once("error", …
+       |                                                                                       ^
+    145|   await chmod(options.socketPath, 0o600);
+    146|   const owned = await lstat(options.socketPath);
+ ❯ startSupervisorServer packages/daemon/src/supervisor-server.ts:144:9
+ ❯ fixture tests/delegated-runtime.test.ts:30:18
+ ❯ tests/delegated-runtime.test.ts:330:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 47 skipped (49)
+   Start at  00:42:44
+   Duration  1.12s (transform 352ms, setup 0ms, collect 1.67s, tests 29ms, environment 0ms, prepare 118ms)

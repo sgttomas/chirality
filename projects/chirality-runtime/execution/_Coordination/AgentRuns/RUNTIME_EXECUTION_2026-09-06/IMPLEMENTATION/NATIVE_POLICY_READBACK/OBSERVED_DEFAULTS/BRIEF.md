@@ -1,0 +1,1 @@
+Parent-authorized exact-discovery3 schema repair: strip only observed inert null metadata, reject every non-null/unknown addition; require remote_plugin:false. Scope actor/tests and this evidence. No vendor execution by child. GPT-6 role instruction-asserted, serving ID unavailable.

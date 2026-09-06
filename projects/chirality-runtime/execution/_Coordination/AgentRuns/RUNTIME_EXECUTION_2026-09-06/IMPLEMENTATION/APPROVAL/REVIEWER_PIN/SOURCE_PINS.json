@@ -1,0 +1,8 @@
+{
+  "commit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "files": {
+    "codex-rs/core/src/config/config_tests.rs": "2125a56dada7579e7f9d619baeddb5670091c0a735b9ccbde21e16a53f3e49e5",
+    "codex-rs/app-server-protocol/src/protocol/v2/config.rs": "e67c812b34a9fddce9ec157870e338dcedebf9ff3003527e7e5b24bd51818d7e",
+    "codex-rs/app-server-protocol/src/protocol/v2/shared.rs": "21ce79f0e572adea270093673512361186b0aa4f34cb7cc1c22b36da81134fd6"
+  }
+}

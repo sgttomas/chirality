@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/DEPENDENCY_INTEGRITY/REPAIR_01/flat-file-repro.test.ts (2 tests) 9ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  00:00:30
+   Duration  344ms (transform 78ms, setup 0ms, collect 101ms, tests 9ms, environment 0ms, prepare 51ms)

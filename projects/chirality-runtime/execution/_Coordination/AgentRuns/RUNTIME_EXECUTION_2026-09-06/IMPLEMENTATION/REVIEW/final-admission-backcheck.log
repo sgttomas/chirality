@@ -1,0 +1,13 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/delegated-runtime.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/delegated-runtime.test.ts (11 tests) 764ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  21:00:57
+   Duration  1.04s (transform 98ms, setup 0ms, collect 143ms, tests 764ms, environment 0ms, prepare 30ms)

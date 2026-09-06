@@ -1,0 +1,13 @@
+{
+  "rustc_sha256": "b829b733131d4e1673eeebd1f34d06ae1e9ff4977b051313cf42e2a9e79ecf1c",
+  "cargo_sha256": "c512bff73c86143b557463f021d0c3d5b0490d97d65040ba59ea2b3427784758",
+  "rust_install_log_sha256": "adc42ab29b8bc778b8f5d923d2e4570cbd5f103447270a0d894ea0ef8ee071ed",
+  "local_workspace_build_scripts": {
+    "codex-rs/bwrap/build.rs": "3ca3f0c90e075d38215e74ff19049df1ff6fdd80a04711ee05f3acd39dfd7b70",
+    "codex-rs/linux-sandbox/build.rs": "9a58f252be8ae4baabc9ebc1db9f9923d1a9345cd44bce3ce7b76c94942743bb",
+    "codex-rs/code-mode-protocol/build.rs": "92171dbc25135066d8a17dbdab947566f56e44d8ff39629de67842fa01856658",
+    "codex-rs/cli/build.rs": "0702c0215f82e3390f5a1026063e2f45c5c2d45ab2a1483d33e081986e2acf02",
+    "codex-rs/windows-sandbox-rs/build.rs": "b656ced2ef8037f379c2d45d57116e937dc80ec3b23c7f9cb2501da98338774d",
+    "codex-rs/skills/build.rs": "24c62df6f869f931b04e14645c539b715c97e96e6274c5a6313bb1c7bbd28dcc"
+  }
+}

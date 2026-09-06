@@ -1,0 +1,7 @@
+{
+  "tests/runtime-daemon-signal.test.ts": "e4b973646ad2727714de610904d0bc78c4fae4e5715ccf58e1924d19af859691",
+  "tests/fixtures/runtime-daemon-signal-child.ts": "2f45460edf4281ae7e1e36c07df89379635d71534f4189961b94435f1015d750",
+  "packages/daemon/src/runtime-daemon.ts": "21f7e35f264c5c43ddc56fe2357b879af3cea9750e12eaf661a91a73058dea14",
+  "packages/daemon/src/signal-shutdown.ts": "d8fc1d8bf691deb5141bf08c00ce35495cf311b39dd19976074d738bb8f38b73",
+  "packages/daemon/src/index.ts": "02d0d7353746cf770b3d198b7906b305dc22c273fa470e2ec0a9f7ffc8f63dee"
+}

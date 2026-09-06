@@ -1,0 +1,7 @@
+{
+  "session_tests": {
+    "passed": 14,
+    "exit_code": 0
+  },
+  "workspace_typecheck": "blocked only by concurrent standalone protectedPaths option integration"
+}

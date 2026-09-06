@@ -1,0 +1,17 @@
+{
+  "commit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "files": {
+    "codex-rs/features/src/lib.rs": {
+      "sha256": "803a1e291c5df27daa9ee7b6ca4d164bf607fb8bbbeefa3c614791eeddf28dcc",
+      "file": "codex-rs__features__src__lib.rs.gz"
+    },
+    "codex-rs/features/src/feature_configs.rs": {
+      "sha256": "92f406505a86c7285d4c135f142e4f4cbad51fa1edee2f5f8e99b8b50a998654",
+      "file": "codex-rs__features__src__feature_configs.rs.gz"
+    },
+    "codex-rs/core/src/config/mod.rs": {
+      "sha256": "a463ef6733b46a016c5ba0f9735f16d7d113d9057987cb0aeb22faf5f3225044",
+      "file": "codex-rs__core__src__config__mod.rs.gz"
+    }
+  }
+}

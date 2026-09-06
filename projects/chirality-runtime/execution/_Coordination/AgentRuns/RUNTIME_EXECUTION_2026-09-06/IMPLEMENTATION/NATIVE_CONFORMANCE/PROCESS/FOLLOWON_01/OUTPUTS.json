@@ -1,0 +1,18 @@
+[
+  {
+    "path": "tests/exact-process-conformance.test.ts",
+    "sha256": "e6e23570565a892ebcbd302c3fe2b0ad983e60104284b8d944dc078c6e95a436"
+  },
+  {
+    "path": "tests/fixtures/process-response-provider.mjs",
+    "sha256": "d144efa6ed8e9a51bb983bbc451781c679d9729f751d164951cbc4315f7bcb76"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/patched-process-normal-1/process-conformance.json",
+    "sha256": "2dd5afdfc8107f844c0f7f11cbcb65d5b705472d0afb7e9ffa7a6cd336863a01"
+  },
+  {
+    "path": "/private/tmp/runtime-execution-20260906/patched-process-normal-check-1/output.log",
+    "sha256": "33f7ddd6993a770deb49ae688bc8a22ff564e642a5489262a3fe5f3fbc26f5a2"
+  }
+]

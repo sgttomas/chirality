@@ -1,0 +1,7 @@
+{
+  "observed_at": "2026-09-06T02:37:27.337922+00:00",
+  "destination": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001",
+  "absent_before_creation": true,
+  "manager": "/root/runtime_spec_execution",
+  "head": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377"
+}

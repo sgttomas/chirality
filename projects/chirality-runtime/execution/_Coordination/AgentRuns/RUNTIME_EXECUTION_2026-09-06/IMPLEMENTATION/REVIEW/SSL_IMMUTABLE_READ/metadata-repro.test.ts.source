@@ -1,0 +1,21 @@
+import {vi,it,expect} from "vitest";
+vi.mock("node:fs/promises",async()=>{
+ const actual=await vi.importActual<typeof import("node:fs/promises")>("node:fs/promises");
+ return {...actual,open:async(path:any,...args:any[])=>{
+  const handle=await (actual.open as any)(path,...args);
+  if(path!=="/private/etc/ssl/openssl.cnf") return handle;
+  return {stat:async()=>{const info=await handle.stat(); return Object.assign(info,{mode:info.mode|0o022});},readFile:()=>handle.readFile(),close:()=>handle.close()};
+ }};
+});
+import {mkdtemp,mkdir,realpath,rm} from "node:fs/promises";
+import {tmpdir} from "node:os";
+import {join} from "node:path";
+import {prepareCodexNativePolicy} from "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-containment.ts";
+it("reproduces unchecked writable metadata after initial path stat without mutating system files",async()=>{
+ const base=await mkdtemp(join(await realpath(tmpdir()),"ssl-review-"));
+ const root=join(base,"project"),control=join(base,"broker"),priv=join(control,"worker"),home=join(priv,"codex");
+ await mkdir(root);await mkdir(control,{mode:0o700});await mkdir(priv,{mode:0o700});await mkdir(home,{mode:0o700});
+ try {const policy=await prepareCodexNativePolicy({canonicalRoot:root,privateDirectory:priv,codexHome:home,immutableReadRoots:["/private/etc/ssl/openssl.cnf"],protectedPaths:[control]});
+ expect(policy.immutableFiles[0]!.mode&0o022).toBe(0o022);await policy.cleanup();
+ }finally{await rm(base,{recursive:true,force:true});}
+});

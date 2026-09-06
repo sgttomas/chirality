@@ -1,0 +1,15 @@
+# Standalone jobs return
+
+Executor: OpenAI GPT-6; exact serving model ID unavailable; bounded Agent 2, instruction-asserted role, not mechanically enforced. No delegation, installation, launchctl, accounts or operational state.
+
+`chirality-runtime-service daemon|supervisor --config <absolute-private-json>` is now a real package bin, composed through `startStandaloneJob(role, configPath)`. The config schema is `chirality-standalone/v1`, with explicit `controlled-worker` mode, absolute private runtimeDirectory, distinct contained relative socket/credential/home/journal paths, project identity/compatibility and trusted canonical executable/argument vector. Unrecognized fields, public network configuration, production mode, aliases, unsafe ownership/modes and escaping paths fail explicitly.
+
+The separate supervisor owns actual child workers and its private Unix server. Each startup atomically publishes a fresh 0600 credential under owner-private storage, bound to the exact configuration. Duplicate live startup fails before credential rotation. The daemon reads/validates this credential, proves its live generation through authenticated inventory, requires already-authorized project registration, and composes existing RuntimeService/DelegatedRuntime ports with empty offline engines, root-private consent and retirement reconciliation. No project is registered implicitly. No capability token reaches stdout or public API. Worker env supplies explicit CODEX_HOME without ambient environment inheritance.
+
+SIGTERM/SIGINT close the owning job. Supervisor cleanup closes control sessions, retires child process groups and removes only its own epoch credential. Daemon cleanup uses its existing bounded shutdown path. Separate supervisor restart requires a daemon restart to reload the rotated credential; automatic credential-refresh or in-flight replay is not claimed.
+
+Validation: `npm run build` PASS. `npx vitest run tests/standalone.test.ts` PASS, 8 tests. Actual tests run two OS jobs, RuntimeClient consent and completed turn, separate PIDs, graceful SIGTERM/socket teardown, rotated credentials/stale rejection, missing explicit registration, forged/nonprivate credentials, credential symlinks, duplicate live supervisor refusal, invalid config modes/aliases/paths and unsupported network/provider configuration. The initial sandboxed socket attempt failed EPERM; the same authorized tests passed using approved local Unix-socket escalation. No TCP, account or installed-service test was performed.
+
+Package JSON and lockfile changes add only the corresponding daemon bin metadata; no dependency changes. Parent owns exports and cross-tranche integration.
+
+This is controlled-worker composition, not production provider/network containment evidence. Raw controlled workers inherit the owner's filesystem authority subject to the external test envelope. Empty engine/credential ports fail unavailable instead of pretending service. No hosted model, signature acceptance, lifecycle transition, held-binding release or production activation is claimed.

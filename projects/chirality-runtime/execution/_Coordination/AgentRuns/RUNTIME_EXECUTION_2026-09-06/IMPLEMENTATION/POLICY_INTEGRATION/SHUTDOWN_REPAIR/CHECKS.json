@@ -1,0 +1,8 @@
+{
+  "filtered_login_tests": 5,
+  "filtered_skipped": 23,
+  "filtered_exit_code": 0,
+  "typecheck_exit_code": 0,
+  "prior_daemon_regression_tests": 15,
+  "prior_daemon_regression_exit_code": 0
+}

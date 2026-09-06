@@ -1,0 +1,6 @@
+{
+  "source_base": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "patch_sha256": "2aa99ced3dc19ca0afadc4cf66d6803fa8b6d8c0807b5ca4fea378eb4b5f0bad",
+  "patched_policy_sha256": "241c0c312550f01b54de6336db4c82f8ea0f2c06c42a03557214a684e1464e23",
+  "preparation_note": "Earlier draft patch lacked one blank context line and failed git apply --check without edits. APPLIED.patch generated from exact verified source; semantic change remains the one literal directory read rule."
+}

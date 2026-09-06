@@ -538,7 +538,7 @@ describe("Unix-domain runtime daemon", () => {
 
     const began = performance.now();
     const stopping = daemon.stop();
-    await expect(daemon.start()).rejects.toThrow(/cannot start while stopping/);
+    await expect(daemon.start()).rejects.toThrow(/cannot start before shutdown has drained/);
     await new Promise((resolve) => setTimeout(resolve, 1_850));
     expect(daemonLifecycle(daemon)).toBe("STOPPING");
     await expect(stat(socketPath)).rejects.toMatchObject({ code: "ENOENT" });

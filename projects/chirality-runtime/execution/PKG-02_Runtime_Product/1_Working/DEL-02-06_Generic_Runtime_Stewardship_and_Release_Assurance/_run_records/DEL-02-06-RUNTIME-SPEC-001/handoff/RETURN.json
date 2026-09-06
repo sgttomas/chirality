@@ -1,0 +1,23 @@
+{
+  "node": "N6",
+  "agent": "/root/runtime_spec_execution/n6_handoff",
+  "model": "OpenAI GPT-6",
+  "exact_serving_model_id": "unavailable",
+  "role": "Agent 2 instruction-asserted; not mechanically enforced",
+  "status": "READY_FOR_MANAGER_SEALED_IMPLEMENTATION",
+  "coverage": {
+    "unique_requirements": 52,
+    "tbd_dispositions": 16,
+    "ordered_failure_conditions": 10,
+    "held_bindings": 9,
+    "tier0_separate": 1,
+    "carrier_inputs": 6
+  },
+  "predecessor_manifests_verified": 4,
+  "production_tests_run": 0,
+  "source_edits": 0,
+  "hold_releases": 0,
+  "owner_acts": 0,
+  "next": "Manager accepts handoff and seals same-branch bounded implementation continuation",
+  "finished_utc": "2026-09-06T02:51:24.109664+00:00"
+}

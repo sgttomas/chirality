@@ -1,0 +1,7 @@
+{
+  "packages/core/src/agent1-run-coordinator.ts": "d52188c97d5ff7672ae2894e6cd7aaf0b523e30c231825aeae1e1a8342a716a9",
+  "packages/core/src/fs.ts": "21ed1bb39afa1a0c773f45f547892182af3c18f7a52c4505895e52924ac513b5",
+  "packages/daemon/src/codex-manager.ts": "fa4801798bbaefb72278085706782e731bc642b8036c7da4a875ab5275299812",
+  "tests/agent1-run-coordinator.test.ts": "7a68f3ce3a85e7e905d79c97a8e07308a809bb016735c23f8dd038d02a96a439",
+  "tests/manager-pi-integration.test.ts": "16cae50e4f8d0a5ea67ea1f84c4e2e3a56e612991ff6b30b45e99cad430106bd"
+}

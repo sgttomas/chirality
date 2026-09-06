@@ -1,0 +1,11 @@
+{
+  "execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/DESIGN.md": "ede5e1fe4dbeb04d2c6d6ee86a7d8e6305ea552c9ed061cf9fd09192e3973ec0",
+  "execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/PROPOSED_NETWORK.patch": "a7088d48ec601eb4af47f2f890470c7501c67ba683f5b89ca56044f8e0091502",
+  "execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/PROPOSED_TEST.patch": "4fcbba1b513ecef64619ad8db7c3dde7c763f08edd4a5723819f7d53b724534d",
+  "execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/PROPOSED_NO_SESSION_TEST.patch": "0f55835f698bdba7cc236aae4b03dc7624ffbe532d72fda4759f446e34c337da",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/session.rs": "24ed2ac18d58621c404e8dd3c79a9fa844ade5bfc48225fd2467624e068dda89",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/config/network_proxy_spec.rs": "880a0ed1055afb2302777a9a535c6f628a1ddb3746ff08d7bc1d2088cd9bc4bd",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/network-proxy/src/network_policy.rs": "87fdcffab34867f3e182ed67983fad3298dbfa3aa640e0f79906d8cd02a11dc2",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/network_approval.rs": "f9bd87c5b6629126d518bc4097ab8ef23b1ad049bc7732ed2c7acd11ff46464e",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/config/mod.rs": "a463ef6733b46a016c5ba0f9735f16d7d113d9057987cb0aeb22faf5f3225044"
+}

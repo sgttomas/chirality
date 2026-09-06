@@ -1,0 +1,127 @@
+Harness pre-merge	Test shared runtime	﻿2026-09-06T07:19:33.1526286Z ##[group]Run npm test
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1526592Z ^[[36;1mnpm test^[[0m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1562719Z shell: /usr/bin/bash -e {0}
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1562976Z env:
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1563198Z   HARNESS_BASE_URL: http://127.0.0.1:3000
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1563507Z   CHIRALITY_HARNESS_PROVIDER: stub
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1563883Z   HARNESS_PROJECT_ROOT: /home/runner/work/_temp/chirality-harness-workroot
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1564433Z   CHIRALITY_RUNTIME_USER_DATA: /home/runner/work/_temp/chirality-runtime-user-data
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1565079Z   CHIRALITY_RUNTIME_SOCKET_PATH: /home/runner/work/_temp/chirality-runtime-user-data/runtime/control.sock
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1565870Z   CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE: /home/runner/work/_temp/chirality-runtime-user-data/runtime/auth/tokens/operator.token
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.1566442Z ##[endgroup]
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.2597015Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.2597730Z > @chirality/runtime-workspace@0.1.0 test
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.2598184Z > vitest run
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.2598329Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.5310807Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.5315717Z ^[[1m^[[46m RUN ^[[49m^[[22m ^[[36mv3.2.7 ^[[39m^[[90m/home/runner/work/chirality/chirality/projects/chirality-runtime^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:33.5316574Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:38.2465712Z  ^[[32m✓^[[39m tests/codex-session.test.ts ^[[2m(^[[22m^[[2m44 tests^[[22m^[[2m)^[[22m^[[33m 4135^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:38.2468305Z    ^[[33m^[[2m✓^[[22m^[[39m persistent known-method Codex actor (controlled provider)^[[2m > ^[[22mrejects merged grants, missing denies, network changes and host-side overrides on readback ^[[33m 447^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:38.2484193Z    ^[[33m^[[2m✓^[[22m^[[39m persistent known-method Codex actor (controlled provider)^[[2m > ^[[22mfails closed for approval requests, invalid terminals, malformed replies and floods ^[[33m 303^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:38.7030393Z  ^[[32m✓^[[39m tests/exact-codex-conformance.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[32m 118^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:39.1143022Z  ^[[32m✓^[[39m tests/exact-network-runtime-conformance.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:39.4990292Z  ^[[32m✓^[[39m packages/cli/test/cli.test.ts ^[[2m(^[[22m^[[2m33 tests^[[22m^[[2m)^[[22m^[[32m 44^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:40.1260495Z  ^[[32m✓^[[39m tests/agent1-run-coordinator.test.ts ^[[2m(^[[22m^[[2m26 tests^[[22m^[[2m)^[[22m^[[32m 283^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:40.4779670Z  ^[[32m✓^[[39m tests/exact-network-conformance.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[32m 9^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:42.4808242Z  ^[[32m✓^[[39m tests/pi-turn-runtime.test.ts ^[[2m(^[[22m^[[2m21 tests^[[22m^[[2m)^[[22m^[[33m 320^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:43.5271363Z  ^[[32m✓^[[39m tests/delegated-runtime.test.ts ^[[2m(^[[22m^[[2m34 tests^[[22m^[[2m)^[[22m^[[33m 7533^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:43.5273639Z    ^[[33m^[[2m✓^[[22m^[[39m cancels and drains a login startup racing daemon stop without returning a live login ^[[33m 2031^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:43.5275471Z    ^[[33m^[[2m✓^[[22m^[[39m reports degraded shutdown within grace when configured login cancellation cannot drain ^[[33m 2019^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:43.9227509Z  ^[[32m✓^[[39m tests/exact-role-conformance.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[32m 4^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:43.9367510Z  ^[[32m✓^[[39m tests/codex-supervisor.test.ts ^[[2m(^[[22m^[[2m23 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[33m 1075^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:44.8844335Z  ^[[32m✓^[[39m tests/agent1-run.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[33m 613^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:47.9073509Z  ^[[32m✓^[[39m tests/pi-omlx-integration.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[33m 980^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:47.9160348Z    ^[[33m^[[2m✓^[[22m^[[39m uses the actual Pi SDK through coordinator-created Agent 2 and one bound read tool ^[[33m 398^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:48.5334171Z  ^[[32m✓^[[39m tests/exact-process-conformance.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[32m 28^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.4944343Z  ^[[32m✓^[[39m tests/turn-hardening.test.ts ^[[2m(^[[22m^[[2m8 tests^[[22m^[[2m)^[[22m^[[33m 332^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.9517723Z  ^[[32m✓^[[39m tests/daemon.test.ts ^[[2m(^[[22m^[[2m15 tests^[[22m^[[2m)^[[22m^[[33m 14005^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.9521888Z    ^[[33m^[[2m✓^[[22m^[[39m Unix-domain runtime daemon^[[2m > ^[[22mforces an incomplete ordinary request at the exact production grace and cleans metadata ^[[33m 2011^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.9524414Z    ^[[33m^[[2m✓^[[22m^[[39m Unix-domain runtime daemon^[[2m > ^[[22mforces stubborn SSE transport without waiting on interrupt acknowledgement and degrades ^[[33m 2039^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.9526832Z    ^[[33m^[[2m✓^[[22m^[[39m Unix-domain runtime daemon^[[2m > ^[[22mexpires pre-identity Agent 1 cancellation at force and forbids a late interrupt ^[[33m 2069^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.9529334Z    ^[[33m^[[2m✓^[[22m^[[39m Unix-domain runtime daemon^[[2m > ^[[22minterrupts once when Agent 1 identity appears in a later pre-force event ^[[33m 2031^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.9531698Z    ^[[33m^[[2m✓^[[22m^[[39m Unix-domain runtime daemon^[[2m > ^[[22misolates late prior-generation iterator events after a successful forced stop and restart ^[[33m 2654^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:49.9534321Z    ^[[33m^[[2m✓^[[22m^[[39m Unix-domain runtime daemon^[[2m > ^[[22mcaps post-force transport settlement at 500 ms before reporting cleanup failure ^[[33m 2647^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:51.4190438Z  ^[[32m✓^[[39m tests/supervisor.test.ts ^[[2m(^[[22m^[[2m12 tests^[[22m^[[2m)^[[22m^[[33m 972^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:52.8723253Z  ^[[32m✓^[[39m tests/worker-retirement.test.ts ^[[2m(^[[22m^[[2m19 tests^[[22m^[[2m)^[[22m^[[33m 1110^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:52.8727998Z    ^[[33m^[[2m✓^[[22m^[[39m keeps terminal records readable across concurrent thread association in 30 interleavings ^[[33m 492^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:53.8008465Z  ^[[32m✓^[[39m tests/runtime-dependencies.test.ts ^[[2m(^[[22m^[[2m19 tests^[[22m^[[2m)^[[22m^[[33m 604^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:54.1939871Z  ^[[32m✓^[[39m tests/exact-boundary-conformance.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[32m 5^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:54.5796775Z  ^[[2m^[[90m↓^[[39m^[[22m tests/codex-containment.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m | ^[[22m^[[33m3 skipped^[[39m^[[2m)^[[22m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:56.9281698Z  ^[[2m^[[90m↓^[[39m^[[22m tests/exact-managed-pi-integration.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:57.4880906Z  ^[[32m✓^[[39m tests/contracts-and-project.test.ts ^[[2m(^[[22m^[[2m10 tests^[[22m^[[2m)^[[22m^[[32m 87^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:59.4581608Z  ^[[32m✓^[[39m tests/manager-approval-integration.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[33m 1252^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:19:59.4584661Z    ^[[33m^[[2m✓^[[22m^[[39m routes an actual manager prompt through approval-only public controls for allow ^[[33m 471^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:00.0625247Z  ^[[32m✓^[[39m tests/codex-manager.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[32m 108^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:00.6410980Z  ^[[32m✓^[[39m packages/client/test/client.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 118^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:02.0559313Z  ^[[32m✓^[[39m tests/approval-store.test.ts ^[[2m(^[[22m^[[2m21 tests^[[22m^[[2m)^[[22m^[[33m 1003^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:05.7651111Z  ^[[32m✓^[[39m tests/manager-pi-integration.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[33m 1038^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:05.7672767Z    ^[[33m^[[2m✓^[[22m^[[39m real coordinator creates, binds, executes and reviews actual SDK Pi child without seeded sessions ^[[33m 471^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:08.4046006Z  ^[[32m✓^[[39m tests/runtime-daemon-signal.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[33m 2262^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:08.4088127Z    ^[[33m^[[2m✓^[[22m^[[39m runtime daemon process signal shutdown^[[2m > ^[[22mtears down within a bound when SIGTERM arrives with an incomplete request held open ^[[33m 2255^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:10.0913107Z  ^[[32m✓^[[39m tests/codex-login.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[33m 1013^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:10.0915953Z    ^[[33m^[[2m✓^[[22m^[[39m operator-only sign-in component (controlled fixture)^[[2m > ^[[22mfails for unsafe auth-file mode, mismatched completion, provider failure and clean exit ^[[33m 459^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:10.6168645Z  ^[[32m✓^[[39m tests/session-and-residency.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 106^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:10.9938232Z  ^[[32m✓^[[39m tests/exact-supply.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[32m 36^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:11.5347290Z  ^[[32m✓^[[39m tests/hosted-consent.test.ts ^[[2m(^[[22m^[[2m11 tests^[[22m^[[2m)^[[22m^[[32m 149^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:11.8632508Z  ^[[32m✓^[[39m tests/v2-contracts.test.ts ^[[2m(^[[22m^[[2m16 tests^[[22m^[[2m)^[[22m^[[32m 15^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:16.5414529Z  ^[[32m✓^[[39m tests/codex-worker.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[33m 4296^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:16.5416195Z    ^[[33m^[[2m✓^[[22m^[[39m offline Codex readiness adapter^[[2m > ^[[22mrejects aliases and bounds a silent process ^[[33m 4010^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:16.7957165Z  ^[[32m✓^[[39m packages/cli/test/runtime-jobs.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2597476Z  ^[[31m❯^[[39m tests/standalone.test.ts ^[[2m(^[[22m^[[2m13 tests^[[22m^[[2m | ^[[22m^[[31m1 failed^[[39m^[[2m | ^[[22m^[[33m1 skipped^[[39m^[[2m)^[[22m^[[33m 32403^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2600291Z    ^[[32m✓^[[39m actual two-job standalone runtime^[[2m > ^[[22mretires an eager process generation promptly and permanently rejects later capture^[[32m 92^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2602885Z    ^[[33m^[[2m✓^[[22m^[[39m actual two-job standalone runtime^[[2m > ^[[22mexecutes client consent and turn through two separate jobs and cleans SIGTERM sockets ^[[33m 4445^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2605338Z ^[[31m   ^[[31m×^[[31m actual two-job standalone runtime^[[2m > ^[[22mrotates credentials across supervisor jobs and starts the daemon with the new generation^[[39m^[[33m 5128^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2606409Z ^[[31m     → Test timed out in 5000ms.
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2607899Z If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2609999Z    ^[[33m^[[2m✓^[[22m^[[39m actual two-job standalone runtime^[[2m > ^[[22mrefuses a forged supervisor credential at daemon startup ^[[33m 4322^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2611192Z    ^[[33m^[[2m✓^[[22m^[[39m actual two-job standalone runtime^[[2m > ^[[22mrefuses a nonprivate supervisor credential at daemon startup ^[[33m 4997^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2612427Z    ^[[33m^[[2m✓^[[22m^[[39m actual two-job standalone runtime^[[2m > ^[[22mdoes not rotate a live supervisor credential when a duplicate job is refused ^[[33m 4343^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2614617Z    ^[[33m^[[2m✓^[[22m^[[39m actual two-job standalone runtime^[[2m > ^[[22mdoes not implicitly register the configured project ^[[33m 3746^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2616587Z    ^[[33m^[[2m✓^[[22m^[[39m actual two-job standalone runtime^[[2m > ^[[22mrefuses a credential symlink before opening the daemon ^[[33m 3552^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2617882Z    ^[[32m✓^[[39m actual two-job standalone runtime^[[2m > ^[[22mseats hosted-validation only with a dedicated worker-private subtree^[[32m 56^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2619401Z    ^[[2m^[[90m↓^[[39m^[[22m actual two-job standalone runtime^[[2m > ^[[22mactual sandbox cannot read or write sibling broker credentials
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2621153Z    ^[[32m✓^[[39m actual two-job standalone runtime^[[2m > ^[[22mrefuses unknown public-network or production-mode configuration^[[32m 12^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2622974Z    ^[[32m✓^[[39m actual two-job standalone runtime^[[2m > ^[[22mrejects unsafe config mode, symlink aliases and escaping storage^[[32m 15^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.2624514Z    ^[[33m^[[2m✓^[[22m^[[39m starts a real local-only daemon job without any Codex supervisor credential ^[[33m 1692^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.5475575Z  ^[[32m✓^[[39m tests/codex-immutable-file.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m | ^[[22m^[[33m3 skipped^[[39m^[[2m)^[[22m^[[32m 6^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:18.8310237Z  ^[[32m✓^[[39m tests/role-policy.test.ts ^[[2m(^[[22m^[[2m8 tests^[[22m^[[2m)^[[22m^[[32m 14^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:19.4777636Z  ^[[32m✓^[[39m tests/descendant-tracker.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[33m 2432^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:19.4786120Z    ^[[33m^[[2m✓^[[22m^[[39m observes an actual detached descendant after its controlled leader exits ^[[33m 2423^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:20:20.4711216Z  ^[[32m✓^[[39m tests/omlx-client.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0055394Z  ^[[32m✓^[[39m tests/runtime-conformance.test.ts ^[[2m(^[[22m^[[2m44 tests^[[22m^[[2m)^[[22m^[[33m 94031^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0057177Z    ^[[33m^[[2m✓^[[22m^[[39m never admits self-asserted passing records when external status is unknown ^[[33m 31277^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0059141Z    ^[[33m^[[2m✓^[[22m^[[39m never admits self-asserted passing records when external status is revoked ^[[33m 8104^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0061498Z    ^[[33m^[[2m✓^[[22m^[[39m even a controlled accepted lookup cannot substitute fixture bytes for the real accepted supply ^[[33m 8383^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0063225Z    ^[[33m^[[2m✓^[[22m^[[39m rejects nonprivate/symlink records and stale actual source before acceptance lookup ^[[33m 24530^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0065096Z    ^[[33m^[[2m✓^[[22m^[[39m derives all first-party runtime package artifacts instead of accepting a caller-selected subset ^[[33m 5094^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0066879Z    ^[[33m^[[2m✓^[[22m^[[39m exposes the same non-resettable production capture across calls without claiming loaded-module proof ^[[33m 16277^[[2mms^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0455069Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0458355Z ^[[31m⎯⎯⎯⎯⎯⎯⎯^[[39m^[[1m^[[41m Failed Tests 1 ^[[49m^[[22m^[[31m⎯⎯⎯⎯⎯⎯⎯^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0459184Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0460933Z ^[[41m^[[1m FAIL ^[[22m^[[49m tests/standalone.test.ts^[[2m > ^[[22mactual two-job standalone runtime^[[2m > ^[[22mrotates credentials across supervisor jobs and starts the daemon with the new generation
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0483351Z ^[[31m^[[1mError^[[22m: Test timed out in 5000ms.
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0510777Z If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0539788Z ^[[36m ^[[2m❯^[[22m tests/standalone.test.ts:^[[2m91:3^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0598060Z     ^[[90m 89| ^[[39m    await expect(lstat(credentialPath)).rejects.toMatchObject({ code: …
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0600105Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0613535Z     ^[[90m 90| ^[[39m  })^[[33m;^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0614919Z ^[[2m Test Files ^[[22m ^[[1m^[[31m1 failed^[[39m^[[22m^[[2m | ^[[22m^[[1m^[[32m38 passed^[[39m^[[22m^[[2m | ^[[22m^[[33m2 skipped^[[39m^[[90m (41)^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0618120Z     ^[[90m 91| ^[[39m  it("rotates credentials across supervisor jobs and starts the daemon…
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0620415Z ^[[2m      Tests ^[[22m ^[[1m^[[31m1 failed^[[39m^[[22m^[[2m | ^[[22m^[[1m^[[32m467 passed^[[39m^[[22m^[[2m | ^[[22m^[[33m16 skipped^[[39m^[[90m (484)^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0622498Z     ^[[90m   | ^[[39m  ^[[31m^^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0623128Z ^[[2m   Start at ^[[22m 07:19:33
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0624221Z     ^[[90m 92| ^[[39m    ^[[35mconst^[[39m f ^[[33m=^[[39m ^[[35mawait^[[39m ^[[34mfixture^[[39m()^[[33m;^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0652379Z     ^[[90m 93| ^[[39m    ^[[35mconst^[[39m first ^[[33m=^[[39m ^[[35mawait^[[39m ^[[34mlaunch^[[39m(^[[32m"supervisor"^[[39m^[[33m,^[[39m f^[[33m.^[[39mconfigPath)^[[33m;^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0653313Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0653763Z ^[[31m^[[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯^[[22m^[[39m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0654125Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0655200Z ^[[2m   Duration ^[[22m 110.51s^[[2m (transform 1.79s, setup 0ms, collect 18.41s, tests 172.57s, environment 18ms, prepare 4.13s)^[[22m
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0656435Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0656453Z
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.0684216Z ##[error]Error: Test timed out in 5000ms.
+Harness pre-merge	Test shared runtime	If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+Harness pre-merge	Test shared runtime	 ❯ tests/standalone.test.ts:91:3
+Harness pre-merge	Test shared runtime
+Harness pre-merge	Test shared runtime
+Harness pre-merge	Test shared runtime	2026-09-06T07:21:24.1864011Z ##[error]Process completed with exit code 1.

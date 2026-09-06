@@ -1,0 +1,6 @@
+{
+  "codex-rs/core/src/session/session.rs": "3a8c9a19b161d49028c00c76944fe3691f6de298d528c351ebc3b44ab1e14088",
+  "codex-rs/network-proxy/src/network_policy.rs": "29898c34d60d40eaf3eb333a77a999d41858aad0843997e31ca976517dcc1287",
+  "codex-rs/core/src/tools/network_approval_tests.rs": "da468d94d25a66ff6714252d39e96574de8953cad9fa53378b37c5cb4d7d9d38",
+  "codex-rs/sandboxing/src/seatbelt_base_policy.sbpl": "241c0c312550f01b54de6336db4c82f8ea0f2c06c42a03557214a684e1464e23"
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "chirality-exact-primary-network/v1",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "supplySize": 241191088,
+  "scenario": "on",
+  "commandNetworkPosture": "on",
+  "launchEvidence": "test-only-no-account-exact-vendor-factory",
+  "managerModel": "owned-loopback-deterministic-Responses",
+  "target": "owned-loopback-HTTP",
+  "approvalEvidence": "primary-private-protocol-only",
+  "storedAttributionProven": false,
+  "nativeDescendantNetworkProven": false,
+  "accountUsed": false,
+  "passed": false,
+  "sourcesBefore": {
+    "tests/exact-network-conformance.test.ts": "e5150f645b729d245fe0747641532d0fb8cb96b7191368ab3de02102cc5b419e",
+    "packages/daemon/src/codex-session.ts": "b9ccb1e032df24b0b48f59ff5ba8e83a2d539ad5520b4c1fd45e401058a7e272",
+    "packages/daemon/src/codex-supervisor.ts": "81b9c6a4b4e5a68cc55d73ca121f75d5faa34cd0e1ebacc95f8219e9b8821d42",
+    "packages/daemon/src/codex-containment.ts": "879e80de4aadd8c3a67656ebf056c31972969e9f8e4a2bc668d6bb83636e6649",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30"
+  },
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/enc-qyAIjX/p": "write",
+      "/private/tmp/enc-qyAIjX/p/.codex": "deny",
+      "/private/tmp/enc-qyAIjX/r": "deny",
+      "/private/tmp/enc-qyAIjX/r/w": "deny"
+    },
+    "network": {
+      "enabled": true,
+      "proxy_url": "http://127.0.0.1:0",
+      "enable_socks5": true,
+      "socks_url": "http://127.0.0.1:0",
+      "enable_socks5_udp": true,
+      "allow_upstream_proxy": false,
+      "dangerously_allow_non_loopback_proxy": false,
+      "dangerously_allow_all_unix_sockets": false,
+      "mode": "full",
+      "domains": {
+        "*": "allow"
+      },
+      "unix_sockets": {},
+      "allow_local_binding": false
+    }
+  },
+  "commandDiagnostic": {
+    "shellExitCode": "0",
+    "outputBytes": 1013,
+    "started": true,
+    "finished": true,
+    "curlStatus": 1
+  },
+  "processClosed": true,
+  "successfulTerminal": true,
+  "modelRequests": 2,
+  "supplyRevalidated": true,
+  "destinationHits": 0,
+  "commandReturnedMarker": false,
+  "approvalCount": 0,
+  "serverRequests": [],
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-network-conformance.test.ts": "e5150f645b729d245fe0747641532d0fb8cb96b7191368ab3de02102cc5b419e",
+    "packages/daemon/src/codex-session.ts": "b9ccb1e032df24b0b48f59ff5ba8e83a2d539ad5520b4c1fd45e401058a7e272",
+    "packages/daemon/src/codex-supervisor.ts": "81b9c6a4b4e5a68cc55d73ca121f75d5faa34cd0e1ebacc95f8219e9b8821d42",
+    "packages/daemon/src/codex-containment.ts": "879e80de4aadd8c3a67656ebf056c31972969e9f8e4a2bc668d6bb83636e6649",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30"
+  },
+  "sourceStable": true
+}

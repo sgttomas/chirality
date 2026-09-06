@@ -1,0 +1,80 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/supervisor.test.ts tests/delegated-runtime.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/supervisor.test.ts (11 tests) 716ms
+ ❯ tests/delegated-runtime.test.ts (29 tests | 2 failed) 11470ms
+   ✓ opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads 155ms
+   ✓ opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields 27ms
+   ✓ opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing 38ms
+   ✓ opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay 192ms
+   ✓ opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim 54ms
+   ✓ keeps issued operation and configured identity immutable against caller mutation 134ms
+   ✓ returns typed safe mismatch for malicious compatibility fields 39ms
+   ✓ fences worker acquisition when shutdown occurs during consent read 111ms
+   ✓ starts a fresh daemon generation without reusing old admissions 140ms
+   ✓ drains admitted consent publication before successful close 52ms
+   ✓ rejects object and null turn requests with typed invalid request errors 25ms
+   ✓ binds daemon identity and rejects a mismatched configured project root 25ms
+   ✓ offers and executes explicit untyped with canonical v2 evidence 129ms
+   ✓ offers and executes explicit agent0 with canonical v2 evidence 140ms
+   ✓ offers and executes explicit agent1 with canonical v2 evidence 129ms
+   ✓ offers and executes explicit agent2 with canonical v2 evidence 133ms
+   ✓ offers and executes explicit task with canonical v2 evidence 128ms
+   ✓ exposes configured on honestly and rejects unknown roles 49ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1035ms
+   × interrupts an active exact worker once and records the closed interrupted terminal 2062ms
+     → Approval requires this project's live worker generation
+   ✓ permits operator login without a pre-existing account and confines bypass admissions to login 29ms
+   ✓ rejects unsafe login URL output without sending arbitrary port fields 24ms
+   ✓ rejects malformed interruption and approval identities without coercion 25ms
+   × allows exact live-turn interruption after hosted launch verification becomes unavailable 2062ms
+     → Approval requires this project's live worker generation
+   ✓ binds selected role policy to retirement and passes it to resume selection 240ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2029ms
+   ✓ cancels a current login on shutdown and cannot admit another start 39ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2033ms
+   ✓ requires explicit on consent matching the immutable configured worker posture 188ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/delegated-runtime.test.ts > interrupts an active exact worker once and records the closed interrupted terminal
+RuntimeError: Approval requires this project's live worker generation
+ ❯ runtimeErrorFromResponse packages/client/src/errors.ts:34:12
+ ❯ RuntimeClient.requestJson packages/client/src/client.ts:138:37
+ ❯ RuntimeClient.delegatedAdmission packages/client/src/client.ts:535:22
+ ❯ RuntimeClient.interruptDelegatedTurn packages/client/src/client.ts:512:23
+ ❯ tests/delegated-runtime.test.ts:221:10
+    219|   const turn = f.client.runDelegatedTurn("project", compatibility, { t…
+    220|   for (let count = 0; count < 100 && (await f.worker.inventory()).leng…
+    221|   expect(await f.client.interruptDelegatedTurn("project", "interrupt-t…
+       |          ^
+    222|   const result = await turn;
+    223|   expect(result.terminal.outcome).toBe("interrupted");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/delegated-runtime.test.ts > allows exact live-turn interruption after hosted launch verification becomes unavailable
+RuntimeError: Approval requires this project's live worker generation
+ ❯ runtimeErrorFromResponse packages/client/src/errors.ts:34:12
+ ❯ RuntimeClient.requestJson packages/client/src/client.ts:138:37
+ ❯ RuntimeClient.delegatedAdmission packages/client/src/client.ts:535:22
+ ❯ RuntimeClient.interruptDelegatedTurn packages/client/src/client.ts:512:23
+ ❯ tests/delegated-runtime.test.ts:270:10
+    268|   available = false;
+    269|   await expect(f.delegated.preflight("project", "turn:new")).rejects.t…
+    270|   expect(await f.client.interruptDelegatedTurn("project", "drift-inter…
+       |          ^
+    271|   expect((await turn).terminal.outcome).toBe("interrupted");
+    272|   await expect(f.delegated.preflight("project", "interrupt:foreign")).…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 38 passed (40)
+   Start at  22:07:06
+   Duration  11.80s (transform 163ms, setup 0ms, collect 277ms, tests 12.19s, environment 0ms, prepare 64ms)

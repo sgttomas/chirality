@@ -1,0 +1,7 @@
+{
+  "packages/engine-pi-omlx/src/pi-turn-runtime.ts": "3057c424bb21afa4624374042ab8069da79d5b3d5b6209d403928e6622738cde",
+  "packages/engine-pi-omlx/src/pi-read-tool.ts": "189b388f2c99b3b96f52ca9684c66a6ef2b20b7d52d4cb2d66143a119fdc2d64",
+  "packages/engine-pi-omlx/src/pi-event-mapper.ts": "d593795a3a12d509ab983fcbdc4fcf37a2d71c7efb0b833e2fb86664138e168e",
+  "packages/engine-pi-omlx/src/index.ts": "4662cf8b2423c1f9a7b21e3ecaa55aff218f1c730e8503583ffafad9feee02e4",
+  "tests/pi-turn-runtime.test.ts": "ff6c6aa612f294381d36eb76bdb3a15747805ca4de8335509f83f64ffaa9de35"
+}

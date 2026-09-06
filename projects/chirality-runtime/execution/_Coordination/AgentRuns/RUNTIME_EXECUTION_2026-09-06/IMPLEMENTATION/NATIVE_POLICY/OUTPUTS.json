@@ -1,0 +1,4 @@
+{
+  "packages/daemon/src/codex-supervisor.ts": "8681635bd8bc1db120be19d89088a5ae97c5ef93ee209b944ae55c4a688d80cb",
+  "tests/codex-supervisor.test.ts": "8db1d19f91fdc6fda4c2e0335b09523a151641727152086ba424e438b3082cbe"
+}

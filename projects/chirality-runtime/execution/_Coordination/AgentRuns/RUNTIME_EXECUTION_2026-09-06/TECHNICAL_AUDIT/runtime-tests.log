@@ -1,0 +1,14 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /private/tmp/runtime-execution-20260906/technical-audit-workspace
+
+ ✓ packages/cli/test/cli.test.ts (25 tests) 22ms
+ ✓ packages/client/test/client.test.ts (4 tests) 28ms
+
+ Test Files  2 passed (2)
+      Tests  29 passed (29)
+   Start at  20:37:55
+   Duration  234ms (transform 90ms, setup 0ms, collect 164ms, tests 50ms, environment 0ms, prepare 49ms)

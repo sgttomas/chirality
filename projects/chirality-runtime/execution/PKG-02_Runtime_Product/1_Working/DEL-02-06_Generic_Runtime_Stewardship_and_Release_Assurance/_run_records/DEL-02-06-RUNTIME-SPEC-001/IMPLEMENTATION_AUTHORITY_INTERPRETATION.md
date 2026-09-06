@@ -1,0 +1,9 @@
+# Current-direction implementation interpretation
+
+The latest user instruction asks to get the Runtime working as intended before another PR, absent genuine owner intervention. It is authorization to proceed through this specification predecessor and then a bounded, manager-sealed implementation of already accepted semantics. The project-local software profile is registered method/check configuration, not another independent human decision.
+
+HOLD_SUCCESSOR_MAP.csv preserves historical source binding values. Its implementation_act row requires exact activation, profile, checks, reads, writes, rollback and return: the current direction supplies the owner instruction; HELP_HUMAN and WORKING_ITEMS make that instruction concrete in the subsequent implementation brief. Source identity, CLI conformance and semantic/regression evidence are outputs to generate and validate, not prerequisites whose absence prohibits writing their implementation. Frozen compatibility evidence is not overwritten or declared accepted by this interpretation.
+
+App owns App implementation/conformance; PEC must establish an exact affected operation if applicable. Runtime-owned code and tests can proceed independently. Actual hosted account/login/consent, operational installation or registration, compatibility epoch changes, client acceptance, cutover and public release remain specific acts outside this native specification graph. No new owner semantic decision is identified merely by missing code for already accepted contracts.
+
+This interpretation binds the parent's current OWNER_DIRECTION.md (READ_AMENDMENT_V2) and technical diagnosis (READ_AMENDMENT_V3); it does not alter ScopeOfWork or retire any historical hold. This first REQ-027 graph writes no implementation bytes. A later graph can begin in the same run/branch without another PR once this graph's fan-in is accepted.

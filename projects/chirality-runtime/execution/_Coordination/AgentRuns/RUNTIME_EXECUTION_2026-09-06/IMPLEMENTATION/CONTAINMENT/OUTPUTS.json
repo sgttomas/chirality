@@ -1,0 +1,12 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "typescript_build_exit": 0,
+  "test_exit": 0,
+  "files": {
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "51eda462da8b3cb18b44f743a7e1022c9fb16caa1b1a46998aa8cb31f37d1603",
+    "projects/chirality-runtime/tests/codex-containment.test.ts": "22cff5f929fe240ddbfb96cdd1efe9a2435921d79cc0b11432f477785822bc6e",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/BRIEF.md": "0959ef890ee558ebc248057a8ee873e27f30cae48b97c8682d5e2d9b961595d8",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/RETURN.md": "bc53aee1aa355e903922d6fb7dbed4d99fea9e8f0ebcd3d9331e9da4561d3db1",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/tests.log": "9ead4488f6d8861574a64e225b4867cf316e0f73e25fe1d098f9b4cd7a3207f8"
+  }
+}

@@ -1,0 +1,31 @@
+# Governed manager composition plan — release requested
+
+OpenAI GPT-6; exact serving model ID unavailable. Agent 2 role instruction-asserted, not mechanically enforced. Parent requested assessment only before new-path release. No code changed in this tranche.
+
+## Verified interfaces and missing seams
+
+- `core/src/agent1-run-coordinator.ts` already owns real manager/child session creation, one-local-child authorization, exact residency, read-only scope, immutable brief hashes, required read receipt, review, interruption and final terminal evidence. `Agent1ManagerRuntimePort.execute(session,request,hooks,signal)` needs a real hosted manager implementation. RuntimeService accepts this coordinator through its existing agent1Runs constructor slot and exposes the existing authenticated Agent1 route.
+- `RuntimeToolBindingPort.bind(sessionId,tools)` receives an executable `RuntimeToolDefinition`, not merely a name. The coordinator read callback sets its required receipt and persists permission/start/completion evidence. The Pi SDK currently creates its own read callback, which cannot satisfy that receipt. A real per-session tool registry/bridge is necessary; fabricated receipt or event injection is not acceptable.
+- `engine-claude/src/index.ts` is an adapter over an unimplemented injected ClaudeTurnRuntimePort; it is not a concrete hosted manager.
+- The accepted concrete Codex launch exists in `daemon/src/codex-supervisor.ts`, but exposes text turns only. `codex-session.ts:102` rejects all server requests; no callable dynamic-tool path is implemented. An AgentEnginePort wrapper cannot turn chat text into governed delegate_agent calls. The exact pinned AppServer tool wire must be read before implementation; this assessment does not invent vendor fields.
+
+## Recommended minimal graph
+
+1. **Real bound Pi tool seam.** Add a per-session registry to concrete Pi runtime and return/expose its RuntimeToolBindingPort. Preserve exactly-one-read-file guard. When a governed binding exists, Pi's custom tool invokes that actual callback after validating its closed schema and exact authorized path; missing binding must not silently broaden a governed child to project-wide read. Preserve callback interruption/release and required receipt. Strengthen coordinator read identity checks against symlink replacement/TOCTOU before the bridge makes them operational.
+2. **Hosted Codex callable tools.** Inspect accepted 0.149 exact generated schema for dynamic tool registration/request/response. Extend existing actor with immutable bounded delegate_agent and review callback declarations; server request routing must recognize only those declarations, exact active thread/turn identity, unique request IDs, bounded input/output/time and cancellation. Unknown methods remain rejected. Preserve named native policy readback, exact supply/account/epoch/root checks and observed descendant teardown. No hosted credentials or requests in child tests.
+3. **Manager port.** Add a Runtime-owned Codex manager adapter. Supply actual Agent1 instruction content, run brief, labelled instruction-asserted role, and schema-bound delegate_agent/review tools. Actual upstream tool callbacks invoke coordinator hooks; text mentioning delegation cannot launch children or satisfy review. Forward genuine nonterminal canonical events; coordinator owns terminal. Real failures never become success. Use existing trusted Codex launch configuration and private supervisor boundary, not raw executable/network overrides supplied by public client.
+4. **Composition.** Extend reusable daemon composition to register the real coordinator with explicit hosted manager configuration/port and the Pi bound-tool registry. Manager selection remains hosted and project-enabled; local Pi Agent1 stays forbidden. Expose existing authenticated runAgent1/SSE/interrupt path. Local-only mode remains accurately limited when no hosted manager is configured. Explicit memory-only credential ports remain supported for parent validation.
+5. **Controlled integration.** Use a separately identified controlled Agent1ManagerRuntimePort that calls real hooks, drive actual coordinator -> actual Pi SDK -> synthetic local provider -> actual bound read -> child return -> manager review. Assert no manual SessionStore seeding, real parentage/approval/receipt, read count, review, residency and canonical terminal. Separately test real Codex manager protocol against a JSONL fixture; fixture evidence must not claim hosted provider execution. Parent alone performs live account/provider tests.
+
+## Requested paths and ownership
+
+Suggested separate releases, avoiding shared edits:
+
+- **Pi port owner:** `packages/engine-pi-omlx/src/pi-turn-runtime.ts`, `pi-read-tool.ts` if needed, `index.ts`, `tests/pi-turn-runtime.test.ts` for session-bound callback bridge.
+- **Core owner:** `packages/core/src/agent1-run-coordinator.ts`, `tests/agent1-run-coordinator.test.ts` for durable bounded read identity/race repair; exports only if needed.
+- **Actor owner:** `packages/daemon/src/codex-session.ts`, `tests/codex-session.test.ts` for exact dynamic-tool protocol after source verification.
+- **Manager/transport owner:** new `packages/daemon/src/codex-manager.ts`, new `tests/codex-manager.test.ts`; additive `codex-supervisor.ts`, `supervisor-server.ts`, private contracts only if manager callbacks must cross that private process boundary. Prefer shared trusted launch helper extracted from existing supervisor over duplicating checks. Exact helper path/release should follow actor source/API result.
+- **This composition child:** existing `packages/daemon/src/standalone.ts`, `tests/standalone.test.ts`, new `tests/manager-pi-integration.test.ts`, evidence `IMPLEMENTATION/MANAGER_COMPOSITION/`.
+- Parent owns manifests/dependency/export integration and confirms final per-agent path boundaries before mutations.
+
+No new model family, local Agent1, public raw execution, approval bypass, production session seeding, or TM-ROOT-106 disposition. This is more than registry wiring because no hosted callable manager port currently exists. Implement the bridge in explicit independently reviewable tranches while the controlled coordinator integration proves the already-authorized topology.

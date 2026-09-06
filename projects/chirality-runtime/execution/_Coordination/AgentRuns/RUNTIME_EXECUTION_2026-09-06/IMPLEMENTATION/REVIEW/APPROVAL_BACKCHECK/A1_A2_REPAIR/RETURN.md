@@ -1,0 +1,9 @@
+# A1/A2 independent repair backcheck
+
+A1 CLOSED FOR PINNED IMPLEMENTATION: compiler sets features.network_proxy false for off and true for ask/on, includes the feature selection in policy digest version3, and retains exact named network domains/socket/proxy bounds. Actor effective readback requires that exact boolean as well as the exact profile table and matching approval policy before thread/start, resume and turn/start. Structured feature overrides cannot substitute their own proxy configuration. This matches independently verified exact758ef40 source activation semantics. It establishes correct source-guided configuration, not actual network interception, grouping or kernel enforcement.
+
+A2 CLOSED FOR PINNED IMPLEMENTATION: approval delivery awaits a successful Writable callback under a bounded request timeout. The sending state reserves the choice while in flight. Broken pipe, no callback, and duplicate send paths cannot return sent:true. Independently adapting the original asynchronous failure reproduction passed. The broker's applied:true remains calibrated to successful transport write, not provider execution acknowledgement.
+
+Checks: original failure backcheck1 PASS plus four focused actor/compiler/store/delegated-runtime suites93 PASS (94 total), including end-to-end controlled broker/private actor decisions and cancellation. Source drift from precheck pins is empty. No real vendor/provider/account runs by this reviewer. Extra evidence test renamed byte-identically .test.ts.source after execution. Actual supplier conformance/admission upcoming delta and coordinator A3 findings are outside this narrow closure; overall fresh review remains open.
+
+OpenAI GPT-6 exact serving ID unavailable. Agent 2 role instruction-asserted/not mechanically enforced; derivative independent evidence only.

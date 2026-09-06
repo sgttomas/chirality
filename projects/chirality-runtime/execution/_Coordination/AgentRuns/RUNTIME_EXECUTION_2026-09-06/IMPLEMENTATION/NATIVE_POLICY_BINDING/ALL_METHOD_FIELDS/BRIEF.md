@@ -1,0 +1,1 @@
+Parent authorized discovery6 turn/start exact permissions repair plus thread/resume permissions source-supported candidate. All three use permissions; strict readback preserved. Actual resume claim awaits parent run. GPT-6 bounded instruction-asserted Agent2 serving ID unavailable. No vendor invocation.

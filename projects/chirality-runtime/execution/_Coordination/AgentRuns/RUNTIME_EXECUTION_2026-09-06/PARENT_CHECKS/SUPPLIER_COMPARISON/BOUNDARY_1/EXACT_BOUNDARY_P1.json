@@ -1,0 +1,112 @@
+{
+  "schema": "chirality-exact-boundary/v1",
+  "suite": "P1-read-environment",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "supplySize": 241191088,
+  "accountUsed": false,
+  "modelEvidence": "deterministic-loopback-only",
+  "passed": false,
+  "processBoundaryProven": false,
+  "roleBoundaryProven": false,
+  "sourcesBefore": {
+    "tests/exact-boundary-conformance.test.ts": "ebfe559bb0570a3a90efb6001dbf088ae37591870e4ef9783a160ad9933c37c7",
+    "tests/fixtures/boundary-response-provider.mjs": "48055c740343bf0b3ff443aa9a3f2478c15d6bd28239e91a74e95a6a5c2ff588",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "policyDigest": "0b319e51559aeb0281710930e6d530ac2ee76985a2590bcb77d5af09419d2933",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/private/etc/ssl/openssl.cnf": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/ebc-Wefcij/p": "write",
+      "/private/tmp/ebc-Wefcij/b": "deny",
+      "/private/tmp/ebc-Wefcij/b/w": "deny",
+      "/private/tmp/ebc-Wefcij/p/.codex": "deny",
+      "/private/tmp/ebc-Wefcij/p/protected.txt": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "terminalStatus": "completed",
+  "nativeChildren": [
+    {
+      "threadId": "01a07558-374b-76f1-bb1d-5b0669b8348d",
+      "sourceTurnId": "01a07558-36ea-74f0-8e0b-bd25a562c44b"
+    }
+  ],
+  "probes": [
+    {
+      "who": "primary",
+      "callId": "boundary_1",
+      "elapsedMs": 68,
+      "summary": {
+        "started": true,
+        "finished": true,
+        "values": {
+          "ALLOWED": "PASS",
+          "FOREIGN": "1",
+          "BROKER": "1",
+          "LITERAL": "1",
+          "CONFIG": "1",
+          "ALIAS": "1",
+          "AMBIENT": "ABSENT",
+          "CREDENTIAL_ENV": "ABSENT",
+          "CWD": "PASS",
+          "HOME": "PASS",
+          "CODEX_HOME": "PASS",
+          "TMPDIR": "PASS"
+        }
+      },
+      "supplierFailure": null
+    },
+    {
+      "who": "child",
+      "callId": "boundary_4",
+      "elapsedMs": 57,
+      "summary": {
+        "started": true,
+        "finished": true,
+        "values": {
+          "ALLOWED": "PASS",
+          "FOREIGN": "1",
+          "BROKER": "1",
+          "LITERAL": "1",
+          "CONFIG": "1",
+          "ALIAS": "1",
+          "AMBIENT": "ABSENT",
+          "CREDENTIAL_ENV": "ABSENT",
+          "CWD": "PASS",
+          "HOME": "PASS",
+          "CODEX_HOME": "PASS",
+          "TMPDIR": "PASS"
+        }
+      },
+      "supplierFailure": null
+    }
+  ],
+  "peerFailures": [],
+  "failurePhase": "primary-and-native-probes",
+  "vendorProcessClosed": true,
+  "supplyRevalidated": true,
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-boundary-conformance.test.ts": "ebfe559bb0570a3a90efb6001dbf088ae37591870e4ef9783a160ad9933c37c7",
+    "tests/fixtures/boundary-response-provider.mjs": "48055c740343bf0b3ff443aa9a3f2478c15d6bd28239e91a74e95a6a5c2ff588",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "sourceStable": true,
+  "elapsedMs": 4025,
+  "profileBudgetMs": 60000,
+  "probeBudgetMs": 10000
+}

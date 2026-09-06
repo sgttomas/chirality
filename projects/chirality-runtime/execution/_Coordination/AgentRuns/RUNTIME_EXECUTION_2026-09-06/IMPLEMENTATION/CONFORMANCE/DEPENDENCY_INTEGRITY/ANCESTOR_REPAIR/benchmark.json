@@ -1,0 +1,12 @@
+{
+  "node": "v24.18.0",
+  "workspacePackages": 7,
+  "workspaceRootManifests": 1,
+  "totalPackages": 241,
+  "dependencyFiles": 35598,
+  "dependencyBytes": 210099611,
+  "inventoryMs": 2260.681458,
+  "startupAndFirstCheckMs": 8500.595583,
+  "unchangedCheckMs": 3815.0885420000013,
+  "evidence": "startup-disk-inventory-not-loaded-module-proof"
+}

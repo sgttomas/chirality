@@ -1,0 +1,34 @@
+--- a/codex-rs/core/src/session/session.rs
++++ b/codex-rs/core/src/session/session.rs
+@@ -1218,15 +1218,13 @@
+             let managed_network_requirements_enabled = config.managed_network_requirements_enabled();
+             let network_approval = Arc::new(NetworkApprovalService::default());
+             // The managed proxy can call back into core for allowlist-miss decisions.
+-            let network_policy_decider_session = if managed_network_requirements_configured {
+-                config
+-                    .permissions
+-                    .network
+-                    .as_ref()
+-                    .map(|_| Arc::new(RwLock::new(std::sync::Weak::<Session>::new())))
+-            } else {
+-                None
+-            };
++            // A configured named proxy also needs an attributed approval callback.
++            // Administrator constraints and hard-deny misses remain enforced by the proxy.
++            let network_policy_decider_session = config
++                .permissions
++                .network
++                .as_ref()
++                .map(|_| Arc::new(RwLock::new(std::sync::Weak::<Session>::new())));
+             let blocked_request_observer = config
+                 .permissions
+                 .network
+@@ -1250,7 +1248,7 @@
+                         config.permissions.permission_profile(),
+                         network_policy_decider.as_ref().map(Arc::clone),
+                         blocked_request_observer.as_ref().map(Arc::clone),
+-                        managed_network_requirements_configured,
++                        network_policy_decider.is_some(),
+                         network_proxy_audit_metadata.clone(),
+                     )
+                     .instrument(info_span!(

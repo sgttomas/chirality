@@ -1,0 +1,7 @@
+{
+  "packages/daemon/src/standalone.ts": "9eab253ad6d2c109021dd01cf77e6248860ec6135c8ab0ac7c0d88ab2a6182f1",
+  "packages/daemon/src/standalone-bin.ts": "65787277d387b891cb939e21e968778908a2d67aa5fca0b2a9e222d7c3f6f71e",
+  "tests/standalone.test.ts": "9f3661542fffd88f9e1709c76ea9ecf3ac7653f3d063c10402d79d949aa2e849",
+  "packages/daemon/package.json": "4356495721040daeae38d55a024737c0d7e4120ceff7f04767a195f880a89301",
+  "package-lock.json": "74662c4983ccf341ea00c8765b92deee8a2db17caa6854e130ad4d9c948c9444"
+}

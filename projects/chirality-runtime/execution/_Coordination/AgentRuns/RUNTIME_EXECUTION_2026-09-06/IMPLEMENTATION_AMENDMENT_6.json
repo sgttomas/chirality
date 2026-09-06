@@ -1,0 +1,10 @@
+{
+  "authority": "OWNER_DIRECTION.md",
+  "scope": "Implement Runtime-owned start/status/cancel ChatGPT login entry, separate from turn startup, over exact verified AppServer into dedicated private home. Documented login type remains not empirically proven successful until actual authorized login. Require explicit operator provider consent before start. Sanitize/allowlist official HTTPS login URL; no secret or raw provider payload persistence. Report account binding/hash for attributed configuration refresh, never automatically authorize a turn or change account epoch. Controlled tests only; owner hosted question still pending.",
+  "additional_write_paths": [
+    "projects/chirality-runtime/packages/daemon/src/codex-login.ts",
+    "projects/chirality-runtime/tests/codex-login.test.ts"
+  ],
+  "existing_paths": "Previously released actor, private supervisor protocol, standalone, daemon/client/CLI paths may integrate this entry serially.",
+  "parent": "/root HELP_HUMAN; OpenAI GPT-6; exact serving ID unavailable; role not mechanically enforced"
+}

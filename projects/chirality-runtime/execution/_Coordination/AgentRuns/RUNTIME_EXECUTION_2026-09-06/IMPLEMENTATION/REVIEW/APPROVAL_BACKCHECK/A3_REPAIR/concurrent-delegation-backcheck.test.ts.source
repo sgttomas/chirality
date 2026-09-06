@@ -1,0 +1,12 @@
+import {expect,it} from 'vitest';
+import {GovernedAgent1RunCoordinator} from '../../../../../../../../packages/core/src/agent1-run-coordinator.ts';
+it('independently rejects concurrent callbacks creating two children under one-child coordinator contract',async()=>{
+ const sessions=new Map<string,any>();let childCreates=0,turns=0;const records:any[]=[];
+ const manager={async *execute(_s:any,_r:any,hooks:any){const children=await Promise.all([hooks.delegate({sealedBrief:'first'}),hooks.delegate({sealedBrief:'second'})]);await hooks.review({childSessionId:children[1].childSessionId,decision:'accepted',rationale:'actual child'});}};
+ const coordinator:any=new GovernedAgent1RunCoordinator({projects:{requireAuthorized:async()=>({canonicalRoot:'/fixture',enabledAdapterIds:['stub','pi']})},resolveManagerSelection:async()=>({adapterId:'stub',providerId:'controlled',model:'manager'}),manager,
+ sessions:{create:async(input:any)=>{const id=input.role==='agent2'?'child'+(++childCreates):'manager';const s={...input,sessionId:id,projectRoot:'/fixture'};sessions.set(id,s);return s;},get:async(_p:any,id:any)=>sessions.get(id),update:async(s:any)=>sessions.set(s.sessionId,s),appendEvent:async(_p:any,e:any)=>e,persistEvent:async()=>{}},
+ residency:{status:async()=>({phase:'READY',managedModelId:'local',epoch:{epochId:'e'}})},tools:{bind:async()=>async()=>{}},turns:{interrupt:async()=>{},async *run(){turns++;yield {type:'process:exit',data:{exitCode:0}};}}} as any);
+ coordinator.listManagerDefinitions=async()=>[{agentId:'WORKING_ITEMS',agentType:1}];coordinator.persistAgentRun=async(_p:any,_r:any,record:any)=>records.push(structuredClone(record));coordinator.persistAgentProgress=async()=>{};coordinator.readFileTool=async()=>({tool:{},receipt:{completed:()=>true}});
+ const events=[];for await(const event of coordinator.run('project',{brief:'run',approvalReference:'approved',localModel:'local',readOnlyTool:{name:'read_file',relativePath:'file'}}))events.push(event);
+ expect(childCreates).toBeLessThanOrEqual(1);expect(turns).toBeLessThanOrEqual(1);expect(records.at(-1).status).toBe('failed');expect(records.at(-1).child?.sessionId).not.toBe('child2');
+});

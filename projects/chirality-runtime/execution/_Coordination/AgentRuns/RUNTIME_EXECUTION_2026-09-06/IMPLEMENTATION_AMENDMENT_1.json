@@ -1,0 +1,12 @@
+{
+  "reason": "Accepted N1 identifies compatibility error and structured failure fidelity gaps; implementationmanager requests exact supplemental paths.",
+  "authority": "OWNER_DIRECTION.md current runtime execution direction",
+  "additional_write_paths": [
+    "projects/chirality-runtime/packages/contracts/src/errors.ts",
+    "projects/chirality-runtime/packages/client/src/errors.ts",
+    "projects/chirality-runtime/packages/cli/src/cli.ts",
+    "projects/chirality-runtime/packages/cli/test/cli.test.ts"
+  ],
+  "scope": "Preserve existing behavior; additive exact accepted RUNTIME_COMPATIBILITY_MISMATCH and structurederror propagation only. No arbitrary new errorsemantics or CLIprivatecontrol. Final integration consumes acceptedN4/N5 and tests.",
+  "parent": "/root HELP_HUMAN"
+}

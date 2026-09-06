@@ -1,0 +1,46 @@
+{
+  "schema": "chirality-exact-managed-pi/v1",
+  "launchEvidence": "test-only-exact-vendor-factory",
+  "managerModelEvidence": "deterministic-loopback-Responses",
+  "hostedManagerProviderObserved": false,
+  "hostedAccountBoundaryProven": false,
+  "credentialStorage": "memory-only",
+  "supplySha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+  "passed": true,
+  "sourcesBefore": {
+    "packages/daemon/src/codex-supervisor.ts": "914eff42e359a2332e5c433a1da149c911f8f6cb32e3fe8c2ecb9906c1ee7361",
+    "packages/daemon/src/codex-session.ts": "2806ce90a9769b6845306abdd2e3c8b7b5bda8878b59b24c2eea317a973092a3",
+    "packages/daemon/src/codex-manager.ts": "fa4801798bbaefb72278085706782e731bc642b8036c7da4a875ab5275299812",
+    "packages/daemon/src/supervisor-server.ts": "7e3c45a841f04171ed3aa628f6f17185c8c3dbc696d6488e47674190a7d9824e",
+    "packages/daemon/src/standalone.ts": "29e357b97f04286cd1256cc6eade7ddfc86d01d3baed272c8bfec3529d1f7ea6",
+    "packages/core/src/agent1-run-coordinator.ts": "d52188c97d5ff7672ae2894e6cd7aaf0b523e30c231825aeae1e1a8342a716a9",
+    "tests/exact-managed-pi-integration.test.ts": "abd166df359506df31a64c6190277c81ec386c6c2bd740ed066512d31fc03438",
+    "tests/fixtures/response-provider.mjs": "c0e1c240f7416ddbb2aac96b137cfbd0cef24a0f70199e03bb786bb9e4ff8304"
+  },
+  "vendorPid": 41752,
+  "vendorProcessClosed": true,
+  "markerObserved": true,
+  "boundedReadObserved": true,
+  "reviewed": true,
+  "parentStatus": "completed",
+  "childStatus": "completed",
+  "responseRequests": 3,
+  "modelFixtureFailureCount": 0,
+  "supplyRevalidated": true,
+  "modelCallbackKinds": [
+    "managed-delegate",
+    "managed-review"
+  ],
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "packages/daemon/src/codex-supervisor.ts": "914eff42e359a2332e5c433a1da149c911f8f6cb32e3fe8c2ecb9906c1ee7361",
+    "packages/daemon/src/codex-session.ts": "2806ce90a9769b6845306abdd2e3c8b7b5bda8878b59b24c2eea317a973092a3",
+    "packages/daemon/src/codex-manager.ts": "fa4801798bbaefb72278085706782e731bc642b8036c7da4a875ab5275299812",
+    "packages/daemon/src/supervisor-server.ts": "7e3c45a841f04171ed3aa628f6f17185c8c3dbc696d6488e47674190a7d9824e",
+    "packages/daemon/src/standalone.ts": "29e357b97f04286cd1256cc6eade7ddfc86d01d3baed272c8bfec3529d1f7ea6",
+    "packages/core/src/agent1-run-coordinator.ts": "d52188c97d5ff7672ae2894e6cd7aaf0b523e30c231825aeae1e1a8342a716a9",
+    "tests/exact-managed-pi-integration.test.ts": "abd166df359506df31a64c6190277c81ec386c6c2bd740ed066512d31fc03438",
+    "tests/fixtures/response-provider.mjs": "c0e1c240f7416ddbb2aac96b137cfbd0cef24a0f70199e03bb786bb9e4ff8304"
+  },
+  "sourceStable": true
+}

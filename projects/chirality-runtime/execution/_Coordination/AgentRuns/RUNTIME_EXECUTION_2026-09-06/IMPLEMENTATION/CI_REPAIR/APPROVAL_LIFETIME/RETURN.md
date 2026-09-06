@@ -1,0 +1,7 @@
+# Approval lifetime CI repair return
+
+Only tests/delegated-runtime.test.ts changed. The affected test now opts into a real controlled ProcessSupervisor child watching a host release file. That file is written only after the durable approval/API/generation assertions finish. Before release the test asserts the turn has not settled; after release it requires completed terminal and rejects the no-longer-live approval query. Other slow-worker tests retain their existing fixture behavior.
+
+The held worker's 10s maxRunMs is a cleanup watchdog beyond the normal test deadline, never the success/completion synchronization. It does not extend any production timeout or approval validity. Immediately attached turn rejection handler prevents unhandled rejection. Finally always issues idempotent release; if still active it interrupts the exact turn, falls back to closing the owned supervisor if admission is unavailable, and joins the turn. Real private RPC, daemon authorization and production live-binding checks remain unchanged.
+
+Observed Linux CI failure is retained in ci-excerpt.log; local original timing failure was not claimed reproduced. Final focused real-process/socket test PASS: one selected, 33 skipped, 282ms (tests-sealed.log). Earlier checks retained; parent owns aggregate Linux rerun. No build, supplier, network, account, authority or Git operation. OpenAI GPT-6, exact serving ID unavailable; Agent2 role instruction-asserted, not mechanically enforced. Source frozen for parent closeout.

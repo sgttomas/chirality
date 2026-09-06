@@ -1,0 +1,8 @@
+{
+  "files": {
+    "RESULT.json": "59c2ca64c33837eba8199cb88be5c379d5a2de73e1c1272a9d6b8ab209b609e0",
+    "output.log": "9ecd113d6399b038a21952212607bb78965bcbc7435b3cce04abaf816c73adfe",
+    "CHECK.json": "07412fcb2d695187192cb491f99ed63cee5f7adf2deb8ba4667b9fc8531b577b"
+  },
+  "meaning": "Patched unaccepted supplier passes actual primary/native-child apply_patch create and foreign patch denial, deferred tool discovery and cross-process resume. Selected owned canaries only; not complete protected-pattern or release acceptance."
+}
