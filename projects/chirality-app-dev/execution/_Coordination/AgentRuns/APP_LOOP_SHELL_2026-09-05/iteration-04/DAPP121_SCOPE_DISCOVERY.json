@@ -1,0 +1,29 @@
+{
+  "next_free_id": "D-APP-121",
+  "register_sha256": "9f615ff575b899079aedf07665d46e6ed4409a2bb536fbade0a83f66cd1855e0",
+  "no_matching_packet": true,
+  "source_identity_observations": [
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts",
+      "sha256": "c9c37b00b2d777ef96a1d1bd000b6690f1fdad54af88eb11931561d75522c1de"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/renderer-window-policy.test.ts",
+      "sha256": "49eac67079b39f5a9464e823f0fc88d7e86488b4b6c86ff0151c38b7eade2ae3"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+      "sha256": "45d52b57c5fd99bc600587ec73a2541e2e8ac325201105573a5f3d036084f548"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+      "sha256": "99249b5d00d215a989aad884ac2ab1d0b4238d6e19e07cb8faa651b6212e2d51"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "sha256": "a92e42b559a39c65dff3d0836fa1d50918ffed00a4e8aa4ddb90a0fc427263b7"
+    }
+  ],
+  "parent_report": "No selectable DEL09-06 policy act; child must verify actual authority before proposal reliance",
+  "effect": "Draft only, no source/row changes"
+}

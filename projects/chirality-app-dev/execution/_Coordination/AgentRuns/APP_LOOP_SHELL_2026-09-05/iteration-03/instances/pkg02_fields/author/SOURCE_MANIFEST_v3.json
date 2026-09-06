@@ -1,0 +1,10 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+    "sha256": "401278fe0eccfc83ee4e990f5e472ee0b4bc7da199c2bb3372e10a3a6637a2b9"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+    "sha256": "b776f6b404f9956bde3c314350f36f7812ab0967e1e56510f9fba24995f9e58b"
+  }
+]

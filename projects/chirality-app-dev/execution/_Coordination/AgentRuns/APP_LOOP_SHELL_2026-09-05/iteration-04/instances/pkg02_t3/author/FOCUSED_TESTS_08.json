@@ -1,0 +1,19 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/__tests__/api/working-root/file-route.test.ts",
+    "src/__tests__/electron/document-handoff.test.ts",
+    "src/__tests__/components/document-view.test.tsx",
+    "src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "src/__tests__/components/woven-right-panel.test.tsx",
+    "src/__tests__/components/file-tree-panel.test.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "timestamp": "2026-09-05T22:52:45.037569+00:00",
+  "exit_code": 0,
+  "stdout": "\n> chirality-frontend@2.0.0 test\n> vitest run src/__tests__/api/working-root/file-route.test.ts src/__tests__/electron/document-handoff.test.ts src/__tests__/components/document-view.test.tsx src/__tests__/components/woven-dialogue-shell.test.tsx src/__tests__/components/woven-dialogue-controls.test.tsx src/__tests__/components/woven-right-panel.test.tsx src/__tests__/components/file-tree-panel.test.tsx\n\n\n RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend\n\n\n Test Files  7 passed (7)\n      Tests  53 passed (53)\n   Start at  16:52:44\n   Duration  339ms (transform 664ms, setup 0ms, import 976ms, tests 186ms, environment 0ms)\n\n",
+  "stderr": ""
+}

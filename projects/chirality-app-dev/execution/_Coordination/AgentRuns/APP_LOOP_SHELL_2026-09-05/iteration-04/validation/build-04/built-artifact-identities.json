@@ -1,0 +1,13 @@
+{
+  "build_exit_code": 0,
+  "artifacts": {
+    "dist-electron/main.js": "25a57438b87d14a6e42496089d89a81da981b3d904e09212c5dea164d9760c06",
+    "dist-electron/preload.js": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+    "dist-runtime/chirality-cli.mjs": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+  },
+  "build_success_required_for_current_claim": true,
+  "native_electron_path": "/private/tmp/app-loop-t3-native-ac3dexfs/runtime/Electron.app/Contents/MacOS/Electron",
+  "native_electron_sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874",
+  "expected_native_electron_sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874",
+  "native_launched_by_executor": false
+}

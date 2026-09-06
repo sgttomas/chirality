@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "iteration": 2,
+  "status": "MANAGER_FROZEN_SHARED_INTEGRATED_REVIEW_PENDING",
+  "source_commit": "03e61f38f7b20145552023abd1cf673c2b2a3f61",
+  "nodes": [
+    {
+      "id": "I2-N1",
+      "role": "WORKING_ITEMS",
+      "scope": "PKG02 DEP-02-04-015 reconciliation only",
+      "brief": "instances/pkg02_dep/LAUNCH_BRIEF_v1.md",
+      "depends_on": [],
+      "observed_status": "FROZEN_FOR_FRESH_REVIEW"
+    },
+    {
+      "id": "I2-N2",
+      "role": "fresh governed reviewer",
+      "scope": "Read-only full frozen iteration diff, before consumption",
+      "depends_on": [
+        "I2-N1"
+      ]
+    },
+    {
+      "id": "I2-N3",
+      "role": "validation executor",
+      "scope": "record self-check, practitioner pytest (existing 350-test suite), receipt/diff checks",
+      "depends_on": [
+        "I2-N2"
+      ]
+    },
+    {
+      "id": "I2-N4",
+      "role": "bounded record integrator",
+      "scope": "future Receipt246 chain245 examined03e61f38f; truthful branch completion narrative, CI01 binding; recheck receipt/diff",
+      "depends_on": [
+        "I2-N3"
+      ]
+    },
+    {
+      "id": "I2-N5",
+      "role": "CHANGE",
+      "scope": "scoped commit/push only, no PR",
+      "depends_on": [
+        "I2-N4"
+      ]
+    },
+    {
+      "id": "I2-N6",
+      "role": "HELP_HUMAN discovery",
+      "scope": "Step0 before iteration3 state-fields selection",
+      "depends_on": [
+        "I2-N5"
+      ]
+    }
+  ],
+  "attribution": "delegated-harness-native OpenAI GPT-6; exact serving ID unavailable; instruction-asserted role",
+  "accepted_pointer_changes": "none",
+  "source_implementation": "none",
+  "source_identity_file": "UPSTREAM_INPUT_IDENTITIES.json",
+  "manager_manifest_sha256": "4b64b4e3be83d5094e8acb2d77d9a8c32805da3f9c27844bb0e6686099f4ac41",
+  "fresh_reviewer": "New child with no conversation history; former authority helper not sole verifier",
+  "shared_checks": "checks-01 selfcheck/pytest/source-manifest completed; post-integration terminal checks, full staged check and fresh review pending"
+}

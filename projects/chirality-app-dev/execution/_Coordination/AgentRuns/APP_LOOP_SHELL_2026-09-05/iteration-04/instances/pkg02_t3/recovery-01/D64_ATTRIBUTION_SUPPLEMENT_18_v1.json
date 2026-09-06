@@ -1,0 +1,468 @@
+{
+  "schema": "d64-immutable-attribution-supplement/v1",
+  "timestamp": "2026-09-06T00:52:30.115920+00:00",
+  "JudgedBy": "WORKING_ITEMS /root/pkg02_finish; record format correction only, does not impersonate original reviewer judgments",
+  "upstream": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/precloseout-audit-02/COMPREHENSIVE_ROUTING_SUPPLEMENT_01.json",
+    "sha256": "c8272067655aad1a705a098dee1cf145b8e66611bd49921e67daa187b3039e02"
+  },
+  "count": 18,
+  "originals_unchanged": true,
+  "rows": [
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/LOWER_BREAKPOINT_AMENDMENT_v1.md",
+      "original_sha256": "e2638d971813d1565d048825aec901f237c644c9ae1a2c2ad71027984b349670",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within activated DEL02-03 T3 scoped shell/test loci.",
+        "AgentJudgment": "SELECT_AND_ADVANCE",
+        "SelectedOutcome": "override the inherited Navigator max-height cap within the already scoped stacked shell so its400px tree row and footer remain reachable at840/860 as well as900/960/1440.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02 after actual independent /root/pkg02/t3_review source challenge and manager source confirmation. Parent approved bounded repair and confirmed build03exit0/no owned processes before effect.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "leave lower breakpoint clipped; edit globalCSS; change Navigator read-only semantics; infer900 proof covers840/860; add style-mirroring unit tests as geometry evidence; mutate source during validator build.",
+        "RationaleArtifact": "execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/LOWER_BREAKPOINT_AMENDMENT_v1.md",
+        "IndependentVerifier": "/root/pkg02/t3_review reported real source finding in revision6; final immutable review return will be bound when it exists. Manager independently read actual source. Fresh whole-candidate review required after repair; no anticipated PASS.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "all D64\u00a75.1 classes, exact existing scoped source, globalCSS/Root/state/policy/dependencies untouched, primary and file/navigation semantics, prior actual failure evidence, scoped tests/full source review, parent immutable parallel checks under sequencingv7/v7.1, rebuilt actual840/860/900/960/1440 both-theme geometry/scroll/pointer proof, native isolation/display/cleanup, integrated review and exactsourceCI. D108 native inlinePDF remains residual, no fullT3closure."
+      },
+      "separate_draft_effect": "bounded draft repair activated after this freeze and dispatch/reliance ALLOW following parent cleanup; governed landing remains HELD pending required gates.",
+      "four_lenses": {
+        "Ontology": "viewport breakpoint inheritance is part of actual layout behavior, separate from local CSS declaration presence.",
+        "Epistemology": "independent cascade/ancestor review exposes an untested lower-width cap; current unitPASS cannot refute it.",
+        "Praxeology": "preserve v6 evidence, scoped minimal repair, full source review and gated rebuilt expanded viewport proof.",
+        "Axiology": "complete responsive usability without repetitive blind overrides or authority expansion."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/STACKED_COLLAPSE_AMENDMENT_v1.md",
+      "original_sha256": "f7e73c26e5c5645fdeb5fe8f63e2d0118e528e604b1a42e516e9da47496311bf",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within activated DEL02-03 T3 existing shell/control loci.",
+        "AgentJudgment": "SELECT_AND_ADVANCE",
+        "SelectedOutcome": "provide compact normal-flow control and label strips for both collapsed panels in the stacked layout, preserving desktop56px rails and actual primary/replay/document/return semantics.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02 following actual /root/pkg02/t3_review R3 source finding, manager40-case diagnostic, and parent explicit bounded batch repair approval after process cleanup.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "give Navigator an oversized blank min-height; leave Coordination520px collapsed gap; hide controls with absolute overflow; alter globalCSS or newfiles; change desktoprail/sessiontruth; accept34actionPASS as allrenderPASS; change source during proof/checks.",
+        "RationaleArtifact": "execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/STACKED_COLLAPSE_AMENDMENT_v1.md",
+        "IndependentVerifier": "actual /root/pkg02/t3_review revision7 CHANGES_REQUESTED identifies R3. Manager and parent source/visual confirmation and actual diagnostic now bind the failure. Fresh whole-candidate review required afterrepair; no anticipated PASS.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "all D64\u00a75.1 classes, existing exactsource/test fence, no Root/globalCSS/state/dependency/policy/newfile effects, primary/replay/file/resize/return semantics, prior failures and source reviews immutable, actualfocused/fullsource review and parent registeredchecks/build, full40case ordinarypointer and visiblegeometry verification plus FileTree/types/nativeisolation/display/cleanup, APP-HOLD/integratedrefutation/exact-sourceCI. D108 nativeinlinePDF and proposedD121 remain residual; no fullT3closure."
+      },
+      "separate_draft_effect": "bounded draft repair activated only after this freeze and dispatch/reliance ALLOW, all proof/global processes stopped; governed landing HELD pending complete gates.",
+      "four_lenses": {
+        "Ontology": "collapse should leave a reachable compact reentry control, not an empty zero-height region or full-height blank panel.",
+        "Epistemology": "complete matrix separates actual6failures from34actionpasses and distinctvisualCoordinationgap.",
+        "Praxeology": "freezebatched evidence/preimages, one scopedstate repair, source review/gates, rebuilt fullmatrix andfile/nativeproof.",
+        "Axiology": "preserve usable compact UI and truthful failurehistory without one-state-at-a-time blindfixes or newauthority."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_LAYOUT_AMENDMENT_v1.md",
+      "original_sha256": "20d0ace8aa5f13a07957ed11ccd18fbaa7bd9c2e1d690cb4c825486e40512ebb",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within activated DEL02-03 T3 Remaining source/test loci.",
+        "AgentJudgment": "SELECT_AND_ADVANCE",
+        "SelectedOutcome": "repair real footer/body overlap and collapsed File Tree listing through explicit layout rows and usable body scroll allocation inside existing scoped files; preserve primary dialogue, other breakpoints and semantic controls.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02. Parent /root visual challenge of attempt3 at900 prompted manager independent visual and actual geometry/reachability confirmation; parent explicitly opened controlled mutation slot.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "accept31 scripted PASS groups as whole renderPASS; forceclick hidden rows; remove native chooser/footer; edit globals or unlisted helper; hide overflow while leaving listing unusable; change unrelated session/runtime semantics.",
+        "RationaleArtifact": "execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_LAYOUT_AMENDMENT_v1.md",
+        "IndependentVerifier": "/root/pkg02/t3_review revision5 sourcePASS is historical; parent visual challenge and manager diagnostic exposed additional rendered defect. Fresh full18-file candidate source review required after repair; geometry/native/global acceptance is not anticipated.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "all D64\u00a75.1 classes, exact source/test fence, primary identity/visibility, all T3 source semantics and existing collapsed/expand/return controls, no Root/state/globalCSS/dependency/policy/native startup change, actual scoped tests/fresh source review/frontend/typecheck/build and appropriate registered gates, real browser/native proof, APP-HOLD, integrated governed review and source-bound CI. D108 inline Electron PDF remains blocked/proposedD121, no fullT3closure."
+      },
+      "separate_draft_effect": "bounded draft author repair may proceed after this freeze and dispatch/reliance ALLOW; governed landing HELD pending all preserved gates.",
+      "four_lenses": {
+        "Ontology": "script assertions, source correctness and actual rendered usability differ; footer is a third layout child with its own space.",
+        "Epistemology": "parent visual challenge plus independent geometry/pointer trace defeats a blanket renderPASS.",
+        "Praxeology": "preserve failed proof/preimage, scoped author repair, focused tests and whole-candidate review, rebuild/actual pointer geometry retry.",
+        "Axiology": "keep local file access and primary dialogue usable without concealing failures or expanding authority."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/REVIEW_RETURN.md",
+      "original_sha256": "106b4c76da7436bc57596a3d364cab1895034feeea6864b73c0c3acd09f2d362",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73, within parent's sealed review dispatch.",
+        "AgentJudgment": "RETURN_FOR_REMEDIATION",
+        "SelectedOutcome": "report R1 and preserve all partial-item residuals; no source PASS/publication clearance.",
+        "JudgedBy": "fresh TASK Agent2 /root/pkg02/t3_review, independent of author and manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "sourcePASS despite ancestor clipping; infer layout proof from React tests; call OS PDF fallback whole-item completion; silently waive missing menus; edit source from reviewer.",
+        "RationaleArtifact": "reviewer/REVIEW_RETURN.md and COVERAGE.json, IDENTITY_CHECK.json.",
+        "IndependentVerifier": "this fresh source review is the actual independent whole-diff review; parent governed refutation/COMMIT-SAFE remains pending. R1 is not repaired or re-reviewed here.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5; APP-HOLD; exact source/write fence; no lifecycle/Checking Approval SHA/dependency/pointer/Root/provider/release/accepted-baseline merge/owner criterion/owner assignment/external commitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer-record-only effect completed; source and governed landing remain HELD pending repair, fresh review and parent gates.",
+      "four_lenses": {
+        "Ontology": "source correctness review is distinct from the whole-item acceptance decision and OS handoff from an in-panel viewer.",
+        "Epistemology": "hashes, actual source/CSS/callers, accepted SOW/Remaining/D108 and recorded author test output ground findings; no new runtime/render observation is claimed.",
+        "Praxeology": "parent routes R1 to a bounded author, refreezes changed source and requests fresh review; serializes global/native/visual checks and handles policy/menu residuals.",
+        "Axiology": "preserve operator access and honest completion status without widening security policy or approval boundaries."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/_run_records/TASK_RUN_2026-09-05_review.md",
+      "original_sha256": "d4d821a08a1fefdf650ca55659b7dbace3098f4598478d86b240265d04ea2447",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73, within parent's sealed review dispatch.",
+        "AgentJudgment": "RETURN_FOR_REMEDIATION",
+        "SelectedOutcome": "report R1 and preserve all partial-item residuals; no source PASS/publication clearance.",
+        "JudgedBy": "fresh TASK Agent2 /root/pkg02/t3_review, independent of author and manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "sourcePASS despite ancestor clipping; infer layout proof from React tests; call OS PDF fallback whole-item completion; silently waive missing menus; edit source from reviewer.",
+        "RationaleArtifact": "reviewer/REVIEW_RETURN.md and COVERAGE.json, IDENTITY_CHECK.json.",
+        "IndependentVerifier": "this fresh source review is the actual independent whole-diff review; parent governed refutation/COMMIT-SAFE remains pending. R1 is not repaired or re-reviewed here.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5; APP-HOLD; exact source/write fence; no lifecycle/Checking Approval SHA/dependency/pointer/Root/provider/release/accepted-baseline merge/owner criterion/owner assignment/external commitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer-record-only effect completed; source and governed landing remain HELD pending repair, fresh review and parent gates.",
+      "four_lenses": {
+        "Ontology": "source correctness review is distinct from the whole-item acceptance decision and OS handoff from an in-panel viewer.",
+        "Epistemology": "hashes, actual source/CSS/callers, accepted SOW/Remaining/D108 and recorded author test output ground findings; no new runtime/render observation is claimed.",
+        "Praxeology": "parent routes R1 to a bounded author, refreezes changed source and requests fresh review; serializes global/native/visual checks and handles policy/menu residuals.",
+        "Axiology": "preserve operator access and honest completion status without widening security policy or approval boundaries."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/CLARIFICATION_MENU_PLACEMENT.md",
+      "original_sha256": "0448e89e6b0ef2e454443a2928e3744a86a8fc60d53b8570e24671798233e7c9",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73, within parent clarification request.",
+        "AgentJudgment": "CALIBRATE_PRESENTATION_COVERAGE",
+        "SelectedOutcome": "preserve sourcePASS; explicitly distinguish available menu capability from exact card placement.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "invent card control; silently equate both locations; label complete lack of Reveal despite actual usable menu; alter source for evaluator convenience.",
+        "RationaleArtifact": "reviewer/revision3/CLARIFICATION_MENU_PLACEMENT.md.",
+        "IndependentVerifier": "actual read-only reviewer clarification; parent governed refutation and actual native verification remain pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310, exact write/source bounds, native/browser/global proof, partialPDF/full-item gates, no lifecycle/pointer/owner criterion/Root/provider/release/acceptance/merge act or waiver."
+      },
+      "separate_draft_effect": "clarification record only; no source or accepted target effect.",
+      "four_lenses": {
+        "Ontology": "action availability and exact placement are separate properties.",
+        "Epistemology": "actual target\u00a7\u00a75.4/5.5 and source locations establish both.",
+        "Praxeology": "evaluator exercises current menu and parent records the presentation calibration.",
+        "Axiology": "accessible actions and truthful completeness evidence without counterfeit controls or unnecessary policy escalation."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/REVIEW_RETURN.md",
+      "original_sha256": "502a26289528111f8e7970efd21bce5b4ebaa8b766f68e3dca334770118de26b",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within sealed parent review activation.",
+        "AgentJudgment": "SOURCE_REVIEW_PASS",
+        "SelectedOutcome": "return whole-candidate sourcePASS for manager fan-in, with required verification and whole-item PDF residual explicit.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, independent of author/manager; reviewer/revision3.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "only backcheck R1; infer actual layout/native/SVG proof from mocks; accept D108 PDF replacement; overwrite original review; silently treat the corrected draft CSP as previously accepted; edit source from reviewer.",
+        "RationaleArtifact": "reviewer/revision3/REVIEW_RETURN.md; COVERAGE.json; IDENTITY_CHECK.json; source/amendment pins above.",
+        "IndependentVerifier": "this is the actual independent full-source review; parent governed refutation/COMMIT-SAFE still pending, with no invented future outcome or NOT_REQUIRED claim.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5, APP-HOLD, source fence, source/global/native/render/A1 gates; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/owner criterion/owner assignment/release/external commitment/protected-data/accepted-baseline merge act or waiver."
+      },
+      "separate_draft_effect": "reviewer records completed only; governed source landing/reliance HELD for parent checks/refutation and full-item residual handling.",
+      "four_lenses": {
+        "Ontology": "file presentation and recorded-session convenience remain distinct from authority and native/runtime truth. SourcePASS is distinct from whole-item closure.",
+        "Epistemology": "frozen bytes, accepted basis, actual code/callers/tests and recorded author command outputs ground review; geometry/SVG/OS claims remain unobserved here.",
+        "Praxeology": "parent serializes globals and actual browser/native proofs, refutes integrated landing and routes the unactivated PDF policy seam; any source change triggers refreeze/re-review.",
+        "Axiology": "usable files and honest provenance while preserving security and owner-selected in-panelPDF semantics."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/_run_records/TASK_RUN_2026-09-05_review_v3.md",
+      "original_sha256": "a238cc7ea307bcedb868e36a5dc7de3da0745d842cfb1db5dd8c5baba8a52968",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within sealed parent review activation.",
+        "AgentJudgment": "SOURCE_REVIEW_PASS",
+        "SelectedOutcome": "return whole-candidate sourcePASS for manager fan-in, with required verification and whole-item PDF residual explicit.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, independent of author/manager; reviewer/revision3.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "only backcheck R1; infer actual layout/native/SVG proof from mocks; accept D108 PDF replacement; overwrite original review; silently treat the corrected draft CSP as previously accepted; edit source from reviewer.",
+        "RationaleArtifact": "reviewer/revision3/REVIEW_RETURN.md; COVERAGE.json; IDENTITY_CHECK.json; source/amendment pins above.",
+        "IndependentVerifier": "this is the actual independent full-source review; parent governed refutation/COMMIT-SAFE still pending, with no invented future outcome or NOT_REQUIRED claim.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5, APP-HOLD, source fence, source/global/native/render/A1 gates; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/owner criterion/owner assignment/release/external commitment/protected-data/accepted-baseline merge act or waiver."
+      },
+      "separate_draft_effect": "reviewer records completed only; governed source landing/reliance HELD for parent checks/refutation and full-item residual handling.",
+      "four_lenses": {
+        "Ontology": "file presentation and recorded-session convenience remain distinct from authority and native/runtime truth. SourcePASS is distinct from whole-item closure.",
+        "Epistemology": "frozen bytes, accepted basis, actual code/callers/tests and recorded author command outputs ground review; geometry/SVG/OS claims remain unobserved here.",
+        "Praxeology": "parent serializes globals and actual browser/native proofs, refutes integrated landing and routes the unactivated PDF policy seam; any source change triggers refreeze/re-review.",
+        "Axiology": "usable files and honest provenance while preserving security and owner-selected in-panelPDF semantics."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision4/REVIEW_RETURN.md",
+      "original_sha256": "16855e0e23ea21007f93222416683e9336a0ac0217ac356ecaf60f7ddba0a907",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73, sealed parent review activation.",
+        "AgentJudgment": "SOURCE_REVIEW_PASS",
+        "SelectedOutcome": "whole current candidate sourcePASS with post-failure fullsuite and realproof/full-item residuals preserved.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, reviewer/revision4, independent of author and manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "delete failing assertions; force product Agents visibility; manually pretend an unselected replay is visible; declare globals pass from focused tests; silently reuse a build without hashes; rewrite historical failure/review; call menu-onlyReveal exact card compliance.",
+        "RationaleArtifact": "reviewer/revision4/REVIEW_RETURN.md, COVERAGE.json and IDENTITY_CHECK.json; original failure/preimage pins above.",
+        "IndependentVerifier": "this is the actual independent whole-candidate reviewer return; parent governed refutation remains pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5; APP-HOLD, exact18path inventory and source17 immutability, global/native/browser/A1 gates; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/owner criterion/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer-record effect complete; source landing/reliance HELD for parent verification/refutation; no full-item closure.",
+      "four_lenses": {
+        "Ontology": "pane visibility, selected replay and background reconnect are different states; test alignment is not runtime-truth change.",
+        "Epistemology": "exact preimage/failure/current identities and actual source callbacks ground the corrected test.",
+        "Praxeology": "test-only author repair \u2192 whole-candidate review \u2192 parent fullsuite/typecheck and hash-bound build reuse/native proof.",
+        "Axiology": "restore meaningful regression coverage while keeping primary continuity and failed-gate history honest."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision4/_run_records/TASK_RUN_2026-09-05_review_v4.md",
+      "original_sha256": "71f67057b391604be2813bf294ebe77a75a6f8c2f4a93875faebc1a329919f21",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73, sealed parent review activation.",
+        "AgentJudgment": "SOURCE_REVIEW_PASS",
+        "SelectedOutcome": "whole current candidate sourcePASS with post-failure fullsuite and realproof/full-item residuals preserved.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, reviewer/revision4, independent of author and manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "delete failing assertions; force product Agents visibility; manually pretend an unselected replay is visible; declare globals pass from focused tests; silently reuse a build without hashes; rewrite historical failure/review; call menu-onlyReveal exact card compliance.",
+        "RationaleArtifact": "reviewer/revision4/REVIEW_RETURN.md, COVERAGE.json and IDENTITY_CHECK.json; original failure/preimage pins above.",
+        "IndependentVerifier": "this is the actual independent whole-candidate reviewer return; parent governed refutation remains pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5; APP-HOLD, exact18path inventory and source17 immutability, global/native/browser/A1 gates; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/owner criterion/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer-record effect complete; source landing/reliance HELD for parent verification/refutation; no full-item closure.",
+      "four_lenses": {
+        "Ontology": "pane visibility, selected replay and background reconnect are different states; test alignment is not runtime-truth change.",
+        "Epistemology": "exact preimage/failure/current identities and actual source callbacks ground the corrected test.",
+        "Praxeology": "test-only author repair \u2192 whole-candidate review \u2192 parent fullsuite/typecheck and hash-bound build reuse/native proof.",
+        "Axiology": "restore meaningful regression coverage while keeping primary continuity and failed-gate history honest."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision5/REVIEW_RETURN.md",
+      "original_sha256": "cb359571dc29169516206645015d2a3fad089eeb0f0fcd5b2d9d7547d5d5b191",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within parent sealed source-review activation.",
+        "AgentJudgment": "SOURCE_REVIEW_PASS",
+        "SelectedOutcome": "complete current sourcePASS for manager fan-in, preserving actual failed-browser detection history and required retry/rebuild/global/native/full-item gates.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, reviewer/revision5, independent from author/manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "forceclick or z-index masking; accept unit counts as geometry; claim prior sourcePASS detected the actual browser defect; reuse stale build; collapse distinct action semantics; waive PDF/card placement criteria.",
+        "RationaleArtifact": "reviewer/revision5/REVIEW_RETURN.md, COVERAGE/IDENTITY records, actual attempt1 result/screenshot and frozen preimage.",
+        "IndependentVerifier": "this is actual independent source review; parent governed refutation and actual browser/native retries pending, no invented outcome.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5, APP-HOLD, exact18paths, source/rebuild/global/render/native/A1/CI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/ownercriterion/ownerassignment/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer evidence complete only; governed source landing/reliance HELD for parent gates; no acceptance effect.",
+      "four_lenses": {
+        "Ontology": "source repair, actual usability proof and whole-item acceptance are distinct.",
+        "Epistemology": "failed screenshot/pointer trace refutes prior inferred usability; current rules address its cause without claiming observed success.",
+        "Praxeology": "frozen failure/preimage \u2192 bounded repair \u2192 source review \u2192 rebuild/real pointer proof and governed fan-in.",
+        "Axiology": "retain usable distinct controls, primary continuity and honest failure provenance rather than bypassing validation."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision5/_run_records/TASK_RUN_2026-09-05_review_v5.md",
+      "original_sha256": "18811d5ef5163538e81d98f49f6538b10af74afd461ded02da9c8fe7cac87112",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within parent sealed source-review activation.",
+        "AgentJudgment": "SOURCE_REVIEW_PASS",
+        "SelectedOutcome": "complete current sourcePASS for manager fan-in, preserving actual failed-browser detection history and required retry/rebuild/global/native/full-item gates.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, reviewer/revision5, independent from author/manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "forceclick or z-index masking; accept unit counts as geometry; claim prior sourcePASS detected the actual browser defect; reuse stale build; collapse distinct action semantics; waive PDF/card placement criteria.",
+        "RationaleArtifact": "reviewer/revision5/REVIEW_RETURN.md, COVERAGE/IDENTITY records, actual attempt1 result/screenshot and frozen preimage.",
+        "IndependentVerifier": "this is actual independent source review; parent governed refutation and actual browser/native retries pending, no invented outcome.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5, APP-HOLD, exact18paths, source/rebuild/global/render/native/A1/CI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/ownercriterion/ownerassignment/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer evidence complete only; governed source landing/reliance HELD for parent gates; no acceptance effect.",
+      "four_lenses": {
+        "Ontology": "source repair, actual usability proof and whole-item acceptance are distinct.",
+        "Epistemology": "failed screenshot/pointer trace refutes prior inferred usability; current rules address its cause without claiming observed success.",
+        "Praxeology": "frozen failure/preimage \u2192 bounded repair \u2192 source review \u2192 rebuild/real pointer proof and governed fan-in.",
+        "Axiology": "retain usable distinct controls, primary continuity and honest failure provenance rather than bypassing validation."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision6/REVIEW_RETURN.md",
+      "original_sha256": "aa4a00776160b1a1f323af7ec40419994a7ef573ea2fce9ceea9b9eea9b8b3e2",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 in sealed parent review dispatch.",
+        "AgentJudgment": "RETURN_FOR_REMEDIATION",
+        "SelectedOutcome": "reportR2 and keep current source/governed landing held, preserving separate historical geometry and evaluator-error calibration.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, revision6, independent of author/manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "assume deleting scoped max-height deletes global max-height; accept59unitPASS as geometry; infer obstruction from nonexistent Navigator button; forceclick; expand Navigator authority; edit while parent globals active.",
+        "RationaleArtifact": "reviewer/revision6/REVIEW_RETURN.md, COVERAGE/IDENTITY; actual globals/source and preserved diagnostic.",
+        "IndependentVerifier": "this actual independent review reportsR2; parent repair/refutation and actual proof remain pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5, APP-HOLD, exact18path scope, validator cleanup sequencing, source/refreeze/review/global/build/render/native/A1/CI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/ownercriterion/ownerassignment/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer-record effect completed only; current source frozen, governed landingHELD; no repair execution or acceptance.",
+      "four_lenses": {
+        "Ontology": "three grid rows and an ancestor cap are separate layout constraints; inert Navigator and actionable Coordination files differ.",
+        "Epistemology": "actual prior geometry plus current CSS cascade establishes findings without claiming current browser execution.",
+        "Praxeology": "parent cleanup \u2192 bounded repair \u2192 refreeze/review \u2192 actual responsive/global/native gates.",
+        "Axiology": "preserve readable local files, honest failure meaning and frozen-source concurrency safety."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision6/_run_records/TASK_RUN_2026-09-05_review_v6.md",
+      "original_sha256": "60c6e7c1e7e8b7835d75f82c3c04806e5c7cf253a4ae759655159a9230e1b34e",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 in sealed parent review dispatch.",
+        "AgentJudgment": "RETURN_FOR_REMEDIATION",
+        "SelectedOutcome": "reportR2 and keep current source/governed landing held, preserving separate historical geometry and evaluator-error calibration.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, revision6, independent of author/manager.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "assume deleting scoped max-height deletes global max-height; accept59unitPASS as geometry; infer obstruction from nonexistent Navigator button; forceclick; expand Navigator authority; edit while parent globals active.",
+        "RationaleArtifact": "reviewer/revision6/REVIEW_RETURN.md, COVERAGE/IDENTITY; actual globals/source and preserved diagnostic.",
+        "IndependentVerifier": "this actual independent review reportsR2; parent repair/refutation and actual proof remain pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5, APP-HOLD, exact18path scope, validator cleanup sequencing, source/refreeze/review/global/build/render/native/A1/CI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/ownercriterion/ownerassignment/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer-record effect completed only; current source frozen, governed landingHELD; no repair execution or acceptance.",
+      "four_lenses": {
+        "Ontology": "three grid rows and an ancestor cap are separate layout constraints; inert Navigator and actionable Coordination files differ.",
+        "Epistemology": "actual prior geometry plus current CSS cascade establishes findings without claiming current browser execution.",
+        "Praxeology": "parent cleanup \u2192 bounded repair \u2192 refreeze/review \u2192 actual responsive/global/native gates.",
+        "Axiology": "preserve readable local files, honest failure meaning and frozen-source concurrency safety."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision7/REVIEW_RETURN.md",
+      "original_sha256": "ec2b215a34e921704d446c784e232040a518048ed5e9ec5d373adaf2b9bf68a2",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 sealed parent review activation.",
+        "AgentJudgment": "RETURN_FOR_REMEDIATION",
+        "SelectedOutcome": "recordR2fixed and adjacentR3, preserve frozen-source sequencing and full-item residuals.",
+        "JudgedBy": "TASKAgent2 /root/pkg02/t3_review,revision7; independent author/manager context.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "read only new max-height; infer absolute children give auto row height; accept callback tests as geometry; expand Navigator capabilities; edit during validators; erase historical failure.",
+        "RationaleArtifact": "reviewer/revision7/REVIEW_RETURN.md and COVERAGE/IDENTITY records.",
+        "IndependentVerifier": "actual independentreviewR3; parent governed refutation and actualproof pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1classes1\u201310/F-APP-1..5, APP-HOLD, exactscope, validatorcleanup/refreeze/review/global/build/render/native/A1/CI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/ownercriterion/ownerassignment/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer records complete only; sourcefrozen/governedlandingHELD, no repair/acceptance effect.",
+      "four_lenses": {
+        "Ontology": "expanded height cap and collapsed intrinsic row sizing are distinct states.",
+        "Epistemology": "current cascade/conditionalchildren grounds sourcefinding without browser execution.",
+        "Praxeology": "parentcleanup then boundedrepair/refreeze/fullreview and actual reopening proof.",
+        "Axiology": "preserve recoverable navigation and honest source-versus-render evidence."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision7/_run_records/TASK_RUN_2026-09-06_review_v7.md",
+      "original_sha256": "9cd885a6a448a1fbb5c95c56da1338dcb4706e7c7c7fe9b7588c0c2524064887",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 sealed parent review activation.",
+        "AgentJudgment": "RETURN_FOR_REMEDIATION",
+        "SelectedOutcome": "recordR2fixed and adjacentR3, preserve frozen-source sequencing and full-item residuals.",
+        "JudgedBy": "TASKAgent2 /root/pkg02/t3_review,revision7; independent author/manager context.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "read only new max-height; infer absolute children give auto row height; accept callback tests as geometry; expand Navigator capabilities; edit during validators; erase historical failure.",
+        "RationaleArtifact": "reviewer/revision7/REVIEW_RETURN.md and COVERAGE/IDENTITY records.",
+        "IndependentVerifier": "actual independentreviewR3; parent governed refutation and actualproof pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1classes1\u201310/F-APP-1..5, APP-HOLD, exactscope, validatorcleanup/refreeze/review/global/build/render/native/A1/CI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/ownercriterion/ownerassignment/release/acceptance/merge/externalcommitment/protected-data act or waiver."
+      },
+      "separate_draft_effect": "reviewer records complete only; sourcefrozen/governedlandingHELD, no repair/acceptance effect.",
+      "four_lenses": {
+        "Ontology": "expanded height cap and collapsed intrinsic row sizing are distinct states.",
+        "Epistemology": "current cascade/conditionalchildren grounds sourcefinding without browser execution.",
+        "Praxeology": "parentcleanup then boundedrepair/refreeze/fullreview and actual reopening proof.",
+        "Axiology": "preserve recoverable navigation and honest source-versus-render evidence."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision8/REVIEW_RETURN.md",
+      "original_sha256": "71c759c8d28683e8ba394eef901973a51a545d048b8e7c904f1a2a9fb58009ec",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 sealed parent source-review activation.",
+        "AgentJudgment": "SELECT_AND_ADVANCE",
+        "SelectedOutcome": "source PASS for whole frozen revision8, R3 source fixed; advance only to parent required checks/proof with full-item partial status.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, revision8; independent reviewer.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "infer render PASS from callbacks or34 prior action passes; accept zero-height/520px blank collapsed states; change desktop rails; review only four CSS declarations; erase failure history; silently waive native PDF or card-placement truth.",
+        "RationaleArtifact": "reviewer/revision8/REVIEW_RETURN.md with identity/coverage records.",
+        "IndependentVerifier": "actual independent whole-source review completed; parent governed refutation and current actual render/native/integrated proof pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5; APP-HOLD/exact scope/frozen identity; parent validator cleanup and current checks/build/render/native/integrated/exact-sourceCI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/owner-criterion/assignment/release/acceptance/merge/external-commitment/protected-data effect or waiver."
+      },
+      "separate_draft_effect": "reviewer records complete only; product frozen; governed landing/acceptance HELD pending preserved gates.",
+      "four_lenses": {
+        "Ontology": "compact collapsed state must retain reentry controls; source and rendered state are distinct evidence objects.",
+        "Epistemology": "source cascade plus exact hashes support source PASS; historical actual failure does not establish repaired runtime success.",
+        "Praxeology": "immutable review and parent checks may overlap under v7.3, then serialized rebuilt proof and governed fan-in.",
+        "Axiology": "preserve recoverable navigation, readable compact UI and truthful partial acceptance without fabricated runtime authority."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    },
+    {
+      "original_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision8/_run_records/TASK_RUN_2026-09-06_review_v8.md",
+      "original_sha256": "a39ca2eb3f96536a7dcc44936c762d37c500b3a7e8d999c2ab2f9a3a0a5499d1",
+      "original_judgment_attribution_preserved": true,
+      "normalized_contract": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 sealed parent source-review activation.",
+        "AgentJudgment": "SELECT_AND_ADVANCE",
+        "SelectedOutcome": "source PASS for whole frozen revision8, R3 source fixed; advance only to parent required checks/proof with full-item partial status.",
+        "JudgedBy": "TASK Agent2 /root/pkg02/t3_review, revision8; independent reviewer.",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "infer render PASS from callbacks or34 prior action passes; accept zero-height/520px blank collapsed states; change desktop rails; review only four CSS declarations; erase failure history; silently waive native PDF or card-placement truth.",
+        "RationaleArtifact": "reviewer/revision8/REVIEW_RETURN.md with identity/coverage records.",
+        "IndependentVerifier": "actual independent whole-source review completed; parent governed refutation and current actual render/native/integrated proof pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "D64\u00a75.1 classes1\u201310/F-APP-1..5; APP-HOLD/exact scope/frozen identity; parent validator cleanup and current checks/build/render/native/integrated/exact-sourceCI; no lifecycle/CheckingSHA/dependency/pointer/Root/provider/policy/owner-criterion/assignment/release/acceptance/merge/external-commitment/protected-data effect or waiver."
+      },
+      "separate_draft_effect": "reviewer records complete only; product frozen; governed landing/acceptance HELD pending preserved gates.",
+      "four_lenses": {
+        "Ontology": "compact collapsed state must retain reentry controls; source and rendered state are distinct evidence objects.",
+        "Epistemology": "source cascade plus exact hashes support source PASS; historical actual failure does not establish repaired runtime success.",
+        "Praxeology": "immutable review and parent checks may overlap under v7.3, then serialized rebuilt proof and governed fan-in.",
+        "Axiology": "preserve recoverable navigation, readable compact UI and truthful partial acceptance without fabricated runtime authority."
+      },
+      "calibration": "HELD describes governed source landing/acceptance at the original decision time. Completed reviewer/clarification record or bounded draft implementation effects are separately preserved and are not retroactively undone."
+    }
+  ],
+  "derivative_status": "Attribution-format derivative; original records remain immutable and authoritative about their own draft/review acts; no owner act created",
+  "effect": "Original historical governing effects remain HELD; no source/gate/acceptance change; separate draft effects truthful",
+  "direct_receipt_citation_required": true,
+  "excluded_parent_owned": "validation/sanitization-01, separately corrected by parent",
+  "remaining": "Parent checks normalized mappings and directly cites this supplement in final receipt"
+}

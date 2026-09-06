@@ -1,0 +1,32 @@
+{
+  "status": "VERIFIED_LOCAL_GATES_WITH_ACTUAL_PREMERGE_FAILURE",
+  "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/validation/MANIFEST_PENDING_INTEGRATION.json",
+  "manifest_sha256": "582f3f56fb429f12d8117690c64b0424a4b1faafb1097e04549ed08673b220e4",
+  "files_recomputed": 85,
+  "mismatches": [],
+  "return_sha256": "397753a7e595901f17fee59e475a7ecb04e2cbc2bfd9e4c3947bacff3bc1f614",
+  "source_hashes_match": true,
+  "tests": {
+    "passed": 1636,
+    "skipped": 4
+  },
+  "focused_tests": 32,
+  "typecheck": "PASS",
+  "section9": "16 PASS",
+  "build": "PASS",
+  "self_check": "PASS",
+  "practitioner_pytest": "350 PASS",
+  "hold": "PASS",
+  "preintegration_receipt": "PASS",
+  "unstaged_diff": "PASS",
+  "local_premerge": {
+    "status": "FAIL",
+    "http": 503,
+    "code": "ENGINE_UNAVAILABLE",
+    "reason": "runtime daemon client not configured",
+    "actual_execution": true
+  },
+  "cleanup": "owned service stopped exit0; no test/build/service process remains per verified validation evidence",
+  "required_next": "parent integration/terminal checks/governed review/CHANGE/full staged check/commit/push; actual bound CI for new source",
+  "prior_ci": "iteration1 source only; not evidence for new source"
+}

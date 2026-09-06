@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/FOCUSED_TEST.stdout.log"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "",
+      "raw_sha256": "5f704fc671bb49c700428dc5624c80a5e829a87d00d8062e2ddc9e66adbad683"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/FOCUSED_TEST.stdout.log"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "",
+      "raw_sha256": "e70bad3e0057af3b3b6bbfc0bd98355fce5183b341e44c957107f2bef075215b"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/REPAIR_DIFF_v9.diff"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "",
+      "raw_sha256": "4e27eee969b21c4bceea6166d4c412f63ff1f4fa8a718de8e7ad74b6b28792db"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "/dev/null",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/REPAIR_DIFF_v10.diff"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "",
+      "raw_sha256": "89f4298434d1e91f504e4da38fd6694f1b074145ab6db8d59c015de7910d4e81"
+    }
+  ],
+  "calibration": "No-index diff returns1 for content differences, with no whitespace diagnostics after exact attributes. Full unaltered staged check remains CHANGE-owned."
+}

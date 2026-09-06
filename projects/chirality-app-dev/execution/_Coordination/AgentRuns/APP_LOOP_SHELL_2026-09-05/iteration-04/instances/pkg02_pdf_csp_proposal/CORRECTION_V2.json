@@ -1,0 +1,20 @@
+{
+  "revision": 2,
+  "timestamp": "2026-09-05T22:40:56.307306+00:00",
+  "manager_finding": "v1 evidence conflated ScopeOfWork SOW002/003 with Remaining item trace SOW002/001/004",
+  "source": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+  "source_sha256": "2f00e4252336f886dc0fb7f3bdd9eee163bf2d556b3977cc08682714cf45c7f4",
+  "source_line": 12,
+  "exact_cited_line": "  Trace: OUT-001, AC-001, VER-001; applied decomposition row L309 (working-root selector integration, bounded file tree display, deliverable summaries, scan-state feedback; unchanged by SCA-APP-010); SOW-002 L172 (DEL-02-03 provides the UI touchpoint); SOW-001 L171 (one-view-at-a-time right panel with files and document views) for the switcher's meaning; SOW-004 L174 (per-view widths and expand state, DEL-02-04).",
+  "packet_path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-121_PACKET_T3_PDF_CSP_SCOPE_2026-09-05.md",
+  "v1_sha256": "04e0b060449da9fe0b91659fbb3f49917a56d78d494504624d660c4704e11fa2",
+  "v1_snapshot": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/D-APP-121_PACKET_V1_SNAPSHOT.md",
+  "v2_sha256": "fb1e9c288c795594efe0dd41cad6a3b1a83b7f46e43a479fd909f5ecf3cca4eb",
+  "original_manifest_sha256": "9868ab1013c1613a45218456d2f79cba0c6993a318101e83ca21b4659d645bcb",
+  "original_manifest_preserved": true,
+  "historical_manifest_recomputation": "Verify all original paths unchanged except packet; for that original packet path read D-APP-121_PACKET_V1_SNAPSHOT.md. Original manifest bytes remain unchanged. Supplemental manifest verifies live v2 and snapshot.",
+  "policy_effect": "HELD; no source/policy changes",
+  "source_refresh": "Manager owns final T3 identity refresh; v1 source capture remains unchanged",
+  "owner_case_selection": "NONE",
+  "independent_verifier": "PENDING"
+}

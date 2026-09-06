@@ -1,0 +1,104 @@
+[
+  {
+    "id": "python-version",
+    "argv": [
+      "python3",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T01:01:00.282634+00:00",
+    "end": "2026-09-06T01:01:00.289893+00:00",
+    "duration_seconds": 0.007183500099927187,
+    "exit_code": 0
+  },
+  {
+    "id": "head",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T01:01:00.290032+00:00",
+    "end": "2026-09-06T01:01:00.296754+00:00",
+    "duration_seconds": 0.006726750172674656,
+    "exit_code": 0
+  },
+  {
+    "id": "selfcheck",
+    "argv": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T01:01:00.431225+00:00",
+    "end": "2026-09-06T01:01:11.233548+00:00",
+    "duration_seconds": 10.802259916905314,
+    "exit_code": 0
+  },
+  {
+    "id": "practitioner-pytest",
+    "argv": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tools/practitioner_harness"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T01:01:11.233722+00:00",
+    "end": "2026-09-06T01:01:33.735123+00:00",
+    "duration_seconds": 22.501278375042602,
+    "exit_code": 0
+  },
+  {
+    "id": "predecessor-receipt-validator",
+    "argv": [
+      "python3",
+      "tools/validation/validate_app_dev_loop_receipts.py",
+      "--repo-root",
+      "."
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T01:01:33.735275+00:00",
+    "end": "2026-09-06T01:01:36.081179+00:00",
+    "duration_seconds": 2.345898917177692,
+    "exit_code": 0
+  },
+  {
+    "id": "app-hold-integrity",
+    "argv": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "scan",
+      "--require-register-match"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "start": "2026-09-06T01:01:36.081323+00:00",
+    "end": "2026-09-06T01:01:36.801095+00:00",
+    "duration_seconds": 0.719774791970849,
+    "exit_code": 0
+  },
+  {
+    "id": "app-hold-reliance",
+    "argv": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "APP_LOOP_SHELL_2026-09-05:GLOBAL_VALIDATION",
+      "--target",
+      "DEL-02-03"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "start": "2026-09-06T01:01:36.801253+00:00",
+    "end": "2026-09-06T01:01:37.493946+00:00",
+    "duration_seconds": 0.6926958749536425,
+    "exit_code": 0
+  }
+]

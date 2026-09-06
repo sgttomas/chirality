@@ -1,0 +1,41 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/AFFECTED_CHECKS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/CHANGED_FILES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/DISPATCH_PREFLIGHT.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_2.log",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_3.log",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/OWN_PREFLIGHT.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/SOURCE_MANIFEST.sha256",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/_run_records/TASK_RUN_2026-09-05_T1.md"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

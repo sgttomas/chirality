@@ -1,0 +1,555 @@
+{
+  "status": "PROVISIONAL_NOT_FINAL_GOVERNED_REVIEW",
+  "records": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/MANAGER_ACTIVATION_CANDIDATE_v2.md",
+      "sha256": "784d956def940648f879ee62c30e2c07becad8c6eb10b49621a85b6fe785937e",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/PROPOSED_PLAN_v1.md",
+      "sha256": "403d9bc282d6deed1b61a0c17b2d5700acec891c66b2351559fb68a4fc631b42",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/SEQUENCING_AMENDMENT_v7.3.md",
+      "sha256": "a51264bd99ed197c6ff71af06289fdc5b8b516868d416b9aead6097e533bcd68",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/SEQUENCING_AMENDMENT_v7.md",
+      "sha256": "031d17f1ce2c90c7a8da4d7e8919e244a031a046b464f32b9f1225d0cc18a89a",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/SEQUENCING_EXTENSION_v7.2.md",
+      "sha256": "7196af9d39de2ff2599e9612a3f2535e13b8b028a27d2dd37e24a05d9a836b31",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/FINAL_MANAGER_FANIN_v1.md",
+      "sha256": "ac55f299f945f58aaf9036fc3c527b29bcaae434ae9c6720f0588d49a62d443b",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/MANAGER_DISPATCH_RATIONALE_v1.md",
+      "sha256": "feeb707194af4b6403324c1f5c0e6608004ae9c0ecd8fda353aba090d7ed514e",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/RATIONALE.md",
+      "sha256": "122b7f3e934d1ea9cedb30bc7882cdcffa3129946753ed8c8440bd2ebcc556a9",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_MANAGER_FANIN_v1.md",
+      "sha256": "54955d53cc9eec46890713e39d214cdd108c62ec6f51658847e81b8bde883049",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/MANAGER_LOCAL_HISTORY_AMENDMENT_v1.md",
+      "sha256": "8c97944c5f9b3a5450d1be420fd00283d7a66b341b0d447bcdcb4d5665fd16dc",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/RATIONALE.md",
+      "sha256": "c36612cf054763cfd0854b440158bd1c23541610e876fa77601ee45b08814d5a",
+      "effects": [
+        "HELD",
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/revision-01/RATIONALE.md",
+      "sha256": "ed59f967a23209e934cd8b302f32e766226f6e17f50c8683dc4199414cfed735",
+      "effects": [
+        "HELD",
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/CONTROL_OVERLAP_AMENDMENT_v1.md",
+      "sha256": "c74ac0810f7bc9263a20357f2111e73bea753b48ce54387d17bc2f7835beddcd",
+      "effects": [
+        "HELD for governed landing; bounded draft author repair activated only after this frozen amendment and successful dispatch/reliance checks."
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/FILE_VIEW_BOUNDARY_RATIONALE_v1.md",
+      "sha256": "d1c105680582007e93dec91fa84d76c479dac2a21a28a29cebefcb110e2ceca3",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/IMAGE_HEADER_DISPOSITION_v1.md",
+      "sha256": "9227004df3480101ebfaa48dc6e663c017990138e82ec07264c7b4dab7355675",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/LOWER_BREAKPOINT_AMENDMENT_v1.md",
+      "sha256": "e2638d971813d1565d048825aec901f237c644c9ae1a2c2ad71027984b349670",
+      "effects": [
+        "bounded draft repair activated after this freeze and dispatch/reliance ALLOW following parent cleanup; governed landing remains HELD pending required gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/MANAGER_PLAN_RATIONALE_v1.md",
+      "sha256": "2b0de5c2206a8f548d7c31ced7013cb9c2eec0bb3209c22fe671991039928f11",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/PDF_CSP_FALLBACK_AMENDMENT_v1.md",
+      "sha256": "c07a4a96a5ba3c7ca9b16ccc9286082bc967a792788d29d6d111d237daad2cc8",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/RECONNECT_TEST_AMENDMENT_v1.md",
+      "sha256": "a1c0d56f7a2bd0caa4c51b85241eae97eff4383d46daf304feac703abdd6d5c6",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVEAL_MENU_PLACEMENT_RATIONALE_v1.md",
+      "sha256": "3fa34895e895443e59a752fcb980cd067d74091bdd6c79036b18d811b6aa99d3",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVIEW_REPAIR_AMENDMENT_v1.md",
+      "sha256": "d9e98bfdf022ba89809554dd2d84f4dff05075b35fee0c2ec903e966bf2d7118",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/STACKED_COLLAPSE_AMENDMENT_v1.md",
+      "sha256": "f7e73c26e5c5645fdeb5fe8f63e2d0118e528e604b1a42e516e9da47496311bf",
+      "effects": [
+        "bounded draft repair activated only after this freeze and dispatch/reliance ALLOW, all proof/global processes stopped; governed landing HELD pending complete gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/T3_COMPLETENESS_AMENDMENT_v1.md",
+      "sha256": "5ce4165f1e50b0c74014715446a4f58225868aa4132b3e1e31aac06b742bf1a4",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_LAYOUT_AMENDMENT_v1.md",
+      "sha256": "20d0ace8aa5f13a07957ed11ccd18fbaa7bd9c2e1d690cb4c825486e40512ebb",
+      "effects": [
+        "bounded draft author repair may proceed after this freeze and dispatch/reliance ALLOW; governed landing HELD pending all preserved gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/NEGATIVE_SENDER_PLAN_v1.md",
+      "sha256": "1e268ec9cd98f365f4a455a53ad82cc081a33abec80de93e1e659713908fe3ad",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/SETUP_RATIONALE_v1.md",
+      "sha256": "b272ec71aa9558173e47faf6c64577eac3b29ede494fc8c21a0071ca4b5cdbf3",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/REVIEW_RETURN.md",
+      "sha256": "106b4c76da7436bc57596a3d364cab1895034feeea6864b73c0c3acd09f2d362",
+      "effects": [
+        "reviewer-record-only effect completed; source and governed landing remain HELD pending repair, fresh review and parent gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/_run_records/TASK_RUN_2026-09-05_review.md",
+      "sha256": "d4d821a08a1fefdf650ca55659b7dbace3098f4598478d86b240265d04ea2447",
+      "effects": [
+        "reviewer-record-only effect completed; source and governed landing remain HELD pending repair, fresh review and parent gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/CLARIFICATION_MENU_PLACEMENT.md",
+      "sha256": "0448e89e6b0ef2e454443a2928e3744a86a8fc60d53b8570e24671798233e7c9",
+      "effects": [
+        "clarification record only; no source or accepted target effect."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/REVIEW_RETURN.md",
+      "sha256": "502a26289528111f8e7970efd21bce5b4ebaa8b766f68e3dca334770118de26b",
+      "effects": [
+        "reviewer records completed only; governed source landing/reliance HELD for parent checks/refutation and full-item residual handling."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision3/_run_records/TASK_RUN_2026-09-05_review_v3.md",
+      "sha256": "a238cc7ea307bcedb868e36a5dc7de3da0745d842cfb1db5dd8c5baba8a52968",
+      "effects": [
+        "reviewer records completed only; governed source landing/reliance HELD for parent checks/refutation and full-item residual handling."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision4/REVIEW_RETURN.md",
+      "sha256": "16855e0e23ea21007f93222416683e9336a0ac0217ac356ecaf60f7ddba0a907",
+      "effects": [
+        "reviewer-record effect complete; source landing/reliance HELD for parent verification/refutation; no full-item closure."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision4/_run_records/TASK_RUN_2026-09-05_review_v4.md",
+      "sha256": "71f67057b391604be2813bf294ebe77a75a6f8c2f4a93875faebc1a329919f21",
+      "effects": [
+        "reviewer-record effect complete; source landing/reliance HELD for parent verification/refutation; no full-item closure."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision5/REVIEW_RETURN.md",
+      "sha256": "cb359571dc29169516206645015d2a3fad089eeb0f0fcd5b2d9d7547d5d5b191",
+      "effects": [
+        "reviewer evidence complete only; governed source landing/reliance HELD for parent gates; no acceptance effect."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision5/_run_records/TASK_RUN_2026-09-05_review_v5.md",
+      "sha256": "18811d5ef5163538e81d98f49f6538b10af74afd461ded02da9c8fe7cac87112",
+      "effects": [
+        "reviewer evidence complete only; governed source landing/reliance HELD for parent gates; no acceptance effect."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision6/REVIEW_RETURN.md",
+      "sha256": "aa4a00776160b1a1f323af7ec40419994a7ef573ea2fce9ceea9b9eea9b8b3e2",
+      "effects": [
+        "reviewer-record effect completed only; current source frozen, governed landingHELD; no repair execution or acceptance."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision6/_run_records/TASK_RUN_2026-09-05_review_v6.md",
+      "sha256": "60c6e7c1e7e8b7835d75f82c3c04806e5c7cf253a4ae759655159a9230e1b34e",
+      "effects": [
+        "reviewer-record effect completed only; current source frozen, governed landingHELD; no repair execution or acceptance."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision7/REVIEW_RETURN.md",
+      "sha256": "ec2b215a34e921704d446c784e232040a518048ed5e9ec5d373adaf2b9bf68a2",
+      "effects": [
+        "reviewer records complete only; sourcefrozen/governedlandingHELD, no repair/acceptance effect."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision7/_run_records/TASK_RUN_2026-09-06_review_v7.md",
+      "sha256": "9cd885a6a448a1fbb5c95c56da1338dcb4706e7c7c7fe9b7588c0c2524064887",
+      "effects": [
+        "reviewer records complete only; sourcefrozen/governedlandingHELD, no repair/acceptance effect."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision8/REVIEW_RETURN.md",
+      "sha256": "71c759c8d28683e8ba394eef901973a51a545d048b8e7c904f1a2a9fb58009ec",
+      "effects": [
+        "reviewer records complete only; product frozen; governed landing/acceptance HELD pending preserved gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/reviewer/revision8/_run_records/TASK_RUN_2026-09-06_review_v8.md",
+      "sha256": "a39ca2eb3f96536a7dcc44936c762d37c500b3a7e8d999c2ab2f9a3a0a5499d1",
+      "effects": [
+        "reviewer records complete only; product frozen; governed landing/acceptance HELD pending preserved gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": true,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/sanitization-01/ATTRIBUTION_SUPPLEMENT_v1.md",
+      "sha256": "73765b19ae8ce977aa95e2d77bc16dc56977bc0a634d1c8f98a91830c6764fbf",
+      "effects": [
+        "HELD"
+      ],
+      "issues": [],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/sanitization-01/RATIONALE.md",
+      "sha256": "230eed1605fd52f7753e546160acea415c4ecd99ae53e0c0f305a844dcfa632a",
+      "effects": [
+        "Authorized candidate-only correction applied after exact preimage reconstruction check; acceptance and final security gate remain PENDING."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    }
+  ],
+  "direct_citation_candidates": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/MANAGER_ACTIVATION_CANDIDATE_v2.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/PROPOSED_PLAN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/SEQUENCING_AMENDMENT_v7.3.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/SEQUENCING_AMENDMENT_v7.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/SEQUENCING_EXTENSION_v7.2.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/FINAL_MANAGER_FANIN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/MANAGER_DISPATCH_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/RATIONALE.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_MANAGER_FANIN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/MANAGER_LOCAL_HISTORY_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/RATIONALE.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/CONTROL_OVERLAP_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/FILE_VIEW_BOUNDARY_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/IMAGE_HEADER_DISPOSITION_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/LOWER_BREAKPOINT_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/MANAGER_PLAN_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/PDF_CSP_FALLBACK_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/RECONNECT_TEST_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVEAL_MENU_PLACEMENT_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVIEW_REPAIR_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/STACKED_COLLAPSE_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/T3_COMPLETENESS_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_LAYOUT_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/NEGATIVE_SENDER_PLAN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/SETUP_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/sanitization-01/ATTRIBUTION_SUPPLEMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/sanitization-01/RATIONALE.md"
+  ],
+  "actionable": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/LOWER_BREAKPOINT_AMENDMENT_v1.md",
+      "sha256": "e2638d971813d1565d048825aec901f237c644c9ae1a2c2ad71027984b349670",
+      "effects": [
+        "bounded draft repair activated after this freeze and dispatch/reliance ALLOW following parent cleanup; governed landing remains HELD pending required gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/STACKED_COLLAPSE_AMENDMENT_v1.md",
+      "sha256": "f7e73c26e5c5645fdeb5fe8f63e2d0118e528e604b1a42e516e9da47496311bf",
+      "effects": [
+        "bounded draft repair activated only after this freeze and dispatch/reliance ALLOW, all proof/global processes stopped; governed landing HELD pending complete gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_LAYOUT_AMENDMENT_v1.md",
+      "sha256": "20d0ace8aa5f13a07957ed11ccd18fbaa7bd9c2e1d690cb4c825486e40512ebb",
+      "effects": [
+        "bounded draft author repair may proceed after this freeze and dispatch/reliance ALLOW; governed landing HELD pending all preserved gates."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/sanitization-01/RATIONALE.md",
+      "sha256": "230eed1605fd52f7753e546160acea415c4ecd99ae53e0c0f305a844dcfa632a",
+      "effects": [
+        "Authorized candidate-only correction applied after exact preimage reconstruction check; acceptance and final security gate remain PENDING."
+      ],
+      "issues": [
+        "EffectStatus must use HELD/EFFECTIVE; keep draft-effect chronology in separate prose/supplement"
+      ],
+      "reviewer_record": false,
+      "historical": false
+    }
+  ],
+  "citation_note": "Final Receipt248 must directly name operative judgment paths; no receipt applied now"
+}

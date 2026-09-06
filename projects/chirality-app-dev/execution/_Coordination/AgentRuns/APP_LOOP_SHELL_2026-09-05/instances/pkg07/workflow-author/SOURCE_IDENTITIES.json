@@ -1,0 +1,14 @@
+{
+  "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+  "agents/AGENT_TASK.md": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+  "skills/software-bounded-implementation/SKILL.md": "2072bb896c0ecf7e7fef7427010afc0304d21e25103828e93663d6ddb8cff7fc",
+  "skills/software-bounded-implementation/BRIEF_SCHEMA.md": "cef1379b8ed89282c372784b7983bbad17ebc30ecc335c433b58ca41b66e9848",
+  "skills/software-bounded-implementation/QA_CHECKS.md": "5ab08afe57fe102478cb98aa72cd72879c7a82b84f2790622b9bf0323f3c7bdc",
+  "skills/software-bounded-implementation/TOOL_POLICY.md": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c",
+  "projects/chirality-app-dev/AGENTS.md": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+  "projects/chirality-app-dev/software-workflow.json": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9",
+  "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45",
+  "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/ScopeOfWork.md": "870d7146c9a18aec749718319856e886ddd3d290515cb2058f40f1bddd2ee46b",
+  "projects/chirality-app-dev/frontend/src/lib/workspace/governed-workflow.ts": "dbd3ff9b5ba20fc7aa66dd6677cdff96b00761d2b5ce35dcb5882d522b489768",
+  "projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts": "70e7afd8f6e2cb942c3ae0174f4f15ba7030a637f50c0c71cf34dd517c6268e1"
+}

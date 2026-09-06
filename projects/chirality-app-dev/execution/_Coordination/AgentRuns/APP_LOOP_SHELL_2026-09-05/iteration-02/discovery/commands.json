@@ -1,0 +1,174 @@
+{
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "commands": [
+    {
+      "id": "status",
+      "argv": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:53:58.250322+00:00",
+      "finished_at": "2026-09-05T20:53:58.654273+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "2c1da87e489e477ec3e737af11f560e6b75daad9b0e5ed62a3a06cbe58984a0e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "log",
+      "argv": [
+        "git",
+        "log",
+        "--oneline",
+        "-20"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:53:58.654336+00:00",
+      "finished_at": "2026-09-05T20:53:58.661304+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "67f69ca67a1f344c47f71330948f9e4e734076c03df63fa5a840660307d1ed85",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "refs",
+      "argv": [
+        "git",
+        "log",
+        "-1",
+        "--format=%H %s",
+        "origin/main"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:53:58.661326+00:00",
+      "finished_at": "2026-09-05T20:53:58.667271+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "4f3d5c9127618bf15e7bbe8bb875051032676a9e69e2eaa90c6662486d04766e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "receipt-validator",
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:53:58.667290+00:00",
+      "finished_at": "2026-09-05T20:54:00.967854+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "910ba49406a7c19319d0ac52b538c2f4a763a89fcfeab57614a2de38785a5718",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "receipt-head",
+      "argv": [
+        "head",
+        "-51",
+        "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:54:00.967892+00:00",
+      "finished_at": "2026-09-05T20:54:00.972140+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "5c5f2a2e50464136aedbad49162874550d2b323f1e48621cb548204a55ecab58",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "receipt-tail",
+      "argv": [
+        "tail",
+        "-60",
+        "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:54:00.972174+00:00",
+      "finished_at": "2026-09-05T20:54:00.974751+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "ff32f53eb53f5d994c1a56fe8cff9e3e6fb4fa00dcd6288c82eb376e2c19bd9c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "committed-overlay",
+      "argv": [
+        "git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "HEAD",
+        "projects/chirality-app-dev/loop/"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:54:00.974775+00:00",
+      "finished_at": "2026-09-05T20:54:00.981035+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "345dd627e4b76e118e4f42ab8f23853740bc4c9e538f03ac8ba31f3fa9b1ace2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "open-register",
+      "argv": [
+        "rg",
+        "-n",
+        "^\\| D-APP-[0-9]+ \\|([^|]*\\|){2} (AWAITING_RULING|NOT_PREPARED)",
+        "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:54:00.981189+00:00",
+      "finished_at": "2026-09-05T20:54:00.997730+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "00d490fddba8b1b5d156cb254d855c205c6ec74d368ce71e29d98b9a7851463d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "corpus",
+      "argv": [
+        "python3",
+        "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+        "status"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+      "started_at": "2026-09-05T20:54:01.003031+00:00",
+      "finished_at": "2026-09-05T20:54:01.025608+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "921a96d8fcfa2c08c5659046e2dac4fa1d19fc07749beec041ae5d7c5a179351",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "harness-status",
+      "argv": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "status",
+        "--project",
+        "chirality-app-dev"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:54:01.034818+00:00",
+      "finished_at": "2026-09-05T20:54:01.202413+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "91a522f19123c6274f9b8b47ca2d9e4fc50d426fb043aeecc7da53199a7ed42c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "self-check",
+      "argv": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "started_at": "2026-09-05T20:54:01.202441+00:00",
+      "finished_at": "2026-09-05T20:54:10.386982+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "801befb5e215c466d61c548434aa135e9cd003cd31a2e690a9eb74e5cfe64862",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "source_name": "logs/full_test.stderr.log",
+  "text": "\u001b[90mstderr\u001b[2m | src/__tests__/integration/pi-omlx-wire.integration.test.ts\u001b[2m > \u001b[22m\u001b[2mPi/oMLX wire integration\u001b[2m > \u001b[22m\u001b[2mmaps 'malformed SSE JSON' to one redacted canonical failure and releases the turn\n\u001b[22m\u001b[39mCould not parse message into JSON: [REDACTED_PROVIDER_PAYLOAD]\nFrom chunk: [REDACTED_PROVIDER_PAYLOAD]\n\n"
+}

@@ -1,0 +1,15 @@
+node:internal/fs/promises:956
+  const result = await PromisePrototypeThen(
+                 ^
+
+Error: ENOENT: no such file or directory, scandir '/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/app-facade-packet-eqbiocb3/projects/chirality-app-dev/frontend/packages/harness-contract/src'
+    at async readdir (node:internal/fs/promises:956:18)
+    at async listSourceFiles (file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/app-facade-packet-eqbiocb3/projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs:28:19)
+    at async file:///private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/app-facade-packet-eqbiocb3/projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs:63:24 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/app-facade-packet-eqbiocb3/projects/chirality-app-dev/frontend/packages/harness-contract/src'
+}
+
+Node.js v24.18.0

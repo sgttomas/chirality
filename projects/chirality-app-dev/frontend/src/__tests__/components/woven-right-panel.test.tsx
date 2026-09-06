@@ -1,0 +1,73 @@
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { act, create, type ReactTestRenderer } from 'react-test-renderer';
+import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contracts';
+import { afterEach, expect, it, vi } from 'vitest';
+import { RightPanel } from '../../components/woven-dialogue/right-panel';
+import { createDefaultWovenWorkspaceState } from '../../lib/woven-dialogue/woven-workspace-state';
+vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: () => ({ projectRoot: '/root' }) }));
+vi.mock('../../components/shell/file-tree-panel', () => ({ FileTreePanel: () => <p>Existing file contents</p> }));
+const handoff = vi.hoisted(() => vi.fn(async (_input: unknown) => {}));
+vi.mock('../../components/shell/document-view', () => ({ handoffDocument: handoff, DocumentView: ({ target }: { target: string }) => <p>Document {target}</p> }));
+const handlers = { onView: vi.fn(), onOpenFile: vi.fn(), onClose: vi.fn(), onExpand: vi.fn(), coordination: <p>Recorded agents and session content</p> };
+it.each(['activity', 'settings', 'workflows'] as const)('retains content for future stored %s views', view => {
+  const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: view }} sessionOpen={false} />);
+  expect(html).toContain('Existing file contents'); expect(html).not.toContain('placeholder');
+});
+it('shows document breadcrumb and current controls without deferred popout', () => {
+  const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), openDocumentPath: 'pkg/spec.md' }} sessionOpen={false} />);
+  expect(html).toContain('Document breadcrumb'); expect(html).toContain('pkg/spec.md'); expect(html).toContain('Close detail'); expect(html).not.toContain('Pop out');
+});
+it('keeps recorded session content under its breadcrumb', () => {
+  const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: 'agents' }} sessionOpen />);
+  expect(html).toContain('Session breadcrumb'); expect(html).toContain('Recorded agents and session content');
+});
+
+afterEach(() => vi.unstubAllGlobals());
+function readySession(): Extract<SelectedSessionReplayState, { status: 'READY' }> {
+  return { status: 'READY', projection: {
+    selectedSessionId: 'child-exact', sourceReference: 'events:child-exact', observedAt: '2026-09-05T10:00:00Z', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT',
+    sourceEventCount: 5, renderedItemCount: 3, malformedLineCount: 0, transcript: { itemCount: 0, items: [] }, diagnostics: [],
+    session: { projectionId: 'session:child-exact', sessionId: 'child-exact', sourceReference: 'record:child-exact', observedAt: '2026-09-05T10:00:00Z', currency: 'CURRENT', persona: 'TASK', parentage: { state: 'RECORDED', parentSessionId: 'parent', parentAvailable: true }, diagnostics: [] }
+  } };
+}
+it('copies exact id and deterministic recorded metadata, exposes clipboard outcome, and opens recorded parent', async () => {
+  const writeText = vi.fn(async (_value: string) => {}); vi.stubGlobal('navigator', { clipboard: { writeText } });
+  const onOpenParent = vi.fn(); const replayState = readySession(); let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: 'agents' }} sessionOpen replayState={replayState} recordedSessionIds={['child-exact', 'parent']} onOpenParent={onOpenParent} />); });
+  const button = (label: string) => tree.root.findAllByType('button').find(x => x.children.includes(label))!;
+  await act(async () => button('Copy session id').props.onClick()); expect(writeText).toHaveBeenLastCalledWith('child-exact');
+  expect(tree.root.findByProps({ role: 'status' }).children).toEqual(['Session id copied.']);
+  await act(async () => button('Copy summary').props.onClick());
+  const copied = writeText.mock.calls.at(-1)![0];
+  expect(copied).toMatch(/^Recorded session metadata \(read-only snapshot\)/);
+  expect(JSON.parse(copied.split('\n').slice(1).join('\n'))).toMatchObject({ selectedSessionId: 'child-exact', sourceReference: 'events:child-exact', sourceEventCount: 5, renderedItemCount: 3, recordedAttribution: { persona: 'TASK', parentage: { parentSessionId: 'parent' } } });
+  expect(copied).not.toContain('purpose'); expect(copied).not.toContain('result');
+  await act(async () => button('Copy summary').props.onClick()); expect(writeText).toHaveBeenLastCalledWith(copied);
+  expect(button('Open parent chat').props.disabled).toBe(false); act(() => button('Open parent chat').props.onClick()); expect(onOpenParent).toHaveBeenCalledWith('parent');
+  writeText.mockRejectedValue(new Error('Clipboard denied')); await act(async () => button('Copy session id').props.onClick());
+  expect(tree.root.findByProps({ role: 'alert' }).children).toEqual(['Unable to copy session id.']); expect(tree.root.findAllByProps({ role: 'status' })).toHaveLength(0);
+  act(() => tree.unmount());
+});
+it.each(['unknown', 'unavailable', 'conflicting', 'missing-roster', 'live-turn'] as const)('explains and disables %s parent without navigating', async reason => {
+  const replayState = readySession(); const onOpenParent = vi.fn();
+  if (reason === 'unknown') replayState.projection.session!.parentage = { state: 'NOT_RECORDED' };
+  if (reason === 'unavailable') replayState.projection.session!.parentage = { state: 'RECORDED', parentSessionId: 'parent', parentAvailable: false };
+  if (reason === 'conflicting') replayState.projection.currency = 'CONFLICTING';
+  let tree!: ReactTestRenderer; await act(async () => { tree = create(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: 'agents' }} sessionOpen replayState={replayState} recordedSessionIds={reason === 'missing-roster' ? [] : ['parent']} liveTurnActive={reason === 'live-turn'} onOpenParent={onOpenParent} />); });
+  const button = tree.root.findAllByType('button').find(x => x.children.includes('Open parent chat'))!;
+  expect(button.props.disabled).toBe(true); expect(button.props['aria-describedby']).toBe('session-parent-explanation');
+  expect(tree.root.findByProps({ id: 'session-parent-explanation' }).children.join('')).toMatch(/recorded|Recorded|live turn/);
+  act(() => button.props.onClick()); expect(onOpenParent).not.toHaveBeenCalled(); act(() => tree.unmount());
+});
+
+it('reveals the root and the selected file through distinct bounded actions', async () => {
+  handoff.mockClear(); let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<RightPanel {...handlers} state={createDefaultWovenWorkspaceState()} sessionOpen={false} />); });
+  await act(async () => tree.root.findAllByType('button').find(x => x.children.join('') === 'Reveal root in Finder')!.props.onClick());
+  expect(handoff).toHaveBeenLastCalledWith({ projectRoot: '/root', action: 'reveal-root' });
+  act(() => tree.update(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), openDocumentPath: 'spec.md' }} sessionOpen={false} />));
+  await act(async () => tree.root.findAllByType('button').find(x => x.children.join('') === 'Reveal file in Finder')!.props.onClick());
+  expect(handoff).toHaveBeenLastCalledWith({ projectRoot: '/root', target: 'spec.md', action: 'reveal' });
+  act(() => tree.unmount());
+});

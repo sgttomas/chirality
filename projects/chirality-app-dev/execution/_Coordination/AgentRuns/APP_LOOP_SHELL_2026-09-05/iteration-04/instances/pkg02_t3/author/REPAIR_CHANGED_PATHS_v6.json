@@ -1,0 +1,7 @@
+{
+  "changed_paths": [
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ]
+}

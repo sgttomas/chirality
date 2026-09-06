@@ -1,0 +1,3 @@
+# Iteration3 CI followup
+
+Bounded nondelegating executor global_checks; parent HELP_HUMAN. Exact workflow_dispatch33994563156, branch codex/app-loop-shell-20260905, committed239c8f2a53397f88f16e3d56ecbba9af83829246. Read-only gh metadata/log/artifact retrieval only; writes only this subtree. No source/shared/Git/workflow changes, new dispatch, local tests or daemon. Verify exact head/event and final actual configured premerge; published artifact digest; lossless sanitized JSON log strings. Existing gh auth, never print credentials. Poll intervals at least60seconds, each network subprocess timeout55seconds. Prior evidence immutable.

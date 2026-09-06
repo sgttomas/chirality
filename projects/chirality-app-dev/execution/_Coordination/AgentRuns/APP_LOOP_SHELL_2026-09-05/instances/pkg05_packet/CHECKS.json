@@ -1,0 +1,39 @@
+{
+  "scope": "documentation preparation only; future implementation tests not executed",
+  "checks": [
+    {
+      "check": "preflight ALLOW",
+      "pass": true
+    },
+    {
+      "check": "exactly two options",
+      "pass": true
+    },
+    {
+      "check": "lifecycle preserved",
+      "pass": true
+    },
+    {
+      "check": "approval SHA preserved",
+      "pass": true
+    },
+    {
+      "check": "proposal unruled",
+      "pass": true
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "global_checks": "parent-owned pending",
+  "independent_review": "parent-owned pending",
+  "frontend_gates": "skipped: no runtime/product source change"
+}

@@ -1,0 +1,110 @@
+{
+  "checked_at": "2026-09-05T23:12:17.870430+00:00",
+  "reference_manifest": "SOURCE_MANIFEST_v3.json",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "expected_sha256": "b84851b97b59765322f50f7308fd0b84c18d1fb1f4bca695147657a75777df39",
+      "observed_sha256": "b84851b97b59765322f50f7308fd0b84c18d1fb1f4bca695147657a75777df39",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "expected_sha256": "1960d6d4df28adaaea4e304cb99820d0eff23863c113e0c25b1c4c6020533774",
+      "observed_sha256": "1960d6d4df28adaaea4e304cb99820d0eff23863c113e0c25b1c4c6020533774",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+      "expected_sha256": "45a4be9f51eef0234572039ffd82a694caab215f0b32ca3a9286a7d7e0aaff94",
+      "observed_sha256": "45a4be9f51eef0234572039ffd82a694caab215f0b32ca3a9286a7d7e0aaff94",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+      "expected_sha256": "29e3dfb263bd8da7228452bd412e652421b656ef48448be13a56d354a5d34e83",
+      "observed_sha256": "29e3dfb263bd8da7228452bd412e652421b656ef48448be13a56d354a5d34e83",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+      "expected_sha256": "7fe4d87718fc0136507db6291284c64f6e0709beb278fb02d5aa1ee9ee477cf4",
+      "observed_sha256": "7fe4d87718fc0136507db6291284c64f6e0709beb278fb02d5aa1ee9ee477cf4",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+      "expected_sha256": "2e3cc7dc2017fa12b2916e8e2224b6cf61def45a84f1645ce11e6e952347f75a",
+      "observed_sha256": "2e3cc7dc2017fa12b2916e8e2224b6cf61def45a84f1645ce11e6e952347f75a",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "expected_sha256": "9cac561a21597cb73a9f2c2c4d2333fc7c3e5e9bac99608e666ff9efb188133b",
+      "observed_sha256": "9cac561a21597cb73a9f2c2c4d2333fc7c3e5e9bac99608e666ff9efb188133b",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "expected_sha256": "c97928958a06172c669282de09eb9db304438b25f84f4fc6bb5d200e763503aa",
+      "observed_sha256": "c97928958a06172c669282de09eb9db304438b25f84f4fc6bb5d200e763503aa",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/document-handoff.test.ts",
+      "expected_sha256": "49cd6e524fd6732b897f6d0e95fb065001edb5985188dd96a92fa6fecb19267a",
+      "observed_sha256": "49cd6e524fd6732b897f6d0e95fb065001edb5985188dd96a92fa6fecb19267a",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+      "expected_sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603",
+      "observed_sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+      "expected_sha256": "c9a604c4803b399983b3c357be8d4fc7e0877ca100c408e5c41cf435053feba1",
+      "observed_sha256": "c9a604c4803b399983b3c357be8d4fc7e0877ca100c408e5c41cf435053feba1",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "expected_sha256": "50226b76dfca65bdece15dbebdb357d22bc72ba5ef9f3803faf8d7a6b4b1500b",
+      "observed_sha256": "50226b76dfca65bdece15dbebdb357d22bc72ba5ef9f3803faf8d7a6b4b1500b",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+      "expected_sha256": "6bf77e731f5387999e215d90e1e9bb633d4702dacd7f710532c71d7f979eefb4",
+      "observed_sha256": "6bf77e731f5387999e215d90e1e9bb633d4702dacd7f710532c71d7f979eefb4",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "expected_sha256": "6c73d2de5a4ff13a470d61afcb2acdbae690ff45fbde273a7f6822542e084016",
+      "observed_sha256": "6c73d2de5a4ff13a470d61afcb2acdbae690ff45fbde273a7f6822542e084016",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "expected_sha256": "ebd82c008561d2e4e8eb9ddbdc4306eb2c78d2dcc9867e7016faba628fd67664",
+      "observed_sha256": "ebd82c008561d2e4e8eb9ddbdc4306eb2c78d2dcc9867e7016faba628fd67664",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+      "expected_sha256": "5b5d7439f7f5e946836907a828ec516291f6d93445914b76e96ac1eba4ceb841",
+      "observed_sha256": "5b5d7439f7f5e946836907a828ec516291f6d93445914b76e96ac1eba4ceb841",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "expected_sha256": "99f929e3bbbe67466f82a3c491dab90ce0e8203a2ae66947f2f69c936c02bbc4",
+      "observed_sha256": "99f929e3bbbe67466f82a3c491dab90ce0e8203a2ae66947f2f69c936c02bbc4",
+      "unchanged": true
+    }
+  ],
+  "status": "PASS",
+  "build_effects": "No build or production writes executed by this repair; manager owns bundle identity verification."
+}

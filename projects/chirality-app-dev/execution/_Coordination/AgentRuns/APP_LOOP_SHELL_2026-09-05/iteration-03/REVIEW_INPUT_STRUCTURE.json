@@ -1,0 +1,28 @@
+{
+  "status": "PROVISIONAL_NOT_FINAL_FREEZE",
+  "source_review_inputs": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/SOURCE_REVIEW_FAN_IN.json",
+      "sha256": "507f8a156c183be4b8a03145fe056067f292851a8439e45e8f4c5536f0cf7bdc"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/AUTHOR_AMENDMENT_v1.4.md",
+      "sha256": "7c249421683339e0832fd4e6f6c15442473a0143479235e016bcaa9ce57a4bc5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/reviewer/REVIEW_RETURN_v3.md",
+      "sha256": "670892b4726db70f073b65c0ae8fe50e799ce0de2ee3215697cae17dfce8c3a6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/RATIONALE_v1.md",
+      "sha256": "c505dc6d15d4bcc85fb02b41a7a4088e6d70ebc97bf3fd345d31882ac17136aa"
+    }
+  ],
+  "awaiting": [
+    "final manager return/manifest",
+    "global actual outcomes",
+    "shared receipt/log integration",
+    "complete changed-path inventory",
+    "terminal staged whitespace evidence"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/select_affected_checks.py",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/software-workflow.json",
+    "electron/main.ts",
+    "electron/preload.ts",
+    "src/__tests__/api/working-root/file-route.test.ts",
+    "src/__tests__/components/document-view.test.tsx",
+    "src/__tests__/components/file-tree-panel.test.tsx",
+    "src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "src/__tests__/components/woven-right-panel.test.tsx",
+    "src/__tests__/electron/document-handoff.test.ts",
+    "src/app/api/working-root/file/file-policy.ts",
+    "src/app/api/working-root/file/route.ts",
+    "src/components/shell/document-view.tsx",
+    "src/components/shell/file-tree-panel.tsx",
+    "src/components/woven-dialogue/right-panel.tsx",
+    "src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"checks\": [\n    \"app-hold-integrity\",\n    \"harness-self-check\"\n  ],\n  \"paths\": [\n    \"electron/main.ts\",\n    \"electron/preload.ts\",\n    \"src/__tests__/api/working-root/file-route.test.ts\",\n    \"src/__tests__/components/document-view.test.tsx\",\n    \"src/__tests__/components/file-tree-panel.test.tsx\",\n    \"src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx\",\n    \"src/__tests__/components/woven-dialogue-shell.test.tsx\",\n    \"src/__tests__/components/woven-right-panel.test.tsx\",\n    \"src/__tests__/electron/document-handoff.test.ts\",\n    \"src/app/api/working-root/file/file-policy.ts\",\n    \"src/app/api/working-root/file/route.ts\",\n    \"src/components/shell/document-view.tsx\",\n    \"src/components/shell/file-tree-panel.tsx\",\n    \"src/components/woven-dialogue/right-panel.tsx\",\n    \"src/components/woven-dialogue/woven-dialogue-shell.tsx\"\n  ],\n  \"reasons\": {},\n  \"schema\": \"chirality-affected-checks/v1\"\n}\n",
+  "stderr": ""
+}

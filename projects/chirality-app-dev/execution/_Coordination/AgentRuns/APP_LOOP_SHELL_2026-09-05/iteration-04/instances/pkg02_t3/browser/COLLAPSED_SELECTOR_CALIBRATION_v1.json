@@ -1,0 +1,12 @@
+{
+  "finding": "EVALUATOR_EXACT_NAME_MISMATCH",
+  "before": "getByRole('button', { name: 'Open Coordination', exact: true })",
+  "observed": "button Open Coordination+",
+  "evidence": "diagnostic-2/collapsed-ax.txt:92",
+  "after": "getByRole('button', { name: 'Open Coordination+', exact: true })",
+  "cause": "Existing CSS ::after plus contributes accessible name; ordinary pointer action remains, no force-click or product edit.",
+  "diagnosticExit": 1,
+  "diagnosticReason": "Intentional DIAGNOSTIC_STOP_AFTER_COLLAPSE after AX capture; not product exception.",
+  "attempt2": "FAIL preserved; browser closed.",
+  "scriptSHA256": "1b4eb2d3d8af6c3dc42d7dab1f294f95277d52b30e061a78912001c11fd47aee"
+}

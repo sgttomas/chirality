@@ -1,0 +1,25 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "WORKING_ITEMS:PKG07:WORKFLOW_REVIEW_R2",
+  "operation": "dispatch",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "044a009e215e08b69c9e0887da424938a34aafcb",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-07-03",
+      "entry_path": "WORKING_ITEMS:PKG07:WORKFLOW_REVIEW_R2",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "b017a88c276b3bb23ed25f30a088b6c1deadb6fb3ad75c4f578faf21f36c64d6",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-07-03"
+  ],
+  "verdict": "ALLOW"
+}

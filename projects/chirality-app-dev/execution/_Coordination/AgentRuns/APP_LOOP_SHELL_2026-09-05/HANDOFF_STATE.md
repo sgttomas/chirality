@@ -1,0 +1,19 @@
+# Iteration 1 handoff — local scoped work complete; final review pending
+
+Run APP_LOOP_SHELL_2026-09-05; branch codex/app-loop-shell-20260905; base 044a009e215e08b69c9e0887da424938a34aafcb; Receipt-245 follows Receipt-244. No committed overlay; deliverables alone.
+
+Accepted upstream: D-APP-108 seated scopes; applied SCA-APP-010 decomposition; D-APP-111 accepted DepClosure CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034. WORK_GRAPH.json preserves source identities. All run/check/packet outputs are derivative evidence; no accepted pointer or decomposition truth changed.
+
+Five bounded obligations produced on this branch: DEL-02-02-V3-03 T1 shell; DEL-07-03-V3-01 workflow contract; D-APP-116, D-APP-117 and D-APP-118 packet preparations. All five manager scopes are complete for parent fan-in; this is not package/lifecycle closure. Item-specific owner-merge conditions remain. A organisation layer is not implemented and is held at D-APP-119, a proposed exact boot-scope question with no owner response. All four new register rows are AWAITING_RULING.
+
+Scoped evidence: T1 instances/pkg02/REVIEW_RETURN_v2.md and browser/attempt-4/result.json plus browser/VISUAL_REVIEW.md; B instances/pkg07/workflow-review-r2/RETURN.md and FINAL_VALIDATION_BACKCHECK.json; global validation/release-03/artifacts/release-quality/latest/summary.json, validation/build-02/commands.json, validation/basic-01/commands.json. Source reviews, typecheck, tests, build and browser/basic checks pass for their frozen inputs. Historical failures remain recorded.
+
+Local release wrapper/premerge remains FAIL: actual HTTP503, missing daemon-client bindings. Project AGENTS explicitly routes missing local profile/binding failures to PR CI. The existing .github/workflows/harness-premerge.yml starts an isolated daemon and registers the project; this is a concrete validation route. The existing workflow also enables workflow_dispatch (.github/workflows/harness-premerge.yml lines 14–15). After reviewed commit/push, dispatch it on this branch without opening a PR, then rederive successors using the actual result and branch checks. Missing validation does not by itself establish a merge requirement or loop terminus. Deferral is not PASS, a waiver, release readiness, or permission to assert future predecessor checks satisfied. Owner merges or declines; this run cannot self-merge.
+
+Receipt245 and branch-qualified completion narrative are integrated. Final whole-tranche governed review of this frozen shared diff is PENDING; preliminary packet review does not satisfy it. Separate actual final review record/PR body may record a verdict only once it exists. CHANGE staging/commit/push remain pending that fan-in. No waiver.
+
+Remaining gates: configured branch-dispatch CI premerge evidence, final governed review and Git closeout; D-APP-119 owner boot-scope response; D-APP-116/117/118 owner dispositions; Root/live/provider/release and lifecycle/pointer gates unchanged. Rerun affected checks/reviews after source changes; receipt/diff checks after shared edits. Every frontend mutation invalidates staged login-proof procedure; any future proof needs newly staged revision and fresh owner-executed proof (A1 lines 28–36).
+
+ClosureVerdict: LOCAL_SCOPED_OUTPUTS_RECORDED; FINAL_GOVERNED_REVIEW_PENDING; REQUIRED_PREMERGE_EVIDENCE_OWED_TO_CONFIGURED_CI. NextOwner: HELP_HUMAN final fan-in, CHANGE scoped Git, configured branch-dispatch CI validation, owner merge/decline and rulings. Attribution: OpenAI GPT-6 per parent system, exact serving ID unavailable; delegated-harness-native, instruction-asserted role, no invented engine ID.
+
+Record checks: validation/final-01/commands.json records completed receipt/diff checks; validation/record-selfcheck-02/command.json records completed self-check exit 0 for its bound inputs. These are actual scoped check results, not final governed review PASS. Amendment v1.8 corrects the earlier unsupported PR-required claim.

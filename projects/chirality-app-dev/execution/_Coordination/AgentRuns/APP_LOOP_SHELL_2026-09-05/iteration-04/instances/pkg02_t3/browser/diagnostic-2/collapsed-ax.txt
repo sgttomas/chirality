@@ -1,0 +1,99 @@
+- main:
+  - text: Chira
+  - emphasis: lity
+  - paragraph: CHAT
+  - heading "Woven Dialogue" [level=1]
+  - paragraph: A shared professional workspace where dialogue produces inspectable artifacts and governed work.
+  - group: root /private/tmp/app-loop-t3-native-ac3dexfs/fixtures
+  - text: WORKSPACE
+  - group "Theme":
+    - button "Light" [pressed]
+    - button "Dark"
+    - button "Auto"
+  - main "Primary Dialogue":
+    - paragraph: Primary conversation
+    - heading "Dialogue" [level=2]
+    - text: Persona
+    - combobox "Persona":
+      - option "WORKING_ITEMS · Type 1" [selected]
+    - complementary:
+      - heading "Chat Panel" [level=2]
+      - paragraph: "Persona: WORKING_ITEMS | Section: PORTAL"
+      - text: Operator mode
+      - combobox "Operator mode":
+        - option "Read-only"
+        - option "Plan (ask)" [selected]
+        - option "Gated-write"
+        - option "Autonomous"
+      - article:
+        - paragraph: Harness chat wiring is active. Select a Working Root and send a prompt.
+      - strong: Attachments
+      - button "Attach Files"
+      - button "Clear" [disabled]
+      - paragraph: No attachments selected.
+      - textbox "Chat input":
+        - /placeholder: Send prompt as WORKING_ITEMS...
+      - button "Send" [disabled]
+      - button "Interrupt" [disabled]
+  - button "Close Navigator"
+  - navigation "Workspace Navigator":
+    - paragraph: Workspace
+    - heading "Navigator" [level=2]
+    - button "Dialogue Primary human–agent conversation"
+    - list "Recorded sessions":
+      - listitem:
+        - button "WORKING_ITEMS Sep 5, 2026"
+      - listitem:
+        - button "HELP_HUMAN Sep 4, 2026"
+    - region "Project files":
+      - complementary:
+        - heading "File Tree" [level=2]
+        - list:
+          - listitem:
+            - button "Collapse fixtures": "-"
+            - text: DIR
+            - button "fixtures" [expanded]
+            - list:
+              - listitem:
+                - button "Collapse Long path document provenance document provenance document provenance document provenance document provenance": "-"
+                - text: DIR
+                - button "Long path document provenance document provenance document provenance document provenance document provenance" [expanded]
+                - list:
+                  - listitem: FILE Long filename requiring bounded wrapping.md
+              - listitem: FILE data.csv
+              - listitem: FILE Deep.json
+              - listitem: FILE Folded.json
+              - listitem: FILE Headings and links.md
+              - listitem: FILE Image-only.svg
+              - listitem: FILE Long filename for readable metadata and breadcrumb wrapping with all content accessible.md
+              - listitem: FILE Malformed.json
+              - listitem: FILE Oversized image.png
+              - listitem: FILE oversized.txt
+              - listitem: FILE Picture.gif
+              - listitem: FILE Picture.jpg
+              - listitem: FILE Picture.png
+              - listitem: FILE Picture.webp
+              - listitem: FILE plain.txt
+              - listitem: FILE Preview.docx
+              - listitem: FILE Preview.pdf
+              - listitem: FILE Preview.pptx
+              - listitem: FILE Preview.xlsx
+              - listitem: FILE Readable note.md
+              - listitem: FILE unsupported.bin
+        - button "Choose folder" [disabled]
+        - text: fixtures
+        - paragraph: Choose a folder using the folder selector above.
+    - paragraph: Compatibility
+    - link "Open legacy interface in a new window":
+      - /url: /?legacy=1
+  - separator "Resize Navigator"
+  - separator "Resize Coordination Panel"
+  - complementary:
+    - button "Open Coordination+"
+    - text: Coordination
+  - separator "Resize Activity Shelf"
+  - region "Activity Shelf":
+    - paragraph: Live runtime projection
+    - heading "Activity" [level=2]
+    - button "Expand activity"
+- alert

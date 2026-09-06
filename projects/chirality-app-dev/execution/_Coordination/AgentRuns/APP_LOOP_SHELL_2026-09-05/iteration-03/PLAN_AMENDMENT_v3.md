@@ -1,0 +1,7 @@
+# Iteration3 plan amendment v3 — per-chat retention
+
+Supersedes only earlier draft/activation clearing of chatTitles/chatRung on project-root change. Preserve drafts and prior history. Accepted all-folder chat design supports retaining per-chat titles/rung/declined-trigger annotations across root switches; document and scoped pins/groups/archive continue clearing. Exact same two-file source fence, no dependency/lifecycle/pointer or owner-ruling change.
+
+Actual detection: HELP_HUMAN challenged the approved draft against accepted source after initial reviewer PASS; the existing independent reviewer confirmed the P2 and issued the supplement, then reassessed the whole corrected diff. This is parent source challenge followed by independent confirmation, not initial independent detection or a newly spawned v3 reviewer. AUTHOR_AMENDMENT_v1.4.md governs correction; reviewer/REVIEW_RETURN_v3.md resolves the finding. SOURCE_REVIEW_FAN_IN.json records frozen diff f9b9d9122ea3f9213203a8244d9acf9ca272bdd958ce857220af67f7780923e4 and 32 focused tests PASS. Global gates and final governed fan-in remain pending.
+
+Exact rationale artifacts to cite directly in Receipt247 Pointers at later integration: instances/pkg02_fields/RATIONALE_v1.md and AUTHOR_AMENDMENT_v1.4.md under this iteration; any later raw-artifact classification rationale must also be named. Receipt247 chains246, examines50b70f47f38867430be9879b6a928890d320685e. No receipt or completion claims applied by this amendment.

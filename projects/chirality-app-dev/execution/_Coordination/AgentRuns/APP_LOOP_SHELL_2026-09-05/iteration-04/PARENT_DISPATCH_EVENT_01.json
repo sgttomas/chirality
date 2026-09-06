@@ -1,0 +1,27 @@
+{
+  "event": "Actual parent HELP_HUMAN dispatch reported to recorder",
+  "child": "/root/pkg02",
+  "role": "WORKING_ITEMS PKG02",
+  "head": "239c8f2a53397f88f16e3d56ecbba9af83829246",
+  "activation": "MANAGER_ACTIVATION_CANDIDATE_v2.md",
+  "activation_sha256": "784d956def940648f879ee62c30e2c07becad8c6eb10b49621a85b6fe785937e",
+  "graph_sha256": "7f1de151b30552f2aa3af324dcd4615eefe53d605e9ea2a419b623f3405b9b8f",
+  "record_timing": "After actual parent dispatch; candidate-titled frozen documents preserved without backdating",
+  "status": "DISPATCHED; exact child inventory/own preflights pending manager",
+  "parent_preflight_report": {
+    "entry": "HELP_HUMAN:APP_LOOP_SHELL_2026-09-05:ITERATION04",
+    "operation": "dispatch",
+    "exit_code": 0,
+    "targets": [
+      "DEL-02-01",
+      "DEL-02-03"
+    ],
+    "result": "ALLOW; CLEAR/NOT_HELD both",
+    "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+    "scan_sha256": "e087a1994906c5b515d58d655060e966ca86ccdba4002b14825eb0beb5f702cb",
+    "provenance": "parent-reported native event; not reconstructed raw stdout"
+  },
+  "authority": "Existing T3 scope only; parent approval needed for new scope/authority/shared writes",
+  "child_preflight": "Child must independently execute dispatch/reliance",
+  "attribution": "OpenAI GPT-6 per parent system, exact serving ID unavailable; delegated-harness-native, instruction-asserted role; no model substitution reported"
+}

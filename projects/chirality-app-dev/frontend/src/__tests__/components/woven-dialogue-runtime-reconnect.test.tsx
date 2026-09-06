@@ -7,7 +7,7 @@ import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contra
 /**
  * Reconnect coverage for the woven shell — the surface the operator actually
  * opens. Two stale-state paths live here: the recorded-session list that feeds
- * both the Navigator's mode groups and the Coordination panel, and a replay lens
+ * both the Navigator's recorded sessions and the Coordination panel, and a replay lens
  * left showing UNAVAILABLE.
  *
  * `woven-dialogue-shell.test.tsx` renders this shell to static markup for
@@ -85,8 +85,8 @@ vi.mock('../../components/pipeline/pipeline-surface', () => ({
   PipelineSurface: () => <div data-pipeline-surface="mounted" />
 }));
 vi.mock('../../components/woven-dialogue/coordination-panel', () => ({
-  CoordinationPanel: ({ sessionsError }: { sessionsError: string | null }) => (
-    <div data-coordination-panel="mounted" data-sessions-error={sessionsError ?? ''} />
+  CoordinationPanel: ({ sessionsError, replaySlot }: { sessionsError: string | null; replaySlot?: React.ReactNode }) => (
+    <div data-coordination-panel="mounted" data-sessions-error={sessionsError ?? ''}>{replaySlot}</div>
   )
 }));
 vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
@@ -211,6 +211,10 @@ describe('WovenDialogueShell runtime reconnect refresh', () => {
       ]);
 
     const tree = await renderShell();
+    const primary = tree.root.findByProps({ 'data-chat-panel': 'mounted' });
+    expect(tree.root.findByProps({ id: 'right-tab-files' }).props['aria-selected']).toBe(true);
+    expect(tree.root.findAllByProps({ 'data-coordination-panel': 'mounted' })).toHaveLength(0);
+    await act(async () => tree.root.findByProps({ id: 'right-tab-agents' }).props.onClick());
     expect(state.listHarnessSessions).toHaveBeenCalledTimes(1);
     expect(coordinationError(tree)).toBe(`ENGINE_UNAVAILABLE: ${DAEMON_UNBOUND}`);
 
@@ -221,6 +225,7 @@ describe('WovenDialogueShell runtime reconnect refresh', () => {
 
     expect(state.listHarnessSessions).toHaveBeenCalledTimes(2);
     expect(coordinationError(tree)).toBe('');
+    expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(primary);
 
     // Liveness re-published without a transition is not a reason to re-list.
     await act(async () => {
@@ -228,13 +233,25 @@ describe('WovenDialogueShell runtime reconnect refresh', () => {
     });
     await act(async () => {});
     expect(state.listHarnessSessions).toHaveBeenCalledTimes(2);
+    expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(primary);
+    act(() => tree.unmount());
   });
 
   it('reloads a replay lens that was left unavailable', async () => {
     const bridge = installWindow(snapshot({ state: 'disconnected' }));
-    state.listHarnessSessions.mockResolvedValue([]);
+    state.listHarnessSessions.mockResolvedValue([{
+      sessionId: 'session-7', projectRoot: '/repo/projects/chirality-app-dev',
+      persona: 'TASK', mode: 'CHAT', createdAt: '2026-07-25T11:59:00.000Z'
+    }]);
 
     const tree = await renderShell();
+    const primary = tree.root.findByProps({ 'data-chat-panel': 'mounted' });
+    const sessionButton = tree.root.findByProps({ 'data-session-id': 'session-7' });
+    expect(sessionButton.props.disabled).toBe(false);
+    await act(async () => sessionButton.props.onClick());
+    expect(state.replayLoad).toHaveBeenCalledTimes(1);
+    expect(state.replayLoad.mock.calls[0]?.[0]).toBe('session-7');
+    expect(state.replayLoad.mock.calls[0]?.[1].availableSessionIds.has('session-7')).toBe(true);
     await act(async () => {
       publishReplayState({
         status: 'UNAVAILABLE',
@@ -243,22 +260,30 @@ describe('WovenDialogueShell runtime reconnect refresh', () => {
       });
     });
     expect(tree.root.findAllByProps({ 'data-replay-lens': 'mounted' })).toHaveLength(1);
-    expect(state.replayLoad).not.toHaveBeenCalled();
+    expect(state.replayLoad).toHaveBeenCalledTimes(1);
+    expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(primary);
 
     await act(async () => {
       bridge.push(snapshot({ changedAt: '2026-07-25T12:00:05.000Z' }));
     });
     await act(async () => {});
 
-    expect(state.replayLoad).toHaveBeenCalledTimes(1);
-    expect(state.replayLoad.mock.calls[0]?.[0]).toBe('session-7');
+    expect(state.replayLoad).toHaveBeenCalledTimes(2);
+    expect(state.replayLoad.mock.calls[1]?.[0]).toBe('session-7');
+    expect(state.replayLoad.mock.calls[1]?.[1].availableSessionIds.has('session-7')).toBe(true);
+    expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(primary);
+    await act(async () => bridge.push(snapshot({ changedAt: '2026-07-25T12:00:15.000Z' })));
+    expect(state.replayLoad).toHaveBeenCalledTimes(2);
+    act(() => tree.unmount());
   });
 
   it('leaves an idle replay lens alone on reconnect', async () => {
     const bridge = installWindow(snapshot({ state: 'disconnected' }));
     state.listHarnessSessions.mockResolvedValue([]);
 
-    await renderShell();
+    const tree = await renderShell();
+    const primary = tree.root.findByProps({ 'data-chat-panel': 'mounted' });
+    expect(tree.root.findByProps({ id: 'right-tab-files' }).props['aria-selected']).toBe(true);
     await act(async () => {
       bridge.push(snapshot({ changedAt: '2026-07-25T12:00:05.000Z' }));
     });
@@ -267,5 +292,9 @@ describe('WovenDialogueShell runtime reconnect refresh', () => {
     // Nothing was selected, so there is nothing to recover; a reconnect must not
     // open a lens the operator never asked for.
     expect(state.replayLoad).not.toHaveBeenCalled();
+    expect(tree.root.findAllByProps({ 'data-replay-lens': 'mounted' })).toHaveLength(0);
+    expect(tree.root.findByProps({ id: 'right-tab-files' }).props['aria-selected']).toBe(true);
+    expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(primary);
+    act(() => tree.unmount());
   });
 });

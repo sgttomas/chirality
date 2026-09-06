@@ -1,0 +1,102 @@
+{
+  "manager": "WORKING_ITEMS /root/pkg02_finish",
+  "role": "Agent1 delegated-harness-native instruction-asserted",
+  "engine": "Codex / OpenAI model family GPT-6 per session instructions; exact serving identifier unavailable",
+  "closure": "PARTIAL_HANDOFF_FULL_T3_OPEN",
+  "accepted_execution_basis": "Parent recovery activation/amendments and D108/SCA-APP-010 current Remaining contracts; authority/decomposition unchanged. Frozen source reviews are execution evidence, not owner acceptance.",
+  "derivative_package": true,
+  "pins": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/SOURCE_MANIFEST_v10.json",
+      "sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/SOURCE_DIFF_v10.json",
+      "sha256": "d9e0d2e8ba11f47ddeab5ca236bc612a519a3840a5ceab0bf07c30cd7a226772"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+      "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/REVISION10_PROVISIONAL_MANIFEST.json",
+      "sha256": "92e77b4ffa2374deed7aeb633feda255517e3193223b3f36b5671848c30ec032"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/final-evidence01/SUPPLEMENTAL_MANIFEST.json",
+      "sha256": "d54a92387ce8b14489b5e5e0b67fc28109f782899144d701cdc2cef7c4be9eda"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/BROWSER_VISUAL_REVIEW_v10.json",
+      "sha256": "febf1dc8ef58a36db107db4301dfbd45787a9aeb385a380aa635d42fd2c0e84e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/NATIVE_VERIFICATION_v10.json",
+      "sha256": "a7fd0d05de4dd6c2b6e9b4864105c8befd7dc1f2d89c2bf440d1599169ce4a10"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/PROCESS_AND_SOURCE_CLEANUP_v10.json",
+      "sha256": "5361d6ba84257ed9b5603bdec537eb196a7d0355a39bdab99cfed8f5da58b930"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/FIXTURE_POSTRUN_VERIFICATION_v10.json",
+      "sha256": "eee0bd6a96916e6d10a59d0a17a7d33a022fab96937c34a9c09ebf3d9195d1d2"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/redesign_alignment/FINDINGS.md",
+      "sha256": "5db124fff71b19e8657d3b6440c0d5ad610df69339d846ca23165dcacaf2ec2a"
+    }
+  ],
+  "source": "v10 exact18 identities; only15 changed versus original baseline. No source edits after v10 freeze.",
+  "checks": "1689PASS4skip; typecheck/Section9/NextElectronbuild/security PASS; mandatory Root selfcheck350pytest reuse865 exact inputs; finalexpanded evidence securityPASS. Localpremerge actual503 ENGINE_UNAVAILABLE missingdaemon binding and wrapperfail retained, exactnextheadCI owed.",
+  "browser": "Current hydration baseline/nativecapability cases0 errors; full49 and state40 actualpass; PDF actualpage visibly rendered after bounded paintsettle; exactbytevisualreuse explicit. Functional/accessibility only, notdesignfidelity.",
+  "native": "Actual43.2.0 Electron developmenthost, zero pageerrors. Visible3OfficeQuickLook/externalPDF+DOCX/Finderfile+root; nativeSVGdecoded/no script or externalprobe; unauthorizedsender/invalidpaths rejected/noeffect. Raw resultFAIL retained due evaluator menu-toggle timeout; subsequent action and selectedroot visible verified. XLSX initialempty preview retained; separated evaluator close/open yielded visiblefixture.",
+  "cleanup": "All owned process wrappersreaped and PIDs absent; Electron14663 absent. Scratch Word/PDF and both Finder windows targetedAXclosed; finalFinderAX contains preexistingchirality only. Original fixturebytes exact, Wordlock absent, isolatedsocket/token/LaunchAgent absent; no existingapp quit. Preview emptyOpendialog dismissed byOS during externalPDFopen, not a userdocument modification.",
+  "residuals": [
+    "Native in-panel PDF required by D108 remains blocked by existingCSP; D121 AWAITING_RULING, no waiver.",
+    "D120 no-folder/presentation seam remains AWAITING_RULING; no owner choice inferred.",
+    "Independent alignment identifies substantial presentation drift: duplicateNavigator/rightFileTree, extraCoordinationclose row and nestedwrapper, duplicateDocumenttitle/reload, oldheader/composer/palette, Navigator620max versus360target.",
+    "T2/T3 coherent composition correction then lawfulT5strip requires parent nextscope; no newsource authorized here. T4/T6/T7 and workflow families notcompleted by currentFilesproof.",
+    "ExactnextheadCI, finalgovernedpackage review and ownermerge/Remainingremoval stillowed. No lifecycle/CheckingSHA/dependency/pointer/Root/provider/release/commit/push effects."
+  ],
+  "rerun": "RERUN_v10.md; new immutable attempts and fresh identity/review/build fan-in after any sourcechange.",
+  "supplements": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/D64_ATTRIBUTION_SUPPLEMENT_18_v1.json",
+      "sha256": "879bb702d632c902235ff371fd4e079d967aa70eef00173b03c05d2f9ad57d84"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/D64_PROPOSAL_ATTRIBUTION_SUPPLEMENT_2_v1.json",
+      "sha256": "efdc6a242731430bd9166e25015c36f6145c6b149bdd75d5f6a8cfafb184ee54"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/D64_JSON_ATTRIBUTION_SUPPLEMENT_9_v1.json",
+      "sha256": "6204f5ca0830480a196171bb8eba72c1cff98f8bbf0c9603f1272aa42cbb88df"
+    }
+  ],
+  "proposal_refreshes": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_V10_SOURCE_REFRESH_v1.json",
+      "sha256": "7cfd8547b22b9deb25f26bd09be428b12a160d504157325eb9082646d55380d6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/FINAL_V10_SOURCE_REFRESH_v1.json",
+      "sha256": "ad7294b507249bd5b2ea89ac3d65a8b1cb6814fd92f68f5e43161206a3a9e214"
+    }
+  ],
+  "OwnerStandingApproval": "D-APP-64 \u00a73 existing activated T3 ordinary implementation/evidence scope and parent sealed recovery grants",
+  "AgentJudgment": "PARTIAL_HANDOFF",
+  "SelectedOutcome": "Hand off current bounded functional/safety evidence with explicit design/nativePDF/CI residuals",
+  "JudgedBy": "WORKING_ITEMS /root/pkg02_finish",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": "Treat callbacks or pagebytes as visible nativeproof; erasefailedattempts; equate function with mockfidelity; closefullT3; infer D120/D121 ruling; repairbeyondfrozen source scope.",
+  "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/MANAGER_PARTIAL_HANDOFF_v10.json",
+  "IndependentVerifier": "Fresh source TASK v10 actualPASS and parentglobal actualchecks; final governedpackage review pending parent. Independent designassessment identifies residuals.",
+  "EffectStatus": "HELD",
+  "DraftEffects": "Source implementation and bounded actualproof/evidence completed; localpartialhistory appended only. No governedacceptance or ownerselection.",
+  "PreservedGates": "All D64 classes1-10, exact scopes, APP-HOLD, FAPP1-5, D108/D120/D121 policy/ownerboundaries, mandatory independent review/CI/A1restage, unchangedlifecycle/CheckingSHA/dependency/Root.",
+  "Ontology": "Source correctness, actual runtime observations, design fidelity and owner acceptance are distinct.",
+  "Epistemology": "Exact source/build/result/capture hashes and preserved failure chronology support only scoped claims.",
+  "Praxeology": "Seal evidence and partialhandoff, releaseprocessslot, parentroutes precise nextscope and review.",
+  "Axiology": "Preserve userfiles/security/authority while acknowledging substantial designmisalignment."
+}

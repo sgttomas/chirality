@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/precloseout-audit-02/ALL_SUFFIX_WHITESPACE.json",
+      "sha256": "bf4171b90bdd950d95c4c88eb8518af4e5a68304d787fae30d833e4947731d7f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/precloseout-audit-02/AUDIT_RETURN.md",
+      "sha256": "5b386e010acef33bf4080f61bea1ea7512e26b12b7f70d33e2d01b4b053e00ea"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/precloseout-audit-02/INPUT_IDENTITIES.json",
+      "sha256": "856695e05fa55f90addb0548bc281e047c3e871a41c8769060938c912d53d754"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/precloseout-audit-02/RATIONALE_CITATION_COVERAGE.json",
+      "sha256": "ed37405f84e55ca32a81591d8bf9431269be4dc68f3f79ad458046d0fb14a144"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/precloseout-audit-02/RECONSTRUCTION_BACKCHECK.json",
+      "sha256": "57ed8e6be70915fc6b19c96b9cdd2651de74e4681e94a0e6dad6215fb076b4b4"
+    }
+  ],
+  "self_excluded": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/precloseout-audit-02/MANIFEST.json",
+  "finalrefresh": "Pending browser/nativeproof"
+}

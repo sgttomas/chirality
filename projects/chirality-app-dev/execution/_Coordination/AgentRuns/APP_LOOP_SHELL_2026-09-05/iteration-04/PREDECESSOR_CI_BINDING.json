@@ -1,0 +1,15 @@
+{
+  "bindings": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/validation/ci-01/CI_RESULT.json",
+      "sha256": "dc6a1140441b51c2eaf9e001f0db06bab25e8cf6f3e9be1d9691f6dfdfe29fcb"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/validation/ci-01/MANIFEST_SHA256.json",
+      "sha256": "38dfdbf1db501dac25acac1a68b308ea5d1ea4123099a33a2b90a06c9bbb3fbc"
+    }
+  ],
+  "status": "Actual bound current-head CI PASS resolves predecessor missing-premerge obligation",
+  "historical_discovery": "Prior in-progress observation preserved; local failure history unchanged",
+  "next_tranche_review": "Include these new CI capture paths in complete changed-path inventory"
+}

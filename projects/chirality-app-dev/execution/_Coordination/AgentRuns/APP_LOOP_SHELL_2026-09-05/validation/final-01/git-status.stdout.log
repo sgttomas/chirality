@@ -1,0 +1,40 @@
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md
+ M projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md
+ M projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_STATUS.md
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_STATUS.md
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_STATUS.md
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md
+ M projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
+ M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx
+ M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
+ M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-route.test.tsx
+ M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx
+ M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+ M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/dialogue-viewport.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+ M projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+ M projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md
+?? projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/TASK_RUN_2026-09-05_T1_SHELL_RETIREMENT.md
+?? projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_run_records/TASK_RUN_2026-09-05_DAPP118_PACKET.md
+?? projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_run_records/DAPP102_PACKET_PREPARATION_2026-09-05.md
+?? projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_run_records/TASK_RUN_2026-09-05_APP_LOOP_SHELL_ORGANISATION_BOUNDARY.md
+?? projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_run_records/TASK_RUN_2026-09-05_APP_LOOP_SHELL_WORKFLOW_CONTRACT.md
+?? projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_run_records/TASK_RUN_2026-09-05_DAPP117_PACKET.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-117_PACKET_PER_ATTEMPT_DECISION_REPLAY_2026-09-05.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-118_PACKET_FACADE_RETIREMENT_2026-09-05.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md
+?? projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts
+?? projects/chirality-app-dev/frontend/src/lib/workspace/governed-workflow.ts

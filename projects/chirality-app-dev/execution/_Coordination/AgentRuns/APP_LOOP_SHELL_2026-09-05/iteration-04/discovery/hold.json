@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "python3",
+    "execution/_Scripts/app_hold.py",
+    "check",
+    "--operation",
+    "reliance",
+    "--entry-path",
+    "HELP_HUMAN:ITERATION04:DISCOVERY",
+    "--target",
+    "DEL-02-03",
+    "--target",
+    "DEL-02-02",
+    "--target",
+    "DEL-02-04"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "started_at": "2026-09-05T22:00:23.488535+00:00",
+  "ended_at": "2026-09-05T22:00:24.039305+00:00",
+  "exit_code": 0,
+  "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"HELP_HUMAN:ITERATION04:DISCOVERY\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"239c8f2a53397f88f16e3d56ecbba9af83829246\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-02\",\n      \"entry_path\": \"HELP_HUMAN:ITERATION04:DISCOVERY\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    },\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-03\",\n      \"entry_path\": \"HELP_HUMAN:ITERATION04:DISCOVERY\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    },\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-04\",\n      \"entry_path\": \"HELP_HUMAN:ITERATION04:DISCOVERY\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"e087a1994906c5b515d58d655060e966ca86ccdba4002b14825eb0beb5f702cb\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-02\",\n    \"DEL-02-03\",\n    \"DEL-02-04\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+  "stderr": "",
+  "stdout_sha256": "45dcd4b04957212d5f433540c4f6b9e2fa12c4aed94a9d7b7af8fea2a6e43fb8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,7 @@
+{
+  "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts": true,
+  "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts": true,
+  "diff": true,
+  "brief": true,
+  "live_diff": true
+}

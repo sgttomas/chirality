@@ -1,0 +1,119 @@
+{
+  "parent_reported_fetch": "CHANGE fetch PASS; origin/main faf22452528b5ba895e88ba0ad3770855100de08; branch unchanged; new PEC owner acts no App unlock",
+  "observed_commands": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "-s",
+        "--format=%H %s",
+        "HEAD",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "af00d016371fe1d979a9f1931c946eb7b454086418ed1882392e42b49f679339"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "044a009e215e08b69c9e0887da424938a34aafcb",
+        "origin/main",
+        "--",
+        "projects/chirality-app-dev",
+        "execution/_Coordination",
+        "plans/steers"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "4e4d95289114a5b0760c65a06dd0cae5b9c90372ec599b18bbf9913f85e3962c"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "044a009e215e08b69c9e0887da424938a34aafcb",
+        "origin/main",
+        "--",
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "273214e640f662d840a1bf507177e67904b3c36b04a40095a50666d06e9dd064"
+    }
+  ],
+  "immutable_authority_source_pins": [
+    {
+      "path": "AGENTS.md",
+      "pinned_sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "actual_sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "pinned_sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "actual_sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "pinned_sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "actual_sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "pinned_sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+      "actual_sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md",
+      "pinned_sha256": "729668896820ca15730f4e2969253cc15b29b696c5a8d99b503c054723e5b4dc",
+      "actual_sha256": "729668896820ca15730f4e2969253cc15b29b696c5a8d99b503c054723e5b4dc",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+      "pinned_sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+      "actual_sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-108_RULING_SCA_APP_010_SEATING_AND_SHELL_QUESTIONS_2026-09-04.md",
+      "pinned_sha256": "7ced5e05342de3425673990e5ab3bb37a202cd24198ec6427111ef68c31e64f8",
+      "actual_sha256": "7ced5e05342de3425673990e5ab3bb37a202cd24198ec6427111ef68c31e64f8",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-111_RULING_SCA_APP_010_POINTER_ACCEPTANCE_2026-09-05.md",
+      "pinned_sha256": "b8f404d0bcbf4cf55c89ebcaa17cf9aa7c52be0c0ec8d8c123a357387ded6cac",
+      "actual_sha256": "b8f404d0bcbf4cf55c89ebcaa17cf9aa7c52be0c0ec8d8c123a357387ded6cac",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "pinned_sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+      "actual_sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+      "pinned_sha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+      "actual_sha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/_LATEST.md",
+      "pinned_sha256": "74d9b1d46acbc8b9e8664da9833340da634dec00abd034fc12940665a4d2e291",
+      "actual_sha256": "74d9b1d46acbc8b9e8664da9833340da634dec00abd034fc12940665a4d2e291",
+      "match": true
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md",
+      "pinned_sha256": "f9b02806eeab1a578e6729c41fc367074758a2b95cc0eda9c8d2edbda446f314",
+      "actual_sha256": "f9b02806eeab1a578e6729c41fc367074758a2b95cc0eda9c8d2edbda446f314",
+      "match": true
+    }
+  ],
+  "deliverable_reliance": "No deliverable selected or consumed; Remaining inventory records bytes only; APP-HOLD required before later reliance"
+}

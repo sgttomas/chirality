@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-09-05T22:37:04.317685+00:00",
+  "id": "D-APP-121",
+  "packet_collisions": [],
+  "register_occurrences": 0,
+  "verdict": "FREE immediately before exclusive packet creation",
+  "register_sha256": "9f615ff575b899079aedf07665d46e6ed4409a2bb536fbade0a83f66cd1855e0"
+}

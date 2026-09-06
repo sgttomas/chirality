@@ -1,0 +1,31 @@
+diff --git a/projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts b/projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts
+index 48db66c32..a5e157d5f 100644
+--- a/projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts
++++ b/projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts
+@@ -2,7 +2,7 @@
+  * D-APP-52 bridge rehearsal driver (packet Evidence section; plan §5).
+  *
+  * Captures the hermetic scratch-basis rehearsal
+- * `_DomainEngines/pec/PEC_2026-07-06_BRIDGE-evidence-01/` by DIRECT HANDLER
++ * `projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_BRIDGE-evidence-01/` by DIRECT HANDLER
+  * INVOCATION: it calls the exact handler functions the MCP server registers
+  * (`domainProposeOperationTool` / `domainProposalValidateTool`) with a real
+  * session context against a D-PEC-06-guarded scratch pec server. No
+@@ -72,7 +72,7 @@ async function main(): Promise<void> {
+   const repoRoot = repoRootFrom(process.cwd());
+   const codeSha = execSync('git rev-parse HEAD', { cwd: repoRoot, encoding: 'utf8' }).trim();
+ 
+-  const evidenceDir = path.join(repoRoot, '_DomainEngines', 'pec', EVIDENCE_DIR_NAME);
++  const evidenceDir = path.join(repoRoot, 'projects', 'pec', 'execution', '_Coordination', 'AgentRuns', EVIDENCE_DIR_NAME);
+   const inputsDir = path.join(evidenceDir, 'inputs');
+   const artifactsDir = path.join(evidenceDir, 'artifacts');
+   const mirrorPath = path.join(
+@@ -442,7 +442,7 @@ async function main(): Promise<void> {
+     const mirror = `# OP mirror — D-APP-52 bridge rehearsal proposals (IPR-0001..0002, batch form disclosed)
+ 
+ > Non-authoritative mirror of the proposal CSVs and reports captured in
+-> \`_DomainEngines/pec/${EVIDENCE_DIR_NAME}/\` (D-T0-13; brief §7). Scratch
++> \`projects/pec/execution/_Coordination/AgentRuns/${EVIDENCE_DIR_NAME}/\` (D-T0-13; brief §7). Scratch
+ > basis only; synthetic data; the scratch DB was deleted after capture.
+ 
+ ## IPR-0001 — mdl, applied after the ruled staleness-recovery loop

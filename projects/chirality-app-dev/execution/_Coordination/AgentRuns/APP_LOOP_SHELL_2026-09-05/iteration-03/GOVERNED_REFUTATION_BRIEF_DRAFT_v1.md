@@ -1,0 +1,9 @@
+# Iteration3 fresh refutation-only draft brief
+
+DRAFT pending final manager/global outcomes and complete freeze. New child without prior conversation history; no source edits, network, delegation or index operations. Read actual governance/source instruments; attempt to refute claims rather than adopting author rationale as proof.
+
+Test complete scope containment to two product/test files plus authorized carrier/control evidence; preservation of schema/key/old APIs/legacy behavior/theme ownership; new bounded identity/reference storage and migration presence/error/opaque-field handling; no inferred activeChatRoot authority; per-chat retention versus document/scoped clearing against accepted all-folder design; correct provenance of parent challenge/independent confirmation; immutable historical reviews and source identities. Independently recompute complete diff, manager/CI/check identities and manifests. Verify final reviewer covers actual final source, actual global outcomes accurately stated, no lifecycle/dependency/pointer/owner acceptance or whole-deliverable closure, residual Activity/strip/consumers preserved, A1 declared.
+
+Check Receipt247 chain246/examined50b70f47f38867430be9879b6a928890d320685e, exact rationale citations and untouched prior receipt bytes after later integration. Test exact-byte artifact classes only where diagnostics justify exact paths; no source/global/wildcard exclusion and unaltered staged full check required. Identify omitted changed/untracked paths independently from Git. Terminal evidence additions need fresh bounded review; no anticipated PASS. Final inventory must be frozen only after manager/global outcomes; REVIEW_INPUT_STRUCTURE.json is provisional, not the final seal.
+
+Return COMMIT-SAFE or BLOCK for actually reviewed final scope and findings/evidence. Parent records result. No result claimed by this brief.

@@ -1,0 +1,15 @@
+{
+  "commands.json": "5b542e384ab52ec0c358816181e46062c0d034c8d1069039b5678d7720f1574b",
+  "environment.json": "031c89c5ab9b77a5d44146287c08d5ae5272afb3f57369d7137ac536d7af7c61",
+  "final-inventory-identities.json": "ea64b4c53d1c775e790ace2b86a8235e84823e900d670bbda1ba1578edfc9cc0",
+  "freeze-verification.json": "e13bde2bfbe4ee5ea7cc981f68eb4401945dd1d5a1476b7e7bad9e37e890bafb",
+  "full-tests.output.json": "631a23663972bd1fbe7ed1831282dfd29e2c364d867c34f4eb1690584889c0a6",
+  "git-head.output.json": "95f63559ffa97bc38759491ff08032dc2ffeb91cd8874cdbc5e577b445083e24",
+  "git-status.output.json": "e5e1bf04960ab80dc3c8229738c05c37ed2836d9647c99848e6481a3ff7a583b",
+  "node.output.json": "20395d044baf3beb372dc4a72ce0e4aaf178cc88a2894602e4b172f71cc50d42",
+  "npm.output.json": "e69c7d7dc320a244d25cd6088890e68f05b110dd1a16aa739f6713fe1d6ed22b",
+  "python.output.json": "21e386d26ec395c9501aa5c2a249d2aaf701729aaa3905c8ccb98cd86059266f",
+  "source-sha256.json": "30fa741c718d7762155757715aea2c91d6e97047e2578fa34d8c38c24f94e63a",
+  "source-stability.json": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317",
+  "typecheck.output.json": "5f30aa67d3a8b12b92516b6113accee42281a236a4c6aa67d4eb5ef5436f0ff3"
+}

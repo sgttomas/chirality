@@ -1,0 +1,8 @@
+{
+  "observed_at": "2026-09-05T21:07:30.551810+00:00",
+  "review_freeze_sha256": "5688f22f6b9d79c13abd87b20581806d7cdc9649d358bf82a8d77d8379317027",
+  "checked_files": 100,
+  "mismatches": [],
+  "status": "PASS",
+  "scope": "all entries in parent frozen record inventory; new validation files are supplementary delta"
+}

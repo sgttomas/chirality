@@ -1,0 +1,11 @@
+{
+  "review_return": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+  "review_sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+  "review_verdict": "PASS source only",
+  "global_verification": "GLOBAL_FANIN_VERIFICATION_v10.json",
+  "all18_exact": true,
+  "next_build_identity_exact": true,
+  "authorization": "HELP_HUMAN conditional exclusive browser/native slot, now actual fan-in satisfied",
+  "premerge": "Actual503 missing daemon binding; exactnextheadCI owed",
+  "governed_acceptance": "HELD pending current browser/native and parent final checks"
+}

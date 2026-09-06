@@ -1,0 +1,14 @@
+# Bounded terminal delta backcheck — original whole-candidate BLOCK
+
+For the existing fresh /root/iteration4_review through parent HELP_HUMAN only. Read-only; no authorship, delegation, source/native reruns, Git mutation or new authority. Parent supplies the actual DELTA_FREEZE_v1.json hash after construction. This brief and all terminal files are in that exact delta. No final verdict is supplied or anticipated.
+
+Original reviewed freeze: ../REVIEW_FREEZE_v1.json SHA256 a9e683b4759455441258badce8c3b5a17ac1357f05efa0b7f7d68f4645df677a. Its1883-target whole-candidate BLOCK is preserved in GOVERNED_REVIEW_BLOCK_PARENT_TRANSCRIPTION.md as an attributed parent summary, not fabricated verifier-authored verbatim text.
+
+Test these bounded claims independently:
+- Original frozen paths change only iteration04/.gitattributes and App loop/LOOP_RECEIPTS.md. The attribute file retains the exact prior four rules and appends only the exact Preview.pdf trailing-space rule. Receipt248 gains only a direct artifact-classification-02/RATIONALE.md citation; exact prior suffix and prefix identities are in FAILURE_AND_PREIMAGES.json. Original freeze and all other original paths are unchanged.
+- PDF bytes still hash3879981f98de0fe29a285fcf33801fe0c376204732dc07304651e57e55060b82. The1883 original target union plus terminal delta matches actual index/worktree with no unlisted path or drift. Source18, package1069 and original prior-rule raw files are unchanged.
+- The original unaltered cached failure was preserved before effect; the new rule is exact-path and observed-class only. All source/docs checks remain ordinary. POSTCHECKS.json records encoding-independent candidate diagnostics and honestly labels cached exit0 before delta staging as provisional. After CHANGE stages the exact delta, rerun full unaltered git diff --cached --check and receipt validator; neither inherited PASS nor worktree-only attribute success satisfies this final gate.
+- The actual parent-received reviewer BLOCK, raw failure, attribution schema/four lenses/HELD candidate-effect chronology, direct receipt rationale citation, byte cap and old-prefix preservation are truthful. Rationale contents are claims under review, not advice for your verdict.
+- No source, proposal, manager evidence, accepted pointer, dependency, lifecycle, owner, Root, provider or release change is hidden. Native observation attribution and known PDF/design/CI residuals remain unchanged. New files are terminal record evidence; no source test repeat is owed from this correction alone.
+
+Return COMMIT-SAFE or BLOCK for the exact original+delta union only, with actual index/live/hash checks and any concrete new finding. Final actual verdict is to be bound in CHANGE's commit body to avoid recursive frozen-record edits; do not presume it before all required backchecks exist.

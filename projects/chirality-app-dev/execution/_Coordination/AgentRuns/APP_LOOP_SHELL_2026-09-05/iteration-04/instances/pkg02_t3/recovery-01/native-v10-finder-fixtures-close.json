@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/usr/bin/swift",
+    "-module-cache-path",
+    "/private/tmp/app-loop-t3-native-ac3dexfs/swift-cache",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/ax_owned_windows.swift",
+    "51124",
+    "fixtures"
+  ],
+  "exit": 0,
+  "stdout": "trusted true\n{\"document\":\"\",\"title\":\"fixtures\"}\nclose_result 0\n{\"document\":\"\",\"title\":\"chirality\"}\n{\"document\":\"\",\"title\":\"\"}\n",
+  "stderr": "",
+  "timestamp": "2026-09-06T01:49:31.456061+00:00"
+}

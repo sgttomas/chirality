@@ -1,0 +1,23 @@
+{
+  "status": "MATCH_WITH_EXPLICIT_PREMERGE_DEFERRAL",
+  "source_hashes": {
+    "frontend/src/lib/workspace/governed-workflow.ts": "dbd3ff9b5ba20fc7aa66dd6677cdff96b00761d2b5ce35dcb5882d522b489768",
+    "frontend/src/__tests__/lib/governed-workflow.test.ts": "1fc4c9f31fb06fe2ff2506403d073738be98a2760400f70dae28f408247b28d5"
+  },
+  "evidence_sha256": {
+    "validation/release-03/registered-result.json": "dfae086dfa31193bbdd8fd6770f125649536be55a380c718bf55b1849047c193",
+    "validation/release-03/release-quality.stdout.log": "14158dfc1b43fc3b61609238b43ab5e1b7c6f4cecdadcc44d4e8ab975b55d6d2",
+    "validation/release-03/binding-probe.json": "b7b68f3a55ebd960bee5c7db9dccf4b9b10f0835ccb3bb0dfa8436c1bc9aadc7",
+    "validation/release-03/artifacts/release-quality/latest/summary.json": "40d3bfbc92203fa82eccf537c5a465b16199c874167b5f1391590387652ffbe5",
+    "validation/build-02/commands.json": "aaa72e769106518416d0254da6dc3007f93a1f30adbccdee90596b5f3984a5b5",
+    "validation/basic-01/commands.json": "f3d3c344df150210a64c85a8221ecba5397feb440dc74852e850c1c31d4a4f29",
+    "validation/basic-01/harness-pytest.stdout.log": "678af18d768f3f4b5e3a39ca101a4751342184dba74477eb7808228fab58bda4"
+  },
+  "tests": "1622 pass; 166 files pass; 1 file/4 tests skipped; governed-workflow59 included",
+  "typecheck": "PASS",
+  "build": "PASS",
+  "section9": "16 PASS",
+  "harness_pytest": "350 PASS",
+  "premerge": "FAIL 503 ENGINE_UNAVAILABLE runtime daemon client not configured; parent disposition defer PR CI under project AGENTS missing-bindings class",
+  "release_quality_overall": "FAIL, not relabelled PASS"
+}

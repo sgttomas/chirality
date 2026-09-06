@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "capability": false,
+      "errors": [],
+      "localStorage": {
+        "chirality.wovenWorkspace.v1": "{\"rightPanelView\":\"files\",\"rightPanelWidths\":{},\"rightPanelExpanded\":false,\"preExpandState\":null,\"openDocumentPath\":null,\"chatTitles\":{},\"chatPins\":[],\"chatArchived\":[],\"chatGroups\":[],\"groupsCollapsed\":[],\"knownRoots\":[],\"chatRung\":{},\"schema\":\"chirality.woven-workspace/v1\",\"theme\":\"light\",\"navigatorWidth\":280,\"coordinationWidth\":360,\"activityHeight\":220,\"navigatorCollapsed\":false,\"coordinationCollapsed\":false,\"activityCollapsed\":true,\"coordinationView\":\"work\",\"dialogueAnchorId\":null,\"focusedArtifact\":null,\"expandedObjectIds\":[],\"selectedReplaySessionId\":null,\"contextReferences\":[],\"sessionSurfaces\":{},\"navigatorExpandedSurfaces\":[\"dialogue\"],\"migration\":{\"sourceKey\":null,\"mappedFields\":[]}}",
+        "chirality.toolkit.v1": "{\"visible\":false,\"values\":{\"model\":\"\",\"tools\":\"\",\"maxTurns\":\"\",\"includeSubagentGovernance\":false,\"contextSealed\":false,\"pipelineRunApproved\":false,\"approvalRef\":\"\"},\"presets\":[],\"selectedPresetId\":null}"
+      },
+      "footer": [
+        "Choose folderNo folderChoose a folder using the folder selector above.",
+        "CompatibilityOpen legacy interface in a new window",
+        "Choose folderNo folderChoose a folder using the folder selector above."
+      ]
+    },
+    {
+      "capability": true,
+      "errors": [
+        {
+          "timestamp": "2026-09-06T01:27:17.027Z",
+          "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+          "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rD (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:35056)\n    at rA (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:36424)\n    at http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:118071\n    at ix (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:122949)\n    at ik (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:114737)\n    at http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:114521\n    at ib (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:114529)\n    at iu (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:110831)\n    at iG (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:133049)\n    at iW (http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js:1:131260)"
+        }
+      ],
+      "localStorage": {
+        "chirality.wovenWorkspace.v1": "{\"rightPanelView\":\"files\",\"rightPanelWidths\":{},\"rightPanelExpanded\":false,\"preExpandState\":null,\"openDocumentPath\":null,\"chatTitles\":{},\"chatPins\":[],\"chatArchived\":[],\"chatGroups\":[],\"groupsCollapsed\":[],\"knownRoots\":[],\"chatRung\":{},\"schema\":\"chirality.woven-workspace/v1\",\"theme\":\"light\",\"navigatorWidth\":280,\"coordinationWidth\":360,\"activityHeight\":220,\"navigatorCollapsed\":false,\"coordinationCollapsed\":false,\"activityCollapsed\":true,\"coordinationView\":\"work\",\"dialogueAnchorId\":null,\"focusedArtifact\":null,\"expandedObjectIds\":[],\"selectedReplaySessionId\":null,\"contextReferences\":[],\"sessionSurfaces\":{},\"navigatorExpandedSurfaces\":[\"dialogue\"],\"migration\":{\"sourceKey\":null,\"mappedFields\":[]}}",
+        "chirality.toolkit.v1": "{\"visible\":false,\"values\":{\"model\":\"\",\"tools\":\"\",\"maxTurns\":\"\",\"includeSubagentGovernance\":false,\"contextSealed\":false,\"pipelineRunApproved\":false,\"approvalRef\":\"\"},\"presets\":[],\"selectedPresetId\":null}"
+      },
+      "footer": [
+        "Choose folderNo folder",
+        "CompatibilityOpen legacy interface in a new window",
+        "Choose folderNo folder"
+      ]
+    }
+  ],
+  "claim": "Production build diagnostic only. No localStorage init; inert directory-picker capability never called. All page errors retained."
+}

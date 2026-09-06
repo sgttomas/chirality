@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "rg",
+    "-n",
+    "^\\| D-APP-[0-9]+ \\|([^|]*\\|){2} (AWAITING_RULING|NOT_PREPARED)",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "stdout": "132:| D-APP-116 | Whether to adopt the D-APP-102 full tool-result audit policy: per-session manifest, retention/deletion fields, explicit cleanup and non-destructive migration | DEL-05-05 App consumption/conformance only after later ruling, accepted Root-owned contract and owning scope alignment; no runtime implementation authorized by packet | AWAITING_RULING | A \u2014 explicit cleanup through Root owner, then gated App consumption (agent recommendation) | `execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md`; alternative B retains D-APP-42 and defers full policy |\n133:| D-APP-117 | Whether to adopt explicit per-attempt decision evidence and authorize the bounded DEL-08-04 capture/handoff slice | Candidate schema and proving checks; DEL-08-05 persistence, DEL-05-04 projection, DEL-02-02 Desktop and Root CLI remain separately activated | AWAITING_RULING | \u2014 | `execution/_Coordination/_DECISIONS/D-APP-117_PACKET_PER_ATTEMPT_DECISION_REPLAY_2026-09-05.md`; prepared under D-APP-103; implementation gated |\n135:| D-APP-118 | Disposition of D-APP-101 later facade-retirement packet; known consumers remain, recommend HOLD | Facade deletion; Root routing separately needs owner-granted write scope; later App and Root rulings required | AWAITING_RULING | `execution/_Coordination/_DECISIONS/D-APP-118_PACKET_FACADE_RETIREMENT_2026-09-05.md` | - |\n137:| D-APP-119 | Authorize exact organisation-layer common App boot seam and proposed local pin configuration, or defer DEL-07-01-V3-01 implementation | DEL-07-01-V3-01 App helper/boot scope; exact added frontend/electron/main.ts import/call only; no Root-wide enforcement | AWAITING_RULING | Pending owner question; no response or direction recorded | `execution/_Coordination/_DECISIONS/D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md` |\n",
+  "stderr": "",
+  "stdout_sha256": "00d490fddba8b1b5d156cb254d855c205c6ec74d368ce71e29d98b9a7851463d"
+}

@@ -1,0 +1,440 @@
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts
+index fbf49daea..8f5c7d08f 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts
++++ b/projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts
+@@ -41,6 +41,9 @@ describe('Woven Dialogue workspace state', () => {
+ 
+   it('creates reference-only defaults for the new versioned schema', () => {
+     expect(createDefaultWovenWorkspaceState()).toEqual({
++      rightPanelView: 'files', rightPanelWidths: {}, rightPanelExpanded: false,
++      preExpandState: null, openDocumentPath: null, chatTitles: {}, chatPins: [],
++      chatArchived: [], chatGroups: [], groupsCollapsed: [], knownRoots: [], chatRung: {},
+       schema: WOVEN_WORKSPACE_SCHEMA,
+       theme: 'light',
+       navigatorWidth: 280,
+@@ -141,7 +144,7 @@ describe('Woven Dialogue workspace state', () => {
+   it('recovers from corrupt current and legacy state without throwing', () => {
+     const storage = {
+       getItem: vi.fn((key: string) =>
+-        key === WOVEN_WORKSPACE_STORAGE_KEY ? '{bad-current' : '{bad-legacy'
++        key === WOVEN_WORKSPACE_STORAGE_KEY ? '{bad-current' : key === 'chirality.layout.v1' ? '{bad-legacy' : null
+       ),
+       setItem: vi.fn()
+     };
+@@ -417,3 +420,136 @@ describe('Woven Dialogue workspace state', () => {
+     expect(persisted.navigatorWidth).toBe(300);
+   });
+ });
++
++
++describe('additive shell convenience fields', () => {
++  function storageFor(value: Record<string, unknown>, root: string | null = null) {
++    const values = new Map<string, string>([[WOVEN_WORKSPACE_STORAGE_KEY, JSON.stringify({ schema: WOVEN_WORKSPACE_SCHEMA, ...value })]]);
++    if (root !== null) values.set('chirality.projectRoot', root);
++    return {
++      values,
++      getItem: vi.fn((key: string) => values.get(key) ?? null),
++      setItem: vi.fn((key: string, value: string) => { values.set(key, value); })
++    };
++  }
++  const read = (value: Record<string, unknown>) => readWovenWorkspaceStateFromStorage(storageFor(value));
++
++  it('maps an absent view from old v1 and treats invalid-present as an explicit default', () => {
++    expect(read({ coordinationView: 'agents' }).rightPanelView).toBe('agents');
++    expect(read({ coordinationView: 'agents', rightPanelView: null }).rightPanelView).toBe('files');
++    for (const rightPanelView of ['files', 'workflows', 'agents', 'activity', 'settings']) {
++      expect(read({ coordinationView: 'agents', rightPanelView }).rightPanelView).toBe(rightPanelView);
++    }
++    expect(read({ rightPanelWidths: { files: 0, document: 5000, agents: 320, workflows: 480, activity: -1, session: 320.5, settings: '400', nope: 400 } }).rightPanelWidths)
++      .toEqual({ files: 280, document: 2000, agents: 320, workflows: 480, activity: 280, session: 320.5 });
++    expect(read({ rightPanelWidths: { files: Infinity, document: NaN } }).rightPanelWidths).toEqual({});
++    expect(read({ preExpandState: { rightWidth: 20, leftCollapsed: true } }).preExpandState).toEqual({ rightWidth: 280, leftCollapsed: true });
++    expect(read({ preExpandState: { rightWidth: 300 }, rightPanelExpanded: 1 }).preExpandState).toBeNull();
++    expect(read({ rightPanelExpanded: 1 }).rightPanelExpanded).toBe(false);
++  });
++
++  it('rejects oversized/invalid new identities while leaving legacy trimming and truncation intact', () => {
++    const oversized = 'x'.repeat(2049), valid = 'x'.repeat(2048);
++    const state = read({ openDocumentPath: ' /a/file.md ', chatPins: [' a ', ' a ', '', oversized, '\u0000', valid],
++      dialogueAnchorId: oversized, contextReferences: [' a ', oversized], chatTitles: { ' a ': ' Title ', [oversized]: 'bad' } });
++    expect(state.openDocumentPath).toBe(' /a/file.md ');
++    expect(state.chatPins).toEqual([' a ', valid]);
++    expect(state.chatTitles).toEqual({ ' a ': 'Title' });
++    expect(state.dialogueAnchorId).toBe(valid);
++    expect(state.contextReferences).toEqual(['a', valid]);
++    expect(read({ openDocumentPath: oversized }).openDocumentPath).toBeNull();
++  });
++
++  it('roundtrips opaque special map/group/root keys as own data', () => {
++    const titles = JSON.parse('{"__proto__":"Title","constructor":"Other"}');
++    const rungs = JSON.parse('{"__proto__":{"kind":"workflow","ref":" path "},"constructor":{"kind":"plain","declined":[" x "]}}');
++    const storage = storageFor({ chatTitles: titles, chatRung: rungs, chatGroups: [{ id: '__proto__', name: ' Group ', sessionIds: ['constructor'] }],
++      knownRoots: [{ path: '__proto__', lastUsedAt: '2026-09-05T00:00:00Z' }] });
++    const state = readWovenWorkspaceStateFromStorage(storage);
++    expect(Object.hasOwn(state.chatTitles, '__proto__')).toBe(true);
++    expect(state.chatTitles.__proto__).toBe('Title');
++    expect(state.chatRung.constructor).toEqual({ kind: 'plain', declined: [' x '] });
++    expect(Object.getPrototypeOf(state.chatTitles)).toBe(Object.prototype);
++    expect(state.chatGroups[0]).toEqual({ id: '__proto__', name: 'Group', sessionIds: ['constructor'] });
++    writeWovenWorkspaceStateToStorage(storage, state);
++    expect(readWovenWorkspaceStateFromStorage(storage)).toEqual(state);
++    expect(({} as Record<string, unknown>).polluted).toBeUndefined();
++  });
++
++  it('bounds collections, evicts old map entries, and drops malformed entries', () => {
++    const ids = Array.from({ length: 505 }, (_, i) => `s-${i}`);
++    const state = read({ chatPins: ids, chatArchived: ids, groupsCollapsed: ids,
++      chatTitles: Object.fromEntries(ids.map(id => [id, id])),
++      chatRung: { ...Object.fromEntries(ids.map(id => [id, { kind: 'spec', declined: ids }])), bad: { kind: 'invalid' } },
++      chatGroups: [null, { id: '', name: 'bad' }, ...ids.map(id => ({ id, name: id, sessionIds: ids }))] });
++    expect(Object.keys(state.chatTitles)).toHaveLength(500);
++    expect(Object.hasOwn(state.chatTitles, 's-4')).toBe(false);
++    expect(Object.keys(state.chatRung)).toHaveLength(500);
++    for (const collection of [state.chatPins, state.chatArchived, state.groupsCollapsed, state.chatGroups, state.chatRung['s-5'].declined, state.chatGroups[0].sessionIds]) expect(collection).toHaveLength(200);
++    expect(read({ chatRung: { x: { kind: 'workflow', ref: 'x'.repeat(2049), declined: [null] } }, chatTitles: [], chatGroups: [{ id: 'a', name: ' A ' }, { id: 'a', name: 'B' }] }))
++      .toMatchObject({ chatRung: { x: { kind: 'workflow', declined: [] } }, chatTitles: {}, chatGroups: [{ id: 'a', name: 'A', sessionIds: [] }] });
++  });
++
++  it('validates ISO root instants, deduplicates newest, sorts and caps roots', () => {
++    const roots = Array.from({ length: 52 }, (_, i) => ({ path: `/p/${i}`, lastUsedAt: new Date(Date.UTC(2026, 0, i + 1)).toISOString() }));
++    const state = read({ knownRoots: [...roots, { path: '/p/0', lastUsedAt: '2026-09-05T02:00:00+02:00' },
++      { path: '/bad', lastUsedAt: '2026-02-30T00:00:00Z' }, { path: '/bad2', lastUsedAt: 'yesterday' }, { path: '/bad3', lastUsedAt: '2026-09-05' }] });
++    expect(state.knownRoots).toHaveLength(50);
++    expect(state.knownRoots[0]).toEqual({ path: '/p/0', lastUsedAt: '2026-09-05T00:00:00.000Z' });
++    expect(state.knownRoots.some(root => root.path.startsWith('/bad'))).toBe(false);
++    expect(state.knownRoots.filter(root => root.path === '/p/0')).toHaveLength(1);
++  });
++
++  it('seeds only absent roots once, retaining the old key and observation timestamp', () => {
++    const storage = storageFor({ theme: 'dark', coordinationView: 'agents' }, ' /old/root ');
++    const before = Date.now();
++    const state = readWovenWorkspaceStateFromStorage(storage);
++    expect(state.knownRoots[0].path).toBe(' /old/root ');
++    expect(Date.parse(state.knownRoots[0].lastUsedAt)).toBeGreaterThanOrEqual(before);
++    storage.values.set('chirality.projectRoot', '/changed');
++    expect(readWovenWorkspaceStateFromStorage(storage)).toEqual(state);
++    expect(storage.values.get('chirality.projectRoot')).toBe('/changed');
++    expect(storage.getItem.mock.calls.filter(([key]) => key === 'chirality.projectRoot')).toHaveLength(1);
++    for (const knownRoots of [[], null, 'bad', [{ path: '/bad' }]]) {
++      const explicit = storageFor({ knownRoots }, '/old');
++      expect(readWovenWorkspaceStateFromStorage(explicit).knownRoots).toEqual([]);
++      expect(explicit.getItem.mock.calls.some(([key]) => key === 'chirality.projectRoot')).toBe(false);
++    }
++    const noSeed = storageFor({});
++    readWovenWorkspaceStateFromStorage(noSeed);
++    noSeed.values.set('chirality.projectRoot', '/later');
++    expect(readWovenWorkspaceStateFromStorage(noSeed).knownRoots).toEqual([]);
++  });
++
++  it('isolates seed and write failures from valid current state', () => {
++    const storage = storageFor({ theme: 'dark', navigatorWidth: 500 });
++    storage.getItem.mockImplementation(key => { if (key === 'chirality.projectRoot') throw new Error('denied'); return storage.values.get(key) ?? null; });
++    storage.setItem.mockImplementation(() => { throw new Error('quota'); });
++    expect(readWovenWorkspaceStateFromStorage(storage)).toMatchObject({ theme: 'dark', navigatorWidth: 500, knownRoots: [] });
++  });
++
++  it('clears project hints while retaining app state and excludes activeChatRoot', () => {
++    const storage = storageFor({ openDocumentPath: '/doc', chatTitles: { s: 'Title' }, chatPins: ['s'], chatArchived: ['s'], chatRung: { s: { kind: 'plain' } }, chatGroups: [{ id: 'g', name: 'G', sessionIds: ['s'] }], groupsCollapsed: ['g'],
++      knownRoots: [{ path: '/root', lastUsedAt: '2026-09-05T00:00:00Z' }], rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: { rightWidth: 400, leftCollapsed: true }, theme: 'dark', sessionSurfaces: { s: 'dialogue' }, activeChatRoot: '/authority' });
++    const state = readWovenWorkspaceStateFromStorage(storage);
++    const cleared = clearProjectScopedWovenWorkspaceState(state);
++    expect(cleared).toMatchObject({ openDocumentPath: null, chatTitles: {}, chatPins: [], chatArchived: [], chatRung: {}, chatGroups: [], groupsCollapsed: [], knownRoots: state.knownRoots, rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: state.preExpandState, theme: 'dark', sessionSurfaces: { s: 'dialogue' } });
++    writeWovenWorkspaceStateToStorage(storage, { ...state, activeChatRoot: '/forbidden' } as typeof state);
++    expect(JSON.parse(storage.values.get(WOVEN_WORKSPACE_STORAGE_KEY)!)).not.toHaveProperty('activeChatRoot');
++    writeWovenWorkspaceThemeToStorage(storage, 'light');
++    expect(readWovenWorkspaceStateFromStorage(storage)).toEqual({ ...state, theme: 'light' });
++  });
++});
++
++
++it('does not overwrite an unreadable primary blob when legacy storage remains readable', () => {
++  const values = new Map([[WOVEN_WORKSPACE_STORAGE_KEY, '{"schema":"chirality.woven-workspace/v1","theme":"dark"}'], ['chirality.projectRoot', '/old']]);
++  const original = values.get(WOVEN_WORKSPACE_STORAGE_KEY);
++  const storage = {
++    getItem: (key: string) => { if (key === WOVEN_WORKSPACE_STORAGE_KEY) throw new Error('primary unavailable'); return values.get(key) ?? null; },
++    setItem: vi.fn((key: string, value: string) => { values.set(key, value); })
++  };
++  expect(() => readWovenWorkspaceStateFromStorage(storage)).not.toThrow();
++  expect(storage.setItem).not.toHaveBeenCalled();
++  expect(values.get(WOVEN_WORKSPACE_STORAGE_KEY)).toBe(original);
++});
+diff --git a/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts b/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts
+index 374ec0217..ddeea380b 100644
+--- a/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts
++++ b/projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts
+@@ -59,7 +59,27 @@ export type WovenSessionSurfaceMap = Readonly<
+   Record<string, WovenWorkspaceSurface>
+ >;
+ 
+-export type WovenWorkspaceState = {
++export type WovenRightPanelView = 'files' | 'workflows' | 'agents' | 'activity' | 'settings';
++export type WovenRightPanelWidthKey = WovenRightPanelView | 'document' | 'session';
++export type WovenChatRung = { kind: 'plain' | 'spec' | 'workflow'; ref?: string; declined?: string[] };
++export type WovenWorkspaceAdditions = {
++  rightPanelView: WovenRightPanelView;
++  rightPanelWidths: Partial<Record<WovenRightPanelWidthKey, number>>;
++  rightPanelExpanded: boolean;
++  preExpandState: { rightWidth: number; leftCollapsed: boolean } | null;
++  openDocumentPath: string | null;
++  chatTitles: Record<string, string>;
++  chatPins: string[];
++  chatArchived: string[];
++  chatGroups: { id: string; name: string; sessionIds: string[] }[];
++  groupsCollapsed: string[];
++  knownRoots: { path: string; lastUsedAt: string }[];
++  chatRung: Record<string, WovenChatRung>;
++};
++
++// Older typed callers may omit additions; readers always return every field.
++export type NormalizedWovenWorkspaceState = WovenWorkspaceState & WovenWorkspaceAdditions;
++export type WovenWorkspaceState = Partial<WovenWorkspaceAdditions> & {
+   schema: typeof WOVEN_WORKSPACE_SCHEMA;
+   /**
+    * Additive field under the unchanged `chirality.woven-workspace/v1` schema
+@@ -145,6 +165,108 @@ function readReferenceArray(value: unknown): string[] {
+   return [...references];
+ }
+ 
++// New identities are opaque hints: preserve meaningful bytes and never truncate.
++function readIdentity(value: unknown): string | null {
++  return typeof value === 'string' && value.trim().length > 0 &&
++    value.length <= MAX_REFERENCE_LENGTH && !/[\u0000-\u001f\u007f]/.test(value)
++    ? value : null;
++}
++
++function readIdentities(value: unknown): string[] {
++  if (!Array.isArray(value)) return [];
++  const result = new Set<string>();
++  for (const entry of value) {
++    const identity = readIdentity(entry);
++    if (identity !== null) result.add(identity);
++    if (result.size === MAX_REFERENCE_COUNT) break;
++  }
++  return [...result];
++}
++
++function readLabel(value: unknown): string | null {
++  return readIdentity(value)?.trim() ?? null;
++}
++
++function readHintMap<T>(value: unknown, read: (raw: unknown) => T | null): Record<string, T> {
++  if (!isRecord(value)) return {};
++  const entries: [string, T][] = [];
++  for (const [key, raw] of Object.entries(value)) {
++    const identity = readIdentity(key);
++    const item = read(raw);
++    if (identity !== null && item !== null) entries.push([identity, item]);
++  }
++  // fromEntries creates own data properties even for __proto__ and constructor.
++  return Object.fromEntries(entries.slice(-500));
++}
++
++function readRung(value: unknown): WovenChatRung | null {
++  if (!isRecord(value) || !['plain', 'spec', 'workflow'].includes(value.kind as string)) return null;
++  const ref = readIdentity(value.ref);
++  return {
++    kind: value.kind as WovenChatRung['kind'],
++    ...(ref === null ? {} : { ref }),
++    ...(Object.hasOwn(value, 'declined') ? { declined: readIdentities(value.declined) } : {})
++  };
++}
++
++function readKnownRoots(value: unknown): WovenWorkspaceAdditions['knownRoots'] {
++  const roots = new Map<string, { path: string; lastUsedAt: string }>();
++  if (!Array.isArray(value)) return [];
++  for (const entry of value) {
++    if (!isRecord(entry)) continue;
++    const path = readIdentity(entry.path);
++    const stamp = entry.lastUsedAt;
++    // Require a real ISO instant, including calendar validity, not Date.parse's
++    // permissive date-only or rollover forms. Normalize offsets to UTC.
++    if (!path || typeof stamp !== 'string' ||
++      !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z|[+-]\d{2}:\d{2})$/.test(stamp)) continue;
++    const date = new Date(stamp);
++    const calendar = new Date(stamp.slice(0, 10) + 'T00:00:00Z');
++    if (!Number.isFinite(date.getTime()) || calendar.toISOString().slice(0, 10) !== stamp.slice(0, 10) ||
++      Number(stamp.slice(11, 13)) > 23) continue;
++    const lastUsedAt = date.toISOString();
++    if (!roots.has(path) || roots.get(path)!.lastUsedAt < lastUsedAt) roots.set(path, { path, lastUsedAt });
++  }
++  return [...roots.values()].sort((a, b) => b.lastUsedAt.localeCompare(a.lastUsedAt)).slice(0, 50);
++}
++
++function readAdditions(value: Record<string, unknown>): WovenWorkspaceAdditions {
++  const views: WovenRightPanelView[] = ['files', 'workflows', 'agents', 'activity', 'settings'];
++  const widths: WovenWorkspaceAdditions['rightPanelWidths'] = {};
++  const rawWidths = isRecord(value.rightPanelWidths) ? value.rightPanelWidths : {};
++  for (const key of [...views, 'document', 'session'] as WovenRightPanelWidthKey[]) {
++    const width = Object.hasOwn(rawWidths, key) ? rawWidths[key] : undefined;
++    if (typeof width === 'number' && Number.isFinite(width)) widths[key] = clampNumber(width, 280, 280);
++  }
++  const groups = new Map<string, WovenWorkspaceAdditions['chatGroups'][number]>();
++  if (Array.isArray(value.chatGroups)) {
++    for (const entry of value.chatGroups) {
++      if (!isRecord(entry)) continue;
++      const id = readIdentity(entry.id), name = readLabel(entry.name);
++      if (id && name && !groups.has(id)) groups.set(id, { id, name, sessionIds: readIdentities(entry.sessionIds) });
++      if (groups.size === MAX_REFERENCE_COUNT) break;
++    }
++  }
++  const pre = value.preExpandState;
++  return {
++    rightPanelView: Object.hasOwn(value, 'rightPanelView')
++      ? views.includes(value.rightPanelView as WovenRightPanelView) ? value.rightPanelView as WovenRightPanelView : 'files'
++      : value.coordinationView === 'agents' ? 'agents' : 'files',
++    rightPanelWidths: widths,
++    rightPanelExpanded: readBoolean(value.rightPanelExpanded, false),
++    preExpandState: isRecord(pre) && typeof pre.rightWidth === 'number' && Number.isFinite(pre.rightWidth) && typeof pre.leftCollapsed === 'boolean'
++      ? { rightWidth: clampNumber(pre.rightWidth, 280, 280), leftCollapsed: pre.leftCollapsed } : null,
++    openDocumentPath: readIdentity(value.openDocumentPath),
++    chatTitles: readHintMap(value.chatTitles, readLabel),
++    chatPins: readIdentities(value.chatPins),
++    chatArchived: readIdentities(value.chatArchived),
++    chatGroups: [...groups.values()],
++    groupsCollapsed: readIdentities(value.groupsCollapsed),
++    knownRoots: readKnownRoots(value.knownRoots),
++    chatRung: readHintMap(value.chatRung, readRung)
++  };
++}
++
+ function readCoordinationView(value: unknown): CoordinationPanelView {
+   return value === 'agents' ? 'agents' : 'work';
+ }
+@@ -200,6 +322,16 @@ function readNavigatorExpandedSurfaces(value: unknown): WovenWorkspaceSurface[]
+  * when it was first observed and is never retagged. Returns the same state
+  * reference when nothing changes so callers can rely on identity.
+  */
++export function recordWovenSessionSurface(
++  state: NormalizedWovenWorkspaceState,
++  sessionId: string | null | undefined,
++  surface: WovenWorkspaceSurface
++): NormalizedWovenWorkspaceState;
++export function recordWovenSessionSurface(
++  state: WovenWorkspaceState,
++  sessionId: string | null | undefined,
++  surface: WovenWorkspaceSurface
++): WovenWorkspaceState;
+ export function recordWovenSessionSurface(
+   state: WovenWorkspaceState,
+   sessionId: string | null | undefined,
+@@ -222,6 +354,14 @@ export function recordWovenSessionSurface(
+   };
+ }
+ 
++export function toggleWovenNavigatorExpandedSurface(
++  state: NormalizedWovenWorkspaceState,
++  surface: WovenWorkspaceSurface
++): NormalizedWovenWorkspaceState;
++export function toggleWovenNavigatorExpandedSurface(
++  state: WovenWorkspaceState,
++  surface: WovenWorkspaceSurface
++): WovenWorkspaceState;
+ export function toggleWovenNavigatorExpandedSurface(
+   state: WovenWorkspaceState,
+   surface: WovenWorkspaceSurface
+@@ -274,8 +414,9 @@ function readMigration(value: unknown): WovenWorkspaceState['migration'] {
+   };
+ }
+ 
+-export function createDefaultWovenWorkspaceState(): WovenWorkspaceState {
++export function createDefaultWovenWorkspaceState(): NormalizedWovenWorkspaceState {
+   return {
++    ...readAdditions({}),
+     schema: WOVEN_WORKSPACE_SCHEMA,
+     theme: DEFAULT_WOVEN_WORKSPACE_THEME,
+     navigatorWidth: 280,
+@@ -315,17 +456,25 @@ export function clearProjectScopedWovenWorkspaceState(
+     focusedArtifact: null,
+     expandedObjectIds: [],
+     selectedReplaySessionId: null,
+-    contextReferences: []
++    contextReferences: [],
++    openDocumentPath: null,
++    chatTitles: {},
++    chatPins: [],
++    chatArchived: [],
++    chatGroups: [],
++    groupsCollapsed: [],
++    chatRung: {}
+   };
+ }
+ 
+-function sanitizeWovenWorkspaceState(value: unknown): WovenWorkspaceState | null {
++function sanitizeWovenWorkspaceState(value: unknown): NormalizedWovenWorkspaceState | null {
+   if (!isRecord(value) || value.schema !== WOVEN_WORKSPACE_SCHEMA) {
+     return null;
+   }
+ 
+   const fallback = createDefaultWovenWorkspaceState();
+   return {
++    ...readAdditions(value),
+     schema: WOVEN_WORKSPACE_SCHEMA,
+     theme: readWovenWorkspaceTheme(value.theme),
+     navigatorWidth: clampNumber(
+@@ -365,7 +514,7 @@ function sanitizeWovenWorkspaceState(value: unknown): WovenWorkspaceState | null
+   };
+ }
+ 
+-function migrateLegacyLayout(raw: string | null): WovenWorkspaceState {
++function migrateLegacyLayout(raw: string | null): NormalizedWovenWorkspaceState {
+   const state = createDefaultWovenWorkspaceState();
+   if (!raw) {
+     return state;
+@@ -409,30 +558,36 @@ function migrateLegacyLayout(raw: string | null): WovenWorkspaceState {
+ 
+ export function readWovenWorkspaceStateFromStorage(
+   storage: WovenWorkspaceStorage | undefined
+-): WovenWorkspaceState {
+-  if (!storage) {
+-    return createDefaultWovenWorkspaceState();
+-  }
+-
++): NormalizedWovenWorkspaceState {
++  if (!storage) return createDefaultWovenWorkspaceState();
++  let state: NormalizedWovenWorkspaceState | null = null;
++  let observedRoots = false;
++  let currentReadSucceeded = false;
+   try {
+-    const currentRaw = storage.getItem(WOVEN_WORKSPACE_STORAGE_KEY);
+-    if (currentRaw) {
+-      try {
+-        const current = sanitizeWovenWorkspaceState(JSON.parse(currentRaw));
+-        if (current) {
+-          return current;
+-        }
+-      } catch {
+-        // Fall through to a non-destructive legacy migration/default recovery.
+-      }
+-    }
+-
+-    const migrated = migrateLegacyLayout(storage.getItem(LEGACY_LAYOUT_STORAGE_KEY));
+-    writeWovenWorkspaceStateToStorage(storage, migrated);
+-    return migrated;
++    const raw = storage.getItem(WOVEN_WORKSPACE_STORAGE_KEY);
++    currentReadSucceeded = true;
++    const parsed: unknown = raw ? JSON.parse(raw) : null;
++    state = sanitizeWovenWorkspaceState(parsed);
++    observedRoots = state !== null && isRecord(parsed) && Object.hasOwn(parsed, 'knownRoots');
+   } catch {
+-    return createDefaultWovenWorkspaceState();
++    // Each optional storage source fails independently.
+   }
++  const recovered = state === null;
++  if (!state) {
++    let legacy: string | null = null;
++    try { legacy = storage.getItem(LEGACY_LAYOUT_STORAGE_KEY); } catch { /* optional */ }
++    state = migrateLegacyLayout(legacy);
++  }
++  if (!observedRoots) {
++    try {
++      const path = readIdentity(storage.getItem('chirality.projectRoot'));
++        if (path) state.knownRoots = [{ path, lastUsedAt: new Date().toISOString() }];
++    } catch { /* Retain valid current state even when the seed cannot be read. */ }
++    // Presence (including []) records the seed decision; its timestamp is the
++    // local observation time. Never remove the legacy key or verify the path.
++  }
++  if (currentReadSucceeded && (recovered || !observedRoots)) writeWovenWorkspaceStateToStorage(storage, state);
++  return state;
+ }
+ 
+ type WovenWorkspaceWriteStorage = Pick<Storage, 'setItem'> &

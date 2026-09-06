@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "gh",
+    "run",
+    "view",
+    "33991362689",
+    "--repo",
+    "sgttomas/chirality",
+    "--json",
+    "databaseId,workflowName,event,headSha,headBranch,status,conclusion,jobs,url,createdAt,updatedAt"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "start": "2026-09-05T20:54:25.136220+00:00",
+  "end": "2026-09-05T20:54:26.299931+00:00",
+  "duration_seconds": 1.1635702911298722,
+  "exit_code": 0,
+  "environment": "existing gh authentication; no credential values captured",
+  "redaction_applied": false,
+  "stdout_sha256": "e129a36277c18971498dbbb8841993ea98c511e45a38e17427cb1a6bea1d8bf0",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

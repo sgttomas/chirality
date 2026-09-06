@@ -1,0 +1,68 @@
+---
+run-id: "TASK_RUN_pkg02_fields_2026-09-05_retention"
+timestamp: "2026-09-05T21:29:09.738781+00:00"
+run-status: "SUCCESS"
+control-surface: "MERGED"
+scope-path: "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author"
+task-profile: "NONE"
+task-skill: "software-bounded-implementation"
+resolved-skill-path: "/Users/ryan/.codex/worktrees/85d6/chirality/skills/software-bounded-implementation"
+resolved-skill-version: "1"
+resolved-task-profile-requirement: "NONE"
+companion-files: ["BRIEF_SCHEMA.md (found)", "TOOL_POLICY.md (found)", "QA_CHECKS.md (found)"]
+allowed-tools: ["bounded read/edit shell", "python3 tools/software_workflow/select_affected_checks.py", "python3 tools/software_workflow/validate_change_scope.py", "python3 execution/_Scripts/app_hold.py", "npm test -- src/__tests__/lib/woven-workspace-state.test.ts"]
+write-authorization: "ALLOWED_WRITE_TARGETS"
+runtime-overrides: {"CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality", "delegation": "delegated-harness-native", "role": "TASK Agent2 instruction-asserted; no delegation", "model": "exact serving model ID unavailable"}
+---
+
+## Requested Tasks
+Implement sealed author brief plus verified AUTHOR_AMENDMENT_v1.4.md. See RETURN.md for full behavior. Initial abbreviated records preserved; this record supplies full final schema without modifying completed run records.
+
+## Expected Outputs
+Two-file bounded source change, COMMANDS.json, source manifest/diff, return, scope evidence.
+
+## Tools Used
+python3 execution/_Scripts/app_hold.py
+python3 tools/software_workflow/select_affected_checks.py
+python3 tools/software_workflow/validate_change_scope.py
+python3 (bounded source and record editor)
+npm (authorized focused test)
+git (read-only diff/root discovery)
+node (version read)
+Read-only cat/rg/sed shell commands.
+
+## Tool Policy Compliance
+PASS; no declared-first tool requirement. No delegation, network, install, global testing or external write.
+
+## Write Authorization
+ApplyEdits true. Exact allowed source paths:
+projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts
+projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts
+Records under /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/author
+
+## Outputs Produced
+RETURN.md, SOURCE_MANIFEST.json, SOURCE_DIFF.patch, COMMANDS.json, complete TASK record. Prior source freeze artifacts preserved with _v1 and _v2 suffixes.
+
+## Missing
+No bounded outputs missing. Independent review and parent-owned global tests/typecheck/build/harness remain pending.
+
+## Needs Human Ruling
+none
+
+## Dependency Notes
+APP-HOLD dispatch/reliance ALLOW. Inputs cited in INPUT_IDENTITIES.json; accepted source HEAD 50b70f47f38867430be9879b6a928890d320685e. All output evidence derivative; no acceptance or lifecycle act. Older writers may discard new fields. UI/Activity strip remains residual.
+
+## Applied Changes
+Read-time seeding now preserves every other own JSON property/value in a readable v1 original object, including unsanitized legacy values and opaque keys; meaningful regression proves successful and failed writes. 32 focused tests PASS; no product writes after superseding freeze.
+
+## Proposed Changes
+none
+
+## Amendment Identity
+AUTHOR_AMENDMENT_v1.4.md SHA256 7c249421683339e0832fd4e6f6c15442473a0143479235e016bcaa9ce57a4bc5 verified before effect. Completed 2026-09-05T21:31:21.426664+00:00; source frozen.
+
+## Final test-only amendment
+Existing raw activeChatRoot explicitly preserved by seed-only migration and omitted from normalized state; normal writer omission already tested. No module changes. Completed 2026-09-05T21:32:43.057679+00:00.
+
+## Reviewer P2 repair
+Retain chatTitles/chatRung across root switches; two-root rename, workflow reference and declined-proposal retention tested through clear/write/read/clear. Prior project-scoped fields still clear. This supersedes prior test-only statement. Completed 2026-09-05T21:38:17.618427+00:00.

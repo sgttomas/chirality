@@ -1,0 +1,87 @@
+[
+  {
+    "id": "git-status",
+    "argv": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:05:09.281521+00:00",
+    "ended_at": "2026-09-05T23:05:09.562553+00:00",
+    "duration_seconds": 0.2809722500387579,
+    "exit_code": 0
+  },
+  {
+    "id": "git-head",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:05:09.562665+00:00",
+    "ended_at": "2026-09-05T23:05:09.569794+00:00",
+    "duration_seconds": 0.0071322498843073845,
+    "exit_code": 0
+  },
+  {
+    "id": "node",
+    "argv": [
+      "node",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:05:09.569902+00:00",
+    "ended_at": "2026-09-05T23:05:09.582295+00:00",
+    "duration_seconds": 0.012398125138133764,
+    "exit_code": 0
+  },
+  {
+    "id": "npm",
+    "argv": [
+      "npm",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:05:09.582412+00:00",
+    "ended_at": "2026-09-05T23:05:09.669097+00:00",
+    "duration_seconds": 0.08668958279304206,
+    "exit_code": 0
+  },
+  {
+    "id": "python",
+    "argv": [
+      "python3",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:05:09.669216+00:00",
+    "ended_at": "2026-09-05T23:05:09.675953+00:00",
+    "duration_seconds": 0.0067431251518428326,
+    "exit_code": 0
+  },
+  {
+    "id": "app-hold-preflight",
+    "argv": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "APP_LOOP_SHELL_2026-09-05:GLOBAL_VALIDATION",
+      "--target",
+      "DEL-02-03"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "started_at": "2026-09-05T23:05:09.757975+00:00",
+    "ended_at": "2026-09-05T23:05:10.394301+00:00",
+    "duration_seconds": 0.6363231670111418,
+    "exit_code": 0
+  },
+  {
+    "id": "release-quality-with-registered-premerge-service",
+    "exit_code": 125
+  }
+]

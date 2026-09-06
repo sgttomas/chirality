@@ -1,0 +1,10 @@
+{
+  "governing_rationale": "FINAL_MANAGER_FANIN_v1.md",
+  "prior_refresh_manifest_sha256": "c7e7acbc9c4b4b5da1ba8a8ba3c84e62e92618921c43240a17f61d53e9a6b1e9",
+  "source_v3_sha256": "7d0e73bbeaa7962c1d21422dc7ee735b41e8b6f7c3917f490563f6114cbec381",
+  "current_source_manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v4.json",
+  "current_source_manifest_sha256": "597de7442f28240a482a110278ca195c6032579ade51d3bff8ecb0add206abab",
+  "prior17_identical": true,
+  "new_associated_test": "frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+  "calibration": "Final candidate now includes one tests-only reconnect setup repair following actual global failures. All17 previously refreshed source identities remain exact; cited proposal facts and current-policy/source conclusions unchanged. No accepted baseline or passing global/native result inferred. Original refresh records and packet versions remain immutable."
+}

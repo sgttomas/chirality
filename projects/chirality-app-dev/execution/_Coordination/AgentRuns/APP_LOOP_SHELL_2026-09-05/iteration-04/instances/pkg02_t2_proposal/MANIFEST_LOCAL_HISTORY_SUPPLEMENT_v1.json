@@ -1,0 +1,42 @@
+{
+  "status": "DRAFT_LOCAL_HISTORY_FROZEN_REVIEW_PENDING",
+  "original_child_manifest_sha256": "ea169cc7652a9cab4d26b8850a047c9cf28991cd611620834e7865f3afb44101",
+  "remaining_bytes_preserved": true,
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/MANAGER_LOCAL_HISTORY_AMENDMENT_v1.md",
+      "sha256": "8c97944c5f9b3a5450d1be420fd00283d7a66b341b0d447bcdcb4d5665fd16dc",
+      "bytes": 1896
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/local-history-snapshot/after_MEMORY.md",
+      "sha256": "b3c03f2d82bbba3fe54e5976ed0aade84b5e57ee8ced15a601a3ce4562a76857",
+      "bytes": 4824
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/local-history-snapshot/after__STATUS.md",
+      "sha256": "48b7f2caa4192ee570ad6abec7642dc7c7b014d6337723631592aef98a82141d",
+      "bytes": 18766
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/local-history-snapshot/before_MEMORY.md",
+      "sha256": "38e4d2646ea9963a57dd91c61ba94eb9968e31c5d0b381ea1b22f6b67e91fcd8",
+      "bytes": 4247
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/local-history-snapshot/before__STATUS.md",
+      "sha256": "a744e0b32e7f364afc4837adacbe373cd75c6c98dd61ad9b62b11bfa1b5c88ab",
+      "bytes": 18127
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+      "sha256": "48b7f2caa4192ee570ad6abec7642dc7c7b014d6337723631592aef98a82141d",
+      "bytes": 18766
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/MEMORY.md",
+      "sha256": "b3c03f2d82bbba3fe54e5976ed0aade84b5e57ee8ced15a601a3ce4562a76857",
+      "bytes": 4824
+    }
+  ]
+}

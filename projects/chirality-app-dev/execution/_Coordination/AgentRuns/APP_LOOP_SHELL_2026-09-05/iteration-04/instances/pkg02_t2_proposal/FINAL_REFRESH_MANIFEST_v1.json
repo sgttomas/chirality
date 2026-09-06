@@ -1,0 +1,36 @@
+{
+  "schema": "proposal-final-refresh/v1",
+  "decision": "D-APP-120",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_MANAGER_FANIN_v1.md",
+      "sha256": "54955d53cc9eec46890713e39d214cdd108c62ec6f51658847e81b8bde883049",
+      "bytes": 3333
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_SOURCE_CHANGED_BYTES_v1.json",
+      "sha256": "d8882a53cb25f94a5162ad2da0e0e7334c67d2a5b4cd0990673bcab1b2c08918",
+      "bytes": 47149
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_SOURCE_REFRESH_v1.json",
+      "sha256": "bc6890c9a09e6ad02591974cea3f90356d49da27a6e9fe071cc5be0dabead8a0",
+      "bytes": 9165
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/PROPOSED_REGISTER_ROW.md",
+      "sha256": "58caa4f7d988ac13d54ec14716b0dc8ddfa7c7dc74fe8d70841ad28739e0c58c",
+      "bytes": 403
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v3.json",
+      "sha256": "7d0e73bbeaa7962c1d21422dc7ee735b41e8b6f7c3917f490563f6114cbec381",
+      "bytes": 4692
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-120_PACKET_T2_NO_FOLDER_AND_WOVEN_SEAM_2026-09-05.md",
+      "sha256": "f2aef8d01b562028479260f977d34b5415e806f68effc19a5ea923482782f017",
+      "bytes": 13086
+    }
+  ]
+}

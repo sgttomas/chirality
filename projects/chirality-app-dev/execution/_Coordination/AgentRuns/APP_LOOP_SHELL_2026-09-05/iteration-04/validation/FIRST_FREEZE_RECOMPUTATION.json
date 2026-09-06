@@ -1,0 +1,18 @@
+[
+  {
+    "manifest": "basic-01/evidence-sha256.json",
+    "mismatches": []
+  },
+  {
+    "manifest": "build-01/evidence-sha256.json",
+    "mismatches": []
+  },
+  {
+    "manifest": "release-01/evidence-sha256.json",
+    "mismatches": []
+  },
+  {
+    "manifest": "release-02/evidence-sha256.json",
+    "mismatches": []
+  }
+]

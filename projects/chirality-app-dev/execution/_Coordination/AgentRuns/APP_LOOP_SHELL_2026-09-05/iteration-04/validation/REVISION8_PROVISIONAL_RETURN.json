@@ -1,0 +1,27 @@
+{
+  "revision": 8,
+  "source_manifest_sha256": "68682296be124eb88f5f56fc6a73a9da9779bcd846365597e657a1716f9d29ca",
+  "all18_current_identities_match": true,
+  "review": "PENDING actual parent fan-in; execution concurrent under v7.3; no acceptance claimed",
+  "full_tests": "1686PASS4skip,171filesPASS1skip",
+  "typecheck": "PASS",
+  "section9": "PASS16",
+  "premerge": "FAIL503 ENGINE_UNAVAILABLE missing daemon binding; configured exact-head CI owed",
+  "wrapper": "FAIL; premerge and downstream Section8 summary consistency",
+  "build": "PASS Next/Electron",
+  "bundles": {
+    "dist-electron/main.js": "f82b482525b3654e85873330f8e975e056d6e6cada0e05e0b8649edef5e38215",
+    "dist-electron/preload.js": "124ac08401a9344a87a96530534e138bd51dcd95112d09c57ba89344a896ba82",
+    "dist-runtime/chirality-cli.mjs": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+  },
+  "next_sha256": {
+    ".next/BUILD_ID": "6f627d748ae869ac89bbed4a66c6e9c90591c7eb207abc028d7b8f6aa1e9899c",
+    ".next/build-manifest.json": "5841a87a7265483f24896f395ce3c41349951f148bac4b12379fc3d11d0906cd",
+    ".next/app-build-manifest.json": "3a9ce38bd560baafc1a07effad593c66b3f62f3a897a99979824bf8a92591463"
+  },
+  "security": "PASS security-04; final proof/integration evidence scan remains later",
+  "basic_reuse": "Root350pytest/selfcheck basic-01 reused; recorded138 tools/runtime inputs unchanged",
+  "cleanup": "owned server stopped0; all build/security processes completed; no owned processes",
+  "native_or_browser_authorized_by_executor": false,
+  "remaining": "actual fresh source reviewPASS/current identity fan-in, manager actual browser/native proof, terminal record checks, configuredCI, partialPDF boundary"
+}

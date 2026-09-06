@@ -1,0 +1,35 @@
+{
+  "change": "Receipt248 direct classification rationale citation only; previous candidate and suffix retained exactly",
+  "before_ledger_sha256": "5d7bb2c63c5a06834bd22f40ba9042b263aa669a98a47470e75d7d2f929dfc45",
+  "after_ledger_sha256": "66a69b657d490e3cc4db5a3431ea8ea9a326c3cf83110bccc9dbadb4427c6df1",
+  "receipt_preimage": "RECEIPT248_PRECLASSIFICATION.md",
+  "receipt_preimage_sha256": "0c8e2ca23dd5955a372480de5e4901018d8f775ff130f426fd467625cfeaabfd",
+  "receipt_postimage_sha256": "f5c4e13fd755c647ef7e9a47b06533ad79e0ae1af44759386255a2ecde681c6c",
+  "receipt_bytes_excluding_heading": 3032,
+  "prior_receipts_prefix_sha256": "b52feba1d40ace942c9c13cd6dd974d7cf8231e0e0b9f1b776a1144e9edadc34",
+  "prior_receipts_preserved": true,
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

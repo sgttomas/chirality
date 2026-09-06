@@ -1,0 +1,4 @@
+{
+  "source_name": "logs/premerge.stdout.log",
+  "text": "\n> chirality-frontend@2.0.0 harness:validate:premerge\n> node ./scripts/validate-harness-premerge.mjs\n\nHARNESS_VALIDATION_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/summary.json\nHARNESS_VALIDATION_STATUS=fail\nHARNESS_PREMERGE_ARTIFACT_PATH=/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json\nHARNESS_PREMERGE_SOURCE_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/summary.json\nHARNESS_PREMERGE_STATUS=fail\nHARNESS_PREMERGE_TEST_COUNT=0\n"
+}

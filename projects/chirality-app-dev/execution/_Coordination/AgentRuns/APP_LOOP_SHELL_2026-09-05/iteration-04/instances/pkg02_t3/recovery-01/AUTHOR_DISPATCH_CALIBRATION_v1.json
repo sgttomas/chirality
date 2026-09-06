@@ -1,0 +1,8 @@
+{
+  "child": "/root/pkg02_finish/desktop_reopen_author",
+  "delegation": "delegated-harness-native",
+  "role": "TASKAgent2 instruction-asserted",
+  "actual_model": "inherited no override; exact servingID unavailable",
+  "brief_command_calibration": "Exact AllowedWriteTargets test is src/__tests__/components/woven-dialogue-shell.test.tsx; original check string component-local test directory mistaken; corrected in executable spawn message before execution",
+  "state": "launched; no result anticipated"
+}

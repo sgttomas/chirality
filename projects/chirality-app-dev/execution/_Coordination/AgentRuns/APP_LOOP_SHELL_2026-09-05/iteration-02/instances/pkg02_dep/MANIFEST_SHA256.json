@@ -1,0 +1,99 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/FROZEN_CARRIER.diff",
+      "sha256": "6c73b8e7255be90002911a870c4e7e64c55529e074b0d6362eae81a739a3acdc",
+      "bytes": 23282
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/HANDOFF_STATE.json",
+      "sha256": "47a37125ad5a25e7a3bf03e96f8f7466c72e0acfa9de9675141a339987466f57",
+      "bytes": 674
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/INPUT_VERIFICATION.json",
+      "sha256": "0b84d7707de38c0d5be2c30756facbc1a9958b8be8f6323c602508987b83e1de",
+      "bytes": 5875
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/LAUNCH_BRIEF_v1.md",
+      "sha256": "ff01930e5344561a86b99711ce8269b7dccc1580ef4681858c19c00d50855b51",
+      "bytes": 4284
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/MANAGER_RETURN.md",
+      "sha256": "c9e2b22206ca32ddfa3b77347426fd7a6b185f79caacd45c789901f4f6c5fdb6",
+      "bytes": 1867
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/PREFLIGHT_RESULTS.json",
+      "sha256": "228bc1cf1d187d2c58180fa05c6c42ff41272543fd3904118e7f2eda83657774",
+      "bytes": 4294
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/VERIFICATION_RESULTS.json",
+      "sha256": "46be0aec0b5660d357f89ea3461e9e77b7249eccbeeb145ec6b94c36a4376648",
+      "bytes": 2141
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/ROW_SEMANTIC_DIFF.json",
+      "sha256": "85dfbf9e7f37bf9375d0b69cc18afb80138ce8d73b924fca50b30e941cdb7b26",
+      "bytes": 3978
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/SATISFACTION_SNAPSHOT.json",
+      "sha256": "e81b04205eaa296f409f1a758b17e3d3ca560a6377c116bdbe1d00c9ce83a675",
+      "bytes": 1042
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/after_Dependencies.csv",
+      "sha256": "b3f9410945f4578f704471a47394e0299eb9fca4af5f70ccb2359bbf9925f879",
+      "bytes": 28410
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/after_MEMORY.md",
+      "sha256": "4d2bad96279998755f3665554100bbe85acf2c1faa759b99c000c260aee9419e",
+      "bytes": 2854
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/after__DEPENDENCIES.md",
+      "sha256": "4e966c18f925935af1814a2125fe360c6294e93a5e8c2921d66ac806343c2711",
+      "bytes": 30146
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/before_Dependencies.csv",
+      "sha256": "29694c0953ecb6169cb245339803f72e7928c03378176efd4b46b0157450eb18",
+      "bytes": 27597
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/before_MEMORY.md",
+      "sha256": "4ef89a87c6a0621bf12c9938921b6b584a96326db31f07ba8b36ab60215d299b",
+      "bytes": 2332
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/snapshot-01/before__DEPENDENCIES.md",
+      "sha256": "4f878d5e1096f3a2fac2116c96928c061515a11b2146ff65ad13862e3d8e9624",
+      "bytes": 29658
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+      "sha256": "b3f9410945f4578f704471a47394e0299eb9fca4af5f70ccb2359bbf9925f879",
+      "bytes": 28410
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_DEPENDENCIES.md",
+      "sha256": "4e966c18f925935af1814a2125fe360c6294e93a5e8c2921d66ac806343c2711",
+      "bytes": 30146
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md",
+      "sha256": "4d2bad96279998755f3665554100bbe85acf2c1faa759b99c000c260aee9419e",
+      "bytes": 2854
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/DEPENDENCY_SATISFACTION_2026-09-05_DEP015.md",
+      "sha256": "9319d3a811495befcb28185465b81d24978e297c9983ebd8695216f655ccb9e1",
+      "bytes": 3329
+    }
+  ]
+}

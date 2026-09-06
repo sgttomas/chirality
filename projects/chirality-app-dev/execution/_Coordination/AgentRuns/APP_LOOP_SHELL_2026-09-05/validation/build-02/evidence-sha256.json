@@ -1,0 +1,18 @@
+{
+  "commands.json": "aaa72e769106518416d0254da6dc3007f93a1f30adbccdee90596b5f3984a5b5",
+  "environment.json": "031c89c5ab9b77a5d44146287c08d5ae5272afb3f57369d7137ac536d7af7c61",
+  "frontend-build.stderr.log": "0bf4e0bd47c42f5d3a3b18526119aa8e36ff73a7a81176281730cfeb42ff831a",
+  "frontend-build.stdout.log": "6d7e68628671f0a7c790cc3a2534bc62eb4bdcec7f4af53bfbddda442eab6be9",
+  "git-head.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "git-head.stdout.log": "f8587138cacf73fa6961556ca3556f80b3b9a36934c8726d9a02ebd6814b8345",
+  "git-status.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "git-status.stdout.log": "aa019cd786ec493a83c3f117bf63b669071db96eefba365afd3d2261abbcf747",
+  "node.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "node.stdout.log": "8f9258d5e9da5443c42966a661aee09292b49d1c64e718dcc5f72976500bac48",
+  "npm.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "npm.stdout.log": "041fb0a6f23ccf0102a18d4591e1bfa36eebc17d27d348727a5eee18806d1c3c",
+  "python.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "python.stdout.log": "c4a684e859efa868ffdfb4967e90ffd847a0fc1f293e16ed50ea18af8e3b95f6",
+  "source-sha256.json": "19550164057f72fd6faaf19bec9faf03e94161cf430c4a2adbc300005cc65d7b",
+  "source-stability.json": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+}

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/__tests__/lib/governed-workflow.test.ts"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "start": "2026-09-05T20:22:42.164710+00:00",
+  "end": "2026-09-05T20:22:42.681792+00:00",
+  "exit_code": 0,
+  "versions": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "vitest/4.1.10 darwin-arm64 node-v24.18.0",
+    "typescript": "Version 5.9.3"
+  },
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "NODE_ENV": null,
+    "NODE_OPTIONS": null,
+    "CI": null,
+    "NEXT_TELEMETRY_DISABLED": null,
+    "TZ": null,
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "CHIRALITY_INSTRUCTION_ROOT": null
+  },
+  "environment_note": "Inherited environment; non-secret execution-relevant allowlist recorded, no command overrides. Other environment variables intentionally not logged.",
+  "stdout": "focused.stdout.txt",
+  "stderr": "focused.stderr.txt"
+}

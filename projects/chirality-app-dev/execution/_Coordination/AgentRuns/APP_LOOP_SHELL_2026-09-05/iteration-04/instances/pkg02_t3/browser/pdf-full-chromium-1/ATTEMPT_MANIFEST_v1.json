@@ -1,0 +1,94 @@
+{
+  "files": [
+    {
+      "path": "browser/pdf-full-chromium-1/csv-1440-light.png",
+      "sha256": "d5f91e66031cd93f645b13b834193c01167e6146bcb95b320177632f364bd3ea",
+      "bytes": 153201
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/document-1440-dark.png",
+      "sha256": "be02ba2a416ad9870bf7efe295e68eed3127addd7578095d84e6c562719e0de7",
+      "bytes": 164156
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/document-1440-light.png",
+      "sha256": "34ec17e8d0482d8fafa8026c5bfa59fc7324380204f86c4e423349a1f69b7c45",
+      "bytes": 165239
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/expanded-1440-light.png",
+      "sha256": "e3671e3b991bc260dfb7ef83ab0c37528d23fb8449c0c954ae2512feff80b60f",
+      "bytes": 103710
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/files-1440-light.png",
+      "sha256": "c0dcea65977a7970259790a5be1e1ee953252d6cae280061f909ada55220ecf9",
+      "bytes": 182922
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/input-fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/input-script.mjs",
+      "sha256": "78a4d189eb71309040f98735d06e5dbe58c79265853fe9558d3653dd8c05c724",
+      "bytes": 9757
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/oversized-1440-light.png",
+      "sha256": "1e5f53f6c8652d168419c0749d5eda9df9dcc84cca47991ad0f6e0000ef94ccc",
+      "bytes": 152843
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/panel-controls-1440-dark.png",
+      "sha256": "16696f14477a94a382ae010488b399ed16f7876e6c6baf8f313185b7d39dff3b",
+      "bytes": 164756
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/panel-controls-1440-light.png",
+      "sha256": "fd0629265ede6b29a9f39a77ab5b094e73dca8e9c592a6ad25ac636a629b00af",
+      "bytes": 166115
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/panel-controls-900-dark.png",
+      "sha256": "861eea64c25db334e580866c27b643c76f1519639cc0ae10cfb4d0f2deceb400",
+      "bytes": 124813
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/panel-controls-900-light.png",
+      "sha256": "04678eee8daf08970fa60fad276a984227fae9dde25cca1da7e2a4ca077ec883",
+      "bytes": 124635
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/panel-controls-960-dark.png",
+      "sha256": "e1c9afc5c8e8b91ed59adc952f39abc665c151ee923ac0eaa22d5715e5b2aecf",
+      "bytes": 154155
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/panel-controls-960-light.png",
+      "sha256": "c8cc50ca013f41db91469be47c12a0a6a5ef9fb8227fce80d1163a40f1902a73",
+      "bytes": 155456
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/pdf-browser-1440-light.png",
+      "sha256": "547acf440ff541ef890dad22f666c9f9a990af357226ea2955443a20f02e2013",
+      "bytes": 141910
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/pdf-full-chromium-final.png",
+      "sha256": "b8f3bd081b55dce04a306828bc1de8d8a1be262a8be269681805f4d6a870ff65",
+      "bytes": 145928
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/result.json",
+      "sha256": "87a81b92debbac9f56fdaccddd3f2a7a7acc45d800c7c961e69a59eb7aa21993",
+      "bytes": 11164
+    },
+    {
+      "path": "browser/pdf-full-chromium-1/source-manifest.json",
+      "sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+      "bytes": 4793
+    }
+  ]
+}

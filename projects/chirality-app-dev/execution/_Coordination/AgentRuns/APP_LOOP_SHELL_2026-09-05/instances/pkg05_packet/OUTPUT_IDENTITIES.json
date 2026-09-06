@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md",
+      "sha256": "59aece85bcf99ae2ae666fd59f6e66d206d1a6e985f2c208f231474cd4af73f9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_STATUS.md",
+      "sha256": "0a99e66330b961ae383847cee4cd748bcbe299d470b12774802cf7b1ab35fb03"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/MEMORY.md",
+      "sha256": "c124d59345461b4e405219c8cdd4f69463634d824facf5bc3f0e027b6a3eea39"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_run_records/DAPP102_PACKET_PREPARATION_2026-09-05.md",
+      "sha256": "5d282d91fe36dd5579dda93b41e702f2d9a071d53ebe8491dd609bfc29fe2a7e"
+    }
+  ]
+}

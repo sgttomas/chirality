@@ -1,0 +1,35 @@
+{
+  "decision": "D-APP-121",
+  "prior": "CONTROL_REPAIR_SOURCE_REFRESH_v1.json and all earlier packet snapshots/refreshes retained",
+  "currentSourceManifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/SOURCE_MANIFEST_v8.json",
+  "currentSHA256": "68682296be124eb88f5f56fc6a73a9da9779bcd846365597e657a1716f9d29ca",
+  "changedFromLastRefreshedV5": [
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "all18CurrentMatch": true,
+  "sourceReview": "reviewer/revision8/REVIEW_RETURN.md SHA71c759c8d28683e8ba394eef901973a51a545d048b8e7c904f1a2a9fb58009ec actual sourcePASS",
+  "judgment": "File policy/endpoint/main/preload/Electron CSP/proof pins unchanged from prior refreshed source; FileTree footer and shell responsive/collapse layout changed. Inline native PDF stays blocked; proposed policy/finalizer feasibility obligations unchanged.",
+  "calibration": "Current frozen candidate, not accepted postimage. Intervening v6/v7 source failures and actual visual/state failures preserved; current globals/build and actual repaired browser/native proof pending. No owner choice, Root capability, CSP permission, native/packaged/live-account or fullT3acceptance inferred. Packetbytes and proposedrow unchanged.",
+  "preparationNote": "Initial comparison asserted3changes and failed before any writes; actual comparison is4paths (two source,two tests), corrected here.",
+  "attribution": {
+    "OwnerStandingApproval": "D-APP-64 \u00a73 activated record-only proposal scope",
+    "AgentJudgment": "REBIND_CURRENT_CANDIDATE_FACTS",
+    "SelectedOutcome": "Refresh proposal source prerequisite to v8 preserving options and failure chronology.",
+    "JudgedBy": "WORKING_ITEMS /root/pkg02",
+    "OwnerCaseSelection": "NONE",
+    "RejectedAlternatives": "Claim old v5 identity current; overwrite observations; infer sourcePASS as runtime/policy/owner acceptance.",
+    "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+    "IndependentVerifier": "Actual /root/pkg02/t3_review v8 sourcePASS; governed proposal delta verification pending parent.",
+    "EffectStatus": "Draft source-binding supplement only; governed landing/owner selection HELD.",
+    "PreservedGates": "All D64\u00a75.1 classes, exact packet/source scopes, criteria/decision choices/proposal status, actual global/render/native/CI and governed review; no Root/policy/newauthority."
+  },
+  "lenses": {
+    "Ontology": "Candidate identity, proposal authority and acceptance differ.",
+    "Epistemology": "All18hashes/scoped delta plus source review support unchanged facts; actual UI proof is separate.",
+    "Praxeology": "Append current binding and preserve all original/failure records.",
+    "Axiology": "Truthful current-source provenance without erasing defects or owner choices."
+  }
+}

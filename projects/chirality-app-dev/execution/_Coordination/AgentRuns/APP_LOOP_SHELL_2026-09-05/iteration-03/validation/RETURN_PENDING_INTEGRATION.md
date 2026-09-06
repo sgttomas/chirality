@@ -1,0 +1,11 @@
+# Iteration 3 shared checks — integration pending
+
+Verified final source freeze and cumulative diff f9b9d9122ea3f9213203a8244d9acf9ca272bdd958ce857220af67f7780923e4 against final module a2b5d7fa5304d38faae72388615a4b5ef0f110616fcffe78f135ee0582b9671d and test92e10b37a4de8cdd5ddf815acb5e94777c5916cd5c516aa3c97e7f2c445bbae6. Read and pinned whole-diff REVIEW_RETURN_v3 PASS; initial review/correction provenance remains exact and is not claimed as a new reviewer instance.
+
+Current checks: full Vitest1636 PASS/4skipped,166files PASS/1skipped; typecheck PASS; standaloneSection9 all16PASS; build PASS; repo selfcheck PASS; practitioner pytest350PASS; App hold reliance DEL02-04 and scan/register integrity PASS; pre-integration receipt and ordinary unstaged diff PASS. Full canonical outputs are losslessly encoded JSON strings, not trimmed raw logs. Command metadata includes exact cwd/argv/nonsecret env/times/exit; frozen input/source stability and independent manifests have zero mismatches.
+
+Actual local premerge FAIL and wrapper overall FAIL: owned registered service returned HTTP503 ENGINE_UNAVAILABLE 'Chirality runtime daemon client is not configured'. Direct body in release-02/binding-probe.json and all Section8 failed rows preserved. release-01 sandbox loopback denial occurred before npm; exact escalation approved release-02. No waiver, daemon/profile mutation or inferred pass. New committed source requires branch CI; prior iteration1 CI passes do not cover these new bytes.
+
+Process sequence: wrapper-owned stub Next service stopped exit0 before build; build finished before Root pytest. No service/build/test process remains. No UI source changed, so no render claim. A1: any frontend mutation invalidates staged login-proof procedure and future proof requires new stage/fresh owner execution; no owner proof performed here.
+
+Pending: parent shared record integration followed by terminal receipt/diff/source freeze check, fresh governed review, CHANGE full staged check and scoped commit/push, actual bound branch CI. This is derivative validation evidence only; no lifecycle/pointer/acceptance/release claim. Ordinary unstaged diff here is not a full staged pass. Rerun run_checks.py {release|build|basic|final} <new-attempt-name>; use exact-command host escalation for denied service capability.

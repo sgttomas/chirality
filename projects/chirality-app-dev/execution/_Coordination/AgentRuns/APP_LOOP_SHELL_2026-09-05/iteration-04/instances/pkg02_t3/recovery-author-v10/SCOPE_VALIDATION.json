@@ -1,0 +1,13 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

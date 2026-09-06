@@ -1,0 +1,7 @@
+# Iteration 3 CI followup — PASS
+
+workflow_dispatch33994563156 on codex/app-loop-shell-20260905 at exact239c8f2a53397f88f16e3d56ecbba9af83829246 completed SUCCESS. Actual configured premerge exited0, all8 Section8 IDs PASS; release-quality full tests/typecheck/standaloneSection9/premerge allPASS and summary consistencyPASS. Daemon registration, API readiness, stable-summary verification and cleanup stepsPASS. Published instruction-integrity and secret-scan summariesPASS. No new failure or premerge skip.
+
+Artifact9977681994 archive independently matched GitHub SHA256 a5c60cdab8c00316fbccce453c9fcf4eb39bc056da7518a0348c02a58f5e08fd; four canonical nonsecret JSON summaries extracted, rawZIP not retained. metadata-03 binds run/event/job/head. logs-01.output.json preserves sanitized complete stdout/stderr losslessly; exact retrieval argv/cwd/times/status and output hashes are recorded. Polls spaced at least60seconds, network calls bounded55seconds; exact authorized gh reads used host escalation. No source/shared/Git/workflow/daemon/local-test mutation.
+
+Current iteration3 missing-binding CI obligation is resolved for this exact committed source. Historical local FAIL remains unchanged; iteration1 CI was not substituted. Parent rederives subsequent eligibility and records closeout; no merge/lifecycle/accepted-pointer/release act by this executor. All evidence is derivative and immutable; MANIFEST_SHA256.json hashes the complete package excluding itself.

@@ -1,0 +1,12 @@
+{
+  "final-01/commands.json": "f80750633c0afc805fac559c6a559ce0c417e769ff8e21677f2312e7e18d3feb",
+  "final-01/receipt-validator.stdout.log": "910ba49406a7c19319d0ac52b538c2f4a763a89fcfeab57614a2de38785a5718",
+  "final-01/diff-check.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "final-01/evidence-sha256.json": "cabb0a5ed393194da5d9faed2f73175a60fd9359882870b29fb49f97cabd28e5",
+  "record-selfcheck-02/command.json": "30bf0d213ec3361013d4fe953893a73f2f924079264624ebe5cc23266463f287",
+  "record-selfcheck-02/input-identity.json": "ed8644fa32896b610074c14bd194cb9035c4ee9d7b43b1393648659716e223ad",
+  "record-selfcheck-02/stdout.log": "801befb5e215c466d61c548434aa135e9cd003cd31a2e690a9eb74e5cfe64862",
+  "record-selfcheck-02/evidence-sha256.json": "3c2c079962d9110c4512c58f00cd2428309a4d6f69dbb5aaaf412296e62ad541",
+  "FINAL_VALIDATION_RETURN.md": "c89ffb62db90372270039b88a0a9d612b2f6c922ff36860535ae92b0b606677e",
+  "LOCAL_DAEMON_FEASIBILITY_READONLY.md": "2b85be6c00256354104a04c437056b6c30efa9e30f8e73734a3bf0ae70c95bb7"
+}

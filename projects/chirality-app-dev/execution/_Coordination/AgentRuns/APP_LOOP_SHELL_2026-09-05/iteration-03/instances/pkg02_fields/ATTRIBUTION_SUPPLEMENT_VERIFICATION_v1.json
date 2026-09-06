@@ -1,0 +1,39 @@
+{
+  "status": "STRUCTURAL_COMPLETENESS_CHECK_PASS_INDEPENDENT_REVIEW_PENDING",
+  "required_fields": [
+    "OwnerStandingApproval",
+    "AgentJudgment",
+    "SelectedOutcome",
+    "JudgedBy",
+    "OwnerCaseSelection",
+    "RejectedAlternatives",
+    "RationaleArtifact",
+    "IndependentVerifier",
+    "EffectStatus",
+    "PreservedGates"
+  ],
+  "exercise_count": 5,
+  "counts": {
+    "OwnerStandingApproval": 5,
+    "AgentJudgment": 5,
+    "SelectedOutcome": 5,
+    "JudgedBy": 5,
+    "OwnerCaseSelection": 5,
+    "RejectedAlternatives": 5,
+    "RationaleArtifact": 5,
+    "IndependentVerifier": 5,
+    "EffectStatus": 5,
+    "PreservedGates": 5
+  },
+  "d64_sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+  "block_notice_sha256": "d2cd8482abba5d403e46869f8004c28e6fc36127af9ad7c2594b1f365c3f92d2",
+  "original_manifest_sha256": "6c366482843f91b4f68c84392f42ccf51838f5d5e098e49b96ce0ecfd928334d",
+  "original_manifest_entries_recomputed": 75,
+  "mismatches": 0,
+  "observed_staged_product_paths": [
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+    "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts"
+  ],
+  "supplement_sha256": "b8ef617d95ced3e8675557497ef541f40f5c5c82fac576ac25ea14ecb34b458a",
+  "independent_verdict": "BLOCK; delta review pending"
+}

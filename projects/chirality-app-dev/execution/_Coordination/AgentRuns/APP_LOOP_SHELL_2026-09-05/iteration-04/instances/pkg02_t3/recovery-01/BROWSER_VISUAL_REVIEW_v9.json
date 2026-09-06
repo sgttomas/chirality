@@ -1,0 +1,359 @@
+{
+  "revision": 9,
+  "status": "BROWSER_VISUAL_REVIEW_PASS_NATIVE_HELD",
+  "reviewer": "WORKING_ITEMS /root/pkg02_finish",
+  "method": "Actual visual inspection of17 four-image contact sheets covering40 settled state PNGs and27 full browser PNGs. Prior full-size PDF and desktop collapse views corroborate details. Contact-sheet scale constrains fine typography assessment; actual action/layout assertions remain separately cited.",
+  "observations": [
+    "All8 desktop collapsed faces show explicit visible plus, all stacked reopen strips are visible.",
+    "Collapsed and expanded layouts preserve primary conversation, readable document organization, tree footer, and panel controls without overlap.",
+    "Settled Files captures contain real fixture rows; previous premature empty captures remain historical.",
+    "Markdown, CSV, folded and malformed JSON, limit notices, SVG image-only and natural image scroll presentation, replay, and browser PDF appear coherently rendered.",
+    "Browser PDF visible page and native Office disabled/browser fallback are browser evidence only."
+  ],
+  "no_additional_actionable_visual_finding": true,
+  "source_manifest": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/SOURCE_MANIFEST_v9.json",
+    "sha256": "9dea8df1cf9ce4170ee5e2fc1a0aa45c8030bc35c24e21139b8df666c278b15a"
+  },
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "e9eee6c9ff78a8e974cf47c57d3c0fbbf810531d6e24f5e0a067cba4e164c6ca"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-dark-detail-close-files.png",
+      "sha256": "ae60f7d4273ae61ff5104a5fdd203be471cbb2fc24d3f36c5157d0c24d8f5f5b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-dark-expand-return-expanded.png",
+      "sha256": "67518b225abea3cfbf4250056da32fc1f1b079157f930bc8c14092865b79f223"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "7babbdb9b1647d8e7a113240c69bf05ab6e289536bdffb6cbeec24996bd2b7d4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-light-coordination-collapse-open-collapsed.png",
+      "sha256": "2da945ef85c06d32a4efd0dce748feba3a97afc5b7a26bc3f9d85318075b4916"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-light-detail-close-files.png",
+      "sha256": "e61ab1897a7533776992f237a1cd87efe730f3984c1003b33611b86b94a86e6d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-light-expand-return-expanded.png",
+      "sha256": "3acfa71777a492f521b6c1d8a4aee392f1519413e4bf75035cb7766e6fd69174"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/1440-light-navigator-collapse-open-collapsed.png",
+      "sha256": "2d0d7269c285dc7bcaab99c3b9d03877f18cd15e4cd4f0c49880ebcc4f8a67a5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "12a73eb8347eef1f928bd115d1da4dfa523aebe86ad9036cfe8dbecdeb44b56a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-dark-detail-close-files.png",
+      "sha256": "04472851d24e60cde4a846fe2849c2a53cb6548388b15b61a994eb5b0aa6a3a9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-dark-expand-return-expanded.png",
+      "sha256": "7a83467d63f7a348da028b32f986fb206ccdb4e9de95e8573232d629f6817b4d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "43e7cb884741d45ff9e0be24225d99f1b53627a44fba9c0698885e8f96373116"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-light-coordination-collapse-open-collapsed.png",
+      "sha256": "0e093fd5d5edbc0db4cecdd4546f33e6b8925adec6e6efd67fee3f117253d9f5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-light-detail-close-files.png",
+      "sha256": "ad2984194a748f0eb0605dc5252a0da02e5f6c671f7349c61f248d3cafcf32f9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-light-expand-return-expanded.png",
+      "sha256": "08c696eccfef7820eceea0295c147bbeaee817d62c5dd1c3736b6e5ea8fbd8d1"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/840-light-navigator-collapse-open-collapsed.png",
+      "sha256": "49a6d7abdb7fa1991c7a75ddb8d4c8e3bd386b0bf75236d4bfdab2ca3388af25"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "869301d6ccaec35b58cdfdb5d86afaeb26d84db4ef2708c567b734791abb7f18"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-dark-detail-close-files.png",
+      "sha256": "5c495234b3590a33c588009a83239abff96272ae121f54931bc8184c931a7ef4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-dark-expand-return-expanded.png",
+      "sha256": "823ea62abdc73706da259caabca0fac1bdb779eded3bdbae2aa7a1e023a6d25b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "d55b437f06d595053e60f8d8ae674716f61d493ebc9cce682a8ee7905138d74c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-light-coordination-collapse-open-collapsed.png",
+      "sha256": "45ce1d4d6171ce9491892fd08fa1ba37243da5879fc82d635e7d23114220a5c3"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-light-detail-close-files.png",
+      "sha256": "9ab7feaa589a86e418b22a6b6cd2357f2715f107b2beafdc260f3d7db1f03d1b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-light-expand-return-expanded.png",
+      "sha256": "f0b2120a6487b64687d89bc3ce79581f5bdc0340e311609c1bd075baaed8a3b7"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/860-light-navigator-collapse-open-collapsed.png",
+      "sha256": "06f78a2279faf12b40090223562a2f588341f95c36ef5619156e53ed17bd69f2"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "1829f005f67b4eea3301f2cd14926f02a699d6bf02b6b7a47cec0f8117d44f51"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-dark-detail-close-files.png",
+      "sha256": "0cf9340113b29c8d09fda0e6415b9c3cc1f92cfd5c9fec072e603bbb562a87c1"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-dark-expand-return-expanded.png",
+      "sha256": "86e8595559c9a719b78e230be0058b91dec770f454c751d3f2dd25a0443a08e5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "4876c8c22d53e9d4cfbf48021f61bc46b78a6e87b0e3f9aac545f0bf08b4c99d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-light-coordination-collapse-open-collapsed.png",
+      "sha256": "f004fd49f4b1114b38ab2125a62be8fd7c76a9f7a2110dffaf31930b352bfc53"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-light-detail-close-files.png",
+      "sha256": "bfc74b74df918d0312da1b25b541dfe206aa5b0108fce8292f3bbd9cae882f38"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-light-expand-return-expanded.png",
+      "sha256": "5caeede9eb26d916c36c3308062afc214eaf771c0dfa1ef523dcb0bed088886b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/900-light-navigator-collapse-open-collapsed.png",
+      "sha256": "e4fdf83320b826a305bc325bdfc6ab2d4fd7a618b560d212570cd80c7c1ba1dc"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "daa7c33cac56755619a8cad86511054ef311397a712741c7a75897c13b8b42a0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-dark-detail-close-files.png",
+      "sha256": "8489689bdb4f086d1a5dcfbcecb7140a08fc972561d2772e1f442eee1bcfbc88"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-dark-expand-return-expanded.png",
+      "sha256": "49441db47528e0a5e930fc0d47c36940f4ede21e09cd43666ef562c9f31d17fb"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "60387e69c0736f28b85cb4648f75f1d8eaaad36038f1eb1a0395e6a0da0de1c4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-light-coordination-collapse-open-collapsed.png",
+      "sha256": "c04527dce4e4f42fc18ba549f8f3208a9f170a6aee218a72109c6b431d463f61"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-light-detail-close-files.png",
+      "sha256": "65efa4e430dd9aeda144ca959137fe5d6d0c50614e42b9acd907552a08566e6b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-light-expand-return-expanded.png",
+      "sha256": "44a3917ff3b804a9dd86924d0ea3f74d15b258e71977776c14744209a722f37c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v9/960-light-navigator-collapse-open-collapsed.png",
+      "sha256": "6e6ca17e71f6b40d7773795a9ddaf23e5acebf107f540008ccb0aede2b960e0e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/csv-1440-light.png",
+      "sha256": "ef9bb781180a6e59c413a45ca48766160e5892a2cc78f653da9deb3dc5c77b30"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/document-1440-dark.png",
+      "sha256": "864a1e77d099e3ad20c9d7281b863ac126ee7fa46075c621d091a8ac84baaa5a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/document-1440-light.png",
+      "sha256": "7f6ac52cdc588175397a7d5c889d98201c254ee2d474fa6de5c6668000f6b70e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/document-900-light.png",
+      "sha256": "4df11055b76e38f823803d0e562c03dcbd1e98787a99843cd47e5318ec247578"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/document-960-light.png",
+      "sha256": "b2f6538b7fd696141ee7dbce95f61699ad97bad3a2cfb89222aa4fd9a88cef5d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/expanded-1440-light.png",
+      "sha256": "7fad5350fb5303271c9e09e79b82eeb42330637be9fe2304f14a569025fba304"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/files-1440-light.png",
+      "sha256": "d81e15ea019d502dbf914acec6a88aae091dc7378aedd431fcf44292ab45b597"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/image-natural-1440-light.png",
+      "sha256": "8a365e4663af02c3021c8afb99ab1c71b3604ba6246415106d5515654219fc5d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/json-1440-light.png",
+      "sha256": "e39b9a6c39f513e78e0ed1039ef179368155499334b3b1bc7563fbb878a5ea68"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/json-malformed-1440-light.png",
+      "sha256": "443c39a17c3471c260ac485eb2b79e23e2f0af77e5c5f5f66a68b4c85ea075ff"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/office-browser-1440-light.png",
+      "sha256": "6e2ed39ce3a08702cb14f2ea12258a9015498a8eb7e8fbad35bf3a92077f3ca9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/oversized-1440-light.png",
+      "sha256": "88e2ce47ed674f9a54882b911467e7661977524e404c291f09d4594b69438115"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/oversized-image-1440-light.png",
+      "sha256": "cc3be73d91e107563f259235d40eba0ef02dbe2bf8f8d3739f60befc7c5e39cb"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-1440-dark.png",
+      "sha256": "86f5125be36aa1412e158969bbfbbdf6b42aac462c3b1c80f1ee53139ae589e4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-1440-light.png",
+      "sha256": "b2d08762d5457f03224e37a9f5c76b44a1a20314a5e987e981ea461ce32320d4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-840-dark.png",
+      "sha256": "346e91fd369959b149900cf4a893fb3a3a16d98a24f94eec568cabcd972a385d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-840-light.png",
+      "sha256": "7b464b63007cb76561768b334693a1013e46f79f54a56a95d9289f270c794d2b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-860-dark.png",
+      "sha256": "cae1f96dfb0c82bf38e30bd37aec1c8357bc8456bb169276943e28f716ac73b6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-860-light.png",
+      "sha256": "91d31556779254bb853e6596d6084ac31a5f9e214dd461e126938bb2b607f940"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-900-dark.png",
+      "sha256": "bc476d8a13ee7d86a4c9ea785b2d779bb7bd4f902b79cde73d52748d076573ca"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-900-light.png",
+      "sha256": "08d4603e37861b5c8edbd9db180d29aa1651fa2d45304d188d44df89b98c0311"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-960-dark.png",
+      "sha256": "cba433134369fd11a4e09ce7912fd61b3e46fb82d14572e6f738eab7634d74c0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/panel-controls-960-light.png",
+      "sha256": "9bf1c8f30d57104ab4977c42497d41258c59f4113d5ed162ad8cee4253ffdab4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/parent-replay-1440-light.png",
+      "sha256": "1f83c68c3b1fed400316fc35e7f16120759bba4f005d4beb32f64f7018826917"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/pdf-browser-1440-light.png",
+      "sha256": "9666b5304567be4f12992b00bef643c879c5e214a643857053a833ffd7442723"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/replay-1440-light.png",
+      "sha256": "1c1458054c856ba185f3390241c50acecd2947f26f13c1d76cf76170e6007d0e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v9/svg-image-1440-light.png",
+      "sha256": "05520b63878e14ea9eaca3d996539b72de7783f4ca952da68ea520e4e1f74b36"
+    }
+  ],
+  "contact_sheets": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-full-origin-v9-01.png",
+      "sha256": "94ce5a832fb146c82e08c4df7f2ec8bb5d36722d461a39da99a0088832a16d81"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-full-origin-v9-02.png",
+      "sha256": "e74453844c0275dec3f3aef7bbf6ae516d424d08977d83aa62989a5a9fc8c231"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-full-origin-v9-03.png",
+      "sha256": "fa706116ecf665a07c494b82dfa65e97cb6195103077f6bfdeccc7aa59ad3f5a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-full-origin-v9-04.png",
+      "sha256": "fe3680b2d031682b5d5db964448f7ee960348d87f08d50881eb557a2ccbabf88"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-full-origin-v9-05.png",
+      "sha256": "219184d1478ddb34d323bac7dbe1e8a733452964ab527171747d416acb7b4403"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-full-origin-v9-06.png",
+      "sha256": "f9dcc234a54d72bb039ac4e1ee857a858af805d9cb4d709d030bb530db5dd76d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-full-origin-v9-07.png",
+      "sha256": "2a1ab2fa2887b5f08b85d1568034a1b9c45696ac6e5000f451ce004eb15b1961"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-01.png",
+      "sha256": "1173df872e8a0e29f946fece1dc739da07578404821a1aca894aaf23fcbca63e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-02.png",
+      "sha256": "ffdd8cb5a3cdc80aebac1809abb26027f8913680aecc8aab1f81f1aed421e530"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-03.png",
+      "sha256": "76e30340214c14ecb4b495fa0055360ac6a3c597766208e49efa1386be501797"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-04.png",
+      "sha256": "8008f18a74cec3051c281b014a94e9d4fb71d5eab69eeb83ec51c9c492d89ffd"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-05.png",
+      "sha256": "84ebb8bc920ddd09204e217d652e4de1a62a21476de2d5dd6d1b8ee7dd537761"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-06.png",
+      "sha256": "42f3f3ef7acafe137b805bae6062320841763a931389650159daf299fd3f8a08"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-07.png",
+      "sha256": "de0ea5150997a1d88f0ef3ce7d7d8f380c02b62f662ab4f43e3b1c319e89a0b0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-08.png",
+      "sha256": "1955456e4d604c7a1ba300cb214e18d43b3f1252b829928bce86327b3f59d310"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-09.png",
+      "sha256": "9b3f603871361c369c11894229079fdb2a0d1de771f83ac84ecca13d93356e74"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/contact-state-settled-v9-10.png",
+      "sha256": "13791426ca443bb36964a190de34e4827abf0809f1fe43fc09003fcb0730b598"
+    }
+  ],
+  "limitations": "Native-v9-host failed hydration; no Quick Look/default-app/Finder visual acceptance. v10 source repair will require new proof; this is frozen v9 evidence only."
+}

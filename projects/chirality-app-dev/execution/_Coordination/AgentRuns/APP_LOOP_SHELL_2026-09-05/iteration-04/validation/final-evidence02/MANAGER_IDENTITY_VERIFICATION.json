@@ -1,0 +1,18 @@
+{
+  "verified_at": "2026-09-06T01:56:11.060145+00:00",
+  "package_manifest_sha256": "1b90e562af58efe410c16cdc6ad722f80002cb335a566d0f0a9f6bdb8d0cec74",
+  "handoff_sha256": "78b03589c306a5a147e52279c983ef8bce4bf2f8db1e572bf08548dd3f54385f",
+  "return_sha256": "8aeb7e881cdfa0b921d8071bd8028d2a40301275aa3492f76f2699f309540dd5",
+  "package_entries": 1069,
+  "entry_errors": [],
+  "handoff_pin_errors": [],
+  "source_count": 18,
+  "source_drift": [],
+  "security_status": "pass",
+  "security_coverage": "Canonical full npm proof:secret-scan rerun after manager seal, same registered coverage; no product tests/build/native/browser repeated",
+  "scanned_file_count": 10250,
+  "calibration_read": "Browser functional/accessibility partial49/state40, no design fidelity; native development-host positive observations with raw evaluatorFAIL and attributed retry preserved, inlinePDF blocked; cleanup record reports wrappersreaped0/targetedwindowclose; D120/D121 refreshes proposal-only/HELD, no owner choice",
+  "claim_limit": "Identity verification and record calibration only; no independent re-performance of native/browser observations",
+  "verdict": "PASS",
+  "remaining": "governed package review, final receipt/staged CHANGE gates, actual configured exact-head CI; localpremerge remainsFAIL503"
+}

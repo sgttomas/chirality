@@ -1,0 +1,21 @@
+   ▲ Next.js 15.5.21
+   - Local:        http://localhost:52888
+   - Network:      http://192.168.0.15:52888
+
+ ✓ Starting...
+ ✓ Ready in 4s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.9s (1377 modules)
+ GET / 200 in 754ms
+ ✓ Compiled /api/harness/session/list in 366ms (1385 modules)
+ GET /api/harness/session/list?projectRoot=%2Fvar%2Ffolders%2F96%2F1_3ww0012pv5ptwwsd1990yw0000gn%2FT%2Fchirality-harness-validation%2Flatest%2Fworkroots%2Fdefault-project-root 503 in 495ms
+ ✓ Compiled /api/harness/session/create in 193ms (1387 modules)
+ POST /api/harness/session/create 503 in 232ms
+ ✓ Compiled /api/harness/session/boot in 139ms (1389 modules)
+ POST /api/harness/session/boot 503 in 166ms
+ POST /api/harness/session/create 503 in 8ms
+ POST /api/harness/session/create 503 in 6ms
+ POST /api/harness/session/create 503 in 6ms
+ POST /api/harness/session/create 503 in 5ms
+ POST /api/harness/session/create 503 in 8ms
+[?25h

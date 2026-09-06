@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-09-06T00:49:57.702506+00:00",
+  "finding": "Desktop collapsed reopen buttons have blank faces; intended plus absent in two visually inspected current state-proof screenshots",
+  "status": "HOLD_VISUAL_FANIN",
+  "evidence": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/960-dark-coordination-collapse-open-collapsed.png",
+      "sha256": "538250669ddffa39bc14bb6b269fd066c26f9dd8b7f9b161695ccbe6a128550c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/1440-dark-navigator-collapse-open-collapsed.png",
+      "sha256": "0211c9fe593a91f23d2515cdb9475a4da0ecab2a7f0d17ac230770d6f0ec505a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/recovery-full-01/result.json",
+      "sha256": "8e5bc041220629b4f4cdbbfe227fa806bcc1579bf25d82bd6b7a65cd92759944"
+    }
+  ],
+  "actual_browser": "recovery-full-01 exit0 PASS49 observations and0pageerrors; visual acceptance withheld",
+  "source": "unchanged revision8",
+  "native": "never launched in recovery",
+  "parent_notice": "sent /root before any repair; server stop requested",
+  "hypothesis": "globals.css2650-2664 hides label with color transparent, overflow hidden, and appends plus after label; possible wrapped/clipped pseudo-element",
+  "limitation": "Cause not yet measured; no source repair or waiver",
+  "sandbox_browser_attempt": {
+    "exit": 1,
+    "pid": 54883,
+    "reason": "Mach bootstrap_check_in permission denied1100; SIGTRAP; temporary directory cleanup completed",
+    "raw_log": "tool output truncated; cannot claim complete canonical stderr for this initial failed command"
+  },
+  "host_browser_attempt": {
+    "command": "env T3_BASE_URL=http://127.0.0.1:39119 T3_ATTEMPT=recovery-full-01 T3_SOURCE_MANIFEST=SOURCE_MANIFEST_v8.json PLAYWRIGHT_MODULE=/Users/ryan/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/index.mjs T3_CHROMIUM_EXECUTABLE=/Users/ryan/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell node projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/proof.mjs",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "effective_task_environment": "named overrides; inherited Node environment not fully captured; browser isolated context; no credential bytes preserved",
+    "evidence_limitation": "Full effective inherited server/environment is not reconstructed from prose; exact clean-env rerun needed before acceptance if not found in predecessor records"
+  }
+}

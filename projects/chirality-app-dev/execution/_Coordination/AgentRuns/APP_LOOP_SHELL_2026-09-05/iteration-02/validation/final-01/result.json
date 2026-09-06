@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "source_mismatches": [],
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "diff_scope": "ordinary unstaged tracked diff only; CHANGE owns full staged check"
+}

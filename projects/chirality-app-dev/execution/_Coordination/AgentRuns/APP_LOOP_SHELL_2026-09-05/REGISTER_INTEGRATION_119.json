@@ -1,0 +1,14 @@
+{
+  "source": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/DAPP119_PROPOSED_REGISTER_ROW.md",
+  "source_sha256": "9b3d80a741318fd32d45f264c012a8108513f71474042f53f4e3f8deda2c9f9b",
+  "row": "| D-APP-119 | Authorize exact organisation-layer common App boot seam and proposed local pin configuration, or defer DEL-07-01-V3-01 implementation | DEL-07-01-V3-01 App helper/boot scope; exact added frontend/electron/main.ts import/call only; no Root-wide enforcement | AWAITING_RULING | Pending owner question; no response or direction recorded | `execution/_Coordination/_DECISIONS/D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md` |",
+  "preimage_sha256": "e99121d8767785eee45ddf1d138e962f412b3a4e2e14696c1256ac6e42f940db",
+  "postimage_sha256": "1cb711a031778a749ffd4b590641e3ed8056a242227bec86ad3b27be92d9536d",
+  "checks": [
+    "ID absent before",
+    "6 columns",
+    "AWAITING_RULING",
+    "all historical bytes preserved"
+  ],
+  "final_review": "PENDING"
+}

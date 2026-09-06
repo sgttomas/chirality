@@ -1,0 +1,62 @@
+{
+  "alias_base": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04",
+  "groups": {
+    "I": [
+      "MANAGER_ACTIVATION_CANDIDATE_v2.md",
+      "SEQUENCING_AMENDMENT_v7.3.md",
+      "MANAGER_RECOVERY_AMENDMENT_v8.md",
+      "MANAGER_RECOVERY_ATTRIBUTION_SUPPLEMENT_v1.md",
+      "USER_COMPARISON_STEER_DISPOSITION_v1.md",
+      "USER_COMPARISON_STEER_VERBATIM_SUPPLEMENT_v1.md",
+      "HANDOFF_STATE.md"
+    ],
+    "M": [
+      "MANAGER_PLAN_RATIONALE_v1.md",
+      "FILE_VIEW_BOUNDARY_RATIONALE_v1.md",
+      "IMAGE_HEADER_DISPOSITION_v1.md",
+      "PDF_CSP_FALLBACK_AMENDMENT_v1.md",
+      "RECONNECT_TEST_AMENDMENT_v1.md",
+      "REVEAL_MENU_PLACEMENT_RATIONALE_v1.md",
+      "REVIEW_REPAIR_AMENDMENT_v1.md",
+      "T3_COMPLETENESS_AMENDMENT_v1.md",
+      "CONTROL_OVERLAP_AMENDMENT_v1.md",
+      "native/SETUP_RATIONALE_v1.md",
+      "native/NEGATIVE_SENDER_PLAN_v1.md",
+      "recovery-author-v10/D64_DECISION_RECORD.json",
+      "recovery-reviewer-v10/REVIEW_RETURN.md",
+      "author/ATTRIBUTION.json",
+      "author/ATTRIBUTION_v2.json",
+      "author/ATTRIBUTION_v3.json",
+      "author/ATTRIBUTION_v4.json",
+      "recovery-author-v9/D64_DECISION_RECORD.json",
+      "recovery-reviewer-v9/REVIEW_RETURN.md"
+    ],
+    "R": [
+      "D64_ATTRIBUTION_SUPPLEMENT_18_v1.json",
+      "D64_JSON_ATTRIBUTION_SUPPLEMENT_9_v1.json",
+      "D64_PROPOSAL_ATTRIBUTION_SUPPLEMENT_2_v1.json",
+      "DESKTOP_REOPEN_AMENDMENT_v1.json",
+      "NATIVE_HYDRATION_AMENDMENT_v10.json",
+      "MANAGER_PARTIAL_HANDOFF_v10.json"
+    ],
+    "T": [
+      "RATIONALE.md",
+      "MANAGER_LOCAL_HISTORY_AMENDMENT_v1.md",
+      "FINAL_V10_SOURCE_REFRESH_v1.json",
+      "FINAL_MANAGER_FANIN_v1.md",
+      "revision-01/RATIONALE.md"
+    ],
+    "P": [
+      "RATIONALE.md",
+      "MANAGER_DISPATCH_RATIONALE_v1.md",
+      "FINAL_V10_SOURCE_REFRESH_v1.json",
+      "FINAL_MANAGER_FANIN_v1.md"
+    ],
+    "S": [
+      "RATIONALE.md",
+      "ATTRIBUTION_SUPPLEMENT_v1.md"
+    ]
+  },
+  "receipt_bytes_excluding_heading": 2989,
+  "status": "FINAL_CANDIDATE_PENDING_LEDGER_APPEND"
+}

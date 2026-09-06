@@ -1,0 +1,50 @@
+{
+  "checks": [
+    "app-hold-integrity",
+    "frontend-test",
+    "frontend-typecheck",
+    "harness-self-check"
+  ],
+  "paths": [
+    "frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+    "frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+    "frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+    "frontend/src/components/woven-dialogue/navigator.tsx",
+    "frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+    "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "reasons": {
+    "frontend-test": [
+      "frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+      "frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+      "frontend/src/components/woven-dialogue/navigator.tsx",
+      "frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+      "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+    ],
+    "frontend-typecheck": [
+      "frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+      "frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+      "frontend/src/components/woven-dialogue/navigator.tsx",
+      "frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+      "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+    ]
+  },
+  "schema": "chirality-affected-checks/v1"
+}

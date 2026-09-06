@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "git",
+    "diff",
+    "--name-only",
+    "03e61f38f7b20145552023abd1cf673c2b2a3f61",
+    "HEAD",
+    "--",
+    "projects/chirality-app-dev/frontend",
+    "runtime"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

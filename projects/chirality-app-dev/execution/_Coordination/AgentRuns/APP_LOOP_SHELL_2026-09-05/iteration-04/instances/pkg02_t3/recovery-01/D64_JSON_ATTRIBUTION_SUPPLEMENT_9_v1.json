@@ -1,0 +1,303 @@
+{
+  "status": "ADDITIVE_FORMAT_CORRECTION_ONLY",
+  "upstream": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/D64_LATEST_AUDIT_UPDATE_v3.json",
+    "sha256": "da95c3f9c73335b2bfa1d96be83cc9402ba4aa44a873575fd368808d76132e17"
+  },
+  "originals_preserved": true,
+  "records": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+      "sha256": "bf733312e8ac8d9ff3ae696252370fc16c88ac88f490d89a5ab0fc4a4af68a2e",
+      "location": "/attribution",
+      "original_effect_status": "Supplemental draft evidence only; governed landing and owner case selection HELD.",
+      "attribution": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within activated record-only proposal scopes",
+        "AgentJudgment": "EVIDENCE_REBIND_PROPOSAL_FACTS_UNCHANGED",
+        "SelectedOutcome": "Bind existing proposal calibration to actual revised source freeze without changing packet option or criteria.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "Silently treat stale prior identity as current; rewrite draft history; infer source PASS as owner or native-policy acceptance.",
+        "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+        "IndependentVerifier": "Actual /root/pkg02/t3_review revision5 source PASS; proposal delta governed review remains parent pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "All D64\u00a75.1 classes, source fence, exact packet scope, no policy or Root grant, preserved proposals/records, actual globals/build/browser/native/CI, independent governed review and owner decision.",
+        "DraftEffects": "Historical evidence/evaluator preparation was written; execution and governed acceptance remained separately gated."
+      },
+      "lenses": {
+        "Ontology": "Current candidate source identity differs from accepted proposal authority.",
+        "Epistemology": "All18 hash check plus direct actual CSS delta and independent source review justify unchanged proposal facts, not actual usability.",
+        "Praxeology": "Preserve prior records and append immutable current binding before parent register integration.",
+        "Axiology": "Keep source chronology and owner choices explicit without disguising failed proof."
+      },
+      "lenses_provenance": "Original lenses preserved"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+      "sha256": "c5f1474a1549ef0c7d49e175a30278aec3ec38bb239d9794885c00fc5d6ff162",
+      "location": "/attribution",
+      "original_effect_status": "Supplemental draft evidence only; governed landing and owner case selection HELD.",
+      "attribution": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 within activated record-only proposal scopes",
+        "AgentJudgment": "EVIDENCE_REBIND_PROPOSAL_FACTS_UNCHANGED",
+        "SelectedOutcome": "Bind existing proposal calibration to actual revised source freeze without changing packet option or criteria.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "Silently treat stale prior identity as current; rewrite draft history; infer source PASS as owner or native-policy acceptance.",
+        "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/CONTROL_REPAIR_SOURCE_REFRESH_v1.json",
+        "IndependentVerifier": "Actual /root/pkg02/t3_review revision5 source PASS; proposal delta governed review remains parent pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "All D64\u00a75.1 classes, source fence, exact packet scope, no policy or Root grant, preserved proposals/records, actual globals/build/browser/native/CI, independent governed review and owner decision.",
+        "DraftEffects": "Historical evidence/evaluator preparation was written; execution and governed acceptance remained separately gated."
+      },
+      "lenses": {
+        "Ontology": "Current candidate source identity differs from accepted proposal authority.",
+        "Epistemology": "All18 hash check plus direct actual CSS delta and independent source review justify unchanged proposal facts, not actual usability.",
+        "Praxeology": "Preserve prior records and append immutable current binding before parent register integration.",
+        "Axiology": "Keep source chronology and owner choices explicit without disguising failed proof."
+      },
+      "lenses_provenance": "Original lenses preserved"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_DIAGNOSTIC_CALIBRATION_v1.json",
+      "sha256": "ca8fdb091c308af6c7993287969c83e29723c5fbb5b0ce44993e8a57acb7d5c8",
+      "location": "/attribution",
+      "original_effect_status": "Evidence supplement only; source repair remains bounded draft, governed landing HELD.",
+      "attribution": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 existing T3 scope",
+        "AgentJudgment": "CORRECT_EVIDENCE_INTERPRETATION",
+        "SelectedOutcome": "Preserve layout repair and calibrate diagnostic click claim to actual source ownership.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02 after independent author source challenge",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "Claim inert file span should be button; introduce new Navigator capability; discard actual overlap finding due separate evaluator mistake.",
+        "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_DIAGNOSTIC_CALIBRATION_v1.json",
+        "IndependentVerifier": "Author /root/pkg02/t3_author identified source ownership; fresh independent source review and parent governed review remain pending.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "All D64\u00a75.1 classes, immutable original diagnostic/amendment, exact four repair loci, existing semantics, actual render/scroll and callback-enabled pointer proof, whole source review and global/build/native/CI gates.",
+        "DraftEffects": "Historical evidence/evaluator preparation was written; execution and governed acceptance remained separately gated."
+      },
+      "lenses": {
+        "Ontology": "Inert Navigator display and callback-enabled Coordination file actions are distinct.",
+        "Epistemology": "No-button timeout is not obstruction; measured overlap is separate positive evidence.",
+        "Praxeology": "Append correction before reviewer/proof consumption, adjust evaluator to real surface ownership.",
+        "Axiology": "Truthful failure interpretation avoids inventing UI authority."
+      },
+      "lenses_provenance": "Original lenses preserved"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/STARTUP_ISOLATION_RATIONALE_v1.json",
+      "sha256": "0af71bc6a886e333f71af85a38d0dd72fe5cf75c627812008ea496c002ee9b30",
+      "location": "/attribution",
+      "original_effect_status": "Prepared fixture evaluator only, no native execution; held for exclusive proof slot after source review/gates.",
+      "attribution": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 and parent explicitly authorized isolated official Electron proof",
+        "AgentJudgment": "SELECT_ISOLATED_GUI_ONLY_VERIFICATION",
+        "SelectedOutcome": "Use existing documented environment seams to isolate runtime resources and avoid all lifecycle/account actions.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02 after parent startup-isolation challenge",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "Rely solely on userData while inheriting external socket/token/label; install a daemon cohort unnecessarily; change HOME/Root/profile/policy; call runtime mutations.",
+        "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/STARTUP_ISOLATION_RATIONALE_v1.json",
+        "IndependentVerifier": "Parent source/authority assessment and final governed review pending; actual effective startup identities/proof not yet observed.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "All D64\u00a75.1 classes, exact official cached runtime/source identity, no account/provider/Root/policy/source/dependency mutation, no existing app/job changes, actual native display/sender/path proof and owned cleanup, final independent/global/CI gates.",
+        "DraftEffects": "Historical evidence/evaluator preparation was written; execution and governed acceptance remained separately gated."
+      },
+      "lenses": {
+        "Ontology": "Isolated GUI/handoff evidence differs from runtime-daemon capability and packaged distribution.",
+        "Epistemology": "Actual built constructor/mode branches and environment overrides support prelaunch isolation; effective identities and cleanup still need observation.",
+        "Praxeology": "Freeze recipe, ensure private targets absent, launch only after slot, record effective env/argv and exact native actions, cleanup owned resources only.",
+        "Axiology": "Prevent incidental access to user runtime/account state while obtaining honest native handoff evidence."
+      },
+      "lenses_provenance": "Original lenses preserved"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/ATTRIBUTION_v3_final.json",
+      "sha256": "87dd8b24892d92d23e2df177d4dd838c1edb718086f19cc8d33bf018e4682559",
+      "location": "",
+      "original_effect_status": "Draft source revised and frozen; governed landing HELD",
+      "attribution": {
+        "role": "TASK Agent2",
+        "agent": "/root/pkg02/t3_author",
+        "engine": "Codex",
+        "provider": "OpenAI",
+        "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+        "substitutions": [],
+        "OwnerStandingApproval": "D-APP-64 \u00a73",
+        "AgentJudgment": "EXECUTE_SEALED_REVIEW_REPAIR_REVISION3",
+        "SelectedOutcome": "Scoped R1 + recorded Session repair and full in-fence type/menu completeness; partial full-item status retained",
+        "JudgedBy": "TASK /root/pkg02/t3_author",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": [
+          "outside-fence policy change",
+          "unqualified whole-item PDF completion",
+          "invented session purpose/result",
+          "blank/inert accepted menus",
+          "image CSP override after manager challenge"
+        ],
+        "RationaleArtifact": "../REVIEW_REPAIR_AMENDMENT_v1.md; ../T3_COMPLETENESS_AMENDMENT_v1.md; ../IMAGE_HEADER_DISPOSITION_v1.md",
+        "IndependentVerifier": "Initial review CHANGES_REQUESTED retained; fresh v3 whole-diff review PENDING",
+        "EffectStatus": "HELD",
+        "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance",
+        "DraftEffects": "Historical source revision was written and frozen for subsequent review; no governed acceptance."
+      },
+      "lenses": {
+        "Ontology": "Historical draft source and accepted governed state remain distinct.",
+        "Epistemology": "Original source-freeze attribution and cited rationale document an executed draft revision; later failures and review history are preserved, not recast as acceptance.",
+        "Praxeology": "Append a normalized HELD enum with draft effects separated, preserve original record and require downstream independent review/proof.",
+        "Axiology": "Maintain truthful author provenance, failure history and authority boundaries."
+      },
+      "lenses_provenance": "Explicit retrospective manager supplement; not attributed as original author text"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/ATTRIBUTION_v5.json",
+      "sha256": "1b8cc4afe25661957ee4921d8ccc13da0c01b0d0d01c0637d9bb84e1e9ac2e7d",
+      "location": "",
+      "original_effect_status": "SOURCE_FROZEN_REVIEW_PENDING",
+      "attribution": {
+        "role": "TASK Agent2",
+        "agent": "/root/pkg02/t3_author",
+        "engine": "Codex",
+        "provider": "OpenAI",
+        "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+        "substitutions": [],
+        "OwnerStandingApproval": "D-APP-64 \u00a73",
+        "AgentJudgment": "EXECUTE_SCOPED_CONTROL_OVERLAP_REPAIR",
+        "SelectedOutcome": "Own flow area for shell collapse control with distinct existing detail-return and expand actions",
+        "JudgedBy": "TASK /root/pkg02/t3_author",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": [
+          "force-click bypass",
+          "z-index masking",
+          "deleting distinct semantics",
+          "global CSS expansion"
+        ],
+        "RationaleArtifact": "../CONTROL_OVERLAP_AMENDMENT_v1.md",
+        "IndependentVerifier": "Actual browser failure visually confirmed by manager and parent; fresh whole candidate review PENDING",
+        "EffectStatus": "HELD",
+        "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance",
+        "DraftEffects": "Historical source revision was written and frozen for subsequent review; no governed acceptance."
+      },
+      "lenses": {
+        "Ontology": "Historical draft source and accepted governed state remain distinct.",
+        "Epistemology": "Original source-freeze attribution and cited rationale document an executed draft revision; later failures and review history are preserved, not recast as acceptance.",
+        "Praxeology": "Append a normalized HELD enum with draft effects separated, preserve original record and require downstream independent review/proof.",
+        "Axiology": "Maintain truthful author provenance, failure history and authority boundaries."
+      },
+      "lenses_provenance": "Explicit retrospective manager supplement; not attributed as original author text"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/ATTRIBUTION_v8.json",
+      "sha256": "9a309660152f0e7695e1b4d9883f4acd002f824e3eb9a4d73ced52f7c0fb3785",
+      "location": "",
+      "original_effect_status": "SOURCE_FROZEN_REVIEW_PENDING",
+      "attribution": {
+        "role": "TASK Agent2",
+        "agent": "/root/pkg02/t3_author",
+        "engine": "Codex",
+        "provider": "OpenAI",
+        "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+        "substitutions": [],
+        "OwnerStandingApproval": "D-APP-64 \u00a73",
+        "AgentJudgment": "EXECUTE_SCOPED_STACKED_COLLAPSE_REPAIR",
+        "SelectedOutcome": "Compact normal-flow strips for both stacked collapsed regions",
+        "JudgedBy": "TASK /root/pkg02/t3_author",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": [
+          "force-click bypass",
+          "z-index masking",
+          "deleting distinct semantics",
+          "global CSS expansion"
+        ],
+        "RationaleArtifact": "../STACKED_COLLAPSE_AMENDMENT_v1.md",
+        "IndependentVerifier": "Fresh revision7 source finding and actual40-case diagnostic; new review pending",
+        "EffectStatus": "HELD",
+        "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance",
+        "DraftEffects": "Historical source revision was written and frozen for subsequent review; no governed acceptance."
+      },
+      "lenses": {
+        "Ontology": "Historical draft source and accepted governed state remain distinct.",
+        "Epistemology": "Original source-freeze attribution and cited rationale document an executed draft revision; later failures and review history are preserved, not recast as acceptance.",
+        "Praxeology": "Append a normalized HELD enum with draft effects separated, preserve original record and require downstream independent review/proof.",
+        "Axiology": "Maintain truthful author provenance, failure history and authority boundaries."
+      },
+      "lenses_provenance": "Explicit retrospective manager supplement; not attributed as original author text"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/ATTRIBUTION_v7.json",
+      "sha256": "e537bb35fbda4fbd2f4baceeae6dee7f4f346c172c46a3d887981749cdebedb1",
+      "location": "",
+      "original_effect_status": "SOURCE_FROZEN_REVIEW_PENDING",
+      "attribution": {
+        "role": "TASK Agent2",
+        "agent": "/root/pkg02/t3_author",
+        "engine": "Codex",
+        "provider": "OpenAI",
+        "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+        "substitutions": [],
+        "OwnerStandingApproval": "D-APP-64 \u00a73",
+        "AgentJudgment": "EXECUTE_SCOPED_LOWER_BREAKPOINT_REPAIR",
+        "SelectedOutcome": "Override inherited Navigator cap only within stacked shell",
+        "JudgedBy": "TASK /root/pkg02/t3_author",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": [
+          "force-click bypass",
+          "z-index masking",
+          "deleting distinct semantics",
+          "global CSS expansion"
+        ],
+        "RationaleArtifact": "../LOWER_BREAKPOINT_AMENDMENT_v1.md",
+        "IndependentVerifier": "Fresh revision6 reviewer source finding plus manager source confirmation; new review pending",
+        "EffectStatus": "HELD",
+        "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance",
+        "DraftEffects": "Historical source revision was written and frozen for subsequent review; no governed acceptance."
+      },
+      "lenses": {
+        "Ontology": "Historical draft source and accepted governed state remain distinct.",
+        "Epistemology": "Original source-freeze attribution and cited rationale document an executed draft revision; later failures and review history are preserved, not recast as acceptance.",
+        "Praxeology": "Append a normalized HELD enum with draft effects separated, preserve original record and require downstream independent review/proof.",
+        "Axiology": "Maintain truthful author provenance, failure history and authority boundaries."
+      },
+      "lenses_provenance": "Explicit retrospective manager supplement; not attributed as original author text"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/ATTRIBUTION_v6.json",
+      "sha256": "c6f49b96867eb616c12d8d44cda51e760378d2aafd6d5d95b9cd5cb8bb706219",
+      "location": "",
+      "original_effect_status": "SOURCE_FROZEN_REVIEW_PENDING",
+      "attribution": {
+        "role": "TASK Agent2",
+        "agent": "/root/pkg02/t3_author",
+        "engine": "Codex",
+        "provider": "OpenAI",
+        "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+        "substitutions": [],
+        "OwnerStandingApproval": "D-APP-64 \u00a73",
+        "AgentJudgment": "EXECUTE_SCOPED_TREE_LAYOUT_REPAIR",
+        "SelectedOutcome": "Explicit header/body/footer allocation and usable stacked tree body",
+        "JudgedBy": "TASK /root/pkg02/t3_author",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": [
+          "force-click bypass",
+          "z-index masking",
+          "deleting distinct semantics",
+          "global CSS expansion"
+        ],
+        "RationaleArtifact": "../TREE_LAYOUT_AMENDMENT_v1.md",
+        "IndependentVerifier": "Parent visual challenge plus manager actual geometry; fresh review pending",
+        "EffectStatus": "HELD",
+        "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance",
+        "DraftEffects": "Historical source revision was written and frozen for subsequent review; no governed acceptance."
+      },
+      "lenses": {
+        "Ontology": "Historical draft source and accepted governed state remain distinct.",
+        "Epistemology": "Original source-freeze attribution and cited rationale document an executed draft revision; later failures and review history are preserved, not recast as acceptance.",
+        "Praxeology": "Append a normalized HELD enum with draft effects separated, preserve original record and require downstream independent review/proof.",
+        "Axiology": "Maintain truthful author provenance, failure history and authority boundaries."
+      },
+      "lenses_provenance": "Explicit retrospective manager supplement; not attributed as original author text"
+    }
+  ],
+  "judged_by": "WORKING_ITEMS /root/pkg02_finish",
+  "governed_acceptance": "HELD",
+  "direct_receipt_citation_required": true
+}

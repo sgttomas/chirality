@@ -1,0 +1,45 @@
+{
+  "immutableAttempt": 1,
+  "entries": [
+    {
+      "path": "browser/attempt-1/MANAGER_FAILURE_AND_CLEANUP_v1.json",
+      "sha256": "04710e6813d646cfe4da5eaebcd22f839dedf5b1daa66310f342121491926bb3",
+      "bytes": 906
+    },
+    {
+      "path": "browser/attempt-1/document-1440-light.png",
+      "sha256": "8c15a639c53f8c648bc6e6566d01794979ecf2f60cb1ae18a60480b6977655b9",
+      "bytes": 168930
+    },
+    {
+      "path": "browser/attempt-1/failure.png",
+      "sha256": "8c15a639c53f8c648bc6e6566d01794979ecf2f60cb1ae18a60480b6977655b9",
+      "bytes": 168930
+    },
+    {
+      "path": "browser/attempt-1/files-1440-light.png",
+      "sha256": "de6a7d84cff9f73929de02b340f309ab996247fe6300654e32f28cd36e85c263",
+      "bytes": 191195
+    },
+    {
+      "path": "browser/attempt-1/input-fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "browser/attempt-1/input-script.mjs",
+      "sha256": "58c77acb7862a63f4a9aa43b21f7e93d9e10e65d4fe164fcf1d4226f2dc29cb3",
+      "bytes": 12999
+    },
+    {
+      "path": "browser/attempt-1/result.json",
+      "sha256": "d0a50f98a57737fd970ed956e753dc0ebe5307a8872a43f978ffb02c6216e437",
+      "bytes": 7796
+    },
+    {
+      "path": "browser/attempt-1/source-manifest.json",
+      "sha256": "597de7442f28240a482a110278ca195c6032579ade51d3bff8ecb0add206abab",
+      "bytes": 4793
+    }
+  ]
+}

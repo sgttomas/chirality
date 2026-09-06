@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "python3",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/sanitization-01/verify_reconstruction.py"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0,
+  "stdout": "{\"reconstruction\": \"PASS\", \"preimage_sha256\": \"631a23663972bd1fbe7ed1831282dfd29e2c364d867c34f4eb1690584889c0a6\", \"postimage_sha256\": \"4ac93ff2b8c2e0cf6197cdc9ab3630983bc8cc1ef019547ce88127175098ddca\", \"source_sha256\": \"fafe9aaa5f8a1ae9b92dd47f7fd49dbc9655d72f8450649c5d8d480a405276b3\", \"original_persisted\": false}\n",
+  "stderr": "",
+  "independent_of_original_executor": true,
+  "scope": "Read-only exact known synthetic fixture reconstruction; no originalbytes persisted; historical manifest mismatch explained only for this mapped target"
+}

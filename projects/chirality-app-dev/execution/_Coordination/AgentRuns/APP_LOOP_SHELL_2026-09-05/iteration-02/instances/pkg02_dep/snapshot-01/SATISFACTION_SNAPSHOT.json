@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-09-05T21:02:59.534540+00:00",
+  "status": "FROZEN_FOR_FRESH_REVIEW",
+  "classification": "supplementary immutable derivative satisfaction evidence",
+  "accepted_structural_upstream": "CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034",
+  "acceptance_instrument": "D-APP-111",
+  "pointer_changes": [],
+  "dependency": "DEP-02-04-015",
+  "before_sha256": "29694c0953ecb6169cb245339803f72e7928c03378176efd4b46b0157450eb18",
+  "after_sha256": "b3f9410945f4578f704471a47394e0299eb9fca4af5f70ccb2359bbf9925f879",
+  "source_commit": "03e61f38f7b20145552023abd1cf673c2b2a3f61",
+  "ci_run": 33991362689,
+  "authority": [
+    "D-APP-59 S1 Reach 2",
+    "D-APP-60",
+    "D-APP-64",
+    "WORKING_ITEMS Phases 5-6"
+  ],
+  "judgment": "Existing landing criterion satisfied; no owner reliance/acceptance or lifecycle act",
+  "upstream_identities": "../INPUT_VERIFICATION.json",
+  "semantic_diff": "ROW_SEMANTIC_DIFF.json",
+  "rerun": "Fresh review and parent iteration closeout before consumption; rerun on input or carrier drift"
+}

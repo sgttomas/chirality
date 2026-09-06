@@ -1,0 +1,61 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "root": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures",
+  "added_files": [
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Deep.json",
+      "bytes": 401,
+      "sha256": "ab1c74fb5a6fe2350be523ae86f987de1b122ca700cf1a831a30e9621b24b587"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Folded.json",
+      "bytes": 119,
+      "sha256": "466c99987f36e62f61f3e92ae750ab81d3e5be77bf85b2f4a228b00b87f48e76"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Headings and links.md",
+      "bytes": 282,
+      "sha256": "d1449487c2ed4501a58e0ec69c7de14621ea6bfdfe6021574e1061c75c5bd9d0"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Image-only.svg",
+      "bytes": 368,
+      "sha256": "ef3e99c803e8d2a192dc48420949c2c090ff68bdbcf25144efedd645e9ef6151"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Long filename for readable metadata and breadcrumb wrapping with all content accessible.md",
+      "bytes": 78,
+      "sha256": "3bf9a9fdd5c13d15ffe184d12a344d272ace2d6997e30a42a0c4681f6bf37579"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Malformed.json",
+      "bytes": 19,
+      "sha256": "cb7a468b30010402e566bf71e7cc7aa78fd73f29e5601362a805d67e2414bab6"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Oversized image.png",
+      "bytes": 2107490,
+      "sha256": "0e2e6a4d414ff19cf87c7f7c74e2b5ccb5991eee639c6356d446a535868bea50"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.gif",
+      "bytes": 7839,
+      "sha256": "26ff789e532c9b3886eced9f31442bfb4344ba14190c7d8af2b25a8c6147a6db"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.jpg",
+      "bytes": 22397,
+      "sha256": "b1d66255bedb40dcc5357d468928205c319a2c7e0d429dae706f0dae11223c80"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.png",
+      "bytes": 10337,
+      "sha256": "19328dd49648ff8c28203092c16b996edb76c7efa50b9637293f14297d64799e"
+    },
+    {
+      "path": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures/Picture.webp",
+      "bytes": 5168,
+      "sha256": "da22e0a2bcd7cb15206f4081db87d4f4c44224c6fbcfdbcd628abf4e8e669719"
+    }
+  ]
+}

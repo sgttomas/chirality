@@ -3725,3 +3725,23 @@ Generalized persisted `HarnessEvent` type names away from SDK-prefixed names. SD
 Validation defaults were repaired for the nested app-dev workspace layout. Residual: continue preventing SDK-shaped names, transcript paths, and tool identifiers from becoming public or core Chirality semantics.
 
 Validation details are not restated in the compact coordination state; use the commit and associated test history as the evidence pointer.
+
+## 2026-09-05 — APP_LOOP_SHELL_2026-09-05 iteration 1 (candidate branch; owner merge pending)
+
+On codex/app-loop-shell-20260905, T1 dialogue-centred shell and governed workflow-contract implementations are recorded alongside D-APP-116/117/118 packet preparations. D-APP-119 records the unimplemented organisation-layer boot-scope question. All new decisions remain AWAITING_RULING; facade retirement remains HOLD. No main-merged, package/lifecycle closure or Root/release claim.
+
+Source review, browser, typecheck/tests/build/basic checks pass for recorded inputs. Local wrapper/premerge remains FAIL for missing daemon bindings; existing isolated-daemon workflow_dispatch CI on the branch must supply required evidence after reviewed commit/push, not a waiver or PR/merge prerequisite; rederive successors from the actual result. Final whole-tranche governed review and CHANGE closeout are pending. Evidence and remaining gates: execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/HANDOFF_STATE.md; Receipt-245.
+
+## 2026-09-05 — APP_LOOP_SHELL_2026-09-05 iteration 2 (branch record; review pending)
+
+DEP-02-04-015 satisfaction now reflects committed T1 plus actual configured CI33991362689 PASS on 03e61f38f7b20145552023abd1cf673c2b2a3f61. Manager preserved other rows, criterion/maturity/status/topology and accepted structural pointer; new snapshot is supplementary satisfaction evidence. No product, owner acceptance, lifecycle or main-merge claim. Fresh final review/shared checks and CHANGE closeout remain pending before later Step0 successor rederivation. Evidence: iteration-02/HANDOFF_STATE.md and manager snapshot under execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/; Receipt246.
+
+## 2026-09-05 — APP_LOOP_SHELL_2026-09-05 iteration3 additive state (candidate branch)
+
+Added bounded workspace convenience-state fields in the existing module/test only, preserving old schema/API and legacy behavior. Parent source challenge followed by independent confirmation corrected root changes to retain chatTitles/chatRung. Revised source review and source/build/harness checks pass; actual local premerge/wrapper remains FAIL503 for missing bindings. New committed head requires actual configured branch CI; earlier CI cannot cover these bytes. Activity strip/view and consumers remain residuals. Manager final freeze, terminal shared checks and whole-governed review/CHANGE pending; no main merge, lifecycle or accepted-pointer claim. Evidence: execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/HANDOFF_STATE.md and Receipt247.
+
+## 2026-09-06 — APP_LOOP_SHELL_2026-09-05 iteration4 T3 partial (candidate branch)
+
+The bounded Files/Document T3 implementation and current functional/safety proof are recorded on codex/app-loop-shell-20260905. Fresh whole-source review and required local source/build/harness/security gates pass for bound inputs. Manager browser and development-host native observations support scoped rendering, Office QuickLook, external PDF/DOCX and Finder reveal claims; raw evaluator failures and successful retries remain. Native inline PDF is still blocked by CSP/D-APP-121. D-APP-120 and D-APP-121 are proposals awaiting owner choices. No main merge, package/lifecycle closure, dependency or accepted-pointer act.
+
+Functional/accessibility visual PASS does not establish redesign fidelity: duplicate file trees, extra Coordination controls/nested wrapper, repeated document title/reload, header/Stone/composer, strip and other recorded residuals remain. The user's comparison request and parent engineering priority are preserved in the run; next scope must be rederived from live Remaining. Local premerge/wrapper remains FAIL503 for missing binding, requiring actual configured new-head branch CI after reviewed commit/push. Final governed refutation, terminal shared/staged checks and CHANGE closeout remain pending. Evidence: execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/HANDOFF_STATE.md; Receipt248.

@@ -1,0 +1,53 @@
+[
+  {
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "WORKING_ITEMS:PKG02:ADDITIVE_FIELDS",
+      "--target",
+      "DEL-02-04"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "exit_code": 0,
+    "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"WORKING_ITEMS:PKG02:ADDITIVE_FIELDS\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"50b70f47f38867430be9879b6a928890d320685e\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-04\",\n      \"entry_path\": \"WORKING_ITEMS:PKG02:ADDITIVE_FIELDS\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"9f9362da70bd2304f11ccab9491ebc424ea479b34835b62082700ead0973816d\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-04\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "dispatch",
+      "--entry-path",
+      "WORKING_ITEMS:PKG02:ADDITIVE_FIELDS",
+      "--target",
+      "DEL-02-04"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "exit_code": 0,
+    "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"WORKING_ITEMS:PKG02:ADDITIVE_FIELDS\",\n  \"operation\": \"dispatch\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"50b70f47f38867430be9879b6a928890d320685e\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-04\",\n      \"entry_path\": \"WORKING_ITEMS:PKG02:ADDITIVE_FIELDS\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"dispatch\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"9f9362da70bd2304f11ccab9491ebc424ea479b34835b62082700ead0973816d\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-04\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "accepted-dependency-consumption",
+      "--entry-path",
+      "WORKING_ITEMS:PKG02:ADDITIVE_FIELDS",
+      "--target",
+      "DEL-02-04"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "exit_code": 0,
+    "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"WORKING_ITEMS:PKG02:ADDITIVE_FIELDS\",\n  \"operation\": \"accepted-dependency-consumption\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"50b70f47f38867430be9879b6a928890d320685e\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-02-04\",\n      \"entry_path\": \"WORKING_ITEMS:PKG02:ADDITIVE_FIELDS\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"accepted-dependency-consumption\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"9f9362da70bd2304f11ccab9491ebc424ea479b34835b62082700ead0973816d\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-02-04\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+    "stderr": ""
+  }
+]

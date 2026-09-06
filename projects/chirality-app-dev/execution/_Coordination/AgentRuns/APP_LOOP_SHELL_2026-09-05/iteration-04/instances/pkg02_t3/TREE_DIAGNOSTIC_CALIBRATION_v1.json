@@ -1,0 +1,24 @@
+{
+  "prior": "TREE_LAYOUT_AMENDMENT_v1.md and browser/REVISION5_VISUAL_RETURN_v1.json retained unchanged",
+  "correction": "Navigator FileTreePanel has no onOpenFile callback and intentionally renders file entries as inert spans. Diagnostic Picture.png button lookup timeout cannot prove pointer obstruction or missing promised click capability there. It is evaluator setup mismatch, separately from the actual measured/visible footer-body overlap.",
+  "retained_finding": "Actual body27.1875px with scrollHeight628 and footer same y82.109375px still demonstrate overlapping/illegible content. Parent visual challenge independently confirmed.",
+  "regression": "Measure nonoverlap and actual scroll access to Navigator listing; use Coordination Files callback-enabled tree for ordinary file-click behavior. Do not change Navigator semantics.",
+  "attribution": {
+    "OwnerStandingApproval": "D-APP-64 \u00a73 existing T3 scope",
+    "AgentJudgment": "CORRECT_EVIDENCE_INTERPRETATION",
+    "SelectedOutcome": "Preserve layout repair and calibrate diagnostic click claim to actual source ownership.",
+    "JudgedBy": "WORKING_ITEMS /root/pkg02 after independent author source challenge",
+    "OwnerCaseSelection": "NONE",
+    "RejectedAlternatives": "Claim inert file span should be button; introduce new Navigator capability; discard actual overlap finding due separate evaluator mistake.",
+    "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/TREE_DIAGNOSTIC_CALIBRATION_v1.json",
+    "IndependentVerifier": "Author /root/pkg02/t3_author identified source ownership; fresh independent source review and parent governed review remain pending.",
+    "EffectStatus": "Evidence supplement only; source repair remains bounded draft, governed landing HELD.",
+    "PreservedGates": "All D64\u00a75.1 classes, immutable original diagnostic/amendment, exact four repair loci, existing semantics, actual render/scroll and callback-enabled pointer proof, whole source review and global/build/native/CI gates."
+  },
+  "lenses": {
+    "Ontology": "Inert Navigator display and callback-enabled Coordination file actions are distinct.",
+    "Epistemology": "No-button timeout is not obstruction; measured overlap is separate positive evidence.",
+    "Praxeology": "Append correction before reviewer/proof consumption, adjust evaluator to real surface ownership.",
+    "Axiology": "Truthful failure interpretation avoids inventing UI authority."
+  }
+}

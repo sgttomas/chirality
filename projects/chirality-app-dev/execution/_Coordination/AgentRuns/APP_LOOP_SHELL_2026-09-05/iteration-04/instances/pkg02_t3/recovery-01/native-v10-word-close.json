@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/usr/bin/swift",
+    "-module-cache-path",
+    "/private/tmp/app-loop-t3-native-ac3dexfs/swift-cache",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/ax_owned_windows.swift",
+    "52414",
+    "Preview  -  Compatibility Mode"
+  ],
+  "exit": 0,
+  "stdout": "trusted true\n{\"document\":\"file:\\/\\/\\/tmp\\/app-loop-t3-native-ac3dexfs\\/fixtures\\/Preview.docx\",\"title\":\"Preview  -  Compatibility Mode\"}\nclose_result 0\n",
+  "stderr": "",
+  "timestamp": "2026-09-06T01:48:08.589455+00:00"
+}

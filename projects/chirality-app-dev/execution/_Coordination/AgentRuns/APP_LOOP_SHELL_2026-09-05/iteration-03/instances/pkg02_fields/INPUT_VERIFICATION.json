@@ -1,0 +1,52 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md",
+    "sha256": "2ebfe14aa3bf354b79111c5e0d4bc81b3e10e8292195d8c8aad5464a7f99cc8c",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+    "sha256": "3005b4c2af3ef7f161d604f7370967ca7a658606924b09e55b8a3e427ff1522a",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+    "sha256": "b3f9410945f4578f704471a47394e0299eb9fca4af5f70ccb2359bbf9925f879",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_DEPENDENCIES.md",
+    "sha256": "4e966c18f925935af1814a2125fe360c6294e93a5e8c2921d66ac806343c2711",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+    "sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md",
+    "sha256": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+    "sha256": "879aaf08115e59ae8ee58559c2d7abdc84cf9e1c0ca98efcf58f039c91bbe809",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+    "sha256": "400e980381809bad530e719f734a77764da4488cbe5191953356a65be52fb4ad",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/ci-01/CI_RESULT.json",
+    "sha256": "3557a47c6f9c5401b69309e4ba16888f444179af69955189d8ef6d6eff2e7769",
+    "status": "MATCH"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/MANIFEST_SHA256.json",
+    "sha256": "4b64b4e3be83d5094e8acb2d77d9a8c32805da3f9c27844bb0e6686099f4ac41",
+    "status": "MATCH"
+  }
+]

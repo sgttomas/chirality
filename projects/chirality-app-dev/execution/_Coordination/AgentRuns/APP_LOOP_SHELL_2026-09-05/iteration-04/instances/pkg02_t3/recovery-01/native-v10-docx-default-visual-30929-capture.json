@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/usr/sbin/screencapture",
+    "-x",
+    "-o",
+    "-l",
+    "30929",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-docx-default-visual-30929.png"
+  ],
+  "window": {
+    "kCGWindowAlpha": 1,
+    "kCGWindowBounds": {
+      "Height": 759,
+      "Width": 1292,
+      "X": 1814,
+      "Y": 30
+    },
+    "kCGWindowIsOnscreen": true,
+    "kCGWindowLayer": 0,
+    "kCGWindowMemoryUsage": 2368,
+    "kCGWindowName": "Preview  -  Compatibility Mode",
+    "kCGWindowNumber": 30929,
+    "kCGWindowOwnerName": "Microsoft Word",
+    "kCGWindowOwnerPID": 52414,
+    "kCGWindowSharingState": 1,
+    "kCGWindowStoreType": 1
+  },
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

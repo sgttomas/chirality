@@ -1,0 +1,135 @@
+[
+  {
+    "id": "git-status",
+    "argv": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:25.108407+00:00",
+    "ended_at": "2026-09-05T23:06:25.397945+00:00",
+    "duration_seconds": 0.2894607500638813,
+    "exit_code": 0
+  },
+  {
+    "id": "git-head",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:25.398066+00:00",
+    "ended_at": "2026-09-05T23:06:25.405159+00:00",
+    "duration_seconds": 0.0070956668350845575,
+    "exit_code": 0
+  },
+  {
+    "id": "node",
+    "argv": [
+      "node",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:25.405272+00:00",
+    "ended_at": "2026-09-05T23:06:25.417175+00:00",
+    "duration_seconds": 0.011909290915355086,
+    "exit_code": 0
+  },
+  {
+    "id": "npm",
+    "argv": [
+      "npm",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:25.417307+00:00",
+    "ended_at": "2026-09-05T23:06:25.473201+00:00",
+    "duration_seconds": 0.055900124832987785,
+    "exit_code": 0
+  },
+  {
+    "id": "python",
+    "argv": [
+      "python3",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:25.473335+00:00",
+    "ended_at": "2026-09-05T23:06:25.480439+00:00",
+    "duration_seconds": 0.007107957964763045,
+    "exit_code": 0
+  },
+  {
+    "id": "harness-selfcheck",
+    "argv": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:25.519537+00:00",
+    "ended_at": "2026-09-05T23:06:34.525548+00:00",
+    "duration_seconds": 9.005955582950264,
+    "exit_code": 0
+  },
+  {
+    "id": "harness-pytest",
+    "argv": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tools/practitioner_harness"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:34.525694+00:00",
+    "ended_at": "2026-09-05T23:06:58.108742+00:00",
+    "duration_seconds": 23.58290679194033,
+    "exit_code": 0
+  },
+  {
+    "id": "app-hold-integrity",
+    "argv": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "scan",
+      "--require-register-match"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "started_at": "2026-09-05T23:06:58.108890+00:00",
+    "ended_at": "2026-09-05T23:06:58.828769+00:00",
+    "duration_seconds": 0.7198799171019346,
+    "exit_code": 0
+  },
+  {
+    "id": "receipt-validator",
+    "argv": [
+      "python3",
+      "tools/validation/validate_app_dev_loop_receipts.py",
+      "--repo-root",
+      "."
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:06:58.828939+00:00",
+    "ended_at": "2026-09-05T23:07:01.041188+00:00",
+    "duration_seconds": 2.2122394999023527,
+    "exit_code": 0
+  },
+  {
+    "id": "diff-check",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T23:07:01.041329+00:00",
+    "ended_at": "2026-09-05T23:07:01.094479+00:00",
+    "duration_seconds": 0.0531555840279907,
+    "exit_code": 0
+  }
+]

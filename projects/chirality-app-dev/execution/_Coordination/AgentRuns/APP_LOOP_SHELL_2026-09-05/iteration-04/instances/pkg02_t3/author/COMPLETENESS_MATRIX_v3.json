@@ -1,0 +1,47 @@
+[
+  {
+    "requirement": "\u00a75.2 Files/tree/footer",
+    "implementation": "Existing tree polling and legacy consumer behavior; file buttons, directory toggles and arrow focus; chooser uses existing provider; root basename and no-folder copy. Absolute selected-path representation matches tree node identity; underlying tree is not claimed visible in document mode.",
+    "evidence": "file-tree-panel tests; shell openDocument tests; actual native chooser/browser remaining"
+  },
+  {
+    "requirement": "\u00a75.3 Markdown/title/TOC/links/measure",
+    "implementation": "File-only installed ReactMarkdown/GFM with raw HTML skipped, remote Markdown images inert; rendered headings supply first-h1 title and duplicate-safe positional IDs, actual TOC navigation; local relative targets reject encoded traversal/unsafe schemes and route through existing bounded panel callback; HTTP(S) external target preserved; 640px expanded measure/13.5px/1.6. Legacy ChatMarkdown consumer untouched.",
+    "evidence": "Document render tests actual headings/fence exclusion/local link callback/TOC scroll/focus; real browser proof pending"
+  },
+  {
+    "requirement": "\u00a75.4 text/code/CSV/JSON",
+    "implementation": "10MiB text limit retained. Wrapped single text DOM with hover source-line via browser text range (no line-node explosion); CSV500 logical rows/200columns disclosed; folded JSON2000item/200entry/12depth budgets disclose truncation; opaque keys safe; malformed JSON raw fallback.",
+    "evidence": "Existing limit/CSV tests; JSON depth/width/opaque-key and malformed/hover tests"
+  },
+  {
+    "requirement": "\u00a75.4 images",
+    "implementation": "PNG/JPEG/GIF/SVG/WebP explicit MIME mapping and engineering2MiB input limit; same-root descriptor stream bounded by observed size, truncation/change errors; image-only DOM, fit/natural click, decoder errors; direct attachment download filename and nosniff; NO resource CSP override.",
+    "evidence": "Hostile SVG/raster/mislabeled MIME/limit endpoint assertions and img-only/error render tests; real SVG script/external-resource/direct-download negatives remain manager-owned proof"
+  },
+  {
+    "requirement": "\u00a75.4 PDF/Office/other",
+    "implementation": "Electron truthful inlinePdfPreview:false fallback + Open-default; standalone browser bounded PDF viewer URL. PDF and QuickLook uncapped. Office QuickLook/default and unsupported native handoff retained. D108 actual in-panel PDF remains unfulfilled.",
+    "evidence": "Capability/request tests and descriptor PDF tests; real native proof plus unactivated policy successor remain required"
+  },
+  {
+    "requirement": "\u00a75.5 Files/Document menus",
+    "implementation": "Refresh/reload; copy root/file with success/failure; Open-default; Reveal/reveal-root discriminated action. Root reveal uses isolated existing-directory validation; file GET/open/QuickLook/Reveal remain regular-file-only. TOC in document header.",
+    "evidence": "Actual UI reveal request tests and shared production native-handler factory tests for action, sender, canonical roots/files, malformed inputs and thrown errors"
+  },
+  {
+    "requirement": "\u00a75.5 Session/Agents menus",
+    "implementation": "Refresh Agents; exactID copy and deterministic labeled recorded-metadata summary; accessible clipboard outcomes. Parent requires recorded available non-conflicting provenance and existing selection guard; unknown/unavailable/conflicting/live-turn replay paths disabled with explanation; recorded primary returns via existing primary branch.",
+    "evidence": "Actual clipboard/parent UI tests and real shell guard effect tests including live-turn and primary preservation"
+  },
+  {
+    "requirement": "R1 responsive/primary/state",
+    "implementation": "Narrow shell ancestor :has(> .woven-t3-workspace.is-stacked) removes clipping only for current stacked workspace. Existing primary controller and full panel/activity controls remain mounted. Persisted per-class widths/expand-return remain.",
+    "evidence": "Measured ResizeObserver1440/960/959/900/861/860 and primary identity tests; actual scroll/geometry/themes remain manager-owned proof"
+  },
+  {
+    "requirement": "Explicit residual ownership",
+    "implementation": "T4 Ask/Attach/quote not selected; Activity/Workflows/Settings future owners not counterfeited; popout deferred Q5; no CSP/pin/state/global/shared renderer/helper changes.",
+    "evidence": "Frozen diff/inventory; owning manager amendments"
+  }
+]

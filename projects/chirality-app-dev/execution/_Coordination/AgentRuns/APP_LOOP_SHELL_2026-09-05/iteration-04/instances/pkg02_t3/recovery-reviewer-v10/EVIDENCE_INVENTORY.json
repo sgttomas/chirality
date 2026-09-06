@@ -1,0 +1,81 @@
+{
+  "schema": "review-evidence-inventory/v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/APP_HOLD_dispatch.json",
+      "sha256": "2f0433b6abb487ff9cf0dce4dd9d70f40804a7b15ba84b9b2eccbb383a4354c0",
+      "bytes": 827
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/APP_HOLD_reliance.json",
+      "sha256": "3d9c981491a72cc1f157ab0870bf7e7f452d14f6594192cc6d20fc2297869d36",
+      "bytes": 827
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/APP_HOLD_reliance_final.json",
+      "sha256": "6cac8f6123c31655c40c9b211956d0edd31ce2559d978dd8c793e6ea11c2a4aa",
+      "bytes": 839
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/CHECK_SELECTION.json",
+      "sha256": "09a539d4c51a1539ac20722990e802009d229b8b6a780e8dca0dfe1592229a88",
+      "bytes": 3059
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/COMMANDS.json",
+      "sha256": "aeed05d776af0cab3f3214ad1511899b8c88bd7d8783583626e73aaf22df7d56",
+      "bytes": 130445
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/COVERAGE.json",
+      "sha256": "32cfc8937fd375685ad883bfb3f6f0e8e993a737717093ab72bafff45051f084",
+      "bytes": 19808
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/IDENTITY_FINAL.json",
+      "sha256": "fb06a8ea0ebd4d675acf1f057d03c6ef7df95962593108fe9291c7e74a1ffcd2",
+      "bytes": 19595
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/IDENTITY_START.json",
+      "sha256": "dbe479d7be0a876a3d12bf69d392daf02c5207fb1085af23c97e972d004cf3d5",
+      "bytes": 5836
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/RECOMPUTE_RESULT.json",
+      "sha256": "fc499525792376e3e5e7dfedf6983a5d9f6c838ebc5ecdbca5edcbce8f122a84",
+      "bytes": 91
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+      "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+      "bytes": 12011
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/RUNTIME_ATTRIBUTION.json",
+      "sha256": "b6edefacc33936d01b15458ca37155af8d16f158ed76d648fc921adbc6404383",
+      "bytes": 1821
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/SCOPE_CHECK.json",
+      "sha256": "10a8bb6d88139b22c49c3db538fd5abc247c2cdb718ada8406f19b89e8eca6ff",
+      "bytes": 3057
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/UPSTREAM_PINS.json",
+      "sha256": "4edb04aa578af2b4a4b74cd15d0f37d4f445682503f87859f1857d2818039bff",
+      "bytes": 2547
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/_run_records/TASK_RUN_2026-09-06_review_v10.md",
+      "sha256": "0eaaf43faec9637ed1afa87bc1fe7cbefa77260f61e3fc2d6a1d81abb611d391",
+      "bytes": 13900
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/recompute.py",
+      "sha256": "442387c33127d96546c7505767e0d0c16f7f3430f7d93a1ba18cbc0afbabd709",
+      "bytes": 1320
+    }
+  ]
+}

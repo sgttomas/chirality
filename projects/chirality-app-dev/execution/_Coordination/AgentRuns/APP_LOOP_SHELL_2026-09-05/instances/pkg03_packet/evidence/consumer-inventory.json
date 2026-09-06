@@ -1,0 +1,2090 @@
+[
+  {
+    "path": "_DomainEngines/_DECISIONS/D-T0-07_contract_versioning.md",
+    "sha256": "5fb96fdcf2bb0db660bff84d80abb57ecadfb420f57cfda61cd5782972204851",
+    "bytes": 2131,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "_DomainEngines/_DECISIONS/D-T0-09_flow_a_contract_version_value.md",
+    "sha256": "544d7517d97b6a5e446fc784b10671ad7d5a0fc70b6d9ae4194c7adbaf6dec7a",
+    "bytes": 3933,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "_DomainEngines/_DECISIONS/D-T0-19_pec_appdev_bridge_lane.md",
+    "sha256": "46a9a9d281e4eb1891c6a9215df65069154b838aaaf1ab8eb751065d5511f1c4",
+    "bytes": 14988,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "_DomainEngines/bridge/LOOP_RECEIPTS.md",
+    "sha256": "16d58c513fc08b08082bdbfd0d31703b45312d0b175cc162493e0e0554b0ee67",
+    "bytes": 74915,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md",
+    "sha256": "1990966e11c990dd8d5179135e5db078634f65b2c2ebc104d49707122eb3b9ef",
+    "bytes": 8218,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/ROOT_TM112_IMPLEMENT_2026-08-03/instances/I1B-IMPLEMENTER/build-output/packages/contracts/src/harness/tool-catalog.js",
+    "sha256": "5ac6f0de3ab117fbb71854481896efd02be925cf21abfb71e277613b3e0bd4a4",
+    "bytes": 6932,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/ROOT_TM112_IMPLEMENT_2026-08-03/instances/I2-FRESH-REFUTER/build-output/packages/contracts/src/harness/tool-catalog.js",
+    "sha256": "5ac6f0de3ab117fbb71854481896efd02be925cf21abfb71e277613b3e0bd4a4",
+    "bytes": 6932,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/ROOT_TM112_IMPLEMENT_2026-08-03/instances/I3-BOUNDED-REMEDIATION/build-output/packages/contracts/src/harness/tool-catalog.js",
+    "sha256": "5ac6f0de3ab117fbb71854481896efd02be925cf21abfb71e277613b3e0bd4a4",
+    "bytes": 6932,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/ROOT_TM112_IMPLEMENT_2026-08-03/instances/I4-FRESH-BACKCHECK/build-output/packages/contracts/src/harness/tool-catalog.js",
+    "sha256": "5ac6f0de3ab117fbb71854481896efd02be925cf21abfb71e277613b3e0bd4a4",
+    "bytes": 6932,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A1/APP-PKG01/DEL-01-02/ScopeOfWork.md",
+    "sha256": "a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64",
+    "bytes": 62772,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A1/APP-PKG02/DEL-02-05/ScopeOfWork.md",
+    "sha256": "5b158b9ef5f6922abe8a56bf84b55dd6af55df42ea5546b4caa42d3487742446",
+    "bytes": 29668,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A1/APP-PKG03/DEL-03-01/ScopeOfWork.md",
+    "sha256": "763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52",
+    "bytes": 34464,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG05/DEL-05-04/ScopeOfWork.md",
+    "sha256": "94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2",
+    "bytes": 38684,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG05/DEL-05-05/ScopeOfWork.md",
+    "sha256": "c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9",
+    "bytes": 40287,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/AUTHOR-DEL-01-02/evidence/ScopeOfWork_1.html",
+    "sha256": "bbad6595b1c4f6372c9f85bf4bc9b261a7b1ed5dda4e048dff1500d77c19e37a",
+    "bytes": 63099,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/AUTHOR-DEL-01-02/evidence/ScopeOfWork_2.html",
+    "sha256": "bbad6595b1c4f6372c9f85bf4bc9b261a7b1ed5dda4e048dff1500d77c19e37a",
+    "bytes": 63099,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/AUTHOR-DEL-01-02/workspace/Dependencies.csv",
+    "sha256": "89a6d3babc70b87da98dcbe0f240f06171136f124f64c489cee818f6b774f294",
+    "bytes": 21829,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/AUTHOR-DEL-01-02/workspace/Guidance.md",
+    "sha256": "8ad3bb5959055a99810bb8cb6d02e354aa94e00ed207ea95259a1a3a59ec3b6d",
+    "bytes": 9872,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/AUTHOR-DEL-01-02/workspace/ScopeOfWork.md",
+    "sha256": "a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64",
+    "bytes": 62772,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/VERIFY-DEL-01-02/evidence/ScopeOfWork_1.html",
+    "sha256": "bbad6595b1c4f6372c9f85bf4bc9b261a7b1ed5dda4e048dff1500d77c19e37a",
+    "bytes": 63099,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/VERIFY-DEL-01-02/evidence/ScopeOfWork_2.html",
+    "sha256": "bbad6595b1c4f6372c9f85bf4bc9b261a7b1ed5dda4e048dff1500d77c19e37a",
+    "bytes": 63099,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/VERIFY-DEL-01-02/workspace/Dependencies.csv",
+    "sha256": "89a6d3babc70b87da98dcbe0f240f06171136f124f64c489cee818f6b774f294",
+    "bytes": 21829,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/VERIFY-DEL-01-02/workspace/Guidance.md",
+    "sha256": "8ad3bb5959055a99810bb8cb6d02e354aa94e00ed207ea95259a1a3a59ec3b6d",
+    "bytes": 9872,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG01/children/VERIFY-DEL-01-02/workspace/ScopeOfWork.md",
+    "sha256": "a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64",
+    "bytes": 62772,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-05/evidence/ScopeOfWork.1.html",
+    "sha256": "4ad7466c1ab69afd28087aaaa78d1e31ed4905d91ca1f4dccd44d0d5b4543931",
+    "bytes": 31044,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-05/evidence/ScopeOfWork.2.html",
+    "sha256": "4ad7466c1ab69afd28087aaaa78d1e31ed4905d91ca1f4dccd44d0d5b4543931",
+    "bytes": 31044,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-05/workspace/Dependencies.csv",
+    "sha256": "1004a810777042d47123fe469dee4bf949b9851416613f0dc0f2edcd5d93b47e",
+    "bytes": 4581,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-05/workspace/ScopeOfWork.md",
+    "sha256": "5b158b9ef5f6922abe8a56bf84b55dd6af55df42ea5546b4caa42d3487742446",
+    "bytes": 29668,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-05/workspace/Specification.md",
+    "sha256": "18041d44908f44dd92bdafffeb847cdd6d8f15ce860349fcb95480704b425bbc",
+    "bytes": 6075,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/Dependencies.csv",
+    "sha256": "1004a810777042d47123fe469dee4bf949b9851416613f0dc0f2edcd5d93b47e",
+    "bytes": 4581,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/ScopeOfWork.md",
+    "sha256": "5b158b9ef5f6922abe8a56bf84b55dd6af55df42ea5546b4caa42d3487742446",
+    "bytes": 29668,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/Specification.md",
+    "sha256": "18041d44908f44dd92bdafffeb847cdd6d8f15ce860349fcb95480704b425bbc",
+    "bytes": 6075,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/evidence/ScopeOfWork_1.html",
+    "sha256": "4ad7466c1ab69afd28087aaaa78d1e31ed4905d91ca1f4dccd44d0d5b4543931",
+    "bytes": 31044,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/evidence/ScopeOfWork_2.html",
+    "sha256": "4ad7466c1ab69afd28087aaaa78d1e31ed4905d91ca1f4dccd44d0d5b4543931",
+    "bytes": 31044,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/evidence/negative/partial/Specification.md",
+    "sha256": "18041d44908f44dd92bdafffeb847cdd6d8f15ce860349fcb95480704b425bbc",
+    "bytes": 6075,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/evidence/negative/unauthorized_dual/ScopeOfWork.md",
+    "sha256": "5b158b9ef5f6922abe8a56bf84b55dd6af55df42ea5546b4caa42d3487742446",
+    "bytes": 29668,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/evidence/negative/unauthorized_dual/Specification.md",
+    "sha256": "18041d44908f44dd92bdafffeb847cdd6d8f15ce860349fcb95480704b425bbc",
+    "bytes": 6075,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/AUTHOR-DEL-03-01/workspace/Datasheet.md",
+    "sha256": "82d3be41448fc67b913423c382eca48aaaaf25921d248ecfc5e3bca6230087e9",
+    "bytes": 5602,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/AUTHOR-DEL-03-01/workspace/ScopeOfWork.md",
+    "sha256": "763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52",
+    "bytes": 34464,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/AUTHOR-DEL-03-01/workspace/evidence/ScopeOfWork_R1.html",
+    "sha256": "4535647a3baa4eb2cffac3474bcd89237a3f23a9bc6ca6ab733d1eeff570be37",
+    "bytes": 37238,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/AUTHOR-DEL-03-01/workspace/evidence/ScopeOfWork_R2.html",
+    "sha256": "4535647a3baa4eb2cffac3474bcd89237a3f23a9bc6ca6ab733d1eeff570be37",
+    "bytes": 37238,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/Datasheet.md",
+    "sha256": "82d3be41448fc67b913423c382eca48aaaaf25921d248ecfc5e3bca6230087e9",
+    "bytes": 5602,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/ScopeOfWork.md",
+    "sha256": "763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52",
+    "bytes": 34464,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/evidence/ScopeOfWork_R1.html",
+    "sha256": "4535647a3baa4eb2cffac3474bcd89237a3f23a9bc6ca6ab733d1eeff570be37",
+    "bytes": 37238,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/evidence/ScopeOfWork_R2.html",
+    "sha256": "4535647a3baa4eb2cffac3474bcd89237a3f23a9bc6ca6ab733d1eeff570be37",
+    "bytes": 37238,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/fixtures/partial/Datasheet.md",
+    "sha256": "82d3be41448fc67b913423c382eca48aaaaf25921d248ecfc5e3bca6230087e9",
+    "bytes": 5602,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/fixtures/unauthorized_dual/Datasheet.md",
+    "sha256": "82d3be41448fc67b913423c382eca48aaaaf25921d248ecfc5e3bca6230087e9",
+    "bytes": 5602,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/fixtures/unauthorized_dual/ScopeOfWork.md",
+    "sha256": "763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52",
+    "bytes": 34464,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG03/children/VERIFY-DEL-03-01/workspace/legacy_state/Datasheet.md",
+    "sha256": "82d3be41448fc67b913423c382eca48aaaaf25921d248ecfc5e3bca6230087e9",
+    "bytes": 5602,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-04/ScopeOfWork_1.html",
+    "sha256": "ed4bdd2c29468d1db364257735e0800fa29ee55e70289343cdd6e10c683ab219",
+    "bytes": 41548,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-04/ScopeOfWork_2.html",
+    "sha256": "ed4bdd2c29468d1db364257735e0800fa29ee55e70289343cdd6e10c683ab219",
+    "bytes": 41548,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-04/isolated/DEL-05-04/Datasheet.md",
+    "sha256": "d884181ee7bbfc7d834046f3cc80d8062fcc63f568dd6f37ccba558ec62e247b",
+    "bytes": 7411,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-04/isolated/DEL-05-04/Guidance.md",
+    "sha256": "f407224214772bf88f3449e5d773ca864d6c11acc8ca1e39f4d0cc10ec93006f",
+    "bytes": 5962,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-04/isolated/DEL-05-04/Procedure.md",
+    "sha256": "b1438e96b34d6f9273703ecfd23a41658ddbbfa94250717b8857506d5b9d9043",
+    "bytes": 7385,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-04/isolated/DEL-05-04/ScopeOfWork.md",
+    "sha256": "94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2",
+    "bytes": 38684,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-04/isolated/DEL-05-04/Specification.md",
+    "sha256": "955e477f8fd9bf9e89ad3659edc8e2a03bb231a313b9c96e7ad4184b9dcfdcc7",
+    "bytes": 8645,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-05/ScopeOfWork_1.html",
+    "sha256": "44cdff9e631b2ae40148a5905d55f7937017da1b4c3b311f975d9ea701ae117e",
+    "bytes": 41133,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-05/ScopeOfWork_2.html",
+    "sha256": "44cdff9e631b2ae40148a5905d55f7937017da1b4c3b311f975d9ea701ae117e",
+    "bytes": 41133,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-05/workspace/Datasheet.md",
+    "sha256": "de3c285578887f23499a6c9c5f89e211f3e4308d8359ec7d4df70baf19a05307",
+    "bytes": 5955,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-05/workspace/Guidance.md",
+    "sha256": "b4a5ac1a2f5e572770b23e36c28fd7e378d8f24f9eee990baf9ede10eb1761d4",
+    "bytes": 6880,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-05/workspace/ScopeOfWork.md",
+    "sha256": "c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9",
+    "bytes": 40287,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-05/workspace/Specification.md",
+    "sha256": "5e03e9d2edf5560e4c19bcf0733a32d8998ebe346a34af18f5262bb7e0d64f77",
+    "bytes": 9256,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/ScopeOfWork_1.html",
+    "sha256": "ed4bdd2c29468d1db364257735e0800fa29ee55e70289343cdd6e10c683ab219",
+    "bytes": 41548,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/ScopeOfWork_2.html",
+    "sha256": "ed4bdd2c29468d1db364257735e0800fa29ee55e70289343cdd6e10c683ab219",
+    "bytes": 41548,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/isolated/DEL-05-04/Datasheet.md",
+    "sha256": "d884181ee7bbfc7d834046f3cc80d8062fcc63f568dd6f37ccba558ec62e247b",
+    "bytes": 7411,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/isolated/DEL-05-04/Guidance.md",
+    "sha256": "f407224214772bf88f3449e5d773ca864d6c11acc8ca1e39f4d0cc10ec93006f",
+    "bytes": 5962,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/isolated/DEL-05-04/Procedure.md",
+    "sha256": "b1438e96b34d6f9273703ecfd23a41658ddbbfa94250717b8857506d5b9d9043",
+    "bytes": 7385,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/isolated/DEL-05-04/ScopeOfWork.md",
+    "sha256": "94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2",
+    "bytes": 38684,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/isolated/DEL-05-04/Specification.md",
+    "sha256": "955e477f8fd9bf9e89ad3659edc8e2a03bb231a313b9c96e7ad4184b9dcfdcc7",
+    "bytes": 8645,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/negative_tests/partial/Datasheet.md",
+    "sha256": "d884181ee7bbfc7d834046f3cc80d8062fcc63f568dd6f37ccba558ec62e247b",
+    "bytes": 7411,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/negative_tests/unauthorized_dual/Datasheet.md",
+    "sha256": "d884181ee7bbfc7d834046f3cc80d8062fcc63f568dd6f37ccba558ec62e247b",
+    "bytes": 7411,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/negative_tests/unauthorized_dual/Guidance.md",
+    "sha256": "f407224214772bf88f3449e5d773ca864d6c11acc8ca1e39f4d0cc10ec93006f",
+    "bytes": 5962,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/negative_tests/unauthorized_dual/Procedure.md",
+    "sha256": "b1438e96b34d6f9273703ecfd23a41658ddbbfa94250717b8857506d5b9d9043",
+    "bytes": 7385,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/negative_tests/unauthorized_dual/ScopeOfWork.md",
+    "sha256": "94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2",
+    "bytes": 38684,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-04/negative_tests/unauthorized_dual/Specification.md",
+    "sha256": "955e477f8fd9bf9e89ad3659edc8e2a03bb231a313b9c96e7ad4184b9dcfdcc7",
+    "bytes": 8645,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/ScopeOfWork_1.html",
+    "sha256": "44cdff9e631b2ae40148a5905d55f7937017da1b4c3b311f975d9ea701ae117e",
+    "bytes": 41133,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/ScopeOfWork_2.html",
+    "sha256": "44cdff9e631b2ae40148a5905d55f7937017da1b4c3b311f975d9ea701ae117e",
+    "bytes": 41133,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/negative-tests/partial/Datasheet.md",
+    "sha256": "de3c285578887f23499a6c9c5f89e211f3e4308d8359ec7d4df70baf19a05307",
+    "bytes": 5955,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/negative-tests/partial/ScopeOfWork.md",
+    "sha256": "c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9",
+    "bytes": 40287,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/negative-tests/unauthorized-dual/Datasheet.md",
+    "sha256": "de3c285578887f23499a6c9c5f89e211f3e4308d8359ec7d4df70baf19a05307",
+    "bytes": 5955,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/negative-tests/unauthorized-dual/Guidance.md",
+    "sha256": "b4a5ac1a2f5e572770b23e36c28fd7e378d8f24f9eee990baf9ede10eb1761d4",
+    "bytes": 6880,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/negative-tests/unauthorized-dual/ScopeOfWork.md",
+    "sha256": "c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9",
+    "bytes": 40287,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/negative-tests/unauthorized-dual/Specification.md",
+    "sha256": "5e03e9d2edf5560e4c19bcf0733a32d8998ebe346a34af18f5262bb7e0d64f77",
+    "bytes": 9256,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/workspace/Datasheet.md",
+    "sha256": "de3c285578887f23499a6c9c5f89e211f3e4308d8359ec7d4df70baf19a05307",
+    "bytes": 5955,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/workspace/Guidance.md",
+    "sha256": "b4a5ac1a2f5e572770b23e36c28fd7e378d8f24f9eee990baf9ede10eb1761d4",
+    "bytes": 6880,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/workspace/ScopeOfWork.md",
+    "sha256": "c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9",
+    "bytes": 40287,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/VERIFY-DEL-05-05/workspace/Specification.md",
+    "sha256": "5e03e9d2edf5560e4c19bcf0733a32d8998ebe346a34af18f5262bb7e0d64f77",
+    "bytes": 9256,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-01/workspace/Dependencies.csv",
+    "sha256": "5b8c11069cb024f64421da3bea76e7b36b3f9fa2f0726caae82b1d4dc4d0403b",
+    "bytes": 3053,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-02/workspace/Dependencies.csv",
+    "sha256": "bda035243a1c22c759027772d51981386f22feeab2921095864d2fec7b46d119",
+    "bytes": 4808,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-02/workspace/_DEPENDENCIES.md",
+    "sha256": "601caabb146ab00aaacd3f2b3e5b6ba46c3a1e549fa43e375c22e2b4f2912f52",
+    "bytes": 4744,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-03/workspace/Dependencies.csv",
+    "sha256": "4a98318da160142d3b2ceeda1c88b5134e88d0146924883e3bf2a7777f3c875c",
+    "bytes": 8876,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-01/workspace/Dependencies.csv",
+    "sha256": "5b8c11069cb024f64421da3bea76e7b36b3f9fa2f0726caae82b1d4dc4d0403b",
+    "bytes": 3053,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-02/workspace/Dependencies.csv",
+    "sha256": "bda035243a1c22c759027772d51981386f22feeab2921095864d2fec7b46d119",
+    "bytes": 4808,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-02/workspace/_DEPENDENCIES.md",
+    "sha256": "601caabb146ab00aaacd3f2b3e5b6ba46c3a1e549fa43e375c22e2b4f2912f52",
+    "bytes": 4744,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-03/workspace/Dependencies.csv",
+    "sha256": "4a98318da160142d3b2ceeda1c88b5134e88d0146924883e3bf2a7777f3c875c",
+    "bytes": 8876,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19/excluded_supplemental/excluded_fourth_pass1/reports/REVIEWER_A_PASS1_REPORT.md",
+    "sha256": "7717be984c25ec090b867359f06350756f7b5668040081fefb60e5afc80aa31d",
+    "bytes": 86716,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19/source_reviews/independent_managed/challenges/B_ON_A/CHALLENGE.csv",
+    "sha256": "59c0827e080ef14df22ae0b84561e55a9cef57b7a8417b52ed5acae235b6b4f8",
+    "bytes": 14978,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19/source_reviews/independent_managed/returns/A_PASS1/FINDINGS.csv",
+    "sha256": "b2f7f38ef8e987f8c48117e3c4869051f078555fbb4e52a1438cb3b99da44544",
+    "bytes": 16427,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19/source_reviews/pec_managed/CHALLENGE_A_ON_B.md",
+    "sha256": "c2b8beab30ce344f97e906095252c37c7f2a9ec97ab3991d9d2b676ec9f67ad6",
+    "bytes": 37928,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19/source_reviews/pec_managed/FANIN_CLASSIFICATION.md",
+    "sha256": "c95d359c76eb05e02d97338a9974ab76c5b19f8932afe4d649b2dafc6b27c9f7",
+    "bytes": 23167,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19/source_reviews/pec_managed/REVIEWER_B_REPORT.md",
+    "sha256": "5c20315e9ad7829afff0cfc021bf928a4ee05fbce8a7d2a10f1e63d69ba61cbf",
+    "bytes": 109973,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19/source_reviews/root_managed/reviewer_b/REPORT_B.md",
+    "sha256": "c4d15572162a3ab4e17e0cec063ea13caee7888874aec2503edbb65bf4c3dd23",
+    "bytes": 98096,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "plans/chirality_app_dev_maturity_survey_2026-08-01.html",
+    "sha256": "2826a26c12fa793857a6e42baae7f7a5513dea66b89ced43b3ae034ddf3d02e9",
+    "bytes": 12616,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "plans/reviews/PR188_multi_agent_review_2026-07-11.md",
+    "sha256": "49372f2c8ae10ef6df85a94c420734c1f31aab50d6ef1500cbb35460a65f852e",
+    "bytes": 368587,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/docs/TYPES.md",
+    "sha256": "a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c",
+    "bytes": 38524,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/docs/harness/reliance_boundary_register.md",
+    "sha256": "5e53c5bd18ceefd164a8ab3003f0c3ce174b412ef534da4ccf18cbb16950eb6b",
+    "bytes": 30993,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Dependencies.csv",
+    "sha256": "f2341d7629a96a16fdcf61a019295a4300edc52a73f5630c47d9f52bbcbbbb83",
+    "bytes": 25047,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Evidence_D53A_Dependency_Reconciliation_2026-07-10.md",
+    "sha256": "79110f453f9998557964455d938eada03f8bc2a1716598ecfd3680ecfd408e33",
+    "bytes": 7144,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/ScopeOfWork.md",
+    "sha256": "f3e776d263b8b3989373e7f69c85b4fc3193c976de7856240a698e7b4640cbbc",
+    "bytes": 49772,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+    "sha256": "1408edaa4cf79a1bf088cc187728eddf233f62112b35cdb770ea9a48fa50f9e7",
+    "bytes": 15054,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Evidence_ORN-08_Runtime_Error_Taxonomy_Ownership.md",
+    "sha256": "32d65138afadc5905b9f77adce18647c09297c8bde07b4831a3051712cfcca06",
+    "bytes": 2221,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+    "sha256": "46e8e3930adc0c0f985fe9b03f5ae510f44e64a44123e1a49379d10681963773",
+    "bytes": 4059,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md",
+    "sha256": "83f206d623dd72130cab799e8e9216440635fb3cbe82ed8b17a6216092abf06f",
+    "bytes": 33314,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_DEPENDENCIES.md",
+    "sha256": "9eec756b146b38560a75524e604fb5cea6c6448f3d0d30bf443ef71d86f340e0",
+    "bytes": 29565,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/TASK_RUN_2026-09-05_0515.md",
+    "sha256": "1ef39e7202403c2a94a80646df6f88888fc9476aef40024fab1ba27e49f61b9e",
+    "bytes": 11530,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Assessment_INSP-03_DEL-03-01.md",
+    "sha256": "ff3c7a8973fa59d0e9fa192825eeaca4cd9dd79df5f75fd15921307af59ef09a",
+    "bytes": 9749,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Evidence_CODEV-001_Runtime_Engine_Conformance.md",
+    "sha256": "0ada4cf31de86adf361dae9f00994ba43b5059da1c221c6c414c11ed916752df",
+    "bytes": 5723,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Evidence_CODEV-002_Harness_Contract_Package_Consumption_Readiness.md",
+    "sha256": "a52224c07f961fc5eb497c5d9e015f70e15c9a2bf2cad64b952ad0d386bd2425",
+    "bytes": 4656,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/MEMORY.md",
+    "sha256": "7c4547eb7795c807ff6b7491131b756accea27ef25deb6dee26d9414cab71b78",
+    "bytes": 5512,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/ScopeOfWork.md",
+    "sha256": "af937db155c3c16a9db11f1455037857204041965e60d1915dae84dc0dd37e25",
+    "bytes": 28808,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_CONTEXT.md",
+    "sha256": "3d7fbf2d3c50454492346e6b381983838c69eddd8ded53f68160023c0060e6fa",
+    "bytes": 1854,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+    "sha256": "869fc9082c18156c5b0cbc32738a5641221297f96ba38dd35912133ebf1ca2c7",
+    "bytes": 8302,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_run_records/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/TASK_RUN_2026-08-02_2305.md",
+    "sha256": "39b4f8f260742a1dc775adae9dd00efebc82141dcf6075fc82cc9ed82ce1f83f",
+    "bytes": 4701,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/RouteAdapterTestIndex.md",
+    "sha256": "131c2fa41f8a66010db09da288226bd4858e5133cfa3aec57891575a0e8be837",
+    "bytes": 11489,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/SSE_Compatibility_Fixture_README.md",
+    "sha256": "59898d0dbc81120954cf22b5c7f6b845ed5eda36823d5381d53ed6320f4011cb",
+    "bytes": 10265,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_run_records/TASK_RUN_2026-07-18_DAPP65_docs_production.md",
+    "sha256": "57ecbbe0d25ede7b4dbd86b443b09f53caca5f9139b128b8386685d6492b05d4",
+    "bytes": 5332,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/Decision_Version_Pinned_SDK_Adoption_2026-07-19.md",
+    "sha256": "a0acdb0111078864cc4e6c08f6a17be37f6a26fea004e0748182afd65e70a61c",
+    "bytes": 9961,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/Assessment_INSP-03_DEL-04-05.md",
+    "sha256": "1fe843e0c258751ae2f59eab47ab7e4f6ba90b1de93160deaac23464c4f10fa4",
+    "bytes": 9237,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Assessment_INSP-03_DEL-05-01.md",
+    "sha256": "18ba958bb0a396f3f851faf0b859dc8558d6a22fe8960c20db5d94fe6990d0e3",
+    "bytes": 6580,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/ScopeOfWork.md",
+    "sha256": "38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366",
+    "bytes": 39589,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_run_records/TASK_RUN_2026-07-19_DAPP68_managed_orchestration_mapping.md",
+    "sha256": "b11ab66ed6b3871c6df8fe81af88eee29ad2923b5e0b574291830683e74fe354",
+    "bytes": 2899,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/Assessment_INSP-03_DEL-05-02.md",
+    "sha256": "2339cbb13cad2bb1a3b17c38bc9d3d679040f6a6263595d903b5b95c84c7f9cd",
+    "bytes": 7808,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/ScopeOfWork.md",
+    "sha256": "a51ab9870cc490633f29a00096bdb6660d99a6aa63c25dca776228b3cfeb80e5",
+    "bytes": 33789,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_run_records/TASK_RUN_2026-07-19_DAPP68_managed_orchestration_mapping.md",
+    "sha256": "c46253b4ae89c29901a77a9ebd419220bba26d8ff98cfc5b0373d5bd332dcb78",
+    "bytes": 2749,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/Assessment_INSP-03_DEL-05-04.md",
+    "sha256": "9e726f41dd6a9044f8f61272a315d7f7a7536900f318a3099e26767284f3e76e",
+    "bytes": 7217,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md",
+    "sha256": "ddc377750334179ceb5a0978569895421f8f643f233559349528bc4c5b76a0ec",
+    "bytes": 37985,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Assessment_INSP-03_DEL-05-05.md",
+    "sha256": "c3b99eb323162edebe77d86d6b48a82a921dc52a6041699ddeb37e65c1a85d6a",
+    "bytes": 7739,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/ScopeOfWork.md",
+    "sha256": "4b91d23341372bf422c186314e0cc3546d08b08a5ec5691d4037eaf09f94b3fb",
+    "bytes": 33234,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/Evidence_ADQ-09_Runtime_Transcript_View.md",
+    "sha256": "d06037990f1cc5d3e70f8bdfc0114099ccc967acf05234595126c2c18323fb0c",
+    "bytes": 4742,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md",
+    "sha256": "97d2413fe9c46015b3c2a013018f72c0baa3c762a39886df04f29e5decaca0f1",
+    "bytes": 35604,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/_run_records/TASK_RUN_2026-07-19_DAPP68_managed_orchestration_mapping.md",
+    "sha256": "498244495c6a38f6d6c979d0e3a6e5b2b47b6053a8623f224098170dbcbff0dd",
+    "bytes": 1231,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+    "sha256": "b2a7921d0f197451a03825fa594dd64a84b4fe7b06b8f0072fe2d0bdbb95a3a2",
+    "bytes": 36697,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_run_records/TASK_RUN_2026-07-19_DAPP68_managed_orchestration_mapping.md",
+    "sha256": "a86ebf7572691413fc197780242d46575187ef6b9c0a5056428b3dd2e5dadeac",
+    "bytes": 1237,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_run_records/R6_MANAGED_DELEGATION_DEFLAKE_2026-07-22.md",
+    "sha256": "32d20036e32d8e26d5dd3f8c07fbf9099446f31c0c68e56551982443f71b9f40",
+    "bytes": 7224,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_run_records/TASK_RUN_2026-07-19_DAPP68_managed_orchestration_mapping.md",
+    "sha256": "f6fc53a0cf15cea45763cc98efe2aa1c4c55664de6f908cd08dfefb90bf334f6",
+    "bytes": 2176,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Node_N_CSP_Nonce_2026-09-04/secret-scan-summary.json",
+    "sha256": "556808bb24125eb94dd062fcc3662e3feaaedb8716c02363b2676d36f4bea62c",
+    "bytes": 1141545,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/secret-scan-final/secret-scan-summary.json",
+    "sha256": "d52935a50cbfc1afc6fbed37133cde794e60db2ec65fc8a2b27819133836924e",
+    "bytes": 853408,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/secret-scan-final/secret-scan-summary.json",
+    "sha256": "5e9a646bc900c6bdeeeb2ce2ad5dd20407374df6c29c5e3ef11ceff701ba60fc",
+    "bytes": 845180,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/secret-scan/secret-scan-summary.json",
+    "sha256": "ab613873eb4d5f7f8cd15fd6c361501df690e0f4ecb923566a52b6b8a30554e3",
+    "bytes": 838206,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/Dependencies.csv",
+    "sha256": "5b8c11069cb024f64421da3bea76e7b36b3f9fa2f0726caae82b1d4dc4d0403b",
+    "bytes": 3053,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/Evidence_D53A_Dependency_Reconciliation_2026-07-10.md",
+    "sha256": "22eba58167b5a5e4449a082d4f1952c58ce0695a1022f38e93a186b64e8f8b29",
+    "bytes": 3422,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/_run_records/WORKING_ITEMS_RUN_2026-07-20_DAPP50_HEADLESS_PREVIEW_LIVE.md",
+    "sha256": "c64c03604ef2b043180ac2d01caa264f18be00d386aee84929d8f4aaf020b387",
+    "bytes": 8418,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Dependencies.csv",
+    "sha256": "bda035243a1c22c759027772d51981386f22feeab2921095864d2fec7b46d119",
+    "bytes": 4808,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Evidence_D53A_Dependency_Reconciliation_2026-07-10.md",
+    "sha256": "34d879125878f0ab125b47a5310ddc799254d23cbb966c75b594ac24f6e71bce",
+    "bytes": 3129,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/_DEPENDENCIES.md",
+    "sha256": "601caabb146ab00aaacd3f2b3e5b6ba46c3a1e549fa43e375c22e2b4f2912f52",
+    "bytes": 4744,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/Dependencies.csv",
+    "sha256": "38a3f41af8baf76943ab1d222d1d59ab8c4cdfbf5c31d9aa28b39dd674882192",
+    "bytes": 9158,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/Evidence_D53A_Dependency_Reconciliation_2026-07-10.md",
+    "sha256": "d380b4562dae5cce90541aea3a13ea8a56995e2fda676714015310f04f690631",
+    "bytes": 5446,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/APP_NEXT_WORK_SLATE_2026-07-29.md",
+    "sha256": "e2316732063fc631b54e7fff0a22dc34476514499c287f9fa10bfa21b8490128",
+    "bytes": 3991,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20/instances/WI-PKG02-API-KEY-PRECEDENCE-01/secret-scan/secret-scan-summary.json",
+    "sha256": "9ef7b72e4bc00e2129b50d8eb08bff0bf46589a2724ce0f94be1a500de8815a3",
+    "bytes": 863586,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20/instances/WI-PKG04-API-KEY-PRECEDENCE-01/secret-scan-final-v2/secret-scan-summary.json",
+    "sha256": "182035f5d2fe28c541ccec0e54af51d756536fcc1099ca5b29207d10bca957da",
+    "bytes": 862477,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20/instances/WI-PKG04-API-KEY-PRECEDENCE-01/secret-scan-v2/secret-scan-summary.json",
+    "sha256": "9b289a11e651c16f8501c15070be3cf9b44eeeea8a61b6982749739db774593b",
+    "bytes": 861528,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP86_HELPER_PARITY_RERUN_2026-08-20/instances/A2-PKG02-PARITY-EXECUTOR-01/evidence/baseline/SOURCE_MANIFEST.sha256",
+    "sha256": "941bc28a6bf58ce2ee4d18d778923baec8ad91fca194a4e1ec025eea4b780e2d",
+    "bytes": 69172,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/MANAGER_RETURN.md",
+    "sha256": "2915572533da811d876c6a93ff100882d0f7504f26b9387f192a24b20826b91f",
+    "bytes": 4781,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/ROLLBACK_MANIFEST.md",
+    "sha256": "811cc020a29902ae78bf7bef641d5f73207c81fccb883355fbe4b7ab44322bd5",
+    "bytes": 2223,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/MANAGER_RETURN.md",
+    "sha256": "4ed34171427ddb7edaee02495ce7e21b1b5c6ad6ba675fe42f53ee99ab56d2a5",
+    "bytes": 6188,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_RESUME_R3_2026-08-04/instances/A2-DAPP88-R3-DIAGNOSE-02-R2/evidence/source/DEPENDENCY_PROJECTION.txt",
+    "sha256": "0752bc9ee27645eeca461284b8b1baa358b99e8f9d28dc5685c3f73980a136a3",
+    "bytes": 1240,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/A2_VERIFIER_RETURN.md",
+    "sha256": "fcb647bad6447a3a3484f7bb721b44f73e6cbe5fe14a95f000953147e893fd97",
+    "bytes": 6743,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/BEFORE_CENSUS.txt",
+    "sha256": "8fc891a63db237515511f2a45d1852c3c09ee7c9bc766e55207cdf759bb94e10",
+    "bytes": 110168,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/CENSUS_MAPPING_ROLLBACK.md",
+    "sha256": "03c69a401b08f72d4ccb3273e0d23c91c7df213b80bff91509815e5890d01b5e",
+    "bytes": 6425,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/MANAGER_RETURN.md",
+    "sha256": "db5022bfb43381a0c9997402e3cd4e32b81cfe4b028787d2993eb7cf3514dfc7",
+    "bytes": 7198,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/ORCHESTRATION_PLAN.md",
+    "sha256": "b533667b84f1f221b737bf1626996e7288e0a73c7d7895b54f091d23b90d320e",
+    "bytes": 4351,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/REMAINING_REFERENCES_AFTER.txt",
+    "sha256": "a6d91238686d50430e966633bd1bedc7f08901a6256bc2c591900c14e6e50c3f",
+    "bytes": 85810,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/VALIDATION.md",
+    "sha256": "a0c9f1b26cfb2cfb8a1df61650a9cc07e57f0a5836d17a59828695b17f775698",
+    "bytes": 3984,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/A2_IMPLEMENTATION_BRIEF.md",
+    "sha256": "be4bb24399a19b8dc2d5fa4da032eeaf5ab34317a2e65358056e8d16d304cdcc",
+    "bytes": 7590,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_COMPARATIVE_ARCHITECTURE_PROOF_2026-08-03/reviews/A2_SOURCE_DEPENDENCY_MEASUREMENT_RETURN.md",
+    "sha256": "486acc0318d528c2b125b1f6a6fba5bed28d67fec8713c531ad0e134d29c72f6",
+    "bytes": 18852,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/APP_CORPUS_MANIFEST.sha256",
+    "sha256": "864d04e7ebdbe4f112fc9145445e718338b82e2524d45d6838ed609182b15956",
+    "bytes": 26364,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/SEALED_EVIDENCE_DOSSIER_SUPPLEMENT_R4.md",
+    "sha256": "70ffde8822301e31526af0dd50f5fc9383421d874cb7675e549a5098cd14561d",
+    "bytes": 8302,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/COMMAND_REGISTER_AMENDMENT_V1_16_PROPOSED.md",
+    "sha256": "6ddf4b0fca2556b27f05fffd0a20cfe29aeb713520909da93c631b3148ebc073",
+    "bytes": 32662,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/COMMAND_REGISTER_AMENDMENT_V1_18_PROPOSED.md",
+    "sha256": "f2aa50cb4dfc55a8f4d5c3c58e2d7a679081d66fd3978de696cee8ca5ff5fb39",
+    "bytes": 37899,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/COMMAND_REGISTER_AMENDMENT_V1_19_PROPOSED.md",
+    "sha256": "627d00ec7d520dab98e4cc9b9cf7d542ad64f5a723de4bab413b03800cecafa7",
+    "bytes": 45738,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/COMMAND_REGISTER_AMENDMENT_V1_20_PROPOSED.md",
+    "sha256": "e281e17e13a080cc0e045cf4fb3f435c8f6a0bf47976302cd194ef4ce037c771",
+    "bytes": 53217,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/COMMAND_REGISTER_AMENDMENT_V1_21_PROPOSED.md",
+    "sha256": "d1141dbfbe5469870f4114f42da2e39a9235f5a5e22eda6dd5d548b0e3872a63",
+    "bytes": 55909,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/COMMAND_REGISTER_AMENDMENT_V1_7.md",
+    "sha256": "e2d3316667f7361debfd3c28fd78e809a70bbe0a50ab3379485aa31f2b31f715",
+    "bytes": 17196,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/instances/A2-DAPP92-A-IMPLEMENT-01/UNPRIVILEGED_PREPARATION_RETURN_R2.md",
+    "sha256": "c249b0afd8a1ff5b2770ba9007df491a97253aff69b0ec27206854688d0c190f",
+    "bytes": 8952,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-RETRY/children/del_06_02/RETURN.json",
+    "sha256": "2d7082404b1b64434752e80df34959a32d408789413e3de0068b004c926cd50e",
+    "bytes": 20629,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-RETRY/children/del_09_04/RETURN.json",
+    "sha256": "4b5bd6862567fc657edb7893323abd461f98bae6d0687c9cfc8aa36995848faa",
+    "bytes": 42452,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP50_HEADLESS_LIVE/instances/G0-DAPP50-IMPLEMENTATION-COMMIT/LAUNCH_BRIEF.md",
+    "sha256": "1d24ad9b181a531fbdff7ebe3f9e6e90fdf65e9cc8fd93cd0721de7867ceb8c5",
+    "bytes": 3790,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP50_HEADLESS_LIVE/instances/G0-DAPP50-IMPLEMENTATION-COMMIT/RETURN.md",
+    "sha256": "a048d216cc5aa87d0be825093e19ffb3c7386c96a24850a1dc0031060e870686",
+    "bytes": 2833,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP50_HEADLESS_LIVE/instances/W1-DAPP50-HEADLESS-LIVE/RETURN.md",
+    "sha256": "3534bc97feebbd2506465196469e96253329518b8396c7cab06542e56833c430",
+    "bytes": 7367,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/A2_VERIFIER_RETURN.md",
+    "sha256": "2d44a51e7083ea6c1269ee8ff9eb5b2368828cba36553f7a66ca1e56f61ea3b9",
+    "bytes": 4625,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/baseline/SOURCE_MANIFEST.sha256",
+    "sha256": "1672e1d57249dc7d833d05e8e857add1c751728de1d96568d0c83607903955c1",
+    "bytes": 54971,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/security/secret-scan-summary.json",
+    "sha256": "6e9ba2b3cd0d8bd5b39d974eda4ab0620296fb613d9f9a28694fe8be095c83bf",
+    "bytes": 522323,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-dialogue-after-route-cycle.ax.json",
+    "sha256": "fbf3049e029ec7f2c0f96bce30706b87b41fadb67b5ab27c19f8dd7d0e56bc84",
+    "bytes": 1899812,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-dialogue-all-sessions.ax.json",
+    "sha256": "b8679bdfeb95cbe47e9c62306b45029a3301cf2a26676c05d5d6c630c911a5b6",
+    "bytes": 1904600,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-dialogue-guarded-selection.ax.json",
+    "sha256": "f144515d5b06981dd172bcc4f6aa4ef0b7832bbb10f1a9140d639a863cc97a8b",
+    "bytes": 1927165,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-dialogue-inflight.ax.json",
+    "sha256": "7389d43fc3e9f20ab9d003b8060322aaca84945768a7410c198d02ba6cd296a0",
+    "bytes": 1927165,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-dialogue-root-ready.ax.json",
+    "sha256": "c3c22eedf733bc04e3ac4b843430fa41c35286bbfb34d3e3d153d1f9144eefab",
+    "bytes": 1899795,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-dialogue-turn-completed.ax.json",
+    "sha256": "c8fadf5cfa112abc152dd5a31a4a4ba25188edcce91a3cbed23d2f1b7ad662bf",
+    "bytes": 1923203,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-pipeline.ax.json",
+    "sha256": "6527a2727bc3afed09d42d5268afadd3e222bf34a17b7ac64ff38be9c8ee156e",
+    "bytes": 2060122,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-recorded-session-replay.ax.json",
+    "sha256": "d43881e1a98522a9bd93141c018f9e9a3bd85c1cdd2de3a01947f97da31875b2",
+    "bytes": 1934283,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/ui/retry02-workbench.ax.json",
+    "sha256": "7915f58b30f9a5afe47ee7c860a05b20a25e33be6da4b3dae0e9a6c1b99ffd3d",
+    "bytes": 2235738,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-VERIFIER-02/RETURN.md",
+    "sha256": "2d44a51e7083ea6c1269ee8ff9eb5b2368828cba36553f7a66ca1e56f61ea3b9",
+    "bytes": 4625,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PLANNING_GATES_2026-08-02/VERIFIER_RETURN.md",
+    "sha256": "0984d6d21b90872146cdece3699b33084453182023e30424ef7c0be2b9aec9cf",
+    "bytes": 6905,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/REVIEW.md",
+    "sha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+    "bytes": 30639,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/POSTIMAGE_Dependencies.csv",
+    "sha256": "03d3d7bcf405e98e7096d24f6322b2a7bc0fd68a239e620f8d27191616c66f17",
+    "bytes": 12096,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/POSTIMAGE__DEPENDENCIES.md",
+    "sha256": "5dfb3da66a0c128569e0fd9714a65a14df28c3d2ffa5cedf710cc3b40d21fcc9",
+    "bytes": 18589,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/PREVIEW.md",
+    "sha256": "267fd87d113d5e07bf67e59e828a3d86ab2ca1a87c753e94b7d571cb84bdd4d6",
+    "bytes": 20468,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/RETURN.md",
+    "sha256": "c69d76626eb1368f009e9988d4e748ada83aa0558e6281eea767a3a747ce6fcb",
+    "bytes": 8323,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/STATUS.json",
+    "sha256": "3e85d2c75b82347270413390df462049b29a1bb2dcbdbcc6ba2fdbfa5f0a5dd6",
+    "bytes": 3476,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/_run_records/TASK_RUN_2026-09-05_0036.md",
+    "sha256": "0807b2e3c09fa85da297eaa3834f52b6b3f9e8cbdcbe53abd052f84509961d70",
+    "bytes": 9701,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N1-TASK-DEL-02-05/_run_records/TASK_RUN_2026-09-05_0103.md",
+    "sha256": "d6497eb59b5d1607b28269400883595fdaf8b3fa63a2b4c2c57f6bd5a8e4406f",
+    "bytes": 11009,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N3-TASK-DEL-02-05/RETURN.md",
+    "sha256": "e1881e29693ae806d89acb3184923e780c99a1489b7b500864e8ad7a2e81ccf4",
+    "bytes": 5723,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/WORKPLAN_CANDIDATE_2026-07-18b_app_dev_loop.md",
+    "sha256": "d94a01911365773c6d2423880d949738e96f9afd31373bd24c57f1960ebf8ee8",
+    "bytes": 14932,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/PI_OMLX_SECOND_ENGINE_2026-07-21/RETURN_G2_CORE_CONTRACT.md",
+    "sha256": "bb40a06094390f983ac32aeb3a33a283a8eca078aebb540301d13610f32df603",
+    "bytes": 1959,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/PI_OMLX_SECOND_ENGINE_2026-07-21/RETURN_G5_SECURITY_REVIEW.md",
+    "sha256": "d752530cd6dc0494c18cc3b3f6384ff6e9ed3f9eae4c2622d78a5c3864175d26",
+    "bytes": 15515,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/PI_OMLX_SECOND_ENGINE_2026-07-21/WORK_GRAPH.json",
+    "sha256": "777038b31a68750f9c44cce9f2e0d577e9d613830103d2988cdc8bdf8dbff88f",
+    "bytes": 6615,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-101_RULING_FACADE_RETIREMENT_PACKET_2026-08-17.md",
+    "sha256": "0b3fe13b7ed1729d0addc6929fcbeb7446b0af522b20488c81e3d28364892080",
+    "bytes": 1194,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_PACKET_HARNESS_CONTRACT_PACKAGE_EXTRACTION_2026-06-24.md",
+    "sha256": "392d6caf4048ce1b28f61dfa5145d5e32ad0727abc9e468ae21edd39d49e101f",
+    "bytes": 9682,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-47_PACKET_SHIM_IMPORTER_MIGRATION_2026-07-04.md",
+    "sha256": "154cf5fbbbd84cd61852753249fe478e0a8cea0818b8aa99e66341451b1f93d9",
+    "bytes": 4924,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-47_RULING_2026-07-04.md",
+    "sha256": "eb5e5fa9ff8b811efde347286a8082d7e4c0eb4a7b25c3c7a5161a53cec116e8",
+    "bytes": 1221,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_FLOW_A_PULL_CONTRACT_2026-07-04.json",
+    "sha256": "ad10f6e5808754c4acf2e9114f189c892dbec2231a3059d3717e9689e7807040",
+    "bytes": 4704,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_PACKET_HARNESS_CONTRACT_PUBLISHABILITY_2026-07-04.md",
+    "sha256": "100346342bc585ff1c72ab94b18955a962c576c98806200375630c48beddde75",
+    "bytes": 5310,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_RULING_2026-07-04.md",
+    "sha256": "a7b0e231c0d92edbb67197c7b32ed95c1c1b7621e07731bdfd0666f5e245efd0",
+    "bytes": 1792,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-49_PACKET_F3_SOURCE_TYPES_2026-07-04.md",
+    "sha256": "cd3eb7753003f5efcf760cbb3ce63a7c10b56411af4ae0a6f0b307b9a7dd330d",
+    "bytes": 15830,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-49_RULING_2026-07-04.md",
+    "sha256": "41e15c39a2fb307c13c24e337265586472fbc0dc21a71f4fb2d370efe97ea1dc",
+    "bytes": 3067,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-50_PACKET_F3_DOMAIN_MCP_TOOLS_2026-07-04.md",
+    "sha256": "b1555a9cc3911d561e9b88b6fd476ad39551f05ba5ba0094585fa83b65626b5d",
+    "bytes": 24573,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-50_RULING_2026-07-04.md",
+    "sha256": "cd0994922c86463039592dc760df1eb55db1c820b984144c9a4444f9865e814f",
+    "bytes": 3389,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-51_PACKET_MULTI_ENGINE_PROFILE_REGISTRY_2026-07-06.md",
+    "sha256": "444d12ab0f478133ce4a864851a3c944894d57b18645eac63ec61136caeec15f",
+    "bytes": 42503,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-52_PACKET_PEC_TRANSPORT_PROPOSAL_TOOLS_2026-07-06.md",
+    "sha256": "90f7f8206349d9a78c73dbd15578fa42f5697297f713c022e3ebdc806a4ea713",
+    "bytes": 42151,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md",
+    "sha256": "d57b795dd3938e6f6532f9bb680cd0f2e4a3a03c0fb162f439409b3b8c75f5e6",
+    "bytes": 11004,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md",
+    "sha256": "729668896820ca15730f4e2969253cc15b29b696c5a8d99b503c054723e5b4dc",
+    "bytes": 36842,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-61_PACKET_LOOP_ENTRY_INSTRUCTION_SEPARATION_2026-07-18.md",
+    "sha256": "9076dced42e96399bffa3ecc9ff1e25cded7c7990ad09408a1bb99aa2fee9254",
+    "bytes": 41955,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+    "sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+    "bytes": 30613,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_PACKET_COMPATIBILITY_FACADE_RETIREMENT_2026-08-02.md",
+    "sha256": "7dc274ac9d8d081947420c2155954adef9e5f0d2987e8e0913c0b84f8eabb8dc",
+    "bytes": 7066,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_RULING_COMPATIBILITY_FACADE_MIGRATION_2026-08-02.md",
+    "sha256": "5b651cb41c3e69e59d26d12c32331d4c6918cc77e590e228dd90fbd8d5da0f22",
+    "bytes": 3160,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "sha256": "3cdd95feb65d91e999fb7e7a39edb40eefed98d1481fb510e8a4ba92cae0758f",
+    "bytes": 101786,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/APP-HOLD-1_DEL-09-07_BOOTSTRAP_2026-09-04/postimages/projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "sha256": "4951456ea2e429311a9327970e82c4839f4a82a3c04df96b4e87ea295af40955",
+    "bytes": 92879,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+    "bytes": 132164,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Evaluation/APP_RUNTIME_BASIS_OD6_2026-07-26_0F8349D/returns/A2-DAPP48-49/CONSUMER_PINS.csv",
+    "sha256": "a9fd22b2367a0b73289b01fa7114e8911e3b2d5244ebf725170d698a954a8ffe",
+    "bytes": 2253,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Evaluation/DAPP49_CURRENT_LOCATION_AUDIT_2026-07-27_FB16E32/CURRENT_STATE_PREMISE_CHECK.md",
+    "sha256": "8d4049862b2db73335fad988094f0cf29c4bf28cf4ce87148f1a1a2e08806cba",
+    "bytes": 1992,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Evaluation/DAPP49_CURRENT_LOCATION_AUDIT_2026-07-27_FB16E32/returns/A2-DAPP49-CURRENT-LOCATION/DAPP49_CURRENT_LOCATION_AUDIT.md",
+    "sha256": "18e0ca3f98b05f793e5b21e65ba28eb6ae90ecadd1865a7212d2fd21707cc47a",
+    "bytes": 7084,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/R6_D55_BACKCHECK_2026-07-12_1903Z/R6_DETAILED_EVIDENCE.csv",
+    "sha256": "3782d1fc612f44881651decd28ba1199407cd26981e6eaccecc4fab893690460",
+    "bytes": 811214,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/AUTHORITY_MAP.md",
+    "sha256": "32994123139a738e9cf0e723dbfac36fec8bef2e8459da271dcfcfcbb6ef094a",
+    "bytes": 6218,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/CLAIM_CONCORDANCE.csv",
+    "sha256": "8cb71fc23af6dbc036aed0fed82a6aaf1fe22ccfd81a6980d3addcc5b3dc1893",
+    "bytes": 1329582,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/CONFLICTS_AND_UNKNOWNS.csv",
+    "sha256": "dae7b2e96dc16fd1aee6e18bc2e8a099d2dc3c3a2887c86357db29a9df3ca36e",
+    "bytes": 38320,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/COVERAGE_AND_QA.md",
+    "sha256": "74dbd4201888b178bf9bad2116476917ee8dec2e1f0c7d730076336448e0fd99",
+    "bytes": 28766,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/PACKAGE_SUMMARIES/PKG-01.md",
+    "sha256": "9f304ff42a46980f37da88c539674cafe578069161762e906e64559fcace7d83",
+    "bytes": 4404,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/PACKAGE_SUMMARIES/PKG-06.md",
+    "sha256": "5ecd88cc1afefae54fa0c93013603205e9668621ee238982a62c2188d6bca934",
+    "bytes": 3205,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/PROPOSED_DECISION_FINDINGS.md",
+    "sha256": "8d403640db666be6cefdb5afba90971600815c006a669770c31b06af567db023",
+    "bytes": 70432,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/PROPOSED_DELIVERABLE_UPDATES.csv",
+    "sha256": "f1fa7317a0aff891f29d108dcca7258c3c0b85c63c0eaa643e111abb3bd7e193",
+    "bytes": 123268,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R0_CALIBRATION/DEL-03-04_claims.csv",
+    "sha256": "a278ade7e3b6cbbc727fdb1c80393098b7dc4ee6e997c50539b57cfd3a7224a9",
+    "bytes": 30153,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R0_CALIBRATION/DEL-03-04_notes.md",
+    "sha256": "46323ac7c3a1f22b52e09bd494403b61fd5c2c00642928b06c748b434e740c54",
+    "bytes": 14111,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R0_CALIBRATION/DEL-10-01_claims.csv",
+    "sha256": "11ec75e5b03c12b5f01e417e6eb3180c2f4a498cd1154e1087d7b19d2d91e4bf",
+    "bytes": 28962,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R0_CALIBRATION/R0_CLAIM_LEDGER.csv",
+    "sha256": "3d965fdd34baaf2c20a5e9f36eb181d8be7738c02c000c1f78bcdec2bfc9d6c1",
+    "bytes": 83659,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R1_INVENTORY/IMPLEMENTATION_SURFACES.csv",
+    "sha256": "1d2a881a32fc28c87c97ded69a6a4e2271e1eb23a046a6dc3519c1eb613b3c33",
+    "bytes": 10227,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-01/DEL-01-02_claims.csv",
+    "sha256": "3ad96408e00db2c2d91983ebeae76d6994e08b9dd63353e6066b1680292728c2",
+    "bytes": 37514,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-01/DEL-01-02_notes.md",
+    "sha256": "e81c2fe380f9ac7a77b80bea8ffa2c427c79968cb915f8cf790bd2b162486c65",
+    "bytes": 8169,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-01/_VERIFICATION.md",
+    "sha256": "71112d313711de8e96c8f7e69b830c608a8dbc6b9db20c686fa0e8dddb7348be",
+    "bytes": 8775,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-02/DEL-02-04_claims.csv",
+    "sha256": "57b7d0c63375d9c85ce9f5922648a5258859bebdf681526a1b83881bce27b80f",
+    "bytes": 27323,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-02/DEL-02-05_claims.csv",
+    "sha256": "a88d1863ebbf7086f905262e913b7511263bca728ef2e98d0f8d0c30c0110869",
+    "bytes": 26326,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-02/DEL-02-05_notes.md",
+    "sha256": "68e64e3643cf102aaabca6077a50e6f8ef45f2e28ac6a7f556ceed2a81c0be4f",
+    "bytes": 7270,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-03/DEL-03-01_claims.csv",
+    "sha256": "46b61cc02362e7593481fb37637dcd768f49564affe805d8e7d84efee2823391",
+    "bytes": 25680,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-03/DEL-03-01_notes.md",
+    "sha256": "48734b5024a5a7b94057a34256b50338cab55b8dd096e3d9faaf9d3119ded46f",
+    "bytes": 7818,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-03/DEL-03-02_claims.csv",
+    "sha256": "1d0d05c3600c7dcccc7af11a883134153675c50078a80aed1fb88e46e1f83f3b",
+    "bytes": 23519,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-03/DEL-03-03_claims.csv",
+    "sha256": "eb83a369e4c1b0949d2c545863b09ec298458c490df7dbee94c542227fdb6484",
+    "bytes": 25995,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-03/DEL-03-03_notes.md",
+    "sha256": "973a145fcadd17b27a66916ec48199dc9130085d3a4556c7632911d5bf03c5b1",
+    "bytes": 9264,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-04/DEL-04-01_claims.csv",
+    "sha256": "a83d06a3e16019c5570741d9350d7508c95c7fe1abad341934ec22a96fc7218b",
+    "bytes": 31672,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-04/DEL-04-02_claims.csv",
+    "sha256": "251558da9f73e27bc5fa5094419e4fe4ff61f422870b21f79ae96fb65d83b9a8",
+    "bytes": 30597,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-04/DEL-04-03_claims.csv",
+    "sha256": "f3633741e8cbd633f024d00dbcb45be22406d84b92b7ee165925aa544441d87e",
+    "bytes": 28096,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-04/DEL-04-05_claims.csv",
+    "sha256": "0f69d0765e4decf96146021a57efeecc6f0364989601a013b6b8ecc342d7078a",
+    "bytes": 25433,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-04/DEL-04-05_notes.md",
+    "sha256": "aa8c398db91f0f5b93f22f731df333000bd2f10b4bb0013dfb7b6e2e1eac5b37",
+    "bytes": 8529,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-01_claims.csv",
+    "sha256": "91cb8a6fe9406470fbbf18fb6014c73f7bb8bb034cb63e54ad7eceeaf6494110",
+    "bytes": 28547,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-01_notes.md",
+    "sha256": "be14e8474e5d8244ba93b216ee25b3e792010768261c7279a3fb5e432192391a",
+    "bytes": 7659,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-02_claims.csv",
+    "sha256": "779ccd8f0fc918c34e4a1df853d127b2494cf7019cbf687dfd466d1fa80b96c6",
+    "bytes": 29289,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-02_notes.md",
+    "sha256": "c1b1d12f75d2941d0e6284b0777e69a62cb291c843eb2b0e69a9a715b2f2b1f0",
+    "bytes": 8192,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-04_claims.csv",
+    "sha256": "51e87d6e780a367162aac3b7af4e8587385cc81e3b7f62e4c7a38d606a2626b6",
+    "bytes": 21844,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-04_notes.md",
+    "sha256": "f4e87a480ce015eafc76319060a0c27eefcee5c18b490eca7ec5ea82b8900500",
+    "bytes": 9149,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-05_claims.csv",
+    "sha256": "22f6678472e8e936c5c7d99903706753dab0046fe3439aa46ec3b14661746cfb",
+    "bytes": 24034,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-05/DEL-05-05_notes.md",
+    "sha256": "854d26937e07587f860700f61c117125034b450cfea7ac1243216f5d8f9a7e0f",
+    "bytes": 6855,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-01_claims.csv",
+    "sha256": "1f36446de3723ea2b034ff72e8f3ed817e08e4eb82441b2c2c8cdbf2437b008f",
+    "bytes": 26254,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-01_notes.md",
+    "sha256": "bdb3d9c63c541f65fe96b686dc66a324e060f3e67ac102aefe84f04118d2c5a9",
+    "bytes": 8252,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-02_claims.csv",
+    "sha256": "5c690f07f3050d3613461c5bc6b294ee91ce101d7a597b47c5a5f608a5c24bdd",
+    "bytes": 25632,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-02_notes.md",
+    "sha256": "c25725f0163f432cc9b8726dfa41831d56eda58b890598c9eb6a37edec174244",
+    "bytes": 10124,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-03_claims.csv",
+    "sha256": "361c520c80bd651b04b80bd0d5257d330ee3df88f6920d638bd2e1b2a17c6c63",
+    "bytes": 25598,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-03_notes.md",
+    "sha256": "0ab5de68fa0ca69098e87dd0d2f0b894dcf3706c89ffedb5b8141d7fddd06e46",
+    "bytes": 6282,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-04_claims.csv",
+    "sha256": "3b904fc60597c9c211a9504eaff79379d4e27b6dcf2166e449e7ee74b2e94c04",
+    "bytes": 26176,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-04_notes.md",
+    "sha256": "670010402b4aeb7984e936bf259561fe0be294bfe5b91d23ebed22b76cf5af83",
+    "bytes": 9119,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-05_claims.csv",
+    "sha256": "1f99bfdb29839fdf5d03942edc74930c43b6806e9d6f070056ed0a8e35c1a124",
+    "bytes": 25742,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-05_notes.md",
+    "sha256": "33f47b95cf355f99d3fd1add33cbb29b1ed337f0c6aaebda1e854d1e1d9832cb",
+    "bytes": 8474,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-06_claims.csv",
+    "sha256": "6633ef2d9c2a766d6895b71d80086a18a8a1dc65c5992270722e7517f815f7b7",
+    "bytes": 25774,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/DEL-06-06_notes.md",
+    "sha256": "f77d2d24f44c33536c0cd9cc0724e8215ef8fe8d02b249eab205e817fcb5f70d",
+    "bytes": 8560,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-06/_VERIFICATION.md",
+    "sha256": "b9a338eb74f7646225ff983fba7461a0c99316911eea4b810c751f04c81a0b9e",
+    "bytes": 4908,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-07/DEL-07-04_claims.csv",
+    "sha256": "83acc52a6d1e70fb455c48850551e4086d34913783e2bf32f12398505f20a5d2",
+    "bytes": 27311,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-07/DEL-07-04_notes.md",
+    "sha256": "5c1db3b008c93bf17d54a1addfbb2939ce405c40df9904e6ff19303e8eb11cd8",
+    "bytes": 10440,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-08/DEL-08-04_claims.csv",
+    "sha256": "684a9a93a8a6f17bacecaa15c74a6a5a5d9c0dd2c99c46c08df9d52ea32ab0ca",
+    "bytes": 22917,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-08/DEL-08-04_notes.md",
+    "sha256": "7db79cb32b2143659287fec2975e309a60669aa2ee0ba7c27fac2aae48fabe1a",
+    "bytes": 9290,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-08/DEL-08-05_claims.csv",
+    "sha256": "16cb85b4848b7c9227874aa07f1e4d0a563b08d4102b758022daff33fe8e3c62",
+    "bytes": 22248,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-10/DEL-10-01_claims.csv",
+    "sha256": "2fe5192e9fd3097dff8fa67ae219428540ee8f1e462563ded457fc9c01d2f595",
+    "bytes": 35208,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-10/DEL-10-02_claims.csv",
+    "sha256": "71cf8f6d605facfc14c4d6c5ed3b377ad174d878b527601f8fe58f3ad6c64e47",
+    "bytes": 29535,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-10/DEL-10-03_claims.csv",
+    "sha256": "6066503c1220810ab73dd3d3ca04898d8cafd959b6781ca0fa1b399f9f91bed3",
+    "bytes": 27594,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-10/DEL-10-04_claims.csv",
+    "sha256": "17924178e86065104dda2d3150bfaa5475ad5c498031fec8619165e51840effc",
+    "bytes": 32429,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/R2_WAVES/PKG-10/DEL-10-05_claims.csv",
+    "sha256": "a800be190c14a010bfcfff077ad811ee6ef4842f4a62e8dd318acacd6458fe61",
+    "bytes": 24355,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/UNMAPPED_IMPLEMENTATION.csv",
+    "sha256": "d740c49959469515dacaf1c5bd65bb33517929abb176a3a81cd382d3d539cc57",
+    "bytes": 51277,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/AFFINITY_AND_MAPPING_ANALYSIS.md",
+    "sha256": "1e825d797ddf5c4a9757bb1984ae63be0bf6b053736fe1bd5a8f932d415d4035",
+    "bytes": 6272,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/PACKAGE_NOTES/DEL-06-02.md",
+    "sha256": "cd0b5b206c3ede37fb1eb3130b5a12cfece15ed1a1b498159ece87aed619f299",
+    "bytes": 521,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-01_claims.csv",
+    "sha256": "551ac82d386657978bc4c3d27b6a74e23e15f958d77d5590054b76b2c87985eb",
+    "bytes": 107567,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-02_claims.csv",
+    "sha256": "6078cb61eb1b14ac8dc91cfa25ec0352d05d4492fede7ab08d84d14d23ee709c",
+    "bytes": 131603,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-03_claims.csv",
+    "sha256": "f33bdd93b8b932351d17d917ceee8e98ae73f330811315309a388e5227273255",
+    "bytes": 104189,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-04_claims.csv",
+    "sha256": "d61e0c4a102db5cac98276edb029894c7f1db6c3c998bd3a3edf4a38dddcb0b5",
+    "bytes": 136834,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-05_claims.csv",
+    "sha256": "e8599bf48d090c81873f4224330b30f899585c46b114185f9a21b2b8ab0dbaa7",
+    "bytes": 132533,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-06_claims.csv",
+    "sha256": "9349789a3f91f6ddf16152ef1a56e4c0ac0416722ef4cbeb806816b7e5df6656",
+    "bytes": 152679,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-07_claims.csv",
+    "sha256": "2954400e3d1a0e80b90ea1d7fe1c3b28b93ddd3f8b130370f0067ca9ec41b59f",
+    "bytes": 129190,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-08_claims.csv",
+    "sha256": "6cab9bdf3d13246d7021d4654c7538437abd8972132c1229fd2a44f1692f9120",
+    "bytes": 114099,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/PKG-10_claims.csv",
+    "sha256": "325c3a3581cfd9048dff48e90d8139a976d727ebff9e029e174b53e3524e46cd",
+    "bytes": 147041,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/MANIFESTS/SHARED_changed_files.txt",
+    "sha256": "f3e5d2f0dbd5c74c8628da4a6cf86ab3639c8b53bd61ee9eb448e844bc9bd400",
+    "bytes": 21621,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/PKG_LEDGERS/PKG-01_SCOPED_LEDGER.csv",
+    "sha256": "38518783b2cfffe030d9effd4de38aaeda015be6d7e9cc9383258705c46513e3",
+    "bytes": 30378,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/PKG_LEDGERS/PKG-02_SCOPED_LEDGER.csv",
+    "sha256": "4b96dd01b8192fedd9dbf5cb40b8003c4f6be3063f2a5bd63feb7136ecd52095",
+    "bytes": 23094,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/PKG_LEDGERS/PKG-03_NOTES.md",
+    "sha256": "9d77afc6338be499d98f3be232911a2d5fa5b761d7022191481e5affdc27af25",
+    "bytes": 4426,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/PKG_LEDGERS/PKG-03_SCOPED_LEDGER.csv",
+    "sha256": "89f254640930bb706e2af96a3d0b1879a79e9c8640d612c1281067644434ea5b",
+    "bytes": 19292,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/PKG_LEDGERS/PKG-04_SCOPED_LEDGER.csv",
+    "sha256": "62a3141050b0a5fb9e45cc48cdc17de10e62c90ba7ae2046580538ca9a83e274",
+    "bytes": 32950,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/PKG_LEDGERS/PKG-05_SCOPED_LEDGER.csv",
+    "sha256": "96e9a943fee0ae3deb50efe09e7228597c80bb77ee11dd24488945027d672ce4",
+    "bytes": 33584,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_RULING_EXECUTION_2026-07-19/REPAIR_MANIFEST.md",
+    "sha256": "edc3c65881e59dda16eb314045c3d86bf1ffe0c2004cc8a7e50ac7e97c0ea6bd",
+    "bytes": 30266,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/References/AUTHORITY_CORPUS.json",
+    "sha256": "8b5b5d21287144a03fdd5c204f0c473219d3f183f58974c6679c368c2e21b3b4",
+    "bytes": 22072,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-006_2026-07-27_1159_Invariant_Mapping_Repair/Accepted_Candidates/Candidate_Tree/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+    "bytes": 108079,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/Gate3/DECOMP_POSTIMAGE_CANDIDATE.md",
+    "sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+    "bytes": 132164,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/docs/harness/runtime_engine_contract.md",
+    "sha256": "1de58e89704877ed1e19cdd4c60c76899385248c33c85b9c3f8efddb0a91a613",
+    "bytes": 18786,
+    "category": "documentary-source-comment"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/docs/harness/tool_catalog.md",
+    "sha256": "58d857a9f4a6ea7d41b45bc4584332bbb11e73b39daae970745def65a3a60d07",
+    "bytes": 18353,
+    "category": "documentary-source-comment"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/package-lock.json",
+    "sha256": "717d541fe6ee090aae79d4a386bbde1c8ff6ee136a50242d956500d76e80a458",
+    "bytes": 425652,
+    "category": "workspace-registration"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/package.json",
+    "sha256": "6b6355d34bac7a1bbe211ca8d6f44fd10bacbb4a3a204bf638e715676323dc51",
+    "bytes": 1129,
+    "category": "facade-definition"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+    "sha256": "d84c01388287e599e1a59a84c67f7b2208d300206ec441bd9fb67a627feb9300",
+    "bytes": 4459,
+    "category": "validator-policy"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs",
+    "sha256": "c1b9fbaa4e5adb0341de01921d66284345b74871c0c116a5ad1bacb54f089e60",
+    "bytes": 1470,
+    "category": "documentary-source-comment"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "sha256": "ffb3478a520c1796165f46c88d9df505927f44ae4208b77c47147b399750b12c",
+    "bytes": 2650,
+    "category": "rollback-test-consumer"
+  },
+  {
+    "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+    "sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+    "bytes": 16290,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/PLAN_2026-06-21_inspection_orphan_remediation.md",
+    "sha256": "4b99096e9655ffff77d21a52b2b0afbabc8821e1d2defe1d479fd3e2eeeb7a07",
+    "bytes": 14761,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md",
+    "sha256": "db6999a78d0744588114dc007486299d0ad447dd272ec55b6a2d55b6b3eea1d0",
+    "bytes": 252965,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/artifacts/convergence_architecture_visual_2026-06-24.html",
+    "sha256": "c77f360a7cd2413ace85b9f9b8ad95ad03db1ab93f7c48d6a79173b1c8c02cfd",
+    "bytes": 34480,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-07-04_app_dev_loop.md",
+    "sha256": "90269a0b87829aa551eb6768e1c3fff56e56c456b0c468707181a49a8bb9a646",
+    "bytes": 8770,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-07-10_app_dev_loop.md",
+    "sha256": "7cfd2066697b0613c1c32eefd991554f1d7215cfbf459825224ebee728cbceb7",
+    "bytes": 11679,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-07-17_app_dev_loop.md",
+    "sha256": "51b887ecb49072b1185aaae057e8845863d134645fdec51bb58ca4e5df76ddd0",
+    "bytes": 14521,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-07-18_app_dev_loop.md",
+    "sha256": "bbe65869f96ae415cbb64c0019a4943f160df676d7739adc42b8871536753ea0",
+    "bytes": 13869,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-07-18b_app_dev_loop.md",
+    "sha256": "d94a01911365773c6d2423880d949738e96f9afd31373bd24c57f1960ebf8ee8",
+    "bytes": 14932,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-09-03_app_dev_loop.md",
+    "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac",
+    "bytes": 23344,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-28_event_vocabulary_count_reconciliation.md",
+    "sha256": "c0854fe712f29e6b606e31db6f27c912da22fff7cea23cf336f3419a55727b88",
+    "bytes": 7155,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-30_HARNESS_CONTRACT_CONSUMPTION_2026-07-04.json",
+    "sha256": "942266eb00305403493649b7a31870be4073051a7b2fadb18576306860865c68",
+    "bytes": 1488,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-30_harness_contract_consumption.md",
+    "sha256": "8d134042f339f3a119ee894db935119526b74209df32fa6c7e4d50df3eaeb9e0",
+    "bytes": 4584,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "sha256": "93606f156d79a5c541938358be298720c5315bd9193c6984ce891ca87ed6ef2a",
+    "bytes": 67945,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-17_builtin_agent_ui_source_tranche.md",
+    "sha256": "767de58de5755bed21277810359610ee6c1656bcb76b179d36417d903f6d60e1",
+    "bytes": 47659,
+    "category": "governance-history-evidence-or-metadata"
+  },
+  {
+    "path": "runtime/packages/contracts/src/harness/tool-catalog.ts",
+    "sha256": "d63b82288204192b9121826fcd3426f85e94362b0e0d2f7f3be343b7d98498f9",
+    "bytes": 7058,
+    "category": "documentary-generated-catalog-label"
+  }
+]

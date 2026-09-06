@@ -1,0 +1,15 @@
+{
+  "detector": "parent registered frontend-typecheck",
+  "failure_class": "TEST_TYPE_ERROR",
+  "reason_code": "TS2352",
+  "affected_item": "DEL-07-03-V3-01",
+  "path": "frontend/src/__tests__/lib/governed-workflow.test.ts",
+  "line": 106,
+  "attempt": 2,
+  "prior_review": "workflow-review/RETURN.md CODE_REVIEW_PASS retained as historical; did not detect fixture compile error",
+  "disposition": "bounded test cast repair, canonical focused + typecheck evidence, fresh review, parent affected gate rerun",
+  "status": "REPAIRED_CHECKS_PASS_R2_REVIEW_PASS",
+  "focused": "59/59 PASS canonical repair03/focused.stdout.txt",
+  "typecheck": "PASS canonical repair03/typecheck.stdout.txt",
+  "review": "workflow-review-r2"
+}

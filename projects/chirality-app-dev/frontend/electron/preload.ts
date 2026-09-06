@@ -24,6 +24,12 @@ contextBridge.exposeInMainWorld('chirality', {
     node: process.versions.node
   },
   selectDirectory: () => ipcRenderer.invoke(SELECT_DIRECTORY_CHANNEL),
+  document: {
+    // Both Electron modes retain the current frame-denying renderer policy.
+    inlinePdfPreview: false,
+    handoff: (request: { projectRoot: string; target: string; action: 'quick-look' | 'open' | 'reveal' } | { projectRoot: string; action: 'reveal-root' }) =>
+      ipcRenderer.invoke('chirality:document-handoff', request)
+  },
   apiKey: {
     store: (key: string) => ipcRenderer.invoke(API_KEY_STORE_CHANNEL, key),
     remove: () => ipcRenderer.invoke(API_KEY_REMOVE_CHANNEL),

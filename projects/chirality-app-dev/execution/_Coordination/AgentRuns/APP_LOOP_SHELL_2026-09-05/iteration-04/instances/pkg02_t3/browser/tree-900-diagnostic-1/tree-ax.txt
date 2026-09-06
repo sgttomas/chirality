@@ -1,0 +1,37 @@
+- complementary:
+  - heading "File Tree" [level=2]
+  - list:
+    - listitem:
+      - button "Collapse fixtures": "-"
+      - text: DIR
+      - button "fixtures" [expanded]
+      - list:
+        - listitem:
+          - button "Collapse Long path document provenance document provenance document provenance document provenance document provenance": "-"
+          - text: DIR
+          - button "Long path document provenance document provenance document provenance document provenance document provenance" [expanded]
+          - list:
+            - listitem: FILE Long filename requiring bounded wrapping.md
+        - listitem: FILE data.csv
+        - listitem: FILE Deep.json
+        - listitem: FILE Folded.json
+        - listitem: FILE Headings and links.md
+        - listitem: FILE Image-only.svg
+        - listitem: FILE Long filename for readable metadata and breadcrumb wrapping with all content accessible.md
+        - listitem: FILE Malformed.json
+        - listitem: FILE Oversized image.png
+        - listitem: FILE oversized.txt
+        - listitem: FILE Picture.gif
+        - listitem: FILE Picture.jpg
+        - listitem: FILE Picture.png
+        - listitem: FILE Picture.webp
+        - listitem: FILE plain.txt
+        - listitem: FILE Preview.docx
+        - listitem: FILE Preview.pdf
+        - listitem: FILE Preview.pptx
+        - listitem: FILE Preview.xlsx
+        - listitem: FILE Readable note.md
+        - listitem: FILE unsupported.bin
+  - button "Choose folder" [disabled]
+  - text: fixtures
+  - paragraph: Choose a folder using the folder selector above.

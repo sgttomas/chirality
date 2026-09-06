@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "package": "PKG-07",
+  "posture": "MIXED",
+  "selection_authority": "HELP_HUMAN activation; B only COMMIT-SAFE; A boundary candidate held",
+  "nodes": [
+    {
+      "id": "A",
+      "item": "DEL-07-01-V3-01",
+      "status": "HELD_BOUNDARY_REVIEW",
+      "writes": "boundary-proposal/** only",
+      "children": []
+    },
+    {
+      "id": "B",
+      "item": "DEL-07-03-V3-01",
+      "status": "IMPLEMENTATION_RECORDED_ON_BRANCH_OWNER_MERGE_PENDING",
+      "child": "/root/pkg07/workflow_author",
+      "brief": "workflow-author/LAUNCH_BRIEF.md"
+    },
+    {
+      "id": "R",
+      "status": "R2_CODE_REVIEW_PASS",
+      "role": "TASK + software-code-review",
+      "writes": []
+    },
+    {
+      "id": "C",
+      "status": "CHECKS_PASS_EXCEPT_ACTUAL_PREMERGE_MISSING_BINDING_DEFER_PR_CI",
+      "owner": "HELP_HUMAN",
+      "purpose": "global registered gates"
+    }
+  ],
+  "edges": [
+    [
+      "B",
+      "R"
+    ],
+    [
+      "R",
+      "C"
+    ]
+  ],
+  "concurrency": "B independent of held A and PKG02; disjoint write loci",
+  "integration_owner": "pkg07 manager for package records; author B only its 2 product/test files",
+  "gates": "APP-HOLD preflight, frozen brief, fresh review PASS, registered gates, parent closeout",
+  "escalations": "A main.ts boot seam; authority or shared-write changes; no lifecycle issuance"
+}

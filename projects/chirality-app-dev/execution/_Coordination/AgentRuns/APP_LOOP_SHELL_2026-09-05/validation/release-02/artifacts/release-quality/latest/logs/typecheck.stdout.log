@@ -1,0 +1,8 @@
+
+> chirality-frontend@2.0.0 typecheck
+> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false
+
+src/__tests__/lib/governed-workflow.test.ts(106,43): error TS2352: Conversion of type '{ roadmap: { status: string; text: string; humanGate: boolean; }[]; agent: string; folder: string; permission: string; policy: string; briefsRunOn: string; roadmapSource: RoadmapSource; acceptedAt: string; current: number; advancedBy: string | null; }' to type 'GovernedWorkflow' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'roadmap' are incompatible.
+    Type '{ status: string; text: string; humanGate: boolean; }[]' is not comparable to type '{ text: string; humanGate: boolean; }[]'.
+      Object literal may only specify known properties, and 'status' does not exist in type '{ text: string; humanGate: boolean; }'.

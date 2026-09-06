@@ -1,0 +1,128 @@
+{
+  "cleanup": {
+    "command": "kill -TERM38095",
+    "exit": 0,
+    "verification": "ps -p38095 and lsof -iTCP:39119 return no records; native never launched"
+  },
+  "visual_batch": {
+    "images": [
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/1440-dark-coordination-collapse-open-collapsed.png",
+        "sha256": "44d74cc8810799c3a2676abef2977c48a52ad1f4e8236da5bdef2c152c8cd7a8"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/1440-dark-navigator-collapse-open-collapsed.png",
+        "sha256": "0211c9fe593a91f23d2515cdb9475a4da0ecab2a7f0d17ac230770d6f0ec505a"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/1440-light-coordination-collapse-open-collapsed.png",
+        "sha256": "2f23aecc13a8042f546fed4f2dd8ad2f742b89f00ece5711d2d967398a334456"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/1440-light-navigator-collapse-open-collapsed.png",
+        "sha256": "3a3bd732bfe9c6c1add24965b9551ae6e33aabba0583d1ce522771eed48531be"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/840-dark-coordination-collapse-open-collapsed.png",
+        "sha256": "9e46b0907a093867e0c7de0492c50f7fac4a94849af80b6c99265a82f5c6cd77"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/840-dark-navigator-collapse-open-collapsed.png",
+        "sha256": "cf597f3b2c130c6b622853b4f6195e472447570b6a8ebab33f274218370e5407"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/840-light-coordination-collapse-open-collapsed.png",
+        "sha256": "d79a199bcad68594cbe9b3a4fe3ed7bee23213a0a0c5946a85a866d0ff1e9551"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/840-light-navigator-collapse-open-collapsed.png",
+        "sha256": "be8b3d11882a3df00e1252284f177d1ccbf49337b273c7ae906d0f8cc9c86b75"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/860-dark-coordination-collapse-open-collapsed.png",
+        "sha256": "4429e5ebc708d5396e7c3df7521273ebe55e425eb5065c999d608aae97d026cd"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/860-dark-navigator-collapse-open-collapsed.png",
+        "sha256": "3a84e8d96fa009bdd85854e0a496d93bc619e7ee110133b09eaff6df292e75ad"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/860-light-coordination-collapse-open-collapsed.png",
+        "sha256": "43218c01eb67c895d12eeebb2a2ef85928f0a6b016d581d2676f312a741087ab"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/860-light-navigator-collapse-open-collapsed.png",
+        "sha256": "181985945e5d4c3f8b76d6cc3523b54478696439d063b5a33e08e8529e0797e0"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/900-dark-coordination-collapse-open-collapsed.png",
+        "sha256": "39bd4df8ffe54b764cde63761b09a1717261f3efd7be5c2364ef573f6f87b9b6"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/900-dark-navigator-collapse-open-collapsed.png",
+        "sha256": "1d1ee4cc6e6b6ff278c3d51d56090d162b908f29806cd550e4a1de888741a233"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/900-light-coordination-collapse-open-collapsed.png",
+        "sha256": "f961d40a978af5fe76120fe1369033eaff8b598eea2f5fb992fc591ddb017051"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/900-light-navigator-collapse-open-collapsed.png",
+        "sha256": "c083eaf53477d65c52b07d0dd64c7fd938ce5a389c2debfc496f0a1bb25d228a"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/960-dark-coordination-collapse-open-collapsed.png",
+        "sha256": "538250669ddffa39bc14bb6b269fd066c26f9dd8b7f9b161695ccbe6a128550c"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/960-dark-navigator-collapse-open-collapsed.png",
+        "sha256": "c965d9005b5dff7d04f89f783127be0c5c8270221c65f0494be8385884613fc1"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/960-light-coordination-collapse-open-collapsed.png",
+        "sha256": "c6c1f1813d5cbb0f556bc6a4ecca31e8eea9f77290fcce383e1a5f453ba5450b"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-proof-1/960-light-navigator-collapse-open-collapsed.png",
+        "sha256": "5fb3a5870d37621e59fd40c91d95a2fe64be1f9b99b3bc68811b0e4a2ceace81"
+      }
+    ],
+    "all20_png_visually_inspected": true,
+    "action_cases": 40,
+    "finding": "All8 desktop collapsed screenshots at960/1440 light/dark both panels have blank reopen controls; all12 stacked screenshots show readable reentry strips; no additional actionable finding from this20PNG set"
+  },
+  "AllowedWriteTargets": [
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "Preimages": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "4d34cd87ff065e1cdaedc8b46fb66e8380472ea0f838733e8fd11c2399a9b622",
+      "bytes": 19557,
+      "changed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "15af2557b4a41d085ab85af66a4b11dfac02e0db48fa49876bf696922188fe1e",
+      "bytes": 28255,
+      "changed": true
+    }
+  ],
+  "source18_exact_before_dispatch": true,
+  "OwnerStandingApproval": "D-APP-64 \u00a73 within activated DEL02-03 T3; actual parent bounded repair message",
+  "AgentJudgment": "SELECT_AND_ADVANCE",
+  "SelectedOutcome": "Repair visible desktop collapsed reentry affordance in shell-local controls/styles and associated existing shell test",
+  "JudgedBy": "WORKING_ITEMS /root/pkg02_finish after direct screenshot inspection and HELP_HUMAN confirmation",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": "accept blank controls because actions pass; edit globalCSS; redesign rails or stacked states; weaken names or gates; source edit before owned cleanup",
+  "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/DESKTOP_REOPEN_AMENDMENT_v1.json",
+  "IndependentVerifier": "PENDING fresh TASK software-code-review over100% next frozen source diff; no anticipated PASS",
+  "EffectStatus": "HELD",
+  "DraftEffects": "Amendment frozen before bounded draft child execution. Activation dispatch permitted after APP-HOLD ALLOW; governed acceptance remains held.",
+  "PreservedGates": "D64 classes1-10,F-APP1-5,APP-HOLD,exact18source scope, globalCSS read-only, complete source review/global/build/browser/native/exactheadCI,A1restage, no owner/lifecycle/CheckingSHA/dependency/pointer/Root/provider/release/merge effects or waiver",
+  "Ontology": "Actionability and visible affordance are separate properties.",
+  "Epistemology": "20 current screenshot bytes and49 actual action observations establish a visible failure despite callable controls.",
+  "Praxeology": "Owned cleanup then2path child repair/refreeze, fresh full review and parent checks, actual browser/native proof.",
+  "Axiology": "Discoverable reentry while preserving desktop56px rails, stackedcompact design, user data and authority."
+}

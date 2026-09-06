@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-09-05T23:28:11.614558+00:00",
+  "status": "FAIL_PRODUCT_CONTROL_OVERLAP",
+  "sourceManifest": "author/SOURCE_MANIFEST_v4.json",
+  "browserProcess": {
+    "sessionId": 2800,
+    "exitCode": 1
+  },
+  "ownedServer": {
+    "sessionId": 42548,
+    "url": "http://127.0.0.1:39119",
+    "startup": "Next15.5.21 ready201ms",
+    "stop": "write_stdin Ctrl-C",
+    "exitCode": 0
+  },
+  "nativeLaunched": false,
+  "visualInspection": {
+    "file": "failure.png",
+    "observer": "WORKING_ITEMS /root/pkg02",
+    "finding": "Close Coordination visibly overlays Expand panel at top right; actual pointer action reports interception by that button. Markdown renders and primary remains visible."
+  },
+  "remaining": "No further source effects; parent controlled repair requested. Fresh source review and relevant gates/build required before rerender. No native display/handoff proof performed."
+}

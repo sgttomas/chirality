@@ -1,0 +1,7 @@
+{
+  "prior_failure": "browser/frame-diagnostic-v9/result.json",
+  "attribution": "Preserved stack anonymous line3 matches second line of fixture init function localStorage.setItem; source begins projectRoot setItem and wovenWorkspace setItem. Only fixture injected callback contains these setItem calls before app loaded; PDF embedded extension frames observed. Frame inventory alone is not frame attribution.",
+  "calibration": "Narrow fixture initialization by intended top-level application origin; emit skippedframe URL/origin/mainFrame log. No catch/ignore of errors; pageErrors final assertion unchanged. Actual success/failure remains to be observed.",
+  "delta": "Fixture only; initial root/theme storage applied exclusively to app top frame. Product source unchanged; app API routes unchanged.",
+  "second_cua_interruption": "getApp com.microsoft.Word timeout_ms10000 ignored; aborted414.3s; no nativefixture launch. No further CUA calls."
+}

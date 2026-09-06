@@ -1,0 +1,11 @@
+{
+  "status": "RETURNED_FOR_REVIEW",
+  "role": "WORKING_ITEMS",
+  "model": "GPT-6; exact runtime model ID unavailable",
+  "provider": "OpenAI",
+  "native_delegation_evidence": "instruction-asserted",
+  "brief_sha256": "bab390a189f62cd433aac1e5c181bf4dd6fd174fdf4768b2f57523568dbd1bc2",
+  "closure": "packet preparation complete; implementation owner-gated",
+  "checks": "local documentation checks PASS; parent global checks/review pending",
+  "return_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg05_packet/RETURN.md"
+}

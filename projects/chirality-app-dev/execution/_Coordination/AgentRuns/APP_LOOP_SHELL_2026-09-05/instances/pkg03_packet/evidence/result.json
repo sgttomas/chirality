@@ -1,0 +1,16 @@
+{
+  "basis_commit": "044a009e215e08b69c9e0887da424938a34aafcb",
+  "tracked_matching_files": 348,
+  "scope": "Tracked live checkout; named source roots separately inspected; external installations not observable",
+  "candidate_deleted_files": 14,
+  "candidate_edited_files": 2,
+  "baseline_contract_deps_exit": 0,
+  "candidate_contract_deps_exit": 1,
+  "restored_contract_deps_exit": 0,
+  "candidate_postimage_exact": true,
+  "rollback_preimage_exact": true,
+  "scratch_removed": true,
+  "source_tree_changed_by_evaluator": false,
+  "release_disposition": "none",
+  "retirement_verdict": "HOLD"
+}

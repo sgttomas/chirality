@@ -1,0 +1,345 @@
+{
+  "run_id": "APP_LOOP_SHELL_2026-09-05",
+  "version": "1.8",
+  "descriptive_posture": "MIXED",
+  "selection_authority": "LOOP_INIT sections 5\u20137; D-APP-60 as refined by D-APP-64 section 5",
+  "status": "LOCAL_SCOPED_WORK_COMPLETE_FINAL_GOVERNED_REVIEW_PENDING",
+  "effect_status": "EFFECTIVE_INITIAL_SELECTION_ONLY",
+  "branch": "codex/app-loop-shell-20260905",
+  "base_commit": "044a009e215e08b69c9e0887da424938a34aafcb",
+  "attribution": {
+    "execution_class": "delegated-harness-native",
+    "provider": "OpenAI",
+    "model": "GPT-6",
+    "exact_serving_model_id": null,
+    "engine_id": null,
+    "model_basis": "Parent session system attribution; exact serving ID unavailable.",
+    "role_enforcement": "role not mechanically enforced",
+    "evidence_calibration": "instruction-asserted",
+    "substitutions": []
+  },
+  "nodes": [
+    {
+      "id": "N0",
+      "instance": "discover_other_lanes",
+      "role": "Ephemeral Agent 2",
+      "status_at_v1": "RUNNING",
+      "objective": "Read-only discovery of other lawful lanes; return citations, gates and ownership.",
+      "write_scope": "none",
+      "depends_on": [],
+      "current_status": "COMPLETED_REPORTED"
+    },
+    {
+      "id": "N1",
+      "instance": "change_setup",
+      "role": "CHANGE",
+      "status_at_v1": "COMPLETED_REPORTED",
+      "objective": "Establish clean origin/main task branch.",
+      "write_scope": "Git branch metadata only",
+      "depends_on": [],
+      "actual_order_correction": "Branch setup completed while independent N0 scan was running; parent clean-basis/main verification supplied prerequisite evidence, not N0 completion."
+    },
+    {
+      "id": "N2",
+      "instance": "pkg02",
+      "role": "WORKING_ITEMS",
+      "status_at_v1": "PREPARATION_IMPLEMENTATION_HELD",
+      "objective": "Prepare and gate DEL-02-02-V3-03 within PKG-02; freeze exact child briefs before implementation launch.",
+      "write_scope": "PKG-02 selected deliverable records and disjoint shell/navigation product files explicitly frozen by manager",
+      "depends_on": [
+        "N1"
+      ],
+      "current_scope": "T1 shell, DEL-02-02-V3-03; parent reports activated; exact manager-frozen brief governs",
+      "current_status": "SCOPED_WORK_COMPLETE_AWAITING_FINAL_GOVERNED_FANIN",
+      "scope_amendment": "Add selected-session-replay-lens.tsx and corresponding test to initial five-component scope; manager must freeze exact author amendment; no global CSS or other carrier"
+    },
+    {
+      "id": "N3",
+      "instance": "pkg07",
+      "role": "WORKING_ITEMS",
+      "status_at_v1": "PREPARATION_IMPLEMENTATION_HELD",
+      "objective": "Prepare and gate DEL-07-01-V3-01 and DEL-07-03-V3-01 within PKG-07; freeze exact child briefs before implementation launch.",
+      "write_scope": "PKG-07 selected deliverable records and disjoint filesystem/instruction-root product files explicitly frozen by manager",
+      "depends_on": [
+        "N1"
+      ],
+      "children": [
+        "N3A",
+        "N3B"
+      ],
+      "current_scope": "Manager of held org-layer scope and activated workflow-contract scope"
+    },
+    {
+      "id": "N4",
+      "instance": "run_records",
+      "role": "Ephemeral Agent 2",
+      "status_at_v1": "RUNNING",
+      "objective": "Materialize run control records from parent-directed scope; no delegation.",
+      "write_scope": "This AgentRuns directory top-level metadata and initial named instance launch/status records",
+      "depends_on": [
+        "N1"
+      ]
+    },
+    {
+      "id": "N5",
+      "instance": "pkg05_packet",
+      "role": "WORKING_ITEMS",
+      "status_at_v1_1": "PREPARATION_ONLY",
+      "objective": "D-APP-102 candidate packet preparation toward D-APP-116; no ruling or implementation",
+      "write_scope": "Disjoint candidate packet and local carrier/run-instance records; shared register reserved to later integration",
+      "depends_on": [
+        "N1"
+      ],
+      "app_hold_preflight": "ALLOW parent-reported; caller retains raw evidence",
+      "current_status": "SCOPED_WORK_COMPLETE_AWAITING_FINAL_GOVERNED_FANIN",
+      "register_integration": "AWAITING_RULING proposal row integrated; final review pending"
+    },
+    {
+      "id": "N6",
+      "instance": "pkg08_packet",
+      "role": "WORKING_ITEMS",
+      "status_at_v1_1": "PREPARATION_ONLY",
+      "objective": "D-APP-103 candidate packet preparation toward D-APP-117; no ruling or implementation",
+      "write_scope": "Disjoint candidate packet and local carrier/run-instance records; shared register reserved to later integration",
+      "depends_on": [
+        "N1"
+      ],
+      "app_hold_preflight": "ALLOW parent-reported; caller retains raw evidence",
+      "current_status": "SCOPED_WORK_COMPLETE_AWAITING_FINAL_GOVERNED_FANIN",
+      "register_integration": "AWAITING_RULING proposal row integrated; final review pending"
+    },
+    {
+      "id": "N7",
+      "instance": "pkg03_packet",
+      "role": "WORKING_ITEMS",
+      "status_at_v1_1": "PREPARATION_ONLY",
+      "objective": "D-APP-101 candidate packet preparation toward D-APP-118; no ruling or implementation",
+      "write_scope": "Disjoint candidate packet and local carrier/run-instance records; shared register reserved to later integration",
+      "depends_on": [
+        "N1"
+      ],
+      "app_hold_preflight": "ALLOW parent-reported; caller retains raw evidence",
+      "current_status": "SCOPED_WORK_COMPLETE_AWAITING_FINAL_GOVERNED_FANIN",
+      "register_integration": "Exact D-APP-118 AWAITING_RULING row integrated"
+    },
+    {
+      "id": "N3A",
+      "instance": "pkg07/org_layer",
+      "role": "TASK",
+      "objective": "DEL-07-01-V3-01 org-layer preparation",
+      "status": "HELD_D_APP_119_AWAITING_RULING",
+      "write_scope": "No implementation until precise boot write boundary resolved",
+      "depends_on": [
+        "N3"
+      ]
+    },
+    {
+      "id": "N3B",
+      "instance": "pkg07/workflow_contract",
+      "role": "TASK",
+      "objective": "DEL-07-03-V3-01 workflow contract, activated parent-reported",
+      "write_scope": "Exact frozen manager brief; disjoint from shell and held org-layer scope",
+      "depends_on": [
+        "N3"
+      ],
+      "repair_report": "TS2352 test cast fixed; canonical 59 tests/typecheck PASS reported at instances/pkg07/workflow-author/repair03; fresh R2 pending",
+      "current_status": "SCOPED_WORK_COMPLETE_AWAITING_FINAL_GOVERNED_FANIN"
+    },
+    {
+      "id": "N8",
+      "instance": "dependency_prep",
+      "role": "Ephemeral Agent 2",
+      "objective": "Prepare ignored App dependencies and scratch support only",
+      "write_scope": "Ignored App dependency installation outputs and scratch only; no tracked package manifests, lockfiles, product or authority mutation",
+      "depends_on": [
+        "N1"
+      ]
+    }
+  ],
+  "concurrency_groups": [
+    [
+      "N2",
+      "N3B",
+      "N4",
+      "N5",
+      "N6",
+      "N7",
+      "N8"
+    ]
+  ],
+  "future_stages": [
+    "Exact package child brief freeze and gate",
+    "Disjoint package implementation",
+    "Freeze all writes",
+    "Fresh read-only software-code-review over complete frozen product diff and D-APP-60 enumeration-derived governed-diff verifier",
+    "Serialized shared registered checks and integration fan-in",
+    "Separate CHANGE closeout; one iteration commit and receipt; push",
+    "Next discovery on same branch; dependent nodes in later iteration; PR only at lawful terminus"
+  ],
+  "source_identities": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "bytes": 10073
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "bytes": 16986
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+      "bytes": 16290
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md",
+      "sha256": "729668896820ca15730f4e2969253cc15b29b696c5a8d99b503c054723e5b4dc",
+      "bytes": 36842
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+      "sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d",
+      "bytes": 30613
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-108_RULING_SCA_APP_010_SEATING_AND_SHELL_QUESTIONS_2026-09-04.md",
+      "sha256": "7ced5e05342de3425673990e5ab3bb37a202cd24198ec6427111ef68c31e64f8",
+      "bytes": 9669
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-111_RULING_SCA_APP_010_POINTER_ACCEPTANCE_2026-09-05.md",
+      "sha256": "b8f404d0bcbf4cf55c89ebcaa17cf9aa7c52be0c0ec8d8c123a357387ded6cac",
+      "bytes": 3240
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+      "bytes": 132164
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+      "sha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+      "bytes": 1917
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/_LATEST.md",
+      "sha256": "74d9b1d46acbc8b9e8664da9833340da634dec00abd034fc12940665a4d2e291",
+      "bytes": 78
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md",
+      "sha256": "f9b02806eeab1a578e6729c41fc367074758a2b95cc0eda9c8d2edbda446f314",
+      "bytes": 2508
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+      "sha256": "65101c31a52ccffffce81a913d396cf3d4ed5f3845fbb78bc00ac9568af8d257",
+      "bytes": 19217
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_STATUS.md",
+      "sha256": "586b424e72f3a0f743a25280361c1cea6c9457cb8cb8c4c0681b25ef7ed279c3",
+      "bytes": 5411
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_STATUS.md",
+      "sha256": "ff890bdc73c23e9bb98c3cf354fd6e1ae67b175949ec52a3603ff64ae9b61b11",
+      "bytes": 5696
+    }
+  ],
+  "app_hold_preflight": "Parent reports dispatch CLEAR for the three initial targets; raw command/result evidence must be retained by responsible caller before reliance.",
+  "accepted_basis": [
+    "D-APP-108 seated scopes",
+    "Applied SCA-APP-010 decomposition",
+    "D-APP-111 accepted CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034"
+  ],
+  "inherited_discovery_reports": {
+    "corpus": "v20 matches, parent-reported",
+    "receipt": "244 valid, parent-reported",
+    "committed_overlay": "none, parent-reported"
+  },
+  "owner_decision_points": [
+    "Any fast-reject boundary, disputed scope or authority ambiguity",
+    "Lifecycle issuance, acceptance and pointer moves",
+    "Root/provider/live/release acts",
+    "Owner merge"
+  ],
+  "claims": "Derivative run evidence, not authority. Initial selection COMMIT-SAFE is parent-forwarded; no final implementation/check/closeout verdict claimed.",
+  "amendment": "AMENDMENT_v1.8.md",
+  "selection_updates": {
+    "A_org_layer": "HELD; owner ask pending",
+    "B_workflow_and_T1_shell": "Activated parent-reported; exact manager-frozen implementation briefs govern",
+    "stale_map_delta": "DEL-08-02 parity trigger retired by OWNER_RULING_2026-08-21_APP_PARKED_DECISION_SLATE.md section 2; delta only, not new authority"
+  },
+  "selection_verifier_return": "instances/selection_review/RETURN.md",
+  "implementation_and_closeout_effect": "Five bounded obligations produced; A held D-APP-119; no package/lifecycle closure or required premerge PASS",
+  "reserved_nodes": [
+    {
+      "id": "R1",
+      "purpose": "Fresh software-code-review over complete frozen diff",
+      "depends_on": [
+        "N2",
+        "N3B"
+      ],
+      "write_scope": "None; return evidence only"
+    },
+    {
+      "id": "R2",
+      "purpose": "D-APP-60 enumeration-derived governed-diff verification",
+      "depends_on": [
+        "N2",
+        "N3B",
+        "N5",
+        "N6",
+        "N7"
+      ],
+      "write_scope": "None; return evidence only"
+    },
+    {
+      "id": "R3",
+      "purpose": "Serialized final registered validation after all writes freeze",
+      "depends_on": [
+        "R1",
+        "R2"
+      ],
+      "write_scope": "Run evidence only"
+    },
+    {
+      "id": "R4",
+      "purpose": "Separate CHANGE scoped closeout",
+      "depends_on": [
+        "R3"
+      ],
+      "write_scope": "Final authorized staging/commit/push only"
+    }
+  ],
+  "first_pass_findings": {
+    "path": "validation/FIRST_PASS_FINDINGS.md",
+    "sha256_at_recording": "ccd3830d87d9243299caba2378b9c5b9892b5a193ad2f0a7b4054ab4f4a57825",
+    "claim_status": "Provisional first-pass results; no rerun PASS inferred",
+    "remaining": "Typecheck fixture repair, provider timeout isolation/repeat, premerge missing-binding diagnosis; final verification pending"
+  },
+  "global_validation_state": "Local wrapper/premerge FAIL; configured branch workflow_dispatch CI owed after reviewed commit/push; no PR or merge requirement inferred",
+  "iteration_1_handoff": "HANDOFF_STATE.md",
+  "shared_closeout": "Receipt245 and completion log integrated; final frozen governed review and CHANGE pending",
+  "final_evidence_refs": [
+    "instances/pkg02/REVIEW_RETURN_v2.md",
+    "instances/pkg02/browser/attempt-4/result.json",
+    "instances/pkg02/browser/VISUAL_REVIEW.md",
+    "instances/pkg02/MANAGER_RETURN.md",
+    "instances/pkg07/workflow-review-r2/RETURN.md",
+    "instances/pkg07/FINAL_VALIDATION_BACKCHECK.json",
+    "validation/release-03/artifacts/release-quality/latest/summary.json",
+    "validation/build-02/commands.json",
+    "validation/basic-01/commands.json",
+    "validation/final-01/commands.json",
+    "validation/record-selfcheck-02/command.json"
+  ],
+  "continuation": "Dispatch existing harness-premerge.yml on branch after reviewed commit/push; rederive successors using actual CI result and branch checks; no anticipated PASS or premature terminus"
+}

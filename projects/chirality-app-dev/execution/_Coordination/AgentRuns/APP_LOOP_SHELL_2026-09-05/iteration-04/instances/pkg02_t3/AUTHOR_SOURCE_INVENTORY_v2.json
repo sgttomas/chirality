@@ -1,0 +1,28 @@
+{
+  "product": [
+    "src/components/shell/file-tree-panel.tsx",
+    "src/components/shell/document-view.tsx",
+    "src/components/woven-dialogue/right-panel.tsx",
+    "src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "src/components/woven-dialogue/coordination-panel.tsx",
+    "src/components/woven-dialogue/selected-session-replay-lens.tsx",
+    "src/app/api/working-root/file/route.ts",
+    "src/app/api/working-root/file/file-policy.ts",
+    "electron/main.ts",
+    "electron/preload.ts"
+  ],
+  "tests": [
+    "src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "src/__tests__/components/woven-right-panel.test.tsx",
+    "src/__tests__/components/file-tree-panel.test.tsx",
+    "src/__tests__/components/document-view.test.tsx",
+    "src/__tests__/api/working-root/file-route.test.ts",
+    "src/__tests__/electron/document-handoff.test.ts",
+    "src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx"
+  ],
+  "root": "projects/chirality-app-dev/frontend",
+  "mode": "exact whitelist, not obligation to modify every file",
+  "read_only_state": "src/lib/woven-dialogue/woven-workspace-state.ts",
+  "amendment": "RECONNECT_TEST_AMENDMENT_v1.md; only newly added test mutable during this repair; original17 remain frozen"
+}

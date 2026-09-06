@@ -1,0 +1,9 @@
+# Iteration 3 terminal validation return
+
+Terminal Receipt247 validator and ordinary unstaged diff check PASS in final-01. Final two-file source freeze/review identities verify, and all source inputs match the tested release-02 inventory with zero drift. TERMINAL_IDENTITY.json pins the observed Receipt247 ledger, completion log, HANDOFF_STATE and WORK_GRAPH_v3 bytes. Manager final closeout remains separately parent-owned/pending; this result does not imply its completion.
+
+Current full gates remain:1636Vitest PASS/4skipped; typecheck PASS; Section9 all16PASS; build PASS; repo selfcheck PASS; practitioner350PASS; hold reliance/integrity PASS. They were not repeated after integration because source did not drift. Actual local premerge FAIL/overall wrapper FAIL is retained with exact503 missing-runtime-daemon-binding body. Branch CI is still owed for the new committed source; earlier iteration1 CI is not substituted.
+
+All outputs captured as lossless JSON strings or canonical machine-summary JSON, with exact commands/cwd/nonsecret env/times/exits/source hashes. No evidence trimming. Prior attempt/manifests unchanged. Service stopped before build, no concurrent frontend and practitioner suite, and no owned process remains. Library-only slice has no UI render claim. A1 new stage/fresh owner proof consequence remains in SEALED_CHECK_PLAN; no lifecycle, authority-pointer, owner acceptance or release action.
+
+Parent owns manager closeout, final governed review/delta verification and CI dispatch. CHANGE owns full staged diff --cached --check plus scoped commit/push. Ordinary unstaged diff here is not a full staged pass. Evidence remains supplementary derivative validation, not authoritative decomposition/acceptance. Full artifact hashes in FINAL_MANIFEST.json; final-01 contains terminal command/output and freeze evidence.

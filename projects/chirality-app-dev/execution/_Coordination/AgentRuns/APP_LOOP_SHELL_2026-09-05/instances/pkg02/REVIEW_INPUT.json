@@ -1,0 +1,65 @@
+{
+  "schema": "pkg02-review-input/v1",
+  "frozen_at": "2026-09-05T20:18:16.729021+00:00",
+  "base": "044a009e215e08b69c9e0887da424938a34aafcb",
+  "implementation_brief": "AUTHOR_BRIEF.md",
+  "amendments": [
+    "AUTHOR_AMENDMENT_v1.1.md"
+  ],
+  "diff": "FROZEN_PRODUCT.diff",
+  "diff_sha256": "5e1bcd180c5826c868f1cb02ff794582b9d4369c52aff49a38849e4a2f44a99b",
+  "paths": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+      "sha256": "2e3cc7dc2017fa12b2916e8e2224b6cf61def45a84f1645ce11e6e952347f75a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "sha256": "237e069a4b6e70a95611ac1dc4983e7befc2ab12cd86705fea37e6ac8770cf83"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+      "sha256": "fadb04734606c36b42ca7ce958586a8d3b8da8f1c62b8618f1f624da8ee7a78b"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "sha256": "b7bc2114df48e6b045ba9a5ab22043a9cc779532b6e7623c30e0c34aab9830d3"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "bb5d6e95c8a4da231c30d722814b9d349e9d0f37a888da17dc7e334de5075a95"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+      "sha256": "cb3df477dbb29361a5d5885376111d6a37176675ec2564c4f0d931b60ca5f381"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+      "sha256": "6c73d2de5a4ff13a470d61afcb2acdbae690ff45fbde273a7f6822542e084016"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+      "sha256": "57c9be3c23da144ac17570f8a13866e625254a6f9d48f94b4350335b1c966e9f"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "7524a9e85deab54c5f99f43d548a1a5ca15f10409bcbe616f53b2c7c52361c7f"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+      "sha256": "31d839601bfe91bbbd7b49cc65972d7ca4cff15cb10183879632968132064230"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "62c4cc6e34b63cb375f6a89d41ac9633ee42b779679c6434cab7849585e28ad6"
+    }
+  ],
+  "verification_evidence": [
+    "author/VERIFICATION.json",
+    "author/FOCUSED_TESTS_3.log",
+    "author/CHANGE_SCOPE.json",
+    "author/DIFF_CHECK.log"
+  ],
+  "pending_evidence": "Parent global gates and manager browser proof not final; evaluate product correctness and scoped evidence honestly.",
+  "instruction_root": "/Users/ryan/.codex/worktrees/85d6/chirality"
+}

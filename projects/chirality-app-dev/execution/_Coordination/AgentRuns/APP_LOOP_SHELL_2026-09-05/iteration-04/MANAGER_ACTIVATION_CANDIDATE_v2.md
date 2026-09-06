@@ -1,0 +1,28 @@
+# PKG02 T3 manager activation candidate v2
+
+Status: READY_FOR_PARENT_APPROVAL_AND_DISPATCH. HELP_HUMAN agent activation under existing DEL-02-03-V3-01 scope, not owner ruling. Resolve REPO_ROOT via git rev-parse --show-toplevel; WORKING_ROOT={REPO_ROOT}/projects/chirality-app-dev. Read actual WORKING_ITEMS/root/project instructions, current Remaining/SOW/dependencies and INPUT_IDENTITIES.json; verify APP-HOLD before operations. Base239c8f2a53397f88f16e3d56ecbba9af83829246. PREDECESSOR_CI_BINDING.json verifies actual head-bound run33994563156 PASS; older failures remain history.
+
+Objective: full T3 Files/Document right-panel switcher/viewer slice. Preserve primary/session projections; Activity/Workflows/Settings content and pop-out remain separate. D108Q4: text/markdown/code/CSV10MB limit; uncapped PDF renderer and Office QuickLook with open-default; zero new dependencies. Use existing project/instruction filesystem policy, not normalizeProjectRoot alone or invented .git rules. Main independently validates handoff targets; existing sender policy unchanged.
+
+Authorized source loci under WORKING_ROOT/frontend: src/components/shell/file-tree-panel.tsx, src/components/shell/document-view.tsx; exact child-listed panel/shell/replay integration within src/components/woven-dialogue/**; new bounded endpoint and endpoint-local policy within src/app/api/working-root/file/**; electron/main.ts and electron/preload.ts additive handoff only; exact child-associated tests. Manager freezes exact child file inventories before launch within those loci. No additional per-child parent approval needed unless scope/authority/shared writes change. src/lib/woven-dialogue/woven-workspace-state.ts is read-only unless demonstrated need returns for separately coordinated amendment. No globals.css or helper outside listed loci implied; no runtime/provider/session-truth changes.
+
+Manager carrier writes: DEL-02-03 exact _STATUS.md/MEMORY.md/new bounded _run_records and this activation's iteration04/instances/pkg02_t3/** evidence; preserve lifecycle/owner-merge conditions and other Remaining. Parent owns shared receipt/log/register/graph. One integration owner serializes Electron/woven writes; children remain bounded and nondelegating.
+
+Native setup permission: extract existing verified /Users/ryan/Library/Caches/chirality/electron-dist/electron-v43.2.0-darwin-arm64.zip into disposable scratch, use isolated user-data and owned processes for actual proof, clean up. Parent-relayed manager verification:122090802 bytes, SHAad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28, lock Electron43.2.0, frontend/scripts/verify-electron-dist.mjs exit0. Freeze/reverify this supply evidence and setup before execution. No network needed; no source/lock/version/config mutation from setup. Request exact host escalation when required; no counterfeit native proof.
+
+Bounded T2 no-folder/omitted-seam proposal may be prepared within the same package only after parent confirms next free decision ID and exact packet scope. It has no source allowance or hidden runtime fallback. No Root writes/routing/acceptance inferred. Return genuine scope conflicts before proceeding.
+
+Required return: exact pre/post identities and frozen complete diff; fresh TASK software-code-review over all source; meaningful file-policy/containment and sender/main-validation tests; actual browser/native proof; full typecheck/tests/build/premerge/harness/receipt/staged-check pipeline with recorded failures and cleanup. Parent owns shared checks and final governed refutation. Missing proof remains explicit. Evidence lossless JSON streams; diagnose exact raw artifact classes before review freeze, no blanket exemptions. Partial residuals/rollback/next owner and immutable manager manifest required. A1 new frontend bytes invalidate staged login-proof procedure; future proof needs new stage/fresh owner execution.
+
+OwnerStandingApproval: D-APP-64 §3
+AgentJudgment: SELECT_AND_ADVANCE
+SelectedOutcome: prepare/dispatch full T3 Files/Document scope after actual predecessorCI, with one shared integration owner and separate bounded T2 proposal.
+JudgedBy: HELP_HUMAN APP_LOOP_SHELL_2026-09-05 iteration04; record writer materializes parent candidate.
+OwnerCaseSelection: NONE
+RejectedAlternatives: concurrent overlapping T2/T3 source writes collide; workspace-state/global helper expansion lacks demonstrated requirement; no-folder bypass changes runtime truth; prior CI cannot validate future T3 bytes; unverified native binaries cannot prove platform behavior.
+RationaleArtifact: execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/MANAGER_ACTIVATION_CANDIDATE_v2.md
+IndependentVerifier: PENDING required fresh governed review; no verifier verdict exists yet; not NOT_REQUIRED.
+EffectStatus: HELD
+PreservedGates: D64 fast-reject boundaries, F-APP-1..5, K-AUTH-1/K-ENGINE-6, APP-HOLD, exact scope/ownership, owner reliance/acceptance/lifecycle/pointers, Root/provider/release gates, actual native/source/CI evidence and independent review.
+
+Ontology: App Files/Document presentation is distinct from runtime session authority. Epistemology: exact predecessorCI/supply/source hashes support only their own claims. Praxeology: bounded children with one integration owner and actual browser/native gates. Axiology: advance ruled document workflow while preserving user data, authority and reproducibility. Parent dispatch, when it occurs, is an agent activation; final acceptance and owner acts remain separate. Receipt248 must directly cite this rationale and every later exercise/classification supplement.

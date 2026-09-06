@@ -1,0 +1,58 @@
+[
+  {
+    "id": "status",
+    "exit_code": 0
+  },
+  {
+    "id": "log",
+    "exit_code": 0
+  },
+  {
+    "id": "receipt-validator",
+    "exit_code": 0
+  },
+  {
+    "id": "receipt-head",
+    "exit_code": 0
+  },
+  {
+    "id": "receipt-tail",
+    "exit_code": 0
+  },
+  {
+    "id": "overlay",
+    "exit_code": 0
+  },
+  {
+    "id": "register",
+    "exit_code": 0
+  },
+  {
+    "id": "root-boundary-steer",
+    "exit_code": 0
+  },
+  {
+    "id": "root-history-candidate",
+    "exit_code": 0
+  },
+  {
+    "id": "upstream-boundary-diff",
+    "exit_code": 0
+  },
+  {
+    "id": "corpus",
+    "exit_code": 0
+  },
+  {
+    "id": "hold",
+    "exit_code": 0
+  },
+  {
+    "id": "harness-status",
+    "exit_code": 0
+  },
+  {
+    "id": "selfcheck",
+    "exit_code": 0
+  }
+]

@@ -1,17 +1,18 @@
 # Status: DEL-08-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-09-04
+**Last Updated:** 2026-09-05
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Prepare the D-APP-53 §3 Option C per-attempt subagent decision-replay
-  decision packet under D-APP-103 (`SELECTABLE`: packet preparation is
-  authorized by D-APP-103 and no packet file exists yet; implementation stays
-  gated on the later ruling on that packet).
+- Per-attempt subagent decision-replay packet prepared under D-APP-103:
+  `execution/_Coordination/_DECISIONS/D-APP-117_PACKET_PER_ATTEMPT_DECISION_REPLAY_2026-09-05.md`.
+  Implementation remains (`gated: owner ruling on D-APP-117`); packet is
+  PROPOSAL / AWAITING_RULING, with capture/handoff, persistence and consumer
+  ownership kept distinct. Packet preparation does not authorize implementation.
 
 - **DEL-08-04-V3-01** (`NOT_SELECTABLE_UNTIL: Root WP-03/WP-05 fixtures (accepted DEL-02-07 supervisor and DEL-02-10 API v2 returns routed to App); G-ROLE/G-APPR/G-SBX/G-SENT/G-PROT/G-ENV/G4 for claims`) — class-aware managed/native delegation bridge for v3.
   Trace: OUT-002, REQ-001 through REQ-005, AC-002, VER-002; CLM-033.
@@ -32,6 +33,7 @@
   Removed when: merged with review PASS.
 
 ## History
+- 2026-09-05 - Prepared D-APP-117 under D-APP-103 (APP_LOOP_SHELL_2026-09-05 / pkg08_packet). At most three options and recommendation; no implementation, dependency acceptance, lifecycle or Checking Approval SHA change. Packet awaits owner ruling; governing review and closeout evidence remain in the supervising run.
 - 2026-09-05 - Remaining marker normalized under D-APP-114 (`SELECTABLE` packet preparation; no scope change).
 - 2026-09-05 - D-APP-109 (owner direction 2026-09-05): dependency register re-extracted against the applied decomposition row L371 with the held edge proposals emitted as cycle-participating, non-gating rows (run `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/`); `_CONTEXT.md` Traceability, Anticipated Artifacts, and Source Authority aligned to the applied row. No Remaining, lifecycle, Checking Approval SHA, product, or release change.
 - 2026-09-04 - SCA-APP-010 shell-redesign seating (D-APP-108; owner adopted the seating list as presented): Remaining items seeded DEL-08-04-V3-02 (SELECTABLE: none) with gate, dependency, write-locus, check, and return contracts; ruled questions cited by item. `ScopeOfWork.md` re-pinned to the applied decomposition at `dbd812a52d5ed0cb3ed173f3aaaa68703a914291` with a SCA-APP-010 Gate-5 Current Contract section; `_CONTEXT.md` and `_REFERENCES.md` aligned (WI-061, WI-062, WI-063, WI-064, WI-065). Run evidence `execution/_Coordination/AgentRuns/APP_SCA_APP_010_SEATING_2026-09-04/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.

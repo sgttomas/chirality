@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "attempt-2/document-1440-light.png",
+      "sha256": "ed7d4be05963f0314d8f042ba0b7a840c4d52f72a7c607c4099c259bd780c501",
+      "bytes": 168464
+    },
+    {
+      "path": "attempt-2/failure.png",
+      "sha256": "edcba84dcac2c15f0b3d6be139ea3c3fa6efb136ad876601f4df603fd1b5a1ce",
+      "bytes": 129373
+    },
+    {
+      "path": "attempt-2/files-1440-light.png",
+      "sha256": "3a3e19ddfe79f23cbcfb9f44034194929e8e26ffcbb87a8ef34812ab799bb4c0",
+      "bytes": 188866
+    },
+    {
+      "path": "attempt-2/input-fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "attempt-2/input-script.mjs",
+      "sha256": "4797a2e680799a60102c149d960abe9e4c858670ccf14314c17a4c9d94db6507",
+      "bytes": 16873
+    },
+    {
+      "path": "attempt-2/result.json",
+      "sha256": "3654d4bec1a31ef76194ebef4777b289512d1502daa347628ef0fa95061d89f7",
+      "bytes": 7022
+    },
+    {
+      "path": "attempt-2/source-manifest.json",
+      "sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+      "bytes": 4793
+    }
+  ]
+}

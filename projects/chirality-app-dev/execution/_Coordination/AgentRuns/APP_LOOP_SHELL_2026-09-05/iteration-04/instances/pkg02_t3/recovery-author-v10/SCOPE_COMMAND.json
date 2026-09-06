@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/validate_change_scope.py",
+    "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "--allowed",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+    "--allowed",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "--path",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "--path",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0,
+  "stderr": "",
+  "path_basis": "Actual18 hashes compared to v9 preimages"
+}

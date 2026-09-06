@@ -1,0 +1,58 @@
+{
+  "new_files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/.gitattributes",
+      "sha256": "8153d5a085bbc382147d88aacf779d27d9518576bd5f2b992575706964dfff1e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/ci-01/.gitattributes",
+      "sha256": "60b3aa2d674ea20f222d23ac2460a80906f0b2782940d4342a677fd33fc243ae"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/artifact-classification-01/STAGED_FAILURE.json",
+      "sha256": "31f977c5b7017ff2a8cfe05e657f00bc63709656f2bc3747e77507fbe292587a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/artifact-classification-01/BEFORE_EFFECT.json",
+      "sha256": "5e4ad3f37ee28c71b499e7c6b64564c0e2d00359c462c9f6bce74cbc1ebf9219"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/artifact-classification-01/RATIONALE_AND_REVIEW_BLOCK.md",
+      "sha256": "7220c4263e31aae85e384db069da1e9629348889195eb2e2634cc78ad596071d"
+    }
+  ],
+  "raw_hashes_unchanged": true,
+  "preimages": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/discovery/receipt-head.stdout",
+      "sha256": "5c5f2a2e50464136aedbad49162874550d2b323f1e48621cb548204a55ecab58",
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/discovery/upstream-app-script.stdout",
+      "sha256": "273214e640f662d840a1bf507177e67904b3c36b04a40095a50666d06e9dd064",
+      "observed_classes": [
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/FROZEN_CARRIER.diff",
+      "sha256": "6c73b8e7255be90002911a870c4e7e64c55529e074b0d6362eae81a739a3acdc",
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/ci-01/logs-01.stdout.log",
+      "sha256": "994f8edf8a6c8b7167dc4b3101e30b99202d1fae32585f8ac82e10e1ef8fb332",
+      "observed_classes": [
+        "trailing-space"
+      ]
+    }
+  ],
+  "staged_check": "PENDING",
+  "fresh_delta_review": "PENDING"
+}

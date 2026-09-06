@@ -1,0 +1,95 @@
+[
+  {
+    "id": "git-status",
+    "argv": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T20:19:56.526575+00:00",
+    "ended_at": "2026-09-05T20:19:56.923563+00:00",
+    "duration_seconds": 0.39682133309543133,
+    "exit_code": 0
+  },
+  {
+    "id": "git-head",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T20:19:56.923747+00:00",
+    "ended_at": "2026-09-05T20:19:56.932440+00:00",
+    "duration_seconds": 0.008698249934241176,
+    "exit_code": 0
+  },
+  {
+    "id": "node",
+    "argv": [
+      "node",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T20:19:56.932602+00:00",
+    "ended_at": "2026-09-05T20:19:56.949314+00:00",
+    "duration_seconds": 0.016719084000214934,
+    "exit_code": 0
+  },
+  {
+    "id": "npm",
+    "argv": [
+      "npm",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T20:19:56.949463+00:00",
+    "ended_at": "2026-09-05T20:19:57.033147+00:00",
+    "duration_seconds": 0.08369220793247223,
+    "exit_code": 0
+  },
+  {
+    "id": "python",
+    "argv": [
+      "python3",
+      "--version"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "started_at": "2026-09-05T20:19:57.033329+00:00",
+    "ended_at": "2026-09-05T20:19:57.042513+00:00",
+    "duration_seconds": 0.009191333083435893,
+    "exit_code": 0
+  },
+  {
+    "id": "app-hold-preflight",
+    "argv": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "APP_LOOP_SHELL_2026-09-05:GLOBAL_VALIDATION",
+      "--target",
+      "DEL-02-02",
+      "--target",
+      "DEL-07-03",
+      "--target",
+      "DEL-03-01",
+      "--target",
+      "DEL-05-05",
+      "--target",
+      "DEL-08-04"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "started_at": "2026-09-05T20:19:57.096669+00:00",
+    "ended_at": "2026-09-05T20:19:57.992812+00:00",
+    "duration_seconds": 0.8961300831288099,
+    "exit_code": 0
+  },
+  {
+    "id": "release-quality-with-registered-premerge-service",
+    "exit_code": 1
+  }
+]

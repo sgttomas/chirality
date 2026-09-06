@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/usr/bin/osascript",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/finder_selection.applescript"
+  ],
+  "status": "TIMEOUT_10S",
+  "stdout": "None",
+  "stderr": "None",
+  "effective_environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "HOME": "/Users/ryan",
+    "TMPDIR": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/",
+    "LANG": "C.UTF-8",
+    "LC_CTYPE": "C.UTF-8",
+    "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x52"
+  },
+  "timestamp": "2026-09-06T01:45:34.176917+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-05T20:31:23.015197+00:00",
+  "owned_server_session": 72786,
+  "termination": "write_stdin Ctrl-C; tool returned exit_code 0",
+  "port": 43181,
+  "connect_ex_after_stop": 1,
+  "browser_result": "attempt-4/result.json",
+  "browser_context_and_process_closed": true,
+  "disposable_state": "Playwright fresh context only; no persistent profile requested; API fixture interception, no filesystem fixture roots created",
+  "host_connect_ex_after_stop": 61,
+  "sandbox_connect_ex_note": "EPERM (1), not used to infer shutdown"
+}

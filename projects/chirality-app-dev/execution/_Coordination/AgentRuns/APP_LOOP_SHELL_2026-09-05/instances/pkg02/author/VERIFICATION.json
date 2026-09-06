@@ -1,0 +1,40 @@
+{
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/__tests__/components/woven-dialogue-viewport.test.tsx",
+    "src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "src/__tests__/components/woven-dialogue-route.test.tsx",
+    "src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "environment": "Inherited session environment; no task-specific test overrides. Manager-provisioned node_modules. No installs by author.",
+  "node": "v24.18.0",
+  "vitest": "4.1.10",
+  "exit_code": 0,
+  "test_files_passed": 6,
+  "tests_passed": 25,
+  "stdout_stderr": "FOCUSED_TESTS_3.log",
+  "attempts": [
+    {
+      "log": "FOCUSED_TESTS_1.log",
+      "exit_code": 1,
+      "reason": "Transient JSX syntax in partial edit; repaired."
+    },
+    {
+      "log": "FOCUSED_TESTS_2.log",
+      "exit_code": 0,
+      "tests": 22,
+      "files": 5
+    },
+    {
+      "log": "FOCUSED_TESTS_3.log",
+      "exit_code": 0,
+      "tests": 25,
+      "files": 6
+    }
+  ]
+}

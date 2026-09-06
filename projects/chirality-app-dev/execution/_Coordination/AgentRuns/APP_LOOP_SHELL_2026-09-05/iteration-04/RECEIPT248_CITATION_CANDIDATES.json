@@ -1,0 +1,27 @@
+{
+  "status": "PREPARATION_ONLY_NO_RECEIPT",
+  "receipt_id": 248,
+  "parent_receipt": 247,
+  "examined_through": "239c8f2a53397f88f16e3d56ecbba9af83829246",
+  "exact_rationale_candidates": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/MANAGER_ACTIVATION_CANDIDATE_v2.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/PROPOSED_PLAN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/FINAL_MANAGER_FANIN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/MANAGER_DISPATCH_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/RATIONALE.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_MANAGER_FANIN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/MANAGER_LOCAL_HISTORY_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/RATIONALE.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/FILE_VIEW_BOUNDARY_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/IMAGE_HEADER_DISPOSITION_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/MANAGER_PLAN_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/PDF_CSP_FALLBACK_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/RECONNECT_TEST_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVEAL_MENU_PLACEMENT_RATIONALE_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/REVIEW_REPAIR_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/T3_COMPLETENESS_AMENDMENT_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/NEGATIVE_SENDER_PLAN_v1.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/SETUP_RATIONALE_v1.md"
+  ],
+  "constraint": "Deduplicate exercises and use explicit declared iteration-relative paths if necessary to meet4096byte receipt cap; no missing exercise citation or opaque directory-only pointer"
+}

@@ -1,0 +1,42 @@
+{
+  "preimage_artifact": "FAILURE_BEFORE_EFFECT.json",
+  "attribute_file_sha256": "e6e2f93a3ebae0b939d1c187c2e9b89e3bdd11ffa275a6193f2928ecb84f7efe",
+  "raw_postimages": [
+    {
+      "path": "instances/pkg02_t3/recovery-author-v9/FOCUSED_TEST.stdout.log",
+      "sha256": "5f704fc671bb49c700428dc5624c80a5e829a87d00d8062e2ddc9e66adbad683",
+      "unchanged": true
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-author-v10/FOCUSED_TEST.stdout.log",
+      "sha256": "e70bad3e0057af3b3b6bbfc0bd98355fce5183b341e44c957107f2bef075215b",
+      "unchanged": true
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-author-v9/REPAIR_DIFF_v9.diff",
+      "sha256": "4e27eee969b21c4bceea6166d4c412f63ff1f4fa8a718de8e7ad74b6b28792db",
+      "unchanged": true
+    },
+    {
+      "path": "instances/pkg02_t3/recovery-author-v10/REPAIR_DIFF_v10.diff",
+      "sha256": "89f4298434d1e91f504e4da38fd6694f1b074145ab6db8d59c015de7910d4e81",
+      "unchanged": true
+    }
+  ],
+  "check_attr": {
+    "argv": [
+      "git",
+      "check-attr",
+      "whitespace",
+      "--",
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/FOCUSED_TEST.stdout.log",
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/FOCUSED_TEST.stdout.log",
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/REPAIR_DIFF_v9.diff",
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/REPAIR_DIFF_v10.diff"
+    ],
+    "exit_code": 0,
+    "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/FOCUSED_TEST.stdout.log: whitespace: -blank-at-eof\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/FOCUSED_TEST.stdout.log: whitespace: -blank-at-eof\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v9/REPAIR_DIFF_v9.diff: whitespace: -trailing-space\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/REPAIR_DIFF_v10.diff: whitespace: -trailing-space\n",
+    "stderr": ""
+  },
+  "full_staged_check": "PENDING CHANGE; per-artifact diagnostics do not replace it"
+}

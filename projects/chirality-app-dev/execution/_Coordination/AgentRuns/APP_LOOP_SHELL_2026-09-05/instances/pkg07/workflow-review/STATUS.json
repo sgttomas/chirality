@@ -1,0 +1,9 @@
+{
+  "status": "CODE_REVIEW_PASS",
+  "native_agent": "/root/pkg07/workflow_review",
+  "coverage": "100% frozen source and tests",
+  "actionable_findings": 0,
+  "writes": [],
+  "remaining": "Parent deterministic evidence including canonical stdout/stderr/effective env",
+  "model": "GPT-6; exact serving ID unavailable"
+}

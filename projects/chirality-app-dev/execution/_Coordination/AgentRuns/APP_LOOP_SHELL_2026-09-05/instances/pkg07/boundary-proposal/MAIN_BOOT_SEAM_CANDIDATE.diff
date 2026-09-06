@@ -1,0 +1,29 @@
+--- a/projects/chirality-app-dev/frontend/electron/main.ts
++++ b/projects/chirality-app-dev/frontend/electron/main.ts
+@@ -27,7 +27,10 @@
+   prepareDesktopHarnessEnvironment,
+   resolveDesktopProjectBinding
+ } from './desktop-project-client';
+-import { resolvePackagedDaemonInstructionRoot } from './daemon-instruction-root';
++import {
++  assertDaemonOrganisationLayerReady,
++  resolvePackagedDaemonInstructionRoot
++} from './daemon-instruction-root';
+ import {
+   applyPackagedRendererRequestPolicy,
+   buildRendererContentSecurityPolicy,
+@@ -752,6 +755,14 @@
+   } else {
+     process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+   }
++  // A configured organisation layer must pass its pins before any runtime starts.
++  // Verification failures propagate; they must never select a fallback root.
++  await assertDaemonOrganisationLayerReady({
++    instructionRoot: process.env.CHIRALITY_INSTRUCTION_ROOT!,
++    projectId: DESKTOP_PROJECT_ID,
++    resolveProjectRoots: (projectId) =>
++      new ProjectRegistry(runtimeControlPaths().runtimeDirectory).roots(projectId)
++  });
+   desktopLogger.info('runtime.daemon.starting', {
+     activationPolicy: resolveDaemonActivationPolicy(process.env),
+     packaged: app.isPackaged,

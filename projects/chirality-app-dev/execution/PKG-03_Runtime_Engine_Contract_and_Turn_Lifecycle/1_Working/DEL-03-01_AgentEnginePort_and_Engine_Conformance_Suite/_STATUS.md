@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-09-03
+**Last Updated:** 2026-09-05
 **blocked-on:** D-APP-47, D-APP-48, D-T0-09, D-30
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
@@ -10,14 +10,7 @@
 
 ## Remaining
 
-- (`SELECTABLE`) Prepare the D-APP-89 later-retirement packet authorized by D-APP-101: run a
-  fresh execution-time zero-consumer census across App and affected clients;
-  specify exact facade/workspace deletion and rollback bytes; gather Root/App
-  build and focused-test evidence; record release disposition as none; and
-  prepare the required D-APP-76 Root ruling request for routing. Packet
-  preparation is selectable; routing the request to a Root surface is an
-  owner-granted write (`NOT_SELECTABLE_UNTIL: owner grants Root write scope`);
-  deletion remains gated on later App and Root rulings.
+- (gated: owner ruling on D-APP-118; `NOT_SELECTABLE_UNTIL: owner grants Root write scope` for routing) D-APP-101 packet preparation is complete as D-APP-118, with retirement **HOLD**: 13 rollback-test imports and validator/workspace dependence remain; exact narrow deletion fails the validator in scratch and is not recommended. Await the App owner's disposition; the required D-APP-76 Root request is drafted inside the packet but not routed. Deletion still requires later App and Root rulings and a governed rollback-test/validator disposition. Rerun the fresh census and evidence on changed relevant source/authority before any later retirement act. Final retained-facade Root/App build and focused-test evidence is bound in the packet; App premerge remains an actual missing-daemon-binding failure, deferred to PR CI, not a pass.
 
 - **DEL-03-01-V3-01** (`NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10); exact-pin claims until G2-accepted supply is consumable and G-WIRE passes`) — App client conformance consumption for Root API v2.
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L303 (verify the App client against Root-owned runtime contracts and produce conformance evidence without redefining generic runtime semantics).
@@ -29,6 +22,7 @@
   Removed when: App conformance against the accepted v2 contracts lands with G-WIRE evidence.
 
 ## History
+- 2026-09-05 - D-APP-101 retirement packet prepared as D-APP-118; literal zero-consumer condition refuted by 13 rollback imports and validator/workspace dependence. Exact candidate/inverse and baseline build/focused evidence recorded under APP_LOOP_SHELL_2026-09-05/instances/pkg03_packet. Retirement HOLD; Root request not routed; lifecycle, Checking Approval SHA, and dependencies unchanged.
 - 2026-09-05 - Remaining marker normalized under D-APP-114 (`SELECTABLE` packet preparation; Root routing named as an owner-granted write; no scope change).
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-08-17 - D-APP-101 authorized the bounded facade-retirement packet, not

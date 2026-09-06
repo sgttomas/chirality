@@ -1,0 +1,144 @@
+{
+  "files": [
+    {
+      "path": "browser/attempt-3/csv-1440-light.png",
+      "sha256": "df63f077aa8ad11c858c1c41d7f57e0b0e874ec37b10d658127b32bd74be0d0d",
+      "bytes": 156326
+    },
+    {
+      "path": "browser/attempt-3/direct-image-download.svg",
+      "sha256": "ef3e99c803e8d2a192dc48420949c2c090ff68bdbcf25144efedd645e9ef6151",
+      "bytes": 368
+    },
+    {
+      "path": "browser/attempt-3/document-1440-dark.png",
+      "sha256": "027a3caae26a9b484d1a924a5cec678b5087fadd993c46a7437ae4a826367474",
+      "bytes": 166684
+    },
+    {
+      "path": "browser/attempt-3/document-1440-light.png",
+      "sha256": "8ae0d6f06a9b891bb6715c0d690ae899412a85462ddb4bb53d036d3469d0bf7f",
+      "bytes": 168475
+    },
+    {
+      "path": "browser/attempt-3/document-900-light.png",
+      "sha256": "1020d816e49b1bdc1bc7d529a336b54ae005e27e28bbdf1783b916ba2de9c0f3",
+      "bytes": 137323
+    },
+    {
+      "path": "browser/attempt-3/document-960-light.png",
+      "sha256": "50bb24feaa8027f8c126b175af91bb1aefe9dc3b7f0d97d8360fc044baf0ff4c",
+      "bytes": 167313
+    },
+    {
+      "path": "browser/attempt-3/expanded-1440-light.png",
+      "sha256": "a0ea925983377a193720304effd303b904f2c60218fb6f067f7fdfc268de5e48",
+      "bytes": 106241
+    },
+    {
+      "path": "browser/attempt-3/files-1440-light.png",
+      "sha256": "bcf1c958011a00a9d0a381ad76d845d935863b273c7e5277556e62f77a3ada34",
+      "bytes": 188865
+    },
+    {
+      "path": "browser/attempt-3/image-natural-1440-light.png",
+      "sha256": "a5bd15234f669ebae1260a8f0f6cf09391d9b013141b4381d189e3661e3801e7",
+      "bytes": 158509
+    },
+    {
+      "path": "browser/attempt-3/input-fixture.json",
+      "sha256": "40efda8574f2efee6d855de7b9b3c1de4934719c012c7a23e2220756b9672320",
+      "bytes": 1466
+    },
+    {
+      "path": "browser/attempt-3/input-script.mjs",
+      "sha256": "1b4eb2d3d8af6c3dc42d7dab1f294f95277d52b30e061a78912001c11fd47aee",
+      "bytes": 16874
+    },
+    {
+      "path": "browser/attempt-3/json-1440-light.png",
+      "sha256": "7321dc4ca794f0fdb31ea5b574abbdc82968439d07870e70e9194a86fdd86dbc",
+      "bytes": 173152
+    },
+    {
+      "path": "browser/attempt-3/json-malformed-1440-light.png",
+      "sha256": "d7c98426bab55f888d6cbdbcf77f73f349c55922c1f1382ce0dd341da68f1f5d",
+      "bytes": 156987
+    },
+    {
+      "path": "browser/attempt-3/office-browser-1440-light.png",
+      "sha256": "14888b3bb39980befd39998bd2681113d7a088666990e614a8b6bcd2db40f8d3",
+      "bytes": 157197
+    },
+    {
+      "path": "browser/attempt-3/oversized-1440-light.png",
+      "sha256": "a5c6b2c89bd930d740faffe40115b8df90629a862aaa582635a55f59c9412f5c",
+      "bytes": 155920
+    },
+    {
+      "path": "browser/attempt-3/oversized-image-1440-light.png",
+      "sha256": "4b69b213136db3f2ec18fc9fa6eeff4d5a96f7e08526a5229073e4c7d0b9b9bf",
+      "bytes": 158656
+    },
+    {
+      "path": "browser/attempt-3/panel-controls-1440-dark.png",
+      "sha256": "ce463e95f7352b04e255642ea82a5f4c159606b62d4246f9ef83b3383a98f77f",
+      "bytes": 167324
+    },
+    {
+      "path": "browser/attempt-3/panel-controls-1440-light.png",
+      "sha256": "26f4af72a4315c7e85eb13947a0994e051b519379e8ff75d283f82f69667c549",
+      "bytes": 169252
+    },
+    {
+      "path": "browser/attempt-3/panel-controls-900-dark.png",
+      "sha256": "60f06ce6a50e38077ae9ff9d279d3d96531f29e302a75aaa386ec0727fb26d08",
+      "bytes": 132110
+    },
+    {
+      "path": "browser/attempt-3/panel-controls-900-light.png",
+      "sha256": "f3e9ee1311018e1ac962bec9fccd199c3438accfb6cd8ff8fb92e1d68229b89e",
+      "bytes": 132269
+    },
+    {
+      "path": "browser/attempt-3/panel-controls-960-dark.png",
+      "sha256": "9d8b51c4c4db5532dfad363a6f5c1b6c8a7a24646ba3032cb1cad8e3afef33b1",
+      "bytes": 157562
+    },
+    {
+      "path": "browser/attempt-3/panel-controls-960-light.png",
+      "sha256": "62592e58a3b1fb9531422e62dec285786ce74f10dc3b2ce17e34f54ee8cb486c",
+      "bytes": 158673
+    },
+    {
+      "path": "browser/attempt-3/parent-replay-1440-light.png",
+      "sha256": "d3cfcb460c8c748b378c8ecae77550ce6a08eb7fb1d7ead768a85f3263ad04cc",
+      "bytes": 183028
+    },
+    {
+      "path": "browser/attempt-3/pdf-browser-1440-light.png",
+      "sha256": "94686b51dc00d94bcb2bafd4327e0b0847bdd2d494e233b6617a7b12e03d65a6",
+      "bytes": 144323
+    },
+    {
+      "path": "browser/attempt-3/replay-1440-light.png",
+      "sha256": "0783509d1008776e8b338f267f2eb61812c8fb5a4da897d92863dddfb815ff40",
+      "bytes": 189724
+    },
+    {
+      "path": "browser/attempt-3/result.json",
+      "sha256": "ede0a004daeb8b7caf534251626f701e777b1c9da01da065812194aa0776fb8e",
+      "bytes": 32916
+    },
+    {
+      "path": "browser/attempt-3/source-manifest.json",
+      "sha256": "d2d2d4d9c9632d51ad3b37f600657fc38c1cfb31bf56df4c9e0caf58ece7cd90",
+      "bytes": 4793
+    },
+    {
+      "path": "browser/attempt-3/svg-image-1440-light.png",
+      "sha256": "2991aad842fdf7ecc033c610516ef70d8ebee2e5a9f00287aa438bfe5b341083",
+      "bytes": 157782
+    }
+  ]
+}

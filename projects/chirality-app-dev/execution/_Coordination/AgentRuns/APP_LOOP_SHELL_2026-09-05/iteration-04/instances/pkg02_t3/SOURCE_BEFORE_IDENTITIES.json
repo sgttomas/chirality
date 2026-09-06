@@ -1,0 +1,87 @@
+[
+  {
+    "path": "frontend/src/components/shell/file-tree-panel.tsx",
+    "exists": true,
+    "sha256": "6d5ef9b406e3aa07d4421dfa71323de040981daea0d2c8a2eef55fa854d5af67"
+  },
+  {
+    "path": "frontend/src/components/shell/document-view.tsx",
+    "exists": true,
+    "sha256": "9dfe17e734a6f76d5470792ef4d62daeea51d8005dfaa5e6fe7341b8cd0120b1"
+  },
+  {
+    "path": "frontend/src/components/woven-dialogue/right-panel.tsx",
+    "exists": false,
+    "sha256": null
+  },
+  {
+    "path": "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "exists": true,
+    "sha256": "62c4cc6e34b63cb375f6a89d41ac9633ee42b779679c6434cab7849585e28ad6"
+  },
+  {
+    "path": "frontend/src/components/woven-dialogue/coordination-panel.tsx",
+    "exists": true,
+    "sha256": "6c73d2de5a4ff13a470d61afcb2acdbae690ff45fbde273a7f6822542e084016"
+  },
+  {
+    "path": "frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+    "exists": true,
+    "sha256": "5b5d7439f7f5e946836907a828ec516291f6d93445914b76e96ac1eba4ceb841"
+  },
+  {
+    "path": "frontend/src/app/api/working-root/file/route.ts",
+    "exists": false,
+    "sha256": null
+  },
+  {
+    "path": "frontend/src/app/api/working-root/file/file-policy.ts",
+    "exists": false,
+    "sha256": null
+  },
+  {
+    "path": "frontend/electron/main.ts",
+    "exists": true,
+    "sha256": "84cdd9620f8226422dd68099239023cdf4dbf1b276c4ae4562fb025821793131"
+  },
+  {
+    "path": "frontend/electron/preload.ts",
+    "exists": true,
+    "sha256": "61dc59cfe26b2ce73fb4b6d3d34f955e16c60b5838e77a6868975fd7cb334759"
+  },
+  {
+    "path": "frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "exists": true,
+    "sha256": "bb5d6e95c8a4da231c30d722814b9d349e9d0f37a888da17dc7e334de5075a95"
+  },
+  {
+    "path": "frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "exists": true,
+    "sha256": "2e3cc7dc2017fa12b2916e8e2224b6cf61def45a84f1645ce11e6e952347f75a"
+  },
+  {
+    "path": "frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "exists": false,
+    "sha256": null
+  },
+  {
+    "path": "frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "exists": false,
+    "sha256": null
+  },
+  {
+    "path": "frontend/src/__tests__/components/document-view.test.tsx",
+    "exists": false,
+    "sha256": null
+  },
+  {
+    "path": "frontend/src/__tests__/api/working-root/file-route.test.ts",
+    "exists": false,
+    "sha256": null
+  },
+  {
+    "path": "frontend/src/__tests__/electron/document-handoff.test.ts",
+    "exists": false,
+    "sha256": null
+  }
+]

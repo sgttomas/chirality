@@ -1,0 +1,32 @@
+{
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/__tests__/components/woven-dialogue-viewport.test.tsx",
+    "src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "src/__tests__/components/woven-dialogue-route.test.tsx",
+    "src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "src/__tests__/components/selected-session-replay-lens.test.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "environment": "Inherited session environment; no task-specific test overrides. Manager-provisioned node_modules. No installs by author.",
+  "node": "v24.18.0",
+  "vitest": "4.1.10",
+  "exit_code": 0,
+  "test_files_passed": 7,
+  "tests_passed": 29,
+  "stdout_stderr": "FOCUSED_TESTS_revision2.log",
+  "attempts": [
+    {
+      "log": "FOCUSED_TESTS_revision2.log",
+      "exit_code": 0,
+      "tests": 29,
+      "files": 7
+    }
+  ],
+  "revision": 2,
+  "note": "Component metadata stacking only; existing semantic tests unchanged. Browser readability rerun remains required."
+}

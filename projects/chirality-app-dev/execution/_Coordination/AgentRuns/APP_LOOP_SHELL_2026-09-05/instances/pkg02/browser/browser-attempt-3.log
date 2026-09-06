@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Open Coordination', exact: true })[22m
+
+    at /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/browser/render-proof.mjs:75:72 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Open Coordination', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.18.0

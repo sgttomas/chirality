@@ -1,0 +1,29 @@
+{
+  "environment": {
+    "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "HOME": "/Users/ryan",
+    "TMPDIR": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/",
+    "LANG": "C.UTF-8",
+    "LC_CTYPE": "C.UTF-8",
+    "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x52",
+    "CHIRALITY_USER_DATA": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data",
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "ELECTRON_RENDERER_URL": "http://127.0.0.1:39119",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/app-loop-t3-native-ac3dexfs/user-data/runtime/auth/tokens/operator.token",
+    "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "com.chirality.t3-proof-ac3dexfs",
+    "CHIRALITY_DAEMON_GUI_SPAWN": "0"
+  },
+  "ownedPlist": "/Users/ryan/Library/LaunchAgents/com.chirality.t3-proof-ac3dexfs.plist",
+  "daemonMode": false,
+  "forbiddenActions": [
+    "install",
+    "start",
+    "stop",
+    "uninstall",
+    "activate-model",
+    "login",
+    "send"
+  ],
+  "claim": "No inherited runtime/credential/provider configuration. HOME is preserved unchanged, not redirected; unique LaunchAgent label status-only. GUI app.isPackaged=false prevents CLI install and no --runtime-daemon enters runtimeHost."
+}

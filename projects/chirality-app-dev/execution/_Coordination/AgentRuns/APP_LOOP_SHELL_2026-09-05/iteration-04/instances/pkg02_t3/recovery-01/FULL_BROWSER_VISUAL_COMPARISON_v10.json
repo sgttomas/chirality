@@ -1,0 +1,137 @@
+[
+  {
+    "name": "csv-1440-light.png",
+    "sha256": "4f2da00c505d6eedcb0844fdbe35e0bd0415eb2147682a00ef16045b7accace9",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "document-1440-dark.png",
+    "sha256": "c14ae1c912b9244addeea8d2e2573e53a660ca75153e4b75182762253c8db59a",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "document-1440-light.png",
+    "sha256": "7f6ac52cdc588175397a7d5c889d98201c254ee2d474fa6de5c6668000f6b70e",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "document-900-light.png",
+    "sha256": "4df11055b76e38f823803d0e562c03dcbd1e98787a99843cd47e5318ec247578",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "document-960-light.png",
+    "sha256": "b2f6538b7fd696141ee7dbce95f61699ad97bad3a2cfb89222aa4fd9a88cef5d",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "expanded-1440-light.png",
+    "sha256": "38e5f33523e2251c3464057ed668d12e0d67caa184e9d002a5adb2197a3bf931",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "files-1440-light.png",
+    "sha256": "d81e15ea019d502dbf914acec6a88aae091dc7378aedd431fcf44292ab45b597",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "image-natural-1440-light.png",
+    "sha256": "8a365e4663af02c3021c8afb99ab1c71b3604ba6246415106d5515654219fc5d",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "json-1440-light.png",
+    "sha256": "e39b9a6c39f513e78e0ed1039ef179368155499334b3b1bc7563fbb878a5ea68",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "json-malformed-1440-light.png",
+    "sha256": "443c39a17c3471c260ac485eb2b79e23e2f0af77e5c5f5f66a68b4c85ea075ff",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "office-browser-1440-light.png",
+    "sha256": "6e2ed39ce3a08702cb14f2ea12258a9015498a8eb7e8fbad35bf3a92077f3ca9",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "oversized-1440-light.png",
+    "sha256": "88e2ce47ed674f9a54882b911467e7661977524e404c291f09d4594b69438115",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "oversized-image-1440-light.png",
+    "sha256": "cc3be73d91e107563f259235d40eba0ef02dbe2bf8f8d3739f60befc7c5e39cb",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "panel-controls-1440-dark.png",
+    "sha256": "86f5125be36aa1412e158969bbfbbdf6b42aac462c3b1c80f1ee53139ae589e4",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "panel-controls-1440-light.png",
+    "sha256": "b2d08762d5457f03224e37a9f5c76b44a1a20314a5e987e981ea461ce32320d4",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "panel-controls-840-dark.png",
+    "sha256": "25f94c5aee0a057fb66008789e15155d5c0b56d1bc1531de5f5dfa0b8394ac51",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "panel-controls-840-light.png",
+    "sha256": "cd30a334c803683a576bafc3fe8a7d93c4fc3954e18f8a0808f50e92b2eca1d7",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "panel-controls-860-dark.png",
+    "sha256": "507b91605ec3f3a448d9de2d7393c713334ece151a365e891966360615e8292b",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "panel-controls-860-light.png",
+    "sha256": "91d31556779254bb853e6596d6084ac31a5f9e214dd461e126938bb2b607f940",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "panel-controls-900-dark.png",
+    "sha256": "bc476d8a13ee7d86a4c9ea785b2d779bb7bd4f902b79cde73d52748d076573ca",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "panel-controls-900-light.png",
+    "sha256": "08d4603e37861b5c8edbd9db180d29aa1651fa2d45304d188d44df89b98c0311",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "panel-controls-960-dark.png",
+    "sha256": "cba433134369fd11a4e09ce7912fd61b3e46fb82d14572e6f738eab7634d74c0",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "panel-controls-960-light.png",
+    "sha256": "9bf1c8f30d57104ab4977c42497d41258c59f4113d5ed162ad8cee4253ffdab4",
+    "exact_v9_visual_bytes": true
+  },
+  {
+    "name": "parent-replay-1440-light.png",
+    "sha256": "e2f8493bd6dcdbbcd9c34c4ce3f52c08561191a8ac71a246b52db3409503a01b",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "pdf-browser-1440-light.png",
+    "sha256": "7f6bf700f272be4b5ff40b32f2bba7e56dd6d3a45552d093a039d5af2d8b0cf8",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "replay-1440-light.png",
+    "sha256": "f7246255af1a688b49d7466f46294b1dbc3110e41e2c5a33e2c96737f2712cc5",
+    "exact_v9_visual_bytes": false
+  },
+  {
+    "name": "svg-image-1440-light.png",
+    "sha256": "05520b63878e14ea9eaca3d996539b72de7783f4ca952da68ea520e4e1f74b36",
+    "exact_v9_visual_bytes": true
+  }
+]

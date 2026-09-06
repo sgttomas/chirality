@@ -1,0 +1,26 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/select_affected_checks.py",
+    "projects/chirality-app-dev/software-workflow.json",
+    "frontend/electron/main.ts",
+    "frontend/electron/preload.ts",
+    "frontend/src/__tests__/api/working-root/file-route.test.ts",
+    "frontend/src/__tests__/components/document-view.test.tsx",
+    "frontend/src/__tests__/components/file-tree-panel.test.tsx",
+    "frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "frontend/src/__tests__/electron/document-handoff.test.ts",
+    "frontend/src/app/api/working-root/file/file-policy.ts",
+    "frontend/src/app/api/working-root/file/route.ts",
+    "frontend/src/components/shell/document-view.tsx",
+    "frontend/src/components/shell/file-tree-panel.tsx",
+    "frontend/src/components/woven-dialogue/right-panel.tsx",
+    "frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0,
+  "stdout": "{\n  \"checks\": [\n    \"app-hold-integrity\",\n    \"frontend-test\",\n    \"frontend-typecheck\",\n    \"harness-self-check\"\n  ],\n  \"paths\": [\n    \"frontend/electron/main.ts\",\n    \"frontend/electron/preload.ts\",\n    \"frontend/src/__tests__/api/working-root/file-route.test.ts\",\n    \"frontend/src/__tests__/components/document-view.test.tsx\",\n    \"frontend/src/__tests__/components/file-tree-panel.test.tsx\",\n    \"frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx\",\n    \"frontend/src/__tests__/components/woven-dialogue-shell.test.tsx\",\n    \"frontend/src/__tests__/components/woven-right-panel.test.tsx\",\n    \"frontend/src/__tests__/electron/document-handoff.test.ts\",\n    \"frontend/src/app/api/working-root/file/file-policy.ts\",\n    \"frontend/src/app/api/working-root/file/route.ts\",\n    \"frontend/src/components/shell/document-view.tsx\",\n    \"frontend/src/components/shell/file-tree-panel.tsx\",\n    \"frontend/src/components/woven-dialogue/right-panel.tsx\",\n    \"frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx\"\n  ],\n  \"reasons\": {\n    \"frontend-test\": [\n      \"frontend/electron/main.ts\",\n      \"frontend/electron/preload.ts\",\n      \"frontend/src/__tests__/api/working-root/file-route.test.ts\",\n      \"frontend/src/__tests__/components/document-view.test.tsx\",\n      \"frontend/src/__tests__/components/file-tree-panel.test.tsx\",\n      \"frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx\",\n      \"frontend/src/__tests__/components/woven-dialogue-shell.test.tsx\",\n      \"frontend/src/__tests__/components/woven-right-panel.test.tsx\",\n      \"frontend/src/__tests__/electron/document-handoff.test.ts\",\n      \"frontend/src/app/api/working-root/file/file-policy.ts\",\n      \"frontend/src/app/api/working-root/file/route.ts\",\n      \"frontend/src/components/shell/document-view.tsx\",\n      \"frontend/src/components/shell/file-tree-panel.tsx\",\n      \"frontend/src/components/woven-dialogue/right-panel.tsx\",\n      \"frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx\"\n    ],\n    \"frontend-typecheck\": [\n      \"frontend/electron/main.ts\",\n      \"frontend/electron/preload.ts\",\n      \"frontend/src/__tests__/api/working-root/file-route.test.ts\",\n      \"frontend/src/__tests__/components/document-view.test.tsx\",\n      \"frontend/src/__tests__/components/file-tree-panel.test.tsx\",\n      \"frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx\",\n      \"frontend/src/__tests__/components/woven-dialogue-shell.test.tsx\",\n      \"frontend/src/__tests__/components/woven-right-panel.test.tsx\",\n      \"frontend/src/__tests__/electron/document-handoff.test.ts\",\n      \"frontend/src/app/api/working-root/file/file-policy.ts\",\n      \"frontend/src/app/api/working-root/file/route.ts\",\n      \"frontend/src/components/shell/document-view.tsx\",\n      \"frontend/src/components/shell/file-tree-panel.tsx\",\n      \"frontend/src/components/woven-dialogue/right-panel.tsx\",\n      \"frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx\"\n    ]\n  },\n  \"schema\": \"chirality-affected-checks/v1\"\n}\n",
+  "stderr": ""
+}

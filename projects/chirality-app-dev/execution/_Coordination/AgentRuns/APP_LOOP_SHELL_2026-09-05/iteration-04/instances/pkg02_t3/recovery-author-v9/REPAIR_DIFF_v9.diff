@@ -1,0 +1,97 @@
+--- v8/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
++++ v9/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+@@ -136,7 +136,7 @@
+       expect(shellState.mounted).toBe(1); expect(shellState.unmounted).toBe(0);
+       expect(tree.root.findAll(node => Boolean(node.props['data-focused-surface']))).toHaveLength(0);
+     };
+-    const click = (label: string) => act(() => { tree.root.findAllByType('button').find(button => button.children.join('') === label)!.props.onClick(); });
++    const click = (label: string) => act(() => { tree.root.findAllByType('button').find(button => (button.props['aria-label'] ?? button.children.join('')) === label)!.props.onClick(); });
+     click('Close Coordination');
+     act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
+@@ -243,13 +243,41 @@
+     act(() => tree.unmount());
+   });
+ 
++  it('provides explicit desktop reopen glyphs and full accessible names across responsive states', async () => {
++    let measure!: (entries: Array<{ contentRect: { width: number } }>) => void;
++    vi.stubGlobal('ResizeObserver', class { constructor(callback: typeof measure) { measure = callback; } observe() {} disconnect() {} });
++    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
++    let tree!: ReactTestRenderer;
++    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'section' && element.props['data-woven-surface'] ? {} : null }); });
++    for (const panel of ['Navigator', 'Coordination']) {
++      act(() => tree.root.findByProps({ 'aria-label': `Close ${panel}` }).props.onClick());
++    }
++    for (const width of [1440, 960, 959, 860, 1440]) {
++      act(() => measure([{ contentRect: { width } }]));
++      for (const panel of ['Navigator', 'Coordination']) {
++        const button = tree.root.findByProps({ 'aria-label': `Open ${panel}` });
++        if (width >= 960) {
++          expect(button.findByProps({ 'aria-hidden': 'true' }).children).toEqual(['+']);
++        } else {
++          expect(button.children).toEqual([`Open ${panel}`]);
++        }
++      }
++    }
++    for (const panel of ['Navigator', 'Coordination']) {
++      act(() => tree.root.findByProps({ 'aria-label': `Open ${panel}` }).props.onClick());
++      expect(tree.root.findByProps({ 'aria-label': `Close ${panel}` }).children).toEqual([`Close ${panel}`]);
++    }
++    // Rendered content/state is covered here; actual glyph visibility and geometry need browser proof.
++    act(() => tree.unmount());
++  });
++
+   it('keeps collapse, detail return and expansion as distinct real controls without remounting primary', async () => {
+     const persist = vi.fn();
+     vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+     let tree!: ReactTestRenderer; await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+     const primary = tree.root.findByProps({ 'data-chat-input': 'primary' });
+     const saved = () => JSON.parse(persist.mock.calls.at(-1)![1]);
+-    const click = (label: string) => act(() => tree.root.findAllByType('button').find(button => button.children.join('') === label)!.props.onClick());
++    const click = (label: string) => act(() => tree.root.findAllByType('button').find(button => (button.props['aria-label'] ?? button.children.join('')) === label)!.props.onClick());
+     const assertPrimary = () => expect(tree.root.findByProps({ 'data-chat-input': 'primary' })).toBe(primary);
+     act(() => tree.root.findByType(RightPanel).props.onOpenFile(`${shellState.projectRoot}/spec.md`));
+     click('Expand panel'); expect(saved().rightPanelExpanded).toBe(true); assertPrimary();
+--- v8/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
++++ v9/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+@@ -464,6 +464,8 @@
+       <section ref={workspaceRef} className={`woven-workspace woven-t3-workspace${stacked ? ' is-stacked' : ''}`} style={style} data-woven-surface="dialogue">
+         <style>{`
+           .woven-t3-workspace .woven-right-panel { display:flex; flex-direction:column; min-width:0; height:100%; overflow:auto; }
++          .woven-t3-workspace:not(.is-stacked) > .woven-region.is-collapsed > .woven-region-toggle { display:grid; place-items:center; max-width:none; color:var(--ink); font-size:1rem; }
++          .woven-t3-workspace > .woven-region.is-collapsed > .woven-region-toggle::after { content:none; }
+           .woven-t3-workspace > .woven-region--coordination { display:flex; flex-direction:column; }
+           .woven-t3-workspace > .woven-region--coordination:not(.is-collapsed) > .woven-region-toggle { position:static; align-self:flex-end; flex:0 0 auto; margin:0.4rem 0.65rem; }
+           .woven-t3-workspace > .woven-region--coordination > .woven-right-panel { height:auto; min-height:0; flex:1 1 0; }
+@@ -516,13 +518,14 @@
+           <button
+             type="button"
+             className="woven-region-toggle button-muted"
++            aria-label={workspaceState.navigatorCollapsed ? 'Open Navigator' : 'Close Navigator'}
+             onClick={() => {
+               updateWorkspaceState({
+                 navigatorCollapsed: !workspaceState.navigatorCollapsed
+               });
+             }}
+           >
+-            {workspaceState.navigatorCollapsed ? 'Open Navigator' : 'Close Navigator'}
++            {workspaceState.navigatorCollapsed ? (stacked ? 'Open Navigator' : <span aria-hidden="true">+</span>) : 'Close Navigator'}
+           </button>
+           {!workspaceState.navigatorCollapsed ? (
+             <Navigator
+@@ -597,13 +600,14 @@
+           <button
+             type="button"
+             className="woven-region-toggle button-muted"
++            aria-label={workspaceState.coordinationCollapsed ? 'Open Coordination' : 'Close Coordination'}
+             onClick={() => {
+               updateWorkspaceState({
+                 coordinationCollapsed: !workspaceState.coordinationCollapsed
+               });
+             }}
+           >
+-            {workspaceState.coordinationCollapsed ? 'Open Coordination' : 'Close Coordination'}
++            {workspaceState.coordinationCollapsed ? (stacked ? 'Open Coordination' : <span aria-hidden="true">+</span>) : 'Close Coordination'}
+           </button>
+           {!workspaceState.coordinationCollapsed ? (
+             <RightPanel state={workspaceState} sessionOpen={coordinationView === 'session'}

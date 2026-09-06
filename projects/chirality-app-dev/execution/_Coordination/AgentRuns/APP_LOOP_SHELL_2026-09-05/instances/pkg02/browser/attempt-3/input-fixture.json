@@ -1,0 +1,20 @@
+{
+  "projectRoot": "/fixture/chirality-app-dev",
+  "session": {
+    "sessionId": "t1-recorded-fixture",
+    "projectRoot": "/fixture/chirality-app-dev",
+    "persona": "WORKING_ITEMS",
+    "mode": "governed",
+    "createdAt": "2026-09-04T12:00:00.000Z",
+    "updatedAt": "2026-09-05T12:00:00.000Z"
+  },
+  "event": {
+    "schemaVersion": 1,
+    "eventId": "t1-message-fixture",
+    "sessionId": "t1-recorded-fixture",
+    "turnId": "t1-turn-fixture",
+    "timestamp": "2026-09-05T12:00:00.000Z",
+    "type": "message.completed",
+    "data": {"role": "assistant", "text": "Recorded fixture content; presentation evidence only."}
+  }
+}

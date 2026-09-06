@@ -1,0 +1,20 @@
+{
+  "supplement_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/D64_ATTRIBUTION_SUPPLEMENT_18_v1.json",
+  "supplement_sha256": "879bb702d632c902235ff371fd4e079d967aa70eef00173b03c05d2f9ad57d84",
+  "rows_verified": 18,
+  "original_hash_mismatches": [],
+  "ten_fields_four_lenses_verified": true,
+  "effect": "HELD governedacceptance; actual draft/review effects separately preserved; no impersonation of original judgments",
+  "pending_direct_receipt_citations": [
+    "execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/D64_ATTRIBUTION_SUPPLEMENT_18_v1.json",
+    "execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/validation/sanitization-01/ATTRIBUTION_SUPPLEMENT_v1.md"
+  ],
+  "parent_reported_proof_update": {
+    "action_observations": "49 PASS, does not establish visual PASS",
+    "visual": "All8 desktop reopening captures blank; parent confirmed; manager inspected20 PNGs/40actions;12stacked good",
+    "process": "Parent reports serverPID38095 stopped and portfree before repair",
+    "repair": "Bounded2path author repair underway under separate manager authorization",
+    "claim": "No final T3/browser/native/fullgate/CI closure inferred; earlier source/globalPASS historical to its frozen inputs"
+  },
+  "recorder_scope": "Shared record audit only; no checks/source/process/receipt/manager mutations"
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   FILE_TREE_POLL_INTERVAL_MS,
   createRefreshScheduler,
@@ -29,9 +29,11 @@ type TreeNodeViewProps = {
   node: TreeNode;
   expandedByPath: Record<string, boolean>;
   onToggle: (nodePath: string) => void;
+  onOpenFile?: (filePath: string) => void;
+  selectedPath?: string | null;
 };
 
-function TreeNodeView({ node, expandedByPath, onToggle }: TreeNodeViewProps): JSX.Element {
+function TreeNodeView({ node, expandedByPath, onToggle, onOpenFile, selectedPath }: TreeNodeViewProps): JSX.Element {
   const hasChildren = node.kind === 'directory' && Boolean(node.children?.length);
   const isExpanded = hasChildren ? (expandedByPath[node.path] ?? true) : true;
   const icon = node.kind === 'directory' ? 'DIR' : node.kind === 'symlink' ? 'LNK' : 'FILE';
@@ -56,9 +58,14 @@ function TreeNodeView({ node, expandedByPath, onToggle }: TreeNodeViewProps): JS
           </span>
         )}
         <span className="tree-item-icon">{icon}</span>
-        <span className="tree-item-name" title={node.path}>
-          {node.name}
-        </span>
+        {node.kind === 'file' && onOpenFile ? (
+          <button type="button" className="tree-item-name" title={node.path}
+            aria-current={selectedPath === node.path ? 'true' : undefined}
+            onClick={() => onOpenFile(node.path)}>{node.name}</button>
+        ) : node.kind === 'directory' ? (
+          <button type="button" className="tree-item-name" title={node.path}
+            aria-expanded={isExpanded} onClick={() => onToggle(node.path)}>{node.name}</button>
+        ) : <span className="tree-item-name" title={node.path}>{node.name}</span>}
       </div>
       {hasChildren && isExpanded ? (
         <ul className="tree-list">
@@ -68,6 +75,8 @@ function TreeNodeView({ node, expandedByPath, onToggle }: TreeNodeViewProps): JS
               node={child}
               expandedByPath={expandedByPath}
               onToggle={onToggle}
+              onOpenFile={onOpenFile}
+              selectedPath={selectedPath}
             />
           ))}
         </ul>
@@ -79,8 +88,12 @@ function TreeNodeView({ node, expandedByPath, onToggle }: TreeNodeViewProps): JS
   );
 }
 
-export function FileTreePanel(): JSX.Element {
-  const { projectRoot } = useWorkspace();
+export function FileTreePanel({ onOpenFile, selectedPath }: { onOpenFile?: (path: string) => void; selectedPath?: string | null } = {}): JSX.Element {
+  const { projectRoot, chooseProjectRoot, hasElectronDirectoryPicker, errorMessage } = useWorkspace();
+  // The preload capability is client-only; keep SSR and the first client render identical.
+  const [mounted, setMounted] = useState(false);
+  const directoryPickerAvailable = mounted && hasElectronDirectoryPicker;
+  useEffect(() => { setMounted(true); }, []);
   const [tree, setTree] = useState<TreeNode | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -225,7 +238,7 @@ export function FileTreePanel(): JSX.Element {
 
   const panelBody = useMemo(() => {
     if (!projectRoot) {
-      return <p className="panel-empty">Select a Working Root to view filesystem contents.</p>;
+      return <p className="panel-empty">Choose a folder to see its files.</p>;
     }
 
     if (loading) {
@@ -242,17 +255,29 @@ export function FileTreePanel(): JSX.Element {
 
     return (
       <ul className="tree-list">
-        <TreeNodeView node={tree} expandedByPath={expandedByPath} onToggle={toggleExpanded} />
+        <TreeNodeView node={tree} expandedByPath={expandedByPath} onToggle={toggleExpanded} onOpenFile={onOpenFile} selectedPath={selectedPath} />
       </ul>
     );
-  }, [projectRoot, loading, error, tree, expandedByPath, toggleExpanded]);
+  }, [projectRoot, loading, error, tree, expandedByPath, toggleExpanded, onOpenFile, selectedPath]);
 
   return (
-    <aside className="panel panel--file-tree">
-      <header className="panel-header">
+    <aside className="panel panel--file-tree" style={{ display: 'grid', gridTemplateRows: 'auto minmax(0, 1fr) auto' }}>
+      <header className="panel-header" style={{ gridRow: 1 }}>
         <h2>File Tree</h2>
       </header>
-      <div className="panel-body">{panelBody}</div>
+      <div className="panel-body" style={{ gridRow: 2 }} onKeyDown={(event) => {
+        if (!['ArrowDown', 'ArrowUp'].includes(event.key)) return;
+        const buttons = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('button.tree-item-name'));
+        const index = buttons.indexOf(event.target as HTMLButtonElement);
+        if (index < 0) return;
+        event.preventDefault();
+        buttons[Math.max(0, Math.min(buttons.length - 1, index + (event.key === 'ArrowDown' ? 1 : -1)))]?.focus();
+      }}>{panelBody}</div>
+      <footer style={{ gridRow: 3, padding: '0.65rem 1rem', borderTop: '1px solid var(--rule)', overflowWrap: 'anywhere' }}><button type="button" disabled={!directoryPickerAvailable} onClick={() => { void chooseProjectRoot(); }}>Choose folder</button>
+        <span title={projectRoot ?? undefined}>{projectRoot ? projectRoot.split('/').filter(Boolean).at(-1) ?? '/' : 'No folder'}</span>
+        {!directoryPickerAvailable ? <p>Choose a folder using the folder selector above.</p> : null}
+        {errorMessage ? <p role="alert">{errorMessage}</p> : null}
+      </footer>
     </aside>
   );
 }

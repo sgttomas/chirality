@@ -1,0 +1,57 @@
+{
+  "status": "ADDITIVE_FORMAT_CORRECTION_ONLY",
+  "originals_preserved": true,
+  "records": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+      "sha256": "92e17e881f218a5fc7e721444fcffe614bb633ce2afc17b24b634c3217b07b3d",
+      "original_effect_status": "Draft source-binding supplement only; governed landing/owner selection HELD.",
+      "attribution": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 activated record-only proposal scope",
+        "AgentJudgment": "REBIND_CURRENT_CANDIDATE_FACTS",
+        "SelectedOutcome": "Refresh proposal source prerequisite to v8 preserving options and failure chronology.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "Claim old v5 identity current; overwrite observations; infer sourcePASS as runtime/policy/owner acceptance.",
+        "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+        "IndependentVerifier": "Actual /root/pkg02/t3_review v8 sourcePASS; governed proposal delta verification pending parent.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "All D64\u00a75.1 classes, exact packet/source scopes, criteria/decision choices/proposal status, actual global/render/native/CI and governed review; no Root/policy/newauthority.",
+        "DraftEffects": "Historical v8 candidate-binding supplement was actually written. Governed landing, final acceptance and owner choice remained held; this additive enum correction changes no original bytes."
+      },
+      "lenses": {
+        "Ontology": "Candidate identity, proposal authority and acceptance differ.",
+        "Epistemology": "All18hashes/scoped delta plus source review support unchanged facts; actual UI proof is separate.",
+        "Praxeology": "Append current binding and preserve all original/failure records.",
+        "Axiology": "Truthful current-source provenance without erasing defects or owner choices."
+      }
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+      "sha256": "ad894d2c5b0ffba72f129992f1db73f009434841b350efc720c32c8c54ed9378",
+      "original_effect_status": "Draft source-binding supplement only; governed landing/owner selection HELD.",
+      "attribution": {
+        "OwnerStandingApproval": "D-APP-64 \u00a73 activated record-only proposal scope",
+        "AgentJudgment": "REBIND_CURRENT_CANDIDATE_FACTS",
+        "SelectedOutcome": "Refresh proposal source prerequisite to v8 preserving options and failure chronology.",
+        "JudgedBy": "WORKING_ITEMS /root/pkg02",
+        "OwnerCaseSelection": "NONE",
+        "RejectedAlternatives": "Claim old v5 identity current; overwrite observations; infer sourcePASS as runtime/policy/owner acceptance.",
+        "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_pdf_csp_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+        "IndependentVerifier": "Actual /root/pkg02/t3_review v8 sourcePASS; governed proposal delta verification pending parent.",
+        "EffectStatus": "HELD",
+        "PreservedGates": "All D64\u00a75.1 classes, exact packet/source scopes, criteria/decision choices/proposal status, actual global/render/native/CI and governed review; no Root/policy/newauthority.",
+        "DraftEffects": "Historical v8 candidate-binding supplement was actually written. Governed landing, final acceptance and owner choice remained held; this additive enum correction changes no original bytes."
+      },
+      "lenses": {
+        "Ontology": "Candidate identity, proposal authority and acceptance differ.",
+        "Epistemology": "All18hashes/scoped delta plus source review support unchanged facts; actual UI proof is separate.",
+        "Praxeology": "Append current binding and preserve all original/failure records.",
+        "Axiology": "Truthful current-source provenance without erasing defects or owner choices."
+      }
+    }
+  ],
+  "judged_by": "WORKING_ITEMS /root/pkg02_finish",
+  "governed_acceptance": "HELD",
+  "direct_receipt_citation_required": true
+}

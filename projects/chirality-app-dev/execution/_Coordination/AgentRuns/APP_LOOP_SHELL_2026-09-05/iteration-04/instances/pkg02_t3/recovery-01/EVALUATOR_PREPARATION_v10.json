@@ -1,0 +1,25 @@
+{
+  "purpose": "Prepare immutable next proof evaluator variants before execution",
+  "changes": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/native-proof-v10.mjs",
+      "sha256": "3235649088392326af0b345be17a5dd29666cdd7e3e744e513dbbd6bcde553e9",
+      "delta": "Record actual error message, stack, timestamp and page URL; assert zero startup page errors before action loop; focus only owned visible Electron window before real Quick Look button invocation. No errors suppressed."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/window_inventory_v2.swift",
+      "delta": "Include named Quick Look auxiliary process variants in bounded read-only CGWindow inventory. Old inventory excluded these, so previous absent visible panel is not a proven native display failure."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/inventory_capture_v2.py",
+      "delta": "Display actual layers and refuse capture of any prelaunch window ID. Capture only manually verified owned fixture windows."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/run_proof_v10.py",
+      "delta": "Exact same clean-env wrapper now binds v10 source manifest; no runtime/provider changes."
+    }
+  ],
+  "native_v9_status": "FAIL hydration, native visual acceptance not established",
+  "EffectStatus": "HELD",
+  "DraftEffects": "Evaluator preparation only; v10 runtime execution requires actual fresh source review/global fan-in."
+}

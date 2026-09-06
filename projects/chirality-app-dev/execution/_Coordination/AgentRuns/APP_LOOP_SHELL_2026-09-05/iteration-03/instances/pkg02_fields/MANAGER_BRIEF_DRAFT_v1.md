@@ -1,0 +1,11 @@
+# PKG02 manager draft brief v1
+
+DRAFT — parent approval required before execution. WORKING_ITEMS exactly PKG02; no other package or shared writer. Resolve REPO_ROOT and WORKING_ROOT. Load actual AGENT_WORKING_ITEMS, root/project AGENTS, software workflow/skill contracts and pinned inputs in INPUT_IDENTITIES.json. Read IMPLEMENTATION_PLAN_DRAFT_v1.md as parent design input, verify against actual source/accepted SOW/target, hold conflicts and freeze final author brief before launch. APP-HOLD dispatch/reliance before respective operations.
+
+Objective DEL02-04-V3-01 additive workspace-state fields only. Exact product writes limited to woven-workspace-state.ts and its existing lib test at paths in plan. Manager may write this instance evidence and authorized DEL02-04 local partial-obligation records; parent owns shared receipt/log/register/graph. No UI strip, Activity view, other source, schema/key/API breaking change, activeChatRoot, Root/provider/lifecycle/pointer/owner act.
+
+Tests must meaningfully cover migration, old/new precedence, invalid-present vs absent, malformed/bounds/eviction, every width, project clear, storage exceptions, roundtrip and theme ownership. Preserve old fields/APIs and document older-writer new-field loss. Freeze exact before/after inputs, semantic rationale and partial residuals. Dispatch fresh TASK software-code-review, no reviewer context reuse as sole verifier; all source changes reviewed. Parent owns shared full tests/typecheck/build/premerge after source freeze; no UI render claim. Return evidence, source identities, actual commands/outcomes, immutable snapshot/manifest, partial handoff and reruns; no anticipatory PASS.
+
+A1: every frontend mutation invalidates staged login-proof procedure; future proof needs new stage and fresh owner execution. Native OpenAI GPT-6 per parent system, exact serving ID unavailable; instruction-asserted roles. No source implementation until parent approval and final brief freeze.
+
+Explicit compatibility check: preserve existing reference sanitizers/old-field behavior; preserve meaningful path whitespace in new hints, trim labels only, reject invalid/oversized identities. Future consumers validate stored hints. Verify new normalized output properties work with existing typed callers within the two-file fence; hold scope conflicts.

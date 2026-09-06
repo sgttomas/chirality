@@ -1,0 +1,11 @@
+{
+  "instance": "pkg08_packet",
+  "role": "WORKING_ITEMS",
+  "status": "COMPLETED",
+  "briefSha256": "d749694c8b726671f976e592c1d1450e780154ede85f642ca61cc6b0538aa2ff",
+  "model": "GPT-6; exact serving ID unavailable",
+  "class": "delegated-harness-native",
+  "roleEvidence": "instruction-asserted",
+  "closure": "PACKET_PREPARED; parent review/global closeout pending; implementation AWAITING_RULING",
+  "output": "RETURN.md"
+}

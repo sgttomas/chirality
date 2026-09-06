@@ -1,0 +1,15 @@
+{
+  "status": "SOURCE_FROZEN_FRESH_REVIEW_PENDING",
+  "focus": "DEL-02-04-V3-01 additive fields only",
+  "source_diff_sha256": "13ee7a1ec4c7bed72793c4fbd8a0851c6decd6698346aac3815afefc0a3b69b4",
+  "focused_tests": 31,
+  "remaining": [
+    "fresh source review",
+    "parent full gates",
+    "manager final fan-in",
+    "shared integration and governed review",
+    "CHANGE commit/push",
+    "Activity strip/view and consumer integration later"
+  ],
+  "source_writes_frozen": true
+}

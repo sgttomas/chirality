@@ -1,0 +1,23 @@
+{
+  "role": "TASK Agent2",
+  "agent": "/root/pkg02/t3_author",
+  "engine": "Codex",
+  "provider": "OpenAI",
+  "model": "GPT-6 (runtime system identification; exact serving model not exposed)",
+  "substitutions": [],
+  "OwnerStandingApproval": "D-APP-64 \u00a73",
+  "AgentJudgment": "EXECUTE_SCOPED_STACKED_COLLAPSE_REPAIR",
+  "SelectedOutcome": "Compact normal-flow strips for both stacked collapsed regions",
+  "JudgedBy": "TASK /root/pkg02/t3_author",
+  "OwnerCaseSelection": "NONE",
+  "RejectedAlternatives": [
+    "force-click bypass",
+    "z-index masking",
+    "deleting distinct semantics",
+    "global CSS expansion"
+  ],
+  "RationaleArtifact": "../STACKED_COLLAPSE_AMENDMENT_v1.md",
+  "IndependentVerifier": "Fresh revision7 source finding and actual40-case diagnostic; new review pending",
+  "EffectStatus": "SOURCE_FROZEN_REVIEW_PENDING",
+  "PreservedGates": "Manager preserved gates and exact sealed brief; no final acceptance"
+}

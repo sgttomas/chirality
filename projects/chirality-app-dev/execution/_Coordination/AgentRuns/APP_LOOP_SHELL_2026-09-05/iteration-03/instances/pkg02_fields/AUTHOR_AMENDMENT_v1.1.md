@@ -1,0 +1,5 @@
+# Parent-authorized safety amendment v1.1
+
+Parent HELP_HUMAN directed before fresh source review: read-time compatibility seeding/recovery must not overwrite an unreadable primary record, including throwing current getItem, malformed JSON, and an unrecognized existing schema. Return safe fallback without writing over those bytes; normal explicit write API remains available. Preserve old field sanitizer behavior. This is a bounded protective read/write boundary adjustment in the same two-file fence; no new scope. Meaningful regression tests for all three cases required, plus fresh whole-diff review and focused rerun. Replace initial source freeze with revision2; retain prior execution records as dated evidence. Overloads or precise output types must avoid falsely preserving arbitrary mutated-field literal subtypes.
+
+Authority: parent instruction in current iteration3 activation; D-APP-64 praxeology and axiology preserve recoverable prior state. Rejected alternative: automatic import overwrites uninterpretable bytes. No owner acceptance or lifecycle act. Source remains within DEL02-04 additive migration scope.

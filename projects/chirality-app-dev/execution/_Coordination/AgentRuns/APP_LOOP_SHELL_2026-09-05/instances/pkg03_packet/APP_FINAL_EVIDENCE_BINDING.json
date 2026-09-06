@@ -1,0 +1,66 @@
+{
+  "hash_verification": "PASS",
+  "note": "retained facade; shared final App source, not deletion candidate",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/commands.json",
+      "sha256": "aaa72e769106518416d0254da6dc3007f93a1f30adbccdee90596b5f3984a5b5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/environment.json",
+      "sha256": "031c89c5ab9b77a5d44146287c08d5ae5272afb3f57369d7137ac536d7af7c61"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/source-sha256.json",
+      "sha256": "19550164057f72fd6faaf19bec9faf03e94161cf430c4a2adbc300005cc65d7b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/source-stability.json",
+      "sha256": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/evidence-sha256.json",
+      "sha256": "f71428ec713ef4257187495c73f004c4cdcc8261322ebcca708667bc4653c09b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log",
+      "sha256": "6d7e68628671f0a7c790cc3a2534bc62eb4bdcec7f4af53bfbddda442eab6be9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stderr.log",
+      "sha256": "0bf4e0bd47c42f5d3a3b18526119aa8e36ff73a7a81176281730cfeb42ff831a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/commands.json",
+      "sha256": "1e468ba75f41131348ba1ad97d511ba952a366c3de69272fb5d5f9a32d32f814"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/environment.json",
+      "sha256": "3a0367e11732c86f3bb46b396d59f606892e67a23d8ea081eeff82ea8d34bd3a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/source-sha256.json",
+      "sha256": "19550164057f72fd6faaf19bec9faf03e94161cf430c4a2adbc300005cc65d7b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/source-stability.json",
+      "sha256": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/evidence-sha256.json",
+      "sha256": "d5c80ba7541ef45865b29f2429fa36aaf7cdeabfea74aad0c97cfe5356ad4faa"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/binding-probe.json",
+      "sha256": "b7b68f3a55ebd960bee5c7db9dccf4b9b10f0835ccb3bb0dfa8436c1bc9aadc7"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/registered-result.json",
+      "sha256": "dfae086dfa31193bbdd8fd6770f125649536be55a380c718bf55b1849047c193"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/summary.json",
+      "sha256": "40d3bfbc92203fa82eccf537c5a465b16199c874167b5f1391590387652ffbe5"
+    }
+  ]
+}

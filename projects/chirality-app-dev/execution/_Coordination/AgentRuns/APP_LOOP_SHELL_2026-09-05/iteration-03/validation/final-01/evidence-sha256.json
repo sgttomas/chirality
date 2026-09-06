@@ -1,0 +1,14 @@
+{
+  "commands.json": "ceee394d2dea90d7e71b6b82cd7f6f09ede5f18034efb8f8a3907cbf1f3c70ef",
+  "diff-check.output.json": "a272df39879a637078952730002957e09aef980bf50b9203423f44255eab4086",
+  "environment.json": "031c89c5ab9b77a5d44146287c08d5ae5272afb3f57369d7137ac536d7af7c61",
+  "freeze-verification.json": "fbc0bc236d8700f92c12bf7fceb671ac9b1383aba03110a48a81e3792856dfc1",
+  "git-head.output.json": "94c31ed92318ae6e21fe134051b28b948e8ee8e48078629203bd3ac6606f6831",
+  "git-status.output.json": "00503f74e4ce07a47927ce27c297f12e2ad7c45bb9aa03ad913d0af62b694437",
+  "node.output.json": "20395d044baf3beb372dc4a72ce0e4aaf178cc88a2894602e4b172f71cc50d42",
+  "npm.output.json": "e69c7d7dc320a244d25cd6088890e68f05b110dd1a16aa739f6713fe1d6ed22b",
+  "python.output.json": "21e386d26ec395c9501aa5c2a249d2aaf701729aaa3905c8ccb98cd86059266f",
+  "receipt-validator.output.json": "08360a313ce8e2cf8e993258d7a9c943b1c2f1c25cba86995d16d8e0580f3a15",
+  "source-sha256.json": "b6137beea9a69601fe4b55b241c49fdfe50fc36d79d19d3263b43efe2354c85b",
+  "source-stability.json": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+}

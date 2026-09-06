@@ -1,0 +1,1 @@
+Parent authorized offline rendering of copy-of-record mock with cached Playwright/full Chromium, isolated browser context, file resources only; no server/build/install/native app or provider/API traffic. Screenshots/evaluator/evidence only here. Exact host escalation permitted for sandbox browser denial. Recorded before execution.

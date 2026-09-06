@@ -1,0 +1,150 @@
+--- a/projects/chirality-app-dev/frontend/package-lock.json
++++ b/projects/chirality-app-dev/frontend/package-lock.json
+@@ -7,9 +7,6 @@
+     "": {
+       "name": "chirality-frontend",
+       "version": "2.0.0",
+-      "workspaces": [
+-        "packages/*"
+-      ],
+       "dependencies": {
+         "@anthropic-ai/claude-agent-sdk": "0.3.150",
+         "@anthropic-ai/sdk": "0.93.0",
+@@ -702,10 +699,6 @@
+     },
+     "node_modules/@chirality/engine-pi-omlx": {
+       "resolved": "../../../runtime/packages/engine-pi-omlx",
+-      "link": true
+-    },
+-    "node_modules/@chirality/harness-contract": {
+-      "resolved": "packages/harness-contract",
+       "link": true
+     },
+     "node_modules/@chirality/runtime-cli": {
+@@ -11780,14 +11773,6 @@
+         "type": "github",
+         "url": "https://github.com/sponsors/wooorm"
+       }
+-    },
+-    "packages/harness-contract": {
+-      "name": "@chirality/harness-contract",
+-      "version": "0.0.0-private",
+-      "deprecated": "Use @chirality/runtime-contracts. This compatibility facade will be removed after one migration cycle.",
+-      "dependencies": {
+-        "@chirality/runtime-contracts": "file:../../../../../runtime/packages/contracts"
+-      }
+     }
+   }
+ }
+--- a/projects/chirality-app-dev/frontend/package.json
++++ b/projects/chirality-app-dev/frontend/package.json
+@@ -2,9 +2,6 @@
+   "name": "chirality-frontend",
+   "version": "2.0.0",
+   "private": true,
+-  "workspaces": [
+-    "packages/*"
+-  ],
+   "description": "Frontend workspace bootstrap for Chirality desktop runtime",
+   "author": "Chirality Project",
+   "main": "dist-electron/main.js",
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/package.json
++++ /dev/null
+@@ -1,27 +0,0 @@
+-{
+-  "name": "@chirality/harness-contract",
+-  "version": "0.0.0-private",
+-  "private": true,
+-  "description": "Deprecated compatibility facade for the root-owned Chirality runtime contracts.",
+-  "deprecated": "Use @chirality/runtime-contracts. This compatibility facade will be removed after one migration cycle.",
+-  "sideEffects": false,
+-  "exports": {
+-    ".": "./src/index.ts",
+-    "./agent-engine-port": "./src/agent-engine-port.ts",
+-    "./domain-profile": "./src/domain-profile.ts",
+-    "./engine-conformance": "./src/engine-conformance.ts",
+-    "./errors": "./src/errors.ts",
+-    "./event-schema": "./src/event-schema.ts",
+-    "./mcp/tool-names": "./src/mcp/tool-names.ts",
+-    "./operation-proposal": "./src/operation-proposal.ts",
+-    "./sdk-version": "./src/sdk-version.ts",
+-    "./tool-catalog": "./src/tool-catalog.ts",
+-    "./tool-descriptor": "./src/tool-descriptor.ts",
+-    "./transcript-replay": "./src/transcript-replay.ts",
+-    "./types": "./src/types.ts",
+-    "./package.json": "./package.json"
+-  },
+-  "dependencies": {
+-    "@chirality/runtime-contracts": "file:../../../../../runtime/packages/contracts"
+-  }
+-}
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/agent-engine-port.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/agent-engine-port`. */
+-export * from '@chirality/runtime-contracts/agent-engine-port';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/domain-profile.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/domain-profile`. */
+-export * from '@chirality/runtime-contracts/domain-profile';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/engine-conformance.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/engine-conformance`. */
+-export * from '@chirality/runtime-contracts/engine-conformance';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/errors.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/errors`. */
+-export * from '@chirality/runtime-contracts/errors';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/event-schema.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/event-schema`. */
+-export * from '@chirality/runtime-contracts/event-schema';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/index.ts
++++ /dev/null
+@@ -1,7 +0,0 @@
+-/**
+- * @deprecated Import from `@chirality/runtime-contracts`.
+- *
+- * This package remains only as a source-compatible facade for one migration
+- * cycle. Runtime contract ownership moved to the repository-root workspace.
+- */
+-export * from '@chirality/runtime-contracts';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/mcp/tool-names.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/mcp/tool-names`. */
+-export * from '@chirality/runtime-contracts/mcp/tool-names';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/operation-proposal.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/operation-proposal`. */
+-export * from '@chirality/runtime-contracts/operation-proposal';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/sdk-version.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/sdk-version`. */
+-export * from '@chirality/runtime-contracts/sdk-version';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-catalog.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/tool-catalog`. */
+-export * from '@chirality/runtime-contracts/tool-catalog';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/tool-descriptor`. */
+-export * from '@chirality/runtime-contracts/tool-descriptor';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/transcript-replay.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/transcript-replay`. */
+-export * from '@chirality/runtime-contracts/transcript-replay';
+--- a/projects/chirality-app-dev/frontend/packages/harness-contract/src/types.ts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/** @deprecated Import from `@chirality/runtime-contracts/types`. */
+-export * from '@chirality/runtime-contracts/types';

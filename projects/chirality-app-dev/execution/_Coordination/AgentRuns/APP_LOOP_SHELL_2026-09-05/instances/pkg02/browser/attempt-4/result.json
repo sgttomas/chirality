@@ -1,0 +1,249 @@
+{
+  "status": "PASS",
+  "node": "v24.18.0",
+  "browser": "148.0.7778.96",
+  "fixture": "fixture.json",
+  "observations": [
+    {
+      "label": "initial legacy state hydration",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 638.109375,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "replay beside primary",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 638.109375,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "dark theme replay",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 638.109375,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "keyboard resize coordination",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 622.109375,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "coordination collapsed",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 902.109375,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "coordination expanded",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 622.109375,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "narrow viewport replay",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "primary": {
+        "x": 253.796875,
+        "y": 861.765625,
+        "width": 244.515625,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "return primary",
+      "route": "http://127.0.0.1:43181/",
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "primary": {
+        "x": 253.796875,
+        "y": 861.765625,
+        "width": 244.515625,
+        "height": 36.4375
+      },
+      "pass": true
+    },
+    {
+      "label": "retained route",
+      "route": "http://127.0.0.1:43181/chat",
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "retained route",
+      "route": "http://127.0.0.1:43181/workbench",
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "retained route",
+      "route": "http://127.0.0.1:43181/pipeline",
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "pass": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/harness/agents"
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree"
+    },
+    {
+      "method": "GET",
+      "path": "/api/harness/session/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/project/deliverables"
+    },
+    {
+      "method": "GET",
+      "path": "/api/harness/session/t1-recorded-fixture/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/harness/agents"
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree"
+    },
+    {
+      "method": "GET",
+      "path": "/api/harness/session/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/project/deliverables"
+    },
+    {
+      "method": "GET",
+      "path": "/api/project/deliverables"
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/scope"
+    },
+    {
+      "method": "GET",
+      "path": "/api/project/deliverables"
+    },
+    {
+      "method": "GET",
+      "path": "/api/project/deliverables"
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    }
+  ],
+  "pageErrors": [],
+  "cleanup": "isolated browser context closed; no persistent browser profile or server fixture writes"
+}

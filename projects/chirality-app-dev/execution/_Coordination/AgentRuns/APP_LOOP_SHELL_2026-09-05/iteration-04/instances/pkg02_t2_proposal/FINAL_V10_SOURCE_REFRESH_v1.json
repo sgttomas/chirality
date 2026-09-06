@@ -1,0 +1,40 @@
+{
+  "decision": "D-APP-120",
+  "prior": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/CANDIDATE_V8_SOURCE_REFRESH_v1.json",
+    "sha256": "92e17e881f218a5fc7e721444fcffe614bb633ce2afc17b24b634c3217b07b3d"
+  },
+  "currentSourceManifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/SOURCE_MANIFEST_v10.json",
+  "currentSHA256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+  "all18CurrentMatch": true,
+  "sourceReview": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+    "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6"
+  },
+  "judgment": "Existing omitted T2 callback seam, no-folder create constraints and fixed daemon project binding remain unchanged; these are scoped file-tree/shell layout and associated test repairs only.",
+  "new_source_delta": "v9 explicit desktop reopen faces; v10 FileTreePanel local hydration-stable chooser with existing tests; other source contracts including runtime/CSP unchanged.",
+  "currentProof": "Browser49/state40/hydration2 PASS with explicit visual/evaluator calibrations; native actual positives and negative controls verified, raw evaluatorFAIL preserved with successful attributed retry; developmenthost only.",
+  "closure": "PARTIAL. Native inlinePDF blocked/D121; D120 and D121 AWAITING_RULING; design misalignment per independent assessment; exactheadCI and final governed review stillowed.",
+  "derivative": true,
+  "packet_and_proposed_row_unchanged": true,
+  "OwnerCaseSelection": "NONE",
+  "attribution": {
+    "OwnerStandingApproval": "D-APP-64 \u00a73 activated record-only proposal scope",
+    "AgentJudgment": "REBIND_CURRENT_CANDIDATE_FACTS",
+    "SelectedOutcome": "Append current frozen v10 candidate prerequisite and actual partial proof calibration; preserve owner options and all packet/row history.",
+    "JudgedBy": "WORKING_ITEMS /root/pkg02_finish",
+    "OwnerCaseSelection": "NONE",
+    "RejectedAlternatives": "Claim old v5 identity current; overwrite observations; infer sourcePASS as runtime/policy/owner acceptance.",
+    "RationaleArtifact": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t2_proposal/FINAL_V10_SOURCE_REFRESH_v1.json",
+    "IndependentVerifier": "Fresh full18 source review actualPASS; final governed package/proposal delta review remains parent-owned and pending.",
+    "EffectStatus": "HELD",
+    "PreservedGates": "All D64\u00a75.1 classes, exact packet/source scopes, criteria/decision choices/proposal status, actual global/render/native/CI and governed review; no Root/policy/newauthority.",
+    "DraftEffects": "Current-source binding and proof calibration written; no owner choice, packet/row mutation or governed landing."
+  },
+  "lenses": {
+    "Ontology": "Candidate identity, proposal authority and acceptance differ.",
+    "Epistemology": "All18hashes/scoped delta plus source review support unchanged facts; actual UI proof is separate.",
+    "Praxeology": "Append current binding and preserve all original/failure records.",
+    "Axiology": "Truthful current-source provenance without erasing defects or owner choices."
+  }
+}

@@ -1,0 +1,9 @@
+# CI validation return — PASS
+
+Run33991362689 / job101374068374, workflow_dispatch, branch codex/app-loop-shell-20260905, exact head03e61f38f7b20145552023abd1cf673c2b2a3f61 completed SUCCESS. Configured daemon startup, project registration and API readiness passed; release-quality wrapper and stable-summary verification passed. Actual premerge exited0 and all8 Section8 IDs passed. Full tests, typecheck, standalone Section9 and summary consistency passed. Instruction-root integrity and secret scan published summaries also pass. No new failure or skip substitutes for premerge.
+
+Published artifact9976749587 ZIP bytes matched GitHub digest dc93bcd5f83aa5c278261562344a951478372418dac256582363f3a69b1e6e17 before extracting four JSON summaries. Canonical GitHub job log is logs-01.stdout.log; metadata-02.stdout.json binds event/head/job; artifact-download.command.json binds retrieval and extraction hashes. Raw ZIP retained only in memory; no credential values collected. Exact retrieval argv/status/timestamps and sanitized outputs are preserved. Existing authenticated gh API reads required approved host escalation after sandbox connection denial.
+
+This resolves the previously owed missing-daemon-binding premerge evidence for the exact committed source. Prior local failed attempts remain immutable; they are not rewritten as passes. Parent may now rederive successor eligibility from live branch state and governing item gates. No PR, merge, release readiness, lifecycle issuance, daemon installation, local test rerun or workflow change was performed by this executor.
+
+Rerun retrieval only: run retrieve.py metadata <fresh-name>, retrieve.py logs <fresh-name>, and inspect artifact API. Retrieval scripts are exact-run bounded and timeout55seconds. Artifact identity is pinned; no workflow dispatch or mutation code exists here.

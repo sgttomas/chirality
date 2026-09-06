@@ -1,0 +1,9 @@
+# Iteration 2 discovery brief v1 — sealed before discovery commands
+
+Parent HELP_HUMAN authorizes bounded read-only Step0 discovery, not production or future implementation selection. Ephemeral Agent2, no children. Read root/project LOOP_INIT sources; execute status/log, committed-overlay discovery, receipt validation before cursor read, open-register scan, routed notices, corpus currency, live Remaining inventory and harness status/self-check. Verify relevant source pins. Do not fetch; CHANGE owns fetch/index. No network, index, register, receipt, remaining, source or standing-queue writes. Write only this iteration's STEP0_DISCOVERY.md and discovery evidence subtree, plus this sealed brief.
+
+Pre-brief observation performed solely to record state before evidence writes: git status --short returned empty; git rev-parse HEAD returned 03e61f38f7b20145552023abd1cf673c2b2a3f61; git branch --show-current returned codex/app-loop-shell-20260905. Original native tool output retains that observation. Parent reports iteration1 pushed and CI33991362689 pending; no PASS inferred. D108/D111 accepted basis unchanged unless actual fetch/source evidence shows otherwise.
+
+Any deliverable reliance requires explicit APP-HOLD-1 preflight before consumption; inventory alone selects nothing. Future frontend mutation invalidates staged login-proof procedure and requires newly staged revision plus fresh owner-executed proof for future claim (A1 lines28–36).
+
+Return canonical commands/arguments/cwd/effective nonsecret environment/exit/stdout/stderr and hashes; source identities and observed authority changes; uncertainty and pending CI explicit. Native OpenAI GPT-6 per parent system; exact serving ID unavailable; role not mechanically enforced, instruction-asserted. No verifier or CI verdict invented.

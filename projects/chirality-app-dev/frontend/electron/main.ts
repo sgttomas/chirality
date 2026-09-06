@@ -1,5 +1,7 @@
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { spawn } from 'node:child_process';
+import { isAuthorizedSender } from './ipc-sender-policy';
+import { createDocumentHandoffHandler, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
 import { existsSync, mkdirSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
@@ -685,6 +687,20 @@ async function initializeGui(): Promise<void> {
   // every one of them rejects senders from any other origin, so they cannot
   // exist before the origin does. The window is created after this, so no
   // renderer can invoke them in the gap.
+  ipcMain.removeHandler('chirality:document-handoff');
+  ipcMain.handle('chirality:document-handoff', createDocumentHandoffHandler<import('electron').IpcMainInvokeEvent>({
+    authorized: (event) => isAuthorizedSender(event, rendererOrigin),
+    instructionRoot: resolveInstructionRootForProcess,
+    preview: (event, target) => {
+      if (process.platform !== 'darwin') throw new FilePolicyError('QUICK_LOOK_UNAVAILABLE', 400, 'Quick Look requires macOS.');
+      const window = BrowserWindow.fromWebContents(event.sender);
+      if (!window || window.isDestroyed()) throw new FilePolicyError('WINDOW_UNAVAILABLE', 409, 'Document window is unavailable.');
+      window.previewFile(target);
+    },
+    open: (target) => shell.openPath(target),
+    reveal: (target) => shell.showItemInFolder(target)
+  }));
+
   registerApiKeyHandlers(runtimeClient, {
     rendererOrigin,
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
@@ -798,6 +814,7 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
   socketWatcher = undefined;
   bindingSupervisor?.stop();
   bindingSupervisor = undefined;
+  ipcMain.removeHandler('chirality:document-handoff');
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
   ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
   unregisterApiKeyHandlers();

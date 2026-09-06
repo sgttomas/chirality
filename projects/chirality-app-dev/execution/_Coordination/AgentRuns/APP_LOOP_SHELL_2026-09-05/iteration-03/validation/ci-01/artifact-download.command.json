@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "repos/sgttomas/chirality/actions/artifacts/9977681994/zip"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "started_at": "2026-09-05T22:02:50.570000+00:00",
+  "ended_at": "2026-09-05T22:02:51.770649+00:00",
+  "exit_code": 0,
+  "duration_seconds": 1.2005456660408527,
+  "artifact_id": 9977681994,
+  "raw_zip_sha256": "a5c60cdab8c00316fbccce453c9fcf4eb39bc056da7518a0348c02a58f5e08fd",
+  "published_digest": "a5c60cdab8c00316fbccce453c9fcf4eb39bc056da7518a0348c02a58f5e08fd",
+  "raw_zip_retained": false,
+  "extracted": [
+    {
+      "path": "section8/latest/summary.json",
+      "sha256": "84c07af502bc337d6a52d2b06c938d0ecec2a47ce779bac84b9ebf718531a07e",
+      "status": "pass",
+      "bytes": 1945
+    },
+    {
+      "path": "release-quality/latest/summary.json",
+      "sha256": "72d216f99f5f6abcd415dabc5a2c791127e2e48c5d5e32b8d99cf16dc00efc0b",
+      "status": "pass",
+      "bytes": 4056
+    },
+    {
+      "path": "instruction-root-integrity/latest/summary.json",
+      "sha256": "c6ef766b65628f5bbc64fece3e5893d7c9d4516f4de20b4672a15553b2c94b15",
+      "status": "pass",
+      "bytes": 17872
+    },
+    {
+      "path": "security/latest/secret-scan-summary.json",
+      "sha256": "464a42e552dd169660ebe0c28a754160432229a282d06bfbfe29e34a2c1b5a5c",
+      "status": "pass",
+      "bytes": 1367357
+    }
+  ]
+}

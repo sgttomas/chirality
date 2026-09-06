@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-09-05T21:48:21.656290+00:00",
+  "records": {
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md": "f24d9eda9b4de98529baf736e56f12d5a319abc127f2105d245692f552c3ba87",
+    "projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md": "a12a4e96d778331825ddd12711d3d8e9f079bb3784c5a1f4b583766560e487e9",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/HANDOFF_STATE.md": "adb877cb75bab27b3c48e7d1fc15563b9d08977baad20da2fb9b25133587e321",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/WORK_GRAPH_v3.json": "3c1a73d1654fd2445cab25c63072c9a65262305f41cb96e9f44a33ca7f8abb2f"
+  },
+  "source_drift_since_release02": [],
+  "manager_closeout": "separate parent-owned pending state; not certified by this check"
+}

@@ -1,0 +1,575 @@
+{
+  "status": "FAIL",
+  "error": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.woven-region--navigator .panel--file-tree').getByRole('button', { name: 'Picture.png', exact: true })\u001b[22m\n",
+  "observations": [
+    {
+      "label": "initial Files and primary",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 638.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "actual markdown response rendered",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 478.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 1440px Light",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 478.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 1440,
+      "theme": "Light",
+      "boxes": [
+        {
+          "x": 1305.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 1290.0625,
+          "y": 91.25,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 1403.21875,
+          "y": 91.25,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 1440px Dark",
+      "primary": {
+        "x": 281,
+        "y": 858.5625,
+        "width": 478.109375,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 1440,
+      "theme": "Dark",
+      "boxes": [
+        {
+          "x": 1305.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 1290.0625,
+          "y": 91.25,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 1403.21875,
+          "y": 91.25,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 960px Light",
+      "primary": {
+        "x": 273.796875,
+        "y": 861.765625,
+        "width": 208.515625,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 960,
+      "theme": "Light",
+      "boxes": [
+        {
+          "x": 825.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 734.796875,
+          "y": 136.359375,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 847.953125,
+          "y": 136.359375,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 960px Dark",
+      "primary": {
+        "x": 273.796875,
+        "y": 861.765625,
+        "width": 208.515625,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 960,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 960,
+      "theme": "Dark",
+      "boxes": [
+        {
+          "x": 825.046875,
+          "y": 54.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 734.796875,
+          "y": 136.359375,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 847.953125,
+          "y": 136.359375,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    },
+    {
+      "label": "pointer collapse/return/expand 900px Light",
+      "primary": {
+        "x": 25.796875,
+        "y": 21.765625,
+        "width": 688.515625,
+        "height": 36.4375
+      },
+      "viewport": {
+        "width": 900,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "label": "panel control disjoint rectangles and real pointer actions",
+      "width": 900,
+      "theme": "Light",
+      "boxes": [
+        {
+          "x": 765.046875,
+          "y": 446.390625,
+          "width": 124.5625,
+          "height": 30.46875
+        },
+        {
+          "x": 750.0625,
+          "y": 483.25,
+          "width": 109.15625,
+          "height": 33.109375
+        },
+        {
+          "x": 863.21875,
+          "y": 483.25,
+          "width": 36.78125,
+          "height": 33.109375
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/harness/agents",
+      "mocked": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/harness/session/list",
+      "mocked": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/project/deliverables",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/tree",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/working-root/file",
+      "mocked": false
+    }
+  ],
+  "resourceRequests": [
+    {
+      "url": "http://127.0.0.1:39119/",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/media/dece0821e8ed059f-s.p.woff2",
+      "resourceType": "font"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/css/63fa183a95290d3c.css",
+      "resourceType": "stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:39119/chirality-app-icon.svg",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/webpack-85ad8b5d421e98b6.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/255-62902f04efbdd792.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/main-app-0bc332cb6cfcd293.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/629-61a4773c370b93b9.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/966-764889105078f50e.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/204-a59d4f004cb35e1f.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/35-d0ae813879b50ac2.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/app/page-759fc91914cea16f.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/app/layout-3dda1817848a3a86.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/_next/static/chunks/app/not-found-67e15b9d8876788f.js",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/harness/agents?directChat=1",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&depth=3",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:39119/api/working-root/file?projectRoot=%2Fprivate%2Ftmp%2Fapp-loop-t3-native-ac3dexfs%2Ffixtures&target=Readable%20note.md",
+      "resourceType": "fetch"
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    }
+  ],
+  "pageErrors": []
+}

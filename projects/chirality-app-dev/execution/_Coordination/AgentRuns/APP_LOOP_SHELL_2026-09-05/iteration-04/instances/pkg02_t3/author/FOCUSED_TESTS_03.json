@@ -1,0 +1,19 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/__tests__/api/working-root/file-route.test.ts",
+    "src/__tests__/electron/document-handoff.test.ts",
+    "src/__tests__/components/document-view.test.tsx",
+    "src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "src/__tests__/components/woven-dialogue-controls.test.tsx",
+    "src/__tests__/components/woven-right-panel.test.tsx",
+    "src/__tests__/components/file-tree-panel.test.tsx"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "exit_code": 1,
+  "stdout": "\n> chirality-frontend@2.0.0 test\n> vitest run src/__tests__/api/working-root/file-route.test.ts src/__tests__/electron/document-handoff.test.ts src/__tests__/components/document-view.test.tsx src/__tests__/components/woven-dialogue-shell.test.tsx src/__tests__/components/woven-dialogue-controls.test.tsx src/__tests__/components/woven-right-panel.test.tsx src/__tests__/components/file-tree-panel.test.tsx\n\n\n RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend\n\n \u276f src/__tests__/components/document-view.test.tsx (0 test)\n \u276f src/__tests__/electron/document-handoff.test.ts (0 test)\n\n Test Files  2 failed | 5 passed (7)\n      Tests  20 passed (20)\n   Start at  16:25:39\n   Duration  203ms (transform 370ms, setup 0ms, import 410ms, tests 99ms, environment 0ms)\n\n",
+  "stderr": "\n\u23af\u23af\u23af\u23af\u23af\u23af Failed Suites 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  src/__tests__/components/document-view.test.tsx [ src/__tests__/components/document-view.test.tsx ]\nError: Cannot find module '/app/api/working-root/file/route' imported from /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx\n \u276f src/__tests__/components/document-view.test.tsx:7:1\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  src/__tests__/electron/document-handoff.test.ts [ src/__tests__/electron/document-handoff.test.ts ]\nError: Cannot find module '/app/api/working-root/file/route' imported from /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/__tests__/electron/document-handoff.test.ts\n \u276f src/__tests__/electron/document-handoff.test.ts:7:1\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n",
+  "timestamp": "2026-09-05T22:25:40.170199+00:00"
+}

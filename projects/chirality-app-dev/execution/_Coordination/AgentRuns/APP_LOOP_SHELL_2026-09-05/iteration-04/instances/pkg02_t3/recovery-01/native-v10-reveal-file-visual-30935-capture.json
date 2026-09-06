@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/usr/sbin/screencapture",
+    "-x",
+    "-o",
+    "-l",
+    "30935",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/native-v10-reveal-file-visual-30935.png"
+  ],
+  "window": {
+    "kCGWindowAlpha": 1,
+    "kCGWindowBounds": {
+      "Height": 436,
+      "Width": 920,
+      "X": 1812,
+      "Y": 166
+    },
+    "kCGWindowIsOnscreen": true,
+    "kCGWindowLayer": 0,
+    "kCGWindowMemoryUsage": 2368,
+    "kCGWindowName": "fixtures",
+    "kCGWindowNumber": 30935,
+    "kCGWindowOwnerName": "Finder",
+    "kCGWindowOwnerPID": 51124,
+    "kCGWindowSharingState": 1,
+    "kCGWindowStoreType": 1
+  },
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

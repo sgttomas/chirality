@@ -1,0 +1,15 @@
+{
+  "revision": 6,
+  "acceptance": "HELD / source finding; not accepted final evidence",
+  "review_finding": "Parent reports <=860px Navigator max-height360 survives while400px internal tree row clips",
+  "execution_order": "release completed; build started before finding arrived and completed; security paused",
+  "full_tests": "1686PASS4skip",
+  "typecheck": "PASS",
+  "section9": "PASS",
+  "premerge": "FAIL503 ENGINE_UNAVAILABLE missing daemon binding; CI owed",
+  "wrapper": "FAIL",
+  "build": "PASS exit0; source review prevents reliance",
+  "cleanup": "registered server stopped0; build completed0; no owned processes",
+  "source_stability_evidence": "release-04/source-stability.json and build-03/source-stability.json; valid only at recorded end, subsequent authorized repair invalidates current reliance",
+  "remaining": "new freeze/review and affected gates; no native/proof authorization"
+}

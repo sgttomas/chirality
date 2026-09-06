@@ -1,0 +1,4 @@
+{
+  "stdout": " M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md\n M projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md\n M projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts\n M projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts\n?? projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/TASK_RUN_2026-09-05_ADDITIVE_STATE_PARTIAL.md\n?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/\n",
+  "stderr": ""
+}

@@ -1,0 +1,72 @@
+{
+  "root": "/private/tmp/app-loop-t3-native-ac3dexfs/fixtures",
+  "creation_command": [
+    "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/native/create_fixtures.py"
+  ],
+  "creation_exit_code": 0,
+  "dependency_setup": "existing bundled Python3.12.14+python-docx/openpyxl/python-pptx/reportlab; no install",
+  "files": [
+    {
+      "path": "Long path document provenance document provenance document provenance document provenance document provenance /Long filename requiring bounded wrapping.md",
+      "bytes": 53,
+      "sha256": "d715eb043d812e12884fef422f92a8ad8b4f019ac3dd6b7ba76424e567a48e31",
+      "frozen_bytes": "fixture-bytes/Long path document provenance document provenance document provenance document provenance document provenance /Long filename requiring bounded wrapping.md"
+    },
+    {
+      "path": "Preview.docx",
+      "bytes": 36647,
+      "sha256": "fc72d26b5f0659902b8ee4cdae8721e5bd8250ffabb650c4a4dbdaeabae3b5e7",
+      "frozen_bytes": "fixture-bytes/Preview.docx"
+    },
+    {
+      "path": "Preview.pdf",
+      "bytes": 1420,
+      "sha256": "3879981f98de0fe29a285fcf33801fe0c376204732dc07304651e57e55060b82",
+      "frozen_bytes": "fixture-bytes/Preview.pdf"
+    },
+    {
+      "path": "Preview.pptx",
+      "bytes": 28369,
+      "sha256": "95411c09445858bb91d1c6e39a5ff3c944352775298741d32e753abed6f23a71",
+      "frozen_bytes": "fixture-bytes/Preview.pptx"
+    },
+    {
+      "path": "Preview.xlsx",
+      "bytes": 4901,
+      "sha256": "18d8328ec634b03f8242f92c96d776dd1eaa80e6a017b89f893e84c0b37cecc0",
+      "frozen_bytes": "fixture-bytes/Preview.xlsx"
+    },
+    {
+      "path": "Readable note.md",
+      "bytes": 119,
+      "sha256": "4401790317742f912aac771d56242c74bc48157666c4d98c1ef1930bb9021288",
+      "frozen_bytes": "fixture-bytes/Readable note.md"
+    },
+    {
+      "path": "data.csv",
+      "bytes": 17,
+      "sha256": "50d394664842b075c1ca842a466a49a78eaedbe92be427c45d8de37f85bc51a7",
+      "frozen_bytes": "fixture-bytes/data.csv"
+    },
+    {
+      "path": "oversized.txt",
+      "bytes": 10485761,
+      "sha256": "e2be3b83c289189dd311afb0db7a79ec8cfbb993ca5267315b437e41edccec98",
+      "reconstruction": "write byte0x78 exactly10485761times; deterministic generator in create_fixtures.py"
+    },
+    {
+      "path": "plain.txt",
+      "bytes": 56,
+      "sha256": "3e67a16416744d1f42cc91bbf709b7c0828f566aeb7de65724f204c8ffad5a84",
+      "frozen_bytes": "fixture-bytes/plain.txt"
+    },
+    {
+      "path": "unsupported.bin",
+      "bytes": 32,
+      "sha256": "630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd",
+      "frozen_bytes": "fixture-bytes/unsupported.bin"
+    }
+  ],
+  "interpretation": "local nonsecret verification fixtures; no native display proof yet"
+}

@@ -1,0 +1,47 @@
+{
+  "paths": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/.gitattributes",
+      "sha256": "5f11cf89eef96eb3d71f0ef5838411898c465b91df675c942949490bf42959e9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/GOVERNED_REVIEW_BLOCK_NOTICES_01.md",
+      "sha256": "d2cd8482abba5d403e46869f8004c28e6fc36127af9ad7c2594b1f365c3f92d2"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/AFTER_EFFECT.json",
+      "sha256": "b723c296695acdc8d0b42753a4f1589ed2ef147584cb702c72a9f2bbdf93015e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/ATTRIBUTION_SUPPLEMENT_v1.md",
+      "sha256": "f4f4aebbe5f223be43f616eb0436b5fdeaf67f6f9eb4f656da88d3a5d2236861"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/BEFORE_EFFECT.json",
+      "sha256": "d97f8430df5bdfc397d4cab21093800186e9c922eb568260786e5f82e7164697"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/DELTA_FREEZE.json",
+      "sha256": "b74b73e37a66ab13a3ca7e8fb561a5341bc9896001e367d7b7cdbf8943c067b9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/RATIONALE_SUPPLEMENT.md",
+      "sha256": "0a71c308166a2c33224bef70a3d0b66b2ea4c991f7b46b63a6ef291bf378bff7"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/STAGED_FAILURE.json",
+      "sha256": "300828b5161e2650df17ff5948536ebf936249d5a3b0a9dbfd54cd7919420345"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/SUPPLEMENT_CHECKS.json",
+      "sha256": "7df0490ebab715711d981a314c35389b96ad41cd3518b8300b6bf3b1eb272433"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "sha256": "b39a96432f3b96108d7bf4f8bf8b3ebcd4639385766546ee171d33217dcb4ce0"
+    }
+  ],
+  "self_excluded": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/artifact-classification-02/DELTA_FREEZE_v2.json",
+  "prior_freezes_preserved": true,
+  "review": "PENDING fresh delta verification"
+}

@@ -1,0 +1,7 @@
+{
+  "manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-03/instances/pkg02_fields/MANIFEST_SHA256.json",
+  "sha256": "6c366482843f91b4f68c84392f42ccf51838f5d5e098e49b96ce0ecfd928334d",
+  "entries_verified": 75,
+  "mismatches": [],
+  "status": "Manager partial completion only; terminal/finalgoverned/staged/CI pending"
+}
