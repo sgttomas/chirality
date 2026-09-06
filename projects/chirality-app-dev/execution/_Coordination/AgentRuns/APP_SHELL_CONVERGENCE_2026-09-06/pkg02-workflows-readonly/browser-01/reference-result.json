@@ -1,0 +1,828 @@
+{
+  "status": "PASS",
+  "mock": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+  "sha": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+  "node": "v24.18.0",
+  "browser": "148.0.7778.96",
+  "captures": [
+    {
+      "scene": 17,
+      "theme": "light",
+      "geometry": {
+        "box": {
+          "x": 313,
+          "y": 387,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 387,
+          "right": 1143,
+          "bottom": 893.440673828125,
+          "left": 313
+        },
+        "width": 1180,
+        "height": 720,
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "font": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ],
+        "rail": {
+          "x": 903.8474731445312,
+          "y": 387,
+          "width": 239.15252685546875,
+          "height": 482.7012939453125,
+          "top": 387,
+          "right": 1143,
+          "bottom": 869.7012939453125,
+          "left": 903.8474731445312
+        }
+      }
+    },
+    {
+      "scene": 17,
+      "theme": "dark",
+      "geometry": {
+        "box": {
+          "x": 313,
+          "y": 387,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 387,
+          "right": 1143,
+          "bottom": 893.440673828125,
+          "left": 313
+        },
+        "width": 1180,
+        "height": 720,
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "font": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ],
+        "rail": {
+          "x": 903.8474731445312,
+          "y": 387,
+          "width": 239.15252685546875,
+          "height": 482.7012939453125,
+          "top": 387,
+          "right": 1143,
+          "bottom": 869.7012939453125,
+          "left": 903.8474731445312
+        }
+      }
+    },
+    {
+      "scene": 18,
+      "theme": "light",
+      "geometry": {
+        "box": {
+          "x": 313,
+          "y": 345,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 345,
+          "right": 1143,
+          "bottom": 851.440673828125,
+          "left": 313
+        },
+        "width": 1180,
+        "height": 720,
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "font": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ],
+        "rail": {
+          "x": 875.7118530273438,
+          "y": 345,
+          "width": 267.28814697265625,
+          "height": 482.7012939453125,
+          "top": 345,
+          "right": 1143,
+          "bottom": 827.7012939453125,
+          "left": 875.7118530273438
+        }
+      }
+    },
+    {
+      "scene": 18,
+      "theme": "dark",
+      "geometry": {
+        "box": {
+          "x": 313,
+          "y": 345,
+          "width": 830,
+          "height": 506.440673828125,
+          "top": 345,
+          "right": 1143,
+          "bottom": 851.440673828125,
+          "left": 313
+        },
+        "width": 1180,
+        "height": 720,
+        "transform": "matrix(0.70339, 0, 0, 0.70339, 0, 0)",
+        "font": "\"IBM Plex Sans\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Mono",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Sans",
+            "status": "loaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "unloaded"
+          },
+          {
+            "family": "IBM Plex Serif",
+            "status": "loaded"
+          }
+        ],
+        "rail": {
+          "x": 875.7118530273438,
+          "y": 345,
+          "width": 267.28814697265625,
+          "height": 482.7012939453125,
+          "top": 345,
+          "right": 1143,
+          "bottom": 827.7012939453125,
+          "left": 875.7118530273438
+        }
+      }
+    }
+  ],
+  "requests": [],
+  "errors": [],
+  "claim": "Actual approved mock controls; logical 1180x720 shell displayed through the mock own fit transform; actual shell and rail crops with no additional scaling or image edits. External font requests blocked; computed fallback documented."
+}

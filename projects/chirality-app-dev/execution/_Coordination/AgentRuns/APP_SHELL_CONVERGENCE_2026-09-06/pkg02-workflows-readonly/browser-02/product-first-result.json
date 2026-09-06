@@ -1,0 +1,235 @@
+{
+  "status": "FAIL",
+  "error": "Error: locator.waitFor: Error: strict mode violation: getByText('Preferences', { exact: true }) resolved to 2 elements:\n    1) <span class=\"dev-tools-indicator-label\">Preferences</span> aka getByLabel('Next.js Dev Tools Items').getByText('Preferences')\n    2) <h3>Preferences</h3> aka getByRole('heading', { name: 'Preferences' })\n\nCall log:\n\u001b[2m  - waiting for getByText('Preferences', { exact: true }) to be hidden\u001b[22m\n",
+  "observations": [
+    {
+      "fonts": {
+        "status": "loaded",
+        "body": "plexSans, \"plexSans Fallback\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "700"
+          },
+          {
+            "family": "plexSans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexSerif",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSerif Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexMono",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexMono",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexMono Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          }
+        ]
+      }
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:3187/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/css/app/layout.css?v=1788674226689",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/css/app/page.css?v=1788674226689",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dece0821e8ed059f-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/webpack.js?v=1788674226689",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app-pages-internals.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/layout.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/not-found.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/page.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/main-app.js?v=1788674226689",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/f58f2db6228b6a80.webpack.hot-update.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/icon.svg?38b9e59bfa97244d",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/webpack.f58f2db6228b6a80.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/__nextjs_font/geist-latin.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/__nextjs_font/geist-mono-latin.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/__nextjs_disable_dev_indicator",
+      "status": 204
+    }
+  ]
+}

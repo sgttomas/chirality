@@ -1,0 +1,9 @@
+{
+  "oldManifestSha256": "02a3b66e677d9ab08de960daea068e969ed9cec930b93d9fb2fec2216c9fdeed",
+  "meaning": "pre-user-stop checkpoint, preserved immutable; no longer current full union",
+  "onlyOldMemberChanged": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+  "oldLedgerReconstruction": "git show 8aaee11:projects/chirality-app-dev/loop/LOOP_RECEIPTS.md plus iteration-04/RECEIPT_252.md",
+  "reconstructedOldLedgerSha256": "c9e29cc566d4e31251132ad9faf7b06ff0900e30df28bac0b69495a03596cb78",
+  "allOtherOldMembersMatch": true,
+  "newFinalManifest": "iteration-04/UNION_MANIFEST_v2.json"
+}

@@ -1,5 +1,7 @@
 'use client';
 
+import { WorkflowsView } from './workflows-view';
+import styles from './workflows.module.css';
 import { ActivityView } from './activity-shelf';
 import React, { useEffect, useRef, useState } from 'react';
 import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contracts';
@@ -60,7 +62,7 @@ type Props = {
   folderLocked?: boolean;
   onFolderSelectionPending?: (pending: boolean) => void;
   folderMismatch?: boolean;
-  onView: (view: 'files' | 'agents' | 'activity') => void;
+  onView: (view: 'files' | 'workflows' | 'agents' | 'activity') => void;
   onOpenFile: (path: string) => void;
   onClose: () => void;
   onExpand: () => void;
@@ -75,15 +77,28 @@ type Props = {
 export function RightPanel({ state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent }: Props): JSX.Element {
   const { projectRoot } = useWorkspace();
   const [refresh, setRefresh] = useState(0);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const [workflowSelection, setWorkflowSelection] = useState<{ root: string; name: string } | null>(null);
+  useEffect(() => { setWorkflowSelection(null); }, [projectRoot, folderMismatch]);
+  const workflowName = !folderMismatch && workflowSelection?.root === projectRoot ? workflowSelection.name : null;
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const copyGeneration = useRef(0);
   const sessionMenu = deriveSessionMenu(replayState, recordedSessionIds, primarySessionId, liveTurnActive);
   const [menuError, setMenuError] = useState<string | null>(null);
   // Future stored views must leave existing content reachable, never blank it.
-  const view = state.rightPanelView === 'agents' || state.rightPanelView === 'activity' ? state.rightPanelView : 'files';
+  const view = state.rightPanelView === 'workflows' || state.rightPanelView === 'agents' || state.rightPanelView === 'activity' ? state.rightPanelView : 'files';
   const target = view === 'files' ? state.openDocumentPath : null;
-  const detailOpen = Boolean(target || (sessionOpen && view === 'agents'));
+  const detailOpen = Boolean(target || (sessionOpen && view === 'agents') || (view === 'workflows' && workflowName));
   const sessionDetail = sessionOpen && view === 'agents';
+  useEffect(() => {
+    const tabs = tabsRef.current;
+    if (!tabs) return;
+    const revealSelected = () => tabs.querySelector<HTMLButtonElement>('[aria-selected="true"]')?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    revealSelected();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(revealSelected);
+    observer?.observe(tabs);
+    return () => observer?.disconnect();
+  }, [view, detailOpen]);
   useEffect(() => { copyGeneration.current++; setCopyStatus(null); setMenuError(null); }, [sessionMenu.id, target, view]);
   const copy = async (value: string, label: string) => {
     const generation = ++copyGeneration.current; setCopyStatus(null); setMenuError(null);
@@ -94,19 +109,19 @@ export function RightPanel({ state, sessionOpen, folderLocked = false, onFolderS
     } catch { if (generation === copyGeneration.current) setMenuError(`Unable to copy ${label.toLowerCase()}.`); }
   };
   return <section className="woven-right-panel" aria-label="Right panel">
-    <header className="woven-region-header woven-right-panel-header">
-      {target ? <nav aria-label="Document breadcrumb"><button onClick={() => onView('files')}>Files</button> › <span>{target}</span></nav> :
+    <header className={`woven-region-header woven-right-panel-header ${styles.header}`}>
+      {view === 'workflows' && workflowName ? <nav aria-label="Workflow breadcrumb"><button onClick={() => setWorkflowSelection(null)}>Workflows</button> › <span>{workflowName}</span></nav> : target ? <nav aria-label="Document breadcrumb"><button onClick={() => onView('files')}>Files</button> › <span>{target}</span></nav> :
         sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Who is working</button> › Session</nav> :
-        <div role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
+        <div ref={tabsRef} className={styles.tabs} role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
           event.preventDefault();
-          const views = ['files', 'agents', 'activity'] as const;
-          const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'activity' : views[(views.indexOf(view) + (event.key === 'ArrowRight' ? 1 : 2)) % 3];
+          const views = ['files', 'workflows', 'agents', 'activity'] as const;
+          const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'activity' : views[(views.indexOf(view) + (event.key === 'ArrowRight' ? 1 : views.length - 1)) % views.length];
           onView(next);
           event.currentTarget.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
-        }}>{(['files', 'agents', 'activity'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
+        }}>{(['files', 'workflows', 'agents', 'activity'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
           aria-controls="right-view-content" aria-selected={view === item} tabIndex={view === item ? 0 : -1}
-          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'agents' ? 'Who is working' : 'Activity'}</button>)}</div>}
+          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'workflows' ? 'Workflows' : item === 'agents' ? 'Who is working' : 'Activity'}</button>)}</div>}
       <div className="woven-right-panel-controls">
         <details><summary aria-label="Panel menu" title="Panel menu">⋮</summary>
           <div className="woven-panel-menu-content">
@@ -132,12 +147,12 @@ export function RightPanel({ state, sessionOpen, folderLocked = false, onFolderS
           </div>
         </details>
         <button type="button" aria-label={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} title={state.rightPanelExpanded ? 'Return panel' : 'Expand panel'} aria-pressed={state.rightPanelExpanded ?? false} onClick={onExpand}>{state.rightPanelExpanded ? '⤡' : '⤢'}</button>
-        <button type="button" aria-label={detailOpen ? 'Close detail' : 'Collapse right panel'} onClick={onClose}>×</button></div>
+        <button type="button" aria-label={detailOpen ? 'Close detail' : 'Collapse right panel'} onClick={() => { if (view === 'workflows' && workflowName) setWorkflowSelection(null); else onClose(); }}>×</button></div>
     </header>
     {copyStatus ? <p role="status">{copyStatus}</p> : null}
     {menuError ? <p role="alert">{menuError}</p> : null}
     <div id="right-view-content" role={detailOpen ? undefined : 'tabpanel'} aria-labelledby={detailOpen ? undefined : `right-tab-${view}`} style={{ minHeight: 0, flex: 1, overflow: 'auto' }}>
-      {view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
+      {view === 'workflows' ? folderMismatch ? <p role="alert">The chat is bound to a different folder. Workflows are unavailable until that folder is synchronized.</p> : projectRoot ? <WorkflowsView projectRoot={projectRoot} name={workflowName} refresh={refresh} onOpen={name => setWorkflowSelection({ root: projectRoot, name })} /> : <p>Choose a folder to see its workflow files.</p> : view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
     </div>
   </section>;
 }

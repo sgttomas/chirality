@@ -1,0 +1,13 @@
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/api/working-root-workflow.test.ts src/__tests__/components/woven-workflows.test.tsx src/__tests__/components/woven-right-panel.test.tsx src/__tests__/components/woven-dialogue-shell.test.tsx
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  4 passed (4)
+      Tests  42 passed (42)
+   Start at  23:54:35
+   Duration  362ms (transform 360ms, setup 0ms, import 722ms, tests 215ms, environment 0ms)
+

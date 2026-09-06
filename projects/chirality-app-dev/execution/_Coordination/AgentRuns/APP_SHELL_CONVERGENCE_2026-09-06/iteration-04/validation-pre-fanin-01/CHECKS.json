@@ -1,0 +1,85 @@
+{
+  "phase": "pre-fan-in, no completion/receipt claim",
+  "sourceManifestSha256": "3f145c13ab1afff77feb53669f934ec587534871681144616aef483214fa8177",
+  "sourceMembers": 11,
+  "sourceHashMismatches": [],
+  "reviewSha256": "2343cf3084bd400c60acb51fcc033d0bbf5581b734a685b87d427eee77036b44",
+  "checks": [
+    {
+      "name": "receipt-pre-append",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "startedAt": "2026-09-06T06:03:16.573053+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "corpus-status",
+      "command": [
+        "python3",
+        "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+        "status"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "startedAt": "2026-09-06T06:03:20.313865+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "startedAt": "2026-09-06T06:03:20.347499+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "harness-pytest",
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "tools/practitioner_harness",
+        "-q"
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "startedAt": "2026-09-06T06:03:38.997297+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "tracked-app-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "projects/chirality-app-dev"
+      ],
+      "cwd": ".",
+      "explicitEnvironment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "startedAt": "2026-09-06T06:04:18.709097+00:00",
+      "exitCode": 0
+    }
+  ],
+  "limitations": "frontend gates and terminal fan-in remain manager-owned; no Receipt252 appended; tracked whitespace excludes untracked evidence"
+}

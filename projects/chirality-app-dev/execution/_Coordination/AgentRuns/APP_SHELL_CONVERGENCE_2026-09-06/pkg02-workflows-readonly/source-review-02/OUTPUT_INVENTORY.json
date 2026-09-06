@@ -1,0 +1,50 @@
+[
+  {
+    "path": "AFFECTED_CHECKS.json",
+    "sha256": "792c724e12f0bc857c075cd80ee3695352f9a6756a9565c80bd2e0cb1c05670d"
+  },
+  {
+    "path": "APP_HOLD.json",
+    "sha256": "e411aa3ad8397cd859dd3c2e05325dd6f5c29c8735520778eea4f68c44a033f1"
+  },
+  {
+    "path": "APP_HOLD_DISPATCH.json",
+    "sha256": "452abddaa714c4b5e2e35312d11341029891f2aca5c1a2bd3e8ab92c0780bfeb"
+  },
+  {
+    "path": "BRIEF.md",
+    "sha256": "95056635c54354b8e52113befc74073b05a2830c039a524313da158d5fbf045a"
+  },
+  {
+    "path": "DIFF_VERIFICATION.json",
+    "sha256": "c2f005a2f919b0bfee1d1c8d8f3ad39af7750b1549fbef15231afdd64be416d9"
+  },
+  {
+    "path": "HASH_AFTER.json",
+    "sha256": "aa6f9e970aad93437e5f5fca70ad6435ca54c873b5b48c7d45c06b5624054820"
+  },
+  {
+    "path": "HASH_BEFORE.json",
+    "sha256": "aa6f9e970aad93437e5f5fca70ad6435ca54c873b5b48c7d45c06b5624054820"
+  },
+  {
+    "path": "INPUT_INVENTORY.json",
+    "sha256": "e23f5b9d0a7842a4d93a33d637debb5ebafd0ef885bfb632ee60f8722c1ea420"
+  },
+  {
+    "path": "RECONSTRUCTED_DIFF.patch",
+    "sha256": "2fc948dec24a4aabe921c2992a3037dc6eedbdb2a4ded4c818624dc716c931c1"
+  },
+  {
+    "path": "RETURN.md",
+    "sha256": "2343cf3084bd400c60acb51fcc033d0bbf5581b734a685b87d427eee77036b44"
+  },
+  {
+    "path": "SCOPE.json",
+    "sha256": "35890814ab9867c0e07c40ff2024dc050b548b4da41399a0947846d5d7f4ff94"
+  },
+  {
+    "path": "_run_records/TASK_RUN_2026-09-06_review02.md",
+    "sha256": "cbab48d97f13a820ed3c74bd47ae4680c9c10e03e55efc04ca81afc0e8d8cd6d"
+  }
+]

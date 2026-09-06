@@ -1,0 +1,696 @@
+{
+  "status": "PASS",
+  "observations": [
+    {
+      "fonts": {
+        "status": "loaded",
+        "body": "plexSans, \"plexSans Fallback\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+        "faces": [
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexSans",
+            "status": "loaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSans",
+            "status": "unloaded",
+            "weight": "700"
+          },
+          {
+            "family": "plexSans Fallback",
+            "status": "loaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexSerif",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexSerif",
+            "status": "unloaded",
+            "weight": "600"
+          },
+          {
+            "family": "plexSerif Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "plexMono",
+            "status": "loaded",
+            "weight": "400"
+          },
+          {
+            "family": "plexMono",
+            "status": "unloaded",
+            "weight": "500"
+          },
+          {
+            "family": "plexMono Fallback",
+            "status": "unloaded",
+            "weight": "normal"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist",
+            "status": "unloaded",
+            "weight": "400 600"
+          },
+          {
+            "family": "__nextjs-Geist Mono",
+            "status": "unloaded",
+            "weight": "400 600"
+          }
+        ]
+      }
+    },
+    {
+      "label": "workflow tabs",
+      "width": 1180,
+      "theme": "Light",
+      "tabs": [
+        "Files",
+        "Workflows",
+        "Who is working",
+        "Activity"
+      ],
+      "right": {
+        "x": 841,
+        "y": 0,
+        "width": 339,
+        "height": 688
+      }
+    },
+    {
+      "label": "workflow detail 1180 Light",
+      "inputIdentity": true,
+      "primary": {
+        "x": 287,
+        "y": 559.25,
+        "width": 444.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "workflow tabs",
+      "width": 1180,
+      "theme": "Dark",
+      "tabs": [
+        "Files",
+        "Workflows",
+        "Who is working",
+        "Activity"
+      ],
+      "right": {
+        "x": 841,
+        "y": 0,
+        "width": 339,
+        "height": 688
+      }
+    },
+    {
+      "label": "workflow detail 1180 Dark",
+      "inputIdentity": true,
+      "primary": {
+        "x": 287,
+        "y": 559.25,
+        "width": 444.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "workflow tabs",
+      "width": 1440,
+      "theme": "Light",
+      "tabs": [
+        "Files",
+        "Workflows",
+        "Who is working",
+        "Activity"
+      ],
+      "right": {
+        "x": 1101,
+        "y": 0,
+        "width": 339,
+        "height": 968
+      }
+    },
+    {
+      "label": "workflow detail 1440 Light",
+      "inputIdentity": true,
+      "primary": {
+        "x": 301,
+        "y": 845.5,
+        "width": 676.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "workflow tabs",
+      "width": 1440,
+      "theme": "Dark",
+      "tabs": [
+        "Files",
+        "Workflows",
+        "Who is working",
+        "Activity"
+      ],
+      "right": {
+        "x": 1101,
+        "y": 0,
+        "width": 339,
+        "height": 968
+      }
+    },
+    {
+      "label": "workflow detail 1440 Dark",
+      "inputIdentity": true,
+      "primary": {
+        "x": 301,
+        "y": 845.5,
+        "width": 676.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "workflow tabs",
+      "width": 960,
+      "theme": "Light",
+      "tabs": [
+        "Files",
+        "Workflows",
+        "Who is working",
+        "Activity"
+      ],
+      "right": {
+        "x": 681,
+        "y": 0,
+        "width": 279,
+        "height": 968
+      }
+    },
+    {
+      "label": "workflow detail 960 Light",
+      "inputIdentity": true,
+      "primary": {
+        "x": 283,
+        "y": 808.25,
+        "width": 288.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "workflow tabs",
+      "width": 960,
+      "theme": "Dark",
+      "tabs": [
+        "Files",
+        "Workflows",
+        "Who is working",
+        "Activity"
+      ],
+      "right": {
+        "x": 681,
+        "y": 0,
+        "width": 279,
+        "height": 968
+      }
+    },
+    {
+      "label": "workflow detail 960 Dark",
+      "inputIdentity": true,
+      "primary": {
+        "x": 283,
+        "y": 808.25,
+        "width": 288.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "workflow expand return",
+      "inputIdentity": true,
+      "primary": {
+        "x": 301,
+        "y": 845.5,
+        "width": 676.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "workflow expanded typing restores",
+      "inputIdentity": true,
+      "primary": {
+        "x": 301,
+        "y": 845.5,
+        "width": 676.125,
+        "height": 30
+      }
+    },
+    {
+      "label": "Delayed synthetic old-root list response cannot replace actual new-root empty result",
+      "pass": true
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "info",
+      "text": "[toolkit] opts changed: (empty)"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] rebuilding"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] done in 182ms"
+    }
+  ],
+  "pageErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Unsafe.md",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/validate",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-missing-f_bmbtq1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-missing-f_bmbtq1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-missing-f_bmbtq1",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/validate",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/validate",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-empty-uttvhykw",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-empty-uttvhykw",
+      "method": "GET"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:3187/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/css/app/layout.css?v=1788674298084",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/css/app/page.css?v=1788674298084",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/media/dece0821e8ed059f-s.p.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/webpack.js?v=1788674298084",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app-pages-internals.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/layout.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/not-found.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/app/page.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/chunks/main-app.js?v=1788674298084",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/icon.svg?38b9e59bfa97244d",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/agents?directChat=1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Design+review.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/tree?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&depth=3",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb&name=Unsafe.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/807bd178c058435f.webpack.hot-update.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/validate",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/_next/static/webpack/webpack.807bd178c058435f.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-missing-f_bmbtq1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-missing-f_bmbtq1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-missing-f_bmbtq1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/validate",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-57dapcsb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/validate",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-empty-uttvhykw",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/project/deliverables?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-empty-uttvhykw",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3187/api/working-root/workflow?projectRoot=%2Fprivate%2Ftmp%2Fworkflow-v2-empty-uttvhykw",
+      "status": 200
+    }
+  ],
+  "claim": "Raw read-only subset only; actual route happy/empty/error evidence plus separately labelled delayed response fixture."
+}

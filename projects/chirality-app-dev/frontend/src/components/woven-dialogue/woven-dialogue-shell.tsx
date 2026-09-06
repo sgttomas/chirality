@@ -78,7 +78,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [availableWidth, setAvailableWidth] = useState(1440);
   const workspaceRef = useRef<HTMLElement | null>(null);
   const [coordinationView, setCoordinationView] = useState<'session' | 'agents'>('agents');
-  const rightView = workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' ? workspaceState.rightPanelView : 'files';
+  const rightView = workspaceState.rightPanelView === 'workflows' || workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' ? workspaceState.rightPanelView : 'files';
   const widthKey = rightView === 'files' && workspaceState.openDocumentPath ? 'document' : rightView === 'agents' && coordinationView === 'session' ? 'session' : rightView;
   const rightWidth = workspaceState.rightPanelWidths?.[widthKey] ?? (widthKey === 'files' ? 300 : widthKey === 'agents' ? 360 : 480);
   const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : clamp(workspaceState.navigatorWidth, 220, 360)) - 444));

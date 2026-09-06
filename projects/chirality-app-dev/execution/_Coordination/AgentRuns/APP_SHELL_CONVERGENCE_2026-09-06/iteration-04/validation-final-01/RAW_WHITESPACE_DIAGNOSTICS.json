@@ -1,0 +1,75 @@
+{
+  "method": "git diff --no-index --check; empty output exit1 is ordinary difference",
+  "findings": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/full_test.stdout.log",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/full_test.stdout.log:14: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v1.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v1.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v2.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v2.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/RECONSTRUCTED_DIFF.patch",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-02/RECONSTRUCTED_DIFF.patch:328: trailing whitespace.\n+ \n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v1.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v1.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v1.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v1.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/RECONSTRUCTED_DIFF.patch",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/RECONSTRUCTED_DIFF.patch:302: trailing whitespace.\n+ \n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v1.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v1.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v2.patch",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v2.patch:328: trailing whitespace.\n+ \n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v1.patch",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v1.patch:302: trailing whitespace.\n+ \n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v4.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-v4.txt:4: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v2.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v2.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v2.txt",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-v2.txt:13: new blank line at EOF.\n"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/typecheck.stdout.log",
+      "exitCode": 3,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/release-quality-v2-host/artifacts/logs/typecheck.stdout.log:4: new blank line at EOF.\n"
+    }
+  ]
+}

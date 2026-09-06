@@ -1,0 +1,18 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_INPUT_INVENTORY_v1.json",
+    "sha256": "e85cc9482b97b555609a4b270ea96dba17fd2dcf409f23314ea84a6c49621cc1"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_PREDECESSOR_RECONCILIATION_v1.md",
+    "sha256": "7434c94fd604eb7901a2030e9a707c1e952437f6243c3158e0f85505886ce902"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_RELIANCE_PREFLIGHT_v1.json",
+    "sha256": "8bec41853c01e37440f77c8a4c17df20dc511b8654656d828813853cbac47ba3"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/MERGED_SOURCE_TRACE_v1.json",
+    "sha256": "b13c442f2c43458b8b572af390813e400ccac9d925cd99359a8d80b3dd10981f"
+  }
+]

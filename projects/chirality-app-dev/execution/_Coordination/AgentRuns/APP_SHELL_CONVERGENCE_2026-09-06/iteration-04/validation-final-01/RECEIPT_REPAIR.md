@@ -1,0 +1,3 @@
+# Receipt grammar repair
+
+The initial post-append validator rejected the Checks phrase naming Walkthrough scenes 17/18 as DUPLICATED_MEASUREMENT because the receipt grammar treats numeric slash pairs as measurements. The initial exact failure output is preserved. The receipt now points to the owning Walkthrough comparison artifact and uses a count-free check summary. No underlying evidence, scope, scene comparison or prior receipt was altered. The source-review acceptance and graph rationale pointers were also added before freeze. Final receipt validation and self-check are rerun after this correction.

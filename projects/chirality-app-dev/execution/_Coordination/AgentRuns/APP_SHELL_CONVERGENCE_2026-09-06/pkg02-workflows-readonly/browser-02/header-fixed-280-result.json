@@ -1,0 +1,653 @@
+{
+  "status": "PASS",
+  "measurements": [
+    {
+      "label": "initial",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 0,
+        "children": [
+          {
+            "x": 915,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 951.4375,
+            "bottom": 32.5,
+            "left": 915
+          },
+          {
+            "x": 955.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 1024.9375,
+            "bottom": 32.5,
+            "left": 955.4375
+          },
+          {
+            "x": 1028.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1123.921875,
+            "bottom": 32.5,
+            "left": 1028.9375
+          },
+          {
+            "x": 1127.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1180.296875,
+            "bottom": 32.5,
+            "left": 1127.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "keyboard Files",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 0,
+        "children": [
+          {
+            "x": 915,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 951.4375,
+            "bottom": 32.5,
+            "left": 915
+          },
+          {
+            "x": 955.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 1024.9375,
+            "bottom": 32.5,
+            "left": 955.4375
+          },
+          {
+            "x": 1028.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1123.921875,
+            "bottom": 32.5,
+            "left": 1028.9375
+          },
+          {
+            "x": 1127.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1180.296875,
+            "bottom": 32.5,
+            "left": 1127.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "keyboard Workflows",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 0,
+        "children": [
+          {
+            "x": 915,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 951.4375,
+            "bottom": 32.5,
+            "left": 915
+          },
+          {
+            "x": 955.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 1024.9375,
+            "bottom": 32.5,
+            "left": 955.4375
+          },
+          {
+            "x": 1028.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1123.921875,
+            "bottom": 32.5,
+            "left": 1028.9375
+          },
+          {
+            "x": 1127.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1180.296875,
+            "bottom": 32.5,
+            "left": 1127.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "keyboard Who is working",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 20,
+        "children": [
+          {
+            "x": 895,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 931.4375,
+            "bottom": 32.5,
+            "left": 895
+          },
+          {
+            "x": 935.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 1004.9375,
+            "bottom": 32.5,
+            "left": 935.4375
+          },
+          {
+            "x": 1008.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1103.921875,
+            "bottom": 32.5,
+            "left": 1008.9375
+          },
+          {
+            "x": 1107.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1160.296875,
+            "bottom": 32.5,
+            "left": 1107.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "keyboard Activity",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 76,
+        "children": [
+          {
+            "x": 839,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 875.4375,
+            "bottom": 32.5,
+            "left": 839
+          },
+          {
+            "x": 879.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 948.9375,
+            "bottom": 32.5,
+            "left": 879.4375
+          },
+          {
+            "x": 952.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1047.921875,
+            "bottom": 32.5,
+            "left": 952.9375
+          },
+          {
+            "x": 1051.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1104.296875,
+            "bottom": 32.5,
+            "left": 1051.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "pointer Activity",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 76,
+        "children": [
+          {
+            "x": 839,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 875.4375,
+            "bottom": 32.5,
+            "left": 839
+          },
+          {
+            "x": 879.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 948.9375,
+            "bottom": 32.5,
+            "left": 879.4375
+          },
+          {
+            "x": 952.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1047.921875,
+            "bottom": 32.5,
+            "left": 952.9375
+          },
+          {
+            "x": 1051.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1104.296875,
+            "bottom": 32.5,
+            "left": 1051.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "pointer Who is working",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 76,
+        "children": [
+          {
+            "x": 839,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 875.4375,
+            "bottom": 32.5,
+            "left": 839
+          },
+          {
+            "x": 879.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 948.9375,
+            "bottom": 32.5,
+            "left": 879.4375
+          },
+          {
+            "x": 952.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1047.921875,
+            "bottom": 32.5,
+            "left": 952.9375
+          },
+          {
+            "x": 1051.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1104.296875,
+            "bottom": 32.5,
+            "left": 1051.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "pointer Workflows",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 40,
+        "children": [
+          {
+            "x": 875,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 911.4375,
+            "bottom": 32.5,
+            "left": 875
+          },
+          {
+            "x": 915.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 984.9375,
+            "bottom": 32.5,
+            "left": 915.4375
+          },
+          {
+            "x": 988.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1083.921875,
+            "bottom": 32.5,
+            "left": 988.9375
+          },
+          {
+            "x": 1087.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1140.296875,
+            "bottom": 32.5,
+            "left": 1087.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    },
+    {
+      "label": "pointer Files",
+      "header": {
+        "x": 901,
+        "y": 0,
+        "width": 279,
+        "height": 40
+      },
+      "tabs": {
+        "box": {
+          "x": 915,
+          "y": 6.5,
+          "width": 189.125,
+          "height": 26,
+          "top": 6.5,
+          "right": 1104.125,
+          "bottom": 32.5,
+          "left": 915
+        },
+        "clientWidth": 189,
+        "scrollWidth": 265,
+        "scrollLeft": 0,
+        "children": [
+          {
+            "x": 915,
+            "y": 6.5,
+            "width": 36.4375,
+            "height": 26,
+            "top": 6.5,
+            "right": 951.4375,
+            "bottom": 32.5,
+            "left": 915
+          },
+          {
+            "x": 955.4375,
+            "y": 6.5,
+            "width": 69.5,
+            "height": 26,
+            "top": 6.5,
+            "right": 1024.9375,
+            "bottom": 32.5,
+            "left": 955.4375
+          },
+          {
+            "x": 1028.9375,
+            "y": 6.5,
+            "width": 94.984375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1123.921875,
+            "bottom": 32.5,
+            "left": 1028.9375
+          },
+          {
+            "x": 1127.921875,
+            "y": 6.5,
+            "width": 52.375,
+            "height": 26,
+            "top": 6.5,
+            "right": 1180.296875,
+            "bottom": 32.5,
+            "left": 1127.921875
+          }
+        ]
+      },
+      "controls": {
+        "x": 1110.125,
+        "y": 6.5,
+        "width": 61.875,
+        "height": 26
+      }
+    }
+  ]
+}

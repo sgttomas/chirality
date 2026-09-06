@@ -1,0 +1,1 @@
+INVALID DUPLICATED_MEASUREMENT /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md:7139: Exact count/measurement is not admissible in Checks; point to its owning artifact

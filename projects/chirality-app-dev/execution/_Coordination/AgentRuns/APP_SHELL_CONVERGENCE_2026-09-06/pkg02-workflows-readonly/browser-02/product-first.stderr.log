@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Error: strict mode violation: getByText('Preferences', { exact: true }) resolved to 2 elements:
+    1) <span class="dev-tools-indicator-label">Preferences</span> aka getByLabel('Next.js Dev Tools Items').getByText('Preferences')
+    2) <h3>Preferences</h3> aka getByRole('heading', { name: 'Preferences' })
+
+Call log:
+[2m  - waiting for getByText('Preferences', { exact: true }) to be hidden[22m
+
+    at /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/browser-02/product-first.mjs:38:349 {
+  log: [
+    "  - waiting for getByText('Preferences', { exact: true }) to be hidden"
+  ]
+}
+
+Node.js v24.18.0

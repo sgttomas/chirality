@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "label": "actual GET list",
+      "root": "/private/tmp/workflow-v2-57dapcsb",
+      "status": 200,
+      "body": {
+        "projectRoot": "/private/tmp/workflow-v2-57dapcsb",
+        "files": [
+          {
+            "name": "Design review.md",
+            "path": ".chirality/workflows/Design review.md",
+            "size": 309,
+            "modifiedAt": "2026-09-06T05:57:04.500Z"
+          },
+          {
+            "name": "Unsafe.md",
+            "path": ".chirality/workflows/Unsafe.md",
+            "size": 171,
+            "modifiedAt": "2026-09-06T05:57:04.500Z"
+          },
+          {
+            "name": "Vendor comparison.md",
+            "path": ".chirality/workflows/Vendor comparison.md",
+            "size": 80,
+            "modifiedAt": "2026-09-06T05:57:04.500Z"
+          }
+        ],
+        "directoryMissing": false
+      }
+    },
+    {
+      "label": "actual GET list",
+      "root": "/private/tmp/workflow-v2-missing-f_bmbtq1",
+      "status": 200,
+      "body": {
+        "projectRoot": "/private/tmp/workflow-v2-missing-f_bmbtq1",
+        "files": [],
+        "directoryMissing": true
+      }
+    },
+    {
+      "label": "actual GET list",
+      "root": "/private/tmp/workflow-v2-empty-uttvhykw",
+      "status": 200,
+      "body": {
+        "projectRoot": "/private/tmp/workflow-v2-empty-uttvhykw",
+        "files": [],
+        "directoryMissing": false
+      }
+    },
+    {
+      "label": "actual GET invalid or missing",
+      "name": "../escape.md",
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "INVALID_WORKFLOW_PATH",
+          "message": "Choose a Markdown file directly inside .chirality/workflows."
+        }
+      }
+    },
+    {
+      "label": "actual GET invalid or missing",
+      "name": "Unsupported.txt",
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "INVALID_WORKFLOW_PATH",
+          "message": "Choose a Markdown file directly inside .chirality/workflows."
+        }
+      }
+    },
+    {
+      "label": "actual GET invalid or missing",
+      "name": "Missing.md",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "FILE_NOT_FOUND",
+          "message": "File or Working Root no longer exists."
+        }
+      }
+    }
+  ]
+}

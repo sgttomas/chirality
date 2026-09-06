@@ -11,7 +11,7 @@ vi.mock('../../components/shell/file-tree-panel', () => ({ FileTreePanel: () => 
 const handoff = vi.hoisted(() => vi.fn(async (_input: unknown) => {}));
 vi.mock('../../components/shell/document-view', () => ({ handoffDocument: handoff, DocumentView: ({ target }: { target: string }) => <p>Document {target}</p> }));
 const handlers = { onView: vi.fn(), onOpenFile: vi.fn(), onClose: vi.fn(), onExpand: vi.fn(), coordination: <p>Recorded agents and session content</p> };
-it.each(['settings', 'workflows'] as const)('retains content for future stored %s views', view => {
+it.each(['settings'] as const)('retains content for future stored %s views', view => {
   const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: view }} sessionOpen={false} />);
   expect(html).toContain('Existing file contents'); expect(html).not.toContain('placeholder');
 });
@@ -70,5 +70,25 @@ it('reveals the root and the selected file through distinct bounded actions', as
   act(() => tree.update(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), openDocumentPath: 'spec.md' }} sessionOpen={false} />));
   await act(async () => tree.root.findAllByType('button').find(x => x.children.join('') === 'Reveal file in Finder')!.props.onClick());
   expect(handoff).toHaveBeenLastCalledWith({ projectRoot: '/root', target: 'spec.md', action: 'reveal' });
+  act(() => tree.unmount());
+});
+
+it('keeps four-view keyboard navigation and reveals the selected tab after changes', async () => {
+  const onView = vi.fn(); const focus = vi.fn(); const scrollIntoView = vi.fn(); const selectors: string[] = [];
+  const tabNode = { querySelector: (selector: string) => { selectors.push(selector); return { scrollIntoView }; } };
+  let tree!: ReactTestRenderer;
+  const props = { ...handlers, onView, sessionOpen: false };
+  const state = createDefaultWovenWorkspaceState();
+  await act(async () => { tree = create(<RightPanel {...props} state={state} />, { createNodeMock: element => element.props.role === 'tablist' ? tabNode : null }); });
+  const key = (value: string) => tree.root.findByProps({ role: 'tablist' }).props.onKeyDown({ key: value, preventDefault: vi.fn(), currentTarget: { querySelector: () => ({ focus }) } });
+  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.props['data-view'])).toEqual(['files', 'workflows', 'agents', 'activity']);
+  act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('workflows');
+  act(() => key('ArrowLeft')); expect(onView).toHaveBeenLastCalledWith('activity');
+  act(() => key('End')); expect(onView).toHaveBeenLastCalledWith('activity');
+  await act(async () => tree.update(<RightPanel {...props} state={{ ...state, rightPanelView: 'activity' }} />));
+  act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('files');
+  act(() => key('Home')); expect(onView).toHaveBeenLastCalledWith('files');
+  expect(focus).toHaveBeenCalledTimes(5); expect(selectors).toEqual(['[aria-selected="true"]', '[aria-selected="true"]']);
+  expect(scrollIntoView).toHaveBeenLastCalledWith({ block: 'nearest', inline: 'nearest' });
   act(() => tree.unmount());
 });

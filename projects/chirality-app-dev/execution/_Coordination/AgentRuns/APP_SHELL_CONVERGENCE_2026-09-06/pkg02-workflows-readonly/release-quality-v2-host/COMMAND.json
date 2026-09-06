@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "validate:release-quality",
+    "--",
+    "--skip-premerge",
+    "Current frozen Workflows source registered premerge returned actual HTTP 503 for session list/create/boot without configured runtime daemon binding. App AGENTS permits configured PR CI deferral; this is not premerge PASS."
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "exit_code": 0,
+  "host_escalation": "Approved fixture checks require isolated loopback services",
+  "binding_environment_present": {
+    "CHIRALITY_RUNTIME_SOCKET_PATH": false,
+    "CHIRALITY_RUNTIME_TOKEN_FILE": false,
+    "CHIRALITY_RUNTIME_PROJECT_ID": false,
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": false
+  }
+}

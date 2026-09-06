@@ -1,0 +1,26 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/APP_HOLD_DISPATCH.json",
+    "sha256": "fe6467db354de8c051959c099404467745538d009f3206df5943776aca5a4388"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/BRIEF.md",
+    "sha256": "9b158ec95d9f7e9ae0798ccb1c565a439bcfc4e605bd5cda23ea0752919397d0"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/INPUT_INVENTORY_v1.json",
+    "sha256": "2b2829681f013a5e7bf0b6cc758783d1587c21b78b05009318d6fff277dcbee8"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/NEXT_STEPS_v1.md",
+    "sha256": "000ceb5ec88d273f03b432e377f667020f113b557262f8c07e4796edbb287548"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/RELIANCE_PREFLIGHT_v1.json",
+    "sha256": "e84eebb85286a9c592fabdf698420b579aeb00b087bb9188d4cb05971e23abae"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/successor-assessment-01/SOURCE_CHECK_v1.json",
+    "sha256": "9de7003d699d62637cf7cf2496b4b781cc494d2d2dca4557ecfad9b83649cb58"
+  }
+]

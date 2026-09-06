@@ -1,0 +1,9 @@
+# v1 visual gate and bounded remediation
+
+Fresh complete source review PASS remains valid historical evidence over manifest 83ebdd33e8184119f0028d8406feef7ed9fb61c215402ed9f218fa06b21d15bd. Parent visual review of the first actual reference/product17/18 pair identifies an actionable design defect: Activity wraps to a second toolbar row at 340px, conflicting with the approved single right control row. Initial manager acceptance of this as reflow is superseded by the parent assessment; no final visual PASS is claimed.
+
+Parent also directs removal of prominent byte counts from workflow list rows; modified date is sufficient, size remains available in File details. Flat list/detail hierarchy, readable preview and persistent primary are otherwise the accepted partial direction. No account/footer or held workflow effect change is requested.
+
+Disposition: hold source acceptance, finish browser terminal partial evidence/cleanup, then sole author repairs only toolbar layout/reachability and secondary row metadata inside the existing source fence. Use robust horizontal tab overflow separate from fixed controls, without hiding views. All tab/menu/expand/close actions must remain reachable by pointer and keyboard. Preserve a single control row at default/minimum widths and selected tab visibility. Then freeze complete source again and dispatch a fresh full-diff review plus affected browser proof. No final broad check is accepted on superseded bytes.
+
+Detection layer: parent actual rendered design comparison. Failure class: layout acceptance, not route/security failure. D64 agent judgment: HOLD_AND_REPAIR under existing owner direction and unchanged scope; no owner case selection, authority amendment or acceptance waiver. Earlier screenshots and source review remain immutable; new evidence must identify new bytes. Parent owns shared telemetry/receipt.

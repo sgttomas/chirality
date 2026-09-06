@@ -1,0 +1,34 @@
+{
+  "kind": "terminal observed events, not a standing status register",
+  "basis": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "events": [
+    {
+      "event": "bounded GET-only source authored and reviewed; initial checkpoint findings retained",
+      "evidence": "pkg02-workflows-readonly/author-01 and source-review-01"
+    },
+    {
+      "event": "parent visual feedback drove no-wrap toolbar and date-only list repair",
+      "evidence": "pkg02-workflows-readonly/MANAGER_RETURN_v2.md"
+    },
+    {
+      "event": "source-review-02 complete full 11-member PASS",
+      "sha256": "2343cf3084bd400c60acb51fcc033d0bbf5581b734a685b87d427eee77036b44"
+    },
+    {
+      "event": "browser-02 bounded PASS with matched reference 17/18 and cleanup",
+      "evidence": "pkg02-workflows-readonly/browser-02/RETURN.md",
+      "limits": "mock own scale/font fallback; no full structured workflow acceptance"
+    },
+    {
+      "event": "final source tests/typecheck/build/Section9 pass; actual premerge503 retained",
+      "tests": "1730 passed,4 skipped",
+      "CI": "configured exact-source evidence owed"
+    },
+    {
+      "event": "parent accepted bounded partial fan-in; local closeout remains pending",
+      "evidence": "pkg02-workflows-readonly/MANAGER_RETURN_v2.md"
+    }
+  ],
+  "metrics": "exact serving model/token/context unavailable",
+  "executionClass": "delegated-harness-native, roles instruction-asserted"
+}

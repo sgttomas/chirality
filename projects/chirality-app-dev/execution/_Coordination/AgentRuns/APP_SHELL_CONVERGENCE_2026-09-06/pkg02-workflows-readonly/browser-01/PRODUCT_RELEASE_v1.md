@@ -1,0 +1,7 @@
+# Product capture release v1
+
+Manager verified all 11 source members against author-01/SOURCE_MANIFEST_v1.json SHA256 83ebdd33e8184119f0028d8406feef7ed9fb61c215402ed9f218fa06b21d15bd. Author terminal typecheck and 41 focused tests PASS; source held and no owned process remains. Fresh independent review runs concurrently with disjoint evidence ownership.
+
+Initial browser brief now releases actual product execution/capture on these exact bytes. Own one isolated product dev server/browser; no builds/native/account/source writes. Use actual GET workflow route over owned fixture folders and safe readable Markdown. Preserve previous reference captures and actual scaling metadata. Product logical1180x720 comparison avoids the stacked830px breakpoint; clearly label the mock's actual0.70339 fit scale. Send first list/detail product light images promptly for parent semantic comparison before extensive matrix.
+
+Once early comparison passes, execute the originally briefed affected interaction/matrix checks on the same frozen bytes. Use actual file route for happy/empty/error paths; identify any intercepted delayed responses as fixture-specific stale-response evidence. Assert no false validated metadata/progress/effect controls; primary draft/mount and Files/Activity/session reachability preserved. Capture actual page geometry and fonts. Stop/clean all owned processes before final registered build/premerge, preserve failures and exact source identity. No forced-click workaround. Report actionable issues, then hold for grouped repair after full review/cleanup.

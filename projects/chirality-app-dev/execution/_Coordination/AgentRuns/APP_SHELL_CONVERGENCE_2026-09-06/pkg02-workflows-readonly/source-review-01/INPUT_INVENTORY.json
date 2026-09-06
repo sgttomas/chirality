@@ -1,0 +1,146 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+  },
+  {
+    "path": "agents/AGENT_TASK.md",
+    "sha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983"
+  },
+  {
+    "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+    "sha256": "f97af1d323524f9a2be1dab8b5b33c1350c8f48c38cd3c6f8d0f8a9cd9821ea2"
+  },
+  {
+    "path": "projects/chirality-app-dev/AGENTS.md",
+    "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5"
+  },
+  {
+    "path": "projects/chirality-app-dev/software-workflow.json",
+    "sha256": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/source-review-01/BRIEF.md",
+    "sha256": "c7485c603b3700f13390a9bd850ffbb4c6e82cf7079289b48797ff4b1efbf6bb"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/ALLOWED_SOURCE_PATHS.json",
+    "sha256": "99ee5632d42bd5ee67d2d22a747845636a2bc2811f0dc303174c9163a41ac2a3"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/GRAPH_v1.md",
+    "sha256": "f970ac273b8c0c9d40a5167f44ccca2327824afd216bd0d6d084436e4963deee"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/MANAGER_FREEZE_CHECK_v1.json",
+    "sha256": "0d98a63176a9c48f0d9fcba27be50d9505517ceb7df74c5266c553fc21562a22"
+  },
+  {
+    "path": "skills/software-code-review/QA_CHECKS.md",
+    "sha256": "b6fd4756bbf2775baedc83488bc88219362715f0aec79e9f9330ebf19a5e2dc8"
+  },
+  {
+    "path": "skills/software-code-review/TOOL_POLICY.md",
+    "sha256": "c06c32c9b08fe0e98329c1c670660135f84c1795a07a237a84f74e80306a5b26"
+  },
+  {
+    "path": "skills/software-code-review/SKILL.md",
+    "sha256": "aae98f44d3f5d923e0879872a5c71e7133e9d109b0142dd9ff19aaac6e1fd031"
+  },
+  {
+    "path": "skills/software-code-review/BRIEF_SCHEMA.md",
+    "sha256": "f4622f020e60cd9e99958cf992f1acb7bd87145c212ff634d485745e03bbe8d8"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/IMPLEMENTATION_RELEASE_v1.md",
+    "sha256": "016ac0ad32ae98069b9fb2f45731cd649d44450272aba15b00510825b2dcf956"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/INTERFACE_FINDINGS_v1.md",
+    "sha256": "6361d291df1e7347e96b87cf04618f7a6d750d5fbf177d6b10427c8ed9bf9fee"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_MANIFEST_v1.json",
+    "sha256": "83ebdd33e8184119f0028d8406feef7ed9fb61c215402ed9f218fa06b21d15bd"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/SOURCE_DIFF_v1.patch",
+    "sha256": "9a9e25e2ae849a679475ed06f4aee2c779061b129fa18b31f2fe0b3a856c94de"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/AUTHOR_RETURN_v1.md",
+    "sha256": "811be6cc8b84cce90404f74de7bd7eb2436033e2511c2f30755b2da5cc709321"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/focused-freeze-v1.txt",
+    "sha256": "b05d075497d1921bfdfa901d86d866f80918c4247e210d4a9b423ca3ca514e0a"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02-workflows-readonly/author-01/typecheck-freeze-v1.txt",
+    "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root-workflow.test.ts",
+    "sha256": "ee361a4fba39d2e3ab8dc3858cfb16edaba264a70c9ddaa46815ce6e1a5f6c33"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+    "sha256": "4f0cd186dcf92b4c78c63c8726ee50e5fc0eb7da5f0f145e437e764569ef8bdc"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-workflows.test.tsx",
+    "sha256": "343a0cf17438ac42ccf77de88cc999872c0f5b93ec47209b0973e2ba32ce1a5f"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/route.ts",
+    "sha256": "f206a554686f2da2459db7892296029272745329e23056156c33b297054c15df"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-read-contract.ts",
+    "sha256": "de1dbbc16cc8d2a6eb07c57b37663bf9ea5772d7e2aada39667fabe0610bb011"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/workflow/workflow-store.ts",
+    "sha256": "5912538ad3a90c8ec6870479e14c640d3dd1fb4c4aa4479d32857db94e8fb539"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "sha256": "bdcbd42e2f3cdafc17ef35e3bef2338fb58fdf81eb3dc4d9614e4a275b415c19"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflow-detail.tsx",
+    "sha256": "4488d3a4e29526d505979077e09548b7a1f18920e6ce7e54b0ad65abc4246330"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows-view.tsx",
+    "sha256": "4e4f1f37d8f7d8a2836dbcfb5a57f5d014c950e39859b3482b760c926685dd56"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/workflows.module.css",
+    "sha256": "4c8c1d978dc30155b6a1458eb8e86df705ea5c0ffa618ba5d783520f2949b1f1"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "sha256": "205b39a280d68a5ff1aaccf3e4a0a139904257f3d52db8536a4d3785dd5a5801"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+    "sha256": "30b9e9c1f4f26c990953b9bfb00a1d3a03c3a94760775d63b2356bbe43d6e603"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts",
+    "sha256": "90445c88cfbb0af10a4fb0a5e48f40ec2b4d06d632361d23d73d0474b5416586"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/harness/instruction-root.ts",
+    "sha256": "3ab8b1e585e7c4797f8c5606715ab0d6778c9267799cc91b222a07779f5cbaef"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+    "sha256": "ead76e3015bc7ca35ef1a04caa355eeb548b25e4d99cdd39f5bd3c2bd3ec5916"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "sha256": "ba93d0a194ecb36b9cf3315d0299cd9852352003e344cfb8737432681ff45ff4"
+  }
+]
