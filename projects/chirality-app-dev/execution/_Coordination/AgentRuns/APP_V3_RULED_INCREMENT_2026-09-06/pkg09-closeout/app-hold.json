@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "execution/_Scripts/app_hold.py",
+    "check",
+    "--operation",
+    "reliance",
+    "--entry-path",
+    "WORKING_ITEMS:APP_V3_RULED_INCREMENT_2026-09-06:PKG09",
+    "--target",
+    "DEL-09-04"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "exit_code": 0
+}

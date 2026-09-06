@@ -1,0 +1,12 @@
+{
+  "command": [
+    "gh",
+    "pr",
+    "view",
+    "739",
+    "--json",
+    "url,headRefOid,state"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0
+}

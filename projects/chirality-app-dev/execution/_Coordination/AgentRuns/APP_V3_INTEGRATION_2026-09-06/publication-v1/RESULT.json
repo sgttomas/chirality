@@ -1,0 +1,38 @@
+{
+  "utc": "2026-09-06T23:15:21.382439+00:00",
+  "fetch": {
+    "command": [
+      "git",
+      "fetch",
+      "origin"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "published_commit": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "remote_branch": "codex/shell-redesign-resume-20260906",
+  "remote_before": null,
+  "remote_after": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "origin_main": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "main_advanced": false,
+  "pr": {
+    "baseRefName": "main",
+    "baseRefOid": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+    "headRefName": "codex/shell-redesign-resume-20260906",
+    "headRefOid": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+    "mergeStateStatus": "UNKNOWN",
+    "mergeable": "UNKNOWN",
+    "number": 739,
+    "state": "OPEN",
+    "statusCheckRollup": [],
+    "title": "Improve session Reveal and activity presentation in the desktop shell",
+    "url": "https://github.com/sgttomas/chirality/pull/739"
+  },
+  "local_custody_files_preserved": 161,
+  "new_rulings_included": false,
+  "index_clean": true,
+  "merge_performed": false,
+  "publication_scope": "exact accepted commit only",
+  "followon": "Check CI and present PR to owner; merge remains separately gated"
+}

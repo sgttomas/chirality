@@ -1,0 +1,8 @@
+{
+  "status": "CANDIDATE_NOT_APPLIED",
+  "preimage": "5899eac3f69480fcbabf49e1254ff83e19515ac4f2bce03ecac18c1181d806ac",
+  "postimage": "32f4d185f37c266f239d7c35f26f680e302d2d2d8f856cbe32a3ac62704c9283",
+  "patch": "dc79b159c01a4338dc7412baa223029cd4a4fb4d5dd4f8aa3303c86b16f18829",
+  "only_row": "D121",
+  "ruling_candidate": "Parent review required; separate cross-owner direction route, no invented App register IDs"
+}

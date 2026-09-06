@@ -1,0 +1,33 @@
+{
+  "observed_utc": "2026-09-06T23:22:01.980291+00:00",
+  "fetch_origin_exit": 0,
+  "local_head": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "origin_main": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "main_movement": false,
+  "pr": 739,
+  "published_head": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "state": "OPEN",
+  "mergeable": "MERGEABLE",
+  "merge_state": "CLEAN",
+  "checks": [
+    {
+      "name": "Harness pre-merge",
+      "conclusion": "SUCCESS",
+      "workflow_run_id": 34066365996,
+      "job_id": 101575709387
+    },
+    {
+      "name": "harness",
+      "conclusion": "SUCCESS",
+      "workflow_run_id": 34066365991,
+      "job_id": 101575709251
+    },
+    {
+      "name": "Verify unsigned macOS artifact",
+      "conclusion": "SKIPPED",
+      "workflow_run_id": 34066366015,
+      "job_id": 101575709969
+    }
+  ],
+  "merge_performed": false
+}

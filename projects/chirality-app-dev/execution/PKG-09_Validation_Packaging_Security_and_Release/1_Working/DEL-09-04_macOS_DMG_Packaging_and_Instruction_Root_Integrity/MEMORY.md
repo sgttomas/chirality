@@ -1,5 +1,7 @@
 # MEMORY - DEL-09-04
 
+- 2026-09-06 — D124 final-union and scoped local closeout are recorded at commit `dbf40276066a771213a849d8e9c2fa32d4a738f5`, the published OPEN PR #739 head. Agent0 accepted the integrated validation; the completed D124 Remaining obligation is removed. This records neither PR #739 merge nor whole-deliverable/lifecycle acceptance. All other residuals and A1/login/release gates remain unchanged. See `_run_records/D_APP_124_SCOPED_CLOSEOUT_2026-09-06.md`.
+
 - 2026-09-06 — D124 is present on merged main `28a8ed32ba83c5514ae2e65e9260833c1d46b7ef`. Current App integration includes the seven pending shell changes: both typechecks, 1,774 Vitest passed / 4 skipped, build, APP-HOLD, self-check and 379 pytest tests pass. Isolated actual Electron daemon registration and stub-provider premerge pass 8/8; owned processes exit0, socket and disposable tokens are removed. Prior 503/Pi-loading failures remain historical, resolved only for this verified registered headless setup. D124 remains open for parent final-union/local closeout; GUI, real-provider, live-login and release claims remain separate. See `_run_records/D_APP_124_MERGED_APP_V3_INTEGRATION_2026-09-06.md`.
 
 - 2026-08-21 — The owner-authorized PREPARE-THEN-OWNER tranche produced a

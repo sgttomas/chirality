@@ -1,0 +1,73 @@
+[
+  {
+    "id": "receipt-before",
+    "argv": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "tools/validation/validate_app_dev_loop_receipts.py",
+      "--repo-root",
+      "."
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T23:22:01.980623+00:00",
+    "end": "2026-09-06T23:22:04.336466+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "receipt-before.stdout",
+    "stderr": "receipt-before.stderr"
+  },
+  {
+    "id": "self-check",
+    "argv": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T23:22:04.336716+00:00",
+    "end": "2026-09-06T23:22:14.851895+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "self-check.stdout",
+    "stderr": "self-check.stderr"
+  },
+  {
+    "id": "pytest",
+    "argv": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "-m",
+      "pytest",
+      "-q",
+      "tools/practitioner_harness"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T23:22:14.852168+00:00",
+    "end": "2026-09-06T23:22:40.628714+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "pytest.stdout",
+    "stderr": "pytest.stderr"
+  },
+  {
+    "id": "tracked-diff-check",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T23:22:40.629046+00:00",
+    "end": "2026-09-06T23:22:40.726006+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "tracked-diff-check.stdout",
+    "stderr": "tracked-diff-check.stderr"
+  }
+]

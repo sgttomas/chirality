@@ -1,0 +1,136 @@
+{
+  "base": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "ledger_post_sha256": "8256b3df7597e28552ad5608f7b9d7a6dae1707be57a0dd45f96b99005b0e370",
+  "checks": [
+    {
+      "id": "receipt-before",
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T23:22:01.980623+00:00",
+      "end": "2026-09-06T23:22:04.336466+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "receipt-before.stdout",
+      "stderr": "receipt-before.stderr"
+    },
+    {
+      "id": "self-check",
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T23:22:04.336716+00:00",
+      "end": "2026-09-06T23:22:14.851895+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "self-check.stdout",
+      "stderr": "self-check.stderr"
+    },
+    {
+      "id": "pytest",
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T23:22:14.852168+00:00",
+      "end": "2026-09-06T23:22:40.628714+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "pytest.stdout",
+      "stderr": "pytest.stderr"
+    },
+    {
+      "id": "tracked-diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T23:22:40.629046+00:00",
+      "end": "2026-09-06T23:22:40.726006+00:00",
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "stdout": "tracked-diff-check.stdout",
+      "stderr": "tracked-diff-check.stderr"
+    },
+    {
+      "id": "receipt-after",
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "start": "2026-09-06T23:23:29.467954+00:00",
+      "end": "2026-09-06T23:23:31.761181+00:00",
+      "exit_code": 0,
+      "stdout": "receipt-after.stdout",
+      "stderr": "receipt-after.stderr"
+    },
+    {
+      "id": "secret-scan",
+      "argv": [
+        "npm",
+        "run",
+        "proof:secret-scan",
+        "--",
+        "--output-root",
+        "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/change-closeout-v1/secret-scan"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+      "start": "2026-09-06T23:23:31.761223+00:00",
+      "end": "2026-09-06T23:23:33.292295+00:00",
+      "exit_code": 0,
+      "stdout": "secret-scan.stdout",
+      "stderr": "secret-scan.stderr"
+    }
+  ],
+  "manifests": [
+    {
+      "manifest": "consumer-contract/OUTPUT_MANIFEST.json",
+      "sha256": "92c00d4b097630d9049673f907abd1c01588e313601d499912605ffbd9d8a978",
+      "members_verified": 5
+    },
+    {
+      "manifest": "pkg09-closeout/OUTPUT_MANIFEST.json",
+      "sha256": "90af9e0fb503f329f573e8ae9b8fc3ee6d4f447a461e7add0210435d178ba7c0",
+      "members_verified": 21
+    },
+    {
+      "manifest": "pdf-application/OUTPUT_MANIFEST_v2.json",
+      "sha256": "fa0e986201dd277a1b1266718a2043a97d9710c43894160e121f589f35172f59",
+      "members_verified": 10
+    }
+  ],
+  "secret_scan": {
+    "status": "pass",
+    "scanned_files": 12111,
+    "blocked_findings": 0,
+    "raw_sha256": "0c18452c8a1f306f3c57aab54502538a2db9078773c07bbccc4ea4395126aac3"
+  },
+  "product_tests": "not rerun: no product source/config changes",
+  "source_diff": "empty",
+  "pdf_manifest_members": 10,
+  "note": "Earlier chat said9; canonical verified record and current manifest contain10 members. No verification failure."
+}

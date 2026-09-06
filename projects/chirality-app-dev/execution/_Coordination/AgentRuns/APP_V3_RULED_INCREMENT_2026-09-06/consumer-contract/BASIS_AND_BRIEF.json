@@ -1,0 +1,225 @@
+{
+  "role": "bounded App consumer Agent2",
+  "attribution": "instruction-asserted; exact serving model ID unavailable; no substitution observed",
+  "parent_release": "Owner accepted slate v2 directions; parent released App consumer acceptance draft. Parent NEW_TASK explicitly assigns consumer-contract/**, narrowing/superseding generic brief consumer/** path. No delegation.",
+  "write_scope": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/consumer-contract/**",
+  "claim": "consumer contract draft and prospective fixture specifications, not accepted Runtime schema or product evidence",
+  "head": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/OWNER_RULING_v1.md",
+      "sha256": "40c7d11e5c0c4ac0f93dc6d432a34e2c4afc5ae807f5b4560369d602eaec6a01",
+      "bytes": 2994
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/WORK_GRAPH_v1.json",
+      "sha256": "23e6f0ca21900551e9264c0536ba6b5e1fc31ec4b345cf59297ffa27aef3dce4",
+      "bytes": 3037
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/coordination/BRIEF_bounded_App_assessment_v1.md",
+      "sha256": "ea01f7e60fb978e48c05d91a920f75dcce147a91e8fa1e7b04bf51006afaaf1f",
+      "bytes": 857
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/OWNER_DECISION_SLATE_v2.md",
+      "sha256": "b39f81be79cce9cf06751ae189b28073f7c78e58456eea7fdae4dcf727bcffe9",
+      "bytes": 9260
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/decisions/APP_CAPABILITY_DEPENDENCIES.md",
+      "sha256": "1b0826853f101c35c645e597527bf438d96d857488cf3d89779bccd7e822052c",
+      "bytes": 10797
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/decisions/runtime-consumer-v1/RETURN.md",
+      "sha256": "afa7bf1ae6d011d1da5b250303de2fe485ed0ba6cece329de540d2a3ac4db4e0",
+      "bytes": 9691
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/decisions/runtime-consumer-v1/INCOMING_HANDOFF_MANIFEST.json",
+      "sha256": "174d049240d24539d13c429b32c2970f08260a56aa465d2cbdd54e358145df6f",
+      "bytes": 10896
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+      "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+      "bytes": 2202977
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+      "sha256": "d04e9e2f9c5c0f68cf25455bdc439d89761e59c5616a4b40b934ceef38ce2f29",
+      "bytes": 21164
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+      "sha256": "20550b79e2c67dc5b21d1c342d5e56ce5c2afd7a23c42838e3e3f7b90c7361fe",
+      "bytes": 17461
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+      "sha256": "01c256f2d508a53e238e34b436c63443deea73d7c9157976d360fe5238b8e472",
+      "bytes": 20640
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+      "sha256": "a71621abbed92abb07b9918fa8f9e15c4600e41b0f32beb97feaa89f171a0e2e",
+      "bytes": 8928
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/_STATUS.md",
+      "sha256": "eed7060656633dfc18f4b17a29a72f2d569c5e17c21cd6096d77cdc600eb9446",
+      "bytes": 8380
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_STATUS.md",
+      "sha256": "a8c351e66279af10cdca86bbd32e84c14fa3ded3412343f89eb88edcb29ac87d",
+      "bytes": 8396
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+      "sha256": "53736b56cf01ae5db05038491c33e0421363411e402292b98b32c381fbc64682",
+      "bytes": 12489
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_STATUS.md",
+      "sha256": "279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700",
+      "bytes": 5080
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+      "sha256": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0",
+      "bytes": 16686
+    }
+  ],
+  "preflight": {
+    "argv": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+      "--target",
+      "DEL-02-01",
+      "--target",
+      "DEL-02-02",
+      "--target",
+      "DEL-02-05",
+      "--target",
+      "DEL-03-01",
+      "--target",
+      "DEL-04-05",
+      "--target",
+      "DEL-05-02",
+      "--target",
+      "DEL-08-04",
+      "--target",
+      "DEL-08-05",
+      "--target",
+      "DEL-09-06"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "exit": 0,
+    "result": {
+      "active_hold_deliverables": [],
+      "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+      "operation": "reliance",
+      "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+      "repo_head": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+      "results": [
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-02-01",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-02-02",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-02-05",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-03-01",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-04-05",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-05-02",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-08-04",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-08-05",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-09-06",
+          "entry_path": "APP_V3_RULED_INCREMENT:CONSUMER_CONTRACT",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        }
+      ],
+      "scan_fingerprint_sha256": "f341742770df0c2558281f4494c2ed97b7046b60a74812762cd4bb2be9652a3e",
+      "scan_held_deliverables": [],
+      "schema": "chirality-app-hold-check/v1",
+      "structural_bootstrap_deliverables": [],
+      "targets": [
+        "DEL-02-01",
+        "DEL-02-02",
+        "DEL-02-05",
+        "DEL-03-01",
+        "DEL-04-05",
+        "DEL-05-02",
+        "DEL-08-04",
+        "DEL-08-05",
+        "DEL-09-06"
+      ],
+      "verdict": "ALLOW"
+    }
+  },
+  "runtime_reliance": "Previously verified immutable incoming packet only; no new Runtime source or mutable worktree read. No CUA attempt.",
+  "source_delta": "DEL02-01 history and DEL02-04 D123 caller/history changed since original map; full account/no-folder/workflow acceptance gates remain. No historical design recommendation is treated as newly accepted source implementation."
+}

@@ -1,0 +1,14 @@
+{
+  "status": "APPLIED_EXACT_PARENT_RELEASE",
+  "register_preimage": "5899eac3f69480fcbabf49e1254ff83e19515ac4f2bce03ecac18c1181d806ac",
+  "register_postimage": "8b6c51345c22ca26f64aab435a2f2d480207cdd36cff190c188547722ff4d7df",
+  "register_patch": "671de43dfd86d1624c7efba286d95ca52d9f3904256fa48988bf2777704a6895",
+  "new_files": {
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-121_RULING_PDF_DESIGN_AND_QUALIFICATION_2026-09-06.md": "fa410ae195c74fab2ad3de7cb5d64e244a327905ea3d1f76849f6b51fb74caeb",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-125_RULING_APP_V3_CONTRACT_FINALIZATION_2026-09-06.md": "9f2e8dcc5fd7706c8ed56c3c0d86535d52ce4874b28cf9dd9fbc5934b7890327"
+  },
+  "collision_checks": "D125 row and both ruling paths absent before application",
+  "corrections": "D125 inside register table before preparation rules; D121 application assigned to owning PKG02/09 after gates/release",
+  "authority": "Actual owner accepted recommendations, parent exact recording release; no new choices",
+  "other_live_writes": false
+}

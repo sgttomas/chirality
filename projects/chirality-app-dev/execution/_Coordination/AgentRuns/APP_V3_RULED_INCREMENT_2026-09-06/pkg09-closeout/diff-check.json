@@ -1,0 +1,11 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "--",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "exit_code": 0
+}

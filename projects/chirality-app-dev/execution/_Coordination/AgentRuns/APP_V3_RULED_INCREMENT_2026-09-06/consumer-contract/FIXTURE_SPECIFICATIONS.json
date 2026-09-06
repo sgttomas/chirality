@@ -1,0 +1,139 @@
+{
+  "status": "SPECIFICATIONS_ONLY_NOT_EXECUTED",
+  "wire_contract": "Semantic inputs only; bind to finalized accepted DTOs before execution, no proposed enum is asserted implemented",
+  "execution_contract": "Each future run preserves exact source/contract/supplier/fixture identities, ordered events, observed UI and call/effect counts, source hashes, environment/commands/exits, screenshots/assets and cleanup; component tests plus native/supplier proof as required. Test each layout at1440/960 light/dark for relevant UI, keyboard/focus and primary draft preservation.",
+  "fixtures": [
+    {
+      "id": "F01",
+      "name": "Child versus broker versus human",
+      "setup_and_stimulus": "One attributed child C under parent P asks via broker B; authenticated human H responds.",
+      "oracle": "Display C as requesting actor, P/root context; B only broker details; retained decision attributes H. No role inferred; intent distinct from delivery."
+    },
+    {
+      "id": "F02",
+      "name": "Resolved before attribution",
+      "setup_and_stimulus": "Request ID is resolved before join; child association then arrives; stale view may be delivered.",
+      "oracle": "Never actionable after resolution; no grant/send; disabled stale view; no invented decision. Includes mandatory CORRECTION_V2."
+    },
+    {
+      "id": "F03",
+      "name": "Advertised dialect and session scope",
+      "setup_and_stimulus": "Request offers accept/cancel but not decline; session scope proof absent; protocol may be unsupported.",
+      "oracle": "No Deny or session grant; cancel not mapped to deny; accurate protocol/unavailable; separate Stop remains distinct."
+    },
+    {
+      "id": "F04",
+      "name": "Background request root binding",
+      "setup_and_stimulus": "Request belongs to A; user selects chat/root B before reviewing/responding.",
+      "oracle": "A clearly identified; no rebinding, no B authority; preflight/respond use authoritative A identity."
+    },
+    {
+      "id": "F05",
+      "name": "Dismissal",
+      "setup_and_stimulus": "Close a pending approval view without another action.",
+      "oracle": "Zero grant/deny/stop calls; no synthesized terminal; request remains discoverable if still current."
+    },
+    {
+      "id": "F06",
+      "name": "Double click and intent persistence",
+      "setup_and_stimulus": "Click Allow twice; first intent persists while response is reserved.",
+      "oracle": "At most one effective send; UI locks; decision recorded displayed only on actual persistence evidence; no applied claim."
+    },
+    {
+      "id": "F07",
+      "name": "Send uncertainty",
+      "setup_and_stimulus": "Intent persists; enqueue has backpressure/error, or succeeds without supplier acknowledgement.",
+      "oracle": "Unknown versus sent/application-unconfirmed correctly distinguished; no Retry/replay or false denial; history preserved."
+    },
+    {
+      "id": "F08",
+      "name": "Retirement stale click",
+      "setup_and_stimulus": "View published then child ends or generation retires before user response.",
+      "oracle": "Server rejects stale response; UI disables/refreshes; cause preserved; no old authority revival or invented terminal."
+    },
+    {
+      "id": "F09",
+      "name": "Recovery",
+      "setup_and_stimulus": "Restart sees incomplete delivery/settlement journal and old request history.",
+      "oracle": "Recovery-required shown; history read-only when entitled; no in-flight reattach/replay or duplicate send."
+    },
+    {
+      "id": "F10",
+      "name": "Old/unknown negotiated representation",
+      "setup_and_stimulus": "Old consumer or unknown approval representation encounters child request.",
+      "oracle": "Feature unavailable rather than primary-shaped downgrade; unrelated supported controls remain functional."
+    },
+    {
+      "id": "F11",
+      "name": "Stop current work",
+      "setup_and_stimulus": "Pending background child request; user explicitly clicks Stop current work with consequence text.",
+      "oracle": "Names originating conversation; requests whole-turn stop once; preserves history/draft; no Deny claim; stopped only after observed outcome."
+    },
+    {
+      "id": "F12",
+      "name": "Stop delayed or failed",
+      "setup_and_stimulus": "Stop request is pending, times out or has uncertain completion.",
+      "oracle": "Stopping then truthful failure/uncertainty; no optimistic stopped state, automatic retry or lost draft."
+    },
+    {
+      "id": "F13",
+      "name": "Account versus readiness",
+      "setup_and_stimulus": "Global identity exists; active root lacks consent or needs sign-in.",
+      "oracle": "Identity visible; root missing step visible; execution not falsely ready; no global green readiness."
+    },
+    {
+      "id": "F14",
+      "name": "Root/account continuity race",
+      "setup_and_stimulus": "Read A readiness; select B or switch account/epoch/policy before A response.",
+      "oracle": "Late A response cannot grant or repaint B; new readiness unknown until authoritative matching result."
+    },
+    {
+      "id": "F15",
+      "name": "Logout scope",
+      "setup_and_stimulus": "Brokerage advertises only selected operation and explicit logout scope.",
+      "oracle": "UI states exact scope before act; pending until confirmed; no assumed cross-root revocation, token copying or custody effects."
+    },
+    {
+      "id": "F16",
+      "name": "Isolated context absent versus ready",
+      "setup_and_stimulus": "No folder with no accepted context; contrast future accepted explicit isolated context.",
+      "oracle": "Current absent contract blocks sending; accepted context uses its own identity/capabilities only; label Isolated chat; no ambient/recent root fallback."
+    },
+    {
+      "id": "F17",
+      "name": "Project transition",
+      "setup_and_stimulus": "Existing isolated chat with history/draft selects a project.",
+      "oracle": "Recommended new session retains old history; explicit action; fresh validation/consent; no old grants; draft preservation without automatic send. Backend transition awaiting acceptance."
+    },
+    {
+      "id": "F18",
+      "name": "Removed isolated context",
+      "setup_and_stimulus": "History exists but context unavailable or deleted under accepted custody policy.",
+      "oracle": "Execution blocked and reason visible; read follows entitlement; no automatic recreation/replay; chat hide not treated as context deletion."
+    },
+    {
+      "id": "F19",
+      "name": "Accept versus Adjust",
+      "setup_and_stimulus": "Current exact-content proposal; user adjusts then reviews revised content.",
+      "oracle": "No acceptance on edit; new explicit review binds revised exact content; display authority/source/root; no lifecycle promotion from card."
+    },
+    {
+      "id": "F20",
+      "name": "Proposal/content/instruction drift",
+      "setup_and_stimulus": "Proposal or source basis changes after view, before Accept.",
+      "oracle": "Stale click rejected; changed state/refreshed review; no unseen latest-content application, silent repin or auto-retry."
+    },
+    {
+      "id": "F21",
+      "name": "Not now scope",
+      "setup_and_stimulus": "Decline prompt for trigger T in chat A; encounter T elsewhere.",
+      "oracle": "Accepted once-per-chat trigger semantics only; no global suppression or lifecycle mutation; no unrelated denial."
+    },
+    {
+      "id": "F22",
+      "name": "Concurrent advancement and Bind",
+      "setup_and_stimulus": "Two actors advance same prior workflow hash; or copy accepted workflow to root B.",
+      "oracle": "Conflict visible; no second stale acceptance; new binding requires fresh authority, no copied approval acceptance."
+    }
+  ]
+}

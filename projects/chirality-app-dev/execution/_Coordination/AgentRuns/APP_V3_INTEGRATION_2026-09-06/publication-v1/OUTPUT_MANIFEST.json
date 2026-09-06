@@ -1,0 +1,26 @@
+{
+  "AUTHORIZATION.md": {
+    "bytes": 769,
+    "sha256": "fc8df6f8bf4bf4f2c824cae48dbe4fa7689b54c1373c357315916764c713df3e"
+  },
+  "COMMANDS.json": {
+    "bytes": 5334,
+    "sha256": "d030a8a9e97123b401a7605a7899b60020f79f96bde0059c4cd679df5847801b"
+  },
+  "PR_DESCRIPTION.md": {
+    "bytes": 1416,
+    "sha256": "d968777dffc9754dc94f7cabbc15ec84115f86f911f272b05fafa21c850b02d4"
+  },
+  "PR_TITLE.txt": {
+    "bytes": 70,
+    "sha256": "086fba2411c02f62501db9990a563919a9e1f0fca3f74bf201791e632cae3d78"
+  },
+  "RESULT.json": {
+    "bytes": 1249,
+    "sha256": "44203500c895a43069dfd791a1e2efe9ed2bbfa1cc0b21a5d79f91f2c670952c"
+  },
+  "RETURN.md": {
+    "bytes": 1032,
+    "sha256": "092fd803356440d6df467d8989d74c2e3f30e5543d6afbd0f94f6c482ddfaff3"
+  }
+}

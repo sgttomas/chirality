@@ -1,0 +1,11 @@
+{
+  "status": "CANDIDATE_NOT_APPLIED",
+  "collision_check": "D-APP-125 absent from live register at preparation",
+  "preimage": "5899eac3f69480fcbabf49e1254ff83e19515ac4f2bce03ecac18c1181d806ac",
+  "postimage": "f27fe9a29c14764c67c6ad478586f04d3740df593245497f91874873f560ddaa",
+  "patch": "237cb35c75d1900ef59b43a43eda8d3dbf5121f5d3dd568eeed5f1052059cda4",
+  "ruling_files": {
+    "D-APP-121_RULING_PDF_DESIGN_AND_QUALIFICATION_2026-09-06.md": "0a2119ea241382b0458f8678a8b318d145a4dd42036120e6cf4ea53ef95f931f",
+    "D-APP-125_RULING_APP_V3_CONTRACT_FINALIZATION_2026-09-06.md": "9f2e8dcc5fd7706c8ed56c3c0d86535d52ce4874b28cf9dd9fbc5934b7890327"
+  }
+}

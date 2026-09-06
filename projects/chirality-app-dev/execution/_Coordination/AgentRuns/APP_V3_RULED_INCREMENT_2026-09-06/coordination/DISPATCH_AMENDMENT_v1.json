@@ -1,0 +1,18 @@
+{
+  "amends": "WORK_GRAPH_v1.json",
+  "actual_dispatched_preparation": [
+    {
+      "id": "/root/v3_pdf_scope",
+      "scope": "pdf-application/**",
+      "role": "SCOPE_CHANGE"
+    },
+    {
+      "id": "/root/v3_decisions",
+      "scope": "consumer-contract/**",
+      "role": "bounded App consumer assessment"
+    }
+  ],
+  "permission": "Preparation/design only under recorded ruling; no source or authority application without exact release",
+  "publication_evidence": "https://github.com/sgttomas/chirality/pull/739",
+  "publication_boundary": "Exact prior dbf4027 PR; new ruling/design records excluded unless separately authorized; no merge granted"
+}

@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "basis_commit": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "source_basis_main": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "status": "FROZEN_DESIGN_AND_RECORD_INCREMENT",
+  "nodes": [
+    {
+      "id": "/root/resume_change",
+      "role": "CHANGE",
+      "objective": "Publish exact previously authorized dbf4027 and open PR; fresh sync before further Runtime reliance",
+      "write_scope": "Git exact authorized prior commit only; own change evidence",
+      "gates": "No new record/source publication, merge or release inferred"
+    },
+    {
+      "id": "recorder",
+      "role": "bounded Agent2",
+      "objective": "Freeze owner mapping, graph, sealed briefs and proposed governed records",
+      "write_scope": "new run root and coordination only",
+      "gates": "No actual register/receipt application until parent release; no delegation"
+    },
+    {
+      "id": "pdf_scope",
+      "role": "SCOPE_CHANGE",
+      "objective": "Prepare/application-route D121 accepted exact amendment; no product implementation yet",
+      "write_scope": "new run pdf-scope/** until separately released carrier application",
+      "gates": "Freeze records; fresh APP-HOLD; exact preimages; main observability as required; exact carrier/source brief"
+    },
+    {
+      "id": "Runtime independent user task",
+      "role": "Runtime owning manager",
+      "objective": "Finalize selected child, account, no-folder, workflow contracts within routed authority",
+      "write_scope": "own Runtime design scope",
+      "gates": "Fresh synchronized reliance; significant unresolved choices owner; no source implementation/supplier acceptance"
+    },
+    {
+      "id": "app_consumer",
+      "role": "bounded App assessment",
+      "objective": "Assess contract finalization and executable consumer fixtures; identify remaining choices",
+      "write_scope": "new run consumer/** evidence only",
+      "gates": "No feature source, build/native or authority changes; exact live carrier preflight"
+    }
+  ],
+  "edges": [
+    "Exact prior publication independent of new record/design preparation",
+    "CHANGE fresh sync before new Runtime reliance",
+    "Owner record freeze before PDF manager writes",
+    "PDF preparation and App/Runtime design independent with disjoint scopes",
+    "Main observability + carrier application + exact approved brief before product implementation"
+  ],
+  "accepted_basis": [
+    "SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA (derivative closure open)",
+    "CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034",
+    "Owner accepted slate v2 exact hash in OWNER_RULING_v1.md"
+  ],
+  "attribution": {
+    "class": "delegated-harness-native",
+    "role_enforcement": "instruction-asserted",
+    "served_model": "unavailable unless exposed",
+    "planned_ids": "role labels except known CHANGE; not evidence of dispatch"
+  },
+  "closure": "OPEN; exact design selections recorded, no supplier/implementation/release acceptance"
+}
