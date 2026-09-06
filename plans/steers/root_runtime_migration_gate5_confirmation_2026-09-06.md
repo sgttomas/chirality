@@ -1,0 +1,15 @@
+# Runtime migration — Gate 5 owner confirmation
+
+Owner: Ryan Tufts. Recorded 2026-09-06 UTC. Actual response, verbatim: “Gate 5 confirmed.”
+
+This confirms the complete Gate5 decision presented in execution/_ScopeChange/SCA-005_2026-09-06_APPLICATION/Gate5_Owner_Preview.md, following owner-authorized PR729 merge at1d71433e20b508821f93d2a14b61a4fe59ba725f (application head b520e0f1f8a7b0843e04f84e07fdd850b0ec1f8e). Application publication seal9eceefe8fe6699200a459f20eb4d9920e5b6f35ede0d8c39cc8be7d291d0f746; integration publication seal17d4544961384ca6c79169cd93119c8c2b619fcdc723f9f1074591b302407b53. Historical packaging seals remain history.
+
+The exact confirmed application subject is fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9 at execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATION_SUBJECT.json. Its completed53-entry APPLIED journal is bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203 at INTEGRATION/APPLICATOR_APPLY/journal.json in that run.
+
+Gate5 is CONFIRMED. The actual four canon/seven source/53 status postimages,46 governance controls, seven initialized runtime scopes,104 scope rows/246 supersession bindings and explicit derivative dispositions are accepted as the migration basis. SCA005 is accepted for CLOSED_FOR_SCOPE_CHANGE_ONLY. This confirmation accepts the preview's pointer successor and pending-to-effective transformation, with only its three actual owner-record metadata substitutions. The immutable application snapshot is not rewritten.
+
+Publish this distinct owner record on origin/main before applying the approved effective-state transformation. Then fill its actual path, SHA256 and published commit in Gate5_Effective_State_Template.json and Gate5_LATEST_Postimage_Template.md; publish a new immutable effective state and update only governance_state path/hash in the four live Root harness YAML files, and move execution/_ScopeChange/_LATEST.md to SCA-005_2026-09-06_APPLICATION/ as specified. Preserve all prior states, exact application subject, journal,53 bindings, implementation references and Gate3/4 pins. This record does not claim its own publication has already occurred or authorize self-merging a new PR.
+
+Retained follow-ons are GOV-04-11 inherited production debt, DEP-AUD-001 generic dependency-tool ID dialect warning with valid independently checked topology, and GOV-MIG-001 existing delegation wording inconsistency. Historical1012-hour estimates have remaining effort UNKNOWN; extracted dependencies are not thereby satisfied. Nine holds remain. Runtime activation, operational account/state transfer, hold release, product release, public export publication and receiving-loop adoption remain separate governing acts.
+
+Prepared by /root HELP_HUMAN, OpenAI GPT-6; exact serving model ID unavailable. Agent0 role is not mechanically enforced. Native review role evidence is instruction-asserted. This is faithful transcription of the owner's confirmation, not an agent ruling.

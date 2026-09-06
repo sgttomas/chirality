@@ -1,0 +1,3 @@
+# Bounded SCOPE_CHANGE review
+
+Actual native child: /root/gate5_confirmation_review. Parent /root HELP_HUMAN. Objective: independently verify the confirmed Gate5 evidence and exact remaining publication gate. Read AGENTS, SCOPE_CHANGE, Root LOOP_INIT, merged application preview/templates and effective-state validator. Read-only; no git mutation, owner acts or delegation. Return pins, confirmed scope and blockers. Parent independently runs entry checks and prepares faithful owner transcription. Native roles instruction-asserted; Agent0 not mechanically enforced. OpenAI GPT-6, exact serving model ID unavailable.

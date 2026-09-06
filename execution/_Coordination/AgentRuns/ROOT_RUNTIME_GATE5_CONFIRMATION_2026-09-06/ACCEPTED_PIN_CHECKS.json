@@ -1,0 +1,12 @@
+{
+  "execution/_ScopeChange/SCA-005_2026-09-06_APPLICATION/FINAL_ARTIFACTS.sha256": {
+    "sha256": "9eceefe8fe6699200a459f20eb4d9920e5b6f35ede0d8c39cc8be7d291d0f746",
+    "members": 26,
+    "pass": true
+  },
+  "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/FINAL_ARTIFACTS.sha256": {
+    "sha256": "17d4544961384ca6c79169cd93119c8c2b619fcdc723f9f1074591b302407b53",
+    "members": 162,
+    "pass": true
+  }
+}
