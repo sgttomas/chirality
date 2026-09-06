@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "name": "receipt-after",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "scoped-diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "<exact publish inventory paths>"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "bootstrapReference": "../bootstrap/CHECKS.json",
+  "scopeVerifier": "../../scope/VERIFIER_RETURN.md",
+  "frontendChecks": "SKIPPED: no source in selected authority tranche",
+  "finalGovernedReview": "PENDING; actual parent-dispatched reviewer required"
+}

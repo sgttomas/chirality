@@ -1,0 +1,55 @@
+{
+  "run": "APP_SHELL_CONVERGENCE_2026-09-06",
+  "basis": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+  "delegationClass": "delegated-harness-native",
+  "roleEnforcement": "instruction-asserted",
+  "engine": "Codex",
+  "provider": "OpenAI",
+  "model": "GPT-6 family per system; exact serving identifier unavailable",
+  "nodes": [
+    {
+      "id": "/root",
+      "role": "HELP_HUMAN Agent0",
+      "writes": "none",
+      "responsibility": "alignment, mediated coordination, shared ownership, fan-in and releases"
+    },
+    {
+      "id": "/root/shell_run_change",
+      "role": "CHANGE Agent1",
+      "status": "setup completed as reported by parent",
+      "responsibility": "clean branch setup and later scoped git closeout"
+    },
+    {
+      "id": "/root/shell_scope",
+      "role": "SCOPE_CHANGE Agent1",
+      "writes": "scope/** plus exact assigned D120 ruling/register and DEL02-01 write-locus amendment",
+      "responsibility": "owner direction transcription and bounded A1/B1 application; fresh child verifier before landing"
+    },
+    {
+      "id": "/root/shell_pkg02",
+      "role": "WORKING_ITEMS Agent1 PKG02",
+      "writes": "pkg02/** plus seated implementation targets",
+      "responsibility": "single source integration owner; independent currently seated work only until new authority observable",
+      "child": "/root/shell_pkg02/author01 TASK Agent2"
+    },
+    {
+      "id": "/root/shell_pdf_boundary",
+      "role": "WORKING_ITEMS Agent1 PKG09",
+      "writes": "pkg09-pdf/**",
+      "responsibility": "draft-only D121 boundary preparation, excluded initial authority tranche"
+    },
+    {
+      "id": "/root/shell_run_records",
+      "role": "ephemeral Agent2",
+      "writes": "run bootstrap files and validation/**; receipt append only on explicit parent release",
+      "responsibility": "bootstrap/discovery checks and shared closeout evidence"
+    }
+  ],
+  "ordering": [
+    "CHANGE setup -> discovery",
+    "scope drafting concurrent with independently seated PKG02 work and draft-only PKG09 analysis",
+    "scope fresh verification + shared checks + receipt -> whole-tranche fresh verification -> CHANGE commit/push/PR",
+    "A1 reliance requires owner merge and fetched-main observation; no self-merge"
+  ],
+  "ownership": "No sibling coordination; parent relays. Shared source writes belong exclusively to PKG02 integration owner. Initial authority closeout excludes source and PDF drafts."
+}

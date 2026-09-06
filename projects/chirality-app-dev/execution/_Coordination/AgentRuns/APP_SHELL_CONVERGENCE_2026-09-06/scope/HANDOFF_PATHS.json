@@ -1,0 +1,20 @@
+{
+  "authored_manifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/FROZEN_MANIFEST.json",
+  "actual_verdict": "COMMIT-SAFE",
+  "verifier_return": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/VERIFIER_RETURN.md",
+  "paths": [
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/MEMORY.md",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_run_records/D120_SCOPE_APPLICATION_2026-09-06.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/ACCEPTED_PLAN.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/APP_HOLD_DISPATCH.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/HANDOFF.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/RATIONALE.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/ROOT_NO_FOLDER_REQUEST_DRAFT.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-120_RULING_PRESENTATION_SEAM_AND_NO_FOLDER_ROUTING_2026-09-06.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/FROZEN_MANIFEST.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/VERIFIER_BRIEF.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/scope/VERIFIER_RETURN.md"
+  ]
+}

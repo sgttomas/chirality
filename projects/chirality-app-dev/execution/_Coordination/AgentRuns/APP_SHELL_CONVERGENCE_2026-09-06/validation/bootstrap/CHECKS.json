@@ -1,0 +1,89 @@
+{
+  "examinedThrough": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377",
+  "recordedAt": "2026-09-06T02:49:31.619626+00:00",
+  "checks": [
+    {
+      "name": "git-status",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/validation/bootstrap/git-status.txt"
+    },
+    {
+      "name": "git-log",
+      "command": [
+        "git",
+        "log",
+        "--oneline",
+        "-20"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/validation/bootstrap/git-log.txt"
+    },
+    {
+      "name": "receipt-validator",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/validation/bootstrap/receipt-validator.txt"
+    },
+    {
+      "name": "corpus-status",
+      "command": [
+        "python3",
+        "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+        "status"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "exitCode": 0,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/validation/bootstrap/corpus-status.txt"
+    },
+    {
+      "name": "harness-status",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "status",
+        "--project",
+        "chirality-app-dev"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/validation/bootstrap/harness-status.txt"
+    },
+    {
+      "name": "self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/validation/bootstrap/self-check.txt"
+    },
+    {
+      "name": "harness-pytest",
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "tools/practitioner_harness",
+        "-q"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "output": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/validation/bootstrap/harness-pytest.txt"
+    }
+  ]
+}

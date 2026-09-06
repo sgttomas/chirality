@@ -22,3 +22,7 @@
 ## 2026-09-05 — D-APP-120 proposal prepared
 
 Separate App presentation-seam and Root no-folder-contract choices are proposed, not approved. Actual session create/list still requires a root/fixed project binding; knownRoots does not establish projectless or cross-project runtime capability. Woven-shell/activity-shelf seam needs explicit future scope and refreshed T3 postimage. See D-APP-120 packet and `_run_records/T2_CAPABILITY_PROPOSAL_2026-09-05.md`. Owner selections, governed review and parent integration remain pending; existing Remaining and lifecycle unchanged.
+
+## 2026-09-06 — D-APP-120 owner direction recorded
+
+A1/B1 supersede the previous selection-pending note. The omitted presentation-locus addition is recorded but HELD until observed on fetched main. No-folder remains restricted pending separately accepted Root design; D121 remains unruled. This memory is context, not authority. See the D-APP-120 ruling dated 2026-09-06.
