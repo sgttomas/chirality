@@ -1,0 +1,11 @@
+# Gate 3 approval / Gate 4 plan fan-in
+
+Exact owner approval is plans/steers/root_runtime_migration_gate3_approval_2026-09-05.md, bound to HEAD1aadcc61b2739fdca25c4b07259655836516baa4 and approved V3 seal547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3. All302 approved members revalidated. Branch codex/runtime-project-migration was clean on entry,4ahead0behind fetched main5068899690ab2580fa3360f751f63952e6bdc563; no source drift observed.
+
+Actual SCOPE_CHANGE manager runtime_gate3_scope prepared execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/, with actual bounded child gate4_guard_plan for guard implementation planning. Parent dispatched fresh ephemeral Agent2 runtime_gate4_review independently. Its final REVIEW/REVIEW.md returns PASS with no unresolved findings, bound to final plan seal917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd. Parent verifies42members and197targets/approved hashes. Reviewer additionally verified135payload/69preimage hashes and complete6/53/104/46/7closure. Corrected omissions in target accounting and INIT method are preserved in REVIEW_HISTORY; current finalseal governs.
+
+Plan includes36guard/tool/fixture paths and25check groups, seven setupbindings,12derivativeowner rows, bounded evidenceoutput scopes, exactreference/statusrecord contracts, guarded Root-only retirement and coherent rollback. Existing global status tool cannot accept RETIRED; no global lifecycle extension is planned. PROJECT_SETUP dispatches actual initialization; TASKs cannot write statuses. Runtime activation and held featurework remain excluded.
+
+Root Step0 G0–G4/status/self-check passed; entrypoints and682affectedtests passed. Self-check55WARN4REVIEW0BLOCK remain. Source statuses/acceptedcanon/decomposition/pointers unchanged. This iteration is approvalrecord and nestedplan evidence only; no new instruction-surface edits. Publication staged/committed whitespace and committed-rangeG4 are required before push and recorded inPR727. Actual post-state guard/tests/audits remain futurework, not passed by this planning verdict.
+
+Attribution OpenAI GPT-6; exact servingmodelIDunavailable. /root HELP_HUMAN Agent0notmechanicallyenforced; actual native manager/specialist/reviewer roles instructionasserted. Parent records/integrates and follows CHANGE for routinepublication. No fakeexecutions orowneracts.

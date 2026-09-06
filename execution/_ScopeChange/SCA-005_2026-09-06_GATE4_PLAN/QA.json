@@ -1,0 +1,13 @@
+{
+  "basis_HEAD": "1aadcc61b2739fdca25c4b07259655836516baa4",
+  "payload_hashes_match": true,
+  "target_uniqueness": true,
+  "targets": 197,
+  "source_status_targets": 53,
+  "runtime_carriers": 7,
+  "source_parents": 6,
+  "source_scope_rows": 104,
+  "atomic_actions": 242,
+  "no_live_application": true,
+  "new_csv_lf": true
+}

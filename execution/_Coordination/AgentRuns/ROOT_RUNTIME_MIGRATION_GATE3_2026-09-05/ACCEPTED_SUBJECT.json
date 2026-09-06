@@ -1,0 +1,13 @@
+{
+  "head": "1aadcc61b2739fdca25c4b07259655836516baa4",
+  "origin_main": "5068899690ab2580fa3360f751f63952e6bdc563",
+  "divergence": [
+    4,
+    0
+  ],
+  "gate3": "APPROVED",
+  "seal": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3",
+  "members_verified": 302,
+  "owner_record": "plans/steers/root_runtime_migration_gate3_approval_2026-09-05.md",
+  "owner_record_sha256": "b7b42b35e20ff1350e3879cb6e6c06297e593e28c70afb42df2fac3cd5a10a8a"
+}

@@ -1,0 +1,137 @@
+{
+  "commit": "1aadcc61b2739fdca25c4b07259655836516baa4",
+  "sources": [
+    {
+      "path": ".github/workflows/governance-harness.yml",
+      "sha256": "9e6a9ef814c79f1c35a00d154986bf3ba7174c49450d0e9cc36bca1de8f73079"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/GUARD_CONTRACTS.md",
+      "sha256": "62d3bb0221101a99f6f5cf2e19addb9807f116ca50ccbb30da1024cca0045199"
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/COMBINED_ARTIFACTS.sha256",
+      "sha256": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3"
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/FINAL_SUBJECT_SELECTOR.csv",
+      "sha256": "839e636b5f0f84af035ad1e029a99c0ae9ec052ebffe3366460ebb7ec4b5be59"
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "sha256": "71f603ad463c14dbba6b02806d67cfc4d859219ff828812fb37de35e78025f3c"
+    },
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "sha256": "f24ba6deb262f3cf0b469491a03f062b9faa21bdcdd088a623e649c8919ce4c2"
+    },
+    {
+      "path": "execution/_harness/surface_ownership.yaml",
+      "sha256": "18ff8241d96e3d6e1c94e6bb7a39f5f5a7ad7444c9bb5685467ab3da512e932b"
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "sha256": "29dc3e35b92418f9cccbdc693aee7cc30943f505415952b57c8f291a647b54cc"
+    },
+    {
+      "path": "projects/chirality-runtime/chirality.project.json",
+      "sha256": "7300f3b5706286e41635586787e16827f409658e9cba2f1922cc2862ab90b821"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/project-registry.ts",
+      "sha256": "32ed0b2e716736f683026f2bda831fd759876121fcc80218964f688045538df5"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/contracts-and-project.test.ts",
+      "sha256": "41fc8f32da39b08bce10f1d33254b76aef36e00ea3b5c5741d89a6c19433f72c"
+    },
+    {
+      "path": "tools/practitioner_harness/adapter_loader.py",
+      "sha256": "ceaef9b130bba75f71671f85bd3b428e9157c8f3c8798899cbdd26ce69006656"
+    },
+    {
+      "path": "tools/practitioner_harness/adapter_project.py",
+      "sha256": "6cf0db8a40c22473ca28166efcbbd30a46647deeaf765ad14319149657d2020a"
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_brief.py",
+      "sha256": "ac0db8a9cb8773b4feb0e7f45823649d1854ce5a82e652f6293b36d7e0a3ed8d"
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_next.py",
+      "sha256": "1f8be9ff3f25e3a750d80f5b26292eab4587026eed075f662ed78c0870ed102a"
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_status.py",
+      "sha256": "be51cdc2cf91105b31a0af92b54f70df8ed710db1fdb9df355d54946855857b4"
+    },
+    {
+      "path": "tools/practitioner_harness/prose_bullet_v1.py",
+      "sha256": "5974a633e33b19031a9e43ab2b08bde3e7b1217b01f76bbc7238170da79dd78a"
+    },
+    {
+      "path": "tools/practitioner_harness/test_adapter_loader.py",
+      "sha256": "2ca0ffd4746ae7beae2b9d7d154f233b6d118d351c5c5cdd5232915c8a222204"
+    },
+    {
+      "path": "tools/practitioner_harness/test_root_adoption.py",
+      "sha256": "acd0a21242a891a8223e7c5008aaf0415031f2a023ac993446f4d77167c63d38"
+    },
+    {
+      "path": "tools/practitioner_harness/test_write_status_guard.py",
+      "sha256": "29197fa4897fcd27f721e241d3c28d1e050eeb4dda17881889bbd310ab190440"
+    },
+    {
+      "path": "tools/run_affected_tests.py",
+      "sha256": "e6f20d65ae41db14603983e6215edb8f884d3251787074af7c9856dc1ded78b2"
+    },
+    {
+      "path": "tools/scaffolding/write_status.sh",
+      "sha256": "7b70feed1bb2cd1b892a1ef189dd2af1bba2e8247510d161d7fc68948fa94bcc"
+    },
+    {
+      "path": "tools/validation/test_validate_instruction_tranche_manifest.py",
+      "sha256": "f60566db9034522454cc73c22127d273a79558d1d98725a978e1c8bb5f55b289"
+    },
+    {
+      "path": "tools/validation/test_validate_root_harness_adapter.py",
+      "sha256": "90a681a4229e48bcdf68f0505480b505aca64328ebf4cd5f446fa9e26729f78c"
+    },
+    {
+      "path": "tools/validation/test_validate_root_materialization_fence.py",
+      "sha256": "b2196c0a8d42b54d40f0ec49eef541ae4fad6ccea047af57f366a7b7d49b33cb"
+    },
+    {
+      "path": "tools/validation/test_validate_root_surface_ownership.py",
+      "sha256": "e74bdf75f241cc5a781393a5479af336e4724a5385d34e08732010547d2e6c4a"
+    },
+    {
+      "path": "tools/validation/test_validate_root_work_graph_dispatch.py",
+      "sha256": "e7b3f4bc4ae5b96b1c4be9926a58fe88f2521a3d0ad1d88688fe1949f655dc7b"
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "sha256": "be7ec317ddd283dfd00f6bf8c4042b11bccc18f9da0f336e33ddc94d56317f58"
+    },
+    {
+      "path": "tools/validation/validate_root_harness_adapter.py",
+      "sha256": "63830e390720db875df2735e150702d78a037a54d5463097f80f755bc9a63f66"
+    },
+    {
+      "path": "tools/validation/validate_root_materialization_fence.py",
+      "sha256": "2d36b5d0f8f9c1d592513ab9c6cfeb314ffab63e499ecb026ec78b8aec1d60d4"
+    },
+    {
+      "path": "tools/validation/validate_root_surface_ownership.py",
+      "sha256": "5d755ff5b2ee357694517c3ba8b4d0d7bba0acc671dfc5b784516257b8669b4a"
+    },
+    {
+      "path": "tools/validation/validate_root_work_graph_dispatch.py",
+      "sha256": "9b9f7864c390a4789ae75bd4cb305cdfebba97f4d88c66d7c85832d1a2d2c7d8"
+    }
+  ]
+}

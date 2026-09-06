@@ -1,0 +1,63 @@
+{
+  "gate3": {
+    "digest": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3",
+    "expected": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3",
+    "members": 302,
+    "errors": [],
+    "pass": true
+  },
+  "gate4": {
+    "digest": "917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd",
+    "expected": "917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd",
+    "members": 42,
+    "errors": [],
+    "pass": true
+  },
+  "targets": {
+    "count": 197,
+    "unique": 197,
+    "verified_pins": {
+      "ApprovedSHA256": 135,
+      "CurrentSHA256": 69
+    },
+    "errors": [],
+    "classes": {
+      "SOURCE_METADATA": 53,
+      "SOURCE_AUTHORITATIVE": 7,
+      "INSTRUCTION_M2_G4": 4,
+      "GOVERNANCE": 48,
+      "RUNTIME_AUTHORITY": 22,
+      "NO_CHANGE": 1,
+      "RUNTIME_METADATA": 35,
+      "RUNTIME_PRODUCTION_HANDOFF": 7,
+      "RECORD_OR_WRAPPER": 11,
+      "DERIVATIVE_OR_REFERENCE": 2,
+      "DERIVATIVE": 7
+    }
+  },
+  "exact_closure_copies": {
+    "ROOT_6_PACKAGE_CLOSURE.csv": true,
+    "ROOT_53_DISPOSITIONS.csv": true,
+    "SCOPE_104_SUCCESSOR_MAP.csv": true,
+    "HOLD_SUCCESSOR_MAP.csv": true,
+    "DEPENDENCY_DISTRIBUTION.csv": true
+  },
+  "closure": {
+    "parents": 6,
+    "children": 53,
+    "scope_rows": 104,
+    "runtime": 7,
+    "unique_successors": 53,
+    "governance": 46,
+    "full_child_sets": true,
+    "runtime_initial_open": true
+  },
+  "obsolete_payload_sources": [],
+  "accounting": {
+    "derivative_rows": 12,
+    "evidence_roots": 15,
+    "guard_paths": 36,
+    "guard_case_groups": 25,
+    "reference_index_declared": true
+  }
+}

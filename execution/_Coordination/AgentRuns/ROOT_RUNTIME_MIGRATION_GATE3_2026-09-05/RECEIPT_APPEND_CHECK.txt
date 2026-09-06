@@ -1,0 +1,1 @@
+Exact old ledger prefix preserved; next free Receipt140 appended once.
