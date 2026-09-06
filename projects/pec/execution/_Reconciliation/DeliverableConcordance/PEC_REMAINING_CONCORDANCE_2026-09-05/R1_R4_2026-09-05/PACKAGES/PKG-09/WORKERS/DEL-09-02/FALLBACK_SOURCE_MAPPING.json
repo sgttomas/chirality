@@ -1,0 +1,19 @@
+{
+  "status": "DERIVATIVE_FALLBACK_NOT_A_CONTRACT",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "source_path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+  "locus": "row SOW-046",
+  "quote": "SOW-046,IN,Dashboard \u2014 lifecycle census across registered loops' packages/deliverables with stuck-age and workflow-completeness views,PEC-DSH-002,PKG-09,DEL-09-02,OBJ-004,,FALSE,",
+  "quote_sha256": "6fb9c4fb0ed2e9e3df73771f55b5cf6b339fd386f1d615fadcdcae831782d104",
+  "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+  "mapped_ids": [
+    "DEL-09-02::SOW-046-CENSUS",
+    "DEL-09-02::SOW-046-STUCK-AGE",
+    "DEL-09-02::SOW-046-WORKFLOW-COMPLETENESS"
+  ],
+  "preserved_source_ids": [
+    "SOW-046",
+    "PEC-DSH-002"
+  ],
+  "ScopeOfWork_exists": false
+}

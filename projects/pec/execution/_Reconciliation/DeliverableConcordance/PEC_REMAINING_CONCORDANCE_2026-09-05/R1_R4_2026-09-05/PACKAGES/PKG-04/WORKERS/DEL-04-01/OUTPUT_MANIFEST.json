@@ -1,0 +1,13 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "kind": "sealed_worker_derivative",
+  "hashes": {
+    "CLAIMS.csv": "5744e0fb2e79d6a0e03a84041952a9a76c85af384e7127441bdbc6a529f917c7",
+    "COVERAGE.md": "3d74d8993fc412f1d8f41541a8bb29850d26d455a65422f88f008badc428f851",
+    "CURRENT_EVIDENCE.json": "64d6979fa5a278e1f0d098efd305d7085322eeb4731f8b39aa9cc3889e3e8c55",
+    "READ_MANIFEST.json": "13d4dc4a455eb43e189a2989a1f4480cbf6984deb03ed1c84dae0e1c4143a91b",
+    "RESIDUALS.csv": "bb8fa02f1c6f17ab27b68571d7ff418bf16c6fcb6bad867cb0c8c3aefc63fb23",
+    "RETURN.md": "ea3b53add931c8f59280847a650041e6b37aa75333ae6302bc97a71a9c44d63f",
+    "VALIDATION.json": "20bac4cfe9536d6825c104c214c60bbea9531f90ef19646d91f9de1ed64afd6e"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "recorded_utc": "2026-09-05T23:14:50.867771+00:00",
+  "attribution": "HELP_HUMAN Agent0 relay; common recorder did not perform package fan-in or dispatch",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "fanin": {
+    "package": "PKG-03",
+    "manager_task_id": "/root/pec_pkg03_reconciliation",
+    "agent0_actions_reported": [
+      "read final HANDOFF",
+      "reproduced123 output-manifest hashes"
+    ],
+    "output_manifest_sha256": "8b8b77269a7f983792de5c30f27011ae573dd96239c0701b2a32e4b02995eaba",
+    "claims": 450,
+    "raw_residual_proposals": 38,
+    "unknown_claims": 258,
+    "fresh_corrections_backcheck": "PASS",
+    "meaning": "package report evidence only; no product/Remaining/lifecycle acceptance"
+  },
+  "launch": {
+    "package": "PKG-06",
+    "actual_manager_task_id": "/root/pec_pkg06_reconciliation",
+    "direct_parent": "/root",
+    "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-06.md",
+    "brief_sha256": "a9b1dab840c69be8a43bf75a40f6a6ec4d95051fbcb9e1a718aa1a81c6488395",
+    "clarification_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+    "clarification_sha256": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06",
+    "execution_class": "delegated-harness-native",
+    "role_evidence": "instruction-asserted; not mechanically enforced"
+  },
+  "active_managers_reported": [
+    "PKG-04",
+    "PKG-05",
+    "PKG-06"
+  ],
+  "temporary_capacity": {
+    "max_active_managers": 3,
+    "max_active_specialists_per_manager_including_verifier": 2
+  },
+  "scope_change": "none",
+  "preservation": "append-only COMMON record; sealed essentials and package files untouched"
+}

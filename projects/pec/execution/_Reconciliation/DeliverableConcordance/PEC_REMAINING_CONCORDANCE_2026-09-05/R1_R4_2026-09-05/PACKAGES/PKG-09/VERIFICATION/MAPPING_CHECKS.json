@@ -1,0 +1,625 @@
+[
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "row SOW-045, ScopeItemStatement",
+    "quote_sha256": "4110d15414051e36851d749f363e8e78ce33d2c4c46e8d9d4f011a33015fae5b",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "row SOW-045, ScopeItemStatement",
+    "quote_sha256": "6060155272451035d1a36da8616aeb51021be15623603a0c040bad3b3635c976",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "row SOW-045, ScopeItemStatement",
+    "quote_sha256": "af372cac69469051e8eb19f21f213ab1072ad3ad4c5ffba3f4de86592cf10ecc",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "row SOW-045, ScopeItemStatement",
+    "quote_sha256": "364cc9b18e92b5f1169f4ed31e85c84e168cc7ec567351d4d8dc07c18c460611",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "row SOW-045, ScopeItemStatement",
+    "quote_sha256": "309d77b899411111c0299d9010a250344187b7fa5f13c8a12cb46899b80ac5c7",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-02/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "row SOW-046",
+    "quote_sha256": "6fb9c4fb0ed2e9e3df73771f55b5cf6b339fd386f1d615fadcdcae831782d104",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-047",
+    "quote_sha256": "76e06096b91cdfc2c33b7a8fa0806cd2452a924fa3876e3b1b9b66f6217c431d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md",
+    "locus": "CoversScopeItems",
+    "quote_sha256": "30c6f7657f4e42707811e34e2d1966774554130592cbcdabfa907fbfdaef5d0a",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md",
+    "locus": "ResponsibleParty",
+    "quote_sha256": "4f746fb61f737ae04c526100332351efcfa3bdf831062dec67ba2266087161e8",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+    "locus": "**Current State:**",
+    "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+    "locus": "DEP-09-03-001",
+    "quote_sha256": "3316de0a528235ce98189f8915c8b7658c78bfb7ebb7810194284e4cc41d9ac4",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+    "locus": "DEP-09-03-002",
+    "quote_sha256": "615b506dc9d2dacd34721b23d0aaee71806361cef216c617dad60f95e5827a67",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+    "locus": "DEP-09-03-003",
+    "quote_sha256": "93a52b6f5d0544f762e05e39a54f9622662c8ec836b0f79210d4813fc27f3609",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+    "locus": "DEP-09-03-004",
+    "quote_sha256": "06fbf7afa7d04eb5bfb8ca35aa7d2507b538a2ef44d0ef4d3af5df96b008e583",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+    "locus": "DEP-09-03-005",
+    "quote_sha256": "360fd0f2b9209d1279fac4348b85eb8ba4357472e4cb623c376353e2c4d34e7c",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "PEC-K-03",
+    "quote_sha256": "f45d160f355c6d416e62d83413ad36ae6262dc1148c95141bbe150fc703caf66",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/SOURCE_MAPPING.csv",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "PEC-K-02",
+    "quote_sha256": "18ba3bcc330ed5987b0ddcf443305d6c3b641480369bfda195a9f626df984e4b",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "line 49",
+    "quote_sha256": "823b9d551a540e35c6f07bda250f27eea82b5f203bed080a790a9188de3b43f0",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+    "locus": "line 50",
+    "quote_sha256": "eebe13cc9876d35b12963535b0e7d7fd559b87947895b214d12888ebf711cbd8",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+    "locus": "line 3",
+    "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+    "locus": "line 2",
+    "quote_sha256": "fde5fcdd9d7fc0362f4b64b4cea89898f66fc7ad8e62f3af713a49a11b61bd48",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+    "locus": "line 3",
+    "quote_sha256": "9fb8f13529c1399eae0a17af92b0e180d288bcdf01515c7c4799e4223b272ee7",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+    "locus": "line 4",
+    "quote_sha256": "c2e55d27fde72cd3167cfa597e70e76a2a0f8c66e159fad61869a9525234416f",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+    "locus": "line 5",
+    "quote_sha256": "854ed0c38a914be59f82c7014ef5c20dd8c953467c4f86120c9947449f35c0f3",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+    "locus": "line 6",
+    "quote_sha256": "cd4d8b4ecd0efaa4223144107b197b347a9f498f7c61e74a977be9dc8a780ccc",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/FALLBACK_SOURCE_MAP.csv",
+    "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+    "locus": "line 53",
+    "quote_sha256": "6fabd11da45bdaeb80c8d6eff72d7de086c9d6b3aea7d102948483887b910574",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "scope row SOW-049",
+    "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "scope row SOW-049 / sessions \u00d7 worktrees",
+    "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "scope row SOW-049 / live hierarchy",
+    "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "scope row SOW-049 / heartbeat age",
+    "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "scope row SOW-049 / advisory overlap warnings",
+    "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "PEC-DSH-005",
+    "quote_sha256": "4127fc2546df1ceac76668c51024f132e1e0f6eddd0c6b21c28477bd85c3a229",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "PEC-K-01",
+    "quote_sha256": "886b1819cd649d691304769c9273e268037872d65ada447cf020d1e82b04af85",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "PEC-K-03",
+    "quote_sha256": "00aa34d0c28ac3e6f0d628d6d8e3d7f0b5f6c43ccc3b8313719db0d5a7e41b53",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "PEC-K-06",
+    "quote_sha256": "56de277c5668e521686ace87d5782c967fac0df86ced906dabae2d91c2cf0394",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "PEC-K-11",
+    "quote_sha256": "d87c7ed0db99e09b562737967ae895f32cbe834e4ad576c582729729cac2c965",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+    "locus": "Current State",
+    "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_CONTEXT.md",
+    "locus": "ResponsibleParty",
+    "quote_sha256": "4f746fb61f737ae04c526100332351efcfa3bdf831062dec67ba2266087161e8",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-001",
+    "quote_sha256": "5bdf93ad974aa84508fdbbe62861f4970499ba07a1eb1e4f00b40c73a803130d",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-002",
+    "quote_sha256": "daa2749214c53cda2f286b8ec5a4cf6682575f5c2e55213f11136bd68c1268f7",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-003",
+    "quote_sha256": "10d6195671fd7fc98eee4253b4c6b468fcc43b5474a3c43f6abe1067ca554e27",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-004",
+    "quote_sha256": "b7101691ca07558a1a6f790bf25b7c3bb7c2b2a254ead60031727fef06d76050",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-005",
+    "quote_sha256": "d33952624a6f2839e5234fd7cc1548e1cd7f0c21954c5e86746b7449bff6834d",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-006",
+    "quote_sha256": "4970ae75f4ddf3808e310f11332557949ef2a9b8bc4def270e9a79454126757a",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-007",
+    "quote_sha256": "66b96950869a9888b2d3fbcf4d28f2598c75174866be245e018b42340fd781dc",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+    "locus": "DEP-09-05-008",
+    "quote_sha256": "581c6d0e4f67acf270592be75d425428c4e7cb2c23af6479a1f1a5c5918a6426",
+    "representation": "JSON serialization of complete parsed CSV row; independently compared all fields"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "row SOW-050 / ScopeItemStatement",
+    "quote_sha256": "8c1f9cf38583f0635a6fc5839ecab60ec231a1f6515bf159b3f3060fcf8bd31d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "\u00a79.7 row PEC-DSH-006",
+    "quote_sha256": "c1dac16a957acca77642d3f5c05ce3039adbfe1c53b06b20c66554a8e5c718e3",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "\u00a76 PEC-K-08; also Deliverables row DEL-09-06 Description",
+    "quote_sha256": "183ef38a3f6b16e905caf6188f0c8063250b511ea19c0947a7c3e1d1b0002cda",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+    "locus": "row DEL-09-06 / Description",
+    "quote_sha256": "78bcc8863226bfb84381179174f41bdbaecc8c1bbc97616cf0a704d0f63f9fb4",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+    "locus": "row DEL-09-06 / AnticipatedArtifacts",
+    "quote_sha256": "191b7c6d0ea2eedebfc0a0b958311e9ea4d7e28120e0d18c0fc7841d078da289",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+    "locus": "row DEP-09-06-001 / Statement",
+    "quote_sha256": "baf663edbd7e1909b09bf9a03673dced45ef0ab8613ed4cd54237018d6ec6f0d",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+    "locus": "row DEP-09-06-002 / Statement",
+    "quote_sha256": "c8ba8703e995a4c66e588823a2a2dc5448bac87645354e3a744f226c3af09d65",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+    "locus": "row DEP-09-06-003 / Statement",
+    "quote_sha256": "85a104b074358654f92fdf8de191b4bbc83c5715141326c77fde1334eec64799",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+    "locus": "row DEP-09-06-004 / Statement",
+    "quote_sha256": "31bfa3d4b80b65dba1a600256bd635a3d713ea3fba40cda95b79f037fdc6b8a7",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+    "locus": "row DEP-09-06-005 / Statement",
+    "quote_sha256": "15938055ee8faab832fa6742fc315a91ebf818269d64ff12b8054402064d5078",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+    "locus": "Current State",
+    "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md",
+    "locus": "ResponsibleParty",
+    "quote_sha256": "c6e5a4821fc92bd04f29380d21aa292c9f8b917c20a1f3b7367765fb2ebafa87",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/FALLBACK_SOURCE_MAP.json",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "\u00a74 row PKG-09 exclusions",
+    "quote_sha256": "fd4e11a7a86ba73f87c7de76e2477d67949cfe10441eda497cec0185e6c6bbb6",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "line 52",
+    "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "line 52",
+    "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "line 52",
+    "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "line 52",
+    "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "line 52",
+    "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "line 52",
+    "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "line 182",
+    "quote_sha256": "f176eea1b14efb972ea4cb880471f983ae0a9f4b72b14acfd64a54c2dd0d2efc",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+    "locus": "line 53",
+    "quote_sha256": "6fabd11da45bdaeb80c8d6eff72d7de086c9d6b3aea7d102948483887b910574",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "line 175",
+    "quote_sha256": "886b1819cd649d691304769c9273e268037872d65ada447cf020d1e82b04af85",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "line 176",
+    "quote_sha256": "18ba3bcc330ed5987b0ddcf443305d6c3b641480369bfda195a9f626df984e4b",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "line 7",
+    "quote_sha256": "f45d160f355c6d416e62d83413ad36ae6262dc1148c95141bbe150fc703caf66",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "line 180",
+    "quote_sha256": "56de277c5668e521686ace87d5782c967fac0df86ced906dabae2d91c2cf0394",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/docs/PRD.md",
+    "locus": "line 24",
+    "quote_sha256": "b70bb49687528721ed41016305cbf333a6055d728ee815130a7194512c2aea8a",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+    "locus": "line 3",
+    "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md",
+    "locus": "line 13",
+    "quote_sha256": "4f746fb61f737ae04c526100332351efcfa3bdf831062dec67ba2266087161e8",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 2",
+    "quote_sha256": "5446934da0aa7f80639d1193c1314070571ac33bdecea53c59a6f437cad33911",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 3",
+    "quote_sha256": "19705415107563c5703523a92d03a257175b145475eed6527d8ae7bad39321c4",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 4",
+    "quote_sha256": "ad9a04e7e2fb3f1a7f369e9cbbe2e93bc44fc33504c2656cf642d1892d7a3037",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 5",
+    "quote_sha256": "dfcae83b41e05d2cc9cbd112d56721c8b16a135f38d9ed4a05cbe1ce6ef5ecca",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 6",
+    "quote_sha256": "7425b57e3212e351694429a4c7b13fc94a981587894c90ff19ddaff1eda7148c",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 7",
+    "quote_sha256": "a100e3ba75de85166de3e6f696e1d1d7c0ad2b1768d2d8add61a73524d119366",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 8",
+    "quote_sha256": "d580acadf0e3f56c5ed5fd6377099f77b35fa3449e24aed1cc53c90b0ad787b0",
+    "representation": "literal source excerpt"
+  },
+  {
+    "mapping": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/FALLBACK_SOURCE_MAPPING.json",
+    "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+    "locus": "line 9",
+    "quote_sha256": "e192667c672dd763b047110b8eeb60e50868164cf7d9eac0a4fb89170b577cda",
+    "representation": "literal source excerpt"
+  }
+]

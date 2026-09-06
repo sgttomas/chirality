@@ -1,0 +1,31 @@
+{
+  "verdict": "PASS_FOR_R4_REPORT_AND_PROPOSAL_READINESS",
+  "owner_acceptance": "not claimed",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "packages": 11,
+  "deliverables": 64,
+  "claims": 2604,
+  "raw_proposals": 165,
+  "unknown_claims": 1168,
+  "unknown_deliverables": 60,
+  "warranted_none": [
+    "DEL-10-01 exact accepted before-leg baseline only"
+  ],
+  "proposed_items": 92,
+  "carrier_previews": 58,
+  "conditional_frozen_previews": [
+    "DEL-01-05"
+  ],
+  "no_application_carriers": 6,
+  "held_raw_proposals": 70,
+  "conditional_raw_proposals": 3,
+  "final_structural_claim_source_hashes": 13847,
+  "final_R4_checks": 3785,
+  "final_R4_findings": 0,
+  "final_R4_manifest_sha256": "5d105f0733b893032e4e7d153b7354ab24ca6a45e8dcc863762ea8e805c72bac",
+  "source_frozen_recheck": 648,
+  "live_carrier_recheck": 64,
+  "source_status_mutations": 0,
+  "production_suites_run": 0,
+  "closure": "report/application-proposal/scanner-proposal readiness only"
+}

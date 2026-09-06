@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "members": [
+    {
+      "deliverable": "DEL-00-01",
+      "claim_count": 43,
+      "residual_count": 1
+    },
+    {
+      "deliverable": "DEL-00-02",
+      "claim_count": 11,
+      "residual_count": 4
+    },
+    {
+      "deliverable": "DEL-00-03",
+      "claim_count": 33,
+      "residual_count": 1
+    }
+  ],
+  "claims": 87,
+  "residuals": 6,
+  "source_hashes_reproduced": 148
+}

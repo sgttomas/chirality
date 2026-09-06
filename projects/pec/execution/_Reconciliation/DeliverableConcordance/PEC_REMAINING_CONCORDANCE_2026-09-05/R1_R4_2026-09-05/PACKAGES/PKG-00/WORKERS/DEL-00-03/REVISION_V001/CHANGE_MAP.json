@@ -1,0 +1,35 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "sealed_brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/CORRECTION_DEL0003_V001.md",
+  "sealed_brief_sha256": "a92bee5c15c4764b9fca6b572d28c437e3505f9b5d384ddd16fbceca1e0410eb",
+  "files": {
+    "CLAIMS.csv": {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/CLAIMS.csv",
+      "original_sha256": "d0ba0d4bc5c2fe41ed1c5209c0864a63c2bb3d2bad0c804e50c8ad6ed97e9d40",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/CLAIMS.csv",
+      "corrected_sha256": "7e957f115ce0b2460992a34156168efbe8c52c728ffb72f1ac00e4da45543891"
+    },
+    "RESIDUALS.csv": {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/RESIDUALS.csv",
+      "original_sha256": "f20cf6d06d752c38f02933d457eea7c907d45ccfc47505c3089c8a2e79e7b414",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/RESIDUALS.csv",
+      "corrected_sha256": "f20cf6d06d752c38f02933d457eea7c907d45ccfc47505c3089c8a2e79e7b414"
+    }
+  },
+  "exact_cell_changes": [
+    {
+      "file": "CLAIMS.csv",
+      "csv_record_number_including_header": 34,
+      "row_id_before": "DEL-00-03::CON-001",
+      "row_id_after": "DEL-00-03::CON-001",
+      "column": "ClaimClass",
+      "before": "DEFERRED_AGENT_WORKFLOW",
+      "after": "human_acceptance"
+    }
+  ],
+  "all_other_csv_bytes_preserved": true,
+  "disposition_counts_preserved": {
+    "ALIGNED": 32,
+    "DEFERRED_AGENT_WORKFLOW": 1
+  }
+}

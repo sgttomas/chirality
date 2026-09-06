@@ -1,0 +1,37 @@
+[
+  {
+    "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01",
+    "claims": 41,
+    "residuals": 1,
+    "errors": [],
+    "pass": true
+  },
+  {
+    "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02",
+    "claims": 28,
+    "residuals": 1,
+    "errors": [],
+    "pass": true
+  },
+  {
+    "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03",
+    "claims": 75,
+    "residuals": 4,
+    "errors": [],
+    "pass": true
+  },
+  {
+    "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04",
+    "claims": 83,
+    "residuals": 5,
+    "errors": [],
+    "pass": true
+  },
+  {
+    "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05",
+    "claims": 18,
+    "residuals": 1,
+    "errors": [],
+    "pass": true
+  }
+]

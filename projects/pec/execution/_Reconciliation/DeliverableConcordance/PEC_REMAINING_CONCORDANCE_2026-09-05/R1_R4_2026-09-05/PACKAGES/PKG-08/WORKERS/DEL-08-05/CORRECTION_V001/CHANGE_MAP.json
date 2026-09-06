@@ -1,0 +1,39 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "parent": "/root/pec_pkg08_reconciliation",
+  "worker": "/root/pec_pkg08_reconciliation/correction0805_v001",
+  "role_enforcement": "instruction-asserted; not mechanically enforced",
+  "original_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05",
+  "derivative_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001",
+  "original_artifact_hashes": {
+    "CURRENT_EVIDENCE.json": "f77135fc23963e2c50d8346bcac3feab7896167a4fd5be5b232e1930319d64ac",
+    "RETURN.md": "a73801f7884875620c7d1589d2b25ee875c318f2cf6fdd87b9ac6fb916641244",
+    "CLAIMS.csv": "a54b4aa7e34e4ef30ed2d40c58c6579f265258c103e1c8ee07cba28ea4133c97",
+    "OUTPUT_MANIFEST.json": "75fbcf1c790a6d41ce61da68ac51e26965ebe9353642780d1882f0ce15f01ba3",
+    "RESIDUALS.csv": "8a4986aa012daae710cf531217f493021befc25abc17f746ab9fa413bd7cfc8c",
+    "COVERAGE.md": "aef6151e1ecde41a592cf3ee9cfc648214ce13c35c4409dd5a86be5fb8495cbd",
+    "PREFLIGHT.json": "2e624b3deef5ab4d1a1a95ee1f2351639a6dae6e195c29285de7c56196e11de5",
+    "SCOPE_FALLBACK.json": "eac9269ab2271bb1409493f292c3681fa5b2867b647265f016c09c7b63c3a743",
+    "READ_MANIFEST.json": "ea41efd58c87cd9bd6f3eaae3108cda671d14c3a586e27f041828330c922d213"
+  },
+  "changes": [
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/SCOPE_FALLBACK.json",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001/SCOPE_FALLBACK.json",
+      "json_pointer": "/mappings/0/locus",
+      "before": "row SOW-044, Description; physical line 45",
+      "after": "row SOW-044, ScopeItemStatement; physical line 45",
+      "original_sha256": "eac9269ab2271bb1409493f292c3681fa5b2867b647265f016c09c7b63c3a743",
+      "corrected_sha256": "86e4cddab7413f741f9087bb7746457862750da2376ab77477f27e29d4bc64dc",
+      "change_kind": "exact field-name locator replacement only"
+    }
+  ],
+  "byte_identical_carried_files": [
+    "CLAIMS.csv",
+    "RESIDUALS.csv",
+    "COVERAGE.md",
+    "CURRENT_EVIDENCE.json"
+  ],
+  "claim_residual_semantic_changes": 0,
+  "source_mutations": 0
+}

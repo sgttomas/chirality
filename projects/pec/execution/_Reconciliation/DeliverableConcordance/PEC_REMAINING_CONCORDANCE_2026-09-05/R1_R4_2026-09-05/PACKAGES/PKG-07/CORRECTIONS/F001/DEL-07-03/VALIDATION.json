@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "claims": 12,
+  "unknown": 7,
+  "aligned": 5,
+  "residuals": 1,
+  "changed_cells": [
+    {
+      "ResidualID": "DEL-07-03-REM-001",
+      "column": "Depends",
+      "old": "DEL-00-02;DEL-07-01",
+      "new": "NONE"
+    }
+  ],
+  "claims_byte_equal": true,
+  "nonchanged_residual_cells_equal": true,
+  "exact_single_cell_multiset_change": true,
+  "schemas_lf_ids_reciprocity_pass": true,
+  "source_fields_rehashed": true,
+  "original_files_unchanged": true,
+  "source_unchanged": true,
+  "production_prerequisite_claims_preserved": 7,
+  "exact_gate_and_pending_production_bytes_intact": true,
+  "preflights_allow": 11,
+  "product_tests_run": false,
+  "independent_backcheck_required": true,
+  "output_hashes": {
+    "RETURN.md": "a28ce9cc6e0ff008225fb825c29e7ec821b55145f44572067f4148c4b41fbf37",
+    "CLAIMS.csv": "ccecb5d4140ee6d6a48f938ea20b59562c9c22dd66723564afd52b89003c3c03",
+    "CHANGE_MAP.json": "3be9f63ea4eabc774eaf2b51fe2634408745312941b01c6cf34be4cc2b23808b",
+    "RESIDUALS.csv": "e4a995fc2d28d4380306fa5568a9ae57153722d8bbcd12f540cf93613d0eeb0f",
+    "COVERAGE.md": "a04c88dd7130a95278005cca1289620c0076adc809831fa1e9288e99c6c66339",
+    "READ_MANIFEST.json": "51b917e135ff5842376b5e065ba33c858dcd1157547fdc889efa525a0951e08c"
+  }
+}

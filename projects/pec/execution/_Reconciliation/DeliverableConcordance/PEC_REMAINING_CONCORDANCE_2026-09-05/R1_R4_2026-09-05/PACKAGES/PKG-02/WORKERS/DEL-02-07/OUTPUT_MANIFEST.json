@@ -1,0 +1,16 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "self_exclusion": "OUTPUT_MANIFEST.json",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/CLAIMS.csv": "987fceb7d951d703578f558f05bef2afcc516fb462bc0be025281f527d688e1c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/COVERAGE.md": "441fa15e5685972b8dac65a454a07b9df10ee24eac97aa8e6fa8356544c1ca39",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/READ_MANIFEST.json": "8a3271b76f7deb5b99cd301bcc6ece9def98f3966c1400ad8b79657a475b03d4",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/RESIDUALS.csv": "8d41c7035ef994e026a9189063d860cf82248fc7c634c8c7b114e8977303fb25",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/RESIDUAL_ROUTING.csv": "1ef91dd9b8c02f3d8e482c67f1a75f29bd87e6a556da38e2db28cba269ce11e6",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/RETURN.md": "8a73bcc46219367795e4f521eee4dbffb77de46db8d763bbe5d64a088c728739",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/REUSE_AUDIT.json": "9c1ffeb3d9c3fbceeb5ce99fb1ac075cacbd265d147bc2d23ef4dc6d2d11ae9d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/REUSE_MAP.csv": "5a20e41b06de668d6f85645a046cf0f20c9c8a6b628ef91e573684a86268f200",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/VALIDATION.json": "cf02839bbd8de8872e02cb566d377a496a6614e1e7580ce239e3e1d6e99c85a1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/build_evidence.py": "a6933a70cd9fd228e429a79a49656f5a8bfb4effc8674dd450e446974938c087"
+  }
+}

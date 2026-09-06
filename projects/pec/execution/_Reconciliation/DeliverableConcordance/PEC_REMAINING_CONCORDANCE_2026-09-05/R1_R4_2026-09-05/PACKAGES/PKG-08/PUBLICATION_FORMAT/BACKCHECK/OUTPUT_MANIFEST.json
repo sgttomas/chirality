@@ -1,0 +1,11 @@
+{
+  "status": "PASS_FORMAT_ONLY",
+  "self_excluded": true,
+  "files": {
+    "BACKCHECK.md": "ca1faecaddd81e8b9416979fafc4ca571089f51de9ced063dbabe1fa76e8fab3",
+    "BACKCHECK_SCRIPT.py": "202dacd549cf06908c39769b888cb6bd0d34cbdbb65360ac78423faad1539ad2",
+    "CHECKED_EDITS.json": "b421c0fc3faf2032334cd915e2b52cbd1891a384a69d145c43fe831e70f222de",
+    "READ_MANIFEST.json": "29c512e44e4b5dedc44cd2014b9794bd098dd8cc62737770a8d0cd49e0257cf0",
+    "VALIDATION.json": "f55eee3bcf04e8ce3a2ac5d3fce173d8320b453940d49c1e3b5f109dd747b339"
+  }
+}

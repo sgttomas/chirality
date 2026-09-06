@@ -1,0 +1,20 @@
+{
+  "old": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/SCOPE_FALLBACK.json",
+  "old_sha256": "eac9269ab2271bb1409493f292c3681fa5b2867b647265f016c09c7b63c3a743",
+  "new": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001/SCOPE_FALLBACK.json",
+  "new_sha256": "86e4cddab7413f741f9087bb7746457862750da2376ab77477f27e29d4bc64dc",
+  "delta": [
+    {
+      "pointer": "/mappings/0/locus",
+      "before": "row SOW-044, Description; physical line 45",
+      "after": "row SOW-044, ScopeItemStatement; physical line 45"
+    }
+  ],
+  "unchanged_core_files": [
+    "CLAIMS.csv",
+    "RESIDUALS.csv",
+    "COVERAGE.md",
+    "CURRENT_EVIDENCE.json"
+  ],
+  "scope": "One-field fallback source locator; all3 source/quote hashes and physical lines reproduced. No new product/evidence obligation inferred."
+}

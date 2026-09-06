@@ -1,0 +1,13 @@
+{
+  "status": "VERIFIED_SELECTED_REPORT_DERIVATIVE",
+  "selected": {
+    "DEL-03-01": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01",
+    "DEL-03-02": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001",
+    "DEL-03-03": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001",
+    "DEL-03-04": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-04",
+    "DEL-03-05": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-05",
+    "DEL-03-06": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-06"
+  },
+  "verification": "VERIFICATION/BACKCHECK_V001/BACKCHECK.md",
+  "verification_sha256": "1819859a52ac24cf39d3b82eeef2b973233932a0057e93ee58650de6a3975fc1"
+}

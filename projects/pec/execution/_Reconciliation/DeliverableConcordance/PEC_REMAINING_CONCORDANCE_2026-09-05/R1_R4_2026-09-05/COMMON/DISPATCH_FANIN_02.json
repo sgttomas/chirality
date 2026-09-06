@@ -1,0 +1,41 @@
+{
+  "recorded_utc": "2026-09-05T22:34:17.639730+00:00",
+  "attribution": "HELP_HUMAN Agent0 relay; common integration recorder did not perform package fan-in or dispatch",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "fanin": {
+    "package": "PKG-00",
+    "manager_task_id": "/root/pec_pkg00_reconciliation",
+    "agent0_actions_reported": [
+      "read HANDOFF and VALIDATION",
+      "reproduced72 output-manifest hashes"
+    ],
+    "output_manifest_sha256": "141a5bba93c319eb2cb7c1da4092746e2692810a08462f1855ce16b9c98da617",
+    "claims": 87,
+    "raw_residual_proposals": 6,
+    "unknown_claims": 9,
+    "verification_backcheck": "PASS",
+    "meaning": "package report fan-in only; no product/Remaining/lifecycle acceptance"
+  },
+  "launch": {
+    "package": "PKG-02",
+    "actual_manager_task_id": "/root/pec_pkg02_reconciliation",
+    "direct_parent": "/root",
+    "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-02.md",
+    "brief_sha256": "c6b2a7b0cd9dd41964a5682396913f5b7a32723a50577370d344e6b7f970b6f0",
+    "clarification_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+    "clarification_sha256": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02",
+    "execution_class": "delegated-harness-native",
+    "role_evidence": "instruction-asserted; not mechanically enforced"
+  },
+  "active_managers_reported": [
+    "PKG-01",
+    "PKG-02",
+    "PKG-10"
+  ],
+  "temporary_capacity": {
+    "max_active_managers": 3,
+    "max_active_specialists_per_manager_including_verifier": 2
+  },
+  "preservation": "append-only COMMON record; sealed essentials and package files untouched"
+}

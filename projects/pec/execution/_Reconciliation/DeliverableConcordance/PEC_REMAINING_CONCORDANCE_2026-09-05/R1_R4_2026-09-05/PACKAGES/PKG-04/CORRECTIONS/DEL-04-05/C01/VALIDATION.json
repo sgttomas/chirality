@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "claims": 83,
+  "original_claims": 82,
+  "added_claims": [
+    "DEL-04-05::BASIS-001"
+  ],
+  "changed_original_claims": [
+    "DEL-04-05::CLM-008",
+    "DEL-04-05::CLM-009",
+    "DEL-04-05::AC-015",
+    "DEL-04-05::AX-009"
+  ],
+  "residuals": 3,
+  "dispositions": {
+    "ALIGNED": 30,
+    "UNKNOWN": 49,
+    "STALE_INPUT": 4
+  },
+  "original_ids_preserved": true,
+  "all_original_unknown_dispositions_preserved": true,
+  "unaffected_fields_preserved": true,
+  "source_unchanged": true,
+  "source_drift": [],
+  "exact_schemas": true,
+  "reciprocal_links": true,
+  "LF_CSV": true,
+  "nonselectable": true,
+  "independent_verification": "PENDING",
+  "scope": "derivative report only",
+  "opening_mapping": {
+    "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md",
+    "locus": "lines 19-26",
+    "quote": "The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`\n**revision 1.2** (`current_basis`, SCA-002 successor; accepted 2026-07-25 at\nD-PEC-64 closure, commit `3623b958b`). The deliverable-local `_REFERENCES.md`\nstill names \"revision 1.1, accepted working surface\"; that phrase is superseded\nprovenance left by a deferred pointer sweep (SCA-002 `Handoff_State.md`, open\nitem `OI-B`), and `_CONTEXT.md`'s own supersession line records revision 1.1 as\n\"superseded by revision 1.2 (`current_basis`, SCA-002 successor)\". This\ncontract cites revision 1.2.",
+    "quote_sha256": "7285dfa4a7fedd71ef2ba7d56850451555081672b4b90caf1163e7761cfa6f6b",
+    "reference_path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_REFERENCES.md",
+    "reference_locus": "line 3",
+    "reference_quote": "- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)",
+    "reference_quote_sha256": "47a32ba1c3c75492a2d71bac3647fac8bb58b69868626bb89ac9f7fbfdb6ac62"
+  }
+}

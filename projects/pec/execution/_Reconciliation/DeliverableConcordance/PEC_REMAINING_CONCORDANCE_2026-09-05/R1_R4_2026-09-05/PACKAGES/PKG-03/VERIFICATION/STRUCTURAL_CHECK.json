@@ -1,0 +1,117 @@
+{
+  "verdict": "PASS",
+  "errors": [],
+  "stats": {
+    "DEL-03-01": {
+      "claims": 99,
+      "residuals": 5,
+      "dispositions": {
+        "ALIGNED": 46,
+        "UNKNOWN": 53
+      }
+    },
+    "DEL-03-02": {
+      "claims": 82,
+      "residuals": 18,
+      "dispositions": {
+        "ALIGNED": 31,
+        "UNKNOWN": 47,
+        "STALE_INPUT": 4
+      }
+    },
+    "DEL-03-03": {
+      "claims": 81,
+      "residuals": 5,
+      "dispositions": {
+        "ALIGNED": 23,
+        "UNKNOWN": 53,
+        "STALE_INPUT": 5
+      }
+    },
+    "DEL-03-04": {
+      "claims": 88,
+      "residuals": 3,
+      "dispositions": {
+        "ALIGNED": 38,
+        "UNKNOWN": 50
+      }
+    },
+    "DEL-03-05": {
+      "claims": 10,
+      "residuals": 2,
+      "dispositions": {
+        "UNKNOWN": 5,
+        "ALIGNED": 5
+      }
+    },
+    "DEL-03-06": {
+      "claims": 90,
+      "residuals": 5,
+      "dispositions": {
+        "ALIGNED": 38,
+        "UNKNOWN": 50,
+        "STALE_INPUT": 2
+      }
+    }
+  },
+  "coverage": {
+    "DEL-03-01": {
+      "defined": 96,
+      "covered": 96,
+      "extra": [
+        "EXACT_ACCEPTANCE",
+        "LIFECYCLE",
+        "RELEASE_BOUNDARY"
+      ]
+    },
+    "DEL-03-02": {
+      "defined": 81,
+      "covered": 81,
+      "extra": [
+        "BASIS-001"
+      ]
+    },
+    "DEL-03-03": {
+      "defined": 80,
+      "covered": 80,
+      "extra": [
+        "PROVENANCE_CURRENT"
+      ]
+    },
+    "DEL-03-04": {
+      "defined": 86,
+      "covered": 86,
+      "extra": [
+        "CURRENT_STATE",
+        "REMAINING_COMPLETENESS"
+      ]
+    },
+    "DEL-03-05": {
+      "defined": 0,
+      "covered": 0,
+      "extra": [
+        "DEP-03-05-003",
+        "FALLBACK-ARTIFACTS",
+        "FALLBACK-CO-LANDING",
+        "FALLBACK-CONTRACT",
+        "FALLBACK-LIFECYCLE",
+        "FALLBACK-MAPPING",
+        "FALLBACK-OWNERSHIP",
+        "FALLBACK-REMAINING",
+        "SOW-038-RECOVERY",
+        "SOW-038-SUPREMACY"
+      ]
+    },
+    "DEL-03-06": {
+      "defined": 88,
+      "covered": 88,
+      "extra": [
+        "BASIS-001",
+        "LIFECYCLE-001"
+      ]
+    }
+  },
+  "source_hashes_checked": 835,
+  "claims": 450,
+  "residuals": 38
+}

@@ -1,0 +1,49 @@
+{
+  "recorded_utc": "2026-09-05T23:04:54.047197+00:00",
+  "attribution": "HELP_HUMAN Agent0 relay; common recorder did not perform package fan-in, remote fetch/diff or dispatch",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "fanin": {
+    "package": "PKG-10",
+    "manager_task_id": "/root/pec_pkg10_reconciliation",
+    "agent0_actions_reported": [
+      "read verified HANDOFF",
+      "reproduced192 output-manifest hashes"
+    ],
+    "output_manifest_sha256": "567e23b1e2075b47b7f818d8e371db14ab35b8b627cc9f53a31f651743c0ba93",
+    "claims": 418,
+    "raw_residual_proposals": 26,
+    "unknown_claims": 202,
+    "warranted_none_deliverables": [
+      "DEL-10-01"
+    ],
+    "mapped_corrections_backcheck": "PASS",
+    "meaning": "package report evidence only; warranted NONE does not itself grant lifecycle advancement, release or Remaining application"
+  },
+  "launch": {
+    "package": "PKG-05",
+    "actual_manager_task_id": "/root/pec_pkg05_reconciliation",
+    "direct_parent": "/root",
+    "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-05.md",
+    "brief_sha256": "f2641a65e0d7ef2810975321c05d3a3e96b38c29e380ef2d1d83fb95fd35df25",
+    "clarification_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+    "clarification_sha256": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05",
+    "execution_class": "delegated-harness-native",
+    "role_evidence": "instruction-asserted; not mechanically enforced"
+  },
+  "active_managers_reported": [
+    "PKG-03",
+    "PKG-04",
+    "PKG-05"
+  ],
+  "temporary_capacity": {
+    "max_active_managers": 3,
+    "max_active_specialists_per_manager_including_verifier": 2
+  },
+  "source_drift_check_reported": {
+    "later_origin_main_abbreviation": "5068899",
+    "agent0_result": "zero changes under PEC, root AGENTS, agents and method",
+    "disposition": "frozen2be412ccea62bdc4bd96deb082c46d7a792076ea remains basis; no repin"
+  },
+  "preservation": "append-only COMMON record; sealed essentials and package files untouched"
+}

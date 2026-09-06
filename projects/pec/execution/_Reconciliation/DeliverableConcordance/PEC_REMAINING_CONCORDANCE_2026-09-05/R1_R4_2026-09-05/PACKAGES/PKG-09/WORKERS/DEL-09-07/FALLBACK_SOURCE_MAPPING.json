@@ -1,0 +1,194 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "missing_contract": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/ScopeOfWork.md",
+  "scope_quote": "SOW-051,IN,\"Implement derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) as Explain-shaped, individually documented rules\",PEC-DSH-007,PKG-09,DEL-09-07,OBJ-004,,FALSE,",
+  "scope_quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+  "scope_locus": "ScopeLedger.csv row SOW-051; SOFTWARE_DECOMP.md \u00a7scope table SOW-051; PRD PEC-DSH-007",
+  "mappings": [
+    {
+      "claim_id": "DEL-09-07::SOW-051-RULE-01",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "line 52",
+      "quote": "SOW-051,IN,\"Implement derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) as Explain-shaped, individually documented rules\",PEC-DSH-007,PKG-09,DEL-09-07,OBJ-004,,FALSE,",
+      "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::SOW-051-RULE-02",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "line 52",
+      "quote": "SOW-051,IN,\"Implement derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) as Explain-shaped, individually documented rules\",PEC-DSH-007,PKG-09,DEL-09-07,OBJ-004,,FALSE,",
+      "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::SOW-051-RULE-03",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "line 52",
+      "quote": "SOW-051,IN,\"Implement derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) as Explain-shaped, individually documented rules\",PEC-DSH-007,PKG-09,DEL-09-07,OBJ-004,,FALSE,",
+      "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::SOW-051-RULE-04",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "line 52",
+      "quote": "SOW-051,IN,\"Implement derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) as Explain-shaped, individually documented rules\",PEC-DSH-007,PKG-09,DEL-09-07,OBJ-004,,FALSE,",
+      "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::SOW-051-RULE-05",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "line 52",
+      "quote": "SOW-051,IN,\"Implement derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) as Explain-shaped, individually documented rules\",PEC-DSH-007,PKG-09,DEL-09-07,OBJ-004,,FALSE,",
+      "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::PEC-DSH-007-DOC",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "line 52",
+      "quote": "SOW-051,IN,\"Implement derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) as Explain-shaped, individually documented rules\",PEC-DSH-007,PKG-09,DEL-09-07,OBJ-004,,FALSE,",
+      "quote_sha256": "3085790380d2f068a53c2629b258aa8ac39e88b9c609047c960164884463c362",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::PEC-K-08",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "line 182",
+      "quote": "| **PEC-K-08** | **Everything derived is explainable.** Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends. |",
+      "quote_sha256": "f176eea1b14efb972ea4cb880471f983ae0a9f4b72b14acfd64a54c2dd0d2efc",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::RENDER-CONSUMERS",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "locus": "line 53",
+      "quote": "DEL-09-07,PKG-09,Explain-shaped pressure rules,\"Derived pressure/status rules (stuck-age, gate-blocked, drift density, staleness, collision risk), individually documented, Explain-shaped; rendered by the DEL-09-01..05 views. Typed BACKEND_FEATURE_SLICE because the artifacts are derivation rules + docs, not UI (DL-14); package home stays PKG-09 per the Gate 4 assignment of SOW-051.\",BACKEND_FEATURE_SLICE,TBD,Rules + docs + tests,SOW-051,OBJ-004,M,,P2",
+      "quote_sha256": "6fabd11da45bdaeb80c8d6eff72d7de086c9d6b3aea7d102948483887b910574",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::PEC-K-01",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "line 175",
+      "quote": "| **PEC-K-01** | **Graceful absence.** No governed act may require a PEC read or write. Deleting PEC blocks nothing. The kill test (\u00a712) passes at every release. |",
+      "quote_sha256": "886b1819cd649d691304769c9273e268037872d65ada447cf020d1e82b04af85",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::PEC-K-02",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "line 176",
+      "quote": "| **PEC-K-02** | **Files govern.** The record tier is regenerated from sources by one command; the presence tier is expected to be lost on rebuild; the database is gitignored and safe to delete; PEC output is never citable as authority; rulings and lifecycle state remain file-native. |",
+      "quote_sha256": "18ba3bcc330ed5987b0ddcf443305d6c3b641480369bfda195a9f626df984e4b",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::PEC-K-03",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "line 7",
+      "quote": "| **Status** | **Adopted 2026-07-27** by owner ruling (`D-PEC-68`); v2.0 adopted by `D-PEC-58`; directed-bootstrap clarification adopted as v2.1 by `D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; consumer-interface concordance adopted as v2.2 by `D-PEC-68`; product definition of record |",
+      "quote_sha256": "f45d160f355c6d416e62d83413ad36ae6262dc1148c95141bbe150fc703caf66",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::PEC-K-06",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "line 180",
+      "quote": "| **PEC-K-06** | **Observation, not participation.** Read-only over Git; no leases, no claim arbitration, no merge opinions, no dispatch; conflicts surfaced, never prevented. |",
+      "quote_sha256": "56de277c5668e521686ace87d5782c967fac0df86ced906dabae2d91c2cf0394",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::PEC-K-11",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "line 24",
+      "quote": "> PEC-K-03 and PEC-K-11 rows are `TRANSCRIBED` byte-for-byte from the PRD bytes adopted by",
+      "quote_sha256": "b70bb49687528721ed41016305cbf333a6055d728ee815130a7194512c2aea8a",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::LIFECYCLE",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+      "locus": "line 3",
+      "quote": "**Current State:** OPEN",
+      "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::ASSIGNMENT",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md",
+      "locus": "line 13",
+      "quote": "| ResponsibleParty | TBD (assignment at WORKING_ITEMS activation) |",
+      "quote_sha256": "4f746fb61f737ae04c526100332351efcfa3bdf831062dec67ba2266087161e8",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-001",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 2",
+      "quote": "v3.1,DEP-09-07-001,PKG-09,DEL-09-07,Explain-shaped pressure rules,ANCHOR,IMPLEMENTS_NODE,UPSTREAM,OTHER,PACKAGE,PKG-09,,PKG-09,PKG-09_Dashboards,execution/_Decomposition/SOFTWARE_DECOMP.md,DEL-09-07 is package-local to PKG-09.,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-09-07,PackageID PKG-09,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62",
+      "quote_sha256": "5446934da0aa7f80639d1193c1314070571ac33bdecea53c59a6f437cad33911",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-002",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 3",
+      "quote": "v3.1,DEP-09-07-002,PKG-09,DEL-09-07,Explain-shaped pressure rules,ANCHOR,TRACES_TO_REQUIREMENT,UPSTREAM,OTHER,REQUIREMENT,,,SOW-051,SOW-051,execution/_Decomposition/ScopeLedger.csv,DEL-09-07 covers scope item SOW-051.,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-051,DeliverableIDs include DEL-09-07,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62",
+      "quote_sha256": "19705415107563c5703523a92d03a257175b145475eed6527d8ae7bad39321c4",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-003",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 4",
+      "quote": "v3.1,DEP-09-07-003,PKG-09,DEL-09-07,Explain-shaped pressure rules,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-09,DEL-09-06,DEL-09-06,Universal drill-down to cited source,execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source,DEL-09-07 counted among the six views consuming the shared drill-down component; refuters recommend dropping; owner ruling requested,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-09-06,\"A PKG-09-internal shared component: built and sequenced first, consumed by the other six views as a declared dependency\",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=AMBIGUOUS_BASIS; EdgeID=E-A11",
+      "quote_sha256": "ad9a04e7e2fb3f1a7f369e9cbbe2e93bc44fc33504c2656cf642d1892d7a3037",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-004",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 5",
+      "quote": "v3.1,DEP-09-07-004,PKG-09,DEL-09-07,Explain-shaped pressure rules,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-04,DEL-04-03,DEL-04-03,Citation & freshness stamping,execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping,R1-F10: staleness rule input,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-006,\"Stamp every orientation response with examined-through SHA, generation time, and per-feed freshness\",EXPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,DERIVED; Flag=none; EdgeID=E-N04",
+      "quote_sha256": "dfcae83b41e05d2cc9cbd112d56721c8b16a135f38d9ed4a05cbe1ce6ef5ecca",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-005",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 6",
+      "quote": "v3.1,DEP-09-07-005,PKG-09,DEL-09-07,Explain-shaped pressure rules,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-03,DEL-03-01,DEL-03-01,Full-rebuild reconciler (one command),execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command,R1-F10: lifecycle-state age read from the record tier,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-010,Make the record tier rebuildable in full from sources by one command; store gitignored and safe to delete; presence tier expected lost on rebuild,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-N05",
+      "quote_sha256": "7425b57e3212e351694429a4c7b13fc94a981587894c90ff19ddaff1eda7148c",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-006",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 7",
+      "quote": "v3.1,DEP-09-07-006,PKG-09,DEL-09-07,Explain-shaped pressure rules,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-03,DEL-03-03,DEL-03-03,Drift classification,execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification,Drift classification output feeds the rule,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-019,Classify and report drift between successive snapshots; never modify a source file,EXPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,DERIVED; Flag=none; EdgeID=E-P67",
+      "quote_sha256": "a100e3ba75de85166de3e6f696e1d1d7c0ad2b1768d2d8add61a73524d119366",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-007",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 8",
+      "quote": "v3.1,DEP-09-07-007,PKG-09,DEL-09-07,Explain-shaped pressure rules,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-05,DEL-05-01,DEL-05-01,Gate precondition evaluators (Explain-shaped),execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped,Gate verdicts feed the rule,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-023,\"Shape gate verdicts as Explain objects (rule, threshold, contributing citations), advisory only\",EXPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,DERIVED; Flag=none; EdgeID=E-P68",
+      "quote_sha256": "d580acadf0e3f56c5ed5fd6377099f77b35fa3449e24aed1cc53c90b0ad787b0",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    },
+    {
+      "claim_id": "DEL-09-07::DEP-09-07-008",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "locus": "line 9",
+      "quote": "v3.1,DEP-09-07-008,PKG-09,DEL-09-07,Explain-shaped pressure rules,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-06,DEL-06-06,DEL-06-06,Advisory overlap detection,execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection,Collision-risk rule consumes DEL-06-06 overlap detection; P3 producer for a P2 consumer \u2014 owner classification requested; staged rule set vs soft edge,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-031,\"Detect and surface advisory overlaps (write scopes, shared branches, same merge target) without ever blocking\",EXPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,DERIVED; Flag=PHASE_TENSION; EdgeID=E-P69",
+      "quote_sha256": "e192667c672dd763b047110b8eeb60e50868164cf7d9eac0a4fb89170b577cda",
+      "mapping_kind": "run-local fallback; not a new normative ID"
+    }
+  ],
+  "nonclaims": "No locally defined REQ/AC/VER IDs. SOW-051 and PEC-DSH-007 split into five rule claims plus documentation; PEC-K-08 explicitly behavioral. OBJ-004 is supporting objective, PKG-09/DEL IDs identity; BACKEND_FEATURE_SLICE/M/P2 are envelope/phase metadata, not independently invented product work. DEP-09-07-001..008 fully covered; E IDs and C-04/C-10 are dependency provenance/ordering constraints retained in ledger notes and coverage."
+}

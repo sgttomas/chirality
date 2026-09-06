@@ -1,0 +1,140 @@
+{
+  "members": [
+    {
+      "DeliverableID": "DEL-02-01",
+      "expected_local_ids": 72,
+      "expected_mandatory_ids": 38,
+      "missing_ids": [],
+      "dispositions": {
+        "ALIGNED": 26,
+        "UNKNOWN": 44,
+        "ACCEPTED_DIVERGENCE": 4
+      },
+      "claim_classes": {
+        "documentary_alignment": 33,
+        "observed_behavior": 26,
+        "finite_test_method": 13,
+        "human_acceptance": 1,
+        "lifecycle": 1
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-02",
+      "expected_local_ids": 60,
+      "expected_mandatory_ids": 29,
+      "missing_ids": [],
+      "dispositions": {
+        "ALIGNED": 29,
+        "UNKNOWN": 32
+      },
+      "claim_classes": {
+        "documentary alignment": 27,
+        "observed behavior": 21,
+        "lifecycle": 2,
+        "finite test method": 10,
+        "human acceptance": 1
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-03",
+      "expected_local_ids": 79,
+      "expected_mandatory_ids": 40,
+      "missing_ids": [],
+      "dispositions": {
+        "ALIGNED": 44,
+        "UNKNOWN": 34,
+        "ACCEPTED_DIVERGENCE": 4
+      },
+      "claim_classes": {
+        "documentary alignment": 32,
+        "behavioral obligation": 30,
+        "documentary provenance": 2,
+        "historical lifecycle declaration": 2,
+        "historical author observation": 1,
+        "human acceptance": 1,
+        "finite test method": 13,
+        "lifecycle": 1
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-04",
+      "expected_local_ids": 69,
+      "expected_mandatory_ids": 35,
+      "missing_ids": [],
+      "dispositions": {
+        "ALIGNED": 30,
+        "UNKNOWN": 39,
+        "IMPLEMENTED_DIFFERENTLY": 2
+      },
+      "claim_classes": {
+        "DOCUMENTARY_ALIGNMENT": 30,
+        "OBSERVED_BEHAVIOR": 27,
+        "LIFECYCLE": 2,
+        "HUMAN_ACCEPTANCE": 1,
+        "FINITE_TEST_METHOD": 11
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-05",
+      "expected_local_ids": 73,
+      "expected_mandatory_ids": 35,
+      "missing_ids": [],
+      "dispositions": {
+        "ALIGNED": 42,
+        "UNKNOWN": 32
+      },
+      "claim_classes": {
+        "documentary alignment": 30,
+        "observed behavior": 25,
+        "lifecycle": 2,
+        "historical observation": 5,
+        "human acceptance": 1,
+        "finite test method": 11
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-06",
+      "expected_local_ids": 80,
+      "expected_mandatory_ids": 40,
+      "missing_ids": [],
+      "dispositions": {
+        "ALIGNED": 36,
+        "UNKNOWN": 43,
+        "STALE_INPUT": 3
+      },
+      "claim_classes": {
+        "DOCUMENTARY_ALIGNMENT": 38,
+        "OBSERVED_BEHAVIOR": 28,
+        "LIFECYCLE": 2,
+        "HUMAN_ACCEPTANCE": 1,
+        "FINITE_TEST_METHOD": 13
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-07",
+      "expected_local_ids": 51,
+      "expected_mandatory_ids": 23,
+      "missing_ids": [],
+      "dispositions": {
+        "ALIGNED": 21,
+        "DOCUMENTED_UNIMPLEMENTED": 24,
+        "UNKNOWN": 4,
+        "DEFERRED_AGENT_WORKFLOW": 2
+      },
+      "claim_classes": {
+        "DOCUMENTARY_PROVENANCE": 20,
+        "PRODUCTION_OUTPUT": 2,
+        "DECLARED_CURRENT_STATE": 2,
+        "DECLARED_UNRESOLVED_CHOICE": 3,
+        "BEHAVIORAL_REQUIREMENT": 8,
+        "BEHAVIORAL_ACCEPTANCE": 7,
+        "HUMAN_REVIEW_PROVENANCE": 1,
+        "DECLARED_SCOPE_GAP": 1,
+        "VERIFICATION_OBLIGATION": 7
+      }
+    }
+  ],
+  "expected_local_total": 484,
+  "expected_mandatory_total": 240,
+  "pass": true
+}

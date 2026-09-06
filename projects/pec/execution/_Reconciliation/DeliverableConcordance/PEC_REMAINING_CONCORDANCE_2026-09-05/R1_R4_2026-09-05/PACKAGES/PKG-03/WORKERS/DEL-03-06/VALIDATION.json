@@ -1,0 +1,38 @@
+{
+  "schema_id_reciprocity_gate_hash_LF": {
+    "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-06",
+    "claims": 90,
+    "residuals": 5,
+    "read_hashes": 168,
+    "errors": [],
+    "pass": true
+  },
+  "atomic_coverage": {
+    "defined": 88,
+    "covered": 88,
+    "fallback": 2,
+    "missing": []
+  },
+  "source_unchanged": true,
+  "base_tracked_sources": 158,
+  "derivative_inputs": [
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-03.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/BRIEFS/DEL-03-06.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/PACKAGE_BASIS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/SOURCE_MANIFEST.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/validate_worker.py"
+  ],
+  "dispositions": {
+    "ALIGNED": 38,
+    "UNKNOWN": 50,
+    "STALE_INPUT": 2
+  },
+  "summary": "ASSESSED_UNKNOWN",
+  "warranted_NONE": false,
+  "product_tests": "NOT_RUN: no current DEL-03-06 executing surface/result established; no gratuitous broad suite rerun."
+}

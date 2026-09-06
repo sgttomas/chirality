@@ -1,0 +1,58 @@
+{
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "member_count": 4,
+  "members": {
+    "DEL-01-01": {
+      "claims": 71,
+      "residuals": 4,
+      "unknown": 48,
+      "nonaligned": 48,
+      "read_hashes": 50,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01"
+    },
+    "DEL-01-02": {
+      "claims": 16,
+      "residuals": 2,
+      "unknown": 11,
+      "nonaligned": 11,
+      "read_hashes": 67,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02"
+    },
+    "DEL-01-03": {
+      "claims": 54,
+      "residuals": 4,
+      "unknown": 33,
+      "nonaligned": 33,
+      "read_hashes": 40,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-03"
+    },
+    "DEL-01-04": {
+      "claims": 46,
+      "residuals": 2,
+      "unknown": 26,
+      "nonaligned": 26,
+      "read_hashes": 68,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-04"
+    }
+  },
+  "claims": 187,
+  "residuals": 12,
+  "errors": [
+    "DEL-01-01: residual ID shape R-DEL-01-01-001",
+    "DEL-01-01: gate marker R-DEL-01-01-001",
+    "DEL-01-01: residual ID shape R-DEL-01-01-002",
+    "DEL-01-01: gate marker R-DEL-01-01-002",
+    "DEL-01-01: residual ID shape R-DEL-01-01-003",
+    "DEL-01-01: blank Depends R-DEL-01-01-003",
+    "DEL-01-01: gate marker R-DEL-01-01-003",
+    "DEL-01-01: residual ID shape R-DEL-01-01-004",
+    "DEL-01-01: blank Depends R-DEL-01-01-004",
+    "DEL-01-01: gate marker R-DEL-01-01-004",
+    "DEL-01-02: residual ID shape DEL-01-02::R-001",
+    "DEL-01-02: gate marker DEL-01-02::R-001",
+    "DEL-01-02: residual ID shape DEL-01-02::R-002",
+    "DEL-01-02: blank Depends DEL-01-02::R-002",
+    "DEL-01-02: gate marker DEL-01-02::R-002"
+  ],
+  "structural_pass": false
+}

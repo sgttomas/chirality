@@ -1,0 +1,73 @@
+{
+  "local_REQ_AC_VER_defined": 0,
+  "local_REQ_AC_VER_omitted": 0,
+  "scope_items": [
+    "SOW-026",
+    "SOW-027",
+    "SOW-028",
+    "SOW-029",
+    "SOW-030",
+    "SOW-031",
+    "SOW-032"
+  ],
+  "quote_checks": [
+    {
+      "deliverable": "DEL-06-02",
+      "quote": "Scan Git for worktrees, branches, HEAD, ahead/behind counts, and dirty path names/counts",
+      "sha256": "02dc3d2e249df88149c1aa72625d74ebfb8f86469aed90187b41eb0ecd1c51d6",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "DEL-06-05",
+      "quote": "Carry TTLs and last-heartbeat age on presence records; never assert liveness beyond last heartbeat",
+      "sha256": "247d9bf87fd723d089fbe0579d9bea94f2a7a7faadc5b540d1cccf0366e7efe9",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "DEL-06-05",
+      "quote": "Carry TTLs and last-heartbeat age on presence records; never assert liveness beyond last heartbeat",
+      "sha256": "247d9bf87fd723d089fbe0579d9bea94f2a7a7faadc5b540d1cccf0366e7efe9",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "DEL-06-05",
+      "quote": "Carry TTLs and last-heartbeat age on presence records; never assert liveness beyond last heartbeat",
+      "sha256": "247d9bf87fd723d089fbe0579d9bea94f2a7a7faadc5b540d1cccf0366e7efe9",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "DEL-06-05",
+      "quote": "Exclude presence data from record-tier citations (enforced separation)",
+      "sha256": "fa3e48f16e4fb482a5679b8950426e4c91f87547b38ce42676f5b41ffdb1c764",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "DEL-06-05",
+      "quote": "TTL machinery + exclusion guard + tests",
+      "sha256": "2fec905c924ec0046d8ada6f81c43a0ea15f458c06e183eaf9fe1cac66b55bbc",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "DEL-06-05",
+      "quote": "The exclusion is two-sided: the presence-store guard lands here; the citation-production side is asserted in DEL-04-03's tests (declared dependency edge, DL-14).",
+      "sha256": "99da1e8cf061754dfffdec6a61ba3e267a8bc3320df648ae6974ca8c555e5719",
+      "verdict": "PASS"
+    },
+    {
+      "quote": "Correlate sessions to worktrees and branches (session \u00d7 worktree \u00d7 scope join)",
+      "sha256": "9720a5be094751d982e0842fdc23723cc10c826d845ba7bea7aebe491f30a663",
+      "verdict": "PASS"
+    },
+    {
+      "quote": "Maintain live parent\u2192child hierarchy edges from daemon and hook feeds",
+      "sha256": "e1f8f29afe05276c9366f97acad756c86720ae6128908ab6c226844f4e8ba447",
+      "verdict": "PASS"
+    },
+    {
+      "quote": "Detect and surface advisory overlaps (write scopes, shared branches, same merge target) without ever blocking",
+      "sha256": "618173b0b62c6d89bdf5d586a60fb5577ddd6a0a39fc805811c7d8e18ee67fde",
+      "verdict": "PASS"
+    }
+  ],
+  "material_atoms": "All present in checked claims; anticipated artifacts either explicit test-method UNKNOWN or documentary row qualified as delivery unresolved. No detailed finite test imported."
+}

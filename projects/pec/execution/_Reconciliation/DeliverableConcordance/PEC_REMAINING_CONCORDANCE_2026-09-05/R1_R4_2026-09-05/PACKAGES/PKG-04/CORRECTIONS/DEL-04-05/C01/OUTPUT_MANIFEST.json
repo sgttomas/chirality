@@ -1,0 +1,13 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "role": "derivative correction awaiting independent backcheck",
+  "files": {
+    "CORRECTION_MAP.csv": "bf82fac3029f2aaaef3fe0ad3ee7cd6e81818112ecaecb7e9e7e75a182a4f739",
+    "RETURN.md": "0b4b0f744d0721c5329441ba9a93e9b11841503691a238c0dcad5b7ee2e26cb1",
+    "CLAIMS.csv": "a6ad609f0f7a8f630cbd5739ba7cfba2666e95dcbf4238f571f2d2285e90dfe5",
+    "VALIDATION.json": "9b849027494e4e2ecba678eef0c8cb9dec0c24a43896f305d9864d50a9ce5d20",
+    "RESIDUALS.csv": "b0fe628aa30c292a09ec6e71a6b16bfc8d9f27f960d502ac1b428e61e99987ca",
+    "COVERAGE.md": "7fcf05c2a58eae04ba276295147b15dd99b100621f1869fe6d05258e93522880",
+    "READ_MANIFEST.json": "540cb20cf7b0af70c822190cae9584dc7afdecbd6b13df477a43ce2107d0c2bf"
+  }
+}

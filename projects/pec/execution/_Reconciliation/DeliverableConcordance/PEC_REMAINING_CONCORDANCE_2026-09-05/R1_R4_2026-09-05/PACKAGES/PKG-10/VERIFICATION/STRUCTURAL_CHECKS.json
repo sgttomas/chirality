@@ -1,0 +1,333 @@
+{
+  "claims": 418,
+  "residuals": 26,
+  "members": 12,
+  "defined_local_ids": 349,
+  "required_ids": 179,
+  "required_unique": 179,
+  "source_hashes": 326,
+  "source_equal_base": 287,
+  "run_derivative_sources": [
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-10.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-01.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PACKAGE_BASIS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/MECHANICAL_FINDINGS_01.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_MECHANICAL_CORRECTION_01.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/MECHANICAL_CORRECTION_01/PREFLIGHT.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/MECHANICAL_CORRECTION_01/correct_and_backcheck.py",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/CLAIMS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/COVERAGE.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/OUTPUT_HASHES.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/READ_MANIFEST.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/RESIDUALS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/RETURN.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-02.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/CLAIMS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/COVERAGE.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/READ_MANIFEST.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/RESIDUALS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/RETURN.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-03.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-04.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/CLAIMS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/COVERAGE.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/READ_MANIFEST.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/RESIDUALS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/RETURN.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-05.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-06.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-07.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-08.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-09.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-10.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-11.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-12.md"
+  ],
+  "mechanical_changed_cells": 268,
+  "errors": [],
+  "dispositions": {
+    "ALIGNED": 205,
+    "UNKNOWN": 159,
+    "STALE_INPUT": 9,
+    "DOCUMENTED_UNIMPLEMENTED": 43,
+    "IMPLEMENTED_DIFFERENTLY": 1,
+    "DEFERRED_AGENT_WORKFLOW": 1
+  },
+  "fallback_quote_checks": [
+    {
+      "deliverable": "DEL-10-04",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-059",
+      "column": "ScopeItemStatement",
+      "sha256": "2a75c8cdacc2bc376aa46f82deca7a6ced6a199d963851d44827a333a2684938",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-04",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-059",
+      "column": "Notes",
+      "sha256": "cdce9dcf551d4f25d7ac53e6cfc1f3ed6a025db6c75f87e7a72bdb52eea4c564",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-05",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-085",
+      "column": "ScopeItemStatement",
+      "sha256": "90ba7ab0924a07498e0be92fb4cc97bb64cae94b592178fca0407654ef9246fe",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-05",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-085",
+      "column": "Notes",
+      "sha256": "45637492da2c86fdb5eca169d517d39acec871c57d08c466d429d31e934ed1cb",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-06",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-061",
+      "column": "ScopeItemStatement",
+      "sha256": "4ad0b465e520b15a52d28cf9ae6e445e569a849216ee23e452ef3e57af251b30",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-07",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-062",
+      "column": "ScopeItemStatement",
+      "sha256": "e986af62f6369620b6b517969763a5a1c2a2daed823fb8cd0da41f2cd4c0adaf",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-08",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-063",
+      "column": "ScopeItemStatement",
+      "sha256": "c19d42b93bf9e5f85339f932bbb29fd6af780307efa15557f8dfd581807146bc",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-09",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-084",
+      "column": "ScopeItemStatement",
+      "sha256": "3e64aeeeaef150324612a96d273641f702f8c200fa0654d561ed541d2565416b",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "source": "ScopeLedger.csv",
+      "row": "SOW-060",
+      "column": "ScopeItemStatement",
+      "sha256": "cc26b16486c3e69757af9a904df15842fcb3016aed0b00d594854c651b7f091e",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "candidate-consumer enablement",
+      "sha256": "835328d277d613365a580672a0dfeeeeb436875a00bff8932166eae15630ec6b",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "among enabled consumers, orientation use",
+      "sha256": "4a1434af097ff149eaedfbfdbcc1cc8e21d66dda1f504d026c6ddb688783a651",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "contact opportunities defined by their own adopted mode/cadence rules",
+      "sha256": "f9cc3706d86efbb07a9a2c923836cd897b08737cb73d89ed893bc8b9cfc65f1e",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "no receiving-loop conformance criterion",
+      "sha256": "8295fd1c569c62e8c9808b37ebfac093f925fbbbe10eb3a9dd7e4a88524bd1a4",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "Candidate consumers are registered loops or harnesses for which PEC\n   exposes a compatible interface; membership asserts no duty.",
+      "sha256": "1af9034f2848cea4cf27c80ff4e575cedcc53a3a8295772feacca1c87b5e89df",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "Adoption metric + evaluation notes",
+      "sha256": "3be62e0f2a573eaab55e55a647c37e7047512d0ce0c5f8698313017239dc14bf",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "TBD (assignment at WORKING_ITEMS activation)",
+      "sha256": "c6e5a4821fc92bd04f29380d21aa292c9f8b917c20a1f3b7367765fb2ebafa87",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "**Current State:** OPEN",
+      "sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "# Status: DEL-10-12\n\n**Current State:** OPEN\n**Last Updated:** 2026-07-25\n\n## History\n- 2026-07-25 \u2014 State set to OPEN (PREPARATION)\n",
+      "sha256": "b16f2e2638df5c5fd31a57e04b1d2ca2c358d457454d9f36f714bae2d85adcbb",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "DEL-10-12 is package-local to PKG-10.",
+      "sha256": "3f3ff8614d66d5e8d8f5960b4ac5622c94cabf9e9d3adc3c20ed0d82c42f60b3",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "DEL-10-12 covers scope item SOW-060.",
+      "sha256": "4aa172c345de93a9552a5de70fee6d9b15f1cfd38bd5e859412f264ce6c266c4",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "SOW-004 is covered by DEL-04-01",
+      "sha256": "98f9bae6606602e2ce9bad71db4c0d002e27c6d617bd22ab232186b650b245b2",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "R3-F1: adoption instrumentation observes API consumption",
+      "sha256": "b704a838bbd6603c94b8bb610abe1f98cb9d202a1611de55bad4c1d697ef44b9",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "Poll instrumentation observes session starts via the hooks bridge",
+      "sha256": "37560b44bd1d714156031871c8072d0ab85974c230c7fb4b52131898fc296d95",
+      "result": "PASS"
+    },
+    {
+      "deliverable": "DEL-10-12",
+      "quote": "Measure consumer uptake: candidate-consumer enablement and, among enabled consumers, orientation use against contact opportunities defined by their own adopted mode/cadence rules",
+      "sha256": "cc26b16486c3e69757af9a904df15842fcb3016aed0b00d594854c651b7f091e",
+      "result": "PASS"
+    }
+  ],
+  "telemetry_arithmetic": {
+    "rows": 5,
+    "totals": [
+      5691203,
+      5440768,
+      22436,
+      8395,
+      5713639
+    ],
+    "uncached": 250435,
+    "latency_mean": 2.854,
+    "result": "PASS",
+    "raw_recapture": false
+  },
+  "citation_file_count": 73,
+  "citation_exceptions": [],
+  "citation_normalized_loci": [
+    {
+      "ClaimID": "DEL-10-05::SOW-085.ORIENTATION",
+      "locator": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-085 ScopeItemStatement",
+      "resolved_file": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::SOW-085.DASHBOARD",
+      "locator": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-085 ScopeItemStatement",
+      "resolved_file": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::SOW-085.EVALUATION",
+      "locator": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-085 ScopeItemStatement",
+      "resolved_file": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::SOW-085.MANUAL",
+      "locator": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-085 Notes",
+      "resolved_file": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::SOW-085.MANUAL",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md Description",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md"
+    },
+    {
+      "ClaimID": "DEL-10-05::SOW-085.NO_DUTY",
+      "locator": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-085 Notes",
+      "resolved_file": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::SOW-085.NO_DUTY",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md Description",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md"
+    },
+    {
+      "ClaimID": "DEL-10-05::DEP-10-05-003",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv DEP-10-05-003",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::DEP-10-05-003",
+      "locator": "projects/pec/execution/_Decomposition/ScopeLedger.csv rows SOW-057/SOW-085",
+      "resolved_file": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::DEP-10-05-004",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv DEP-10-05-004 EvidenceQuote",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::DEP-10-05-004",
+      "locator": "projects/pec/execution/_Decomposition/Deliverables.csv row DEL-10-05 Description",
+      "resolved_file": "projects/pec/execution/_Decomposition/Deliverables.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::DEP-10-05-005",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv DEP-10-05-005 EvidenceQuote",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::DEP-10-05-005",
+      "locator": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-085 ScopeItemStatement",
+      "resolved_file": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::CONTEXT.ASSIGNMENT",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md ResponsibleParty",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md"
+    },
+    {
+      "ClaimID": "DEL-10-05::CONTEXT.ASSIGNMENT",
+      "locator": "projects/pec/execution/_Decomposition/Deliverables.csv DEL-10-05 ResponsibleParty",
+      "resolved_file": "projects/pec/execution/_Decomposition/Deliverables.csv"
+    },
+    {
+      "ClaimID": "DEL-10-05::STATUS.OPEN",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md Current State/History",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md"
+    },
+    {
+      "ClaimID": "DEL-10-05::CONTEXT.PHASE_SPLIT",
+      "locator": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md metadata/Description/Anticipated artifacts",
+      "resolved_file": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md"
+    },
+    {
+      "ClaimID": "DEL-10-05::CONTEXT.PHASE_SPLIT",
+      "locator": "projects/pec/execution/_Decomposition/Deliverables.csv DEL-10-05",
+      "resolved_file": "projects/pec/execution/_Decomposition/Deliverables.csv"
+    }
+  ]
+}

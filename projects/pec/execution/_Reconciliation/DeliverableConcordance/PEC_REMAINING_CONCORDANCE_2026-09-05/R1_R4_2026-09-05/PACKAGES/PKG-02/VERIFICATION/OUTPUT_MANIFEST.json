@@ -1,0 +1,13 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "self_exclusion": "OUTPUT_MANIFEST.json",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/CHECKED_POPULATION.csv": "2c9b914a5064bb935916120753051f2a04720319674a33bb673e208393c7a0d7",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/PREFLIGHT.json": "569ff0ea01bc9438043430953c61298f66f709a3a959be3123695b8335d89eb5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/READ_MANIFEST.json": "b4123ce2d0a35878370631447c00e1bbddeb534ed7901ddec2708136c3e445fc",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/RETURN.md": "1d80a00bbc5f41b8b14c95444d7415d9d1c20f86e458d0a3c9376aed871037c1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/VALIDATION.json": "c7335fcec6efea8cee62db4e8f603c6c1c5b7af113c0f32b84ad10e847a2cee1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/VERIFICATION.md": "e007c6873581517e3b5c9df9bc62979fe7d0b030f7688abb85dccefcdee7aab2",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/verify_independent.py": "7394335e11aacdc1e5eace60660b89126e834dda2d73b702bc18213600986364"
+  }
+}

@@ -1,0 +1,465 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "coverage": "all64 accepted source registers",
+  "hashes": {
+    "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/Dependencies.csv": "a8573c64bf2828add66cba70e00b91115e8d885060b905a689e5ee1d60654467",
+    "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv": "9c575f1d96dddc5ccb8437d29b904f948b2d4c2334ace392ec9d6b9d2b9c326b",
+    "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Dependencies.csv": "5b42f2de2a098fb8f833736ebaf15445bd50734a9341b7fb19e7fa1d0112cde2",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv": "40575c559c6c46ef69a864edf884c358310fe75c67567a3f6ef2e5b02fccc093",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/Dependencies.csv": "94e0f86200a4fd213807a6f9f28021a809fa28806bacc199fd6aabad5ed56102",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv": "e422c16797c1f5bf0ea19f47a714eacd4bbaa4534b7358a5cde7f413266a4fad",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/Dependencies.csv": "aea82da5d83d993f7730391527392fdd079fce4f38abd8baed0b81334c35376f",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Dependencies.csv": "d3a255dcbad6656de0feccdb5c343a775bbd42a5ec9dc97d152560479e74b6d2",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv": "c733411f9d1aa300eaacd84406fc2de83a1c04d4ebd4426994c92bec90019c46",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/Dependencies.csv": "e736ce9a34f31b88c19c007371a87ddafbfc32544beeb0fc1a08dae8aca61a6d",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv": "51c7b725b91d7659496964f08b2d2d4934bd158c3fadc65be42dbf110436dfa1",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/Dependencies.csv": "c456c77f0203c24a1a4aae04fd286610a4391666cbd285548854079f731c1643",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv": "563b4c281ded7a410cf7587b71fc562f321b254e317ced29f42a6d306dd3e701",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv": "90f555eb870ed47e693456e6768060307bb93c2f48bfadf9344a22b6111618b1",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/Dependencies.csv": "8a88f50b462c9dc0614c6cac08f00fc3e6fa977e994b3ab1e56c3478a4cbc335",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv": "00b5a872ca0a62c9246591d513af11637e3e15dc764824fd28b7d8219f3c3ee3",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv": "5f68759d07cc001e139fc351e33748ef7f03ba5ba9cd7ed77a6182ad8161bd65",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/Dependencies.csv": "5fcf53b3b6e51a77c1d2ecba536eec1a748a12f1a4b0a2c347c76efcc385033b",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/Dependencies.csv": "3e4c8f84a2c68b96306a4db0387869f26b3f6c4bda5f35cb084e9d394f4a83ad",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv": "3fbd61fb689c475bd628fd437e6b4f9882701da3e40c08e9adbc66ed19d028c8",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/Dependencies.csv": "be9af861e5ea0b6b2214209f5af0c011d571bd72bc9b1940c883df7f8791b9d2",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv": "1774144b8968cc11016ff4de7185026c0e606a043f0624bcc69ef79960e6cea4",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv": "2daee4e76382186657c52b01caf5c4435c8d6a501c6d2b305c9b1c9703a916e4",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/Dependencies.csv": "1ad180b4a85c0187458630da636c328344a841492a1c04750e675b7a1a96ae8d",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv": "9ed5f8851ae1f6ad2d859f776b4b52bb4793daf73377eae107940a7f5d414542",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv": "a0d76a37ab294995ab30f5fa047006c7379427aa06af0906c7f34443261eaee9",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv": "7de4da4ae4610118d58e7fb1332f6aca3c9d97e9139ff4131bf0a3c1ee2b4efa",
+    "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv": "affd7d783e4fb3a44cb45dc4e79011d6afd7509545c0bc3119a779ca07c5bf98",
+    "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv": "dcf99c85eeb91c50eb1fa93869e448dcf9c5f568f9287dffd1614eec530eb74a",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv": "ea565bfab56f302e5bd040d8e53315601ee15036574c24c65698cb56587aeba2",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/Dependencies.csv": "736e78ac267fa360f64438fee36a5047dd8ea492d6a4d16f47a480022e67b318",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv": "7b4d78c8d9411f2de916ec6510186baecd79f7f5790d9afa97c7cd7d4fc56b76",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv": "f4eaf5266f131437b31cee5edfd5dcbadc9c7aee59e5b41cba76107bc7f7f4fb",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/Dependencies.csv": "08e6cb7d44d6b2eb4d5c0a8b0c4639e708a6313f19aaf828f5b792d55ff1b8cf",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/Dependencies.csv": "20ea5bc383816606453c448b3e8d8ec5f77c9e7d4282bda9564a58d2f382e66f",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv": "7b012f1f83db623d59dcb3872b97882736166cbf18b76edd68f3d55dd1a16e0f",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv": "bd4c16fadb7025f1b22c039713fc755a53b18949c85d8a60f8abbb51f8714821",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv": "4d34d5573233784950a315401cb4431d760cd9bcbc87e38c760d3ef320205834",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv": "5d684e2425e365b2e09bd3e6e7faf63d5a2efd7acbe50634d52075a30bc90fe6",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv": "4c2c93eafff62d6f00e5668ebaaab40e75f06693a0bf5809478c81d14b4c322f",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/Dependencies.csv": "d2f9b2b2143c210cecd35da9c63a0052ceae3a1882f85671d442db61fd86c28f",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv": "66cdb1e1ded86e8f9715eecd48b909260459f15c88f23b506489d1339423934d",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv": "d46bb9f09a8d73e2dc767f544b0fbd5207d54032f70edfb1b03ce99379f385a3",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv": "1770f6fa3b2e740fff44f85c24d6d256e32ad50ba61e37c4495be9455fef6a4a",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv": "58b97ea5d8df6124ac6b94baa922983e82e05cadf8892404b174e6c4a262f1ba",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/Dependencies.csv": "ad641cfa73ea56a369b4f33c9e8c8b7a98d364a1edccfd073111620a4eb6da4c",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv": "a547b53d9712d22d93daade037debac4659571b01d662f1201c29a9d02396ea7",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv": "3cfa7fa3dc5c587492d9896cf82bcb079a5e2c0151d929cd98275dd25f76bf70",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/Dependencies.csv": "658bcc884a66955e9692d1d7f77dc975567436e622252e2811e11269a0040157",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv": "324e0d6b1d420bf2be50f1f138d4924e57f2b36139add83e3335a5f26b41fc24",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/Dependencies.csv": "19e2df98b1a4e7b0278fb194159ec6fba0b877532ff2314005e145619d45963a",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/Dependencies.csv": "b362e5c7b7713185742f457d74e1ff63521b30b85558c4ce4c5702231005e296",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/Dependencies.csv": "e70e939b96676ef0a8b53bed1955b57e356f6ba5f40895376b19a015e794d451",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/Dependencies.csv": "11e15f56612b47d93607cc995059b7eec918467fabdb5aa93344b04501fc2df7",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv": "9efe23791eda63ea5ec44e477bb800276812a98a51f5c594d27a49f5cdebca97",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/Dependencies.csv": "c9727731380e17ab6dfe5adf21a7dc6f834f842054460a09ac4e6fe167925fe3",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv": "9fc8fb4993a6e9bcfbd0a88b5b6e4220def243a0d41b0362c5e3be8d008b4985",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv": "7ad0ee08c5ab08c47b83485d154bd395bd4931f1868f7f34c24449c049d6f735",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv": "7b14f37b9b344fbee944cf5d973f948b45d351cdb007b89de809ec2203440e21",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv": "c6ce35a3a0f9945124c0d503e03958f6a0072f221ecb15b4555970a465855caa",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv": "e45e2340c3af5084fa90413da6f8c276f2105d6e7a4605f1c8500067557f76cf",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv": "481ef94fe68faff3e4d41f7c240f7208ed06cc4c339fb1166372fdef207dd946",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv": "a515cb7511b45677c85de6d518c4e93331c8daef7f925ec3a2b281115e911241"
+  },
+  "preflights": [
+    {
+      "target": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    },
+    {
+      "target": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "operation": "consume",
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n",
+      "exit_code": 0
+    }
+  ],
+  "active_prerequisite_sccs_within_assessed57": "historical partial result in PREPARATION, superseded by full64 here",
+  "production_graph_rule": "Source register ACTIVE PREREQUISITE only; this is not reporting order. Actual blocking also requires pending-state conjunction and exact item Depends target.",
+  "reporting_graph": "Independent evidence collection; full synthesis waits validated terminal09 and00 correction, then independent R4 review. No production edges adopted as reporting gates.",
+  "unresolved_cycle_boundaries": [
+    "C01 accepted co-landing DEL07-01 acceptance/live requires DEL03-05; simultaneity allowed, no new reverse edge",
+    "C02 DEL04-03/DEL06-05 direction undeclared/non-gating; owner scope/acceptance interpretation remains; no silent linearization"
+  ],
+  "scope_limit": "SCC computed from actual ACTIVE PREREQUISITE deliverable-target source rows only. C01/C02 and DEP09-07 applicability/phase questions remain separate owner decisions; no deletion or phase reorder.",
+  "active_prerequisite_sccs_full64": []
+}

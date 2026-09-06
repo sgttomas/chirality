@@ -1,0 +1,230 @@
+{
+  "verdict": "PASS",
+  "findings_resolved": [
+    "PKG06-V001",
+    "PKG06-V002"
+  ],
+  "changed_rows": [
+    {
+      "ID": "DEL-06-05::SOW-030.TTL",
+      "changes": {
+        "Depends": [
+          "DEL-06-01",
+          "NONE"
+        ],
+        "Notes": [
+          "Evidence-gap candidate, not DOCUMENTED_UNIMPLEMENTED or implementation authorization. DEP-06-05-004 remains ACTIVE PREREQUISITE/PENDING; only applies when this exact target is named by executable work.",
+          "Evidence-gap candidate, not DOCUMENTED_UNIMPLEMENTED or implementation authorization. DEP-06-05-004 remains ACTIVE PREREQUISITE/PENDING; only applies when this exact target is named by executable work. C02_DEPENDS / PKG06-V001: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-01 (DEP-06-05-004) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-01 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-05::SOW-030.AGE",
+      "changes": {
+        "Depends": [
+          "DEL-06-01",
+          "NONE"
+        ],
+        "Notes": [
+          "Evidence-gap candidate, not DOCUMENTED_UNIMPLEMENTED or implementation authorization. DEP-06-05-004 remains ACTIVE PREREQUISITE/PENDING; only applies when this exact target is named by executable work.",
+          "Evidence-gap candidate, not DOCUMENTED_UNIMPLEMENTED or implementation authorization. DEP-06-05-004 remains ACTIVE PREREQUISITE/PENDING; only applies when this exact target is named by executable work. C02_DEPENDS / PKG06-V001: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-01 (DEP-06-05-004) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-01 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-05::SOW-030.LIVENESS",
+      "changes": {
+        "Depends": [
+          "DEL-06-01",
+          "NONE"
+        ],
+        "Notes": [
+          "Evidence-gap candidate, not DOCUMENTED_UNIMPLEMENTED or implementation authorization. DEP-06-05-004 remains ACTIVE PREREQUISITE/PENDING; only applies when this exact target is named by executable work.",
+          "Evidence-gap candidate, not DOCUMENTED_UNIMPLEMENTED or implementation authorization. DEP-06-05-004 remains ACTIVE PREREQUISITE/PENDING; only applies when this exact target is named by executable work. C02_DEPENDS / PKG06-V001: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-01 (DEP-06-05-004) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-01 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-05::SOW-032.GUARD",
+      "changes": {
+        "Depends": [
+          "DEL-06-01",
+          "NONE"
+        ],
+        "Notes": [
+          "Evidence-gap candidate for guard only. Citation production belongs to DEL-04-03 REQ-006; C-02 is not a prerequisite.",
+          "Evidence-gap candidate for guard only. Citation production belongs to DEL-04-03 REQ-006; C-02 is not a prerequisite. C02_DEPENDS / PKG06-V001: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-01 (DEP-06-05-004) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-01 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-05::ARTIFACTS.TESTS",
+      "changes": {
+        "Depends": [
+          "DEL-06-01",
+          "NONE"
+        ],
+        "Notes": [
+          "Evidence-gap candidate. No kill/crash test obligation imported from DEL-10-07; future finite results must state limits.",
+          "Evidence-gap candidate. No kill/crash test obligation imported from DEL-10-07; future finite results must state limits. C02_DEPENDS / PKG06-V001: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-01 (DEP-06-05-004) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-01 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-05-REM-001",
+      "changes": {
+        "Depends": [
+          "DEL-06-01",
+          "NONE"
+        ],
+        "Notes": [
+          "RECOMMENDED_EVIDENCE_CANDIDATE; accepted obligation, implementation unknown; no automatic production/contract-writing selection",
+          "RECOMMENDED_EVIDENCE_CANDIDATE; accepted obligation, implementation unknown; no automatic production/contract-writing selection C02_DEPENDS / PKG06-V001: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-01 (DEP-06-05-004) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-01 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-06::SOW-031.WRITE-SCOPES",
+      "changes": {
+        "Depends": [
+          "DEL-06-03",
+          "NONE"
+        ],
+        "Notes": [
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim.",
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim. C02_DEPENDS / PKG06-V002: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-03 (DEP-06-06-003) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-03 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-06::SOW-031.SHARED-BRANCHES",
+      "changes": {
+        "Depends": [
+          "DEL-06-03",
+          "NONE"
+        ],
+        "Notes": [
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim.",
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim. C02_DEPENDS / PKG06-V002: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-03 (DEP-06-06-003) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-03 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-06::SOW-031.MERGE-TARGETS",
+      "changes": {
+        "Depends": [
+          "DEL-06-03",
+          "NONE"
+        ],
+        "Notes": [
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim.",
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim. C02_DEPENDS / PKG06-V002: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-03 (DEP-06-06-003) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-03 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-06::SOW-031.NEVER-BLOCK",
+      "changes": {
+        "Depends": [
+          "DEL-06-03",
+          "NONE"
+        ],
+        "Notes": [
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim.",
+          "Run-local fallback subclaim, not invented REQ/AC. Residual classification: EVIDENCE_GAP / OWNER_ROUTING; conditional product candidacy only after owner-scoped evidence resolution. Content-minimal observation confers no runtime session authority. No lifecycle reversal, historical-pattern reuse or implementation-absence claim. C02_DEPENDS / PKG06-V002: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-03 (DEP-06-06-003) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-03 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "ID": "DEL-06-06-REM-001",
+      "changes": {
+        "Depends": [
+          "DEL-06-03",
+          "NONE"
+        ],
+        "Notes": [
+          "Classification EVIDENCE_GAP / OWNER_ROUTING. Recommended evidence-resolution candidate only; not a documented-unimplemented finding or automatic product/administrative/lifecycle/release task. DEL-06-03 derives from DEP-06-06-003; no TM023 or unrelated downstream gate.",
+          "Classification EVIDENCE_GAP / OWNER_ROUTING. Recommended evidence-resolution candidate only; not a documented-unimplemented finding or automatic product/administrative/lifecycle/release task. DEL-06-03 derives from DEP-06-06-003; no TM023 or unrelated downstream gate. C02_DEPENDS / PKG06-V002: Depends NONE applies to this evidence-resolution act under D82. Later production retains DEL-06-03 (DEP-06-06-003) ACTIVE PREREQUISITE/PENDING; LOOP_INIT blocks an item only when the row is ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS, and that item names the exact target DEL-06-03 in Depends. Discovery does not satisfy or wait for this production prerequisite; literal owner/source gates and source register remain unchanged."
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "C02_coobligation": "Not changed; non-gating direction undeclared retained",
+  "validator": {
+    "passed": true,
+    "errors": [],
+    "members": [
+      {
+        "DeliverableID": "DEL-06-01",
+        "Claims": 11,
+        "Residuals": 1,
+        "Unknown": 7,
+        "DispositionCounts": {
+          "ALIGNED": 4,
+          "UNKNOWN": 7
+        }
+      },
+      {
+        "DeliverableID": "DEL-06-02",
+        "Claims": 14,
+        "Residuals": 1,
+        "Unknown": 10,
+        "DispositionCounts": {
+          "ALIGNED": 4,
+          "UNKNOWN": 10
+        }
+      },
+      {
+        "DeliverableID": "DEL-06-03",
+        "Claims": 8,
+        "Residuals": 1,
+        "Unknown": 2,
+        "DispositionCounts": {
+          "ALIGNED": 6,
+          "UNKNOWN": 2
+        }
+      },
+      {
+        "DeliverableID": "DEL-06-04",
+        "Claims": 11,
+        "Residuals": 1,
+        "Unknown": 2,
+        "DispositionCounts": {
+          "ALIGNED": 9,
+          "UNKNOWN": 2
+        }
+      },
+      {
+        "DeliverableID": "DEL-06-05",
+        "Claims": 11,
+        "Residuals": 2,
+        "Unknown": 6,
+        "DispositionCounts": {
+          "ALIGNED": 5,
+          "UNKNOWN": 6
+        }
+      },
+      {
+        "DeliverableID": "DEL-06-06",
+        "Claims": 8,
+        "Residuals": 1,
+        "Unknown": 4,
+        "DispositionCounts": {
+          "ALIGNED": 4,
+          "UNKNOWN": 4
+        }
+      }
+    ]
+  }
+}

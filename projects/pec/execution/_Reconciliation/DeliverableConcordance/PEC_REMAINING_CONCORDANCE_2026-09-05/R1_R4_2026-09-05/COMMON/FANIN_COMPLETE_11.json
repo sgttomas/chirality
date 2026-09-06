@@ -1,0 +1,62 @@
+{
+  "recorded_utc": "2026-09-06T00:11:04.251025+00:00",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "attribution": "HELP_HUMAN Agent0 reports final fan-ins and full64 synthesis release; common integration inspected actual current artifacts and hashes as stated",
+  "terminal_fanins": [
+    {
+      "package": "PKG-08",
+      "output_manifest_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/OUTPUT_MANIFEST.json",
+      "output_manifest_sha256": "555775900d8a27b800a7b74c44a02169e8622b8f7bf3d935a12cfde7a0eb3a46",
+      "parent_reproduced_hash_count": 96,
+      "parent_reproduced_selected_hash_count": null,
+      "claims": 245,
+      "raw_proposals": 12,
+      "unknown_claims": 80,
+      "members": 5,
+      "integration_inspection": "read current HANDOFF_STATE and parsed/rehashed actual OUTPUT_MANIFEST; no duplicate full package audit"
+    },
+    {
+      "package": "PKG-09",
+      "output_manifest_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/OUTPUT_MANIFEST.json",
+      "output_manifest_sha256": "0766370701de0aa23cb430d5127cda6fea43fe04514c9d2b09cdcec6e57cc4fe",
+      "parent_reproduced_hash_count": 111,
+      "parent_reproduced_selected_hash_count": 9,
+      "claims": 110,
+      "raw_proposals": 9,
+      "unknown_claims": 38,
+      "members": 7,
+      "integration_inspection": "read current HANDOFF_STATE and parsed/rehashed actual OUTPUT_MANIFEST; no duplicate full package audit"
+    },
+    {
+      "package": "PKG-00",
+      "output_manifest_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/OUTPUT_MANIFEST.json",
+      "output_manifest_sha256": "3604fb1a45c00d6e5ad7dbeff33c4fa9b59f148fbd638dbcc538fcd381e2de8c",
+      "parent_reproduced_hash_count": 109,
+      "parent_reproduced_selected_hash_count": null,
+      "claims": 87,
+      "raw_proposals": 6,
+      "unknown_claims": 9,
+      "members": 3,
+      "integration_inspection": "read current HANDOFF_STATE and parsed/rehashed actual OUTPUT_MANIFEST; no duplicate full package audit"
+    }
+  ],
+  "pkg00_v003_successor": {
+    "map_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/FINAL_AGGREGATE_MAP.json",
+    "map_sha256": "a121035f76cb3c07fc4139d4d9ce88d321a3827f1e86570f2edf131f1ce38a1a",
+    "changed_mechanical_cells": 44,
+    "depends_blank_to_none_cells": 42,
+    "unchanged_condition_gate_prefix_cells": 2,
+    "independent_backcheck_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/VERIFICATION/BACKCHECK.md",
+    "independent_backcheck": "PASS",
+    "semantic_change": "none; original87claims/6proposals/9UNKNOWN preserved",
+    "original_preimages": "retained by package; previous COMMON fan-in records not rewritten"
+  },
+  "all_package_manager_fanins": {
+    "count": 11,
+    "parent_disposition": "accepted for derivative synthesis only",
+    "full64_release_to_synthesis": "sent by HELP_HUMAN",
+    "production_lifecycle_remaining_acceptance": "none"
+  },
+  "synthesis_selection": "latest package publication manifests plus original logical preservation and verified correction maps; respect prior immutable snapshots",
+  "preservation": "COMMON append only; no package/live source/Git mutation"
+}

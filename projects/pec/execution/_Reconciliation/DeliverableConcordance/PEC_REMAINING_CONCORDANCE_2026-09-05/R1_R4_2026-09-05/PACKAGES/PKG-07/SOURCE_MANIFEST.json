@@ -1,0 +1,656 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "e7095343267c04b814410f7fb55a58d25088283d46c3c26e161737e2fc609097",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+    "agents/AGENT_RECONCILIATION.md": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "_DomainEngines/_DECISIONS/_REGISTER.md": "ebccf23234c7755a20555397fe12ccb708d7bebf6826fd9806b695f5fcd10e48",
+    "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md": "f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5",
+    "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md": "cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv": "7b012f1f83db623d59dcb3872b97882736166cbf18b76edd68f3d55dd1a16e0f",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md": "e20c22ee0d6fb78e54519194a8e1eb1e0ef9594b96fa5854525a0006df13a986",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md": "f0841ea1987d66c9fe91c8451a48770a50cccac12be5735225b797be0c466501",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_DEPENDENCIES.md": "8fc61c243907764803f40b04631b78883ad00b54a2189f727f71997af80ac6cb",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_REFERENCES.md": "7db708f869b0579b009238744fbece05b43275c960f3c0ae544da233f6a34860",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "2a2b1b40942725b21d5c0f1ab61a6bc85847c6502e0db20e88eb6280d4c6be22",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv": "bd4c16fadb7025f1b22c039713fc755a53b18949c85d8a60f8abbb51f8714821",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_CONTEXT.md": "8aadd01be7375624c26989163d4f7e72cb22ad608c1fcea56538fe100fd97e1d",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md": "2d662bcd27a1af9e2c2469e58060baa9b4c2681ab5ff2eee77846516ddf1066e",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_DEPENDENCIES.md": "07c16cc4937df6e3c15123cce31a35f99e6274a588ddfea01c450a223c9b9bde",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md": "69d76c3e9eba29d2c160fd68c024ff21fcbcebe7833c726244c2876e993c9c74",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "643af2210110d29fc3e342c747e8e3fc84ceb658a41f925178dae38294088565",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv": "4d34d5573233784950a315401cb4431d760cd9bcbc87e38c760d3ef320205834",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md": "984841782d524e77c912e03fb8ce9a6a0231b69ffe1ca660d7441e71327c894a",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md": "c4b6f503ab7599978f7fe2e51625ccf5fecdeac295fb8203a3a3379b8bd66250",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_DEPENDENCIES.md": "b100e6b67a39d342751ec9e343d4bf391790bb5ffabb9974d3b001d703b42c69",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md": "896c1f6926360a9ae5db919f8506794ca2e2890d817dbf2c592e99733bb416fe",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "de80f59952367a5369417a9405377b370bad4a9fef961ef449a81922246357e7",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv": "5d684e2425e365b2e09bd3e6e7faf63d5a2efd7acbe50634d52075a30bc90fe6",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md": "805a32c90214b9c3f401e06399d9e205207c629696e432829195975ab03097f9",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md": "ef8ebf5df340578b317abb98f45c371df18d7c656ae403c74909019e9c91b4c7",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_DEPENDENCIES.md": "cb354e3d4b601eb07047aff4a38dc4841801af0ebd617182265eb543b7a9bfb6",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md": "2289938931aaacc4cd29fdfdb3fc49cbc02b6e7f7f281d10c45f401082713dc4",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "28916d18a838bf800f9b2ff9f274008e020a1bdb3c5d019bdcc9da8f7581cac5",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv": "4c2c93eafff62d6f00e5668ebaaab40e75f06693a0bf5809478c81d14b4c322f",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_CONTEXT.md": "b32196a0e7bdbbd44de79916f97d63ce68cf75d7f5350fc1f6d5ac823ce90f4b",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md": "922b89de97d3a0013f05ff939e148f78450631b047fd75a72013332bf6bfa5f2",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_DEPENDENCIES.md": "ba39a3898a7a76e26ffc72ec9b68a0d2d0db9edf36fd0775def2ddcf3e90981c",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md": "5d4cdd94f23b89411fcd4b16d4ae6e7f25258390cafb63c0e7ddbf798cbe821f",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "c8d50145624763afa5e47bff957a8afe744ba47336076ffcb3c01ac2f7326fd1",
+    "projects/pec/v2/tools/check_service_core_posture.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "projects/pec/v2/config/loops.json": "4ce07ad061abd222acabb2afe0f619fdc840b4cc11d31e49f1dff8fcc299d32e",
+    "projects/pec/v2/config/service_core_posture.json": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "projects/pec/v2/config/loops.schema.json": "1f4d1f0cf9abe5754ebb4260f588dea0d71e7f3cc37af2487b30b9c4aa39ba9b",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+    "projects/pec/v2/src/pec_v2/__init__.py": "ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e",
+    "projects/pec/v2/src/pec_v2/core/__init__.py": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py": "8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py": "7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py": "7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py": "49b2f6a3b5088bceb82dc393cce050b8800af3a5ac5d34b3b6a3d7b71c01111b",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py": "d7efb486287d3703aa9ea007eb5376eba95689286bb322c887eeca8b193ac956",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py": "9e9519e6eaded2e9db427a6609c5880c5316f6528facae80776307793bb0071d",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py": "f9ec548b059cdcbc1080da4c0f53ef97d5cf7e9a7b75ce5ad12c74a9b86be091",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py": "44a1f3d683fc27ef15595f9dacfdd37f98476eac6ec4b88da4cd43ba8b472e31",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py": "54671ebf7071f04e3d2cea8411895d9429c84036efa82f7223aa7c440d2d9bad",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py": "c35fff6dba0aaa2d114b0d4e252d561d361979254e4ecf91cdd6c16236f7d425",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py": "2f691060cef7a41af2530909638f9612725eab441b515ac10f37071ee15c8870",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py": "206cc544fa564634ea413a2e6ff1eed7cb062d5c5cf7a2b4e8156c4fede7d416",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py": "e38af91183e30927c8d990a76ba715f3e1f300ac1e6b489a2408b48741632522",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py": "8966d0088ea15ad37854ecfd0f4869c67b61ce5f8809848d380f1fb858e450a0",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py": "476b8cef2afeabe4dddd5173009cee02a7a709e6ebadfe886160a1f4c3000fe9",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py": "48f739f0169f93a303c2c754209ecdc343b4aa7607ee750bc3c943377902d0bc",
+    "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json": "2e65c719af6c9eb7e170fb25d437b928847dc8d617c056093de213673b3e3396",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json": "2155849d9419f0239dca7a69d919ca9ee46a6434106d5326d85bc8c70afc5257",
+    "projects/pec/v2/tests/config/fixtures/malformed.json": "f37303491c50fa74756f547929f09c99900abfad5a9310cc2b46beb5027425b0",
+    "projects/pec/v2/contracts/api/v1/schema.json": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+    "projects/pec/execution/_Decomposition/Companion_Inventory.csv": "18793e150c537371f80d659af2784674d42bac0de37bf7128e484774a557ec23",
+    "projects/pec/execution/_Decomposition/ContextBudgetQA.csv": "5c8d30994a99611b7023f8ac0995ee9a8efa0d2992f3c1a2683f4d2f9e8e2bef"
+  },
+  "drift": [],
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_DEPENDENCIES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_REFERENCES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_SEMANTIC.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/ScopeOfWork.md",
+      "exists": false,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_CONTEXT.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_DEPENDENCIES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_SEMANTIC.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/ScopeOfWork.md",
+      "exists": false,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_DEPENDENCIES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_SEMANTIC.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/ScopeOfWork.md",
+      "exists": false,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_DEPENDENCIES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_SEMANTIC.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/ScopeOfWork.md",
+      "exists": false,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_CONTEXT.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_DEPENDENCIES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_SEMANTIC.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+      "exists": true,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "target": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/ScopeOfWork.md",
+      "exists": false,
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    }
+  ],
+  "source_unchanged": true
+}

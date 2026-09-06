@@ -1,0 +1,631 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "direct_changes": [
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::OUT-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::OUT-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::TBD-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::TBD-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CON-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-008",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-008",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-009",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-010",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::LIFECYCLE",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::C05",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    }
+  ],
+  "composed_changes": [
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::OUT-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::OUT-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::TBD-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::TBD-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CON-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::CLM-008",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-008",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-009",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::REQ-010",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-002",
+      "field": "ExactGate",
+      "before": "Owner interpretation/acceptance disposition; any edit requires exact CHECKING change authorization and REVIEW against resulting hashes",
+      "after": "NOT_SELECTABLE_UNTIL: Owner interpretation/acceptance disposition; any edit requires exact CHECKING change authorization and REVIEW against resulting hashes"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AC-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::VER-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::AX-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::LIFECYCLE",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-00-01::C05",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "id": "DEL-00-01-REM-001",
+      "field": "ExactGate",
+      "before": "Owner interpretation/acceptance disposition; separate exact CHECKING change authorization before any edit",
+      "after": "NOT_SELECTABLE_UNTIL: Owner interpretation/acceptance disposition; separate exact CHECKING change authorization before any edit"
+    }
+  ],
+  "direct_cell_count": 42,
+  "composed_cell_count": 44,
+  "prospective_aggregate_changed_cells": 44,
+  "claims": 87,
+  "residuals": 6,
+  "DEL00_01_claims": 43,
+  "DEL00_01_residuals": 1,
+  "unknown": 9,
+  "dispositions": {
+    "ALIGNED": 74,
+    "PARTIALLY_IMPLEMENTED": 1,
+    "UNKNOWN": 9,
+    "DEFERRED_AGENT_WORKFLOW": 3
+  },
+  "author_read_hashes_verified": 12,
+  "source_hashes_verified": 12,
+  "original_package_manifest_entries_verified": 72,
+  "V002_verifier_seal_verified": true,
+  "current_aggregates_equal_preimages": true,
+  "source_unchanged": true,
+  "semantic_rerun": false
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/ScopeOfWork.md",
+    "exists": false,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+    "exists": true,
+    "operation": "candidate-validation",
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  }
+]

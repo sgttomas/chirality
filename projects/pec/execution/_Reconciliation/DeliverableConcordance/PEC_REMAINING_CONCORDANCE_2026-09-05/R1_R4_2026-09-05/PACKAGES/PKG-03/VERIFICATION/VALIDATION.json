@@ -1,0 +1,27 @@
+{
+  "verdict": "FAIL",
+  "structural": "PASS",
+  "claims": 450,
+  "residuals": 38,
+  "semantic_claims_checked": 413,
+  "non_aligned_claims_checked": 269,
+  "required_findings": [
+    "V001",
+    "V002",
+    "V003"
+  ],
+  "required_corrected_members": [
+    "DEL-03-02",
+    "DEL-03-03"
+  ],
+  "passing_members_with_limits": [
+    "DEL-03-01",
+    "DEL-03-04",
+    "DEL-03-05",
+    "DEL-03-06"
+  ],
+  "source_unchanged": true,
+  "original_seals_pass": 49,
+  "remaining_product_closure": false,
+  "backcheck_required": true
+}

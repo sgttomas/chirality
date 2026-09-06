@@ -1,0 +1,5 @@
+# PKG08 publication successor release04
+
+Direct HELP_HUMAN clearance after parent read closeout and reproduced111 current hashes. New PKG08 OUTPUT_MANIFEST SHA25662fe8ac718a11a25cce10517a44dcf2f4c2fb948cb0987008b5c9be6df5fac2f. Current PACKAGE_CLAIMS SHA2568fd4d44d9843f5fdc60f52bd4aaade4449189841e5e93b2939897eb2d8336081; PACKAGE_RESIDUALS eb5b07ccd522c84dde71b41f96aacf85d65a0b11d8a53f50d2a9c373f596f347 unchanged. Select PUBLICATION_FORMAT/CURRENT_SELECTION.json; original summary/selection/verifier hashes are historical and resolve through lossless PREIMAGES plus FORMAT_MAP.
+
+Owning independent AST/cell/96 old-entry backcheck reports exactly56 terminal Notes whitespace trims and1 verifier Python trailing-space trim, no semantics/count change245/12. Original partial and RELEASE01 bytes remain immutable. Existing bounded additive checker and application author now authorized to consume/rebind this exact successor; no package mutation by synthesis, no additional product authority. Final independent R4 review still required.

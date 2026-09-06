@@ -1,0 +1,131 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "selection": "originals DEL04-01/02/04; independently backchecked C01 DEL04-03/05",
+  "files": [
+    {
+      "DeliverableID": "DEL-04-01",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/CLAIMS.csv",
+      "sha256": "5744e0fb2e79d6a0e03a84041952a9a76c85af384e7127441bdbc6a529f917c7"
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/RESIDUALS.csv",
+      "sha256": "bb8fa02f1c6f17ab27b68571d7ff418bf16c6fcb6bad867cb0c8c3aefc63fb23"
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/COVERAGE.md",
+      "sha256": "3d74d8993fc412f1d8f41541a8bb29850d26d455a65422f88f008badc428f851"
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/READ_MANIFEST.json",
+      "sha256": "13d4dc4a455eb43e189a2989a1f4480cbf6984deb03ed1c84dae0e1c4143a91b"
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/RETURN.md",
+      "sha256": "ea3b53add931c8f59280847a650041e6b37aa75333ae6302bc97a71a9c44d63f"
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/CLAIMS.csv",
+      "sha256": "c0bbc65eccf89a66175ae05a07bf9bc7ad39b69522b68b8c4fbfddefd7d3d6f1"
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/RESIDUALS.csv",
+      "sha256": "72f2b4d504e5ee2fd80cbf13408ef86472ce8d581f0d4bf72641359377d6702a"
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/COVERAGE.md",
+      "sha256": "c2e910bb7db648cd71218a7f9e64c5c2446f9c5e539b1a55ad4e4065a0977d62"
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/READ_MANIFEST.json",
+      "sha256": "5854b7ff498be138ee060cdf0d5c215bc2c67448fa0a80f1736f38d0831a2f05"
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/RETURN.md",
+      "sha256": "4c3050e386ccac478341761eafcc9de410f44b85624763e1168f4a957de0857c"
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/CLAIMS.csv",
+      "sha256": "afd85cfd2bfea79844ec63616f54f69f3b92d6f3438abab7f7d7eb8a2ec32703"
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/RESIDUALS.csv",
+      "sha256": "2d17e7c0f5702355b66adfff0a856d0c0ba9fe7d17e2acc8738b9017f0a622ba"
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/COVERAGE.md",
+      "sha256": "c196c9f90c6c4aec12d0aa10f019894962b212086b69717adfe2f13ce6a6b3d1"
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/READ_MANIFEST.json",
+      "sha256": "6adac9769fb0934087f151b280befd422a81dae84ecd2e0e738af772c5e760d3"
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/RETURN.md",
+      "sha256": "ff034ae0e0061f42a9da263bb03a9333ecbefbb417ee33881af093ecf4f4c363"
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/CLAIMS.csv",
+      "sha256": "3f39e2b0c35b447686b80d4c7cf5a9f8f839d7a4977cd8c4ebffb911b7a6d54f"
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/RESIDUALS.csv",
+      "sha256": "5de990fecb0bd17fb91b1323a95fcd1da58cd5c5b20dd1d4644e967fb8c23ce2"
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/COVERAGE.md",
+      "sha256": "ff37d6097c1591c17b159e653001709449dc1aec6b46c4aa204edc5324493ced"
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/READ_MANIFEST.json",
+      "sha256": "157b95d1a9569222bc50dc3d8d59a369a406d698080c2123764b15a5c3cd01c0"
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/RETURN.md",
+      "sha256": "54fb818398d3f1736ee0aa8c60c9a48b48d39886709d6b341c335fe4baa8a940"
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/CLAIMS.csv",
+      "sha256": "a6ad609f0f7a8f630cbd5739ba7cfba2666e95dcbf4238f571f2d2285e90dfe5"
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/RESIDUALS.csv",
+      "sha256": "b0fe628aa30c292a09ec6e71a6b16bfc8d9f27f960d502ac1b428e61e99987ca"
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/COVERAGE.md",
+      "sha256": "7fcf05c2a58eae04ba276295147b15dd99b100621f1869fe6d05258e93522880"
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/READ_MANIFEST.json",
+      "sha256": "540cb20cf7b0af70c822190cae9584dc7afdecbd6b13df477a43ce2107d0c2bf"
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/RETURN.md",
+      "sha256": "0b4b0f744d0721c5329441ba9a93e9b11841503691a238c0dcad5b7ee2e26cb1"
+    }
+  ]
+}

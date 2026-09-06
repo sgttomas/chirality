@@ -1,0 +1,27 @@
+# Independent C01 correction backcheck
+
+**PASS — original V001/V002 resolved for report selection.** V003 remains resolved by the separately preserved routing correction. This is a new immutable derivative; original verifier findings and manifests remain unchanged.
+
+Upstream: accepted D81 conventions, effective D82 reporting ruling, accepted decomposition revision1.4, source commit `2be412ccea62bdc4bd96deb082c46d7a792076ea`. Consumes original VERIFICATION and original WORKERS plus fresh CORRECTIONS/DEL-04-03/C01 and CORRECTIONS/DEL-04-05/C01 under versioned amendment01. Native independent Agent2 verifier; no author role or delegation.
+
+All97 exact field changes/additions independently reconstructed and compared as a multiset to both CORRECTION_MAP files:29 DEL0403 and68 DEL0405. Every original ID survives; additions are exactly the two BASIS001 mappings and one DEL0405 REM003 proposal. Changed existing claims are exactly DEL0403 CLM010/AX010 (reciprocal proposal text) and DEL0405 CLM008/009/AX009/AC015. All unaffected original field values are preserved, including every original UNKNOWN and all declaration-only VER alignment. DEL0405 REM001/002 and DEL0403 REM001 remain field-identical.
+
+V001 current dependency cells and D65 repair history substantiate the three STALE_INPUT dispositions, including CLM008 table/statement/evidence-file/E-N03 attribution. AC015 remains UNKNOWN; dated B7 anomaly observation is not current acceptance. Frozen exhibits and their empty cells remain attributed history, not repaired by this report. V002 exact opening quote hashes reproduce from current SOW paragraphs, and current reference lines say revision1.4. Historical authored basis remains preserved; ordinary SCA004 currency is complete. No source/dependency/Remaining/lifecycle repair was performed or authorized.
+
+Full selected aggregate:357 claims /11 residuals;147 ALIGNED,47 bounded DOCUMENTED_UNIMPLEMENTED,153 UNKNOWN,10 STALE_INPUT. Every selected row received schema/ID/source-commit/source-hash/LF/reciprocity/Depends/gate/nonselectability checks. All11 residuals were checked, including changed03 REM002 and new05 REM003. Source read manifests, exact correction output manifests, original worker hashes and original verifier output hashes reproduce. All10 exact canonical SOW/status preflights returned ALLOW, including missing DEL0404 SOW; no authority inferred.
+
+CHECKED_POPULATION enumerates all357 claim IDs,11 residual IDs,97 field-map entries and12 explicit affected/class semantic checks. No product suites rerun; no new implementation or acceptance test PASS is claimed. A scratch-only script syntax error was fixed before successful checks; no candidate evidence was changed.
+
+## Exact selection
+
+- `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01`: 87 claims / 3 residuals. CLAIMS SHA-256 `5744e0fb2e79d6a0e03a84041952a9a76c85af384e7127441bdbc6a529f917c7`; RESIDUALS SHA-256 `bb8fa02f1c6f17ab27b68571d7ff418bf16c6fcb6bad867cb0c8c3aefc63fb23`.
+- `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02`: 88 claims / 2 residuals. CLAIMS SHA-256 `c0bbc65eccf89a66175ae05a07bf9bc7ad39b69522b68b8c4fbfddefd7d3d6f1`; RESIDUALS SHA-256 `72f2b4d504e5ee2fd80cbf13408ef86472ce8d581f0d4bf72641359377d6702a`.
+- `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01`: 85 claims / 2 residuals. CLAIMS SHA-256 `afd85cfd2bfea79844ec63616f54f69f3b92d6f3438abab7f7d7eb8a2ec32703`; RESIDUALS SHA-256 `2d17e7c0f5702355b66adfff0a856d0c0ba9fe7d17e2acc8738b9017f0a622ba`.
+- `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04`: 14 claims / 1 residuals. CLAIMS SHA-256 `3f39e2b0c35b447686b80d4c7cf5a9f8f839d7a4977cd8c4ebffb911b7a6d54f`; RESIDUALS SHA-256 `5de990fecb0bd17fb91b1323a95fcd1da58cd5c5b20dd1d4644e967fb8c23ce2`.
+- `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01`: 83 claims / 3 residuals. CLAIMS SHA-256 `a6ad609f0f7a8f630cbd5739ba7cfba2666e95dcbf4238f571f2d2285e90dfe5`; RESIDUALS SHA-256 `b0fe628aa30c292a09ec6e71a6b16bfc8d9f27f960d502ac1b428e61e99987ca`.
+
+## Handoff
+
+Selected aggregate was assembled and checked in memory from these exact ledgers; package aggregate CSVs did not yet exist at verification. Manager must emit them and independently reproduce full field/value equality with these selected ledgers and regenerate package summaries/manifests. Parent confirmed that next step. Backcheck PASS permits report fan-in only, not Remaining application, acceptance, issuance, release or production reliance. All five members remain ASSESSED_UNKNOWN; warranted NONE prohibited. C02 phase/owner boundary, DEL0401 repository-bounded absence and finite-method qualification from original verification remain binding limitations. All proposals are NON_SELECTABLE_PENDING_OWNER_APPLICATION.
+
+Rerun affected checks if source/hold/authority/selected artifact hashes change or later evidence changes a claim. Preserve original findings and this backcheck; later verification uses a new derivative. Writes confined to VERIFICATION/BACKCHECK_C01/** and scratch /tmp.

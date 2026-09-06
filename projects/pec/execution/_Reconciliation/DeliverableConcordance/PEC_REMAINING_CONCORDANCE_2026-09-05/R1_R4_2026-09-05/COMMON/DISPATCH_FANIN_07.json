@@ -1,0 +1,42 @@
+{
+  "recorded_utc": "2026-09-05T23:16:20.132036+00:00",
+  "attribution": "HELP_HUMAN Agent0 relay; common recorder did not perform package fan-in or dispatch",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "fanin": {
+    "package": "PKG-05",
+    "manager_task_id": "/root/pec_pkg05_reconciliation",
+    "agent0_actions_reported": [
+      "read HANDOFF",
+      "reproduced34 output-manifest hashes"
+    ],
+    "output_manifest_sha256": "963ccb7bf01cbcdf705dce35b8587addb47a2a4e68c790e81b2ac92c8a6cc2a2",
+    "claims": 26,
+    "raw_residual_proposals": 2,
+    "proposal_kind": "evidence/contract",
+    "unknown_claims": 13,
+    "independent_verifier": "PASS",
+    "meaning": "package report evidence only; no product/Remaining/lifecycle acceptance"
+  },
+  "launch": {
+    "package": "PKG-07",
+    "actual_manager_task_id": "/root/pec_pkg07_reconciliation",
+    "direct_parent": "/root",
+    "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-07.md",
+    "brief_sha256": "38c406b0cb19f64b93877ea9828acb838c0ccf5b2468cffb8e25f19b072937e2",
+    "clarification_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+    "clarification_sha256": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07",
+    "execution_class": "delegated-harness-native",
+    "role_evidence": "instruction-asserted; not mechanically enforced"
+  },
+  "active_managers_reported": [
+    "PKG-04",
+    "PKG-06",
+    "PKG-07"
+  ],
+  "temporary_capacity": {
+    "max_active_managers": 3,
+    "max_active_specialists_per_manager_including_verifier": 2
+  },
+  "preservation": "append-only COMMON record; sealed essentials and package files untouched"
+}

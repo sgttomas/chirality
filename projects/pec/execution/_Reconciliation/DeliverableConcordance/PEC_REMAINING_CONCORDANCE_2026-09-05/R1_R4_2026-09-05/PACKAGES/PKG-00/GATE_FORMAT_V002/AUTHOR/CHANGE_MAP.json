@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "kind": "representation_only_derivative",
+  "brief_sha256": "7a78d05e7061888fc60f8041c9b931f8281d7d4b8194713d522714f9e3e4e7cb",
+  "changed_cells_total": 2,
+  "changes": [
+    {
+      "source": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/CLAIMS.csv",
+      "output": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR/CLAIMS.csv",
+      "row_key": "ClaimID",
+      "row_id": "DEL-00-01::AC-002",
+      "data_row_1_based": 25,
+      "column": "ExactGate",
+      "before": "Owner interpretation/acceptance disposition; any edit requires exact CHECKING change authorization and REVIEW against resulting hashes",
+      "after": "NOT_SELECTABLE_UNTIL: Owner interpretation/acceptance disposition; any edit requires exact CHECKING change authorization and REVIEW against resulting hashes",
+      "before_cell_sha256": "0e0ffe4d31ce0a53e120d662ef33c08b92692c719a5e05d69fe67d2da72eebc0",
+      "after_cell_sha256": "5d19b708c82b23c9995566721335e987ba9568263b0f809326582d9ddee629f7",
+      "before_file_sha256": "ace237c7f5928d30ca01af248d98ea0c67e3d4f7838976b18a004accacb1863e",
+      "after_file_sha256": "1fd06b719350b53351bcef93d848f8803e66d426fcd41611dd675c4b316a76a9",
+      "changed_cells": 1,
+      "byte_change": "One literal prefix insertion; all other bytes identical."
+    },
+    {
+      "source": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/RESIDUALS.csv",
+      "output": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR/RESIDUALS.csv",
+      "row_key": "ResidualID",
+      "row_id": "DEL-00-01-REM-001",
+      "data_row_1_based": 1,
+      "column": "ExactGate",
+      "before": "Owner interpretation/acceptance disposition; separate exact CHECKING change authorization before any edit",
+      "after": "NOT_SELECTABLE_UNTIL: Owner interpretation/acceptance disposition; separate exact CHECKING change authorization before any edit",
+      "before_cell_sha256": "084b67e1aa51129097ce26f515b866143980a485c8871de4d9ada9fa66cb1d6b",
+      "after_cell_sha256": "eec742a6a0532be760faece874fb130003c01847bb785edf1e48bcd37856d391",
+      "before_file_sha256": "f20bc9b345990afdfd931aa2d42d1857cd767970ed4c79d02777aab01d8fceb2",
+      "after_file_sha256": "4b42507200e105d9f397b3f6b4b0b08335a6257e1f1c774f5ecb28a308daf980",
+      "changed_cells": 1,
+      "byte_change": "One literal prefix insertion; all other bytes identical."
+    }
+  ],
+  "all_other_cells_and_bytes_unchanged": true
+}

@@ -1,0 +1,28 @@
+Artifact,ExactCheck,Verdict
+SCOPE_FALLBACK.json,Only mappings[0].locus Description→ScopeItemStatement; complete JSON and byte replacement equality; all3 quote/file hashes and physical lines match,PASS
+CLAIMS.csv,Byte-identical to original,PASS
+RESIDUALS.csv,Byte-identical to original,PASS
+COVERAGE.md,Byte-identical to original,PASS
+CURRENT_EVIDENCE.json,Byte-identical to original,PASS
+DEL-08-05::SOW-044,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-DELTA,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition UNKNOWN",PASS
+DEL-08-05::FALLBACK-PRESENCE,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition UNKNOWN",PASS
+DEL-08-05::FALLBACK-TESTS,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition UNKNOWN",PASS
+DEL-08-05::FALLBACK-CONTRACT,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-STAGING,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-CONSUMERS,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-ENVELOPE,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-ASSIGNMENT,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-OBJECTIVE,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-TM023,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::DEP-08-05-001,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::DEP-08-05-002,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::DEP-08-05-003,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::DEP-08-05-004,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::DEP-08-05-005,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-LIFECYCLE,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05::FALLBACK-PRODUCT-AUTHORITY,"Original row bytes/semantics retained; source hashes, exact gate, Depends and disposition ALIGNED",PASS
+DEL-08-05-REM-001,Exact unchanged reciprocal3 claim links; NONE evidence dependency and owner selectability gate,PASS
+projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/VERIFICATION/OUTPUT_MANIFEST.json,Every listed file hash reproduced,PASS
+projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/OUTPUT_MANIFEST.json,Every listed file hash reproduced,PASS
+projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001/OUTPUT_MANIFEST.json,Every listed file hash reproduced,PASS

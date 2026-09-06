@@ -1,0 +1,11 @@
+{
+  "original_worker_files": 62,
+  "original_mismatches": [],
+  "frozen_source_files": 140,
+  "source_mismatches": [],
+  "worker_output_manifest_check_exit": 0,
+  "write_allowlist": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/**",
+  "writes_observed": "All package manager and child writes are explicitly scoped to package evidence; no source/control/Git mutation executed. Sibling/common ongoing evidence is independently owned.",
+  "scratch_policy": "No service/production CLI or test suites executed by package manager. Python bytecode disabled for aggregate imports.",
+  "pass": true
+}

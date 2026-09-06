@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "checks": {
+    "exactly_one_json_pointer_changed": "/mappings/0/locus",
+    "all_other_scope_fallback_bytes_preserved": true,
+    "claims_byte_identical": true,
+    "residuals_byte_identical": true,
+    "coverage_byte_identical": true,
+    "original_artifacts_unchanged": true,
+    "all_read_source_hashes_unchanged": true,
+    "base_equal_sources": 32,
+    "fresh_candidate_validation_preflights_allow": 11,
+    "scope_row_line_field_quote_hash_verified": true,
+    "claim_count": 18,
+    "dispositions": {
+      "ALIGNED": 15,
+      "UNKNOWN": 3
+    },
+    "residual_count": 1,
+    "write_containment": "Only CORRECTION_V001 created; no source/status/Remaining/Git mutation"
+  },
+  "independent_verification": "PENDING_MANAGER_DISPATCH",
+  "product_remaining_closure": false
+}

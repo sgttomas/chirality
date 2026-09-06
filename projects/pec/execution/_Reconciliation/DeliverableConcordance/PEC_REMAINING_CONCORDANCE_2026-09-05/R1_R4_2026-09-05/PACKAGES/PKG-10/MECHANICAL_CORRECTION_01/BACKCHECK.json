@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "semantic_rerun": false,
+  "product_tests_run": false,
+  "role": "Agent2 instruction-asserted; not mechanically enforced",
+  "command": "python3 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/MECHANICAL_CORRECTION_01/correct_and_backcheck.py --check",
+  "command_sha256": "1da63e05f5845ae8000a7d0e565d2c49585dd24e275ccc37e9522bc85e93a528",
+  "checks": [
+    "canonical schema and LF",
+    "full cell equality against permitted transformation",
+    "complete exact cell change-map equality",
+    "residual unique owner-prefix sequence and reciprocal links",
+    "Depends explicit and ExactGate marked",
+    "original file preservation",
+    "original source map equality and current source SHA256 equality",
+    "historical source records preserved",
+    "coverage body preserved except exact ID normalization and labeled mechanical appendix"
+  ],
+  "members": [
+    {
+      "deliverable": "DEL-10-01",
+      "rows": {
+        "CLAIMS.csv": 50,
+        "RESIDUALS.csv": 0
+      },
+      "csv_cells_checked": 1150,
+      "changed_cells": 100,
+      "changes_by_column": {
+        "Depends": 50,
+        "ExactGate": 50
+      },
+      "original_files_preserved": 6,
+      "original_source_hashes_checked": 54,
+      "full_manifest_hashes_checked": 65,
+      "all_checks": "PASS",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "ledger_hashes": {
+        "CLAIMS.csv": "a08f42dc6772b16d52759f522d5d1114fe6b271e5397f8d21ff14001d3e2fd8b",
+        "RESIDUALS.csv": "a25f8b642ed9ed37ea91f99c23b184dea813abc840f50566d1aaf7e1ad27a44f"
+      }
+    },
+    {
+      "deliverable": "DEL-10-02",
+      "rows": {
+        "CLAIMS.csv": 75,
+        "RESIDUALS.csv": 4
+      },
+      "csv_cells_checked": 1765,
+      "changed_cells": 161,
+      "changes_by_column": {
+        "Depends": 30,
+        "ExactGate": 79,
+        "ProposedResidualID": 48,
+        "ResidualID": 4
+      },
+      "original_files_preserved": 5,
+      "original_source_hashes_checked": 86,
+      "full_manifest_hashes_checked": 96,
+      "all_checks": "PASS",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "ledger_hashes": {
+        "CLAIMS.csv": "6663bdc6b11440033fbe24dc6eb7c00f84ee98dbea713c0b1c41dd28eabaa740",
+        "RESIDUALS.csv": "56ff914153bf8817470ffa09f789dd37c818488bff2083075acf1256f951d3f9"
+      }
+    },
+    {
+      "deliverable": "DEL-10-04",
+      "rows": {
+        "CLAIMS.csv": 6,
+        "RESIDUALS.csv": 1
+      },
+      "csv_cells_checked": 148,
+      "changed_cells": 7,
+      "changes_by_column": {
+        "Depends": 3,
+        "ExactGate": 4
+      },
+      "original_files_preserved": 5,
+      "original_source_hashes_checked": 66,
+      "full_manifest_hashes_checked": 76,
+      "all_checks": "PASS",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "ledger_hashes": {
+        "CLAIMS.csv": "f48587884160ab14130a569e9906f3e692e3d442251c4f77ff13f9b9fd3e51e0",
+        "RESIDUALS.csv": "1fa664fbc8e863ed7f692fd4e3366577b615b442e509fd63d88f673ecfb1a7f1"
+      }
+    }
+  ]
+}

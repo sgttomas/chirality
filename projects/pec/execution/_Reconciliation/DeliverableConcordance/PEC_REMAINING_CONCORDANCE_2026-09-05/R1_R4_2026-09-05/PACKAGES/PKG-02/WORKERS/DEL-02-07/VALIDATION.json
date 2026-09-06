@@ -1,0 +1,19 @@
+{
+  "check": "validate_members.py",
+  "command": "python3 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/validate_members.py projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07",
+  "exit_code": 0,
+  "results": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07",
+      "claims": 51,
+      "residuals": 7,
+      "unknowns": 4,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "source_rehash": "PASS",
+  "coverage": "51 of 51 definitions; 23 of 23 REQ/AC/VER",
+  "routing": "4 eligible / 3 held; no automatic Remaining application",
+  "independent_verification": "PENDING_PARENT_DISPATCH"
+}

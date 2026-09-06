@@ -1,0 +1,44 @@
+[
+  {
+    "deliverable": "DEL-10-01",
+    "file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/CLAIMS.csv",
+    "sha256": "0b0674e21477b2ea57d7d65b53888817147bbd1d292a2fd819cc3c9c687770cf",
+    "empty_depends": 50,
+    "unmarked_gates": 50
+  },
+  {
+    "deliverable": "DEL-10-01",
+    "file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/RESIDUALS.csv",
+    "sha256": "a25f8b642ed9ed37ea91f99c23b184dea813abc840f50566d1aaf7e1ad27a44f",
+    "empty_depends": 0,
+    "unmarked_gates": 0
+  },
+  {
+    "deliverable": "DEL-10-02",
+    "file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/CLAIMS.csv",
+    "sha256": "24f5cf471ef5c9c7e8b1c47033ca2c56be061a2674714e35e96a763c5e3ef543",
+    "empty_depends": 29,
+    "unmarked_gates": 75
+  },
+  {
+    "deliverable": "DEL-10-02",
+    "file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/RESIDUALS.csv",
+    "sha256": "e7675de1c1fd2f8fcc9da01163da0b96a959811c4768a8c0ffdfb393c16a3dd8",
+    "empty_depends": 1,
+    "unmarked_gates": 4
+  },
+  {
+    "deliverable": "DEL-10-04",
+    "file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/CLAIMS.csv",
+    "sha256": "8e9ef0e94cda1a36a32c0e9021139ea8206fd8d38bf82736459fc829341c7adb",
+    "empty_depends": 3,
+    "unmarked_gates": 4
+  },
+  {
+    "deliverable": "DEL-10-04",
+    "file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/RESIDUALS.csv",
+    "sha256": "1fa664fbc8e863ed7f692fd4e3366577b615b442e509fd63d88f673ecfb1a7f1",
+    "empty_depends": 0,
+    "unmarked_gates": 0
+  }
+]

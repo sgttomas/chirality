@@ -1,0 +1,145 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "missing_contract": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/ScopeOfWork.md",
+  "contract_exists": false,
+  "accepted_upstream": "revision 1.4 current_basis; D82 effective and D81 calibration accepted",
+  "mapping": [
+    {
+      "ClaimID": "DEL-09-06::SOW-050",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-050 / ScopeItemStatement",
+      "quote": "Drill-down from every displayed value to its cited source",
+      "quote_sha256": "8c1f9cf38583f0635a6fc5839ecab60ec231a1f6515bf159b3f3060fcf8bd31d",
+      "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::PEC-DSH-006",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "\u00a79.7 row PEC-DSH-006",
+      "quote": "Every displayed value drills down to its cited source (PEC-K-08).",
+      "quote_sha256": "c1dac16a957acca77642d3f5c05ce3039adbfe1c53b06b20c66554a8e5c718e3",
+      "source_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::PEC-K-08",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "\u00a76 PEC-K-08; also Deliverables row DEL-09-06 Description",
+      "quote": "Drill-down never dead-ends.",
+      "quote_sha256": "183ef38a3f6b16e905caf6188f0c8063250b511ea19c0947a7c3e1d1b0002cda",
+      "source_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::DL-14",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "locus": "row DEL-09-06 / Description",
+      "quote": "A PKG-09-internal shared component: built and sequenced first, consumed by the other six views as a declared dependency (DL-12 publish/consume mechanics, package-internal; DL-14).",
+      "quote_sha256": "78bcc8863226bfb84381179174f41bdbaecc8c1bbc97616cf0a704d0f63f9fb4",
+      "source_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::FALLBACK-TEST",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "locus": "row DEL-09-06 / AnticipatedArtifacts",
+      "quote": "Shared citation-resolution component + tests",
+      "quote_sha256": "191b7c6d0ea2eedebfc0a0b958311e9ea4d7e28120e0d18c0fc7841d078da289",
+      "source_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "explicit run-local fallback; no local SOW contract"
+    },
+    {
+      "ClaimID": "DEL-09-06::DEP-09-06-001",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "locus": "row DEP-09-06-001 / Statement",
+      "quote": "DEL-09-06 is package-local to PKG-09.",
+      "quote_sha256": "baf663edbd7e1909b09bf9a03673dced45ef0ab8613ed4cd54237018d6ec6f0d",
+      "source_sha256": "481ef94fe68faff3e4d41f7c240f7208ed06cc4c339fb1166372fdef207dd946",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::DEP-09-06-002",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "locus": "row DEP-09-06-002 / Statement",
+      "quote": "DEL-09-06 covers scope item SOW-050.",
+      "quote_sha256": "c8ba8703e995a4c66e588823a2a2dc5448bac87645354e3a744f226c3af09d65",
+      "source_sha256": "481ef94fe68faff3e4d41f7c240f7208ed06cc4c339fb1166372fdef207dd946",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::DEP-09-06-003",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "locus": "row DEP-09-06-003 / Statement",
+      "quote": "R1-F12/R3-F1: dashboards consume the API transport via the shared component",
+      "quote_sha256": "85a104b074358654f92fdf8de191b4bbc83c5715141326c77fde1334eec64799",
+      "source_sha256": "481ef94fe68faff3e4d41f7c240f7208ed06cc4c339fb1166372fdef207dd946",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::DEP-09-06-004",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "locus": "row DEP-09-06-004 / Statement",
+      "quote": "R3-F1: views consume the citation-bearing envelope",
+      "quote_sha256": "31bfa3d4b80b65dba1a600256bd635a3d713ea3fba40cda95b79f037fdc6b8a7",
+      "source_sha256": "481ef94fe68faff3e4d41f7c240f7208ed06cc4c339fb1166372fdef207dd946",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::DEP-09-06-005",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "locus": "row DEP-09-06-005 / Statement",
+      "quote": "Citation shapes resolved by drill-down are DEL-04-03's artifact",
+      "quote_sha256": "15938055ee8faab832fa6742fc315a91ebf818269d64ff12b8054402064d5078",
+      "source_sha256": "481ef94fe68faff3e4d41f7c240f7208ed06cc4c339fb1166372fdef207dd946",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "preserved source-local ID"
+    },
+    {
+      "ClaimID": "DEL-09-06::FALLBACK-LIFECYCLE",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+      "locus": "Current State",
+      "quote": "**Current State:** OPEN",
+      "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+      "source_sha256": "51a95d30a7585a6448035dd9ff8a866017212648784b6118335922a8a3dbeead",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "explicit run-local fallback; no local SOW contract"
+    },
+    {
+      "ClaimID": "DEL-09-06::FALLBACK-ASSIGNMENT",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md",
+      "locus": "ResponsibleParty",
+      "quote": "TBD (assignment at WORKING_ITEMS activation)",
+      "quote_sha256": "c6e5a4821fc92bd04f29380d21aa292c9f8b917c20a1f3b7367765fb2ebafa87",
+      "source_sha256": "a146fc6acb4fe5da4d513312f11c8c2db3c3d2cff77aa4720b484b260a1f86bf",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "explicit run-local fallback; no local SOW contract"
+    },
+    {
+      "ClaimID": "DEL-09-06::FALLBACK-PACKAGE-BOUNDARY",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "\u00a74 row PKG-09 exclusions",
+      "quote": "New data classes; restating authored text (C6)",
+      "quote_sha256": "fd4e11a7a86ba73f87c7de76e2477d67949cfe10441eda497cec0185e6c6bbb6",
+      "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "mapping_type": "explicit run-local fallback; no local SOW contract"
+    }
+  ],
+  "nonclaims": {
+    "REQ_AC_VER": "No defined REQ/AC/VER identifiers in local scaffold; none omitted or invented.",
+    "EVQ-001;DUP;MAJ-3": "D-PEC-65 historical repair classification IDs; dependency rows preserve current exact documentary truth, not new product requirements.",
+    "E-N06;E-N07;E-P70;E-A06..E-A11": "Edge IDs preserved by DEP rows and DL-14 boundary; no new product requirement.",
+    "DL-12;DL-13": "Decomposition publication mechanics and truthful assignment conventions represented by DL-14 and FALLBACK-ASSIGNMENT.",
+    "PEC-K-01..11;OBJ-004;C-04;C-10": "Contextual invariants/objective/non-gating constraints, not standalone new DEL-09-06 implementation obligations; relevant documentary boundary retained."
+  }
+}

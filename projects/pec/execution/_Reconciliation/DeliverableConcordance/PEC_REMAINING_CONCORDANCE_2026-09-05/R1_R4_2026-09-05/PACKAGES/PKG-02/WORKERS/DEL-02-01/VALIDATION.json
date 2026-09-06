@@ -1,0 +1,12 @@
+{
+  "pass_checks": true,
+  "claim_count": 74,
+  "residual_count": 4,
+  "dispositions": {
+    "ALIGNED": 26,
+    "UNKNOWN": 44,
+    "ACCEPTED_DIVERGENCE": 4
+  },
+  "source_count": 77,
+  "source_unchanged": true
+}

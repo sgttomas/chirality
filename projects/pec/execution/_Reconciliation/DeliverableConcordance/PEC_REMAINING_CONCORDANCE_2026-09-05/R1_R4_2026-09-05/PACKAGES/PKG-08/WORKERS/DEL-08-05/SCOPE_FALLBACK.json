@@ -1,0 +1,30 @@
+{
+  "scope_item": "SOW-044",
+  "canonical_contract": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/ScopeOfWork.md",
+  "exists": false,
+  "mappings": [
+    {
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-044, Description; physical line 45",
+      "quote": "Offer an SSE subscription for deltas and presence changes",
+      "quote_sha256": "e158b9717eb4ddb816ae7e042090c88fb39601017495c91df772e5f37beeb7fd",
+      "file_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "scope table SOW-044, line 219",
+      "quote": "| SOW-044 | IN | Offer an SSE subscription for deltas and presence changes | PEC-API-005 | |",
+      "quote_sha256": "c175d86fc566e8554405bf621da7bb38e3f4b571cb46563fab93db49a6d61d1d",
+      "file_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "locus": "row DEL-08-05, physical line 46",
+      "quote": "SSE subscription for deltas and presence changes (dashboards; long-running managers). P2/P3 dashboards poll; live subscription arrives with the P4 streams tranche \u2014 pull earlier by owner call if polling proves insufficient.",
+      "quote_sha256": "b4c055f74dad068dc7c6a177c0904bb68490a62b77ec0aae06c0309b81809aa7",
+      "file_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72"
+    }
+  ],
+  "local_REQ_AC_VER_definitions": [],
+  "identity_rule": "Run-local FALLBACK IDs identify report assertions only; they do not create normative requirements."
+}

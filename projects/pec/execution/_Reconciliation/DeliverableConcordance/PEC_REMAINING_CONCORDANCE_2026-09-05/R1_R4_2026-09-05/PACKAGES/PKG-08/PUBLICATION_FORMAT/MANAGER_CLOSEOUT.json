@@ -1,0 +1,14 @@
+{
+  "status": "PASS_PUBLICATION_FORMAT",
+  "manager_exact57_edits_reproduced": true,
+  "old96_snapshot_entries_reproduced": true,
+  "independent_backcheck": "PUBLICATION_FORMAT/BACKCHECK/VALIDATION.json",
+  "independent_backcheck_sha256": "f55eee3bcf04e8ce3a2ac5d3fce173d8320b453940d49c1e3b5f109dd747b339",
+  "child_id": "/root/pec_pkg08_reconciliation/verifier_v1",
+  "brief": "PUBLICATION_FORMAT/BACKCHECK_BRIEF.md",
+  "brief_sha256": "78357509c7215a2c7565840eedad8f06bf519948896b7c829efe6e85794e6303",
+  "role": "instruction-asserted; not mechanically enforced",
+  "write_scope": "PUBLICATION_FORMAT/BACKCHECK/**",
+  "current_selection": "PUBLICATION_FORMAT/CURRENT_SELECTION.json",
+  "product_source_or_authority_change": false
+}

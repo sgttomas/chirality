@@ -1,0 +1,42 @@
+{
+  "recorded_utc": "2026-09-05T23:02:07.604201+00:00",
+  "attribution": "HELP_HUMAN Agent0 relay; common recorder did not perform package fan-in or dispatch",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "fanin": {
+    "package": "PKG-02",
+    "manager_task_id": "/root/pec_pkg02_reconciliation",
+    "agent0_actions_reported": [
+      "read HANDOFF",
+      "reproduced103 output-manifest hashes"
+    ],
+    "output_manifest_sha256": "d5764f02bc9e507f25eef834b4948ec7208b53d8669a0e1b322e822102397730",
+    "claims": 495,
+    "raw_residual_proposals": 29,
+    "unknown_claims": 228,
+    "independent_verifier": "PASS",
+    "meaning": "package report readiness only; no product/Remaining/lifecycle acceptance"
+  },
+  "launch": {
+    "package": "PKG-04",
+    "actual_manager_task_id": "/root/pec_pkg04_reconciliation",
+    "direct_parent": "/root",
+    "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-04.md",
+    "brief_sha256": "8907825b1a8bc3afc38ea10867e7031e7ab7af744622f221990b0c868299ef3a",
+    "clarification_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+    "clarification_sha256": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "additional_context_reported": "calibrated historical/current absence reminder; distinguish historical evidence from current implementation absence without inventing scope or completion",
+    "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04",
+    "execution_class": "delegated-harness-native",
+    "role_evidence": "instruction-asserted; not mechanically enforced"
+  },
+  "active_managers_reported": [
+    "PKG-03",
+    "PKG-04",
+    "PKG-10"
+  ],
+  "temporary_capacity": {
+    "max_active_managers": 3,
+    "max_active_specialists_per_manager_including_verifier": 2
+  },
+  "preservation": "append-only COMMON record; sealed essentials and package files untouched"
+}

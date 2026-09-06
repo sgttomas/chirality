@@ -1,0 +1,197 @@
+{
+  "selected": [
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/AUTHOR/CLAIMS.csv",
+      "claims_sha256": "7c457a6cf2cd9975314a16efecb3e6c85cb61220f6ee213e995cd0fc8e45e2b1",
+      "deliverable": "DEL-00-01",
+      "original_summary_row": {
+        "CandidateAssessment": "ASSESSED_WITH_RESIDUALS",
+        "Claims": "43",
+        "DeliverableID": "DEL-00-01",
+        "NonAlignedClaims": "1",
+        "RawResidualProposals": "1",
+        "SelectedClaims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/AUTHOR/CLAIMS.csv",
+        "SelectedClaimsSHA256": "7c457a6cf2cd9975314a16efecb3e6c85cb61220f6ee213e995cd0fc8e45e2b1",
+        "SelectedResiduals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/AUTHOR/RESIDUALS.csv",
+        "SelectedResidualsSHA256": "4b42507200e105d9f397b3f6b4b0b08335a6257e1f1c774f5ecb28a308daf980",
+        "UnknownClaims": "0",
+        "VerificationStatus": "PASS",
+        "WarrantedNONE": "FALSE"
+      },
+      "package": "PKG-00",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/AUTHOR/RESIDUALS.csv",
+      "residuals_sha256": "4b42507200e105d9f397b3f6b4b0b08335a6257e1f1c774f5ecb28a308daf980"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-02/CLAIMS.csv",
+      "claims_sha256": "34be3bc64c89ea718613b1f951291e1276d5c06c75c68fa8402b7ee2ceb6b89e",
+      "deliverable": "DEL-00-02",
+      "original_summary_row": {
+        "CandidateAssessment": "ASSESSED_UNKNOWN",
+        "Claims": "11",
+        "DeliverableID": "DEL-00-02",
+        "NonAlignedClaims": "11",
+        "RawResidualProposals": "4",
+        "SelectedClaims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-02/CLAIMS.csv",
+        "SelectedClaimsSHA256": "34be3bc64c89ea718613b1f951291e1276d5c06c75c68fa8402b7ee2ceb6b89e",
+        "SelectedResiduals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-02/RESIDUALS.csv",
+        "SelectedResidualsSHA256": "8ebbf9281222bab012c19e9f5f07dc0b38cd4282f60a13d3fdaa9633a65d048a",
+        "UnknownClaims": "9",
+        "VerificationStatus": "PASS",
+        "WarrantedNONE": "FALSE"
+      },
+      "package": "PKG-00",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-02/RESIDUALS.csv",
+      "residuals_sha256": "8ebbf9281222bab012c19e9f5f07dc0b38cd4282f60a13d3fdaa9633a65d048a"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/CLAIMS.csv",
+      "claims_sha256": "7e957f115ce0b2460992a34156168efbe8c52c728ffb72f1ac00e4da45543891",
+      "deliverable": "DEL-00-03",
+      "original_summary_row": {
+        "CandidateAssessment": "ASSESSED_WITH_RESIDUALS",
+        "Claims": "33",
+        "DeliverableID": "DEL-00-03",
+        "NonAlignedClaims": "1",
+        "RawResidualProposals": "1",
+        "SelectedClaims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/CLAIMS.csv",
+        "SelectedClaimsSHA256": "7e957f115ce0b2460992a34156168efbe8c52c728ffb72f1ac00e4da45543891",
+        "SelectedResiduals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/RESIDUALS.csv",
+        "SelectedResidualsSHA256": "f20cf6d06d752c38f02933d457eea7c907d45ccfc47505c3089c8a2e79e7b414",
+        "UnknownClaims": "0",
+        "VerificationStatus": "PASS",
+        "WarrantedNONE": "FALSE"
+      },
+      "package": "PKG-00",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/RESIDUALS.csv",
+      "residuals_sha256": "f20cf6d06d752c38f02933d457eea7c907d45ccfc47505c3089c8a2e79e7b414"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/CLAIMS.csv",
+      "claims_sha256": "e87cd4bbf50e2366f5b8ed8a582a178a4132f3fd3d2c92c6c81be03f3fdbc07f",
+      "deliverable": "DEL-09-01",
+      "original_summary_row": {
+        "AlignedCount": "5",
+        "Assessment": "ASSESSED_UNKNOWN",
+        "ClaimCount": "11",
+        "DeliverableID": "DEL-09-01",
+        "ResidualCount": "1",
+        "SelectedWorker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01",
+        "UnknownCount": "6",
+        "WarrantedNONE": "NO"
+      },
+      "package": "PKG-09",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/RESIDUALS.csv",
+      "residuals_sha256": "be473d5475193db4f16a6b4f6b96f48ffb2f7d9bda2372562aec4bdfa1d6f770"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-02/CLAIMS.csv",
+      "claims_sha256": "3a3e1461ead0e2af83ace3f240d8998dda0266e015f0329b13c02f7e864be5d7",
+      "deliverable": "DEL-09-02",
+      "original_summary_row": {
+        "AlignedCount": "10",
+        "Assessment": "ASSESSED_UNKNOWN",
+        "ClaimCount": "14",
+        "DeliverableID": "DEL-09-02",
+        "ResidualCount": "1",
+        "SelectedWorker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-02",
+        "UnknownCount": "4",
+        "WarrantedNONE": "NO"
+      },
+      "package": "PKG-09",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-02/RESIDUALS.csv",
+      "residuals_sha256": "edf16baad3b18d805450eb95c1fb39b976d4a35a6c3a6edccfa4351814de84cc"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/CLAIMS.csv",
+      "claims_sha256": "e5b602839ae0658f2999f692d8a63bb2f0392b994f875837383f144bd01b006e",
+      "deliverable": "DEL-09-03",
+      "original_summary_row": {
+        "AlignedCount": "10",
+        "Assessment": "ASSESSED_UNKNOWN",
+        "ClaimCount": "18",
+        "DeliverableID": "DEL-09-03",
+        "ResidualCount": "1",
+        "SelectedWorker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03",
+        "UnknownCount": "8",
+        "WarrantedNONE": "NO"
+      },
+      "package": "PKG-09",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-03/RESIDUALS.csv",
+      "residuals_sha256": "0d86c2e335b05aa806ace90d0f78fb6ee099e282ca4cdb89a7863519ef1aa6f2"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/CLAIMS.csv",
+      "claims_sha256": "86f45b32ec5c7619aac50e14d284fcbbd538f6f4d87bf5b024345971d452596c",
+      "deliverable": "DEL-09-04",
+      "original_summary_row": {
+        "AlignedCount": "9",
+        "Assessment": "ASSESSED_UNKNOWN",
+        "ClaimCount": "11",
+        "DeliverableID": "DEL-09-04",
+        "ResidualCount": "1",
+        "SelectedWorker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04",
+        "UnknownCount": "2",
+        "WarrantedNONE": "NO"
+      },
+      "package": "PKG-09",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-04/RESIDUALS.csv",
+      "residuals_sha256": "36412a034d9db45b1298d56801db7ac5e8bf2a51ccc29c037796f4b357e88ef6"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/CLAIMS.csv",
+      "claims_sha256": "0159164de7fa6da99a33b721261082771ebe7ac4f4af710f8683374d8f28fb2f",
+      "deliverable": "DEL-09-05",
+      "original_summary_row": {
+        "AlignedCount": "16",
+        "Assessment": "ASSESSED_UNKNOWN",
+        "ClaimCount": "20",
+        "DeliverableID": "DEL-09-05",
+        "ResidualCount": "1",
+        "SelectedWorker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05",
+        "UnknownCount": "4",
+        "WarrantedNONE": "NO"
+      },
+      "package": "PKG-09",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/RESIDUALS.csv",
+      "residuals_sha256": "fc9ec2378edf769eb106455eed1020c1e51fb0c4a8a3c0c1e9ce6d1199c62bdd"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/CLAIMS.csv",
+      "claims_sha256": "fb5475b735933ef30d22ef648f40b98ba787f62b8dec8d02964546c243757d29",
+      "deliverable": "DEL-09-06",
+      "original_summary_row": {
+        "AlignedCount": "9",
+        "Assessment": "ASSESSED_UNKNOWN",
+        "ClaimCount": "13",
+        "DeliverableID": "DEL-09-06",
+        "ResidualCount": "1",
+        "SelectedWorker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06",
+        "UnknownCount": "4",
+        "WarrantedNONE": "NO"
+      },
+      "package": "PKG-09",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/RESIDUALS.csv",
+      "residuals_sha256": "dea5071076a42978b373e2b0cac99c8a1a7a15ce1f88e627e8bb6d46de3944bf"
+    },
+    {
+      "claims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/CLAIMS.csv",
+      "claims_sha256": "58fbcf9cd52166b9f714e1cd2f5896acc15a3e2bb9e3673609afc30cd0bc4ee2",
+      "deliverable": "DEL-09-07",
+      "original_summary_row": {
+        "AlignedCount": "13",
+        "Assessment": "ASSESSED_UNKNOWN",
+        "ClaimCount": "23",
+        "DeliverableID": "DEL-09-07",
+        "ResidualCount": "3",
+        "SelectedWorker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07",
+        "UnknownCount": "10",
+        "WarrantedNONE": "NO"
+      },
+      "package": "PKG-09",
+      "residuals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-07/RESIDUALS.csv",
+      "residuals_sha256": "d15a60d6c0f13631c2da3868c23b3d57e126d260a6bb3900275a4bdb35d585f5"
+    }
+  ],
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+}

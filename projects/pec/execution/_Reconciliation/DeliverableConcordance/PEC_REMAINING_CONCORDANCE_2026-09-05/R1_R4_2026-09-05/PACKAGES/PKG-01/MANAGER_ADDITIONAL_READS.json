@@ -1,0 +1,11 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/RESIDUALS.csv": "d101949fc28770910af5f436d190bc360cf01f9712782b85fd2654161aa2bb3c"
+  },
+  "historical_sources": [],
+  "checks": [],
+  "source_unchanged": true,
+  "basis": "Original SOURCE_MANIFEST remains frozen; this append-only read extension adds adopted D81 schema and exact V001 residual inspection."
+}

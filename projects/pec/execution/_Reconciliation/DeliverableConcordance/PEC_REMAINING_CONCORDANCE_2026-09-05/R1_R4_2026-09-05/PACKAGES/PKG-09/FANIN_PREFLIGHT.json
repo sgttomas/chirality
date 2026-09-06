@@ -1,0 +1,737 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_SEMANTIC.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_DEPENDENCIES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": false
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_SEMANTIC.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_DEPENDENCIES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_REFERENCES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": false
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_SEMANTIC.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_DEPENDENCIES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_REFERENCES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": false
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_SEMANTIC.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_DEPENDENCIES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_REFERENCES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": false
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_SEMANTIC.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_DEPENDENCIES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_REFERENCES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": false
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_SEMANTIC.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_DEPENDENCIES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_REFERENCES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": false
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_SEMANTIC.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_DEPENDENCIES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_REFERENCES.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": true
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "target_exists": false
+  }
+]

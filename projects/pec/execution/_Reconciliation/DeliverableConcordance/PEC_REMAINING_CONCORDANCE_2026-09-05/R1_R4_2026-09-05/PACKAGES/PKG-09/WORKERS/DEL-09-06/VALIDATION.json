@@ -1,0 +1,14 @@
+{
+  "claim_count": 13,
+  "aligned_count": 9,
+  "unknown_count": 4,
+  "residual_count": 1,
+  "summary": "ASSESSED_UNKNOWN",
+  "warranted_NONE": false,
+  "schemas_exact": true,
+  "unique_claims": true,
+  "reciprocal_links": true,
+  "LF_only": true,
+  "source_unchanged": true,
+  "fresh_package_verification": "PENDING"
+}

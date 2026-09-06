@@ -1,0 +1,131 @@
+{
+  "status": "SELECTED_DERIVATIVE_REPORT_ONLY; readiness in VALIDATION.json",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "members": [
+    {
+      "member": "DEL-07-01",
+      "claims": 15,
+      "residuals": 1,
+      "unknown": 8,
+      "dispositions": {
+        "ALIGNED": 7,
+        "UNKNOWN": 8
+      },
+      "sources": 410,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-02",
+      "claims": 13,
+      "residuals": 1,
+      "unknown": 5,
+      "dispositions": {
+        "ACCEPTED_DIVERGENCE": 1,
+        "ALIGNED": 7,
+        "UNKNOWN": 5
+      },
+      "sources": 341,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-03",
+      "claims": 13,
+      "residuals": 1,
+      "unknown": 8,
+      "dispositions": {
+        "ALIGNED": 5,
+        "UNKNOWN": 8
+      },
+      "sources": 410,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-04",
+      "claims": 14,
+      "residuals": 1,
+      "unknown": 6,
+      "dispositions": {
+        "ALIGNED": 8,
+        "UNKNOWN": 6
+      },
+      "sources": 410,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-05",
+      "claims": 12,
+      "residuals": 1,
+      "unknown": 3,
+      "dispositions": {
+        "ALIGNED": 9,
+        "UNKNOWN": 3
+      },
+      "sources": 73,
+      "errors": []
+    }
+  ],
+  "claims": 67,
+  "residuals": 5,
+  "dispositions": {
+    "UNKNOWN": 30,
+    "ALIGNED": 36,
+    "ACCEPTED_DIVERGENCE": 1
+  },
+  "selected": {
+    "DEL-07-01": "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01",
+    "DEL-07-02": "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02",
+    "DEL-07-03": "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03",
+    "DEL-07-04": "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04",
+    "DEL-07-05": "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05"
+  },
+  "hashes": {
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01/CLAIMS.csv": "6bde5a89ffb92854d0776948c5ff73c9a1f81255ab2b7709d6493fa2b292fe90",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01/RESIDUALS.csv": "a2a5639cef2e66cbe00eeb5b002c389717371134fdd46f7bdb9fccfcf3406d53",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01/COVERAGE.md": "0f6368c5ec4f9066d4c68f9ff921e903101d83b73a4f3ec33a4d7fb8bb8e2f04",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01/READ_MANIFEST.json": "645d9db9db1b7c22f71c4552bd2066926234297cfacc32b4dbd0ca0e5bfe1329",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01/RETURN.md": "06e2fd762001de0e000c341774de38c817978aaddb78807fbcf940d58d810593",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02/CLAIMS.csv": "15d68603f85a9e5be29a0f643b9b3edbdcb110adc026121de00bc5f0fe5d4277",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02/RESIDUALS.csv": "83c8eeeb189a125b8098441313fbaab0abd365090a983dac80232cf7ea881695",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02/COVERAGE.md": "322ed670a16e5d436761d7a9a0197ccdbfb4dfee7e8103a47a19b1e1819e2a59",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02/READ_MANIFEST.json": "17560e3a26db1b2538d10bc2afa37fe935fb4b3f1495bb31d576cbfd93cb9030",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02/RETURN.md": "d2b6cf8b2060da3a4c7f12a92749e4178634c8000b31539d498088a2a56a1dd5",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03/CLAIMS.csv": "493a480216fd1a6f7db1abcf92f576458f0f3ef236d225fdd0ec72e18d7919ef",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03/RESIDUALS.csv": "37d446cc851147b016054848be2b0b8025ccb5b9a76dab06e25eb2830505c314",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03/COVERAGE.md": "94fad66e171eb7bdaf760aeb655888d6194635e6164cfa1837af03a4b05112cd",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03/READ_MANIFEST.json": "645d9db9db1b7c22f71c4552bd2066926234297cfacc32b4dbd0ca0e5bfe1329",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03/RETURN.md": "04d71f03f66124c90a79de3a51b7de25b6d8db34881bbafe565f167ff17e0d05",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04/CLAIMS.csv": "e5ddf1afd3519dd6ae34737e8f15d7a2db0a569f8cb51c43c160d01f2267de96",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04/RESIDUALS.csv": "d4006656a24dac1b92b9baeeebfbcfec5f68e11df49ac6d33befd5c54035e6e0",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04/COVERAGE.md": "b1dd60ff31636b39f7e2a8d6d779d825806931f70b04d2b98359379ba99f81c4",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04/READ_MANIFEST.json": "645d9db9db1b7c22f71c4552bd2066926234297cfacc32b4dbd0ca0e5bfe1329",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04/RETURN.md": "3a5c79286ef17503506453a28e837c6fd3b38057befe919df1e588a8d4edd24f",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05/CLAIMS.csv": "2d54a5b305bbadd9e0813fd0c2e8968cb53142be5bed26548d7b19418ae21f50",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05/RESIDUALS.csv": "df4d7fb36a79417b8ac3a0b9f5a715b1cc327e214f864930340975148cf02f37",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05/COVERAGE.md": "5d35c80933914a97f4094180aaabf85bd780e82735b179eb2e020726d7aaa1bc",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05/READ_MANIFEST.json": "4b7a3ad316d88d6ee4f5fa1b47044ed173e9b17b9d342eafd5053283a8bcdbd1",
+    "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05/RETURN.md": "6c7c4eccbe472d57e3f84da590ccf70f7920e451affd558c5fc01d09702db58b"
+  },
+  "preserved_manifests": [
+    {
+      "manifest": "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_WORKER_MANIFEST.json",
+      "files": 26,
+      "sha256": "a127c07008fcc51368449d8a669c9e386c15441710be90ba5270fdac2c80e20b",
+      "unchanged": true
+    },
+    {
+      "manifest": "/Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/OUTPUT_MANIFEST.json",
+      "files": 11,
+      "sha256": "0a94db4b66e2317438097eb7f3f6009b11c9ba4dbb86f5a0c4da7d6b36c74aef",
+      "unchanged": true
+    }
+  ],
+  "source_unchanged": true,
+  "warranted_none": 0,
+  "all_proposals_nonselectable": true,
+  "proposal_depends_audit": "PROPOSAL_DEPENDS_AUDIT.csv",
+  "recommendations": {
+    "evidence_candidates": 4,
+    "conditional_optional_evidence": 1,
+    "product_production_tasks": 0
+  }
+}

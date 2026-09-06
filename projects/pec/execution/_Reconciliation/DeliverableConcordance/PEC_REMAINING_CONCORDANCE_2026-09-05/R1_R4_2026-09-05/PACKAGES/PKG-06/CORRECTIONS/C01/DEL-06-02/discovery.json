@@ -1,0 +1,14 @@
+{
+  "command": [
+    "rg",
+    "-n",
+    "DEL-06-02|PEC-PRS-002|SOW-027",
+    "projects/pec/execution/_Evaluation/Reviews",
+    "projects/pec/v2"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+  "environment": {},
+  "exit_code": 1,
+  "result": "",
+  "stderr": ""
+}

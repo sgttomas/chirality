@@ -1,0 +1,9 @@
+# V003 composed representation backcheck
+
+PASS. Direct V002 to V003 comparison independently proves exactly42 blank Depends cells become literal NONE. The residual CSV is byte-identical to V002. Composition against original selected DEL00-01 REVISION_V001 proves precisely44 changed cells: those42 Depends cells and the two previously verified ExactGate prefixes. Every other field and CSV byte remains unchanged. No semantic rerun occurred.
+
+The full prospective package aggregate was composed in memory against the preserved original package preimages. It has87 claims/6 residuals and exactly44 changed cells, all within DEL00-01, whose43 claims/1residual remain. IDs and reciprocal links are intact. Dispositions remain74 ALIGNED,1 PARTIALLY_IMPLEMENTED,9 UNKNOWN,3 DEFERRED_AGENT_WORKFLOW. Current aggregate files still equal original preimages; the verifier made no selection or report mutation.
+
+All12 AUTHOR read hashes, all12 DEL00-01 current SourceHashes, all72 prior package manifest entries using shifted PREIMAGES resolution, and the V002 verifier output seal reproduce. Fresh exact ScopeOfWork.md/_STATUS.md candidate-validation preflights return ALLOW. Read inputs remained unchanged at the checkpoint. Previous authors/verifiers and originals were not edited.
+
+This PASS supports manager selection of V003 AUTHOR CLAIMS/RESIDUALS and subsequent package derivative regeneration only. It does not supply product/source authority, owner acceptance or Remaining/lifecycle/release closure. Accepted upstream remains D81 conventions/D82 effective base2be412ccea62bdc4bd96deb082c46d7a792076ea and accepted revision1.4/later exact currency. All semantic assertions, UNKNOWNs, owner/CHECKING/REVIEW gates and prior acceptance history remain. Rerun representation checks on sealed input/hold/source/authority drift. Write scope only GATE_FORMAT_V003/VERIFICATION/**; Agent2 role instruction-asserted, no delegation.

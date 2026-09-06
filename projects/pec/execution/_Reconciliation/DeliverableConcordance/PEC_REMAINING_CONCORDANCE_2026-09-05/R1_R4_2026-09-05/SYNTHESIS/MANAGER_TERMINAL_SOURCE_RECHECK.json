@@ -1,0 +1,10 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "common_source_manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json",
+  "common_hashes_reproduced": 648,
+  "common_mismatches": [],
+  "live_status_carriers_reproduced": 64,
+  "status_mismatches": [],
+  "source_unchanged": true,
+  "containment_calibration": "Source equality for declared frozen corpus/carriers; no claim of unrelated concurrent-state containment or mechanistic role enforcement. Own writes remain SYNTHESIS. Parent/CHANGE owns full branch Git containment."
+}

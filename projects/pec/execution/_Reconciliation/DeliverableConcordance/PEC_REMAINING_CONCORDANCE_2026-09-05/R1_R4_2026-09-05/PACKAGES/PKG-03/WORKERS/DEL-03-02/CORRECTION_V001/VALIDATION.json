@@ -1,0 +1,23 @@
+{
+  "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001",
+  "claims": 82,
+  "residuals": 18,
+  "read_hashes": 97,
+  "errors": [],
+  "pass": true,
+  "dispositions": {
+    "ALIGNED": 34,
+    "UNKNOWN": 47,
+    "STALE_INPUT": 1
+  },
+  "summary": "ASSESSED_UNKNOWN",
+  "warranted_none": false,
+  "changed_cells": 19,
+  "original_hashes_unchanged": true,
+  "source_base_match": true,
+  "claim_population_preserved": true,
+  "residual_population_preserved": true,
+  "all_unmapped_cells_preserved": true,
+  "exact_gates_and_depends_preserved": true,
+  "full_claim_source_hashes_match": true
+}

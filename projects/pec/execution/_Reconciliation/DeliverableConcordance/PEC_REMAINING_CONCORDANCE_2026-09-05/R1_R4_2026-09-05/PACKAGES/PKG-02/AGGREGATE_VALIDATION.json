@@ -1,0 +1,69 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "members": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-01",
+      "claims": 74,
+      "residuals": 4,
+      "unknowns": 44,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-02",
+      "claims": 61,
+      "residuals": 2,
+      "unknowns": 32,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-03",
+      "claims": 82,
+      "residuals": 4,
+      "unknowns": 34,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-04",
+      "claims": 71,
+      "residuals": 4,
+      "unknowns": 39,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05",
+      "claims": 74,
+      "residuals": 4,
+      "unknowns": 32,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06",
+      "claims": 82,
+      "residuals": 4,
+      "unknowns": 43,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07",
+      "claims": 51,
+      "residuals": 7,
+      "unknowns": 4,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "mandatory_coverage_errors": [],
+  "counts": {
+    "members": 7,
+    "claims": 495,
+    "residuals": 29,
+    "unknowns": 228
+  },
+  "pass": true
+}

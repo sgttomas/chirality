@@ -1,0 +1,56 @@
+[
+  {
+    "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/CLAIMS.csv --operation exact-correction-preparation",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/RESIDUALS.csv --operation exact-correction-preparation",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/CLAIMS.csv --operation exact-correction-preparation",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/RESIDUALS.csv --operation exact-correction-preparation",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/CLAIMS.csv --operation exact-correction-preparation",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/RESIDUALS.csv --operation exact-correction-preparation",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}"
+  }
+]

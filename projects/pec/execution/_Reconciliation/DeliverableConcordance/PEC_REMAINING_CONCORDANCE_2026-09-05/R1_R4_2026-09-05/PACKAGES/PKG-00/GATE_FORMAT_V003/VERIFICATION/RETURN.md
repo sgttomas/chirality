@@ -1,0 +1,5 @@
+# Terminal V003 verifier return
+
+PASS: direct42 blank Depends-to-NONE cells; composed44 cells including2 prior ExactGate prefixes. All other bytes and meanings unchanged. Full prospective87claim/6residual aggregate validated with44 differences only; DEL00-01 remains43claims/1residual;9 UNKNOWN retained. Actual current aggregates still match preimages.12 AUTHOR reads,12 current source hashes,72 original manifest entries and V002 verifier seal match; two fresh exact preflights ALLOW. No semantic rerun.
+
+Select V003 AUTHOR CLAIMS.csv SHA7c457a6cf2cd9975314a16efecb3e6c85cb61220f6ee213e995cd0fc8e45e2b1 and RESIDUALS.csv SHA4b42507200e105d9f397b3f6b4b0b08335a6257e1f1c774f5ecb28a308daf980 only through manager fan-in. Original snapshots remain immutable. No source/owner act or product/Remaining/lifecycle/release closure. Source base2be412ccea62bdc4bd96deb082c46d7a792076ea; role instruction-asserted; writes only V003/VERIFICATION/**; no delegation. Rerun on relevant drift. OUTPUT_MANIFEST self-excludes; exact hash returned separately.

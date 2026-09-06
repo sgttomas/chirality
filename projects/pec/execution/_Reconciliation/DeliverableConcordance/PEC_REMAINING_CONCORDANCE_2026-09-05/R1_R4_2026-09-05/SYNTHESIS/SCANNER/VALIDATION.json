@@ -1,0 +1,53 @@
+{
+  "selected_package_manifest_comparisons": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/FINAL_STRUCTURAL_VALIDATION.json": {
+      "expected": "1b9af9af4d86c7750dc6cf35fec08a96a5fdfb4de3f1886ccaacec81569c6ea0",
+      "actual": "1b9af9af4d86c7750dc6cf35fec08a96a5fdfb4de3f1886ccaacec81569c6ea0",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_CLAIMS.csv": {
+      "expected": "6c65ad4b05d8835017cf482936afa7c03199fb0f755a3bd13ea7fe651abb2899",
+      "actual": "6c65ad4b05d8835017cf482936afa7c03199fb0f755a3bd13ea7fe651abb2899",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_RESIDUALS.csv": {
+      "expected": "dfff5548224adc6dad2aeac0e3ab114a29f7bbd9f9892fdd5b91608755a08355",
+      "actual": "dfff5548224adc6dad2aeac0e3ab114a29f7bbd9f9892fdd5b91608755a08355",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SCANNER_REPAIR_INPUTS.md": {
+      "expected": "70f7ef6f12d158253d256a4fea1a406c343c76cb1abf98fff8013fbc4887def2",
+      "actual": "70f7ef6f12d158253d256a4fea1a406c343c76cb1abf98fff8013fbc4887def2",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SEALED_WORKER_MANIFEST.json": {
+      "expected": "2c148481fd55dd81819eb7635c01bc2115fcc5aa0c614b90346d25ad65a041bb",
+      "actual": "2c148481fd55dd81819eb7635c01bc2115fcc5aa0c614b90346d25ad65a041bb",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SOURCE_MANIFEST.json": {
+      "expected": "d39b6cfa209829cf3af812d24e444948895d176c10f71aa53407f2384f9e934e",
+      "actual": "d39b6cfa209829cf3af812d24e444948895d176c10f71aa53407f2384f9e934e",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/OUTPUT_MANIFEST.json": {
+      "expected": "07a46f0f8a28e301ed8c0d76e3e872a4b2f7383de1d7f44cdc9af61b3fc72df0",
+      "actual": "07a46f0f8a28e301ed8c0d76e3e872a4b2f7383de1d7f44cdc9af61b3fc72df0",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/VALIDATION.json": {
+      "expected": "dd8f0c7c90311a26f4e3f902e6f9c46f5415b901db1d3365a50c722d3d68b604",
+      "actual": "dd8f0c7c90311a26f4e3f902e6f9c46f5415b901db1d3365a50c722d3d68b604",
+      "pass": true
+    },
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/VERIFICATION.md": {
+      "expected": "db0a1d870dd54765728a849b7787e0fcf7d07e9114232c8aa6b99a557ba3276e",
+      "actual": "db0a1d870dd54765728a849b7787e0fcf7d07e9114232c8aa6b99a557ba3276e",
+      "pass": true
+    }
+  },
+  "target_preimages_reproduced": true,
+  "probe_source_hashes_reproduced": true,
+  "fresh_product_suite_executed": false,
+  "reason": "No implementation; source inspection confirms accepted PKG01 verifier and exact R0 counterexamples; no unresolved need to duplicate finite suite."
+}

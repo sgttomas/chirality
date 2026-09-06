@@ -1,0 +1,100 @@
+{
+  "status": "IMMUTABLE_DERIVATIVE_MAPPING_NOT_SCOPE_AUTHORITY",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "missing_contract": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/ScopeOfWork.md",
+  "canonical_id": "DEL-09-01::PEC-DSH-001",
+  "scope_row": {
+    "ScopeItemID": "SOW-045",
+    "InOutStatus": "IN",
+    "ScopeItemStatement": "Dashboard \u2014 Overview: the orientation return per loop (git state, newest receipt, gates that matter, open tranches, parked lanes + unparking act)",
+    "SourceRef": "PEC-DSH-001",
+    "PackageID": "PKG-09",
+    "DeliverableIDs": "DEL-09-01",
+    "ObjectiveIDs": "OBJ-004",
+    "DecisionRef": "",
+    "OpenIssue": "FALSE",
+    "Notes": ""
+  },
+  "deliverable_row": {
+    "DeliverableID": "DEL-09-01",
+    "PackageID": "PKG-09",
+    "Name": "Overview dashboard",
+    "Description": "Per-loop orientation view: git state, newest receipt, gates that matter, open tranches, parked lanes with unparking acts.",
+    "Type": "UX_UI_SLICE",
+    "ResponsibleParty": "TBD",
+    "AnticipatedArtifacts": "View + tests",
+    "CoversScopeItems": "SOW-045",
+    "SupportsObjectives": "OBJ-004",
+    "ContextEnvelope": "M",
+    "ContextEnvelopeNotes": "",
+    "PhaseHint": "P2"
+  },
+  "scope_quote_sha256": "75d3c2db67e120ae73d76ba93485af20080c51429e74dc80924243b358c4325a",
+  "source_hashes": {
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/docs/PRD.md": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba"
+  },
+  "atomic_features": [
+    {
+      "ClaimID": "DEL-09-01::OVERVIEW-GIT",
+      "ScopeItemIDs": [
+        "SOW-045"
+      ],
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-045, ScopeItemStatement",
+      "quote": "git state",
+      "quote_sha256": "4110d15414051e36851d749f363e8e78ce33d2c4c46e8d9d4f011a33015fae5b",
+      "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "mapping": "Run-local atomic feature of PEC-DSH-001; every feature scoped per loop"
+    },
+    {
+      "ClaimID": "DEL-09-01::OVERVIEW-RECEIPT",
+      "ScopeItemIDs": [
+        "SOW-045"
+      ],
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-045, ScopeItemStatement",
+      "quote": "newest receipt",
+      "quote_sha256": "6060155272451035d1a36da8616aeb51021be15623603a0c040bad3b3635c976",
+      "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "mapping": "Run-local atomic feature of PEC-DSH-001; every feature scoped per loop"
+    },
+    {
+      "ClaimID": "DEL-09-01::OVERVIEW-GATES",
+      "ScopeItemIDs": [
+        "SOW-045"
+      ],
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-045, ScopeItemStatement",
+      "quote": "gates that matter",
+      "quote_sha256": "af372cac69469051e8eb19f21f213ab1072ad3ad4c5ffba3f4de86592cf10ecc",
+      "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "mapping": "Run-local atomic feature of PEC-DSH-001; every feature scoped per loop"
+    },
+    {
+      "ClaimID": "DEL-09-01::OVERVIEW-TRANCHES",
+      "ScopeItemIDs": [
+        "SOW-045"
+      ],
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-045, ScopeItemStatement",
+      "quote": "open tranches",
+      "quote_sha256": "364cc9b18e92b5f1169f4ed31e85c84e168cc7ec567351d4d8dc07c18c460611",
+      "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "mapping": "Run-local atomic feature of PEC-DSH-001; every feature scoped per loop"
+    },
+    {
+      "ClaimID": "DEL-09-01::OVERVIEW-PARKED",
+      "ScopeItemIDs": [
+        "SOW-045"
+      ],
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-045, ScopeItemStatement",
+      "quote": "parked lanes + unparking act",
+      "quote_sha256": "309d77b899411111c0299d9010a250344187b7fa5f13c8a12cb46899b80ac5c7",
+      "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "mapping": "Run-local atomic feature of PEC-DSH-001; every feature scoped per loop"
+    }
+  ]
+}

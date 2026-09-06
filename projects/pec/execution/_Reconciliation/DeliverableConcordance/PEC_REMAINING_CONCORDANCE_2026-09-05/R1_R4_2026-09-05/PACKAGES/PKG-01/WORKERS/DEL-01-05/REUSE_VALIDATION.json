@@ -1,0 +1,49 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "selected_R0": {
+    "DeliverableID": "DEL-01-05",
+    "Claims": "61",
+    "RawResidualProposals": "5",
+    "UnknownClaims": "7",
+    "NonAlignedClaims": "15",
+    "CandidateAssessment": "ASSESSED_UNKNOWN",
+    "SelectedClaims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/CLAIMS.csv",
+    "SelectedClaimsSHA256": "a19eabaf88947ff90b735ef7fd10d78fa41bf7d8db37ad3f61db46847f7c1efc",
+    "SelectedResiduals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/RESIDUALS.csv"
+  },
+  "claims": 61,
+  "stable_local_ids": 60,
+  "dispositions": {
+    "ALIGNED": 46,
+    "PARTIALLY_IMPLEMENTED": 7,
+    "UNKNOWN": 7,
+    "LIFECYCLE_REASSESSMENT_REQUIRED": 1
+  },
+  "residuals": 5,
+  "assessment": "ASSESSED_UNKNOWN",
+  "accepted_artifacts_reproduced": 17,
+  "historical_manifest_rows_reproduced": 7,
+  "current_base_mismatches": [],
+  "current_derivative_inputs": [
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-01.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-05.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_BASIS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SCANNER_REPAIR_INPUTS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SOURCE_MANIFEST.json"
+  ],
+  "R0_hash_comparison": {
+    "unchanged": 62,
+    "changed": [
+      "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md"
+    ],
+    "disposition": "Accepted successor D82 row in register; source and claim semantics unchanged. No unexplained drift."
+  },
+  "checks": "61 unique claims, all defined 32 REQ/AC/VER IDs, 5 exact REM IDs, reciprocal links, explicit NONE Depends and NOT_SELECTABLE_UNTIL residual markers verified",
+  "finite_tests": "R0 19-test enforcement suite and posture PASS retained at original exact evaluated state; no rerun",
+  "scanner": "two immutable static-only counterexamples persist by unchanged source and method hash; fixture text never executed",
+  "source_unchanged": true
+}

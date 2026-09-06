@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "members": 3,
+  "claims": 87,
+  "residuals": 6,
+  "dispositions": {
+    "ALIGNED": 74,
+    "PARTIALLY_IMPLEMENTED": 1,
+    "UNKNOWN": 9,
+    "DEFERRED_AGENT_WORKFLOW": 3
+  },
+  "unknown": 9,
+  "none": 0,
+  "defined_REQ_AC_VER_covered": 53,
+  "fallback_mappings": 11,
+  "independent_semantic_population": 28,
+  "all_non_aligned_checked": 13,
+  "all_residuals_checked": 6,
+  "selected_worker_union_hashes": 148,
+  "common_hashes_final_reproduced": 648,
+  "verifier_seals_reproduced": true,
+  "all_read_manifests_reproduced": true,
+  "initial_aggregate_resolution": "Original exact-byte aggregate reconstructed from immutable original workers in ORIGINAL_AGGREGATES; hashes match sealed initial verifier manifest. Final PACKAGE files select corrected derivatives.",
+  "findings_resolved": [
+    "V001",
+    "V002"
+  ],
+  "exact_changed_cells": 3,
+  "source_unchanged": true,
+  "final_preflights": "6 ALLOW",
+  "r4_groups": {
+    "recommended_evidence_publication": 2,
+    "held_interpretation": 1,
+    "held_routing": 3
+  },
+  "closure": "PACKAGE_REPORT_READY",
+  "representation_successor": {
+    "status": "PASS",
+    "selected_DEL00_01": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/AUTHOR",
+    "exact_aggregate_changes": 44,
+    "Depends_blank_to_NONE": 42,
+    "ExactGate_prefix_only": 2,
+    "semantic_changes": 0,
+    "backcheck_manifest_sha256": "89af1f2925da26df0288acb5469c8b5bb9ee31f67319df39684fb7a987a00832",
+    "map": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/FINAL_AGGREGATE_MAP.json",
+    "preimages": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/PREIMAGES",
+    "prior_validation_preserved": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/PREIMAGES/VALIDATION.json"
+  }
+}

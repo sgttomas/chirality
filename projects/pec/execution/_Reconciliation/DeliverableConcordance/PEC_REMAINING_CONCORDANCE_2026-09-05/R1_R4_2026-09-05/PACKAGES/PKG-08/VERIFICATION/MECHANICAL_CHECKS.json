@@ -1,0 +1,1259 @@
+{
+  "structural_pass": true,
+  "errors": [],
+  "coverage": {
+    "DEL-08-01": {
+      "claims": 41,
+      "residuals": 1,
+      "defined": 41,
+      "REQ_AC_VER": 19,
+      "missing": []
+    },
+    "DEL-08-02": {
+      "claims": 28,
+      "residuals": 1,
+      "defined": 27,
+      "REQ_AC_VER": 11,
+      "missing": []
+    },
+    "DEL-08-03": {
+      "claims": 75,
+      "residuals": 4,
+      "defined": 71,
+      "REQ_AC_VER": 40,
+      "missing": []
+    },
+    "DEL-08-04": {
+      "claims": 83,
+      "residuals": 5,
+      "defined": 82,
+      "REQ_AC_VER": 43,
+      "missing": []
+    },
+    "DEL-08-05": {
+      "claims": 18,
+      "residuals": 1,
+      "defined": 0,
+      "REQ_AC_VER": 0,
+      "missing": []
+    }
+  },
+  "claims": 245,
+  "residuals": 12,
+  "preflights": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_run_records/TASK_RUN_2026-07-25_1414.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_run_records/TASK_RUN_2026-07-25_2035.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_run_records/TASK_RUN_2026-07-26_qa20_D-PEC-66.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Review_Findings.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REVIEW.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_ACTIVATION.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_REGISTERED_CHECKS.json",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/TASK_RUN_2026-07-25_1400.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/TASK_RUN_2026-07-25_1444.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_run_records/TASK_RUN_2026-07-25_B7_INIT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_run_records/TASK_RUN_2026-07-25_B7_REVISE_SCA002_REFUTATION.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_run_records/TASK_RUN_2026-07-25_B8_INIT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_run_records/TASK_RUN_2026-07-25_B8_REV01.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    }
+  ],
+  "source_bindings": {
+    "AGENTS.md": "BASE_EQUAL",
+    "projects/pec/AGENTS.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/VERIFIER_V1.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_BASIS.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-08.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/Dependencies.csv": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_CONTEXT.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_REFERENCES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_SEMANTIC.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_run_records/TASK_RUN_2026-07-25_1414.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_run_records/TASK_RUN_2026-07-25_2035.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_run_records/TASK_RUN_2026-07-26_qa20_D-PEC-66.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Review_Findings.csv": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REVIEW.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_SEMANTIC.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_ACTIVATION.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_REGISTERED_CHECKS.json": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/TASK_RUN_2026-07-25_1400.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/TASK_RUN_2026-07-25_1444.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_REFERENCES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_SEMANTIC.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_run_records/TASK_RUN_2026-07-25_B7_INIT.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_run_records/TASK_RUN_2026-07-25_B7_REVISE_SCA002_REFUTATION.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_DEPENDENCIES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_SEMANTIC.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_run_records/TASK_RUN_2026-07-25_B8_INIT.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_run_records/TASK_RUN_2026-07-25_B8_REV01.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_CONTEXT.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_DEPENDENCIES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_SEMANTIC.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/RETURN.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/CLAIMS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/RESIDUALS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/COVERAGE.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/READ_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "agents/AGENT_RECONCILIATION.md": "BASE_EQUAL",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "BASE_EQUAL",
+    "projects/pec/docs/PRD.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "BASE_EQUAL",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/DEL-08-01.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/SOURCE_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "BASE_EQUAL",
+    "projects/pec/loop/LOOP_INIT.md": "BASE_EQUAL",
+    "projects/pec/v2/config/loops.json": "BASE_EQUAL",
+    "projects/pec/v2/config/loops.schema.json": "BASE_EQUAL",
+    "projects/pec/v2/config/service_core_posture.json": "BASE_EQUAL",
+    "projects/pec/v2/contracts/api/v1/schema.json": "BASE_EQUAL",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md": "BASE_EQUAL",
+    "projects/pec/v2/src/pec_v2/__init__.py": "BASE_EQUAL",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py": "BASE_EQUAL",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py": "BASE_EQUAL",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py": "BASE_EQUAL",
+    "projects/pec/v2/src/pec_v2/core/__init__.py": "BASE_EQUAL",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": "BASE_EQUAL",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json": "BASE_EQUAL",
+    "projects/pec/v2/tests/config/fixtures/malformed.json": "BASE_EQUAL",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json": "BASE_EQUAL",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json": "BASE_EQUAL",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json": "BASE_EQUAL",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json": "BASE_EQUAL",
+    "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py": "BASE_EQUAL",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "BASE_EQUAL",
+    "projects/pec/v2/tools/check_service_core_posture.py": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/RETURN.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/CLAIMS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/RESIDUALS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/COVERAGE.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/build_evidence.py": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/REUSE_CHECK.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/READ_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/DEL0802_FINAL_ACCEPTANCE_RULING_2026-08-01.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/O-A_ACTIVATION_AUTHORITY_2026-08-01.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-66_post_repair_followons.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_TaskManagement/PROMOTION_RULING_2026-08-03_CAND-PEC-2026-08-03-06--16.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/BRIEF.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/CLAIMS.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/COVERAGE.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/READ_MANIFEST.json": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/RESIDUALS.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/RETURN.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/DEL-08-02.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/RUN_BASIS.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/SAMPLE_SUMMARY.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/SOURCE_MANIFEST.json": "BASE_EQUAL",
+    "projects/pec/software-workflow.json": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/RETURN.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/CLAIMS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/V2_INVENTORY.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/OBSERVATIONS.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/RESIDUALS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/COVERAGE.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/build_evidence.py": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/PREFLIGHT.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/READ_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv": "BASE_EQUAL",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md": "BASE_EQUAL",
+    "projects/pec/execution/_Decomposition/ContextBudgetQA.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/DEL-08-03.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md": "BASE_EQUAL",
+    "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Brief.md": "BASE_EQUAL",
+    "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/RETURN.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/CLAIMS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/VALIDATION.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/RESIDUALS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/COVERAGE.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/SOURCE_BINDING.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/READ_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/ScopeOfWork.md": "BASE_EQUAL",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/DEL-08-04.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_REVIEW.md": "BASE_EQUAL",
+    "projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/DEL10_FINAL_ACCEPTANCE_RULING_2026-08-01.md": "BASE_EQUAL",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CURRENT_EVIDENCE.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/RETURN.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CLAIMS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/OUTPUT_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/RESIDUALS.csv": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/COVERAGE.md": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/PREFLIGHT.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/SCOPE_FALLBACK.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/READ_MANIFEST.json": "RUN_LOCAL_DERIVATIVE",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/DEL-08-05.md": "RUN_LOCAL_DERIVATIVE"
+  },
+  "production_semantic_inventory": {
+    "projects/pec/v2/src/pec_v2/__init__.py": {
+      "classes": [],
+      "functions": []
+    },
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py": {
+      "classes": [],
+      "functions": []
+    },
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py": {
+      "classes": [],
+      "functions": []
+    },
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py": {
+      "classes": [
+        "LoopRegistryConfigError",
+        "JsonLoopRegistry"
+      ],
+      "functions": [
+        "__init__",
+        "registered_loops",
+        "_read_document",
+        "_validate_document",
+        "_require_exact_fields",
+        "_fail"
+      ]
+    },
+    "projects/pec/v2/src/pec_v2/core/__init__.py": {
+      "classes": [],
+      "functions": []
+    },
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": {
+      "classes": [],
+      "functions": []
+    },
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": {
+      "classes": [
+        "RegisteredLoop",
+        "LoopRegistry"
+      ],
+      "functions": [
+        "registered_loops"
+      ]
+    }
+  },
+  "fallback": [
+    {
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-044, Description; physical line 45",
+      "quote_hash_pass": true,
+      "file_hash_pass": true,
+      "quote_present": true
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "scope table SOW-044, line 219",
+      "quote_hash_pass": true,
+      "file_hash_pass": true,
+      "quote_present": true
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "locus": "row DEL-08-05, physical line 46",
+      "quote_hash_pass": true,
+      "file_hash_pass": true,
+      "quote_present": true
+    }
+  ],
+  "worker_frozen_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/RETURN.md": "1c661e035bbf3af9eb59b965cdc99903d41264f2cf6b358219a2ca0b62442842",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/CLAIMS.csv": "8f2393206edd01dd1e56fe63b6b390984834b9fbf3567e7c308cda2b25a3a088",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/RESIDUALS.csv": "ba32a4ca182f0e7bab27d3733eb93ecf3b595fa09709729e5d920432b9ed9915",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/COVERAGE.md": "96b20137683cdb0840739dfdcb86068de4af50c14956698febb2fa14b0099cb9",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/READ_MANIFEST.json": "7e5d144cd814c4dd1d8e859091cadf4ec21501338c889ec7637197bdca45b92e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/RETURN.md": "2366caf3a22d3b980fdfb901f9379e4e3dedb56bef67744f9d62b6c1d3c027e3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/CLAIMS.csv": "4abd3ee11b66bf26248af47145dc68b70df41ccf3ec65ec076c8764690c07314",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/RESIDUALS.csv": "e73da28de9f69439012c69eff99274ff5884fdcbd442df50eee3eb1fd6e1900f",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/COVERAGE.md": "c1b349035e6a17b6f9009b44d03536e89c5b8d6585790dd4b48927ee783a15c4",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/build_evidence.py": "1e4d3ca4434f3cc2c92c7b7fdf495ec3c6ebdfb5be852da6bf7917925003233c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/REUSE_CHECK.json": "ed4816f726bdb518d2d54aa861d5e070ff62bdf7c54919508c71d7132c0d5dcc",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/READ_MANIFEST.json": "10889dd3f8d2ad9c79f39e5c76463ae2b166f1b501d6d8efb5bb800cb60d0508",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/RETURN.md": "af82cf9653b675b51ec22191419b2a46ba0bf10aef9f13f91bae8e7a8fc81a01",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/CLAIMS.csv": "9719e01256bb19eed748beb656eacb3dcfe939348bfbee564fe21c5754f77098",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/V2_INVENTORY.json": "fc8d9504109178da12c63b300a007ba06ada4caac582f974e612a4c9d94c285f",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/OBSERVATIONS.json": "d31d57e3cab65ee0f160dbcbcf7ada936db263e952b03849c2963bf15b4d6556",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/RESIDUALS.csv": "c0c367ecb40e4646ec5417677ec8cda00e3325593e1dccabf002c5cf33db9484",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/COVERAGE.md": "85a705c719da246e1e689f6668bb7cce3dd91072bd3d6177c431a3b9a5cfad64",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/build_evidence.py": "bf578951789da3d26b0f544a64a03b1d127d05007f99dffb6086297ccfe3d366",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/PREFLIGHT.json": "6ca8a1c194ffdfe0d24bbe8d9e196c623753f43ea958f741c773635687f03916",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/READ_MANIFEST.json": "246adbbf8250e337cd205cf91adcd8b6cfeca92057639f178dd7f0b730661334",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/RETURN.md": "981badf3c0d5512f4b6a39298ed581949e56c5d38356bd904eef99f681158022",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/CLAIMS.csv": "4a4146b9ca45e64ab2608068057ae2a53cae918631c13ec7dfaa4be88def1955",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/VALIDATION.json": "f0e5ca6791efdd6433c0fdc58025561cdd7d0aa0bd71e248c9dd4e1cd7a670de",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/RESIDUALS.csv": "d5bb6cc785564178dfffc0186757c6fa27b8eb68228a350c09323ce45c6a80ea",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/COVERAGE.md": "3daea143f4cecb0f25194fe6df0b443c2c4c9d01df2c2b5db3897de464324ab8",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/SOURCE_BINDING.json": "32b77eca39f7ac94115c7874c68d1f950c680c1c521327d4a8c365a03c89ab05",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/READ_MANIFEST.json": "ef52cf805f4a94da229daa637b0a82300df520faf74538a75597a27756c85bb8",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CURRENT_EVIDENCE.json": "f77135fc23963e2c50d8346bcac3feab7896167a4fd5be5b232e1930319d64ac",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/RETURN.md": "a73801f7884875620c7d1589d2b25ee875c318f2cf6fdd87b9ac6fb916641244",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CLAIMS.csv": "a54b4aa7e34e4ef30ed2d40c58c6579f265258c103e1c8ee07cba28ea4133c97",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/OUTPUT_MANIFEST.json": "75fbcf1c790a6d41ce61da68ac51e26965ebe9353642780d1882f0ce15f01ba3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/RESIDUALS.csv": "8a4986aa012daae710cf531217f493021befc25abc17f746ab9fa413bd7cfc8c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/COVERAGE.md": "aef6151e1ecde41a592cf3ee9cfc648214ce13c35c4409dd5a86be5fb8495cbd",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/PREFLIGHT.json": "2e624b3deef5ab4d1a1a95ee1f2351639a6dae6e195c29285de7c56196e11de5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/SCOPE_FALLBACK.json": "eac9269ab2271bb1409493f292c3681fa5b2867b647265f016c09c7b63c3a743",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/READ_MANIFEST.json": "ea41efd58c87cd9bd6f3eaae3108cda671d14c3a586e27f041828330c922d213"
+  }
+}

@@ -1,0 +1,13 @@
+# DEL-10-08 coverage
+
+Derivative of accepted revision1.4 and D82/D81 at 2be412ccea62bdc4bd96deb082c46d7a792076ea. ASSESSED_UNKNOWN: 10 claims, 6 ALIGNED (documentary/lifecycle only), 4 UNKNOWN, 2 nonselectable proposals; warranted NONE is false.
+
+Missing local SOW contract: exact fallback projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-063 ScopeItemStatement; quote-sha256=c19d42b93bf9e5f85339f932bbb29fd6af780307efa15557f8dfd581807146bc. Verbatim statement: “Demonstrate stream-loss recovery by reconciliation (P4 exit test)”. Each run-local suffix derives from that source or named local metadata, never a fabricated REQ/AC/VER. All seven local files read, including empty _SEMANTIC.md and the dated D65 dependency-repair record.
+
+SOW-063 demonstration and P4 exit acceptance are independently assessed. DEL-03-05 owns SOW-038 recovery mechanism at P3 alongside DEL-07-01 first ingest; it is not interchangeable with this P4 exit demonstration. Both named local prerequisite rows remain ACTIVE/PENDING. Depends on REM-001 names both; REM-002 owner preparation has NONE. Discovery does not satisfy production dependencies.
+
+Nonclaim accounting: DEP-10-08-001 package anchor and -002 scope anchor are metadata restated in SOW-063 documentary row; no executable work. _REFERENCES pointers and revision history are provenance, not recovery tests. _SEMANTIC has zero bytes. D65 rows repair quotations only. C-04 phase precedence and C-10 stratum rules are ordering/provenance conditions, not extra product requirements. Type/envelope/phase/artifact/name/package are compared with Deliverables.csv in SOW-063 row. Purposefully unmapped objective and truthful TBD assignment get their own ALIGNED rows. No local defined REQ/AC/VER population exists to omit.
+
+Current v2 inventory inspected: production core/adapters contain loop-registry modules; tests are enforcement, API-contract and registry surfaces. SERVICE_CORE_POSTURE is a continuing build-gate description, not P4 evidence. Inventory absence is explicitly insufficient to prove absent recovery implementation. No source mutation, services, suites or product CLI executed. Local run evidence does not cite a demonstration or REVIEW result. No historical frozen PEC code reused. R0 sample does not include this deliverable; no R0 claim reuse.
+
+Scope remains intentionally bounded: no acceptance inferred from OPEN metadata, no TM023 gate, no TM022 resurrection, no PRDv2.3/D79 application, and stale _LATEST derivative prose does not reopen accepted ordinary currency. Root/foreign obligations are not inferred. Source/hold/contract/evidence changes require affected reassessment. Independent package verifier and manager fan-in remain required.

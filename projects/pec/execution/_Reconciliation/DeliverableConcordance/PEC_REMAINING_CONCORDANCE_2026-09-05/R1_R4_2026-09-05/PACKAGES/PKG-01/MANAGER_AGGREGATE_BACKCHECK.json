@@ -1,0 +1,13 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "claims": 286,
+  "residuals": 20,
+  "sealed_worker_files_rehashed": 46,
+  "source_hashes_reproduced": 653,
+  "selected_to_aggregate_exact_row_equality": true,
+  "claim_ids_unique": true,
+  "source_drift": [],
+  "live_product_control_ignored_status": "",
+  "status": "PASS",
+  "limits": "Package verifier still pending; this deterministic check does not assert semantic acceptance."
+}

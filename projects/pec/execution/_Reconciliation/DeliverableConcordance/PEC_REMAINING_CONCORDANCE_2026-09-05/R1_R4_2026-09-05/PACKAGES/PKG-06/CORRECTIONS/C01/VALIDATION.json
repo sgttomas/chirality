@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "command": [
+    "python3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/validate_package.py",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C01/DEL-06-01",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C01/DEL-06-02"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "stderr": "",
+  "result": {
+    "passed": true,
+    "errors": [],
+    "members": [
+      {
+        "DeliverableID": "DEL-06-01",
+        "Claims": 11,
+        "Residuals": 1,
+        "Unknown": 7,
+        "DispositionCounts": {
+          "ALIGNED": 4,
+          "UNKNOWN": 7
+        }
+      },
+      {
+        "DeliverableID": "DEL-06-02",
+        "Claims": 14,
+        "Residuals": 1,
+        "Unknown": 10,
+        "DispositionCounts": {
+          "ALIGNED": 4,
+          "UNKNOWN": 10
+        }
+      }
+    ]
+  },
+  "historical_helper_matches_both_originals": true,
+  "all_other_original_source_hashes_match": true,
+  "claims_and_residuals_byte_identical": true,
+  "original_checks_preserved": true,
+  "frozen_current_helper_unchanged": true,
+  "current_helper_sha256": "4c57d8a008efa9ed42fe14374a4d39a80c00075ef703c8da2a5adbaf7360aee5"
+}

@@ -1,0 +1,448 @@
+{
+  "hashes": {
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "agents/AGENT_RECONCILIATION.md": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+    "projects/pec/loop/LOOP_INIT.md": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+    "projects/pec/docs/PRD.md": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+    "projects/pec/docs/STATUS.md": "829bf77250907169806961f68b8ae2e656a52e08ff5f6a91b494771dddb80a8c",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_CONTEXT.md": "e5460afb03737fcc61594fb17a769d8b5d5de1faa40f4769c855d282b407f48d",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md": "7f603cbb185aeb39eec060563c7dc043fc08f3113b970004feddbf4dad60ed5f",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md": "e18a07fe6a6b9068740bb863ff4f07eabb321ff11dc1321a1c0a7e1bda1b14e1",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_REFERENCES.md": "9275945f28d5722112a20e2329c5b6723f13c28cc1431942bbcfb463d9946125",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_run_records/TASK_RUN_2026-07-25_1624.md": "1d9cc85b83f384a36219f9e277567eebc2e271002fac3ec196659b7c7beab1a3",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_run_records/TASK_RUN_2026-07-25_1550.md": "7846ca9ce89d078adef3cbdec8a834f3917671ac632a3c4be3f92e3be4be6db0",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "a66833861b6a8b2850a23b700a0935c7976a21ba328cf4d9b6b0bf10064644a7",
+    "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv": "563b4c281ded7a410cf7587b71fc562f321b254e317ced29f42a6d306dd3e701",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "e7095343267c04b814410f7fb55a58d25088283d46c3c26e161737e2fc609097",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/PACKAGE_BASIS.md": "9ffc4b9d026ca6e146c47e76b16b357a7477cec601bc1af64a2feef50a02a0fd",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/SOURCE_MANIFEST.json": "ff01345b0e3e625fc24a658946be72210dd226216d16f9e578b03aa024a533dd",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/validate_members.py": "362b762713cdd8f02039adc4c0323f5e5edf27046be5f3ffb3cb171e7ccf6e02",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/BRIEFS/DEL-02-04.md": "e57f11ef840bff4da841146516e156dec8860cd844bd20b1f86e3c25e9f2d161",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md": "924e482e7c075d3d616252194926934e04e0f660b5529d7e333a3a132269457d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json": "2d01cd1578b7c40683ef4baab429c7112f3b450bf54bf3583abfac3253843f3b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv": "b2396dd6dafa23ffe3f3f53e586fbb487d3ae20f4b1b636c7da102c13544c87c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md": "1b1c5b39bbc9bd7dcb1953f194dc85abc167cb7e24ba994481363d515a6e8820",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md": "c23a1a46e96361de3cae96d6be2f994fbc71482af52958b26751b016a4bfecd6",
+    "projects/pec/v2/tools/check_service_core_posture.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "projects/pec/v2/src/pec_v2/__init__.py": "ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e",
+    "projects/pec/v2/src/pec_v2/core/__init__.py": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py": "8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py": "7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py": "7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py": "49b2f6a3b5088bceb82dc393cce050b8800af3a5ac5d34b3b6a3d7b71c01111b",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py": "d7efb486287d3703aa9ea007eb5376eba95689286bb322c887eeca8b193ac956",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py": "9e9519e6eaded2e9db427a6609c5880c5316f6528facae80776307793bb0071d",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py": "f9ec548b059cdcbc1080da4c0f53ef97d5cf7e9a7b75ce5ad12c74a9b86be091",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py": "44a1f3d683fc27ef15595f9dacfdd37f98476eac6ec4b88da4cd43ba8b472e31",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py": "54671ebf7071f04e3d2cea8411895d9429c84036efa82f7223aa7c440d2d9bad",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py": "c35fff6dba0aaa2d114b0d4e252d561d361979254e4ecf91cdd6c16236f7d425",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py": "2f691060cef7a41af2530909638f9612725eab441b515ac10f37071ee15c8870",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py": "206cc544fa564634ea413a2e6ff1eed7cb062d5c5cf7a2b4e8156c4fede7d416",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py": "e38af91183e30927c8d990a76ba715f3e1f300ac1e6b489a2408b48741632522",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py": "8966d0088ea15ad37854ecfd0f4869c67b61ce5f8809848d380f1fb858e450a0",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py": "476b8cef2afeabe4dddd5173009cee02a7a709e6ebadfe886160a1f4c3000fe9",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py": "48f739f0169f93a303c2c754209ecdc343b4aa7607ee750bc3c943377902d0bc",
+    "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+    "projects/pec/v2/config/loops.json": "4ce07ad061abd222acabb2afe0f619fdc840b4cc11d31e49f1dff8fcc299d32e",
+    "projects/pec/v2/config/service_core_posture.json": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "projects/pec/v2/config/loops.schema.json": "1f4d1f0cf9abe5754ebb4260f588dea0d71e7f3cc37af2487b30b9c4aa39ba9b",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json": "2e65c719af6c9eb7e170fb25d437b928847dc8d617c056093de213673b3e3396",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json": "2155849d9419f0239dca7a69d919ca9ee46a6434106d5326d85bc8c70afc5257",
+    "projects/pec/v2/tests/config/fixtures/malformed.json": "f37303491c50fa74756f547929f09c99900abfad5a9310cc2b46beb5027425b0",
+    "projects/pec/v2/contracts/api/v1/schema.json": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67"
+  },
+  "checks": [
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md --operation candidate-validation",
+      "cwd": ".",
+      "environment": "PYTHONDONTWRITEBYTECODE=1",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md --operation candidate-validation",
+      "cwd": ".",
+      "environment": "PYTHONDONTWRITEBYTECODE=1",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv --operation candidate-validation",
+      "cwd": ".",
+      "environment": "PYTHONDONTWRITEBYTECODE=1",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    }
+  ],
+  "definitions": [
+    [
+      "CLM-001",
+      "The accepted `ScopeLedger.csv` row for `SOW-014` reads in full, including its trailing fields (columns `ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes`):",
+      81
+    ],
+    [
+      "CLM-002",
+      "The ledger `SourceRef` cell names two loci, and both are quoted here as they read. The first is `PRD.md` \u00a79.2 requirement `PEC-RCN-002`:",
+      88
+    ],
+    [
+      "CLM-003",
+      "The objective statements this deliverable serves are `OBJ-001` \"Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation\" (`SOFTWARE_DECOMP.md` \u00a73, `SourceRef` \u00a73.1; `PRD.md` \u00a73 outcome 1) and `OBJ-002` \"Staleness is detected structurally by SHA comparison, never by judgment\" (\u00a73, `SourceRef` \u00a73.2; `PRD.md` \u00a73 outcome 2). Both attributions are indirect through the record tier per the warrant above.",
+      104
+    ],
+    [
+      "OUT-001",
+      "A run-evidence JSON parser in the PEC service core: it reads `STATUS.json` and `RUNTIME_SUMMARY.json` files under `execution/**` in the checkouts it is pointed at, parses them under a declared grammar, and emits RunRecord summaries carrying citation provenance to their live sources.",
+      115
+    ],
+    [
+      "OUT-002",
+      "A fixture test suite covering the parser against well-formed, malformed, unreadable, absent, and schema-unrecognized run-evidence fixtures, implementing the verification methods declared in this contract.",
+      116
+    ],
+    [
+      "CLM-004",
+      "`DEL-02-04` is named \"Run-evidence JSON parser\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-014`, `SupportsObjectives` `OBJ-001;OBJ-002`, `ContextEnvelopeNotes` empty, with the register `Description` field reading \"`STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` into RunRecord summaries.\" Sources: `Deliverables.csv` row `DEL-02-04` and the `SOFTWARE_DECOMP.md` \u00a75 PKG-02 table row \"| DEL-02-04 | Run-evidence JSON parser | BACKEND_FEATURE_SLICE | S | P1 | SOW-014 |\". The `Description` field is the sole register statement of the parser's output target: RunRecord summaries.",
+      120
+    ],
+    [
+      "CLM-005",
+      "The seven-way split of `PEC-RCN-002` into `SOW-011..017` is decision-log entry `DL-4` (2026-07-24), whose Decision cell reads \"PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind\" and whose Rationale cell reads \"Each feed is a separately testable parser with its own grammar; a single \\\"ingest everything\\\" item is not atomic\". This deliverable is one feed kind: run-evidence JSON. The other six feeds belong to `DEL-02-01` through `DEL-02-03` and `DEL-02-05` through `DEL-02-07`.",
+      121
+    ],
+    [
+      "CLM-006",
+      "The `PKG-02` package charter (`SOFTWARE_DECOMP.md` \u00a74) is \"Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts ledgers, run-evidence JSON, dependency registers, workplans/LOOP_INIT, `adapter.yaml` manifests\", covering \"SOW-011..017 (7)\", with \"Writing anything; interpretation beyond declared grammars\" recorded as explicitly out of package scope.",
+      122
+    ],
+    [
+      "CLM-007",
+      "This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P06]`, held as `Dependencies.csv` register row `DEP-02-04-003`. Attributed by column: `DependencyClass` `EXECUTION`, `AnchorType` `NOT_APPLICABLE`, `Direction` `UPSTREAM`, `DependencyType` `PREREQUISITE`, `TargetType` `DELIVERABLE`, `TargetPackageID` `PKG-01`, `TargetDeliverableID` and `TargetRefID` `DEL-01-01`, `TargetName` \"Record-tier schema & entity model\", `TargetLocation` `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model`, `Statement` \"Parser emits RunRecord entities\", `EvidenceFile` `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`, `SourceRef` and `EvidenceQuote` both \"\u00a73 mapping notes (as E-P03)\", `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PENDING`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `FirstSeen` and `LastSeen` `2026-07-25`, `Status` `ACTIVE`, `Notes` \"PROPOSAL; Flag=none; EdgeID=E-P06\". The \"(as E-P03)\" shorthand is a back-reference to the sibling edge whose `BasisCitation` carries the \u00a73 mapping-note text in full; the gate exhibit's own edge-register row for `E-P06` (columns `EdgeID,PredecessorID,SuccessorID,Stratum,EdgeKind,Flag,BasisCitation,Rationale`) reads `E-P06,DEL-01-01,DEL-02-04,PROPOSAL,CONSUMES,,\u00a73 mapping notes (as E-P03),Parser emits RunRecord entities`, with `Flag` empty. The two remaining rows in this deliverable's register are the `ANCHOR` rows `DEP-02-04-001` (package-local to `PKG-02`) and `DEP-02-04-002` (`SOW-014` requirement trace).",
+      126
+    ],
+    [
+      "CLM-008",
+      "`DEL-01-01` is at lifecycle state `INITIALIZED`, which is the maturity `[E-P06]` requires. `INITIALIZED` means its **contract** is the reliable input: `DEL-01-01`'s accepted `ScopeOfWork.md` exists; no schema, no entity model, and no code do. Nothing in this contract asserts that any upstream artifact exists or has been built. The output-typing obligations this parser binds to are that contract's stated obligations, quoted here:",
+      127
+    ],
+    [
+      "CLM-009",
+      "The one declared downstream consumer is `DEL-03-01` (Full-rebuild reconciler (one command)) via `[E-P22]`, whose gate-exhibit row carries `BasisCitation` \"PEC-RCN-002 feed list (DL-4)\" and `Rationale` \"Full rebuild ingests run-evidence JSON\", with `Flag` empty. That edge is informational here; it lives in the consumer's register and imposes no obligation on this deliverable beyond the outputs declared above.",
+      157
+    ],
+    [
+      "CLM-010",
+      "Phase staging, checked against the `PhaseHint` column of `Deliverables.csv` for every deliverable this contract names in its own voice: `DEL-02-04` itself, its upstream `DEL-01-01`, its sibling parsers `DEL-02-01`, `DEL-02-02`, `DEL-02-03`, `DEL-02-05`, `DEL-02-06`, `DEL-02-07`, and the cited consumers and neighbours `DEL-01-03`, `DEL-01-05`, `DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-04-03`, `DEL-04-05`, and `DEL-10-02` are all `P1`. The one exception this contract names in its own voice is `DEL-01-02` (Presence-tier schema & entity model), which is `P3`; it is cited only as the owner of scope this deliverable does not touch. No claim in this contract stages any named deliverable into a different phase.",
+      158
+    ],
+    [
+      "CLM-011",
+      "The acts adjacent to this parser are owned elsewhere and are cited here, never discharged. The record-tier entity model that types this parser's output, RunRecord included, is `DEL-01-01` (`SOW-001`). The other six feed grammars are `DEL-02-01` through `DEL-02-03` and `DEL-02-05` through `DEL-02-07` (`SOW-011`..`SOW-013`, `SOW-015`..`SOW-017`); in particular `WORK_GRAPH.json` belongs to `DEL-02-05` under `SOW-015`, whose ledger `Notes` cell reads \"`WORK_GRAPH.json` feeds DependencyEdge, not RunRecord\". Full rebuild by one command is `DEL-03-01` (`SOW-010`, `SOW-021`); incremental Git-delta reconcile is `DEL-03-02` (`SOW-018`) and drift classification is `DEL-03-03` (`SOW-019`); examined-SHA and freshness stamping with per-claim citation attachment is `DEL-04-03` (`SOW-006`, `SOW-007`); rendering a measurement limitation into an orientation response is `DEL-04-05` (`SOW-009`); the gitignored store and its ingest-boundary content-minimal guard are `DEL-01-03` (`SOW-056`); standing zero-dependency and locality enforcement is `DEL-01-05` (`SOW-052`, `SOW-053`); the standing kill test is `DEL-10-02` (`SOW-055`); the presence tier is `DEL-01-02` (`SOW-002`). This contract produces only the parser and its fixture tests.",
+      162
+    ],
+    [
+      "CLM-012",
+      "`PEC-K-05` requires the two trust tiers never be blurred: \"Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations.\" The `SOW-014` ledger `Notes` cell and the `PRD.md` \u00a77.1 RunRecord row together place the boundary exactly where this parser meets it: checkout-contained run evidence under `execution/**` is record-tier input; runtime-daemon state under user data is presence-tier only and is not this deliverable's input at all.",
+      163
+    ],
+    [
+      "CLM-013",
+      "The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.",
+      164
+    ],
+    [
+      "CLM-014",
+      "Observed corpus condition, recorded as observation and not as specification. A census of this checkout on 2026-07-25 finds **342** files named `STATUS.json` and **24** named `RUNTIME_SUMMARY.json` beneath a path segment `execution`, distributed across the root loop's `execution/` tree (272 and 21) and the projects `chirality-app-dev` (54 and 1) and `chirality-piping` (16 and 2). All 366 parse as well-formed JSON today. Their shape is heterogeneous: **189** of the 342 `STATUS.json` files carry no `schema` key at all, those that do carry **24** distinct `schema` values, and the corpus presents **1,096** distinct top-level keys; for `RUNTIME_SUMMARY.json`, 9 of 24 carry no `schema` key, 3 distinct `schema` values appear, and 115 distinct top-level keys. The `projects/pec` tree contains **zero** files of either name. These files are the corpus the parser will meet; they are not a contract, and no accepted PEC source adopts any of their shapes.",
+      165
+    ],
+    [
+      "TBD-001",
+      "`ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      167
+    ],
+    [
+      "TBD-002",
+      "The grammar this parser declares \u2014 which keys of `STATUS.json` and `RUNTIME_SUMMARY.json` it reads, their semantics, how it recognizes a declared `schema` value, and how it treats a file carrying none \u2014 is fixed by no accepted source. It is chosen during production within REQ-002 and CLM-006, against the corpus condition of CLM-014.",
+      168
+    ],
+    [
+      "TBD-003",
+      "The field set of a RunRecord summary is not enumerated by any accepted source. `PRD.md` \u00a77.1 says \"Summaries of checkout-contained AgentRun evidence\" without listing fields, and the upstream contract quoted in CLM-008 obliges the RunRecord type to exist and bounds what it may admit without enumerating what it holds. The concrete summary shape therefore arrives from `DEL-01-01`'s production; this contract binds the parser to that type rather than defining it (REQ-003, CON-002).",
+      169
+    ],
+    [
+      "TBD-004",
+      "How a run-evidence file is bound to the loop, package, or deliverable it belongs to is fixed by no accepted source. Some observed files carry `package_id` or `deliverable_id` keys and most do not (CLM-014); whether binding is derived from path position, from file content, or from the feed manifest is a production choice within TBD-002, and it is not settled here.",
+      170
+    ],
+    [
+      "REQ-001",
+      "The parser shall read files named `STATUS.json` and `RUNTIME_SUMMARY.json` located beneath `execution/**` in the checkouts it is pointed at, and shall emit from them RunRecord summaries, per the `SOW-014` statement (CLM-001) and the register `Description` (CLM-004).",
+      177
+    ],
+    [
+      "REQ-002",
+      "The parser shall document the grammar it consumes \u2014 every key it reads and that key's semantics \u2014 and shall let no undeclared key influence its output, per the `PKG-02` out-of-scope line \"interpretation beyond declared grammars\" (CLM-006). Where a file declares a `schema` value the parser does not recognize, and where a file declares none, the grammar shall state what the parser does; silent best-effort interpretation of unrecognized shapes is prohibited.",
+      178
+    ],
+    [
+      "REQ-003",
+      "The parser's emitted summaries shall be typed as the RunRecord entity of the upstream record-tier entity model quoted in CLM-008. This deliverable shall define no record-tier entity type of its own, shall add no type to that model, and shall not depend on any upstream artifact existing; it depends on the upstream contract only (CON-002).",
+      179
+    ],
+    [
+      "REQ-004",
+      "The parser shall admit only checkout-contained run evidence beneath `execution/**`. Runtime-daemon state under user data shall not be an input and shall not be representable in any emitted summary, per the `SOW-014` ledger note \"Daemon user-data state is presence-tier only\", the `PRD.md` \u00a77.1 RunRecord row (CLM-002), `D-GOV-20` \u00a75, and `PEC-K-05` (CLM-012).",
+      180
+    ],
+    [
+      "REQ-005",
+      "Every emitted summary shall carry provenance sufficient for a per-claim citation to its live source \u2014 file path, anchor, and/or SHA \u2014 per `PEC-ORI-004` and the upstream provenance obligation quoted in CLM-008. Attaching citations to an orientation response is `DEL-04-03`'s act under `SOW-007` (CLM-011); this requirement obliges the parser to carry what that act needs, and no more.",
+      181
+    ],
+    [
+      "REQ-006",
+      "Where a run-evidence file is absent, unreadable, malformed as JSON, or carries a shape the declared grammar does not recognize, the parser shall report that condition explicitly to its caller, naming the file and the fault; a silently dropped, empty, partial, or defaulted summary is prohibited, per `PEC-ORI-006` (\"Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited\"). Rendering such a limitation into an orientation response is `SOW-009` / `DEL-04-05` scope (CLM-011); this deliverable makes the limitation available to that consumer.",
+      182
+    ],
+    [
+      "REQ-007",
+      "The parser shall create, modify, or delete no source file, including the run-evidence files it reads, per `PEC-RCN-004` (\"it shall never modify a source file\"), `PEC-RCN-006` (\"The reconciler writes only its own store and generated views\"), and the `PKG-02` out-of-scope line \"Writing anything\".",
+      183
+    ],
+    [
+      "REQ-008",
+      "The emitted summaries shall be content-minimal: paths, counts, identifiers, states, SHAs, and hashes, never file or diff content, per `PEC-K-10`. The observed corpus embeds free prose in fields such as blockers, unknowns, and returns (CLM-014); the parser shall not carry that prose into the record tier. Enforcement at the ingest boundary is `DEL-01-03`'s guard under `SOW-056` (CLM-011); this requirement binds what the parser emits so that the guard has nothing to admit.",
+      184
+    ],
+    [
+      "REQ-009",
+      "The parser shall be deterministic over its inputs: the same file set at the same content shall yield the same summaries, so that the record tier remains fully regenerable from sources per `PEC-K-02` and the upstream regenerability obligation quoted in CLM-008. The rebuild command itself is `DEL-03-01`'s under `SOW-010` (CLM-011).",
+      185
+    ],
+    [
+      "REQ-010",
+      "The parser and its fixtures shall introduce no third-party runtime dependency and no external network egress, per `PEC-SVC-001` and `PEC-SVC-002`, whose standing enforcement is `DEL-01-05` covering `SOW-052` and `SOW-053`.",
+      186
+    ],
+    [
+      "REQ-011",
+      "The parser shall parse no feed owned by a sibling deliverable and shall perform no act owned by another package. In particular it shall not read `WORK_GRAPH.json` (`DEL-02-05` / `SOW-015`), shall emit no DependencyEdge, Receipt, DecisionRow, or Workplan/Step/Gate entity, and shall perform no reconciliation, drift classification, freshness stamping, or citation attachment (CLM-011).",
+      187
+    ],
+    [
+      "REQ-012",
+      "Tests shall implement the verification methods declared in this contract; they shall not define scope, requirements, or acceptance criteria.",
+      188
+    ],
+    [
+      "AC-001",
+      "The parser reads a well-formed fixture pair and yields exactly the RunRecord summaries the fixture declares; every key it reads appears in the documented grammar; altering an undeclared key in the fixture changes nothing in its output; and a fixture with an unrecognized `schema` value and a fixture with no `schema` key are each handled as the documented grammar states.",
+      190
+    ],
+    [
+      "AC-002",
+      "Every emitted summary is an instance of the upstream RunRecord type as that contract obliges it; no record-tier entity type is defined in this deliverable's source; and no element of this deliverable asserts or requires that an upstream schema, entity model, or store exists.",
+      191
+    ],
+    [
+      "AC-003",
+      "Only files beneath `execution/**` are read, and a fixture carrying runtime-daemon user-data state produces no summary and no record-tier field, so no presence fact can reach a record-tier citation through this parser.",
+      192
+    ],
+    [
+      "AC-004",
+      "Every emitted summary resolves to its live source: for a sample of each fixture kind, the recorded provenance is present and locatable by path, anchor, and/or SHA.",
+      193
+    ],
+    [
+      "AC-005",
+      "For absent, unreadable, malformed-JSON, and schema-unrecognized fixtures, the parser returns an explicit limitation naming the file and the fault, and never a silently dropped, empty, partial, or defaulted summary in its place.",
+      194
+    ],
+    [
+      "AC-006",
+      "A parser run over a fixture corpus leaves that corpus byte-identical, and the module contains no write, create, or delete call against any source path.",
+      195
+    ],
+    [
+      "AC-007",
+      "The emitted summaries for a prose-bearing fixture contain no file content, no diff content, and no free-prose payload carried from the run-evidence file; only paths, counts, identifiers, states, SHAs, and hashes appear.",
+      196
+    ],
+    [
+      "AC-008",
+      "Two runs of the parser over the same unchanged fixture corpus produce identical summaries, and inspection finds no emitted field whose value a rebuild from the same sources could not reproduce.",
+      197
+    ],
+    [
+      "AC-009",
+      "The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      198
+    ],
+    [
+      "AC-010",
+      "The parser reads no sibling feed \u2014 `WORK_GRAPH.json` included \u2014 emits no entity type other than RunRecord, and performs no reconciliation, drift-classification, stamping, or citation-attachment act owned by `PKG-03` or `PKG-04`.",
+      199
+    ],
+    [
+      "AC-011",
+      "The fixture test suite implements VER-001 through VER-010, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      200
+    ],
+    [
+      "AC-012",
+      "The REVIEW gate confirms this contract's traceability to `SOW-014`, `OBJ-001`, and `OBJ-002` as ruled at SCA-002 Gate 3 Q2, confirms that the indirect `OBJ-002` leg is stated no more strongly here than the Gate 3 record states it \u2014 including the recorded and unadopted N1 narrowing evidence and the absence of a confidence label on that group \u2014 and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, or `PKG-04` scope has been absorbed.",
+      201
+    ],
+    [
+      "CON-001",
+      "No accepted source declares a schema for `STATUS.json` or `RUNTIME_SUMMARY.json`. The corpus measured in CLM-014 is heterogeneous by a wide margin \u2014 most `STATUS.json` files declare no schema at all, those that do declare two dozen different ones, and over a thousand distinct top-level keys appear across the set. `PKG-02`'s charter permits a declared grammar and forbids \"interpretation beyond declared grammars\"; those two facts are in tension for this feed, because a grammar narrow enough to be declarable will not describe most of the corpus, and a grammar wide enough to describe the corpus is interpretation. This contract records the tension rather than resolving it: REQ-002 requires the grammar to be declared and to state its own behaviour on unrecognized shapes, and REQ-006 requires every file the grammar does not cover to surface as an explicit limitation rather than a silent omission. Choosing the grammar's breadth is a production decision bounded by those requirements; extending this deliverable to interpret shapes it has not declared would be a scope-change question, not a production decision.",
+      203
+    ],
+    [
+      "CON-002",
+      "The RunRecord summary field set is owned upstream and does not yet exist. `DEL-01-01` is `INITIALIZED`: its contract obliges the RunRecord type and bounds what it may admit (CLM-008), but neither it nor any accepted source enumerates the type's fields (TBD-003). This parser's output typing therefore binds to an obligation, not to an artifact. Nothing in this contract defines, anticipates, or constrains that field set, and a production choice here that fixed it would take a decision in the wrong place.",
+      204
+    ],
+    [
+      "CON-003",
+      "The corpus this parser is first expected to meet is empty at the point of first reading. `OI-010`, resolved at Gate 2 (2026-07-24), records that \"... the first loop the P1 reconciler ingests is PEC v2's own build (bootstrap as thesis validation) ...\", and the `projects/pec` tree contains no `STATUS.json` and no `RUNTIME_SUMMARY.json` today (CLM-014). This is recorded as a stated condition, not a defect and not a licence to widen the read scope: the parser's coverage of a loop with no run evidence is a limitation to be stated under REQ-006, and reaching outside `execution/**` to find inputs is prohibited by REQ-004.",
+      205
+    ],
+    [
+      "VER-001",
+      "Execute the parser over a well-formed fixture pair and assert the emitted summaries equal the fixture's declared expectation; compare the set of keys actually read, by instrumentation or code inspection, against the documented grammar; mutate an undeclared key to assert output invariance; and execute the unrecognized-`schema` and absent-`schema` fixtures, asserting the documented behaviour in each case.",
+      219
+    ],
+    [
+      "VER-002",
+      "Inspect this deliverable's source for any record-tier type definition and assert none is present; assert every emitted summary is constructed against the upstream RunRecord type as the contract quoted in CLM-008 obliges it; and grep the source and fixtures for any assumption that an upstream schema, model, or store exists, asserting none.",
+      220
+    ],
+    [
+      "VER-003",
+      "Tier-boundary exercise: point the parser at a fixture tree containing files beneath and outside `execution/**` plus a runtime-daemon user-data state fixture, and assert that only the `execution/**` files are read and that the daemon-state fixture yields no summary and no record-tier field.",
+      221
+    ],
+    [
+      "VER-004",
+      "Provenance resolution: for a sample summary from each fixture kind, resolve the recorded provenance to a live file source and assert that path, anchor, and/or SHA are present and locatable.",
+      222
+    ],
+    [
+      "VER-005",
+      "Execute the parser against absent, unreadable, malformed-JSON, and schema-unrecognized fixtures and assert, per case, an explicit limitation naming the file and the fault, with no dropped, empty, partial, or defaulted summary returned.",
+      223
+    ],
+    [
+      "VER-006",
+      "Hash the fixture corpus tree before and after a parser run and assert byte-identity; inspect the module's call graph for write, create, or delete operations against any source path.",
+      224
+    ],
+    [
+      "VER-007",
+      "Content-minimal inspection: run the parser over a fixture whose run-evidence fields carry free prose, diff-shaped text, and file content, and assert field by field that the emitted summaries carry none of it, only paths, counts, identifiers, states, SHAs, and hashes.",
+      225
+    ],
+    [
+      "VER-008",
+      "Determinism check: run the parser twice over the same unchanged fixture corpus and assert the emitted summaries are identical; inspect the emitted field inventory for any value the parser did not derive from the source files.",
+      226
+    ],
+    [
+      "VER-009",
+      "Inspect the `PKG-02` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here.",
+      227
+    ],
+    [
+      "VER-010",
+      "Boundary inspection: assert the parser opens no file named `WORK_GRAPH.json` or any other sibling feed, emits no entity type other than RunRecord, and contains no reconciliation, drift-classification, stamping, or citation-attachment code path.",
+      228
+    ],
+    [
+      "VER-011",
+      "Run the `PKG-02` test suite and confirm that each of VER-001 through VER-010 has a corresponding executing automated test and that no test asserts a criterion absent from this contract.",
+      229
+    ],
+    [
+      "AX-001",
+      "`OBJ-001` governs: orientation is a sub-second query with per-claim citations. A run-evidence summary that cannot say which file it came from cannot serve a cited orientation, whatever else it holds; provenance is therefore a property of what this parser emits (REQ-005) rather than a decoration added downstream.",
+      233
+    ],
+    [
+      "AX-002",
+      "`OBJ-002` governs indirectly, through the record tier. This deliverable produces facts the SHA comparison operates over; it does not perform that comparison, and no requirement here may be read as claiming otherwise. Its contribution to the objective is that its output is deterministic and regenerable (REQ-009), so a difference between two reconciles is a structural difference and never a judgment.",
+      234
+    ],
+    [
+      "AX-003",
+      "`PEC-K-05` governs the tier boundary, and this feed is where the boundary is most easily blurred: the same run produces checkout-contained evidence and daemon user-data state, and only the first is record-tier. `SOW-014`'s own ledger note draws the line. REQ-004 enforces it at the input, so that presence facts have no route into a record-tier citation through this parser.",
+      235
+    ],
+    [
+      "AX-004",
+      "`PEC-K-10` content-minimal is a residency posture, not a storage optimization, and this feed carries the most prose of any in `PKG-02`: the observed corpus embeds blocker text, unknowns, and whole agent returns inside JSON fields (CLM-014). The strongest available enforcement is emitting a summary that has nowhere to put prose (REQ-008); the ingest-side guard is `DEL-01-03`'s.",
+      236
+    ],
+    [
+      "AX-005",
+      "`PEC-K-02` files govern: run-evidence JSON is authored project truth and PEC's summary of it is a projection, regenerable and never citable as authority over the file itself. `PEC-RCN-004` and `PEC-RCN-006` make the read-only posture a rule rather than a habit (REQ-007).",
+      237
+    ],
+    [
+      "AX-006",
+      "`PEC-K-01` graceful absence governs: no governed act may require a PEC read or write. A loop with no run evidence \u2014 which is the pec loop's condition today (CON-003) \u2014 is a stated coverage limitation, never a blocked act and never a silent gap.",
+      238
+    ],
+    [
+      "AX-007",
+      "`DL-4` is the decision that makes this deliverable atomic: one feed kind, one separately testable unit, one declared grammar. Absorbing a sibling feed grammar (`DEL-02-01`..`DEL-02-03`, `DEL-02-05`..`DEL-02-07`), the entity model that types this output (`DEL-01-01`), the reconciler that consumes it (`DEL-03-01`), or the limitation-honesty surface (`DEL-04-05`) would undo that decision. REQ-011 states the boundary as a requirement so that it is checkable.",
+      239
+    ],
+    [
+      "AX-008",
+      "The edges `[E-P06]` (upstream, `DEL-01-01` \u2192 `DEL-02-04`) and `[E-P22]` (downstream, `DEL-02-04` \u2192 `DEL-03-01`) are `PROPOSAL` stratum and are accepted: `D-PEC-62` \u00a71(4) accepted the candidate DAG v0.2 exhibit \"all strata as presented\", read in that packet as carrying the exhibit's flags as flags, so what remains recorded-but-unresolved is the specific annotated set (E-A11, E-P69/E-N02, E-N13/E-N18, the C-02 direction, the C-08 standing-node set) \u2014 none of which touches `E-P06` or `E-P22`, both of which carry an empty `Flag` column in the exhibit. Stratum is provenance, not authority: it records how an edge was derived, not whether it has been accepted, and citation does not convert `PROPOSAL` to `DECLARED`.",
+      240
+    ],
+    [
+      "AX-009",
+      "Edge direction is a constraint on this contract, not a licence. `RequiredMaturity` `INITIALIZED` on `[E-P06]` means the upstream *contract* is the reliable input, not any upstream artifact; this contract is written against the obligations quoted in CLM-008 and asserts nothing about upstream implementation state. Consuming that contract imposes no obligation on `DEL-01-01`, and being consumed by `DEL-03-01` neither expands nor transfers scope in either direction.",
+      241
+    ],
+    [
+      "AX-010",
+      "Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-003 are recorded rather than resolved by inference. `C-04` `PHASE_PRECEDENCE` and `C-10` `STRATUM_RULE` are register-wide non-gating constraints recorded in `_DEPENDENCIES.md`, and blocker output under the `FULL_GRAPH` mode at threshold `INITIALIZED` is advisory visibility only, never work assignment.",
+      242
+    ],
+    [
+      "AX-011",
+      "This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by the run that authored this document; the deliverable is at `OPEN` and nothing has been built.",
+      243
+    ]
+  ]
+}

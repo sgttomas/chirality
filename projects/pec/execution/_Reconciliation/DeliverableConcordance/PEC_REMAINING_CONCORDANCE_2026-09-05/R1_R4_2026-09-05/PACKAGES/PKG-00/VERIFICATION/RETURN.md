@@ -1,0 +1,5 @@
+# Initial independent verifier return
+
+CORRECTION_REQUIRED: V001 residual naming and V002 semantic ClaimClass. 87 claims/6 residuals mechanically reconciled;28 semantic claims including13 nonaligned/all6 residuals;133 worker source hashes;53 defined REQ/AC/VER covered;11 fallback mappings valid; six exact hold preflights ALLOW. AC002 narrow omission supported, AC007 accepted history unchanged. Nine UNKNOWN remain. Fresh corrections plus independent backcheck required before package readiness.
+
+Accepted upstream D81 conventions/D82 effective base2be412ccea62bdc4bd96deb082c46d7a792076ea and revision1.4/later exact currency. Original derivative verification sealed; source/worker trees unchanged. No source/Remaining/lifecycle/release closure. Rerun on material source/hold/authority drift. Writes only VERIFICATION/**; Agent2 delegated-harness-native, role instruction-asserted; no delegation. OUTPUT_MANIFEST self-excludes and binds all initial verifier outputs; exact manifest hash returned separately.

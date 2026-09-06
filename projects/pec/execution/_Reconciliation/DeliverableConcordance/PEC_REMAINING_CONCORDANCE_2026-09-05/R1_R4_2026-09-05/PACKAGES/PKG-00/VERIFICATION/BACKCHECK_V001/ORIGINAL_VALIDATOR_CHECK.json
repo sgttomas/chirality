@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/validate_original_population.py"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "result": "{\n  \"status\": \"PASS\",\n  \"errors\": [],\n  \"members\": [\n    {\n      \"deliverable\": \"DEL-00-01\",\n      \"claim_count\": 43,\n      \"residual_count\": 1\n    },\n    {\n      \"deliverable\": \"DEL-00-02\",\n      \"claim_count\": 11,\n      \"residual_count\": 4\n    },\n    {\n      \"deliverable\": \"DEL-00-03\",\n      \"claim_count\": 33,\n      \"residual_count\": 1\n    }\n  ],\n  \"claims\": 87,\n  \"residuals\": 6,\n  \"source_hashes_reproduced\": 133\n}\n",
+  "script_sha256": "ef77dfac9f963b40201465984d0bd4545749538c2e522ad543c03a64cb9978e3",
+  "provenance": "Manager reconstruction; direct current execution proves original-population structural PASS. Not claimed original executed-byte snapshot."
+}

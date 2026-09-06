@@ -1,0 +1,275 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "projects/pec/docs/PRD.md": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv": "58b97ea5d8df6124ac6b94baa922983e82e05cadf8892404b174e6c4a262f1ba",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_CONTEXT.md": "d1bbae9720e13b66b9ab2267657b10910e134564dfcb1c4fc616637817ef8daa",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_DEPENDENCIES.md": "3cce8edf65f1d4dc37e4d8b185b36a0b816d3be9f833663327e5b05b4cd8d2f4",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md": "66489416f3dfe9c61f7a25865238cf1bf4a54c9e398b53c076e1fcc56af86b1d",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md": "4cdf6ec8ae63491527cbc9c58641d402e9642c868879917a09727cbc67634960",
+    "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "850b1bc7c2faeb9da4b334729b469013c8163c914cec820b69f65b613b3dd6fa",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md": "8a9957b4150143c9958083107982dd8e5538a8d1cb69aa436a0bab953d00d24f",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "e7095343267c04b814410f7fb55a58d25088283d46c3c26e161737e2fc609097",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-08.md": "79ccb352ae6c99ed6b90804e8abdac6938578d9b1df0fd656c28d4a031ceec9d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/DEL-08-05.md": "54e1f830e188b47d9fcbb8526e5cb92cd15aa2487a7b3fff414454d6c429354e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_BASIS.md": "196da01680a27ab416cdd6fb3848fdc326a7cac0abf8d91c320e89c66e5c44c4",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/SOURCE_MANIFEST.json": "56446b17fd529014eb9084401646352d2a6fcfc4864de82518e58b804cb86ec7",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "projects/pec/loop/LOOP_INIT.md": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+    "projects/pec/v2/contracts/api/v1/schema.json": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+    "projects/pec/v2/src/pec_v2/__init__.py": "ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py": "8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py": "7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py": "7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f",
+    "projects/pec/v2/src/pec_v2/core/__init__.py": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662"
+  },
+  "historical_sources": [],
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Remaining.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REVIEW.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "git show BASE:path SHA-256 comparison for every read path",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": {
+        "base_equal": 32,
+        "run_derivative_context_not_base": [
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-08.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/BRIEFS/DEL-08-05.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_BASIS.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/SOURCE_MANIFEST.json"
+        ],
+        "drift": []
+      }
+    },
+    {
+      "command": "AST inspection of all current projects/pec/v2/src Python modules; direct canonical file existence checks",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "CURRENT_EVIDENCE.json; current limited product evidence does not establish SOW-044 behavior"
+    },
+    {
+      "command": "claim/residual schema, unique IDs, reciprocal links, Depends and literal gate validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": {
+        "claims": 18,
+        "aligned": 15,
+        "unknown": 3,
+        "residuals": 1,
+        "LF": true,
+        "REQ_AC_VER_defined": 0
+      }
+    },
+    {
+      "command": "independent readback assertions: exact row populations, reciprocity, ID syntax, gates, LF, all source hashes, fallback quote existence and quote hashes",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "PASS: 18 claims / 15 ALIGNED / 3 UNKNOWN / 1 residual; every exact fallback quote exists"
+    }
+  ],
+  "source_unchanged": true
+}

@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "closure_meaning": "package report/proposal readiness only; not product/Remaining/lifecycle/release closure",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "member_count": 12,
+  "claim_count": 418,
+  "required_REQ_AC_VER_count": 179,
+  "local_ID_count": 349,
+  "raw_residual_count": 26,
+  "recommended_evidence_candidates": 13,
+  "held_routes": 13,
+  "unknown_claims": 202,
+  "warranted_NONE": [
+    "DEL-10-01"
+  ],
+  "ASSESSED_UNKNOWN_members": 11,
+  "mechanical_validation": "VALIDATION.json is dated pre-backcheck mechanical result; its pending note is superseded only by the separately sealed independent backcheck",
+  "independent_backcheck": "VERIFICATION/BACKCHECK_V001_V002/VALIDATION.json",
+  "independent_backcheck_sha256": "1c04a36310db9f916a65741d0c4f659cb1753a4b3bc7a65ffc4e8e826f8c32fb",
+  "source_preservation": "SOURCE_PRESERVATION.json",
+  "initial_findings_preserved": true,
+  "corrected_cell_maps_reproduced": {
+    "V001": 227,
+    "V002": 35
+  },
+  "new_product_tests": false
+}

@@ -1,0 +1,40 @@
+{
+  "recorded_utc": "2026-09-05T22:15:37.261218+00:00",
+  "attribution": "HELP_HUMAN parent reported actual native launches; common integration node did not dispatch managers",
+  "execution_class": "delegated-harness-native",
+  "role_evidence": "instruction-asserted; not mechanically enforced",
+  "model": "inherited available model; identity not exposed",
+  "source_base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "common_manifest_sha256": "06103f40f5febff9fe6a09481fa0a56bae806ec217d72e8e3855e646defdb45b",
+  "parent_checks_reported": "648 source hashes and42 initial exact-file preflights independently reproduced by HELP_HUMAN",
+  "launches": [
+    {
+      "package": "PKG-00",
+      "actual_manager_task_id": "/root/pec_pkg00_reconciliation",
+      "direct_parent": "/root",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-00.md",
+      "brief_sha256": "3260f65ce0caad30911afc24c3af50f1f41c2a6c3734c768a84c01340ee1eca3",
+      "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00",
+      "max_active_specialist_children_including_verifier": 2
+    },
+    {
+      "package": "PKG-01",
+      "actual_manager_task_id": "/root/pec_pkg01_reconciliation",
+      "direct_parent": "/root",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-01.md",
+      "brief_sha256": "85e091590ecf887d27f7c30c51dd5c449d1605a49c52c32ee439a04f221a0a20",
+      "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01",
+      "max_active_specialist_children_including_verifier": 2
+    },
+    {
+      "package": "PKG-10",
+      "actual_manager_task_id": "/root/pec_pkg10_reconciliation",
+      "direct_parent": "/root",
+      "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-10.md",
+      "brief_sha256": "df9e2ccf2606f388bc816e324a2dd00b61a464b5c599aa310b437cff8933cf36",
+      "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+      "max_active_specialist_children_including_verifier": 2
+    }
+  ],
+  "append_only": "new dispatch evidence; sealed essentials and COMMON_FROZEN_MANIFEST unchanged"
+}

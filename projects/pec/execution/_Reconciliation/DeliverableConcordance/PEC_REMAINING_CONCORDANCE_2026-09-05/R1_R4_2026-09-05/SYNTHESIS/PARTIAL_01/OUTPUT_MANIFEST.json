@@ -1,0 +1,12 @@
+{
+  "self_excluded": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/OUTPUT_MANIFEST.json",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/CROSS_PACKAGE_INPUTS.csv": "4df125745441cb710a434e4bdf25e7f3a32ab888f6311bc8a1988d8efc9d7b2c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/DELIVERABLE_CENSUS.csv": "f6a36240a1a49eac73cba5dcb911423d0162191b7f31b116d3036de884ccee70",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/HANDOFF_STATE.md": "c320df2e7b1c471c59a639b646e5ed9b8f2e4328a02245c04ebba9d35c9578a7",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/LOCATOR_NORMALIZATION.csv": "bbc414123472ae2da4ac7e7b2d05b30f155a8c9f22f5d7dd1cacaa56d14dcd03",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/OBSERVED_CLAIMS.csv": "662163f2e63cb1b804885ebb54e3fefc40af92379b7338bec268d94df94a79d5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/OBSERVED_RESIDUALS.csv": "9846e888f18ca3b791cf247bc45fa5e09c89be0c8a3eb38940b02d17fccb4658",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PARTIAL_01/READ_MANIFEST.json": "69d9985183bb6b2d0c4380291d0c652b6f2aa7c3eca25763af7f9a6865844d5a"
+  }
+}

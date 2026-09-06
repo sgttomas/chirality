@@ -1,0 +1,28 @@
+{
+  "DEL-01-05": {
+    "source_hashes": 63,
+    "changed": [
+      "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md"
+    ],
+    "accepted_artifacts": 17,
+    "acceptance_mismatch": []
+  },
+  "DEL-01-06": {
+    "source_hashes": 58,
+    "changed": [
+      "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "projects/pec/loop/LOOP_RECEIPTS.md"
+    ],
+    "accepted_artifacts": 0,
+    "acceptance_mismatch": []
+  },
+  "grouping": {
+    "ELIGIBLE_FOR_LATER_EXACT_APPLICATION_PROPOSAL": 10,
+    "HELD_ROUTING_ONLY": 9,
+    "CONDITIONAL_INTERPRETATION": 1
+  },
+  "group_ids_unique": true,
+  "mainline_visibility": {
+    "base_ancestor_origin_main": true
+  }
+}

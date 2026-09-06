@@ -1,0 +1,56 @@
+[
+  {
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-033 ScopeItemStatement",
+    "quote": "Accept idempotent, append-only event ingest keyed on event id",
+    "quote_sha256": "faebe04d8f2e76fb10ea261e2bd4af35ca679dd7e7c2193edfd06ac3ca0075b8",
+    "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "mapped_member": "DEL-07-01",
+    "check": "Exact accepted source statement independently reproduced; behavioral split reviewed"
+  },
+  {
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-035 ScopeItemStatement",
+    "quote": "Implement the runtime-daemon SSE subscriber bridge, declared and attributable",
+    "quote_sha256": "44fe84721f12095b82430df19821d5c238809990f8f26b97faba419371715f38",
+    "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "mapped_member": "DEL-07-02",
+    "check": "Exact accepted source statement independently reproduced; behavioral split reviewed"
+  },
+  {
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-036 ScopeItemStatement",
+    "quote": "Implement the harness hooks CLI bridge (session start/stop, status, scope declaration), declared and attributable",
+    "quote_sha256": "c7567c4a8d90839eef6b30f369d289621c1e88d50341cc5181f819f14c8afdd2",
+    "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "mapped_member": "DEL-07-03",
+    "check": "Exact accepted source statement independently reproduced; behavioral split reviewed"
+  },
+  {
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-037 ScopeItemStatement",
+    "quote": "Implement the cmux socket adapter as an optional, declared and attributable enricher",
+    "quote_sha256": "c9eb42ad4f30d336f0a6aaeda1fe7fbab2b3f0ad81fac58bd9f8082f2beeef56",
+    "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "mapped_member": "DEL-07-04",
+    "check": "Exact accepted source statement independently reproduced; behavioral split reviewed"
+  },
+  {
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-039 ScopeItemStatement",
+    "quote": "Persist every ingested message durably and queryably; provide no ephemeral relay",
+    "quote_sha256": "9de8e46c2d0338db03231fa5962c7fbd84103735c70bf8d0d4ab17551bae2c0b",
+    "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "mapped_member": "DEL-07-01",
+    "check": "Exact accepted source statement independently reproduced; behavioral split reviewed"
+  },
+  {
+    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-087 ScopeItemStatement",
+    "quote": "Reimplement the shared-runtime client seam concept against v2 entities",
+    "quote_sha256": "16616eb801853a6bf9e7a2f4af2c23f815b6e19614c225df49bfc76ff5db9f64",
+    "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "mapped_member": "DEL-07-05",
+    "check": "Exact accepted source statement independently reproduced; behavioral split reviewed"
+  }
+]

@@ -1,0 +1,218 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "cwd": ".",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  }
+]

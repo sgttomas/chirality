@@ -1,0 +1,12 @@
+[
+  {
+    "deliverable": "DEL-06-01",
+    "verdict": "PASS",
+    "only_change": "READ_MANIFEST helper locator mapped to immutable identical intermediate helper; all other fields and worker outputs byte-identical"
+  },
+  {
+    "deliverable": "DEL-06-02",
+    "verdict": "PASS",
+    "only_change": "READ_MANIFEST helper locator mapped to immutable identical intermediate helper; all other fields and worker outputs byte-identical"
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "PackageID": "PKG-00",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "3604fb1a45c00d6e5ad7dbeff33c4fa9b59f148fbd638dbcc538fcd381e2de8c",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "d17e7cac30dddfce44c73d1a1af85b2c16a6037ad24617e4dd26e16bc466a779",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "eb02125660662c5268f1a7341562d2a791a13a60d7fb1b7561c35e305d567137",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-01",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "918b4f61e90643d52f9cc8cb1fda8ad9b1488c7c537e912eeff0582f70eba361",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "6c65ad4b05d8835017cf482936afa7c03199fb0f755a3bd13ea7fe651abb2899",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "dfff5548224adc6dad2aeac0e3ab114a29f7bbd9f9892fdd5b91608755a08355",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-02",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "d5764f02bc9e507f25eef834b4948ec7208b53d8669a0e1b322e822102397730",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "e64afb60ecd0e52fc7d53741c2b82f33f6351b0a05db83f67e22b682670c1161",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "9b3bf0abc6fbc0f1f3fc6f362ba206eda810543c3d5a0771583d9724f935aafb",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-03",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "c5d2626feabb459cd76837e04316855f5f87600f01422ac5c2ff58d9fb5f10d8",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "503c270547849e3817f2ba35a8c7f247f2b5fe5ababe919a428ae89258ce3d59",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "8348b106829f9c31c39f5caac0adb83033c3c73899d30f2e0e0c94779f110e6d",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-04",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "ec19b222169df654764a50b17ae72cbf41f67a4213f0018358c25194b61d61da",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "a42ad7bfbd578f94293749eef96f7d6d87417b394abc30ed9005995496c8bfec",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "b8325ea87a2b93d37877e9448631d5dce6ab6fa9b4561630390e4b37573db175",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-05",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "963ccb7bf01cbcdf705dce35b8587addb47a2a4e68c790e81b2ac92c8a6cc2a2",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "0ce1ea0375298ac86a65107b2b3b4952a53f36e48881471f0088a238219e0afd",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "1cddb9fa37e9635bac3394be7dd827e3f9d53068ef92963d9bf30df535539825",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-06",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "8a9d52babfad7e2ccf682529c568d587f67beca083d04f985289397a528ae886",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "c39170e3bd0898a15fdd4a18e6bc88d2aef245e0799c626bc518a45bce49fa4f",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "7f493801f98031ec8b2995b9aee3bffa82f1a051245486280f80a49d2d933624",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-07",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "f4eb8e05315f04035763e858e716186c88e72b441714398ca571f461e9091bc7",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "a86f84744e342591868e07dca3fb56d84d029b0b3439880a964b2e6bf3ed1675",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "e5e6ac672768ddf401c44b73b86294503a71e5eb67e3b20f29444fdd6fa16dff",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-08",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "62fe8ac718a11a25cce10517a44dcf2f4c2fb948cb0987008b5c9be6df5fac2f",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "8fd4d44d9843f5fdc60f52bd4aaade4449189841e5e93b2939897eb2d8336081",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "eb5b07ccd522c84dde71b41f96aacf85d65a0b11d8a53f50d2a9c373f596f347",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-09",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "0766370701de0aa23cb430d5127cda6fea43fe04514c9d2b09cdcec6e57cc4fe",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "762bab07361677bcf9d9566978ae9367dda6fc3d51f8b9da0e242f0cd60e9779",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "4bd341e0b60b49702ce3ab87edec0efdbb9b1e1c4eae5a35af8cd82adba969b8",
+    "selected_aggregate_hashes_reproduce": true
+  },
+  {
+    "PackageID": "PKG-10",
+    "OutputManifestPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/OUTPUT_MANIFEST.json",
+    "OutputManifestSHA256": "3ff5ee8abd50523cdc53c6423cb15c750ab598248e19bc467a49fd12a5c557a2",
+    "SelectedClaimsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PACKAGE_CLAIMS.csv",
+    "SelectedClaimsSHA256": "9111dfc16dfa33220aceb42f82eeac433ce6faf710cdcb02404f91213f44868c",
+    "SelectedResidualsPath": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PACKAGE_RESIDUALS.csv",
+    "SelectedResidualsSHA256": "14c7b56d09624bcc8502ef34c44af5a01f4b005bcdd3bfddf32140aff7db72c8",
+    "selected_aggregate_hashes_reproduce": true
+  }
+]

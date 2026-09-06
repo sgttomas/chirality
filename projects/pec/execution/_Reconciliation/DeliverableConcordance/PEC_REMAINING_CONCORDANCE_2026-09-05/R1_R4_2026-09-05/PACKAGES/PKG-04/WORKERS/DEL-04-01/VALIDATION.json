@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "claims": 87,
+  "claim_kind_counts": {
+    "CLM": 18,
+    "OUT": 2,
+    "TBD": 4,
+    "REQ": 15,
+    "AC": 16,
+    "CON": 4,
+    "VER": 15,
+    "AX": 13
+  },
+  "dispositions": {
+    "ALIGNED": 36,
+    "DOCUMENTED_UNIMPLEMENTED": 47,
+    "UNKNOWN": 4
+  },
+  "residuals": 3,
+  "source_hashes": 85,
+  "common_source_intersections": 71,
+  "checks": [
+    "exact_schema_order",
+    "complete_defined_local_ID_coverage",
+    "unique_claim_IDs",
+    "sequential_owner_residual_IDs",
+    "reciprocal_links",
+    "explicit_depends",
+    "literal_gate_marker",
+    "source_commit",
+    "source_hashes_unchanged",
+    "common_source_hashes",
+    "LF_bytes",
+    "five_additional_sources_match_exact_base_git_objects",
+    "nine_run_derivative_inputs_distinguished"
+  ],
+  "independent_verification": "PENDING_PARENT_DISPATCH",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+}

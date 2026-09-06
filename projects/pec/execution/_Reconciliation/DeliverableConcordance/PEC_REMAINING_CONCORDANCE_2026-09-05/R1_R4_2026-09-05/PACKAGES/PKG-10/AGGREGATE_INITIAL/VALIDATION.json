@@ -1,0 +1,23 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "deliverables": 12,
+  "claims": 418,
+  "residuals": 26,
+  "unknowns": 159,
+  "stale": 9,
+  "warranted_none": [
+    "DEL-10-01"
+  ],
+  "dispositions": {
+    "ALIGNED": 205,
+    "UNKNOWN": 159,
+    "STALE_INPUT": 9,
+    "DOCUMENTED_UNIMPLEMENTED": 43,
+    "IMPLEMENTED_DIFFERENTLY": 1,
+    "DEFERRED_AGENT_WORKFLOW": 1
+  },
+  "source_hashes_reproduced": 326,
+  "errors": [],
+  "result": "PASS",
+  "independent_verification": "PENDING until separately sealed verifier reviewed"
+}

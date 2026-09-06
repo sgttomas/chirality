@@ -1,0 +1,13 @@
+{
+  "original_snapshot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_01",
+  "original_manifest_sha256": "096bdc2d2b0bde9e7ed32a8840121f6da28a913cfd22f49296193aa52c97eb04",
+  "changes": [
+    {
+      "file": "R4_DECISION_PACKETS/REMAINING_APPLICATION.md",
+      "old": "SOURCE_CHECK.json, SOURCE_PUBLICATION_REBIND.json",
+      "new": "VALIDATION.json, PUBLICATION_REBIND.json",
+      "reason": "Manager caught two incorrect filenames after candidate seal, before reviewer dispatch; actual application artifacts verified. Pointer wording only; all original bytes preserved in FULL_01."
+    }
+  ],
+  "semantic_change": false
+}

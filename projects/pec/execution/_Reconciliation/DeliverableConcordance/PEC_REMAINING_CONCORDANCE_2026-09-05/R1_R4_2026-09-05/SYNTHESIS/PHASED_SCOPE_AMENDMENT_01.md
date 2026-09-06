@@ -1,0 +1,9 @@
+# Phased synthesis scope and execution graph amendment 01
+
+2026-09-05. Direct caller HELP_HUMAN /root explicitly authorized bounded PARTIAL preparation under sealed COMMON/BRIEFS/SYNTHESIS.md exception. Actual manager /root/pec_corpus_synthesis is RECONCILIATION Agent1; delegated-harness-native role/non-delegation evidence is instruction-asserted, not mechanically enforced. D82 source base 2be412ccea62bdc4bd96deb082c46d7a792076ea; branch codex/pec-remaining-corpus-20260905.
+
+Accepted partial input: validated PKG-00 through PKG-07 and PKG-10 only (52 deliverables). PKG-08/09 (12 deliverables) remain MISSING_UNASSESSED; their mutable outputs are excluded. No full11/64 claim or final closure until explicit subsequent Agent0 fan-in clearance, recorded in a new amendment.
+
+Graph: Agent0-cleared nine packages -> this synthesis manager -> two bounded Agent2 specialists (scanner proposal author; independent aggregate checker), alongside manager preparation -> Agent0 release of final packages -> full synthesis -> fresh independent R4 verifier -> owner decisions. At most two active Agent2 specialists; runtime capacity may reduce this. No specialist delegation. Manager does not supervise package managers. Invalid package fan-in returns through Agent0; no package correction here.
+
+Writes only SYNTHESIS/** with disjoint child roots. No source/control/Remaining/lifecycle/Git/network mutations. Scratch caches only. Authoritative decomposition remains upstream; every synthesis product is a derivative. D81/D82 acceptance discharges historical calibration/reporting gates; prospective exact application, source-fence, REVIEW and actual production gates survive. Evidence-only discovery does not inherit production Depends. TM023 held mapping, TM022 deferral, completed ordinary currency and DPEC79/PRDv2.3 nonapplication survive.

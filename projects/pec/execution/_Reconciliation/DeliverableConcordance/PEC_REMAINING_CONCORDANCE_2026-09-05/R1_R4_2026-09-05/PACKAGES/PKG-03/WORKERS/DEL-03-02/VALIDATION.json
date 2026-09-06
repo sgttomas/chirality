@@ -1,0 +1,26 @@
+{
+  "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02",
+  "claims": 82,
+  "residuals": 18,
+  "read_hashes": 84,
+  "errors": [],
+  "pass": true,
+  "complete_local_definition_coverage": true,
+  "defined_local_claims": 81,
+  "fallbacks": [
+    "BASIS-001"
+  ],
+  "REQ": 14,
+  "AC": 15,
+  "VER": 14,
+  "lf_csv": true,
+  "source_base_match": true,
+  "no_remaining_id_collisions": true,
+  "dispositions": {
+    "ALIGNED": 31,
+    "UNKNOWN": 47,
+    "STALE_INPUT": 4
+  },
+  "summary": "ASSESSED_UNKNOWN",
+  "warranted_none": false
+}

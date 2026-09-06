@@ -1,0 +1,74 @@
+{
+  "recorded_utc": "2026-09-06T00:22:10.213090+00:00",
+  "authority": "Agent0 bounded COMMON closeout evidence ingestion under D-PEC-82.",
+  "recorder": "/root/pec_remaining_reconciliation; delegated-harness-native, role instruction-asserted.",
+  "execution_owner": "CHANGE",
+  "baseline_checks": {
+    "entrypoints": 0,
+    "receipt_before_append": 0,
+    "tm_live": 0,
+    "tm_closed": 0,
+    "self_check": 0
+  },
+  "self_check_severities": {
+    "INFO": 14,
+    "NOT_APPLICABLE": 1,
+    "REVIEW": 4,
+    "WARN": 55
+  },
+  "interpretation": "Baseline advisories unchanged; exit zero is not product completion or acceptance. Receipt validation precedes final append.",
+  "source_drift": {
+    "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+    "origin_main": "5068899690ab2580fa3360f751f63952e6bdc563",
+    "source_count": 648,
+    "local_source_mismatches": [],
+    "remote_changed_pinned_sources": [],
+    "remote_changed_paths": [
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/ARTIFACTS.sha256",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/CHECKS.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/CODE_RELOCATION_CANDIDATE.csv",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/CSV_NORMALIZATION/CHECKS.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/CSV_NORMALIZATION/FINAL_ARTIFACTS.sha256",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/CSV_NORMALIZATION/HANDOFF.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/CSV_NORMALIZATION/RECEIPT_APPEND_CHECK.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/ENTRY_FACTS.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/FAN_IN.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/FAN_IN_CHECKS.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/GOVERNANCE_BRIEF.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/GOVERNANCE_IMPACT.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/GOVERNANCE_RETURN.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/HANDOFF_STATE.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/MAIN_DRIFT.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/PACKAGE_CONSUMER_CANDIDATE.csv",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/RECEIPT_APPEND_CHECK.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/RUN_CONTROL.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/SCOPE_CHECKS.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/SOURCES.json",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/VALIDATION.md",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/affected_tests.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/diff_check.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/entrypoints.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/instruction_tranche_manifest.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/root_harness_adapter.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/root_materialization_fence.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/root_status.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/root_surface_ownership.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/root_work_graph_dispatch.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/self_check.log",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/checks/whitespace.log",
+      "execution/_Coordination/LOOP_RECEIPTS.md",
+      "execution/_Coordination/PLAN_2026-09-05_RUNTIME_PROJECT_MIGRATION.md"
+    ]
+  },
+  "historical_whitespace": "Initial FAIL and findings retained in RAW_EVIDENCE. PKG-08 successor repair is separately linked; initial failure is not relabelled PASS.",
+  "repair_successor": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/PKG08_PUBLICATION_SUCCESSOR_01.json",
+    "sha256": "3e4ed4a86e0117063ac8dbccabfc6fab92cda1cea77f60b728c0672541f0b443"
+  },
+  "validation": {
+    "decoded_bytes_match_originals": true,
+    "files_preserved": 12,
+    "raw_carrier_sha256": "5c16bca459a4ca3d9aca1080328013e67fe2a690c5768090de67bd7e34112afd"
+  },
+  "remaining_checks": "After terminal synthesis and receipt append: post-append receipt validation, containment/G4, full candidate whitespace and CI under CHANGE. No final proposal or receipt authored here."
+}

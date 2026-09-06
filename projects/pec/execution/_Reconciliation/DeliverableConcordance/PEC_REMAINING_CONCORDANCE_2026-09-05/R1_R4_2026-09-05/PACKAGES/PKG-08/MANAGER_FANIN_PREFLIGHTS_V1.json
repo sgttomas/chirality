@@ -1,0 +1,524 @@
+{
+  "operation": "candidate-validation",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Review_Findings.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REVIEW.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    }
+  ],
+  "register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc"
+}

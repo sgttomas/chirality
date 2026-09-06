@@ -1,0 +1,3 @@
+# PKG-08 frozen package basis
+
+D82 effective base 2be412ccea62bdc4bd96deb082c46d7a792076ea. Derivative R1–R4 reporting only. All common source hashes independently reproduced. Exact existing and missing canonical target candidate-validation preflights ALLOW; no production authority. Five owning Agent2 workers, at most two active; fresh package verifier then independent manager fan-in. No helper code is shared with workers; any later tool is separately versioned. Actual execution delegated-harness-native; role instruction-asserted, not mechanically enforced. Only this PKG-08 subtree writable. Accepted upstream common source manifest and D81 conventions govern; preserve TM022 deferral, D66 declined seam edge and all source/lifecycle gates.

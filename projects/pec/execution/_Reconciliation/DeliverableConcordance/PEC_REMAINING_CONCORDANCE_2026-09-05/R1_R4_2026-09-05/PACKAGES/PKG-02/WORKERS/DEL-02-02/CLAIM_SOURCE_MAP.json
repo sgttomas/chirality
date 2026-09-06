@@ -1,0 +1,362 @@
+{
+  "CLM-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 75,
+    "quote": "- **CLM-001** \u2014 The accepted `ScopeLedger.csv` row for `SOW-012` reads in full, under the header `ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes`:\n\n> ``SOW-012,IN,Parse decision registers and decision packets (row identity and status only \u2014 never row prose),\"PEC-RCN-002, \u00a77.1\",PKG-02,DEL-02-02,OBJ-001;OBJ-002,,FALSE,Content-minimal (C6)``\n>\n> (`DecisionRef` empty; `OpenIssue` `FALSE`; `Notes` `Content-minimal (C6)`.)",
+    "sha256": "4d29b2c1fc1a70e4ae7b84f2121f896ce2135521648cb3245c76f458c1f2c8cf"
+  },
+  "CLM-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 81,
+    "quote": "- **CLM-002** \u2014 The ledger `SourceRef` names two PRD loci, and both are cited here. The first is `PEC-RCN-002` (PRD \u00a79.2), whose text is:\n\n> The reconciler shall ingest, at minimum: `_STATUS.md` (declared parser\n> dialect), decision registers and packets, `LOOP_RECEIPTS.md` (per-loop\n> grammar; the D-APP-57 contract where a ledger has adopted it),\n> `WORK_GRAPH.json` / `STATUS.json` / `RUNTIME_SUMMARY.json`, dependency\n> registers, workplans/LOOP_INIT, and per-project `_harness/adapter.yaml` as\n> the feed manifest.\n\n  The second is PRD \u00a77.1, \"Record tier (reconciled from file truth; citable with sources)\", whose `DecisionRow` row states the entity's purpose:\n\n> Register-row identity and status only (decision ID, packet path, anchor,\n> state \u2014 never the row's prose; PEC-K-10)",
+    "sha256": "f90262b7b24a5a2e0dc78fba9d1166e3e2d30b6e5594e8af98e6ac13091b5976"
+  },
+  "CLM-003": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 95,
+    "quote": "- **CLM-003** \u2014 The objective statements this deliverable serves are `OBJ-001` \"Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation\" (`SOFTWARE_DECOMP.md` \u00a73, `SourceRef` \u00a73.1; `PRD.md` \u00a73 outcome 1) and `OBJ-002` \"Staleness is detected structurally by SHA comparison, never by judgment\" (\u00a73, `SourceRef` \u00a73.2; `PRD.md` \u00a73 outcome 2). Both attributions are indirect through the record tier per the warrant above.\n\n## Deliverable Definition \u2014 Ontology",
+    "sha256": "b57bc528af635eafd5bb8a8511689d0a0ab41ba5e1ae3583fdce3f5343dc6f58"
+  },
+  "CLM-004": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 99,
+    "quote": "- **CLM-004** \u2014 `DEL-02-02` is named \"Decision register/packet parser\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-012`, `SupportsObjectives` `OBJ-001;OBJ-002`, with `AnticipatedArtifacts` \"Parser + fixture tests\" and an **empty** `ContextEnvelopeNotes` cell \u2014 there are no envelope notes to carry forward. Sources: `execution/_Decomposition/Deliverables.csv` row `DEL-02-02` and `SOFTWARE_DECOMP.md` \u00a75 `PKG-02` table (\"| DEL-02-02 | Decision register/packet parser | BACKEND_FEATURE_SLICE | M | P1 | SOW-012 |\"). The register `Description` reads: \"Row identity and status extraction from decision registers and packets \u2014 never row prose (content-minimal).\" The outputs below are that artifact list and nothing beyond it.",
+    "sha256": "54a9605833f8cd24457ec8ab93af11683e7fa67badee66764fad0cf6f5fc5423"
+  },
+  "OUT-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 101,
+    "quote": "- **OUT-001** \u2014 A decision register/packet parser in the PEC service core: it reads decision registers and decision packets under a declared grammar and emits, per register row, that row's identity and status \u2014 decision ID, packet path, anchor, state \u2014 with the provenance needed to cite it, and nothing of the row's prose.",
+    "sha256": "2e36e23898a1298d81216652477c254bef60a520996961936f7fa08af3505f1b"
+  },
+  "OUT-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 102,
+    "quote": "- **OUT-002** \u2014 A fixture test suite covering the parser against valid, prose-heavy, heterogeneous, malformed, unreadable, and absent register and packet fixtures, implementing the verification methods declared in this contract.",
+    "sha256": "5d8f98b952caee635f00c966ba6c4445cf7dfd44ae687d6522df614eedcaa5a1"
+  },
+  "CLM-005": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 104,
+    "quote": "- **CLM-005** \u2014 The seven-way split of `PEC-RCN-002` into `SOW-011..017` is decision-log entry `DL-4` (2026-07-24): \"PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind\", because \"Each feed is a separately testable parser with its own grammar; a single 'ingest everything' item is not atomic\". The other six feed grammars belong to `DEL-02-01` (`_STATUS.md`), `DEL-02-03` (receipts ledgers), `DEL-02-04` (run-evidence JSON), `DEL-02-05` (dependency registers), `DEL-02-06` (workplans/LOOP_INIT), and `DEL-02-07` (the `adapter.yaml` feed manifest). This deliverable defines the decision-feed grammar only, and takes no position on any other feed's grammar.",
+    "sha256": "393b9f3fad557148f80d244d7aa511edf2d6b77fa00a9ef5bfc6365b1e8e4b51"
+  },
+  "CLM-006": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 105,
+    "quote": "- **CLM-006** \u2014 The `PKG-02` package charter (decomposition \u00a74) is \"Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts ledgers, run-evidence JSON, dependency registers, workplans/LOOP_INIT, `adapter.yaml` manifests\", with \"Writing anything; interpretation beyond declared grammars\" recorded as explicitly out of package scope.",
+    "sha256": "b7a39bdbb8a13dec09b013dc32b28ad793d1190053faa8be06ca710a86ef481d"
+  },
+  "CLM-007": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 106,
+    "quote": "- **CLM-007** \u2014 This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P04]`, held as register row `DEP-02-02-003` of the deliverable-local `Dependencies.csv` (v3.1). Attributing each value to its actual column: `DependencyClass` `EXECUTION`, `Direction` `UPSTREAM`, `DependencyType` `PREREQUISITE`, `TargetType` `DELIVERABLE`, `TargetPackageID` `PKG-01`, `TargetDeliverableID` `DEL-01-01`, `TargetName` \"Record-tier schema & entity model\", `Statement` \"Parser emits DecisionRow entities\", `EvidenceFile` `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`, `SourceRef` and `EvidenceQuote` both \"\u00a73 mapping notes (as E-P03)\", `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PENDING`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `Status` `ACTIVE`, `Notes` \"PROPOSAL; Flag=none; EdgeID=E-P04\". The remaining two rows in that register are the `ANCHOR` rows `DEP-02-02-001` (package-local to `PKG-02`) and `DEP-02-02-002` (the `SOW-012` requirement trace).",
+    "sha256": "ecdf611f2fc1d6f2d956f20db264567978e6489541cbe87bf758cd31ffa717be"
+  },
+  "CLM-008": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 107,
+    "quote": "- **CLM-008** \u2014 `DEL-01-01` is at lifecycle state `INITIALIZED`, which is the maturity `[E-P04]` requires. `INITIALIZED` means its **contract** is the reliable input: its accepted `ScopeOfWork.md` exists, and no schema, entity model, or code does. Nothing in this contract asserts that any upstream artifact exists or has been built. The obligations this deliverable's output typing binds to are these, quoted from that contract's Epistemology section:\n\n> - **REQ-001** \u2014 The schema and entity model shall define exactly the fourteen\n>   record-tier entity types named in CLM-005 \u2014 Loop, Workplan, Step, Gate,\n>   Receipt, DecisionRow, Fence, Package, Deliverable, DependencyEdge,\n>   RunRecord, CandidateBrief, OrientationSnapshot, DriftFinding \u2014 with none\n>   added and none dropped, and each type shall carry a recorded trace to its\n>   `PRD.md` \u00a77.1 row and stated purpose (CLM-006).\n> - **REQ-003** \u2014 Every record-tier entity type shall carry provenance\n>   sufficient for a per-claim citation to its live source \u2014 file path, anchor,\n>   and/or SHA, per `PEC-ORI-004` \u2014 because \u00a77.1 defines the tier as \"citable\n>   with sources\". [\u2026]\n> - **REQ-007** \u2014 No field of any type shall admit file content or diff content\n>   (`PEC-K-10`: \"Paths, counts, SHAs, states, hashes \u2014 never file or diff\n>   content\"). DecisionRow shall carry register-row identity and status only \u2014\n>   decision ID, packet path, anchor, state \u2014 and shall have no field capable of\n>   holding the row's prose. Enforcement at the ingest boundary is `DEL-01-03`'s\n>   guard under `SOW-056`; this requirement binds the shape of the schema so\n>   that the guard has nothing to admit into.\n>\n> (`DEL-01-01/ScopeOfWork.md`; ID-shaped text inside this quotation is upstream\n> source context, not a local definition or reference. The bracketed ellipsis\n> marks an elision of that requirement's closing sentence, which assigns the\n> citation-attaching act to another deliverable.)\n\n  The upstream contract's `AC-006` states the same boundary as an acceptance criterion, including that \"a fixture carrying file content, diff hunks, and register-row prose cannot be expressed in the model\". The relation is therefore complementary and not duplicative: upstream binds the *shape* of the entity so prose is inexpressible; this deliverable binds the *parse* so prose is never extracted in the first place.",
+    "sha256": "c8fcb900e80ad6cba9ebbc903b4be6060006310cc8063d1bf3b6a6fd005d2a1d"
+  },
+  "CLM-009": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 133,
+    "quote": "- **CLM-009** \u2014 The one declared downstream consumer is `DEL-03-01` (Full-rebuild reconciler (one command)) via `[E-P20]`, whose gate-exhibit evidence reads \"PEC-RCN-002 feed list (DL-4)\" and whose statement reads \"Full rebuild ingests decision registers/packets\". That edge is informational here; it lives in the consumer's register and imposes no obligation on this deliverable beyond the outputs declared above.",
+    "sha256": "7196643e108317781fa8d37997947b9dc5d67ed0822671cf78630ac43d923c02"
+  },
+  "CLM-010": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 134,
+    "quote": "- **CLM-010** \u2014 Phase staging, quantified over the deliverables this contract names in its own voice \u2014 that is, outside the quoted upstream text of CLM-008 \u2014 and checked against the `PhaseHint` column of `Deliverables.csv`: `DEL-02-02` itself and `DEL-01-01`, `DEL-01-03`, `DEL-01-05`, `DEL-01-06`, `DEL-02-01`, `DEL-02-03`..`DEL-02-07`, `DEL-03-01`, `DEL-04-03`, `DEL-04-05`, `DEL-10-02`, `DEL-10-03` all carry `P1`; `DEL-05-02` and `DEL-09-03` carry `P2`. The CLM-008 quotation additionally names `DEL-01-03`, which is `P1`. No claim in this contract stages any of these deliverables into a different phase, and no deliverable named here as a consumer precedes this deliverable's phase.",
+    "sha256": "bf61cbe0e86bdee4bcdd68faa8fe7b51dce499133c170ca8ddeb9f16be3f2843"
+  },
+  "CLM-011": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 135,
+    "quote": "- **CLM-011** \u2014 Observed corpus condition, recorded as observation and not as specification. Two decision registers exist in this checkout and their grammars differ. `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md` declares itself a \"Non-governing tracking surface\" that \"confers no authority\", states a packet-location convention \"`execution/_Coordination/_DECISIONS/D-PEC-XX_<slug>.md`\" and an explicit row-state vocabulary \u2014 \"`NOT_PREPARED` -> `AWAITING_RULING` (packet drafted) -> `RULED` (pointer to the human record)\" \u2014 over a table whose columns are `ID | Decision | Blocks | State | Packet | Ruling record`; 57 `D-PEC-*` packet files sit beside it. `_DomainEngines/_DECISIONS/_REGISTER.md` uses the columns `ID | Decision | My recommendation | HumanRuling | Unblocks`, has no separate state column, and expresses ruling state inside the prose `HumanRuling` cell (for example \"**RULED: keep both (7 tokens)**\"); 23 `D-T0-*` packet files sit beside it. These files are the corpus the parser will meet; they are not a contract, and the grammar this deliverable declares is a production choice bounded by TBD-002 and CON-002.",
+    "sha256": "1162171d220d333d789583785446b15de7567559c83065a69743dc8f95254c73"
+  },
+  "CLM-012": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 136,
+    "quote": "- **CLM-012** \u2014 The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.",
+    "sha256": "d1b1fb541a78dc6339327b393068b65100acd2a18f278ca31cc9d0f7d839a438"
+  },
+  "TBD-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 138,
+    "quote": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 conventions per `DL-13`; `_CONTEXT.md`).",
+    "sha256": "af77a432d47266e999419d8d00faea2dcb7c4052765e6987880a71f584d7a6d7"
+  },
+  "TBD-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 139,
+    "quote": "- **TBD-002** \u2014 The decision-feed grammar this parser declares \u2014 which register table shapes and packet structures it recognises, how it locates a row, and how it maps a row to the four `PRD.md` \u00a77.1 identity/status elements \u2014 is fixed by no accepted source. It is chosen during production within REQ-002, CLM-006, and CON-001.",
+    "sha256": "44a6afd0f52bc4ab6a0ee33a1e09c2152fb2317d6756edaed18a267029b226e3"
+  },
+  "TBD-003": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 140,
+    "quote": "- **TBD-003** \u2014 What constitutes the \"anchor\" of a decision row is named by `PRD.md` \u00a77.1 and `PEC-ORI-004` but is not defined by any accepted source at the level of a concrete locator. Its concrete form is a production choice within REQ-005.",
+    "sha256": "f242bb42f7111c33446a56ade7839ccceee393d965a048fe305847c3307557e5"
+  },
+  "TBD-004": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 141,
+    "quote": "- **TBD-004** \u2014 Which decision registers and packets are read, and for which loop or project, is not settled by this contract: the feed manifest is `DEL-02-07`'s under `SOW-017` and the loop registry is `DEL-01-06`'s under `SOW-094`. This deliverable parses the files it is given and enumerates no corpus of its own.\n\n## Completion and Reliance Basis \u2014 Epistemology\n\nThe requirements below state what future production must satisfy. Nothing in\nthis section asserts that a parser, a fixture, or a test exists.",
+    "sha256": "721daa15bf77970dbc0b799bff2f1c696d6cdfc41e0edd7404c6b6da626f1a68"
+  },
+  "REQ-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 148,
+    "quote": "- **REQ-001** \u2014 The parser shall read decision registers and decision packets and shall emit, per register row, the four identity and status elements `PRD.md` \u00a77.1 names for the `DecisionRow` entity: decision ID, packet path, anchor, and state (CLM-002).",
+    "sha256": "967323c62286ca3584b0963de4dc52dc0dab29af060420b93c6c025ae2ee0aad"
+  },
+  "REQ-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 149,
+    "quote": "- **REQ-002** \u2014 The parser shall document the decision-feed grammar it consumes \u2014 every register shape, packet structure, and field it reads, and that field's semantics \u2014 and shall let no undeclared field influence its output, per the `PKG-02` out-of-scope line \"interpretation beyond declared grammars\" (CLM-006).",
+    "sha256": "6e63d0a2c14f8fd8949d0f7e70cd721f78bc8e3e6667fcbae4a68633a0e27b65"
+  },
+  "REQ-003": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 150,
+    "quote": "- **REQ-003** \u2014 The parser shall carry no register-row prose and no packet prose into its output or into the record tier. This includes, and is not limited to, decision statements, rationale, recommendation text, ruling narrative, and any other authored sentence of a register row or packet body. What it may carry is identity, status, locators, and hashes \u2014 \"Paths, counts, SHAs, states, hashes \u2014 never file or diff content\" (`PEC-K-10`; constraint `C6`; ledger note \"Content-minimal (C6)\"; `SOW-012`'s own \"never row prose\"; `PRD.md` \u00a77.1's \"never the row's prose\"). Where a row's state is only expressible as authored text, the parser shall emit a declared status token or an explicit limitation under REQ-006, never the text itself.",
+    "sha256": "17a2e3d24f7c18687390c1b34e1a3298a39ecb33266d9de2f0ce5dd4addada73"
+  },
+  "REQ-004": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 151,
+    "quote": "- **REQ-004** \u2014 The parser shall emit `DecisionRow` entities as the upstream record-tier entity model defines them (CLM-008), depending on that model rather than on a parser-local record shape, and shall define no record-tier entity type of its own.",
+    "sha256": "d31a2bec75a0aba64058b9303618b01128fa08961940011dcf0d016bca24657f"
+  },
+  "REQ-005": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 152,
+    "quote": "- **REQ-005** \u2014 Every emitted row shall carry provenance sufficient for a per-claim citation to its live source \u2014 file path, anchor, and/or SHA, per `PEC-ORI-004` and `PRD.md` \u00a77.1's \"citable with sources\" \u2014 and shall be fully regenerable from those sources, per `PEC-K-02` and `PEC-RCN-001`. Attaching citations to an orientation response is `DEL-04-03`'s act under `SOW-007`, and running the rebuild is `DEL-03-01`'s under `SOW-010`; this requirement obliges the parser to produce what those acts need, and no more.",
+    "sha256": "b6b4e3b83d02c36601b3d616a050f0e29f16f9d9dc01ba33b136607f9310702d"
+  },
+  "REQ-006": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 153,
+    "quote": "- **REQ-006** \u2014 Where a register or packet is absent, unreadable, malformed, or outside the declared grammar, the parser shall report that condition explicitly to its caller, naming the file and the fault; silent omission, a silently partial row set, and a guessed state are all prohibited (`PEC-ORI-006`: \"Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited\"). Rendering such a limitation into a response is `SOW-009` / `DEL-04-05` scope; this deliverable makes the limitation available to that consumer.",
+    "sha256": "037792ee8a874b0a3a48cd8cfc9874758a41632165dee899934943bfc3c0da0b"
+  },
+  "REQ-007": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 154,
+    "quote": "- **REQ-007** \u2014 The parser shall create, modify, or delete no source file, including the registers and packets it reads, per `PEC-RCN-004` (\"it shall never modify a source file\"), `PEC-RCN-006` (\"The reconciler writes only its own store and generated views\"), and the `PKG-02` out-of-scope line \"Writing anything\".",
+    "sha256": "3341fe61ac927bfe3de442f6a7243168ac44b3acd97cbe4578150a1b5b3743f7"
+  },
+  "REQ-008": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 155,
+    "quote": "- **REQ-008** \u2014 The parser and its fixtures shall introduce no third-party runtime dependency and no external network egress, per `PEC-SVC-001` and `PEC-SVC-002`, whose standing enforcement is `DEL-01-05` covering `SOW-052` and `SOW-053`.",
+    "sha256": "0c70c451bf4c0cd61cf1e13e0f3f70bcc1525cd17a0f6394194563e6c3a4217e"
+  },
+  "REQ-009": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 156,
+    "quote": "- **REQ-009** \u2014 The parser shall operate over decision registers as they exist today \u2014 prose-structured, parsed best-effort \u2014 and shall not require any register to gain structure at source. Neither shall its design foreclose consuming such structure if the owner later rules for it. Parser depth is the exact subject of open issue `OI-001` / `SOW-075` (CON-001), and constraint `C12` requires that affected work be \"fenced or flagged, never guessed\".",
+    "sha256": "8d77a235467a1f52901b3ff4df169b609fc102aa89cc2c3b1d86affc5a7ef98a"
+  },
+  "REQ-010": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 157,
+    "quote": "- **REQ-010** \u2014 Tests shall implement the verification methods declared in this contract; they shall not define scope, requirements, or acceptance criteria.",
+    "sha256": "bfcae949d4ae28d3a23706a2d30f3601926ddd119906d2e97d719f0c05ba7b6f"
+  },
+  "AC-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 159,
+    "quote": "- **AC-001** \u2014 The parser reads a valid register fixture and a valid packet fixture and yields, per row, exactly the decision ID, packet path, anchor, and state that the fixture declares; every field it reads appears in the documented grammar, and altering an undeclared field in the fixture changes nothing in its output.",
+    "sha256": "3a603515b8580d9736faf32ef2ac8dffb5ce9dfac8b4618d5ada56b8b2d2ae20"
+  },
+  "AC-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 160,
+    "quote": "- **AC-002** \u2014 For a fixture whose `Decision`, rationale, recommendation, and ruling-narrative cells carry distinctive prose strings, no such string \u2014 and no substring of one beyond a declared status token, identifier, or locator \u2014 appears anywhere in the parser's emitted payload; and the parser exposes no field capable of holding a row's prose.",
+    "sha256": "6fae69bc4d2fb071fb20e3bffcff5dccf9e37b0b71a60356b35b6a5d3e5c0e5b"
+  },
+  "AC-003": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 161,
+    "quote": "- **AC-003** \u2014 The emitted records are instances of the upstream `DecisionRow` entity type; the module defines no record-tier entity type of its own; and no parser-local record shape substitutes for the upstream model.",
+    "sha256": "a236b903c43e99941a3bbaa2dc8fe739bd8a9388ddc297fbf157f54eed5e7460"
+  },
+  "AC-004": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 162,
+    "quote": "- **AC-004** \u2014 For a sample of emitted rows, the recorded provenance resolves to the live source by path, anchor, and/or SHA, and a re-run over unchanged sources reproduces every emitted row identically.",
+    "sha256": "f35ebe32f36d727508e00853304eff027f7eca42e356845208ef2fc6665372be"
+  },
+  "AC-005": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 163,
+    "quote": "- **AC-005** \u2014 For absent, unreadable, malformed, and out-of-grammar register and packet fixtures, the parser returns an explicit limitation naming the file and the fault, and never a silently empty row set, a silently partial row set, or a guessed state.",
+    "sha256": "520af911adc43fb9f3a67693f4f0caa82167fabc5f2cb8370392394dd248e30f"
+  },
+  "AC-006": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 164,
+    "quote": "- **AC-006** \u2014 A parser run over a fixture corpus leaves that corpus byte-identical, and the module contains no write, create, or delete call against any source path.",
+    "sha256": "7f17c5366745a058db697e41c5b5b94412b706ce26629613170584f7853b28df"
+  },
+  "AC-007": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 165,
+    "quote": "- **AC-007** \u2014 The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+    "sha256": "5580aa4c61d3f4ec02215ab1cb64ef89694cba3252e018ffc3c0ba564c58b723"
+  },
+  "AC-008": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 166,
+    "quote": "- **AC-008** \u2014 The parser produces its declared output over a today-shaped prose-structured register fixture with no structural aids, and the recorded design shows that adding machine-parse structure at source would be a grammar extension rather than a rewrite; nothing in the delivered work presupposes either `OI-001` outcome.",
+    "sha256": "6ea00eb22d978a9b532fa7a2ddf0a761fb71111658c2b8afe91458b1500ca70d"
+  },
+  "AC-009": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 167,
+    "quote": "- **AC-009** \u2014 The fixture test suite implements VER-001 through VER-008, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
+    "sha256": "7e2fb8f316d163edc8906f9d4a2f5923ab894c268058907bd056a7cfd70f4f88"
+  },
+  "AC-010": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 168,
+    "quote": "- **AC-010** \u2014 The REVIEW gate confirms this contract's traceability to `SOW-012`, `OBJ-001`, and `OBJ-002` as ruled at SCA-002 Gate 3 Q2, confirms that the indirect `OBJ-002` leg is stated no more strongly here than the Gate 3 record states it \u2014 including the recorded and unadopted N1 narrowing evidence \u2014 and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, `PKG-04`, `PKG-05`, `PKG-09`, or `PKG-10` scope has been absorbed.",
+    "sha256": "523f717881e651382ee771bf741e3f8bf9c5328304ba42aac96055e826633148"
+  },
+  "CON-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 170,
+    "quote": "- **CON-001** \u2014 Parser depth is an undecided owner question and this deliverable is the only work it touches. `PRD.md` \u00a716.1 asks \"Whether decision registers gain light structure at source (machine-parse aids) or remain prose parsed best-effort\"; the decomposition carries it as TBD item `SOW-075` and open issue `OI-001`, dispositioned \"\u00a716 ruling\", with the `SOW-075` note recording the assessment \"Assessed (not PRD-stated): affects SOW-012 parser depth only; both paths buildable\". `SOW-012`'s own `OpenIssue` cell reads `FALSE` (CLM-001), as every parser row's does; that cell is not this contract's warrant for the assessment, and neither fact is offered as the cause of the other. What the assessment states is that the scope item is buildable under either outcome \u2014 which is not the same as its being free of the question. REQ-009 binds production to the both-paths posture. Nothing in this contract resolves `OI-001`, and no production choice made here may be read as settling it.",
+    "sha256": "f518e4f1c679c294d43bc5137145afec245d4b751862f92a1a8517ac0dff0db3"
+  },
+  "CON-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 171,
+    "quote": "- **CON-002** \u2014 The accepted sources name \"decision registers and packets\" as a feed but define no grammar for them, and the observed corpus is heterogeneous in exactly the way that matters: one register carries an explicit `State` column with a declared vocabulary, the other carries ruling state only inside a prose cell (CLM-011). Extracting status from the second without extracting its prose is the substantive difficulty of this deliverable, and no accepted source states how far a declared grammar must reach to cover it. This contract records the gap as TBD-002 and REQ-003's closing sentence rather than choosing a coverage boundary; if production requires a resolution that is not derivable from an accepted source, that is a scope-change question, not a production decision.\n\n## Production and Verification Method \u2014 Praxeology\n\nProduction proceeds in the order declared grammar \u2192 row identity and status\nextraction \u2192 content-minimal boundary \u2192 limitation reporting \u2192 fixtures and\ntests, because each stage is the acceptance surface of the next. The\ncontent-minimal boundary is designed into the extraction step rather than\nfiltered afterwards, so that REQ-003 is satisfied by construction and not\naudited into place. All work is bounded to this deliverable folder and the\n`PKG-02` service-core source it names; this contract authorizes no register,\ndecomposition, PRD, or upstream-deliverable edit, and it neither defines nor\nreshapes the record-tier entity model it emits into.",
+    "sha256": "e5ae92dc9c65c542095ca719a6c28940fce00e9ccf4eef43b9dd50ae367c22ea"
+  },
+  "VER-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 185,
+    "quote": "- **VER-001** \u2014 Execute the parser over valid register and packet fixtures and assert, per row, that the emitted decision ID, packet path, anchor, and state equal the fixture's declared expectation; then compare the set of fields actually read, by instrumentation or code inspection, against the documented grammar, and mutate an undeclared field to assert output invariance.",
+    "sha256": "0542e6b5f1e828cb795381546d23345849962ba7f942faf1a138e61d99c55fbd"
+  },
+  "VER-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 186,
+    "quote": "- **VER-002** \u2014 Content-minimal assertion: build a fixture whose prose cells carry unique sentinel strings, run the parser, and search the entire emitted payload for each sentinel and for prose-length substrings of it, asserting none is present; then inspect the emitted record's field inventory for any field typed to hold free text beyond a declared status token, identifier, or locator.",
+    "sha256": "b45df1492ffed47a2319890efe610185bfdceca61fef3a21d248e873dba3181f"
+  },
+  "VER-003": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 187,
+    "quote": "- **VER-003** \u2014 Type-binding inspection: assert that emitted records are instances of the upstream `DecisionRow` entity type, and inspect the module for any locally defined record-tier entity type or parallel record shape, asserting none exists.",
+    "sha256": "2ead76a2c62c0b7fc4974e0bad166195ec7cbd7c29c4aed54b85a2ba608c579b"
+  },
+  "VER-004": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 188,
+    "quote": "- **VER-004** \u2014 Provenance and regenerability check: for a sample of emitted rows, resolve the recorded provenance to the live source by path, anchor, and/or SHA; then re-run the parser over unchanged sources and assert row-for-row identity of the output.",
+    "sha256": "b8f8938f78778c28bc5c4f0abb81f532664119c259a366ee6b0a26ce7698b24e"
+  },
+  "VER-005": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 189,
+    "quote": "- **VER-005** \u2014 Execute the parser against absent, unreadable, malformed, and out-of-grammar register and packet fixtures and assert, per case, an explicit limitation naming the file and the fault, with no empty, partial, or guessed row set returned in its place.",
+    "sha256": "aafa49d761e7cffd7789966af24af660996d9982e9868b1d64b981f2d314112b"
+  },
+  "VER-006": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 190,
+    "quote": "- **VER-006** \u2014 Hash the fixture corpus tree before and after a parser run and assert byte-identity; inspect the module's call graph for write, create, or delete operations against any source path.",
+    "sha256": "3f3b4790e2b3a3062278027d5213f945aeb81fa8b4be00b51dd792628f9e6419"
+  },
+  "VER-007": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 191,
+    "quote": "- **VER-007** \u2014 Inspect the `PKG-02` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here.",
+    "sha256": "70ac57aa77b4d57c5aaa75f46ffdb3b86ec4d56f361a117cbdd1c400056bdc71"
+  },
+  "VER-008": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 192,
+    "quote": "- **VER-008** \u2014 Both-paths exercise: run the parser over a prose-structured register fixture shaped as the corpus is today and assert the declared output; then review the declared grammar and the module's extension surface against a hypothetical structured-at-source variant and record whether accommodating it is a grammar extension or a rewrite. The exercise selects no `OI-001` outcome and produces no recommendation on one.",
+    "sha256": "e9f342c02e6913348d384fb24b3c22ae05d3ec572f0a8ac5c01e71b98c03cb25"
+  },
+  "VER-009": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 193,
+    "quote": "- **VER-009** \u2014 Run the `PKG-02` test suite and confirm that each of VER-001 through VER-008 has a corresponding executing automated test and that no test asserts a criterion absent from this contract.\n\n## Governing Values and Decisions \u2014 Axiology",
+    "sha256": "63c99e87e6213cea3935063a63a0333620083fe9a13ac9e216b006603bc049d7"
+  },
+  "AX-001": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 197,
+    "quote": "- **AX-001** \u2014 `PEC-K-10` content-minimal and constraint `C6` are the reason this deliverable exists in the shape it does. A decision register is almost entirely authored prose; a parser over it is one keystroke away from becoming a content pump. The posture is therefore stated as a property of the parse \u2014 what is never extracted \u2014 rather than as a filter applied to a richer intermediate, and the strongest available form is a record with nowhere to put prose. The complementary schema-side inexpressibility is the upstream model's (CLM-008) and the ingest-boundary guard is `DEL-01-03`'s under `SOW-056`; neither is discharged here.",
+    "sha256": "9cf3edd731740eddfa7ae3a8bdd059acdc3b39e1d93d9f015accbdc609a3a520"
+  },
+  "AX-002": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 198,
+    "quote": "- **AX-002** \u2014 `PEC-K-02` files govern: the decision register and its packets are authored project truth. The `PKG-02` charter allows reading them and forbids writing anything, and the PEC register's own header records that it \"confers no authority\". PEC's projection of a row is never citable over the row itself, and no output of this parser is a ruling, an adoption, or a direction. `PEC-GAT-004` (\"PEC shall provide no write path that records adoption, ruling, or direction\") and `PEC-DSH-003`'s \"link-only, source-linked (no restatement of authored text; PEC-K-10)\" are the same discipline enforced at surfaces other deliverables own.",
+    "sha256": "e422407955eea3bfa02fabc2d547b957e1822398553c8a844bf801c066fec1d8"
+  },
+  "AX-003": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 199,
+    "quote": "- **AX-003** \u2014 `PEC-K-01` graceful absence governs: no governed act may require a PEC read or write. A register PEC cannot parse is a stated coverage limitation (REQ-006), never a blocked act and never a silent gap; `PEC-K-07` makes reconciliation the guaranteed path and puts the honesty obligation on coverage, not on completeness of parse.",
+    "sha256": "bbcdebc1fa31f44e1b0fae400a930969bc628800e95cdaf16519bc086015c81c"
+  },
+  "AX-004": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 200,
+    "quote": "- **AX-004** \u2014 `DL-4` is the decision that makes this deliverable atomic: one feed kind, one separately testable unit, one declared grammar. Absorbing a sibling feed grammar (`DEL-02-01`, `DEL-02-03`..`DEL-02-07`), the entity model it emits into (`DEL-01-01`), the reconciler that consumes it (`DEL-03-01`), the slate and register views built over decision rows (`DEL-05-02`, `DEL-09-03`), or the limitation-honesty surface (`DEL-04-05`) would undo that decision.",
+    "sha256": "b4981017bd5ec5c6a8e37cb828c5bfb5855a600dc965ab39b80328dfad6928f0"
+  },
+  "AX-005": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 201,
+    "quote": "- **AX-005** \u2014 The edges `[E-P04]` (upstream, `DEL-01-01` \u2192 `DEL-02-02`) and `[E-P20]` (downstream, `DEL-02-02` \u2192 `DEL-03-01`) are `PROPOSAL` stratum and are accepted: `D-PEC-62` \u00a71(4) accepted the candidate DAG v0.2 exhibit \"all strata as presented\", read in that packet as carrying the exhibit's flags as flags, so what remains recorded-but-unresolved is the specific annotated set (`E-A11`, `E-P69`/`E-N02`, `E-N13`/`E-N18`, the `C-02` direction, the `C-08` standing-node set) \u2014 none of which touches `[E-P04]` or `[E-P20]`, both of which carry an empty `Flag` column in the exhibit. `C-10` `STRATUM_RULE` ends \"strata are provenance not authority\": stratum records how an edge was derived, not whether it has been accepted, and citation does not convert `PROPOSAL` to `DECLARED`.",
+    "sha256": "b9c42162c4b5bbeb80eedbcf0fc2fae380c2c2b6a46acab0cc92080ead851e60"
+  },
+  "AX-006": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 202,
+    "quote": "- **AX-006** \u2014 Edge direction is a constraint on this contract, not a licence. `RequiredMaturity` `INITIALIZED` on `[E-P04]` means the upstream *contract* is the reliable input, not any upstream artifact; consuming it imposes no obligation on `DEL-01-01`, and being consumed by `DEL-03-01` neither expands nor transfers scope in either direction. The enforcement and test duties adjacent to this deliverable are cited and discharged nowhere here: the ingest-boundary content-minimal guard is `DEL-01-03`'s, standing zero-dependency and locality enforcement is `DEL-01-05`'s, the kill test is `DEL-10-02`'s, and `DEL-10-03`'s no-ruling-write verification is a tested property of the API's write surface under `SOW-025` \u2014 a different object from this deliverable's parsing posture, which concerns what is read rather than what may be written.",
+    "sha256": "c048bed011852bc94e16a74f4818382acc15261b027c96fd2e6a614f72c9db32"
+  },
+  "AX-007": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 203,
+    "quote": "- **AX-007** \u2014 `C12` governs the open owner decisions: \"where one materially affects architecture the affected work is fenced or flagged, never guessed\". `OI-001` materially affects this deliverable and nothing else (CON-001), so it is flagged here and fenced by REQ-009 rather than pre-empted by a production choice. TBD-002, TBD-003, and TBD-004 stay marked for the same reason.",
+    "sha256": "b2031133a3eb8da45b92023100d874acf107499f23b437cf5fb8c3f1f4c386a2"
+  },
+  "AX-008": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 204,
+    "quote": "- **AX-008** \u2014 The objective attribution to `OBJ-001` and `OBJ-002` is the SCA-002 Q2 AFFIRM ruling applying the accepted \u00a73 derivation. This contract does not reinterpret `SOW-012`, does not restate the warrant as direct, mints no owner-confirmation criterion for a question already ruled, and records the unadopted N1/N2 alternatives so a later reader sees what was decided rather than inferring a strength the record does not carry.",
+    "sha256": "ed294577df2db19ceee21da16ad8687a8d8dd950840c7f8e6c721becfcfab87a"
+  },
+  "AX-009": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 205,
+    "quote": "- **AX-009** \u2014 The accepted basis is `SOFTWARE_DECOMP.md` revision 1.2 at commit `3623b958b`, accepted through SCA-002 under `D-PEC-64`. The revision 1.1 phrase in `_REFERENCES.md` is superseded provenance from a deferred pointer sweep, not a competing authority.",
+    "sha256": "905d11fa6519a9c4fafb3c7cbd0a82dcc9092b356a3731f390a4f528b87c2481"
+  },
+  "AX-010": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 206,
+    "quote": "- **AX-010** \u2014 `C-04` `PHASE_PRECEDENCE` and `C-10` `STRATUM_RULE` are register-wide, non-gating constraints recorded in `_DEPENDENCIES.md`. Blocker output under the `FULL_GRAPH` mode at threshold `INITIALIZED` is advisory visibility only and is never work assignment.",
+    "sha256": "b7ba016920094a5a6de412f1f9f78b094f026544da92a1efef6f1c7b5e5d0953"
+  },
+  "AX-011": {
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+    "line": 207,
+    "quote": "- **AX-011** \u2014 This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by the run that authored this document; the deliverable is at `OPEN` and nothing has been built.",
+    "sha256": "ffc137380b507c892a122141c427e64d042eb970970db4b3333c97267149e53c"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n"
+  }
+]

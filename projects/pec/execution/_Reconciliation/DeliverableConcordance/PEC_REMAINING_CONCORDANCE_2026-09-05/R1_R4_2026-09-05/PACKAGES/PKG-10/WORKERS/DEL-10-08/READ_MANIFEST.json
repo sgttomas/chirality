@@ -1,0 +1,76 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "agents/AGENT_RECONCILIATION.md": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+    "projects/pec/docs/PRD.md": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+    "projects/pec/loop/LOOP_INIT.md": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "e7095343267c04b814410f7fb55a58d25088283d46c3c26e161737e2fc609097",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PACKAGE_BASIS.md": "655423cbded7f9cc87acae9ce72f0d4892e5d36ded6f35c541aee8b8666ae880",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_DEL-10-08.md": "a13c438fa91f6de5c020127b4f0e4e0f445ad031d09869cb51f8f124734fe6be",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-10.md": "df9e2ccf2606f388bc816e324a2dd00b61a464b5c599aa310b437cff8933cf36",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md": "924e482e7c075d3d616252194926934e04e0f660b5529d7e333a3a132269457d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json": "2d01cd1578b7c40683ef4baab429c7112f3b450bf54bf3583abfac3253843f3b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv": "b2396dd6dafa23ffe3f3f53e586fbb487d3ae20f4b1b636c7da102c13544c87c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md": "1b1c5b39bbc9bd7dcb1953f194dc85abc167cb7e24ba994481363d515a6e8820",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/Dependencies.csv": "e70e939b96676ef0a8b53bed1955b57e356f6ba5f40895376b19a015e794d451",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_CONTEXT.md": "9c320e3795b874819dde7db11e0a4c3550dad32b3488ef1ba70b347ffaa7a51c",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_DEPENDENCIES.md": "a792f55c76efef7b86d3ea43d033c27f1861386ec6961a5277feddcebb49de5e",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_REFERENCES.md": "7884c0402107ed45b37e170094f83c0dac26d276439604b70e3c9b86cfc67fed",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md": "c081994028e728ccd3e5951388958ace66474be90c6a3c2b03009da8de3fafdd",
+    "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "8f75ab158fc95a5252cd341c732458260e8a282a2afd90ff1fb0df1ea6859d7f",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_CONTEXT.md": "912abd1d8b18a166d324deec0f8f2780243d3d5dda95d684c1fcca04eef95ef9",
+    "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md": "fd6080075a378ac9993c05d79b1e47f3b67329383e66dbd4be0f9f0028fbf6e5",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md": "e20c22ee0d6fb78e54519194a8e1eb1e0ef9594b96fa5854525a0006df13a986",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md": "f0841ea1987d66c9fe91c8451a48770a50cccac12be5735225b797be0c466501"
+  },
+  "historical_sources": [],
+  "checks": [
+    {
+      "command": "Compare all read paths present in COMMON/SOURCE_MANIFEST.json",
+      "cwd": ".",
+      "environment": "read-only Python; no product execution",
+      "exit_code": 0,
+      "result": {
+        "matched": 26,
+        "mismatches": []
+      }
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_CONTEXT.md --operation candidate-validation",
+      "cwd": ".",
+      "environment": "read-only; scratch script /tmp; no services",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md --operation candidate-validation",
+      "cwd": ".",
+      "environment": "read-only; scratch script /tmp; no services",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": "Worker schema, unique IDs, reciprocal residual links, exact gate/Depends, LF checks",
+      "cwd": ".",
+      "environment": "Python csv read/write evidence only",
+      "exit_code": 0,
+      "result": "PASS:10 claims;6 ALIGNED;4 UNKNOWN;2 residuals; no duplicate IDs; reciprocal links generated from claim rows"
+    }
+  ],
+  "source_unchanged": true
+}

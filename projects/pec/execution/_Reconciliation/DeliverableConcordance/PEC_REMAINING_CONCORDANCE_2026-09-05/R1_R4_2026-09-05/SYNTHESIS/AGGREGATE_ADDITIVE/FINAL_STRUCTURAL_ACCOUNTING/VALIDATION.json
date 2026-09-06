@@ -1,0 +1,54 @@
+{
+  "claim_source_hashes_checked": 13847,
+  "claims": 2604,
+  "deliverables": 64,
+  "dispositions": {
+    "ACCEPTED_DIVERGENCE": 12,
+    "ALIGNED": 1260,
+    "DEFERRED_AGENT_WORKFLOW": 8,
+    "DOCUMENTED_UNIMPLEMENTED": 114,
+    "IMPLEMENTED_DIFFERENTLY": 3,
+    "LIFECYCLE_REASSESSMENT_REQUIRED": 1,
+    "PARTIALLY_IMPLEMENTED": 10,
+    "STALE_INPUT": 28,
+    "UNKNOWN": 1168
+  },
+  "exceptions": [],
+  "kind": "FINAL_FULL_STRUCTURAL_ACCOUNTING_WITH_PUBLICATION_REBIND",
+  "limitations": [
+    "Full structural evidence only; final independent R4 semantic review remains required.",
+    "PKG08 local latency absence remains bounded; wider UNKNOWN claims are not converted to absent implementation.",
+    "No Remaining application, source repair, lifecycle, REVIEW acceptance, production or release authority.",
+    "All selected input, manifest, source and prior verifier checkpoints are reusable only for their exact source states; changed inputs require scoped rerun."
+  ],
+  "native_identity": "/root/pec_corpus_synthesis/aggregate_partial",
+  "original44_findings": "Preserved in AGGREGATE_PARTIAL; exact44-cell correction closed by RELEASE_02_PKG09_PKG00. Original finding bytes not changed.",
+  "packages": 11,
+  "publication_checks": {
+    "csv_terminal_notes_trims": 56,
+    "current_top_entries": 111,
+    "decoded_preimages": 18,
+    "original_top_entries": 96,
+    "python_ast_unchanged": true,
+    "python_trailing_trim_lines": 1
+  },
+  "residuals": 165,
+  "role": "ephemeral Agent2; instruction-asserted; no delegation",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "source_unchanged": true,
+  "status": "PASS_STRUCTURAL_ONLY",
+  "upstream_snapshots": [
+    {
+      "manifest_sha256": "cbab89e0c1495fb88cde135414171a418c55e3ffda42818689b597fa1d748bfe",
+      "root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/AGGREGATE_PARTIAL"
+    },
+    {
+      "manifest_sha256": "07235e776c3de455e2cacc8bfa2db2ef5cf33335396a987d09ae751325abd4e8",
+      "root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/AGGREGATE_ADDITIVE/RELEASE_01_PKG08"
+    },
+    {
+      "manifest_sha256": "f3b195cfde510a904d0142e09d703fc879d2d082571eadab3b50312f00398fc2",
+      "root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/AGGREGATE_ADDITIVE/RELEASE_02_PKG09_PKG00"
+    }
+  ]
+}

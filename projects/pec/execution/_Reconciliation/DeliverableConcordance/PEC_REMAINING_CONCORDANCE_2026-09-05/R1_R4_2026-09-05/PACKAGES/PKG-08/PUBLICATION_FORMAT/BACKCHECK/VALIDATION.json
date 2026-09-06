@@ -1,0 +1,27 @@
+{
+  "verdict": "PASS",
+  "files_normalized": 3,
+  "line_edits": 57,
+  "csv_Notes_terminal_trims": 56,
+  "other_csv_values_changed": 0,
+  "python_ast_equal": true,
+  "carrier_files_decoded": 18,
+  "old_snapshot_entries_resolved": 96,
+  "old_manifest_sha256": "555775900d8a27b800a7b74c44a02169e8622b8f7bf3d935a12cfde7a0eb3a46",
+  "current_aggregate_exact_selected_concatenation": true,
+  "claims": 245,
+  "residuals": 12,
+  "dispositions": {
+    "UNKNOWN": 80,
+    "ALIGNED": 112,
+    "ACCEPTED_DIVERGENCE": 2,
+    "DEFERRED_AGENT_WORKFLOW": 1,
+    "STALE_INPUT": 7,
+    "DOCUMENTED_UNIMPLEMENTED": 43
+  },
+  "source_hash_comparisons": 1487,
+  "source_hashes_unchanged": true,
+  "package_files_scanned": 104,
+  "whitespace_EOF_findings": [],
+  "semantic_or_authority_change": false
+}

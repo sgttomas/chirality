@@ -1,0 +1,58 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_CLAIMS.csv",
+      "--operation",
+      "consume"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_RESIDUALS.csv",
+      "--operation",
+      "consume"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PACKAGE_SUMMARY.csv",
+      "--operation",
+      "consume"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/CROSS_PACKAGE_FINDINGS.csv",
+      "--operation",
+      "consume"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}\n"
+  }
+]

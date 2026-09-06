@@ -1,0 +1,72 @@
+[
+  {
+    "ClaimID": "DEL-03-05::SOW-038-RECOVERY",
+    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+    "locus": "SOW-038 Statement",
+    "quote": "Recover stream loss by reconciliation; no record-tier fact may rest on a stream event alone",
+    "quote_sha256": "3d1657c859e6366cbfde56a16530dc27bd20b80e3b68e93845b2e7e08d5a7593"
+  },
+  {
+    "ClaimID": "DEL-03-05::SOW-038-SUPREMACY",
+    "path": "projects/pec/docs/PRD.md",
+    "locus": "9.5 PEC-STR-004",
+    "quote": "no record-tier fact may rest on a stream event alone (PEC-K-07).",
+    "quote_sha256": "d746deb3e0335ae6ce1a5e135e3f2520b5e0af8daf992be3fff4eb61e03ed39b"
+  },
+  {
+    "ClaimID": "DEL-03-05::FALLBACK-ARTIFACTS",
+    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_CONTEXT.md",
+    "locus": "Anticipated artifacts",
+    "quote": "Supremacy rules + gap-recovery tests",
+    "quote_sha256": "64b2f8970acef47901fd2cfd4adb837b7b8d1a2b7b93a0284f26931331ec97ea"
+  },
+  {
+    "ClaimID": "DEL-03-05::FALLBACK-OWNERSHIP",
+    "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "DL-11",
+    "quote": "SOW-038 (stream-loss recovery) \u2192 PKG-03 because the guarantee is reconciliation-side, not ingest mechanics",
+    "quote_sha256": "f1336b14de7da1d778fd0a54714ebb0516b6280ec6c74caed7ec50892243ca45"
+  },
+  {
+    "ClaimID": "DEL-03-05::FALLBACK-CO-LANDING",
+    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_DEPENDENCIES.md",
+    "locus": "C-01",
+    "quote": "DEL-07-01 may not be accepted/live without DEL-03-05; simultaneity permitted",
+    "quote_sha256": "a691997bb1c463c2c329a76fa6296261dfa8a5c648c6d5b063ce8333c6e24c55"
+  },
+  {
+    "ClaimID": "DEL-03-05::FALLBACK-CONTRACT",
+    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+    "locus": "DEL-03-05 AnticipatedArtifacts",
+    "quote": "Supremacy rules + gap-recovery tests",
+    "quote_sha256": "64b2f8970acef47901fd2cfd4adb837b7b8d1a2b7b93a0284f26931331ec97ea"
+  },
+  {
+    "ClaimID": "DEL-03-05::FALLBACK-MAPPING",
+    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_CONTEXT.md",
+    "locus": "Context table",
+    "quote": "TBD (assignment at WORKING_ITEMS activation)",
+    "quote_sha256": "c6e5a4821fc92bd04f29380d21aa292c9f8b917c20a1f3b7367765fb2ebafa87"
+  },
+  {
+    "ClaimID": "DEL-03-05::DEP-03-05-003",
+    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/Dependencies.csv",
+    "locus": "DEP-03-05-003",
+    "quote": "Recovery guarantee is reconciliation supremacy; needs the reconcile path",
+    "quote_sha256": "c55ecc6f3c3756f57dcf1293881ce40f430db271e6170103d653ccd61ec05a64"
+  },
+  {
+    "ClaimID": "DEL-03-05::FALLBACK-LIFECYCLE",
+    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+    "locus": "Current State",
+    "quote": "**Current State:** OPEN",
+    "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694"
+  },
+  {
+    "ClaimID": "DEL-03-05::FALLBACK-REMAINING",
+    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+    "locus": "History",
+    "quote": "2026-07-25 \u2014 State set to OPEN (PREPARATION)",
+    "quote_sha256": "712a55d961eada2e8c025cee3f22ac41d846e793118381a983a3323afbb220a1"
+  }
+]

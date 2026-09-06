@@ -1,0 +1,15 @@
+{
+  "deliverable": "DEL-03-01",
+  "kind": "terminal original immutable worker seal",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/CLAIMS.csv": "3ceb585ec5c21f5394e4fe58f84792899b5ba1fc7a72b0783ea5bd7dcdba4e83",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/COVERAGE.md": "3c75d7c778d05e677e29ae99d8d6c2c3be5dd0f4f0697f3e920d39e5ea1de085",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/IMPLEMENTATION_INVENTORY.json": "0a86b95f786d558b3b99672285f57ac9e08aa1d734ed2126c612417d745b8e06",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/READ_MANIFEST.json": "7c329f20cee263a237aab84fb52e71f19bb02cb1012b689153dfe86e51c0e0c9",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/RESIDUALS.csv": "98a7c4449bf8b36e8eca024c0ab546d3ed5d583f187587e9fe2511e15ab69e95",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/RETURN.md": "c9217e123ca0dab57176710ecadd1c2ca6d46b0340b440938392707d41e469a5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/VALIDATION.json": "fe7b9d7756053cc0e15d35ed7b1e4a553d9d769fe7d86eed34a6d04818eb3546",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/build_evidence.py": "e6e46ea46a03a2ce896dbe542b9369c934491180ac5a73c999b75d1765c785bd"
+  },
+  "self_exclusion": true
+}

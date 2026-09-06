@@ -1,0 +1,528 @@
+{
+  "comparison": [
+    {
+      "path": "AGENTS.md",
+      "r0_sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "current_sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "base_sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "agents/AGENT_RECONCILIATION.md",
+      "r0_sha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "current_sha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "base_sha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "r0_sha256": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+      "current_sha256": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+      "base_sha256": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "r0_sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "current_sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "base_sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/docs/PRD.md",
+      "r0_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "current_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "base_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv",
+      "r0_sha256": "66cdb1e1ded86e8f9715eecd48b909260459f15c88f23b506489d1339423934d",
+      "current_sha256": "66cdb1e1ded86e8f9715eecd48b909260459f15c88f23b506489d1339423934d",
+      "base_sha256": "66cdb1e1ded86e8f9715eecd48b909260459f15c88f23b506489d1339423934d",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md",
+      "r0_sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20",
+      "current_sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20",
+      "base_sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md",
+      "r0_sha256": "375f46713bd275576a8343feb6a1768abbe0c1f5cfd61e888bb60111abe44cc9",
+      "current_sha256": "375f46713bd275576a8343feb6a1768abbe0c1f5cfd61e888bb60111abe44cc9",
+      "base_sha256": "375f46713bd275576a8343feb6a1768abbe0c1f5cfd61e888bb60111abe44cc9",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md",
+      "r0_sha256": "2c23de02146d9233153ae6213bca09c9b20bc0fc4f5428c9108e42a1f2183f62",
+      "current_sha256": "2c23de02146d9233153ae6213bca09c9b20bc0fc4f5428c9108e42a1f2183f62",
+      "base_sha256": "2c23de02146d9233153ae6213bca09c9b20bc0fc4f5428c9108e42a1f2183f62",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md",
+      "r0_sha256": "734258088c76a48636751b5f7bdd7e5467e2e939e2158dff7037d1833a8396ca",
+      "current_sha256": "734258088c76a48636751b5f7bdd7e5467e2e939e2158dff7037d1833a8396ca",
+      "base_sha256": "734258088c76a48636751b5f7bdd7e5467e2e939e2158dff7037d1833a8396ca",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REVIEW.md",
+      "r0_sha256": "1fe5f2497e7f658bc87391d385eed5ae0c3d474711eb5435e5f543fa2a7f49f9",
+      "current_sha256": "1fe5f2497e7f658bc87391d385eed5ae0c3d474711eb5435e5f543fa2a7f49f9",
+      "base_sha256": "1fe5f2497e7f658bc87391d385eed5ae0c3d474711eb5435e5f543fa2a7f49f9",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+      "r0_sha256": "b2c623e4230435b83001612fd04bea30d390dde6ab1a8b5a3f8c5cc3a00f70de",
+      "current_sha256": "b2c623e4230435b83001612fd04bea30d390dde6ab1a8b5a3f8c5cc3a00f70de",
+      "base_sha256": "b2c623e4230435b83001612fd04bea30d390dde6ab1a8b5a3f8c5cc3a00f70de",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_ACTIVATION.md",
+      "r0_sha256": "9c369c9644a2b98d15252304d4713830344ec9cb99c3c9bd120a4ce1d6dc6f7c",
+      "current_sha256": "9c369c9644a2b98d15252304d4713830344ec9cb99c3c9bd120a4ce1d6dc6f7c",
+      "base_sha256": "9c369c9644a2b98d15252304d4713830344ec9cb99c3c9bd120a4ce1d6dc6f7c",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_REGISTERED_CHECKS.json",
+      "r0_sha256": "1505fc3973509f81feb62449d8d917076ce6891e37cc426081e6aa233736fa89",
+      "current_sha256": "1505fc3973509f81feb62449d8d917076ce6891e37cc426081e6aa233736fa89",
+      "base_sha256": "1505fc3973509f81feb62449d8d917076ce6891e37cc426081e6aa233736fa89",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "r0_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "current_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "base_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/DEL0802_FINAL_ACCEPTANCE_RULING_2026-08-01.md",
+      "r0_sha256": "19ec7e063f352030db1837106b3a3d63ccac892366b85c16d31975c85eb8fc2b",
+      "current_sha256": "19ec7e063f352030db1837106b3a3d63ccac892366b85c16d31975c85eb8fc2b",
+      "base_sha256": "19ec7e063f352030db1837106b3a3d63ccac892366b85c16d31975c85eb8fc2b",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/O-A_ACTIVATION_AUTHORITY_2026-08-01.md",
+      "r0_sha256": "a5e781f903cacb951e4b0de20d138a25283daf6b7b301cc177b03cf655aff959",
+      "current_sha256": "a5e781f903cacb951e4b0de20d138a25283daf6b7b301cc177b03cf655aff959",
+      "base_sha256": "a5e781f903cacb951e4b0de20d138a25283daf6b7b301cc177b03cf655aff959",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-66_post_repair_followons.md",
+      "r0_sha256": "b93939046d6951d22a9970dd65e738cef3858410fad101cab6e77203935ea498",
+      "current_sha256": "b93939046d6951d22a9970dd65e738cef3858410fad101cab6e77203935ea498",
+      "base_sha256": "b93939046d6951d22a9970dd65e738cef3858410fad101cab6e77203935ea498",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md",
+      "r0_sha256": "2947d99e09f20f05f42fed2db592690bc3d97739f19349a09a04a97dd0016c43",
+      "current_sha256": "2947d99e09f20f05f42fed2db592690bc3d97739f19349a09a04a97dd0016c43",
+      "base_sha256": "2947d99e09f20f05f42fed2db592690bc3d97739f19349a09a04a97dd0016c43",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md",
+      "r0_sha256": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+      "current_sha256": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+      "base_sha256": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_TaskManagement/PROMOTION_RULING_2026-08-03_CAND-PEC-2026-08-03-06--16.md",
+      "r0_sha256": "47ae3eb8226d84d68ceb943d823cd30f0f37a0ac0afa393900da9dbd2c2c2180",
+      "current_sha256": "47ae3eb8226d84d68ceb943d823cd30f0f37a0ac0afa393900da9dbd2c2c2180",
+      "base_sha256": "47ae3eb8226d84d68ceb943d823cd30f0f37a0ac0afa393900da9dbd2c2c2180",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "r0_sha256": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264",
+      "current_sha256": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264",
+      "base_sha256": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "r0_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+      "current_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+      "base_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "r0_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "current_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "base_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "r0_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "current_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "base_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-08-02/BRIEF.md",
+      "r0_sha256": "3d78c6792f18c1645ada47310e3d15192f2805461a9caf594e7b0fc77a4b1237",
+      "current_sha256": "3d78c6792f18c1645ada47310e3d15192f2805461a9caf594e7b0fc77a4b1237",
+      "base_sha256": "3d78c6792f18c1645ada47310e3d15192f2805461a9caf594e7b0fc77a4b1237",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/RUN_BASIS.md",
+      "r0_sha256": "265428e8e8dbf503f6cfc71e72cd406bb4af4bc4b4a763069810ed4b052d3c61",
+      "current_sha256": "265428e8e8dbf503f6cfc71e72cd406bb4af4bc4b4a763069810ed4b052d3c61",
+      "base_sha256": "265428e8e8dbf503f6cfc71e72cd406bb4af4bc4b4a763069810ed4b052d3c61",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/SOURCE_MANIFEST.json",
+      "r0_sha256": "65e1b9d97961d0281a884a7cf344db13a65f5b6a56898d1ca4980320d2c58c3d",
+      "current_sha256": "65e1b9d97961d0281a884a7cf344db13a65f5b6a56898d1ca4980320d2c58c3d",
+      "base_sha256": "65e1b9d97961d0281a884a7cf344db13a65f5b6a56898d1ca4980320d2c58c3d",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "r0_sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "current_sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "base_sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "r0_sha256": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+      "current_sha256": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+      "base_sha256": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "r0_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+      "current_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+      "base_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/v2/contracts/api/v1/schema.json",
+      "r0_sha256": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+      "current_sha256": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+      "base_sha256": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json",
+      "r0_sha256": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+      "current_sha256": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+      "base_sha256": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json",
+      "r0_sha256": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+      "current_sha256": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+      "base_sha256": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json",
+      "r0_sha256": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+      "current_sha256": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+      "base_sha256": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+      "r0_match": true,
+      "base_match": true
+    },
+    {
+      "path": "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py",
+      "r0_sha256": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+      "current_sha256": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+      "base_sha256": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+      "r0_match": true,
+      "base_match": true
+    }
+  ],
+  "preflights": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Review_Findings.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REVIEW.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_ACTIVATION.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/D-PEC-74_REGISTERED_CHECKS.json",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/TASK_RUN_2026-07-25_1400.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_run_records/TASK_RUN_2026-07-25_1444.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    }
+  ]
+}

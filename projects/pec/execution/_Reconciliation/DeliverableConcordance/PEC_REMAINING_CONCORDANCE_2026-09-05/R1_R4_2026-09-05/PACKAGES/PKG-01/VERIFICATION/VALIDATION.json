@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "members": {
+    "DEL-01-01": {
+      "claims": 71,
+      "residuals": 4,
+      "unknown": 48,
+      "nonaligned": 48,
+      "lowest_aligned": "DEL-01-01::AX-001"
+    },
+    "DEL-01-02": {
+      "claims": 16,
+      "residuals": 2,
+      "unknown": 11,
+      "nonaligned": 11,
+      "lowest_aligned": "DEL-01-02::MAP-ASSIGNMENT"
+    },
+    "DEL-01-03": {
+      "claims": 54,
+      "residuals": 4,
+      "unknown": 33,
+      "nonaligned": 33,
+      "lowest_aligned": "DEL-01-03::AX-001"
+    },
+    "DEL-01-04": {
+      "claims": 46,
+      "residuals": 2,
+      "unknown": 26,
+      "nonaligned": 26,
+      "lowest_aligned": "DEL-01-04::AX-001"
+    },
+    "DEL-01-05": {
+      "claims": 61,
+      "residuals": 5,
+      "unknown": 7,
+      "nonaligned": 15,
+      "lowest_aligned": "DEL-01-05::AC-002"
+    },
+    "DEL-01-06": {
+      "claims": 38,
+      "residuals": 3,
+      "unknown": 1,
+      "nonaligned": 5,
+      "lowest_aligned": "DEL-01-06::AC-002"
+    }
+  },
+  "claims": 286,
+  "residuals": 20,
+  "unknown": 126,
+  "nonaligned": 138,
+  "source_base_hashes_checked": 697,
+  "runtime_derivative_hashes_checked": 62,
+  "historical_objects_checked": 9,
+  "all_read_hashes": 771,
+  "correction_transformations": [
+    {
+      "member": "DEL-01-01",
+      "changed_cells": 160,
+      "id_map": {
+        "R-DEL-01-01-001": "DEL-01-01-REM-001",
+        "R-DEL-01-01-002": "DEL-01-01-REM-002",
+        "R-DEL-01-01-003": "DEL-01-01-REM-003",
+        "R-DEL-01-01-004": "DEL-01-01-REM-004"
+      }
+    },
+    {
+      "member": "DEL-01-02",
+      "changed_cells": 37,
+      "id_map": {
+        "DEL-01-02::R-001": "DEL-01-02-REM-001",
+        "DEL-01-02::R-002": "DEL-01-02-REM-002"
+      }
+    }
+  ],
+  "checked_claims": 286,
+  "checked_residuals": 20,
+  "test_reexecution": "NONE; unchanged source/method R0 reuse plus independent source inspection",
+  "recommendation_grouping": {
+    "eligible": 10,
+    "conditional": 1,
+    "held": 9
+  },
+  "citation_loci": 110,
+  "final_source_unchanged": true,
+  "unresolved_verifier_findings": 0
+}

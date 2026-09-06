@@ -1,0 +1,76 @@
+{
+  "status": "NOT_READY",
+  "structural_errors": [],
+  "original_claims": 63,
+  "original_residuals": 5,
+  "dispositions": {
+    "UNKNOWN": 26,
+    "ALIGNED": 36,
+    "ACCEPTED_DIVERGENCE": 1
+  },
+  "members": [
+    {
+      "member": "DEL-07-01",
+      "claims": 14,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 7,
+        "ALIGNED": 7
+      },
+      "lowest_aligned": "DEL-07-01::CO-LANDING-C-01"
+    },
+    {
+      "member": "DEL-07-02",
+      "claims": 13,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 5,
+        "ALIGNED": 7,
+        "ACCEPTED_DIVERGENCE": 1
+      },
+      "lowest_aligned": "DEL-07-02::C13"
+    },
+    {
+      "member": "DEL-07-03",
+      "claims": 12,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 7,
+        "ALIGNED": 5
+      },
+      "lowest_aligned": "DEL-07-03::CONTEXT.ASSIGNMENT"
+    },
+    {
+      "member": "DEL-07-04",
+      "claims": 12,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 4,
+        "ALIGNED": 8
+      },
+      "lowest_aligned": "DEL-07-04::DEP-07-04-001"
+    },
+    {
+      "member": "DEL-07-05",
+      "claims": 12,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 3,
+        "ALIGNED": 9
+      },
+      "lowest_aligned": "DEL-07-05::D-PEC-66-ACT1"
+    }
+  ],
+  "source_files_rehashed": 415,
+  "source_unchanged": true,
+  "hold_checks": 40,
+  "hold_results": "ALLOW",
+  "semantic_findings": [
+    "F001",
+    "F002"
+  ],
+  "checked_population": 77,
+  "method_limits": "No behavior PASS or product test outcome asserted. Full original populations reviewed; evidence-report readiness only.",
+  "coverage_verdict": "NOT_READY: explicit additional source accounting required in DEL07-01/03/04",
+  "structural_verdict": "PASS"
+}

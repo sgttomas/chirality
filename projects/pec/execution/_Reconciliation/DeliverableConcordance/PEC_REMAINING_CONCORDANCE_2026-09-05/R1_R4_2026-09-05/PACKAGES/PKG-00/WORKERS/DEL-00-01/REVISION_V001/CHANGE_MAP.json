@@ -1,0 +1,44 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "sealed_brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/CORRECTION_V001.md",
+  "sealed_brief_sha256": "2981dcf78869acfe04686f7e42dfedb0737322d9289fa12d6c1f94ed1fbaccbc",
+  "files": {
+    "CLAIMS.csv": {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/CLAIMS.csv",
+      "original_sha256": "e2b0c19ff18e99ab53c478920630558285c19b2a05c4bff600c5c653ee45301b",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/CLAIMS.csv",
+      "corrected_sha256": "ace237c7f5928d30ca01af248d98ea0c67e3d4f7838976b18a004accacb1863e"
+    },
+    "RESIDUALS.csv": {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/RESIDUALS.csv",
+      "original_sha256": "b08b3d5ade91b2d100e2781d0727d23f1cf7a97d8db647d15b981a7d6535078b",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/RESIDUALS.csv",
+      "corrected_sha256": "f20bc9b345990afdfd931aa2d42d1857cd767970ed4c79d02777aab01d8fceb2"
+    }
+  },
+  "exact_cell_changes": [
+    {
+      "file": "CLAIMS.csv",
+      "csv_record_number_including_header": 26,
+      "row_id_before": "DEL-00-01::AC-002",
+      "row_id_after": "DEL-00-01::AC-002",
+      "column": "ProposedResidualID",
+      "before": "DEL-00-01::R-001",
+      "after": "DEL-00-01-REM-001"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "csv_record_number_including_header": 2,
+      "row_id_before": "DEL-00-01::R-001",
+      "row_id_after": "DEL-00-01-REM-001",
+      "column": "ResidualID",
+      "before": "DEL-00-01::R-001",
+      "after": "DEL-00-01-REM-001"
+    }
+  ],
+  "all_other_csv_bytes_preserved": true,
+  "disposition_counts_preserved": {
+    "ALIGNED": 42,
+    "PARTIALLY_IMPLEMENTED": 1
+  }
+}

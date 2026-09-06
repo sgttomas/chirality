@@ -1,0 +1,29 @@
+{
+  "passed": false,
+  "errors": [
+    "DEL-06-01: source drift projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/validate_package.py",
+    "DEL-06-02: source drift projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/validate_package.py"
+  ],
+  "members": [
+    {
+      "DeliverableID": "DEL-06-01",
+      "Claims": 11,
+      "Residuals": 1,
+      "Unknown": 7,
+      "DispositionCounts": {
+        "ALIGNED": 4,
+        "UNKNOWN": 7
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-02",
+      "Claims": 14,
+      "Residuals": 1,
+      "Unknown": 10,
+      "DispositionCounts": {
+        "ALIGNED": 4,
+        "UNKNOWN": 10
+      }
+    }
+  ]
+}

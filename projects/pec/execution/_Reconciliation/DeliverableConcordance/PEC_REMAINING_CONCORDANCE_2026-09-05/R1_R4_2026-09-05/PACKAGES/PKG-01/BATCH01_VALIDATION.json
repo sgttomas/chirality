@@ -1,0 +1,26 @@
+{
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "member_count": 2,
+  "members": {
+    "DEL-01-01": {
+      "claims": 71,
+      "residuals": 4,
+      "unknown": 48,
+      "nonaligned": 48,
+      "read_hashes": 50,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01"
+    },
+    "DEL-01-02": {
+      "claims": 16,
+      "residuals": 2,
+      "unknown": 11,
+      "nonaligned": 11,
+      "read_hashes": 67,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02"
+    }
+  },
+  "claims": 87,
+  "residuals": 6,
+  "errors": [],
+  "structural_pass": true
+}

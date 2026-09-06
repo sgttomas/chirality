@@ -1,0 +1,16 @@
+[
+  {
+    "deliverable": "DEL-10-07",
+    "claims": 7,
+    "residuals": 1,
+    "unknowns": 3,
+    "errors": []
+  },
+  {
+    "deliverable": "DEL-10-08",
+    "claims": 10,
+    "residuals": 2,
+    "unknowns": 4,
+    "errors": []
+  }
+]

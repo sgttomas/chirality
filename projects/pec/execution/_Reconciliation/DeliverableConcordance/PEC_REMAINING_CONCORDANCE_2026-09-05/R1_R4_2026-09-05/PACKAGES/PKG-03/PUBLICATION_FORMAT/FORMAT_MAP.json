@@ -1,0 +1,141 @@
+{
+  "authority": "Agent0 /root bounded publication-format repair request2026-09-05; exact three EOF findings in CHANGE scratch2.log",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "semantic_change": false,
+  "prior_output_manifest_sha256": "8b8b77269a7f983792de5c30f27011ae573dd96239c0701b2a32e4b02995eaba",
+  "prior_output_manifest_carrier": "PUBLICATION_FORMAT/PREIMAGES.json#files/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/OUTPUT_MANIFEST.json",
+  "normalizations": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "pre_sha256": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "post_sha256": "f33a5b570459a7cdb5901da5ca780d4fc7bf368453c411368410aee9d44ff645",
+      "pre_bytes": 52030,
+      "post_bytes": 52029,
+      "operation": "remove exactly one terminal LF; retain one EOF LF",
+      "preimage_carrier": "PUBLICATION_FORMAT/PREIMAGES.json#files/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/RETURN.md",
+      "pre_sha256": "67bc87ad43c7c5dfa2605fc775b82c8b02f576e09b08656e5cc6973705e6eafc",
+      "post_sha256": "8bd309ab78ddc2f5881ae9eb61b5fc89b576728375eebfc5fc215bb16646cdc5",
+      "pre_bytes": 5083,
+      "post_bytes": 5082,
+      "operation": "remove exactly one terminal LF; retain one EOF LF",
+      "preimage_carrier": "PUBLICATION_FORMAT/PREIMAGES.json#files/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/RETURN.md"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/RETURN.md",
+      "pre_sha256": "b836840a5b34dd924368cdcdd5adec0528f4948a89b5875247f6b2690b0bbc8d",
+      "post_sha256": "5ee19d871b4c4a08fa618992fbc4eb5d8399ec1f445fd5c6d1de4ff9c8468e6a",
+      "pre_bytes": 3576,
+      "post_bytes": 3575,
+      "operation": "remove exactly one terminal LF; retain one EOF LF",
+      "preimage_carrier": "PUBLICATION_FORMAT/PREIMAGES.json#files/projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/RETURN.md"
+    }
+  ],
+  "historical_reference_interpretation": [
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/OUTPUT_MANIFEST.json",
+      "historical_hash": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/OUTPUT_MANIFEST.json",
+      "historical_hash": "67bc87ad43c7c5dfa2605fc775b82c8b02f576e09b08656e5cc6973705e6eafc",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/OUTPUT_MANIFEST.json",
+      "historical_hash": "b836840a5b34dd924368cdcdd5adec0528f4948a89b5875247f6b2690b0bbc8d",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/DISPATCH_RECORDS.json",
+      "historical_hash": "67bc87ad43c7c5dfa2605fc775b82c8b02f576e09b08656e5cc6973705e6eafc",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/DISPATCH_RECORDS.json",
+      "historical_hash": "b836840a5b34dd924368cdcdd5adec0528f4948a89b5875247f6b2690b0bbc8d",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/ORIGINAL_SEALS/DEL-03-03_CORRECTION_V001.json",
+      "historical_hash": "b836840a5b34dd924368cdcdd5adec0528f4948a89b5875247f6b2690b0bbc8d",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/ORIGINAL_SEALS/DEL-03-02.json",
+      "historical_hash": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/ORIGINAL_SEALS/DEL-03-02_CORRECTION_V001.json",
+      "historical_hash": "67bc87ad43c7c5dfa2605fc775b82c8b02f576e09b08656e5cc6973705e6eafc",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/READ_MANIFEST.json",
+      "historical_hash": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/OUTPUT_MANIFEST.json",
+      "historical_hash": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/OUTPUT_MANIFEST.json",
+      "historical_hash": "67bc87ad43c7c5dfa2605fc775b82c8b02f576e09b08656e5cc6973705e6eafc",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/CHANGE_MAP.json",
+      "historical_hash": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/READ_MANIFEST.json",
+      "historical_hash": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/OUTPUT_MANIFEST.json",
+      "historical_hash": "b836840a5b34dd924368cdcdd5adec0528f4948a89b5875247f6b2690b0bbc8d",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/BACKCHECK_V001/READ_MANIFEST.json",
+      "historical_hash": "1314dfcbe013a08c52bc07179ba61f1f4990336f001c450a85e63a78c2da9f23",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CLAIM_SOURCE_EXCERPTS.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/BACKCHECK_V001/READ_MANIFEST.json",
+      "historical_hash": "67bc87ad43c7c5dfa2605fc775b82c8b02f576e09b08656e5cc6973705e6eafc",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    },
+    {
+      "manifest_or_record": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/BACKCHECK_V001/READ_MANIFEST.json",
+      "historical_hash": "b836840a5b34dd924368cdcdd5adec0528f4948a89b5875247f6b2690b0bbc8d",
+      "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/RETURN.md",
+      "interpretation": "Preserved pre-format hash resolves to decoded PREIMAGES carrier, not current candidate bytes. Current publication bytes are bound by new package OUTPUT_MANIFEST."
+    }
+  ],
+  "original_manifest_rule": "All pre-format manifests and historical hash references remain lossless original evidence. Resolve the three old content hashes through decoded preimages. The new top-level manifest alone binds current publication bytes. No historical hash is relabeled current."
+}

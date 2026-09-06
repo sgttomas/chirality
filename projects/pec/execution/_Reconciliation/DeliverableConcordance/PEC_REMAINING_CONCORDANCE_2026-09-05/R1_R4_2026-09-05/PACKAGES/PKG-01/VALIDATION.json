@@ -1,0 +1,76 @@
+{
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "member_count": 6,
+  "members": {
+    "DEL-01-01": {
+      "claims": 71,
+      "residuals": 4,
+      "unknown": 48,
+      "nonaligned": 48,
+      "read_hashes": 58,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/CORRECTION_S001"
+    },
+    "DEL-01-02": {
+      "claims": 16,
+      "residuals": 2,
+      "unknown": 11,
+      "nonaligned": 11,
+      "read_hashes": 74,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02/CORRECTION_S001"
+    },
+    "DEL-01-03": {
+      "claims": 54,
+      "residuals": 4,
+      "unknown": 33,
+      "nonaligned": 33,
+      "read_hashes": 40,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-03"
+    },
+    "DEL-01-04": {
+      "claims": 46,
+      "residuals": 2,
+      "unknown": 26,
+      "nonaligned": 26,
+      "read_hashes": 68,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-04"
+    },
+    "DEL-01-05": {
+      "claims": 61,
+      "residuals": 5,
+      "unknown": 7,
+      "nonaligned": 15,
+      "read_hashes": 85,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-05"
+    },
+    "DEL-01-06": {
+      "claims": 38,
+      "residuals": 3,
+      "unknown": 1,
+      "nonaligned": 5,
+      "read_hashes": 81,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-06"
+    }
+  },
+  "claims": 286,
+  "residuals": 20,
+  "errors": [],
+  "structural_pass": true,
+  "status": "PASS_FOR_PACKAGE_REPORT_HANDOFF",
+  "independent_verifier": "PASS_FOR_PACKAGE_REPORT_SELECTION",
+  "verifier_output_hashes_reproduced": 11,
+  "verifier_read_hashes_reproduced": 771,
+  "unresolved_verifier_defects": 0,
+  "unknown": 126,
+  "nonaligned": 138,
+  "warranted_none_members": 0,
+  "recommendation_grouping": {
+    "eligible_later_proposal": 10,
+    "conditional_interpretation": 1,
+    "held_routing": 9
+  },
+  "exact_final_hold_preflights": 12,
+  "hold_verdict": "ALLOW",
+  "source_product_changes": "NONE",
+  "product_test_reexecution": "NONE; exact unchanged R0 source/method evidence revalidated, finite guarantees preserved",
+  "closure": "PACKAGE_REPORT_READY_NOT_PRODUCT_REMAINING_LIFECYCLE_RELEASE_OR_RELIANCE_CLOSURE"
+}

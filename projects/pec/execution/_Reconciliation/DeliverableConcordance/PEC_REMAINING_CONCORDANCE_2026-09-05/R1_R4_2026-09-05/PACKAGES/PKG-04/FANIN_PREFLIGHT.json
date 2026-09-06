@@ -1,0 +1,142 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  }
+]

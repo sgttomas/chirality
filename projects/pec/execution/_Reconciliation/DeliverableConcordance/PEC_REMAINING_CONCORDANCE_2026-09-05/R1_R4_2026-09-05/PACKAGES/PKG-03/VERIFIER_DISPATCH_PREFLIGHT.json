@@ -1,0 +1,170 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_CONTEXT.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit_code": 0,
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+  }
+]

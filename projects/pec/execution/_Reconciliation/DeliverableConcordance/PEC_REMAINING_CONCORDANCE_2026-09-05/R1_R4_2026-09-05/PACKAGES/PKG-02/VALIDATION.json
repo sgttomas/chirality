@@ -1,0 +1,34 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "verdict": "PASS_REPORT_READINESS",
+  "coverage": {
+    "deliverables": 7,
+    "claims": 495,
+    "defined_local_ids": 484,
+    "REQ_AC_VER": 240,
+    "raw_residuals": 29,
+    "UNKNOWN": 228,
+    "non_ALIGNED": 267,
+    "warranted_NONE": 0
+  },
+  "routing": {
+    "product_or_evidence_candidates": 11,
+    "held_routing_only": 18
+  },
+  "structural_validation": "AGGREGATE_VALIDATION.json",
+  "all_ID_coverage": "MANAGER_FULL_COVERAGE_CHECK.json",
+  "source_and_aggregate_reproduction": "FINAL_FANIN_VALIDATION.json",
+  "independent_verification": "VERIFICATION/VERIFICATION.md",
+  "independent_verifier_checked_claims_and_residuals": 524,
+  "corrections": {
+    "required": false,
+    "originals_preserved": true
+  },
+  "source_mutations": false,
+  "remaining_application": false,
+  "lifecycle_mutations": false,
+  "production_test_execution": "No new product test execution; immutable current-input finite registry evidence reused where justified by DEL02-07",
+  "native_execution": "delegated-harness-native; instruction-asserted roles not mechanically enforced",
+  "next_owner": "HELP_HUMAN /root package fan-in then separately dispatched synthesis",
+  "blocked_report_work": []
+}

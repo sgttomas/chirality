@@ -1,0 +1,105 @@
+{
+  "recorded_utc": "2026-09-05T23:52:28.380733+00:00",
+  "attribution": "HELP_HUMAN Agent0 coordination relay; common recorder did not perform package fan-in, publication transformation or dispatch",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "events": [
+    {
+      "event": 8,
+      "fanin": {
+        "package": "PKG-04",
+        "agent0_actions_reported": [
+          "read HANDOFF",
+          "reproduced 97 output-manifest hashes"
+        ],
+        "output_manifest_sha256": "ec19b222169df654764a50b17ae72cbf41f67a4213f0018358c25194b61d61da",
+        "originals_and_corrections": "package fan-in reported",
+        "meaning": "report evidence only; no product/Remaining/lifecycle acceptance"
+      },
+      "launch": {
+        "package": "PKG-08",
+        "actual_manager_task_id": "/root/pec_pkg08_reconciliation",
+        "direct_parent": "/root",
+        "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-08.md",
+        "brief_sha256": "79ccb352ae6c99ed6b90804e8abdac6938578d9b1df0fd656c28d4a031ceec9d",
+        "clarification_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+        "clarification_sha256": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+        "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08",
+        "execution_class": "delegated-harness-native",
+        "role_evidence": "instruction-asserted; not mechanically enforced"
+      }
+    },
+    {
+      "event": 9,
+      "fanin": {
+        "package": "PKG-06",
+        "agent0_actions_reported": [
+          "read HANDOFF",
+          "reproduced 132 output-manifest hashes"
+        ],
+        "output_manifest_sha256": "8a9d52babfad7e2ccf682529c568d587f67beca083d04f985289397a528ae886",
+        "originals_and_corrections": "package fan-in reported",
+        "meaning": "report evidence only; no product/Remaining/lifecycle acceptance"
+      },
+      "launch": {
+        "package": "PKG-09",
+        "actual_manager_task_id": "/root/pec_pkg09_reconciliation",
+        "direct_parent": "/root",
+        "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-09.md",
+        "brief_sha256": "81a1491f28cc498bf85775a6434682caefbf6b14f76095fec9c6e48ebb42bfd5",
+        "clarification_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+        "clarification_sha256": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+        "write_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09",
+        "execution_class": "delegated-harness-native",
+        "role_evidence": "instruction-asserted; not mechanically enforced"
+      }
+    },
+    {
+      "event": 10,
+      "fanin": {
+        "package": "PKG-07",
+        "agent0_actions_reported": [
+          "read HANDOFF",
+          "reproduced 113 output-manifest hashes"
+        ],
+        "output_manifest_sha256": "f4eb8e05315f04035763e858e716186c88e72b441714398ca571f461e9091bc7",
+        "originals_and_corrections": "all verified",
+        "meaning": "report evidence only; no product/Remaining/lifecycle acceptance"
+      }
+    }
+  ],
+  "active_managers_reported": [
+    "PKG-08",
+    "PKG-09"
+  ],
+  "all_package_managers_launched_directly": 11,
+  "temporary_capacity": {
+    "planned_max_active_managers": 3,
+    "planned_max_active_specialists_per_manager_including_verifier": 2,
+    "actual_runtime_variance": "Agent0 reports an actual runtime thread-limit variance; no unreported numeric runtime limit or slot mechanism is invented",
+    "priority_hold": "brief temporary priority hold for PKG07 backcheck, now released",
+    "policy_effect": "none; temporary account/runtime scheduling only, not a new standing policy"
+  },
+  "publication_manifest_updates": [
+    {
+      "package": "PKG-03",
+      "current_output_manifest_sha256": "c5d2626feabb459cd76837e04316855f5f87600f01422ac5c2ff58d9fb5f10d8",
+      "reproduced_hash_count": 127,
+      "original_logical_map_sha256": "0192dfd60b26e5408cc10162821b42dd7aab08a33487c3c0e48a4c694f30ff7c",
+      "change": "publication-only EOF normalization after CHANGE preliminary check",
+      "preservation": "exact originals and original manifests preserved losslessly; no semantic changes",
+      "package_whitespace": "PASS",
+      "synthesis_selection": "use this latest publication manifest with its original logical preservation map; do not silently replace historical identity in earlier fan-in records"
+    },
+    {
+      "package": "PKG-10",
+      "current_output_manifest_sha256": "3ff5ee8abd50523cdc53c6423cb15c750ab598248e19bc467a49fd12a5c557a2",
+      "reproduced_hash_count": 196,
+      "original_logical_map_sha256": "53c9f65b6fd89955752c853b9c00b87367a3397cec544cdcbcbfd71ebe3dc124",
+      "change": "publication-only EOF normalization after CHANGE preliminary check",
+      "preservation": "exact originals and original manifests preserved losslessly; no semantic changes",
+      "package_whitespace": "PASS",
+      "synthesis_selection": "use this latest publication manifest with its original logical preservation map; do not silently replace historical identity in earlier fan-in records"
+    }
+  ],
+  "preservation": "append-only COMMON record; previous fan-in reports, sealed essentials and all package files untouched"
+}

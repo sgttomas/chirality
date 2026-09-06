@@ -1,0 +1,3 @@
+# PKG-09 frozen package basis
+
+D82 read-only R1–R4, accepted D81 conventions. Base 2be412ccea62bdc4bd96deb082c46d7a792076ea. Current source rehash: []. Derivative report only; seven scoped dashboard deliverables. No R0 members reused. Role instruction-asserted, not mechanically enforced. Native children bounded to one member each, at most two active; fresh independent verifier after all workers. Missing ScopeOfWork.md uses exact decomposition quote/hash mapping; no implementation absence inference. Preserve consumer optionality, advisory Explain and cited source drilldown. Every proposal nonselectable until exact owner application; source, Root, lifecycle and production gates survive.

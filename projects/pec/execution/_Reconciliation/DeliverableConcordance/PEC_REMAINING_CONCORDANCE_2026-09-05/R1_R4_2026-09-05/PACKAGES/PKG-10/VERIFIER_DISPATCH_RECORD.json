@@ -1,0 +1,11 @@
+{
+  "agent_id": "/root/pec_pkg10_reconciliation/independent_verifier",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_VERIFIER.md",
+  "brief_sha256": "8dc6879ad787d1957eeb4efcc7ead0207ad48b0b27a0493648056611beb8a403",
+  "focus": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFIER_FOCUS_01.md",
+  "focus_sha256": "1ca1e9ae814457d0c2edcfdac79e45fd7bc048205fe645870fe7491aeaa3a2a6",
+  "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/**",
+  "status": "COMPLETE_INITIAL_CORRECTION_REQUIRED",
+  "role_evidence": "instruction-asserted; not mechanically enforced",
+  "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/RETURN.md"
+}

@@ -1,0 +1,18 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/OUTPUT_MANIFEST.json": "141a5bba93c319eb2cb7c1da4092746e2692810a08462f1855ce16b9c98da617",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/OUTPUT_MANIFEST.json": "918b4f61e90643d52f9cc8cb1fda8ad9b1488c7c537e912eeff0582f70eba361",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/OUTPUT_MANIFEST.json": "d5764f02bc9e507f25eef834b4948ec7208b53d8669a0e1b322e822102397730",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/OUTPUT_MANIFEST.json": "c5d2626feabb459cd76837e04316855f5f87600f01422ac5c2ff58d9fb5f10d8",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/OUTPUT_MANIFEST.json": "ec19b222169df654764a50b17ae72cbf41f67a4213f0018358c25194b61d61da",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/OUTPUT_MANIFEST.json": "963ccb7bf01cbcdf705dce35b8587addb47a2a4e68c790e81b2ac92c8a6cc2a2",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/OUTPUT_MANIFEST.json": "8a9d52babfad7e2ccf682529c568d587f67beca083d04f985289397a528ae886",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/OUTPUT_MANIFEST.json": "f4eb8e05315f04035763e858e716186c88e72b441714398ca571f461e9091bc7",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/OUTPUT_MANIFEST.json": "3ff5ee8abd50523cdc53c6423cb15c750ab598248e19bc467a49fd12a5c557a2"
+  },
+  "excluded_packages": [
+    "PKG-08",
+    "PKG-09"
+  ]
+}

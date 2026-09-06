@@ -1,0 +1,33 @@
+{
+  "status": "MANAGER_AGGREGATE_PASS_PENDING_FINAL_R4",
+  "packages": 11,
+  "deliverables": 64,
+  "claims": 2604,
+  "raw_residuals": 165,
+  "dispositions": {
+    "ALIGNED": 1260,
+    "PARTIALLY_IMPLEMENTED": 10,
+    "UNKNOWN": 1168,
+    "DEFERRED_AGENT_WORKFLOW": 8,
+    "LIFECYCLE_REASSESSMENT_REQUIRED": 1,
+    "ACCEPTED_DIVERGENCE": 12,
+    "IMPLEMENTED_DIFFERENTLY": 3,
+    "STALE_INPUT": 28,
+    "DOCUMENTED_UNIMPLEMENTED": 114
+  },
+  "unknown_deliverables": 60,
+  "bounded_none_deliverables": [
+    "DEL-10-01"
+  ],
+  "all64_selected_claim_residual_hashes_reproduced": true,
+  "all47_cross_input_findings_mapped_to24_themes": true,
+  "source_rows_preserved": true,
+  "package00_44_cell_correction": "independent additive PASS; original exception retained",
+  "package08_format_rebind": "PASS independent FINAL_STRUCTURAL_ACCOUNTING",
+  "final_R4_independent_review": "pending",
+  "independent_full_aggregate_manifest": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/AGGREGATE_ADDITIVE/FINAL_STRUCTURAL_ACCOUNTING/OUTPUT_MANIFEST.json",
+    "sha256": "c378d3b9dd643539bb4ed1753219e85a9c9f5abb17613d4db8e3d449a92c0bfb"
+  },
+  "all_final_selected_claim_source_hashes_reproduced": 13847
+}

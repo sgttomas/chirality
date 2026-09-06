@@ -1,0 +1,8 @@
+{
+  "child_id": "/root/pec_pkg09_reconciliation/worker_05",
+  "status": "COMPLETED",
+  "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-05/RETURN.md",
+  "claims": 20,
+  "unknown": 4,
+  "residuals": 1
+}

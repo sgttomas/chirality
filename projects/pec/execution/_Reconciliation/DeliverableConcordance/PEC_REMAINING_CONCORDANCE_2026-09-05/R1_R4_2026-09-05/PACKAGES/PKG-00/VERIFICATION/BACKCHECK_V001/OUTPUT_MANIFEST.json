@@ -1,0 +1,13 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "files": {
+    "FINDINGS.csv": "96f1f03ea87bc8d101aad18a060cc544eb0928d5feb1c3c32b46649517a86bae",
+    "ORIGINAL_VALIDATOR_CHECK.json": "f775ff478294f4c5eeda24cf1ce46732abee605dbdd1afc948fbc93fbc26c8e7",
+    "READ_MANIFEST.json": "4c511b5d6d9e59c569e86abbe4d878c7d1a83aea2ca5959ed6a0705f642e76e8",
+    "RETURN.md": "c51bc4be2554891382c4663189d567d236b220df7b31fe681be0ed1103bbbe36",
+    "VALIDATION.json": "61fc6f64905d1b8d74dbb8fd0d2b9e093176207694ec8573a7c0546c5d60bff9",
+    "VERIFICATION.md": "b6bba90935f55dff293fb158bbcef0dad985a634fed1eb1567a4ee0d7f1b180b",
+    "backcheck.py": "8fdfe847cfa424f8b4739e8de33f3a3cf6be1ce7f675d310b81dd80e975df3e5"
+  },
+  "self_excluded": "OUTPUT_MANIFEST.json"
+}

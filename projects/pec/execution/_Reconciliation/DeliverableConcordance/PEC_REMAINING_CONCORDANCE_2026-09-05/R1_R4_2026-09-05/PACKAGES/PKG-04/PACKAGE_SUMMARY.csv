@@ -1,0 +1,6 @@
+DeliverableID,AssessmentStatus,ClaimCount,AlignedCount,DocumentedUnimplementedCount,UnknownCount,StaleInputCount,ResidualCount,RecommendedCandidateCount,HeldRoutingCount,WarrantedNONE,SelectedEvidenceRoot
+DEL-04-01,ASSESSED_UNKNOWN,87,36,47,4,0,3,2,1,NO,projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01
+DEL-04-02,ASSESSED_UNKNOWN,88,26,0,59,3,2,2,0,NO,projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02
+DEL-04-03,ASSESSED_UNKNOWN,85,47,0,35,3,2,2,0,NO,projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01
+DEL-04-04,ASSESSED_UNKNOWN,14,8,0,6,0,1,0,1,NO,projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04
+DEL-04-05,ASSESSED_UNKNOWN,83,30,0,49,4,3,2,1,NO,projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01

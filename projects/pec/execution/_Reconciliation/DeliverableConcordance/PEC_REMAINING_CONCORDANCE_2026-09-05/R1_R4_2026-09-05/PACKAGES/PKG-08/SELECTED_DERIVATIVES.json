@@ -1,0 +1,32 @@
+[
+  {
+    "deliverable": "DEL-08-01",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01",
+    "claims_sha256": "8f2393206edd01dd1e56fe63b6b390984834b9fbf3567e7c308cda2b25a3a088",
+    "residuals_sha256": "ba32a4ca182f0e7bab27d3733eb93ecf3b595fa09709729e5d920432b9ed9915"
+  },
+  {
+    "deliverable": "DEL-08-02",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02",
+    "claims_sha256": "4abd3ee11b66bf26248af47145dc68b70df41ccf3ec65ec076c8764690c07314",
+    "residuals_sha256": "e73da28de9f69439012c69eff99274ff5884fdcbd442df50eee3eb1fd6e1900f"
+  },
+  {
+    "deliverable": "DEL-08-03",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03",
+    "claims_sha256": "9719e01256bb19eed748beb656eacb3dcfe939348bfbee564fe21c5754f77098",
+    "residuals_sha256": "c0c367ecb40e4646ec5417677ec8cda00e3325593e1dccabf002c5cf33db9484"
+  },
+  {
+    "deliverable": "DEL-08-04",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04",
+    "claims_sha256": "4a4146b9ca45e64ab2608068057ae2a53cae918631c13ec7dfaa4be88def1955",
+    "residuals_sha256": "d5bb6cc785564178dfffc0186757c6fa27b8eb68228a350c09323ce45c6a80ea"
+  },
+  {
+    "deliverable": "DEL-08-05",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001",
+    "claims_sha256": "a54b4aa7e34e4ef30ed2d40c58c6579f265258c103e1c8ee07cba28ea4133c97",
+    "residuals_sha256": "8a4986aa012daae710cf531217f493021befc25abc17f746ab9fa413bd7cfc8c"
+  }
+]

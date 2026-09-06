@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "claims": 418,
+  "residuals": 26,
+  "required_ids": 179,
+  "all_local_ids": 349,
+  "dispositions": {
+    "ALIGNED": 211,
+    "UNKNOWN": 202,
+    "STALE_INPUT": 3,
+    "IMPLEMENTED_DIFFERENTLY": 1,
+    "DEFERRED_AGENT_WORKFLOW": 1
+  },
+  "mapped_cells": {
+    "V001": 227,
+    "V002": 35
+  },
+  "corrected_primary_claims": 51,
+  "routing_rows": 26,
+  "recommended_evidence": 13,
+  "held": 13,
+  "cross_package_findings": 7,
+  "source_hashes_rechecked": 447,
+  "errors": [],
+  "product_tests_rerun": false
+}

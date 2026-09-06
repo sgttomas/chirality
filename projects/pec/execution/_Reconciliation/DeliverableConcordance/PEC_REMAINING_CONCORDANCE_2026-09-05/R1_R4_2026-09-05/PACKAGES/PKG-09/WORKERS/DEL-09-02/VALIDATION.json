@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "claims": 14,
+  "aligned": 10,
+  "unknown": 4,
+  "residuals": 1,
+  "source_hashes_checked": 239,
+  "reciprocity": "PASS",
+  "LF": "PASS",
+  "exact_gate_depends": "PASS"
+}

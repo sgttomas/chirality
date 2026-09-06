@@ -1,0 +1,9 @@
+{
+  "child_id": "/root/pec_pkg09_reconciliation/worker_02",
+  "role": "Agent2 instruction-asserted, not mechanically enforced",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/BRIEFS/DEL-09-02.md",
+  "brief_sha256": "bbab394ada723bdae978d4946f73a1d9a70e51b7bd30c7e6480223f516dd9679",
+  "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-02/**",
+  "status": "DISPATCHED",
+  "retry_basis": "PKG10 terminal capacity notice from Agent0"
+}

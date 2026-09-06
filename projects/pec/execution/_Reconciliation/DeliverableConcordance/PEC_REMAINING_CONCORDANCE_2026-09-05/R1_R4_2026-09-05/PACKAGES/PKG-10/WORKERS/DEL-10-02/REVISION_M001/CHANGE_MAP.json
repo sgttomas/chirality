@@ -1,0 +1,1478 @@
+{
+  "deliverable": "DEL-10-02",
+  "revision": "REVISION_M001",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "original_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/CLAIMS.csv": "24f5cf471ef5c9c7e8b1c47033ca2c56be061a2674714e35e96a763c5e3ef543",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/COVERAGE.md": "5a6f034cb2604e93273bc999869c2429c0b990169e5837df8dbbf696fb501ebb",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/READ_MANIFEST.json": "dfe8d5cdb33afed9306edb873bde30f6b76a2f9be049bc635e0febd795d72f58",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/RESIDUALS.csv": "e7675de1c1fd2f8fcc9da01163da0b96a959811c4768a8c0ffdfb393c16a3dd8",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/RETURN.md": "6c4c9838009a8115ad532992ea96d3039c0d99ead395fa63eb0ceee52c854e0f"
+  },
+  "output_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/REVISION_M001/CLAIMS.csv": "6663bdc6b11440033fbe24dc6eb7c00f84ee98dbea713c0b1c41dd28eabaa740",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/REVISION_M001/RESIDUALS.csv": "56ff914153bf8817470ffa09f789dd37c818488bff2083075acf1256f951d3f9",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/REVISION_M001/COVERAGE.md": "f48f0046c38e4593248d5ec0506a97205c67992dd53a81a7298afa7eb0951ddd",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/REVISION_M001/READ_MANIFEST.json": "92e938372d48c7c60e46a4211c816aeca173caf4cc7e7b0baaae18ab364d8e96",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/REVISION_M001/RETURN.md": "1a23021379c532d20f3a690ec85538322b05d7bad1f41811ea4eaf00cd5e80c6"
+  },
+  "residual_id_map": {
+    "R-DEL-10-02-01": "DEL-10-02-REM-001",
+    "R-DEL-10-02-02": "DEL-10-02-REM-002",
+    "R-DEL-10-02-03": "DEL-10-02-REM-003",
+    "R-DEL-10-02-04": "DEL-10-02-REM-004"
+  },
+  "changes": [
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "DEL-10-02::CLM-001",
+      "row_id_after": "DEL-10-02::CLM-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "DEL-10-02::CLM-001",
+      "row_id_after": "DEL-10-02::CLM-001",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 2,
+      "row_id_before": "DEL-10-02::CLM-002",
+      "row_id_after": "DEL-10-02::CLM-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 2,
+      "row_id_before": "DEL-10-02::CLM-002",
+      "row_id_after": "DEL-10-02::CLM-002",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 3,
+      "row_id_before": "DEL-10-02::CLM-003",
+      "row_id_after": "DEL-10-02::CLM-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 3,
+      "row_id_before": "DEL-10-02::CLM-003",
+      "row_id_after": "DEL-10-02::CLM-003",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "DEL-10-02::CLM-004",
+      "row_id_after": "DEL-10-02::CLM-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "DEL-10-02::CLM-004",
+      "row_id_after": "DEL-10-02::CLM-004",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 5,
+      "row_id_before": "DEL-10-02::CLM-005",
+      "row_id_after": "DEL-10-02::CLM-005",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 5,
+      "row_id_before": "DEL-10-02::CLM-005",
+      "row_id_after": "DEL-10-02::CLM-005",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 6,
+      "row_id_before": "DEL-10-02::CLM-006",
+      "row_id_after": "DEL-10-02::CLM-006",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 6,
+      "row_id_before": "DEL-10-02::CLM-006",
+      "row_id_after": "DEL-10-02::CLM-006",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 7,
+      "row_id_before": "DEL-10-02::CLM-007",
+      "row_id_after": "DEL-10-02::CLM-007",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 7,
+      "row_id_before": "DEL-10-02::CLM-007",
+      "row_id_after": "DEL-10-02::CLM-007",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 8,
+      "row_id_before": "DEL-10-02::CLM-008",
+      "row_id_after": "DEL-10-02::CLM-008",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 8,
+      "row_id_before": "DEL-10-02::CLM-008",
+      "row_id_after": "DEL-10-02::CLM-008",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 9,
+      "row_id_before": "DEL-10-02::CLM-009",
+      "row_id_after": "DEL-10-02::CLM-009",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 9,
+      "row_id_before": "DEL-10-02::CLM-009",
+      "row_id_after": "DEL-10-02::CLM-009",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 10,
+      "row_id_before": "DEL-10-02::CLM-010",
+      "row_id_after": "DEL-10-02::CLM-010",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 10,
+      "row_id_before": "DEL-10-02::CLM-010",
+      "row_id_after": "DEL-10-02::CLM-010",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 11,
+      "row_id_before": "DEL-10-02::CLM-011",
+      "row_id_after": "DEL-10-02::CLM-011",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 11,
+      "row_id_before": "DEL-10-02::CLM-011",
+      "row_id_after": "DEL-10-02::CLM-011",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 12,
+      "row_id_before": "DEL-10-02::CLM-012",
+      "row_id_after": "DEL-10-02::CLM-012",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 12,
+      "row_id_before": "DEL-10-02::CLM-012",
+      "row_id_after": "DEL-10-02::CLM-012",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 13,
+      "row_id_before": "DEL-10-02::CLM-013",
+      "row_id_after": "DEL-10-02::CLM-013",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 13,
+      "row_id_before": "DEL-10-02::CLM-013",
+      "row_id_after": "DEL-10-02::CLM-013",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 14,
+      "row_id_before": "DEL-10-02::OUT-001",
+      "row_id_after": "DEL-10-02::OUT-001",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 14,
+      "row_id_before": "DEL-10-02::OUT-001",
+      "row_id_after": "DEL-10-02::OUT-001",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 15,
+      "row_id_before": "DEL-10-02::OUT-002",
+      "row_id_after": "DEL-10-02::OUT-002",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 15,
+      "row_id_before": "DEL-10-02::OUT-002",
+      "row_id_after": "DEL-10-02::OUT-002",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 16,
+      "row_id_before": "DEL-10-02::TBD-001",
+      "row_id_after": "DEL-10-02::TBD-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 16,
+      "row_id_before": "DEL-10-02::TBD-001",
+      "row_id_after": "DEL-10-02::TBD-001",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 17,
+      "row_id_before": "DEL-10-02::TBD-002",
+      "row_id_after": "DEL-10-02::TBD-002",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 17,
+      "row_id_before": "DEL-10-02::TBD-002",
+      "row_id_after": "DEL-10-02::TBD-002",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 18,
+      "row_id_before": "DEL-10-02::TBD-003",
+      "row_id_after": "DEL-10-02::TBD-003",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 18,
+      "row_id_before": "DEL-10-02::TBD-003",
+      "row_id_after": "DEL-10-02::TBD-003",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 19,
+      "row_id_before": "DEL-10-02::TBD-004",
+      "row_id_after": "DEL-10-02::TBD-004",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 19,
+      "row_id_before": "DEL-10-02::TBD-004",
+      "row_id_after": "DEL-10-02::TBD-004",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 20,
+      "row_id_before": "DEL-10-02::TBD-005",
+      "row_id_after": "DEL-10-02::TBD-005",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 20,
+      "row_id_before": "DEL-10-02::TBD-005",
+      "row_id_after": "DEL-10-02::TBD-005",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 21,
+      "row_id_before": "DEL-10-02::CON-001",
+      "row_id_after": "DEL-10-02::CON-001",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-03",
+      "new": "DEL-10-02-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 21,
+      "row_id_before": "DEL-10-02::CON-001",
+      "row_id_after": "DEL-10-02::CON-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 21,
+      "row_id_before": "DEL-10-02::CON-001",
+      "row_id_after": "DEL-10-02::CON-001",
+      "column": "ExactGate",
+      "old": "Dated accountable-owner confirmation or declination on origin/main specifically covering DEL-10-02 AC-013.",
+      "new": "NOT_SELECTABLE_UNTIL: Dated accountable-owner confirmation or declination on origin/main specifically covering DEL-10-02 AC-013."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 22,
+      "row_id_before": "DEL-10-02::CON-002",
+      "row_id_after": "DEL-10-02::CON-002",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 22,
+      "row_id_before": "DEL-10-02::CON-002",
+      "row_id_after": "DEL-10-02::CON-002",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 23,
+      "row_id_before": "DEL-10-02::CON-003",
+      "row_id_after": "DEL-10-02::CON-003",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-04",
+      "new": "DEL-10-02-REM-004"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 23,
+      "row_id_before": "DEL-10-02::CON-003",
+      "row_id_after": "DEL-10-02::CON-003",
+      "column": "ExactGate",
+      "old": "Upstream owner or SCOPE_CHANGE ruling on SOW-010 full-rebuild reading; DEL-10-02 may report ambiguity without deciding it.",
+      "new": "NOT_SELECTABLE_UNTIL: Upstream owner or SCOPE_CHANGE ruling on SOW-010 full-rebuild reading; DEL-10-02 may report ambiguity without deciding it."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 24,
+      "row_id_before": "DEL-10-02::CON-004",
+      "row_id_after": "DEL-10-02::CON-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 24,
+      "row_id_before": "DEL-10-02::CON-004",
+      "row_id_after": "DEL-10-02::CON-004",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 25,
+      "row_id_before": "DEL-10-02::REQ-001",
+      "row_id_after": "DEL-10-02::REQ-001",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 25,
+      "row_id_before": "DEL-10-02::REQ-001",
+      "row_id_after": "DEL-10-02::REQ-001",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 26,
+      "row_id_before": "DEL-10-02::REQ-002",
+      "row_id_after": "DEL-10-02::REQ-002",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 26,
+      "row_id_before": "DEL-10-02::REQ-002",
+      "row_id_after": "DEL-10-02::REQ-002",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 27,
+      "row_id_before": "DEL-10-02::REQ-003",
+      "row_id_after": "DEL-10-02::REQ-003",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 27,
+      "row_id_before": "DEL-10-02::REQ-003",
+      "row_id_after": "DEL-10-02::REQ-003",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 28,
+      "row_id_before": "DEL-10-02::REQ-004",
+      "row_id_after": "DEL-10-02::REQ-004",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 28,
+      "row_id_before": "DEL-10-02::REQ-004",
+      "row_id_after": "DEL-10-02::REQ-004",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 29,
+      "row_id_before": "DEL-10-02::REQ-005",
+      "row_id_after": "DEL-10-02::REQ-005",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 29,
+      "row_id_before": "DEL-10-02::REQ-005",
+      "row_id_after": "DEL-10-02::REQ-005",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 30,
+      "row_id_before": "DEL-10-02::REQ-006",
+      "row_id_after": "DEL-10-02::REQ-006",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 30,
+      "row_id_before": "DEL-10-02::REQ-006",
+      "row_id_after": "DEL-10-02::REQ-006",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 31,
+      "row_id_before": "DEL-10-02::REQ-007",
+      "row_id_after": "DEL-10-02::REQ-007",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 31,
+      "row_id_before": "DEL-10-02::REQ-007",
+      "row_id_after": "DEL-10-02::REQ-007",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 32,
+      "row_id_before": "DEL-10-02::REQ-008",
+      "row_id_after": "DEL-10-02::REQ-008",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 32,
+      "row_id_before": "DEL-10-02::REQ-008",
+      "row_id_after": "DEL-10-02::REQ-008",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 33,
+      "row_id_before": "DEL-10-02::REQ-009",
+      "row_id_after": "DEL-10-02::REQ-009",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 33,
+      "row_id_before": "DEL-10-02::REQ-009",
+      "row_id_after": "DEL-10-02::REQ-009",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 34,
+      "row_id_before": "DEL-10-02::REQ-010",
+      "row_id_after": "DEL-10-02::REQ-010",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 34,
+      "row_id_before": "DEL-10-02::REQ-010",
+      "row_id_after": "DEL-10-02::REQ-010",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 35,
+      "row_id_before": "DEL-10-02::REQ-011",
+      "row_id_after": "DEL-10-02::REQ-011",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 35,
+      "row_id_before": "DEL-10-02::REQ-011",
+      "row_id_after": "DEL-10-02::REQ-011",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 36,
+      "row_id_before": "DEL-10-02::REQ-012",
+      "row_id_after": "DEL-10-02::REQ-012",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 36,
+      "row_id_before": "DEL-10-02::REQ-012",
+      "row_id_after": "DEL-10-02::REQ-012",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 37,
+      "row_id_before": "DEL-10-02::REQ-013",
+      "row_id_after": "DEL-10-02::REQ-013",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 37,
+      "row_id_before": "DEL-10-02::REQ-013",
+      "row_id_after": "DEL-10-02::REQ-013",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 38,
+      "row_id_before": "DEL-10-02::REQ-014",
+      "row_id_after": "DEL-10-02::REQ-014",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 38,
+      "row_id_before": "DEL-10-02::REQ-014",
+      "row_id_after": "DEL-10-02::REQ-014",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 39,
+      "row_id_before": "DEL-10-02::AC-001",
+      "row_id_after": "DEL-10-02::AC-001",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 39,
+      "row_id_before": "DEL-10-02::AC-001",
+      "row_id_after": "DEL-10-02::AC-001",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 40,
+      "row_id_before": "DEL-10-02::AC-002",
+      "row_id_after": "DEL-10-02::AC-002",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 40,
+      "row_id_before": "DEL-10-02::AC-002",
+      "row_id_after": "DEL-10-02::AC-002",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 41,
+      "row_id_before": "DEL-10-02::AC-003",
+      "row_id_after": "DEL-10-02::AC-003",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 41,
+      "row_id_before": "DEL-10-02::AC-003",
+      "row_id_after": "DEL-10-02::AC-003",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 42,
+      "row_id_before": "DEL-10-02::AC-004",
+      "row_id_after": "DEL-10-02::AC-004",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 42,
+      "row_id_before": "DEL-10-02::AC-004",
+      "row_id_after": "DEL-10-02::AC-004",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 43,
+      "row_id_before": "DEL-10-02::AC-005",
+      "row_id_after": "DEL-10-02::AC-005",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 43,
+      "row_id_before": "DEL-10-02::AC-005",
+      "row_id_after": "DEL-10-02::AC-005",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 44,
+      "row_id_before": "DEL-10-02::AC-006",
+      "row_id_after": "DEL-10-02::AC-006",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 44,
+      "row_id_before": "DEL-10-02::AC-006",
+      "row_id_after": "DEL-10-02::AC-006",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 45,
+      "row_id_before": "DEL-10-02::AC-007",
+      "row_id_after": "DEL-10-02::AC-007",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 45,
+      "row_id_before": "DEL-10-02::AC-007",
+      "row_id_after": "DEL-10-02::AC-007",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 46,
+      "row_id_before": "DEL-10-02::AC-008",
+      "row_id_after": "DEL-10-02::AC-008",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 46,
+      "row_id_before": "DEL-10-02::AC-008",
+      "row_id_after": "DEL-10-02::AC-008",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 47,
+      "row_id_before": "DEL-10-02::AC-009",
+      "row_id_after": "DEL-10-02::AC-009",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 47,
+      "row_id_before": "DEL-10-02::AC-009",
+      "row_id_after": "DEL-10-02::AC-009",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 48,
+      "row_id_before": "DEL-10-02::AC-010",
+      "row_id_after": "DEL-10-02::AC-010",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 48,
+      "row_id_before": "DEL-10-02::AC-010",
+      "row_id_after": "DEL-10-02::AC-010",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 49,
+      "row_id_before": "DEL-10-02::AC-011",
+      "row_id_after": "DEL-10-02::AC-011",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 49,
+      "row_id_before": "DEL-10-02::AC-011",
+      "row_id_after": "DEL-10-02::AC-011",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 50,
+      "row_id_before": "DEL-10-02::AC-012",
+      "row_id_after": "DEL-10-02::AC-012",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 50,
+      "row_id_before": "DEL-10-02::AC-012",
+      "row_id_after": "DEL-10-02::AC-012",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 51,
+      "row_id_before": "DEL-10-02::AC-013",
+      "row_id_after": "DEL-10-02::AC-013",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-03",
+      "new": "DEL-10-02-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 51,
+      "row_id_before": "DEL-10-02::AC-013",
+      "row_id_after": "DEL-10-02::AC-013",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 51,
+      "row_id_before": "DEL-10-02::AC-013",
+      "row_id_after": "DEL-10-02::AC-013",
+      "column": "ExactGate",
+      "old": "Dated accountable-owner confirmation or declination on origin/main specifically covering DEL-10-02 AC-013.",
+      "new": "NOT_SELECTABLE_UNTIL: Dated accountable-owner confirmation or declination on origin/main specifically covering DEL-10-02 AC-013."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 52,
+      "row_id_before": "DEL-10-02::VER-001",
+      "row_id_after": "DEL-10-02::VER-001",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 52,
+      "row_id_before": "DEL-10-02::VER-001",
+      "row_id_after": "DEL-10-02::VER-001",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 53,
+      "row_id_before": "DEL-10-02::VER-002",
+      "row_id_after": "DEL-10-02::VER-002",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 53,
+      "row_id_before": "DEL-10-02::VER-002",
+      "row_id_after": "DEL-10-02::VER-002",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 54,
+      "row_id_before": "DEL-10-02::VER-003",
+      "row_id_after": "DEL-10-02::VER-003",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 54,
+      "row_id_before": "DEL-10-02::VER-003",
+      "row_id_after": "DEL-10-02::VER-003",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 55,
+      "row_id_before": "DEL-10-02::VER-004",
+      "row_id_after": "DEL-10-02::VER-004",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 55,
+      "row_id_before": "DEL-10-02::VER-004",
+      "row_id_after": "DEL-10-02::VER-004",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 56,
+      "row_id_before": "DEL-10-02::VER-005",
+      "row_id_after": "DEL-10-02::VER-005",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 56,
+      "row_id_before": "DEL-10-02::VER-005",
+      "row_id_after": "DEL-10-02::VER-005",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 57,
+      "row_id_before": "DEL-10-02::VER-006",
+      "row_id_after": "DEL-10-02::VER-006",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 57,
+      "row_id_before": "DEL-10-02::VER-006",
+      "row_id_after": "DEL-10-02::VER-006",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 58,
+      "row_id_before": "DEL-10-02::VER-007",
+      "row_id_after": "DEL-10-02::VER-007",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 58,
+      "row_id_before": "DEL-10-02::VER-007",
+      "row_id_after": "DEL-10-02::VER-007",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 59,
+      "row_id_before": "DEL-10-02::VER-008",
+      "row_id_after": "DEL-10-02::VER-008",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 59,
+      "row_id_before": "DEL-10-02::VER-008",
+      "row_id_after": "DEL-10-02::VER-008",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 60,
+      "row_id_before": "DEL-10-02::VER-009",
+      "row_id_after": "DEL-10-02::VER-009",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 60,
+      "row_id_before": "DEL-10-02::VER-009",
+      "row_id_after": "DEL-10-02::VER-009",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 61,
+      "row_id_before": "DEL-10-02::VER-010",
+      "row_id_after": "DEL-10-02::VER-010",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 61,
+      "row_id_before": "DEL-10-02::VER-010",
+      "row_id_after": "DEL-10-02::VER-010",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 62,
+      "row_id_before": "DEL-10-02::VER-011",
+      "row_id_after": "DEL-10-02::VER-011",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 62,
+      "row_id_before": "DEL-10-02::VER-011",
+      "row_id_after": "DEL-10-02::VER-011",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 63,
+      "row_id_before": "DEL-10-02::VER-012",
+      "row_id_after": "DEL-10-02::VER-012",
+      "column": "ProposedResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 63,
+      "row_id_before": "DEL-10-02::VER-012",
+      "row_id_after": "DEL-10-02::VER-012",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 64,
+      "row_id_before": "DEL-10-02::AX-001",
+      "row_id_after": "DEL-10-02::AX-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 64,
+      "row_id_before": "DEL-10-02::AX-001",
+      "row_id_after": "DEL-10-02::AX-001",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 65,
+      "row_id_before": "DEL-10-02::AX-002",
+      "row_id_after": "DEL-10-02::AX-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 65,
+      "row_id_before": "DEL-10-02::AX-002",
+      "row_id_after": "DEL-10-02::AX-002",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 66,
+      "row_id_before": "DEL-10-02::AX-003",
+      "row_id_after": "DEL-10-02::AX-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 66,
+      "row_id_before": "DEL-10-02::AX-003",
+      "row_id_after": "DEL-10-02::AX-003",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 67,
+      "row_id_before": "DEL-10-02::AX-004",
+      "row_id_after": "DEL-10-02::AX-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 67,
+      "row_id_before": "DEL-10-02::AX-004",
+      "row_id_after": "DEL-10-02::AX-004",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 68,
+      "row_id_before": "DEL-10-02::AX-005",
+      "row_id_after": "DEL-10-02::AX-005",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 68,
+      "row_id_before": "DEL-10-02::AX-005",
+      "row_id_after": "DEL-10-02::AX-005",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 69,
+      "row_id_before": "DEL-10-02::AX-006",
+      "row_id_after": "DEL-10-02::AX-006",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 69,
+      "row_id_before": "DEL-10-02::AX-006",
+      "row_id_after": "DEL-10-02::AX-006",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 70,
+      "row_id_before": "DEL-10-02::AX-007",
+      "row_id_after": "DEL-10-02::AX-007",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 70,
+      "row_id_before": "DEL-10-02::AX-007",
+      "row_id_after": "DEL-10-02::AX-007",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 71,
+      "row_id_before": "DEL-10-02::AX-008",
+      "row_id_after": "DEL-10-02::AX-008",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 71,
+      "row_id_before": "DEL-10-02::AX-008",
+      "row_id_after": "DEL-10-02::AX-008",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 72,
+      "row_id_before": "DEL-10-02::AX-009",
+      "row_id_after": "DEL-10-02::AX-009",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 72,
+      "row_id_before": "DEL-10-02::AX-009",
+      "row_id_after": "DEL-10-02::AX-009",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 73,
+      "row_id_before": "DEL-10-02::AX-010",
+      "row_id_after": "DEL-10-02::AX-010",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 73,
+      "row_id_before": "DEL-10-02::AX-010",
+      "row_id_after": "DEL-10-02::AX-010",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 74,
+      "row_id_before": "DEL-10-02::AX-011",
+      "row_id_after": "DEL-10-02::AX-011",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 74,
+      "row_id_before": "DEL-10-02::AX-011",
+      "row_id_after": "DEL-10-02::AX-011",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 75,
+      "row_id_before": "DEL-10-02::AX-012",
+      "row_id_after": "DEL-10-02::AX-012",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 75,
+      "row_id_before": "DEL-10-02::AX-012",
+      "row_id_after": "DEL-10-02::AX-012",
+      "column": "ExactGate",
+      "old": "No execution authorized by documentary finding.",
+      "new": "NOT_SELECTABLE_UNTIL: No execution authorized by documentary finding."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "R-DEL-10-02-01",
+      "row_id_after": "DEL-10-02-REM-001",
+      "column": "ResidualID",
+      "old": "R-DEL-10-02-01",
+      "new": "DEL-10-02-REM-001"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "R-DEL-10-02-01",
+      "row_id_after": "DEL-10-02-REM-001",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 2,
+      "row_id_before": "R-DEL-10-02-02",
+      "row_id_after": "DEL-10-02-REM-002",
+      "column": "ResidualID",
+      "old": "R-DEL-10-02-02",
+      "new": "DEL-10-02-REM-002"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 2,
+      "row_id_before": "R-DEL-10-02-02",
+      "row_id_after": "DEL-10-02-REM-002",
+      "column": "ExactGate",
+      "old": "Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required.",
+      "new": "NOT_SELECTABLE_UNTIL: Exact Remaining application and bounded F-PEC-1 source packet on origin/main; current candidate-validation ALLOW is not production authority; named ACTIVE PREREQUISITE PENDING rows remain unchanged. Accepted release path or explicit unarmed escalation required."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 3,
+      "row_id_before": "R-DEL-10-02-03",
+      "row_id_after": "DEL-10-02-REM-003",
+      "column": "ResidualID",
+      "old": "R-DEL-10-02-03",
+      "new": "DEL-10-02-REM-003"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 3,
+      "row_id_before": "R-DEL-10-02-03",
+      "row_id_after": "DEL-10-02-REM-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 3,
+      "row_id_before": "R-DEL-10-02-03",
+      "row_id_after": "DEL-10-02-REM-003",
+      "column": "ExactGate",
+      "old": "Dated accountable-owner confirmation or declination on origin/main specifically covering DEL-10-02 AC-013.",
+      "new": "NOT_SELECTABLE_UNTIL: Dated accountable-owner confirmation or declination on origin/main specifically covering DEL-10-02 AC-013."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "R-DEL-10-02-04",
+      "row_id_after": "DEL-10-02-REM-004",
+      "column": "ResidualID",
+      "old": "R-DEL-10-02-04",
+      "new": "DEL-10-02-REM-004"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "R-DEL-10-02-04",
+      "row_id_after": "DEL-10-02-REM-004",
+      "column": "ExactGate",
+      "old": "Upstream owner or SCOPE_CHANGE ruling on SOW-010 full-rebuild reading; DEL-10-02 may report ambiguity without deciding it.",
+      "new": "NOT_SELECTABLE_UNTIL: Upstream owner or SCOPE_CHANGE ruling on SOW-010 full-rebuild reading; DEL-10-02 may report ambiguity without deciding it."
+    }
+  ],
+  "coverage_appendix": "\n## Mechanical derivative REVISION_M001\n\nOriginal coverage above retained with exact residual-ID normalization where applicable. This derivative changes only residual IDs/reciprocal references, empty Depends to NONE, and governed ExactGate markers. No semantic rerun or new product tests. Original source assessment and owner conditions remain unchanged. Upstream original worker outputs are hash-bound by CHANGE_MAP.json and READ_MANIFEST.json; clarification: `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md`. Independent package verification and manager selection remain pending. Role instruction-asserted, not mechanically enforced.\n",
+  "non_csv_policy": "COVERAGE retains complete original text except exact residual ID substitutions plus the recorded appendix; READ_MANIFEST preserves original source map/historical records and appends exact provenance and correction checks; RETURN is derivative-specific and cites unchanged original return."
+}

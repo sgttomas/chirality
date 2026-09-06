@@ -1,0 +1,5 @@
+# PKG-04 package basis
+
+D82 effective 2be412ccea62bdc4bd96deb082c46d7a792076ea; actual HEAD matches. origin/main observed later at 5068899690ab2580fa3360f751f63952e6bdc563; no repin: all selected common source hashes reproduced unchanged. D81 accepted conventions govern. Derivative report only. Five members DEL-04-01 through DEL-04-05; DEL-04-04 lacks canonical SOW and requires explicit decomposition mapping. Exact existing SOW/status candidate-validation preflights all allowed; SOURCE_MANIFEST records results. Two children maximum; five owning workers then fresh verifier. Writes only this package subtree. No source/status/Remaining/authority modification.
+
+Supplemental preflight: missing DEL-04-04 ScopeOfWork.md exact target also ALLOW (10 canonical target checks total). Agent0 separately confirmed no relevant source changes between base and observed later origin/main; this is attributed coordination, not a repin. Current contract local-definition census87/87/82/81, excluding missing-SOW DEL04-04.

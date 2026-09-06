@@ -1,0 +1,15 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "verdict": "FRESH_DERIVATIVES_REQUIRED",
+  "files": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/CHECKED_POPULATION.csv": "d53a668cb2ec3493fc09ef3edbff364cd5a8edcaace021915cfc4e2efdf510d6",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/CORRECTION_REQUIREMENTS.md": "e1bbcf3219e1ff4c5c39df805b18ccde0ab576a5a8d3214a3fc505c861d2d5b7",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/FINDINGS.csv": "ca3642d28588642517f160efbe6af62c516d28c7586224c7ff59884342039b36",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/READ_MANIFEST.json": "b3704f2393308e5fc7a7263bf2d47698353b47f398c353c1c0354b7f26a1189a",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/RETURN.md": "097633e9316112a77b84d486a8fe062c1cb15562b4dec301d4280abbe20c5b3b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/VALIDATION.json": "199fe58d89447cc7285b6e2a332740931bac7bf1f1d901912cd720ee7fc9b2f8",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/VERIFICATION.md": "7f5bdc572442f7caa243774165b21bf2c5c9126c11eea963fa500a8b30380c7c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/structural_verification.py": "307f799619c7bc613af8503a4ee12ecfbc33a7baf86032e7660274f52b0b5a60"
+  },
+  "self_excluded": true
+}

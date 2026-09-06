@@ -1,0 +1,30 @@
+{
+  "kind": "immutable initial selection evaluated by first independent verifier; canonical package projections will select corrected derivatives only after this preservation",
+  "hash_bindings": [
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PACKAGE_CLAIMS.csv",
+      "preserved_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/AGGREGATE_INITIAL/PACKAGE_CLAIMS.csv",
+      "sha256": "8b77dcba03dda6b43f09b19ab67d1c250b3e14c3806125dd36893cf6b1bae149"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PACKAGE_RESIDUALS.csv",
+      "preserved_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/AGGREGATE_INITIAL/PACKAGE_RESIDUALS.csv",
+      "sha256": "0b70ef69f9977dedf7a72eda7c5bdc49b03e56142b3ac55b92fb968e4548b3ab"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PACKAGE_SUMMARY.csv",
+      "preserved_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/AGGREGATE_INITIAL/PACKAGE_SUMMARY.csv",
+      "sha256": "27a800ec4759f15604aac5598773987e6e731817b0e4800b12f26174eec4b799"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/SELECTED_DERIVATIVES.json",
+      "preserved_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/AGGREGATE_INITIAL/SELECTED_DERIVATIVES.json",
+      "sha256": "d082189c743795e60036e1db74efaecd662c83ac2d402d5a7bd8762ffed91fac"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VALIDATION.json",
+      "preserved_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/AGGREGATE_INITIAL/VALIDATION.json",
+      "sha256": "fc1a5f1aef78473b6ab03b8adc0c88fccedd128eb92d73670e1e727528aa4c9c"
+    }
+  ]
+}

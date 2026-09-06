@@ -1,0 +1,7 @@
+{
+  "authority": "Independent verifier V001 expansion plus HELP_HUMAN bounded-correction grant",
+  "finding_map": "VERIFICATION/FINDING_EXPANSION_01.json",
+  "sha256": "4c78120dd074f2b8a78cc70a65168445c3d8f12786a86b7398507b952540be0e",
+  "added_claim": "DEL-10-10::AX-011",
+  "delivered_to": "/root/pec_pkg10_reconciliation/semantic_correct_del10_10"
+}

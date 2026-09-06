@@ -1,0 +1,269 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "agents/AGENT_RECONCILIATION.md": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "projects/pec/docs/PRD.md": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Dependencies.csv": "d3a255dcbad6656de0feccdb5c343a775bbd42a5ec9dc97d152560479e74b6d2",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Review_Findings.csv": "414339c78c45598ff75d247f7456c30c5b37b7b440b39a2d37c064db391ac00a",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_CONTEXT.md": "4bf394696c386f6a5f792a8f9967abc03e1d1339dc6715de09647f296ad25da1",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_DEPENDENCIES.md": "00f220b24d7c9962dbaf8a6b64313f571a9a890bb214e995497d6c625d17b037",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REFERENCES.md": "20c53f9b060f24c5278199c8357c64cc5f1a36fabf218da6d855f2f12a40647a",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REVIEW.md": "fd9158b211f27b2bf6d451f68f620788522a80a57bf99264ee1e009cb95258d9",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D-PEC-77_ACTIVATION.md": "992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D-PEC-77_REGISTERED_CHECKS.json": "074f0a155c0471b1c3f16e9bb37be75ce77173b37f8efd6585ff11e07cff1812",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/TASK_RUN_2026-07-25_1411.md": "7e42081f813f836782743dfb2ce2e403931eb163c65d19c0714a7a4969bf82dc",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/TASK_RUN_2026-07-25_1444.md": "67099fea7027c26ca91b8327475cd1fe9a610d21f9441f2b6ac97f8b2ab3b386",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/TASK_RUN_2026-07-26_qa20_D-PEC-66.md": "af9c99d1bcbd7c2d418414c5080bd3a616f6d50efebb1e1ce1174e36adc80773",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/ACCEPTANCE_PACKET_2026-08-03.md": "e3d6f2ae9e52b149abb75f5bba8815a7eb65a549ebf3be258eae8581ff43b596",
+    "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/EXECUTION_HANDOFF.md": "2955761249c9e0829f03dfeedb643f04075f11c64db67af9619183bfd3af9dfa",
+    "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/FINAL_ACCEPTANCE_RULING_2026-08-03.md": "8cb00b09a5331f40a6d040d4619013d6917b0a36b2098ee305fc1c279f6e7533",
+    "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/MANIFEST.sha256": "3fb4c499213203c594353fa6c63d3eb2b05289cd6912a7292d5c21d885671fe8",
+    "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/PACKET.md": "f848d55557d4b59d4c425e3924b850d634011a4a7db6c6fbd2eee9fc46cc5c31",
+    "projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md": "8a9957b4150143c9958083107982dd8e5538a8d1cb69aa436a0bab953d00d24f",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-77_del_01_05_enforcement.md": "7eb123ea93facc3b1a6a42626afd11d3c2ce44c45396af626b74ca6642df34d0",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_RULING_2026-09-05.md": "b821157ea6abc69b71044037d75a74e6708d20460f3e4139cecbb2d6928afe33",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md": "2947d99e09f20f05f42fed2db592690bc3d97739f19349a09a04a97dd0016c43",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/execution/_Coordination/_TaskManagement/DEFERRAL_REVIEW_2026-08-08.md": "5118e850dc3e6360f21cc3ddb40daf8a5381eeb7a0be7b08d265c78bc4e9ca16",
+    "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264",
+    "projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv": "bf0d5537686d3dba23ad2e3c1b91d989850cda04e98e92dc545516829c9242b6",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CALIBRATION_REPORT.md": "641134cf6055739266e876d3bf5389f1af8f47ddb3b9e2340c4546d90ff42d3b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "e7095343267c04b814410f7fb55a58d25088283d46c3c26e161737e2fc609097",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/BRIEF.md": "f97012a736c52aa9c601115bff3780b127630bf459280e908b4460345e72f0d7",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/CLAIMS.csv": "a19eabaf88947ff90b735ef7fd10d78fa41bf7d8db37ad3f61db46847f7c1efc",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/COVERAGE.md": "65e6bd965492513814e2f720abb210137283da943d77b2e99af42318d913139d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/PROBES.py": "9d318655a92b348ebf936407f32f287208c655f1fdd2ce85de006e5c48e14a09",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/PROBE_RESULTS.json": "4be6843458f326425566cf34a976e51c699973c65943057a9ff3efac520f9487",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/READ_MANIFEST.json": "cbfd9d92737928d93ae03c5df4ca2a0ac7f2f8af573a4f508c72f3f62b8953bd",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/RESIDUALS.csv": "c04df07209203f9232cbf7bbc079e40b99d65812b24ca46faaad1b7b39982bc3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/RETURN.md": "771e6f3625dda08993c8e2b2955a882427419554bf67228b50605811915c7daf",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md": "1b1c5b39bbc9bd7dcb1953f194dc85abc167cb7e24ba994481363d515a6e8820",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-01.md": "85e091590ecf887d27f7c30c51dd5c449d1605a49c52c32ee439a04f221a0a20",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md": "924e482e7c075d3d616252194926934e04e0f660b5529d7e333a3a132269457d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv": "b2396dd6dafa23ffe3f3f53e586fbb487d3ae20f4b1b636c7da102c13544c87c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json": "2d01cd1578b7c40683ef4baab429c7112f3b450bf54bf3583abfac3253843f3b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-05.md": "c539bb660864681113a72c167322066ebcd838527869079b241dd0cef41baf7e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_BASIS.md": "ba0fed1ea3eae9030e436bb789e30326a81db9bd524e8f09eae5e006f4b516b4",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SCANNER_REPAIR_INPUTS.md": "70f7ef6f12d158253d256a4fea1a406c343c76cb1abf98fff8013fbc4887def2",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SOURCE_MANIFEST.json": "d39b6cfa209829cf3af812d24e444948895d176c10f71aa53407f2384f9e934e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/RESIDUAL_RECOMMENDATIONS.csv": "193bbcc89cf9cd81807b000d6ad1054474f791e43923c59aee4734de0f55f5a5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/RUN_BASIS.md": "265428e8e8dbf503f6cfc71e72cd406bb4af4bc4b4a763069810ed4b052d3c61",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/SAMPLE_SUMMARY.csv": "f4364ec4e721bdfcefde0c7e7893ec6b976c63b6920a1e76af5bfe45feffbdc0",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/SOURCE_MANIFEST.json": "65e1b9d97961d0281a884a7cf344db13a65f5b6a56898d1ca4980320d2c58c3d",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "projects/pec/loop/LOOP_INIT.md": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+    "projects/pec/software-workflow.json": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+    "projects/pec/v2/config/service_core_posture.json": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+    "projects/pec/v2/src/pec_v2/core/__init__.py": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py": "8966d0088ea15ad37854ecfd0f4869c67b61ce5f8809848d380f1fb858e450a0",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py": "2f691060cef7a41af2530909638f9612725eab441b515ac10f37071ee15c8870",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py": "48f739f0169f93a303c2c754209ecdc343b4aa7607ee750bc3c943377902d0bc",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py": "476b8cef2afeabe4dddd5173009cee02a7a709e6ebadfe886160a1f4c3000fe9",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py": "e38af91183e30927c8d990a76ba715f3e1f300ac1e6b489a2408b48741632522",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py": "206cc544fa564634ea413a2e6ff1eed7cb062d5c5cf7a2b4e8156c4fede7d416",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py": "44a1f3d683fc27ef15595f9dacfdd37f98476eac6ec4b88da4cd43ba8b472e31",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py": "54671ebf7071f04e3d2cea8411895d9429c84036efa82f7223aa7c440d2d9bad",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py": "f9ec548b059cdcbc1080da4c0f53ef97d5cf7e9a7b75ce5ad12c74a9b86be091",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py": "c35fff6dba0aaa2d114b0d4e252d561d361979254e4ecf91cdd6c16236f7d425",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py": "9e9519e6eaded2e9db427a6609c5880c5316f6528facae80776307793bb0071d",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "projects/pec/v2/tools/check_service_core_posture.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643"
+  },
+  "historical_sources": [
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/PACKET.md",
+      "commit": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+      "sha256": "f848d55557d4b59d4c425e3924b850d634011a4a7db6c6fbd2eee9fc46cc5c31"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/EXECUTION_HANDOFF.md",
+      "commit": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+      "sha256": "7f983befae836dac0172bdc16a72a7c340d27afab9eda6f3054d149ff435aee9"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-77_del_01_05_enforcement.md",
+      "commit": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+      "sha256": "7eb123ea93facc3b1a6a42626afd11d3c2ce44c45396af626b74ca6642df34d0"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D-PEC-77_ACTIVATION.md",
+      "commit": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+      "sha256": "992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D-PEC-77_REGISTERED_CHECKS.json",
+      "commit": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+      "sha256": "074f0a155c0471b1c3f16e9bb37be75ce77173b37f8efd6585ff11e07cff1812"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/TASK_MANAGEMENT_DPEC_REQUESTS_2026-08-02/REQUEST_TM-PEC-009_DEL-01-05_PACKET.md",
+      "commit": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+      "sha256": "0afc44750797dd27cb6093c3a2509be5ca711bd4f8563e55fe21debf47f3d847"
+    },
+    {
+      "path": "_DomainEngines/pec/_TaskManagement/DRAFT_HANDOFF_TM-PEC-009_DEL-01-05_ENFORCEMENT.md",
+      "commit": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+      "sha256": "105795bcff6e5c1e15c795caaa95f878f338a02d46160326259557e83fc7b962"
+    }
+  ],
+  "checks": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/tmp"
+      },
+      "exit_code": 0,
+      "result": "2be412ccea62bdc4bd96deb082c46d7a792076ea\n"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/tmp"
+      },
+      "exit_code": 0,
+      "result": "2be412ccea62bdc4bd96deb082c46d7a792076ea\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/tmp"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": ".",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/tmp"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "R0-source-reuse-validation"
+      ],
+      "cwd": ".",
+      "environment": {},
+      "exit_code": 0,
+      "result": {
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+        "selected_R0": {
+          "DeliverableID": "DEL-01-05",
+          "Claims": "61",
+          "RawResidualProposals": "5",
+          "UnknownClaims": "7",
+          "NonAlignedClaims": "15",
+          "CandidateAssessment": "ASSESSED_UNKNOWN",
+          "SelectedClaims": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/CLAIMS.csv",
+          "SelectedClaimsSHA256": "a19eabaf88947ff90b735ef7fd10d78fa41bf7d8db37ad3f61db46847f7c1efc",
+          "SelectedResiduals": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/RESIDUALS.csv"
+        },
+        "claims": 61,
+        "stable_local_ids": 60,
+        "dispositions": {
+          "ALIGNED": 46,
+          "PARTIALLY_IMPLEMENTED": 7,
+          "UNKNOWN": 7,
+          "LIFECYCLE_REASSESSMENT_REQUIRED": 1
+        },
+        "residuals": 5,
+        "assessment": "ASSESSED_UNKNOWN",
+        "accepted_artifacts_reproduced": 17,
+        "historical_manifest_rows_reproduced": 7,
+        "current_base_mismatches": [],
+        "current_derivative_inputs": [
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-01.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-05.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_BASIS.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SCANNER_REPAIR_INPUTS.md",
+          "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SOURCE_MANIFEST.json"
+        ],
+        "R0_hash_comparison": {
+          "unchanged": 62,
+          "changed": [
+            "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md"
+          ],
+          "disposition": "Accepted successor D82 row in register; source and claim semantics unchanged. No unexplained drift."
+        },
+        "checks": "61 unique claims, all defined 32 REQ/AC/VER IDs, 5 exact REM IDs, reciprocal links, explicit NONE Depends and NOT_SELECTABLE_UNTIL residual markers verified",
+        "finite_tests": "R0 19-test enforcement suite and posture PASS retained at original exact evaluated state; no rerun",
+        "scanner": "two immutable static-only counterexamples persist by unchanged source and method hash; fixture text never executed",
+        "source_unchanged": true
+      }
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all",
+        "--ignored",
+        "--",
+        "projects/pec/v2",
+        "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement"
+      ],
+      "cwd": ".",
+      "environment": {},
+      "exit_code": 0,
+      "result": ""
+    }
+  ],
+  "source_unchanged": true
+}
