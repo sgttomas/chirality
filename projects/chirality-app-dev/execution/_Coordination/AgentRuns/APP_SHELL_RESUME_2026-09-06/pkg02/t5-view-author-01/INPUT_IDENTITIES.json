@@ -1,0 +1,31 @@
+{
+  "snapshot_basis": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "derivative_evidence": true,
+  "identities": {
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "agents/AGENT_TASK.md": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+    "docs/SOFTWARE_WORKFLOW_PROFILE.md": "f97af1d323524f9a2be1dab8b5b33c1350c8f48c38cd3c6f8d0f8a9cd9821ea2",
+    "projects/chirality-app-dev/AGENTS.md": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md": "16053333f23dd8905c5567eeae4151de03e56f77f58fa64d7c52d0dc30d249f0",
+    "projects/chirality-app-dev/frontend/src/app/globals.css": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "projects/chirality-app-dev/frontend/src/components/shell/subagent-stream-view.tsx": "0ad5f2a2f06a9e7daf9930cb4c5158ee30734eaab8fd31059785660e9e9ad3a5",
+    "projects/chirality-app-dev/frontend/src/components/shell/tool-stream-view.tsx": "bcd08e4c01e7350e2805382c13e5a57ef990f3594bff08f90bb48249f01ad234",
+    "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts": "52c31329d482c2dbccf2b694bcf9083e5af5e7ab84b096cd8543300fce6c8aa5",
+    "projects/chirality-app-dev/loop/LOOP_INIT.md": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+    "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45",
+    "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb",
+    "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/README.md": "357470dcc187271549d21fe2ea00a27453650287d1e51b68b63a31041a807aa5",
+    "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+    "projects/chirality-app-dev/software-workflow.json": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9",
+    "projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts": "bcb87844dce118a3f7743b3e2e0ecc0c376627d2dbaf1dee483a281c6f2b767b",
+    "skills/software-bounded-implementation/BRIEF_SCHEMA.md": "cef1379b8ed89282c372784b7983bbad17ebc30ecc335c433b58ca41b66e9848",
+    "skills/software-bounded-implementation/QA_CHECKS.md": "5ab08afe57fe102478cb98aa72cd72879c7a82b84f2790622b9bf0323f3c7bdc",
+    "skills/software-bounded-implementation/SKILL.md": "2072bb896c0ecf7e7fef7427010afc0304d21e25103828e93663d6ddb8cff7fc",
+    "skills/software-bounded-implementation/TOOL_POLICY.md": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c"
+  },
+  "citations": {
+    "tool_mapping": "Runtime tool-descriptor.ts read_file lines489\u2013503 and write_file lines983\u2013991 (read only)",
+    "mock": "railActivity lines778\u2013788 and Walkthrough step8 lines953\u2013954; source read only, no browser bypass attempted",
+    "target": "03_TARGET_SPEC \u00a75.6 and superseding \u00a710 Tasks vocabulary; implementation \u00a7T5; selected Remaining DEL-02-04-V3-01"
+  }
+}

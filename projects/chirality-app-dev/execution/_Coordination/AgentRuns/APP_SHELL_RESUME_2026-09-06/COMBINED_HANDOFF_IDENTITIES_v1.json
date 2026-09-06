@@ -1,0 +1,27 @@
+{
+  "schema": "combined-handoff-core-identities/v1",
+  "recorded_at": "2026-09-06T21:02:19.475639+00:00",
+  "parent_fanin": "bounded PASS accepted; parent independently verified66 manifest members",
+  "items": [
+    {
+      "path": "COMBINED_HANDOFF_v1.md",
+      "sha256": "bd939a9d73d2a2fd939851d4a3103e6394bc65ab7795a50062b620998e1638db",
+      "bytes": 2863
+    },
+    {
+      "path": "pkg09/combined-integration-v1/OUTPUT_MANIFEST.json",
+      "sha256": "eea36f0854ead955d54067e35c449cf0634fefe39925c658a46a6af66d004d15",
+      "bytes": 9360
+    },
+    {
+      "path": "pkg09/combined-integration-v1/RETURN.md",
+      "sha256": "30c022ce97d8c09b2e4a024ec9888ca11b4505141250b8b8782b24fcce93501d",
+      "bytes": 2818
+    },
+    {
+      "path": "pkg09/combined-integration-v1/RUNTIME_RELAY_PROMPT.md",
+      "sha256": "09340ed4f27d97cd8c896ad24f3a9d278d00f77831e7022f749e82a442c9f3cf",
+      "bytes": 2402
+    }
+  ]
+}

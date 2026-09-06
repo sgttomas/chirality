@@ -1,0 +1,10 @@
+--- projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/native-proof/compiled/main.js
++++ projects/chirality-app-dev/frontend/dist-electron/main.js
+@@ -148,7 +148,6 @@
+ var CLAUDE_AGENT_SDK_PACKAGE_VERSION;
+ var init_sdk_version = __esm({
+   "../../chirality-runtime/packages/contracts/src/harness/sdk-version.ts"() {
+-    "use strict";
+     CLAUDE_AGENT_SDK_PACKAGE_VERSION = "0.3.150";
+   }
+ });

@@ -1,0 +1,4 @@
+# Additive native launch configuration supplied by HELP_HUMAN
+CHIRALITY_INSTRUCTION_ROOT=/Users/ryan/.codex/worktrees/85d6/chirality
+
+RuntimeOverrides: This is parent-provided native child launch configuration, instruction-asserted. It is not a claim that the environment previously supplied this variable or a Chirality-managed service attestation. The root is the verified Git toplevel owning agents/, skills/, tools/, selected in the owner's entry instructions. Set this value explicitly for reviewer tool subprocesses and validate canonical/readable root. No write grant or scope/policy weakening. Prior FAILED_INPUTS return remains preserved; review never started. Resume same fresh reviewer context under this complete launch configuration; original read-only brief remains otherwise unchanged. Parent released independent checks concurrently on frozen config; only final after review PASS. No builds/test mutations by reviewer.

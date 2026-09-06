@@ -1,0 +1,8 @@
+{
+  "id": "setup.server_reachable",
+  "status": "fail",
+  "startedAt": "2026-09-06T19:24:49.088Z",
+  "endedAt": "2026-09-06T19:24:49.348Z",
+  "durationMs": 259,
+  "error": "Expected 200; received 503"
+}

@@ -1,0 +1,500 @@
+[
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/_STATUS.md",
+    "status_sha256": "132a6123d892d29763f8ac977f57830455c40dea37591ee7e0faf66519ea217a",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/MEMORY.md",
+    "memory_sha256": "a85fb1975cb7a619b1555ca3013a4b375c6317824b8b46cf18fb118d6bc315b3",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/_STATUS.md",
+    "status_sha256": "6574d0a28a8791768a97763f5061f16a80e6700fab6ce5e13d2c74f426179030",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/MEMORY.md",
+    "memory_sha256": "ebcba06fb280cfd8c0758ffb8c613b0a0d380427b9c292f23e2ca7230f471b8d",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/_STATUS.md",
+    "status_sha256": "477b13cadb01943652c068a24b526d3e6fc478fbba6e2a0a273db65a6aba86e0",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/MEMORY.md",
+    "memory_sha256": "9d3e25bb207de851c1bf779b15c6107fd7fe6c27fb92429ff6f2a85af17cfc11",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/_STATUS.md",
+    "status_sha256": "e97ee810d430ef6a7a1225da96b85e587978972b94d28c68ebc37c7d2400cd98",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/MEMORY.md",
+    "memory_sha256": "914ace7af886c653c5f00dbd4ff8fccf5ae53a0eb8d5a4c84a420cb01c97e067",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/_STATUS.md",
+    "status_sha256": "9ed08049ec6e27edab2b327cccacb8f8098e30f96e383f3e8e1de1ac3ce7ba82",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/MEMORY.md",
+    "memory_sha256": "f412b2cea9e117191a43c4169c21e3c49848f3b7d565d8aff21748a1236fb3cd",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register/_STATUS.md",
+    "status_sha256": "0d6a252293ca4039a3312c6bb1916ab731dcc6ea1d8f3fa9c3278a5eb7138ac0",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register/MEMORY.md",
+    "memory_sha256": "10f79de34f8181ea8305471376b269a04b0b39878b96d40ed79b83465c4d0fff",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+    "status_sha256": "16e2596ac1c9d5d275774d0f647526efbde350e4ceb1a5903731720216542980",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/MEMORY.md",
+    "memory_sha256": "9cc3aff8de2f7a34ad4ab054ca157031395052d2325a1388a485bed58591e413",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/components/shell/shell-frame.tsx`, `chat-panel.tsx`, `persona-picker.tsx`, a new `folder-select.tsx`, `frontend/src/components/woven-dialogue/navigator.tsx`, `frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx` and `frontend/src/components/woven-dialogue/activity-shelf.tsx` with shell/reconnect/activity render tests (D-APP-120 A1; addition HELD until the ruling is observable on fetched `origin/main`; exact responsibility split and proof in the ruling/packet), `frontend/src/app/globals.css` (Stone token block with measured contrast), additive recent-documents registration and folder-drop IPC in `frontend/electron/main.ts` and `preload.ts` under the existing sender policy, tests; deliverable-local state. No harness, daemon, or Root write.",
+      "Write locus: `frontend/src/components/woven-dialogue/navigator.tsx` and left-panel components under `frontend/src/components/shell/**`, tests; workspace-state schema changes belong to DEL-02-04; deliverable-local state.",
+      "Write locus: session-list and chat-list components under `frontend/src/components/shell/**` and `woven-dialogue/**`, multi-root read paths in `frontend/src/lib/runtime-client/**` and `frontend/src/lib/woven-dialogue/**`, tests; deliverable-local state. No daemon or Root write.",
+      "Write locus: `frontend/src/app/icon.svg` (replacement; the Next `metadata.icons` file convention is retained per this deliverable's record-only note) or a new `icon.png` under the same convention, `frontend/public/chirality-app-icon.svg`, `frontend/build/icon-macos.svg` source, tests; deliverable-local state. No Electron window work."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+    "status_sha256": "20550b79e2c67dc5b21d1c342d5e56ce5c2afd7a23c42838e3e3f7b90c7361fe",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md",
+    "memory_sha256": "f25149cce31c46a05b9bcad912059bf14c90c5686a31faf4bdd3be2eefb40e56",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/**` presentation components, fixtures, and tests for the Work/Agents/Workbench surfaces plus this deliverable's `_STATUS.md`/`MEMORY.md`/`_run_records/**`; no harness, IPC, or Root write.",
+      "Write locus: `frontend/src/**` presentation surfaces and tests plus deliverable-local state.",
+      "Write locus: `frontend/src/components/woven-dialogue/**` (Workflows view, roadmap, New workflow and bind forms, rung forms, proposal card), a new K-PATH-2-contained read/write route under `frontend/src/app/api/working-root/workflow/**` limited to `.chirality/workflows/`, consumers of the DEL-02-04-owned additive state, fixtures and tests; deliverable-local state. No harness, MCP, instruction-root, or Root write."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+    "status_sha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/MEMORY.md",
+    "memory_sha256": "8ccc020e20fc8edbeaf2d27aa3db10be963f150a06aceeaea747279766cddc2a",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/components/shell/file-tree-panel.tsx`, `document-view.tsx`, the right-panel view switcher under `frontend/src/components/woven-dialogue/**`, a new bounded read endpoint under `frontend/src/app/api/working-root/file/**`, additive `frontend/src/lib/woven-dialogue/woven-workspace-state.ts` fields coordinated with DEL-02-04, additive Quick Look IPC in `frontend/electron/main.ts` and `preload.ts`, tests; deliverable-local state.",
+      "Write locus: viewer and chip components under `frontend/src/components/shell/**` and `woven-dialogue/**`, the composer quote row, `clientType` handling in `frontend/src/lib/woven-dialogue/**`, tests; deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+    "status_sha256": "ebb3294e52cde902190082f6fc14badb4437b23397ae9553e68eb6e79dd0915f",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md",
+    "memory_sha256": "fcbd050145f2d2395fa1078f3d13ec9ca2c64c49262d6d463c0c0b7768c0dbf9",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/lib/woven-dialogue/woven-workspace-state.ts` (additive v1 fields under the existing schema string with rollback-safe migration), `frontend/src/components/woven-dialogue/activity-shelf.tsx` retirement and the strip and Activity view components, migration guards and tests; deliverable-local state. Add `frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx` and `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx` solely to pass the existing `primarySessionId` as an explicit optional presentation prop to the existing `ActivityStrip`. Preserve the same ChatPanel instance, existing event provider, root/session binding, streaming/selection/reconnect/Details handlers and ShellFrame control ownership. This caller addition grants no new state schema, event semantics, provider write, runtime/session field, steering, permission, IPC capability or Activity-row navigation callback; strip-local projection/timer work remains within its separately seated component/test locus."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+    "status_sha256": "01c256f2d508a53e238e34b436c63443deea73d7c9157976d360fe5238b8e472",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+    "memory_sha256": "3fcfc73bdabd57df74b2ff5fa285ba48b00ff3fbaac941b9c6eca39fd13ef0b6",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/**` and consent-port adapter plus deliverable-local state.",
+      "Write locus: `frontend/src/components/shell/account-row.tsx`, `account-popover.tsx`, `account-settings-controls.tsx`, `account-controls.module.css`, and `shell-frame.tsx`; `frontend/src/components/settings/settings-view.tsx`, `account-consent-settings.tsx`, `runtime-settings.tsx`, `api-key-settings.tsx`, `runtime-settings-controller.tsx`, and `settings-view.module.css`; the existing `ThemeControl` presentation in `frontend/src/components/shell/theme-control.tsx`; `frontend/src/components/woven-dialogue/navigator.tsx`, `woven-dialogue-shell.tsx`, and `right-panel.tsx` solely for account/footer and right-panel Settings mounting; `frontend/src/lib/consent/consent-ux-fixtures.ts` for static secret-free fixture additions only (the fake adapter and port contract are consumed byte-unchanged); focused tests under `frontend/src/__tests__/**`; deliverable-local state. Preserve ShellFrame reconnect/settings state and handlers through its presentation slots, place the account/settings control once through Navigator footerSlot or the collapsed-left fallback, and pass Settings content to the right-panel host without duplicating live dialogue or runtime authority. Existing stored settings view identity is consumed without workspace-state schema changes. Runtime controls reuse one shared instance of the existing status/start/stop/model controller without duplicate polling or implicit actions; no new IPC, endpoint, provider, network, credential-storage, live-account, harness, daemon, or Root write."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+    "status_sha256": "a71621abbed92abb07b9918fa8f9e15c4600e41b0f32beb97feaa89f171a0e2e",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/MEMORY.md",
+    "memory_sha256": "644e78117293e8ba9e7a151858365285faa5acaf65c3bb28c341413bb800c966",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/packages/**` re-export/conformance surfaces, `frontend/src/__tests__/**`, `Evidence_CODEV-*` records, and deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_STATUS.md",
+    "status_sha256": "9c766c922807ea62c5d0bf3a99f7f15c8dd49c76d3d3c644cfc299ed539c21c4",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/MEMORY.md",
+    "memory_sha256": "56d343504fb6b368799e07bc671ed5de5f4d3699f94be6a2a711792870658ef8",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/app/api/harness/**` boot and session routes, `frontend/src/lib/harness/session-manager.ts` (binding only), boot-fingerprint and conformance tests; deliverable-local state. No daemon or Root write."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md",
+    "status_sha256": "238c7b64f6cc5e2217041f61d4cf2ae1ebcc49dd3d427c252bb7ca68aafedb91",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/MEMORY.md",
+    "memory_sha256": "887d0167bda8f4f7d19ac0afd90fb5320594d9fc5f11d25831cf55ab5c5c6239",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/app/api/harness/**`, route adapter tests, SSE fixtures, and deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/_STATUS.md",
+    "status_sha256": "3f860c2abb8ccccfb40d6b38dfa7f25f2befe206179b0632ed493679efbbfaa9",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/MEMORY.md",
+    "memory_sha256": "786f6bdea534fa56b3851db326497231cf24ba444d02abecc8c8ac9592a22bce",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/_STATUS.md",
+    "status_sha256": "6fc7cd2d1fe645152b8b388c406e967edf0eb975c5889a9e3644fc0b7c061bd8",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/MEMORY.md",
+    "memory_sha256": "11c3b35bc566f673da2a2504330487724717e8c2f76ae8533cbfae3cd8bd57b7",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/_STATUS.md",
+    "status_sha256": "264c02d6e143efb2ddf8c7e55d7beba79ceb6adc845a0bc094ac1569fb084d28",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/MEMORY.md",
+    "memory_sha256": "cbe102ae828f16229dc68843643622da9c82801154eceb98a3f66cf1026cc68d",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/_STATUS.md",
+    "status_sha256": "0e62a39361856c8a7adbf11598db416e6e1de5b5dc94eda8b388c3b01cec1472",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/MEMORY.md",
+    "memory_sha256": "5abaacf8a862826f8ca9aba8680197bc747365b7e6bbef3522f073a1b7e582db",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_STATUS.md",
+    "status_sha256": "d0103bc27b132e0f62c87403e103d8ca59f2042b3878a821ea5bb53cbccd2328",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/MEMORY.md",
+    "memory_sha256": "09c871a4a41e17582f6c6bb32c15ddeedde19027d77affa96ef62a5646bac855",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/lib/harness/persona-manager.ts` (the composer; the row's `persona-composer.ts` label names this file), `frontend/src/lib/harness/instruction-root.ts` layered read, delimiting and hash tests, boot fingerprint tests; deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/_STATUS.md",
+    "status_sha256": "eed7060656633dfc18f4b17a29a72f2d569c5e17c21cd6096d77cdc600eb9446",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/MEMORY.md",
+    "memory_sha256": "0aaac649ccfb398a9e573a8209cdd7b72f5e672b4be928b1117a3b14a00a6f21",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/electron/**`, `frontend/src/**` bridge and tests, and deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_STATUS.md",
+    "status_sha256": "f9f8a4a95c4d6d647c5f8a66188995b8a221228bbff0fc6238263708ce1d1a23",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/MEMORY.md",
+    "memory_sha256": "ddff62882756f8c19a6dc3d3465932c5f6617a71c1eb1be53826b0c13be9e1b4",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/lib/harness/**` session client and tests plus deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_STATUS.md",
+    "status_sha256": "a8c351e66279af10cdca86bbd32e84c14fa3ded3412343f89eb88edcb29ac87d",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/MEMORY.md",
+    "memory_sha256": "deca773d06dcaf63668bbb3e1d137a20b276702b4534292c16e0c2402c69fbc1",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: App runtime-event compatibility fixtures, replay/status consumers under `frontend/src/**`, and deliverable-local state.",
+      "Write locus: `frontend/src/lib/harness/session-events.ts` and `event-factory.ts` consumers, replay fixtures, tests; deliverable-local state. No schema or writer ownership."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/_STATUS.md",
+    "status_sha256": "d5e44706afab6dc0a53ba37c137e38b761dece4787d89099a0b6094a47543fa7",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/MEMORY.md",
+    "memory_sha256": "9c1d558005e9fe0660e3ee64acb4f86c25affcb7baa72a88d78c8b35ec40792c",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: App redaction helper and conformance tests under `frontend/src/**` plus deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/_STATUS.md",
+    "status_sha256": "48a5a2ac97abd80de08d5310191103bef997fd736a37aa463ec05744bcc2f3e0",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/MEMORY.md",
+    "memory_sha256": "960249c10c8deeb2618bfb6c8851309f4d5d959ee42703041baa1f76e882a452",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/**` replay/projection surfaces and tests plus deliverable-local state.",
+      "Write locus: `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx` mount and the right-panel Session view, tests; deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_STATUS.md",
+    "status_sha256": "0a99e66330b961ae383847cee4cd748bcbe299d470b12774802cf7b1ab35fb03",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/MEMORY.md",
+    "memory_sha256": "c124d59345461b4e405219c8cdd4f69463634d824facf5bc3f0e027b6a3eea39",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/_STATUS.md",
+    "status_sha256": "94fd4654532127aa0197572000ab01dc6660d077b6d95bb6979c048d59cffbe2",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/MEMORY.md",
+    "memory_sha256": "7c6666741d68f97bb185a52950abf34ec4af6d46bf33428e39af04b4fa29434b",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md",
+    "status_sha256": "2a1bcc40e75614f4859922b206ce6d971c5ddf3924c23f80cc89c560de7f626b",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/MEMORY.md",
+    "memory_sha256": "b19e67aadc6bcdde4e06052bf4b8f568b4247b447eb68cd1c4d215457bfacba5",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_STATUS.md",
+    "status_sha256": "a31e918d4dcc692458821d85ac009374a1f67eae401b008f9e02fc3ee4a630c9",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/MEMORY.md",
+    "memory_sha256": "a37057902482c2b62b507ab911fad93765b07b3861cbd3eab0b824508149be5f",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/lib/harness/mcp/**` (`mcp__chirality__propose` definition, schema, validation, once-per-chat state), wrapper metadata, in-process extension-boundary notes, tests; deliverable-local state. No remote MCP, plugin, provider, or network change."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/_STATUS.md",
+    "status_sha256": "ba495b48442b9ace2de999c54d9be9eef34f00310402e408355f2cc57137c3e6",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/MEMORY.md",
+    "memory_sha256": "fe527fdaffc5272ed674080bf75f284be0913d0ad83be15619c976b26b5d115b",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/_STATUS.md",
+    "status_sha256": "53cf8603bf861dfc728587f1f4bb9893c492d5b55306ea3bdf3e0ffe201f6ad0",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/MEMORY.md",
+    "memory_sha256": "e9c3dd64bd9bd9043f322d10775095db011855506e1734767e1175e2c838820b",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/_STATUS.md",
+    "status_sha256": "8bbb9785dc4859cd2d2285a3fff9572a3fa6555a4bf31a499ca5031d80c60a5d",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/MEMORY.md",
+    "memory_sha256": "2aa36d7acefac400866f4680c713bebfb0154dbefa5497b1a8f5aaaa917750bb",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_STATUS.md",
+    "status_sha256": "d09d47ffe55c8edbf579557f7eee23df3d0ca55efa436009ad18a30c5c6b1d74",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/MEMORY.md",
+    "memory_sha256": "2e217a1677b08cd27c7b7c53034d53f656f4f8208bb16b7ff79e47e9350dcdb9",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/lib/harness/instruction-root.ts` and path-policy helpers, organisation-layer pin and protection fixtures, tests; `frontend/electron/daemon-instruction-root.ts` only if protection must be enforced at the daemon boundary (additive; D-APP-98); deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/_STATUS.md",
+    "status_sha256": "f21cab6627f0af3effc02ca7bbc702e7cf6647fbca6bcb5bdb79cd2877c56531",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/MEMORY.md",
+    "memory_sha256": "3f89375890363a07484ac5bac2657299dab3c36dd080da7590ed285c4e23aac9",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_STATUS.md",
+    "status_sha256": "ad02dbb492805b5834c62177b5315963b88d80bd025bac1dc8d010d40afd1a0f",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/MEMORY.md",
+    "memory_sha256": "16130a40cfdc23f6b4687d1144d7e539432b8b3625ed6131675a942423a6a3fe",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/_STATUS.md",
+    "status_sha256": "77fc4e083862902ff520759667b3a21b43bcf2f4fa0138d38ba502bec8edc3ab",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/MEMORY.md",
+    "memory_sha256": "7e09343129f077258683a113565253fea21c036ff9637daef1c0363cc00f08ce",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/_STATUS.md",
+    "status_sha256": "e6ce82dcd15629d14ac2a7ff7ec532dd2df96baeb0b3980298a9a64ed9546378",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/MEMORY.md",
+    "memory_sha256": "59d4db8680d43f9aeef213cd4daa9313450456f29078087b87504e8a76568d84",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_STATUS.md",
+    "status_sha256": "a92c281a990802f633bd71a3da5a7510298d851f5d9aaf6d05fde6980a94c7b2",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/MEMORY.md",
+    "memory_sha256": "27852376cdf296aef726387904f8dd59132f61a0818708ef50d755c5158c7d99",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_STATUS.md",
+    "status_sha256": "b5c13af0c0f03a4021282f0882b199c3be052d7ecea1e86e0942022520981cde",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/MEMORY.md",
+    "memory_sha256": "79acefd8106eb0a6762a3a31baf455300f667285cbab264f2b216a28dcda17e7",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `agents/AGENT_HELP_HUMAN.md` and each Agent 1 package (rung-2 and rung-3 proposal clauses with named triggers and once-per-chat), `skills/*/SKILL.md` declared workflow templates, the App agent-conformance validator and integrity fixtures (`frontend/src/__tests__/lib/agent-instruction-conformance.test.ts`, the `verify-instruction-root-integrity` script), organisation-layer packaging checks, the routed agent-index change notice under `execution/_Coordination/`, and the G4 instruction-tranche manifest; deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/_STATUS.md",
+    "status_sha256": "4b0c66cd4aa3d5d20cc7495eeb1e784dca1611e2c8e1738a5c7d27f6dc9e3b89",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/MEMORY.md",
+    "memory_sha256": "80bf6c63e2e8d33a0c370a4379cc2f141c4b4e786d090f036cb28b872e927dcf",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/_STATUS.md",
+    "status_sha256": "95e5758881274ab4cd0036d4fd7c04342ca60499b0b58658ba46933602c80240",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/MEMORY.md",
+    "memory_sha256": "6524a6cb8e1ded8274186b7b0814b1ffb93ae895e2f3ef46daa0c7e81ec8c281",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+    "status_sha256": "53736b56cf01ae5db05038491c33e0421363411e402292b98b32c381fbc64682",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/MEMORY.md",
+    "memory_sha256": "2bd1860551cc2fd2d1f96f87b1de0e984720e8a9695728af41f45caf4a854852",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/lib/harness/subagent-governance.ts` (class-aware change at lines 205-213 only under the accepted native ruling), `managed-delegation.ts`, related tests/fixtures, and deliverable-local state.",
+      "Write locus: `frontend/src/lib/harness/managed-delegation.ts` and `subagent-governance.ts` (policy check before admission), fixtures, tests; deliverable-local state. No daemon or Root write."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_STATUS.md",
+    "status_sha256": "279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/MEMORY.md",
+    "memory_sha256": "f49758eb94bf2a627ff8b1f84e2b38ea301ff3fc29ae4df4d34e456a107772a4",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: Checkout AgentRun and native-descendant evidence writers/readers under `frontend/src/lib/harness/**`, replay fixtures, and deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/_STATUS.md",
+    "status_sha256": "8ff24d85b5d54a54960d265cb4eda5b1c1b07b15c759d64b4d4a7178d324cbbd",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/MEMORY.md",
+    "memory_sha256": "0c073a435d6e97313db610a4b2a3f796845acf34827acd7ac34ef42563d8a53e",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/scripts/validate-harness-*.mjs`, Section 8 fixtures, `frontend/artifacts/harness/section8/**` evidence, and deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/_STATUS.md",
+    "status_sha256": "ae14fdf81d1b87ab60ebee13bec2994f89dded8f51f448b7c7ac88f79d24afa0",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/MEMORY.md",
+    "memory_sha256": "eff82f91b2065709abe7984579ebd659dfb94dbc48165851ab51680f2bb7189e",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/scripts/validate-harness-section9.mjs`, Section 9 fixtures, summary schema, and deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/_STATUS.md",
+    "status_sha256": "97ebd2c9bb95890812d7a5347bf2d976082d59dd59f948090ae11ee9faa14ede",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/MEMORY.md",
+    "memory_sha256": "ac3a02b7042fd9e36d456f1a138b859f54634c8bdfc7bb803da8ba85ec66af66",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/src/__tests__/**`, fixtures, and deliverable-local state.",
+      "Write locus: Deliverable-local evidence only; no product byte."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+    "status_sha256": "fc05153fd49cc879f9dbc003268946b2d66a3697e165303fb2447e9b2df3c1c6",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/MEMORY.md",
+    "memory_sha256": "5f31a9c28586f65b49ce82dccee0d5b39d270f8d4c3ca3d64216fffcff06405c",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: `frontend/scripts/**` packaging glue, electron-builder configuration, `Evidence/**`, and deliverable-local state; no signing identity, notary call, or distribution.",
+      "Write locus: `frontend/build/icon.icns`, `frontend/build/icon-macos.svg`, packaging-integrity summary regeneration under `frontend/scripts/**`, `Evidence/**`, deliverable-local state. No signing identity, notary call, or distribution."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md",
+    "status_sha256": "43cf5fb7762457131f1b2b34dbb479a15d27401f12aef23d253486ec839be584",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/MEMORY.md",
+    "memory_sha256": "9967318ec01351ed37279486e601061755116fbbdd3f71435187d9c4ff1c84a1",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: deliverable-local evidence (`Evidence/WP09_ARTIFACT_EVIDENCE_2026-09-03/sbom/**` or a dated successor bundle) and state; `frontend/scripts/**` only if the pin is re-ruled; any `frontend/` touch carries the A1 re-stage declaration.",
+      "Write locus: Deliverable-local evidence; no production identity or Apple call.",
+      "Write locus: Deliverable-local execution record only.",
+      "Write locus: `frontend/package.json`, bundle/DMG/manifest identity surfaces enumerated by the staged patch, and deliverable-local state; any `frontend/` touch carries the A1 re-stage declaration."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+    "status_sha256": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/MEMORY.md",
+    "memory_sha256": "8498426a1d63e00761dbb2b9717193d8f94da887617713ee192e8a8411bdc823",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": [
+      "Write locus: Security tests and evidence under `frontend/**` plus deliverable-local state.",
+      "Write locus: Security evidence under `frontend/**` and deliverable-local state."
+    ]
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_STATUS.md",
+    "status_sha256": "b2602ef75ff4f9f57e722081849b0061cdc494a58c92b38a283175beb5323dab",
+    "memory_path": null,
+    "memory_sha256": null,
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/_STATUS.md",
+    "status_sha256": "6a5180be503d8997341b54916eae4a8d1ed4b1d76407249845ae5f8cdd2093c7",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/MEMORY.md",
+    "memory_sha256": "db6bb77e4aab878f1e3fa0660ce41a1ac6e6d1fd0d13e1397e18b09e720a5e8f",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/_STATUS.md",
+    "status_sha256": "dd30df5ab2141de6730243b93562f10faf17e397801a3513880e5ddba0c0d8ef",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/MEMORY.md",
+    "memory_sha256": "1c95a9a50651c470047230672e2af2d84f9746d387755a2e9f2416cbd9e6239a",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/_STATUS.md",
+    "status_sha256": "5d0e17825041773ed566c3e4b9e83173e45defa0d1117f5bc7870792dbe59804",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/MEMORY.md",
+    "memory_sha256": "9f996aa2501b379316a9e8725ccf6abf7424576595e8b7e390567047e8907818",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_STATUS.md",
+    "status_sha256": "9d0a185d5ba691239e2109b668ca6fc59e90fc8aea326b9a3787dcc279bd247a",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/MEMORY.md",
+    "memory_sha256": "fe9d8b75ee6f4193c8965f18ba38f1e8707eb0a9d95cd02170afc598015d30ac",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  },
+  {
+    "status_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/_STATUS.md",
+    "status_sha256": "5c47073c4ab9b3c558f5ea7ab80daa976928f13c06eeb267dded444f15b60c8f",
+    "memory_path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/MEMORY.md",
+    "memory_sha256": "eb63109af4d2e8faf89ff1a7eb6c7b998d1cfd96441e0a0abd8f391425dd0d92",
+    "tsconfig_named_in_remaining": false,
+    "write_loci": []
+  }
+]

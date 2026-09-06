@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": {
+    "packet_frozen": true,
+    "register_frozen": true,
+    "candidate_unchanged": true,
+    "existing_register_bytes_preserved": true,
+    "app_hold_allow": true
+  },
+  "git_diff_check_exit": 0
+}

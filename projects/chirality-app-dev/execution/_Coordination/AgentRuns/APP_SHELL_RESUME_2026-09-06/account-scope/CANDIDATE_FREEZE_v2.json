@@ -1,0 +1,35 @@
+{
+  "status": "FROZEN_FOR_REFUTATION",
+  "supersedes": "CANDIDATE_FREEZE_v1.json additively; original files unchanged",
+  "files": [
+    {
+      "path": "candidate-v1/CANDIDATE_IDENTITIES.json",
+      "sha256": "044b093c6d29529683e284779cf84c51efb703effe30e54405db222b44893c76"
+    },
+    {
+      "path": "candidate-v1/CANDIDATE__STATUS.md",
+      "sha256": "0dba6b613ee94ed5416345d6df4468936e135b24f1456d7aaddf564bf2edec15"
+    },
+    {
+      "path": "candidate-v1/INPUT_IDENTITIES.json",
+      "sha256": "462cfa8c3c4ccce953861cf9d9e5383efbb174b50978498800a548bc221462ad"
+    },
+    {
+      "path": "candidate-v1/PREIMAGE__STATUS.md",
+      "sha256": "6e78e98c67cfeb5c75fafc626531e9f8af5624df4fb3ce9398e9b365e959ed5d"
+    },
+    {
+      "path": "candidate-v1/PROPOSAL.md",
+      "sha256": "de99a45ed8f8ddf1a20509849e527a30c94a7827298d24212a1b73c35f1f8882"
+    },
+    {
+      "path": "candidate-v1/STATUS_DIFF.patch",
+      "sha256": "8644bffb697a3d3aa317e166e890513428b7cd9c04409f025f9852952c1d4055"
+    },
+    {
+      "path": "candidate-v1/STATUS_TRUTHFULNESS_ADDENDUM.md",
+      "sha256": "f896b7c25eb81da0c34736de7839285c8cd23bea600564fa9c9b50f7a39b7a94"
+    }
+  ],
+  "brief_sha256": "20b18fba010e1c2faf89e6bf6ba13c3649189c9798f13ee81f375c2465c2e9c1"
+}

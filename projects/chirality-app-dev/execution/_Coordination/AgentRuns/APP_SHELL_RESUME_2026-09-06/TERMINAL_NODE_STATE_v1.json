@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-09-06T19:12:25.668946+00:00",
+  "graph": "WORK_GRAPH_v6.json",
+  "kind": "immutable observed node-state evidence, no new plan or scope",
+  "source": "parent final handoff release and cited manager returns",
+  "states": {
+    "agent0": "bounded source/partial-component fan-in accepted; final gates HELD; owner input pending",
+    "branch": "freshness confirms HEAD/origin main ec491aee; no new commit/push",
+    "records": "pending-input handoff freeze released; no receipt/completion release",
+    "pkg07-grammar": "bounded local records applied; parent accepted23manifest matches; lifecycle unchanged",
+    "pkg02-discovery": "completed for selected scopes; further source selection paused at identified gates",
+    "pkg02-source": "Reveal fresh source_review02PASS; component-only proof accepted; final gates HELD",
+    "pkg02-t5-activity-view": "revision03 fresh fullthreepath reviewPASS; parent timestamp visualfinding resolved; partialcomponent fan-in accepted; final gates HELD",
+    "fresh-source-review": "actual Reveal review02 and ActivityView review03 PASS; not commit-safe",
+    "registered-gates-browser": "final Vitest1774passed4skipped; partialcomponent proof only; typecheck actual priorFAIL; build/premerge/fullapp/native/A1 pending",
+    "account-scope": "D122 registered proposal AWAITING_RULING; no owner answer",
+    "t5-strip-scope-candidate": "reviewed proposal-only accepted",
+    "t5-strip-registration": "D123 registered proposal AWAITING_RULING; source/status held",
+    "union-review": "not completed; HELD final source/gates/records",
+    "local-closeout": "no commit/push; HELD final union and required checks"
+  },
+  "cleanup": "manager reports own tabs/processes closed; exact evidence in pkg02 component-proof and t5-component-proof cleanup records",
+  "runtime_exception": "npm ci/build ignored sibling outputs question unanswered; no install/build authorized",
+  "governed_closeout": false,
+  "publication_authorization": false
+}

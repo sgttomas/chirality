@@ -1,0 +1,74 @@
+{
+  "schema": "app-v3-coordination-progress/v1",
+  "recorded_at_utc": "2026-09-06T22:27:40.136701+00:00",
+  "event_at_utc": null,
+  "timestamp_calibration": "Recorded time is supplement creation time. Exact event/start timestamps are unavailable and must not be inferred from this timestamp or file mtime. Prior DISPATCH_RELEASE_v1.json records parent-reported launch events without asserting their time.",
+  "source": "Parent Agent0 progress report plus recorder read of existing registered check evidence",
+  "initial_manifest_verification": {
+    "member_count": 9,
+    "all_match": true
+  },
+  "registered_checks": {
+    "path": "pkg09/REGISTERED_CHECKS.json",
+    "sha256": "af8ccaf1aa2aaaaf5b5e83612c880b4d347ee15f33d214405f131fa06b4a03d7",
+    "status": "PASS",
+    "checks": [
+      {
+        "id": "frontend-typecheck",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "id": "frontend-test",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "id": "frontend-build",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "id": "app-hold-integrity",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "id": "harness-self-check",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "id": "harness-pytest",
+        "status": "PASS",
+        "exit_code": 0
+      }
+    ],
+    "vitest": "1774 passed, 4 skipped",
+    "pytest": "379 passed",
+    "limitations": "Canonical command/env/stdout/stderr/durations remain in owning PKG09 evidence; not duplicated per child."
+  },
+  "parent_reported": {
+    "runtime_build_first": "PASS",
+    "source_identities_unchanged": 3276,
+    "native_isolated_premerge": "RUNNING; no final native verdict",
+    "runtime_handoff": "Active; awaiting return",
+    "cua_discovery": "Chrome and native Finder available; no App/tab launch yet",
+    "fresh_review": {
+      "id": "/root/v3_pkg02/fresh_review",
+      "status": "LAUNCHED after graph freeze, manifest, and ALLOW",
+      "role": "Fresh read-only static product source reviewer",
+      "write_targets": [],
+      "start_timestamp": null,
+      "served_model": null,
+      "token_counters": null
+    }
+  },
+  "holds": [
+    "PKG02 GUI waits explicit PKG09 build/output handoff",
+    "D122/D123 main observability remains held",
+    "A1 fresh staging and owner proof required for new login claim",
+    "Contract choices await consolidated owner slate"
+  ],
+  "closure": "OPEN; progress only, not final manager acceptance, lifecycle closure or release evidence"
+}

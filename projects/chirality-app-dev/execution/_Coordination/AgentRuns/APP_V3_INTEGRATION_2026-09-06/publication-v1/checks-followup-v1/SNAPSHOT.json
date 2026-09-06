@@ -1,0 +1,52 @@
+{
+  "utc": "2026-09-06T23:18:14.021513+00:00",
+  "head": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "pr": 739,
+  "state": "OPEN",
+  "mergeable": "MERGEABLE",
+  "mergeStateStatus": "UNSTABLE",
+  "required_checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/sgttomas/chirality/actions/runs/34066365991/job/101575709251",
+      "name": "harness",
+      "state": "SUCCESS"
+    }
+  ],
+  "all_checks": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34066365996/job/101575709387",
+      "name": "Harness pre-merge",
+      "startedAt": "2026-09-06T23:15:25Z",
+      "status": "IN_PROGRESS",
+      "workflowName": "Harness Pre-merge Validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T23:15:23Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34066366015/job/101575709969",
+      "name": "Verify unsigned macOS artifact",
+      "startedAt": "2026-09-06T23:15:24Z",
+      "status": "COMPLETED",
+      "workflowName": "Desktop Unsigned Artifact Verification"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-06T23:17:04Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34066365991/job/101575709251",
+      "name": "harness",
+      "startedAt": "2026-09-06T23:15:25Z",
+      "status": "COMPLETED",
+      "workflowName": "governance-harness"
+    }
+  ],
+  "failed_checks": [],
+  "failure_logs_needed": false,
+  "mutations": false,
+  "merge_performed": false
+}

@@ -1,0 +1,11 @@
+{
+  "serverPids": [
+    58308,
+    58870
+  ],
+  "sent": "SIGTERM owned only",
+  "port": 3197,
+  "connection_result": 61,
+  "stopped": true,
+  "nativeProcessStarted": false
+}

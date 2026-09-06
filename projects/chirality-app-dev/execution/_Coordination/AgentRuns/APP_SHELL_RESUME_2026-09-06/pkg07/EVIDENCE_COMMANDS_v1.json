@@ -1,0 +1,127 @@
+{
+  "observed_at": "2026-09-06T18:12:40.188406+00:00",
+  "python": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+  "environment": "inherited host; no credentials/environment secrets captured; commands are read-only",
+  "records": [
+    {
+      "label": "head",
+      "argv": [
+        "git",
+        "show",
+        "-s",
+        "--format=%H%n%P%n%s",
+        "HEAD"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4\n943dd268d69ae408c63228c4ba3fc35b113aeadc 19714cd7267e923ed361b11196ffa2d05e169b0f\nMerge pull request #737 from sgttomas/codex/runtime-execution\n",
+      "stderr": ""
+    },
+    {
+      "label": "merged-pr733",
+      "argv": [
+        "git",
+        "show",
+        "-s",
+        "--format=%H%n%P%n%s",
+        "8e649eaa51c98459234512b87a3cf9042365dbd7"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "8e649eaa51c98459234512b87a3cf9042365dbd7\ne8df71bcc7a9b7f25358c02b72df8472129faf00 5ffafd710430bf053d5cfaf11129ccc1aa3130e5\nMerge pull request #733 from sgttomas/codex/app-loop-shell-20260905\n",
+      "stderr": ""
+    },
+    {
+      "label": "pr733-ancestor-HEAD",
+      "argv": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "8e649eaa51c98459234512b87a3cf9042365dbd7",
+        "HEAD"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "pr733-ancestor-origin/main",
+      "argv": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "8e649eaa51c98459234512b87a3cf9042365dbd7",
+        "origin/main"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "app-hold",
+      "argv": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "reliance",
+        "--entry-path",
+        "APP_SHELL_RESUME_2026-09-06:PKG07:WORKING_ITEMS",
+        "--target",
+        "DEL-07-03"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+      "exit_code": 0,
+      "stdout": "{\n  \"active_hold_deliverables\": [],\n  \"entry_path\": \"APP_SHELL_RESUME_2026-09-06:PKG07:WORKING_ITEMS\",\n  \"operation\": \"reliance\",\n  \"register_sha256\": \"c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc\",\n  \"repo_head\": \"ec491aee1870a2a6a8eb2faf2919d4d5db5124b4\",\n  \"results\": [\n    {\n      \"contract_status\": \"CLEAR\",\n      \"deliverable_id\": \"DEL-07-03\",\n      \"entry_path\": \"APP_SHELL_RESUME_2026-09-06:PKG07:WORKING_ITEMS\",\n      \"hold_status\": \"NOT_HELD\",\n      \"operation\": \"reliance\",\n      \"verdict\": \"ALLOW\"\n    }\n  ],\n  \"scan_fingerprint_sha256\": \"e84c8fdaca0c5120d730b6d3420877b433c335f957c7d28565b48530efc5de65\",\n  \"scan_held_deliverables\": [],\n  \"schema\": \"chirality-app-hold-check/v1\",\n  \"structural_bootstrap_deliverables\": [],\n  \"targets\": [\n    \"DEL-07-03\"\n  ],\n  \"verdict\": \"ALLOW\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "corpus",
+      "argv": [
+        "python3",
+        "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+        "status"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+      "exit_code": 0,
+      "stdout": "corpus current_version: v20\n  [MATCH] docs/DIRECTIVE.md            snapshot=50b816d5be74 live=50b816d5be74\n  [MATCH] docs/CONTRACT.md             snapshot=51ec0d4872dd live=51ec0d4872dd\n  [MATCH] docs/SPEC.md                 snapshot=c2fb9ecbbc37 live=c2fb9ecbbc37\n  [MATCH] docs/TYPES.md                snapshot=a8cdc94d39e1 live=a8cdc94d39e1\n  [MATCH] docs/PLAN.md                 snapshot=3741bb7ec389 live=3741bb7ec389\n  [MATCH] docs/PRD.md                  snapshot=87ced649beae live=87ced649beae\n  [MATCH] AGENT_SOFTWARE_DECOMP.md     snapshot=ad849d9a9274 live=ad849d9a9274\n  [MATCH] AGENT_DOMAIN_ENGINE.md       snapshot=bb2df7178d7b live=bb2df7178d7b\nno drift.\n",
+      "stderr": ""
+    },
+    {
+      "label": "ci-34006639218",
+      "argv": [
+        "gh",
+        "run",
+        "view",
+        "34006639218",
+        "--repo",
+        "sgttomas/chirality",
+        "--json",
+        "databaseId,headSha,conclusion,status,url,name,event"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "{\"conclusion\":\"success\",\"databaseId\":34006639218,\"event\":\"pull_request\",\"headSha\":\"5ffafd710430bf053d5cfaf11129ccc1aa3130e5\",\"name\":\"Harness Pre-merge Validation\",\"status\":\"completed\",\"url\":\"https://github.com/sgttomas/chirality/actions/runs/34006639218\"}\n",
+      "stderr": ""
+    },
+    {
+      "label": "ci-34006639232",
+      "argv": [
+        "gh",
+        "run",
+        "view",
+        "34006639232",
+        "--repo",
+        "sgttomas/chirality",
+        "--json",
+        "databaseId,headSha,conclusion,status,url,name,event"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "{\"conclusion\":\"success\",\"databaseId\":34006639232,\"event\":\"pull_request\",\"headSha\":\"5ffafd710430bf053d5cfaf11129ccc1aa3130e5\",\"name\":\"governance-harness\",\"status\":\"completed\",\"url\":\"https://github.com/sgttomas/chirality/actions/runs/34006639232\"}\n",
+      "stderr": ""
+    }
+  ]
+}

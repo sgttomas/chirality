@@ -1,0 +1,3 @@
+# Actual launch and ACK
+
+Native TASK /root/resume_pkg02/t5_view_author_01 was spawned after parent release and recomputation of graphv4/plan/amendment hashes. Actual ACK: sealed brief SHA256 6fd9ebb78eb0239006b0541ae4ec2de982e50e87c53764846f8bb6dca65967dc verified; own dispatch and reliance checks ALLOW/CLEAR for DEL-02-04 recorded in AUTHOR_PREFLIGHT_DISPATCH.json and AUTHOR_PREFLIGHT_RELIANCE.json before accepted source/contract reads. Child began actual role/skill/context reads with no source edits yet. TASK role/non-delegation instruction-asserted; exact serving model ID unavailable. No descendants requested/permitted.

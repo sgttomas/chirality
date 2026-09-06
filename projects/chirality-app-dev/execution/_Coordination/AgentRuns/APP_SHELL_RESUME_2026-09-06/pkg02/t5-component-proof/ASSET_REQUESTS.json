@@ -1,0 +1,52 @@
+[
+  {
+    "path": "/",
+    "at": "2026-09-06T19:05:01.433Z",
+    "status": 200
+  },
+  {
+    "path": "/globals.css",
+    "at": "2026-09-06T19:05:01.445Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts.css",
+    "at": "2026-09-06T19:05:01.445Z",
+    "status": 200
+  },
+  {
+    "path": "/fixture.js",
+    "at": "2026-09-06T19:05:01.446Z",
+    "status": 200
+  },
+  {
+    "path": "/diagnostics.js",
+    "at": "2026-09-06T19:05:01.446Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-serif-latin-600-normal.woff2",
+    "at": "2026-09-06T19:05:01.497Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-400-normal.woff2",
+    "at": "2026-09-06T19:05:01.497Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-600-normal.woff2",
+    "at": "2026-09-06T19:05:01.498Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-500-normal.woff2",
+    "at": "2026-09-06T19:05:01.498Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-400-normal.woff2",
+    "at": "2026-09-06T19:05:01.498Z",
+    "status": 200
+  }
+]

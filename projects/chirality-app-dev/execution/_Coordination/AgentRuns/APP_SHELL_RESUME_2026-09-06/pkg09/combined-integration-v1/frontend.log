@@ -1,0 +1,47 @@
+   ▲ Next.js 15.5.21
+   - Local:        http://127.0.0.1:63839
+   - Network:      http://127.0.0.1:63839
+
+ ✓ Starting...
+ ✓ Ready in 942ms
+ ○ Compiling /api/harness/session/list ...
+ ✓ Compiled /api/harness/session/list in 535ms (375 modules)
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-runtime-integration-20260906-738-49951af%2Fprojects%2Fchirality-app-dev 200 in 616ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-runtime-integration-20260906-738-49951af%2Fprojects%2Fchirality-app-dev 200 in 8ms
+ ✓ Compiled /api/harness/session/create in 41ms (377 modules)
+ POST /api/harness/session/create 200 in 10862ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-runtime-integration-20260906-738-49951af%2Fprojects%2Fchirality-app-dev 200 in 22ms
+ ✓ Compiled /api/harness/session/[id] in 84ms (379 modules)
+ GET /api/harness/session/5e9e25f0-452d-486d-9b09-58a89df28dfc 200 in 247ms
+ DELETE /api/harness/session/5e9e25f0-452d-486d-9b09-58a89df28dfc 200 in 14ms
+ GET /api/harness/session/5e9e25f0-452d-486d-9b09-58a89df28dfc 404 in 7ms
+ ✓ Compiled /api/harness/session/boot in 51ms (381 modules)
+ POST /api/harness/session/boot 404 in 70ms
+ POST /api/harness/session/create 400 in 14ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/session/boot 200 in 84ms
+ DELETE /api/harness/session/0d5013a7-4b8a-4019-9284-057e63e70af6 200 in 16ms
+ POST /api/harness/session/create 404 in 6ms
+ POST /api/harness/session/create 200 in 20ms
+ ✓ Compiled /api/harness/turn in 58ms (383 modules)
+ POST /api/harness/turn 200 in 184ms
+ DELETE /api/harness/session/5d68052d-5861-49c0-b236-575086f4ffff 200 in 19ms
+ POST /api/harness/session/create 200 in 19ms
+ POST /api/harness/turn 200 in 140ms
+ GET /api/harness/session/6afec358-9323-49cd-a783-5b8859bc9909 200 in 7ms
+ POST /api/harness/turn 200 in 102ms
+ GET /api/harness/session/6afec358-9323-49cd-a783-5b8859bc9909 200 in 5ms
+ DELETE /api/harness/session/6afec358-9323-49cd-a783-5b8859bc9909 200 in 10ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/turn 200 in 29ms
+ POST /api/harness/turn 200 in 102ms
+ DELETE /api/harness/session/d5e3622f-e155-4e7e-9070-7986a7a284e5 200 in 14ms
+ POST /api/harness/session/create 200 in 17ms
+ ✓ Compiled /api/harness/interrupt in 61ms (385 modules)
+ POST /api/harness/interrupt 200 in 80ms
+ POST /api/harness/turn 200 in 189ms
+ DELETE /api/harness/session/276b5629-b76b-4031-b130-2e4811b24663 200 in 15ms
+ POST /api/harness/session/create 200 in 19ms
+ POST /api/harness/turn 200 in 106ms
+ DELETE /api/harness/session/b9b61456-f5b5-4130-b7f7-fec0ea456291 200 in 11ms
+[?25h

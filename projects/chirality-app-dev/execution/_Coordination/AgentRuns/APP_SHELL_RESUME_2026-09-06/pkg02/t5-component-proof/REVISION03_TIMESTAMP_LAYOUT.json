@@ -1,0 +1,32 @@
+{
+  "height": 800,
+  "panel": 300,
+  "theme": "dark",
+  "times": [
+    {
+      "height": 16.8046875,
+      "labelScrollWidth": 228,
+      "labelText": "Task completed: Working Items",
+      "labelWidth": 177.03125,
+      "lineHeight": "16.8px",
+      "nonOverlap": true,
+      "text": "06:00:05 AM",
+      "title": "WORKING_ITEMS",
+      "width": 65.78125,
+      "oneLine": true
+    },
+    {
+      "height": 16.8046875,
+      "labelScrollWidth": 165,
+      "labelText": "Task failed: Research",
+      "labelWidth": 165.3125,
+      "lineHeight": "16.8px",
+      "nonOverlap": true,
+      "text": "06:00:06 AM",
+      "title": "RESEARCH",
+      "width": 65.78125,
+      "oneLine": true
+    }
+  ],
+  "width": 960
+}

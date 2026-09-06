@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "python3",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/asset-audit/audit_reference_v1.py"
+  ],
+  "cwd": "{REPO_ROOT}",
+  "exit_code": 0,
+  "output": "INVENTORY_v1.json",
+  "effective_environment": "inherited session, no credential or environment-value dump",
+  "recorded_at": "2026-09-06T18:22:05.302400+00:00",
+  "network_or_browser_execution": false
+}

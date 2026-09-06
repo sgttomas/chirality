@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-09-06T20:53:59.408792+00:00",
+  "source": "parent actual CHANGE fan-in and validator release message; no raw tool capture invented",
+  "graph": "WORK_GRAPH_v11.json",
+  "isolated_root": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af",
+  "branch": "codex/app-runtime-integration-20260906",
+  "composition": {
+    "commit": "22a65b694007f4d96d33631cf33c2d611517a417",
+    "parent": "49951af6237bbb8701c0a2cebcd8c30fbde75b8e",
+    "sole_changed_path": "projects/chirality-app-dev/frontend/tsconfig.electron.json",
+    "config_sha256": "522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0",
+    "isolated_status": "CLEAN",
+    "original_dirty_app_paths_preserved": 728,
+    "evidence": "change/combined-integration-v1/composition",
+    "parent_verification": "independent git show/status/config hash verified"
+  },
+  "validator": {
+    "instance": "/root/resume_pkg09",
+    "role": "WORKING_ITEMS PKG09",
+    "actual_action": "FOLLOWUP_RELEASED_V11_VALIDATION",
+    "status": "RUNNING_CHECKS_NOT_FINAL",
+    "amendment": "instances/resume_pkg09/AMENDMENT_v2.md",
+    "recipe_supplement": "instances/resume_pkg09/COMBINED_RECIPE_SUPPLEMENT_v1.md"
+  },
+  "future_handoff": "after actual results, exact immutable head/path/rerun results/read limits; user manual copy/paste only",
+  "final_handoff_created": false,
+  "publication_authority": false,
+  "inter_task_message_authority": false,
+  "native_roles": "instruction-asserted",
+  "exact_serving_model": "unavailable"
+}

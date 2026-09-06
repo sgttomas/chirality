@@ -1,0 +1,9 @@
+# Records-only local closeout custody
+
+Scope is this ruled-increment run, previous integration publication-v1 evidence, exact D121/D125 rulings, factual register/D124 closeout records, DEL09-04 records and receipt255. No product source or earlier excluded custody enters this commit. Prior161-file custody remains governed by the previous committed compact disposition; it is neither recopied nor republished here.
+
+LOCAL_CUSTODY.jsonl binds only new local exclusions. Exact raw patches, repeated register pre/post snapshots and bulky scanner/output records remain unchanged locally. Canonical current register/ruling/DEL09 records, compact pre/post identities, returned interpretation and PDF observability addendum are included. Existing manifests retain original hashes; excluded members have local-only original-path availability, not a portable full-bundle claim. Small accepted PDF postimages remain available for exact later carrier application; application/source implementation is not claimed.
+
+Use configured existing mise Python identified in recorded commands; preserve the parent's initial missing-PyYAML failure as historical evidence. VALIDATION_SUMMARY binds receipt/selfcheck/pytest/diff checks and the consumer5,PKG09closeout21,PDFv2 10-member verification. Product checks were not repeated because product source/config is unchanged. Secret-scan full output remains local if bulky, with result/hash retained. PR739 CI snapshot reports exactdbf4027 green Harness/governance and skippedmacOS; no merge follows.
+
+terminal/** contains local-only freeze/commit operational output. Exact stage scope is terminal/FINAL_SCOPE.jsonl and FREEZE.json, parent-approved before staging. No terminal recursion, prior raw-custody publication, push/PR update or merge is authorized. Local commit is a concrete records-only candidate; the owner decides its separate publication.

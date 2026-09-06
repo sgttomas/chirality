@@ -1,0 +1,27 @@
+[
+  {
+    "name": "frontend",
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "--incremental",
+      "false"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "electron",
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "-p",
+      "tsconfig.electron.json",
+      "--noEmit",
+      "--incremental",
+      "false",
+      "--traceResolution"
+    ],
+    "exit_code": 2
+  }
+]

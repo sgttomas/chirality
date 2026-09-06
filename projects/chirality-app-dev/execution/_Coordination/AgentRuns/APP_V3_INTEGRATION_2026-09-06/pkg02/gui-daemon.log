@@ -1,0 +1,6 @@
+[chirality-desktop] 2026-09-06T22:32:10.639Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/ch-v3-gui-20260906/data","pid":47259}
+[chirality-desktop] 2026-09-06T22:32:10.659Z [info] runtime.daemon.started {"socketPath":"/private/tmp/ch-v3-gui-20260906/data/runtime/control.sock","runtimeDirectory":"/private/tmp/ch-v3-gui-20260906/data/runtime"}
+[chirality-desktop] 2026-09-06T22:32:23.551Z [warn] runtime.daemon.activate_received {"pid":47259}
+[chirality-desktop] 2026-09-06T22:32:23.552Z [info] runtime.daemon.gui_spawned {"pid":47425}
+[chirality-desktop] 2026-09-06T22:32:23.552Z [info] desktop.shutdown.started {"reason":"retire-after-gui-spawn","exitCode":0,"daemonMode":true,"pid":47259}
+[chirality-desktop] 2026-09-06T22:32:23.553Z [info] desktop.shutdown.completed {"reason":"retire-after-gui-spawn","exitCode":0}

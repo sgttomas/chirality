@@ -1,0 +1,15 @@
+{
+  "status": "CANDIDATE_NOT_APPLIED",
+  "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+  "preimage_sha256": "f9cbb190d7823b7d41e9527fe1fcb0a61f3b1486074fbcf4990eb7976667c509",
+  "postimage_sha256": "80c21cd1543618b26c1d1ea87a11aa07712f7f348df1e0a308411416af69e460",
+  "patch_sha256": "7b2f17e4400c43931fcc64293c3e3f05b277b75123ef2a07bbd7bc643f360b03",
+  "changed_lines": [
+    141,
+    147
+  ],
+  "all_other_lines_unchanged": true,
+  "scope": "Factual D121/D124 evidence status only; no owner choice, application, new ruling or widened publication authority",
+  "apply_gate": "Explicit parent review/release required",
+  "receipt": "Deferred until GUI return and final handoff available; no receipt candidate or actual receipt written"
+}

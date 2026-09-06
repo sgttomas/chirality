@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+      "before_sha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd",
+      "after_sha256": "af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960",
+      "postimage": "DEL02-03_STATUS_POSTIMAGE.txt",
+      "owner": "PKG02 WORKING_ITEMS",
+      "live_applied": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+      "before_sha256": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0",
+      "after_sha256": "0f4b65b53f0e05183fcd8a5f489bb2da8ccdb4ead6fab22944f89f8daf42e6ba",
+      "postimage": "DEL09-06_STATUS_POSTIMAGE.txt",
+      "owner": "PKG09 WORKING_ITEMS",
+      "live_applied": false
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md",
+      "before_sha256": "1fed47a10b3f480a545947e6cf1d60ef7e150f166caceb4a26c0267f92dde652",
+      "after_sha256": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0",
+      "postimage": "DEL09-06_SOW_POSTIMAGE.txt",
+      "owner": "PKG09 WORKING_ITEMS",
+      "live_applied": false
+    }
+  ],
+  "accepted_patch_sha256": "e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32",
+  "accepted_design_sha256": "c42f617eafd3cce21047d4cf5977fd058207ef55fd8b090b337b2422f62bc687",
+  "V3_07_live_available": true,
+  "assertions": "Exact hunk context/preimages verified, postimages generated in memory; no live application."
+}

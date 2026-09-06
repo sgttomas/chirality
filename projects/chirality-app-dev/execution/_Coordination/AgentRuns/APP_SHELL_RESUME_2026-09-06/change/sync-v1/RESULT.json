@@ -1,0 +1,40 @@
+{
+  "recorded_utc": "2026-09-06T19:40:11.970903+00:00",
+  "fetch": {
+    "command": [
+      "git",
+      "fetch",
+      "origin"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "head_before": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "head_after": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "origin_main": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "ancestry": true,
+  "sync_action": "NO_OP_ALREADY_EQUAL",
+  "new_upstream_commits": [],
+  "upstream_changed_paths": [],
+  "tracked_overlap": [],
+  "dirty_paths_preserved": true,
+  "dirty_path_count": 614,
+  "runtime_tracked_count": 1696,
+  "runtime_changed_since_preparation": [],
+  "runtime_status": "",
+  "prior_generated_output_drift": [],
+  "rebuild_required_by_upstream_change": false,
+  "rebuild_performed": false,
+  "metadata": {
+    "role": "CHANGE Agent 1",
+    "engine": "Codex native harness",
+    "provider": "OpenAI",
+    "model": "GPT-6 system identity; exact deployment unavailable",
+    "execution_class": "delegated-harness-native",
+    "role_enforcement": "instruction-asserted",
+    "parent": "/root",
+    "instance": "/root/resume_change"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "codesign",
+    "--force",
+    "--deep",
+    "--sign",
+    "-",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/Chirality Resume Proof.app"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/Chirality Resume Proof.app: replacing existing signature\n"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PROPOSAL_ONLY_HELD",
+  "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+  "preimage_sha256": "16053333f23dd8905c5567eeae4151de03e56f77f58fa64d7c52d0dc30d249f0",
+  "postimage_sha256": "165f443bba9907bfbbcc6f1c4a4e2bb6ded61241edf5204510c41062ab4f0265",
+  "changed_line_count": 1,
+  "gates_depends_checks_return_removal_lifecycle_history_preserved": true,
+  "live_effect": "NONE",
+  "verified_parent_pins": {
+    "WORK_GRAPH_v5.json": "92d66a38baab89620d241faf6a6a79198b3f29411d16372596d37cfafc813ec5",
+    "ORCHESTRATION_PLAN_v5.md": "3cb313e324b91f0aa98be9d2b139b0079c424891851af06575d6a6107466843e",
+    "instances/resume_account_scope/AMENDMENT_v2.md": "775572ad5367d015dec06ba0641395197101ea14da96f48b09a8d17802a80d57",
+    "pkg02/T5_STRIP_SEAM_PROPOSAL_v1.md": "d7bdb1db014200e2b1b8459e65527e74fb265a791ffec54c3cdb6911dec3d599"
+  }
+}

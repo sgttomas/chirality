@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-09-06T18:29:52.319042+00:00",
+  "handoff": {
+    "path": "PROGRESS_HANDOFF_v1.md",
+    "sha256": "9f9ff92dba617ed9678b9ecdcca5da22678630576a296c1c8ef4a77ef4779e10"
+  },
+  "input_identities": [
+    {
+      "path": "pkg07/MANAGER_RETURN_v1.md",
+      "sha256": "f7af8321afd6e20e795b042d3ae8b640b8ade0be8bb58a173a3e201823db9411",
+      "bytes": 4234
+    },
+    {
+      "path": "pkg07/OUTPUT_MANIFEST_v1.json",
+      "sha256": "6246972928985469469d1fe4a5da4c4a007fdc1e48873c735b9492cb90d93fdc",
+      "bytes": 4589
+    },
+    {
+      "path": "pkg02/t1-reconciliation/REFUTER_02_RETURN.md",
+      "sha256": "4299d1751bf9e3b490a77f1bef8d439898121079b15fa78489c76f41e716659c",
+      "bytes": 873
+    },
+    {
+      "path": "pkg02/t1-reconciliation/APPLIED_MANIFEST.json",
+      "sha256": "a6faf302c244e5ac99bd9f9ef5de9730ffb3f6ab31e3d56578591e46166a7fa2",
+      "bytes": 742
+    },
+    {
+      "path": "pkg02/t1-reconciliation/RUN_RECORD_AFTER_v2.md",
+      "sha256": "c8f659b62d14926dbf7b7299f3f924d2b92cd9fcc0390929a7eb22bd344a40fa",
+      "bytes": 3620
+    },
+    {
+      "path": "asset-audit/MANIFEST_v1.json",
+      "sha256": "799cfaa097e63e7f88e113b0f4008261cd59f6fb245a6fb0b43c1b5780bdae91",
+      "bytes": 624
+    },
+    {
+      "path": "validation/iteration01/CHECKS_v1.json",
+      "sha256": "192223d4047de69c33e85c2024329fc688674b437b82830d53b91a0c6ab4d49a",
+      "bytes": 4948
+    }
+  ]
+}

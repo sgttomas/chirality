@@ -1,0 +1,14 @@
+{
+  "instance": "/root/resume_account_scope",
+  "parent": "/root",
+  "role": "SCOPE_CHANGE",
+  "status": "CANDIDATE_ONLY_DISPATCHED_PER_PARENT",
+  "writes": [
+    "account-scope/**"
+  ],
+  "model": "OpenAI GPT-6 family per system",
+  "exact_serving_model": "unavailable",
+  "role_enforcement": "instruction-asserted",
+  "account_source": "HELD",
+  "owner_acceptance": "NONE"
+}

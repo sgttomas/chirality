@@ -1,0 +1,7 @@
+{
+  "path": "FANIN_DISPOSITION_v1.md",
+  "sha256": "d768cefbf645da2846fe9b975d3a6fc238de29f4b5639931ff7f76a13d2ffc0e",
+  "bytes": 1033,
+  "source": "parent actual final fan-in message",
+  "handoff": "PENDING_INPUT_HANDOFF_v3.md"
+}

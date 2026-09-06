@@ -1,0 +1,17 @@
+[
+  {
+    "manifest": "consumer-contract/OUTPUT_MANIFEST.json",
+    "sha256": "92c00d4b097630d9049673f907abd1c01588e313601d499912605ffbd9d8a978",
+    "members_verified": 5
+  },
+  {
+    "manifest": "pkg09-closeout/OUTPUT_MANIFEST.json",
+    "sha256": "90af9e0fb503f329f573e8ae9b8fc3ee6d4f447a461e7add0210435d178ba7c0",
+    "members_verified": 21
+  },
+  {
+    "manifest": "pdf-application/OUTPUT_MANIFEST_v2.json",
+    "sha256": "fa0e986201dd277a1b1266718a2043a97d9710c43894160e121f589f35172f59",
+    "members_verified": 10
+  }
+]

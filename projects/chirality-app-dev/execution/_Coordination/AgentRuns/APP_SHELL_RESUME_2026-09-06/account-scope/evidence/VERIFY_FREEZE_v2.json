@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": {
+    "candidate-v1/CANDIDATE_IDENTITIES.json": true,
+    "candidate-v1/CANDIDATE__STATUS.md": true,
+    "candidate-v1/INPUT_IDENTITIES.json": true,
+    "candidate-v1/PREIMAGE__STATUS.md": true,
+    "candidate-v1/PROPOSAL.md": true,
+    "candidate-v1/STATUS_DIFF.patch": true,
+    "candidate-v1/STATUS_TRUTHFULNESS_ADDENDUM.md": true
+  }
+}

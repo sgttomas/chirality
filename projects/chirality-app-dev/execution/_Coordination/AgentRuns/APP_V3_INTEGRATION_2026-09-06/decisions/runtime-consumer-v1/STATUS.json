@@ -1,0 +1,10 @@
+{
+  "status": "COMPLETED",
+  "verdict": "PASS_FOR_OWNER_DESIGN_SLATE_ONLY",
+  "role": "Agent2 instruction-asserted",
+  "model": "exact serving ID unavailable",
+  "substitution": "none observed",
+  "incoming_manifest_sha256": "174d049240d24539d13c429b32c2970f08260a56aa465d2cbdd54e358145df6f",
+  "source_mutation": false,
+  "implementation_ready": false
+}

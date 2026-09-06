@@ -1,0 +1,10 @@
+{
+  "recorded_at_utc": "2026-09-06T22:30:10.266893+00:00",
+  "event_time": null,
+  "note": "Recorded time is not claimed dispatch/event time.",
+  "files": {
+    "WORK_GRAPH_v2.json": "ceef1159ee3a736e528867ef40cfb44304e5cc3149256da71fd676749ff519c4",
+    "ORCHESTRATION_PLAN_v2.md": "721e97744a10ab976c24f80cc12d5a795b1c023464c98587ef8e3b975648b3ac",
+    "coordination/BRIEF_v3_pdf_scope_v1.md": "4a841b7b11afa5ba614ad9834a52d56df714d7112732f91f4090ebbb93831d96"
+  }
+}

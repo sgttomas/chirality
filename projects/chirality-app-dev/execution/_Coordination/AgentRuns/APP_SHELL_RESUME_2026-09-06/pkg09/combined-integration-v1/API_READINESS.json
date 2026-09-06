@@ -1,0 +1,8 @@
+{
+  "url": "http://127.0.0.1:63839/api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-runtime-integration-20260906-738-49951af%2Fprojects%2Fchirality-app-dev",
+  "observations": [
+    "URLError",
+    200
+  ],
+  "ready": true
+}

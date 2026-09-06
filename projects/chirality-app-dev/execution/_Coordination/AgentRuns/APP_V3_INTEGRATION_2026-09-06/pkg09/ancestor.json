@@ -1,0 +1,18 @@
+{
+  "command": [
+    "git",
+    "merge-base",
+    "--is-ancestor",
+    "origin/main",
+    "HEAD"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "end": "2026-09-06T22:25:16.236766+00:00",
+  "environment_overrides": {
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+  "exit_code": 0,
+  "removed_environment_variable_names": [],
+  "start": "2026-09-06T22:25:16.230915+00:00"
+}

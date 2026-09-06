@@ -1,0 +1,30 @@
+{
+  "CUSTODY_AND_RERUN.md": {
+    "sha256": "6e941f5c3b5eafce1ac664c00abe68582e58be0d65becb3c383ddf9ccf383d20",
+    "bytes": 4054
+  },
+  "LOCAL_ONLY.jsonl": {
+    "sha256": "1d79f28392c3398554cd5cd21c7de38aef575a879423f58121cd58941dd9d2cd",
+    "bytes": 44614
+  },
+  "LOCAL_ONLY_PATHS.txt": {
+    "sha256": "64b5da4a83ab42f3b357b529d65e6c2fe2aa88b2b14e1896f69b22ca822c17fb",
+    "bytes": 11625
+  },
+  "PUBLISH_CANDIDATE.jsonl": {
+    "sha256": "1563ba9056c68669886f4017307253f877702f9e1a362be0d6472803b9cbaddb",
+    "bytes": 283906
+  },
+  "PUBLISH_CANDIDATE_PATHS.txt": {
+    "sha256": "e6eea9c323f20f38cb7a72207898eda3b4dbf1790006aa27cb6cd2d4b4b9a20c",
+    "bytes": 130632
+  },
+  "RETURN.md": {
+    "sha256": "72a07a368e8c98a3b9f3a53c181075e9514ee1430650e4f688236fb4b85f6f9e",
+    "bytes": 940
+  },
+  "SUMMARY.json": {
+    "sha256": "1fecc71904899f2361170166284501b291d24e7e929781037323b9f90127b45f",
+    "bytes": 3357
+  }
+}

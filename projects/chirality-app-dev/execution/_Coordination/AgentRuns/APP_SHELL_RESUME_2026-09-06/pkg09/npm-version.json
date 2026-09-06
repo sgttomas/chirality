@@ -1,0 +1,13 @@
+{
+  "command": [
+    "npm",
+    "--version"
+  ],
+  "cwd": "projects/chirality-app-dev/frontend",
+  "started": "2026-09-06T19:54:33.925246+00:00",
+  "finished": "2026-09-06T19:54:34.024278+00:00",
+  "exit_code": 0,
+  "environment": "inherited; no command-specific overrides",
+  "stdout": "npm-version.stdout",
+  "stderr": "npm-version.stderr"
+}

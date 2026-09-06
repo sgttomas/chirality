@@ -1,0 +1,14 @@
+{
+  "status": "REGISTERED_PROPOSAL_AWAITING_PARENT_UNION_REVIEW",
+  "decision_id": "D-APP-122",
+  "packet_path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-122_PACKET_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md",
+  "packet_sha256": "36921afa1100041fabc700ba5228a272bc2f7341e887c792fe1d9a3f4b1816cd",
+  "register_path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+  "register_preimage_sha256": "2f6fa79a4477a59f245fe96c40101a5f2badb060fbc1cd6df550e58657ecb8a4",
+  "register_postimage_sha256": "7d9ef97b3613c4329db69ea4b81457ed356b0f4eecd2bbbb670ff5589a4706af",
+  "preservation_check": true,
+  "added_rows": 1,
+  "owner_selection": "NONE",
+  "live_item_or_dependency_writes": [],
+  "candidate_freeze_sha256": "4f72e6057f38924f37a7b9a57f45f9b83dee724787195fafa6ac3534d7ecf30f"
+}

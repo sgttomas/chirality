@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "path": "AUDIT_v1.md",
+      "sha256": "143e904ab8478e76ee0f86e56b1e3701a461cff5ad9ba8e4b5bb6beb88a675e3",
+      "bytes": 5198
+    },
+    {
+      "path": "COMMAND_v1.json",
+      "sha256": "ae2f39dabfc82ee9a145a30fc9fb10b1135f2657cbefafac5a255f9305b4a0e6",
+      "bytes": 422
+    },
+    {
+      "path": "INVENTORY_v1.json",
+      "sha256": "e913b61116950ff7465e221952165ce930f17e935c3b4f9a940955cbd1b162ff",
+      "bytes": 40599
+    },
+    {
+      "path": "audit_reference_v1.py",
+      "sha256": "63a87b82a30cce66cb865a0b83d4c89fa7d70e7087010d916e0e8ef1bad8422e",
+      "bytes": 7884
+    }
+  ]
+}

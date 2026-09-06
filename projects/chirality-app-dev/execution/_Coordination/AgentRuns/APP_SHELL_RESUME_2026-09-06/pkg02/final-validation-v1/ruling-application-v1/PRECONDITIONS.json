@@ -1,0 +1,26 @@
+[
+  {
+    "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+    "actual_preimage_sha256": "6e78e98c67cfeb5c75fafc626531e9f8af5624df4fb3ce9398e9b365e959ed5d"
+  },
+  {
+    "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+    "actual_preimage_sha256": "46e8e3930adc0c0f985fe9b03f5ae510f44e64a44123e1a49379d10681963773"
+  },
+  {
+    "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/D_APP_122_OWNER_SELECTION_2026-09-06.md",
+    "actual_preimage_sha256": null
+  },
+  {
+    "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+    "actual_preimage_sha256": "16053333f23dd8905c5567eeae4151de03e56f77f58fa64d7c52d0dc30d249f0"
+  },
+  {
+    "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md",
+    "actual_preimage_sha256": "27e1b055378816a51912788d79bd4c9c1fa0eb50ab9f2b558547572e8eaf20c2"
+  },
+  {
+    "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/D_APP_123_OWNER_SELECTION_2026-09-06.md",
+    "actual_preimage_sha256": null
+  }
+]

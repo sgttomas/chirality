@@ -1,0 +1,12 @@
+{
+  "status": "COMPLETE_CANDIDATE",
+  "effect": "HELD",
+  "review": "COMMIT-SAFE proposal only",
+  "reviewer": "/root/resume_account_scope/t5_strip_refutation",
+  "review_return": "REFUTATION_RETURN.md",
+  "candidate": "FROZEN_CANDIDATE.json",
+  "manager_return": "MANAGER_RETURN.md",
+  "registration": "NOT_RELEASED",
+  "owner_selection": "NONE",
+  "source_write": false
+}

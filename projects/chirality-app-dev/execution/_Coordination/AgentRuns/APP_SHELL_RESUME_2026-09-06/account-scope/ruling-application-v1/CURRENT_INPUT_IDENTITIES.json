@@ -1,0 +1,218 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+  },
+  {
+    "path": "agents/AGENT_SCOPE_CHANGE.md",
+    "sha256": "fc46378b11c8d56e2c0caf170a76c8a459647848c7f39e50d4af48156b3d0167"
+  },
+  {
+    "path": "projects/chirality-app-dev/AGENTS.md",
+    "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv",
+    "sha256": "b3fcca9e2ab6e5ee288a80fbf7e1b8f5869030b76edbb801070c27088808f2b1"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/MEMORY.md",
+    "sha256": "9cc3aff8de2f7a34ad4ab054ca157031395052d2325a1388a485bed58591e413"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md",
+    "sha256": "0e64cb085ee7032844f3b09f05c5a3f29ba02344e3ce9369a8535657c793406b"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md",
+    "sha256": "16e2596ac1c9d5d275774d0f647526efbde350e4ceb1a5903731720216542980"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Dependencies.csv",
+    "sha256": "8e880e11478e04e66d7db245b8044007ced07b016d91a985216253547450ebee"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/MEMORY.md",
+    "sha256": "8ccc020e20fc8edbeaf2d27aa3db10be963f150a06aceeaea747279766cddc2a"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md",
+    "sha256": "9b7d45fe5441bdda8eb1bc7dde61d7db784231e0fa79f4c4d1e0a22e7c752acb"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+    "sha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+    "sha256": "4b17594e49156a3ab4dfa566830b8fa871c9de49c1680c0cf4d326012958649a"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md",
+    "sha256": "27e1b055378816a51912788d79bd4c9c1fa0eb50ab9f2b558547572e8eaf20c2"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md",
+    "sha256": "2ebfe14aa3bf354b79111c5e0d4bc81b3e10e8292195d8c8aad5464a7f99cc8c"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+    "sha256": "16053333f23dd8905c5567eeae4151de03e56f77f58fa64d7c52d0dc30d249f0"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+    "sha256": "249ac0291f72ef8a84d0b51f18a2ffac9c2b486eeff58559c894d55e3fe03f76"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+    "sha256": "46e8e3930adc0c0f985fe9b03f5ae510f44e64a44123e1a49379d10681963773"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md",
+    "sha256": "83f206d623dd72130cab799e8e9216440635fb3cbe82ed8b17a6216092abf06f"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+    "sha256": "6e78e98c67cfeb5c75fafc626531e9f8af5624df4fb3ce9398e9b365e959ed5d"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/ORCHESTRATION_PLAN_v7.md",
+    "sha256": "0a37bc6a0efa9a02bbfa5ad376658628a308cf22e67d87fdd4e859fb0aad5eef"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/OWNER_STEER_v2.md",
+    "sha256": "bf12bb65c063236367a98dd2fd5eb91116d3aa83c1976a33e1924c0563314bf6"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/WORK_GRAPH_v7.json",
+    "sha256": "eb7c339dde5ca3884487a8b118cb2e7bb59bbec17c2a1e65310992e7b19007fb"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/account-scope/CANDIDATE_FREEZE_v2.json",
+    "sha256": "4f72e6057f38924f37a7b9a57f45f9b83dee724787195fafa6ac3534d7ecf30f"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/account-scope/t5-strip-scope/FROZEN_CANDIDATE.json",
+    "sha256": "89cd6d3b8490ea52f105412003e2d2c567fa6812346eb60c0468d29d660e23e6"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/instances/resume_account_scope/AMENDMENT_v4.md",
+    "sha256": "e58da1c908ed97820ac43fc33e44d785e1eb077dab23b0abf224ff9f84a0e3f9"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-108_RULING_SCA_APP_010_SEATING_AND_SHELL_QUESTIONS_2026-09-04.md",
+    "sha256": "7ced5e05342de3425673990e5ab3bb37a202cd24198ec6427111ef68c31e64f8"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-120_PACKET_T2_NO_FOLDER_AND_WOVEN_SEAM_2026-09-05.md",
+    "sha256": "f2aef8d01b562028479260f977d34b5415e806f68effc19a5ea923482782f017"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-120_RULING_PRESENTATION_SEAM_AND_NO_FOLDER_ROUTING_2026-09-06.md",
+    "sha256": "35587f5b9a018a7e263518f13c164ce0300518b4f4009b1a0c6725d215801ebc"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-122_PACKET_ACCOUNT_SETTINGS_HOST_GATE_2026-09-06.md",
+    "sha256": "36921afa1100041fabc700ba5228a272bc2f7341e887c792fe1d9a3f4b1816cd"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-123_PACKET_ACTIVITY_STRIP_PRIMARY_SESSION_LOCUS_2026-09-06.md",
+    "sha256": "2e425bd2b9b6bb778aa49ca17b27365e36304cb6bfbaed70874571385c0029b7"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-59_RULING_2026-07-17.md",
+    "sha256": "64e6b248acf377f124646a93abbe0816b718a71a9aaddd3d40e28c6e835707d3"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md",
+    "sha256": "729668896820ca15730f4e2969253cc15b29b696c5a8d99b503c054723e5b4dc"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+    "sha256": "c10922dd866a33aa461717d880f80f08119e93d24bfbcec3e58ea43b57e2460d"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "sha256": "55b1388ab10d4faf2098a0b5d42e04ba3a40e3fcea71bed54cda9a05252ee089"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/_LATEST.md",
+    "sha256": "74d9b1d46acbc8b9e8664da9833340da634dec00abd034fc12940665a4d2e291"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+    "sha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+    "sha256": "594f54051787a08200e03562131738eb8650ca8eddc0693dd8f9734a3dfa0899"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/settings/account-consent-settings.tsx",
+    "sha256": "0f956ce10510985f0e7e49ff7602b48f04f6b12568b954640f08d69fe191cb69"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx",
+    "sha256": "cf3e81aaaf25075ffa7c8baadc786488100524c6418cc97606dc0cf14225da42"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/settings/runtime-settings.tsx",
+    "sha256": "6405917d760d95fa0d1c28ac4330b8a04aac2cbbe1cd66bc28b3513626215497"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+    "sha256": "bc95396dcdd74e2da85d97c0374f1cd4ac00726f6fec63464128aaa17b939ec6"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/shell/theme-control.tsx",
+    "sha256": "79c9e492f9126dcb35ef33cf3a3d7aa4077ab75e7dc52fb5c0b8fa6a02a50dc0"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "sha256": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "sha256": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+    "sha256": "33ada3e4d9b4ce3970c7c0e2ed07fad0020fac0fd152696762a4c41373cbcd70"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+    "sha256": "205b39a280d68a5ff1aaccf3e4a0a139904257f3d52db8536a4d3785dd5a5801"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+    "sha256": "ead76e3015bc7ca35ef1a04caa355eeb548b25e4d99cdd39f5bd3c2bd3ec5916"
+  },
+  {
+    "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+    "sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/01_DECISIONS.md",
+    "sha256": "8cc5bc8cb2eb0688ca3db69ed24e00bee9c460aefa1d7165cb1a129688a04ed1"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+    "sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md",
+    "sha256": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/README.md",
+    "sha256": "357470dcc187271549d21fe2ea00a27453650287d1e51b68b63a31041a807aa5"
+  },
+  {
+    "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+    "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6"
+  }
+]

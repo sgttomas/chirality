@@ -1,0 +1,33 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/APP_HOLD_DISPATCH.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/CHECKS_02.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/OUTPUT_IDENTITIES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/SOURCE_DIFF.patch",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/INPUT_IDENTITIES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/BRIEF_v2.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/woven-dialogue-navigator.test.tsx.before",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/PARENT_DISPATCH_PREFLIGHT.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/EVIDENCE_PATH_INCIDENT.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/navigator.tsx.before",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/globals.css.before",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/BRIEF.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/SELECTED_CHECKS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/CHECKS_01.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/reveal-author-01/_run_records/TASK_RUN_2026-09-06_reveal.md"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

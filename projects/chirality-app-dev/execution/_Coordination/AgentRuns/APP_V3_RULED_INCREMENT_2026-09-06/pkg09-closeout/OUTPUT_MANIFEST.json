@@ -1,0 +1,89 @@
+{
+  "files": {
+    "BASIS_IDENTITIES.json": {
+      "bytes": 454,
+      "sha256": "17742c591a77244b2eb803e49a029b29b70cb958f97c2c337903f9ea00fb61fd"
+    },
+    "D_APP_124_SCOPED_CLOSEOUT_2026-09-06.md.diff": {
+      "bytes": 3436,
+      "sha256": "ba1f3fe06684ef2120ba0e95aa740062f930c024c89a3a619eefee31926c216a"
+    },
+    "INVARIANTS.json": {
+      "bytes": 162,
+      "sha256": "e9906ecc606e2a0cb654ff05312b754aed2049e3124d75a635f92504b5e9d924"
+    },
+    "MEMORY.md.diff": {
+      "bytes": 1559,
+      "sha256": "17aa9d76f9ec3e0bc28471d5e2654779a563fa660d55e47fe56cc605276852a4"
+    },
+    "PARENT_REPORTED_FAILURE.json": {
+      "bytes": 510,
+      "sha256": "c596406e2af5a02a9998e3f0d79eb58b076035f4fe24227f7c8629c437a84455"
+    },
+    "RECORD_IDENTITIES.json": {
+      "bytes": 996,
+      "sha256": "627af239f20479ec4f5780574ddd96c4d85260e84150c6083ac86f680f14676d"
+    },
+    "REMOVED_D124.md": {
+      "bytes": 1867,
+      "sha256": "2f696cf72ad2898a3a8fbd18dcfb8d783a8d60d7f0325c2bc16c8caadf2f0f23"
+    },
+    "RETURN.md": {
+      "bytes": 1166,
+      "sha256": "b63c6ffda5e445a67debdd312f34cf7e4082a073246115782d46c4bd315285e6"
+    },
+    "SELF_CHECK.json": {
+      "bytes": 586,
+      "sha256": "343de453d7edf566113e49a5dc1c4e0c820c65f3e15f51ec720edae82f260ccc"
+    },
+    "_STATUS.md.diff": {
+      "bytes": 4118,
+      "sha256": "b05dbf61f2049318739370056483c6c0811f76afa33e6c25ccd9cdca5fb92555"
+    },
+    "app-hold.json": {
+      "bytes": 338,
+      "sha256": "17b125d9be7a5f659e4450506c0247dd756eff87594c7eb7edc2963cd246caac"
+    },
+    "app-hold.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "app-hold.stdout": {
+      "bytes": 827,
+      "sha256": "1345adf45ab38976b3aa2739dc7b96280f231ef7458ef59ac074cb50f48b8151"
+    },
+    "diff-check.json": {
+      "bytes": 308,
+      "sha256": "2af2d74e6253897fcd2db27da088a494902ba75e90751bce4a1df40b8057684e"
+    },
+    "diff-check.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "diff-check.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication.json": {
+      "bytes": 181,
+      "sha256": "d2def53819523132e12d4a0866e2ff659361449d2cf48d2c84fabfc653e12ba9"
+    },
+    "publication.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication.stdout": {
+      "bytes": 128,
+      "sha256": "c093911f8793c80792c6f439b292e53e06419441e1cfca0574ec49e1765ca575"
+    },
+    "self-check.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "self-check.stdout": {
+      "bytes": 24824,
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945"
+    }
+  },
+  "status": "PASS_RECORDS_ONLY"
+}

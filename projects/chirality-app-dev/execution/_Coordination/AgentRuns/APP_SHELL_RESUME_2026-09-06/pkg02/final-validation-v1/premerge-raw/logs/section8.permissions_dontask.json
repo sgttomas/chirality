@@ -1,0 +1,8 @@
+{
+  "id": "section8.permissions_dontask",
+  "status": "fail",
+  "startedAt": "2026-09-06T19:24:49.592Z",
+  "endedAt": "2026-09-06T19:24:49.597Z",
+  "durationMs": 5,
+  "error": "Session creation failed: HTTP 503"
+}

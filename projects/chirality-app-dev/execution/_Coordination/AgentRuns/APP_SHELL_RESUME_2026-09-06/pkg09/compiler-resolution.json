@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "node_modules/typescript/bin/tsc",
+    "-p",
+    "tsconfig.electron.json",
+    "--noEmit",
+    "--incremental",
+    "false",
+    "--traceResolution"
+  ],
+  "cwd": "projects/chirality-app-dev/frontend",
+  "started": "2026-09-06T19:55:45.569544+00:00",
+  "finished": "2026-09-06T19:55:47.302722+00:00",
+  "exit_code": 0,
+  "environment": "inherited; no command-specific overrides",
+  "stdout": "compiler-resolution.stdout",
+  "stderr": "compiler-resolution.stderr"
+}

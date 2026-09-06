@@ -1,0 +1,8 @@
+{
+  "id": "section8.sdk_native_stream",
+  "status": "fail",
+  "startedAt": "2026-09-06T19:24:49.602Z",
+  "endedAt": "2026-09-06T19:24:49.608Z",
+  "durationMs": 6,
+  "error": "Session creation failed: HTTP 503"
+}

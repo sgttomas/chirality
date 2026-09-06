@@ -1,0 +1,30 @@
+{
+  "frontend/src/components/woven-dialogue/navigator.tsx": {
+    "expected": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450",
+    "actual": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450"
+  },
+  "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx": {
+    "expected": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b",
+    "actual": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b"
+  },
+  "frontend/src/__tests__/components/historical-chat-reveal.test.tsx": {
+    "expected": "9c988cfaaffc30d2d5650c2bd35768bdb25034f0fe487b74df5f46c99d34bc93",
+    "actual": "9c988cfaaffc30d2d5650c2bd35768bdb25034f0fe487b74df5f46c99d34bc93"
+  },
+  "frontend/src/app/globals.css": {
+    "expected": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "actual": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b"
+  },
+  "frontend/src/components/woven-dialogue/activity-shelf.tsx": {
+    "expected": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0",
+    "actual": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0"
+  },
+  "frontend/src/__tests__/components/activity-view-local-state.test.tsx": {
+    "expected": "a4ab8e1c94383944e9de76e07765ce41c4043d806cf94ee95d60a68ef17d7289",
+    "actual": "a4ab8e1c94383944e9de76e07765ce41c4043d806cf94ee95d60a68ef17d7289"
+  },
+  "frontend/src/__tests__/components/activity-view-presentation.test.tsx": {
+    "expected": "df4e82fb485d08291d528e09af066653470945faa3a88142dbd9de9723254a19",
+    "actual": "df4e82fb485d08291d528e09af066653470945faa3a88142dbd9de9723254a19"
+  }
+}

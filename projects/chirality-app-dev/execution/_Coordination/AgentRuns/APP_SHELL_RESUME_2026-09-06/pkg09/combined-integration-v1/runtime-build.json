@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "cwd": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/projects/chirality-runtime",
+  "environment_overrides": {
+    "CHIRALITY_INSTRUCTION_ROOT": "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af",
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "CHIRALITY_RUNTIME_USER_DATA": "/private/tmp/ch-ci-22a65b6-20260906",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/ch-ci-22a65b6-20260906/runtime/control.sock"
+  },
+  "start": "2026-09-06T20:55:36.700324+00:00",
+  "end": "2026-09-06T20:55:38.592054+00:00",
+  "exit_code": 0
+}

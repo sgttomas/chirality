@@ -1,0 +1,15 @@
+{
+  "fixtureWidth": 960,
+  "height": 800,
+  "pageWidth": 960,
+  "panel": 300,
+  "rows": [
+    {
+      "scroll": 270,
+      "text": "Write action finished06:00:10 AMcompletedpathreviews/current-review.mdwrite_file · 2 events · tool.completed",
+      "width": 272
+    }
+  ],
+  "theme": "light",
+  "width": 960
+}

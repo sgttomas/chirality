@@ -1,0 +1,8 @@
+{
+  "id": "section8.smoke_stream",
+  "status": "fail",
+  "startedAt": "2026-09-06T19:24:49.578Z",
+  "endedAt": "2026-09-06T19:24:49.586Z",
+  "durationMs": 8,
+  "error": "Session creation failed: HTTP 503"
+}

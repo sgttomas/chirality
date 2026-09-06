@@ -1,0 +1,12 @@
+{
+  "status": "COMPLETE_CANDIDATE",
+  "owner_choice": "D122 A; D123 A as part of quoted slate",
+  "effect": "HELD_PENDING_PARENT_APPLICATION_RELEASE",
+  "review_verdict": "COMMIT-SAFE exact mirrors only",
+  "reviewer": "/root/resume_account_scope/rulings_refutation",
+  "review_return": "REFUTATION_RETURN.md",
+  "live_application": false,
+  "feature_implementation_authority": "HELD until main observability and fresh selection",
+  "publication": "NONE",
+  "candidate_freeze_sha256": "aa2d01bbf3056d41d55da7d9e87a8c4215945da8219261c7d869682eccd02caa"
+}

@@ -1,0 +1,3 @@
+# Ruled App v3 increment v1
+
+HUMAN selection; MIXED sequential/concurrent execution. Read OWNER_RULING_v1.md and WORK_GRAPH_v1.json. Frozen before new manager write/child dispatch. This graph narrows current run execution; live Remaining and accepted instruments remain the only work-selection surface. Publication of the exact prior commit is independent of new design/ruling records. No new product source scope. Managers resolve paths from git root, read actual role and App LOOP_INIT, rederive accepted basis and APP-HOLD. Preserve A1 restaging, fresh-review and evidence requirements. Significant unfinished contracts return through Agent0 to owner; do not silently expand accepted design selections.

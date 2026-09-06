@@ -1,0 +1,8 @@
+{
+  "id": "section8.boot_error_taxonomy",
+  "status": "fail",
+  "startedAt": "2026-09-06T19:24:49.474Z",
+  "endedAt": "2026-09-06T19:24:49.577Z",
+  "durationMs": 103,
+  "error": "Missing-session boot should return 404"
+}

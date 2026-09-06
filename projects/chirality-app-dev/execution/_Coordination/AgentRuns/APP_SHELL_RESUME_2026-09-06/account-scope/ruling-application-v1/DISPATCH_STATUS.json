@@ -1,0 +1,12 @@
+{
+  "status": "DISPATCHED",
+  "child": "/root/resume_account_scope/rulings_refutation",
+  "role": "fresh ephemeral Agent2",
+  "mechanism": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted",
+  "model": "inherited; exact runtime model identifier unavailable",
+  "writes": [],
+  "brief": "REFUTATION_BRIEF.md",
+  "preflight": "evidence/APP_HOLD_DISPATCH.json",
+  "timestamp": "2026-09-06T19:25:00.423724+00:00"
+}

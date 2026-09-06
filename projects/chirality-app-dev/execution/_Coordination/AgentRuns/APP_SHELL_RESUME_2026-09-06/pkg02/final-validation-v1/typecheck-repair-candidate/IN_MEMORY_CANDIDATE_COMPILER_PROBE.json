@@ -1,0 +1,118 @@
+{
+  "method": "Read live config and source; remove paths only in in-memory compilerOptions; no filesystem config/source changes; noEmit unchanged",
+  "typescript": "5.9.3",
+  "modules": [
+    {
+      "name": "@chirality/engine-claude",
+      "resolved": {
+        "resolvedFileName": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-claude/dist/index.d.ts",
+        "originalPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@chirality/engine-claude/dist/index.d.ts",
+        "extension": ".d.ts",
+        "isExternalLibraryImport": true,
+        "packageId": {
+          "name": "@chirality/engine-claude",
+          "subModuleName": "dist/index.d.ts",
+          "version": "0.1.0"
+        },
+        "resolvedUsingTsExtension": false
+      }
+    },
+    {
+      "name": "@chirality/runtime-contracts",
+      "resolved": {
+        "resolvedFileName": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/index.d.ts",
+        "originalPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-contracts/dist/index.d.ts",
+        "extension": ".d.ts",
+        "isExternalLibraryImport": true,
+        "packageId": {
+          "name": "@chirality/runtime-contracts",
+          "subModuleName": "dist/index.d.ts",
+          "version": "0.1.0"
+        },
+        "resolvedUsingTsExtension": false
+      }
+    },
+    {
+      "name": "@chirality/runtime-core",
+      "resolved": {
+        "resolvedFileName": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/index.d.ts",
+        "originalPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-core/dist/index.d.ts",
+        "extension": ".d.ts",
+        "isExternalLibraryImport": true,
+        "packageId": {
+          "name": "@chirality/runtime-core",
+          "subModuleName": "dist/index.d.ts",
+          "version": "0.1.0"
+        },
+        "resolvedUsingTsExtension": false
+      }
+    },
+    {
+      "name": "@chirality/runtime-daemon",
+      "resolved": {
+        "resolvedFileName": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/dist/index.d.ts",
+        "originalPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-daemon/dist/index.d.ts",
+        "extension": ".d.ts",
+        "isExternalLibraryImport": true,
+        "packageId": {
+          "name": "@chirality/runtime-daemon",
+          "subModuleName": "dist/index.d.ts",
+          "version": "0.1.0"
+        },
+        "resolvedUsingTsExtension": false
+      }
+    },
+    {
+      "name": "@chirality/runtime-client",
+      "resolved": {
+        "resolvedFileName": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/client/dist/src/index.d.ts",
+        "originalPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-client/dist/src/index.d.ts",
+        "extension": ".d.ts",
+        "isExternalLibraryImport": true,
+        "packageId": {
+          "name": "@chirality/runtime-client",
+          "subModuleName": "dist/src/index.d.ts",
+          "version": "0.1.0"
+        },
+        "resolvedUsingTsExtension": false
+      }
+    },
+    {
+      "name": "@chirality/runtime-cli",
+      "resolved": {
+        "resolvedFileName": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/cli/dist/src/index.d.ts",
+        "originalPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-cli/dist/src/index.d.ts",
+        "extension": ".d.ts",
+        "isExternalLibraryImport": true,
+        "packageId": {
+          "name": "@chirality/runtime-cli",
+          "subModuleName": "dist/src/index.d.ts",
+          "version": "0.1.0"
+        },
+        "resolvedUsingTsExtension": false
+      }
+    },
+    {
+      "name": "@chirality/engine-pi-omlx",
+      "resolved": {
+        "resolvedFileName": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-pi-omlx/dist/index.d.ts",
+        "originalPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@chirality/engine-pi-omlx/dist/index.d.ts",
+        "extension": ".d.ts",
+        "isExternalLibraryImport": true,
+        "packageId": {
+          "name": "@chirality/engine-pi-omlx",
+          "subModuleName": "dist/index.d.ts",
+          "version": "0.1.0"
+        },
+        "resolvedUsingTsExtension": false
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": 2688,
+      "message": "Cannot find type definition file for 'node'.\n  The file is in the program because:\n    Entry point of type library 'node' specified in compilerOptions"
+    }
+  ],
+  "runtimeNonDeclarationSources": []
+}

@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "git",
+    "merge-base",
+    "--is-ancestor",
+    "943dd268d69ae408c63228c4ba3fc35b113aeadc",
+    "HEAD"
+  ],
+  "cwd": "{REPO_ROOT}",
+  "started_at": "2026-09-06T18:17:31.887179+00:00",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4"
+}

@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "source": "Parent Agent0 message after graph freeze",
+  "kind": "ACKNOWLEDGMENT_AND_RELEASE",
+  "head": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "spawned_ids": [
+    "/root/v3_pkg09",
+    "/root/v3_pkg02",
+    "/root/v3_decisions"
+  ],
+  "graph": "../WORK_GRAPH_v1.json",
+  "graph_sha256": "bfe6f4f092d4ea74abb732cff372b14775da96f26429a3fa11e238cff71aad90",
+  "parent_preflight": {
+    "status": "ALLOW",
+    "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+    "scan_sha256": "e8d4710dbac28bd4c2a1f0dd1e1f2bf954a850a6be651d5982f42e482af15bdf",
+    "note": "Parent-reported synchronized scan; managers still run own checks."
+  },
+  "ownership_calibration": {
+    "PKG09": "direct single-manager evidence validation, build output ownership; no duplicate code review",
+    "PKG02": "fresh Agent2 code review plus actual GUI after explicit build release",
+    "decisions": "bounded Agent2 read-only source/packet review; writes only assessment evidence"
+  },
+  "authorization": "Latest owner PLEASE IMPLEMENT THIS PLAN; staged execution, not blanket publication, merge, supplier acceptance or release",
+  "attribution": {
+    "delegation_class": "delegated-harness-native",
+    "role_enforcement": "instruction-asserted",
+    "model": "unavailable in exposed execution metadata",
+    "substitutions": "none reported"
+  },
+  "status": "Initial roles spawned; graph frozen and reported ready to parent; this does not claim checks or GUI complete"
+}

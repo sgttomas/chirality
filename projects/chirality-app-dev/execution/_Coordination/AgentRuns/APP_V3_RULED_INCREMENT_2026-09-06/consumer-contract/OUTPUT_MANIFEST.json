@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "APP_CONSUMER_CONTRACT_DRAFT.md",
+      "bytes": 12142,
+      "sha256": "51975b019ad85169be391673cbb0fd60b8dfa7d11ca76d29302110a1fb7aa631"
+    },
+    {
+      "path": "BASIS_AND_BRIEF.json",
+      "bytes": 9724,
+      "sha256": "39b9dd106fddc9434433fbd1d31f5b8e05a262b3b4adf8f7cd408b475ec51114"
+    },
+    {
+      "path": "FIXTURE_SPECIFICATIONS.json",
+      "bytes": 7706,
+      "sha256": "f85e0fae6f91fbe702fb3ae734aa83542fa8a13081136250dd58222eb9b0fa57"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 1730,
+      "sha256": "0aadbf863ce16daee5e87e739db46c2a43490b0067b1dae8bede35c5a5bed8ad"
+    },
+    {
+      "path": "STATUS.json",
+      "bytes": 355,
+      "sha256": "7a5fc93fda35e2b744c3717edbbdf97b0b84a2df5302d8d4eacae67fcf2ce700"
+    }
+  ]
+}

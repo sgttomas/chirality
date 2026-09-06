@@ -1,0 +1,25 @@
+{
+  "revision": "03",
+  "source_and_assets": {
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0",
+    "frontend/src/app/globals.css": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "frontend/src/app/layout.tsx": "f04f3b0f78358224492bf07e559572eb3ba8befdf03eb227a35bd65885c95024",
+    "fixture.tsx": "7c3bb1a0b6ae478c4c83d04e7e4ad15ddd3436b8facf56b7df963d7ad1d40b8b",
+    "fixture.js": "2e984d29586e3d7c336d62f404426986f8d36a1cd27c0e05dccd9f15fed76e3b",
+    "build.cjs": "a3bdb742a3cef414c517c6d0fbd46187c5a7eb0fb4bda49dcd75da8c742ff3a4",
+    "server.cjs": "3ed1b906dca3f6edf2af38bb7fc7a727db6e443596c494f72ea8ae129646f55a",
+    "index.html": "994c34f1b57a0fb037d965164e48afa42254ce84b7596af7960630cba535eeb0",
+    "fonts.css": "458c56d79217070f50001c63377bb4faed7822d2ad2c589175560d10b8a4e28a",
+    "diagnostics.js": "9169463ac0f865cf96404afc80b3232044e096f82120c2beb3511ed671dde66c",
+    "FONT_ASSETS.json": "0f3c11e413b421668e30960269a1f0cfbb100910a50bba9ac9359ce2def2ccd8"
+  },
+  "font_assets": "FONT_ASSETS.json",
+  "transitive_compiler_inputs": "REVISION03_COMPILED_INPUT_INVENTORY.json",
+  "images": {
+    "revision03-actions-1440-dark.png": "19be41dbfc48b84597bc468b74dcba50c41e9f2ff997f9da99d0c88dd1c89ab2",
+    "revision03-actions-1440-light.png": "36aa4de4fb29a5b73e28ec695c9f0ffabb7e8551fb1e957625ff3e9ac963634a",
+    "revision03-resurfaced-960-light.png": "24536a537553894a973899140f83eb8f4c202f6ca4b7c8dbfdd832404fba5844",
+    "revision03-tasks-960-dark.png": "5b4602913b708671ae35cfc3b27f436784e1e319c6e263acb4ebcbba3e2efdac",
+    "revision03-tasks-960-light.png": "4272321b4ed88eb2364507677c646ebf0c6928a4c063acce8019b5509deadb34"
+  }
+}

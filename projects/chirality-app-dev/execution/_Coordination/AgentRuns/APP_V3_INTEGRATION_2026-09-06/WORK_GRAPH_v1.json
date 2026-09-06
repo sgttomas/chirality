@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "run": "APP_V3_INTEGRATION_2026-09-06",
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "status": "FROZEN_INITIAL_EXECUTION_GRAPH",
+  "basis_head": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+  "branch": "codex/shell-redesign-resume-20260906",
+  "scope_snapshot": "execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA",
+  "scope_status": "OPEN_PENDING_DERIVATIVE_CLOSURE",
+  "dependency_snapshot": "CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034",
+  "derivative_status": "Coordination derivative; not decomposition or authority",
+  "nodes": [
+    {
+      "id": "/root/resume_change",
+      "role": "CHANGE",
+      "state": "SYNC_RETURNED",
+      "depends": [],
+      "write_scope": [
+        "Git synchronization explicitly authorized",
+        "previous-run/change/app-v3-sync-v1/**"
+      ],
+      "objective": "Preserve dirty App work and synchronize main; return exact identity and preservation evidence."
+    },
+    {
+      "id": "/root/v3_records",
+      "role": "bounded Agent2 recorder",
+      "state": "ACTIVE",
+      "depends": [
+        "/root/resume_change"
+      ],
+      "write_scope": [
+        "this run root-level coordination records",
+        "this run coordination/**"
+      ],
+      "objective": "Persist immutable orchestration evidence, not authority or a standing queue. No delegation."
+    },
+    {
+      "id": "/root/v3_pkg09",
+      "role": "WORKING_ITEMS PKG-09",
+      "state": "PLANNED",
+      "depends": [
+        "/root/resume_change",
+        "graph_v1_frozen",
+        "fresh_preflight"
+      ],
+      "write_scope": [
+        "this run pkg09/**",
+        "build/cache outputs until explicit GUI handoff",
+        "DEL-09-04 approved factual local records only"
+      ],
+      "objective": "Build Runtime declarations then App; run registered build/test/headless validation against pending shell diff; assess D124 closeout. Own all build mutation until release to PKG02. No product feature edits."
+    },
+    {
+      "id": "/root/v3_pkg02",
+      "role": "WORKING_ITEMS PKG-02",
+      "state": "PLANNED",
+      "depends": [
+        "/root/resume_change",
+        "graph_v1_frozen",
+        "fresh_preflight"
+      ],
+      "write_scope": [
+        "this run pkg02/**",
+        "owned GUI processes and evidence only after PKG09 release"
+      ],
+      "objective": "Read-only product and consumer assessment plus fresh complete source review concurrently with PKG09. Native desktop/Chrome or Safari GUI verification only after PKG09 build-lock handoff. No product feature edits or shared deliverable writes without amendment."
+    },
+    {
+      "id": "/root/v3_decisions",
+      "role": "bounded Agent2 decision assessment",
+      "state": "PLANNED",
+      "depends": [
+        "/root/resume_change",
+        "graph_v1_frozen",
+        "fresh_preflight"
+      ],
+      "write_scope": [
+        "this run decisions/**"
+      ],
+      "objective": "Read-only App contract/capability mapping and independent D121 packet review; return decision readiness/evidence, not rulings. No delegation."
+    },
+    {
+      "id": "runtime-user-task:01a077e7-059b-7b02-9b66-09a5a6fa2721",
+      "role": "independent Runtime task",
+      "state": "HANDOFF_SENT_PARENT_REPORTED",
+      "depends": [],
+      "write_scope": [
+        "Runtime task own bounded design/evidence scope, outside this App delegation"
+      ],
+      "objective": "Child-approval design and dependency mapping only. No dependent implementation. Return capability/contract/evidence/consequence matrix and decision options."
+    },
+    {
+      "id": "/root",
+      "role": "HELP_HUMAN Agent0",
+      "state": "SUPERVISING",
+      "depends": [],
+      "write_scope": [],
+      "objective": "Validate fan-in and consolidate one owner decision slate; route significant changes before implementation."
+    }
+  ],
+  "concurrency": [
+    "PKG09 build/checks + PKG02 read-only assessment + decision assessment + Runtime design",
+    "PKG02 GUI waits PKG09 build release; no simultaneous build/premerge/dev server"
+  ],
+  "fan_in": [
+    "Agent0 verifies all manager returns and exact-source evidence",
+    "Owner rules consolidated contract slate before dependent implementation",
+    "Git closeout separately scoped through CHANGE; no merge authorization"
+  ],
+  "holds": [
+    "D122/D123 main-observability",
+    "No-folder accepted execution context",
+    "Per-root account/consent contract reconciliation",
+    "Root-owned shared instruction governance",
+    "Child-approval attribution/decline/lifecycle decisions",
+    "Exact supplier acceptance",
+    "Protected-fixture rejection remains blocked; no workaround"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "successor-handoff-core-identities/v2",
+  "recorded_at": "2026-09-06T19:42:44.088156+00:00",
+  "scope": "core references only; full89-member verification attributed to parent, no new check-suite run",
+  "items": [
+    {
+      "path": "OWNER_STEER_v3.md",
+      "sha256": "9e98e73abe927013be7aa619bb6026dcd28d893c9a3804dc425225b4fe027d9f",
+      "bytes": 726
+    },
+    {
+      "path": "PENDING_INPUT_HANDOFF_v2.md",
+      "sha256": "f985ed7a5b4ae23bc1f97c1421bfd3ea0b777f0042b436e7fdd478f69d97ecdd",
+      "bytes": 5457
+    },
+    {
+      "path": "change/sync-v1/RETURN.md",
+      "sha256": "559a9f89e1d1b7f5c44211b2050644c5da0b296557431042b363c820507c444b",
+      "bytes": 1309
+    },
+    {
+      "path": "pkg02/final-validation-v1/MANAGER_HANDOFF.md",
+      "sha256": "712fe0e96848e6afbbe3dc62fdae88b5071706103868cd21d623185e0f9c4713",
+      "bytes": 5907
+    },
+    {
+      "path": "pkg02/final-validation-v1/OUTPUT_MANIFEST_v2.json",
+      "sha256": "2b2b696df82b19c57b898b7e228434d2bafe5aeb0904a883046d1170c49a131b",
+      "bytes": 15677
+    },
+    {
+      "path": "pkg02/final-validation-v1/dependency-alignment-v1/ALIGNMENT_RESULT.json",
+      "sha256": "5b413d602914eeb30b935ab39d1d274e492860882c6122191ee8b04a34744431",
+      "bytes": 2860
+    },
+    {
+      "path": "pkg02/final-validation-v1/dependency-alignment-v1/CURRENT_DECLARATION_CANDIDATE_PROBE.json",
+      "sha256": "f515f9994be4516717dbb16722c6a1bd114b1756322c01ad0e1715ef30aae8da",
+      "bytes": 352552
+    },
+    {
+      "path": "pkg02/final-validation-v1/dependency-alignment-v1/REGISTERED_TYPECHECK_BASELINE.json",
+      "sha256": "6387459100a4a50b8447529602337f127e120ae01c33fc8cefb07c12509277d2",
+      "bytes": 21373
+    },
+    {
+      "path": "pkg02/final-validation-v1/typecheck-repair-candidate/CANDIDATE.json",
+      "sha256": "58f1db35703bf10e07d63a216c11b1e6d5323ad81d632461d9dd38f7bfabe5d3",
+      "bytes": 1901
+    }
+  ]
+}

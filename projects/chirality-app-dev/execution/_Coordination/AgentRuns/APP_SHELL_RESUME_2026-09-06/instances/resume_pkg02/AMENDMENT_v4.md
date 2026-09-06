@@ -1,0 +1,5 @@
+# PKG02 direct-child amendment v4 — exact ActivityView node
+
+Parent selected the frozen ActivityView-only candidate identified in ORCHESTRATION_PLAN_v4.md and WORK_GRAPH_v4.json under existing D108/DEL-02-04-V3-01 and D64 agent judgment. This adds the exact three source/test paths and constraints from pkg02/t5-view-author-01/CANDIDATE_BRIEF_v1.md SHA2566fd9ebb78eb0239006b0541ae4ec2de982e50e87c53764846f8bb6dca65967dc. No new owner act. Already-merged T1/right-panel host makes this independent of Reveal and current record reconciliation; previous next-iteration ordering is superseded only for this bounded node.
+
+PKG02 is sole integration owner and serializes author/checks. Fresh complete diff source review and component browser proof are required. No globals.css, strip/legacy shelf/caller/library/schema mutation. Strip primary-session seam remains proposal-only/unreleased. All account, Runtime, A1, final union/build and publication gates unchanged. Actual author identity/return must be persisted by the manager when executed; this amendment does not invent a spawned child or success. Parent graph-release message follows the recorded freeze.

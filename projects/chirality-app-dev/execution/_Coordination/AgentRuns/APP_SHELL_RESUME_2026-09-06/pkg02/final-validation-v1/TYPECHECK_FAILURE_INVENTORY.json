@@ -1,0 +1,426 @@
+{
+  "count": 60,
+  "errors": [
+    [
+      "../../chirality-runtime/packages/core/src/descendant-tracker.ts",
+      "21",
+      "5",
+      "TS2769",
+      "No overload matches this call."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "31",
+      "30",
+      "TS2769",
+      "No overload matches this call."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "34",
+      "83",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "35",
+      "36",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "35",
+      "99",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "35",
+      "112",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "37",
+      "11",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "41",
+      "11",
+      "TS2339",
+      "Property 'stdout' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "42",
+      "11",
+      "TS2339",
+      "Property 'stderr' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "43",
+      "11",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "45",
+      "13",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "46",
+      "13",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "46",
+      "28",
+      "TS7006",
+      "Parameter 'exitCode' implicitly has an 'any' type."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "46",
+      "38",
+      "TS7006",
+      "Parameter 'signal' implicitly has an 'any' type."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "55",
+      "60",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "55",
+      "90",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "56",
+      "64",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/core/src/process-supervisor.ts",
+      "65",
+      "11",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "88",
+      "7",
+      "TS1360",
+      "Type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' does not satisfy the expected type 'ProcessEnv'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "258",
+      "154",
+      "TS1360",
+      "Type '{ HOME: string; CODEX_HOME: string; TMPDIR: string; PATH: string; LANG: string; }' does not satisfy the expected type 'ProcessEnv'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "57",
+      "75",
+      "TS2769",
+      "No overload matches this call."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "58",
+      "57",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "59",
+      "61",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "59",
+      "94",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "60",
+      "13",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "60",
+      "58",
+      "TS2339",
+      "Property 'on' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "62",
+      "13",
+      "TS2339",
+      "Property 'stderr' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "70",
+      "66",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "70",
+      "96",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "72",
+      "29",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-login.ts",
+      "72",
+      "50",
+      "TS2339",
+      "Property 'stdout' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "152",
+      "90",
+      "TS2769",
+      "No overload matches this call."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "153",
+      "57",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "154",
+      "13",
+      "TS2339",
+      "Property 'on' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "155",
+      "61",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "155",
+      "94",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "156",
+      "13",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "158",
+      "13",
+      "TS2339",
+      "Property 'stderr' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "167",
+      "66",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "167",
+      "96",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "169",
+      "64",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "171",
+      "56",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "171",
+      "88",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "171",
+      "109",
+      "TS2339",
+      "Property 'stdout' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "61",
+      "73",
+      "TS2769",
+      "No overload matches this call."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "65",
+      "34",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "65",
+      "97",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "65",
+      "110",
+      "TS2339",
+      "Property 'pid' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "67",
+      "104",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "67",
+      "119",
+      "TS7006",
+      "Parameter 'exitCode' implicitly has an 'any' type."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "67",
+      "129",
+      "TS7006",
+      "Parameter 'signal' implicitly has an 'any' type."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "68",
+      "9",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "69",
+      "9",
+      "TS2339",
+      "Property 'once' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "70",
+      "9",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "71",
+      "9",
+      "TS2339",
+      "Property 'stderr' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "72",
+      "9",
+      "TS2339",
+      "Property 'stdout' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "95",
+      "39",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "99",
+      "15",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "111",
+      "11",
+      "TS2339",
+      "Property 'stdin' does not exist on type 'never'."
+    ],
+    [
+      "../../chirality-runtime/packages/daemon/src/standalone.ts",
+      "164",
+      "9",
+      "TS2741",
+      "Property 'NODE_ENV' is missing in type '{ CODEX_HOME: string; }' but required in type 'ProcessEnv'."
+    ]
+  ],
+  "source_repair": "NOT_AUTHORIZED"
+}

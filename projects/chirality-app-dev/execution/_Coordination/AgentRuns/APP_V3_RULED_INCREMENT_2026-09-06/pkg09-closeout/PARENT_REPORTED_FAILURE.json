@@ -1,0 +1,15 @@
+{
+  "evidence_class": "parent-reported; raw stdout/stderr not supplied",
+  "command": [
+    "python3",
+    "../../tools/practitioner_harness/harness.py",
+    "self-check"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "reported_exit_code": 2,
+  "reported_message": "PyYAML unavailable in selected interpreter",
+  "preceding_corpus_result": "all8 MATCH (parent-reported)",
+  "source": "Agent0 sealed continuation message",
+  "raw_stdout": null,
+  "raw_stderr": null
+}

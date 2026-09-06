@@ -1,0 +1,9 @@
+{
+  "status": "CANDIDATE_NOT_APPLIED",
+  "ledger_preimage_sha256": "a6632bc5fe4ecf0bb21dede5a19c241e1d3aaede320fff473026dbefd3bf06fe",
+  "receipt_id": "Receipt-254",
+  "parent": "Receipt-253",
+  "body_bytes": 2269,
+  "top_level_records": 8,
+  "requires": "Parent receipt candidate review and explicit release before actual append; terminal validator required"
+}

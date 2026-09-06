@@ -2,11 +2,11 @@
 
 import React, { useMemo, useState } from 'react';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
-import { deriveToolActivity, deriveSubagentActivity } from '../../lib/shell/harness-event-views';
+import { deriveToolActivity, deriveSubagentActivity, type ToolActivityRow, type SubagentActivityRow } from '../../lib/shell/harness-event-views';
 import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import { useHarnessEvents } from '../workspace/harness-events-provider';
-import { SubagentStreamView, SubagentStreamList } from '../shell/subagent-stream-view';
-import { ToolStreamView, ToolStreamList } from '../shell/tool-stream-view';
+import { SubagentStreamView } from '../shell/subagent-stream-view';
+import { ToolStreamView } from '../shell/tool-stream-view';
 import { TranscriptStreamView, TranscriptStreamList } from '../shell/transcript-stream-view';
 
 type ActivityTab = 'tools' | 'events' | 'children';
@@ -95,6 +95,94 @@ export function ActivityStrip({ reconnectControl, onOpenDetails, running, events
   </div>;
 }
 
+// Presentation belongs to the mounted Activity view; the legacy shelf above
+// retains its existing stream components and labels.
+function actionSentence(row: ToolActivityRow): string {
+  // These two operations are defined by the registered tool descriptors. Do not
+  // infer a purpose or result from an unfamiliar name or from arbitrary inputs.
+  const operation = row.toolName === 'read_file' ? { verb: 'read', ongoing: 'Reading', name: 'Read' }
+    : row.toolName === 'write_file' ? { verb: 'write', ongoing: 'Writing', name: 'Write' } : undefined;
+  if (!operation) return {
+    queued: 'Action queued', permission: 'Action permission check', running: 'Action running',
+    completed: 'Action completed', failed: 'Action failed'
+  }[row.status];
+  return {
+    queued: `Queued to ${operation.verb} file`,
+    permission: `Permission check to ${operation.verb} file`,
+    running: `${operation.ongoing} file`,
+    // A summary can finish an invocation without establishing a file effect.
+    completed: `${operation.name} action finished`,
+    failed: `Failed to ${operation.verb} file`
+  }[row.status];
+}
+
+function taskSentence(row: SubagentActivityRow): string {
+  const name = row.agentName === 'subagent' ? '' : row.agentName === 'HELP_HUMAN' ? 'Assistant'
+    : /^[A-Z][A-Z0-9_]*$/.test(row.agentName)
+      ? row.agentName.toLowerCase().split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+      : row.agentName;
+  return `Task ${row.status}${name ? `: ${name}` : ''}`;
+}
+
+function timeLabel(timestamp: string): string {
+  const date = new Date(timestamp);
+  return Number.isFinite(date.getTime())
+    ? date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    : 'Time unavailable';
+}
+
+function actionDetail(row: ToolActivityRow): string {
+  return [row.toolName === 'tool' ? 'Tool name unavailable' : row.toolName, row.source, row.surface,
+    `${row.eventCount} event${row.eventCount === 1 ? '' : 's'}`, row.lastEventType].filter(Boolean).join(' · ');
+}
+
+function taskDetail(row: SubagentActivityRow): string {
+  return [row.agentName === 'subagent' ? 'Agent name unavailable' : row.agentName,
+    row.lastToolName ? `Last action: ${row.lastToolName}` : '', row.outputArtifactPath ? 'Recorded output path' : '',
+    `${row.eventCount} event${row.eventCount === 1 ? '' : 's'}`, row.lastEventType].filter(Boolean).join(' · ');
+}
+
+function ActivityTime({ timestamp }: { timestamp: string }): JSX.Element {
+  const date = new Date(timestamp);
+  return Number.isFinite(date.getTime())
+    ? <time className="harness-stream-meta" style={{ flexShrink: 0, whiteSpace: 'nowrap' }} dateTime={timestamp} title={timestamp}>{timeLabel(timestamp)}</time>
+    : <span className="harness-stream-meta" style={{ flexShrink: 0, whiteSpace: 'nowrap' }} title={timestamp || 'No recorded timestamp'}>Time unavailable</span>;
+}
+
+function ActivityActions({ rows }: { rows: ToolActivityRow[] }): JSX.Element {
+  return rows.length === 0 ? <p className="panel-empty">No matching actions.</p> : <ul className="harness-stream-list" aria-label="Actions">
+    {rows.map(row => <li key={row.key} className={`harness-stream-item harness-stream-item--${row.status}`}>
+      <div className="harness-stream-row">
+        <span className="harness-stream-name" title={row.toolName}>{actionSentence(row)}</span>
+        <ActivityTime timestamp={row.timestamp} />
+      </div>
+      <span className={`harness-status-badge harness-status-badge--${row.status}`}>{row.status === 'permission' ? 'Permission check' : row.status}</span>
+      {Object.keys(row.pathFields).length > 0 ? <ul className="harness-stream-paths">
+        {Object.entries(row.pathFields).map(([field, value]) => <li key={field} title={`${field}: ${value}`}>
+          <span className="harness-stream-path-field">{field}</span>
+          <span className="harness-stream-path-value">{value}</span>
+        </li>)}
+      </ul> : null}
+      <p className="harness-stream-meta">{actionDetail(row)}</p>
+    </li>)}
+  </ul>;
+}
+
+function ActivityTasks({ rows }: { rows: SubagentActivityRow[] }): JSX.Element {
+  return rows.length === 0 ? <p className="panel-empty">No matching tasks.</p> : <ul className="harness-stream-list" aria-label="Tasks">
+    {rows.map(row => <li key={row.key} className={`harness-stream-item harness-stream-item--${row.status}`}>
+      <div className="harness-stream-row">
+        <span className="harness-stream-name" title={row.agentName}>{taskSentence(row)}</span>
+        <ActivityTime timestamp={row.timestamp} />
+      </div>
+      <span className={`harness-status-badge harness-status-badge--${row.status}`}>{row.status}</span>
+      {row.description ? <p className="harness-stream-description">{row.description}</p> : null}
+      {row.summary ? <p className="harness-stream-summary">{row.summary}</p> : null}
+      <p className="harness-stream-meta">{taskDetail(row)}</p>
+    </li>)}
+  </ul>;
+}
+
 export function ActivityView(): JSX.Element {
   const [tab, setTab] = useState<ActivityTab>('tools');
   const [filter, setFilter] = useState('');
@@ -112,7 +200,7 @@ export function ActivityView(): JSX.Element {
     };
   }, [events]);
   const query = filter.trim().toLocaleLowerCase();
-  const visible = (kind: string, row: { key: string }) => clearedVersions.get(`${kind}:${row.key}`) !== JSON.stringify(row) && (!query || JSON.stringify(row).toLocaleLowerCase().includes(query));
+  const visible = (kind: string, row: { key: string }, presentation = '') => clearedVersions.get(`${kind}:${row.key}`) !== JSON.stringify(row) && (!query || `${JSON.stringify(row)} ${presentation}`.toLocaleLowerCase().includes(query));
   const clearView = () => setClearedVersions(new Map([
     ...projected.tools.map(row => [`tools:${row.key}`, JSON.stringify(row)] as const),
     ...projected.children.map(row => [`children:${row.key}`, JSON.stringify(row)] as const),
@@ -121,12 +209,12 @@ export function ActivityView(): JSX.Element {
   return <section className="woven-activity-view" aria-label="Activity details">
     <div className="woven-activity-tabs" aria-label="Activity views">
       {TABS.map(item => <button type="button" key={item.id} aria-pressed={tab === item.id}
-        onClick={() => setTab(item.id)}>{item.id === 'tools' ? 'Actions' : item.label}</button>)}
+        onClick={() => setTab(item.id)}>{item.id === 'tools' ? 'Actions' : item.id === 'children' ? 'Tasks' : item.label}</button>)}
     </div>
     <div className="woven-activity-filter">
       <input aria-label="Filter activity" placeholder="Filter activity…" value={filter} onChange={event => setFilter(event.target.value)} />
       <button type="button" onClick={clearView}>Clear view</button>
     </div>
-    {tab === 'tools' ? <ToolStreamList rows={projected.tools.filter(row => visible('tools', row))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <SubagentStreamList rows={projected.children.filter(row => visible('children', row))} />}
+    {tab === 'tools' ? <ActivityActions rows={projected.tools.filter(row => visible('tools', row, `${actionSentence(row)} ${actionDetail(row)} ${timeLabel(row.timestamp)}`))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <ActivityTasks rows={projected.children.filter(row => visible('children', row, `${taskSentence(row)} ${taskDetail(row)} ${timeLabel(row.timestamp)}`))} />}
   </section>;
 }

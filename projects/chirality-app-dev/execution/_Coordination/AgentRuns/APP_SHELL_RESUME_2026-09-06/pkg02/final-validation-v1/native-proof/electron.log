@@ -1,0 +1,12 @@
+App threw an error during load
+Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: No "exports" main defined in /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/@earendil-works/pi-coding-agent/package.json
+    at exportsNotFound (node:internal/modules/esm/resolve:318:10)
+    at packageExportsResolve (node:internal/modules/esm/resolve:609:13)
+    at resolveExports (node:internal/modules/cjs/loader:714:36)
+    at Module._findPath (node:internal/modules/cjs/loader:781:31)
+    at node:internal/modules/cjs/loader:1509:27
+    at Module._resolveFilename (node:electron/js2c/browser_init:2:143860)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1078:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1102:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1129:12)
+    at node:internal/modules/cjs/loader:1301:5

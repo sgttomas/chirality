@@ -1,0 +1,16 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "--",
+    "projects/chirality-app-dev/frontend/tsconfig.electron.json"
+  ],
+  "cwd": ".",
+  "started": "2026-09-06T19:55:47.320011+00:00",
+  "finished": "2026-09-06T19:55:47.333547+00:00",
+  "exit_code": 0,
+  "environment": "inherited; no command-specific overrides",
+  "stdout": "scoped-diff-check.stdout",
+  "stderr": "scoped-diff-check.stderr"
+}

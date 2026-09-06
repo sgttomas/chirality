@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python3",
+    "execution/_Scripts/app_hold.py",
+    "check",
+    "--operation",
+    "reliance",
+    "--entry-path",
+    "WORKING_ITEMS:APP_V3_INTEGRATION_2026-09-06:PKG09",
+    "--target",
+    "DEL-09-04"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "end": "2026-09-06T22:25:16.959068+00:00",
+  "environment_overrides": {
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+  "exit_code": 0,
+  "removed_environment_variable_names": [],
+  "start": "2026-09-06T22:25:16.242364+00:00"
+}

@@ -1,0 +1,23 @@
+{
+  "reason": "live fixture serving aliases advanced to revision03; exact revision02 bytes preserved at versioned aliases before rebuild",
+  "mapping": {
+    "ASSET_REQUESTS.json": {
+      "historical_sha256": "6bb8676942d72136b1cc3072161023218ccb7eae9a4c5d2431072fe441417870",
+      "preserved_at": [
+        "revision02-ASSET_REQUESTS.json"
+      ]
+    },
+    "BUNDLE_METAFILE.json": {
+      "historical_sha256": "3fb6d80456540217682487116c9528cac68c373497c8dfa61c54de7f8691f4dc",
+      "preserved_at": [
+        "revision02-BUNDLE_METAFILE.json"
+      ]
+    },
+    "fixture.js": {
+      "historical_sha256": "3682b9d51a6022d3e1def838d2e6d8b18cfea7a9c6313e553a525787ed423bde",
+      "preserved_at": [
+        "revision02-fixture.js"
+      ]
+    }
+  }
+}

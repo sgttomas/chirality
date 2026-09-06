@@ -1,0 +1,5 @@
+Sessions now offer a separate Reveal action using their recorded project root, with retryable errors and readable persona labels. Activity view adds presentation-local filtering, clearing, timestamps and bounded action/task descriptions while preserving session attribution and shared event history.
+
+Records the owner's D122/D123 scope decisions and D124 approval, reconciles completed workflow obligations, and retains validation evidence against merged Runtime PR #738. D124's compiler configuration is already on main; this increment contains no duplicate configuration change or Runtime source change.
+
+Validation: fresh independent review passed for the seven source/test/style files. Current integrated checks passed both typechecks, production build, 1,774 Vitest tests (4 skipped), 379 practitioner tests, and all 8 isolated configured premerge cases. GUI proof and final combined-record review remain pending; this draft must be updated with their actual outcomes before publication. No live-account, live-provider, packaging, release or full-redesign acceptance is claimed.

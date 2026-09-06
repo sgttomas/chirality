@@ -1,0 +1,51 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/engine-claude",
+    "readlink": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-claude",
+    "inode": 73205206,
+    "external_target_inode": 72944414,
+    "external_target_mtime_ns": 1788639041521173492
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/engine-pi-omlx",
+    "readlink": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-pi-omlx",
+    "inode": 73205207,
+    "external_target_inode": 72944419,
+    "external_target_mtime_ns": 1788639041563300093
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-cli",
+    "readlink": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/cli",
+    "inode": 73205209,
+    "external_target_inode": 72944343,
+    "external_target_mtime_ns": 1788639041950839480
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-client",
+    "readlink": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/client",
+    "inode": 73205210,
+    "external_target_inode": 72944355,
+    "external_target_mtime_ns": 1788639041714784204
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-contracts",
+    "readlink": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts",
+    "inode": 73205211,
+    "external_target_inode": 72944365,
+    "external_target_mtime_ns": 1788639041120168355
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-core",
+    "readlink": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core",
+    "inode": 73205212,
+    "external_target_inode": 72944392,
+    "external_target_mtime_ns": 1788639041438916147
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-daemon",
+    "readlink": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon",
+    "inode": 73205213,
+    "external_target_inode": 72944407,
+    "external_target_mtime_ns": 1788639041826573870
+  }
+]

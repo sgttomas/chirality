@@ -1,0 +1,86 @@
+[
+  {
+    "url": "http://127.0.0.1:51404/_next/static/css/28d0eac0cbdc5313.css",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/css/28d0eac0cbdc5313.css",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/28d0eac0cbdc5313.css",
+    "sha256": "65ed3c6af817a3cdf9fa2ce750d64941655960cd71719f0fe6640b6852218bbe",
+    "bytes": 70056
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/css/3a36fb4c552ee67b.css",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/css/3a36fb4c552ee67b.css",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/3a36fb4c552ee67b.css",
+    "sha256": "048bd257523350b29bd267fb036d7b03e9c9c95c10de1004e4b4b69063d12121",
+    "bytes": 2157
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/06ac09dcb8ec7d56-s.p.woff2",
+    "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+    "bytes": 14708
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/13a15bcdfeddab65-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/13a15bcdfeddab65-s.p.woff2",
+    "sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+    "bytes": 22588
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/1cdb9a2cbcaafa7e-s.p.woff2",
+    "sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+    "bytes": 24252
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/45cdbe8ded19ae08-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/45cdbe8ded19ae08-s.p.woff2",
+    "sha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+    "bytes": 22832
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/4cdcd386d2ac59c8-s.p.woff2",
+    "sha256": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
+    "bytes": 24184
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/59c64a9c0cb813b7-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/59c64a9c0cb813b7-s.p.woff2",
+    "sha256": "d3f861b1ca55e50ca94de4c1756cb0d67c73de615172adf6b5b2078d939c723a",
+    "bytes": 20900
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/7c7f8877a12f66a2-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/7c7f8877a12f66a2-s.p.woff2",
+    "sha256": "6de912e531b6c98084f1b2d5e5a91bad77be4e68bc4e396e43c46fc435e5f3d9",
+    "bytes": 24356
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/c6a1f19cdccaf24c-s.p.woff2",
+    "sha256": "cb2c5eee2c0a43ff30d2365407c7bc8b20e3bd90720a4a64102ba0b328022a02",
+    "bytes": 19580
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/dabe43dd9d5e4fb2-s.p.woff2",
+    "sha256": "e279e4f8baa0d4634d98868092f2198ae0dcd9e142c935822c385b9843352a9b",
+    "bytes": 20516
+  },
+  {
+    "url": "http://127.0.0.1:51404/_next/static/media/dece0821e8ed059f-s.p.woff2",
+    "build_path": "projects/chirality-app-dev/frontend/.next/static/media/dece0821e8ed059f-s.p.woff2",
+    "evidence_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/assets/dece0821e8ed059f-s.p.woff2",
+    "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+    "bytes": 14888
+  }
+]

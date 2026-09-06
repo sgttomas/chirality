@@ -1,0 +1,7 @@
+{
+  "status": "APPLIED_PARENT_RELEASE",
+  "preimage": "8b6c51345c22ca26f64aab435a2f2d480207cdd36cff190c188547722ff4d7df",
+  "postimage": "09f8e28f95f42db4f0904396b1e288e7e2f4eafc731c27ff250ed7324f5b1ec4",
+  "patch": "faee20d6db6e92f6f0f944c6364a2dfb2ac802b4b370c6e7ca182d8bcec04222",
+  "scope": "D124 exact factual outcome phrase only; all other row text and rows unchanged"
+}

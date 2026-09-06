@@ -1,0 +1,5 @@
+{
+  "check": "Exact preimage/current bytes from type ActivityTab through ActivityStrip closing brace (imports intentionally adjusted only for ActivityView renderers)",
+  "sha256": "c26a3403adb76b9c9eee45c5812d9ace85b79de0cbd983a521c26aa3171d114e",
+  "unchanged": true
+}

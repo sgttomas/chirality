@@ -1,0 +1,43 @@
+{
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+  "build": [
+    "node",
+    "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/build.cjs"
+  ],
+  "build_exit": 0,
+  "build_stdout": "",
+  "build_stderr": "",
+  "server": [
+    "node",
+    "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/server.cjs"
+  ],
+  "server_attempts": [
+    {
+      "pid": 58308,
+      "port": 3197,
+      "result": "started then SIGTERM for fixture font diagnostics mapping; original requests preserved"
+    },
+    {
+      "pid": 58870,
+      "port": 3197,
+      "result": "current owned process; cleanup pending"
+    }
+  ],
+  "effective_environment": {
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "platform": "darwin",
+    "scope": "inherited shell env; no task overrides; esbuild defines browser process.env={} explicitly",
+    "network": "127.0.0.1 only; no remote font assets",
+    "sensitive_environment": "not dumped"
+  },
+  "versions": {
+    "node": "v24.18.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "react": "18.3.1",
+    "esbuild": "0.28.1"
+  },
+  "control": "mcp__cua_repl Chrome1 tab730583367; viewport capability1440x900/960x800; native UI not used",
+  "source_sha256_at_initial_build": "9ff9963613c34a9eff458bcdc6d6e2967e1314e619fc2b04b8a8cd31f533c3aa",
+  "status": "provisional source review currently identifying lifecycle wording issue; no acceptance"
+}

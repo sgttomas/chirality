@@ -1,0 +1,12 @@
+{
+  "child": "/root/resume_account_scope/account_refutation",
+  "status": "DISPATCHED",
+  "role": "Agent2 ephemeral refutation",
+  "model": "inherited; exact runtime model identifier unavailable",
+  "mechanism": "delegated-harness-native",
+  "enforcement": "instruction-asserted",
+  "writes": [],
+  "brief": "REFUTATION_BRIEF_v1.md",
+  "preflight": "evidence/APP_HOLD_DISPATCH_REFUTATION_v1.json",
+  "timestamp": "2026-09-06T18:18:49.690458+00:00"
+}

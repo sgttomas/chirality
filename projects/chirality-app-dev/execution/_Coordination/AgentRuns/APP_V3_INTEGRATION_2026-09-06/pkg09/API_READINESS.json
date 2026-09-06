@@ -1,0 +1,8 @@
+{
+  "url": "http://127.0.0.1:51004/api/harness/session/list?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F85d6%2Fchirality%2Fprojects%2Fchirality-app-dev",
+  "observations": [
+    "URLError",
+    200
+  ],
+  "ready": true
+}

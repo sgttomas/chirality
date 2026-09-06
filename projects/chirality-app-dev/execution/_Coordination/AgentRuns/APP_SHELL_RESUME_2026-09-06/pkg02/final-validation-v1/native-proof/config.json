@@ -1,0 +1,7 @@
+{
+  "rootA": "/Applications",
+  "rootB": "/Users/Shared",
+  "rootMissing": "/Applications/Chirality-Resume-Proof-Missing-20260906",
+  "productionPort": 3198,
+  "proxyPort": 3199
+}

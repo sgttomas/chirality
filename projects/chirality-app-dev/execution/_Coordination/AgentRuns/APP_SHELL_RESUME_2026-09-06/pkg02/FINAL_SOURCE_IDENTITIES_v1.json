@@ -1,0 +1,17 @@
+{
+  "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "source": {
+    "frontend/src/components/woven-dialogue/navigator.tsx": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450",
+    "frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx": "39862999e8eba0e0cffa137edb34593b0910916120774a3f8e912f5d2318362b",
+    "frontend/src/__tests__/components/historical-chat-reveal.test.tsx": "9c988cfaaffc30d2d5650c2bd35768bdb25034f0fe487b74df5f46c99d34bc93",
+    "frontend/src/app/globals.css": "0507c5b0150b14628dfe876ab05ebc69510a0c91bb3532208de6a79018ef0e2b",
+    "frontend/src/components/woven-dialogue/activity-shelf.tsx": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0",
+    "frontend/src/__tests__/components/activity-view-local-state.test.tsx": "a4ab8e1c94383944e9de76e07765ce41c4043d806cf94ee95d60a68ef17d7289",
+    "frontend/src/__tests__/components/activity-view-presentation.test.tsx": "df4e82fb485d08291d528e09af066653470945faa3a88142dbd9de9723254a19"
+  },
+  "review_mapping": {
+    "Reveal": "source-review-02/RETURN.md; reveal-author-01/revision03",
+    "ActivityView": "t5-source-review-03/RETURN.md; t5-view-author-01/revision03"
+  },
+  "status": "SOURCE_REVIEW_PASS; FINAL_GATES_HELD"
+}

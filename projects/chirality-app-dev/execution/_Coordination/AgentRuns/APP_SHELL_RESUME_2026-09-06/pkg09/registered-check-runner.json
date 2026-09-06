@@ -1,0 +1,30 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/run_registered_checks.py",
+    "projects/chirality-app-dev/software-workflow.json",
+    "--check",
+    "frontend-typecheck",
+    "--check",
+    "frontend-test",
+    "--check",
+    "frontend-build",
+    "--check",
+    "app-hold-integrity",
+    "--check",
+    "harness-self-check",
+    "--check",
+    "harness-pytest",
+    "--output",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg09/REGISTERED_CHECKS.json",
+    "--timeout-seconds",
+    "600"
+  ],
+  "cwd": ".",
+  "started": "2026-09-06T19:54:34.024401+00:00",
+  "finished": "2026-09-06T19:55:45.569408+00:00",
+  "exit_code": 0,
+  "environment": "inherited; no command-specific overrides",
+  "stdout": "registered-check-runner.stdout",
+  "stderr": "registered-check-runner.stderr"
+}

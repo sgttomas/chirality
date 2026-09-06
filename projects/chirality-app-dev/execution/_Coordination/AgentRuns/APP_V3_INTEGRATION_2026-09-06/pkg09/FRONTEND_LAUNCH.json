@@ -1,0 +1,26 @@
+{
+  "command": [
+    "node",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/next/dist/bin/next",
+    "dev",
+    "--hostname",
+    "127.0.0.1",
+    "--port",
+    "51004"
+  ],
+  "pid": 44664,
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "environment_overrides": {
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "CHIRALITY_RUNTIME_USER_DATA": "/private/tmp/ch-v3-28a8-20260906",
+    "CHIRALITY_USER_DATA": "/private/tmp/ch-v3-28a8-20260906",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/private/tmp/ch-v3-28a8-20260906/runtime/control.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/private/tmp/ch-v3-28a8-20260906/runtime/auth/tokens/operator.token",
+    "CHIRALITY_RUNTIME_TOKEN_FILE": "/private/tmp/ch-v3-28a8-20260906/runtime/auth/tokens/project-af4680f7-0654-41e3-b569-4705185bbf89.token",
+    "CHIRALITY_RUNTIME_PROJECT_ID": "chirality-app-dev",
+    "CHIRALITY_RUNTIME_PROJECT_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "HARNESS_PROJECT_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "HARNESS_BASE_URL": "http://127.0.0.1:51004"
+  }
+}

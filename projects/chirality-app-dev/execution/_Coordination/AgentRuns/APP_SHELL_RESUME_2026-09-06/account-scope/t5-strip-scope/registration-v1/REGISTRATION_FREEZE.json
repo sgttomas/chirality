@@ -1,0 +1,20 @@
+{
+  "status": "REGISTERED_PROPOSAL_PENDING_UNION_REVIEW",
+  "decision_id": "D-APP-123",
+  "packet_path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-123_PACKET_ACTIVITY_STRIP_PRIMARY_SESSION_LOCUS_2026-09-06.md",
+  "packet_sha256": "2e425bd2b9b6bb778aa49ca17b27365e36304cb6bfbaed70874571385c0029b7",
+  "register_path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+  "register_preimage_sha256": "7d9ef97b3613c4329db69ea4b81457ed356b0f4eecd2bbbb670ff5589a4706af",
+  "register_postimage_sha256": "55b1388ab10d4faf2098a0b5d42e04ba3a40e3fcea71bed54cda9a05252ee089",
+  "preserved_existing_bytes": true,
+  "added_rows": 1,
+  "verified_release_pins": {
+    "WORK_GRAPH_v6.json": "0c884afb054cc764968b608cc0758b4c0466a7c08cafc4be31f14e164c5d0127",
+    "ORCHESTRATION_PLAN_v6.md": "980277f9276a5d28d76975a4b31eb743b5f7f54bd3f5d22f6e683778bb855b85",
+    "instances/resume_account_scope/AMENDMENT_v3.md": "45cbb1a6b34073e7cfd0e1ce6d771a149c186496ac5d6cd175026a5e6fc47086"
+  },
+  "candidate_freeze_sha256": "89cd6d3b8490ea52f105412003e2d2c567fa6812346eb60c0468d29d660e23e6",
+  "live_status_preimage_matches": true,
+  "owner_selection": "NONE",
+  "source_or_dependency_writes": []
+}

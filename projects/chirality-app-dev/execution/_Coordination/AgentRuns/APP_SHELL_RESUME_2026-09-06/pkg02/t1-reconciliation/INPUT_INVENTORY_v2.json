@@ -1,0 +1,66 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+    "sha256": "deaca586b344632edb3c8123ba600059764165d71d02ae9706b6c8c988154877",
+    "historical_inventory_match": false
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/REVIEW_INPUT_v2.json",
+    "sha256": "bb07f98ffdf6e2797b70115b33d3867f5dd48b1449f34c273594272e8e9bf21f",
+    "historical_inventory_match": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/REVIEW_RETURN_v2.md",
+    "sha256": "ab877c902b59caaf3334ca562b5d7e9e9ebca78e9cae16ac952b06ec37ccd59d",
+    "historical_inventory_match": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/browser/VISUAL_REVIEW.md",
+    "sha256": "14b17c3eb3899aca4db91cd1fb053922ea9141848a9e15543da8452aa9c8fbdd",
+    "historical_inventory_match": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-author-v10/SOURCE_MANIFEST_v10.json",
+    "sha256": "c88cce09a9ad4ea9c9f822d5f410b26e1f04e7c02067ff1398ecf6bcacc807e4",
+    "historical_inventory_match": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-reviewer-v10/REVIEW_RETURN.md",
+    "sha256": "4f9dcd46877ed9ed0a038de35d4079b7af0b492f1a6d79cf3ecee7baec2418b6",
+    "historical_inventory_match": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-candidate-01/ci-34006639218.json",
+    "sha256": "3a6dd15ed4f781611d8fed23f2f1fcea6b960b8841edeb3fa5feb2df0860e179",
+    "historical_inventory_match": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_CONVERGENCE_2026-09-06/pkg02/dependency-candidate-01/ci-34006639232.json",
+    "sha256": "e54f744979ea9374f60e80e47e7e6859093cb0789540137cc8ad29f5909b02f4",
+    "historical_inventory_match": true
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/BROWSER_VISUAL_REVIEW_v10.json",
+    "sha256": "febf1dc8ef58a36db107db4301dfbd45787a9aeb385a380aa635d42fd2c0e84e"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/FULL_BROWSER_VISUAL_COMPARISON_v10.json",
+    "sha256": "71cdfd91970ce8128bad8a192f370d055dcb13eb6add54da922600526a2cc86b"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/recovery-01/PROOF_SEQUENCE_v10.json",
+    "sha256": "0c0c6bce1f8a7e884bca9d2aff71931b7a5758abac06d46eba4793c079d7dd85"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v10/result.json",
+    "sha256": "463da9abab476f4de2154ce7c8e66bacbd209d2de303cce1b274f1f594eede75"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/full-origin-v10/input-script.mjs",
+    "sha256": "4f3aefd8b5f1b610369bc0503146e5ace472f7e876b0b897a2f3d80581c63b8d"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/browser/state-settled-v10/result.json",
+    "sha256": "822b94a94936d6ae182d6f22c0c04a542b4edfcf93ab867b54b2c3a36b83d03e"
+  }
+]

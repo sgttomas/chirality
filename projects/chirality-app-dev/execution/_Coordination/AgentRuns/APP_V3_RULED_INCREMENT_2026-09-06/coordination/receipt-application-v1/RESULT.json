@@ -1,0 +1,61 @@
+{
+  "status": "APPENDED",
+  "preimage_sha256": "57ac41d09262e43aff7d5375dcc7a9e3e36a28bf6556584c0d2523806f4d7fc4",
+  "postimage_sha256": "8256b3df7597e28552ad5608f7b9d7a6dae1707be57a0dd45f96b99005b0e370",
+  "appended_sha256": "b46f0861923e96d42b5e6952e6be55b5de750432ca633175b815d10e84206e13",
+  "appended_bytes": 2415,
+  "prefix_unchanged": true,
+  "checks": [
+    {
+      "id": "pre-validator",
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "id": "pre-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "id": "post-validator",
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "id": "post-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "git_closeout": "Pending; no stage/push/merge"
+}

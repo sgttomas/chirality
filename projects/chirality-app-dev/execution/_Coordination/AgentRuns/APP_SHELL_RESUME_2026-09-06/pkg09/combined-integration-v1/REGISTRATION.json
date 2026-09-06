@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "command": [
+    "node",
+    "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/projects/chirality-app-dev/frontend/dist-runtime/chirality-cli.mjs",
+    "project",
+    "register",
+    "--manifest",
+    "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/projects/chirality-app-dev/chirality.project.json",
+    "--approved-by",
+    "owner-authorized-isolated-integration",
+    "--approval-reference",
+    "APP_SHELL_RESUME_2026-09-06-v11-owner-steer-v5",
+    "--json"
+  ],
+  "public_result": {
+    "projectId": "chirality-app-dev",
+    "tokenFile": "/private/tmp/ch-ci-22a65b6-20260906/runtime/auth/tokens/project-761c5fa7-c875-41f7-bbb2-0f238ffafa89.token"
+  },
+  "other_fields_omitted": true
+}

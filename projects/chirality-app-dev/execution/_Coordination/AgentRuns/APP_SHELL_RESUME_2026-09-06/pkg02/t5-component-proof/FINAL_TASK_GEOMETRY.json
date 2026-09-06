@@ -1,0 +1,25 @@
+{
+  "fontFamilies": [
+    "PlexProofMono, ui-monospace, SFMono-Regular, Menlo, monospace",
+    "PlexProofMono, ui-monospace, SFMono-Regular, Menlo, monospace"
+  ],
+  "pageWidth": 960,
+  "panelWidth": 300,
+  "rows": [
+    {
+      "scrollWidth": 270,
+      "text": "Task completed: Working Items06:00:05 AMcompletedCheck the recorded review scope.The selected scope was reviewed.WORKING_ITEMS · 2 events · subagent.completed",
+      "width": 272
+    },
+    {
+      "scrollWidth": 270,
+      "text": "Task failed: Research06:00:06 AMfailedInspect the fixture source.RESEARCH · 1 event · subagent.failed",
+      "width": 272
+    }
+  ],
+  "theme": "light",
+  "viewport": {
+    "height": 800,
+    "width": 960
+  }
+}

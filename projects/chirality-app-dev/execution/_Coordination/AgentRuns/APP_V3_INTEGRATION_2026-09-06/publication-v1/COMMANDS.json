@@ -1,0 +1,194 @@
+[
+  {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "dbf40276066a771213a849d8e9c2fa32d4a738f5\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "branch",
+      "--show-current"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "codex/shell-redesign-resume-20260906\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--name-only"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "rev-parse",
+      "origin/main"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "28a8ed32ba83c5514ae2e65e9260833c1d46b7ef",
+      "dbf40276066a771213a849d8e9c2fa32d4a738f5"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "ls-remote",
+      "--heads",
+      "origin",
+      "refs/heads/codex/shell-redesign-resume-20260906"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gh",
+      "pr",
+      "list",
+      "--head",
+      "codex/shell-redesign-resume-20260906",
+      "--state",
+      "open",
+      "--json",
+      "number,url,headRefOid"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "[]\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "dbf40276066a771213a849d8e9c2fa32d4a738f5\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "push",
+      "origin",
+      "dbf40276066a771213a849d8e9c2fa32d4a738f5:refs/heads/codex/shell-redesign-resume-20260906"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "remote: \nremote: Create a pull request for 'codex/shell-redesign-resume-20260906' on GitHub by visiting:        \nremote:      https://github.com/sgttomas/chirality/pull/new/codex/shell-redesign-resume-20260906        \nremote: \nTo github.com:sgttomas/chirality.git\n * [new branch]          dbf40276066a771213a849d8e9c2fa32d4a738f5 -> codex/shell-redesign-resume-20260906\n"
+  },
+  {
+    "argv": [
+      "git",
+      "ls-remote",
+      "--heads",
+      "origin",
+      "refs/heads/codex/shell-redesign-resume-20260906"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "dbf40276066a771213a849d8e9c2fa32d4a738f5\trefs/heads/codex/shell-redesign-resume-20260906\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "branch",
+      "--set-upstream-to=origin/codex/shell-redesign-resume-20260906",
+      "codex/shell-redesign-resume-20260906"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "branch 'codex/shell-redesign-resume-20260906' set up to track 'origin/codex/shell-redesign-resume-20260906'.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gh",
+      "pr",
+      "create",
+      "--base",
+      "main",
+      "--head",
+      "codex/shell-redesign-resume-20260906",
+      "--title",
+      "Improve session Reveal and activity presentation in the desktop shell",
+      "--body-file",
+      "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/publication-v1/PR_DESCRIPTION.md"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "https://github.com/sgttomas/chirality/pull/739\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gh",
+      "pr",
+      "view",
+      "https://github.com/sgttomas/chirality/pull/739",
+      "--json",
+      "number,url,state,title,headRefName,headRefOid,baseRefName,baseRefOid,mergeable,mergeStateStatus,statusCheckRollup"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "{\"baseRefName\":\"main\",\"baseRefOid\":\"28a8ed32ba83c5514ae2e65e9260833c1d46b7ef\",\"headRefName\":\"codex/shell-redesign-resume-20260906\",\"headRefOid\":\"dbf40276066a771213a849d8e9c2fa32d4a738f5\",\"mergeStateStatus\":\"UNKNOWN\",\"mergeable\":\"UNKNOWN\",\"number\":739,\"state\":\"OPEN\",\"statusCheckRollup\":[],\"title\":\"Improve session Reveal and activity presentation in the desktop shell\",\"url\":\"https://github.com/sgttomas/chirality/pull/739\"}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "dbf40276066a771213a849d8e9c2fa32d4a738f5\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--name-only"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

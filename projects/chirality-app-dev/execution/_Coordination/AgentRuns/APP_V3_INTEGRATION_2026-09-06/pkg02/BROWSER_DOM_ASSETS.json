@@ -1,0 +1,23 @@
+{
+  "bodyWidth": 960,
+  "draft": "Responsive proof draft",
+  "fontStack": "plexSans, \"plexSans Fallback\", \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif, \"Avenir Next\", \"Segoe UI\", system-ui, sans-serif",
+  "fonts": [
+    "http://127.0.0.1:51404/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+    "http://127.0.0.1:51404/_next/static/media/dece0821e8ed059f-s.p.woff2"
+  ],
+  "height": 800,
+  "styles": [
+    "http://127.0.0.1:51404/_next/static/css/28d0eac0cbdc5313.css",
+    "http://127.0.0.1:51404/_next/static/css/3a36fb4c552ee67b.css"
+  ],
+  "width": 960
+}

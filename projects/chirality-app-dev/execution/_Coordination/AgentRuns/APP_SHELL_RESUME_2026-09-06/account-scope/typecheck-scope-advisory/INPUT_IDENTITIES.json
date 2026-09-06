@@ -1,0 +1,38 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/tsconfig.electron.json",
+    "sha256": "8b8bfb49b7e9361cdbbcd94dbc4df31ccb16f3dda24c37b0859ef48639de23ec"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/typecheck-repair-candidate/CANDIDATE.json",
+    "sha256": "58f1db35703bf10e07d63a216c11b1e6d5323ad81d632461d9dd38f7bfabe5d3"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/typecheck-repair-candidate/CANDIDATE.patch",
+    "sha256": "6497d6c374755b793fd041e360b280ebb1b6ce9deb18cc0e7d2426113f001a2d"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/typecheck-repair-candidate/PROVENANCE_CORRECTION.md",
+    "sha256": "5067527c9df7d4410a1b16e84def4d054a4d25991f57cb59c1ca56c67f1600fe"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/typecheck-repair-candidate/DEPENDENCY_ALIGNMENT_PROPOSAL.json",
+    "sha256": "4bb1e694112ec90d602613e8d046d526e09f60635c453b2932bd8f9fec1305e1"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/typecheck-repair-candidate/tsconfig.electron.candidate.json",
+    "sha256": "522b114f541f6b4882404069f6b4ca5553f887635948df972c07bbbed849f5b0"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+    "sha256": "fc05153fd49cc879f9dbc003268946b2d66a3697e165303fb2447e9b2df3c1c6"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/MEMORY.md",
+    "sha256": "5f31a9c28586f65b49ce82dccee0d5b39d270f8d4c3ca3d64216fffcff06405c"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md",
+    "sha256": "c6372485300daf51aa3b6ce30192ee270e12ef3e7a4c79757ee2195d7860145d"
+  }
+]

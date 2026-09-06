@@ -1,0 +1,34 @@
+[
+  {
+    "path": "ACCEPTED.patch",
+    "sha256": "e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32"
+  },
+  {
+    "path": "APPLICATION_RETURN.md",
+    "sha256": "c393e1ebe22af88cde03f16cd0ae55f15b460989654914f64d3c1b30ae8b72ef"
+  },
+  {
+    "path": "APP_HOLD.json",
+    "sha256": "edfbf2b0f5188695634a6cf22a7dd19f444b52c011aab58108e5c54976778bfc"
+  },
+  {
+    "path": "DEL02-03_STATUS_POSTIMAGE.txt",
+    "sha256": "af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960"
+  },
+  {
+    "path": "DEL09-06_SOW_POSTIMAGE.txt",
+    "sha256": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0"
+  },
+  {
+    "path": "DEL09-06_STATUS_POSTIMAGE.txt",
+    "sha256": "0f4b65b53f0e05183fcd8a5f489bb2da8ccdb4ead6fab22944f89f8daf42e6ba"
+  },
+  {
+    "path": "PREPOST_IDENTITIES.json",
+    "sha256": "872943301727dbe33b8beff0c776bf4539be37198d735f67643c136a771fc3b9"
+  },
+  {
+    "path": "SEALED_BRIEF.md",
+    "sha256": "cceecfe9dd56823abe853d1fc544e4ce3a1257209115654b313c4da2c0ccfb4b"
+  }
+]

@@ -1,0 +1,1 @@
+The new repeat preflight was initially written adjacent to the repair brief, then moved byte-for-byte into revision02/AUTHOR_PREFLIGHT_RELIANCE.json before source edits. No original frozen evidence changed.

@@ -1,0 +1,7 @@
+# Combined-validation recipe supplement — actual ready state and macOS boundaries
+
+Parent reports CHANGE created the exact v11 isolated path/branch clean at PR738 head49951af6237bbb8701c0a2cebcd8c30fbde75b8e; original715 dirty App paths preserved, config not yet overlaid at that observation. Evidence change/combined-integration-v1. This supplements readiness only; PKG09 still awaits actual sole-config local commit and parent release.
+
+Inspect .github/workflows/harness-premerge.yml lines155–235 for the existing recipe: buildElectron, --runtime-daemon, builtCLI project registration, socket/tokenFILE/projectID/root environment and API readiness. Adapt platform normally on macOS: Linux xvfb/--no-sandbox are unnecessary; do not disable native/browser safeguards. Use a uniquely owned short macOS socket path under isolated runtime userData, respecting the103-byte limit, and capture exact PID ownership/cleanup. Existing manifest legacySessionRoots .chirality/sessions may be created as ignored fixture directory.
+
+Registration approvedBy must truthfully identify owner-authorized isolated integration, never github-actions. Token contents must never appear in logs/evidence; preserve only public path metadata/redacted registration. Use token-file path as the recipe requires. Preserve original host/user daemon and all live sessions/providers. No global install, LaunchAgent or protected-fixture maintenance. Parent-directed recipe clarification narrows implementation of the already-scoped v11 checks; it creates no additional source/publication authority.

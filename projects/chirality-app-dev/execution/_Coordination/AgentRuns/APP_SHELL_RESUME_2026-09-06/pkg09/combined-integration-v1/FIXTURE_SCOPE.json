@@ -1,0 +1,9 @@
+{
+  "head": "22a65b694007f4d96d33631cf33c2d611517a417",
+  "scratch": "/private/tmp/ch-ci-22a65b6-20260906",
+  "socket": "/private/tmp/ch-ci-22a65b6-20260906/runtime/control.sock",
+  "socket_bytes": 56,
+  "token_contents_retained": false,
+  "provider": "stub",
+  "native_sandbox_disabled": false
+}

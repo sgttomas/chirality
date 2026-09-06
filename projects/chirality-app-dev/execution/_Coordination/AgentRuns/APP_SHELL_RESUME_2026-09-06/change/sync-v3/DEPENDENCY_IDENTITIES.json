@@ -1,0 +1,20 @@
+{
+  "projects/chirality-runtime/package-lock.json": "25d1afa816a23d3f83877dc96412258ecf1bab4de94bf79d2143fab1a744c7fc",
+  "projects/chirality-runtime/package.json": "499cb55afb26bdbaa36f85178c28d392bfa2527b60a002e4eb0ae0e076402071",
+  "projects/chirality-runtime/packages/cli/package.json": "e52451b6ad80bf3e21f71790a61b41187e914b49efe2abd2a44be0ca6ff6e852",
+  "projects/chirality-runtime/packages/cli/tsconfig.json": "83d3dc0f3ca4e22b28e11bef0204fc4c24eb41ade52ec61398e05e6c9f3d4682",
+  "projects/chirality-runtime/packages/client/package.json": "d55665d055e3d1bd8cb1113ed7412356b41a02d1ede6871775f2691607b3cc14",
+  "projects/chirality-runtime/packages/client/tsconfig.json": "1a581096f861528b951e14e3016f51e18a89c1bcdcce3b4c273496e6dea958f9",
+  "projects/chirality-runtime/packages/contracts/package.json": "4cc45f200987ec95bc2f766b0c5ce69ea94d8218a1bc1c10148f535e0766d541",
+  "projects/chirality-runtime/packages/contracts/tsconfig.json": "b7c1ac2823f73803939d6f8333ed8181c6380c443ce4662a88515b8286d00480",
+  "projects/chirality-runtime/packages/core/package.json": "2d6f3a71730758459a8f6ba85f77dc71298916a39594d72198d392d2ee48cc80",
+  "projects/chirality-runtime/packages/core/tsconfig.json": "c0732af88f89bef876217322c598453990d1f6f4a0a7f25af2b311cf62328dab",
+  "projects/chirality-runtime/packages/daemon/package.json": "5d4893d6a40cfafeecf1e882e7c9b14917bba53f9a656a5627bda39eaa06b838",
+  "projects/chirality-runtime/packages/daemon/tsconfig.json": "3b14197e0ee6cc749515c27953f5f20138404f98323be386655a7c3a58122833",
+  "projects/chirality-runtime/packages/engine-claude/package.json": "af37df0f66294009f70712757d2006bf845bcaa3c797f3ba7c3c1aef31fd7a6a",
+  "projects/chirality-runtime/packages/engine-claude/tsconfig.json": "f74fc736858d58e878eb395c40d3ddff1b2c95022f531b8399f07db8188a6f58",
+  "projects/chirality-runtime/packages/engine-pi-omlx/package.json": "d9af45d3c65fbe17995f988eb6d4d340e022697329168bde0b6920101a6e65e6",
+  "projects/chirality-runtime/packages/engine-pi-omlx/tsconfig.json": "f74fc736858d58e878eb395c40d3ddff1b2c95022f531b8399f07db8188a6f58",
+  "projects/chirality-runtime/tsconfig.base.json": "05694aec290cf7edfa3385b832d98c0eac725dae605c45b62a2efc896242a5e8",
+  "projects/chirality-runtime/tsconfig.json": "8a0d13f1f7fe753b63c7a11262446c29b11b365fbd126971cf4f4ffb719b2469"
+}

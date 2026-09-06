@@ -1,0 +1,30 @@
+{
+  "parent": "/root/resume_account_scope",
+  "shared_graph": "../../WORK_GRAPH_v5.json",
+  "nodes": [
+    {
+      "id": "author",
+      "writes": [
+        "account-scope/t5-strip-scope/**"
+      ]
+    },
+    {
+      "id": "fresh-refutation",
+      "role": "ephemeral Agent2",
+      "writes": [],
+      "status": "PREPARED_NOT_DISPATCHED",
+      "brief": "REFUTATION_BRIEF.md",
+      "brief_sha256": "419b65702c52197242d9a1a6568fc0c817b8c20b37308a8673241c08c2356bd8"
+    }
+  ],
+  "edges": [
+    [
+      "author",
+      "fresh-refutation"
+    ]
+  ],
+  "cycles": [],
+  "effect": "proposal only",
+  "delegation": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted"
+}

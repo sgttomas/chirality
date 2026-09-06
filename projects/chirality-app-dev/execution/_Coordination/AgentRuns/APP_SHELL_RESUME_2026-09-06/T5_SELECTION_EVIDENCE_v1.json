@@ -1,0 +1,35 @@
+{
+  "recorded_at": "2026-09-06T18:39:08.470948+00:00",
+  "source": "parent actual message and recorder direct frozen-candidate/source identity inspection",
+  "parent_message": "T5_PARENT_SELECTION_MESSAGE_v1.md",
+  "brief": {
+    "path": "pkg02/t5-view-author-01/CANDIDATE_BRIEF_v1.md",
+    "sha256": "6fd9ebb78eb0239006b0541ae4ec2de982e50e87c53764846f8bb6dca65967dc"
+  },
+  "candidate_identities_sha256": "bd38964351563b5b59567ae6ebe81b49fc23a5c682c14d71a96c09c39512ab04",
+  "source_preimages": [
+    {
+      "path": "frontend/src/components/woven-dialogue/activity-shelf.tsx",
+      "expected_sha256": "5ead94ce6031e09162eccf1c01124bb97127b47b1c6be185bac0cdd13f3a7ac4",
+      "actual_sha256": "5ead94ce6031e09162eccf1c01124bb97127b47b1c6be185bac0cdd13f3a7ac4"
+    },
+    {
+      "path": "frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+      "expected_sha256": "2378427d83b1dc2cef1424f4ea845910c0cb2a269e4a34b89844b68d309e3c3a",
+      "actual_sha256": "2378427d83b1dc2cef1424f4ea845910c0cb2a269e4a34b89844b68d309e3c3a"
+    }
+  ],
+  "new_path": "frontend/src/__tests__/components/activity-view-presentation.test.tsx",
+  "new_path_absent": true,
+  "parent_preflight": {
+    "capture_kind": "parent-reported exact metadata, not raw capture",
+    "operation": "dispatch",
+    "verdict": "ALLOW",
+    "head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+    "entry_path": "APP_SHELL_RESUME_2026-09-06:AGENT0:T5",
+    "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+    "scan_fingerprint_sha256": "e84c8fdaca0c5120d730b6d3420877b433c335f957c7d28565b48530efc5de65"
+  },
+  "child_preflight": "each package executor/reviewer must run own preflight before reliance",
+  "owner_case_selection": "NONE"
+}

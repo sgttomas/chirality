@@ -1,0 +1,73 @@
+[
+  {
+    "id": "receipt-after",
+    "argv": [
+      "python3",
+      "tools/validation/validate_app_dev_loop_receipts.py",
+      "--repo-root",
+      "."
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T22:58:37.555173+00:00",
+    "end": "2026-09-06T22:58:40.025024+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "receipt-after.stdout",
+    "stderr": "receipt-after.stderr"
+  },
+  {
+    "id": "final-self-check",
+    "argv": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T22:58:40.025066+00:00",
+    "end": "2026-09-06T22:58:52.630043+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "final-self-check.stdout",
+    "stderr": "final-self-check.stderr"
+  },
+  {
+    "id": "final-pytest",
+    "argv": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "tools/practitioner_harness"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T22:58:52.630103+00:00",
+    "end": "2026-09-06T22:59:19.575729+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "final-pytest.stdout",
+    "stderr": "final-pytest.stderr"
+  },
+  {
+    "id": "final-diff-check",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "start": "2026-09-06T22:59:19.575771+00:00",
+    "end": "2026-09-06T22:59:19.638730+00:00",
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "final-diff-check.stdout",
+    "stderr": "final-diff-check.stderr"
+  }
+]

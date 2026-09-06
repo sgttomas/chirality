@@ -1,0 +1,63 @@
+{
+  "status": "APPENDED",
+  "recorded_at_utc": "2026-09-06T22:57:19.606203+00:00",
+  "target": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+  "preimage_sha256": "a6632bc5fe4ecf0bb21dede5a19c241e1d3aaede320fff473026dbefd3bf06fe",
+  "postimage_sha256": "57ac41d09262e43aff7d5375dcc7a9e3e36a28bf6556584c0d2523806f4d7fc4",
+  "appended_sha256": "fa66171247f92ed009ea260393374b8fb58c5e98f688d149784e6b88c1a4b0c6",
+  "candidate_sha256": "fa66171247f92ed009ea260393374b8fb58c5e98f688d149784e6b88c1a4b0c6",
+  "appended_bytes": 2592,
+  "prefix_unchanged": true,
+  "checks": [
+    {
+      "id": "pre-validator",
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "id": "pre-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "id": "post-validator",
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "id": "post-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

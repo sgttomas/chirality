@@ -1,0 +1,221 @@
+{
+  "schema": "seven-existing-ignored-app-link-alignment/v1",
+  "status": "FROZEN_CANDIDATE_EXPLICIT_PARENT_RELEASE_REQUIRED",
+  "created_at": "2026-09-06T19:35:35.790284+00:00",
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "sha256": "6631309a689a1eab981836f661a101471586999afe939ea3fa280a3fc025ff3c"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package-lock.json",
+      "sha256": "89473868c8d28ce14e4256bad4218c6da4c145b2d1420f5fb9e4545799c156d3"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/TYPECHECK_FAILURE_INVENTORY.json",
+      "sha256": "ddde69e0f8c398f29ab144a2a0b27a281416b064e996db076a4a4042a6fcb75c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/typecheck-repair-candidate/IN_MEMORY_CANDIDATE_COMPILER_PROBE_02.json",
+      "sha256": "9788aff9f6aa6d0e3a67c1891154c9bae7e8521d11d28588d761a54464a174ba"
+    }
+  ],
+  "links": [
+    {
+      "package": "@chirality/engine-claude",
+      "symlink_path": "projects/chirality-app-dev/frontend/node_modules/@chirality/engine-claude",
+      "old_target_exact": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-claude",
+      "observed_inode": 73205206,
+      "observed_device": 16777232,
+      "declared_file_dependency": "file:../../chirality-runtime/packages/engine-claude",
+      "lock_record": {
+        "resolved": "../../chirality-runtime/packages/engine-claude",
+        "link": true
+      },
+      "new_target_repository_relative": "projects/chirality-runtime/packages/engine-claude",
+      "suggested_relative_link_target": "../../../../chirality-runtime/packages/engine-claude",
+      "current_declared_type_files": [
+        {
+          "path": "projects/chirality-runtime/packages/engine-claude/dist/index.d.ts",
+          "sha256": "48e28f9b58d7ca7d6328ae19c228ac8023ddf7c97a9946deff16ff618db07e63"
+        }
+      ]
+    },
+    {
+      "package": "@chirality/engine-pi-omlx",
+      "symlink_path": "projects/chirality-app-dev/frontend/node_modules/@chirality/engine-pi-omlx",
+      "old_target_exact": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-pi-omlx",
+      "observed_inode": 73205207,
+      "observed_device": 16777232,
+      "declared_file_dependency": "file:../../chirality-runtime/packages/engine-pi-omlx",
+      "lock_record": {
+        "resolved": "../../chirality-runtime/packages/engine-pi-omlx",
+        "link": true
+      },
+      "new_target_repository_relative": "projects/chirality-runtime/packages/engine-pi-omlx",
+      "suggested_relative_link_target": "../../../../chirality-runtime/packages/engine-pi-omlx",
+      "current_declared_type_files": [
+        {
+          "path": "projects/chirality-runtime/packages/engine-pi-omlx/dist/index.d.ts",
+          "sha256": "88eec4bfc5abacf1474e6e4abf3e3f982468dbeff477561027be1ddf010b0a5e"
+        }
+      ]
+    },
+    {
+      "package": "@chirality/runtime-cli",
+      "symlink_path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-cli",
+      "old_target_exact": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/cli",
+      "observed_inode": 73205209,
+      "observed_device": 16777232,
+      "declared_file_dependency": "file:../../chirality-runtime/packages/cli",
+      "lock_record": {
+        "resolved": "../../chirality-runtime/packages/cli",
+        "link": true
+      },
+      "new_target_repository_relative": "projects/chirality-runtime/packages/cli",
+      "suggested_relative_link_target": "../../../../chirality-runtime/packages/cli",
+      "current_declared_type_files": [
+        {
+          "path": "projects/chirality-runtime/packages/cli/dist/src/index.d.ts",
+          "sha256": "c75f2d6e602ef26cfe2f3583f0625e7017a88d8fa16ce9851968fba9937cc75e"
+        }
+      ]
+    },
+    {
+      "package": "@chirality/runtime-client",
+      "symlink_path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-client",
+      "old_target_exact": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/client",
+      "observed_inode": 73205210,
+      "observed_device": 16777232,
+      "declared_file_dependency": "file:../../chirality-runtime/packages/client",
+      "lock_record": {
+        "resolved": "../../chirality-runtime/packages/client",
+        "link": true
+      },
+      "new_target_repository_relative": "projects/chirality-runtime/packages/client",
+      "suggested_relative_link_target": "../../../../chirality-runtime/packages/client",
+      "current_declared_type_files": [
+        {
+          "path": "projects/chirality-runtime/packages/client/dist/src/index.d.ts",
+          "sha256": "5d9870df6696a38979517dad85875360323cfba734aac8df68f9b9b45f3520e4"
+        }
+      ]
+    },
+    {
+      "package": "@chirality/runtime-contracts",
+      "symlink_path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-contracts",
+      "old_target_exact": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts",
+      "observed_inode": 73205211,
+      "observed_device": 16777232,
+      "declared_file_dependency": "file:../../chirality-runtime/packages/contracts",
+      "lock_record": {
+        "resolved": "../../chirality-runtime/packages/contracts",
+        "link": true
+      },
+      "new_target_repository_relative": "projects/chirality-runtime/packages/contracts",
+      "suggested_relative_link_target": "../../../../chirality-runtime/packages/contracts",
+      "current_declared_type_files": [
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/agent-engine-port.d.ts",
+          "sha256": "cecfa3a73ea09b1bae9b700e513e502eb69e3733c3609292d52daf40966675f3"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/domain-profile.d.ts",
+          "sha256": "8501384978d78cf9461256288a478e6e8dd316a3249c4982c8da0e9a6eec7d78"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/engine-conformance.d.ts",
+          "sha256": "1e271d51b82c47a5474024a478b06f03b1005f5f456d8167229e4735418fad03"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/errors.d.ts",
+          "sha256": "6db69274c5df3c929ecd61370aa56af9a67d2d0417dfc2b58d9a67451bb5ffa6"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/event-schema.d.ts",
+          "sha256": "3c29cc701a42dbbf5c810d0ae83711877bcecdc94886fcd2f8d12e329962c8f8"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/mcp/tool-names.d.ts",
+          "sha256": "a03ede025245f9ebfaa84ae39a65a2bc5ab3d59d68b7772361ad4f9881731344"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/operation-proposal.d.ts",
+          "sha256": "0740b9a240e92a9cd80bcf5ebba7bcb181510ebb6474c40d54b012a499c1c088"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/sdk-version.d.ts",
+          "sha256": "6541c40e24bbfdfcdef1ea21b8e2144c44b659e8ea1150b5e2875b51182bf593"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-catalog.d.ts",
+          "sha256": "028c6f4deee72a8bf744225325be355eb3fd06d2cfeb99a8c909e5470a6196f5"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-descriptor.d.ts",
+          "sha256": "5d5930e7fae6c0a387a9787c6a8420d09df2bbd39ccfe3345e5dfa8a20116f67"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/transcript-replay.d.ts",
+          "sha256": "721386a257d6fd1b0e6377e72c529eb7a4c6ee942b39b9c2ffad856641f15edb"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/harness/types.d.ts",
+          "sha256": "b557bfecd547a108b897665eae1a3b3b4e13f2af44047678b3f0240febe49a09"
+        },
+        {
+          "path": "projects/chirality-runtime/packages/contracts/dist/index.d.ts",
+          "sha256": "c5510f3e222fd4a739dad417f1d571b1c56e0fc00f50a1ee367a11c204034f90"
+        }
+      ]
+    },
+    {
+      "package": "@chirality/runtime-core",
+      "symlink_path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-core",
+      "old_target_exact": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core",
+      "observed_inode": 73205212,
+      "observed_device": 16777232,
+      "declared_file_dependency": "file:../../chirality-runtime/packages/core",
+      "lock_record": {
+        "resolved": "../../chirality-runtime/packages/core",
+        "link": true
+      },
+      "new_target_repository_relative": "projects/chirality-runtime/packages/core",
+      "suggested_relative_link_target": "../../../../chirality-runtime/packages/core",
+      "current_declared_type_files": [
+        {
+          "path": "projects/chirality-runtime/packages/core/dist/index.d.ts",
+          "sha256": "6a2d257b0702bc005623f8c921607302200a6af9946178d51de89911c94251f7"
+        }
+      ]
+    },
+    {
+      "package": "@chirality/runtime-daemon",
+      "symlink_path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-daemon",
+      "old_target_exact": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon",
+      "observed_inode": 73205213,
+      "observed_device": 16777232,
+      "declared_file_dependency": "file:../../chirality-runtime/packages/daemon",
+      "lock_record": {
+        "resolved": "../../chirality-runtime/packages/daemon",
+        "link": true
+      },
+      "new_target_repository_relative": "projects/chirality-runtime/packages/daemon",
+      "suggested_relative_link_target": "../../../../chirality-runtime/packages/daemon",
+      "current_declared_type_files": [
+        {
+          "path": "projects/chirality-runtime/packages/daemon/dist/index.d.ts",
+          "sha256": "96a8f12a5bd28a68a2b68ef542b19cb66fc51fc457d2915f9fb8e20df2107fc5"
+        }
+      ]
+    }
+  ],
+  "allowed_mutation": "replace exactly these seven symlink inodes after revalidating lstat/readlink and declared current sibling types; preserve all old external targets and tracked bytes",
+  "not_allowed": [
+    "following or deleting external paths",
+    "npm ci",
+    "tracked source/config/lock repair",
+    "harness-contract symlink change"
+  ],
+  "probe_after": "read-only candidate compiler probe against aligned current sibling declarations plus current typecheck baseline; no tracked tsconfig edit; no acceptance inferred"
+}

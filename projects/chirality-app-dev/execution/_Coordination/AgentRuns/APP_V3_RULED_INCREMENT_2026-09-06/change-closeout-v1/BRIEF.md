@@ -1,0 +1,5 @@
+# CHANGE records-only closeout brief
+
+Parent's current handoff supersedes the original publication-only CHANGE brief for this bounded local work: prepare/validate/freeze and, after receipt255 and parent exact-scope acceptance, locally stage and commit records only. Scope: APP_V3_RULED_INCREMENT_2026-09-06/**, previous APP_V3_INTEGRATION publication-v1/**, exactly D121/D125 ruling documents, register factual ruling/D124 changes, DEL09-04 status/MEMORY/new D_APP_124_SCOPED_CLOSEOUT record, and receipt255. No product source, old excluded custody, remote push, PR update or merge authorized. Preserve existing local bytes; D99 bulk exclusions retain exact hash custody. Parent owns record fan-in and scope clarification.
+
+CHANGE Agent1 /root/resume_change, parent /root, delegated-harness-native; instruction-asserted, not mechanically enforced. Codex/OpenAI/GPT-6 system identity; exact deployment unavailable. Existing configured mise Python3.13 with PyYAML6.0.3 is used; no dependency installation. Prior parent Python failure remains historical evidence.

@@ -1,0 +1,31 @@
+Browser tab: 730583371, Title: "Chirality Activity component proof", URL: "http://127.0.0.1:3197/".
+0 AXWebArea Chirality Activity component proof, URL: 127.0.0.1:3197/
+	1 container fixture
+		2 text Component-only Activity view · synthetic recorded events · no live runtime
+		3 container
+			4 heading Activity view presentation, Value: 1
+				5 text Activity view presentation
+			6 text Actual ActivityView and HarnessEventsProvider; adjacent controls belong to this fixture.
+			7 button Toggle fixture theme
+			8 button Complete fixture write
+			9 button Reset fixture events
+			10 button (collapsed) Fixture font diagnostics, Secondary Actions: Expand
+				11 text Fixture font diagnostics
+		12 container Activity details
+			13 container Activity views
+				14 checkbox Actions, Value: 1
+				15 checkbox Events, Value: 0
+				16 checkbox Tasks, Value: 0
+			17 text field (settable) Filter activity
+			18 button Clear view
+			19 content list Actions
+				20 container
+					21 text Write action finished
+					22 text 06:00:10 AM
+					23 text COMPLETED
+					24 content list
+						25 container path: reviews/current-review.md
+							26 text path reviews/current-review.md
+					27 text write_file · 2 events · tool.completed
+
+The focused UI element is 8 button Complete fixture write

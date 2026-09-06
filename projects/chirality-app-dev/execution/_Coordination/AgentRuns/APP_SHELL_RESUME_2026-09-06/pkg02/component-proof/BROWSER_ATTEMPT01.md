@@ -1,0 +1,1 @@
+Chrome CUA page was empty; console ReferenceError process is not defined in Next has-base-path.js. Standalone fixture lacked Next compile-time environment substitution. Added esbuild define process.env={} to fixture only. No product changes.

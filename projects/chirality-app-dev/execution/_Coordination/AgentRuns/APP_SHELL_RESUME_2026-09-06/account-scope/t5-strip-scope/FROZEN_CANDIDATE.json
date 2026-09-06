@@ -1,0 +1,29 @@
+{
+  "status": "PROPOSAL_ONLY_FROZEN",
+  "files": [
+    {
+      "path": "PREIMAGE__STATUS.md",
+      "sha256": "16053333f23dd8905c5567eeae4151de03e56f77f58fa64d7c52d0dc30d249f0"
+    },
+    {
+      "path": "CANDIDATE__STATUS.md",
+      "sha256": "165f443bba9907bfbbcc6f1c4a4e2bb6ded61241edf5204510c41062ab4f0265"
+    },
+    {
+      "path": "STATUS_DIFF.patch",
+      "sha256": "2ae12b41935929c89435a161325a84dcdfadbb94d7da324ec4a484c264dce89c"
+    },
+    {
+      "path": "CANDIDATE_IDENTITIES.json",
+      "sha256": "d2a47d680930d541d7c300ed304e3e3f10452d421a948fdf51049062b21d256a"
+    },
+    {
+      "path": "INPUT_IDENTITIES.json",
+      "sha256": "af9593d87d0361ce4703f1d5abeb817a786ad85e8d51aea617f88349aaf043b4"
+    },
+    {
+      "path": "PROPOSAL.md",
+      "sha256": "2497f966fdaf573c0e49767662faea421f1766e30f1687119262cc0e1134a8e0"
+    }
+  ]
+}

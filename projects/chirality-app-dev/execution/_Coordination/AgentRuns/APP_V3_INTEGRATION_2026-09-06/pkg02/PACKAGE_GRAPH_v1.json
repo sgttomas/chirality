@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "posture": "MIXED",
+  "parent_graph_sha256": "bfe6f4f092d4ea74abb732cff372b14775da96f26429a3fa11e238cff71aad90",
+  "nodes": [
+    {
+      "id": "fresh_review",
+      "role": "TASK software-code-review",
+      "writes": [],
+      "depends": [
+        "source_freeze",
+        "APP_HOLD_ALLOW"
+      ],
+      "return": "verbatim parent-persisted review"
+    },
+    {
+      "id": "manager_assessment",
+      "role": "WORKING_ITEMS",
+      "writes": [
+        "pkg02/**"
+      ],
+      "depends": [
+        "preflight"
+      ]
+    },
+    {
+      "id": "gui_verification",
+      "role": "WORKING_ITEMS",
+      "status": "HELD_PARENT_BUILD_RELEASE",
+      "writes": [
+        "pkg02/**",
+        "owned disposable GUI state"
+      ]
+    }
+  ],
+  "integration_owner": "/root/v3_pkg02",
+  "source_edits": "NONE",
+  "escalation": "findings, contract drift, scope gaps return Agent0; no product changes"
+}

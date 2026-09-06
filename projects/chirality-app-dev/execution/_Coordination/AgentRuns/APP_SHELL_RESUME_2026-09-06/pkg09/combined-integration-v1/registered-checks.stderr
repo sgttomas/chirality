@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/tools/software_workflow/run_registered_checks.py", line 307, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/private/tmp/chirality-app-runtime-integration-20260906-738-49951af/tools/software_workflow/run_registered_checks.py", line 299, in main
+    output.relative_to(workspace_root)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/ryan/.local/share/mise/installs/python/3.13.14/lib/python3.13/pathlib/_local.py", line 385, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg09/combined-integration-v1/REGISTERED_CHECKS.json' is not in the subpath of '/private/tmp/chirality-app-runtime-integration-20260906-738-49951af'

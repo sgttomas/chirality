@@ -1,0 +1,217 @@
+[
+  {
+    "path": "/",
+    "at": "2026-09-06T18:50:58.482Z",
+    "status": 200
+  },
+  {
+    "path": "/globals.css",
+    "at": "2026-09-06T18:50:58.498Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts.css",
+    "at": "2026-09-06T18:50:58.499Z",
+    "status": 200
+  },
+  {
+    "path": "/fixture.js",
+    "at": "2026-09-06T18:50:58.499Z",
+    "status": 200
+  },
+  {
+    "path": "/diagnostics.js",
+    "at": "2026-09-06T18:50:58.500Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-serif-latin-600-normal.woff2",
+    "at": "2026-09-06T18:50:58.533Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-600-normal.woff2",
+    "at": "2026-09-06T18:50:58.533Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-400-normal.woff2",
+    "at": "2026-09-06T18:50:58.533Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-500-normal.woff2",
+    "at": "2026-09-06T18:50:58.533Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-400-normal.woff2",
+    "at": "2026-09-06T18:50:58.534Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-serif-latin-400-normal.woff2",
+    "at": "2026-09-06T18:50:58.542Z",
+    "status": 200
+  },
+  {
+    "path": "/",
+    "at": "2026-09-06T18:51:21.289Z",
+    "status": 200
+  },
+  {
+    "path": "/globals.css",
+    "at": "2026-09-06T18:51:21.308Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts.css",
+    "at": "2026-09-06T18:51:21.308Z",
+    "status": 200
+  },
+  {
+    "path": "/fixture.js",
+    "at": "2026-09-06T18:51:21.308Z",
+    "status": 200
+  },
+  {
+    "path": "/diagnostics.js",
+    "at": "2026-09-06T18:51:21.309Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-500-normal.woff2",
+    "at": "2026-09-06T18:51:21.320Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-serif-latin-600-normal.woff2",
+    "at": "2026-09-06T18:51:21.321Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-400-normal.woff2",
+    "at": "2026-09-06T18:51:21.321Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-600-normal.woff2",
+    "at": "2026-09-06T18:51:21.321Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-400-normal.woff2",
+    "at": "2026-09-06T18:51:21.322Z",
+    "status": 200
+  },
+  {
+    "path": "/",
+    "at": "2026-09-06T18:56:56.368Z",
+    "status": 200
+  },
+  {
+    "path": "/globals.css",
+    "at": "2026-09-06T18:56:56.379Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts.css",
+    "at": "2026-09-06T18:56:56.379Z",
+    "status": 200
+  },
+  {
+    "path": "/fixture.js",
+    "at": "2026-09-06T18:56:56.380Z",
+    "status": 200
+  },
+  {
+    "path": "/diagnostics.js",
+    "at": "2026-09-06T18:56:56.380Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-serif-latin-600-normal.woff2",
+    "at": "2026-09-06T18:56:56.420Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-500-normal.woff2",
+    "at": "2026-09-06T18:56:56.421Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-600-normal.woff2",
+    "at": "2026-09-06T18:56:56.421Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-400-normal.woff2",
+    "at": "2026-09-06T18:56:56.421Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-400-normal.woff2",
+    "at": "2026-09-06T18:56:56.421Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-500-normal.woff2",
+    "at": "2026-09-06T18:58:07.389Z",
+    "status": 200
+  },
+  {
+    "path": "/",
+    "at": "2026-09-06T18:59:20.316Z",
+    "status": 200
+  },
+  {
+    "path": "/globals.css",
+    "at": "2026-09-06T18:59:20.325Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts.css",
+    "at": "2026-09-06T18:59:20.325Z",
+    "status": 200
+  },
+  {
+    "path": "/fixture.js",
+    "at": "2026-09-06T18:59:20.325Z",
+    "status": 200
+  },
+  {
+    "path": "/diagnostics.js",
+    "at": "2026-09-06T18:59:20.325Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-serif-latin-600-normal.woff2",
+    "at": "2026-09-06T18:59:20.339Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-400-normal.woff2",
+    "at": "2026-09-06T18:59:20.339Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-600-normal.woff2",
+    "at": "2026-09-06T18:59:20.340Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-400-normal.woff2",
+    "at": "2026-09-06T18:59:20.340Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-mono-latin-500-normal.woff2",
+    "at": "2026-09-06T18:59:20.340Z",
+    "status": 200
+  },
+  {
+    "path": "/fonts/ibm-plex-sans-latin-500-normal.woff2",
+    "at": "2026-09-06T18:59:53.089Z",
+    "status": 200
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "input": "../../../../../../../../private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/transcript-replay.js",
+    "path": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/transcript-replay.js",
+    "sha256": "1de6a1f59ece42465efe4e4a0c8ce96ffacea96d986d0ebd5f4a6cba41c14c03"
+  },
+  {
+    "input": "<define:process.env>",
+    "virtual": true,
+    "definition": "{}"
+  },
+  {
+    "input": "execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/fixture.tsx",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/t5-component-proof/fixture.tsx",
+    "sha256": "7c3bb1a0b6ae478c4c83d04e7e4ad15ddd3436b8facf56b7df963d7ad1d40b8b"
+  },
+  {
+    "input": "frontend/node_modules/react-dom/cjs/react-dom.development.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/react-dom/cjs/react-dom.development.js",
+    "sha256": "1459b808bc6991de5a1ec3a86d8beee32dbb6c14282cf13f84e00dfebfbdc025"
+  },
+  {
+    "input": "frontend/node_modules/react-dom/client.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/react-dom/client.js",
+    "sha256": "a510041dfc40d69b3aa574e5e111864186c711fbeb3db41aa2f27196b27c429f"
+  },
+  {
+    "input": "frontend/node_modules/react-dom/index.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/react-dom/index.js",
+    "sha256": "f26fcb81b5d1dc32c6edea34645c75b60d259916293d3208c8be48ac33e882e4"
+  },
+  {
+    "input": "frontend/node_modules/react/cjs/react-jsx-runtime.development.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/react/cjs/react-jsx-runtime.development.js",
+    "sha256": "581f93fa33c32b3aa7ea35b85b80258922517de046f5447236047dcc2845d9ff"
+  },
+  {
+    "input": "frontend/node_modules/react/cjs/react.development.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/react/cjs/react.development.js",
+    "sha256": "1ff3a1d9861a87984329584fa1172aea920855d79eb57dae0d1cebe54093d7e3"
+  },
+  {
+    "input": "frontend/node_modules/react/index.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/react/index.js",
+    "sha256": "a216c390bf956cbb906c66d29fdb2e2ad6999464a5ca83e476533a6f25ad0ef3"
+  },
+  {
+    "input": "frontend/node_modules/react/jsx-runtime.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/react/jsx-runtime.js",
+    "sha256": "28170e60f2ff0bc045bc7d175f5849e86f68dd02d76d7255369420718b30295a"
+  },
+  {
+    "input": "frontend/node_modules/scheduler/cjs/scheduler.development.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/scheduler/cjs/scheduler.development.js",
+    "sha256": "22e3d959dc9f9cd59fca4e1fc95fecb9fde4d2cb8ecadbd279137ada995983ac"
+  },
+  {
+    "input": "frontend/node_modules/scheduler/index.js",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/scheduler/index.js",
+    "sha256": "b413b3aac7bd209fd82cbe2241fda1467558daaef830744f45ed8396fac9185e"
+  },
+  {
+    "input": "frontend/src/components/shell/subagent-stream-view.tsx",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/components/shell/subagent-stream-view.tsx",
+    "sha256": "0ad5f2a2f06a9e7daf9930cb4c5158ee30734eaab8fd31059785660e9e9ad3a5"
+  },
+  {
+    "input": "frontend/src/components/shell/tool-stream-view.tsx",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/components/shell/tool-stream-view.tsx",
+    "sha256": "bcd08e4c01e7350e2805382c13e5a57ef990f3594bff08f90bb48249f01ad234"
+  },
+  {
+    "input": "frontend/src/components/shell/transcript-stream-view.tsx",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/components/shell/transcript-stream-view.tsx",
+    "sha256": "d6ac0121270161ead8aedb7d9b5d115436b146609b431897935a95a2f994a36a"
+  },
+  {
+    "input": "frontend/src/components/workspace/harness-events-provider.tsx",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx",
+    "sha256": "68dd53da465bfba46a8dc72e686c7a85e73e0820ee8ca3927c834b11eaf886c3"
+  },
+  {
+    "input": "frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+    "sha256": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0"
+  },
+  {
+    "input": "frontend/src/lib/shell/harness-event-buffer.ts",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/lib/shell/harness-event-buffer.ts",
+    "sha256": "62159d82a6efe23396f0189084759cbc8fffc3362e0e381fe299d51f055fb26e"
+  },
+  {
+    "input": "frontend/src/lib/shell/harness-event-views.ts",
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts",
+    "sha256": "52c31329d482c2dbccf2b694bcf9083e5af5e7ab84b096cd8543300fce6c8aa5"
+  }
+]

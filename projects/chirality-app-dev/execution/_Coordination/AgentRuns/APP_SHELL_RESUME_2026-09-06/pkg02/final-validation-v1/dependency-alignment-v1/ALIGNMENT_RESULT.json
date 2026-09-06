@@ -1,0 +1,56 @@
+{
+  "status": "SEVEN_IGNORED_LINKS_ALIGNED",
+  "executor": "/root/resume_pkg02",
+  "timestamp": "2026-09-06T19:36:51.008857+00:00",
+  "manifest_sha256": "a717b007f59184264ba1a6f9ca4462f608d83dcbe99af56ae011a8fa16eb8a74",
+  "amendment_v7_sha256": "a8f764ac4b0415c1f6361ef2d6f90e5a0d98d1032bbe0e65d8da2187c682391b",
+  "tracked_files_preserved": 2150,
+  "tracked_changes": [],
+  "links": [
+    {
+      "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/engine-claude",
+      "readlink": "../../../../chirality-runtime/packages/engine-claude",
+      "realpath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime/packages/engine-claude",
+      "external_target_directory_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/engine-pi-omlx",
+      "readlink": "../../../../chirality-runtime/packages/engine-pi-omlx",
+      "realpath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime/packages/engine-pi-omlx",
+      "external_target_directory_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-cli",
+      "readlink": "../../../../chirality-runtime/packages/cli",
+      "realpath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime/packages/cli",
+      "external_target_directory_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-client",
+      "readlink": "../../../../chirality-runtime/packages/client",
+      "realpath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime/packages/client",
+      "external_target_directory_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-contracts",
+      "readlink": "../../../../chirality-runtime/packages/contracts",
+      "realpath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime/packages/contracts",
+      "external_target_directory_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-core",
+      "readlink": "../../../../chirality-runtime/packages/core",
+      "realpath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime/packages/core",
+      "external_target_directory_unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-daemon",
+      "readlink": "../../../../chirality-runtime/packages/daemon",
+      "realpath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-runtime/packages/daemon",
+      "external_target_directory_unchanged": true
+    }
+  ],
+  "source_config_changes": [],
+  "npm_ci": "NOT_RUN",
+  "external_writes": "NONE; only unlink/symlink on seven App-local link inodes"
+}

@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "tracked_count": 1696,
+  "tracked_unchanged": true,
+  "changed_tracked_paths": [],
+  "runtime_status_unchanged": true,
+  "all_manifest_outputs_ignored": true,
+  "output_manifest_count": 312,
+  "source_snapshot": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "rerun": "npm ci then npm run build in projects/chirality-runtime, under same approved ignored-output scope; recapture tracked identity and status",
+  "scope": "ignored existing dependencies/build outputs only; no source/lock edit or operational engine activation"
+}

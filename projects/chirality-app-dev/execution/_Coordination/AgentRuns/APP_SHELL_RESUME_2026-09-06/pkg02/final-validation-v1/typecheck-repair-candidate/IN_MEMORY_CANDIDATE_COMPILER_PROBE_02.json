@@ -1,0 +1,191 @@
+{
+  "method": "Correct frontend cwd; paths removed only in memory; no config or source mutation",
+  "diagnostics": [],
+  "sources": [
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/event-schema.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/types.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/agent-engine-port.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/domain-profile.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/engine-conformance.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/errors.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/mcp/tool-names.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/operation-proposal.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/sdk-version.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/tool-catalog.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/tool-descriptor.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/transcript-replay.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/harness/index.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/errors.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/engine.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/project.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/session.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/residency.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/protocol.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/contracts/dist/index.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/client/dist/src/sse.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/client/dist/src/client.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/client/dist/src/errors.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/client/dist/src/index.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/cli/dist/src/config.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/cli/dist/src/cli.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/cli/dist/src/launch-agent.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/cli/dist/src/index.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/project-registry.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/residency-coordinator.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/session-store.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/engine-registry.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/turn-coordinator.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/agent1-run-coordinator.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/auth-registry.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/runtime-service.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/compatibility-session-policy.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/fs.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/core/dist/index.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/dist/runtime-daemon.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/dist/signal-shutdown.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/daemon/dist/index.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-claude/dist/index.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-pi-omlx/dist/omlx-client.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-pi-omlx/dist/pi-omlx-engine.d.ts",
+      "declaration": true
+    },
+    {
+      "file": "/private/tmp/chirality-dependencies-rrwmmitz/runtime/packages/engine-pi-omlx/dist/index.d.ts",
+      "declaration": true
+    }
+  ],
+  "limitation": "Uses preexisting temporary Runtime declarations, not approved newly built sibling. Does not establish acceptance. Prior probe01 had wrong compiler cwd causing node type lookup failure."
+}

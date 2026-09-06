@@ -1,0 +1,5 @@
+# SCOPE_CHANGE account candidate-only direct-child brief
+
+Actual instance /root/resume_account_scope; parent /root HELP_HUMAN. Capture is faithful reconstruction of parent message, not original dispatch bytes. Execution delegated-harness-native, role instruction-asserted; OpenAI GPT-6 family per system, exact serving ID unavailable. No substitution reported.
+
+Read root/App AGENTS, actual SCOPE_CHANGE package, loop live authority and exact account whole-T2 gate/locus evidence. Prepare one concrete reviewable amendment candidate for the final account/popover/right Settings presentation, grounded in live Remaining and Walkthrough. Sole writes account-scope/** under this run. Do not write the live decision register unless the reviewed parent release explicitly grants that exact candidate registration; do not implement account source or accept new scope. Keep immutable candidate identities, source references, exact proposed delta, alternatives, gates and independent verification evidence. Return a reviewable candidate plus actual outputs/hashes/limitations through parent only. This brief creates no owner act and adds no marketplace scope.

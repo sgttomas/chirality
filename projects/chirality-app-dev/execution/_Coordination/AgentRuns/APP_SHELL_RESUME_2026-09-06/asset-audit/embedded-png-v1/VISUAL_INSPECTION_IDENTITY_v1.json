@@ -1,0 +1,7 @@
+{
+  "addendum": "VISUAL_INSPECTION_ADDENDUM_v1.md",
+  "sha256": "6801e8cb40719f6c2cb3903e6dbb7a3053c84ea7b7bd859a93c79659d8d37391",
+  "bytes": 859,
+  "unchanged_extraction_manifest_sha256": "ec1cef0e88c888c1cc8c7967012a25d326452f9d1e5a7b83110cf40a13cb76b8",
+  "observation_source": "parent HELP_HUMAN actual view_image inspection report"
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "time": "2026-09-06T19:29:13.516Z",
+    "path": "/api/harness/agents",
+    "projectRoot": null
+  },
+  {
+    "time": "2026-09-06T19:29:34.216Z",
+    "path": "/api/harness/session/list",
+    "projectRoot": "/Users/Shared"
+  }
+]

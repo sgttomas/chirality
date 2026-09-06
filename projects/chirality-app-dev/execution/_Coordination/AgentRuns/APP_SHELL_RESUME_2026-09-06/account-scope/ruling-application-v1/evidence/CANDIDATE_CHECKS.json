@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "checks": {
+    "D122_RULING.md_candidate_hash": true,
+    "D122_RULING.md_live_preimage": true,
+    "D123_RULING.md_candidate_hash": true,
+    "D123_RULING.md_live_preimage": true,
+    "REGISTER.md_candidate_hash": true,
+    "REGISTER.md_live_preimage": true,
+    "DEL0205_STATUS.md_candidate_hash": true,
+    "DEL0205_STATUS.md_live_preimage": true,
+    "DEL0205_MEMORY.md_candidate_hash": true,
+    "DEL0205_MEMORY.md_live_preimage": true,
+    "DEL0205_RUN_RECORD.md_candidate_hash": true,
+    "DEL0205_RUN_RECORD.md_live_preimage": true,
+    "DEL0204_STATUS.md_candidate_hash": true,
+    "DEL0204_STATUS.md_live_preimage": true,
+    "DEL0204_MEMORY.md_candidate_hash": true,
+    "DEL0204_MEMORY.md_live_preimage": true,
+    "DEL0204_RUN_RECORD.md_candidate_hash": true,
+    "DEL0204_RUN_RECORD.md_live_preimage": true,
+    "DEL0205_approved_remaining_plus_event_only": true,
+    "DEL0205_memory_prefix": true,
+    "DEL0204_approved_remaining_plus_event_only": true,
+    "DEL0204_memory_prefix": true,
+    "register_only_two_selected_rows": true,
+    "frozen_set_matches": true
+  },
+  "timestamp": "2026-09-06T19:25:00.423455+00:00"
+}

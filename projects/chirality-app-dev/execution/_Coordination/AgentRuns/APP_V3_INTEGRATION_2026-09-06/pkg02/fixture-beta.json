@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "chirality.project/v2",
+  "projectId": "app-v3-gui-beta",
+  "displayName": "App v3 GUI beta",
+  "workingRoot": ".",
+  "instructionRoot": {
+    "mode": "runtime"
+  },
+  "defaultExecutionRoot": "execution",
+  "profiles": {
+    "domain": [],
+    "capability": [],
+    "dataBoundary": []
+  },
+  "enabledAdapterIds": [
+    "stub"
+  ],
+  "embeddedUi": {
+    "declared": false
+  }
+}

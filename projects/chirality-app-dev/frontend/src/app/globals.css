@@ -4094,6 +4094,28 @@ button:disabled {
   padding: 7px 8px;
   background: transparent;
 }
+.woven-navigator-session-row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.woven-navigator-session-row > .woven-navigator-session {
+  flex: 1;
+  min-width: 0;
+}
+.woven-navigator-session-reveal {
+  flex: none;
+  border: 0;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1;
+}
+.woven-navigator-session-reveal:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.woven-navigator-session-reveal:disabled { opacity: .5; }
 .woven-workspace .woven-navigator-session[aria-pressed="true"] {
   background: var(--accent-soft);
 }

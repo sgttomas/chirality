@@ -126,7 +126,7 @@ describe('Woven Dialogue Navigator', () => {
     expect(html).toContain('woven-navigator-session-dot');
     expect(html).toContain('aria-label="Live session"');
     expect(html).toContain(
-      '<span class="woven-navigator-session-title">RESEARCH</span>'
+      '<span class="woven-navigator-session-title">Research</span>'
     );
     expect((html.match(/aria-pressed="true"/g) ?? [])).toHaveLength(1);
     expect((html.match(/woven-navigator-session--live/g) ?? [])).toHaveLength(1);
@@ -147,7 +147,7 @@ describe('Woven Dialogue Navigator', () => {
     const html = renderNavigator({ selectionDisabled: true });
 
     expect(html).toContain(
-      'Session selection is paused while the primary dialogue is running.'
+      'Paused while a turn is running.'
     );
     expect((html.match(/data-session-id="[^"]+" disabled=""/g) ?? [])).toHaveLength(
       SESSIONS.length

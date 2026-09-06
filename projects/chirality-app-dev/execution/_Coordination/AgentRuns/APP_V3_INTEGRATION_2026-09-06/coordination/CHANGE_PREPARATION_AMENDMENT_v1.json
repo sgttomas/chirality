@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "recorded_at_utc": "2026-09-06T22:31:27.851015+00:00",
+  "event_time": null,
+  "amends": "WORK_GRAPH_v2.json",
+  "authority": "Parent Agent0 bounded release under current staged owner plan",
+  "instance": "/root/resume_change",
+  "role": "CHANGE",
+  "objective": "Prepare read-only scoped closeout inventory and local draft PR description while GUI/design continue. Inventory remains provisional until final fan-in.",
+  "writes": [
+    "this run change-preparation/** only"
+  ],
+  "forbidden": [
+    "stage",
+    "commit",
+    "push",
+    "merge",
+    "release",
+    "Runtime artifact inclusion",
+    "product/authority/other manager evidence changes"
+  ],
+  "return": "Provisional exact path inventory and evidence references, exclusions, local draft PR text, unresolved fan-in prerequisites. No inference about publication gates.",
+  "independent_progress": {
+    "GUI": "ACTIVE, not accepted as complete",
+    "Runtime": "Awaiting design return",
+    "D121": "Design/packet work active under graph v2",
+    "D124": "Factual reconciliation accepted by parent; pending closeout"
+  },
+  "parent_accepted_inputs": [
+    {
+      "path": "pkg02/REVIEW_RETURN.md",
+      "sha256": "3af169bc63afdce4790ba761ea5edc9429efa2975e1fa1c3dad9e881cdf35314",
+      "claim": "Fresh seven-path static review PASS only; GUI and execution separately required."
+    },
+    {
+      "path": "pkg09-records-v1/RECORD_MANIFEST.json",
+      "sha256": "06a499ed32c5765199061eff082ec2e7f4930fa3fcfa8957e93d44b419935314",
+      "claim": "Parent reviewed and accepted three factual record postimages/diffs. Manifest historical status remains unchanged."
+    }
+  ],
+  "factual_record_postimages": {
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/MEMORY.md": {
+      "bytes": 13151,
+      "postimage_sha256": "f8a65d07fb773d8f87f5292e956f56dcaeb7b85cf32c88752af8a88445a2fa7b",
+      "preimage_sha256": "588c456df5e3626b193340ad5e692949c2dc03863bbd535b53f122d2bc945bb4"
+    },
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md": {
+      "bytes": 43156,
+      "postimage_sha256": "57c736799077831e06e5a445ad935ca4bc92ff9f4cf53550272aef8429b9332b",
+      "preimage_sha256": "807c51eec8f97ffee0ba58a8eb5cba5053e3b421037649711af8b99308c4083f"
+    },
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/D_APP_124_MERGED_APP_V3_INTEGRATION_2026-09-06.md": {
+      "bytes": 3268,
+      "postimage_sha256": "3d7a725d6d6a2ee665afbfcfd1d51c8a5568906af33271cb11a8f72213545a4a",
+      "preimage_sha256": null
+    }
+  },
+  "limits": "No final closure, blanket publication authority, lifecycle acceptance, supplier acceptance or release is established. Existing immutable evidence is unchanged."
+}

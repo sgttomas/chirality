@@ -1,0 +1,16 @@
+{
+  "status": "APPLIED_PARENT_REVIEWED_EXACT_TWO_ROW_FACTUAL_RECONCILIATION",
+  "authority": "Parent specific write release after READY verdict calibration; current owner-authorized closeout",
+  "target": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+  "preimage_sha256": "f9cbb190d7823b7d41e9527fe1fcb0a61f3b1486074fbcf4990eb7976667c509",
+  "postimage_sha256": "5899eac3f69480fcbabf49e1254ff83e19515ac4f2bce03ecac18c1181d806ac",
+  "patch_sha256": "37cf30b53f423e312be96325654b137ce2fc982ecf02ba3cb19c3ccd75aedea8",
+  "changed_lines": [
+    141,
+    147
+  ],
+  "all_other_lines_unchanged": true,
+  "D121": "IndependentVerifier READY; OwnerCaseSelection NONE; EffectStatus HELD; AWAITING_RULING",
+  "D124": "Merged source/current validation accurately cited; final closeout pending; no additional authority",
+  "prior_candidate": "decision-register-candidate-v1 preserved unchanged"
+}

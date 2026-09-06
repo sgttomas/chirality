@@ -1,0 +1,15 @@
+{
+  "command": [
+    "npm",
+    "ci"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "end": "2026-09-06T22:25:32.809600+00:00",
+  "environment_overrides": {
+    "CHIRALITY_HARNESS_PROVIDER": "stub",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+  "exit_code": 0,
+  "removed_environment_variable_names": [],
+  "start": "2026-09-06T22:25:23.707241+00:00"
+}

@@ -1,0 +1,7 @@
+Sessions gain a separate Reveal action tied to their recorded project root, retryable error states and readable persona labels. Activity view gains local filters, clearing, timestamps and bounded action/task descriptions while preserving session attribution and shared event history.
+
+Records D122/D123 owner scope choices, D124 approval and current deliverable evidence, plus a consolidated proposal-only owner slate. D124's compiler configuration is already merged through PR #738 and is not changed again. No Runtime product source or account/strip gated implementation is included.
+
+Validation: fresh independent review passed for all seven source/test/style files. Integrated typechecks and production build passed, with 1,774 Vitest passes (4 skipped), 379 practitioner tests and all 8 configured isolated premerge cases passing. Actual current GUI and Finder Reveal preserved a new draft while revealing a historical session root; responsive light/dark browser views were checked at 1440 and 960 widths. Evidence includes cleanup and explicit residuals.
+
+The GUI proof used an existing separately identified development bundle. Ordinary packaged launch identity, Finder-to-composer drop, Dock behavior, live account/provider and full-redesign acceptance remain open. D99 keeps bulk raw evidence local with exact custody hashes and compact summaries; this is not a portable archive of every historical output.

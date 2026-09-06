@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-09-04
+**Last Updated:** 2026-09-06
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -118,6 +118,9 @@
   Removed when: merged with review PASS.
 
 ## History
+- 2026-09-06 - D124 bounded compiler obligation closed after Agent0 accepted final-union validation and scoped closeout commit `dbf40276066a771213a849d8e9c2fa32d4a738f5`, published at exact PR #739 head. PR #739 remains OPEN, not merged. D124 source was already merged through PR #738; only its completed Remaining item is removed. Other Remaining items, lifecycle, Checking Approval SHA and dependencies are unchanged. See `_run_records/D_APP_124_SCOPED_CLOSEOUT_2026-09-06.md`.
+- 2026-09-06 - PR #738 merged D124 through `28a8ed32ba83c5514ae2e65e9260833c1d46b7ef`. Fresh current-App validation includes the seven pending shell changes and passes all registered checks plus isolated registered headless premerge 8/8 with cleanup. D124 Remaining is retained for parent final-union/local closeout; historical failed attempts, other Remaining items, lifecycle, Checking Approval SHA and dependencies are unchanged. See `_run_records/D_APP_124_MERGED_APP_V3_INTEGRATION_2026-09-06.md`.
+- 2026-09-06 - D-APP-124 exact compiler repair applied locally and fresh source review/checks passed, except the independently preserved local premerge Runtime-binding failure. Scoped integration remains pending; all neighboring Remaining items, lifecycle, Checking Approval SHA and dependencies are unchanged. See `_run_records/D_APP_124_COMPILER_DECLARATION_REPAIR_2026-09-06.md`.
 - 2026-09-05 - Remaining marker normalized under D-APP-114 (owner-act item marked `NOT_SELECTABLE_UNTIL: owner act`; no scope change).
 - 2026-09-04 - SCA-APP-010 shell-redesign seating (D-APP-108; owner adopted the seating list as presented): Remaining items seeded DEL-09-04-V3-02 (SELECTABLE: none) with gate, dependency, write-locus, check, and return contracts; ruled questions cited by item. Outside the thirteen SCA-APP-010 carriers: seating only, no Scope of Work, context, or reference change. Run evidence `execution/_Coordination/AgentRuns/APP_SCA_APP_010_SEATING_2026-09-04/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.

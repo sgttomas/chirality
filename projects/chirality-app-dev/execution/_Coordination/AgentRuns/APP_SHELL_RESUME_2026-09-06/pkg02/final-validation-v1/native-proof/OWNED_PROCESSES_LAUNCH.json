@@ -1,0 +1,29 @@
+{
+  "production": {
+    "pid": 81438,
+    "command": [
+      "node",
+      "node_modules/next/dist/bin/next",
+      "start",
+      "--hostname",
+      "127.0.0.1",
+      "--port",
+      "3198"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+    "env_explicit": {
+      "NEXT_TELEMETRY_DISABLED": "1",
+      "CHIRALITY_HARNESS_PROVIDER": "stub",
+      "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality"
+    }
+  },
+  "proxy": {
+    "pid": 81439,
+    "command": [
+      "node",
+      "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/native-proof/proxy.cjs",
+      "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/pkg02/final-validation-v1/native-proof/config.json"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend"
+  }
+}

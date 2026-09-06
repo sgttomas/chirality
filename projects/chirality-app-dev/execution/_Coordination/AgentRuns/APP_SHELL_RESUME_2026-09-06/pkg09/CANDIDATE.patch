@@ -1,0 +1,37 @@
+--- a/frontend/tsconfig.electron.json
++++ b/frontend/tsconfig.electron.json
+@@ -11,33 +11,7 @@
+     "types": [
+       "node"
+     ],
+-    "baseUrl": ".",
+-    "paths": {
+-      "@chirality/engine-claude": [
+-        "../../chirality-runtime/packages/engine-claude/src/index.ts"
+-      ],
+-      "@chirality/runtime-contracts": [
+-        "../../chirality-runtime/packages/contracts/src/index.ts"
+-      ],
+-      "@chirality/runtime-contracts/*": [
+-        "../../chirality-runtime/packages/contracts/src/harness/*"
+-      ],
+-      "@chirality/runtime-core": [
+-        "../../chirality-runtime/packages/core/src/index.ts"
+-      ],
+-      "@chirality/runtime-daemon": [
+-        "../../chirality-runtime/packages/daemon/src/index.ts"
+-      ],
+-      "@chirality/runtime-client": [
+-        "../../chirality-runtime/packages/client/src/index.ts"
+-      ],
+-      "@chirality/runtime-cli": [
+-        "../../chirality-runtime/packages/cli/src/index.ts"
+-      ],
+-      "@chirality/engine-pi-omlx": [
+-        "../../chirality-runtime/packages/engine-pi-omlx/src/index.ts"
+-      ]
+-    }
++    "baseUrl": "."
+   },
+   "include": [
+     "electron/**/*.ts"

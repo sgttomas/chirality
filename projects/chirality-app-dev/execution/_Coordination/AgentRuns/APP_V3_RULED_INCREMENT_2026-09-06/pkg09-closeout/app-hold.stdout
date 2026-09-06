@@ -1,0 +1,25 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "WORKING_ITEMS:APP_V3_RULED_INCREMENT_2026-09-06:PKG09",
+  "operation": "reliance",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "dbf40276066a771213a849d8e9c2fa32d4a738f5",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-09-04",
+      "entry_path": "WORKING_ITEMS:APP_V3_RULED_INCREMENT_2026-09-06:PKG09",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "f341742770df0c2558281f4494c2ed97b7046b60a74812762cd4bb2be9652a3e",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-09-04"
+  ],
+  "verdict": "ALLOW"
+}

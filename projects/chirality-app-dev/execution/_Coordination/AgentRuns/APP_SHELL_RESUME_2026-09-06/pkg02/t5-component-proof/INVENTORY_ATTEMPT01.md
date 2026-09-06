@@ -1,0 +1,1 @@
+Initial compiler-input inventory treated esbuild virtual <define:process.env> as a filesystem path and raised FileNotFoundError after process cleanup was recorded. Final inventory explicitly records this virtual definition as {} from build.cjs; no source/assets omitted silently.

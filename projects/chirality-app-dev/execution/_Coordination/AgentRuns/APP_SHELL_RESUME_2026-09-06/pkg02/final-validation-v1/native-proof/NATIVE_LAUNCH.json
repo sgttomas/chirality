@@ -1,0 +1,18 @@
+{
+  "pid": 81467,
+  "command": [
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/Chirality Resume Proof.app/Contents/MacOS/Electron",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-electron/main.js"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "env_explicit": {
+    "CHIRALITY_USER_DATA": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/user-data",
+    "CHIRALITY_RUNTIME_SOCKET_PATH": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/user-data/runtime/proof.sock",
+    "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist/native-proof-resume-v1/user-data/runtime/proof-token",
+    "CHIRALITY_INSTRUCTION_ROOT": "/Users/ryan/.codex/worktrees/85d6/chirality",
+    "ELECTRON_RENDERER_URL": "http://127.0.0.1:3199"
+  },
+  "removed_env": [
+    "ELECTRON_RUN_AS_NODE"
+  ]
+}

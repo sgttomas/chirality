@@ -1,0 +1,13 @@
+{
+  "schema": "account-scope-candidate/v1",
+  "status": "PROPOSAL_ONLY_HELD",
+  "base_commit": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "live_target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+  "preimage_sha256": "6e78e98c67cfeb5c75fafc626531e9f8af5624df4fb3ce9398e9b365e959ed5d",
+  "candidate_sha256": "0dba6b613ee94ed5416345d6df4468936e135b24f1456d7aaddf564bf2edec15",
+  "exact_replacements": 3,
+  "untouched_prefix": true,
+  "untouched_history": true,
+  "gate_changed_only_for": "DEL-02-05-V3-05",
+  "live_effect": "NONE"
+}

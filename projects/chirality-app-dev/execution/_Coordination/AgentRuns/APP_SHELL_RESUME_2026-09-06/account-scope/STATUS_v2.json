@@ -1,0 +1,12 @@
+{
+  "status": "COMPLETE_CANDIDATE",
+  "effect": "HELD",
+  "review_verdict": "COMMIT-SAFE proposal registration only",
+  "review_return": "REFUTATION_RETURN_v1.md",
+  "reviewer": "/root/resume_account_scope/account_refutation",
+  "owner_selection": "NONE",
+  "live_writes": [],
+  "candidate_freeze": "CANDIDATE_FREEZE_v2.json",
+  "manager_return": "MANAGER_RETURN.md",
+  "timestamp": "2026-09-06T18:24:15.748978+00:00"
+}
