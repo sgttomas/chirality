@@ -1,0 +1,27 @@
+# Context: DEL-02-09_Hosted_Account_and_Consent_Boundary
+
+**Name:** Hosted Account and Consent Boundary
+**Package:** PKG-02_Runtime_Product
+**Discipline:** Not specified in accepted metadata binding
+**Type:** SECURITY_CONTROL
+**Responsible:** Ryan Tufts (accountable human); WORKING_ITEMS (production manager); bounded Agent 2 executor by sealed brief
+**Context Envelope:** M
+**Objectives:** OBJ-001;OBJ-002;OBJ-004;OBJ-007
+**Scope:** SOW-104
+**Inherited Source Identity:** root::DEL-02-09_Hosted_Account_and_Consent_Boundary
+
+## Description
+Provide HostedEngineConsentPort and the per-root hosted-account boundary: root-private app-owned CODEX_HOME, account/epoch and policy continuity, and K-ROLE-2 role-posture digest. Always offer Agent 0/1/2 role entry for Codex sessions; when G-ROLE cannot mechanically prove Agent-2 non-delegation, still offer explicit Agent 2/TASK labelled role not mechanically enforced. Each canonical root chooses under consent: no command network by default; ask per destination through networkApprovalContext showing host/protocol, with a grant possibly unblocking queued requests to the same destination and acceptForSession allowed only by explicit user act; or labelled command network on with network_access = true.
+
+## Anticipated Artifacts
+- HostedEngineConsentPort contract
+- root-private CODEX_HOME and account-continuity controls
+- K-ROLE-2 digest schema
+- Agent 0/1/2 parity and labelled Agent 2/TASK fallback controls
+- per-root three-posture consent-state model
+- isolation consent and continuity tests
+
+## Decomposition Reference
+- **Decomposition:** projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md
+- **Deliverable ID:** DEL-02-09_Hosted_Account_and_Consent_Boundary
+- **Metadata binding:** execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/RUNTIME_METADATA_BINDINGS.csv

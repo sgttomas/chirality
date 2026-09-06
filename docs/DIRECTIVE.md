@@ -1,5 +1,7 @@
 # DIRECTIVE — Founding Intent, Scope, and Constraints
 
+> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
+
 > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them authoritative." This document is accepted root governance in full. Provenance: it re-established the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`), authored from the prior root canon (`.archive/DIRECTIVE.md`), updated to the current merged-monorepo topology and the live instruction surface (`AGENTS.md`, `agents/`). **Ratification history:** per D-GOV-05 (`docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md`, ruled by owner 2026-07-01), the source-of-truth and human-authority rules this directive expresses (§2.1, §2.3) were ratified first as the minimal harness basis; the 2026-07-11 full ratification subsumes that partial basis.
 
 This document captures the founding intent, design philosophy, and structural constraints of Chirality Root and the filesystem-native agent operating system it contains. It is the "why" document — the principles that govern all other governance documents, agent instructions, and operational decisions.
@@ -10,7 +12,7 @@ This document captures the founding intent, design philosophy, and structural co
 
 ## 1. Founding Intent
 
-Chirality Root is the canonical human-governed application environment and generative operating form for governed professional knowledge work. It contains a filesystem-native agent operating system together with the normative basis, developmental machinery, evidence, and human judgment by which that operating system is formed and governed (RD-1 ruled genus, adopted through D-GOV-22). It is maintained as the public canonical instruction and product repository whose root is the **shared instruction surface** — a release-managed agent operating system (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`; enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27) — that serves separately versioned project and domain **working roots**, explicitly governed in-tree projects, and — under the D-GOV-21 exception — the root product's own working root at the repository root. The same instruction surface is also packaged as a desktop harness that runs agents against a user-selected working folder.
+Chirality Root is the canonical human-governed instruction and governance repository for governed professional knowledge work. It maintains the release-managed agent operating system, normative basis, change machinery, evidence and accountable human decisions that serve project and domain working roots. Runtime product ownership belongs to projects/chirality-runtime. Root governance and instruction self-maintenance use separately authorized repository change scopes; historical Root product evidence remains preserved after its active product exception is retired.
 
 The core insight: **if the filesystem is the database, architecture is a state-and-authority specification, not a service mesh.**
 
@@ -73,7 +75,7 @@ complement live agency.
 
 Gate-controlled workflows ensure that humans make consequential decisions at defined junctions. Brief-driven pipelines make agent execution bounded, repeatable, and auditable — Type 2 agents receive structured inputs and return structured outputs with no mid-run human decisions required. Write quarantine contains failures within declared zones: every agent has an explicit write scope, tool roots are isolated from source truth, and no agent writes outside its declared zone.
 
-The instruction root (release-managed agent operating system) is physically separated from the working root (user-controlled project state). This ensures that the rules governing agent behavior are stable across projects while execution remains fully filesystem-native. See §2.6. The root product itself is the one governed exception: its working root is the repository root (D-GOV-21).
+Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.
 
 **Axiology — what the system values.**
 
@@ -196,12 +198,12 @@ Clarification:
 
 ### 2.6 Separation of Instruction and Execution
 
-The system separates the **instruction root** (the release-managed agent operating system) from the **working root** (the project state agents read and write) — with the single D-GOV-21 exception that the root product's working root is the repository root:
+Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.
 
 - **Instruction root:** the shared, release-managed surface — `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, and `.github/workflows/` (enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27). It is the Chirality checkout during source execution and the app bundle in deployable desktop builds. External V2 working repositories resolve it through `CHIRALITY_INSTRUCTION_ROOT`; `.github/workflows/` remains repository CI machinery and is not packaged.
-- **Working root:** the filesystem location where agents execute and create or update governed state. One instruction root serves **many** separately versioned working repositories, selected project/domain packs, explicitly governed in-tree projects, or user-selected folders under the desktop harness. Under D-GOV-21, the repository root is additionally the working root for the root product itself.
+- **Working root:** the selected project/domain directory in which governed product state is read and written. Explicit in-tree v1 and disjoint external v2 registration retain their own validated containment contracts. Root governance changes use separately authorized scopes, not continuing product materialization.
 
-This preserves a single stable agent operating system across many projects and domains while keeping execution fully filesystem-native in user-controlled state. A working root MUST NOT be located inside the instruction root. Exception (D-GOV-21): the repository root is itself the working root for development of the root product, with root `execution/` as its execution root, under the replacement containment contract of D-GOV-21. No other working root may be located inside the instruction root.
+Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.
 
 DIRECTIVE establishes the separation as a value; `SPEC.md` (Root Model and Path Anchoring) binds the paths — including the rule that a task's write scope must resolve within the selected working root, which is what makes repository, pack, and git-worktree isolation safe.
 
@@ -297,8 +299,8 @@ These constraints are hard to change later. They define the boundaries of the sy
 | Flat package hierarchy | No nesting; simplifies automation, coverage checking, and scope assignment |
 | Deliverable-local dependency registers | No central dependency graph to maintain; aggregation is on-demand |
 | Immutable snapshots for task agent outputs | Reruns are safe; historical outputs are preserved |
-| Instruction root separate from working root (root product excepted per D-GOV-21) | Agent instructions are release-managed; project data is user-controlled; root-product development excepted per D-GOV-21 |
-| One shared instruction root serves many working roots | A single release-managed agent OS governs many projects and domains without per-workspace instruction drift; the instruction root additionally serves as the root product's own working root (D-GOV-21) |
+| Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |
+| Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |
 | Task write scope resolves within the active checkout | Enables per-working-root and git-worktree isolation; prevents cross-workspace writes (see `SPEC.md` Root Model and Path Anchoring) |
 
 ---
@@ -315,8 +317,10 @@ This framework is designed to support professional responsibility, not replace i
 
 ## 7. Shared Runtime Direction
 
-Under D-GOV-20, Chirality’s executable agent harness is a root-owned
-`runtime/` workspace. One opt-in per-user daemon owns engines, credentials,
+At effective transfer, Chirality’s executable agent harness is owned by the
+`projects/chirality-runtime/` product project. This prospectively supersedes only
+D-GOV-20’s Root ownership/location proposition; Root retains shared governance.
+One opt-in per-user daemon owns engines, credentials,
 sessions, delegation, tools, interruption, turn admission, and local-model
 residency. Desktop, CLI, and registered project surfaces are clients of that
 single owner.

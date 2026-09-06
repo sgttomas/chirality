@@ -1,0 +1,681 @@
+{
+  "control_scope_links": [
+    {
+      "control": "GOV-01-01",
+      "scope": "SOW-084",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-01",
+      "scope": "SOW-088",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-01",
+      "scope": "SOW-089",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-01",
+      "scope": "SOW-090",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-01",
+      "scope": "SOW-091",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-01",
+      "scope": "SOW-095",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-01",
+      "scope": "SOW-098",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-02",
+      "scope": "SOW-016",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-02",
+      "scope": "SOW-025",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-02",
+      "scope": "SOW-099",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-03",
+      "scope": "SOW-018",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-03",
+      "scope": "SOW-022",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-04",
+      "scope": "SOW-010",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-04",
+      "scope": "SOW-011",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-04",
+      "scope": "SOW-017",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-05",
+      "scope": "SOW-014",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-06",
+      "scope": "SOW-023",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-06",
+      "scope": "SOW-024",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-07",
+      "scope": "SOW-006",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-07",
+      "scope": "SOW-092",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-07",
+      "scope": "SOW-094",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-08",
+      "scope": "SOW-007",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-08",
+      "scope": "SOW-077",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-08",
+      "scope": "SOW-078",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-08",
+      "scope": "SOW-079",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-08",
+      "scope": "SOW-100",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-01-08",
+      "scope": "SOW-101",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-01",
+      "scope": "SOW-026",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-02",
+      "scope": "SOW-027",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-02",
+      "scope": "SOW-035",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-03",
+      "scope": "SOW-028",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-04",
+      "scope": "SOW-019",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-04",
+      "scope": "SOW-029",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-05",
+      "scope": "SOW-013",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-02-05",
+      "scope": "SOW-030",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-01",
+      "scope": "SOW-020",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-01",
+      "scope": "SOW-031",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-02",
+      "scope": "SOW-032",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-03",
+      "scope": "SOW-033",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-04",
+      "scope": "SOW-034",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-04",
+      "scope": "SOW-063",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-05",
+      "scope": "SOW-001",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-05",
+      "scope": "SOW-034",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-06",
+      "scope": "SOW-001",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-06",
+      "scope": "SOW-002",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-06",
+      "scope": "SOW-061",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-03-06",
+      "scope": "SOW-103",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-01",
+      "scope": "SOW-036",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-01",
+      "scope": "SOW-037",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-02",
+      "scope": "SOW-038",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-02",
+      "scope": "SOW-093",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-03",
+      "scope": "SOW-039",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-04",
+      "scope": "SOW-040",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-04",
+      "scope": "SOW-045",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-05",
+      "scope": "SOW-009",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-05",
+      "scope": "SOW-041",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-06",
+      "scope": "SOW-042",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-07",
+      "scope": "SOW-044",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-07",
+      "scope": "SOW-074",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-08",
+      "scope": "SOW-047",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-08",
+      "scope": "SOW-051",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-08",
+      "scope": "SOW-085",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-08",
+      "scope": "SOW-096",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-08",
+      "scope": "SOW-102",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-09",
+      "scope": "SOW-048",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-09",
+      "scope": "SOW-049",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-09",
+      "scope": "SOW-097",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-004",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-005",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-008",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-012",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-043",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-046",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-050",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-076",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-10",
+      "scope": "SOW-083",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-11",
+      "scope": "SOW-041",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-04-11",
+      "scope": "SOW-053",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-01",
+      "scope": "SOW-052",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-02",
+      "scope": "SOW-021",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-02",
+      "scope": "SOW-053",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-03",
+      "scope": "SOW-054",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-04",
+      "scope": "SOW-055",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-04",
+      "scope": "SOW-059",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-05",
+      "scope": "SOW-056",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-06",
+      "scope": "SOW-057",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-07",
+      "scope": "SOW-058",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-05-08",
+      "scope": "SOW-009",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-01",
+      "scope": "SOW-060",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-01",
+      "scope": "SOW-062",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-01",
+      "scope": "SOW-080",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-01",
+      "scope": "SOW-081",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-01",
+      "scope": "SOW-082",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-02",
+      "scope": "SOW-065",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-02",
+      "scope": "SOW-066",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-03",
+      "scope": "SOW-064",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-04",
+      "scope": "SOW-067",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-04",
+      "scope": "SOW-068",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-04",
+      "scope": "SOW-069",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-04",
+      "scope": "SOW-075",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-05",
+      "scope": "SOW-015",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-06",
+      "scope": "SOW-070",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-06",
+      "scope": "SOW-071",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-06",
+      "scope": "SOW-072",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-06",
+      "scope": "SOW-073",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-07",
+      "scope": "SOW-086",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-07",
+      "scope": "SOW-087",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    },
+    {
+      "control": "GOV-06-08",
+      "scope": "SOW-003",
+      "scope_exists": true,
+      "successor_mentions_control": true
+    }
+  ],
+  "control_scope_links_pass": true,
+  "predicate_id_exact_set": true,
+  "D13_binding": {
+    "ControlID": "GOV-04-08",
+    "ExactControlSource": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-08.md",
+    "ControlSHA256": "17f5429c2786eb8865ddb1152793b6fcec0f5fd0af04ff9146765640e74e7c2f",
+    "ProposedControlHome": "execution/_Coordination/GovernanceControls/GOV-04-08.md",
+    "SourceScopeIDs": "SOW-047;SOW-051;SOW-085;SOW-096;SOW-102",
+    "ControllingInstrument": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md;execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/D13_Amendment.md",
+    "ExactPredicateRegister": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+    "LegacyAuthorityReferenceDisposition": "AUTHORITY_AMENDMENT.md in the preserved control resolves to this controlling instrument; former Root-product/genus/readiness predicates yield to the listed exact successor scope rows only. Unaffected source duties and historical evidence retain their meaning.",
+    "ConflictPrecedence": "Exact SOW-047 successor in FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv and D13_Amendment.md overrides former same-path prohibition only for docs/PRD_ROOT.md; other listed SOW successors remain per exact register; immutable prior revision path remains protected",
+    "CurrentState": "CANDIDATE_NOT_ACCEPTED",
+    "InitialEffectiveState": "OPEN_UNASSESSED"
+  },
+  "SOW047": {
+    "SourceScopeID": "SOW-047",
+    "SourceInOut": "IN",
+    "SourceStatement": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; the adopted bytes are never overwritten at their path and each revision is a new attributable act.",
+    "Successors": "GOV-04-08",
+    "Disposition": "REPLACE_NAMED_PREDICATE",
+    "ExactSuccessorPredicate": "Once adopted the PRD is amended only by a superseding instrument bound to a git SHA; immutable accepted revision artifacts are never overwritten. The canonical docs/PRD_ROOT.md placement may be replaced only after its exact immediate predecessor is preserved at a named immutable revision path and the owner instrument binds prior and successor hashes; the migration predecessor is execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/ACCEPTED_ROOT_PRD_REV8.md. Each revision remains a new attributable act; no other immutable artifact path gains this exception.",
+    "CanonAnchor": "PRD \u00a75.3 D-13 as amended by ADDENDUM_REVIEW/D13_Amendment.md",
+    "OpenIssue": "FALSE"
+  },
+  "agent_count": 34,
+  "listed_agent_count": 34,
+  "agent_inventory_missing": [],
+  "agent_inventory_unlisted": []
+}

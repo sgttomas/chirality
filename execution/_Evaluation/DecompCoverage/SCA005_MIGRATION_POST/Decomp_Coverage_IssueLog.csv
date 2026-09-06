@@ -1,0 +1,2 @@
+IssueID,CheckNumber,Severity,EntityType,ConcreteLabel,EntityID,Description,DecompositionRef,FilesystemRef
+COV-001,6,WARNING,ARTIFACT,HistoricalDeliverable,DEL-04-11_Root_Loop_Receipt_Validator,Inherited source SOW current-schema warning remains under GOV-04-11; no retrospective repair or implied product completion,execution/_ScopeChange/SCA-005_2026-09-05_2344/Historical_Findings_Disposition.md,execution/_Coordination/GovernanceControls/GOV-04-11.md

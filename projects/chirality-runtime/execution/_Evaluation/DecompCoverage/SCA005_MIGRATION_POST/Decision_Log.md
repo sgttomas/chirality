@@ -1,0 +1,3 @@
+# Decisions
+
+Use actual owner records to interpret unchanged candidate-era approved payloads. Keep historical source identities qualified separately from destination identities. Resolve fields by semantic names, preserving full slugs. Count66 unique qualified requirements and pinned complete contracts. Use actual live SOW resolver, not prior reviewer PASS alone. Read destination status after parent release; Root post-state is not inferred. Preserve dependency raw warning and authoritative registry calibration together. Pointer step withheld under user owner-only instruction. No source/tool/Git edits or child delegation. Snapshot sealed only after actual initialization and dependency closure evidence arrived.

@@ -1,0 +1,3 @@
+Predecessor,Consumer,Class,Location,Basis
+root::GOV-04-05,root::GOV-04-11,GATING_EVIDENCE_FAN_IN,Root governance control dependency surface,Preserved mapping of DEL-04-05 and DEL-05-02 receipt-validator inputs
+root::GOV-05-02,root::GOV-04-11,GATING_EVIDENCE_FAN_IN,Root governance control dependency surface,Preserved mapping of DEL-04-05 and DEL-05-02 receipt-validator inputs

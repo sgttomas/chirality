@@ -1,0 +1,7 @@
+{
+  "ignored_env_copied": true,
+  "bytes": "SYNTHETIC_FIXTURE_SECRET=not-real\n",
+  "phase": "prospective",
+  "fixture_only": true,
+  "authority_and_git_inventory_mocked": true
+}

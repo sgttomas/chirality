@@ -1,0 +1,432 @@
+# Governance-only configuration; operational effect follows the referenced governance state.
+schema: root-surface-ownership/v1
+mode: governance-only
+governance_state:
+  path: execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_PENDING.json
+  sha256: db606ddc4e143b87d6a487c79501a366afb27b753f406bd3d6e496a0d6cececd
+decomposition: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md
+entries:
+- id: GOV-01-01
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-01.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-01-02
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-02.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-01-03
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-03.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-01-04
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-04.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-01-05
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-05.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-01-06
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-06.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-01-07
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-07.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-01-08
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-01-08.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-02-01
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-02-01.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-02-02
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-02-02.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-02-03
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-02-03.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-02-04
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-02-04.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-02-05
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-02-05.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance
+  kind: runtime-carrier
+  project: chirality-runtime
+  write_targets:
+  - projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/**
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control
+  kind: runtime-carrier
+  project: chirality-runtime
+  write_targets:
+  - projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/**
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning
+  kind: runtime-carrier
+  project: chirality-runtime
+  write_targets:
+  - projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/**
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary
+  kind: runtime-carrier
+  project: chirality-runtime
+  write_targets:
+  - projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/**
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2
+  kind: runtime-carrier
+  project: chirality-runtime
+  write_targets:
+  - projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/**
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation
+  kind: runtime-carrier
+  project: chirality-runtime
+  write_targets:
+  - projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/**
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in
+  kind: runtime-carrier
+  project: chirality-runtime
+  write_targets:
+  - projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/**
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-03-01
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-03-01.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-03-02
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-03-02.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-03-03
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-03-03.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-03-04
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-03-04.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-03-05
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-03-05.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-03-06
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-03-06.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-01
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-01.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-02
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-02.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-03
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-03.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-04
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-04.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-05
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-05.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-06
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-06.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-07
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-07.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-08
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-08.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-09
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-09.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-10
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-10.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-04-11
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-04-11.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-01
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-01.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-02
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-02.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-03
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-03.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-04
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-04.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-05
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-05.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-06
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-06.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-07
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-07.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-05-08
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-05-08.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-01
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-01.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-02
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-02.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-03
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-03.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-04
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-04.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-05
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-05.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-06
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-06.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-07
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-07.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null
+- id: GOV-06-08
+  kind: governance-control
+  project: root
+  write_targets:
+  - execution/_Coordination/GovernanceControls/GOV-06-08.md
+  read_targets: []
+  instruction_surface: false
+  serialization: null

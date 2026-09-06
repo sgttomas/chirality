@@ -1,0 +1,2182 @@
+QualifiedSourceRequirement,QualifiedSuccessorRequirement,ScopeItemID,PackageID,DeliverableID,SourceFile,SourceSHA256,SourceLine,InheritedText,Treatment,VerificationBasis
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-001,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-001,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,122,"- **REQ-001** — The Root runtime compatibility identity shall denote one
+  compatibility epoch of consequential generic daemon/client contract
+  semantics.
+- **REQ-002** — The compatibility identity shall not be inferred from or
+  equated with the route namespace, npm package version, runtime fingerprint,
+  source commit, release commit or distributable identity, or Tier-0 Flow-A
+  identity. Any relationship requires an exact accepted record.
+- **REQ-003** — Root shall own the identity and its semantic definition under
+  O-11. A Tier-0 relationship act may coordinate Flow-A but shall not transfer
+  ownership of generic runtime semantics.
+- **REQ-004** — Before a consequential runtime-dependent operation, an
+  affected client shall obtain the daemon's declared compatibility identity
+  and compare it by exact equality with the identity accepted by that client's
+  contract basis.
+- **REQ-005** — A mismatch shall stop the consequential operation with a
+  distinct typed incompatibility result and shall not silently downgrade,
+  select another runtime loop, daemon, model, or transport, or infer
+  compatibility from transport success or another version-like label.
+- **REQ-006** — Range negotiation, downgrade, and concurrent multi-version
+  support shall remain unsupported unless exact evidence and a later owner act
+  authorize them.
+- **REQ-007** — The compatibility binding record shall connect the exact
+  identity to exact contract bytes, source and release identities, affected
+  clients and accepted bases, migration or conformance evidence,
+  proportionate regression evidence, and accountable-human release
+  disposition.
+- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-002,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-002,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,125,"- **REQ-002** — The compatibility identity shall not be inferred from or
+  equated with the route namespace, npm package version, runtime fingerprint,
+  source commit, release commit or distributable identity, or Tier-0 Flow-A
+  identity. Any relationship requires an exact accepted record.
+- **REQ-003** — Root shall own the identity and its semantic definition under
+  O-11. A Tier-0 relationship act may coordinate Flow-A but shall not transfer
+  ownership of generic runtime semantics.
+- **REQ-004** — Before a consequential runtime-dependent operation, an
+  affected client shall obtain the daemon's declared compatibility identity
+  and compare it by exact equality with the identity accepted by that client's
+  contract basis.
+- **REQ-005** — A mismatch shall stop the consequential operation with a
+  distinct typed incompatibility result and shall not silently downgrade,
+  select another runtime loop, daemon, model, or transport, or infer
+  compatibility from transport success or another version-like label.
+- **REQ-006** — Range negotiation, downgrade, and concurrent multi-version
+  support shall remain unsupported unless exact evidence and a later owner act
+  authorize them.
+- **REQ-007** — The compatibility binding record shall connect the exact
+  identity to exact contract bytes, source and release identities, affected
+  clients and accepted bases, migration or conformance evidence,
+  proportionate regression evidence, and accountable-human release
+  disposition.
+- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-003,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-003,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,129,"- **REQ-003** — Root shall own the identity and its semantic definition under
+  O-11. A Tier-0 relationship act may coordinate Flow-A but shall not transfer
+  ownership of generic runtime semantics.
+- **REQ-004** — Before a consequential runtime-dependent operation, an
+  affected client shall obtain the daemon's declared compatibility identity
+  and compare it by exact equality with the identity accepted by that client's
+  contract basis.
+- **REQ-005** — A mismatch shall stop the consequential operation with a
+  distinct typed incompatibility result and shall not silently downgrade,
+  select another runtime loop, daemon, model, or transport, or infer
+  compatibility from transport success or another version-like label.
+- **REQ-006** — Range negotiation, downgrade, and concurrent multi-version
+  support shall remain unsupported unless exact evidence and a later owner act
+  authorize them.
+- **REQ-007** — The compatibility binding record shall connect the exact
+  identity to exact contract bytes, source and release identities, affected
+  clients and accepted bases, migration or conformance evidence,
+  proportionate regression evidence, and accountable-human release
+  disposition.
+- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-004,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-004,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,132,"- **REQ-004** — Before a consequential runtime-dependent operation, an
+  affected client shall obtain the daemon's declared compatibility identity
+  and compare it by exact equality with the identity accepted by that client's
+  contract basis.
+- **REQ-005** — A mismatch shall stop the consequential operation with a
+  distinct typed incompatibility result and shall not silently downgrade,
+  select another runtime loop, daemon, model, or transport, or infer
+  compatibility from transport success or another version-like label.
+- **REQ-006** — Range negotiation, downgrade, and concurrent multi-version
+  support shall remain unsupported unless exact evidence and a later owner act
+  authorize them.
+- **REQ-007** — The compatibility binding record shall connect the exact
+  identity to exact contract bytes, source and release identities, affected
+  clients and accepted bases, migration or conformance evidence,
+  proportionate regression evidence, and accountable-human release
+  disposition.
+- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-005,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-005,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,136,"- **REQ-005** — A mismatch shall stop the consequential operation with a
+  distinct typed incompatibility result and shall not silently downgrade,
+  select another runtime loop, daemon, model, or transport, or infer
+  compatibility from transport success or another version-like label.
+- **REQ-006** — Range negotiation, downgrade, and concurrent multi-version
+  support shall remain unsupported unless exact evidence and a later owner act
+  authorize them.
+- **REQ-007** — The compatibility binding record shall connect the exact
+  identity to exact contract bytes, source and release identities, affected
+  clients and accepted bases, migration or conformance evidence,
+  proportionate regression evidence, and accountable-human release
+  disposition.
+- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-006,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-006,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,140,"- **REQ-006** — Range negotiation, downgrade, and concurrent multi-version
+  support shall remain unsupported unless exact evidence and a later owner act
+  authorize them.
+- **REQ-007** — The compatibility binding record shall connect the exact
+  identity to exact contract bytes, source and release identities, affected
+  clients and accepted bases, migration or conformance evidence,
+  proportionate regression evidence, and accountable-human release
+  disposition.
+- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-007,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-007,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,143,"- **REQ-007** — The compatibility binding record shall connect the exact
+  identity to exact contract bytes, source and release identities, affected
+  clients and accepted bases, migration or conformance evidence,
+  proportionate regression evidence, and accountable-human release
+  disposition.
+- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-008,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-008,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,148,"- **REQ-008** — Changing the compatibility identity shall require a
+  consequential Root tranche under this deliverable, client-impact
+  determination, separately governed affected-client conformance or
+  migration, regression evidence, and a separate accountable-human release
+  disposition.
+- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-009,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-009,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,153,"- **REQ-009** — A client shall be classified as affected only when it has an
+  accepted implementation or migration obligation for the exact Root change.
+  Naming a prospective client shall not create work, a closure veto, or a PEC
+  obligation.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-010,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-010,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,160,"- **REQ-010** — Before consequential runtime-dependent work begins, the client
+  shall separately establish usable client-local configuration and
+  project-scoped access material, accepted current project registration,
+  authorization for the requested project and operation, every required
+  project adapter, reachable authorized runtime transport, and compatible
+  client/daemon contract identity. The daemon shall separately establish the
+  required runtime-owned credentials, engines, sessions, delegation, tools,
+  turn locks, interruption, and model-residency readiness without transferring
+  custody or ownership to a client.
+- **REQ-011** — Failure of any required precondition shall fail the affected
+  runtime-dependent operation closed and shall not authorize another runtime
+  loop, daemon, model, protocol version, or transport.
+- **REQ-012** — Reconnect or rebind to a daemon that passes every precondition
+  shall be recovery, not fallback, and shall not silently replay a
+  consequential operation whose completion is unknown.
+- **REQ-013** — File-native governance and separately owned project functions
+  may remain usable but shall not be characterized as an alternate agent
+  runtime. Every retained-function claim shall be named and proven by its
+  owning client.
+- **REQ-014** — The machine-readable failure class shall survive adapter and
+  presentation layers; simplified wording shall not erase the class needed for
+  recovery, evidence, or support.
+- **REQ-015** — Root shall define the generic floor. Each actually affected
+  client shall own its client-specific retained-function, presentation,
+  migration, and conformance evidence under its own accepted scope and gates.
+- **REQ-016** — PEC v2 shall receive no obligation until a separate PEC gate
+  establishes an active accepted v2 carrier and an exact affected operation.
+  Frozen PEC v0.4 shall remain reference evidence only.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-011,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-011,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,169,"- **REQ-011** — Failure of any required precondition shall fail the affected
+  runtime-dependent operation closed and shall not authorize another runtime
+  loop, daemon, model, protocol version, or transport.
+- **REQ-012** — Reconnect or rebind to a daemon that passes every precondition
+  shall be recovery, not fallback, and shall not silently replay a
+  consequential operation whose completion is unknown.
+- **REQ-013** — File-native governance and separately owned project functions
+  may remain usable but shall not be characterized as an alternate agent
+  runtime. Every retained-function claim shall be named and proven by its
+  owning client.
+- **REQ-014** — The machine-readable failure class shall survive adapter and
+  presentation layers; simplified wording shall not erase the class needed for
+  recovery, evidence, or support.
+- **REQ-015** — Root shall define the generic floor. Each actually affected
+  client shall own its client-specific retained-function, presentation,
+  migration, and conformance evidence under its own accepted scope and gates.
+- **REQ-016** — PEC v2 shall receive no obligation until a separate PEC gate
+  establishes an active accepted v2 carrier and an exact affected operation.
+  Frozen PEC v0.4 shall remain reference evidence only.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-012,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-012,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,172,"- **REQ-012** — Reconnect or rebind to a daemon that passes every precondition
+  shall be recovery, not fallback, and shall not silently replay a
+  consequential operation whose completion is unknown.
+- **REQ-013** — File-native governance and separately owned project functions
+  may remain usable but shall not be characterized as an alternate agent
+  runtime. Every retained-function claim shall be named and proven by its
+  owning client.
+- **REQ-014** — The machine-readable failure class shall survive adapter and
+  presentation layers; simplified wording shall not erase the class needed for
+  recovery, evidence, or support.
+- **REQ-015** — Root shall define the generic floor. Each actually affected
+  client shall own its client-specific retained-function, presentation,
+  migration, and conformance evidence under its own accepted scope and gates.
+- **REQ-016** — PEC v2 shall receive no obligation until a separate PEC gate
+  establishes an active accepted v2 carrier and an exact affected operation.
+  Frozen PEC v0.4 shall remain reference evidence only.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-013,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-013,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,175,"- **REQ-013** — File-native governance and separately owned project functions
+  may remain usable but shall not be characterized as an alternate agent
+  runtime. Every retained-function claim shall be named and proven by its
+  owning client.
+- **REQ-014** — The machine-readable failure class shall survive adapter and
+  presentation layers; simplified wording shall not erase the class needed for
+  recovery, evidence, or support.
+- **REQ-015** — Root shall define the generic floor. Each actually affected
+  client shall own its client-specific retained-function, presentation,
+  migration, and conformance evidence under its own accepted scope and gates.
+- **REQ-016** — PEC v2 shall receive no obligation until a separate PEC gate
+  establishes an active accepted v2 carrier and an exact affected operation.
+  Frozen PEC v0.4 shall remain reference evidence only.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-014,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-014,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,179,"- **REQ-014** — The machine-readable failure class shall survive adapter and
+  presentation layers; simplified wording shall not erase the class needed for
+  recovery, evidence, or support.
+- **REQ-015** — Root shall define the generic floor. Each actually affected
+  client shall own its client-specific retained-function, presentation,
+  migration, and conformance evidence under its own accepted scope and gates.
+- **REQ-016** — PEC v2 shall receive no obligation until a separate PEC gate
+  establishes an active accepted v2 carrier and an exact affected operation.
+  Frozen PEC v0.4 shall remain reference evidence only.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-015,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-015,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,182,"- **REQ-015** — Root shall define the generic floor. Each actually affected
+  client shall own its client-specific retained-function, presentation,
+  migration, and conformance evidence under its own accepted scope and gates.
+- **REQ-016** — PEC v2 shall receive no obligation until a separate PEC gate
+  establishes an active accepted v2 carrier and an exact affected operation.
+  Frozen PEC v0.4 shall remain reference evidence only.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-016,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-016,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,185,"- **REQ-016** — PEC v2 shall receive no obligation until a separate PEC gate
+  establishes an active accepted v2 carrier and an exact affected operation.
+  Frozen PEC v0.4 shall remain reference evidence only.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-017,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-017,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,191,"- **REQ-017** — Client-configuration or project-access failure shall prevent
+  sending the consequential request and shall not be reported merely as socket
+  absence; repair remains with the owning client or project authority.
+- **REQ-018** — Runtime credential-readiness failure shall reject the affected
+  operation without transferring daemon credential custody or repair authority
+  to the client.
+- **REQ-019** — Project lookup, identity, manifest currency, registration, or
+  enabled-adapter failure shall prevent a project runtime operation until
+  separately authorized registration or re-registration succeeds.
+- **REQ-020** — Project-scoped identity, required-scope, or operation-
+  authorization failure shall prevent the operation, remain distinct from
+  provider authentication, and never broaden authority automatically.
+- **REQ-021** — Required project-adapter unavailability, lack of authority, or
+  protocol inconsistency shall block only operations requiring that adapter;
+  generic transport shall acquire no project authority.
+- **REQ-022** — Authorized Unix-socket transport failure shall fail the
+  runtime-dependent operation closed with no TCP or in-process fallback;
+  reconnect or rebind shall rerun all preconditions.
+- **REQ-023** — Compatibility mismatch shall reject before consequential work
+  with no downgrade or range inference; recovery shall require an accepted
+  compatible pair and a new bind.
+- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-018,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-018,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,194,"- **REQ-018** — Runtime credential-readiness failure shall reject the affected
+  operation without transferring daemon credential custody or repair authority
+  to the client.
+- **REQ-019** — Project lookup, identity, manifest currency, registration, or
+  enabled-adapter failure shall prevent a project runtime operation until
+  separately authorized registration or re-registration succeeds.
+- **REQ-020** — Project-scoped identity, required-scope, or operation-
+  authorization failure shall prevent the operation, remain distinct from
+  provider authentication, and never broaden authority automatically.
+- **REQ-021** — Required project-adapter unavailability, lack of authority, or
+  protocol inconsistency shall block only operations requiring that adapter;
+  generic transport shall acquire no project authority.
+- **REQ-022** — Authorized Unix-socket transport failure shall fail the
+  runtime-dependent operation closed with no TCP or in-process fallback;
+  reconnect or rebind shall rerun all preconditions.
+- **REQ-023** — Compatibility mismatch shall reject before consequential work
+  with no downgrade or range inference; recovery shall require an accepted
+  compatible pair and a new bind.
+- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-019,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-019,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,197,"- **REQ-019** — Project lookup, identity, manifest currency, registration, or
+  enabled-adapter failure shall prevent a project runtime operation until
+  separately authorized registration or re-registration succeeds.
+- **REQ-020** — Project-scoped identity, required-scope, or operation-
+  authorization failure shall prevent the operation, remain distinct from
+  provider authentication, and never broaden authority automatically.
+- **REQ-021** — Required project-adapter unavailability, lack of authority, or
+  protocol inconsistency shall block only operations requiring that adapter;
+  generic transport shall acquire no project authority.
+- **REQ-022** — Authorized Unix-socket transport failure shall fail the
+  runtime-dependent operation closed with no TCP or in-process fallback;
+  reconnect or rebind shall rerun all preconditions.
+- **REQ-023** — Compatibility mismatch shall reject before consequential work
+  with no downgrade or range inference; recovery shall require an accepted
+  compatible pair and a new bind.
+- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-020,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-020,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,200,"- **REQ-020** — Project-scoped identity, required-scope, or operation-
+  authorization failure shall prevent the operation, remain distinct from
+  provider authentication, and never broaden authority automatically.
+- **REQ-021** — Required project-adapter unavailability, lack of authority, or
+  protocol inconsistency shall block only operations requiring that adapter;
+  generic transport shall acquire no project authority.
+- **REQ-022** — Authorized Unix-socket transport failure shall fail the
+  runtime-dependent operation closed with no TCP or in-process fallback;
+  reconnect or rebind shall rerun all preconditions.
+- **REQ-023** — Compatibility mismatch shall reject before consequential work
+  with no downgrade or range inference; recovery shall require an accepted
+  compatible pair and a new bind.
+- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-021,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-021,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,203,"- **REQ-021** — Required project-adapter unavailability, lack of authority, or
+  protocol inconsistency shall block only operations requiring that adapter;
+  generic transport shall acquire no project authority.
+- **REQ-022** — Authorized Unix-socket transport failure shall fail the
+  runtime-dependent operation closed with no TCP or in-process fallback;
+  reconnect or rebind shall rerun all preconditions.
+- **REQ-023** — Compatibility mismatch shall reject before consequential work
+  with no downgrade or range inference; recovery shall require an accepted
+  compatible pair and a new bind.
+- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-022,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-022,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,206,"- **REQ-022** — Authorized Unix-socket transport failure shall fail the
+  runtime-dependent operation closed with no TCP or in-process fallback;
+  reconnect or rebind shall rerun all preconditions.
+- **REQ-023** — Compatibility mismatch shall reject before consequential work
+  with no downgrade or range inference; recovery shall require an accepted
+  compatible pair and a new bind.
+- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-023,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-023,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,209,"- **REQ-023** — Compatibility mismatch shall reject before consequential work
+  with no downgrade or range inference; recovery shall require an accepted
+  compatible pair and a new bind.
+- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-024,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-024,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,212,"- **REQ-024** — Malformed or contract-invalid wire behavior shall fail closed
+  as a truthful protocol class and shall not be silently recast as transport
+  absence.
+- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-025,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-025,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,215,"- **REQ-025** — Provider, engine, or model failure after transport and project
+  boundaries pass shall preserve the execution-domain cause and shall not be
+  recast as daemon absence.
+- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-026,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-026,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,218,"- **REQ-026** — Failure to establish or truthfully resume required session,
+  delegation, tool, turn-lock, interruption, or model-residency state shall
+  reject or halt only the affected operation and shall not invent completion,
+  replay, authority, or alternate runtime state.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-027,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-027,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,225,"- **REQ-027** — The first activation shall use Context Envelope M and shall be
+  limited to exact specification, read-only consumer inventory,
+  evidence-matrix design, and change planning. It shall not write
+  implementation bytes.
+- **REQ-028** — Every activation shall bind a current accepted repository
+  basis, the accepted decomposition pin, the accepted Scope-of-Work hash,
+  owner-gate identities, exact read paths, exact writable targets, explicit
+  exclusions, and a return contract before dispatch.
+- **REQ-029** — Initial-activation writes shall be confined to the
+  deliverable-local run root declared in Praxeology. No activation may infer
+  write authority from the decomposition's anticipated locus.
+- **REQ-030** — The work graph shall version nodes, dependencies,
+  concurrency, integration ownership, fan-in gates, holds, retries,
+  escalation points, and returns. Agent 2 nodes shall not delegate.
+- **REQ-031** — Actual affected clients shall be established from accepted
+  implementation or migration obligations, not from prospect names,
+  historical references, shared route labels, or transport reachability.
+- **REQ-032** — App, PEC, Tier-0, Piping, and any other client or coordination
+  surface shall remain under its own authority. Client writes require
+  separately accepted client-owned tranches; Tier-0 coordination cannot amend
+  Root semantics.
+- **REQ-033** — Every semantic requirement shall trace to positive,
+  negative, and where applicable adversarial evidence; the evidence matrix
+  shall distinguish deterministic fact, human judgment, client-owned evidence,
+  and unresolved fields.
+- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-028,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-028,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,229,"- **REQ-028** — Every activation shall bind a current accepted repository
+  basis, the accepted decomposition pin, the accepted Scope-of-Work hash,
+  owner-gate identities, exact read paths, exact writable targets, explicit
+  exclusions, and a return contract before dispatch.
+- **REQ-029** — Initial-activation writes shall be confined to the
+  deliverable-local run root declared in Praxeology. No activation may infer
+  write authority from the decomposition's anticipated locus.
+- **REQ-030** — The work graph shall version nodes, dependencies,
+  concurrency, integration ownership, fan-in gates, holds, retries,
+  escalation points, and returns. Agent 2 nodes shall not delegate.
+- **REQ-031** — Actual affected clients shall be established from accepted
+  implementation or migration obligations, not from prospect names,
+  historical references, shared route labels, or transport reachability.
+- **REQ-032** — App, PEC, Tier-0, Piping, and any other client or coordination
+  surface shall remain under its own authority. Client writes require
+  separately accepted client-owned tranches; Tier-0 coordination cannot amend
+  Root semantics.
+- **REQ-033** — Every semantic requirement shall trace to positive,
+  negative, and where applicable adversarial evidence; the evidence matrix
+  shall distinguish deterministic fact, human judgment, client-owned evidence,
+  and unresolved fields.
+- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-029,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-029,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,233,"- **REQ-029** — Initial-activation writes shall be confined to the
+  deliverable-local run root declared in Praxeology. No activation may infer
+  write authority from the decomposition's anticipated locus.
+- **REQ-030** — The work graph shall version nodes, dependencies,
+  concurrency, integration ownership, fan-in gates, holds, retries,
+  escalation points, and returns. Agent 2 nodes shall not delegate.
+- **REQ-031** — Actual affected clients shall be established from accepted
+  implementation or migration obligations, not from prospect names,
+  historical references, shared route labels, or transport reachability.
+- **REQ-032** — App, PEC, Tier-0, Piping, and any other client or coordination
+  surface shall remain under its own authority. Client writes require
+  separately accepted client-owned tranches; Tier-0 coordination cannot amend
+  Root semantics.
+- **REQ-033** — Every semantic requirement shall trace to positive,
+  negative, and where applicable adversarial evidence; the evidence matrix
+  shall distinguish deterministic fact, human judgment, client-owned evidence,
+  and unresolved fields.
+- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-030,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-030,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,236,"- **REQ-030** — The work graph shall version nodes, dependencies,
+  concurrency, integration ownership, fan-in gates, holds, retries,
+  escalation points, and returns. Agent 2 nodes shall not delegate.
+- **REQ-031** — Actual affected clients shall be established from accepted
+  implementation or migration obligations, not from prospect names,
+  historical references, shared route labels, or transport reachability.
+- **REQ-032** — App, PEC, Tier-0, Piping, and any other client or coordination
+  surface shall remain under its own authority. Client writes require
+  separately accepted client-owned tranches; Tier-0 coordination cannot amend
+  Root semantics.
+- **REQ-033** — Every semantic requirement shall trace to positive,
+  negative, and where applicable adversarial evidence; the evidence matrix
+  shall distinguish deterministic fact, human judgment, client-owned evidence,
+  and unresolved fields.
+- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-031,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-031,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,239,"- **REQ-031** — Actual affected clients shall be established from accepted
+  implementation or migration obligations, not from prospect names,
+  historical references, shared route labels, or transport reachability.
+- **REQ-032** — App, PEC, Tier-0, Piping, and any other client or coordination
+  surface shall remain under its own authority. Client writes require
+  separately accepted client-owned tranches; Tier-0 coordination cannot amend
+  Root semantics.
+- **REQ-033** — Every semantic requirement shall trace to positive,
+  negative, and where applicable adversarial evidence; the evidence matrix
+  shall distinguish deterministic fact, human judgment, client-owned evidence,
+  and unresolved fields.
+- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-032,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-032,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,242,"- **REQ-032** — App, PEC, Tier-0, Piping, and any other client or coordination
+  surface shall remain under its own authority. Client writes require
+  separately accepted client-owned tranches; Tier-0 coordination cannot amend
+  Root semantics.
+- **REQ-033** — Every semantic requirement shall trace to positive,
+  negative, and where applicable adversarial evidence; the evidence matrix
+  shall distinguish deterministic fact, human judgment, client-owned evidence,
+  and unresolved fields.
+- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-033,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-033,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,246,"- **REQ-033** — Every semantic requirement shall trace to positive,
+  negative, and where applicable adversarial evidence; the evidence matrix
+  shall distinguish deterministic fact, human judgment, client-owned evidence,
+  and unresolved fields.
+- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-034,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-034,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,250,"- **REQ-034** — Cutover and rollback shall bind exact pre-change and
+  post-change identities, preserve file-native evidence, stop on failed
+  preconditions, avoid silent replay, and require a separately authorized Git
+  or deployment act.
+- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-035,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-035,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,254,"- **REQ-035** — Consequential implementation, client migration, contract
+  repinning, lifecycle transition, public export, release, publication,
+  issuance, and professional reliance shall each remain behind their named
+  later human gate.
+- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-036,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-036,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,258,"- **REQ-036** — Every unresolved field listed below shall remain unresolved
+  until its owning later gate accepts exact bytes and evidence; no test,
+  candidate, version-like label, or implementation behavior shall answer it by
+  implication.
+- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-037,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-037,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,262,"- **REQ-037** — Final release fan-in shall include exact compatibility and
+  degraded-mode contracts, actual affected-client disposition, Root regression
+  evidence, accepted affected-client evidence, Tier-0 relationship
+  disposition, notice state, rollback and indeterminate-operation treatment,
+  and accountable-human release disposition.
+- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-038,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-038,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,267,"- **REQ-038** — Any basis or relied-source drift shall block application or
+  activation until source identities, absence checks, affected-client census,
+  next-free external IDs where applicable, and validation are rerun and
+  material drift is returned to the owner.
+- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-039,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-039,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,271,"- **REQ-039** — Runtime user-data state, engines, credentials, sessions, and
+  caches shall remain operational and non-authoritative; accepted project
+  truth and acceptance evidence shall remain checkout-contained.
+- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-040,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-040,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,274,"- **REQ-040** — Public export may include generic runtime, CLI, contracts, and
+  safe adapters only after applicable gates and evidence pass; credentials,
+  machine state, downloaded models, and private project adapters or evidence
+  shall remain excluded.
+- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-041,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-041,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,278,"- **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
+  identity and encrypted `safeStorage` credential boundary as single-owner;
+  no client tranche may repartition credential custody by implication.
+- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-042,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-042,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,281,"- **REQ-042** — Tracked project manifests shall remain secret-free and free of
+  machine-specific absolute paths; authority-affecting manifest changes shall
+  require explicit re-registration and shall not be inferred from local
+  registration state.
+- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-043,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-043,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,285,"- **REQ-043** — Agent 0, Agent 1, and Agent 2 shall remain authority and
+  responsibility contracts independent of engine or model; Agent 2 shall not
+  delegate, and actual model attribution shall not become durable role
+  doctrine.
+- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-044,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-044,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,289,"- **REQ-044** — Local-model activation shall remain explicit with no automatic
+  load, unload, switch, alias, or fallback; residency transitions shall remain
+  evidence-bearing and epoch-bound, and unknown helper models shall not be
+  unloaded automatically.
+- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-045,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-045,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,293,"- **REQ-045** — Runtime evidence shall retain actual engine, provider, model,
+  and residency attribution when exposed without making those values
+  authority; missing attribution shall be reported rather than invented.
+- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-046,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-046,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,296,"- **REQ-046** — Project-specific tools and deterministic acts shall remain
+  owned by their project or domain adapters and shall not acquire or transfer
+  authority through generic transport.
+- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-047,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-047,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,299,"- **REQ-047** — No tranche under this contract shall silently authorize
+  automatic model scheduling, multiple simultaneous primary local models,
+  local Agent 1, piping execution, silent adapter fallback, remote oMLX,
+  credential entry through an unauthorized CLI surface, production PEC
+  mutation, or release, publication, or issuance.
+- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-048,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-048,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,304,"- **REQ-048** — A Root client and CLI conformance matrix shall prove that
+  client configuration, project access, and daemon credential readiness are
+  not conflated with transport absence; registration and authorization remain
+  distinct; mismatch stops before consequential work; no TCP, alternate
+  daemon, downgrade, alternate model, or automatic replay occurs; and every
+  retained local-only command, exact exit behavior, and exact machine-readable
+  behavior is individually accepted.
+- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-049,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-049,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,311,"- **REQ-049** — An actually affected App matrix shall classify every surface
+  as runtime-dependent, retained read-only, retained read/write, or not
+  applicable; stop agent and session work on failed preconditions; preserve
+  truthful classes through adapter and UI; prevent silent resend; distinguish
+  intervention-required from transient states; name and test retained
+  surfaces; and preserve the accepted SCA-APP-005 authority partition.
+- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-050,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-050,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,317,"- **REQ-050** — If PEC v2 later becomes actually affected, its matrix shall
+  prove that every applicable condition stops the exact operation, no
+  independent PEC runtime loop starts, failed work does not silently mutate
+  accepted PEC truth, PEC optionality does not become a Root correctness
+  dependency, and retained functions derive from current v2 authority rather
+  than frozen v0.4.
+- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-051,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-051,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,323,"- **REQ-051** — The accepted deliverable-local dependency surface currently
+  declares no upstream or downstream edge. Later gate prerequisites in this
+  contract shall not become dependency truth unless separately added through
+  the owning dependency workflow.
+- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-052,chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-052,SOW-104,PKG-02_Runtime_Product,DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146,327,"- **REQ-052** — The accepted Root basis contains no project-local
+  `software-workflow.json`. The first candidate-only activation shall use
+  bounded ephemeral Agent 2 generalists plus explicitly permitted deterministic
+  Scope-of-Work tools only; any later software-check or implementation
+  activation shall remain held until it identifies a lawful project-local
+  profile and exact authorized checks.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-001,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-001,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,75,"- **REQ-001** — The slice shall provide
+  `DelegatedHarnessProcessSupervisorPort` and the purpose-limited second
+  private Unix socket.
+- **REQ-002** — Every request to that socket shall undergo
+  authentication-token validation. Each token shall be bound to the socket
+  owner and worker generation and invalidated during stale-socket recovery.
+- **REQ-003** — The private Unix-socket protocol shall retain `0700`/`0600`
+  ownership controls.
+- **REQ-004** — The worker-control artifact shall cover worker acquisition,
+  inventory, reconnect, generation fencing, and stale recovery.
+- **REQ-005** — The launch integration shall carry the daemon-plus-supervisor
+  two-job topology while retaining one daemon as the sole runtime broker.
+- **REQ-006** — The control surface shall remain purpose-limited and never
+  renderer- or CLI-callable, and it shall introduce no TCP listener.
+- **REQ-007** — Agent 0/1/2 role entry shall always be offered for Codex
+  sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation,
+  explicit Agent 2/TASK shall remain offered as `role not mechanically
+  enforced`; governed-workflow evidence shall be `instruction-asserted`; and
+  delegated-harness-native K-SUBAGENT non-delegation shall be
+  instruction+config asserted rather than mechanism-proven.
+- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-002,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-002,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,78,"- **REQ-002** — Every request to that socket shall undergo
+  authentication-token validation. Each token shall be bound to the socket
+  owner and worker generation and invalidated during stale-socket recovery.
+- **REQ-003** — The private Unix-socket protocol shall retain `0700`/`0600`
+  ownership controls.
+- **REQ-004** — The worker-control artifact shall cover worker acquisition,
+  inventory, reconnect, generation fencing, and stale recovery.
+- **REQ-005** — The launch integration shall carry the daemon-plus-supervisor
+  two-job topology while retaining one daemon as the sole runtime broker.
+- **REQ-006** — The control surface shall remain purpose-limited and never
+  renderer- or CLI-callable, and it shall introduce no TCP listener.
+- **REQ-007** — Agent 0/1/2 role entry shall always be offered for Codex
+  sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation,
+  explicit Agent 2/TASK shall remain offered as `role not mechanically
+  enforced`; governed-workflow evidence shall be `instruction-asserted`; and
+  delegated-harness-native K-SUBAGENT non-delegation shall be
+  instruction+config asserted rather than mechanism-proven.
+- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-003,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-003,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,81,"- **REQ-003** — The private Unix-socket protocol shall retain `0700`/`0600`
+  ownership controls.
+- **REQ-004** — The worker-control artifact shall cover worker acquisition,
+  inventory, reconnect, generation fencing, and stale recovery.
+- **REQ-005** — The launch integration shall carry the daemon-plus-supervisor
+  two-job topology while retaining one daemon as the sole runtime broker.
+- **REQ-006** — The control surface shall remain purpose-limited and never
+  renderer- or CLI-callable, and it shall introduce no TCP listener.
+- **REQ-007** — Agent 0/1/2 role entry shall always be offered for Codex
+  sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation,
+  explicit Agent 2/TASK shall remain offered as `role not mechanically
+  enforced`; governed-workflow evidence shall be `instruction-asserted`; and
+  delegated-harness-native K-SUBAGENT non-delegation shall be
+  instruction+config asserted rather than mechanism-proven.
+- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-004,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-004,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,83,"- **REQ-004** — The worker-control artifact shall cover worker acquisition,
+  inventory, reconnect, generation fencing, and stale recovery.
+- **REQ-005** — The launch integration shall carry the daemon-plus-supervisor
+  two-job topology while retaining one daemon as the sole runtime broker.
+- **REQ-006** — The control surface shall remain purpose-limited and never
+  renderer- or CLI-callable, and it shall introduce no TCP listener.
+- **REQ-007** — Agent 0/1/2 role entry shall always be offered for Codex
+  sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation,
+  explicit Agent 2/TASK shall remain offered as `role not mechanically
+  enforced`; governed-workflow evidence shall be `instruction-asserted`; and
+  delegated-harness-native K-SUBAGENT non-delegation shall be
+  instruction+config asserted rather than mechanism-proven.
+- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-005,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-005,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,85,"- **REQ-005** — The launch integration shall carry the daemon-plus-supervisor
+  two-job topology while retaining one daemon as the sole runtime broker.
+- **REQ-006** — The control surface shall remain purpose-limited and never
+  renderer- or CLI-callable, and it shall introduce no TCP listener.
+- **REQ-007** — Agent 0/1/2 role entry shall always be offered for Codex
+  sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation,
+  explicit Agent 2/TASK shall remain offered as `role not mechanically
+  enforced`; governed-workflow evidence shall be `instruction-asserted`; and
+  delegated-harness-native K-SUBAGENT non-delegation shall be
+  instruction+config asserted rather than mechanism-proven.
+- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-006,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-006,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,87,"- **REQ-006** — The control surface shall remain purpose-limited and never
+  renderer- or CLI-callable, and it shall introduce no TCP listener.
+- **REQ-007** — Agent 0/1/2 role entry shall always be offered for Codex
+  sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation,
+  explicit Agent 2/TASK shall remain offered as `role not mechanically
+  enforced`; governed-workflow evidence shall be `instruction-asserted`; and
+  delegated-harness-native K-SUBAGENT non-delegation shall be
+  instruction+config asserted rather than mechanism-proven.
+- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-007,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-007,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,89,"- **REQ-007** — Agent 0/1/2 role entry shall always be offered for Codex
+  sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation,
+  explicit Agent 2/TASK shall remain offered as `role not mechanically
+  enforced`; governed-workflow evidence shall be `instruction-asserted`; and
+  delegated-harness-native K-SUBAGENT non-delegation shall be
+  instruction+config asserted rather than mechanism-proven.
+- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-008,chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-008,SOW-104,PKG-02_Runtime_Product,DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md,9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5,95,"- **REQ-008** — Delegated-harness-native descent shall not assign a role, and
+  hard filesystem/network/process containment shall remain unchanged.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-001,chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-001,SOW-104,PKG-02_Runtime_Product,DEL-02-09_Hosted_Account_and_Consent_Boundary,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md,e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176,68,"- **REQ-001** — The hosted-account boundary shall use root-private app-owned
+  `CODEX_HOME`; ambient `~/.codex` is excluded.
+- **REQ-002** — The boundary shall preserve account/epoch and policy continuity,
+  and consent shall not cross root, account, or policy-digest drift.
+- **REQ-003** — The `K-ROLE-2` digest and role controls shall preserve the A3
+  parity, label, and evidence-posture distinctions stated in `CLM-002` without
+  changing hard filesystem/network/process containment.
+- **REQ-004** — The per-root consent-state model shall preserve all three A7
+  postures stated in `CLM-003`, with no command network as the default.
+- **REQ-005** — In ask-per-destination posture,
+  `networkApprovalContext` shall show host/protocol and shall preserve the
+  caveat that a grant may unblock queued requests to the same destination;
+  `acceptForSession` is allowed only by explicit user act.
+- **REQ-006** — The labelled command-network-on posture shall use
+  `network_access = true`.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-002,chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-002,SOW-104,PKG-02_Runtime_Product,DEL-02-09_Hosted_Account_and_Consent_Boundary,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md,e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176,70,"- **REQ-002** — The boundary shall preserve account/epoch and policy continuity,
+  and consent shall not cross root, account, or policy-digest drift.
+- **REQ-003** — The `K-ROLE-2` digest and role controls shall preserve the A3
+  parity, label, and evidence-posture distinctions stated in `CLM-002` without
+  changing hard filesystem/network/process containment.
+- **REQ-004** — The per-root consent-state model shall preserve all three A7
+  postures stated in `CLM-003`, with no command network as the default.
+- **REQ-005** — In ask-per-destination posture,
+  `networkApprovalContext` shall show host/protocol and shall preserve the
+  caveat that a grant may unblock queued requests to the same destination;
+  `acceptForSession` is allowed only by explicit user act.
+- **REQ-006** — The labelled command-network-on posture shall use
+  `network_access = true`.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-003,chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-003,SOW-104,PKG-02_Runtime_Product,DEL-02-09_Hosted_Account_and_Consent_Boundary,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md,e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176,72,"- **REQ-003** — The `K-ROLE-2` digest and role controls shall preserve the A3
+  parity, label, and evidence-posture distinctions stated in `CLM-002` without
+  changing hard filesystem/network/process containment.
+- **REQ-004** — The per-root consent-state model shall preserve all three A7
+  postures stated in `CLM-003`, with no command network as the default.
+- **REQ-005** — In ask-per-destination posture,
+  `networkApprovalContext` shall show host/protocol and shall preserve the
+  caveat that a grant may unblock queued requests to the same destination;
+  `acceptForSession` is allowed only by explicit user act.
+- **REQ-006** — The labelled command-network-on posture shall use
+  `network_access = true`.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-004,chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-004,SOW-104,PKG-02_Runtime_Product,DEL-02-09_Hosted_Account_and_Consent_Boundary,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md,e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176,75,"- **REQ-004** — The per-root consent-state model shall preserve all three A7
+  postures stated in `CLM-003`, with no command network as the default.
+- **REQ-005** — In ask-per-destination posture,
+  `networkApprovalContext` shall show host/protocol and shall preserve the
+  caveat that a grant may unblock queued requests to the same destination;
+  `acceptForSession` is allowed only by explicit user act.
+- **REQ-006** — The labelled command-network-on posture shall use
+  `network_access = true`.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-005,chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-005,SOW-104,PKG-02_Runtime_Product,DEL-02-09_Hosted_Account_and_Consent_Boundary,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md,e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176,77,"- **REQ-005** — In ask-per-destination posture,
+  `networkApprovalContext` shall show host/protocol and shall preserve the
+  caveat that a grant may unblock queued requests to the same destination;
+  `acceptForSession` is allowed only by explicit user act.
+- **REQ-006** — The labelled command-network-on posture shall use
+  `network_access = true`.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated
+root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-006,chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-006,SOW-104,PKG-02_Runtime_Product,DEL-02-09_Hosted_Account_and_Consent_Boundary,execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md,e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176,81,"- **REQ-006** — The labelled command-network-on posture shall use
+  `network_access = true`.",PRESERVE_WITH_EXPLICIT_OWNERSHIP_OVERLAY,Source ScopeOfWork output/evaluation matrix; proportionate accepted evidence required; no evidence fabricated

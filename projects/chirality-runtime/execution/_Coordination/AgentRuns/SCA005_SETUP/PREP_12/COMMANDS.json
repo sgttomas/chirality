@@ -1,0 +1,36 @@
+[
+  {
+    "command": [
+      "tools/scaffolding/scaffold_deliverable.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working",
+      "DEL-02-12",
+      "Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+    ],
+    "exit_code": 0,
+    "stdout": "Deliverable: projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in\nCreated: 5 files\nSkipped (exist): 0 files\n",
+    "stderr": ""
+  },
+  {
+    "mechanic": "Removed only own newly scaffolded verified zero-byte status stub before ordinary OPEN initialization."
+  },
+  {
+    "command": [
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "OPEN",
+      "PREPARATION"
+    ],
+    "exit_code": 0,
+    "stdout": "Status: DEL-02-12 \u2192 OPEN (by PREPARATION)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "tools/validation/check_min_viable_fileset.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS: DEL-02-12 \u2014 all 5 minimum viable files present\n",
+    "stderr": ""
+  }
+]

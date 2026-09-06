@@ -1,0 +1,2 @@
+IssueID,CheckNumber,Severity,EntityType,ConcreteLabel,EntityID,Description,DecompositionRef,FilesystemRef
+COV-001,10,WARNING,DERIVATIVE_SURFACE,Dependency audit,DEP-AUD-001,"Generic dependency tool dialect warning; independent exact-ID topology PASS, warning remains for disposition",SCA005 approved DERIVATIVE_RECONCILIATION.csv,projects/chirality-runtime/execution/_Evaluation/DepClosure/SCA005_MIGRATION_POST

@@ -1,0 +1,32 @@
+{
+  "R01": "PASS_ISOLATED_FIXTURE",
+  "roots": {
+    "workingRoot": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "instructionRoot": "/Users/ryan/.codex/worktrees/341e/chirality"
+  },
+  "liveManifestReadOnly": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/chirality.project.json",
+  "registryWriteRoot": "/private/tmp/root-runtime-migration-20260905/gate5-registry",
+  "negatives": [
+    {
+      "label": "missing-charter",
+      "rejected": true,
+      "reason": "RuntimeError: profiles.domain references a path that does not exist: docs/MISSING.md"
+    },
+    {
+      "label": "missing-decomposition",
+      "rejected": true,
+      "reason": "RuntimeError: profiles.domain references a path that does not exist: execution/_Decomposition/MISSING.md"
+    },
+    {
+      "label": "wrong-project-identity",
+      "rejected": true,
+      "reason": "Error: projectId is not a safe identifier"
+    },
+    {
+      "label": "outside-authority-path",
+      "rejected": true,
+      "reason": "RuntimeError: profiles.domain escapes the declared working and instruction roots"
+    }
+  ],
+  "limits": "Syntactically safe different project names are permitted by generic registry; approved identity equality is separately checked against the approved manifest. Registry existence validation does not itself establish authority acceptance."
+}

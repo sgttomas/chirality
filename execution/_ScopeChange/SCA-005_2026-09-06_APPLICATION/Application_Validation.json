@@ -1,0 +1,56 @@
+{
+  "schema": "scope-application-validation/v1",
+  "substantive_authority": "Gate3 V3 exact approved subject; Gate4 published propagation plan",
+  "actual_application": true,
+  "owner_gate5_confirmation": "PENDING",
+  "application_subject": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATION_SUBJECT.json",
+    "sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9"
+  },
+  "completed_journal": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+    "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203"
+  },
+  "recorded_pending_state": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+    "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86"
+  },
+  "canon_and_source_postimages": 64,
+  "exact_matches": 64,
+  "source_retirements": 53,
+  "historical_parents": 6,
+  "active_root_product_deliverables": 0,
+  "successor_partition": {
+    "runtime": 7,
+    "governance": 46
+  },
+  "scope_ledger_rows": 104,
+  "supersession_rows": 246,
+  "supersession_findings": 0,
+  "live_guards": "G0-G4 PASS",
+  "runtime_activation": false,
+  "pointer_moves": false,
+  "postchange_audit": {
+    "path": "execution/_Evaluation/DecompCoverage/SCA005_MIGRATION_POST/coverage_summary.json",
+    "sha256": "34b61afc165d8fc54a6fd7a75e9c3467d1dc782e3224d03d33eb6cabd0ab1494",
+    "manifest_seal": "5dd02d295f1aa77ec7a089a277fbdc1e098f0b837682573aad8c17dc763be122",
+    "structural_passes": 500,
+    "failures": 0,
+    "overall": "WARNINGS",
+    "warning": "Inherited GOV-04-11 production debt remains; not a migration regression",
+    "scope_limit": "Final snapshot assembly and owner confirmation excluded from audit"
+  },
+  "closure": "APPLIED_VALIDATED_PENDING_OWNER_GATE5_CONFIRMATION",
+  "final_tests": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/FINAL_CHECKS/AFFECTED_FINAL.json",
+    "passed": 825,
+    "subtests_passed": 9
+  },
+  "final_export": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/EXPORT/FINAL_VERIFICATION.json",
+    "files": 864,
+    "runtime_files_exact": 79,
+    "findings": 0,
+    "published": false
+  }
+}

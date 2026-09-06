@@ -1,0 +1,41 @@
+[
+  {
+    "argv": [
+      "zsh",
+      "tools/scaffolding/scaffold_deliverable.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working",
+      "DEL-02-10",
+      "Adapter_Event_Schema_and_Approval_API_v2"
+    ],
+    "exit": 0,
+    "stdout": "Deliverable: projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2\nCreated: 5 files\nSkipped (exist): 0 files\n",
+    "stderr": ""
+  },
+  {
+    "operation": "remove only newly created empty status stub for guarded new-file initialization",
+    "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md",
+    "exit": 0
+  },
+  {
+    "argv": [
+      "zsh",
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "OPEN",
+      "PREPARATION"
+    ],
+    "exit": 0,
+    "stdout": "Status: DEL-02-10 \u2192 OPEN (by PREPARATION)\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zsh",
+      "tools/validation/check_min_viable_fileset.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+    ],
+    "exit": 0,
+    "stdout": "PASS: DEL-02-10 \u2014 all 5 minimum viable files present\n",
+    "stderr": ""
+  }
+]

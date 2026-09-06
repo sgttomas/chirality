@@ -1,0 +1,8 @@
+{
+  "path": "execution/_ScopeChange/_LATEST.md",
+  "sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c",
+  "current_target": "SCA-004_2026-08-22_1749/",
+  "proposed_target": "SCA-005_2026-09-06_APPLICATION/",
+  "applied": false,
+  "condition": "Actual owner Gate5/pointer approval required; fail if current pointer changes before application"
+}

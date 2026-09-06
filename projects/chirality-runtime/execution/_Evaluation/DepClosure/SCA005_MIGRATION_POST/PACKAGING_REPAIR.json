@@ -1,0 +1,70 @@
+{
+  "authorization": "Parent /root bounded packaging repair: preserve originals losslessly, normalize only CRLF to LF, retain original seal and produce successor seal. No semantic or Git writes.",
+  "predecessor_seal": "835e20315704cc10d9c58ede44a80fc573169a707c6dbd77dc20b4b05355c702",
+  "changes": [
+    {
+      "path": "Dependency_Closure_IssueLog.csv",
+      "archive": "PACKAGING_HISTORY_CRLF/Dependency_Closure_IssueLog.csv.gz",
+      "before_sha256": "1ebdb30bd78b425218091f9ef5b05752aba82c58dcf869e2a71134524a2cae27",
+      "after_sha256": "ee078bf2d0dbe21f82dffac24c227f795fc7ce4605d9f6588965bc06a4823362",
+      "rows_including_header": 2,
+      "parsed_rows_identical": true,
+      "archive_lossless": true
+    },
+    {
+      "path": "Evidence/bidirectional_pairs.csv",
+      "archive": "PACKAGING_HISTORY_CRLF/Evidence/bidirectional_pairs.csv.gz",
+      "before_sha256": "e0fcf0084fce3ec4ebb162e6d9e7430e6bde0eeb759307d8b6716301cf950c59",
+      "after_sha256": "96763837f083b613c05053bee7e700c98f7abff516e73ecc31d7ba6589143243",
+      "rows_including_header": 1,
+      "parsed_rows_identical": true,
+      "archive_lossless": true
+    },
+    {
+      "path": "Evidence/coverage.csv",
+      "archive": "PACKAGING_HISTORY_CRLF/Evidence/coverage.csv.gz",
+      "before_sha256": "937b2de2d4f3f5a250bedffbf75a08d3e8020ad8d08d9795834a6edd98cbdd7f",
+      "after_sha256": "c15eb0a81205cc4db0bc85cc1377ee29e63c88891786b8a016db27483184b981",
+      "rows_including_header": 8,
+      "parsed_rows_identical": true,
+      "archive_lossless": true
+    },
+    {
+      "path": "Evidence/hubs.csv",
+      "archive": "PACKAGING_HISTORY_CRLF/Evidence/hubs.csv.gz",
+      "before_sha256": "461b09cff46fadec5ae392e5feae820b87bd608ec22935ff7eb4e33c5fb9b5c0",
+      "after_sha256": "2a8f48c7ddbe9ae0266d826695bd86419362cb584f503b09d373e0128c49b955",
+      "rows_including_header": 1,
+      "parsed_rows_identical": true,
+      "archive_lossless": true
+    },
+    {
+      "path": "Evidence/id_normalization.csv",
+      "archive": "PACKAGING_HISTORY_CRLF/Evidence/id_normalization.csv.gz",
+      "before_sha256": "1e1dc4b14515b25fd32c69e7b965d4e9ba4f5489ce3ea5d46fad2e9c938dd2f3",
+      "after_sha256": "24820fc7cf0c53df91c2616321418bd6684c723bc71109267ef98a25ca94fd9c",
+      "rows_including_header": 1,
+      "parsed_rows_identical": true,
+      "archive_lossless": true
+    },
+    {
+      "path": "Evidence/orphans.csv",
+      "archive": "PACKAGING_HISTORY_CRLF/Evidence/orphans.csv.gz",
+      "before_sha256": "9c36f0867bd4efc55ce4d516fc40aa0cfe6e3ea0e3b62869b4c9caef88841319",
+      "after_sha256": "81480e7020caa6fa1ccaf6c8e14fb8545e4879be1952dca71fcbb61398c70cc0",
+      "rows_including_header": 8,
+      "parsed_rows_identical": true,
+      "archive_lossless": true
+    },
+    {
+      "path": "Evidence/scc_summary.csv",
+      "archive": "PACKAGING_HISTORY_CRLF/Evidence/scc_summary.csv.gz",
+      "before_sha256": "1cd736c87b44cb483cf3cd64a2376a19821a7f50fe6b6dbaadb842ba21b20e7d",
+      "after_sha256": "2951a8e40268d483dba0101bd83e04c53ccf3236818353af6b3039c68d896578",
+      "rows_including_header": 1,
+      "parsed_rows_identical": true,
+      "archive_lossless": true
+    }
+  ],
+  "semantic_change": false
+}

@@ -1,0 +1,19 @@
+........F........                                                        [100%]
+=================================== FAILURES ===================================
+_________________________ test_live_repo_fence_passes __________________________
+
+    def test_live_repo_fence_passes():
+        """The fence must PASS on the actual checkout. Before D-GOV-21 §6 step 9
+        this held via the idle branch (no materialized children at ruling time,
+        packet §10); since the step-9 materialization (D-GOV-25) it holds via the
+        registration branch — G1-G4 registered and passing in
+        execution/_harness/root_guards.yaml. Renamed from
+        test_live_repo_state_is_clean in the step-9 tranche; assertion unchanged."""
+        code, _ = g0.check(g0.repo_root())
+>       assert code == 0
+E       assert 1 == 0
+
+tools/validation/test_validate_root_materialization_fence.py:95: AssertionError
+=========================== short test summary info ============================
+FAILED tools/validation/test_validate_root_materialization_fence.py::test_live_repo_fence_passes
+1 failed, 16 passed in 2.46s

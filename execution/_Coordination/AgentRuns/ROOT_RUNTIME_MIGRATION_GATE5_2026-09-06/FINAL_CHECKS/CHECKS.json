@@ -1,0 +1,51 @@
+[
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_instruction_entrypoints.py"
+    ],
+    "exit_code": 0,
+    "log": "entrypoints.log.gz"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "status",
+      "--project",
+      "root"
+    ],
+    "exit_code": 0,
+    "log": "root_status.log.gz"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "status",
+      "--project",
+      "chirality-runtime"
+    ],
+    "exit_code": 0,
+    "log": "runtime_status.log.gz"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "exit_code": 0,
+    "log": "self_check.log.gz"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/run_affected_tests.py",
+      "--base",
+      "origin/main"
+    ],
+    "exit_code": 1,
+    "log": "affected.log.gz"
+  }
+]

@@ -1,0 +1,440 @@
+{
+  "canon_and_control_rows": [
+    {
+      "path": "docs/PRD_ROOT.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/PRD_ROOT_D13_POSTIMAGE.md",
+      "expected": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "actual": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "source_sha256": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "parity": true
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/DIRECTIVE.md",
+      "expected": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+      "actual": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+      "source_sha256": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+      "parity": true
+    },
+    {
+      "path": "docs/SPEC.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/SPEC.md",
+      "expected": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "actual": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "source_sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "parity": true
+    },
+    {
+      "path": "docs/TYPES.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/TYPES.md",
+      "expected": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+      "actual": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+      "source_sha256": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-01.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-01.md",
+      "expected": "45f9de74fc4f8bd0da26f3f838ee2abe863188ae459994a19952512a05c66569",
+      "actual": "45f9de74fc4f8bd0da26f3f838ee2abe863188ae459994a19952512a05c66569",
+      "source_sha256": "45f9de74fc4f8bd0da26f3f838ee2abe863188ae459994a19952512a05c66569",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-02.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-02.md",
+      "expected": "656ef456a13f63e08b4578607e457d3266f5f51b0bd1343dad1ab44a9f66c396",
+      "actual": "656ef456a13f63e08b4578607e457d3266f5f51b0bd1343dad1ab44a9f66c396",
+      "source_sha256": "656ef456a13f63e08b4578607e457d3266f5f51b0bd1343dad1ab44a9f66c396",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-03.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-03.md",
+      "expected": "79452ee2eb2ad50b721689ddb5cf383fd81595c55f7da281dfd7718dbb716db7",
+      "actual": "79452ee2eb2ad50b721689ddb5cf383fd81595c55f7da281dfd7718dbb716db7",
+      "source_sha256": "79452ee2eb2ad50b721689ddb5cf383fd81595c55f7da281dfd7718dbb716db7",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-04.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-04.md",
+      "expected": "d396dce3b3c269b70ae9ac56eac033fb2926d46d143c889d9a5dcae20ec81066",
+      "actual": "d396dce3b3c269b70ae9ac56eac033fb2926d46d143c889d9a5dcae20ec81066",
+      "source_sha256": "d396dce3b3c269b70ae9ac56eac033fb2926d46d143c889d9a5dcae20ec81066",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-05.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-05.md",
+      "expected": "19dbe7320fe5fb25b7de9cc6f8a93f9558d5f6ba96e4a0f8bf6397fc154169bd",
+      "actual": "19dbe7320fe5fb25b7de9cc6f8a93f9558d5f6ba96e4a0f8bf6397fc154169bd",
+      "source_sha256": "19dbe7320fe5fb25b7de9cc6f8a93f9558d5f6ba96e4a0f8bf6397fc154169bd",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-06.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-06.md",
+      "expected": "b59e56658a2d0454eff7d982831b618eeea0d391cdb68a73fd584179ad70654b",
+      "actual": "b59e56658a2d0454eff7d982831b618eeea0d391cdb68a73fd584179ad70654b",
+      "source_sha256": "b59e56658a2d0454eff7d982831b618eeea0d391cdb68a73fd584179ad70654b",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-07.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-07.md",
+      "expected": "7e78805dd81d9a9beb52ffe28da31ac337de84401e26be849c8d057271f3ab20",
+      "actual": "7e78805dd81d9a9beb52ffe28da31ac337de84401e26be849c8d057271f3ab20",
+      "source_sha256": "7e78805dd81d9a9beb52ffe28da31ac337de84401e26be849c8d057271f3ab20",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-08.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-08.md",
+      "expected": "26bbf7abfd9d20020e4e961bdc9a6862d473a55f364b5f8fb0d6df8dc7cf113d",
+      "actual": "26bbf7abfd9d20020e4e961bdc9a6862d473a55f364b5f8fb0d6df8dc7cf113d",
+      "source_sha256": "26bbf7abfd9d20020e4e961bdc9a6862d473a55f364b5f8fb0d6df8dc7cf113d",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-01.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-01.md",
+      "expected": "dbc299b90b361ca1b648b809f074ae80452e4f2f22c74e408e7e282dab8094ad",
+      "actual": "dbc299b90b361ca1b648b809f074ae80452e4f2f22c74e408e7e282dab8094ad",
+      "source_sha256": "dbc299b90b361ca1b648b809f074ae80452e4f2f22c74e408e7e282dab8094ad",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-02.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-02.md",
+      "expected": "7914ab057ca48f6676016afb5534865f7cc9e8890f971fc0c605d6b351fc4e33",
+      "actual": "7914ab057ca48f6676016afb5534865f7cc9e8890f971fc0c605d6b351fc4e33",
+      "source_sha256": "7914ab057ca48f6676016afb5534865f7cc9e8890f971fc0c605d6b351fc4e33",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-03.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-03.md",
+      "expected": "e8e305894fb934e2762560c2ef0dde57a7d6f5d84ce4154fa5d00e5b57a8e9ca",
+      "actual": "e8e305894fb934e2762560c2ef0dde57a7d6f5d84ce4154fa5d00e5b57a8e9ca",
+      "source_sha256": "e8e305894fb934e2762560c2ef0dde57a7d6f5d84ce4154fa5d00e5b57a8e9ca",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-04.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-04.md",
+      "expected": "90e731d34ad278ee44f14713b84b044c256bd555c35d99618a28188c9ca5ef24",
+      "actual": "90e731d34ad278ee44f14713b84b044c256bd555c35d99618a28188c9ca5ef24",
+      "source_sha256": "90e731d34ad278ee44f14713b84b044c256bd555c35d99618a28188c9ca5ef24",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-05.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-05.md",
+      "expected": "45f33e8ad7d968d222535c8503335e4b78db3eeabe4181cea6d98301011511c0",
+      "actual": "45f33e8ad7d968d222535c8503335e4b78db3eeabe4181cea6d98301011511c0",
+      "source_sha256": "45f33e8ad7d968d222535c8503335e4b78db3eeabe4181cea6d98301011511c0",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-01.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-01.md",
+      "expected": "37d305e07187e841564060dd790846520804e1091e40b5611537e10958f3c265",
+      "actual": "37d305e07187e841564060dd790846520804e1091e40b5611537e10958f3c265",
+      "source_sha256": "37d305e07187e841564060dd790846520804e1091e40b5611537e10958f3c265",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-02.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-02.md",
+      "expected": "6d6b96ba74835529df74a265fc3232ecf2d31fcf5cab0cdf1087f88660958b59",
+      "actual": "6d6b96ba74835529df74a265fc3232ecf2d31fcf5cab0cdf1087f88660958b59",
+      "source_sha256": "6d6b96ba74835529df74a265fc3232ecf2d31fcf5cab0cdf1087f88660958b59",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-03.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-03.md",
+      "expected": "56e32e7ef70cd2f09b731760f22a9c844451d5443417b61020bf6e2a0ce43bfb",
+      "actual": "56e32e7ef70cd2f09b731760f22a9c844451d5443417b61020bf6e2a0ce43bfb",
+      "source_sha256": "56e32e7ef70cd2f09b731760f22a9c844451d5443417b61020bf6e2a0ce43bfb",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-04.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-04.md",
+      "expected": "7e885fa361cdd44d0e310d72deda41332ffe1f81c3ba03a2043e9bd9fe88d79a",
+      "actual": "7e885fa361cdd44d0e310d72deda41332ffe1f81c3ba03a2043e9bd9fe88d79a",
+      "source_sha256": "7e885fa361cdd44d0e310d72deda41332ffe1f81c3ba03a2043e9bd9fe88d79a",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-05.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-05.md",
+      "expected": "5d1dadfed1ec270a3f231b216e8e2678b8588cbb75d37cf02bd6122d7456f247",
+      "actual": "5d1dadfed1ec270a3f231b216e8e2678b8588cbb75d37cf02bd6122d7456f247",
+      "source_sha256": "5d1dadfed1ec270a3f231b216e8e2678b8588cbb75d37cf02bd6122d7456f247",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-06.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-06.md",
+      "expected": "71a99bf3ee51f36e37ede2ea8c74c3c29c53610260998fba43048df6b6bbfd6e",
+      "actual": "71a99bf3ee51f36e37ede2ea8c74c3c29c53610260998fba43048df6b6bbfd6e",
+      "source_sha256": "71a99bf3ee51f36e37ede2ea8c74c3c29c53610260998fba43048df6b6bbfd6e",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-01.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-01.md",
+      "expected": "462cea71c32d1e51971b59c239a6408f727684d8ad53a97456323251d67df35f",
+      "actual": "462cea71c32d1e51971b59c239a6408f727684d8ad53a97456323251d67df35f",
+      "source_sha256": "462cea71c32d1e51971b59c239a6408f727684d8ad53a97456323251d67df35f",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-02.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-02.md",
+      "expected": "7d8c7067751351f40295de5c625e2b5de81eee6603b6b224681bb259a4c4518b",
+      "actual": "7d8c7067751351f40295de5c625e2b5de81eee6603b6b224681bb259a4c4518b",
+      "source_sha256": "7d8c7067751351f40295de5c625e2b5de81eee6603b6b224681bb259a4c4518b",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-03.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-03.md",
+      "expected": "d2803cdd8cb7fef9133510a5ccbd3afae96327eb2e0c9ddb50040358465dbbb2",
+      "actual": "d2803cdd8cb7fef9133510a5ccbd3afae96327eb2e0c9ddb50040358465dbbb2",
+      "source_sha256": "d2803cdd8cb7fef9133510a5ccbd3afae96327eb2e0c9ddb50040358465dbbb2",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-04.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-04.md",
+      "expected": "cc4429446268b1c8107858770c350e45d299875adf0f497c4531e6e59d5a3f47",
+      "actual": "cc4429446268b1c8107858770c350e45d299875adf0f497c4531e6e59d5a3f47",
+      "source_sha256": "cc4429446268b1c8107858770c350e45d299875adf0f497c4531e6e59d5a3f47",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-05.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-05.md",
+      "expected": "3c0eb4d8209c64ddf4635ebea31723623953903d30e88a6c9db419d892de3713",
+      "actual": "3c0eb4d8209c64ddf4635ebea31723623953903d30e88a6c9db419d892de3713",
+      "source_sha256": "3c0eb4d8209c64ddf4635ebea31723623953903d30e88a6c9db419d892de3713",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-06.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-06.md",
+      "expected": "38a1886a44ede66481d9ddd198372e18dbd1c4c678ecf0ca5090d670a449a93b",
+      "actual": "38a1886a44ede66481d9ddd198372e18dbd1c4c678ecf0ca5090d670a449a93b",
+      "source_sha256": "38a1886a44ede66481d9ddd198372e18dbd1c4c678ecf0ca5090d670a449a93b",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-07.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-07.md",
+      "expected": "44e576a26d2cc312776066cc23f99fdc1f27943edfbe4d7faa2ded482ff94422",
+      "actual": "44e576a26d2cc312776066cc23f99fdc1f27943edfbe4d7faa2ded482ff94422",
+      "source_sha256": "44e576a26d2cc312776066cc23f99fdc1f27943edfbe4d7faa2ded482ff94422",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-08.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-08.md",
+      "expected": "17f5429c2786eb8865ddb1152793b6fcec0f5fd0af04ff9146765640e74e7c2f",
+      "actual": "17f5429c2786eb8865ddb1152793b6fcec0f5fd0af04ff9146765640e74e7c2f",
+      "source_sha256": "17f5429c2786eb8865ddb1152793b6fcec0f5fd0af04ff9146765640e74e7c2f",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-09.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-09.md",
+      "expected": "07ceea14e308e7aa6252c7276f4bc3e17b98b3fbcc06723ee03da0556b8e54c6",
+      "actual": "07ceea14e308e7aa6252c7276f4bc3e17b98b3fbcc06723ee03da0556b8e54c6",
+      "source_sha256": "07ceea14e308e7aa6252c7276f4bc3e17b98b3fbcc06723ee03da0556b8e54c6",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-10.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-10.md",
+      "expected": "cadc01bac0f83dcf149f8836d8bb10b46cc06ea8aae5e3faa14f29eedc0e88b0",
+      "actual": "cadc01bac0f83dcf149f8836d8bb10b46cc06ea8aae5e3faa14f29eedc0e88b0",
+      "source_sha256": "cadc01bac0f83dcf149f8836d8bb10b46cc06ea8aae5e3faa14f29eedc0e88b0",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-11.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-11.md",
+      "expected": "811d4682d5ce6c277dea60a1781a3c32cb5d93228a2ac6954d3156ddd8880860",
+      "actual": "811d4682d5ce6c277dea60a1781a3c32cb5d93228a2ac6954d3156ddd8880860",
+      "source_sha256": "811d4682d5ce6c277dea60a1781a3c32cb5d93228a2ac6954d3156ddd8880860",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-01.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-01.md",
+      "expected": "0a520749505b7dbc3e98bceefefa0f69868f1a92dc7e47498237189e2b4d710b",
+      "actual": "0a520749505b7dbc3e98bceefefa0f69868f1a92dc7e47498237189e2b4d710b",
+      "source_sha256": "0a520749505b7dbc3e98bceefefa0f69868f1a92dc7e47498237189e2b4d710b",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-02.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-02.md",
+      "expected": "03af550c7a59e6905b16c1fc35d3ea5e4e7683c28bfed8e303816f66c618d01e",
+      "actual": "03af550c7a59e6905b16c1fc35d3ea5e4e7683c28bfed8e303816f66c618d01e",
+      "source_sha256": "03af550c7a59e6905b16c1fc35d3ea5e4e7683c28bfed8e303816f66c618d01e",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-03.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-03.md",
+      "expected": "84c5d3489b2719d692402e5e5187188f80ea992efc6f724397bb7774818e0761",
+      "actual": "84c5d3489b2719d692402e5e5187188f80ea992efc6f724397bb7774818e0761",
+      "source_sha256": "84c5d3489b2719d692402e5e5187188f80ea992efc6f724397bb7774818e0761",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-04.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-04.md",
+      "expected": "f5f8f63e25cfe00f78e061305ea9d00f0f968dedd9f1311f73e9c3289f021ed1",
+      "actual": "f5f8f63e25cfe00f78e061305ea9d00f0f968dedd9f1311f73e9c3289f021ed1",
+      "source_sha256": "f5f8f63e25cfe00f78e061305ea9d00f0f968dedd9f1311f73e9c3289f021ed1",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-05.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-05.md",
+      "expected": "85e69f959b024b6443f34e49cced4bf4284626ce2dd8e91bf6188de57160ccd8",
+      "actual": "85e69f959b024b6443f34e49cced4bf4284626ce2dd8e91bf6188de57160ccd8",
+      "source_sha256": "85e69f959b024b6443f34e49cced4bf4284626ce2dd8e91bf6188de57160ccd8",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-06.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-06.md",
+      "expected": "0dbf6d4050c930025f49efde919084080773bb0e2fe9146498e4da2c9273e6fe",
+      "actual": "0dbf6d4050c930025f49efde919084080773bb0e2fe9146498e4da2c9273e6fe",
+      "source_sha256": "0dbf6d4050c930025f49efde919084080773bb0e2fe9146498e4da2c9273e6fe",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-07.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-07.md",
+      "expected": "177baed539207d33540fa4382c30406d8ad9785550fa70ce5c7e0680f3df087b",
+      "actual": "177baed539207d33540fa4382c30406d8ad9785550fa70ce5c7e0680f3df087b",
+      "source_sha256": "177baed539207d33540fa4382c30406d8ad9785550fa70ce5c7e0680f3df087b",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-08.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-08.md",
+      "expected": "b0a7c2906501eea6052083d6c4d40e623f27a54b96b98b858b79a7b192ee41d1",
+      "actual": "b0a7c2906501eea6052083d6c4d40e623f27a54b96b98b858b79a7b192ee41d1",
+      "source_sha256": "b0a7c2906501eea6052083d6c4d40e623f27a54b96b98b858b79a7b192ee41d1",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-01.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-01.md",
+      "expected": "ba7a27af327985186c7d610644dc01fd431e313fef3b87cc11d7d02a809c06a8",
+      "actual": "ba7a27af327985186c7d610644dc01fd431e313fef3b87cc11d7d02a809c06a8",
+      "source_sha256": "ba7a27af327985186c7d610644dc01fd431e313fef3b87cc11d7d02a809c06a8",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-02.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-02.md",
+      "expected": "332501e62332910de0377333c5b0013abb1a85ce7f2e132301fddbaeeb52d6ad",
+      "actual": "332501e62332910de0377333c5b0013abb1a85ce7f2e132301fddbaeeb52d6ad",
+      "source_sha256": "332501e62332910de0377333c5b0013abb1a85ce7f2e132301fddbaeeb52d6ad",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-03.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-03.md",
+      "expected": "a6007cfa8709e9bfeeb32d44a679fa7ab406b570f3a325e685193c8f18ea21a0",
+      "actual": "a6007cfa8709e9bfeeb32d44a679fa7ab406b570f3a325e685193c8f18ea21a0",
+      "source_sha256": "a6007cfa8709e9bfeeb32d44a679fa7ab406b570f3a325e685193c8f18ea21a0",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-04.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-04.md",
+      "expected": "a13f8d38ba5d98fcf52a8427a1ff159082215df43bde7a1173d359e77096e4d2",
+      "actual": "a13f8d38ba5d98fcf52a8427a1ff159082215df43bde7a1173d359e77096e4d2",
+      "source_sha256": "a13f8d38ba5d98fcf52a8427a1ff159082215df43bde7a1173d359e77096e4d2",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-05.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-05.md",
+      "expected": "0f06024f7c01a17d463ab04c19bb8083b581949f4a73f11ec982e7de024560f8",
+      "actual": "0f06024f7c01a17d463ab04c19bb8083b581949f4a73f11ec982e7de024560f8",
+      "source_sha256": "0f06024f7c01a17d463ab04c19bb8083b581949f4a73f11ec982e7de024560f8",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-06.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-06.md",
+      "expected": "0a46b4e3ab26fcb53e694ffb8fe20da1d703db4a667c27e393720db950fef0ce",
+      "actual": "0a46b4e3ab26fcb53e694ffb8fe20da1d703db4a667c27e393720db950fef0ce",
+      "source_sha256": "0a46b4e3ab26fcb53e694ffb8fe20da1d703db4a667c27e393720db950fef0ce",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-07.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-07.md",
+      "expected": "5c90d86b90b55af62ad8fe64907c4fac93d00f4ad756c929e3fd843a9f548c37",
+      "actual": "5c90d86b90b55af62ad8fe64907c4fac93d00f4ad756c929e3fd843a9f548c37",
+      "source_sha256": "5c90d86b90b55af62ad8fe64907c4fac93d00f4ad756c929e3fd843a9f548c37",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-08.md",
+      "source": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-08.md",
+      "expected": "8a1efc289b40c44f6ca321af5f8c9529b81aa7d2f5fd4de79d7ca4ab70f1eaa8",
+      "actual": "8a1efc289b40c44f6ca321af5f8c9529b81aa7d2f5fd4de79d7ca4ab70f1eaa8",
+      "source_sha256": "8a1efc289b40c44f6ca321af5f8c9529b81aa7d2f5fd4de79d7ca4ab70f1eaa8",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/_AUTHORITY_BINDINGS.csv",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/Governance_Control_Authority_Bindings.csv",
+      "expected": "9d66de4f4ce26576a6f20b91c05185bf378ed7950823c06833512cef0ea81ca7",
+      "actual": "9d66de4f4ce26576a6f20b91c05185bf378ed7950823c06833512cef0ea81ca7",
+      "source_sha256": "9d66de4f4ce26576a6f20b91c05185bf378ed7950823c06833512cef0ea81ca7",
+      "parity": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/_AUTHORITY_BINDINGS.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/Governance_Control_Bindings.md",
+      "expected": "17f58d00b34a916b289d9e0f5e431cd7ae1ec41ce95ea975e30b4a401a24cb6f",
+      "actual": "17f58d00b34a916b289d9e0f5e431cd7ae1ec41ce95ea975e30b4a401a24cb6f",
+      "source_sha256": "17f58d00b34a916b289d9e0f5e431cd7ae1ec41ce95ea975e30b4a401a24cb6f",
+      "parity": true
+    }
+  ],
+  "all_exact": true,
+  "control_count": 46,
+  "binding_rows": 46,
+  "predicate_rows": 104,
+  "cached_main": "394a80e153c0889f852b743f99945caee812020d",
+  "owner_acts": [
+    {
+      "path": "plans/steers/root_runtime_migration_gate3_approval_2026-09-05.md",
+      "sha256": "b7b42b35e20ff1350e3879cb6e6c06297e593e28c70afb42df2fac3cd5a10a8a",
+      "matches_cached_published_main": true
+    },
+    {
+      "path": "plans/steers/root_runtime_migration_gate4_approval_2026-09-05.md",
+      "sha256": "7c20f795e254ba1cff69c2fd36f53f59463b160e3cb91879b9aa16b1c54a8ef8",
+      "matches_cached_published_main": true
+    }
+  ],
+  "immutable_predecessor_sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+  "predecessor_matches_HEAD_PRD": true,
+  "all_checks_read_only": true
+}

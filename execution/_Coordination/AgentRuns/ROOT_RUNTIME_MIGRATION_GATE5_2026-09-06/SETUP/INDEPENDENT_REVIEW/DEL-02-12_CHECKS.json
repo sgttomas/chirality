@@ -1,0 +1,82 @@
+{
+  "production_sha256": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b",
+  "source_sha256": "62bcfbdd6a20b647f15594fdd35b312d62942f85cf96aedb4aae5db12ea04663",
+  "status_sha256": "3f77f77ea5fd064709dc8e36b26a5e65aceba773c4c4fcc3f4050adeefab8f0e",
+  "paired_memory": {},
+  "author_validation_sha256": "bfd44fa935f5c6aa1b5cbf5bdf14a1d9a82139f815127562e7e6c5022d753e6b",
+  "definitions": {
+    "REQ": {
+      "source_count": 0,
+      "destination_count": 0,
+      "missing": [],
+      "changed": {}
+    },
+    "CLM": {
+      "source_count": 5,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    },
+    "OUT": {
+      "source_count": 7,
+      "destination_count": 7,
+      "missing": [],
+      "changed": {
+        "OUT-001": {
+          "source": "\u2014 Root and client conformance matrix.** The matrix records the conformance evidence available for the Root and each named client without treating an absent or unaccepted client result as satisfied.",
+          "destination": "\u2014 Runtime-project and client conformance matrix.** The matrix records the conformance evidence available for the runtime project and each named client without treating an absent or unaccepted client result as satisfied."
+        },
+        "OUT-007": {
+          "source": "\u2014 Ten-binding hold-aware disposition.** The disposition reports every binding as held or identifies its separately accepted named act; this draft neither supplies such an act nor lifts a hold.",
+          "destination": "\u2014 Ten-binding hold-aware disposition.** The disposition reports every binding as held or identifies its separately accepted named act; this contract neither supplies such an act nor lifts a hold."
+        }
+      }
+    },
+    "VER": {
+      "source_count": 0,
+      "destination_count": 6,
+      "missing": [],
+      "changed": {}
+    },
+    "AC": {
+      "source_count": 0,
+      "destination_count": 7,
+      "missing": [],
+      "changed": {}
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 7,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-12-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 135,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n      },\n      \"text\": \"Runtime-project and client entries identify accepted evidence and leave absent or unaccepted results unresolved. Boundary: Does not create client authority or satisfy a held client binding without its accepted evidence. Verification: VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-12-VER-001\",\n          \"source_line\": 151,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Conformance fan-in.** Prepare the runtime-project/client conformance matrix\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-12-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 136,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n      },\n      \"text\": \"`source_identity` refers only to exact accepted implementation bytes at G0.5. Boundary: Repository, planning, release, and version-like identities are not substitutes. Verification: VER-002.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-002\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-12-VER-002\",\n          \"source_line\": 154,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Exact identity binding.** Prepare the source-identity packet only\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-12-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 137,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n      },\n      \"text\": \"Agent 0/1/2 role-entry parity and the explicit labelled Agent 2/TASK fallback are evidenced. Boundary: The fallback remains labelled `role not mechanically enforced`. Verification: VER-003.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-003\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-12-VER-003\",\n          \"source_line\": 157,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Role-evidence calibration.** Exercise Agent 0/1/2 parity and the\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-12-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 138,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n      },\n      \"text\": \"Evidence classes remain truthful and hard containment remains unchanged. Boundary: Instruction+config assertion is not mechanism proof. Verification: VER-003.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-003\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-12-VER-003\",\n          \"source_line\": 157,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Role-evidence calibration.** Exercise Agent 0/1/2 parity and the\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-12-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 139,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n      },\n      \"text\": \"All three G0 A7 postures, prompt delivery, explicit-user `acceptForSession`, and empirical grouping are covered at the exact pin. Boundary: OpenAI service endpoints remain separate from command-network authority. Verification: VER-004.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-004\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-12-VER-004\",\n          \"source_line\": 161,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Command-network proof.** Exercise the three accepted G0 A7\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-006\",\n      \"output_refs\": [\n        \"OUT-006\"\n      ],\n      \"qualified_id\": \"DEL-02-12-AC-006\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 140,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n      },\n      \"text\": \"Separately accepted evidence is assembled with unresolved inputs visible. Boundary: Fan-in completeness is not release authority. Verification: VER-005.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-005\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-12-VER-005\",\n          \"source_line\": 164,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Shared-release fan-in.** Assemble the available separately\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-007\",\n      \"output_refs\": [\n        \"OUT-007\"\n      ],\n      \"qualified_id\": \"DEL-02-12-AC-007\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 141,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n      },\n      \"text\": \"Each historical binding retains `HELD_UNAVAILABLE` absent its separately accepted named act; nine remain held and Tier-0 is disposed separately under R16-B. Boundary: No hold lift, implementation authority, release authority, or dispatch authority. Verification: VER-006.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-006\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-12-VER-006\",\n          \"source_line\": 167,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Hold backcheck.** Reconcile the fan-in against all ten named\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-12\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+        "--show-not-checkable"
+      ],
+      "exit": 0,
+      "stdout": "\nContracts: 1 (1 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ]
+}

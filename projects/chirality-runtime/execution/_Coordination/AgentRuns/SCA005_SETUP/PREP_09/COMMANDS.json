@@ -1,0 +1,36 @@
+[
+  {
+    "command": [
+      "tools/scaffolding/scaffold_deliverable.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working",
+      "DEL-02-09",
+      "Hosted_Account_and_Consent_Boundary"
+    ],
+    "exit_code": 0,
+    "stdout": "Deliverable: projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary\nCreated: 5 files\nSkipped (exist): 0 files\n",
+    "stderr": ""
+  },
+  {
+    "mechanic": "Removed only newly scaffolded, verified zero-byte _STATUS.md so ordinary tool can initialize OPEN; no preexisting status removed."
+  },
+  {
+    "command": [
+      "tools/scaffolding/write_status.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "OPEN",
+      "PREPARATION"
+    ],
+    "exit_code": 0,
+    "stdout": "Status: DEL-02-09 \u2192 OPEN (by PREPARATION)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "tools/validation/check_min_viable_fileset.sh",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS: DEL-02-09 \u2014 all 5 minimum viable files present\n",
+    "stderr": ""
+  }
+]

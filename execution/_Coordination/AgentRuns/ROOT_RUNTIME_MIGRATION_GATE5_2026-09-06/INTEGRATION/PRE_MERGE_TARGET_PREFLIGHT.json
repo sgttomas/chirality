@@ -1,0 +1,1590 @@
+{
+  "preflight_only": true,
+  "rows": [
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map/_STATUS.md",
+      "expected_preimage": "1be887b66e07efadab73e1fad1f96d4fa50f57f04f84333dda607505ddedf62f",
+      "actual": "1be887b66e07efadab73e1fad1f96d4fa50f57f04f84333dda607505ddedf62f",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register/_STATUS.md",
+      "expected_preimage": "9b57d44e7bedb3e9360b4bb08309067a656110cb4dc4ee3e83bc79a5bcabbaf9",
+      "actual": "9b57d44e7bedb3e9360b4bb08309067a656110cb4dc4ee3e83bc79a5bcabbaf9",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance/_STATUS.md",
+      "expected_preimage": "7b0bd61c90d54721bd20b5fccefe04710bd6e51b36159dec8595b25499d9a637",
+      "actual": "7b0bd61c90d54721bd20b5fccefe04710bd6e51b36159dec8595b25499d9a637",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model/_STATUS.md",
+      "expected_preimage": "6162febbcc34471ecb392d8b3e3d669e214c0eed86f05874140b7fac8ee17e84",
+      "actual": "6162febbcc34471ecb392d8b3e3d669e214c0eed86f05874140b7fac8ee17e84",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance/_STATUS.md",
+      "expected_preimage": "b0cd6777d1d2155369389640e2ab27d6751d205b2059e2e767713dd307ede712",
+      "actual": "b0cd6777d1d2155369389640e2ab27d6751d205b2059e2e767713dd307ede712",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance/_STATUS.md",
+      "expected_preimage": "47e70da540289ab1fafc5df31324366f25378b0c1f40f593258c8aba2f9b233d",
+      "actual": "47e70da540289ab1fafc5df31324366f25378b0c1f40f593258c8aba2f9b233d",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register/_STATUS.md",
+      "expected_preimage": "cc2f1a8f770fc7fc3e506b8cf87043632ef95f66e13a6ed1567cea96d066e96f",
+      "actual": "cc2f1a8f770fc7fc3e506b8cf87043632ef95f66e13a6ed1567cea96d066e96f",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register/_STATUS.md",
+      "expected_preimage": "8ec15560aa9bbe7e58fa504b2f687e4843f049354800850ca8067b3131fa7984",
+      "actual": "8ec15560aa9bbe7e58fa504b2f687e4843f049354800850ca8067b3131fa7984",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management/_STATUS.md",
+      "expected_preimage": "9712539d5bc545ef925254a861e4be4f8d0e368804c9fd619e42bffe1ee48b01",
+      "actual": "9712539d5bc545ef925254a861e4be4f8d0e368804c9fd619e42bffe1ee48b01",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance/_STATUS.md",
+      "expected_preimage": "aae28ae979a34aa7a3e25cc7733ffa84e66d4abe114cbd9f74fa9e5e2a5a6fc7",
+      "actual": "aae28ae979a34aa7a3e25cc7733ffa84e66d4abe114cbd9f74fa9e5e2a5a6fc7",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_STATUS.md",
+      "expected_preimage": "792bc1ac966afdc575dbffdc98a91206aa22ce83b25372dd95948debfbcb3ada",
+      "actual": "792bc1ac966afdc575dbffdc98a91206aa22ce83b25372dd95948debfbcb3ada",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls/_STATUS.md",
+      "expected_preimage": "2e64af87021b5fe8476fa30a801465ae54e785f715ed41d191ab71066dc17ad4",
+      "actual": "2e64af87021b5fe8476fa30a801465ae54e785f715ed41d191ab71066dc17ad4",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools/_STATUS.md",
+      "expected_preimage": "69c15fe7642888036624fe77f7264ec817941f72fb1edbaa91019a1aa8f5f06d",
+      "actual": "69c15fe7642888036624fe77f7264ec817941f72fb1edbaa91019a1aa8f5f06d",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+      "expected_preimage": "d5209a64b3a2fc19480740fdf8821cdb7ade7106da69d896c06a264796713fc7",
+      "actual": "d5209a64b3a2fc19480740fdf8821cdb7ade7106da69d896c06a264796713fc7",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": [
+        {
+          "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_MEMORY.md",
+          "sha256": "6eb674e46eb489b68dfbaced279fe91dfba3d99a76e5c6a85f6437d4e873e205"
+        }
+      ]
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md",
+      "expected_preimage": "69e1e34a7ee9bc600586c1f10f5664ac58dde5d4425138d56882fc437e28eba1",
+      "actual": "69e1e34a7ee9bc600586c1f10f5664ac58dde5d4425138d56882fc437e28eba1",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md",
+      "expected_preimage": "8f7fda734b6a8d2fb3d56ccf6181678f77f1b16e2bfeba1b77d815a4bd767613",
+      "actual": "8f7fda734b6a8d2fb3d56ccf6181678f77f1b16e2bfeba1b77d815a4bd767613",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md",
+      "expected_preimage": "801c35f13748900999d82449307631b1a6bb991ef969b611a1f526ab828c6f43",
+      "actual": "801c35f13748900999d82449307631b1a6bb991ef969b611a1f526ab828c6f43",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md",
+      "expected_preimage": "814a547b5527a693634601e3fb167911d759b2f81562937af0c8210c56218717",
+      "actual": "814a547b5527a693634601e3fb167911d759b2f81562937af0c8210c56218717",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md",
+      "expected_preimage": "b821e34e191c4c3dccd7e294f57ea523bd1a56a5aa5bef43d33cbc6fc29affd0",
+      "actual": "b821e34e191c4c3dccd7e294f57ea523bd1a56a5aa5bef43d33cbc6fc29affd0",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md",
+      "expected_preimage": "81e440bef048fcd8cd98c03cfacf8e6940b4c2ba589e4c35bc077a3e6a305a6b",
+      "actual": "81e440bef048fcd8cd98c03cfacf8e6940b4c2ba589e4c35bc077a3e6a305a6b",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance/_STATUS.md",
+      "expected_preimage": "f77fceb0334893e29e9a6e1be5091f686810a0f41036239fe5ed3319a978688b",
+      "actual": "f77fceb0334893e29e9a6e1be5091f686810a0f41036239fe5ed3319a978688b",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance/_STATUS.md",
+      "expected_preimage": "3e0bc844446dfc4a5aa68db426cb0535d7135954c449bf1a115e19d3dd3b00d7",
+      "actual": "3e0bc844446dfc4a5aa68db426cb0535d7135954c449bf1a115e19d3dd3b00d7",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary/_STATUS.md",
+      "expected_preimage": "fe7e20caf4f53e3ea14a55ef27ba23ebd0843fe689ff60f88af1332c18705440",
+      "actual": "fe7e20caf4f53e3ea14a55ef27ba23ebd0843fe689ff60f88af1332c18705440",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance/_STATUS.md",
+      "expected_preimage": "825baa0359a065d0930d16570c1ce6867601620faf3d7a5c5a44d2ebb6c04db0",
+      "actual": "825baa0359a065d0930d16570c1ce6867601620faf3d7a5c5a44d2ebb6c04db0",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration/_STATUS.md",
+      "expected_preimage": "9b0c2438a008bdc0134f9f46bd0441325bc36370e4e9f88b391ce688c1047fa8",
+      "actual": "9b0c2438a008bdc0134f9f46bd0441325bc36370e4e9f88b391ce688c1047fa8",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream/_STATUS.md",
+      "expected_preimage": "1de71f97952dbaf165d50db65755697175c8a502d7140deaa61a6c52d9aa99c7",
+      "actual": "1de71f97952dbaf165d50db65755697175c8a502d7140deaa61a6c52d9aa99c7",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline/_STATUS.md",
+      "expected_preimage": "790d1140fd435c0f9e536f21344b49f5d07ecbc800b78ef0169f142458a05c94",
+      "actual": "790d1140fd435c0f9e536f21344b49f5d07ecbc800b78ef0169f142458a05c94",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls/_STATUS.md",
+      "expected_preimage": "44d08fc5cb3d0e296b83948b6e43ddbce980eec3fd638e499267e0d07efa9982",
+      "actual": "44d08fc5cb3d0e296b83948b6e43ddbce980eec3fd638e499267e0d07efa9982",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls/_STATUS.md",
+      "expected_preimage": "015d10559b0f30d7606bb37ed54b8adce582f12fbfe96a81bb8bad1c9c81628c",
+      "actual": "015d10559b0f30d7606bb37ed54b8adce582f12fbfe96a81bb8bad1c9c81628c",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing/_STATUS.md",
+      "expected_preimage": "50be8fb57f8c91692ef8b70a8cfaf64b4a91a427dafa1e463843564e44a22a6f",
+      "actual": "50be8fb57f8c91692ef8b70a8cfaf64b4a91a427dafa1e463843564e44a22a6f",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline/_STATUS.md",
+      "expected_preimage": "2d96b61fcb4b05bc1ba61073d4adbc1753021886fc186522ed9246b6d99dbec8",
+      "actual": "2d96b61fcb4b05bc1ba61073d4adbc1753021886fc186522ed9246b6d99dbec8",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout/_STATUS.md",
+      "expected_preimage": "9d1e06124b64becd4428184c5b1ae9b860740b620a181fd3374cf8873a29ccdc",
+      "actual": "9d1e06124b64becd4428184c5b1ae9b860740b620a181fd3374cf8873a29ccdc",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance/_STATUS.md",
+      "expected_preimage": "a7050b0b9e1793f6f2b4734fbb1a02096cfd6ea8d2519e12c5cbe9e1b58d9518",
+      "actual": "a7050b0b9e1793f6f2b4734fbb1a02096cfd6ea8d2519e12c5cbe9e1b58d9518",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control/_STATUS.md",
+      "expected_preimage": "1689a7a84e1b36b3e309833d59b3887bc7b57771a2573ade4f10ae3258ac2b52",
+      "actual": "1689a7a84e1b36b3e309833d59b3887bc7b57771a2573ade4f10ae3258ac2b52",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability/_STATUS.md",
+      "expected_preimage": "4b4cb9ff9b178eb8a8a19a2c29e515e7ca74f47d4baf650986ec8db110d70858",
+      "actual": "4b4cb9ff9b178eb8a8a19a2c29e515e7ca74f47d4baf650986ec8db110d70858",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration/_STATUS.md",
+      "expected_preimage": "d05f8faf57d1b35936f2b01ab26673efc0b1dc47808acae0342e2ea3ec9bbae0",
+      "actual": "d05f8faf57d1b35936f2b01ab26673efc0b1dc47808acae0342e2ea3ec9bbae0",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_STATUS.md",
+      "expected_preimage": "10b0a106036462f22507416c4d531977227f768257b83ac3d88b98cf31d36dad",
+      "actual": "10b0a106036462f22507416c4d531977227f768257b83ac3d88b98cf31d36dad",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance/_STATUS.md",
+      "expected_preimage": "a15746368160a4645028809b838d1d0c1fd98f3049d4d5ead7bda3ccc540eb93",
+      "actual": "a15746368160a4645028809b838d1d0c1fd98f3049d4d5ead7bda3ccc540eb93",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline/_STATUS.md",
+      "expected_preimage": "89abc47675e571821c61b4cba0475c3dba3e21715be15e448bbf73b4fce8164a",
+      "actual": "89abc47675e571821c61b4cba0475c3dba3e21715be15e448bbf73b4fce8164a",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register/_STATUS.md",
+      "expected_preimage": "284e23f600021932901e1339780cc580f3207e127c693a84e0707b93ff60f1f1",
+      "actual": "284e23f600021932901e1339780cc580f3207e127c693a84e0707b93ff60f1f1",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle/_STATUS.md",
+      "expected_preimage": "b7f3cfcfde2bf5bffcaebd19db5b3b566f8e1f7c12b51042c34cf63df0dadef4",
+      "actual": "b7f3cfcfde2bf5bffcaebd19db5b3b566f8e1f7c12b51042c34cf63df0dadef4",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance/_STATUS.md",
+      "expected_preimage": "ce847146c5db5568d3ec71befdcd01836dc835e26d844e03baea7861b4662602",
+      "actual": "ce847146c5db5568d3ec71befdcd01836dc835e26d844e03baea7861b4662602",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control/_STATUS.md",
+      "expected_preimage": "067e95dc7d929f9273fd55b36bcc49935bc06ac2186eafb7b794b2ab77aa0fc6",
+      "actual": "067e95dc7d929f9273fd55b36bcc49935bc06ac2186eafb7b794b2ab77aa0fc6",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance/_STATUS.md",
+      "expected_preimage": "bce5b9fcdbb4cc7b8b073fb0c0ff9330e344f4a6cd301e0a6c4007d8542023f1",
+      "actual": "bce5b9fcdbb4cc7b8b073fb0c0ff9330e344f4a6cd301e0a6c4007d8542023f1",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation/_STATUS.md",
+      "expected_preimage": "5dcd7749d08ae9ed0e938b44de03aea7500fa7c445d60188e8770a987f040c68",
+      "actual": "5dcd7749d08ae9ed0e938b44de03aea7500fa7c445d60188e8770a987f040c68",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation/_STATUS.md",
+      "expected_preimage": "829180b8b72fff94fb9cb3e98acb655f8db1dfd32fe8b63b44bb1d6a89ce4060",
+      "actual": "829180b8b72fff94fb9cb3e98acb655f8db1dfd32fe8b63b44bb1d6a89ce4060",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction/_STATUS.md",
+      "expected_preimage": "d608c1bf4e3b03bdf609b1d6e45d4ad5f8eaf2b58a6b9ab7efb8f393209ebbec",
+      "actual": "d608c1bf4e3b03bdf609b1d6e45d4ad5f8eaf2b58a6b9ab7efb8f393209ebbec",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record/_STATUS.md",
+      "expected_preimage": "c68ec17b770c8a4d9d7f30d8f5c87a95a855c3c0feaa095ebb8a32c90b3fd686",
+      "actual": "c68ec17b770c8a4d9d7f30d8f5c87a95a855c3c0feaa095ebb8a32c90b3fd686",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening/_STATUS.md",
+      "expected_preimage": "fde5cdc1ca18ce47a818fe3bcd49c39163959493a59d2fa915b693545225a707",
+      "actual": "fde5cdc1ca18ce47a818fe3bcd49c39163959493a59d2fa915b693545225a707",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary/_STATUS.md",
+      "expected_preimage": "2c1ed2e449f286f05874769c1d26f8dc7d01f4d8797d410c0e77004cfd9b521c",
+      "actual": "2c1ed2e449f286f05874769c1d26f8dc7d01f4d8797d410c0e77004cfd9b521c",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway/_STATUS.md",
+      "expected_preimage": "e28c104be996657ad5d8906f55f33ff6c9f1ef69d1444c946926527eec1445d0",
+      "actual": "e28c104be996657ad5d8906f55f33ff6c9f1ef69d1444c946926527eec1445d0",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate/_STATUS.md",
+      "expected_preimage": "3de187ce82774bb2d08c589342b6387fca2366385eba2a36a57f977ffc42ce66",
+      "actual": "3de187ce82774bb2d08c589342b6387fca2366385eba2a36a57f977ffc42ce66",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration/_STATUS.md",
+      "expected_preimage": "5ac38f191579e09de20707b2d6699f511d772ce438382e79c9fbbb07b2bc6351",
+      "actual": "5ac38f191579e09de20707b2d6699f511d772ce438382e79c9fbbb07b2bc6351",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "expected_preimage": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+      "actual": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+      "expected_preimage": "bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c",
+      "actual": "bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "expected_preimage": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+      "actual": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+      "expected_preimage": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+      "actual": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+      "expected_preimage": "9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f",
+      "actual": "9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "expected_preimage": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+      "actual": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+      "expected_preimage": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+      "actual": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+      "match": true,
+      "owner": "SCOPE_CHANGE",
+      "paired_memory": []
+    },
+    {
+      "target": "docs/PRD_ROOT.md",
+      "expected_preimage": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+      "actual": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "docs/DIRECTIVE.md",
+      "expected_preimage": "6372f235f16d10936f71a7863eedfed13804528c578978c71c94e55485dc7259",
+      "actual": "6372f235f16d10936f71a7863eedfed13804528c578978c71c94e55485dc7259",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "docs/SPEC.md",
+      "expected_preimage": "f666385e3d79a9634db58087d8b1bd4c4e60bd02ab0ab78fe866d7d911350143",
+      "actual": "f666385e3d79a9634db58087d8b1bd4c4e60bd02ab0ab78fe866d7d911350143",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "docs/TYPES.md",
+      "expected_preimage": "977e1ad44e2c3783036eec597abd0be9827209150aa113d80e5915ab20a87662",
+      "actual": "977e1ad44e2c3783036eec597abd0be9827209150aa113d80e5915ab20a87662",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-01.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-02.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-03.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-04.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-05.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-07.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-01-08.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-02-01.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-02-02.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-02-03.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-02-04.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-02-05.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-03-01.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-03-02.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-03-03.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-03-04.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-03-05.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-03-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-01.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-02.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-03.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-04.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-05.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-07.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-08.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-09.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-10.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-04-11.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-01.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-02.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-03.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-04.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-05.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-07.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-05-08.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-01.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-02.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-03.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-04.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-05.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-07.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/GOV-06-08.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/_AUTHORITY_BINDINGS.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/_AUTHORITY_BINDINGS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/ACCEPTED_EVIDENCE_CONTINUITY.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/CHANGE_JOURNAL.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/COVERAGE_PREVIEW.json",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/DEPENDENCY_DISTRIBUTION_PREVIEW.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/GATE_READINESS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/INHERITED_REQUIREMENT_TRACE.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/OWNERSHIP_OVERLAY.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/docs/PRD.md",
+      "expected_preimage": "4e18527e5dc15583068277ea2ea94d5bfe4fa31dff80d77d6192318a82bf28a0",
+      "actual": "4e18527e5dc15583068277ea2ea94d5bfe4fa31dff80d77d6192318a82bf28a0",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_PINS.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-08_Exact_Supply_and_Protocol_Pinning.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-09_Hosted_Account_and_Consent_Boundary.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/TRACE_PREVIEW.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/chirality.project.json",
+      "expected_preimage": "7300f3b5706286e41635586787e16827f409658e9cba2f1922cc2862ab90b821",
+      "actual": "7300f3b5706286e41635586787e16827f409658e9cba2f1922cc2862ab90b821",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_CONTEXT.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP via ordinary guard after PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_REFERENCES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION then TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_SEMANTIC.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+scope-of-work",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_CONTEXT.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP via ordinary guard after PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_REFERENCES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION then TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_SEMANTIC.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+scope-of-work",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_CONTEXT.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP via ordinary guard after PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_REFERENCES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_DEPENDENCIES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION then TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_SEMANTIC.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+scope-of-work",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_CONTEXT.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP via ordinary guard after PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_REFERENCES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_DEPENDENCIES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION then TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_SEMANTIC.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+scope-of-work",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_CONTEXT.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP via ordinary guard after PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_REFERENCES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_DEPENDENCIES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION then TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_SEMANTIC.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+scope-of-work",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_CONTEXT.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP via ordinary guard after PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_REFERENCES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_DEPENDENCIES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION then TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_SEMANTIC.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+scope-of-work",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_CONTEXT.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP via ordinary guard after PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_REFERENCES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_DEPENDENCIES.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION then TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_SEMANTIC.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+scope-of-work",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/docs/PRD_AUTHORITY.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/_AUTHORITY.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+      "expected_preimage": "55aa47a1d7a17455c4ce7f41ed556d1ad12e5a2e57bd4ef6b2dc7b094db861bd",
+      "actual": "55aa47a1d7a17455c4ce7f41ed556d1ad12e5a2e57bd4ef6b2dc7b094db861bd",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/AGENTS.md",
+      "expected_preimage": "22a404553a5bd9ffede0a29bb25a0485585ceac97da5613afe5d9c86e2636660",
+      "actual": "22a404553a5bd9ffede0a29bb25a0485585ceac97da5613afe5d9c86e2636660",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "expected_preimage": "66ecf50c0cef392888138e2136669aa5433cf435e1ac662faf5ca734b0b57ffb",
+      "actual": "66ecf50c0cef392888138e2136669aa5433cf435e1ac662faf5ca734b0b57ffb",
+      "match": true,
+      "owner": "PROJECT_SETUP",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "plans/steers/root_runtime_migration_application_2026-09-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELP_HUMAN / owner",
+      "paired_memory": []
+    },
+    {
+      "target": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-AUTHORITY-APPLICATION-20260906.yaml",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_AUTHORITY_2026-09-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELP_HUMAN",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/pec/execution/_Coordination/NOTICE_ROOT_RUNTIME_AUTHORITY_2026-09-06.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELP_HUMAN",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/0_References/_REFERENCE_INDEX.md",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 PREPARATION",
+      "paired_memory": []
+    },
+    {
+      "target": "execution/_Coordination/GovernanceControls/_DEPENDENCIES.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "HELPS_HUMANS",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Dependencies.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/Dependencies.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/Dependencies.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/Dependencies.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/Dependencies.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/Dependencies.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+dependency-extract",
+      "paired_memory": []
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/Dependencies.csv",
+      "expected_preimage": "ABSENT",
+      "actual": "ABSENT",
+      "match": true,
+      "owner": "PROJECT_SETUP \u2192 TASK+dependency-extract",
+      "paired_memory": []
+    }
+  ],
+  "all_match": true,
+  "HEAD": "a5b41a1d9fba3df4f273662a432e92ef16a971a6",
+  "origin_main": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+  "approval_publication_verified": false
+}

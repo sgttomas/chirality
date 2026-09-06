@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-09-06T01:19:24.390876+00:00",
+  "release_sha256": "233fb8d7def489b42156e124b6e732aacb685aad438c5ba5b25056e2ea7c5590",
+  "fetched_main": "394a80e153c0889f852b743f99945caee812020d",
+  "items": [
+    {
+      "target": "docs/PRD_ROOT.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/PRD_ROOT_D13_POSTIMAGE.md",
+      "before_sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+      "after_sha256": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f"
+    },
+    {
+      "target": "docs/DIRECTIVE.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/DIRECTIVE.md",
+      "before_sha256": "6372f235f16d10936f71a7863eedfed13804528c578978c71c94e55485dc7259",
+      "after_sha256": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5"
+    },
+    {
+      "target": "docs/SPEC.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/SPEC.md",
+      "before_sha256": "f666385e3d79a9634db58087d8b1bd4c4e60bd02ab0ab78fe866d7d911350143",
+      "after_sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645"
+    },
+    {
+      "target": "docs/TYPES.md",
+      "source": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/TYPES.md",
+      "before_sha256": "977e1ad44e2c3783036eec597abd0be9827209150aa113d80e5915ab20a87662",
+      "after_sha256": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18"
+    }
+  ],
+  "immutable_revision8": {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/ACCEPTED_ROOT_PRD_REV8.md",
+    "sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4"
+  },
+  "all_four_exact": true,
+  "gate5_confirmed": false,
+  "effective_transfer": "PENDING",
+  "pointers_moved": false
+}

@@ -1,0 +1,92 @@
+{
+  "command": [
+    "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+    "-m",
+    "pytest",
+    "-q",
+    "tools/validation/test_validate_root_materialization_fence.py"
+  ],
+  "exit_code": 1,
+  "suite": {
+    "path": "tools/validation/test_validate_root_materialization_fence.py",
+    "sha256": "81196b0cbe554e65803b7cb7a7ac3f57a8848b7c8aa5a13722f488ca28b1bef4"
+  },
+  "tested_files": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_PREPARED.json",
+      "sha256": "6b03bec1f8f59c02913ebe91a2fd9f15f17fbb94d1659754a85c98a045c50cf0"
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "sha256": "59dce02079480d1f2284eb6500e5825c41dcc39e29d3c471f867d962fc56385f"
+    },
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "sha256": "fef7693cfa915e6d80c5be8804bbc156327b74783089de677012b6cc3a846e0d"
+    },
+    {
+      "path": "execution/_harness/surface_ownership.yaml",
+      "sha256": "0f54ce1d0051e79e37c3a00f43f36b868e0b7b1c6221d8871a5483a3783072b3"
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "sha256": "b8a819b20b3be0ed2e928d1129efbb12f48909ca6e36bc16753a9d735ffd27a7"
+    },
+    {
+      "path": "tools/scaffolding/apply_root_retirement.py",
+      "sha256": "e7f74cb000b6cbcc47278e2baaae50925b716b6504c7916b5e498b4cd531de0f"
+    },
+    {
+      "path": "tools/validation/root_governance_state.py",
+      "sha256": "c9ce39b5da115191818871ad5be06e837f2dd33060b7e6b3d35b404848aa45bd"
+    },
+    {
+      "path": "tools/validation/test_apply_root_retirement.py",
+      "sha256": "048c72e37e7517ece0912dca5ba5bb3a58811fe488f794f53bd3655501759b0d"
+    },
+    {
+      "path": "tools/validation/test_root_governance_state.py",
+      "sha256": "dda8a7a97759b192947534e08c6f613cd9ed9bc070b2fb57e1c414f4a5dd91dc"
+    },
+    {
+      "path": "tools/validation/test_validate_instruction_tranche_manifest.py",
+      "sha256": "f60566db9034522454cc73c22127d273a79558d1d98725a978e1c8bb5f55b289"
+    },
+    {
+      "path": "tools/validation/test_validate_root_harness_adapter.py",
+      "sha256": "cc7a38495bbff432756f1a8b56d9c73a99886aad2dc22435851bf83746bf1fc1"
+    },
+    {
+      "path": "tools/validation/test_validate_root_materialization_fence.py",
+      "sha256": "81196b0cbe554e65803b7cb7a7ac3f57a8848b7c8aa5a13722f488ca28b1bef4"
+    },
+    {
+      "path": "tools/validation/test_validate_root_surface_ownership.py",
+      "sha256": "2c84f7bde071a499b79ffa2ddaf955d002c4dfe1bbadd703f0a89ccccdf5b404"
+    },
+    {
+      "path": "tools/validation/test_validate_root_work_graph_dispatch.py",
+      "sha256": "eb687300fa98b1a8f107c8eaff42a345f87596d2cdb6c64cc59e565e5879a01a"
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "sha256": "be7ec317ddd283dfd00f6bf8c4042b11bccc18f9da0f336e33ddc94d56317f58"
+    },
+    {
+      "path": "tools/validation/validate_root_harness_adapter.py",
+      "sha256": "142e68372b1b75ad878e006750a78c01665a3fdd54065b6f6d038dfb20a9f03f"
+    },
+    {
+      "path": "tools/validation/validate_root_materialization_fence.py",
+      "sha256": "07a4ffac150227fcd5c97bb15e9cd0b9f9b089aef1e9e658b06966cfcda3d3fe"
+    },
+    {
+      "path": "tools/validation/validate_root_surface_ownership.py",
+      "sha256": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630"
+    },
+    {
+      "path": "tools/validation/validate_root_work_graph_dispatch.py",
+      "sha256": "a23ff1ddf37d36f8fe413b87812d97de9655ecd0082d8eb77562a7cf2db53c02"
+    }
+  ]
+}

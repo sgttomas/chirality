@@ -86,6 +86,7 @@ from __future__ import annotations
 
 import re
 import subprocess
+import root_governance_state as governance
 import sys
 from pathlib import Path, PurePosixPath
 
@@ -170,6 +171,19 @@ def count_status_files(root: Path, status_glob: str, exclude_globs: list[str]) -
 
 def check(root: Path) -> tuple[int, list[str]]:
     """Returns (exit_code, report_lines). 0 PASS, 1 BLOCK, 2 operational."""
+    try:
+        import yaml
+        mode_path = root / ADAPTER_RELPATH
+        mode_data = yaml.safe_load(mode_path.read_text()) if mode_path.is_file() else {}
+        if isinstance(mode_data, dict):
+            if governance.check_mode(mode_data):
+                return _check_governance_g1(root, mode_data)
+        elif mode_path.is_file():
+            raise governance.GovernanceError('Root state is not a mapping')
+    except yaml.YAMLError as exc:
+        return 1, ['unparseable Root state: ' + str(exc)]
+    except (governance.GovernanceError, ValueError, OSError) as exc:
+        return 1, ['G1 BLOCK: ' + str(exc)]
     lines: list[str] = []
     path = root / ADAPTER_RELPATH
     children = materialized_children(root)
@@ -353,6 +367,33 @@ def check(root: Path) -> tuple[int, list[str]]:
             + ", ".join(children)
         )
     return 0, lines
+
+
+def _check_governance_g1(root: Path, data: dict) -> tuple[int, list[str]]:
+    try:
+        required={'schema':'root-harness-adapter/v1','product':'chirality-root','working_root':'.','execution_root':'execution',
+            'prd':'docs/PRD_ROOT.md','coordination':'execution/_Coordination/CURRENT_WORKPLAN.md',
+            'decision_register':'docs/governance_harness/_DECISIONS/_REGISTER.md',
+            'loop_init':'execution/_Coordination/LOOP_INIT.md','receipts':'execution/_Coordination/LOOP_RECEIPTS.md',
+            'status_glob':'execution/PKG-*/1_Working/DEL-*/_STATUS.md','parser_dialect':'root-historical-v1'}
+        for key,value in required.items():
+            if data.get(key)!=value: raise governance.GovernanceError('invalid governance adapter '+key)
+        for key in ['prd','coordination','decision_register','loop_init','receipts']:
+            governance.safe_path(root,data[key])
+        if data.get('states')!=['RETIRED']: raise governance.GovernanceError('Root historical states must be RETIRED only')
+        if data.get('exclude_globs') not in ([],['.archive/**']): raise governance.GovernanceError('historical census exclusions cannot hide carriers')
+        bases=data.get('baselines',{})
+        if bases.get('status_files')!=53 or bases.get('status_mismatch')!=0:
+            raise governance.GovernanceError('historical adapter baseline mismatch')
+        if not isinstance(bases.get('pinned_at'),str) or len(bases['pinned_at'])!=40:
+            raise governance.GovernanceError('historical baseline requires full basis commit')
+        state=governance.load_governance_state(root,data,verify_statuses=governance.status_verification(root,data))
+        declared={r['path'] for r in state['source_statuses']}
+        actual={str(p.relative_to(root)) for p in root.glob(data['status_glob']) if p.is_file()}
+        if actual!=declared: raise governance.GovernanceError('adapter status identity census mismatch')
+        return 0,['G1 PASS: governance adapter exact pointers, controls and historical census; stage='+state['stage']]
+    except (governance.GovernanceError,OSError,ValueError,KeyError,TypeError) as exc:
+        return 1,['G1 BLOCK: '+str(exc)]
 
 
 def main() -> int:

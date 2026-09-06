@@ -404,3 +404,166 @@ def test_live_repo_state_passes():
     yet, which is the lawful pre-instantiation condition (packet §5.3)."""
     code, _ = g3.check(g3.repo_root())
     assert code == 0
+
+import hashlib
+import json
+import pytest
+
+
+def _governance_graph_fixture(root, monkeypatch):
+    from test_validate_root_surface_ownership import _governance_fixture, _write_register as write_ownership
+    import root_governance_state as state_module
+    register, state = _governance_fixture(root, monkeypatch)
+    state.update(gate4={"subject_sha256": "a" * 64}, held_capabilities=["HELD-FEATURE"])
+    write_ownership(root, register)
+    monkeypatch.setattr(state_module, "verify_owner_act", lambda root, ref, expected: None)
+    marker = _marker_target(root)
+    node = _node(owner="root::GOV-01", write_targets=["tools/checks/out/**"], m2_marker="M2:" + marker,
+                 execution_class="governance-migration", stage="dispatch", session_id="actual-child-1", parent_session_id="parent-1", capability_basis={"path": "owner.json"})
+    evidence = {"kind": "child-execution", "node": "N1", "stage": "dispatch", "session_id": "actual-child-1", "parent_session_id": "parent-1"}
+    raw = json.dumps(evidence).encode()
+    (root / "execution-record.json").write_bytes(raw)
+    node["child_evidence"] = {"path": "execution-record.json", "sha256": hashlib.sha256(raw).hexdigest()}
+    graph = _graph([node], mode="governance-only", governance_state=register["governance_state"])
+    return graph, node, evidence
+
+
+def test_governance_actual_launch_no_return_required(tmp_path, monkeypatch):
+    graph, _, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 0
+
+
+@pytest.mark.parametrize("change", ["retired", "missing-child", "held", "unknown-owner", "foreign", "cycle", "parentage", "fan-in-without-return"])
+def test_governance_dispatch_mutations(tmp_path, monkeypatch, change):
+    graph, node, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    if change == "retired": node["owner"] = "DEL-02-06"
+    elif change == "missing-child": node.pop("child_evidence")
+    elif change == "held": node["runtime_capabilities"] = ["HELD-FEATURE"]
+    elif change == "unknown-owner": node["owner"] = "root::GOV-UNKNOWN"
+    elif change == "foreign": node["write_targets"] = ["projects/other/**"]
+    elif change == "cycle": node["depends_on"] = ["N1"]
+    elif change == "parentage": node["parent_session_id"] = "wrong-parent"
+    elif change == "fan-in-without-return": node["stage"] = "fan-in"
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 1
+
+
+def test_governance_owner_branch_evidence_rejected(tmp_path, monkeypatch):
+    import root_governance_state as state_module
+    graph, _, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    def reject(root, ref, expected):
+        raise state_module.GovernanceError("owner act not published origin/main")
+    monkeypatch.setattr(state_module, "verify_owner_act", reject)
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 1
+
+
+def test_governance_complete_branch_predecessor_allowed(tmp_path, monkeypatch):
+    graph, node, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    graph["nodes"].append(_node("PRE", status="complete", owner="root::GOV-01", write_targets=[]))
+    node["depends_on"] = ["PRE"]
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 0
+
+
+def test_governance_overlap_rejected(tmp_path, monkeypatch):
+    graph, node, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    other = dict(node, id="N2")
+    graph["nodes"].append(other)
+    failures, _, _ = g3.check_graph(tmp_path, tmp_path / "graph.yaml", graph)
+    assert any("overlap" in failure for failure in failures)
+
+
+def test_governance_missing_register_cannot_skip(tmp_path, monkeypatch):
+    graph, _, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    (tmp_path / g3.REGISTER_RELPATH).unlink()
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 1
+
+
+def test_governance_fan_in_binds_actual_return(tmp_path, monkeypatch):
+    graph, node, evidence = _governance_graph_fixture(tmp_path, monkeypatch)
+    returned = b"Actual child result\n"
+    (tmp_path / "return.md").write_bytes(returned)
+    node["stage"] = evidence["stage"] = "fan-in"
+    evidence["return"] = {"path": "return.md", "sha256": hashlib.sha256(returned).hexdigest()}
+    raw = json.dumps(evidence).encode()
+    (tmp_path / "execution-record.json").write_bytes(raw)
+    node["child_evidence"]["sha256"] = hashlib.sha256(raw).hexdigest()
+    path = _write_graph(tmp_path, graph)
+    assert g3.check(tmp_path, path)[0] == 0
+    (tmp_path / "return.md").write_bytes(b"Replaced return\n")
+    assert g3.check(tmp_path, path)[0] == 1
+
+
+def test_governance_graph_cannot_downgrade_to_legacy(tmp_path, monkeypatch):
+    graph, _, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    graph.pop("mode")
+    graph.pop("governance_state")
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 1
+
+
+def test_governance_brief_binds_child_identity(tmp_path, monkeypatch):
+    graph, node, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    graph_path = _write_graph(tmp_path, graph)
+    brief = {"node": "N1", **{k: node[k] for k in ("write_targets", "m2_marker", "stage", "child_evidence", "session_id", "parent_session_id")}}
+    brief_path = _write_brief(tmp_path, "brief.yaml", brief)
+    assert g3.check(tmp_path, graph_path, [brief_path])[0] == 0
+    brief["session_id"] = "other-child"
+    _write_brief(tmp_path, "brief.yaml", brief)
+    assert g3.check(tmp_path, graph_path, [brief_path])[0] == 1
+
+
+@pytest.mark.parametrize("execution_class,expected", [("governance-migration", False), ("governance-operation", True)])
+def test_governance_execution_class_effect_boundary(tmp_path, monkeypatch, execution_class, expected):
+    import root_governance_state as state_module
+    graph, node, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    original = state_module.load_governance_state
+    observed = []
+    def observe(*args, **kwargs):
+        observed.append(kwargs.get("require_effective", False))
+        return original(*args, **kwargs)
+    monkeypatch.setattr(state_module, "load_governance_state", observe)
+    node["execution_class"] = execution_class
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 0
+    assert observed[0] is expected
+
+
+@pytest.mark.parametrize("status", ["PREPARED", "APPLYING", "ROLLING_BACK", "ROLLED_BACK", "BLOCKED_PARTIAL"])
+def test_governance_migration_cannot_dispatch_during_transaction(tmp_path, monkeypatch, status):
+    import root_governance_state as state_module
+    graph, _, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    state = state_module.load_governance_state(tmp_path, graph)
+    (tmp_path / "journal.json").write_text(json.dumps({"status": status}))
+    state["transaction"] = {"path": "journal.json", "sha256": None}
+    assert g3.check(tmp_path, _write_graph(tmp_path, graph))[0] == 1
+
+
+@pytest.mark.parametrize("mutation", ["none", "branch-only", "wrong-subject"])
+def test_governance_published_owner_gate_with_real_git(tmp_path, monkeypatch, mutation):
+    """Only state resolution is isolated; owner proof executes real local Git."""
+    import subprocess
+    import root_governance_state as state_module
+    verify = state_module.verify_owner_act
+    graph, node, _ = _governance_graph_fixture(tmp_path, monkeypatch)
+    monkeypatch.setattr(state_module, "verify_owner_act", verify)
+    def git(*args):
+        return subprocess.run(["git", "-C", str(tmp_path), *args], check=True, capture_output=True, text=True).stdout.strip()
+    git("init", "-q")
+    git("config", "user.name", "Fixture")
+    git("config", "user.email", "fixture@example.invalid")
+    owner = tmp_path / "owner.md"
+    owner.write_text("Fixture acceptance of " + "a" * 64 + "\n")
+    git("add", "owner.md")
+    git("commit", "-qm", "Isolated fixture owner record\n\nCo-Authored-By: GPT-6 <noreply@openai.com>")
+    published = git("rev-parse", "HEAD")
+    git("update-ref", "refs/remotes/origin/main", published)
+    if mutation == "branch-only":
+        owner.write_text(owner.read_text() + "Branch-only amendment\n")
+        git("add", "owner.md")
+        git("commit", "-qm", "Isolated fixture branch amendment\n\nCo-Authored-By: GPT-6 <noreply@openai.com>")
+    node["capability_basis"] = {"path": "owner.md", "sha256": hashlib.sha256(owner.read_bytes()).hexdigest(), "commit": git("rev-parse", "HEAD"), "subject_sha256": ("b" if mutation == "wrong-subject" else "a") * 64}
+    result = g3.check(tmp_path, _write_graph(tmp_path, graph))[0]
+    assert result == (0 if mutation == "none" else 1)
+
+@pytest.mark.parametrize('capabilities', [['unknown-feature'], ['source_identity'], [None], [123], [''], 'feature'])
+def test_migration_grant_never_opens_runtime_feature_alias(tmp_path,monkeypatch,capabilities):
+    graph,node,_=_governance_graph_fixture(tmp_path,monkeypatch)
+    node['runtime_capabilities']=capabilities
+    assert g3.check(tmp_path,_write_graph(tmp_path,graph))[0]==1

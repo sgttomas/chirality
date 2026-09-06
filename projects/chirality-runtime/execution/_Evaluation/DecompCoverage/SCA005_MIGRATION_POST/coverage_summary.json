@@ -1,0 +1,53 @@
+{
+  "run_label": "SCA005_MIGRATION_POST_RUNTIME",
+  "timestamp": "2026-09-06T01:11:20.336212+00:00",
+  "decomp_variant": "SOFTWARE",
+  "scope": "ALL",
+  "expected_source_snapshot": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/COMBINED_ARTIFACTS.sha256",
+  "expected_handoff_phase": "Gate5 application audit; owner confirmation pending",
+  "decomposition_path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "1.0 accepted exact Gate3 subject",
+  "repository_topology": {
+    "packages": 1,
+    "deliverables": 7,
+    "objectives": 4,
+    "scope_items": 1,
+    "ledger_rows": 1,
+    "inherited_requirements": 66,
+    "mapped_root_source_rows": 104
+  },
+  "partitions_declared": 1,
+  "partitions_found": 1,
+  "production_units_declared": 7,
+  "production_units_found": 7,
+  "forward_coverage_partitions_pct": 100,
+  "forward_coverage_production_units_pct": 100,
+  "reverse_coverage_pct": 100,
+  "context_fidelity_pct": 100,
+  "objective_coverage_pct": 100,
+  "artifact_presence_pct": 0,
+  "artifact_measurement": "40 anticipated production outputs not completed by initialization",
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "WARN",
+  "active_snapshot_status": "SKIPPED",
+  "handoff_state_status": "WARN",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 1,
+  "issues_info": 0,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 7
+  },
+  "overall_status": "WARNINGS",
+  "closure_readiness": "WARN",
+  "structural_checks_passed": 183,
+  "gate5_confirmed": false,
+  "effective_transfer_confirmed": false,
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

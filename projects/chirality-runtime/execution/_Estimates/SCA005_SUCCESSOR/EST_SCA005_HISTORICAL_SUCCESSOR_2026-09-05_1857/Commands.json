@@ -1,0 +1,24 @@
+[
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_enum.py",
+      "BASIS_OF_ESTIMATE",
+      "HISTORICAL"
+    ],
+    "exit_code": 0,
+    "stdout": "VALID: HISTORICAL is a valid BASIS_OF_ESTIMATE\n"
+  },
+  {
+    "command": [
+      "bash",
+      "tools/scaffolding/create_snapshot_folder.sh",
+      "projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR",
+      "EST",
+      "SCA005_HISTORICAL_SUCCESSOR"
+    ],
+    "exit_code": 0,
+    "stdout": "projects/chirality-runtime/execution/_Estimates/SCA005_SUCCESSOR/EST_SCA005_HISTORICAL_SUCCESSOR_2026-09-05_1857\n",
+    "stderr": ""
+  }
+]

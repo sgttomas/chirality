@@ -1,0 +1,1008 @@
+{
+  "timestamp": "2026-09-06T01:25:12.587889+00:00",
+  "basis": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+  "payload_checks": [
+    {
+      "path": "docs/PRD_ROOT.md",
+      "expected_sha256": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "actual_sha256": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "matches": true
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "expected_sha256": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+      "actual_sha256": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+      "matches": true
+    },
+    {
+      "path": "docs/SPEC.md",
+      "expected_sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "actual_sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "matches": true
+    },
+    {
+      "path": "docs/TYPES.md",
+      "expected_sha256": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+      "actual_sha256": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-01.md",
+      "expected_sha256": "45f9de74fc4f8bd0da26f3f838ee2abe863188ae459994a19952512a05c66569",
+      "actual_sha256": "45f9de74fc4f8bd0da26f3f838ee2abe863188ae459994a19952512a05c66569",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-02.md",
+      "expected_sha256": "656ef456a13f63e08b4578607e457d3266f5f51b0bd1343dad1ab44a9f66c396",
+      "actual_sha256": "656ef456a13f63e08b4578607e457d3266f5f51b0bd1343dad1ab44a9f66c396",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-03.md",
+      "expected_sha256": "79452ee2eb2ad50b721689ddb5cf383fd81595c55f7da281dfd7718dbb716db7",
+      "actual_sha256": "79452ee2eb2ad50b721689ddb5cf383fd81595c55f7da281dfd7718dbb716db7",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-04.md",
+      "expected_sha256": "d396dce3b3c269b70ae9ac56eac033fb2926d46d143c889d9a5dcae20ec81066",
+      "actual_sha256": "d396dce3b3c269b70ae9ac56eac033fb2926d46d143c889d9a5dcae20ec81066",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-05.md",
+      "expected_sha256": "19dbe7320fe5fb25b7de9cc6f8a93f9558d5f6ba96e4a0f8bf6397fc154169bd",
+      "actual_sha256": "19dbe7320fe5fb25b7de9cc6f8a93f9558d5f6ba96e4a0f8bf6397fc154169bd",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-06.md",
+      "expected_sha256": "b59e56658a2d0454eff7d982831b618eeea0d391cdb68a73fd584179ad70654b",
+      "actual_sha256": "b59e56658a2d0454eff7d982831b618eeea0d391cdb68a73fd584179ad70654b",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-07.md",
+      "expected_sha256": "7e78805dd81d9a9beb52ffe28da31ac337de84401e26be849c8d057271f3ab20",
+      "actual_sha256": "7e78805dd81d9a9beb52ffe28da31ac337de84401e26be849c8d057271f3ab20",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-08.md",
+      "expected_sha256": "26bbf7abfd9d20020e4e961bdc9a6862d473a55f364b5f8fb0d6df8dc7cf113d",
+      "actual_sha256": "26bbf7abfd9d20020e4e961bdc9a6862d473a55f364b5f8fb0d6df8dc7cf113d",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-01.md",
+      "expected_sha256": "dbc299b90b361ca1b648b809f074ae80452e4f2f22c74e408e7e282dab8094ad",
+      "actual_sha256": "dbc299b90b361ca1b648b809f074ae80452e4f2f22c74e408e7e282dab8094ad",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-02.md",
+      "expected_sha256": "7914ab057ca48f6676016afb5534865f7cc9e8890f971fc0c605d6b351fc4e33",
+      "actual_sha256": "7914ab057ca48f6676016afb5534865f7cc9e8890f971fc0c605d6b351fc4e33",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-03.md",
+      "expected_sha256": "e8e305894fb934e2762560c2ef0dde57a7d6f5d84ce4154fa5d00e5b57a8e9ca",
+      "actual_sha256": "e8e305894fb934e2762560c2ef0dde57a7d6f5d84ce4154fa5d00e5b57a8e9ca",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-04.md",
+      "expected_sha256": "90e731d34ad278ee44f14713b84b044c256bd555c35d99618a28188c9ca5ef24",
+      "actual_sha256": "90e731d34ad278ee44f14713b84b044c256bd555c35d99618a28188c9ca5ef24",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-05.md",
+      "expected_sha256": "45f33e8ad7d968d222535c8503335e4b78db3eeabe4181cea6d98301011511c0",
+      "actual_sha256": "45f33e8ad7d968d222535c8503335e4b78db3eeabe4181cea6d98301011511c0",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-01.md",
+      "expected_sha256": "37d305e07187e841564060dd790846520804e1091e40b5611537e10958f3c265",
+      "actual_sha256": "37d305e07187e841564060dd790846520804e1091e40b5611537e10958f3c265",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-02.md",
+      "expected_sha256": "6d6b96ba74835529df74a265fc3232ecf2d31fcf5cab0cdf1087f88660958b59",
+      "actual_sha256": "6d6b96ba74835529df74a265fc3232ecf2d31fcf5cab0cdf1087f88660958b59",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-03.md",
+      "expected_sha256": "56e32e7ef70cd2f09b731760f22a9c844451d5443417b61020bf6e2a0ce43bfb",
+      "actual_sha256": "56e32e7ef70cd2f09b731760f22a9c844451d5443417b61020bf6e2a0ce43bfb",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-04.md",
+      "expected_sha256": "7e885fa361cdd44d0e310d72deda41332ffe1f81c3ba03a2043e9bd9fe88d79a",
+      "actual_sha256": "7e885fa361cdd44d0e310d72deda41332ffe1f81c3ba03a2043e9bd9fe88d79a",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-05.md",
+      "expected_sha256": "5d1dadfed1ec270a3f231b216e8e2678b8588cbb75d37cf02bd6122d7456f247",
+      "actual_sha256": "5d1dadfed1ec270a3f231b216e8e2678b8588cbb75d37cf02bd6122d7456f247",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-06.md",
+      "expected_sha256": "71a99bf3ee51f36e37ede2ea8c74c3c29c53610260998fba43048df6b6bbfd6e",
+      "actual_sha256": "71a99bf3ee51f36e37ede2ea8c74c3c29c53610260998fba43048df6b6bbfd6e",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-01.md",
+      "expected_sha256": "462cea71c32d1e51971b59c239a6408f727684d8ad53a97456323251d67df35f",
+      "actual_sha256": "462cea71c32d1e51971b59c239a6408f727684d8ad53a97456323251d67df35f",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-02.md",
+      "expected_sha256": "7d8c7067751351f40295de5c625e2b5de81eee6603b6b224681bb259a4c4518b",
+      "actual_sha256": "7d8c7067751351f40295de5c625e2b5de81eee6603b6b224681bb259a4c4518b",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-03.md",
+      "expected_sha256": "d2803cdd8cb7fef9133510a5ccbd3afae96327eb2e0c9ddb50040358465dbbb2",
+      "actual_sha256": "d2803cdd8cb7fef9133510a5ccbd3afae96327eb2e0c9ddb50040358465dbbb2",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-04.md",
+      "expected_sha256": "cc4429446268b1c8107858770c350e45d299875adf0f497c4531e6e59d5a3f47",
+      "actual_sha256": "cc4429446268b1c8107858770c350e45d299875adf0f497c4531e6e59d5a3f47",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-05.md",
+      "expected_sha256": "3c0eb4d8209c64ddf4635ebea31723623953903d30e88a6c9db419d892de3713",
+      "actual_sha256": "3c0eb4d8209c64ddf4635ebea31723623953903d30e88a6c9db419d892de3713",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-06.md",
+      "expected_sha256": "38a1886a44ede66481d9ddd198372e18dbd1c4c678ecf0ca5090d670a449a93b",
+      "actual_sha256": "38a1886a44ede66481d9ddd198372e18dbd1c4c678ecf0ca5090d670a449a93b",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-07.md",
+      "expected_sha256": "44e576a26d2cc312776066cc23f99fdc1f27943edfbe4d7faa2ded482ff94422",
+      "actual_sha256": "44e576a26d2cc312776066cc23f99fdc1f27943edfbe4d7faa2ded482ff94422",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-08.md",
+      "expected_sha256": "17f5429c2786eb8865ddb1152793b6fcec0f5fd0af04ff9146765640e74e7c2f",
+      "actual_sha256": "17f5429c2786eb8865ddb1152793b6fcec0f5fd0af04ff9146765640e74e7c2f",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-09.md",
+      "expected_sha256": "07ceea14e308e7aa6252c7276f4bc3e17b98b3fbcc06723ee03da0556b8e54c6",
+      "actual_sha256": "07ceea14e308e7aa6252c7276f4bc3e17b98b3fbcc06723ee03da0556b8e54c6",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-10.md",
+      "expected_sha256": "cadc01bac0f83dcf149f8836d8bb10b46cc06ea8aae5e3faa14f29eedc0e88b0",
+      "actual_sha256": "cadc01bac0f83dcf149f8836d8bb10b46cc06ea8aae5e3faa14f29eedc0e88b0",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-11.md",
+      "expected_sha256": "811d4682d5ce6c277dea60a1781a3c32cb5d93228a2ac6954d3156ddd8880860",
+      "actual_sha256": "811d4682d5ce6c277dea60a1781a3c32cb5d93228a2ac6954d3156ddd8880860",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-01.md",
+      "expected_sha256": "0a520749505b7dbc3e98bceefefa0f69868f1a92dc7e47498237189e2b4d710b",
+      "actual_sha256": "0a520749505b7dbc3e98bceefefa0f69868f1a92dc7e47498237189e2b4d710b",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-02.md",
+      "expected_sha256": "03af550c7a59e6905b16c1fc35d3ea5e4e7683c28bfed8e303816f66c618d01e",
+      "actual_sha256": "03af550c7a59e6905b16c1fc35d3ea5e4e7683c28bfed8e303816f66c618d01e",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-03.md",
+      "expected_sha256": "84c5d3489b2719d692402e5e5187188f80ea992efc6f724397bb7774818e0761",
+      "actual_sha256": "84c5d3489b2719d692402e5e5187188f80ea992efc6f724397bb7774818e0761",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-04.md",
+      "expected_sha256": "f5f8f63e25cfe00f78e061305ea9d00f0f968dedd9f1311f73e9c3289f021ed1",
+      "actual_sha256": "f5f8f63e25cfe00f78e061305ea9d00f0f968dedd9f1311f73e9c3289f021ed1",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-05.md",
+      "expected_sha256": "85e69f959b024b6443f34e49cced4bf4284626ce2dd8e91bf6188de57160ccd8",
+      "actual_sha256": "85e69f959b024b6443f34e49cced4bf4284626ce2dd8e91bf6188de57160ccd8",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-06.md",
+      "expected_sha256": "0dbf6d4050c930025f49efde919084080773bb0e2fe9146498e4da2c9273e6fe",
+      "actual_sha256": "0dbf6d4050c930025f49efde919084080773bb0e2fe9146498e4da2c9273e6fe",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-07.md",
+      "expected_sha256": "177baed539207d33540fa4382c30406d8ad9785550fa70ce5c7e0680f3df087b",
+      "actual_sha256": "177baed539207d33540fa4382c30406d8ad9785550fa70ce5c7e0680f3df087b",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-08.md",
+      "expected_sha256": "b0a7c2906501eea6052083d6c4d40e623f27a54b96b98b858b79a7b192ee41d1",
+      "actual_sha256": "b0a7c2906501eea6052083d6c4d40e623f27a54b96b98b858b79a7b192ee41d1",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-01.md",
+      "expected_sha256": "ba7a27af327985186c7d610644dc01fd431e313fef3b87cc11d7d02a809c06a8",
+      "actual_sha256": "ba7a27af327985186c7d610644dc01fd431e313fef3b87cc11d7d02a809c06a8",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-02.md",
+      "expected_sha256": "332501e62332910de0377333c5b0013abb1a85ce7f2e132301fddbaeeb52d6ad",
+      "actual_sha256": "332501e62332910de0377333c5b0013abb1a85ce7f2e132301fddbaeeb52d6ad",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-03.md",
+      "expected_sha256": "a6007cfa8709e9bfeeb32d44a679fa7ab406b570f3a325e685193c8f18ea21a0",
+      "actual_sha256": "a6007cfa8709e9bfeeb32d44a679fa7ab406b570f3a325e685193c8f18ea21a0",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-04.md",
+      "expected_sha256": "a13f8d38ba5d98fcf52a8427a1ff159082215df43bde7a1173d359e77096e4d2",
+      "actual_sha256": "a13f8d38ba5d98fcf52a8427a1ff159082215df43bde7a1173d359e77096e4d2",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-05.md",
+      "expected_sha256": "0f06024f7c01a17d463ab04c19bb8083b581949f4a73f11ec982e7de024560f8",
+      "actual_sha256": "0f06024f7c01a17d463ab04c19bb8083b581949f4a73f11ec982e7de024560f8",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-06.md",
+      "expected_sha256": "0a46b4e3ab26fcb53e694ffb8fe20da1d703db4a667c27e393720db950fef0ce",
+      "actual_sha256": "0a46b4e3ab26fcb53e694ffb8fe20da1d703db4a667c27e393720db950fef0ce",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-07.md",
+      "expected_sha256": "5c90d86b90b55af62ad8fe64907c4fac93d00f4ad756c929e3fd843a9f548c37",
+      "actual_sha256": "5c90d86b90b55af62ad8fe64907c4fac93d00f4ad756c929e3fd843a9f548c37",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-08.md",
+      "expected_sha256": "8a1efc289b40c44f6ca321af5f8c9529b81aa7d2f5fd4de79d7ca4ab70f1eaa8",
+      "actual_sha256": "8a1efc289b40c44f6ca321af5f8c9529b81aa7d2f5fd4de79d7ca4ab70f1eaa8",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/_AUTHORITY_BINDINGS.csv",
+      "expected_sha256": "9d66de4f4ce26576a6f20b91c05185bf378ed7950823c06833512cef0ea81ca7",
+      "actual_sha256": "9d66de4f4ce26576a6f20b91c05185bf378ed7950823c06833512cef0ea81ca7",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/GovernanceControls/_AUTHORITY_BINDINGS.md",
+      "expected_sha256": "17f58d00b34a916b289d9e0f5e431cd7ae1ec41ce95ea975e30b4a401a24cb6f",
+      "actual_sha256": "17f58d00b34a916b289d9e0f5e431cd7ae1ec41ce95ea975e30b4a401a24cb6f",
+      "matches": true
+    }
+  ],
+  "all_52_payloads_match": true,
+  "immutable_revision8_preserved": true,
+  "control_bindings": 46,
+  "reference_checks": [
+    {
+      "control": "GOV-01-01",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-01",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-01-02",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-02",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-01-03",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-03",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-01-04",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-04",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-01-05",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-05",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-01-06",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-06",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-01-07",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-07",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-01-08",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-01-08",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-02-01",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-02-01",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-02-02",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-02-02",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-02-03",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-02-03",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-02-04",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-02-04",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-02-05",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-02-05",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-03-01",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-03-01",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-03-02",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-03-02",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-03-03",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-03-03",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-03-04",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-03-04",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-03-05",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-03-05",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-03-06",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-03-06",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-01",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-01",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-02",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-02",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-03",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-03",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-04",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-04",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-05",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-05",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-06",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-06",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-07",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-07",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-08",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-08",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/D13_Amendment.md",
+      "exists": true,
+      "sha256": "eb52df069e364b06856ec5064e562cbece63fc8303041f7a6ca1ebbbcc05b01e"
+    },
+    {
+      "control": "GOV-04-08",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-09",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-09",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-10",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-10",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-04-11",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-04-11",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-01",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-01",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-02",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-02",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-03",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-03",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-04",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-04",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-05",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-05",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-06",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-06",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-07",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-07",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-05-08",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-05-08",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-01",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-01",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-02",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-02",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-03",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-03",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-04",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-04",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-05",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-05",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-06",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-06",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-07",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-07",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    },
+    {
+      "control": "GOV-06-08",
+      "role": "ControllingInstrument",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/SUCCESSOR_INSTRUMENT.md",
+      "exists": true,
+      "sha256": "17adbcc77b07ae426569c5b324fe76d07c9445a99ec2947375b82a37f1d33014"
+    },
+    {
+      "control": "GOV-06-08",
+      "role": "ExactPredicateRegister",
+      "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/CANON_104_PREDICATES_POSTIMAGE.csv",
+      "exists": true,
+      "sha256": "bef2459054f3a5668d0469aace98a44ee7bed3fbff533da4e8eb2d88ad6bb339"
+    }
+  ],
+  "references_resolve": true,
+  "stable_requirement_rows": 43,
+  "stable_invariant_ids": [
+    "K-AGENTS-1",
+    "K-AUTH-1",
+    "K-AUTH-2",
+    "K-BIND-1",
+    "K-CLAIM-1",
+    "K-CONFLICT-1",
+    "K-DEP-1",
+    "K-DEP-2",
+    "K-DOMAIN-1",
+    "K-DOMAIN-4",
+    "K-EXPORT-1",
+    "K-GATE-1",
+    "K-GHOST-1",
+    "K-HIER-1",
+    "K-ID-1",
+    "K-INVENT-1",
+    "K-MERGE-1",
+    "K-PROV-1",
+    "K-SEAL-1",
+    "K-SNAP-1",
+    "K-STALE-1",
+    "K-STATUS-1",
+    "K-VAL-1",
+    "K-WRITE-1",
+    "K-WRITE-2"
+  ],
+  "invariant_ids_not_found_in_contract": [],
+  "exact_two_governance_edges": true,
+  "app_corpus_status_exit": 0,
+  "standing_D14_checker_built": false,
+  "gate5_owner_confirmation": "PENDING"
+}

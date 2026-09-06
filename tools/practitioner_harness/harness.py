@@ -74,6 +74,8 @@ from harness_common import (
 ROOT_RELPATH = "."
 
 PROJECT_ALIASES: dict[str, str] = {
+    "runtime": "projects/chirality-runtime",
+    "chirality-runtime": "projects/chirality-runtime",
     "app-dev": "projects/chirality-app-dev",
     "chirality-app-dev": "projects/chirality-app-dev",
     "piping": "projects/chirality-piping",
@@ -97,7 +99,8 @@ FULL_CITIZENSHIP_PROJECTS = (
 # The root product is observable but NOT a full-citizenship project: it has no
 # DAG pointer surface and no derivable write fence, so the brief-shaped
 # commands refuse it by name (ROOT_COMMAND_REFUSALS below).
-OBSERVABLE_PROJECTS = FULL_CITIZENSHIP_PROJECTS + ROOT_ALIASES
+RUNTIME_ALIASES = ("runtime", "chirality-runtime")
+OBSERVABLE_PROJECTS = FULL_CITIZENSHIP_PROJECTS + ROOT_ALIASES + RUNTIME_ALIASES
 
 ROOT_COMMAND_REFUSALS: dict[str, str] = {
     "brief": (

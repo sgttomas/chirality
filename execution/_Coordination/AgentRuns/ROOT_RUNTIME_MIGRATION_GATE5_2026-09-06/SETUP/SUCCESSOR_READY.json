@@ -1,0 +1,120 @@
+{
+  "ready_for_source_retirement_precondition": true,
+  "basis_merge": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+  "runtime_wrapper_sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3",
+  "project_count": 1,
+  "package_count": 1,
+  "carrier_count": 7,
+  "initialized_count": 7,
+  "activated_count": 0,
+  "inherited_requirements": 66,
+  "held_bindings": 9,
+  "successors": [
+    {
+      "QualifiedIdentity": "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "State": "INITIALIZED",
+      "Activated": false,
+      "Files": {
+        "_CONTEXT.md": "50de9a061630423eb0537a8cff2afdb759242d3726d3a87fcc01c068e7c966c7",
+        "_STATUS.md": "c93e87740020dd3fc3f42f174ae53c1645fca424b306298a41201a893cd1b045",
+        "_REFERENCES.md": "61eb8109b55e1637910a5d6011f5ace9c143b9ad0d99cd47e8a4f61524de7558",
+        "_DEPENDENCIES.md": "b770cfd2d8a91e4a68c5107fb1348db833f7cdf90ff9e102680881f8b1fa759c",
+        "_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ScopeOfWork.md": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+        "Dependencies.csv": "cb18ba653eabe6b0b97076edfe95a27b1c0245d274bf2d0daae1d2d8256e961a"
+      },
+      "IndependentReviewSHA256": "9f8a7447968d1fe6a504d5bf2c5b8ff51253c43e517fce54b850c72c965fa2a2"
+    },
+    {
+      "QualifiedIdentity": "chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "State": "INITIALIZED",
+      "Activated": false,
+      "Files": {
+        "_CONTEXT.md": "4cb21986467567b680909d25d38c374ca1752c4328c40005d0bfd7d8cd7c7926",
+        "_STATUS.md": "eada926bd8805936c379f617e762a78b01e4504d328f49e48a8917245a3868d9",
+        "_REFERENCES.md": "b6b65b658850d5ea762d45de3a2e8f4e3fc39e0d0f799532240f687686c12ed0",
+        "_DEPENDENCIES.md": "ddfae4e18b2b463d7d1b2ed83c2448bffbd6bc81c00c1dbf28e45f819b9efd9b",
+        "_SEMANTIC.md": "9cdc08809792049c7f29bbaa8689590c2302da557277239149e569a30b8a96b7",
+        "ScopeOfWork.md": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+        "Dependencies.csv": "b57a8c9e5b3927588ffa0f7b7c7478c9bd90f3ce792a4d52085a713d29aac406"
+      },
+      "IndependentReviewSHA256": "91ca1371fbade8d5e435643b92dc9fe3fc5ad982966c28491d20b3a751fb60c3"
+    },
+    {
+      "QualifiedIdentity": "chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "State": "INITIALIZED",
+      "Activated": false,
+      "Files": {
+        "_CONTEXT.md": "a98253910c2136669f90a56fd2be9a2d68d6b89bb428664f285841bd3f5c1f71",
+        "_STATUS.md": "85d3a30170848951c63e757ff7b25ebf499283984404d3e8c3fec217a5b0ee6b",
+        "_REFERENCES.md": "b24af08574bf40c1348df5cdfb3a458e2b272f2e51b51b391461dd2926391e1f",
+        "_DEPENDENCIES.md": "3158abbc2dde3e8e30f0408f0491d4868102ba37b864e548b0bfb426bb7fe9e9",
+        "_SEMANTIC.md": "39f6ccbad671fcaef49fa29931644ee2d2fbbf5760ee2645b04555893d8fbed2",
+        "ScopeOfWork.md": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+        "Dependencies.csv": "537e72d3d45a1c3bb7d39390806b44d540ac3fc0167afadcb5f157f430501749"
+      },
+      "IndependentReviewSHA256": "8d7a26ac01bf70b70e37f9a2ed45ae97695c761fe1618041a8b0117d595fd194"
+    },
+    {
+      "QualifiedIdentity": "chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "State": "INITIALIZED",
+      "Activated": false,
+      "Files": {
+        "_CONTEXT.md": "86cf7b7200591e1a3c5326f10fb0da4d6c9a553f32e3dfc1ffe1dac7d3425996",
+        "_STATUS.md": "6027f60f46e0d04fa45c2199a80091d39799c6495d6ee19a46a50e3da231ed04",
+        "_REFERENCES.md": "126bb530782a0e4d85b2f9bd9add0d88a825c50550409dc939e1155389fa5fc0",
+        "_DEPENDENCIES.md": "549ae75936d071912291e6b2aa75dae075c6fe7abc5191f090cdb333c61df822",
+        "_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ScopeOfWork.md": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+        "Dependencies.csv": "765c2a276c05597abac51cdfbd45a07e106c862742a0011b63fdc2119802431e"
+      },
+      "IndependentReviewSHA256": "5ae31ce5120afa32490db31d85ce664bfabbe05731265ad10b8d4686e8dc2030"
+    },
+    {
+      "QualifiedIdentity": "chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "State": "INITIALIZED",
+      "Activated": false,
+      "Files": {
+        "_CONTEXT.md": "22702c09b1267a7a5c06caa9bacb81dec8e4575dc488d9dd447361f3b4704e2c",
+        "_STATUS.md": "d7d7a043932d9082fdee3f2b96653cafe0a6a8137527be482ec161f9e2229c23",
+        "_REFERENCES.md": "1a4e1f04c646e797650ce2361ed012dd382555ec236a9e25de671f6ea506f910",
+        "_DEPENDENCIES.md": "3aaf63c2fe47d37ca13c56a0288654864378936a66428ee1c65f1757c2ea191c",
+        "_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ScopeOfWork.md": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+        "Dependencies.csv": "c9655065bd5621f5f05f4fe33c544b364afb5de7cdd455f72348596e31bb6e69"
+      },
+      "IndependentReviewSHA256": "4177be8dc882e933bbf27a46f8a9ef5e95b65d012b4f0229853022dae830b0b2"
+    },
+    {
+      "QualifiedIdentity": "chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "State": "INITIALIZED",
+      "Activated": false,
+      "Files": {
+        "_CONTEXT.md": "e498376a0b426dbfb0dba9823bdfe94e0f5e0a2529a5e0bbbb4d48283ce27446",
+        "_STATUS.md": "8fa445cdd73a02b7b398cb2af21f9b47663ef94edd6d258aa4c8685c07c22550",
+        "_REFERENCES.md": "a965a883cb3817e77613191c8013a36c746b859e52085d2e99f9a5055d450178",
+        "_DEPENDENCIES.md": "4e5412eb82fbe127206630b5003f5e49f6742297317ed2f06c76f74aaf2c8b84",
+        "_SEMANTIC.md": "11b9506b4143617cd3133ec35ac8d5c1c1c17dada9e62b5d7e1dac2f170ab4dd",
+        "ScopeOfWork.md": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+        "Dependencies.csv": "2fa6da889235ef6dcb61277c81adf2d9c921cf7e448f788f0f44a0bc0250ae4e"
+      },
+      "IndependentReviewSHA256": "1e130f685a35b00b6af7199169e800c1eba32e34cdda5eed0dc7a1087bafbaab"
+    },
+    {
+      "QualifiedIdentity": "chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "State": "INITIALIZED",
+      "Activated": false,
+      "Files": {
+        "_CONTEXT.md": "32336719fa8f6f3d37c09b23d7b73022094acc29b87c974d4cfd7a618f2505da",
+        "_STATUS.md": "ae1a5408353fe1539709df1cd3d25a453cdd6efbdc5551b275cbe3edab9291ba",
+        "_REFERENCES.md": "5120ceed27627d3438005a00851ab117a2d56f62f8dc6472b3e10117441082c1",
+        "_DEPENDENCIES.md": "f355b082717b1c239682986d25ce4a69372c5cf50fd9c16a4e74aa8a8d385539",
+        "_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ScopeOfWork.md": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b",
+        "Dependencies.csv": "c720613378d3bc53492ed2690bce8e785cf2dffcff9a8d45d7de9d7271806394"
+      },
+      "IndependentReviewSHA256": "5b51fecb24b99f38af0825c0056b1a9d3ecdd2551e1adbd463aaad5ce49b881f"
+    }
+  ],
+  "limits": "This certifies bounded setup preconditions, not Gate5 closure, effective transfer, product conformance or release. Independent destination/dependency audit finalization and new derivative owner disposition remain separately recorded."
+}

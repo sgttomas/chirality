@@ -9,6 +9,20 @@ intersection carries the M2 marker. The first accepted work graph is
 instantiated later, by root Project Setup (packet §6 step 8); this tranche
 ships capability only.
 
+Governance mode
+---------------
+mode: governance-only binds the same governance_state as G2. Active nodes
+require Root control ownership and published
+capability_basis and owner_acts, eligible runtime_capabilities and completed
+local predecessors. execution_class governance-migration uses the approved exact
+Gate4 migration scopes; governance-operation requires Gate5 effectiveness.
+Pending/partial retirement transactions prohibit either class. stage dispatch binds a hashed child-execution JSON record
+(node, session_id, parent_session_id, stage); stage fan-in additionally binds a
+hashed return. This is recorded execution provenance, not a process-liveness
+claim. It cannot turn a brief into execution or a branch owner act into a
+published acceptance. Static empty graphs can validate before effectiveness.
+Legacy observation boundaries below apply only outside governance mode.
+
 Design of record (state surface, schema, marker convention, modes)
 ------------------------------------------------------------------
 State surface: `{REPO_ROOT}/execution/_harness/work_graph.yaml`, co-located
@@ -89,6 +103,8 @@ Registration entry it will assert in `execution/_harness/root_guards.yaml`
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import re
 import subprocess
 import sys
@@ -268,6 +284,113 @@ def find_cycle(edges: dict[str, set[str]]) -> list[str] | None:
     return None
 
 
+def check_governance_graph(root: Path, data: dict, nodes: dict[str, dict]) -> list[str]:
+    """Observe pinned launch/return records, never infer a child from a brief.
+
+    Evidence is instruction-asserted execution provenance, not process liveness.
+    Published owner acts and branch-local predecessor completion are distinct.
+    """
+    from root_governance_state import GovernanceError, load_governance_state, safe_path, verify_owner_act, status_verification
+    from validate_root_surface_ownership import canonical_target, canonical_covered, check_governance
+    errors: list[str] = []
+    try:
+        state = load_governance_state(
+            root, data,
+            require_effective=any(n.get("status") == "active" and n.get("execution_class") != "governance-migration" for n in nodes.values()),
+            verify_statuses=status_verification(root, data),
+        )
+        transaction = state.get("transaction")
+        if transaction is not None and any(n.get("status") == "active" for n in nodes.values()):
+            if not isinstance(transaction, dict):
+                raise GovernanceError("invalid transaction reference")
+            journal = safe_path(root, transaction.get("path"), allow_missing=False)
+            raw = journal.read_bytes()
+            if transaction.get("sha256") is not None and hashlib.sha256(raw).hexdigest() != transaction["sha256"]:
+                raise GovernanceError("transaction journal hash mismatch")
+            if json.loads(raw).get("state") != "APPLIED":
+                raise GovernanceError("pending/partial transaction prohibits dispatch")
+        register, error, _ = load_yaml_mapping(root / REGISTER_RELPATH)
+        if error or not register or register.get("mode") != "governance-only":
+            raise GovernanceError("governance dispatch requires valid governance G2 register")
+        code, messages = check_governance(root, register)
+        if code or register.get("governance_state") != data.get("governance_state"):
+            raise GovernanceError(f"G2 ownership/state mismatch: {messages}")
+        owners = {entry["id"]: entry for entry in register["entries"]}
+        for node_id, node in nodes.items():
+            owner = node.get("owner")
+            if owner not in owners or owners[owner]["project"] != "root":
+                raise GovernanceError(f"{node_id}: unknown, historical or non-Root owner")
+            for target in node.get("write_targets", []):
+                if not canonical_covered(root, target, owners[owner]["write_targets"]):
+                    raise GovernanceError(f"{node_id}: foreign or undeclared write target")
+            marker = node.get("m2_marker")
+            if isinstance(marker, str) and marker.startswith(M2_MARKER_PREFIX):
+                safe_path(root, marker[len(M2_MARKER_PREFIX):].strip(), allow_missing=False)
+            if node.get("status") != "active":
+                continue
+            if node.get("execution_class") not in ("governance-migration", "governance-operation"):
+                raise GovernanceError(f"{node_id}: explicit execution_class required")
+            for key in ("depends_on", "serialized_after"):
+                predecessors = node.get(key, [])
+                if isinstance(predecessors, str):
+                    predecessors = [predecessors]
+                for predecessor in predecessors:
+                    if predecessor not in nodes or nodes[predecessor].get("status") != "complete":
+                        raise GovernanceError(f"{node_id}: predecessor not complete: {predecessor}")
+            held = state.get("held_capabilities")
+            if not isinstance(held, list) or not all(isinstance(c, str) and c for c in held):
+                raise GovernanceError("accepted held capability inventory is required")
+            capabilities = node.get("runtime_capabilities", [])
+            if not isinstance(capabilities, list) or capabilities:
+                raise GovernanceError(f"{node_id}: runtime feature capabilities are not granted by the migration")
+            basis = node.get("capability_basis")
+            verify_owner_act(root, basis, state["gate4"]["subject_sha256"])
+            acts = node.get("owner_acts", [])
+            if not isinstance(acts, list):
+                raise GovernanceError("owner_acts must be a list")
+            for act in acts:
+                if not isinstance(act, dict):
+                    raise GovernanceError("owner act must be a mapping")
+                verify_owner_act(root, act.get("ref"), act.get("subject_sha256"))
+            stage = node.get("stage")
+            if stage not in ("dispatch", "fan-in"):
+                raise GovernanceError(f"{node_id}: stage must be dispatch or fan-in")
+            evidence_ref = node.get("child_evidence")
+            if not isinstance(evidence_ref, dict):
+                raise GovernanceError(f"{node_id}: actual child evidence is required")
+            evidence_path = safe_path(root, evidence_ref.get("path"), allow_missing=False)
+            raw = evidence_path.read_bytes()
+            if hashlib.sha256(raw).hexdigest() != evidence_ref.get("sha256"):
+                raise GovernanceError(f"{node_id}: child evidence hash mismatch")
+            evidence = json.loads(raw)
+            for key in ("session_id", "parent_session_id"):
+                if not isinstance(node.get(key), str) or not node[key] or evidence.get(key) != node[key]:
+                    raise GovernanceError(f"{node_id}: reconstructible child {key} required")
+            if node["session_id"] == node["parent_session_id"]:
+                raise GovernanceError("child session cannot be its own parent")
+            if evidence.get("node") != node_id or evidence.get("stage") != stage or evidence.get("kind") != "child-execution":
+                raise GovernanceError(f"{node_id}: evidence is not matching execution record")
+            if stage == "fan-in":
+                returned = evidence.get("return")
+                if not isinstance(returned, dict):
+                    raise GovernanceError(f"{node_id}: fan-in requires actual child return")
+                payload = safe_path(root, returned.get("path"), allow_missing=False).read_bytes()
+                if hashlib.sha256(payload).hexdigest() != returned.get("sha256"):
+                    raise GovernanceError(f"{node_id}: child return hash mismatch")
+        # Canonical aliases can overlap even where textual prefixes do not.
+        active = [n for n in nodes if nodes[n].get("status") == "active"]
+        for index, left in enumerate(active):
+            for right in active[index + 1:]:
+                for lt in nodes[left].get("write_targets", []):
+                    for rt in nodes[right].get("write_targets", []):
+                        a, b = canonical_target(root, lt), canonical_target(root, rt)
+                        if (a.is_relative_to(b) or b.is_relative_to(a)) and not serialized(nodes, left, right):
+                            raise GovernanceError(f"{left}/{right}: canonical write overlap without serialization")
+    except (GovernanceError, KeyError, TypeError, ValueError, OSError) as exc:
+        errors.append(str(exc))
+    return errors
+
+
 def check_graph(
     root: Path, graph_path: Path, data: dict
 ) -> tuple[list[str], list[str], dict[str, dict]]:
@@ -436,6 +559,17 @@ def check_graph(
                 "predecessor, or one declared integration owner"
             )
 
+    if data.get("mode") == "governance-only":
+        failures.extend(check_governance_graph(root, data, nodes))
+        for node in nodes.values():
+            node["_governance_mode"] = True
+    elif "mode" in data or "governance_state" in data:
+        failures.append("unknown or incomplete governance mode")
+    else:
+        register_data, _, _ = load_yaml_mapping(root / REGISTER_RELPATH)
+        if register_data and register_data.get("mode") == "governance-only":
+            failures.append("governance ownership requires an explicit governance work graph")
+
     return failures, notes, nodes
 
 
@@ -499,6 +633,19 @@ def check_briefs(
             )
             continue
 
+        if node.get("_governance_mode"):
+            from root_governance_state import GovernanceError
+            from validate_root_surface_ownership import canonical_covered
+            try:
+                for target in brief_targets:
+                    if not canonical_covered(root, target, declared):
+                        raise GovernanceError("brief target outside canonical node scope")
+                for key in ("session_id", "parent_session_id", "stage", "child_evidence"):
+                    if data.get(key) != node.get(key):
+                        raise GovernanceError(f"brief {key} differs from execution-bound node")
+            except (GovernanceError, TypeError, ValueError, OSError) as exc:
+                failures.append(f"brief {brief_path.name}: {exc}")
+
         for target in brief_targets:
             if not is_repo_relative(target):
                 failures.append(
@@ -553,6 +700,9 @@ def check(
                 "dispatch mode cannot check an absent graph."
             )
             return 2, lines
+        register_data, _, _ = load_yaml_mapping(root / REGISTER_RELPATH)
+        if register_data and register_data.get("mode") == "governance-only":
+            return 1, ["G3 BLOCK: governance ownership requires a work graph"]
         lines.append(
             f"G3 PASS: work-graph surface {WORK_GRAPH_RELPATH.as_posix()} absent; "
             "guard idle (pre-instantiation condition — Project Setup instantiates "

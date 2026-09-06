@@ -1,0 +1,1 @@
+Test-only live fixture correction complete: 41 focused tests passed; diff whitespace check passed. The exact preimage is preserved. No operational implementation or strict application-subject file changed. Parent reruns the full affected suite. OpenAI GPT-6; exact serving ID unavailable; Agent1 instruction-asserted; Agent0 not mechanically enforced.

@@ -1,0 +1,26 @@
+# Ordinary runtime project observation, authorized by Gate4 GUARDS/WRITE_PATH_INVENTORY.
+# plan resolves actual PRD acceptance wrapper; decision_register indexes current migration acts, not a claimed complete product-decision register.
+# No DAG pointer is declared; six evidence fan-ins stay in deliverable-local registers.
+schema: practitioner-harness-adapter/v1
+project: chirality-runtime
+plan: docs/PRD_AUTHORITY.md
+coordination: execution/_Coordination/_COORDINATION.md
+decision_register: execution/_Coordination/MIGRATION_APPLICATION.md
+dag_pointer: ''
+status_glob: execution/PKG-*/1_Working/*/_STATUS.md
+exclude_globs:
+- node_modules/**
+states:
+- OPEN
+- INITIALIZED
+- SEMANTIC_READY
+- IN_PROGRESS
+- CHECKING
+- ISSUED
+parser_dialect: prose-bullet-v1
+drift_baseline_mismatch: 0
+drift_baseline_files: 7
+validation_commands: []
+guard_requires_committed_ruling_path: true
+guard_requires_approval_sha: true
+guard_approval_sha_field: Checking Approval SHA

@@ -11,7 +11,7 @@ Covers the four surfaces the adoption touches:
    double registration refused;
 3. `status` / `drift` against a tmp fixture tree, and the refusals for the
    commands that cannot meaningfully operate on the root;
-4. LIVE-tree pins (53 status files, 0 mismatches, 53 INITIALIZED + 0 OPEN), the
+4. LIVE-tree pins (53 status files, 0 mismatches, 53 historical RETIRED + 0 active), the
    same conscious pin discipline `test_live_baseline.py` applies to app-dev
    0/53 and piping 0/101 — a change here is a conscious pin update in the same
    PR, never a silent one.
@@ -149,7 +149,7 @@ def test_root_is_excluded_from_the_brief_fence_alias_table(tmp_path):
     repo.mkdir()
     by_root = harness._alias_by_root(repo)
     assert repo.resolve() not in by_root
-    assert set(by_root.values()) == {"pec", "piping", "app-dev"}
+    assert set(by_root.values()) == {"pec", "piping", "app-dev", "runtime"}
 
 
 def test_fence_resolution_still_refuses_paths_outside_a_project(tmp_path):
@@ -448,14 +448,18 @@ def test_live_root_drift_baseline_0_of_53():
 
 
 @live_root
-def test_live_root_status_reports_53_initialized_0_open_and_no_dag_pointer():
-    # Live pin: the prior 46 deliverables and the seven R7-accepted SCA-004
-    # carriers are all INITIALIZED; no carrier remains OPEN.
+def test_live_root_status_reports_53_historical_retired_0_active_and_no_dag_pointer():
+    # Live pin: the 53 accepted SCA-005 historical sources are RETIRED.
+    # Root has no active product carriers; observation grants no activation.
     # A change to the live root tree updates this pin in the same PR.
     report = cmd_status.run_status_project(LIVE_REPO, LIVE_REPO)
     md = report.render_markdown()
     assert "# Status — chirality-root" in md
-    assert "| INITIALIZED | 53 |" in md
+    assert "| RETIRED | 53 |" in md
+    assert "Historical source census (not active workload)" in md
+    assert "Historical sources have no production eligibility" in md
+    assert "| INITIALIZED |" not in md
+    assert "| IN_PROGRESS |" not in md
     assert "| OPEN |" not in md
     assert report.summary["status_files"] == 53
     assert "not declared by this adapter schema (root-harness-adapter/v1)" in md
@@ -469,3 +473,27 @@ def test_live_root_cli_status_and_drift_exit_zero(capsys):
     assert harness.main(["--repo-root", str(LIVE_REPO), "drift",
                          "--project", "root"]) == 0
     capsys.readouterr()
+
+
+def test_explicit_unknown_root_mode_is_refused(tmp_path):
+    repo = tmp_path / "root"
+    path = repo / "execution/_harness/adapter.yaml"
+    path.parent.mkdir(parents=True)
+    path.write_text(ROOT_ADAPTER_YAML.format(product="chirality-root", working_root=".",
+        status_files=53, status_mismatch=0, pinned_at="fixture") + "mode: unregistered-mode\n")
+    with pytest.raises(HarnessOperationalError, match="Unknown explicit Root mode"):
+        adapter_loader.load_adapter(repo)
+
+def test_root_legacy_shape_cannot_hide_governance_state_without_mode(tmp_path):
+    repo=build_root_repo(tmp_path)
+    path=repo/'execution/_harness/adapter.yaml'
+    with path.open('a') as out:out.write('\ngovernance_state: {path: state.json, sha256: fixture}\n')
+    with pytest.raises(HarnessOperationalError,match='explicit governance-only mode'):
+        adapter_loader.load_adapter(repo)
+
+def test_runtime_aliases_are_ordinary_project_observation_entries(tmp_path):
+    for alias in ('runtime','chirality-runtime'):
+        assert harness.PROJECT_ALIASES[alias]=='projects/chirality-runtime'
+        assert alias in harness.OBSERVABLE_PROJECTS
+        assert alias not in harness.ROOT_ALIASES
+    assert harness.PROJECT_ALIASES['runtime']!='.'

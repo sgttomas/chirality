@@ -1,0 +1,26 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+  },
+  {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/GUARDS/REPORT.md",
+    "sha256": "0083014b1d7c6e22869c0d9f400004822f419fec6996c05c51d9ff3e270e7a1d"
+  },
+  {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/GUARDS/ACCEPTANCE_CHECKS.csv",
+    "sha256": "58882f99a7b0336df419181b620de3b391f929468b6d18546a69cf4b202ce817"
+  },
+  {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/Propagation_Plan.md",
+    "sha256": "bd3fa428655f6255f5b93c98426fa1525c300d6e5b0216d8b3d0aa7fae227538"
+  },
+  {
+    "path": "tools/scaffolding/apply_root_retirement.py",
+    "sha256": "c06658a7aa1e2dd5617bae6cd8c0b4a8f749cd8cc9b38c029dfd69db00f8be14"
+  },
+  {
+    "path": "tools/validation/test_apply_root_retirement.py",
+    "sha256": "1fbb0626566b36890348207cde5efa38a0d6dd8b166b4456205717a86cfdd4a3"
+  }
+]

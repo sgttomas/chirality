@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python3",
+    "tools/validation/test_apply_root_retirement.py"
+  ],
+  "exit_code": 0,
+  "tests": 23,
+  "authority": "isolated test-only mocked owner boundary; no production bypass",
+  "timestamp": "2026-09-06T00:59:54.642969+00:00"
+}

@@ -1,0 +1,73 @@
+{
+  "production_sha256": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+  "source_sha256": "abd5dcef7a835bafac3e1dd29d7f7b6771ad0aeb60e4af9c25734bfa2534ab02",
+  "status_sha256": "cd817ad1b20b4e74bc8e7a725824d7b62fa92be6be40af25bde52e4613ac6711",
+  "paired_memory": {},
+  "author_validation_sha256": "3fad853a30f030f590a376b8d28cc05c86894902763cd99a99d01503dabe44fb",
+  "definitions": {
+    "REQ": {
+      "source_count": 0,
+      "destination_count": 0,
+      "missing": [],
+      "changed": {}
+    },
+    "CLM": {
+      "source_count": 3,
+      "destination_count": 3,
+      "missing": [],
+      "changed": {}
+    },
+    "OUT": {
+      "source_count": 5,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    },
+    "VER": {
+      "source_count": 0,
+      "destination_count": 0,
+      "missing": [],
+      "changed": {}
+    },
+    "AC": {
+      "source_count": 0,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 5,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-11-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 89,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76\"\n      },\n      \"text\": \"Separately accepted evidence for the `WorkerRetirementCoordinatorPort` contract. Evaluation is HUMAN_REVIEW against CLM-001.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-11-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 90,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76\"\n      },\n      \"text\": \"Separately accepted evidence for prepared, committed, and reconciliation-required journal state. Evaluation is HUMAN_REVIEW against CLM-001.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-11-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 91,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76\"\n      },\n      \"text\": \"Separately accepted evidence that active turns terminalize exactly once on retirement or crash. Evaluation is HUMAN_REVIEW against CLM-001 CLM-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-11-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 92,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76\"\n      },\n      \"text\": \"Separately accepted evidence that `thread/resume` occurs only under recorded continuity and a fresh thread is used otherwise. Evaluation is HUMAN_REVIEW against CLM-001 CLM-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-11-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 93,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76\"\n      },\n      \"text\": \"Separately accepted crash-retirement and replay-test evidence carrying no automatic replay or in-flight re-attach claim. Evaluation is HUMAN_REVIEW against CLM-001 CLM-003.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-11\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+        "--show-not-checkable"
+      ],
+      "exit": 0,
+      "stdout": "\nContracts: 1 (1 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ]
+}

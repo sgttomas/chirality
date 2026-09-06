@@ -1,0 +1,261 @@
+{
+  "method": "Python pathlib + csv read + hashlib.sha256; repository-relative source resolution and project _Decomposition-relative copy resolution",
+  "exit_code": 0,
+  "created": [
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/0_References/_REFERENCE_INDEX.md"
+  ],
+  "checks": [
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "exists": true,
+      "expected_sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146",
+      "actual_sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance.md",
+      "exists": true,
+      "expected_sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146",
+      "actual_sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+      "exists": true,
+      "expected_sha256": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+      "actual_sha256": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control.md",
+      "exists": true,
+      "expected_sha256": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+      "actual_sha256": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+      "exists": true,
+      "expected_sha256": "d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430",
+      "actual_sha256": "d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-08_Exact_Supply_and_Protocol_Pinning.md",
+      "exists": true,
+      "expected_sha256": "d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430",
+      "actual_sha256": "d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "exists": true,
+      "expected_sha256": "e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176",
+      "actual_sha256": "e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-09_Hosted_Account_and_Consent_Boundary.md",
+      "exists": true,
+      "expected_sha256": "e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176",
+      "actual_sha256": "e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+      "exists": true,
+      "expected_sha256": "bfe374aa986718860ebc8b0c877f3a849a25ce0f3246ce33df18d649e30e1b29",
+      "actual_sha256": "bfe374aa986718860ebc8b0c877f3a849a25ce0f3246ce33df18d649e30e1b29",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2.md",
+      "exists": true,
+      "expected_sha256": "bfe374aa986718860ebc8b0c877f3a849a25ce0f3246ce33df18d649e30e1b29",
+      "actual_sha256": "bfe374aa986718860ebc8b0c877f3a849a25ce0f3246ce33df18d649e30e1b29",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+      "exists": true,
+      "expected_sha256": "abd5dcef7a835bafac3e1dd29d7f7b6771ad0aeb60e4af9c25734bfa2534ab02",
+      "actual_sha256": "abd5dcef7a835bafac3e1dd29d7f7b6771ad0aeb60e4af9c25734bfa2534ab02",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation.md",
+      "exists": true,
+      "expected_sha256": "abd5dcef7a835bafac3e1dd29d7f7b6771ad0aeb60e4af9c25734bfa2534ab02",
+      "actual_sha256": "abd5dcef7a835bafac3e1dd29d7f7b6771ad0aeb60e4af9c25734bfa2534ab02",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+      "exists": true,
+      "expected_sha256": "62bcfbdd6a20b647f15594fdd35b312d62942f85cf96aedb4aae5db12ea04663",
+      "actual_sha256": "62bcfbdd6a20b647f15594fdd35b312d62942f85cf96aedb4aae5db12ea04663",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in.md",
+      "exists": true,
+      "expected_sha256": "62bcfbdd6a20b647f15594fdd35b312d62942f85cf96aedb4aae5db12ea04663",
+      "actual_sha256": "62bcfbdd6a20b647f15594fdd35b312d62942f85cf96aedb4aae5db12ea04663",
+      "match": true
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "exists": true,
+      "expected_sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+      "actual_sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+      "match": true
+    },
+    {
+      "path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "exists": true,
+      "expected_sha256": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+      "actual_sha256": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+      "match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "exists": true,
+      "expected_sha256": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+      "actual_sha256": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+      "match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+      "exists": true,
+      "expected_sha256": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+      "actual_sha256": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+      "match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "exists": true,
+      "expected_sha256": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+      "actual_sha256": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_SOFTWARE_DECOMP.md",
+      "exists": true,
+      "expected_sha256": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+      "actual_sha256": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+      "match": true
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "exists": true,
+      "expected_sha256": "9e356ea11d4ab09264b3526e368b7acdb59fd0accaa70a21808da796b5252cea",
+      "actual_sha256": "9e356ea11d4ab09264b3526e368b7acdb59fd0accaa70a21808da796b5252cea",
+      "match": true
+    },
+    {
+      "path": "plans/steers/root_runtime_migration_gate2_acceptance_2026-09-05.md",
+      "exists": true,
+      "expected_sha256": "0a751eb8eb6f0d220593e404baae488c6d922191ee270a885884f6325bfceca0",
+      "actual_sha256": "0a751eb8eb6f0d220593e404baae488c6d922191ee270a885884f6325bfceca0",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/AFFECTED_CLIENT_CENSUS_CANDIDATE_V2.md",
+      "exists": true,
+      "expected_sha256": "2bff966d3806078472370cfd0e7f1546064660f325d4a0e2534a71a1a67c7d13",
+      "actual_sha256": "2bff966d3806078472370cfd0e7f1546064660f325d4a0e2534a71a1a67c7d13",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/DEGRADED_MODE_CONTRACT_COMPOSITE_CANDIDATE_V2.md",
+      "exists": true,
+      "expected_sha256": "7f64cfd2ef567bbceab2d89046137b9d6fbf7ccd49920fa34a76f373547f9153",
+      "actual_sha256": "7f64cfd2ef567bbceab2d89046137b9d6fbf7ccd49920fa34a76f373547f9153",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/EVIDENCE_AND_CUTOVER_PLAN_CANDIDATE_V2.md",
+      "exists": true,
+      "expected_sha256": "d7c1838cf244595cb287173e44b073dfe73db2bdecd9b9946e851978ed89d95a",
+      "actual_sha256": "d7c1838cf244595cb287173e44b073dfe73db2bdecd9b9946e851978ed89d95a",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/OWNER_DECISION_RECORD_CANDIDATE_V2.md",
+      "exists": true,
+      "expected_sha256": "2ce3aeae17212c87fa60f02c96ae5cbb0e6d3b9bf2f734417039178230af2e6c",
+      "actual_sha256": "2ce3aeae17212c87fa60f02c96ae5cbb0e6d3b9bf2f734417039178230af2e6c",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/ROOT_COMPATIBILITY_CONTRACT_CANDIDATE_V2.md",
+      "exists": true,
+      "expected_sha256": "cbe36a275bfe882c575673c8c70d8598b7f0c724b96fdf9ccae962a036677bc1",
+      "actual_sha256": "cbe36a275bfe882c575673c8c70d8598b7f0c724b96fdf9ccae962a036677bc1",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/ROOT_RECOVERY_SEMANTIC_CANDIDATE_V2.md",
+      "exists": true,
+      "expected_sha256": "9b023b347dca4bd255e6c7f2fb499e5654d3ab455f90004be29dd1b545eaf5f8",
+      "actual_sha256": "9b023b347dca4bd255e6c7f2fb499e5654d3ab455f90004be29dd1b545eaf5f8",
+      "match": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+      "exists": true,
+      "expected_sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c",
+      "actual_sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/_AUTHORITY.md",
+      "exists": true,
+      "expected_sha256": null,
+      "actual_sha256": "65b144cff2038bb403c2098aa95313753ea4b342f70e7a95baf1be4c098c7b89",
+      "match": null
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_PINS.csv",
+      "exists": true,
+      "expected_sha256": null,
+      "actual_sha256": "aa8fe94a5fdcde958efc7457b31292a36d20a298c5bdfe74cd57ca6d661842d6",
+      "match": null
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/ACCEPTED_EVIDENCE_CONTINUITY.csv",
+      "exists": true,
+      "expected_sha256": null,
+      "actual_sha256": "866d643ed3b496b2835d1b5b1d536ac5a857239ebfb8a67132ed59c8b6c4ca8d",
+      "match": null
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/OWNERSHIP_OVERLAY.md",
+      "exists": true,
+      "expected_sha256": null,
+      "actual_sha256": "49bcf0f3f4e7b66066abee5a8428277bda0eb3409ca7ea6945fcb148adf23c9c",
+      "match": null
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+      "exists": true,
+      "expected_sha256": null,
+      "actual_sha256": "7fbc932d0f477c4aab1bab00eb6c4bd60e0a71afd15adc847ae2615ce4f328ce",
+      "match": null
+    },
+    {
+      "path": "plans/steers/root_runtime_migration_gate3_approval_2026-09-05.md",
+      "exists": true,
+      "expected_sha256": null,
+      "actual_sha256": "b7b42b35e20ff1350e3879cb6e6c06297e593e28c70afb42df2fac3cd5a10a8a",
+      "match": null
+    },
+    {
+      "path": "plans/steers/root_runtime_migration_gate4_approval_2026-09-05.md",
+      "exists": true,
+      "expected_sha256": null,
+      "actual_sha256": "7c20f795e254ba1cff69c2fd36f53f59463b160e3cb91879b9aa16b1c54a8ef8",
+      "match": null
+    }
+  ]
+}

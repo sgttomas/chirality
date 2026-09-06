@@ -1,0 +1,13 @@
+# Runtime migration successor ordering basis
+
+Status: AWAITING_OWNER_ACCEPTANCE. Package role: derivative decision support. This reconstructs the R9-accepted effort-hours-and-ordering-only basis under the Gate4-approved migration, using actual successor dependency registers and the actual historical estimate mapping. It is not a calendar, staffing plan, delivery commitment, product activation or effective transfer.
+
+Exactly eight evidence ordering edges remain: six runtime carrier fan-ins into DEL-02-06 and GOV-04-05/GOV-05-02 inputs into GOV-04-11. Runtime register mirrors normalize to six unique edges. There is no inferred strict order among DEL-02-07..12. Receipt-validator-to-runtime and client relationships remain non-gating coordination. The combined objective-specific graph has ten qualified nodes, eight edges and no cycle; no cycle was silently linearized. A declaration and INITIALIZED status do not establish accepted evidence satisfaction.
+
+Historical effort remains 1012 base hours (560–1464), partitioned 920 runtime and 92 Root governance hours across the same eight source streams and46 line items. Current remaining effort is UNKNOWN because no accepted completed-work subtraction was supplied. Held/excluded effort remains unknown, not zero. WORK_STREAMS.csv retains per-stream ranges; no dates, durations or staffing are populated. The estimate mapping is a new derivative awaiting actual owner disposition; this ordering reconstruction does not accept it.
+
+Nine compatibility holds remain. The historical tenth marker is separately disposed by R16-B; TM-ROOT-122's R18 closure is retained and TM-ROOT-106 remains open. Historical accepted evidence stays at source hashes. No current feature can be selected merely from this basis.
+
+The actual generic closure command found7 valid CSVs,54 rows,42 anchors,12 mirrored execution declarations,7 nodes/6 edges and no SCC. Its orphan output reports7 because schema inventory keys are bare IDs while graph keys retain the accepted full-slug identities. Raw outputs are preserved as gzip evidence; independent exact registry identity mapping finds all seven runtime nodes connected. This known tool-dialect discrepancy is disclosed, not waived or corrected by changing accepted IDs. Independent AUDIT_DEP_CLOSURE owns its final assessment.
+
+Acceptance subject: the exact successor mapping/ordering and unresolved remaining-effort/hold posture. Owner acceptance remains pending; Gate5 may dispose this derivative explicitly. Rerun if any dependency, source scope, estimate mapping, hold disposition or accepted authority input changes. No _LATEST pointer is changed.

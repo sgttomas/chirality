@@ -1,0 +1,2502 @@
+[
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration/_STATUS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration/_STATUS.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md"
+  },
+  {
+    "Check": "exact approved source postimage execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "exact approved source postimage execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/_Decomposition/chirality_root_objective_register_v1_0.csv"
+  },
+  {
+    "Check": "exact approved source postimage execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv"
+  },
+  {
+    "Check": "exact approved source postimage execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/ADDENDUM_REVIEW/SOURCE_SCOPE_LEDGER_POSTIMAGE.csv"
+  },
+  {
+    "Check": "exact approved source postimage execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/SOURCE/POSTIMAGES/execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv"
+  },
+  {
+    "Check": "53 historical registered",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "six historical packages",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/ROOT_6_PACKAGE_CLOSURE.csv"
+  },
+  {
+    "Check": "53 exact historical folders",
+    "Status": "PASS",
+    "Evidence": "execution"
+  },
+  {
+    "Check": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-01.md"
+  },
+  {
+    "Check": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-01.md"
+  },
+  {
+    "Check": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map"
+  },
+  {
+    "Check": "DEL-01-02_Invariant_Catalog_Conformance_Register retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-02_Invariant_Catalog_Conformance_Register zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-02_Invariant_Catalog_Conformance_Register successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-02.md"
+  },
+  {
+    "Check": "DEL-01-02_Invariant_Catalog_Conformance_Register governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-02.md"
+  },
+  {
+    "Check": "DEL-01-02_Invariant_Catalog_Conformance_Register source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register"
+  },
+  {
+    "Check": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-03.md"
+  },
+  {
+    "Check": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-03.md"
+  },
+  {
+    "Check": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance"
+  },
+  {
+    "Check": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-04.md"
+  },
+  {
+    "Check": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-04.md"
+  },
+  {
+    "Check": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model"
+  },
+  {
+    "Check": "DEL-01-05_File_Native_Authority_Substrate_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-05_File_Native_Authority_Substrate_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-05_File_Native_Authority_Substrate_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-05.md"
+  },
+  {
+    "Check": "DEL-01-05_File_Native_Authority_Substrate_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-05.md"
+  },
+  {
+    "Check": "DEL-01-05_File_Native_Authority_Substrate_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance"
+  },
+  {
+    "Check": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-06.md"
+  },
+  {
+    "Check": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-06.md"
+  },
+  {
+    "Check": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance"
+  },
+  {
+    "Check": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-07.md"
+  },
+  {
+    "Check": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-07.md"
+  },
+  {
+    "Check": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register"
+  },
+  {
+    "Check": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register/_STATUS.md"
+  },
+  {
+    "Check": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-08.md"
+  },
+  {
+    "Check": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-01-08.md"
+  },
+  {
+    "Check": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register"
+  },
+  {
+    "Check": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-01.md"
+  },
+  {
+    "Check": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-01.md"
+  },
+  {
+    "Check": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management"
+  },
+  {
+    "Check": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-02.md"
+  },
+  {
+    "Check": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-02.md"
+  },
+  {
+    "Check": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance"
+  },
+  {
+    "Check": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-03.md"
+  },
+  {
+    "Check": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-03.md"
+  },
+  {
+    "Check": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules"
+  },
+  {
+    "Check": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-04.md"
+  },
+  {
+    "Check": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-04.md"
+  },
+  {
+    "Check": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls"
+  },
+  {
+    "Check": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-05.md"
+  },
+  {
+    "Check": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-02-05.md"
+  },
+  {
+    "Check": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance successor exists",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance qualified runtime successor",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control successor exists",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control qualified runtime successor",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning successor exists",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning qualified runtime successor",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary successor exists",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary qualified runtime successor",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 successor exists",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 qualified runtime successor",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation successor exists",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation qualified runtime successor",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in successor exists",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in qualified runtime successor",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-01.md"
+  },
+  {
+    "Check": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-01.md"
+  },
+  {
+    "Check": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance"
+  },
+  {
+    "Check": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-02.md"
+  },
+  {
+    "Check": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-02.md"
+  },
+  {
+    "Check": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance"
+  },
+  {
+    "Check": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-03.md"
+  },
+  {
+    "Check": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-03.md"
+  },
+  {
+    "Check": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary"
+  },
+  {
+    "Check": "DEL-03-04_Root_Working_Root_Exception_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-03-04_Root_Working_Root_Exception_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-03-04_Root_Working_Root_Exception_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-04.md"
+  },
+  {
+    "Check": "DEL-03-04_Root_Working_Root_Exception_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-04.md"
+  },
+  {
+    "Check": "DEL-03-04_Root_Working_Root_Exception_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance"
+  },
+  {
+    "Check": "DEL-03-05_Guard_State_Instantiation_and_Registration retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration/_STATUS.md"
+  },
+  {
+    "Check": "DEL-03-05_Guard_State_Instantiation_and_Registration zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-03-05_Guard_State_Instantiation_and_Registration successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-05.md"
+  },
+  {
+    "Check": "DEL-03-05_Guard_State_Instantiation_and_Registration governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-05.md"
+  },
+  {
+    "Check": "DEL-03-05_Guard_State_Instantiation_and_Registration source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration"
+  },
+  {
+    "Check": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream/_STATUS.md"
+  },
+  {
+    "Check": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-06.md"
+  },
+  {
+    "Check": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-03-06.md"
+  },
+  {
+    "Check": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream"
+  },
+  {
+    "Check": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-01.md"
+  },
+  {
+    "Check": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-01.md"
+  },
+  {
+    "Check": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline"
+  },
+  {
+    "Check": "DEL-04-02_Identity_Attribution_and_Refusal_Controls retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-02_Identity_Attribution_and_Refusal_Controls zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-02_Identity_Attribution_and_Refusal_Controls successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-02.md"
+  },
+  {
+    "Check": "DEL-04-02_Identity_Attribution_and_Refusal_Controls governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-02.md"
+  },
+  {
+    "Check": "DEL-04-02_Identity_Attribution_and_Refusal_Controls source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls"
+  },
+  {
+    "Check": "DEL-04-03_Validation_Severity_and_Override_Controls retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-03_Validation_Severity_and_Override_Controls zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-03_Validation_Severity_and_Override_Controls successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-03.md"
+  },
+  {
+    "Check": "DEL-04-03_Validation_Severity_and_Override_Controls governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-03.md"
+  },
+  {
+    "Check": "DEL-04-03_Validation_Severity_and_Override_Controls source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls"
+  },
+  {
+    "Check": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-04.md"
+  },
+  {
+    "Check": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-04.md"
+  },
+  {
+    "Check": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing"
+  },
+  {
+    "Check": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-05.md"
+  },
+  {
+    "Check": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-05.md"
+  },
+  {
+    "Check": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline"
+  },
+  {
+    "Check": "DEL-04-06_Change_Management_and_Human_Gated_Closeout retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-06_Change_Management_and_Human_Gated_Closeout zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-06_Change_Management_and_Human_Gated_Closeout successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-06.md"
+  },
+  {
+    "Check": "DEL-04-06_Change_Management_and_Human_Gated_Closeout governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-06.md"
+  },
+  {
+    "Check": "DEL-04-06_Change_Management_and_Human_Gated_Closeout source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout"
+  },
+  {
+    "Check": "DEL-04-07_Public_Export_Boundary_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-07_Public_Export_Boundary_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-07_Public_Export_Boundary_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-07.md"
+  },
+  {
+    "Check": "DEL-04-07_Public_Export_Boundary_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-07.md"
+  },
+  {
+    "Check": "DEL-04-07_Public_Export_Boundary_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance"
+  },
+  {
+    "Check": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-08.md"
+  },
+  {
+    "Check": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-08.md"
+  },
+  {
+    "Check": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control"
+  },
+  {
+    "Check": "DEL-04-09_PRD_Source_Currency_Check_Capability retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-09_PRD_Source_Currency_Check_Capability zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-09_PRD_Source_Currency_Check_Capability successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-09.md"
+  },
+  {
+    "Check": "DEL-04-09_PRD_Source_Currency_Check_Capability governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-09.md"
+  },
+  {
+    "Check": "DEL-04-09_PRD_Source_Currency_Check_Capability source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability"
+  },
+  {
+    "Check": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-10.md"
+  },
+  {
+    "Check": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-10.md"
+  },
+  {
+    "Check": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration"
+  },
+  {
+    "Check": "DEL-04-11_Root_Loop_Receipt_Validator retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_STATUS.md"
+  },
+  {
+    "Check": "DEL-04-11_Root_Loop_Receipt_Validator zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-04-11_Root_Loop_Receipt_Validator successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-11.md"
+  },
+  {
+    "Check": "DEL-04-11_Root_Loop_Receipt_Validator governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-04-11.md"
+  },
+  {
+    "Check": "DEL-04-11_Root_Loop_Receipt_Validator source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator"
+  },
+  {
+    "Check": "DEL-05-01_Run_Record_Tree_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-01_Run_Record_Tree_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-01_Run_Record_Tree_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-01.md"
+  },
+  {
+    "Check": "DEL-05-01_Run_Record_Tree_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-01.md"
+  },
+  {
+    "Check": "DEL-05-01_Run_Record_Tree_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance"
+  },
+  {
+    "Check": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-02.md"
+  },
+  {
+    "Check": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-02.md"
+  },
+  {
+    "Check": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline"
+  },
+  {
+    "Check": "DEL-05-03_SHA_Role_Register retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-03_SHA_Role_Register zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-03_SHA_Role_Register successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-03.md"
+  },
+  {
+    "Check": "DEL-05-03_SHA_Role_Register governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-03.md"
+  },
+  {
+    "Check": "DEL-05-03_SHA_Role_Register source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register"
+  },
+  {
+    "Check": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-04.md"
+  },
+  {
+    "Check": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-04.md"
+  },
+  {
+    "Check": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle"
+  },
+  {
+    "Check": "DEL-05-05_Audit_and_Evaluation_Surface_Governance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-05_Audit_and_Evaluation_Surface_Governance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-05_Audit_and_Evaluation_Surface_Governance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-05.md"
+  },
+  {
+    "Check": "DEL-05-05_Audit_and_Evaluation_Surface_Governance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-05.md"
+  },
+  {
+    "Check": "DEL-05-05_Audit_and_Evaluation_Surface_Governance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance"
+  },
+  {
+    "Check": "DEL-05-06_Validation_Evidence_Mutation_Control retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-06_Validation_Evidence_Mutation_Control zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-06_Validation_Evidence_Mutation_Control successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-06.md"
+  },
+  {
+    "Check": "DEL-05-06_Validation_Evidence_Mutation_Control governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-06.md"
+  },
+  {
+    "Check": "DEL-05-06_Validation_Evidence_Mutation_Control source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control"
+  },
+  {
+    "Check": "DEL-05-07_Closure_Criteria_Conformance retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-07_Closure_Criteria_Conformance zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-07_Closure_Criteria_Conformance successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-07.md"
+  },
+  {
+    "Check": "DEL-05-07_Closure_Criteria_Conformance governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-07.md"
+  },
+  {
+    "Check": "DEL-05-07_Closure_Criteria_Conformance source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance"
+  },
+  {
+    "Check": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation/_STATUS.md"
+  },
+  {
+    "Check": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-08.md"
+  },
+  {
+    "Check": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-05-08.md"
+  },
+  {
+    "Check": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation"
+  },
+  {
+    "Check": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-01.md"
+  },
+  {
+    "Check": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-01.md"
+  },
+  {
+    "Check": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation"
+  },
+  {
+    "Check": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-02.md"
+  },
+  {
+    "Check": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-02.md"
+  },
+  {
+    "Check": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction"
+  },
+  {
+    "Check": "DEL-06-03_Approval_Vehicle_Practice_Record retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-03_Approval_Vehicle_Practice_Record zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-03_Approval_Vehicle_Practice_Record successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-03.md"
+  },
+  {
+    "Check": "DEL-06-03_Approval_Vehicle_Practice_Record governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-03.md"
+  },
+  {
+    "Check": "DEL-06-03_Approval_Vehicle_Practice_Record source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record"
+  },
+  {
+    "Check": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-04.md"
+  },
+  {
+    "Check": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-04.md"
+  },
+  {
+    "Check": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening"
+  },
+  {
+    "Check": "DEL-06-05_Domain_Engine_Truth_Boundary retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-05_Domain_Engine_Truth_Boundary zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-05_Domain_Engine_Truth_Boundary successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-05.md"
+  },
+  {
+    "Check": "DEL-06-05_Domain_Engine_Truth_Boundary governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-05.md"
+  },
+  {
+    "Check": "DEL-06-05_Domain_Engine_Truth_Boundary source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary"
+  },
+  {
+    "Check": "DEL-06-06_Governed_Promotion_Pathway retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-06_Governed_Promotion_Pathway zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-06_Governed_Promotion_Pathway successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-06.md"
+  },
+  {
+    "Check": "DEL-06-06_Governed_Promotion_Pathway governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-06.md"
+  },
+  {
+    "Check": "DEL-06-06_Governed_Promotion_Pathway source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway"
+  },
+  {
+    "Check": "DEL-06-07_Release_Authority_Gate retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-07_Release_Authority_Gate zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-07_Release_Authority_Gate successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-07.md"
+  },
+  {
+    "Check": "DEL-06-07_Release_Authority_Gate governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-07.md"
+  },
+  {
+    "Check": "DEL-06-07_Release_Authority_Gate source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate"
+  },
+  {
+    "Check": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration retired",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration/_STATUS.md"
+  },
+  {
+    "Check": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration zero active product authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration successor exists",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-08.md"
+  },
+  {
+    "Check": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration governance successor",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls/GOV-06-08.md"
+  },
+  {
+    "Check": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration source history untouched",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration"
+  },
+  {
+    "Check": "46 distinct governance controls",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/GovernanceControls"
+  },
+  {
+    "Check": "GOV-01-01 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-01.md"
+  },
+  {
+    "Check": "GOV-01-02 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-02.md"
+  },
+  {
+    "Check": "GOV-01-03 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-03.md"
+  },
+  {
+    "Check": "GOV-01-04 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-04.md"
+  },
+  {
+    "Check": "GOV-01-05 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-05.md"
+  },
+  {
+    "Check": "GOV-01-06 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-06.md"
+  },
+  {
+    "Check": "GOV-01-07 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-07.md"
+  },
+  {
+    "Check": "GOV-01-08 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-01-08.md"
+  },
+  {
+    "Check": "GOV-02-01 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-01.md"
+  },
+  {
+    "Check": "GOV-02-02 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-02.md"
+  },
+  {
+    "Check": "GOV-02-03 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-03.md"
+  },
+  {
+    "Check": "GOV-02-04 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-04.md"
+  },
+  {
+    "Check": "GOV-02-05 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-02-05.md"
+  },
+  {
+    "Check": "GOV-03-01 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-01.md"
+  },
+  {
+    "Check": "GOV-03-02 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-02.md"
+  },
+  {
+    "Check": "GOV-03-03 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-03.md"
+  },
+  {
+    "Check": "GOV-03-04 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-04.md"
+  },
+  {
+    "Check": "GOV-03-05 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-05.md"
+  },
+  {
+    "Check": "GOV-03-06 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-03-06.md"
+  },
+  {
+    "Check": "GOV-04-01 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-01.md"
+  },
+  {
+    "Check": "GOV-04-02 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-02.md"
+  },
+  {
+    "Check": "GOV-04-03 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-03.md"
+  },
+  {
+    "Check": "GOV-04-04 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-04.md"
+  },
+  {
+    "Check": "GOV-04-05 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-05.md"
+  },
+  {
+    "Check": "GOV-04-06 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-06.md"
+  },
+  {
+    "Check": "GOV-04-07 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-07.md"
+  },
+  {
+    "Check": "GOV-04-08 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-08.md"
+  },
+  {
+    "Check": "GOV-04-09 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-09.md"
+  },
+  {
+    "Check": "GOV-04-10 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-10.md"
+  },
+  {
+    "Check": "GOV-04-11 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-04-11.md"
+  },
+  {
+    "Check": "GOV-05-01 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-01.md"
+  },
+  {
+    "Check": "GOV-05-02 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-02.md"
+  },
+  {
+    "Check": "GOV-05-03 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-03.md"
+  },
+  {
+    "Check": "GOV-05-04 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-04.md"
+  },
+  {
+    "Check": "GOV-05-05 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-05.md"
+  },
+  {
+    "Check": "GOV-05-06 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-06.md"
+  },
+  {
+    "Check": "GOV-05-07 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-07.md"
+  },
+  {
+    "Check": "GOV-05-08 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-05-08.md"
+  },
+  {
+    "Check": "GOV-06-01 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-01.md"
+  },
+  {
+    "Check": "GOV-06-02 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-02.md"
+  },
+  {
+    "Check": "GOV-06-03 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-03.md"
+  },
+  {
+    "Check": "GOV-06-04 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-04.md"
+  },
+  {
+    "Check": "GOV-06-05 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-05.md"
+  },
+  {
+    "Check": "GOV-06-06 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-06.md"
+  },
+  {
+    "Check": "GOV-06-07 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-07.md"
+  },
+  {
+    "Check": "GOV-06-08 exact control authority",
+    "Status": "PASS",
+    "Evidence": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/GOVERNANCE_CONTROLS/GOV-06-08.md"
+  },
+  {
+    "Check": "PKG-01_Product_Definition_Normative_Basis_and_Authority child conservation",
+    "Status": "PASS",
+    "Evidence": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map;DEL-01-02_Invariant_Catalog_Conformance_Register;DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance;DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model;DEL-01-05_File_Native_Authority_Substrate_Conformance;DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance;DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register;DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register"
+  },
+  {
+    "Check": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers child conservation",
+    "Status": "PASS",
+    "Evidence": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management;DEL-02-02_Three_Layer_Authority_Boundary_Conformance;DEL-02-03_Delegation_Hierarchy_and_Entry_Rules;DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls;DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools;DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance;DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control;DEL-02-08_Exact_Supply_and_Protocol_Pinning;DEL-02-09_Hosted_Account_and_Consent_Boundary;DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2;DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation;DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "PKG-03_Governed_Execution_Structure_and_Root_Containment child conservation",
+    "Status": "PASS",
+    "Evidence": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance;DEL-03-02_Execution_Structure_and_Lifecycle_Conformance;DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary;DEL-03-04_Root_Working_Root_Exception_Conformance;DEL-03-05_Guard_State_Instantiation_and_Registration;DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream"
+  },
+  {
+    "Check": "PKG-04_Developmental_Machinery_and_Change_Control child conservation",
+    "Status": "PASS",
+    "Evidence": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline;DEL-04-02_Identity_Attribution_and_Refusal_Controls;DEL-04-03_Validation_Severity_and_Override_Controls;DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing;DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline;DEL-04-06_Change_Management_and_Human_Gated_Closeout;DEL-04-07_Public_Export_Boundary_Conformance;DEL-04-08_PRD_Amendment_and_Attributable_Change_Control;DEL-04-09_PRD_Source_Currency_Check_Capability;DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration;DEL-04-11_Root_Loop_Receipt_Validator"
+  },
+  {
+    "Check": "PKG-05_Evidence_Provenance_and_Audit child conservation",
+    "Status": "PASS",
+    "Evidence": "DEL-05-01_Run_Record_Tree_Conformance;DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline;DEL-05-03_SHA_Role_Register;DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle;DEL-05-05_Audit_and_Evaluation_Surface_Governance;DEL-05-06_Validation_Evidence_Mutation_Control;DEL-05-07_Closure_Criteria_Conformance;DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation"
+  },
+  {
+    "Check": "PKG-06_Self_Application_Variants_and_Release child conservation",
+    "Status": "PASS",
+    "Evidence": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation;DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction;DEL-06-03_Approval_Vehicle_Practice_Record;DEL-06-04_Downward_Variant_Service_and_Non_Weakening;DEL-06-05_Domain_Engine_Truth_Boundary;DEL-06-06_Governed_Promotion_Pathway;DEL-06-07_Release_Authority_Gate;DEL-06-08_Situated_Working_Root_Convergence_Demonstration"
+  },
+  {
+    "Check": "104 source rows conserved",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv"
+  },
+  {
+    "Check": "104 original ledger field preservation",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv"
+  },
+  {
+    "Check": "seven historical objectives preserved",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_objective_register_v1_0.csv"
+  },
+  {
+    "Check": "qualified successor partition",
+    "Status": "PASS",
+    "Evidence": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv"
+  },
+  {
+    "Check": "SOW-001 mapped successor GOV-03-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-001 mapped successor GOV-03-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-002 mapped successor GOV-03-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-003 mapped successor GOV-06-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-004 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-005 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-006 mapped successor GOV-01-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-007 mapped successor GOV-01-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-008 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-009 mapped successor GOV-04-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-009 mapped successor GOV-05-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-010 mapped successor GOV-01-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-011 mapped successor GOV-01-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-012 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-013 mapped successor GOV-02-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-014 mapped successor GOV-01-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-015 mapped successor GOV-06-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-016 mapped successor GOV-01-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-017 mapped successor GOV-01-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-018 mapped successor GOV-01-03",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-019 mapped successor GOV-02-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-020 mapped successor GOV-03-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-021 mapped successor GOV-05-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-022 mapped successor GOV-01-03",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-023 mapped successor GOV-01-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-024 mapped successor GOV-01-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-025 mapped successor GOV-01-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-026 mapped successor GOV-02-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-027 mapped successor GOV-02-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-028 mapped successor GOV-02-03",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-029 mapped successor GOV-02-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-030 mapped successor GOV-02-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-031 mapped successor GOV-03-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-032 mapped successor GOV-03-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-033 mapped successor GOV-03-03",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-034 mapped successor GOV-03-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-034 mapped successor GOV-03-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-035 mapped successor GOV-02-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-036 mapped successor GOV-04-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-037 mapped successor GOV-04-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-038 mapped successor GOV-04-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-039 mapped successor GOV-04-03",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-040 mapped successor GOV-04-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-041 mapped successor GOV-04-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-041 mapped successor GOV-04-11",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-042 mapped successor GOV-04-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-043 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-044 mapped successor GOV-04-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-045 mapped successor GOV-04-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-046 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-047 mapped successor GOV-04-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-048 mapped successor GOV-04-09",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-049 mapped successor GOV-04-09",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-050 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-051 mapped successor GOV-04-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-052 mapped successor GOV-05-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-053 mapped successor GOV-05-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-053 mapped successor GOV-04-11",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-054 mapped successor GOV-05-03",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-055 mapped successor GOV-05-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-056 mapped successor GOV-05-05",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-057 mapped successor GOV-05-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-058 mapped successor GOV-05-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-059 mapped successor GOV-05-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-060 mapped successor GOV-06-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-061 mapped successor GOV-03-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-062 mapped successor GOV-06-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-063 mapped successor GOV-03-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-064 mapped successor GOV-06-03",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-065 mapped successor GOV-06-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-066 mapped successor GOV-06-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-067 mapped successor GOV-06-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-068 mapped successor GOV-06-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-069 mapped successor GOV-06-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-070 mapped successor GOV-06-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-071 mapped successor GOV-06-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-072 mapped successor GOV-06-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-073 mapped successor GOV-06-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-074 mapped successor GOV-04-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-075 mapped successor GOV-06-04",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-076 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-077 mapped successor GOV-01-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-078 mapped successor GOV-01-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-079 mapped successor GOV-01-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-080 mapped successor GOV-06-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-081 mapped successor GOV-06-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-082 mapped successor GOV-06-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-083 mapped successor GOV-04-10",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-084 mapped successor GOV-01-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-085 mapped successor GOV-04-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-086 mapped successor GOV-06-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-087 mapped successor GOV-06-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-088 mapped successor GOV-01-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-089 mapped successor GOV-01-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-090 mapped successor GOV-01-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-091 mapped successor GOV-01-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-092 mapped successor GOV-01-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-093 mapped successor GOV-04-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-094 mapped successor GOV-01-07",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-095 mapped successor GOV-01-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-096 mapped successor GOV-04-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-097 mapped successor GOV-04-09",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-098 mapped successor GOV-01-01",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-099 mapped successor GOV-01-02",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-100 mapped successor GOV-01-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-101 mapped successor GOV-01-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-102 mapped successor GOV-04-08",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-103 mapped successor GOV-03-06",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-104 mapped successor chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-104 mapped successor chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-104 mapped successor chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-104 mapped successor chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-104 mapped successor chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-104 mapped successor chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "SOW-104 mapped successor chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  }
+]

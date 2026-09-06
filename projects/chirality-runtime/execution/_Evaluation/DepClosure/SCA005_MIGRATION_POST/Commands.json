@@ -1,0 +1,84 @@
+[
+  {
+    "argv": [
+      "python3",
+      "tools/coordination/analyze_dep_closure.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution",
+      "--output-dir",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Evaluation/DepClosure/SCA005_MIGRATION_POST/Evidence"
+    ],
+    "exit": 0,
+    "stdout": "Found 7 Dependencies.csv files\nLoaded 54 total dependency rows\nSchema: 7 valid, 0 invalid\nANCHOR rows: 42, EXECUTION rows: 12\nIMPLEMENTS_NODE: 7 present, 0 missing\nEvidence coverage: 54/54\nGraph: 7 nodes, 6 edges\nOrphans: 7\nSCCs (size > 1): 0\nHubs (degree >= 20): 0\nBidirectional pairs: 0\nID normalizations: 0\n\nOutputs written to: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Evaluation/DepClosure/SCA005_MIGRATION_POST/Evidence\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Dependencies.csv"
+    ],
+    "exit": 0,
+    "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 12\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/Dependencies.csv"
+    ],
+    "exit": 0,
+    "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/Dependencies.csv"
+    ],
+    "exit": 0,
+    "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/Dependencies.csv"
+    ],
+    "exit": 0,
+    "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/Dependencies.csv"
+    ],
+    "exit": 0,
+    "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/Dependencies.csv"
+    ],
+    "exit": 0,
+    "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/Dependencies.csv"
+    ],
+    "exit": 0,
+    "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+    "stderr": ""
+  }
+]

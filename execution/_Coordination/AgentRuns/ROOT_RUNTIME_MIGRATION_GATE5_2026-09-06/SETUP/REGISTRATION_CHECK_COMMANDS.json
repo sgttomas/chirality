@@ -1,0 +1,14 @@
+{
+  "R01": {
+    "command": "node /private/tmp/root-runtime-migration-20260905/gate3/runtime/registry_checks.mjs",
+    "exit": 0,
+    "output": "R01_REGISTRY.json"
+  },
+  "R02": {
+    "command": "python3 /private/tmp/root-runtime-migration-20260905/gate3/runtime/adapter_checks.py",
+    "exit": 0,
+    "output": "R02_ADAPTER.json"
+  },
+  "observed_adapter_loader_sha256": "e9992a7311c780809fb88561adcce61bfc9ce3a1ffbe43d8658c9e91e1708c48",
+  "R03": "PASS_INDEPENDENT_SEMANTIC_REVIEW; see EVIDENCE_CONTINUITY_CHECK.json"
+}

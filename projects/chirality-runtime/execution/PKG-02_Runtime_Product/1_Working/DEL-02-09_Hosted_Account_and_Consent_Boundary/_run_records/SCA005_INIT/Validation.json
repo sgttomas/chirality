@@ -1,0 +1,142 @@
+{
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+        "--json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\n  \"format\": \"INVALID\",\n  \"issues\": [\n    \"format state is INVALID\",\n    \"at least one AC-* definition is required\",\n    \"matrix output lacks acceptance or verification reference: OUT-001\",\n    \"matrix output lacks acceptance or verification reference: OUT-002\",\n    \"matrix output lacks acceptance or verification reference: OUT-003\",\n    \"matrix output lacks acceptance or verification reference: OUT-004\",\n    \"matrix output lacks acceptance or verification reference: OUT-005\",\n    \"matrix output lacks acceptance or verification reference: OUT-006\"\n  ],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary\",\n  \"valid\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ERROR: format state is INVALID; validated ScopeOfWork.md is required: at least one AC-* definition is required; matrix output lacks acceptance or verification reference: OUT-001; matrix output lacks acceptance or verification reference: OUT-002; matrix output lacks acceptance or verification reference: OUT-003; matrix output lacks acceptance or verification reference: OUT-004; matrix output lacks acceptance or verification reference: OUT-005; matrix output lacks acceptance or verification reference: OUT-006\n"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ERROR: format state is INVALID; validated ScopeOfWork.md is required: at least one AC-* definition is required; matrix output lacks acceptance or verification reference: OUT-001; matrix output lacks acceptance or verification reference: OUT-002; matrix output lacks acceptance or verification reference: OUT-003; matrix output lacks acceptance or verification reference: OUT-004; matrix output lacks acceptance or verification reference: OUT-005; matrix output lacks acceptance or verification reference: OUT-006\n"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+        "--show-not-checkable"
+      ],
+      "exit_code": 0,
+      "stdout": "\nContracts: 1 (0 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"item_count\": 6,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 107,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the `HostedEngineConsentPort` contract within the account/consent boundary. Evaluation is HUMAN_REVIEW against CLM-001 REQ-001 REQ-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 108,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for root-private `CODEX_HOME`, ambient-home exclusion, continuity, and no cross-root/account/policy-digest consent. Evaluation is HUMAN_REVIEW against REQ-001 REQ-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 109,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the `K-ROLE-2` digest schema and truthful role-posture distinctions. Evaluation is HUMAN_REVIEW against CLM-002 REQ-003.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 110,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for Agent 0/1/2 parity and the labelled Agent 2/TASK fallback without a mechanism-proven overclaim. Evaluation is HUMAN_REVIEW against CLM-002 REQ-003.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 111,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the three postures, default, prompt content, grouping caveat, explicit-user-act condition, and labelled on-state. Evaluation is HUMAN_REVIEW against CLM-003 REQ-004 REQ-005 REQ-006.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-006\",\n      \"output_refs\": [\n        \"OUT-006\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-006\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 112,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted isolation, consent, and continuity evidence; no completion claim until that evidence is accepted. Evaluation is HUMAN_REVIEW against REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 REQ-006.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-09\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"item_count\": 6,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 107,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the `HostedEngineConsentPort` contract within the account/consent boundary. Evaluation is HUMAN_REVIEW against CLM-001 REQ-001 REQ-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 108,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for root-private `CODEX_HOME`, ambient-home exclusion, continuity, and no cross-root/account/policy-digest consent. Evaluation is HUMAN_REVIEW against REQ-001 REQ-002.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 109,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the `K-ROLE-2` digest schema and truthful role-posture distinctions. Evaluation is HUMAN_REVIEW against CLM-002 REQ-003.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 110,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for Agent 0/1/2 parity and the labelled Agent 2/TASK fallback without a mechanism-proven overclaim. Evaluation is HUMAN_REVIEW against CLM-002 REQ-003.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 111,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted evidence for the three postures, default, prompt content, grouping caveat, explicit-user-act condition, and labelled on-state. Evaluation is HUMAN_REVIEW against CLM-003 REQ-004 REQ-005 REQ-006.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-006\",\n      \"output_refs\": [\n        \"OUT-006\"\n      ],\n      \"qualified_id\": \"DEL-02-09-AC-006\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 112,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n      },\n      \"text\": \"Own accepted isolation, consent, and continuity evidence; no completion claim until that evidence is accepted. Evaluation is HUMAN_REVIEW against REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 REQ-006.\",\n      \"verification\": [\n        {\n          \"kind\": \"HUMAN_REVIEW\",\n          \"method\": \"accountable human reviews the stated evidence against the cited existing claims and requirements\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-09\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+        "--show-not-checkable"
+      ],
+      "exit_code": 0,
+      "stdout": "\nContracts: 1 (0 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": "e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176",
+  "production_sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+  "status_sha256": "81c335b6908ee9cf26e25866c594ac96b0d8354f737d96c8bf476589eac34bd9",
+  "all_inputs_unchanged": true,
+  "requirements_exact_text_equal": true,
+  "requirements": [
+    "REQ-001",
+    "REQ-002",
+    "REQ-003",
+    "REQ-004",
+    "REQ-005",
+    "REQ-006"
+  ],
+  "checklist_repeat_identical": true,
+  "semantic_boundary_qa": "REQ-001 excludes ambient ~/.codex and names root-private app-owned CODEX_HOME as owned account boundary. REQ-002 excludes cross-root/account/policy-digest consent drift within that same boundary. REQ-003 requires role controls preserve CLM-002 containment. REQ-004..006 retain per-root consent and explicit user act. These are own positive boundary requirements, not transfers of another deliverable\u2019s acts. No owner inferred for an excluded external product act.",
+  "final_validation_pass": true,
+  "normalization_correspondence": [
+    {
+      "source_output": "OUT-001",
+      "source_evidence_expectation": "Own accepted evidence for the `HostedEngineConsentPort` contract within the account/consent boundary",
+      "production_ac": "AC-001",
+      "verification": "HUMAN_REVIEW: accountable human reviews the stated evidence against the cited existing claims and requirements"
+    },
+    {
+      "source_output": "OUT-002",
+      "source_evidence_expectation": "Own accepted evidence for root-private `CODEX_HOME`, ambient-home exclusion, continuity, and no cross-root/account/policy-digest consent",
+      "production_ac": "AC-002",
+      "verification": "HUMAN_REVIEW: accountable human reviews the stated evidence against the cited existing claims and requirements"
+    },
+    {
+      "source_output": "OUT-003",
+      "source_evidence_expectation": "Own accepted evidence for the `K-ROLE-2` digest schema and truthful role-posture distinctions",
+      "production_ac": "AC-003",
+      "verification": "HUMAN_REVIEW: accountable human reviews the stated evidence against the cited existing claims and requirements"
+    },
+    {
+      "source_output": "OUT-004",
+      "source_evidence_expectation": "Own accepted evidence for Agent 0/1/2 parity and the labelled Agent 2/TASK fallback without a mechanism-proven overclaim",
+      "production_ac": "AC-004",
+      "verification": "HUMAN_REVIEW: accountable human reviews the stated evidence against the cited existing claims and requirements"
+    },
+    {
+      "source_output": "OUT-005",
+      "source_evidence_expectation": "Own accepted evidence for the three postures, default, prompt content, grouping caveat, explicit-user-act condition, and labelled on-state",
+      "production_ac": "AC-005",
+      "verification": "HUMAN_REVIEW: accountable human reviews the stated evidence against the cited existing claims and requirements"
+    },
+    {
+      "source_output": "OUT-006",
+      "source_evidence_expectation": "Own accepted isolation, consent, and continuity evidence; no completion claim until that evidence is accepted",
+      "production_ac": "AC-006",
+      "verification": "HUMAN_REVIEW: accountable human reviews the stated evidence against the cited existing claims and requirements"
+    }
+  ]
+}

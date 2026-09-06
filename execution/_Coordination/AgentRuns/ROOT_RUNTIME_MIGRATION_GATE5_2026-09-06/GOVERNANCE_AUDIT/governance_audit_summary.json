@@ -1,0 +1,39 @@
+{
+  "run_id": "ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/GOVERNANCE_AUDIT",
+  "run_status": "WARNINGS",
+  "migration_concordance_verdict": "PASS_WITH_RETAINED_WARNING",
+  "date": "2026-09-06",
+  "passes_executed": [
+    "0",
+    "1-scoped",
+    "2-scoped",
+    "3-scoped",
+    "4-scoped",
+    "5-inventory",
+    "6-scoped"
+  ],
+  "total_issues": 1,
+  "issues_by_severity": {
+    "BLOCKER": 0,
+    "WARNING": 1,
+    "INFO": 0
+  },
+  "counts": {
+    "canon_exact": 4,
+    "controls_exact": 46,
+    "binding_rows": 46,
+    "predicate_unique_ids": 104,
+    "resolved_control_scope_links": 108,
+    "agents_in_directory": 34,
+    "agents_in_agents_md": 34,
+    "live_postimages_exact": 64,
+    "journal_entries": 53
+  },
+  "gate5_confirmed": false,
+  "effective_transfer": false,
+  "derivative_package": true,
+  "remaining_blockers": [
+    "No migration-specific blocker; retained baseline GOV-MIG-001 requires separately authorized follow-on."
+  ],
+  "whole_scope_closed": false
+}

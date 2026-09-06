@@ -1,0 +1,327 @@
+{
+  "status": "FAILED",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_dependencies_schema.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Dependencies.csv"
+      ],
+      "exit": 0,
+      "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 12\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_dependencies_schema.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/Dependencies.csv"
+      ],
+      "exit": 0,
+      "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_dependencies_schema.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/Dependencies.csv"
+      ],
+      "exit": 0,
+      "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_dependencies_schema.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/Dependencies.csv"
+      ],
+      "exit": 0,
+      "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_dependencies_schema.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/Dependencies.csv"
+      ],
+      "exit": 0,
+      "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_dependencies_schema.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/Dependencies.csv"
+      ],
+      "exit": 0,
+      "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_dependencies_schema.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/Dependencies.csv"
+      ],
+      "exit": 0,
+      "stdout": "VALID: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "DEPENDENCY_CLASS",
+        "ANCHOR"
+      ],
+      "exit": 0,
+      "stdout": "VALID: ANCHOR is a valid DEPENDENCY_CLASS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "DEPENDENCY_CLASS",
+        "EXECUTION"
+      ],
+      "exit": 0,
+      "stdout": "VALID: EXECUTION is a valid DEPENDENCY_CLASS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "ANCHOR_TYPE",
+        "IMPLEMENTS_NODE"
+      ],
+      "exit": 0,
+      "stdout": "VALID: IMPLEMENTS_NODE is a valid ANCHOR_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "ANCHOR_TYPE",
+        "NOT_APPLICABLE"
+      ],
+      "exit": 0,
+      "stdout": "VALID: NOT_APPLICABLE is a valid ANCHOR_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "ANCHOR_TYPE",
+        "TRACES_TO_REQUIREMENT"
+      ],
+      "exit": 0,
+      "stdout": "VALID: TRACES_TO_REQUIREMENT is a valid ANCHOR_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "DIRECTION",
+        "DOWNSTREAM"
+      ],
+      "exit": 0,
+      "stdout": "VALID: DOWNSTREAM is a valid DIRECTION\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "DIRECTION",
+        "UPSTREAM"
+      ],
+      "exit": 0,
+      "stdout": "VALID: UPSTREAM is a valid DIRECTION\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "DEPENDENCY_TYPE",
+        "OTHER"
+      ],
+      "exit": 0,
+      "stdout": "VALID: OTHER is a valid DEPENDENCY_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "DEPENDENCY_TYPE",
+        "PREREQUISITE"
+      ],
+      "exit": 0,
+      "stdout": "VALID: PREREQUISITE is a valid DEPENDENCY_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "TARGET_TYPE",
+        "DELIVERABLE"
+      ],
+      "exit": 0,
+      "stdout": "VALID: DELIVERABLE is a valid TARGET_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "TARGET_TYPE",
+        "REQUIREMENT"
+      ],
+      "exit": 0,
+      "stdout": "VALID: REQUIREMENT is a valid TARGET_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "TARGET_TYPE",
+        "WBS_NODE"
+      ],
+      "exit": 0,
+      "stdout": "VALID: WBS_NODE is a valid TARGET_TYPE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "EXPLICITNESS",
+        "EXPLICIT"
+      ],
+      "exit": 0,
+      "stdout": "VALID: EXPLICIT is a valid EXPLICITNESS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "CONFIDENCE",
+        "HIGH"
+      ],
+      "exit": 0,
+      "stdout": "VALID: HIGH is a valid CONFIDENCE\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "ORIGIN",
+        "DECLARED"
+      ],
+      "exit": 0,
+      "stdout": "VALID: DECLARED is a valid ORIGIN\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "ORIGIN",
+        "EXTRACTED"
+      ],
+      "exit": 0,
+      "stdout": "VALID: EXTRACTED is a valid ORIGIN\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "STATUS",
+        "ACTIVE"
+      ],
+      "exit": 0,
+      "stdout": "VALID: ACTIVE is a valid STATUS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "SATISFACTION_STATUS",
+        "NOT_APPLICABLE"
+      ],
+      "exit": 0,
+      "stdout": "VALID: NOT_APPLICABLE is a valid SATISFACTION_STATUS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_enum.py",
+        "SATISFACTION_STATUS",
+        "TBD"
+      ],
+      "exit": 0,
+      "stdout": "VALID: TBD is a valid SATISFACTION_STATUS\n",
+      "stderr": ""
+    }
+  ],
+  "schema_checks": 7,
+  "enum_checks": 19,
+  "rows": 54,
+  "anchors": 42,
+  "execution_mirrors": 12,
+  "unique_execution_edges": 6,
+  "source_drift": {
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md": {
+      "before": "17d86d0bce7a8ef3521e75e7f2d043737e9d3e77838aa0d1d6c3a8f14757b499",
+      "after": "c93e87740020dd3fc3f42f174ae53c1645fca424b306298a41201a893cd1b045"
+    },
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md": {
+      "before": "d1e0d70e3c48635825e93216fc3d15a371b806946a6abfe748958993d4dc1a51",
+      "after": "eada926bd8805936c379f617e762a78b01e4504d328f49e48a8917245a3868d9"
+    },
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md": {
+      "before": "17ac3660114f4abca90c45bbe6e8f83102f04a89756f84321a118754181bef9a",
+      "after": "85d3a30170848951c63e757ff7b25ebf499283984404d3e8c3fec217a5b0ee6b"
+    },
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md": {
+      "before": "81c335b6908ee9cf26e25866c594ac96b0d8354f737d96c8bf476589eac34bd9",
+      "after": "6027f60f46e0d04fa45c2199a80091d39799c6495d6ee19a46a50e3da231ed04"
+    },
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md": {
+      "before": "6411207b6a4f4a58c07137a93732f846f46bd6f661f4f22d452416436be93809",
+      "after": "d7d7a043932d9082fdee3f2b96653cafe0a6a8137527be482ec161f9e2229c23"
+    },
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md": {
+      "before": "cd817ad1b20b4e74bc8e7a725824d7b62fa92be6be40af25bde52e4613ac6711",
+      "after": "8fa445cdd73a02b7b398cb2af21f9b47663ef94edd6d258aa4c8685c07c22550"
+    },
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md": {
+      "before": "3f77f77ea5fd064709dc8e36b26a5e65aceba773c4c4fcc3f4050adeefab8f0e",
+      "after": "ae1a5408353fe1539709df1cd3d25a453cdd6efbdc5551b275cbe3edab9291ba"
+    }
+  },
+  "id_qa": "Exact registry/folder identity and live two-digit full-slug pattern match all hosts; targets resolve to same seven bindings. Generic legacy ID tool not invoked because incompatible widths and not in frontmatter allowlist.",
+  "maturity": "All RequiredMaturity and ProposedMaturity TBD; six unique evidence prerequisites SatisfactionStatus TBD; anchors NOT_APPLICABLE.",
+  "warnings": [
+    "Generic legacy ID validator incompatible with accepted Root/runtime full-slug grammar; accepted decomposition identity check applied."
+  ],
+  "no_unapproved_gates": true,
+  "source_status_unchanged": false
+}

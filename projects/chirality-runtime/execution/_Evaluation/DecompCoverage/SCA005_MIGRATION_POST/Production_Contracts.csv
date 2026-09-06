@@ -1,0 +1,8 @@
+DeliverableID,Format,Valid,Issues
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,SOW_V1,True,
+DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,SOW_V1,True,
+DEL-02-08_Exact_Supply_and_Protocol_Pinning,SOW_V1,True,
+DEL-02-09_Hosted_Account_and_Consent_Boundary,SOW_V1,True,
+DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,SOW_V1,True,
+DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,SOW_V1,True,
+DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,SOW_V1,True,

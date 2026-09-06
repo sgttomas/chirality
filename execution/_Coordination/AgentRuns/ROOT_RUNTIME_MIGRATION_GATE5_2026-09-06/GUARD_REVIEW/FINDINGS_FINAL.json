@@ -1,0 +1,16 @@
+{
+  "verdict": "PASS_FOR_BOUNDED_IMPLEMENTATION",
+  "open_findings": [],
+  "resolved": {
+    "GR-01": "Physical pwd -P resolves source and repository paths before the generic Root write refusal; alias/new-carrier regressions pass.",
+    "GR-02/GR-02b": "Effective stage requires a distinct published Gate5 confirmation, exact confirmed application and immutable APPLIED journal, exact 53 entries, unchanged confirmed successor bindings and tested configuration intent.",
+    "GR-03": "Shared resolver and G3 consume the applicator journal state=APPLIED; incomplete/missing transaction dispatch blocks.",
+    "GR-04": "Prospective extraction uses declared reference fields and bounded accepted/evidence paths; unknown subject fields refuse. Untracked ignored operational material is not recursively harvested. Tracked literal filenames remain contained; symlinks are excluded without dereference.",
+    "GR-05": "Evidence directories require canonical containment in named migration evidence roots; arbitrary external paths and symlinks refuse.",
+    "GR-06": "Nine held identities derive from the pinned approved HOLD_SUCCESSOR_MAP, rather than mutable caller list.",
+    "GR-07": "Any nonempty runtime_capabilities list refuses; migration does not confer feature eligibility.",
+    "GR-08": "Final APPLIED publication is inside protected transaction handling; failure triggers guarded rollback and concurrent edits remain untouched.",
+    "FOLLOWUP-G0": "Unregistered nested/direct production carriers are checked while named tool evidence roots and source-local _run_records are classified as evidence, not active carriers.",
+    "FOLLOWUP-LOADER": "Omitted mode with governance_state now refuses in the practitioner loader; ordinary legacy adapters remain supported."
+  }
+}

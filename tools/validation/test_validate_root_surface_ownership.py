@@ -452,3 +452,74 @@ def test_live_repo_state_passes():
     is the lawful pre-instantiation condition (packet §5.3)."""
     code, _ = g2.check(g2.repo_root())
     assert code == 0
+
+# Governance unit fixtures replace only the separately tested accepted-state
+# resolver. No fixture acceptance is a live owner act.
+import pytest
+
+
+def _governance_fixture(root, monkeypatch):
+    import root_governance_state as state_module
+    successors = [
+        {"target": "root::GOV-01", "write_targets": ["tools/checks/**"]},
+        {"target": "chirality-runtime::DEL-02-06", "write_targets": ["projects/chirality-runtime/packages/core/**"]},
+    ]
+    state = {"successors": successors, "governance_ids": ["root::GOV-01"], "runtime_ids": ["chirality-runtime::DEL-02-06"]}
+    monkeypatch.setattr(state_module, "load_governance_state", lambda *a, **kw: state)
+    monkeypatch.setattr(state_module, "status_verification", lambda *a, **kw: "postimage")
+    entries = [
+        {"id": "root::GOV-01", "kind": "governance-control", "project": "root", "write_targets": ["tools/checks/**"], "instruction_surface": True, "read_targets": ["execution/PKG-01/1_Working/DEL-01/**"]},
+        {"id": "chirality-runtime::DEL-02-06", "kind": "runtime-carrier", "project": "chirality-runtime", "write_targets": ["projects/chirality-runtime/packages/core/**"], "instruction_surface": False},
+    ]
+    data = {"schema": g2.REGISTER_SCHEMA, "mode": "governance-only", "governance_state": {"path": "fixture", "sha256": "0" * 64}, "entries": entries}
+    return data, state
+
+
+def test_governance_ownership_historical_reads(tmp_path, monkeypatch):
+    data, _ = _governance_fixture(tmp_path, monkeypatch)
+    _write_register(tmp_path, data)
+    assert g2.check(tmp_path)[0] == 0
+
+
+@pytest.mark.parametrize("target", ["runtime/**", "projects/other/**", "../outside/**", "/tmp/outside/**", "tools/checks*/**", "execution/PKG-01/**", "projects/chirality-runtime/packages/core/**"])
+def test_governance_rejects_root_foreign_or_historical_write(tmp_path, monkeypatch, target):
+    data, _ = _governance_fixture(tmp_path, monkeypatch)
+    data["entries"][0]["write_targets"] = [target]
+    assert g2.check_governance(tmp_path, data)[0] == 1
+
+
+def test_governance_rejects_duplicate_owner(tmp_path, monkeypatch):
+    data, _ = _governance_fixture(tmp_path, monkeypatch)
+    data["entries"].append(dict(data["entries"][1]))
+    assert g2.check_governance(tmp_path, data)[0] == 1
+
+
+def test_governance_rejects_missing_successor(tmp_path, monkeypatch):
+    data, _ = _governance_fixture(tmp_path, monkeypatch)
+    data["entries"].pop()
+    assert g2.check_governance(tmp_path, data)[0] == 1
+
+
+def test_governance_unaccepted_state_blocks(tmp_path, monkeypatch):
+    import root_governance_state as state_module
+    data, _ = _governance_fixture(tmp_path, monkeypatch)
+    def reject(*a, **kw):
+        raise state_module.GovernanceError("unaccepted transfer")
+    monkeypatch.setattr(state_module, "load_governance_state", reject)
+    assert g2.check_governance(tmp_path, data)[0] == 1
+
+
+def test_governance_symlink_missing_descendant_escapes(tmp_path, monkeypatch):
+    data, _ = _governance_fixture(tmp_path, monkeypatch)
+    outside = tmp_path.parent / (tmp_path.name + "-foreign")
+    outside.mkdir()
+    (tmp_path / "tools").mkdir()
+    (tmp_path / "tools/checks").symlink_to(outside, target_is_directory=True)
+    data["entries"][0]["write_targets"] = ["tools/checks/missing/leaf/**"]
+    assert g2.check_governance(tmp_path, data)[0] == 1
+
+
+def test_governance_rejects_kind_spoof(tmp_path, monkeypatch):
+    data, _ = _governance_fixture(tmp_path, monkeypatch)
+    data["entries"][1]["project"] = "root"
+    assert g2.check_governance(tmp_path, data)[0] == 1

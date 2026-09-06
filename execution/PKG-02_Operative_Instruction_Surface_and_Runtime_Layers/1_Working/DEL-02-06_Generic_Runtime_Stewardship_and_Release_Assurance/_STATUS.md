@@ -1,6 +1,6 @@
 # Status: DEL-02-06
 
-**Current State:** INITIALIZED
+**Current State:** RETIRED
 **Last Updated:** 2026-08-21
 **Authorization Basis:** OD6-RT-SOW1 exact content acceptance (2026-07-27); OD6-RT-APP-INIT1 exact live-application and lifecycle-initialization approval; owner E1 preparation grant (2026-08-21) for one sealed WORKING_ITEMS activation at epoch `1` / candidate `root-runtime-1`; owner D1 exact-byte compatibility-completion acceptance (2026-08-21) at 14,191 bytes / SHA-256 `e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`
 **Application Basis SHA:** 9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2
@@ -43,3 +43,7 @@
   completion package for `root-runtime-1` / epoch `1` at SHA-256
   `e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`;
   REM-002, REM-003, all ten held bindings, and `INITIALIZED` remain.
+
+## SCA-005 retirement record
+
+[RETIRED — SCA-005] Historical source carrier; stable ID and original evidence remain reserved. Successor: projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance. No completion, hold release or implementation acceptance follows from retirement. This exact post-image is proposed for Gate4 propagation review; it may be applied only after accepted successor authority and passing historical-mode guards.

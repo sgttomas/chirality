@@ -1,5 +1,7 @@
 # SPEC — Physical Structures and Mechanics
 
+> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
+
 > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them authoritative." This document is accepted root governance in full. Provenance: it re-established the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`), authored from the prior root canon (`.archive/SPEC.md`), preserving the established §1–§13 numbering and schemas, and adding the **Root Model and Path Anchoring** convention (§0.2–§0.3) plus reconciliations to the live agent surface. **Ratification history:** per D-GOV-05 (`docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md`, ruled by owner 2026-07-01), K-WRITE-2 path containment (§0.2.3) was ratified first as part of the minimal harness basis; the 2026-07-11 full ratification subsumes that partial basis.
 
 This document is the authoritative specification for the physical structures, file formats, schemas, and layout conventions of the filesystem-as-state agent operating system contained in Chirality Root.
@@ -29,7 +31,7 @@ This alignment ensures that project execution state (the filesystem) reflects th
 
 > Numbering note: this section is placed in the §0 preamble (rather than as a new §1) so the established §1–§13 numbers — and every cross-reference to them, e.g. `SPEC §1.2` (tool roots) and `SPEC §6.5` (provenance) — remain stable.
 
-Chirality runs in deployment shapes that share one path model: root-product development in this repository, registered project or domain checkouts, and the desktop harness pointed at a user-selected folder. The instruction root and writable checkout may be the same repository only for explicitly governed in-tree work; external working repositories keep them physically disjoint.
+Chirality supports separately scoped Root governance/instruction changes, explicitly governed in-tree v1 projects, registered external v2 projects/domains and desktop-selected working folders. Root governance is not a continuing product working root after accepted retirement. Instruction reads and write containment follow the chosen deployment dialect.
 
 ### 0.2.1 `REPO_ROOT` — the active checkout
 
@@ -41,17 +43,17 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 `REPO_ROOT` MUST be resolved at session start and never hard-coded. In a linked **git worktree**, `git rev-parse --show-toplevel` returns *that worktree's* root — so a worktree is a fully isolated checkout, and every path derived from `REPO_ROOT` re-anchors to it automatically. This is the mechanism that makes worktree-based isolation safe.
 
-`REPO_ROOT` is the active writable Git checkout. For an external project or domain repository it is that repository, not the Chirality repository supplying instructions. In Chirality root-product development, `REPO_ROOT` is also the instruction root under the D-GOV-21 exception.
+`REPO_ROOT` is the active writable Git checkout. Root governance instruction changes act on the repository only under separate explicit scope/M2 authority. Product WORKING_ROOT remains the selected project directory; external projects use their own checkout with disjoint runtime-declared instructions.
 
 `INSTRUCTION_ROOT` is the runtime-declared, read-only home of the **shared instruction surface** (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`) — the release-managed agent operating system (see `DIRECTIVE.md` §2.6). The runtime resolves it from `CHIRALITY_INSTRUCTION_ROOT`; a V2 project registration fails if it is missing, unreadable, or overlaps the working root. `CLAUDE.md` imports `AGENTS.md` without adding another instruction layer. The instruction surface is read-mostly: changing it is a repo-wide governance action, not ordinary working-root execution.
 
 ### 0.2.2 `WORKING_ROOT` — the active workspace
 
-`WORKING_ROOT` is the project or domain workspace an agent is scoped to — a selected pack in an external repository, an explicitly governed in-tree project, or the user-selected folder under the desktop harness. It is where governed project truth lives (`{EXECUTION_ROOT}`, tool roots, deliverables, decomposition state). For the root product only, `WORKING_ROOT` is `REPO_ROOT` (D-GOV-21).
+`WORKING_ROOT` is the selected project or domain workspace, explicitly governed in-tree project, or desktop-selected folder. It contains governed product truth and remains subject to ScopePath containment. Historical Root product execution is retained evidence after accepted retirement; Root governance maintenance uses separately authorized repository scopes.
 
 - `WORKING_ROOT` MUST resolve to an absolute path under the active writable `REPO_ROOT`.
 - One `INSTRUCTION_ROOT` serves **many** working repositories without per-workspace instruction drift.
-- A working root MUST NOT be the shared instruction surface itself, except that the root product's working root is the repository root under D-GOV-21; agents operating in any working root MUST NOT write to `agents/`, `skills/`, `tools/`, or root `docs/` except through an explicit, separately-authorized repo-wide instruction change (root-product instruction changes obtain that authorization through an independently owner-authorized, human-gated repo-wide change tranche satisfying the D-GOV-21 M2 containment and evidence conditions; the M2 gate does not itself grant authorization).
+- Project writes MUST remain within the selected WORKING_ROOT. Explicit in-tree v1 instruction references may resolve outside it, but never grant instruction writes. External v2 instruction roots MUST be physically disjoint. Root instruction changes require independently owner-authorized M2/G4 tranches; containment itself grants no authority.
 
 ### 0.2.3 ScopePath containment (binding)
 
@@ -77,8 +79,8 @@ Agent instructions and skills reference roots through `{*_ROOT}` tokens. Each to
 | Token | Anchor | Resolves to |
 |---|---|---|
 | `{REPO_ROOT}` | self | `git rev-parse --show-toplevel` (the active checkout) |
-| `{INSTRUCTION_ROOT}` | runtime-declared | the shared instruction surface; the Chirality checkout, packaged app resources, or `REPO_ROOT` for root-product development |
-| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the selected project/domain pack or user-selected folder; for the root product only, `REPO_ROOT` (D-GOV-21) |
+| `{INSTRUCTION_ROOT}` | runtime-declared | the shared instruction surface; the Chirality checkout, packaged app resources, or the separately governed repository instruction root |
+| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the selected project/domain pack or user-selected folder; Root governance maintenance is separately scoped and is not project product execution |
 | `{EXECUTION_ROOT}` | `WORKING_ROOT`-relative | the execution instance root (project-defined; often `WORKING_ROOT` or `WORKING_ROOT/execution`) |
 | `{COORDINATION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Coordination/` |
 | `{DECOMP_ROOT}` / `{DECOMPOSITION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Decomposition/` (or a domain pack's `_Decomposition/`) |
@@ -96,7 +98,7 @@ The token vocabulary above is the registry; an agent that introduces a new `{*_R
 
 ## 1. Execution Root Layout
 
-An execution instance is a self-contained project workspace rooted at `{EXECUTION_ROOT}/` (which resolves `WORKING_ROOT`-relative; see §0.2–0.3). The execution root contains packages (work partitions) and tool roots (derived/operational outputs). The root product's execution instance is `REPO_ROOT/execution` (D-GOV-21).
+An execution instance is a self-contained project workspace rooted at `{EXECUTION_ROOT}/` (which resolves `WORKING_ROOT`-relative; see §0.2–0.3). The execution root contains packages (work partitions) and tool roots (derived/operational outputs). After effective retirement, `REPO_ROOT/execution` retains Root governance coordination and historical product evidence only. It is not eligible for new active Root package/deliverable materialization. Source IDs remain reserved; accepted retirement maps exclude them from active product selection.
 
 ```
 {EXECUTION_ROOT}/
@@ -883,9 +885,9 @@ The prior root SPEC carried desktop-frontend UI navigation and `/api/project/del
 
 ---
 
-## 14. Root-Owned Shared Runtime
+## 14. Shared Runtime Product and Governance Boundary
 
-The root `runtime/` workspace contains versioned contracts, provider-neutral
+The `projects/chirality-runtime/` project owns versioned contracts, provider-neutral
 orchestration, a daemon, a Unix-socket client, a CLI, and safe engine/provider
 adapters. It is an independent Node workspace with its own lockfile. Project
 applications consume its public packages; private project adapters do not
@@ -992,3 +994,12 @@ Run requests may also arrive through standard input or a request file. Human
 output is the default; `--json` emits newline-delimited canonical events.
 Credential values remain Desktop-managed and are neither accepted nor
 displayed by this initial CLI.
+
+## Prospective Root execution registration successor
+
+Root execution/ hosts governance coordination, successor assurance records and historical product evidence. It is not eligible for new active Root PKG/DEL materialization after effective product retirement. Ordinary project execution roots retain SPEC's package/deliverable and lifecycle contracts. Product retirement is tracked in the accepted archive/disposition register and excluded from active scanners; no source directory is deleted and IDs remain reserved.
+
+
+### Root historical-product mode — migration-specific extension
+
+After the exact transfer/retirement act, a Root adapter may declare governance-only mode only with the accepted 53-carrier/104-scope/six-parent disposition register and 46 control references. RETIRED is a migration-specific historical Root registration value, never an active project lifecycle value. No source file is deleted. Root active scanners reject these historical carriers as dispatch targets and reject new Root product materialization. Ordinary project lifecycle and ScopePath checks remain unchanged. Governance/instruction tool invocations require explicit authorized repository scopes and their own containment contract; this extension grants no project write escape and no implicit WORKING_ROOT=REPO_ROOT fallback. Successor G0–G3 must enforce this contract before the mode becomes usable; G4 remains mandatory on its instruction surfaces.

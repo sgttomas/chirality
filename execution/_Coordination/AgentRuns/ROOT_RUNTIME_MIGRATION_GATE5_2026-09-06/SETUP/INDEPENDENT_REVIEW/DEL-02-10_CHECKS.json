@@ -1,0 +1,82 @@
+{
+  "production_sha256": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+  "source_sha256": "bfe374aa986718860ebc8b0c877f3a849a25ce0f3246ce33df18d649e30e1b29",
+  "status_sha256": "6411207b6a4f4a58c07137a93732f846f46bd6f661f4f22d452416436be93809",
+  "paired_memory": {},
+  "author_validation_sha256": "653edde36798bd5fe323cfb7a6ffacd4253a3b86d7fd0f4dc063e9d780d1c35c",
+  "definitions": {
+    "REQ": {
+      "source_count": 0,
+      "destination_count": 0,
+      "missing": [],
+      "changed": {}
+    },
+    "CLM": {
+      "source_count": 5,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    },
+    "OUT": {
+      "source_count": 6,
+      "destination_count": 6,
+      "missing": [],
+      "changed": {
+        "OUT-001": {
+          "source": "\u2014 Root runtime API v2 contract.** One versioned Root runtime API v2 contract covering this adapter/event/approval slice.",
+          "destination": "\u2014 Runtime API v2 contract.** One versioned runtime API v2 contract covering this adapter/event/approval slice."
+        },
+        "OUT-005": {
+          "source": "\u2014 Managed-network approval routing.** `networkApprovalContext` routing through Root API v2 that shows host and protocol, preserves the caveat that a grant may unblock queued requests to the same destination, and permits `acceptForSession` only as an explicit user act.",
+          "destination": "\u2014 Managed-network approval routing.** `networkApprovalContext` routing through runtime API v2 that shows host and protocol, preserves the caveat that a grant may unblock queued requests to the same destination, and permits `acceptForSession` only as an explicit user act."
+        }
+      }
+    },
+    "VER": {
+      "source_count": 5,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    },
+    "AC": {
+      "source_count": 0,
+      "destination_count": 6,
+      "missing": [],
+      "changed": {}
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 6,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-10-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 117,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c\"\n      },\n      \"text\": \"Exact contract identity and bytes, bound to the evidence basis. Draft output definition only; completion requires this deliverable's own accepted evidence. Verification: VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-10-VER-001\",\n          \"source_line\": 137,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and fixture inspection.** Evidence for `OUT-001`,\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-10-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 118,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c\"\n      },\n      \"text\": \"Contract/fixture evidence showing attribution in request and decision records. No approval or reliance claim is made by this SOW. Verification: VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-10-VER-001\",\n          \"source_line\": 137,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and fixture inspection.** Evidence for `OUT-001`,\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-10-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 119,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c\"\n      },\n      \"text\": \"Contract/fixture evidence enumerating the closed terminal set and no fifth identifier. No completion claim without accepted DEL-02-10 evidence. Verification: VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-10-VER-001\",\n          \"source_line\": 137,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and fixture inspection.** Evidence for `OUT-001`,\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-10-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 120,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c\"\n      },\n      \"text\": \"Projection evidence preserving the accepted labels and proof calibration. Does not weaken containment or convert assertion into mechanism proof. Verification: VER-003.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-003\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-10-VER-003\",\n          \"source_line\": 145,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Role-posture projection inspection.** Evidence for `OUT-004`\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-10-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 121,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c\"\n      },\n      \"text\": \"Exact-basis prompt-delivery and empirical grouping evidence plus posture and endpoint-separation evidence. No consent, network grant, or hold lift is created here. Verification: VER-004, VER-005.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-004\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-10-VER-004\",\n          \"source_line\": 148,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Managed-network prompt evidence.** Evidence for `OUT-005`\"\n        },\n        {\n          \"id\": \"VER-005\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-10-VER-005\",\n          \"source_line\": 154,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Posture inspection.** Evidence distinguishes the three\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-006\",\n      \"output_refs\": [\n        \"OUT-006\"\n      ],\n      \"qualified_id\": \"DEL-02-10-AC-006\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 122,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c\"\n      },\n      \"text\": \"Deterministic wire fixtures bound to the exact contract basis. Fixture presence alone does not establish accepted completion. Verification: VER-002.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-002\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-10-VER-002\",\n          \"source_line\": 142,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Unknown-payload fixture inspection.** Evidence for `OUT-006`\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-10\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+        "--show-not-checkable"
+      ],
+      "exit": 0,
+      "stdout": "\nContracts: 1 (1 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ]
+}

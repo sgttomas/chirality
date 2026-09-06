@@ -1,0 +1,157 @@
+{
+  "manifest_sha256": "a0f3e3d124cb0e5fb059e9e4fd2864f07b288f314fad2472371667b31283a3f6",
+  "count": 25,
+  "all_match": false,
+  "rows": [
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-GATE4-GUARDS-20260906.yaml",
+      "expected": "2e86835ccbabcd0c7e50fb120de8d0142442d86a368d4dbda098e41ecf6fd530",
+      "actual": "2e86835ccbabcd0c7e50fb120de8d0142442d86a368d4dbda098e41ecf6fd530",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/adapter_loader.py",
+      "expected": "40443b32cbbbcd3ad900e34d63f26a4e336ed95d390191230a6ad83af3429e82",
+      "actual": "40443b32cbbbcd3ad900e34d63f26a4e336ed95d390191230a6ad83af3429e82",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/adapter_project.py",
+      "expected": "652b1741a308a9f5b0313731b3c439ee5be30b458bf2d9f92a03174bfc6353c9",
+      "actual": "652b1741a308a9f5b0313731b3c439ee5be30b458bf2d9f92a03174bfc6353c9",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_brief.py",
+      "expected": "91a04ecff3bc6a0bbb673ca21c38c55273660af9c6c753656e8d963ce48ea8a7",
+      "actual": "91a04ecff3bc6a0bbb673ca21c38c55273660af9c6c753656e8d963ce48ea8a7",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_next.py",
+      "expected": "457a0ad0e62157f7d05342121946b7f3de7e64e69daa01df95cf7152ffc725f9",
+      "actual": "457a0ad0e62157f7d05342121946b7f3de7e64e69daa01df95cf7152ffc725f9",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_status.py",
+      "expected": "651badb3ba75e8901bfc525f39fd415101ff7a8559ae8d98792159a252e5bade",
+      "actual": "651badb3ba75e8901bfc525f39fd415101ff7a8559ae8d98792159a252e5bade",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/harness.py",
+      "expected": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+      "actual": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/root_historical_status.py",
+      "expected": "2f4c25faeccfab6eba5df6001ae7359316d471897e2a88561c8b6612fcfce61b",
+      "actual": "2f4c25faeccfab6eba5df6001ae7359316d471897e2a88561c8b6612fcfce61b",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/test_adapter_loader.py",
+      "expected": "2dc9f237e23fd017a8f3e45507702124b88bfa767da488d6f254b509cd43c4ca",
+      "actual": "2dc9f237e23fd017a8f3e45507702124b88bfa767da488d6f254b509cd43c4ca",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/test_root_adoption.py",
+      "expected": "f21c0029c0f005840b2be3d7931dd932f1c64ee3a52f1517ca072243c2b8a768",
+      "actual": "f21c0029c0f005840b2be3d7931dd932f1c64ee3a52f1517ca072243c2b8a768",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/test_root_historical_status.py",
+      "expected": "d851cc0d4bd97ae05f13fe8db36bc2c6726d11ba8849d569a548564cfd9572af",
+      "actual": "d851cc0d4bd97ae05f13fe8db36bc2c6726d11ba8849d569a548564cfd9572af",
+      "matches": true
+    },
+    {
+      "path": "tools/practitioner_harness/test_write_status_guard.py",
+      "expected": "b65f44c7d42abe4ac4ad8952b99c1a2702cbcdc66e21908ad23b2dfe6af4c21a",
+      "actual": "b65f44c7d42abe4ac4ad8952b99c1a2702cbcdc66e21908ad23b2dfe6af4c21a",
+      "matches": true
+    },
+    {
+      "path": "tools/scaffolding/apply_root_retirement.py",
+      "expected": "e7f74cb000b6cbcc47278e2baaae50925b716b6504c7916b5e498b4cd531de0f",
+      "actual": "2ecd76ef0afcd0d0a73b9a43adabdfd252cf88662b45891497ba068194c3602b",
+      "matches": false
+    },
+    {
+      "path": "tools/scaffolding/write_status.sh",
+      "expected": "b6194cc0b6a12b949583fd7b211594da0bbd8d6ead136b1ec01533d5700852ed",
+      "actual": "b6194cc0b6a12b949583fd7b211594da0bbd8d6ead136b1ec01533d5700852ed",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/root_governance_state.py",
+      "expected": "ac4cf6f341c10dd423e99ef64bee2ef822bca45cbc3096f66c08aec1804ab373",
+      "actual": "ac4cf6f341c10dd423e99ef64bee2ef822bca45cbc3096f66c08aec1804ab373",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_apply_root_retirement.py",
+      "expected": "048c72e37e7517ece0912dca5ba5bb3a58811fe488f794f53bd3655501759b0d",
+      "actual": "362d40d8cce25f65bb17be7f9c7883b8ca8d5677d4e990533f2d3e205586abad",
+      "matches": false
+    },
+    {
+      "path": "tools/validation/test_root_governance_state.py",
+      "expected": "3ec1ac51affc60250e8bc77cd5fbfc83e098396e87cf4362f900922682134d31",
+      "actual": "d38af6997c31deda4be6afe595682972f2e1ff7e3a5f9ed1321033e02e1cd05d",
+      "matches": false
+    },
+    {
+      "path": "tools/validation/test_validate_root_harness_adapter.py",
+      "expected": "cc7a38495bbff432756f1a8b56d9c73a99886aad2dc22435851bf83746bf1fc1",
+      "actual": "cc7a38495bbff432756f1a8b56d9c73a99886aad2dc22435851bf83746bf1fc1",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_validate_root_materialization_fence.py",
+      "expected": "81196b0cbe554e65803b7cb7a7ac3f57a8848b7c8aa5a13722f488ca28b1bef4",
+      "actual": "f53315f181dd736dd6f5dcd4a546218ed8e88c890b5c7af3e32d63cb48e1e0be",
+      "matches": false
+    },
+    {
+      "path": "tools/validation/test_validate_root_surface_ownership.py",
+      "expected": "2c84f7bde071a499b79ffa2ddaf955d002c4dfe1bbadd703f0a89ccccdf5b404",
+      "actual": "2c84f7bde071a499b79ffa2ddaf955d002c4dfe1bbadd703f0a89ccccdf5b404",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_validate_root_work_graph_dispatch.py",
+      "expected": "eb687300fa98b1a8f107c8eaff42a345f87596d2cdb6c64cc59e565e5879a01a",
+      "actual": "eb687300fa98b1a8f107c8eaff42a345f87596d2cdb6c64cc59e565e5879a01a",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_root_harness_adapter.py",
+      "expected": "142e68372b1b75ad878e006750a78c01665a3fdd54065b6f6d038dfb20a9f03f",
+      "actual": "142e68372b1b75ad878e006750a78c01665a3fdd54065b6f6d038dfb20a9f03f",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_root_materialization_fence.py",
+      "expected": "07a4ffac150227fcd5c97bb15e9cd0b9f9b089aef1e9e658b06966cfcda3d3fe",
+      "actual": "60749e08fcf8e43eb8cf8150830ee4ee8615e4e6c889f79d0e8fb6e5e2b8a722",
+      "matches": false
+    },
+    {
+      "path": "tools/validation/validate_root_surface_ownership.py",
+      "expected": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630",
+      "actual": "cfc94fc642f2f6d01a7889e3506f4bed318b43fd7a171b8487c4c5a6c8a8b630",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_root_work_graph_dispatch.py",
+      "expected": "a23ff1ddf37d36f8fe413b87812d97de9655ecd0082d8eb77562a7cf2db53c02",
+      "actual": "a23ff1ddf37d36f8fe413b87812d97de9655ecd0082d8eb77562a7cf2db53c02",
+      "matches": true
+    }
+  ]
+}

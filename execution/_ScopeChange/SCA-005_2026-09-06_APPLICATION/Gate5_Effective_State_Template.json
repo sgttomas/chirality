@@ -1,0 +1,763 @@
+{
+  "gate3": {
+    "path": "plans/steers/root_runtime_migration_gate3_approval_2026-09-05.md",
+    "sha256": "b7b42b35e20ff1350e3879cb6e6c06297e593e28c70afb42df2fac3cd5a10a8a",
+    "commit": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+    "subject_sha256": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3"
+  },
+  "gate4": {
+    "path": "plans/steers/root_runtime_migration_gate4_approval_2026-09-05.md",
+    "sha256": "7c20f795e254ba1cff69c2fd36f53f59463b160e3cb91879b9aa16b1c54a8ef8",
+    "commit": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+    "subject_sha256": "917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd"
+  },
+  "gate5": {
+    "path": "<ACTUAL_GATE5_RECORD_PATH>",
+    "sha256": "<ACTUAL_GATE5_RECORD_SHA256>",
+    "commit": "<PUBLISHED_GATE5_RECORD_COMMIT>",
+    "subject_sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9"
+  },
+  "selected_subject": {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-05_2344/FINAL_INTEGRATION_V3/COMBINED_ARTIFACTS.sha256",
+    "sha256": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3"
+  },
+  "propagation_plan": {
+    "path": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/FINAL_ARTIFACTS.sha256",
+    "sha256": "917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd"
+  },
+  "schema": "root-governance-state/v1",
+  "stage": "effective",
+  "successor_bindings": [
+    {
+      "source_id": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map",
+      "target": "GOV-01-01",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-01.md",
+      "sha256": "45f9de74fc4f8bd0da26f3f838ee2abe863188ae459994a19952512a05c66569",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-01.md"
+      ]
+    },
+    {
+      "source_id": "DEL-01-02_Invariant_Catalog_Conformance_Register",
+      "target": "GOV-01-02",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-02.md",
+      "sha256": "656ef456a13f63e08b4578607e457d3266f5f51b0bd1343dad1ab44a9f66c396",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-02.md"
+      ]
+    },
+    {
+      "source_id": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance",
+      "target": "GOV-01-03",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-03.md",
+      "sha256": "79452ee2eb2ad50b721689ddb5cf383fd81595c55f7da281dfd7718dbb716db7",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-03.md"
+      ]
+    },
+    {
+      "source_id": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model",
+      "target": "GOV-01-04",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-04.md",
+      "sha256": "d396dce3b3c269b70ae9ac56eac033fb2926d46d143c889d9a5dcae20ec81066",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-04.md"
+      ]
+    },
+    {
+      "source_id": "DEL-01-05_File_Native_Authority_Substrate_Conformance",
+      "target": "GOV-01-05",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-05.md",
+      "sha256": "19dbe7320fe5fb25b7de9cc6f8a93f9558d5f6ba96e4a0f8bf6397fc154169bd",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-05.md"
+      ]
+    },
+    {
+      "source_id": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance",
+      "target": "GOV-01-06",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-06.md",
+      "sha256": "b59e56658a2d0454eff7d982831b618eeea0d391cdb68a73fd584179ad70654b",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-06.md"
+      ]
+    },
+    {
+      "source_id": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register",
+      "target": "GOV-01-07",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-07.md",
+      "sha256": "7e78805dd81d9a9beb52ffe28da31ac337de84401e26be849c8d057271f3ab20",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-07.md"
+      ]
+    },
+    {
+      "source_id": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register",
+      "target": "GOV-01-08",
+      "path": "execution/_Coordination/GovernanceControls/GOV-01-08.md",
+      "sha256": "26bbf7abfd9d20020e4e961bdc9a6862d473a55f364b5f8fb0d6df8dc7cf113d",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-01-08.md"
+      ]
+    },
+    {
+      "source_id": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management",
+      "target": "GOV-02-01",
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-01.md",
+      "sha256": "dbc299b90b361ca1b648b809f074ae80452e4f2f22c74e408e7e282dab8094ad",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-02-01.md"
+      ]
+    },
+    {
+      "source_id": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance",
+      "target": "GOV-02-02",
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-02.md",
+      "sha256": "7914ab057ca48f6676016afb5534865f7cc9e8890f971fc0c605d6b351fc4e33",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-02-02.md"
+      ]
+    },
+    {
+      "source_id": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules",
+      "target": "GOV-02-03",
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-03.md",
+      "sha256": "e8e305894fb934e2762560c2ef0dde57a7d6f5d84ce4154fa5d00e5b57a8e9ca",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-02-03.md"
+      ]
+    },
+    {
+      "source_id": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls",
+      "target": "GOV-02-04",
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-04.md",
+      "sha256": "90e731d34ad278ee44f14713b84b044c256bd555c35d99618a28188c9ca5ef24",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-02-04.md"
+      ]
+    },
+    {
+      "source_id": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools",
+      "target": "GOV-02-05",
+      "path": "execution/_Coordination/GovernanceControls/GOV-02-05.md",
+      "sha256": "45f33e8ad7d968d222535c8503335e4b78db3eeabe4181cea6d98301011511c0",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-02-05.md"
+      ]
+    },
+    {
+      "source_id": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "target": "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+      "authority": {
+        "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+        "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3"
+      },
+      "write_targets": [
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/**"
+      ]
+    },
+    {
+      "source_id": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "target": "chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+      "sha256": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+      "authority": {
+        "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+        "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3"
+      },
+      "write_targets": [
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/**"
+      ]
+    },
+    {
+      "source_id": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "target": "chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+      "sha256": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+      "authority": {
+        "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+        "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3"
+      },
+      "write_targets": [
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/**"
+      ]
+    },
+    {
+      "source_id": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "target": "chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+      "authority": {
+        "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+        "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3"
+      },
+      "write_targets": [
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/**"
+      ]
+    },
+    {
+      "source_id": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "target": "chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+      "sha256": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+      "authority": {
+        "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+        "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3"
+      },
+      "write_targets": [
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/**"
+      ]
+    },
+    {
+      "source_id": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "target": "chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+      "sha256": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+      "authority": {
+        "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+        "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3"
+      },
+      "write_targets": [
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/**"
+      ]
+    },
+    {
+      "source_id": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "target": "chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+      "sha256": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b",
+      "authority": {
+        "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+        "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3"
+      },
+      "write_targets": [
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/**"
+      ]
+    },
+    {
+      "source_id": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance",
+      "target": "GOV-03-01",
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-01.md",
+      "sha256": "37d305e07187e841564060dd790846520804e1091e40b5611537e10958f3c265",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-03-01.md"
+      ]
+    },
+    {
+      "source_id": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance",
+      "target": "GOV-03-02",
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-02.md",
+      "sha256": "6d6b96ba74835529df74a265fc3232ecf2d31fcf5cab0cdf1087f88660958b59",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-03-02.md"
+      ]
+    },
+    {
+      "source_id": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary",
+      "target": "GOV-03-03",
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-03.md",
+      "sha256": "56e32e7ef70cd2f09b731760f22a9c844451d5443417b61020bf6e2a0ce43bfb",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-03-03.md"
+      ]
+    },
+    {
+      "source_id": "DEL-03-04_Root_Working_Root_Exception_Conformance",
+      "target": "GOV-03-04",
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-04.md",
+      "sha256": "7e885fa361cdd44d0e310d72deda41332ffe1f81c3ba03a2043e9bd9fe88d79a",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-03-04.md"
+      ]
+    },
+    {
+      "source_id": "DEL-03-05_Guard_State_Instantiation_and_Registration",
+      "target": "GOV-03-05",
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-05.md",
+      "sha256": "5d1dadfed1ec270a3f231b216e8e2678b8588cbb75d37cf02bd6122d7456f247",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-03-05.md"
+      ]
+    },
+    {
+      "source_id": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream",
+      "target": "GOV-03-06",
+      "path": "execution/_Coordination/GovernanceControls/GOV-03-06.md",
+      "sha256": "71a99bf3ee51f36e37ede2ea8c74c3c29c53610260998fba43048df6b6bbfd6e",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-03-06.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline",
+      "target": "GOV-04-01",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-01.md",
+      "sha256": "462cea71c32d1e51971b59c239a6408f727684d8ad53a97456323251d67df35f",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-01.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-02_Identity_Attribution_and_Refusal_Controls",
+      "target": "GOV-04-02",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-02.md",
+      "sha256": "7d8c7067751351f40295de5c625e2b5de81eee6603b6b224681bb259a4c4518b",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-02.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-03_Validation_Severity_and_Override_Controls",
+      "target": "GOV-04-03",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-03.md",
+      "sha256": "d2803cdd8cb7fef9133510a5ccbd3afae96327eb2e0c9ddb50040358465dbbb2",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-03.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing",
+      "target": "GOV-04-04",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-04.md",
+      "sha256": "cc4429446268b1c8107858770c350e45d299875adf0f497c4531e6e59d5a3f47",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-04.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline",
+      "target": "GOV-04-05",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-05.md",
+      "sha256": "3c0eb4d8209c64ddf4635ebea31723623953903d30e88a6c9db419d892de3713",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-05.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-06_Change_Management_and_Human_Gated_Closeout",
+      "target": "GOV-04-06",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-06.md",
+      "sha256": "38a1886a44ede66481d9ddd198372e18dbd1c4c678ecf0ca5090d670a449a93b",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-06.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-07_Public_Export_Boundary_Conformance",
+      "target": "GOV-04-07",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-07.md",
+      "sha256": "44e576a26d2cc312776066cc23f99fdc1f27943edfbe4d7faa2ded482ff94422",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-07.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control",
+      "target": "GOV-04-08",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-08.md",
+      "sha256": "17f5429c2786eb8865ddb1152793b6fcec0f5fd0af04ff9146765640e74e7c2f",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-08.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-09_PRD_Source_Currency_Check_Capability",
+      "target": "GOV-04-09",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-09.md",
+      "sha256": "07ceea14e308e7aa6252c7276f4bc3e17b98b3fbcc06723ee03da0556b8e54c6",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-09.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration",
+      "target": "GOV-04-10",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-10.md",
+      "sha256": "cadc01bac0f83dcf149f8836d8bb10b46cc06ea8aae5e3faa14f29eedc0e88b0",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-10.md"
+      ]
+    },
+    {
+      "source_id": "DEL-04-11_Root_Loop_Receipt_Validator",
+      "target": "GOV-04-11",
+      "path": "execution/_Coordination/GovernanceControls/GOV-04-11.md",
+      "sha256": "811d4682d5ce6c277dea60a1781a3c32cb5d93228a2ac6954d3156ddd8880860",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-04-11.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-01_Run_Record_Tree_Conformance",
+      "target": "GOV-05-01",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-01.md",
+      "sha256": "0a520749505b7dbc3e98bceefefa0f69868f1a92dc7e47498237189e2b4d710b",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-01.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline",
+      "target": "GOV-05-02",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-02.md",
+      "sha256": "03af550c7a59e6905b16c1fc35d3ea5e4e7683c28bfed8e303816f66c618d01e",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-02.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-03_SHA_Role_Register",
+      "target": "GOV-05-03",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-03.md",
+      "sha256": "84c5d3489b2719d692402e5e5187188f80ea992efc6f724397bb7774818e0761",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-03.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle",
+      "target": "GOV-05-04",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-04.md",
+      "sha256": "f5f8f63e25cfe00f78e061305ea9d00f0f968dedd9f1311f73e9c3289f021ed1",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-04.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-05_Audit_and_Evaluation_Surface_Governance",
+      "target": "GOV-05-05",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-05.md",
+      "sha256": "85e69f959b024b6443f34e49cced4bf4284626ce2dd8e91bf6188de57160ccd8",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-05.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-06_Validation_Evidence_Mutation_Control",
+      "target": "GOV-05-06",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-06.md",
+      "sha256": "0dbf6d4050c930025f49efde919084080773bb0e2fe9146498e4da2c9273e6fe",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-06.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-07_Closure_Criteria_Conformance",
+      "target": "GOV-05-07",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-07.md",
+      "sha256": "177baed539207d33540fa4382c30406d8ad9785550fa70ce5c7e0680f3df087b",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-07.md"
+      ]
+    },
+    {
+      "source_id": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation",
+      "target": "GOV-05-08",
+      "path": "execution/_Coordination/GovernanceControls/GOV-05-08.md",
+      "sha256": "b0a7c2906501eea6052083d6c4d40e623f27a54b96b98b858b79a7b192ee41d1",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-05-08.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation",
+      "target": "GOV-06-01",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-01.md",
+      "sha256": "ba7a27af327985186c7d610644dc01fd431e313fef3b87cc11d7d02a809c06a8",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-01.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction",
+      "target": "GOV-06-02",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-02.md",
+      "sha256": "332501e62332910de0377333c5b0013abb1a85ce7f2e132301fddbaeeb52d6ad",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-02.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-03_Approval_Vehicle_Practice_Record",
+      "target": "GOV-06-03",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-03.md",
+      "sha256": "a6007cfa8709e9bfeeb32d44a679fa7ab406b570f3a325e685193c8f18ea21a0",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-03.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening",
+      "target": "GOV-06-04",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-04.md",
+      "sha256": "a13f8d38ba5d98fcf52a8427a1ff159082215df43bde7a1173d359e77096e4d2",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-04.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-05_Domain_Engine_Truth_Boundary",
+      "target": "GOV-06-05",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-05.md",
+      "sha256": "0f06024f7c01a17d463ab04c19bb8083b581949f4a73f11ec982e7de024560f8",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-05.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-06_Governed_Promotion_Pathway",
+      "target": "GOV-06-06",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-06.md",
+      "sha256": "0a46b4e3ab26fcb53e694ffb8fe20da1d703db4a667c27e393720db950fef0ce",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-06.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-07_Release_Authority_Gate",
+      "target": "GOV-06-07",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-07.md",
+      "sha256": "5c90d86b90b55af62ad8fe64907c4fac93d00f4ad756c929e3fd843a9f548c37",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-07.md"
+      ]
+    },
+    {
+      "source_id": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration",
+      "target": "GOV-06-08",
+      "path": "execution/_Coordination/GovernanceControls/GOV-06-08.md",
+      "sha256": "8a1efc289b40c44f6ca321af5f8c9529b81aa7d2f5fd4de79d7ca4ab70f1eaa8",
+      "authority": {
+        "path": "execution/_Coordination/GovernanceControls/_APPLICATION.md",
+        "sha256": "d2e0fbeb681dc8f910819a65cc03e060ef9b26e8f1ba96b4e35b979bf78ca11c"
+      },
+      "write_targets": [
+        "execution/_Coordination/GovernanceControls/GOV-06-08.md"
+      ]
+    }
+  ],
+  "transaction": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+    "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203"
+  },
+  "held_capabilities": [
+    "/binding_groups/2_source_and_release_identities/release_identity",
+    "/binding_groups/2_source_and_release_identities/source_identity",
+    "/binding_groups/4_conformance_or_migration_evidence/clients/0",
+    "/binding_groups/4_conformance_or_migration_evidence/clients/1",
+    "/binding_groups/5_root_semantic_and_regression_evidence",
+    "/binding_groups/6_census_relationship_routing_notice_and_findings/notice",
+    "/binding_groups/8_accountable_human_acts/cutover_act",
+    "/binding_groups/8_accountable_human_acts/implementation_act",
+    "/binding_groups/8_accountable_human_acts/release_act"
+  ],
+  "effect_subject": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATION_SUBJECT.json",
+    "sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9"
+  },
+  "effect_subject_sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9",
+  "effect_configuration": [
+    {
+      "target": "execution/_harness/adapter.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/adapter.yaml",
+      "sha256": "b1395d402b0ab2c2b02ff1ad29ce3a631870e8633b85497cc473ea7e36f6b5c0"
+    },
+    {
+      "target": "execution/_harness/root_guards.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/root_guards.yaml",
+      "sha256": "442613ff6f7495b550b68f590c73ad70e3b819050debe8d0f7295663517877d7"
+    },
+    {
+      "target": "execution/_harness/surface_ownership.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/surface_ownership.yaml",
+      "sha256": "32ec79df0564cc28b0d4d2c3d79d8f853413f386840d75bb2ef309e806151f0a"
+    },
+    {
+      "target": "execution/_harness/work_graph.yaml",
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/CONFIG_CANDIDATES/work_graph.yaml",
+      "sha256": "eccbfcb7478006bfb9265c93f8d64afed77ed4074fb81834759b5cde28481c01"
+    }
+  ]
+}

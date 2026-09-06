@@ -1,0 +1,73 @@
+{
+  "production_sha256": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+  "source_sha256": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+  "status_sha256": "d1e0d70e3c48635825e93216fc3d15a371b806946a6abfe748958993d4dc1a51",
+  "paired_memory": {},
+  "author_validation_sha256": "ed34d993df805184a7248c275defb2dee0d2e5e2247c8cea4b002422d9b5309c",
+  "definitions": {
+    "REQ": {
+      "source_count": 8,
+      "destination_count": 8,
+      "missing": [],
+      "changed": {}
+    },
+    "CLM": {
+      "source_count": 1,
+      "destination_count": 1,
+      "missing": [],
+      "changed": {}
+    },
+    "OUT": {
+      "source_count": 5,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    },
+    "VER": {
+      "source_count": 4,
+      "destination_count": 4,
+      "missing": [],
+      "changed": {}
+    },
+    "AC": {
+      "source_count": 0,
+      "destination_count": 5,
+      "missing": [],
+      "changed": {}
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 5,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 108,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Contract evidence for the named `DelegatedHarnessProcessSupervisorPort` boundary. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-001\",\n          \"source_line\": 134,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and protocol trace.** Trace OUT-001 and OUT-002 to\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 109,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Protocol evidence for the purpose-limited private Unix socket, ownership controls, and token/owner/generation/stale-recovery rules. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-001\",\n          \"source_line\": 134,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and protocol trace.** Trace OUT-001 and OUT-002 to\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 110,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence covering acquisition, inventory, reconnect, generation fencing, and stale recovery. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-002.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-002\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-002\",\n          \"source_line\": 138,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Worker-control trace.** Trace OUT-003 to REQ-004 across worker\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 111,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence for the two-job topology and all sole-broker, caller-exclusion, Unix-only, and no-TCP boundaries. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-003.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-003\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-003\",\n          \"source_line\": 140,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Launch-boundary trace.** Trace OUT-004 to REQ-005 and REQ-006,\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 112,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence for role-entry parity, calibrated non-delegation claims, and unchanged hard containment. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-004.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-004\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-004\",\n          \"source_line\": 144,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Role and containment trace.** Trace OUT-005 to REQ-007 and\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-07\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+        "--show-not-checkable"
+      ],
+      "exit": 0,
+      "stdout": "\nContracts: 1 (0 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,1182 @@
+[
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/ACCEPTED_EVIDENCE_CONTINUITY.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/ACCEPTED_EVIDENCE_CONTINUITY.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/CHANGE_JOURNAL.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/CHANGE_JOURNAL.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/COVERAGE_PREVIEW.json",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/COVERAGE_PREVIEW.json"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/DEPENDENCY_DISTRIBUTION_PREVIEW.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/DEPENDENCY_DISTRIBUTION_PREVIEW.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/GATE_READINESS.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/GATE_READINESS.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/HOLD_SUCCESSOR_MAP.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/INHERITED_REQUIREMENT_TRACE.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/INHERITED_REQUIREMENT_TRACE.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/OWNERSHIP_OVERLAY.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/OWNERSHIP_OVERLAY.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/docs/PRD.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/PRD.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/RUNTIME_DELIVERABLE_REGISTER.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/RUNTIME_OBJECTIVE_REGISTER.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/RUNTIME_SCOPE_LEDGER.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_PINS.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_PINS.csv"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_SCOPE_REQUIREMENTS/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_SCOPE_REQUIREMENTS/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-08_Exact_Supply_and_Protocol_Pinning.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_SCOPE_REQUIREMENTS/DEL-02-08_Exact_Supply_and_Protocol_Pinning.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-09_Hosted_Account_and_Consent_Boundary.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_SCOPE_REQUIREMENTS/DEL-02-09_Hosted_Account_and_Consent_Boundary.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_SCOPE_REQUIREMENTS/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_SCOPE_REQUIREMENTS/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in.md",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/SOURCE_SCOPE_REQUIREMENTS/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in.md"
+  },
+  {
+    "Check": "approved payload projects/chirality-runtime/execution/_Decomposition/TRACE_PREVIEW.csv",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-05_2344/RUNTIME/TRACE_PREVIEW.csv"
+  },
+  {
+    "Check": "seven exact destination carriers",
+    "Status": "PASS",
+    "Evidence": [
+      "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+    ]
+  },
+  {
+    "Check": "one package",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution"
+  },
+  {
+    "Check": "one inherited scope",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv"
+  },
+  {
+    "Check": "four objectives",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance minimum _CONTEXT.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance minimum _STATUS.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance minimum _REFERENCES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_REFERENCES.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance minimum _SEMANTIC.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_SEMANTIC.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance minimum _DEPENDENCIES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance minimum ScopeOfWork.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance initialized",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance valid SOW",
+    "Status": "PASS",
+    "Evidence": []
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance context identity",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance numbered requirement conservation",
+    "Status": "PASS",
+    "Evidence": {
+      "local": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023",
+        "REQ-024",
+        "REQ-025",
+        "REQ-026",
+        "REQ-027",
+        "REQ-028",
+        "REQ-029",
+        "REQ-030",
+        "REQ-031",
+        "REQ-032",
+        "REQ-033",
+        "REQ-034",
+        "REQ-035",
+        "REQ-036",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039",
+        "REQ-040",
+        "REQ-041",
+        "REQ-042",
+        "REQ-043",
+        "REQ-044",
+        "REQ-045",
+        "REQ-046",
+        "REQ-047",
+        "REQ-048",
+        "REQ-049",
+        "REQ-050",
+        "REQ-051",
+        "REQ-052"
+      ],
+      "trace": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023",
+        "REQ-024",
+        "REQ-025",
+        "REQ-026",
+        "REQ-027",
+        "REQ-028",
+        "REQ-029",
+        "REQ-030",
+        "REQ-031",
+        "REQ-032",
+        "REQ-033",
+        "REQ-034",
+        "REQ-035",
+        "REQ-036",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039",
+        "REQ-040",
+        "REQ-041",
+        "REQ-042",
+        "REQ-043",
+        "REQ-044",
+        "REQ-045",
+        "REQ-046",
+        "REQ-047",
+        "REQ-048",
+        "REQ-049",
+        "REQ-050",
+        "REQ-051",
+        "REQ-052"
+      ]
+    }
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-001 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-002 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-003 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-004 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-005 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-006 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-007 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-008 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-009 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-010 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-011 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-012 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-013 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-014 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-015 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-016 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-017 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-018 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-019 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-020 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-021 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-022 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-023 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-024 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-025 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-026 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-027 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-028 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-029 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-030 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-031 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-032 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-033 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-034 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-035 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-036 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-037 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-038 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-039 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-040 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-041 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-042 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-043 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-044 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-045 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-046 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-047 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-048 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-049 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-050 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-051 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance::REQ-052 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance qualified owner",
+    "Status": "PASS",
+    "Evidence": "chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+  },
+  {
+    "Check": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance objectives/scope",
+    "Status": "PASS",
+    "Evidence": {
+      "schema": "chirality-deliverable-sow/v1",
+      "deliverable_id": "DEL-02-06",
+      "package_id": "PKG-02",
+      "decomposition_basis": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@1aadcc61b2739fdca25c4b07259655836516baa4",
+      "project_scope_refs": [
+        "SOW-104"
+      ],
+      "package_objective_refs": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    }
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control minimum _CONTEXT.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control minimum _STATUS.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control minimum _REFERENCES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_REFERENCES.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control minimum _SEMANTIC.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_SEMANTIC.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control minimum _DEPENDENCIES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control minimum ScopeOfWork.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control initialized",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control valid SOW",
+    "Status": "PASS",
+    "Evidence": []
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control context identity",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control numbered requirement conservation",
+    "Status": "PASS",
+    "Evidence": {
+      "local": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008"
+      ],
+      "trace": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008"
+      ]
+    }
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-001 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-002 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-003 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-004 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-005 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-006 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-007 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control::REQ-008 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control qualified owner",
+    "Status": "PASS",
+    "Evidence": "chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+  },
+  {
+    "Check": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control objectives/scope",
+    "Status": "PASS",
+    "Evidence": {
+      "schema": "chirality-deliverable-sow/v1",
+      "deliverable_id": "DEL-02-07",
+      "package_id": "PKG-02",
+      "decomposition_basis": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@8209bc54e0d133b19437c93b184cd50ba3d43489",
+      "project_scope_refs": [
+        "SOW-104"
+      ],
+      "package_objective_refs": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    }
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning minimum _CONTEXT.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning minimum _STATUS.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning minimum _REFERENCES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_REFERENCES.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning minimum _SEMANTIC.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_SEMANTIC.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning minimum _DEPENDENCIES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_DEPENDENCIES.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning minimum ScopeOfWork.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning initialized",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning valid SOW",
+    "Status": "PASS",
+    "Evidence": []
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning context identity",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning numbered requirement conservation",
+    "Status": "PASS",
+    "Evidence": {
+      "local": [],
+      "trace": []
+    }
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning qualified owner",
+    "Status": "PASS",
+    "Evidence": "chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning"
+  },
+  {
+    "Check": "DEL-02-08_Exact_Supply_and_Protocol_Pinning objectives/scope",
+    "Status": "PASS",
+    "Evidence": {
+      "schema": "chirality-deliverable-sow/v1",
+      "deliverable_id": "DEL-02-08",
+      "package_id": "PKG-02",
+      "decomposition_basis": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@8209bc54e0d133b19437c93b184cd50ba3d43489",
+      "project_scope_refs": [
+        "SOW-104"
+      ],
+      "package_objective_refs": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    }
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary minimum _CONTEXT.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary minimum _STATUS.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary minimum _REFERENCES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_REFERENCES.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary minimum _SEMANTIC.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_SEMANTIC.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary minimum _DEPENDENCIES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_DEPENDENCIES.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary minimum ScopeOfWork.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary initialized",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary valid SOW",
+    "Status": "PASS",
+    "Evidence": []
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary context identity",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary numbered requirement conservation",
+    "Status": "PASS",
+    "Evidence": {
+      "local": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006"
+      ],
+      "trace": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006"
+      ]
+    }
+  },
+  {
+    "Check": "root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-001 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-002 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-003 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-004 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-005 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+  },
+  {
+    "Check": "root::DEL-02-09_Hosted_Account_and_Consent_Boundary::REQ-006 source bytes",
+    "Status": "PASS",
+    "Evidence": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary qualified owner",
+    "Status": "PASS",
+    "Evidence": "chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary"
+  },
+  {
+    "Check": "DEL-02-09_Hosted_Account_and_Consent_Boundary objectives/scope",
+    "Status": "PASS",
+    "Evidence": {
+      "schema": "chirality-deliverable-sow/v1",
+      "deliverable_id": "DEL-02-09",
+      "package_id": "PKG-02",
+      "decomposition_basis": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@8209bc54e0d133b19437c93b184cd50ba3d43489",
+      "project_scope_refs": [
+        "SOW-104"
+      ],
+      "package_objective_refs": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    }
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 minimum _CONTEXT.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 minimum _STATUS.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 minimum _REFERENCES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_REFERENCES.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 minimum _SEMANTIC.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_SEMANTIC.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 minimum _DEPENDENCIES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_DEPENDENCIES.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 minimum ScopeOfWork.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 initialized",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 valid SOW",
+    "Status": "PASS",
+    "Evidence": []
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 context identity",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 numbered requirement conservation",
+    "Status": "PASS",
+    "Evidence": {
+      "local": [],
+      "trace": []
+    }
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 qualified owner",
+    "Status": "PASS",
+    "Evidence": "chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+  },
+  {
+    "Check": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 objectives/scope",
+    "Status": "PASS",
+    "Evidence": {
+      "schema": "chirality-deliverable-sow/v1",
+      "deliverable_id": "DEL-02-10",
+      "package_id": "PKG-02",
+      "decomposition_basis": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@8209bc54e0d133b19437c93b184cd50ba3d43489",
+      "project_scope_refs": [
+        "SOW-104"
+      ],
+      "package_objective_refs": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    }
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation minimum _CONTEXT.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation minimum _STATUS.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation minimum _REFERENCES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_REFERENCES.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation minimum _SEMANTIC.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_SEMANTIC.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation minimum _DEPENDENCIES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_DEPENDENCIES.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation minimum ScopeOfWork.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation initialized",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation valid SOW",
+    "Status": "PASS",
+    "Evidence": []
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation context identity",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation numbered requirement conservation",
+    "Status": "PASS",
+    "Evidence": {
+      "local": [],
+      "trace": []
+    }
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation qualified owner",
+    "Status": "PASS",
+    "Evidence": "chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation"
+  },
+  {
+    "Check": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation objectives/scope",
+    "Status": "PASS",
+    "Evidence": {
+      "schema": "chirality-deliverable-sow/v1",
+      "deliverable_id": "DEL-02-11",
+      "package_id": "PKG-02",
+      "decomposition_basis": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@8209bc54e0d133b19437c93b184cd50ba3d43489",
+      "project_scope_refs": [
+        "SOW-104"
+      ],
+      "package_objective_refs": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    }
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in minimum _CONTEXT.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in minimum _STATUS.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in minimum _REFERENCES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_REFERENCES.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in minimum _SEMANTIC.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_SEMANTIC.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in minimum _DEPENDENCIES.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_DEPENDENCIES.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in minimum ScopeOfWork.md",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in initialized",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in valid SOW",
+    "Status": "PASS",
+    "Evidence": []
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in context identity",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_CONTEXT.md"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in numbered requirement conservation",
+    "Status": "PASS",
+    "Evidence": {
+      "local": [],
+      "trace": []
+    }
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in qualified owner",
+    "Status": "PASS",
+    "Evidence": "chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in objectives/scope",
+    "Status": "PASS",
+    "Evidence": {
+      "schema": "chirality-deliverable-sow/v1",
+      "deliverable_id": "DEL-02-12",
+      "package_id": "PKG-02",
+      "decomposition_basis": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@8209bc54e0d133b19437c93b184cd50ba3d43489",
+      "project_scope_refs": [
+        "SOW-104"
+      ],
+      "package_objective_refs": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    }
+  },
+  {
+    "Check": "66 inherited requirement trace rows",
+    "Status": "PASS",
+    "Evidence": 66
+  },
+  {
+    "Check": "OBJ-001 support",
+    "Status": "PASS",
+    "Evidence": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance;DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control;DEL-02-08_Exact_Supply_and_Protocol_Pinning;DEL-02-09_Hosted_Account_and_Consent_Boundary;DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2;DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation;DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "OBJ-002 support",
+    "Status": "PASS",
+    "Evidence": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance;DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control;DEL-02-08_Exact_Supply_and_Protocol_Pinning;DEL-02-09_Hosted_Account_and_Consent_Boundary;DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2;DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation;DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "OBJ-004 support",
+    "Status": "PASS",
+    "Evidence": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance;DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control;DEL-02-08_Exact_Supply_and_Protocol_Pinning;DEL-02-09_Hosted_Account_and_Consent_Boundary;DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2;DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation;DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "OBJ-007 support",
+    "Status": "PASS",
+    "Evidence": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance;DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control;DEL-02-08_Exact_Supply_and_Protocol_Pinning;DEL-02-09_Hosted_Account_and_Consent_Boundary;DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2;DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation;DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+  },
+  {
+    "Check": "scope ledger coverage",
+    "Status": "PASS",
+    "Evidence": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv"
+  },
+  {
+    "Check": "all104 source scope accounted in approved map",
+    "Status": "PASS",
+    "Evidence": "execution/_ScopeChange/SCA-005_2026-09-06_GATE4_PLAN/SCOPE_104_SUCCESSOR_MAP.csv"
+  }
+]

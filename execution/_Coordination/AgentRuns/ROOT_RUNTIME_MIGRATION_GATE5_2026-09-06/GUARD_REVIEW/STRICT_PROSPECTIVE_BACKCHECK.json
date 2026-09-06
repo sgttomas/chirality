@@ -1,0 +1,510 @@
+{
+  "actual_suite_commands": [
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_validate_root_materialization_fence.py"
+      ],
+      "exit_code": 0,
+      "result": "18 passed in 2.23s",
+      "suite_hash_matches": true
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_validate_root_harness_adapter.py"
+      ],
+      "exit_code": 0,
+      "result": "30 passed in 2.32s",
+      "suite_hash_matches": true
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_validate_root_surface_ownership.py"
+      ],
+      "exit_code": 0,
+      "result": "43 passed in 1.14s",
+      "suite_hash_matches": true
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_validate_root_work_graph_dispatch.py"
+      ],
+      "exit_code": 0,
+      "result": "69 passed in 0.95s",
+      "suite_hash_matches": true
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_validate_instruction_tranche_manifest.py"
+      ],
+      "exit_code": 0,
+      "result": "47 passed in 1.77s",
+      "suite_hash_matches": true
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_root_governance_state.py"
+      ],
+      "exit_code": 0,
+      "result": "26 passed in 2.80s",
+      "suite_hash_matches": true
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_apply_root_retirement.py"
+      ],
+      "exit_code": 0,
+      "result": "23 passed, 9 subtests passed in 0.86s",
+      "suite_hash_matches": true
+    }
+  ],
+  "parity_verified": [
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration/_STATUS.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "docs/SPEC.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "docs/TYPES.md",
+      "exists": true,
+      "matches": true
+    }
+  ],
+  "fixture_subject_pins": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_PREPARED.json",
+      "matches": true
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "matches": true
+    },
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "matches": true
+    },
+    {
+      "path": "execution/_harness/surface_ownership.yaml",
+      "matches": true
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "matches": true
+    },
+    {
+      "path": "tools/scaffolding/apply_root_retirement.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/root_governance_state.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_apply_root_retirement.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_root_governance_state.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_validate_instruction_tranche_manifest.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_validate_root_harness_adapter.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_validate_root_materialization_fence.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_validate_root_surface_ownership.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/test_validate_root_work_graph_dispatch.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_root_harness_adapter.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_root_materialization_fence.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_root_surface_ownership.py",
+      "matches": true
+    },
+    {
+      "path": "tools/validation/validate_root_work_graph_dispatch.py",
+      "matches": true
+    }
+  ],
+  "guards": [
+    {
+      "guard": "validate_root_materialization_fence",
+      "exit_code": 0
+    },
+    {
+      "guard": "validate_root_harness_adapter",
+      "exit_code": 0
+    },
+    {
+      "guard": "validate_root_surface_ownership",
+      "exit_code": 0
+    },
+    {
+      "guard": "validate_root_work_graph_dispatch",
+      "exit_code": 0
+    },
+    {
+      "guard": "validate_instruction_tranche_manifest",
+      "exit_code": 0
+    }
+  ]
+}

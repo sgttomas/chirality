@@ -1,0 +1,10 @@
+{
+  "schema": "root-retirement-execution/v1",
+  "subject_sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9",
+  "owner_act": {
+    "path": "plans/steers/root_runtime_migration_gate4_approval_2026-09-05.md",
+    "sha256": "7c20f795e254ba1cff69c2fd36f53f59463b160e3cb91879b9aa16b1c54a8ef8",
+    "commit": "8209bc54e0d133b19437c93b184cd50ba3d43489",
+    "subject_sha256": "917656f3a828d7e05e2feaf22e14394f1f6dc9fbb26bb99760b633e0ceb17efd"
+  }
+}

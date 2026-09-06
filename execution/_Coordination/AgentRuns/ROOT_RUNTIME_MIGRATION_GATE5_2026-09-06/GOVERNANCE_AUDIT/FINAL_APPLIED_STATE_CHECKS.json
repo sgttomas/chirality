@@ -1,0 +1,457 @@
+{
+  "live_64_parity": [
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map/_STATUS.md",
+      "expected": "9d16b75c482e593c3f9c1c7958bc53c9c388a14755e7904339037200d394d770",
+      "actual": "9d16b75c482e593c3f9c1c7958bc53c9c388a14755e7904339037200d394d770",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register/_STATUS.md",
+      "expected": "06d2bb19cd52545a3f2344c080872c54b5de9f0c297ff741352608c7d7cfee86",
+      "actual": "06d2bb19cd52545a3f2344c080872c54b5de9f0c297ff741352608c7d7cfee86",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance/_STATUS.md",
+      "expected": "47b47144a55237507cd934527749defb277f2bab93924e5b04ded765efd349f6",
+      "actual": "47b47144a55237507cd934527749defb277f2bab93924e5b04ded765efd349f6",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model/_STATUS.md",
+      "expected": "3275ec9123a4ec6276451a8bb6bb2314559cb29d3b41015161af033f993ebb2d",
+      "actual": "3275ec9123a4ec6276451a8bb6bb2314559cb29d3b41015161af033f993ebb2d",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance/_STATUS.md",
+      "expected": "02d787afbc1a8a396648a170a507afcd8ea3a8702fc6df469b1b3deaaf1c1e9d",
+      "actual": "02d787afbc1a8a396648a170a507afcd8ea3a8702fc6df469b1b3deaaf1c1e9d",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance/_STATUS.md",
+      "expected": "bfe44d382b4e67d35838aea42f840cb895c819e90e248c91eb566e4c014a2ab8",
+      "actual": "bfe44d382b4e67d35838aea42f840cb895c819e90e248c91eb566e4c014a2ab8",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register/_STATUS.md",
+      "expected": "19dd61c2a7e9cdcbb1b726a7e366ff63de3eb009afc931692777f3f338f00862",
+      "actual": "19dd61c2a7e9cdcbb1b726a7e366ff63de3eb009afc931692777f3f338f00862",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register/_STATUS.md",
+      "expected": "f1259014a7db47f79da832ed9b1d5c64a4325d684b736dfd068f90216d4984b4",
+      "actual": "f1259014a7db47f79da832ed9b1d5c64a4325d684b736dfd068f90216d4984b4",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management/_STATUS.md",
+      "expected": "7f5827a1f430bb881139c672fde86c45f976475aeb8715af4e5e83f3e4f2e9e0",
+      "actual": "7f5827a1f430bb881139c672fde86c45f976475aeb8715af4e5e83f3e4f2e9e0",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance/_STATUS.md",
+      "expected": "be5ecc074c1fecee07792d0e1909802f980b17e63eb807347edbe3493eff15f1",
+      "actual": "be5ecc074c1fecee07792d0e1909802f980b17e63eb807347edbe3493eff15f1",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_STATUS.md",
+      "expected": "c040f48aa748b8009e21e3318736a68e8fa25d99f3e20b473144843152f53288",
+      "actual": "c040f48aa748b8009e21e3318736a68e8fa25d99f3e20b473144843152f53288",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls/_STATUS.md",
+      "expected": "1ffab99e56697c92e1f39ab3639d5899c33c2685a7653f53aa7dae6cd1be4641",
+      "actual": "1ffab99e56697c92e1f39ab3639d5899c33c2685a7653f53aa7dae6cd1be4641",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools/_STATUS.md",
+      "expected": "3bce8f0aacea9ed4f3e9559a12b443498ca42fb885b7de122b9db46147dc3fbd",
+      "actual": "3bce8f0aacea9ed4f3e9559a12b443498ca42fb885b7de122b9db46147dc3fbd",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+      "expected": "ea5739f9b27c87462545458fc391a0c997f91abbbdc0b141a428ad4de7873734",
+      "actual": "ea5739f9b27c87462545458fc391a0c997f91abbbdc0b141a428ad4de7873734",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md",
+      "expected": "503139ca292154e0a74a97680f950035822ad96d19e2618493a05b2e9a764d7d",
+      "actual": "503139ca292154e0a74a97680f950035822ad96d19e2618493a05b2e9a764d7d",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_STATUS.md",
+      "expected": "65199a8e1971d3bb9e017a39198edee3da43aaf41067d509b3acf619c3816279",
+      "actual": "65199a8e1971d3bb9e017a39198edee3da43aaf41067d509b3acf619c3816279",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_STATUS.md",
+      "expected": "daee0b9f2ac793ef5bbf3d23e05a66601fd08d2ebc6ceca914ca3c889a79ece3",
+      "actual": "daee0b9f2ac793ef5bbf3d23e05a66601fd08d2ebc6ceca914ca3c889a79ece3",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_STATUS.md",
+      "expected": "7c1c0faa74bfd23d2d1d13329e652379d0bbbe1523add2c829e49be52cbb70ef",
+      "actual": "7c1c0faa74bfd23d2d1d13329e652379d0bbbe1523add2c829e49be52cbb70ef",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_STATUS.md",
+      "expected": "98d990e4db12467903c4d36832dea07c6f17a58cfa224c3d352cdd49fa3cd9c9",
+      "actual": "98d990e4db12467903c4d36832dea07c6f17a58cfa224c3d352cdd49fa3cd9c9",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_STATUS.md",
+      "expected": "6eebd3fbe449a70fe1252b00c9ef863e72fe21918876a438d5584375e9ef9db7",
+      "actual": "6eebd3fbe449a70fe1252b00c9ef863e72fe21918876a438d5584375e9ef9db7",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance/_STATUS.md",
+      "expected": "fa8893781e0f65fbc40ddf7de2bf935f9153235ff5c872f8b897b23d9ede7e65",
+      "actual": "fa8893781e0f65fbc40ddf7de2bf935f9153235ff5c872f8b897b23d9ede7e65",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance/_STATUS.md",
+      "expected": "f264bd568f4802f0f5d01970a75d908c286ffaef1a4cb58636b14f43fa5fee6a",
+      "actual": "f264bd568f4802f0f5d01970a75d908c286ffaef1a4cb58636b14f43fa5fee6a",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary/_STATUS.md",
+      "expected": "682e2c99a3312cc76a9648de86033f6b32e7db161404fadbee5f2272cc7268bd",
+      "actual": "682e2c99a3312cc76a9648de86033f6b32e7db161404fadbee5f2272cc7268bd",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance/_STATUS.md",
+      "expected": "ffe6385f756f2c1e9efe624ccd511480a29bb2d83ad361fc4edcfe1427d66b65",
+      "actual": "ffe6385f756f2c1e9efe624ccd511480a29bb2d83ad361fc4edcfe1427d66b65",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration/_STATUS.md",
+      "expected": "886da1da2656d926bc14ed24b931781500a86a17252961efebf1c0fa8a1e3187",
+      "actual": "886da1da2656d926bc14ed24b931781500a86a17252961efebf1c0fa8a1e3187",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream/_STATUS.md",
+      "expected": "65225f3ecbb9d89501bff87714363dea7150fcaceef75316ddcb71a51ec30a15",
+      "actual": "65225f3ecbb9d89501bff87714363dea7150fcaceef75316ddcb71a51ec30a15",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline/_STATUS.md",
+      "expected": "f8501f00a63481532d37739f246f6268ff2499f744f620fe51970d98df7891d6",
+      "actual": "f8501f00a63481532d37739f246f6268ff2499f744f620fe51970d98df7891d6",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls/_STATUS.md",
+      "expected": "5b8f618b9c7213ffc36bfb8b2341d666d4bb93e27076f8721daf575b60239b10",
+      "actual": "5b8f618b9c7213ffc36bfb8b2341d666d4bb93e27076f8721daf575b60239b10",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls/_STATUS.md",
+      "expected": "b1cb1a3dcc8602dcc74e166c53cf2d9eab6d79464fc657e5407886be1a7841c7",
+      "actual": "b1cb1a3dcc8602dcc74e166c53cf2d9eab6d79464fc657e5407886be1a7841c7",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing/_STATUS.md",
+      "expected": "5e24d6bb294804b042acfe6847e78194d14ce50638e44c07d597f627971043d1",
+      "actual": "5e24d6bb294804b042acfe6847e78194d14ce50638e44c07d597f627971043d1",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline/_STATUS.md",
+      "expected": "07a8ab1a41bd1af30014576b4e68333504b53e9bd5246a41683cedcab2eb2d9b",
+      "actual": "07a8ab1a41bd1af30014576b4e68333504b53e9bd5246a41683cedcab2eb2d9b",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout/_STATUS.md",
+      "expected": "a0a12496d4e771d6fc0bb0741761220e6936f8c8a76e1f4362e2c256be7f16b3",
+      "actual": "a0a12496d4e771d6fc0bb0741761220e6936f8c8a76e1f4362e2c256be7f16b3",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance/_STATUS.md",
+      "expected": "ae86cbbf140f0448e4cdc6b4b7fde7c1387cc6ad19bf25ddc4a0a89b4ffdf8eb",
+      "actual": "ae86cbbf140f0448e4cdc6b4b7fde7c1387cc6ad19bf25ddc4a0a89b4ffdf8eb",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control/_STATUS.md",
+      "expected": "3db40ccd06afdb0f29a5270a32556f49e24dc82c8662027ec21f4fb587b32233",
+      "actual": "3db40ccd06afdb0f29a5270a32556f49e24dc82c8662027ec21f4fb587b32233",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability/_STATUS.md",
+      "expected": "88c68834165025e1137a42317cf43613db7a692b6586ac507d8bf98213ee18d6",
+      "actual": "88c68834165025e1137a42317cf43613db7a692b6586ac507d8bf98213ee18d6",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration/_STATUS.md",
+      "expected": "1ed1176ad526fd241c771e74e80319a3af3d18a612c58fa2cc0410e7f03bdb49",
+      "actual": "1ed1176ad526fd241c771e74e80319a3af3d18a612c58fa2cc0410e7f03bdb49",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_STATUS.md",
+      "expected": "3eeea860613011355c4cb3cbb823768b7301a25cbe864d7aa80dfecfa734ab0e",
+      "actual": "3eeea860613011355c4cb3cbb823768b7301a25cbe864d7aa80dfecfa734ab0e",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance/_STATUS.md",
+      "expected": "715b70f4cff07834411e74ca6bb7bc030935eef061c048db692e0cde0d6f58cf",
+      "actual": "715b70f4cff07834411e74ca6bb7bc030935eef061c048db692e0cde0d6f58cf",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline/_STATUS.md",
+      "expected": "df5a2b8397990083def8ec2e5321f9e87cbda770358b3d63b74309e9a1605710",
+      "actual": "df5a2b8397990083def8ec2e5321f9e87cbda770358b3d63b74309e9a1605710",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register/_STATUS.md",
+      "expected": "9ecae8023d1eea7c10ab3ad54ffd4ddd51936ac734145c954fdfc1375339cce0",
+      "actual": "9ecae8023d1eea7c10ab3ad54ffd4ddd51936ac734145c954fdfc1375339cce0",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle/_STATUS.md",
+      "expected": "be29ce52c6767c03e94cc96ecb3782d16eafe1df36fbf73f98c61b33b978f4b3",
+      "actual": "be29ce52c6767c03e94cc96ecb3782d16eafe1df36fbf73f98c61b33b978f4b3",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance/_STATUS.md",
+      "expected": "414bc47c70f4d1d6a86df6699485ba498de839c0373609b44907be863d2f0074",
+      "actual": "414bc47c70f4d1d6a86df6699485ba498de839c0373609b44907be863d2f0074",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control/_STATUS.md",
+      "expected": "b246c8c0085a666cd7bcbc642330d7fb38e0fa252b8d13049adcbb031ded7f29",
+      "actual": "b246c8c0085a666cd7bcbc642330d7fb38e0fa252b8d13049adcbb031ded7f29",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance/_STATUS.md",
+      "expected": "1893c0a77521a8f00d55cccdb25d8b31b746446cf168bce71b934e07eb2d4b06",
+      "actual": "1893c0a77521a8f00d55cccdb25d8b31b746446cf168bce71b934e07eb2d4b06",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation/_STATUS.md",
+      "expected": "3f7401937972dc1b1622855c1e689f1eafd5d6e398bf3b0629407e8f71598ac1",
+      "actual": "3f7401937972dc1b1622855c1e689f1eafd5d6e398bf3b0629407e8f71598ac1",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation/_STATUS.md",
+      "expected": "c00b4c5955c1cc199b92c05d5c9e7291c26fe051fe386bc042f34957df7af599",
+      "actual": "c00b4c5955c1cc199b92c05d5c9e7291c26fe051fe386bc042f34957df7af599",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction/_STATUS.md",
+      "expected": "4201008e5d1a492836b1fccc64fc51780173255d804d81d1740e99c7f1cdd9ca",
+      "actual": "4201008e5d1a492836b1fccc64fc51780173255d804d81d1740e99c7f1cdd9ca",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record/_STATUS.md",
+      "expected": "7db87358102f972c6b163bed64b7badd513e24e381059ca270ec3e4f3007ff98",
+      "actual": "7db87358102f972c6b163bed64b7badd513e24e381059ca270ec3e4f3007ff98",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening/_STATUS.md",
+      "expected": "2324b1f44300d49303d0068026c44d7b039d27b1ed7b97f21d426b91790a6bd7",
+      "actual": "2324b1f44300d49303d0068026c44d7b039d27b1ed7b97f21d426b91790a6bd7",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary/_STATUS.md",
+      "expected": "f9b64a029e2a3ac39bab1010926d4fc5df9ca1cab18d3a87569dda4e1d836b21",
+      "actual": "f9b64a029e2a3ac39bab1010926d4fc5df9ca1cab18d3a87569dda4e1d836b21",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway/_STATUS.md",
+      "expected": "db2c06f4b76b9f46c9b2a67064482cebf4d0620522ec9ed168177630dd831fc8",
+      "actual": "db2c06f4b76b9f46c9b2a67064482cebf4d0620522ec9ed168177630dd831fc8",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate/_STATUS.md",
+      "expected": "a44695d1ef494dc44ca3ed9587c62287a2520e8afa9c69bdc3af557690d53283",
+      "actual": "a44695d1ef494dc44ca3ed9587c62287a2520e8afa9c69bdc3af557690d53283",
+      "matches": true
+    },
+    {
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration/_STATUS.md",
+      "expected": "c99a6be09b40fb4939dd59629fc7069e4e2863219f3f8eb7b57733f8817d8618",
+      "actual": "c99a6be09b40fb4939dd59629fc7069e4e2863219f3f8eb7b57733f8817d8618",
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "expected": "75859776995a069c467426c5610a319a43e11757d967f04483b30d6a6eaf103e",
+      "actual": "75859776995a069c467426c5610a319a43e11757d967f04483b30d6a6eaf103e",
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+      "expected": "2db8762e14e597f5f3a562547096ef2bf1d75c365f1ec172d9c098b69dbc4e34",
+      "actual": "2db8762e14e597f5f3a562547096ef2bf1d75c365f1ec172d9c098b69dbc4e34",
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "expected": "f1435cef362613b763460af644f9ad5ecf3d4dbabaa161bdfeaf04c5b3cc7ee2",
+      "actual": "f1435cef362613b763460af644f9ad5ecf3d4dbabaa161bdfeaf04c5b3cc7ee2",
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+      "expected": "d8b60825cd84432735ebb2b582724f020d7f0394f4f99b757dc81667cabb1695",
+      "actual": "d8b60825cd84432735ebb2b582724f020d7f0394f4f99b757dc81667cabb1695",
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+      "expected": "21773154edc8d26af7f3fd5bea32e55f79f528680aef7f73ed0c71a6bc97a8ad",
+      "actual": "21773154edc8d26af7f3fd5bea32e55f79f528680aef7f73ed0c71a6bc97a8ad",
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "expected": "4ee705aad6be9803eb847fcb4fc1a257d8fd2c45b8293c58e3b0451b8cbc2b71",
+      "actual": "4ee705aad6be9803eb847fcb4fc1a257d8fd2c45b8293c58e3b0451b8cbc2b71",
+      "matches": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+      "expected": "063d380a26ddc69f18891faed2f25d9e4990650986eb04aa291a0dff4cc0ec20",
+      "actual": "063d380a26ddc69f18891faed2f25d9e4990650986eb04aa291a0dff4cc0ec20",
+      "matches": true
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "expected": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "actual": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "matches": true
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "expected": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+      "actual": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5",
+      "matches": true
+    },
+    {
+      "path": "docs/SPEC.md",
+      "expected": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "actual": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "matches": true
+    },
+    {
+      "path": "docs/TYPES.md",
+      "expected": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+      "actual": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18",
+      "matches": true
+    }
+  ],
+  "all_exact": true,
+  "journal_sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203",
+  "journal_state": "APPLIED",
+  "journal_entries": 53,
+  "journal_blocked": [],
+  "configs": [
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "sha256": "aad59e473b3e8c7516920d0b1803486be271d2f887504ed9c7f90b5439b74f90",
+      "state_ref": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+        "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86"
+      },
+      "state_hash_matches": true,
+      "stage": "applied_pending_confirmation",
+      "gate5": null,
+      "transaction": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+        "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203"
+      }
+    },
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "sha256": "ff58975ca24f15bb84da5cce07c336f7e9e5108472d876ff83623768d89bb6fb",
+      "state_ref": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+        "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86"
+      },
+      "state_hash_matches": true,
+      "stage": "applied_pending_confirmation",
+      "gate5": null,
+      "transaction": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+        "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203"
+      }
+    },
+    {
+      "path": "execution/_harness/surface_ownership.yaml",
+      "sha256": "1169dc1b371edd161b22a5f1ee731e0821e8eed714e07c652e066bf261ceb4e4",
+      "state_ref": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+        "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86"
+      },
+      "state_hash_matches": true,
+      "stage": "applied_pending_confirmation",
+      "gate5": null,
+      "transaction": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+        "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203"
+      }
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "sha256": "7a315344be8973c9dcc0a764107d9fa3ceeb30823b6df3a2364f5447d14d4d40",
+      "state_ref": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+        "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86"
+      },
+      "state_hash_matches": true,
+      "stage": "applied_pending_confirmation",
+      "gate5": null,
+      "transaction": {
+        "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+        "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203"
+      }
+    }
+  ],
+  "no_Gate5_effect_claim": true,
+  "baseline_directive_contains_same_agent0_only_clause": true
+}

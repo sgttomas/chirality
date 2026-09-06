@@ -1,0 +1,1 @@
+Approved export regeneration invokes the existing export tool, which also regenerates its two profile-level manifest/report artifacts. These two generated targets are explicitly recorded here as necessary derivative outputs; no exporter code or publication target is changed. Scratch staging and all79 runtime byte checks passed; no external publication.

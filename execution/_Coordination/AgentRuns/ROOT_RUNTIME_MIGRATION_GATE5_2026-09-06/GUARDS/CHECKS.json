@@ -1,0 +1,50 @@
+{
+  "full_suite": {
+    "status": "PASS",
+    "tests": 631,
+    "subtests": 10,
+    "log": "FINAL_TESTS.log"
+  },
+  "final_changed_surface_rerun": {
+    "status": "PASS",
+    "tests": 206,
+    "subtests": 10,
+    "log": "FREEZE_TESTS.log"
+  },
+  "prior_review_correction_run": "one expected runtime alias census update needed; corrected then rerun passes",
+  "actual_prepared_successor_load": "PASS53bindings real current successor files and published owner refs before latest frozen setup SHA refresh; SCOPE strictdryrun performs final refresh",
+  "coverage_groups": 25,
+  "live_application": "NOT_RUN_BY_GUARD_LANE",
+  "future_gate5": "NOT_CONFIRMED",
+  "historical_runs_note": "Full and changed-surface runs precede final bounded G0 and prospective-copy corrections; exact final evidence follows.",
+  "final_bounded_regressions": [
+    {
+      "log": "G0_EVIDENCE_CORRECTION_TESTS.log",
+      "tests": 18,
+      "status": "PASS"
+    },
+    {
+      "log": "APPLICATOR_ORDER_FINAL_TESTS.log",
+      "tests": 67,
+      "subtests": 9,
+      "status": "PASS"
+    },
+    {
+      "log": "APPLICATOR_LITERAL_PATH_TESTS.log",
+      "tests": 23,
+      "subtests": 9,
+      "status": "PASS"
+    }
+  ],
+  "actual_integrated_prospective": {
+    "status": "PASS",
+    "result": "../INTEGRATION/PREFLIGHT_ATTEMPT_4/result.json",
+    "subject_sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9",
+    "pytest_tests": 256,
+    "subtests": 9,
+    "guards": "G0-G4 PASS",
+    "approved_postimage_parity": "64/64",
+    "owner_refs": "actual published Gate3/Gate4",
+    "successors": "actual current files"
+  }
+}

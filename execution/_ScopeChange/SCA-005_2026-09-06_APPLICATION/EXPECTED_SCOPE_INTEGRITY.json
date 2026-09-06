@@ -1,0 +1,12 @@
+{
+  "stage": "approved_expected_postimage_not_actual_audit",
+  "basis": "Gate3 V3 selected subject and Gate4 ROOT_53_DISPOSITIONS.csv",
+  "source_parent_count": 6,
+  "historical_source_children": 53,
+  "active_root_product_children": 0,
+  "runtime_successors": 7,
+  "governance_controls": 46,
+  "scope_ledger_rows": 104,
+  "owner_gate5_confirmation": "PENDING",
+  "actual_postchange_audit": "NOT_YET_RUN"
+}

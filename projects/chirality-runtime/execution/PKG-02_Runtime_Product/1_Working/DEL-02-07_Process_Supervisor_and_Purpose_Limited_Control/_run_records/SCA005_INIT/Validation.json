@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "before_hashes": {
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_CONTEXT.md": "4cb21986467567b680909d25d38c374ca1752c4328c40005d0bfd7d8cd7c7926",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md": "d1e0d70e3c48635825e93216fc3d15a371b806946a6abfe748958993d4dc1a51",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_SEMANTIC.md": "9cdc08809792049c7f29bbaa8689590c2302da557277239149e569a30b8a96b7",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md": "d6625e353de0a46cae01b566e03420e720e3a0d7f7524ecd863f215bbda54650",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_REFERENCES.md": "b6b65b658850d5ea762d45de3a2e8f4e3fc39e0d0f799532240f687686c12ed0",
+    "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control.md": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+    "projects/chirality-runtime/execution/_Decomposition/OWNERSHIP_OVERLAY.md": "49bcf0f3f4e7b66066abee5a8428277bda0eb3409ca7ea6945fcb148adf23c9c",
+    "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv": "4923353de43fbe99aecb585971a3ffb91e86787734ed93b9379300fa15378663",
+    "projects/chirality-runtime/execution/_Decomposition/INHERITED_REQUIREMENT_TRACE.csv": "671bf5a1f3aa35b61ebf76203dc4da6781968f5f8d503a7c806f618356175661",
+    "projects/chirality-runtime/execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv": "635fa7f9a05f0a1d17dc47e4db12e142433b11cdc7894708935d0515659ab882",
+    "projects/chirality-runtime/execution/_Decomposition/ACCEPTED_EVIDENCE_CONTINUITY.csv": "866d643ed3b496b2835d1b5b1d536ac5a857239ebfb8a67132ed59c8b6c4ca8d",
+    "projects/chirality-runtime/execution/_Decomposition/_AUTHORITY.md": "65b144cff2038bb403c2098aa95313753ea4b342f70e7a95baf1be4c098c7b89",
+    "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md": "7fbc932d0f477c4aab1bab00eb6c4bd60e0a71afd15adc847ae2615ce4f328ce"
+  },
+  "memory": "No sibling memory exists",
+  "precondition": "OPEN, no production format present",
+  "checklist_repeat_identical": true,
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 5,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 108,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Contract evidence for the named `DelegatedHarnessProcessSupervisorPort` boundary. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-001\",\n          \"source_line\": 134,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and protocol trace.** Trace OUT-001 and OUT-002 to\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 109,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Protocol evidence for the purpose-limited private Unix socket, ownership controls, and token/owner/generation/stale-recovery rules. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-001\",\n          \"source_line\": 134,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and protocol trace.** Trace OUT-001 and OUT-002 to\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 110,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence covering acquisition, inventory, reconnect, generation fencing, and stale recovery. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-002.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-002\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-002\",\n          \"source_line\": 138,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Worker-control trace.** Trace OUT-003 to REQ-004 across worker\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 111,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence for the two-job topology and all sole-broker, caller-exclusion, Unix-only, and no-TCP boundaries. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-003.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-003\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-003\",\n          \"source_line\": 140,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Launch-boundary trace.** Trace OUT-004 to REQ-005 and REQ-006,\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 112,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence for role-entry parity, calibrated non-delegation claims, and unchanged hard containment. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-004.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-004\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-004\",\n          \"source_line\": 144,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Role and containment trace.** Trace OUT-005 to REQ-007 and\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-07\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"item_count\": 5,\n  \"items\": [\n    {\n      \"id\": \"AC-001\",\n      \"output_refs\": [\n        \"OUT-001\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-001\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 108,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Contract evidence for the named `DelegatedHarnessProcessSupervisorPort` boundary. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-001\",\n          \"source_line\": 134,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and protocol trace.** Trace OUT-001 and OUT-002 to\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-002\",\n      \"output_refs\": [\n        \"OUT-002\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-002\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 109,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Protocol evidence for the purpose-limited private Unix socket, ownership controls, and token/owner/generation/stale-recovery rules. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-001.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-001\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-001\",\n          \"source_line\": 134,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Contract and protocol trace.** Trace OUT-001 and OUT-002 to\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-003\",\n      \"output_refs\": [\n        \"OUT-003\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-003\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 110,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence covering acquisition, inventory, reconnect, generation fencing, and stale recovery. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-002.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-002\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-002\",\n          \"source_line\": 138,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Worker-control trace.** Trace OUT-003 to REQ-004 across worker\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-004\",\n      \"output_refs\": [\n        \"OUT-004\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-004\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 111,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence for the two-job topology and all sole-broker, caller-exclusion, Unix-only, and no-TCP boundaries. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-003.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-003\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-003\",\n          \"source_line\": 140,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Launch-boundary trace.** Trace OUT-004 to REQ-005 and REQ-006,\"\n        }\n      ]\n    },\n    {\n      \"id\": \"AC-005\",\n      \"output_refs\": [\n        \"OUT-005\"\n      ],\n      \"qualified_id\": \"DEL-02-07-AC-005\",\n      \"review_status\": null,\n      \"source_identity\": {\n        \"document\": \"ScopeOfWork.md\",\n        \"line\": 112,\n        \"section\": \"Completion and Reliance Basis \u2014 Epistemology\",\n        \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n      },\n      \"text\": \"Evidence for role-entry parity, calibrated non-delegation claims, and unchanged hard containment. Reliance requires this deliverable's own accepted evidence plus a separate owner act. Verified by VER-004.\",\n      \"verification\": [\n        {\n          \"id\": \"VER-004\",\n          \"kind\": \"VER\",\n          \"qualified_id\": \"DEL-02-07-VER-004\",\n          \"source_line\": 144,\n          \"source_section\": \"Production and Verification Method \u2014 Praxeology\",\n          \"text\": \"Role and containment trace.** Trace OUT-005 to REQ-007 and\"\n        }\n      ]\n    }\n  ],\n  \"schema\": \"chirality-review-checklist/v1\",\n  \"source\": {\n    \"deliverable_id\": \"DEL-02-07\",\n    \"document\": \"ScopeOfWork.md\",\n    \"format\": \"SOW_V1\",\n    \"migration_authority\": null,\n    \"package_id\": \"PKG-02\",\n    \"schema\": \"chirality-deliverable-sow/v1\",\n    \"sha256\": \"935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4\"\n  },\n  \"tool_version\": \"1\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/check_boundary_owner_resolution.py",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+        "--show-not-checkable"
+      ],
+      "exit": 0,
+      "stdout": "\nContracts: 1 (0 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0\n",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+  "production_sha256": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+  "after_hashes": {
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_CONTEXT.md": "4cb21986467567b680909d25d38c374ca1752c4328c40005d0bfd7d8cd7c7926",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_STATUS.md": "d1e0d70e3c48635825e93216fc3d15a371b806946a6abfe748958993d4dc1a51",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_SEMANTIC.md": "9cdc08809792049c7f29bbaa8689590c2302da557277239149e569a30b8a96b7",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md": "d6625e353de0a46cae01b566e03420e720e3a0d7f7524ecd863f215bbda54650",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_REFERENCES.md": "b6b65b658850d5ea762d45de3a2e8f4e3fc39e0d0f799532240f687686c12ed0",
+    "projects/chirality-runtime/execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control.md": "9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5",
+    "projects/chirality-runtime/execution/_Decomposition/OWNERSHIP_OVERLAY.md": "49bcf0f3f4e7b66066abee5a8428277bda0eb3409ca7ea6945fcb148adf23c9c",
+    "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv": "4923353de43fbe99aecb585971a3ffb91e86787734ed93b9379300fa15378663",
+    "projects/chirality-runtime/execution/_Decomposition/INHERITED_REQUIREMENT_TRACE.csv": "671bf5a1f3aa35b61ebf76203dc4da6781968f5f8d503a7c806f618356175661",
+    "projects/chirality-runtime/execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv": "635fa7f9a05f0a1d17dc47e4db12e142433b11cdc7894708935d0515659ab882",
+    "projects/chirality-runtime/execution/_Decomposition/ACCEPTED_EVIDENCE_CONTINUITY.csv": "866d643ed3b496b2835d1b5b1d536ac5a857239ebfb8a67132ed59c8b6c4ca8d",
+    "projects/chirality-runtime/execution/_Decomposition/_AUTHORITY.md": "65b144cff2038bb403c2098aa95313753ea4b342f70e7a95baf1be4c098c7b89",
+    "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md": "7fbc932d0f477c4aab1bab00eb6c4bd60e0a71afd15adc847ae2615ce4f328ce"
+  },
+  "requirement_ids": [
+    "REQ-001",
+    "REQ-002",
+    "REQ-003",
+    "REQ-004",
+    "REQ-005",
+    "REQ-006",
+    "REQ-007",
+    "REQ-008"
+  ],
+  "requirements_byte_identical": true,
+  "requirement_count": 8,
+  "qa": {
+    "boundary_owner": "No cross-deliverable boundary-exclusion requirements. REQ-006 excludes renderer/CLI access and TCP creation, prohibited behavior with no positive external owner; REQ-008 prohibits role assignment and containment weakening. Neither transfers excluded work to an unnamed owner. Sole broker remains daemon.",
+    "normalization": "Five AC definitions reproduce the five inherited evidence expectations and separate owner reliance gates, one row and exact verification set per criterion. No additional acceptance condition. Canonical matrix headers replace inherited noncanonical headers.",
+    "conversion_only_checks": "NOT_APPLICABLE: 2,5,6,7,10,11,12,14,17; rendering15 not requested",
+    "other_checks": "Source paths/basis grounded; status unchanged; scoped upstream REQ-027; outputs objective-mapped; five AC entries checklist exact; 1:1 matrix methods; repeated checklist identical. Independent review pending."
+  }
+}

@@ -1,0 +1,9 @@
+Successor,HistoricalBaseHours,HistoricalLowHours,HistoricalHighHours,CurrentRemainingEffort,CalendarDuration,Staffing,OwnerAcceptance
+chirality-runtime::DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,116,63,169,UNKNOWN,,,PENDING_NEW_DERIVATIVE
+chirality-runtime::DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,180,94,266,UNKNOWN,,,PENDING_NEW_DERIVATIVE
+chirality-runtime::DEL-02-08_Exact_Supply_and_Protocol_Pinning,100,57,143,UNKNOWN,,,PENDING_NEW_DERIVATIVE
+chirality-runtime::DEL-02-09_Hosted_Account_and_Consent_Boundary,148,82,214,UNKNOWN,,,PENDING_NEW_DERIVATIVE
+chirality-runtime::DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,144,88,200,UNKNOWN,,,PENDING_NEW_DERIVATIVE
+chirality-runtime::DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,136,72,200,UNKNOWN,,,PENDING_NEW_DERIVATIVE
+chirality-runtime::DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,96,51,141,UNKNOWN,,,PENDING_NEW_DERIVATIVE
+root::GOV-04-11,92,53,131,UNKNOWN,,,PENDING_NEW_DERIVATIVE
