@@ -1,0 +1,3 @@
+a895323025c917aa1f7b049a4b8bc5efe10233a6c8ab66b2bd68910452826b4d  projects/chirality-runtime/tests/exact-codex-conformance.test.ts
+c0e1c240f7416ddbb2aac96b137cfbd0cef24a0f70199e03bb786bb9e4ff8304  projects/chirality-runtime/tests/fixtures/response-provider.mjs
+abd166df359506df31a64c6190277c81ec386c6c2bd740ed066512d31fc03438  projects/chirality-runtime/tests/exact-managed-pi-integration.test.ts

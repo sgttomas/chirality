@@ -1,0 +1,5 @@
+{
+  "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+  "tests/codex-session.test.ts": "8a4f0751303b349f9518003b2844a2eaa6cb76bb69ed2c0accb7e5c08c0fba04",
+  "tests/codex-supervisor.test.ts": "584abf689f35dd052d2a9446fa68e8659ed43dc81b6b22599fd10981947e0278"
+}

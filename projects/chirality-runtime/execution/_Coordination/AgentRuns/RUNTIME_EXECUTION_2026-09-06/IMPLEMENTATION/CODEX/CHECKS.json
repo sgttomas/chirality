@@ -1,0 +1,12 @@
+{
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exit_code": 0
+  },
+  "focused": {
+    "command": "npx vitest run tests/codex-worker.test.ts",
+    "passed": 5,
+    "exit_code": 0
+  },
+  "exact_vendor_invocation": "not executed by specialist"
+}

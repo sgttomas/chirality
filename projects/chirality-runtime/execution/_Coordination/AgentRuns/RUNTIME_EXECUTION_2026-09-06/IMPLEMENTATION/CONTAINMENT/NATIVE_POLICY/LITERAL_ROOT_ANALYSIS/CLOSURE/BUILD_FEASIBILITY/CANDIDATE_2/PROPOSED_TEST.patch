@@ -1,0 +1,43 @@
+--- a/codex-rs/network-proxy/src/network_policy.rs
++++ b/codex-rs/network-proxy/src/network_policy.rs
+@@ -830,6 +830,40 @@
+     }
+
+     #[tokio::test(flavor = "current_thread")]
++    async fn evaluate_host_policy_explicit_deny_never_calls_allowing_decider() {
++        let state = network_proxy_state_for_policy({
++            let mut network = NetworkProxyConfig::default();
++            network.set_denied_domains(vec!["blocked.example.com".to_string()]);
++            network
++        });
++        let calls = Arc::new(std::sync::atomic::AtomicUsize::new(0));
++        let decider: Arc<dyn NetworkPolicyDecider> = Arc::new({
++            let calls = Arc::clone(&calls);
++            move |_request| {
++                calls.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
++                async { NetworkDecision::Allow }
++            }
++        });
++        let request = NetworkPolicyRequest::new(NetworkPolicyRequestArgs {
++            protocol: NetworkProtocol::Http,
++            host: "blocked.example.com".to_string(),
++            port: 80,
++            environment_id: None,
++            client_addr: None,
++            method: None,
++            command: None,
++            exec_policy_hint: None,
++        });
++        let decision = evaluate_host_policy(&state, Some(&decider), &request)
++            .await
++            .expect("explicit deny evaluation");
++        assert_eq!(decision, NetworkDecision::deny_with_source(
++            REASON_DENIED, NetworkDecisionSource::BaselinePolicy,
++        ));
++        assert_eq!(calls.load(std::sync::atomic::Ordering::SeqCst), 0);
++    }
++
++    #[tokio::test(flavor = "current_thread")]
+     async fn evaluate_host_policy_emits_domain_event_for_baseline_deny() {
+         let state = network_proxy_state_for_policy({
+             let mut network = NetworkProxyConfig::default();

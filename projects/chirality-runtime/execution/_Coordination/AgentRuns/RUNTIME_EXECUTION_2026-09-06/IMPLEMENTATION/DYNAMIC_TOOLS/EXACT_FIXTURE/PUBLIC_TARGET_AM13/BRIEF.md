@@ -1,0 +1,3 @@
+# AM13 explicit bounded public network canary
+
+Read IMPLEMENTATION_AMENDMENT_13.json. Only parent executes GET http://example.com/ without query/body/auth/cookies/redirects/inference, one curl command per scenario, curl ambient config disabled,8s curl/10s probe/60s profile. Default loopback unchanged. Add explicit target selection to private and public/native network fixtures; match actual example.com approval destination. No production private-host denial change. Public evidence is status/known Example Domain marker/bounded diagnostic lines, not response body or assumed zero network traffic. Children do not execute external traffic. OpenAI GPT-6, exact serving ID unavailable; instruction-asserted Agent2, Agent0/2 not mechanically enforced, no delegation.

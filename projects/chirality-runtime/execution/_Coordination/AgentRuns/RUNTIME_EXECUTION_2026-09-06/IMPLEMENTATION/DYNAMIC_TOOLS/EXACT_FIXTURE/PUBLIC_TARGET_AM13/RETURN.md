@@ -1,0 +1,9 @@
+# AM13 explicit public target readiness
+
+Read parent IMPLEMENTATION_AMENDMENT_13.json. CHIRALITY_EXACT_NETWORK_TARGET=example-domain selects exactly http://example.com/; unset/loopback retains owned target. No external execution by this child. Applies to both private and public/native network fixtures; deterministic model remains loopback. Parent alone dispatches actual candidate/scenario.
+
+Command: curl --disable as first argument, explicit GET, max-time8, max-redirs0 and no --location, max-filesize16384, no query/body/auth/cookies, no config loading, proxy-aware. Target constructor refuses every public URL except exact authorized one. Profile<=60s and command<=10s still gate pass. At most one command emitted per scenario. Positive public control requires actual parsed HTTP200, Example Domain marker and curlstatus0 with STARTED/FINISHED. Approval context must be example.com/http. Matched public negative is command result/marker failure plus appropriate actual approval outcome; zero network traffic is explicitly NOT proven, no owned-server hit count is asserted for public endpoint.
+
+Public response body is discarded from evidence; retain only fixed status/start/finish lines and bounded scrubbed curl diagnostic lines plus marker boolean. No fetched content becomes instructions. Output records exact target authorization, request-shape constraints, status and publicZeroNetworkTrafficProven false. If authorized endpoint fails, no automatic alternative target or redirect is selected.
+
+Checks: explicit typecheck PASS and six offline tests PASS, two empirical tests skipped. Includes target rejection and --disable/no-redirect construction tests. Parent compiler metadata changes remain independent; no policy changes made here. Source frozen after canonical-loopback URL equality hardening. OpenAI GPT-6 serving ID unavailable; Agent2 instruction-asserted; Agent0/2 not mechanically enforced; no delegation.

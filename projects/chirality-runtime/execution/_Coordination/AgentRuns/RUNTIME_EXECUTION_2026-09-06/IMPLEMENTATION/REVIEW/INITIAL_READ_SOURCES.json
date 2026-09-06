@@ -1,0 +1,15 @@
+{
+  "packages/core/src/delegated-runtime.ts": "d508f0b49f48dd5f75fef61fa71869ef8832b5973a45f31829bf00a3b468b821",
+  "packages/contracts/src/delegated.ts": "540d91cac083795a7ec54db8d2d146b32c405135447766627f0a0973c499f342",
+  "packages/core/src/process-supervisor.ts": "9f73f5d2196f4892fd719a491898ca070964daad66f6302e2fd92db5f4ee7a86",
+  "packages/core/src/hosted-consent.ts": "13026aed1c6cac03c6d75edb4fc5285a0d970c9b6c9f3a131b0e0575d03d46d8",
+  "packages/core/src/worker-retirement.ts": "90d933f530bc0158c561bc6d7f27939031f44d68d484ed8b6b5da5452ab8cc8e",
+  "packages/daemon/src/supervisor-server.ts": "3f751f866b808d9934c456d9fcc9c3ca8035cf3a86122fc8c8a4fb7ed5e6e3c4",
+  "packages/daemon/src/runtime-daemon.ts": "99fd172b216a05dd6c2ba9199e8b868211cc2068a4b5c092e4ab3a89f1c7a3b7",
+  "packages/client/src/client.ts": "6edc25b52113af62c154d10c2fcafd8ae19f05bb3953fce8aa8ed82aad69985c",
+  "packages/cli/src/cli.ts": "36a6c725fde12aa6be16a264e25a7145c3bb7a679b36e4d50e451ac3ab06c92c",
+  "tests/hosted-consent.test.ts": "0fcd59feb50ffda8dcc6a6a53f6f30d8a723f5cc17ad5623d8d64bba712a727e",
+  "tests/worker-retirement.test.ts": "e3d34bd6e8445969276c060e91962564a813347bb787b7a39325633472df413c",
+  "tests/supervisor.test.ts": "9a5437f6b5f033fabec59a769b0148803e1b4960a9dcb9a754f0438d114257f5",
+  "tests/delegated-runtime.test.ts": "c8589b3542f2e2bf83f9e141408b9e9582d108d34d333e1dac8330dfda5989d8"
+}

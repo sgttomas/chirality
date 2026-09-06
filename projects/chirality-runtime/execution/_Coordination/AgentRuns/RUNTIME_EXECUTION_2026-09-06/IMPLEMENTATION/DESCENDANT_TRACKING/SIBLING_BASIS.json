@@ -1,0 +1,5 @@
+{
+  "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588",
+  "packages/daemon/src/codex-containment.ts": "1f01e149cbf2726b4af1b9f20ee824ac1b6dda19740119b11d5d4f456b3c3fcd",
+  "packages/daemon/src/codex-session.ts": "e626bebe7e5f288521d24a97b5e1b57d38b563b2f9b861d67fbd4f4fca4fd2a7"
+}

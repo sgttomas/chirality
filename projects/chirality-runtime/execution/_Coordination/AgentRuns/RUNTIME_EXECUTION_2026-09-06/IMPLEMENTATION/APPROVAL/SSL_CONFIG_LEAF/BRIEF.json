@@ -1,0 +1,17 @@
+{
+  "objective": "Enable actual system curl initialization with a single verified readonly SSL config leaf; no directory grant or config edits",
+  "source": "Parent NETWORK_ON_2 actual LibreSSL fopen denial; canonical root-owned0644 openssl.cnf745bytes SHA025f5e31cd7b2248a0a661d8d346452c31d98e280f3420c3f6017c74c829ae73; no include/engine directives observed",
+  "owner": "WORKING_ITEMS OpenAI GPT-6 servingid unavailable; instruction-asserted role",
+  "writes": [
+    "packages/daemon/src/codex-containment.ts",
+    "packages/daemon/src/codex-supervisor.ts",
+    "tests/codex-containment.test.ts",
+    "tests/codex-supervisor.test.ts"
+  ],
+  "checks": [
+    "typecheck",
+    "native compiler leaf scope and fingerprint tests",
+    "supervisor policy fixture consistency",
+    "parent exact network positive and negative controls"
+  ]
+}

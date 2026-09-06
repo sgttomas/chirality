@@ -1,0 +1,12 @@
+{
+  "status": "COMPILER_PASS_NATIVE_ENFORCEMENT_UNPROVEN",
+  "test_exit": 0,
+  "typescript_exit": 0,
+  "files": {
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "4488b7f53170bcab2580c5095409073829a0187c17b0ab395bf0374ae28870df",
+    "projects/chirality-runtime/tests/codex-containment.test.ts": "3c85ea8d85e493fff5385a94ed3ffc3f2d274371dd2059de60c9aec2681da9b7",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/RETURN.md": "878ffc220d6309945911776e7ace60ba0a295627a936dc464a8dec09b3d17ca7",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/tests.log": "13783e621564b369eef744d780e1fbf122266a28e00b0a97b0c2644972224545",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/BRIEF.md": "3c300adab3625cd04a07d77e0bbae4264a3d1292555512a73a1d264e2adb9e14"
+  }
+}

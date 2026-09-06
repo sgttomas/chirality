@@ -1,0 +1,94 @@
+{
+  "evidenceClass": "exact-app-server-deterministic-model",
+  "accountUsed": false,
+  "providerEndpoint": "loopback-only-configured",
+  "externalEgressEnforcement": "NOT_ESTABLISHED_BY_THIS_TEST",
+  "supplySha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+  "expectedPermissions": {
+    "filesystem": {
+      "/bin": "read",
+      "/usr/lib": "read",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/project": "write",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/broker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/broker/worker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/project/.codex": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "permissionProfile": "chirality_f4dc8ae77232ea1fe8143c68",
+  "nativePolicyReadbacks": [
+    {
+      "selectedProfile": {
+        "description": null,
+        "extends": null,
+        "workspace_roots": null,
+        "filesystem": {
+          "glob_scan_max_depth": null,
+          "\"/bin\"": "read",
+          "\"/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/broker\"": "deny",
+          "\"/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/broker/worker\"": "deny",
+          "\"/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/project\"": "write",
+          "\"/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-codex-conformance-n7hi5n/project/": {
+            "codex\"": "deny"
+          },
+          "\"/usr/lib\"": "read"
+        },
+        "network": {
+          "enabled": false,
+          "proxy_url": null,
+          "enable_socks5": null,
+          "socks_url": null,
+          "enable_socks5_udp": null,
+          "allow_upstream_proxy": null,
+          "dangerously_allow_non_loopback_proxy": null,
+          "dangerously_allow_all_unix_sockets": null,
+          "mode": null,
+          "domains": null,
+          "unix_sockets": null,
+          "allow_local_binding": null,
+          "mitm": null
+        }
+      },
+      "permissionShape": {
+        "present": true,
+        "isTable": true,
+        "keyCount": 1,
+        "hasProfiles": false,
+        "hasSelectedProfile": true
+      },
+      "hostSettings": {
+        "allow_login_shell": false,
+        "approval_policy": "never",
+        "features": {
+          "multi_agent": true,
+          "plugins": false,
+          "auth_elicitation": true,
+          "mcp_2026_07_28": false,
+          "memories": false,
+          "mentions_v2": true,
+          "remote_control": false,
+          "remote_plugin": true,
+          "tool_suggest": true
+        }
+      },
+      "otherConfigFieldCount": 92
+    }
+  ],
+  "cleanupTerminationRequested": true,
+  "verdict": "FAIL",
+  "error": "Effective named policy differs from the trusted exact table",
+  "process": {
+    "exitCode": null,
+    "signal": "SIGKILL"
+  },
+  "stderr": {
+    "text": "",
+    "bytesObserved": 0,
+    "truncated": false,
+    "redaction": "known bearer/key/token patterns; isolated empty home only"
+  },
+  "requests": [],
+  "providerFailures": []
+}

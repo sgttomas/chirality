@@ -1,0 +1,11 @@
+# Actor feature and transport repair return
+
+OpenAI GPT-6; exact serving model ID unavailable. Ephemeral Agent 2 is instruction-asserted, not mechanically enforced. Bounded parent-authorized corrective work; no delegation, supplier/account execution, or real provider traffic.
+
+The actor now requires explicit config.features.network_proxy=true for ask/on and false for off on every named-policy readback. Missing, null, wrong boolean, and operation-time drift are rejected. The exact full expected profile network table still must match independently, so profile.enabled and the feature flag cannot substitute for one another. Controlled fixtures explicitly declare features; tests cover initial verification, thread start, turn start, and resume. Parent owns compiler feature emission; continuity owns the supervisor fixture adjustment.
+
+This corrects an incompletely traced source assumption in the prior approval plan: exact 0.149 permissions.rs:120–131 forcibly disables profile-derived proxy runtime configuration pending the separate feature gate. Profile network.enabled alone never proved proxy startup. Reviewer traced NetworkProxy default false and core config feature/profile conjunction; the original implementation evidence remains historical. No empirical managed-proxy or G-APPR enforcement result is claimed by this repair.
+
+replyNetworkApproval now returns Promise<{sent:true}> only after a successful bounded Writable.write callback. A pending write enters sending state synchronously; duplicates and retries reject. Callback error, synchronous failure, timeout, or actor failure rejects without false applied success. Tests simulate a delayed successful callback, asynchronous broken pipe, and a writer that never calls back. The receipt still means transport delivery, not provider acknowledgement, destination execution, or network enforcement.
+
+Validation: 35 actor tests, 23 supervisor tests, and 34 authenticated broker tests all pass (92 total); Runtime typecheck passes. Existing three-decision end-to-end approval cases remain passing with the awaited write callback. Tests use only controlled transports/processes and local private sockets. Sources frozen for independent backcheck. Supervisor/standalone admission ownership remains with continuity/parent. No product acceptance, lifecycle closure, or supplier admission performed.

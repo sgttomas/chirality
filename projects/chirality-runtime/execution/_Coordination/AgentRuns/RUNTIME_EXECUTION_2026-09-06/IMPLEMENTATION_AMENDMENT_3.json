@@ -1,0 +1,24 @@
+{
+  "authority": "OWNER_DIRECTION.md",
+  "scope": "Continue ordinary Runtime implementation through persistent known-method Codex session and real standalone two-process composition. Unknown approval methods fail closed. Controlled protocol tests are not live provider proof. No account use, installation or actual hosted turn authorized by this amendment. Model selection must be explicit caller input. Preserve hard envelope, exact supply and compatibility admission.",
+  "additional_write_paths": [
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+    "projects/chirality-runtime/tests/codex-session.test.ts",
+    "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+    "projects/chirality-runtime/packages/daemon/src/standalone-bin.ts",
+    "projects/chirality-runtime/tests/standalone.test.ts",
+    "projects/chirality-runtime/packages/daemon/package.json",
+    "projects/chirality-runtime/packages/cli/src/cli.ts",
+    "projects/chirality-runtime/packages/cli/test/cli.test.ts",
+    "projects/chirality-runtime/packages/daemon/src/index.ts",
+    "projects/chirality-runtime/packages/core/src/index.ts",
+    "projects/chirality-runtime/packages/client/src/index.ts",
+    "projects/chirality-runtime/packages/core/src/delegated-runtime.ts",
+    "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+    "projects/chirality-runtime/README.md",
+    "projects/chirality-runtime/package-lock.json"
+  ],
+  "prerequisite": "N0-N6 accepted branch-local specification fan-in; exact offline adapter passes actual original 0.149.0 payload; observed negative turn schema supports minimal request shape only.",
+  "parent": "/root HELP_HUMAN; OpenAI GPT-6, exact serving ID unavailable, role not mechanically enforced",
+  "lockfile_limit": "Only consistency for approved local daemon bin metadata; no dependency additions."
+}

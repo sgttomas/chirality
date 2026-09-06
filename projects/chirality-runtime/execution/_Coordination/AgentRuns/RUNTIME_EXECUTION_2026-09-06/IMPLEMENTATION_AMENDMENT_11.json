@@ -1,0 +1,9 @@
+{
+  "amendment": 11,
+  "authority": "OWNER_DIRECTION.md and user direction to complete Runtime through delegated managers without unnecessary intermediate permission stops",
+  "scope": "Routine file planning within the already accepted Runtime product implementation",
+  "manager_authority": "WORKING_ITEMS may name, create and amend additional implementation/test/helper paths under projects/chirality-runtime/packages and tests when necessary for the existing released carrier requirements, and update Runtime README, dependency locks and owning run evidence. Record exact paths and exclusive child ownership in durable manager briefs/amendments before writes; parent notification is coordination, not a per-file permission gate.",
+  "limits": "No accepted decomposition/SOW/status/hold/ruling edits, no sibling or Root instruction writes, no new semantic or model-family selection, no supplier pin ratification, no live credentials in children, no operational account/release/merge act. Source or boundary changes requiring an actual owner act remain separate.",
+  "acceptance": "Independent review, actual integration evidence, registered regression checks and parent fan-in remain required. Do not duplicate work or overlap writes.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

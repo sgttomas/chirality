@@ -1,0 +1,70 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/codex-session.test.ts tests/codex-login.test.ts tests/codex-supervisor.test.ts tests/codex-containment.test.ts tests/standalone.test.ts tests/approval-store.test.ts tests/role-policy.test.ts tests/v2-contracts.test.ts tests/delegated-runtime.test.ts tests/worker-retirement.test.ts tests/runtime-daemon.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/v2-contracts.test.ts (16 tests) 4ms
+ ✓ tests/role-policy.test.ts (8 tests) 4ms
+ ✓ tests/codex-containment.test.ts (2 tests) 154ms
+ ✓ tests/codex-supervisor.test.ts (14 tests) 531ms
+ ✓ tests/codex-login.test.ts (6 tests) 644ms
+   ✓ operator-only sign-in component (controlled fixture) > fails for unsafe auth-file mode, mismatched completion, provider failure and clean exit  312ms
+ ✓ tests/codex-session.test.ts (12 tests) 742ms
+ ✓ tests/standalone.test.ts (10 tests) 2200ms
+   ✓ actual two-job standalone runtime > executes client consent and turn through two separate jobs and cleans SIGTERM sockets  385ms
+   ✓ actual two-job standalone runtime > rotates credentials across supervisor jobs and starts the daemon with the new generation  496ms
+   ✓ actual two-job standalone runtime > refuses a forged or nonprivate supervisor credential at daemon startup  303ms
+ ✓ tests/worker-retirement.test.ts (19 tests) 2370ms
+   ✓ keeps terminal records readable across concurrent thread association in 30 interleavings  1346ms
+ ✓ tests/approval-store.test.ts (20 tests) 2679ms
+   ✓ asks for exact attributed approval, preserving durable session choice without auto-granting another request  569ms
+   ✓ requires standing explicit on consent and denies after consent drift or revocation  424ms
+   ✓ publishes only one immutable decision under concurrent conflicting acts  303ms
+ ❯ tests/delegated-runtime.test.ts (28 tests | 1 failed) 6411ms
+   ✓ opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads 250ms
+   ✓ opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields 91ms
+   ✓ opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing 165ms
+   ✓ opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay 292ms
+   ✓ opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim 222ms
+   ✓ keeps issued operation and configured identity immutable against caller mutation 264ms
+   ✓ returns typed safe mismatch for malicious compatibility fields 93ms
+   ✓ fences worker acquisition when shutdown occurs during consent read 240ms
+   ✓ starts a fresh daemon generation without reusing old admissions  303ms
+   ✓ drains admitted consent publication before successful close 174ms
+   ✓ rejects object and null turn requests with typed invalid request errors 125ms
+   ✓ binds daemon identity and rejects a mismatched configured project root 77ms
+   ✓ offers and executes explicit untyped with canonical v2 evidence 192ms
+   ✓ offers and executes explicit agent0 with canonical v2 evidence 97ms
+   ✓ offers and executes explicit agent1 with canonical v2 evidence 99ms
+   ✓ offers and executes explicit agent2 with canonical v2 evidence 95ms
+   ✓ offers and executes explicit task with canonical v2 evidence 103ms
+   ✓ exposes configured on honestly and rejects unknown roles 49ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1005ms
+   ✓ interrupts an active exact worker once and records the closed interrupted terminal 83ms
+   ✓ permits operator login without a pre-existing account and confines bypass admissions to login 29ms
+   ✓ rejects unsafe login URL output without sending arbitrary port fields 27ms
+   ✓ rejects malformed interruption and approval identities without coercion 26ms
+   ✓ allows exact live-turn interruption after hosted launch verification becomes unavailable 70ms
+   ✓ binds selected role policy to retirement and passes it to resume selection 147ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2029ms
+   ✓ cancels a current login on shutdown and cannot admit another start 33ms
+   × reports degraded shutdown within grace when configured login cancellation cannot drain 31ms
+     → expected [Function] to throw error including 'before shutdown has drained' but got 'Runtime daemon cannot start while sto…'
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/delegated-runtime.test.ts > reports degraded shutdown within grace when configured login cancellation cannot drain
+AssertionError: expected [Function] to throw error including 'before shutdown has drained' but got 'Runtime daemon cannot start while sto…'
+
+Expected: "before shutdown has drained"
+Received: "Runtime daemon cannot start while stopping"
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  1 failed | 134 passed (135)
+   Start at  21:44:41
+   Duration  6.88s (transform 536ms, setup 0ms, collect 1.52s, tests 15.74s, environment 1ms, prepare 349ms)

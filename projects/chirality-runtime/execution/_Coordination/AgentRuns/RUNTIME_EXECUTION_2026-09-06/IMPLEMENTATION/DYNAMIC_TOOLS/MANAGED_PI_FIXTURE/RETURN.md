@@ -1,0 +1,13 @@
+# Return — AM11 parent-executable full composition
+
+OpenAI GPT-6; exact serving model ID unavailable. Ephemeral Agent 2, role instruction-asserted / not mechanically enforced. Agent 0 role is not mechanically enforced. No delegation, vendor process, network or account operation performed by this child.
+
+Implemented `tests/exact-managed-pi-integration.test.ts` using actual SupervisorServer, CodexSupervisor mailbox/actor via parent-approved exact-vendor test launcher, authenticated private channel selected by actual standalone manager configuration, real CodexAgent1ManagerPort and governed coordinator, actual Pi adapter, and parent-opted-in resident oMLX. No manager port injected and no sessions seeded. Actual supplier SHA rechecked and named effective permissions verified by actor. Real private broker credential is ephemeral; oMLX credential stays in memory.
+
+Responses fixture `managed-pi` mode selects advertised delegate_agent/review declarations, requests a single bounded file read, extracts actual returned child identity and expected marker, invokes actual review, then terminates manager. This manager model is deterministic; it is not hosted-provider model evidence. Added loopback sequence test for the parent to run; existing discovery, dynamic review, native canary, resume and stderr tests retained.
+
+Parent invocation from runtime workspace: set CHIRALITY_RUN_EXACT_MANAGED_PI=1, CHIRALITY_EXACT_CODEX_PATH to exact accepted payload, CHIRALITY_EXACT_EVIDENCE_DIR to fresh private directory, CHIRALITY_OMLX_API_KEY in parent process memory; run `vitest run tests/exact-managed-pi-integration.test.ts`. Evidence is safe EXACT_MANAGED_PI.json, requires observed marker/read/review, manager+child completion, stable source pins, closed vendor process and clean teardown. Signature finding and hosted account/provider approval posture are unchanged.
+
+Checks: JavaScript syntax PASS; workspace tsc -b PASS at first check; imports plus non-network stderr test PASS (1 passed,6 skipped). Explicit test-file typecheck exposed stale runs:write scope copied from older test; corrected to actual sessions:write requirement. Recheck found only concurrently modified codex-supervisor.ts ask-per-destination compiler mismatch, reported to parent; no repair outside scope. Loopback and vendor tests intentionally left parent-only.
+
+Limitations: production hosted-auth startup is not proven by test-only unauthenticated exact supplier factory. Parent must execute to validate actual dynamic delegation composition; no result claimed in advance. Exact supplier + fake Responses manager and actual live Pi evidence classes stay distinct. Source hashes before/after detect overlapping production edits; parent should rerun a stable version if changed.

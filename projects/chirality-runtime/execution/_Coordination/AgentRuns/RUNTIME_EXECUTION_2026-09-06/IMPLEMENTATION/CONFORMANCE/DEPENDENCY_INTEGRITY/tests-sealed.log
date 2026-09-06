@@ -1,0 +1,77 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/runtime-dependencies.test.ts (12 tests) 118ms
+ ❯ tests/runtime-conformance.test.ts (44 tests | 1 failed) 38677ms
+   ✓ mechanically inspects a complete immutable record without creating admission or owner acceptance 5ms
+   ✓ rejects missing/unattempted/failed required limb effective-policy 3ms
+   ✓ rejects missing/unattempted/failed required limb primary.read 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.file-change 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.shell-write 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.network 3ms
+   ✓ rejects missing/unattempted/failed required limb primary.process 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.environment 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.approval 2ms
+   ✓ rejects missing/unattempted/failed required limb primary.role 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.read 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.file-change 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.shell-write 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.network 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.process 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.environment 2ms
+   ✓ rejects missing/unattempted/failed required limb descendant.approval 10ms
+   ✓ rejects missing/unattempted/failed required limb descendant.role 3ms
+   ✓ rejects missing/unattempted/failed required limb owner-live-native-delegation 3ms
+   ✓ invalidates changed binding policyDigest 2ms
+   ✓ invalidates changed binding configDigest 2ms
+   ✓ invalidates changed binding sourceDigest 2ms
+   ✓ invalidates changed binding packageDigest 2ms
+   ✓ invalidates changed binding activationId 2ms
+   ✓ invalidates changed binding gateIdentity 2ms
+   ✓ invalidates changed binding accountId 2ms
+   ✓ invalidates changed binding accountEpoch 2ms
+   ✓ invalidates changed binding accountDigest 2ms
+   ✓ invalidates changed binding consentVersion 2ms
+   ✓ invalidates changed binding canonicalRoot 2ms
+   ✓ invalidates changed binding cwd 2ms
+   ✓ invalidates changed binding executablePath 2ms
+   ✓ rejects expired/future evidence, unknown fields and controlled evidence labels 2ms
+   ✓ binds source/package order, actual bytes and canonical paths, rejecting aliases and directories 4ms
+   ✓ never admits self-asserted passing records when external status is unknown  8620ms
+   ✓ never admits self-asserted passing records when external status is revoked  3853ms
+   ✓ even a controlled accepted lookup cannot substitute fixture bytes for the real accepted supply  4360ms
+   ✓ rejects nonprivate/symlink records and stale actual source before acceptance lookup  11887ms
+   ✓ file acceptance requires exact externally pinned owner act and observes revocation on every lookup 4ms
+   × derives all first-party runtime package artifacts instead of accepting a caller-selected subset 2225ms
+     → expected false to be true // Object.is equality
+   ✓ permanently poisons a captured generation on changed bytes, even after restoration and new verifier construction 4ms
+   ✓ invalidates inventory additions and identity-only replacement, not just content digests 4ms
+   ✓ retains startup capture failure without unhandled rejection or reset by a later verifier 2ms
+   ✓ exposes the same non-resettable production capture across calls without claiming loaded-module proof  7637ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/runtime-conformance.test.ts > derives all first-party runtime package artifacts instead of accepting a caller-selected subset
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/runtime-conformance.test.ts:80:110
+     78|   const inventory = await runtimeConformanceArtifactInventory();
+     79|   expect(inventory.packageFiles.some(path => path.endsWith("/chirality…
+     80|   expect(inventory.packageFiles.some(path => path.includes("/node_modu…
+       |                                                                                                              ^
+     81|   expect(inventory.dependencyResolutionDigest).toMatch(/^[a-f0-9]{64}$…
+     82|   expect(inventory.sourceFiles.some(path => path.endsWith("/engine-pi-…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 55 passed (56)
+   Start at  23:51:38
+   Duration  39.03s (transform 123ms, setup 0ms, collect 227ms, tests 38.80s, environment 0ms, prepare 93ms)

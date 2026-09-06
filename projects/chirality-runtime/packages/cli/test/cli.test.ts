@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import type { RuntimeStream } from "@chirality/runtime-client";
+import { RuntimeError } from "@chirality/runtime-contracts";
 import type { RuntimeSseFrame } from "@chirality/runtime-contracts";
 import {
   LaunchAgentManager,
@@ -651,4 +652,64 @@ describe("resolveRuntimeLaunchAgentOptions", () => {
     expect(source).toContain("<key>CHIRALITY_USER_DATA</key>");
     expect(source).not.toContain("<key>SuccessfulExit</key>");
   });
+});
+
+it("preserves every compatibility mismatch machine field on CLI stderr", async () => {
+  const details = { operation_id: "turn:one", project_id: "project", daemon_identity: "safe-daemon", client_compatibility_identity: "root-runtime-2", daemon_compatibility_identity: "root-runtime-1", client_contract_basis_sha256: "a".repeat(64), daemon_contract_basis_sha256: "b".repeat(64), retryable: false, consequential_work_started: false, diagnostic: "unequal" };
+  const output = io();
+  const result = await runCli(["daemon", "status"], output.io, dependencies(fakeClient({ async daemonStatus() { throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "mismatch", 409, details); } })));
+  expect(result).toBe(1);
+  expect(JSON.parse(output.stderr.join(""))).toEqual({ error: { code: "RUNTIME_COMPATIBILITY_MISMATCH", message: "mismatch", details } });
+});
+
+it("routes explicit operator login through the daemon client without opening a browser", async () => {
+  const output = io();
+  const startHostedLogin = vi.fn(async () => ({ loginId: "login-one", authUrl: "https://auth.openai.com/authorize?state=fixture" }));
+  expect(await runCli(["hosted-login", "start", "--project", "project", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)], output.io, dependencies(fakeClient({ startHostedLogin })))).toBe(0);
+  expect(startHostedLogin).toHaveBeenCalledWith("project", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) });
+  expect(JSON.parse(output.stdout.join(""))).toMatchObject({ loginId: "login-one" });
+});
+it("offers explicit Agent2 delegated CLI turns without assigning a model from role", async () => {
+  const output = io();
+  const runDelegatedTurn = vi.fn(async () => ({ terminal: { outcome: "completed" } }));
+  expect(await runCli(["delegated", "turn", "--project", "project", "--turn-id", "turn-one", "--role", "agent2", "--prompt", "hello", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)], output.io, dependencies(fakeClient({ runDelegatedTurn })))).toBe(0);
+  expect(runDelegatedTurn).toHaveBeenCalledWith("project", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) }, { turnId: "turn-one", prompt: "hello", requestedRole: "agent2" });
+});
+it("requires an explicit CLI consent act before contacting the daemon", async () => {
+  const output = io();
+  const grantDelegatedConsent = vi.fn(async () => ({}));
+  expect(await runCli(["delegated", "consent", "--project", "project", "--posture", "on", "--approved-by", "fixture"], output.io, dependencies(fakeClient({ grantDelegatedConsent })))).toBe(2);
+  expect(grantDelegatedConsent).not.toHaveBeenCalled();
+});
+
+it("keeps delegated approval attribution and unapplied result explicit", async () => {
+  const output = io();
+  const decideDelegatedApproval = vi.fn(async () => ({ applied: false, reason: "not forwarded" }));
+  const args = ["delegated", "decide-approval", "--project", "project", "--turn-id", "turn-one", "--request-id", "request-one", "--generation", "generation-one", "--decision", "acceptForSession", "--approved-by", "fixture-owner", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)];
+  expect(await runCli(args, output.io, dependencies(fakeClient({ decideDelegatedApproval })))).toBe(2);
+  expect(decideDelegatedApproval).not.toHaveBeenCalled();
+  const approved = io();
+  expect(await runCli([...args, "--explicit-user-act"], approved.io, dependencies(fakeClient({ decideDelegatedApproval })))).toBe(0);
+  expect(decideDelegatedApproval).toHaveBeenCalledWith("project", "request-one", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) }, { turnId: "turn-one", workerGeneration: "generation-one", decision: "acceptForSession", approvedBy: "fixture-owner", explicitUserAct: true });
+  expect(JSON.parse(approved.stdout.join(""))).toMatchObject({ applied: false });
+});
+
+it("shows delegated command and approval limits without contacting the runtime", async () => {
+  const output = io(), daemonStatus = vi.fn();
+  expect(await runCli(["--help"], output.io, dependencies(fakeClient({ daemonStatus })))).toBe(0);
+  expect(output.stdout.join("")).toContain("--explicit-user-act");
+  expect(output.stdout.join("")).toContain("Approval records do not imply provider forwarding");
+  expect(daemonStatus).not.toHaveBeenCalled();
+});
+it("lists generic manager approvals without requiring private worker discovery", async () => {
+  const output = io(), pendingRuntimeApprovals = vi.fn(async () => [{ requestId: "opaque", binding: { sessionId: "manager-session" } }]);
+  expect(await runCli(["approvals", "list", "--project", "project"], output.io, dependencies(fakeClient({ pendingRuntimeApprovals })))).toBe(0);
+  expect(pendingRuntimeApprovals).toHaveBeenCalledWith("project", undefined);
+});
+it("requires explicit attributed action on generic manager approval decisions", async () => {
+  const output = io(), decideRuntimeApproval = vi.fn(async () => ({ applied: true, reason: "Written to transport" }));
+  const args = ["approvals", "decide", "--project", "project", "--request-id", "opaque", "--scope-id", "manager-session", "--generation", "generation", "--decision", "acceptForSession", "--approved-by", "fixture-human", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)];
+  expect(await runCli(args, output.io, dependencies(fakeClient({ decideRuntimeApproval })))).toBe(2); expect(decideRuntimeApproval).not.toHaveBeenCalled();
+  expect(await runCli([...args, "--explicit-user-act"], io().io, dependencies(fakeClient({ decideRuntimeApproval })))).toBe(0);
+  expect(decideRuntimeApproval).toHaveBeenCalledWith("project", "opaque", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) }, { turnId: "manager-session", workerGeneration: "generation", decision: "acceptForSession", approvedBy: "fixture-human", explicitUserAct: true });
 });

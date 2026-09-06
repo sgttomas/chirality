@@ -1,0 +1,3 @@
+# Process-generation conformance freeze
+
+Parent AM11 release, core runtime-conformance.ts and tests only plus this evidence. GPT-6; exact serving ID unavailable; Agent2 instruction-asserted, not mechanically enforced. Read reviewer CONFORMANCE_ADMISSION/BRIEF.md and parent exact finding: disk hashes are not loaded-module/cache or resolution proof; new accepted disk record could otherwise authorize old cached code. Mandatory module-evaluation singleton baseline, every admission compares before/after, observed drift permanently poisons generation, no new verifier can reset. Retain startup import/read race, lazy resolution and third-party limits. No deployed writes/live provider operations. Preserve prior sealed return in place; add calibrated addendum.

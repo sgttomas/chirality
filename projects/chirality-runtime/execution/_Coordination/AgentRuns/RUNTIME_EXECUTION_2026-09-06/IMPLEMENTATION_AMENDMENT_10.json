@@ -1,0 +1,19 @@
+{
+  "amendment": 10,
+  "authority": "OWNER_DIRECTION.md: complete ordinary Runtime implementation; existing accepted managed Agent1-to-Agent2 pilot",
+  "basis": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/MANAGER_COMPOSITION/PLAN.md",
+  "basis_sha256": "0329abb0694432eb4ee96846b61ad89f81498d8bcf472aec890ddfebcc5a6d02",
+  "path_base": "projects/chirality-runtime",
+  "additional_write_paths": [
+    "packages/daemon/src/codex-manager.ts",
+    "tests/codex-manager.test.ts",
+    "tests/manager-pi-integration.test.ts",
+    "packages/core/src/agent1-run-coordinator.ts",
+    "tests/agent1-run-coordinator.test.ts"
+  ],
+  "existing_path_work": "Implement the plan through already authorized Pi port, actor, private supervisor contracts and standalone paths. Manager assigns exclusive owners and serializes overlap. A small shared trusted launch helper may be extracted only after naming its exact path in a manager amendment; no duplicated bypass path.",
+  "scope": "Real session-bound Pi callback/receipt bridge, file identity checks, actual callable Codex manager, private callback transport if required, real coordinator composition, and full controlled manager-to-Pi integration without manually seeded production sessions. Unknown server requests remain fail closed; callback registration immutable, scoped, bounded and cancellable. Preserve local Agent1 prohibition and all existing approval/brief/read constraints.",
+  "protocol_basis": "Exact 0.149 generated schema is accepted unavailable under prior R15; use existing official protocol sources and bounded exact negative/controlled probes. Do not invent or assert unobserved vendor conformance. Parent executes real provider calls, children use synthetic fixtures.",
+  "acceptance": "Actual managed route creates child, executes bound read, produces required receipt and review, interrupts correctly, and preserves canonical parentage/terminal; real Codex protocol candidate independently reviewed and exact-tested before conformance claim. No TM-ROOT-106 disposition or operational hosted login implied.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

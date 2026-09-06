@@ -1,0 +1,121 @@
+diff --git a/codex-rs/core/src/session/session.rs b/codex-rs/core/src/session/session.rs
+index c0b0407..380ff70 100644
+--- a/codex-rs/core/src/session/session.rs
++++ b/codex-rs/core/src/session/session.rs
+@@ -1218,15 +1218,13 @@ impl Session {
+             let managed_network_requirements_enabled = config.managed_network_requirements_enabled();
+             let network_approval = Arc::new(NetworkApprovalService::default());
+             // The managed proxy can call back into core for allowlist-miss decisions.
+-            let network_policy_decider_session = if managed_network_requirements_configured {
+-                config
+-                    .permissions
+-                    .network
+-                    .as_ref()
+-                    .map(|_| Arc::new(RwLock::new(std::sync::Weak::<Session>::new())))
+-            } else {
+-                None
+-            };
++            // A configured named proxy also needs an attributed approval callback.
++            // Administrator constraints and hard-deny misses remain enforced by the proxy.
++            let network_policy_decider_session = config
++                .permissions
++                .network
++                .as_ref()
++                .map(|_| Arc::new(RwLock::new(std::sync::Weak::<Session>::new())));
+             let blocked_request_observer = config
+                 .permissions
+                 .network
+@@ -1250,7 +1248,7 @@ impl Session {
+                         config.permissions.permission_profile(),
+                         network_policy_decider.as_ref().map(Arc::clone),
+                         blocked_request_observer.as_ref().map(Arc::clone),
+-                        managed_network_requirements_configured,
++                        network_policy_decider.is_some(),
+                         network_proxy_audit_metadata.clone(),
+                     )
+                     .instrument(info_span!(
+diff --git a/codex-rs/core/src/tools/network_approval_tests.rs b/codex-rs/core/src/tools/network_approval_tests.rs
+index f54f4d2..2af5b62 100644
+--- a/codex-rs/core/src/tools/network_approval_tests.rs
++++ b/codex-rs/core/src/tools/network_approval_tests.rs
+@@ -781,3 +781,22 @@ async fn attributed_blocked_request_targets_one_of_multiple_active_calls() {
+         )
+     );
+ }
++
++#[tokio::test]
++async fn uninitialized_network_decider_never_grants_access() {
++    let decider = build_network_policy_decider(
++        Arc::new(NetworkApprovalService::default()),
++        Arc::new(RwLock::new(std::sync::Weak::<Session>::new())),
++    );
++    let request = NetworkPolicyRequest::new(codex_network_proxy::NetworkPolicyRequestArgs {
++        protocol: NetworkProtocol::Http,
++        host: "unapproved.example.com".to_string(),
++        port: 80,
++        environment_id: None,
++        client_addr: None,
++        method: None,
++        command: None,
++        exec_policy_hint: None,
++    });
++    assert_eq!(decider.decide(request).await, NetworkDecision::ask("not_allowed"));
++}
+diff --git a/codex-rs/network-proxy/src/network_policy.rs b/codex-rs/network-proxy/src/network_policy.rs
+index b5d2d27..9821efd 100644
+--- a/codex-rs/network-proxy/src/network_policy.rs
++++ b/codex-rs/network-proxy/src/network_policy.rs
+@@ -829,6 +829,40 @@ mod tests {
+         assert_ne!(event.field("execution.id"), Some("token-baseline-allow"));
+     }
+
++    #[tokio::test(flavor = "current_thread")]
++    async fn evaluate_host_policy_explicit_deny_never_calls_allowing_decider() {
++        let state = network_proxy_state_for_policy({
++            let mut network = NetworkProxyConfig::default();
++            network.set_denied_domains(vec!["blocked.example.com".to_string()]);
++            network
++        });
++        let calls = Arc::new(std::sync::atomic::AtomicUsize::new(0));
++        let decider: Arc<dyn NetworkPolicyDecider> = Arc::new({
++            let calls = Arc::clone(&calls);
++            move |_request| {
++                calls.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
++                async { NetworkDecision::Allow }
++            }
++        });
++        let request = NetworkPolicyRequest::new(NetworkPolicyRequestArgs {
++            protocol: NetworkProtocol::Http,
++            host: "blocked.example.com".to_string(),
++            port: 80,
++            environment_id: None,
++            client_addr: None,
++            method: None,
++            command: None,
++            exec_policy_hint: None,
++        });
++        let decision = evaluate_host_policy(&state, Some(&decider), &request)
++            .await
++            .expect("explicit deny evaluation");
++        assert_eq!(decision, NetworkDecision::deny_with_source(
++            REASON_DENIED, NetworkDecisionSource::BaselinePolicy,
++        ));
++        assert_eq!(calls.load(std::sync::atomic::Ordering::SeqCst), 0);
++    }
++
+     #[tokio::test(flavor = "current_thread")]
+     async fn evaluate_host_policy_emits_domain_event_for_baseline_deny() {
+         let state = network_proxy_state_for_policy({
+diff --git a/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl b/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
+index 99f43e4..54172ee 100644
+--- a/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
++++ b/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
+@@ -6,6 +6,8 @@
+
+ ; start with closed-by-default
+ (deny default)
++; Allow dyld to open only the canonical root directory, not its descendants.
++(allow file-read-data (require-all (literal "/") (vnode-type DIRECTORY)))
+
+ ; child processes inherit the policy of their parent
+ (allow process-exec)

@@ -1,0 +1,21 @@
+[
+  "ABSENCE_PROOF.json",
+  "ACTIVATION.md",
+  "CURRENT_BASIS.json",
+  "READ_AMENDMENT.md",
+  "WORK_GRAPH.json",
+  "accepted_inputs/CANDIDATE_SET_MANIFEST.sha256",
+  "accepted_inputs/DEGRADED_MODE_CONTRACT_CANDIDATE.md",
+  "accepted_inputs/OPEN_ITEMS.csv",
+  "accepted_inputs/OWNER_GATE.md",
+  "accepted_inputs/OWNER_SELECTION.md",
+  "accepted_inputs/ROOT_COMPATIBILITY_POLICY_CANDIDATE.md",
+  "briefs/N0.md",
+  "briefs/N1.md",
+  "briefs/N2.md",
+  "briefs/N3.md",
+  "briefs/N4.md",
+  "briefs/N5.md",
+  "briefs/N6.md",
+  "BOOTSTRAP_FILES.json"
+]

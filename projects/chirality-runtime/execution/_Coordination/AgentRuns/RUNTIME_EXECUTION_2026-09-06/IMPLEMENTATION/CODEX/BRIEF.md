@@ -1,0 +1,3 @@
+# Exact offline Codex probe brief
+
+Parent AMENDMENT2 authorizes daemon/src/codex-worker.ts, tests/codex-worker.test.ts and this evidence directory. Bounded ephemeral Agent2, GPT-6, exact serving model ID unavailable; role not mechanically enforced, instruction-asserted. No delegation. Consume observed 0.149.0 SUPPLY_PROBE requests/config/envelope, immutable supply verifier, account/read refreshToken:false observed extension. Implement callable exact offline probe with fixed allowlist, private scratch home, hard network/securityd denial, bounded actual child execution and sanitized readiness. No turn/thread/login/network/signature changes. Controlled fixture seam must be separately named and evidence-labelled; no production availability inference.

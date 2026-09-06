@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/role-policy.test.ts (8 tests) 3ms
+ ✓ tests/v2-contracts.test.ts (16 tests) 3ms
+
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+   Start at  21:24:28
+   Duration  150ms (transform 40ms, setup 0ms, collect 49ms, tests 6ms, environment 0ms, prepare 48ms)

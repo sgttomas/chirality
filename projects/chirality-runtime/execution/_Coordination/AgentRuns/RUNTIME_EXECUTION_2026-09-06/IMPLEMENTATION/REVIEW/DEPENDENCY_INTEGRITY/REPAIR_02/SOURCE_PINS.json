@@ -1,0 +1,6 @@
+{
+  "packages/core/src/runtime-dependencies.ts": "6265140149676e86e41eb9b776bec0aed430bc316b2d6daa3d0c4aad17701187",
+  "packages/core/src/runtime-conformance.ts": "689e20b61843bc4de1928e9e5dbf52a66278b85b5caa9ebaae59566f22c753ef",
+  "tests/runtime-dependencies.test.ts": "ff667e79e3e1c8a4aa14cc21b4770eb6bf6efd5c0d5b3d0455bfdb32dba6b148",
+  "tests/runtime-conformance.test.ts": "088ac67e53a38ec3f0fae30b6ce795ecf3b4cdf9238b7475ee8da3357457cad3"
+}

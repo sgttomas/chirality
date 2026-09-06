@@ -1,0 +1,8 @@
+{
+  "status": "INCONCLUSIVE_NETWORK_ENFORCEMENT",
+  "observations": "Private off test assertions passed, but on and ask-allow both failed with identical curl status 1, 1013 output bytes, completed shell markers, zero destination hits and no approvals.",
+  "interpretation": "The off result cannot establish enforcement while the allowed positive control fails. A command-start marker proves the shell ran, not that curl reached its network operation.",
+  "next": "Capture bounded sanitized synthetic command diagnostic and repair the actual cause; rerun positive and negative controls under unchanged candidate identity.",
+  "preserved": "Original per-run observed outcomes retained unchanged. This assessment calibrates their joint meaning.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

@@ -1,0 +1,6 @@
+{
+  "diskDigestChanged": true,
+  "cachedGeneration": "A",
+  "diskGeneration": "B",
+  "limitation": "Cache/digest reproduction only; no production admission or owner acceptance is performed"
+}

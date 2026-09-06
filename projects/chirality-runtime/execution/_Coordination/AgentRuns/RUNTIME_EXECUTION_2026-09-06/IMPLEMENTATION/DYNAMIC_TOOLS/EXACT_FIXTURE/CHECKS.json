@@ -1,0 +1,10 @@
+{
+  "workspace_typecheck": 0,
+  "fixture_js_syntax": 0,
+  "nonnetwork_scrub_test": {
+    "passed": 1,
+    "other_tests": "skipped"
+  },
+  "network_peer_tests": "not run by child",
+  "exact_vendor_test": "not run by child"
+}

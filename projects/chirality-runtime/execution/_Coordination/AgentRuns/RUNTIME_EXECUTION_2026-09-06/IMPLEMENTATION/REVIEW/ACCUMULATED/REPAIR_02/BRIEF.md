@@ -1,0 +1,3 @@
+# Independent F1 repair backcheck
+
+Scope: actual final coordinator child cancellation/drain and authority filename routing, using source inspection and controlled tests. Sources frozen by continuity; manager port is read for callback timeout semantics only. New approval changes are excluded. Writes only this directory; no prior sealed evidence modifications, delegation, real providers, credentials or vendor execution. OpenAI GPT-6 exact serving ID unavailable; Agent 2 instruction-asserted, not mechanically enforced. Required output: source pins, regression checks, F1 closure verdict and residual limits.

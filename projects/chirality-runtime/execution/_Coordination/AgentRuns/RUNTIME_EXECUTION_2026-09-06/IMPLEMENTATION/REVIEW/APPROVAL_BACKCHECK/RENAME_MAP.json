@@ -1,0 +1,37 @@
+{
+  "failed-child-review-repro.test.ts": {
+    "newPath": "failed-child-review-repro.test.ts.source",
+    "sha256": "5842a7b62e8b09ca505a6f8bf98bb07fd6527c7491854ae88bd0b0079e2b2fad",
+    "byteIdentical": true
+  },
+  "concurrent-delegation-repro.test.ts": {
+    "newPath": "concurrent-delegation-repro.test.ts.source",
+    "sha256": "557503ac7f2d55386c6edcde2bbe76a6a7f935d37be14713d39c41b9ef2ae4b5",
+    "byteIdentical": true
+  },
+  "governed-binding-backcheck.test.ts": {
+    "newPath": "governed-binding-backcheck.test.ts.source",
+    "sha256": "ffe688283c232cefba4d5ee2e8be90453c04156213f6ad5482c64db8ba3b7188",
+    "byteIdentical": true
+  },
+  "transport-failure-repro.test.ts": {
+    "newPath": "transport-failure-repro.test.ts.source",
+    "sha256": "fd934efb207bb40c6ab47704853248444734e22e2f6300cc3b44ca635b8543f7",
+    "byteIdentical": true
+  },
+  "A3_REPAIR/failed-child-review-backcheck.test.ts": {
+    "newPath": "A3_REPAIR/failed-child-review-backcheck.test.ts.source",
+    "sha256": "8d10e5a41b5ef32ad10dd89f47eaeb7288eacdec783cbf0ef7e446038f28eef4",
+    "byteIdentical": true
+  },
+  "A3_REPAIR/concurrent-delegation-backcheck.test.ts": {
+    "newPath": "A3_REPAIR/concurrent-delegation-backcheck.test.ts.source",
+    "sha256": "954b5d8ef14cf5429c081c225dc13364acd464fb831320406f54d8910a66647b",
+    "byteIdentical": true
+  },
+  "A1_A2_REPAIR/transport-backcheck.test.ts": {
+    "newPath": "A1_A2_REPAIR/transport-backcheck.test.ts.source",
+    "sha256": "387544bfe260032972044b706375f867421f5038ed80eac036836a2c19660337",
+    "byteIdentical": true
+  }
+}

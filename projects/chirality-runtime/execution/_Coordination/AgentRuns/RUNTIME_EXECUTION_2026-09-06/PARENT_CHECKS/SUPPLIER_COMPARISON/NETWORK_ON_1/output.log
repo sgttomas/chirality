@@ -1,0 +1,30 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-network-conformance.test.ts (3 tests | 1 failed) 4254ms
+   ✓ does not count shell abort as command-level denial 1ms
+   ✓ requires a closed explicit network scenario 1ms
+   × actual primary command network via private approval bridge to owned destination 4251ms
+     → Owned destination command/approval canary failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-network-conformance.test.ts > actual primary command network via private approval bridge to owned destination
+AssertionError: Owned destination command/approval canary failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-network-conformance.test.ts:143:106
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  23:32:47
+   Duration  4.97s (transform 240ms, setup 0ms, collect 339ms, tests 4.25s, environment 0ms, prepare 91ms)

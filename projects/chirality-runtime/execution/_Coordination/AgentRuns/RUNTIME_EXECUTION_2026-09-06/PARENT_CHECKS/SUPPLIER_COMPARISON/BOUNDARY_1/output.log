@@ -1,0 +1,29 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-boundary-conformance.test.ts (2 tests | 1 failed) 4030ms
+   ✓ rejects echoed command markers as primary or native execution evidence 1ms
+   × P1 actual primary and native read/environment boundary 4029ms
+     → See exact bounded read/environment evidence; no aggregate conformance claim: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-boundary-conformance.test.ts > P1 actual primary and native read/environment boundary
+AssertionError: See exact bounded read/environment evidence; no aggregate conformance claim: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-boundary-conformance.test.ts:99:109
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  00:11:46
+   Duration  4.45s (transform 116ms, setup 0ms, collect 152ms, tests 4.03s, environment 0ms, prepare 58ms)

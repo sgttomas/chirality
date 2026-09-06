@@ -1,0 +1,15 @@
+# Return — public Runtime API and native-child network fixture
+
+OpenAI GPT-6, exact serving model ID unavailable. Ephemeral Agent 2 instruction-asserted; Agent 0 and Agent 2 not mechanically enforced. No delegation or vendor/account/network execution.
+
+New fixture tests/exact-network-runtime-conformance.test.ts only. Actual RuntimeClient/authenticated RuntimeDaemon/DelegatedRuntime/HostedConsentStore/ApprovalStore and private SupervisorClient wrap parent-verified exact supplier or unaccepted candidate. Controlled-worker binding stays labelled; tiny trusted acquire adapter wraps prompt into private Codex JSON envelope. No fake provider account, hosted verifier override, seeded session or seeded approval. Exact bytes and native permissions checked before work; source and cleanup checks retained.
+
+Invocation: CHIRALITY_RUN_EXACT_NETWORK_RUNTIME=1; CHIRALITY_EXACT_NETWORK_SCENARIO=off|on|ask-allow|ask-deny|ask-cancel; CHIRALITY_EXACT_NETWORK_ROLE=primary|native-child (default primary); existing binary/candidate hash-size/fresh evidence variables. Output EXACT_NETWORK_RUNTIME_CANARY.json. Model and target are separate owned loopback servers, no external destination. Exact /usr/bin/curl immutable read goes through compiler; compiler must support regular file as parent authorized.
+
+Actual explicit fixture consent is recorded. Pending provider requests are imported through actual runtime synchronization. Public decision includes explicitUserAct and fixture operator attribution, immutable stored decision is checked, wrong generation must reject. Cancel uses actual public interruption and requires durable resolution without decision. These are fixture operator acts authorized for empirical tests, not claims of real end-user UI exercise. Before actual passing run, storedAttributionProven stays false. Native role issues only advertised namespace spawn/wait and has child emit actual advertised curl exec command; nativeDescendantNetworkProven requires actual child identity plus child-issued command and full outcome checks.
+
+Negative off/deny requires observed command STARTED+FINISHED with nonzero curl exit; aborted shell134 cannot count as denial. Positive requires markers/status0 plus exactly one owned target hit. Ask requires actual prompt, stale generation refusal and stored decision/resolution. Cancellation is distinct from command-level denial. All results retain controlled launch/binding and candidate nonacceptance calibration.
+
+Known gap deliberately not bypassed: actor networkApprovalRequest currently accepts only active primary thread/turn, so actual native-child-owned approval may fail closed. Fixture reveals it; no descendant authority is inferred from untrusted metadata. Production owner needs actual observed wire and parentage policy before repair. Primary empirical result also remains parent-owned/pending.
+
+Validation: workspace and explicit fixture typechecks PASS; 2 offline tests PASS, empirical test skipped. Prior three empirical fixture files remain frozen except the separately authorized negative-check repair. Parent can run this new fixture independently.

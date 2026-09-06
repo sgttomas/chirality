@@ -1,0 +1,17 @@
+{
+  "events": [
+    {
+      "stream": "stdout",
+      "line": "{\"id\":1,\"result\":{\"userAgent\":\"chirality_command_containment_probe/0.149.0 (Mac OS 26.6.2; arm64) unknown (chirality_command_containment_probe; 0.0.0)\",\"codexHome\":\"/private/tmp/runtime-execution-20260906/supply/home\",\"platformFamily\":\"unix\",\"platformOs\":\"macos\"}}"
+    },
+    {
+      "stream": "stdout",
+      "line": "{\"method\":\"remoteControl/status/changed\",\"params\":{\"status\":\"disabled\",\"serverName\":\"Ryans-MacBook-Pro.local\",\"installationId\":\"d3fe5ebf-3e62-43fb-a17f-38ab96e0e54f\",\"environmentId\":null},\"emittedAtMs\":1788665624200}"
+    },
+    {
+      "stream": "stdout",
+      "line": "{\"id\":2,\"result\":{\"exitCode\":71,\"stdout\":\"\",\"stderr\":\"sandbox-exec: sandbox_apply: Operation not permitted\\n\"}}"
+    }
+  ],
+  "exit": 0
+}

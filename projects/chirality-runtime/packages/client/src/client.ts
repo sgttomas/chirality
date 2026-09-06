@@ -5,6 +5,11 @@ import {
   RUNTIME_ROUTES,
   RuntimeError,
   type Agent1RunRequest,
+  type DelegatedPreflight,
+  type HostedLoginStatus,
+  type DelegatedCapabilities, type DelegatedApprovalDecisionRequest, type DelegatedTurnRequest,
+  type DelegatedTurnResponse,
+  type RuntimeCompatibilityIdentity,
   type AgentDefinitionSummary,
   type AgentsResponse,
   type CredentialMutationResponse,
@@ -483,6 +488,82 @@ export class RuntimeClient {
       method: "DELETE",
       signal
     });
+  }
+
+  async startHostedLogin(projectId: string, compatibility: RuntimeCompatibilityIdentity): Promise<{ loginId: string; authUrl: string }> {
+    const preflight = await this.delegatedAdmission(projectId, "login:start", compatibility);
+    const result = await this.requestJson<{ loginId: string; authUrl: string }>(`/v2/projects/${encodeURIComponent(projectId)}/login/start`, { method: "POST", body: { compatibility, preflight } });
+    let url: URL;
+    try { url = new URL(result.authUrl); } catch { throw new RuntimeError("INVALID_REQUEST", "Invalid hosted login URL"); }
+    if (url.protocol !== "https:" || url.username || url.password || result.authUrl.length > 8192) throw new RuntimeError("INVALID_REQUEST", "Unsafe hosted login URL");
+    return result;
+  }
+
+  async hostedLoginStatus(projectId: string): Promise<HostedLoginStatus> {
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/login/status`, { method: "GET" });
+  }
+
+  async cancelHostedLogin(projectId: string, compatibility: RuntimeCompatibilityIdentity): Promise<{ cancelled: true }> {
+    const preflight = await this.delegatedAdmission(projectId, "login:cancel", compatibility);
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/login/cancel`, { method: "POST", body: { compatibility, preflight } });
+  }
+
+  async interruptDelegatedTurn(projectId: string, turnId: string, compatibility: RuntimeCompatibilityIdentity): Promise<{ interrupted: true; turnId: string; workerGeneration: string }> {
+    const preflight = await this.delegatedAdmission(projectId, `interrupt:${turnId}`, compatibility);
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/delegated/interrupt`, { method: "POST", body: { turnId, compatibility, preflight } });
+  }
+
+  async delegatedCapabilities(projectId: string): Promise<DelegatedCapabilities> {
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/delegated/capabilities`, { method: "GET" });
+  }
+
+  async pendingRuntimeApprovals(projectId: string, scopeId?: string): Promise<unknown[]> {
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/approvals/pending${scopeId ? `?scopeId=${encodeURIComponent(scopeId)}` : ""}`, { method: "GET" });
+  }
+  async decideRuntimeApproval(projectId: string, requestId: string, compatibility: RuntimeCompatibilityIdentity, request: Omit<DelegatedApprovalDecisionRequest, "compatibility" | "preflight">): Promise<{ record: unknown; applied: boolean; reason: string }> {
+    const preflight = await this.delegatedAdmission(projectId, `approval:${requestId}`, compatibility, true);
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/approvals/decision`, { method: "POST", body: { ...request, requestId, compatibility, preflight } });
+  }
+
+  async pendingDelegatedApprovals(projectId: string, turnId: string): Promise<unknown[]> {
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/delegated/approvals?turnId=${encodeURIComponent(turnId)}`, { method: "GET" });
+  }
+
+  async decideDelegatedApproval(projectId: string, requestId: string, compatibility: RuntimeCompatibilityIdentity, request: Omit<DelegatedApprovalDecisionRequest, "compatibility" | "preflight">): Promise<{ record: unknown; applied: boolean; reason: string }> {
+    const preflight = await this.delegatedAdmission(projectId, `approval:${requestId}`, compatibility);
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/delegated/approval-decision`, { method: "POST", body: { ...request, requestId, compatibility, preflight } });
+  }
+
+  async delegatedPreflight(projectId: string, operationId: string): Promise<DelegatedPreflight> {
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/delegated/preflight`, { method: "POST", body: { operationId } });
+  }
+
+  private async delegatedAdmission(projectId: string, operationId: string, compatibility: RuntimeCompatibilityIdentity, approvalOnly = false): Promise<DelegatedPreflight> {
+    compatibility = compatibility && typeof compatibility === "object" ? compatibility : {} as RuntimeCompatibilityIdentity;
+    const received = approvalOnly ? await this.requestJson<DelegatedPreflight>(`/v2/projects/${encodeURIComponent(projectId)}/approvals/preflight`, { method: "POST", body: { operationId } }) : await this.delegatedPreflight(projectId, operationId);
+    const preflight = received && typeof received === "object" ? received : {} as DelegatedPreflight;
+    if (!compatibility || typeof compatibility.compatibilityIdentity !== "string" || typeof compatibility.contractBasisSha256 !== "string" || preflight.projectId !== projectId || preflight.operationId !== operationId || !preflight.nonce || !preflight.daemonId
+      || !/^root-runtime-[1-9][0-9]*$/u.test(compatibility.compatibilityIdentity)
+      || !/^[0-9a-f]{64}$/u.test(compatibility.contractBasisSha256)
+      || preflight.compatibilityIdentity !== compatibility.compatibilityIdentity || preflight.contractBasisSha256 !== compatibility.contractBasisSha256) {
+      throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "Client compatibility admission rejected", 409, {
+        operation_id: operationId, project_id: projectId, daemon_identity: preflight.daemonId,
+        client_compatibility_identity: typeof compatibility.compatibilityIdentity === "string" ? compatibility.compatibilityIdentity.slice(0, 256) : null, daemon_compatibility_identity: typeof preflight.compatibilityIdentity === "string" ? preflight.compatibilityIdentity.slice(0, 256) : null,
+        client_contract_basis_sha256: typeof compatibility.contractBasisSha256 === "string" ? compatibility.contractBasisSha256.slice(0, 256) : null, daemon_contract_basis_sha256: typeof preflight.contractBasisSha256 === "string" ? preflight.contractBasisSha256.slice(0, 256) : null,
+        retryable: false, consequential_work_started: false, diagnostic: "Absent, malformed, unbound or unequal preflight declaration"
+      });
+    }
+    return preflight;
+  }
+
+  async grantDelegatedConsent(projectId: string, compatibility: RuntimeCompatibilityIdentity, request: { posture: "off" | "ask-per-destination" | "on"; approvedBy: string; explicitUserAct: boolean }): Promise<{ posture: string }> {
+    const preflight = await this.delegatedAdmission(projectId, "consent", compatibility);
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/delegated/consent`, { method: "POST", body: { ...request, compatibility, preflight } });
+  }
+
+  async runDelegatedTurn(projectId: string, compatibility: RuntimeCompatibilityIdentity, request: Omit<DelegatedTurnRequest, "compatibility" | "preflight">): Promise<DelegatedTurnResponse> {
+    const preflight = await this.delegatedAdmission(projectId, `turn:${request.turnId}`, compatibility);
+    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/delegated/turn`, { method: "POST", body: { ...request, compatibility, preflight } });
   }
 
   private async request(

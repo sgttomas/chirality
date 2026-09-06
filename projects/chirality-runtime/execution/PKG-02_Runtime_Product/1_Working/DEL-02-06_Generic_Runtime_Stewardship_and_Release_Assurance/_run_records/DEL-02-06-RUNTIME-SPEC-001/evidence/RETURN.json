@@ -1,0 +1,18 @@
+{
+  "verdict": "DESIGN_COMPLETE_NOT_EXECUTED",
+  "requirement_rows": 52,
+  "failure_conditions": 10,
+  "carrier_inputs": 6,
+  "rollback_cases": 7,
+  "structural_checks": "PASS",
+  "production_checks_executed": false,
+  "holds_released": 0,
+  "model": "OpenAI GPT-6",
+  "exact_serving_model_id": "unavailable",
+  "role": "Agent 2; instruction-asserted; not mechanically enforced",
+  "node": "N3",
+  "timestamp_utc": "2026-09-06T02:43:05.143899+00:00",
+  "read_basis": "CURRENT_BASIS.json; N0_ACCEPTANCE.md; READ_AMENDMENT.md; READ_AMENDMENT_V2.md; READ_AMENDMENT_V3.json and four exact technical audit pins",
+  "scope_of_work_sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+  "note": "Parent reported baseline is not converted to an N3 software execution result."
+}

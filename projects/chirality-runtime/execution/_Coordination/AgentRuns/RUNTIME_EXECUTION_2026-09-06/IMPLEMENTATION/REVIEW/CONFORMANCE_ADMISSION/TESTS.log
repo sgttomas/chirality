@@ -1,0 +1,61 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/runtime-conformance.test.ts (40 tests) 157ms
+ ❯ tests/codex-supervisor.test.ts (23 tests | 1 failed) 1005ms
+   ✓ Codex supervisor adapter without account/network use > drives actual JSONL child, genuine terminal and strict resumed thread selection 50ms
+   ✓ Codex supervisor adapter without account/network use > binds one immutable named profile on fresh, resumed and turn requests 98ms
+   ✓ Codex supervisor adapter without account/network use > checks exact effective native config before thread and turn (command network false) 94ms
+   ✓ Codex supervisor adapter without account/network use > checks exact effective native config before thread and turn (command network true) 89ms
+   ✓ Codex supervisor adapter without account/network use > does not convert a genuine terminal into success when an observed detached survivor remains 44ms
+   ✓ Codex supervisor adapter without account/network use > permits an observed clean closure while retaining the tracker's polling limitation 42ms
+   ✓ Codex supervisor adapter without account/network use > fails acquisition and closes the child when initial descendant observation is unavailable 2ms
+   ✓ Codex supervisor adapter without account/network use > cleans up a launched transport if native profile binding is malformed 1ms
+   × Codex supervisor adapter without account/network use > rejects production continuity policy mismatch before account or executable use 21ms
+     → expected [Function] to throw error including 'account binding is unavailable' but got 'Configured continuity policy digest d…'
+   ✓ Codex supervisor adapter without account/network use > cannot upgrade the controlled launcher into hosted boundary admission 1ms
+   ✓ Codex supervisor adapter without account/network use > preserves genuine fail terminal without a completion claim 43ms
+   ✓ Codex supervisor adapter without account/network use > preserves genuine interrupt terminal without a completion claim 45ms
+   ✓ Codex supervisor adapter without account/network use > never reports completion after crash 45ms
+   ✓ Codex supervisor adapter without account/network use > never reports completion after retry-error 149ms
+   ✓ Codex supervisor adapter without account/network use > never reports completion after hang 142ms
+   ✓ Codex supervisor adapter without account/network use > requires an actual account/read account before a turn even in the fixture 44ms
+   ✓ Codex supervisor adapter without account/network use > fences duplicate and stale generations and retires an active process 2ms
+   ✓ Codex supervisor adapter without account/network use > waits for an in-progress launch to be cleaned before closing 1ms
+   ✓ Codex supervisor adapter without account/network use > preserves the exact user prompt and adds only explicit selected-role labels 82ms
+   ✓ Codex supervisor adapter without account/network use > rejects raw text and unrecognized broker controls 1ms
+   ✓ Codex supervisor adapter without account/network use > checks account-file digest and symlink exclusion before any real executable launch 5ms
+   ✓ Codex supervisor adapter without account/network use > real adapter refuses unbound account and missing exact supply without launching 2ms
+   ✓ blocks production regular and manager admission without conformance before account reads or worker launch 1ms
+ ✓ tests/standalone.test.ts (11 tests) 10878ms
+   ✓ actual two-job standalone runtime > executes client consent and turn through two separate jobs and cleans SIGTERM sockets  1562ms
+   ✓ actual two-job standalone runtime > rotates credentials across supervisor jobs and starts the daemon with the new generation  2208ms
+   ✓ actual two-job standalone runtime > refuses a forged or nonprivate supervisor credential at daemon startup  2047ms
+   ✓ actual two-job standalone runtime > does not rotate a live supervisor credential when a duplicate job is refused  1362ms
+   ✓ actual two-job standalone runtime > does not implicitly register the configured project  1334ms
+   ✓ actual two-job standalone runtime > refuses a credential symlink before opening the daemon  1514ms
+   ✓ starts a real local-only daemon job without any Codex supervisor credential  745ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/codex-supervisor.test.ts > Codex supervisor adapter without account/network use > rejects production continuity policy mismatch before account or executable use
+AssertionError: expected [Function] to throw error including 'account binding is unavailable' but got 'Configured continuity policy digest d…'
+
+Expected: "account binding is unavailable"
+Received: "Configured continuity policy digest differs from the compiled native action policy"
+
+ ❯ tests/codex-supervisor.test.ts:126:7
+    124|       const correct = { ...declared, policyDigest: policy.policyDigest…
+    125|       const accountAbsent = new CodexSupervisor({ ...options, identity…
+    126|       await expect(accountAbsent.verifyHostedBoundary(correct)).reject…
+       |       ^
+    127|       const changedPosture = new CodexSupervisor({ ...options, identit…
+    128|       await expect(changedPosture.verifyHostedBoundary(correct)).rejec…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 73 passed (74)
+   Start at  23:28:15
+   Duration  12.77s (transform 463ms, setup 0ms, collect 2.07s, tests 12.04s, environment 0ms, prepare 197ms)

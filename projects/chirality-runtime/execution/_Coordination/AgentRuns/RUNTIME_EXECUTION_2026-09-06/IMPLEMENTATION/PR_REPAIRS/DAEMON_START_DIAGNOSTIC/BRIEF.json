@@ -1,0 +1,17 @@
+{
+  "authority": "Parent closeout regression repair grant; no supplier/canary streams",
+  "role": "OpenAI GPT-6 WORKING_ITEMS; exact serving ID unavailable, role not mechanically enforced",
+  "objective": "Preserve lifecycle-specific start rejection while retaining pending complete-shutdown guard",
+  "writeScope": [
+    "tests/daemon.test.ts",
+    "execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/PR_REPAIRS/DAEMON_START_DIAGNOSTIC"
+  ],
+  "finding": "Added stopPromise guard masks prior STOPPING diagnostic; state rejection itself is correct, not intermittent race",
+  "change": "Production code unchanged. Update the older incomplete-request test to the intentional pending full-shutdown rejection message. Existing STOPPING state, production grace timing, disconnect and metadata assertions remain unchanged. The attempted diagnostic-priority reorder was reverted before tests because it would contradict the newer full-drain test.",
+  "checks": [
+    "daemon incomplete request production-grace test",
+    "delegated daemon blocked restart until login drain test"
+  ],
+  "beforeSha256": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5",
+  "sourceUnchangedSha256": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5"
+}

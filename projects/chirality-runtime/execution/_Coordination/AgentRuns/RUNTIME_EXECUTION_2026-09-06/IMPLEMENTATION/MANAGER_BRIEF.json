@@ -1,0 +1,48 @@
+{
+  "role": "WORKING_ITEMS Agent 1",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "role_enforcement": "instruction-asserted; not mechanically enforced",
+  "package": "PKG-02_Runtime_Product",
+  "deliverables": [
+    "DEL-02-06",
+    "DEL-02-07",
+    "DEL-02-08",
+    "DEL-02-09",
+    "DEL-02-10",
+    "DEL-02-11",
+    "DEL-02-12"
+  ],
+  "parent": "/root HELP_HUMAN",
+  "plan": "PLAN_V2.md",
+  "plan_sha256": "04fea102c787cae87b931302ef5a6e3023f9fb0157af3215ca5c72cab6ab2d6e",
+  "delegation_class": "delegated-harness-native",
+  "children": [
+    {
+      "id": "/root/runtime_implementation_manager/supervisor",
+      "roles": [
+        "SUPERVISOR",
+        "JOBS",
+        "CODEX"
+      ],
+      "scope": "disjoint exact files under corresponding durable brief"
+    },
+    {
+      "id": "/root/runtime_implementation_manager/continuity",
+      "roles": [
+        "CONTINUITY",
+        "SUPPLY"
+      ],
+      "scope": "disjoint exact files under corresponding durable brief"
+    },
+    {
+      "id": "/root/runtime_implementation_manager/review",
+      "roles": [
+        "read-only fresh review"
+      ],
+      "scope": "REVIEW evidence only"
+    }
+  ],
+  "tool_authority": "User explicitly authorizes full available capabilities for children; no account/network/model calls implicitly authorized. Local Unix socket and fixture process tests executed using reviewed escalation.",
+  "measurements": "Native session exact token/context occupancy and original dispatch timestamps unavailable; no inferred measurements.",
+  "recorded_at": "2026-09-06T03:01:46.135982+00:00"
+}

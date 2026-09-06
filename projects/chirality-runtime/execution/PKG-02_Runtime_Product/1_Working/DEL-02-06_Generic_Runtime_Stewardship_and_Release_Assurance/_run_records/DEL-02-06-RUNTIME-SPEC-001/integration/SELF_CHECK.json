@@ -1,0 +1,18 @@
+{
+  "status": "PASS_INTEGRATION_NOT_IMPLEMENTATION",
+  "tbd_rows": 16,
+  "unique_tbd": 16,
+  "requirements": 52,
+  "unique_requirements": 52,
+  "failure_conditions": 10,
+  "carrier_fan_in": 6,
+  "held_bindings": 9,
+  "tier0_separate": 1,
+  "technical_audit_pins_verified": 4,
+  "production_tests_run_by_N4": 0,
+  "production_edits": 0,
+  "semantic_change": false,
+  "owner_acts_inferred": false,
+  "hold_releases": 0,
+  "finished_utc": "2026-09-06T02:47:02.402825+00:00"
+}

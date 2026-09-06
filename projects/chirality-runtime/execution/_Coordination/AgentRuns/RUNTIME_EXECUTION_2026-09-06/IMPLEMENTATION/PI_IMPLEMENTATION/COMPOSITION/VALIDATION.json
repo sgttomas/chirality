@@ -1,0 +1,9 @@
+{
+  "build": "PASS",
+  "command": "npx vitest run tests/pi-omlx-integration.test.ts tests/standalone.test.ts",
+  "testFiles": 2,
+  "tests": 16,
+  "result": "PASS",
+  "provider": "synthetic literal loopback only",
+  "productionAccountUsed": false
+}

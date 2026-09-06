@@ -1,0 +1,46 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/runtime-dependencies.test.ts (12 tests | 1 failed) 113ms
+   ✓ follows declared production transitives and present peers while excluding dev-only packages 18ms
+   × records optional absence and actual nested Node lookup precedence 10ms
+     → Deployed dependency inventory is unsafe, incomplete or exceeds bounds
+   ✓ permits only the exact known workspace link and rejects retargeting or external links 7ms
+   ✓ rejects package-file symlinks and absent required dependencies 6ms
+   ✓ permanently poisons a process generation on contents-restored-mtime 13ms
+   ✓ permanently poisons a process generation on replacement 12ms
+   ✓ permanently poisons a process generation on new-file 10ms
+   ✓ permanently poisons a process generation on new-optional 12ms
+   ✓ permanently poisons a process generation on resolution-parent 10ms
+   ✓ hash cache observes content mutation even when size and mtime are restored 4ms
+   ✓ rejects a package main that resolves outside its deployed package boundary 3ms
+   ✓ poisons when a workspace symlink is replaced even with the same target 7ms
+ ✓ tests/runtime-conformance.test.ts (44 tests) 38384ms
+   ✓ never admits self-asserted passing records when external status is unknown  8866ms
+   ✓ never admits self-asserted passing records when external status is revoked  3982ms
+   ✓ even a controlled accepted lookup cannot substitute fixture bytes for the real accepted supply  3861ms
+   ✓ rejects nonprivate/symlink records and stale actual source before acceptance lookup  11621ms
+   ✓ derives all first-party runtime package artifacts instead of accepting a caller-selected subset  2236ms
+   ✓ exposes the same non-resettable production capture across calls without claiming loaded-module proof  7716ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/runtime-dependencies.test.ts > records optional absence and actual nested Node lookup precedence
+RuntimeError: Deployed dependency inventory is unsafe, incomplete or exceeds bounds
+ ❯ denied packages/core/src/runtime-dependencies.ts:6:22
+      4| import { createHash } from "node:crypto";
+      5| import { RuntimeError } from "@chirality/runtime-contracts";
+      6| const denied = () => new RuntimeError("ENGINE_UNAVAILABLE", "Deployed …
+       |                      ^
+      7| const within = (root: string, path: string) => { const rel = relative(…
+      8| const packageName = (value: unknown): value is string => typeof value …
+ ❯ inventoryRuntimeDependencies packages/core/src/runtime-dependencies.ts:92:147
+ ❯ tests/runtime-dependencies.test.ts:35:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 55 passed (56)
+   Start at  23:46:51
+   Duration  38.71s (transform 129ms, setup 0ms, collect 241ms, tests 38.50s, environment 0ms, prepare 103ms)

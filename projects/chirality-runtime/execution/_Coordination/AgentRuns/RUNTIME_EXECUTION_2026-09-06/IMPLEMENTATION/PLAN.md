@@ -1,0 +1,27 @@
+# Runtime implementation tranche v1
+
+Status: PLAN_FROZEN; code dispatch awaits parent RELEASE and accepted specification fan-in.
+Manager: WORKING_ITEMS (Agent 1), OpenAI GPT-6; exact model ID unavailable; role not mechanically enforced, instruction-asserted native delegation.
+Package: PKG-02 Runtime Product; DEL-02-07..12 and DEL-02-06 compatibility integration.
+Authority: current user instruction to get runtime working before the next PR, parent bounded implementation brief; PR734 merged. This authorizes implementation preparation/execution on release, not hold disposition, operational activation or product acceptance.
+
+## Cohesive result
+Implement an opt-in delegated worker execution path under the existing daemon broker: explicit v2 admission, root/account/policy consent continuity, authenticated private supervisor control, fenced worker lifecycle and durable exactly-once retirement terminal records. Preserve existing v1 client routes, engine interface and tests. Unsupported provider capabilities fail explicitly; controlled worker conformance is not hosted Codex proof.
+
+## Reads and acceptance basis
+Read Runtime package/tests, all seven ScopeOfWork contracts, accepted runtime decomposition/ownership and parent specification outputs. Read Root R15/R16/G0 A3/A4/A7 and exact 0.149.0 G2 recorded method/config matrix only as historical accepted evidence. R15 expressly accepts schema/type unavailability; do not invent a complete vendor protocol. No outside state writes or account use.
+
+## Work graph and exact ownership
+1. CONTRACTS manager integration: additive packages/contracts/src/delegated.ts and index.ts export. Define consent identity, authenticated generation-bound supervisor operations, retirement/restart records and explicit v2 admission/failure vocabulary. Existing v1 remains supported.
+2. SUPERVISOR Agent 2: packages/core/src/process-supervisor.ts; packages/daemon/src/supervisor-server.ts; tests/supervisor.test.ts. Unix-only private directory0700/socket0600, per-request token and owner/generation validation, stale recovery/token invalidation, acquire/inventory/reconnect/retire, bounded child shutdown. No renderer/CLI API and no arbitrary shell/RPC passthrough.
+3. CONTINUITY Agent 2: packages/core/src/hosted-consent.ts; packages/core/src/worker-retirement.ts; tests/hosted-consent.test.ts; tests/worker-retirement.test.ts. Root-private explicit CODEX_HOME, default deny, ask destination prompt with grouping caveat and explicit acceptForSession, labelled network-on. Durable prepared/committed/reconciliation-required journal; idempotent terminal event keys; restart only by matching root/account/epoch/policy/cwd, else fresh. No replay/in-flight reattachment.
+4. INTEGRATION manager: packages/core/src/delegated-runtime.ts, core index exports, daemon index exports, tests/delegated-runtime.test.ts, tests/fixtures/delegated-worker.mjs. Connect admission→consent→worker generation→turn terminal→retirement/recovery through actual private socket. Explicit missing-provider/supply/consent reasons. Bounded controlled process executes fixture work and exits/crashes; no simulated claim of actual vendor execution.
+5. REVIEW fresh read-only Agent 2: examine security invariants, crash interleavings, v1 regression and checks. Repairs remain owner-local then repeat relevant checks.
+
+Concurrent nodes2/3 depend on frozen contracts. Node4 integrates after their validated returns; no shared writes. Manager owns software-workflow.json (new) and IMPLEMENTATION evidence. Additional exact paths require recorded parent amendment before writing. No package dependencies needed. No Root/frontend/sibling/operational registries/status/hold changes.
+
+## Registered checks
+Project-local software-workflow.json schema chirality-software-workflow/v1: project_root and workspace_root '.', checks typecheck=[npm,run,typecheck], unit=[npm,test] cwd '.', always both, packages/** and tests/** map to both. All test scratch remains isolated temporary directories; local Unix sockets and controlled child processes only. Existing baseline79 tests must remain passing. New meaningful checks include invalid owner/token/stale generation, cross identity consent rejection, unknown operations/oversize frames, crash retirement retry, terminal deduplication, persisted restart continuity, admission failure before worker launch, and end-to-end controlled worker turn. Parent runs broader affected repository checks.
+
+## Rollback and limits
+Code rollback is revert this run's isolated exact changed files; no external accounts, installed launch jobs or production sockets touched. Tests kill fixture children and remove temporary sockets in finally. Persistent journal crash tests operate only in disposable roots. Source identity remains accepted compatibility identity until separate owner action. No compatibility-hold lift, live hosted conformance or shared release claim. True vendor integration needs exact known method coverage and provider-safe evidence; unsupported methods stay unavailable, never guessed. Return explicit residuals, not completion of all seven deliverables.

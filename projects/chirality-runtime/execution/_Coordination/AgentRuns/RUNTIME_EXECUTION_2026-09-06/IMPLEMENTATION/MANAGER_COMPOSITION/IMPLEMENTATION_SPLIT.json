@@ -1,0 +1,51 @@
+{
+  "authority": "IMPLEMENTATION_AMENDMENT_10.json",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "roleEnforcement": "instruction-asserted; not mechanically enforced",
+  "additionalHelperPath": "packages/daemon/src/codex-launch.ts",
+  "helperPurpose": "Extract existing trusted exact-supply/account/native-policy/observed-process launch once; used only by purpose-limited supervisor owned regular/manager workers. No raw daemon/client execution bypass.",
+  "ownership": {
+    "managed_core": [
+      "packages/core/src/agent1-run-coordinator.ts",
+      "tests/agent1-run-coordinator.test.ts"
+    ],
+    "manager_port": [
+      "packages/daemon/src/codex-manager.ts",
+      "packages/daemon/src/codex-launch.ts",
+      "packages/daemon/src/codex-supervisor.ts",
+      "packages/daemon/src/supervisor-server.ts",
+      "tests/codex-manager.test.ts",
+      "tests/codex-supervisor.test.ts",
+      "tests/supervisor.test.ts"
+    ],
+    "supervisor_actor": [
+      "packages/daemon/src/codex-session.ts",
+      "tests/codex-session.test.ts"
+    ],
+    "continuity_composition": [
+      "packages/daemon/src/standalone.ts",
+      "tests/standalone.test.ts",
+      "tests/manager-pi-integration.test.ts"
+    ],
+    "approval_store_pi": [
+      "packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "packages/engine-pi-omlx/src/pi-read-tool.ts",
+      "packages/engine-pi-omlx/src/pi-event-mapper.ts",
+      "tests/pi-turn-runtime.test.ts"
+    ]
+  },
+  "checks": [
+    "real coordinator creates child and boundread receipt",
+    "actual SDK synthetic provider",
+    "controlled exact protocol callback and private channel",
+    "unknown requests/duplicates/latecallbacks/scope/cancellation rejected",
+    "build and registered tests"
+  ],
+  "baselinePins": {
+    "packages/core/src/agent1-run-coordinator.ts": "d0e8483df38d837a52c371b1a150a766046de44d17f0da66e5fd34c1415d27e7",
+    "tests/agent1-run-coordinator.test.ts": null,
+    "packages/daemon/src/codex-supervisor.ts": "19acdfab77a5ffb7baf3cf6cc97e78272988a04b9de7172f7ad12d95a18e6793",
+    "packages/daemon/src/supervisor-server.ts": "4a13a7b3c77ff92e6cc0c6a35c64968cdb82b66fef797f993320935152454326",
+    "packages/daemon/src/codex-session.ts": "e5ce650a207a139d941de8199a52f7441d5466a406c7ef4211224f1a656b6a33"
+  }
+}

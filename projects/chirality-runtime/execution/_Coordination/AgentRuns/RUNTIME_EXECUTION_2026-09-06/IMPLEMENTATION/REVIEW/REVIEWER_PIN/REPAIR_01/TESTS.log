@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/REVIEWER_PIN/REPAIR_01/resume-reviewer-repro.test.ts (1 test) 50ms
+ ✓ tests/codex-supervisor.test.ts (23 tests) 1113ms
+ ✓ tests/codex-session.test.ts (44 tests) 4428ms
+   ✓ persistent known-method Codex actor (controlled provider) > rejects merged grants, missing denies, network changes and host-side overrides on readback  520ms
+
+ Test Files  3 passed (3)
+      Tests  68 passed (68)
+   Start at  00:19:30
+   Duration  5.04s (transform 391ms, setup 0ms, collect 838ms, tests 5.59s, environment 0ms, prepare 191ms)

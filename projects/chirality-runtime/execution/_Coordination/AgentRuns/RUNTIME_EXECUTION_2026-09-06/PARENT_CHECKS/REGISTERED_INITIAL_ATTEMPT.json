@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "tools/software_workflow/run_registered_checks.py",
+    "projects/chirality-runtime/software-workflow.json",
+    "--output",
+    "/private/tmp/runtime-execution-20260906/parent-checks/registered.json",
+    "--timeout-seconds",
+    "180"
+  ],
+  "exit_code": 1,
+  "failure": "Output path was outside profile workspace; output.relative_to(workspace_root) raised ValueError after registered execution. No report was published.",
+  "claims": "No parent registered PASS claimed from this attempt. Correct rerun will target declared Runtime run PARENT_CHECKS output after final code changes.",
+  "code_fix": "None required; use supported project-local report destination."
+}

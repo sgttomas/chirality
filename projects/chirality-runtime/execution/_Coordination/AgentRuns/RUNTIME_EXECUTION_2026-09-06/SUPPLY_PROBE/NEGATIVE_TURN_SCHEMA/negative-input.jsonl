@@ -1,0 +1,3 @@
+{"method": "initialize", "id": 1, "params": {"clientInfo": {"name": "chirality_runtime_offline_probe", "version": "0.0.0"}, "capabilities": {"experimentalApi": true}}}
+{"method": "initialized"}
+{"method": "turn/start", "id": 7, "params": {"threadId": "b7397d51-2bce-4783-b91a-53bc23dca6ad", "input": [{"type": "text", "text": "Offline nonexistent-thread request shape probe."}]}}

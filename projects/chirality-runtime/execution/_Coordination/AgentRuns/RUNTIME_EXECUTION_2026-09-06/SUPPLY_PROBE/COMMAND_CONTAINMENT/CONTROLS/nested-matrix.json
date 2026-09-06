@@ -1,0 +1,62 @@
+[
+  {
+    "variant": "original",
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-original.sb",
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+      "/usr/bin/true"
+    ],
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "without_keychain_deny",
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-without_keychain_deny.sb",
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+      "/usr/bin/true"
+    ],
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "without_home_read_deny",
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-without_home_read_deny.sb",
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+      "/usr/bin/true"
+    ],
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "without_write_deny",
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-without_write_deny.sb",
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+      "/usr/bin/true"
+    ],
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  }
+]

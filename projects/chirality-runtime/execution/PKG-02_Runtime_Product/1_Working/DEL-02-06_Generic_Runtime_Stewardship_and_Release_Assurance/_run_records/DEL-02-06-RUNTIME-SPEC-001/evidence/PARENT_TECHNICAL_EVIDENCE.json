@@ -1,0 +1,27 @@
+{
+  "source": "READ_AMENDMENT_V3.json; exact manager-authorized N3 read",
+  "pins": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/REPORT.md",
+      "sha256": "fe2d28387ef684fd442941f5b8ca4964548228e74921578b3f89d6dc0d31b0d0",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/SOURCE_INVENTORY.json",
+      "sha256": "f1a25e912b91c558b448e228416d3d7b458fd1317da91d5e9507769253bd22fa",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/CHECKS.json",
+      "sha256": "a04436e4cca8070f46a98bb7d5be3bf90997df9a5c9173d0229c8b9046539fdd",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/TECHNICAL_AUDIT/ARTIFACTS.sha256",
+      "sha256": "cb0972d9d6b59728ddf61554d8471726ed74b8b511a42ffbd61d61351515c48a",
+      "match": true
+    }
+  ],
+  "attribution": "Parent-accepted independent technical audit; not executed by N3",
+  "design_implication": "Working inherited v1, missing Codex v2 supervisor/consent/retirement/composition; implement isolated actual state machines and transport then requirement-specific checks. Additional generator wrapper remains an artifact scope decision, not silent substitution."
+}

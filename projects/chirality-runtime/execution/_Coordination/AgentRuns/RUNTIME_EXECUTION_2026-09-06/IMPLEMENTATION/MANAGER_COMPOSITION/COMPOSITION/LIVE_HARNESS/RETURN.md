@@ -1,0 +1,9 @@
+# AMENDMENT11 managed harness return
+
+OpenAI GPT-6; exact serving model ID unavailable. Agent2 instruction-asserted, not mechanically enforced. No delegation, user credential use or live model execution by this child.
+
+All five original controlled Pi composition checks remain: SDK tool-loop/SSE, interruption, resident-only startup/no supervisor, strict private config/credentials/aliases, and memory-only credential injection. Their old SessionStore child seeds are replaced with actual authenticated runAgent1 entry, real coordinator parent/child creation, executable bound read, and controlled manager review. Four additional manager tests retain durable parentage/approval/receipt assertions, missing-review failure, fake-read failure and cancellation.
+
+Parent-only live invocation: set CHIRALITY_RUN_LIVE_OMLX=1, CHIRALITY_OMLX_API_KEY in process memory, CHIRALITY_OMLX_EVIDENCE_DIR to an absolute private output directory; run `npx vitest run tests/pi-omlx-integration.test.ts -t 'live local Pi managed integration'` from the Runtime workspace. Exact Qwen3.6-35B-A3B-8bit remains resident on literal127.0.0.1:8000/v1. No load/unload/fallback. Synthetic temporary project file is read through actual bound callback; no production session seeds. Output PI_LIVE_MANAGED_INTEGRATION.json includes safe flags/status and allowlisted diagnostics; raw events/provider payloads/errors/headers/secrets are not persisted. Evidence distinguishes actual Pi provider from controlled manager and does not claim hosted manager provider execution or TM106 disposition.
+
+Validation: npm run build PASS. tests/pi-omlx-integration.test.ts + tests/manager-pi-integration.test.ts PASS:9 controlled tests;1 live test SKIPPED. No cases removed. Production composition remained frozen. Prior historical seals unchanged.

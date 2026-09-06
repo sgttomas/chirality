@@ -1,0 +1,12 @@
+{
+  "focused": {
+    "command": "npx vitest run tests/supervisor.test.ts",
+    "passed": 10,
+    "exit_code": 0,
+    "actual_unix_sockets_and_children": true
+  },
+  "typecheck": {
+    "first_exit_code": 0,
+    "latest": "manager-owned error-code integration pending"
+  }
+}

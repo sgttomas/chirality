@@ -1,0 +1,1 @@
+Negative off/deny now requires actual shell STARTED + FINISHED marker and parsed nonzero curl status; positive requires status zero. Loader/shell abort134 cannot pass. Cancellation remains real prompt+retirement+zero destination hits. Safe shell exit/output size/status diagnostics retained. Explicit fixture typecheck and two offline tests PASS. No vendor/network invocation.

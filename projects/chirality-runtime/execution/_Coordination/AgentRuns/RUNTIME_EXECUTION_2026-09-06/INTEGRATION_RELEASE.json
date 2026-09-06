@@ -1,0 +1,9 @@
+{
+  "authority": "OWNER_DIRECTION.md",
+  "release": "PLAN_V2_INTEGRATION_AND_AMENDMENT_1",
+  "prerequisite": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/N5_REVIEW.md",
+  "sha256": "f0514510fe4f83ce7115159c4967035adcb3c6e2c1db7efecfd896bb46cceb28",
+  "verdict": "FreshN5ADMIT accepted by specmanager; finalN6packaging pending, no semanticblocker.",
+  "constraints": "Everynewv2consequentialpath gated; no legacyv1bypass; legacyv1notnewcontractconformant or cutover; controlledworkerevidence not providerproof. Code/checks continue withinexactpaths.",
+  "parent": "/root HELP_HUMAN"
+}

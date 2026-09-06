@@ -1,0 +1,30 @@
+[
+  {
+    "node": "N0",
+    "task": "/root/runtime_spec_execution/n0_basis"
+  },
+  {
+    "node": "N1",
+    "task": "/root/runtime_spec_execution/n1_inventory"
+  },
+  {
+    "node": "N2",
+    "task": "/root/runtime_spec_execution/n2_clients"
+  },
+  {
+    "node": "N3",
+    "task": "/root/runtime_spec_execution/n3_evidence"
+  },
+  {
+    "node": "N4",
+    "task": "/root/runtime_spec_execution/n4_integration"
+  },
+  {
+    "node": "N5",
+    "task": "/root/runtime_spec_execution/n5_review"
+  },
+  {
+    "node": "N6",
+    "task": "/root/runtime_spec_execution/n6_handoff"
+  }
+]

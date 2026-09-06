@@ -1,0 +1,5 @@
+{
+  "packages/daemon/src/codex-containment.ts": "b00888738db29e811bb862ec51838e31512d50b01ec7ac0ebeb71c22c51ec1ab",
+  "tests/codex-immutable-file.test.ts": "d028bb230a9ab2fa1ff4f4fe7dd045374e60303b27465d34e966fbefb43dc0cd",
+  "tests/codex-containment.test.ts": "0e2c10a27c26686582450b84a58ffd3fe40f823b4d9d09c78490b7ab1885f22d"
+}

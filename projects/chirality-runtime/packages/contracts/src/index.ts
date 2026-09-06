@@ -5,3 +5,5 @@ export * from "./project.js";
 export * from "./protocol.js";
 export * from "./residency.js";
 export * from "./session.js";
+export * from "./delegated.js";
+export * from "./v2-events.js";

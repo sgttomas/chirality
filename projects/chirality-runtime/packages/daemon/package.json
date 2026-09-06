@@ -10,9 +10,15 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@chirality/runtime-contracts": "*",
-    "@chirality/runtime-core": "*"
+    "@chirality/runtime-core": "*",
+    "@chirality/engine-pi-omlx": "*"
+  },
+  "bin": {
+    "chirality-runtime-service": "dist/standalone-bin.js"
   }
 }

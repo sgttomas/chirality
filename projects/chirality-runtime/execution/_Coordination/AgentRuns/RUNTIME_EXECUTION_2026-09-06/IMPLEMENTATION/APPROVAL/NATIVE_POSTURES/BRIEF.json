@@ -1,0 +1,21 @@
+{
+  "objective": "Compile all accepted postures through exact-source native proxy settings, without kernel conformance claim",
+  "owner": "WORKING_ITEMS manager OpenAI GPT-6 serving ID unavailable; role instruction-asserted",
+  "basis": "IMPLEMENTATION_AMENDMENT_11.json; accepted DEL09 REQ004/005, DEL10 OUT005; supplier commit758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "files": [
+    "packages/daemon/src/codex-containment.ts",
+    "packages/daemon/src/standalone.ts",
+    "tests/codex-containment.test.ts"
+  ],
+  "preimages": {
+    "packages/daemon/src/codex-containment.ts": "c80ba486d509533f702994a38612fbd7bd1e34090952279868c95bc8aed04347",
+    "packages/daemon/src/standalone.ts": "89d4b16af9b98815c5eded18fb4c982fe8a788fc348ac63a18a3f1a4f12e2dda",
+    "tests/codex-containment.test.ts": "d97697f90883a0df215c0518c398611af481dd495785043d625dba71842b9f7a"
+  },
+  "checks": [
+    "TypeScript build",
+    "focused native compiler controlled tests",
+    "parent exact config/model conformance remains separate"
+  ],
+  "rollback": "Restore only this named manager delta from preserved preimages, never overwrite concurrent actor or supervisor work"
+}

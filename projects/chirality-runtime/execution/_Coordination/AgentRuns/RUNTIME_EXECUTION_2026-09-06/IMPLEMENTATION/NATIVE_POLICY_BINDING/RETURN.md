@@ -1,0 +1,9 @@
+# Immutable native named policy binding
+
+CodexTurnSession constructor accepts permissionProfile and policyDigest only as a complete trusted pair: bounded identifier plus lowercase SHA256. The actor copies the strings into a frozen binding and exposes it read-only through policyBinding(). Caller mutation of the original options cannot change it. thread/start, thread/resume and turn/start all send permissionProfile from this binding. Named mode omits legacy sandbox entirely; digest remains local continuity metadata, never an invented vendor field. Per-operation profile/digest/permissions/sandbox/sandboxPolicy/approvalPolicy overrides reject. Legacy unbound mode remains for controlled fixtures; actual supervisor enforcement belongs to the integrating manager.
+
+Validation:14 actual session tests PASS (699ms), including a controlled child that exits if any of the three operations omits/changes its named profile, sends legacy sandbox or sends an invented digest field. Constructor mutation, public override attempts and incomplete/malformed binding pairs covered. Current whole-workspace typecheck reports only concurrent manager-owned standalone.ts138 protectedPaths vs CodexSupervisorOptions integration; no actor diagnostics. Parent notified to rerun after integration.
+
+Calibration: exact0.149 COMMAND_CONTAINMENT control proves permissionProfile string parser support for command/exec, with unsuccessful command execution; thread/turn binding implemented under parent direction is not actual provider enforcement evidence. No readOnlyAccess field, provider invocation, account or network was used. No hosted containment/hold acceptance claim. Prior source/test bytes and seals preserved; current hashes beside this return.
+
+OpenAI GPT-6, serving model ID unavailable; bounded Agent2 role instruction-asserted/not mechanically enforced, no delegation.

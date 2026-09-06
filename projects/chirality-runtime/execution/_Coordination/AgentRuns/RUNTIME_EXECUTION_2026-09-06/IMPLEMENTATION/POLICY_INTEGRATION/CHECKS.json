@@ -1,0 +1,10 @@
+{
+  "focused_tests": {
+    "count": 22,
+    "exit_code": 0,
+    "mode": "approved local socket/process execution, controlled fixtures; no external account"
+  },
+  "typecheck_exit_code": 0,
+  "initial_sandbox_check": "EPERM local Unix socket binding, not product failure",
+  "interrupt_iteration": "First interrupt test exposed duplicate retire in finally; shared exact-generation retirement promise fixed; final test passes."
+}

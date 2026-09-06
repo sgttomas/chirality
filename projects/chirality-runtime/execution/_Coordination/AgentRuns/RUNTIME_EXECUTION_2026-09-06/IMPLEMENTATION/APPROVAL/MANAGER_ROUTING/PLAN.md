@@ -1,0 +1,51 @@
+# Manager approval routing — exact implementation plan
+
+Author: OpenAI GPT-6; exact serving model ID unavailable. Ephemeral Agent 2 is instruction-asserted and not mechanically enforced. Parent released Amendment 11 assessment and planning only at this step. No product edits, account calls, supplier execution, or vendor traffic. This is ordinary implementation work under the already accepted three-posture requirement, not a new owner semantic choice.
+
+## Verified reachable gap
+
+standalone.ts local-engine-only builds a CodexAgent1ManagerPort beside the Pi runtime and GovernedAgent1RunCoordinator, then constructs RuntimeDaemon without DelegatedRuntime. codex-manager.ts execute acquires a real private manager worker, holds its actual generation, and polls manager-next until callbacks/completion. It never registers that worker with the existing approval store/broker. runtime-daemon.ts currently requires options.delegated before handling its approval endpoints. Consequently the actor can have an ask prompt pending while no authenticated public route can list or decide it. Source-attested proxy/ask configuration and a private reply method do not close this user-facing gap.
+
+The existing local manager config has only pinned supervisor socket/credential digest/model. It does not carry canonical hosted account/epoch/policy, compatibility basis, or a consent-store binding. These must come from trusted supervisor configuration, not manager text, model output, client-supplied identity, or a guessed CODEX_HOME location.
+
+## Recommended minimal implementation
+
+1. Extract the existing live approval registry/reconciliation/decision-forwarding machinery from DelegatedRuntime into one core RuntimeApprovalBroker (new approval-broker.ts). Keep ApprovalStore as the sole durable request/decision/resolution implementation and reuse it for both delegated primary turns and managed Agent 1 workers. Do not duplicate user-consent semantics. The broker receives a trusted context registration containing projectId, public scopeId, Runtime sessionId, exact WorkerContinuity, actual WorkerHandle, supervisor approval port, compatibility basis, consent port, and scope digest. Registration returns an idempotent release/drain capability. Only trusted composition code receives registration; no public route or manager dynamic tool can call it.
+
+2. Add one bounded authenticated private supervisor approval-description operation. Its safe response derives from the existing immutable supervisor configuration and current consent store: canonical root/account/epoch/policy, configured posture, exact model, compatibility basis, and attributed standing consent (or absent). It contains no credential, auth file content, CODEX_HOME path, private token, account service response, or private process control. The private server already has the accepted standalone project compatibility basis; pass it explicitly to this operation from startSupervisorServer construction. A separate generation-bound read verifies actual worker identity for live registration and each approval check. Supervisor still performs conformance/account/consent validation before acquisition and decision delivery. Description does not bypass admission.
+
+3. In local standalone manager composition, use that safe private description to verify configured canonicalRoot/model and compatibility, construct the external daemon-owned ApprovalStore under runtimeDirectory/approvals, and supply a read-only HostedEngineConsentPort shim that re-reads the exact supervisor consent state and rejects identity drift. Its grant/authorizeDestination mutation methods reject; this bridge cannot manufacture standing consent or change posture. Existing separately authorized root consent controls remain the authority. If no valid standing ask consent exists, the manager acquisition remains fail closed exactly as today.
+
+4. CodexAgent1ManagerPort registers the actual worker immediately after startManager returns its handle, before entering manager-next. Bind the public manager Runtime sessionId to that one worker+generation and a digest of the accepted request, role=agent1, exact model/root, and loaded instruction bytes. This digest supplements the outer policy/account binding, preventing scope changes from carrying an old grant. Registration can query its live actor prompt snapshot even while manager-next awaits or a governed child callback runs. Finally/release cancels pending local approval contexts and drains the poll before worker retirement completes; interrupt never leaves a live decision capability. The manager's delegate_agent/review tool set remains unchanged and has no self-approval hook.
+
+5. Add RuntimeDaemonOptions.approvals as a narrow approval-control port: assertProjectRoot, preflight, pendingApprovals, decideApproval, capabilities, lifecycle start/close. Existing delegated routes call the same generic port for approval operations when present and preserve compatibility. Add canonical aliases under /v2/projects/:projectId/approvals for list/preflight/decision; they require the same sessions:write project authorization, canonical registration check, daemon-generation nonce, exact operation ID, explicitUserAct, approvedBy, and current live scope binding. The generic port does not expose acquire, retire, supervisor credentials, consent mutation, or ordinary delegated turns. Local-only daemon cannot acquire a new arbitrary Codex turn through the approval service.
+
+6. Add client pendingRuntimeApprovals(projectId, scopeId?) and decideRuntimeApproval(projectId, requestId, compatibility, decisionInput), retaining existing delegated methods as compatible wrappers. Project-wide listing is permitted for this already authorized project and returns opaque Runtime request IDs, public manager session/scope identity, host/protocol, choices, attribution, and the queued-destination caveat. This removes any requirement for the user to know private worker IDs. Decisions are resolved from the stored request to the exact live registry entry; public fields cannot retarget a private callback. Expose the same generic methods in the CLI approvals/decide-approval flow so an operator can act while the manager's run stream remains active. No UI invention is needed to make the client/CLI route reachable.
+
+## Concrete API sketch
+
+RuntimeApprovalControlPort: assertProjectRoot(projectId,canonicalRoot); preflight(projectId,operationId); pendingApprovals(projectId,scopeId?); decideApproval(projectId,requestId,request); capabilities(projectId); startGeneration(daemonId); close().
+
+RuntimeApprovalBroker.register({projectId,scopeId,sessionId,identity,worker,scopeDigest,supervisor,compatibility,consent}): Promise<release>. scopeId is the opaque Runtime manager session ID, not the private worker ID or provider turn ID. Existing delegated turns use their existing Runtime turn ID. Each registry entry retains actual workerId/generation and actor callback thread/turn identity privately.
+
+SupervisorApprovalDescriptionPort.describeApprovalScope(workerId?,generation?): Promise<{identity,model,compatibility,commandNetworkPosture,consent?}>. With a worker it validates exact generation; without a worker it describes immutable configured scope for startup verification only. No public router exposes this method. A read-only consent shim repeats identity equality before returning the current record.
+
+ApprovalBinding adds an optional scopeDigest for managed contexts; equality, immutable record projection and isLive include it. Existing delegated binding semantics remain unchanged when absent. This extension is contract data, never independent approval authority.
+
+## Proposed exact ownership split
+
+Core broker owner: new packages/core/src/approval-broker.ts; packages/core/src/delegated-runtime.ts (extract/delegate existing approval logic); packages/core/src/approval-store.ts (scope digest binding only); packages/core/src/index.ts; packages/contracts/src/delegated.ts and index if necessary; tests/approval-store.test.ts; new tests/approval-broker.test.ts.
+
+Manager composition owner: packages/daemon/src/codex-manager.ts; codex-supervisor.ts (trusted description); supervisor-server.ts (private method); standalone.ts (safe description + shared broker); tests/codex-manager.test.ts and tests/codex-supervisor.test.ts; new manager approval integration fixture. Coordinate supervisor and standalone with continuity before edits.
+
+Public surface owner: packages/daemon/src/runtime-daemon.ts; packages/client/src/client.ts; packages/cli/src/* exact existing approval dispatch file and its tests; tests/delegated-runtime.test.ts; tests/daemon.test.ts as appropriate. No core agent1-run-coordinator.ts edit is required: its existing managerSession and accepted request already reach execute; no role/pipeline/coordinator authority change is needed.
+
+Do not touch codex-session.ts unless integration identifies a real new actor defect; the recent feature/write-callback seal remains a consumed tested dependency. Do not edit Pi code or broaden local Agent 2 pilot policy.
+
+## Acceptance
+
+Use actual controlled Codex manager actor with a pending network prompt, not a fabricated broker request. Drive client/CLI-compatible authenticated list and explicit user decision through the shared durable store, HMAC supervisor capability, and awaited actor write callback. Then continue the same real manager run through its governed child/review flow or a controlled manager completion. Prove all three choices, no manager self-approval, no public request mint, cancellation/retirement cleanup, absent/changed consent and account/scope drift rejection, wrong project/generation rejection, and no arbitrary turn endpoint in local-only composition. Re-run existing 118+ actor/store/delegated/private supervisor regressions, manager composition tests, and Runtime typecheck after fan-in. Keep source-guided/controlled evidence distinct from still-unavailable exact-supplier G-APPR/containment proof.
+
+## Handoff
+
+Assessment complete; no product ownership taken yet. Parent should assign the disjoint implementation files above and release the concrete brief. The recommended next step is ordinary implementation, not an owner decision or an acceptance/hold change.

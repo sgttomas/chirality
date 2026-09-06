@@ -1,0 +1,7 @@
+{
+  "packages/daemon/src/codex-supervisor.ts": "6c96b27a66c469bbbdd00d4f31a9db73a35d20e6040aa331826f23e93083ec0f",
+  "tests/codex-supervisor.test.ts": "ea50f8d527d05872124c4293d1cb18f52c2849b79e7b172219b1e996f032af2f",
+  "packages/daemon/src/standalone.ts": "69d99cf35366c779c75150a6e4df50099d51df199325d25bdb832d70b5ea1530",
+  "packages/daemon/src/standalone-bin.ts": "cfc3e93a22675c0847b2037a9eab3d594d2fab5ea4d06eaaa5d4afb0402f404c",
+  "tests/standalone.test.ts": "5b28dd9a2c49d0ff961b707de76fefb3fe68c678a517d849cc43c56bfec3b88a"
+}

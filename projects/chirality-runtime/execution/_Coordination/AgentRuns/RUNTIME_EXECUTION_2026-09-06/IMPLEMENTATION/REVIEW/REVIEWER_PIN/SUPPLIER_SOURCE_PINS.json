@@ -1,0 +1,21 @@
+{
+  "head": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "files": {
+    "app-server/src/request_processors/thread_processor.rs": {
+      "sha256": "49269190a4962d74e51678774c07b2e06bb19e54806f7fecf0cc1ef2250fa8d4",
+      "stored": "app-server__src__request_processors__thread_processor.rs.gz"
+    },
+    "app-server/src/request_processors/persisted_resume_settings.rs": {
+      "sha256": "ec2eee078808c44f56b34485d357b5531c5bc5231f7df07bf30dd8e2e8751934",
+      "stored": "app-server__src__request_processors__persisted_resume_settings.rs.gz"
+    },
+    "app-server/src/config_manager.rs": {
+      "sha256": "57fc7575af0683596e7b7ec567c4556f645264261813b70491fd9f7ab46e4e53",
+      "stored": "app-server__src__config_manager.rs.gz"
+    },
+    "core/src/config/mod.rs": {
+      "sha256": "a463ef6733b46a016c5ba0f9735f16d7d113d9057987cb0aeb22faf5f3225044",
+      "stored": "core__src__config__mod.rs.gz"
+    }
+  }
+}

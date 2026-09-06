@@ -1,0 +1,114 @@
+[
+  {
+    "variant": "network",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "network",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-network.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "write",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "write",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-write.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "home",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "home",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-home.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "keychain",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "keychain",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-keychain.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "network-write",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "network-write",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-network-write.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "network-home",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "network-home",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-network-home.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "network-keychain",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "network-keychain",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-network-keychain.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "variant": "network-write-home-keychain",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+    "exit_code": 71,
+    "stdout": "",
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"
+  },
+  {
+    "variant": "network-write-home-keychain",
+    "inner": "/private/tmp/runtime-execution-20260906/supply/matrix2-network-write-home-keychain.sb",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

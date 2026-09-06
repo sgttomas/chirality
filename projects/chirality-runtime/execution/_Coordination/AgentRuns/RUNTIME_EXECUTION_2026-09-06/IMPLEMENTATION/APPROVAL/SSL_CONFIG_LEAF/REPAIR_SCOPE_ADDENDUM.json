@@ -1,0 +1,15 @@
+{
+  "authority": "Implementation Amendment 11; bounded repair of independent S1 finding",
+  "role": "WORKING_ITEMS manager; OpenAI GPT-6, exact serving model ID unavailable; role not mechanically enforced",
+  "scope": [
+    "packages/daemon/src/codex-containment.ts",
+    "tests/codex-immutable-file.test.ts"
+  ],
+  "change": "Validate immutable leaf initial, opened-fd and final pathname identity/ownership/mode; bounded size+1 read rejects growth; no additional read grants. New focused test path records fd owner/mode and pathname replacement regressions.",
+  "checks": "Independent REPAIR_01: five focused tests pass; no reviewed source drift.",
+  "limitation": "Observed metadata/content integrity, not atomic future-launch immutability",
+  "pins": {
+    "packages/daemon/src/codex-containment.ts": "b00888738db29e811bb862ec51838e31512d50b01ec7ac0ebeb71c22c51ec1ab",
+    "tests/codex-immutable-file.test.ts": "d028bb230a9ab2fa1ff4f4fe7dd045374e60303b27465d34e966fbefb43dc0cd"
+  }
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+      "/usr/bin/true"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/private/tmp/runtime-execution-20260906/supply/nested-control.sb",
+      "/usr/bin/true"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

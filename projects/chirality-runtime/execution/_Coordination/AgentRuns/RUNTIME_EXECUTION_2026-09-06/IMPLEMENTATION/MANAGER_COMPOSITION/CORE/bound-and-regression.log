@@ -1,0 +1,14 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/agent1-run-coordinator.test.ts tests/agent1-run.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/agent1-run-coordinator.test.ts (19 tests) 30ms
+ ✓ tests/agent1-run.test.ts (9 tests) 596ms
+
+ Test Files  2 passed (2)
+      Tests  28 passed (28)
+   Start at  22:40:09
+   Duration  843ms (transform 119ms, setup 0ms, collect 210ms, tests 626ms, environment 0ms, prepare 42ms)

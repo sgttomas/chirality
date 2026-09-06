@@ -1,0 +1,3 @@
+# Independent dependency startup/shutdown closeout review
+
+OpenAI GPT-6; serving ID unavailable. Agent2 instruction-asserted/not mechanically enforced. Read-only frozen retirement delta core conformance/dependencies and standalone-bin plus relevant tests. Write own evidence only. Controlled local process/socket tests permitted; no provider/vendor/supplier/accounts/Git/product edits or delegation. Preserve eager baseline and permanent poison, synchronous final admission fence, join every active filesystem batch, full-bin shutdown only with reusable daemon unaffected. No timeout widening or new workstream.

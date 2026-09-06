@@ -1,0 +1,25 @@
+--- a/codex-rs/core/src/tools/network_approval_tests.rs
++++ b/codex-rs/core/src/tools/network_approval_tests.rs
+@@ -781,3 +781,22 @@
+         )
+     );
+ }
++
++#[tokio::test]
++async fn uninitialized_network_decider_never_grants_access() {
++    let decider = build_network_policy_decider(
++        Arc::new(NetworkApprovalService::default()),
++        Arc::new(RwLock::new(std::sync::Weak::<Session>::new())),
++    );
++    let request = NetworkPolicyRequest::new(codex_network_proxy::NetworkPolicyRequestArgs {
++        protocol: NetworkProtocol::Http,
++        host: "unapproved.example.com".to_string(),
++        port: 80,
++        environment_id: None,
++        client_addr: None,
++        method: None,
++        command: None,
++        exec_policy_hint: None,
++    });
++    assert_eq!(decider.decide(request).await, NetworkDecision::ask("not_allowed"));
++}

@@ -1,0 +1,23 @@
+{
+  "scope": "Direct exact-source base-policy diagnostic; not App Server turn or descendant conformance",
+  "results": [
+    {
+      "variant": "baseline",
+      "profile_sha256": "80d241c05074f99db22e84de2e0853fdc1eeb671fe00cb0e7eccc24e434b678b",
+      "exit": -6,
+      "stdout": "",
+      "stderr": "",
+      "allowed_write_exists": false,
+      "outside_write_exists": false
+    },
+    {
+      "variant": "patched",
+      "profile_sha256": "bf84d42084f2cd944a5b5a7bf3943ec14bc418f9f8348f59dc1858ac3a08b0f1",
+      "exit": 0,
+      "stdout": "STARTEDREAD_DENIEDWRITE_DENIEDDONE",
+      "stderr": "",
+      "allowed_write_exists": true,
+      "outside_write_exists": false
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{"method": "initialize", "id": 1, "params": {"clientInfo": {"name": "chirality_runtime_offline_probe", "version": "0.0.0"}, "capabilities": {"experimentalApi": true}}}
+{"method": "initialized"}
+{"method": "account/read", "id": 5, "params": {"refreshToken": false}}
+{"method": "thread/start", "id": 6, "params": {"ephemeral": true, "cwd": "/private/tmp/runtime-execution-20260906/supply/work", "sandbox": "workspaceWrite", "approvalPolicy": "never"}}

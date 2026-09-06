@@ -1,0 +1,49 @@
+{
+  "tag": "rust-v0.149.0",
+  "tagObject": "a4e15bf371341b067c8278d3b70b1a8c7b3d793e",
+  "commit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "files": [
+    {
+      "path": "codex-rs/Cargo.toml",
+      "url": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/codex-rs/Cargo.toml",
+      "bytes": 18015,
+      "sha256": "a3669102a1d1305b4b243b0fc6bd6bca9629ed9e5aa74b42936aba386c9805b4"
+    },
+    {
+      "path": "codex-rs/Cargo.lock",
+      "url": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/codex-rs/Cargo.lock",
+      "bytes": 371473,
+      "sha256": "0c32858e9c47d0acf82735c8620c96840a5381152eec63acad15d1acadb9edad"
+    },
+    {
+      "path": "codex-rs/rust-toolchain.toml",
+      "url": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/codex-rs/rust-toolchain.toml",
+      "bytes": 78,
+      "sha256": "570656042681cfd8795403a455baf9a33035331a07db0645e866bbcea89a3d64"
+    },
+    {
+      "path": "codex-rs/app-server/Cargo.toml",
+      "url": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/codex-rs/app-server/Cargo.toml",
+      "bytes": 4630,
+      "sha256": "b2720f2e3484846055564de2ec3efbc8cb3261a2275fcaaee270d80a359c0ae8"
+    },
+    {
+      "path": "codex-rs/sandboxing/src/seatbelt_base_policy.sbpl",
+      "url": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl",
+      "bytes": 4075,
+      "sha256": "9a7a181ac5fab3e8fcecfeeec280f8b0d4fd60c852cf71cdf3b5c65d02401e0c"
+    },
+    {
+      "path": ".github/workflows/rust-release.yml",
+      "url": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/.github/workflows/rust-release.yml",
+      "bytes": 63886,
+      "sha256": "8c617e18825d43d29d59af75419d9e7b40594256d3225c0cf39b7abde745a6c9"
+    },
+    {
+      "path": ".github/actions/setup-rusty-v8/action.yml",
+      "url": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/.github/actions/setup-rusty-v8/action.yml",
+      "bytes": 2151,
+      "sha256": "ec4107dfd69f6034d34a558df2c85191a9e6d03dfedf3bce7a94bb0fb0de85b0"
+    }
+  ]
+}

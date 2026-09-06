@@ -1,0 +1,3 @@
+9f73f5d2196f4892fd719a491898ca070964daad66f6302e2fd92db5f4ee7a86  projects/chirality-runtime/packages/core/src/process-supervisor.ts
+3f751f866b808d9934c456d9fcc9c3ca8035cf3a86122fc8c8a4fb7ed5e6e3c4  projects/chirality-runtime/packages/daemon/src/supervisor-server.ts
+9a5437f6b5f033fabec59a769b0148803e1b4960a9dcb9a754f0438d114257f5  projects/chirality-runtime/tests/supervisor.test.ts

@@ -1,0 +1,22 @@
+[
+  {
+    "command": [
+      "npm",
+      "exec",
+      "vitest",
+      "run",
+      "tests/approval-store.test.ts"
+    ],
+    "exit_code": 0,
+    "log": "tests.log"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exit_code": 0,
+    "log": "typecheck.log"
+  }
+]

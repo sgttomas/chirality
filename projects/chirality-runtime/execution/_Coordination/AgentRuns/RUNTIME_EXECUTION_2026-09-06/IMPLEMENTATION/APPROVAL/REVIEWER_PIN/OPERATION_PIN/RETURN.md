@@ -1,0 +1,5 @@
+# Operation pin return
+
+Native-bound thread/start, thread/resume and turn/start now always send trusted approvalsReviewer=user and posture-derived approvalPolicy alongside the exact permission profile. Nonnative legacy behavior unchanged. Caller camelCase and snake_case reviewer/policy fields reject. Native thread start/resume responses must acknowledge both exact values before the actor accepts thread identity; missing/mismatched response fails closed. Turn start response has no approval fields, so typed trusted request plus config attestation supplies that boundary.
+
+Controlled persisted auto_review/never simulation passes across off/ask/on; all caller override aliases reject. Missing reviewer, automatic reviewer, and wrong approval policy response fail for both start and resume. Initial fixture edit accidentally inserted the named-mode guard in an unrelated persistence fixture, causing one failure; repaired that fixture without changing product checks. Final 67 actor/supervisor tests PASS and typecheck PASS, logs retained. Sources frozen; no vendor run or actual readback claim. Parent owns next supplier validation and fresh review.

@@ -1,0 +1,10 @@
+{
+  "flat-file-repro.test.ts": {
+    "stored": "flat-file-repro.test.ts.source",
+    "sha256": "fbbaf051ad401fefbf458774220ea2ccc477cca8de94fc86420abbbcb8a301e9"
+  },
+  "ancestor-resolution-repro.test.ts": {
+    "stored": "ancestor-resolution-repro.test.ts.source",
+    "sha256": "ae46a9dc0646d68ac87ec9c9db9389c5f08cc0b6fdbec00560e4b6b9bbb361e5"
+  }
+}

@@ -1,0 +1,17 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/supervisor.test.ts tests/delegated-runtime.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/supervisor.test.ts (11 tests) 677ms
+ ✓ tests/delegated-runtime.test.ts (30 tests) 7637ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1039ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2029ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2037ms
+
+ Test Files  2 passed (2)
+      Tests  41 passed (41)
+   Start at  22:10:30
+   Duration  7.96s (transform 159ms, setup 0ms, collect 266ms, tests 8.31s, environment 0ms, prepare 53ms)

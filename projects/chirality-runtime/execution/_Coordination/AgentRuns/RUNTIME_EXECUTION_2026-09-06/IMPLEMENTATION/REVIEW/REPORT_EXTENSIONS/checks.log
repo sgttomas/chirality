@@ -1,0 +1,17 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/delegated-runtime.test.ts tests/exact-supply.test.ts tests/codex-worker.test.ts packages/cli/test/runtime-jobs.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ packages/cli/test/runtime-jobs.test.ts (5 tests) 2ms
+ ✓ tests/exact-supply.test.ts (9 tests) 12ms
+ ✓ tests/delegated-runtime.test.ts (12 tests) 715ms
+ ✓ tests/codex-worker.test.ts (5 tests) 4153ms
+   ✓ offline Codex readiness adapter > rejects aliases and bounds a silent process  4010ms
+
+ Test Files  4 passed (4)
+      Tests  31 passed (31)
+   Start at  21:03:40
+   Duration  4.43s (transform 206ms, setup 0ms, collect 424ms, tests 4.88s, environment 0ms, prepare 145ms)

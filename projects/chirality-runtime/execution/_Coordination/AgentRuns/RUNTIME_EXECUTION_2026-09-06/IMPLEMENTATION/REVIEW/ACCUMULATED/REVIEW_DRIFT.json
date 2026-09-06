@@ -1,0 +1,26 @@
+{
+  "packages/core/src/agent1-run-coordinator.ts": {
+    "before": "14773e07ddfc5d3104c95c8a327051da3f0a31908c1771cfbf984a3bc6f31adc",
+    "after": "05b229b1e7ea55b04c00f39dda332b45c02e35de7af8ebd68e525fd61c83600f"
+  },
+  "packages/daemon/src/codex-manager.ts": {
+    "before": "2ae635a78d8842aa5cf16bdf29c9fb11374eff0f40f676c98c7c619bf9726864",
+    "after": "fa4801798bbaefb72278085706782e731bc642b8036c7da4a875ab5275299812"
+  },
+  "tests/agent1-run-coordinator.test.ts": {
+    "before": "376647a3c6f5326b39d82b59eaa8fd02176c0216431af26f0a43e670e604f298",
+    "after": "af1aa9df235c3fd3a2c0c83d08f7adb519f9fee099122e8efa2120f96bbac568"
+  },
+  "tests/codex-manager.test.ts": {
+    "before": "1e10fbdeae915a21132bfc39a2b18aa1c4ecf8cc512bf2d2cab6599f01574979",
+    "after": "05b0c6de3d3d8357e611c28d0f7eadcc376cfba3c7c5f99d05eb0ac91e42bc49"
+  },
+  "tests/exact-codex-conformance.test.ts": {
+    "before": "652db4b565163cc427445751f4318d123d578c199caf419ccb1b3fe18cac95ce",
+    "after": "361e14d74d9570cc7918c0c72bc3c2dfb72a7635e4956aa32749098ac958bd2b"
+  },
+  "tests/pi-omlx-integration.test.ts": {
+    "before": "2c9301fa88aae808b2673435445fa699d4c60b35826d1211b7cafae198171c36",
+    "after": "4fc7be1fd4f57e2d96f53fede75ced3ac287d641af471763f0d4ed39e7758d44"
+  }
+}

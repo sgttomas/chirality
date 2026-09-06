@@ -1,0 +1,8 @@
+(version 1)
+(allow default)
+(deny file-read*)
+(deny file-write*)
+(deny network*)
+(allow file-read* (subpath "/bin") (subpath "/usr/lib") (subpath "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld"))
+(allow file-read* file-write* (literal "/dev/null"))
+(allow file-read-data (require-all (literal "/") (vnode-type DIRECTORY)))

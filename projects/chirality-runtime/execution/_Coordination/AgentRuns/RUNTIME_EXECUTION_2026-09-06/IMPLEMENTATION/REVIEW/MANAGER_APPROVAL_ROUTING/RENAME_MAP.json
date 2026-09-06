@@ -1,0 +1,7 @@
+{
+  "late-grant-repro.test.ts": {
+    "stored": "late-grant-repro.test.ts.source",
+    "sha256": "e724ce135a9fe0b13cdc5245c27eacb2b60353b9f2e14492e1a9483c8d12e507",
+    "reason": "Byte-identical evidence preservation; excluded from automatic product test discovery"
+  }
+}

@@ -8,3 +8,14 @@ export * from "./residency-coordinator.js";
 export * from "./runtime-service.js";
 export * from "./session-store.js";
 export * from "./turn-coordinator.js";
+export * from "./process-supervisor.js";
+export * from "./hosted-consent.js";
+export * from "./worker-retirement.js";
+export * from "./delegated-runtime.js";
+export * from "./exact-supply.js";
+export * from "./approval-store.js";
+export * from "./role-policy.js";
+
+export * from "./descendant-tracker.js";
+
+export * from "./runtime-conformance.js";

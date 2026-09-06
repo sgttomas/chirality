@@ -1,0 +1,8 @@
+{
+  "typecheck": 0,
+  "session_tests": {
+    "passed": 12,
+    "exit_code": 0
+  },
+  "persistence": "two distinct controlled process IDs, private durable store, first reaped before successor resume"
+}

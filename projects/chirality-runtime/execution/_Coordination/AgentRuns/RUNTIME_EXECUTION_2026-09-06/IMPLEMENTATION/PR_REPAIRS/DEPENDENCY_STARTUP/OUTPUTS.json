@@ -1,0 +1,30 @@
+[
+  {
+    "path": "packages/core/src/runtime-conformance.ts",
+    "sha256": "233262aa737db7c9ae53ee97a4ca9129b415e44fbb47f257db4543e69d12a9d1"
+  },
+  {
+    "path": "packages/core/src/runtime-dependencies.ts",
+    "sha256": "4aa3803ab336268c1947af8257b2d3e97d17c2e49309bd675fdd4827d25010f3"
+  },
+  {
+    "path": "packages/daemon/src/standalone-bin.ts",
+    "sha256": "1c66763db3b47366436b947636efd90d85b2fb48c59703104b93e9e3e12d8b72"
+  },
+  {
+    "path": "tests/standalone.test.ts",
+    "sha256": "796f53a42ecd0c770fb43e336cae524e5c0796898ce4c38fef21844197b63f70"
+  },
+  {
+    "path": "packages/core/dist/runtime-conformance.js",
+    "sha256": "5ce36063092480d4a60bc8e76002f494b558b3985991242a0bd84636dec87894"
+  },
+  {
+    "path": "packages/core/dist/runtime-dependencies.js",
+    "sha256": "4b11cb3e3813e1d9314a806d7671db982bc3f4600ae38d8e26736d0097faf55d"
+  },
+  {
+    "path": "packages/daemon/dist/standalone-bin.js",
+    "sha256": "ce4e6acc77896149f6f7c00fc6a585da31e31af3cec01d57727e31c22b7743ce"
+  }
+]

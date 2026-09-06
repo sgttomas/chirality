@@ -1,0 +1,3 @@
+# Policy/API integration specialist
+
+Manager dispatch extends AMENDMENT5 to existing delegated contracts/core, daemon/client v2 routes and delegated-runtime tests only. No delegation. OpenAI GPT-6, exact serving model ID unavailable; role instruction-asserted, not mechanically enforced. Integrate five-role offerings, truthful configured versus supported network capabilities, strict closed v2 terminal evidence and authenticated immutable approval decisions. Public requests cannot mint worker approvals. Retain off-only execution pending actual provider forwarding and enforcement. Preserve nonce admission, shutdown, immutable config, v1 and retirement semantics. No live account/provider use.

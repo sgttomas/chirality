@@ -1,0 +1,26 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/codex-session.test.ts tests/codex-login.test.ts tests/codex-supervisor.test.ts tests/codex-containment.test.ts tests/standalone.test.ts tests/approval-store.test.ts tests/role-policy.test.ts tests/v2-contracts.test.ts tests/delegated-runtime.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/v2-contracts.test.ts (16 tests) 3ms
+ ✓ tests/role-policy.test.ts (8 tests) 3ms
+ ✓ tests/codex-containment.test.ts (2 tests) 136ms
+ ✓ tests/codex-supervisor.test.ts (14 tests) 467ms
+ ✓ tests/codex-session.test.ts (11 tests) 668ms
+ ✓ tests/codex-login.test.ts (6 tests) 608ms
+   ✓ operator-only sign-in component (controlled fixture) > fails for unsafe auth-file mode, mismatched completion, provider failure and clean exit  321ms
+ ✓ tests/standalone.test.ts (10 tests) 1713ms
+   ✓ actual two-job standalone runtime > executes client consent and turn through two separate jobs and cleans SIGTERM sockets  334ms
+   ✓ actual two-job standalone runtime > rotates credentials across supervisor jobs and starts the daemon with the new generation  424ms
+ ✓ tests/approval-store.test.ts (20 tests) 1906ms
+   ✓ asks for exact attributed approval, preserving durable session choice without auto-granting another request  398ms
+ ✓ tests/delegated-runtime.test.ts (22 tests) 3283ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1006ms
+
+ Test Files  9 passed (9)
+      Tests  109 passed (109)
+   Start at  21:37:44
+   Duration  3.69s (transform 407ms, setup 0ms, collect 1.20s, tests 8.79s, environment 1ms, prepare 295ms)

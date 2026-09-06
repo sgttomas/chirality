@@ -1,0 +1,32 @@
+[
+  {
+    "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/ARTIFACTS.sha256",
+    "sha256": "b5166b17f30dc9e34cf1842e1a85165514c95f545914f6869d7cce1463292524",
+    "members": 14,
+    "errors": []
+  },
+  {
+    "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/LOGIN_SCHEMA_NEGATIVE/ARTIFACTS.sha256",
+    "sha256": "c77f67fcf975619282b58780316f75cfb13091860c2b6201f0ffc41336bcee97",
+    "members": 5,
+    "errors": []
+  },
+  {
+    "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/NEGATIVE_TURN_SCHEMA/ARTIFACTS.sha256",
+    "sha256": "8f8813dc1c663afd972ef388d2807951f762e697a46aebde6a58ba9a1102c2d1",
+    "members": 5,
+    "errors": []
+  },
+  {
+    "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/ADMISSION_EXTENSION/ARTIFACTS.sha256",
+    "sha256": "cd112b612e5c4da17d6c1db5920f7f4e1a099902a71c8b655adecd6ca65d3077",
+    "members": 9,
+    "errors": []
+  },
+  {
+    "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/OFFLINE_TURN_FAILURE/ARTIFACTS.sha256",
+    "sha256": "c9672ca3d3d01c586f0a7c9436f4b67e98eb741de99bca60b53b8d5a5e840350",
+    "members": 6,
+    "errors": []
+  }
+]

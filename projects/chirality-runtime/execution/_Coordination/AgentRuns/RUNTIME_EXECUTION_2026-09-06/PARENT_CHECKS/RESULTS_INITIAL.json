@@ -1,0 +1,105 @@
+{
+  "basis": "92ca3f1a639cda4dcb7544f1f59dfc78d7acf377 plus current Runtime candidate; code still developing; these checks concern governance/entry and tools estate, not final product bytes",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_entrypoints.py"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/0.log",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_materialization_fence.py"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/1.log",
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_harness_adapter.py"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/2.log",
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_surface_ownership.py"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/3.log",
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_work_graph_dispatch.py"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/4.log",
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_tranche_manifest.py"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/5.log",
+      "sha256": "9bae91c712832b6f8942be58fb8d4cf76dce97e7e1da9bc71f3dbb99af45a0f2"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "status",
+        "--project",
+        "runtime"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/6.log",
+      "sha256": "0ba490b2d44de273437926b2f5842fbdb1bb60a18d1889538902885e6724ef6b"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "drift",
+        "--project",
+        "runtime"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/7.log",
+      "sha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/8.log",
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/run_affected_tests.py",
+        "--base",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/affected.log",
+      "sha256": "83c0e2826003716a6d9b8a8d92ce0b041bd808035a00b7fc3814f3872b29ef32",
+      "result": "825 passed; 9 subtests passed"
+    }
+  ]
+}

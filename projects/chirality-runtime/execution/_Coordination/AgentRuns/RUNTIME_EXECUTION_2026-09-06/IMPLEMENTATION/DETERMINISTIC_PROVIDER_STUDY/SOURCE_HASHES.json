@@ -1,0 +1,4 @@
+{
+  "tests/exact-codex-conformance.test.ts": "51a8d54156a959dd286ca4dc22c5c25e3804356aeea4a29497626cc3eb45aebe",
+  "tests/fixtures/response-provider.mjs": "98eefaf6aa4ff29a252979de8e851f3cb8252d445fd903b162d6c23f95c42630"
+}

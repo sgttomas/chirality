@@ -1,0 +1,78 @@
+{
+  "evidence": "Selected fields from owned test subprocess crash reports; unrelated device identifiers and metadata omitted",
+  "findings": [
+    {
+      "source_basename": "sh-2026-09-05-221953.ips",
+      "source_sha256": "3690a0323d1b38bbdd1e13a2196ef3d043c4a6e0bf4993f38744870aa796a371",
+      "pid": 16899,
+      "parentPid": 16863,
+      "procName": "sh",
+      "procPath": "/bin/sh",
+      "parentProc": "app-server",
+      "exception": {
+        "codes": "0x0000000000000000, 0x0000000000000000",
+        "rawCodes": [
+          0,
+          0
+        ],
+        "type": "EXC_CRASH",
+        "signal": "SIGABRT"
+      },
+      "termination": {
+        "namespace": "<0x23>",
+        "flags": 582,
+        "code": 2
+      },
+      "triggered_frames": [
+        "__abort_with_payload",
+        "abort_with_payload_wrapper_internal",
+        "abort_with_reason",
+        "ignition_halt",
+        "boot_boot",
+        "ignite",
+        "dyld4::CacheFinder::CacheFinder(dyld4::ProcessConfig::Process const&, dyld4::ProcessConfig::Logging const&, dyld4::SyscallDelegate&)",
+        "dyld4::ProcessConfig::DyldCache::DyldCache(dyld4::ProcessConfig::Process&, dyld4::ProcessConfig::Security const&, dyld4::ProcessConfig::Logging const&, dyld4::SyscallDelegate&, lsl::Allocator&, dyld4::ProcessConfig const&)",
+        "dyld4::ProcessConfig::ProcessConfig(dyld4::KernelArgs const*, dyld4::SyscallDelegate&, lsl::Allocator&)",
+        "dyld4::start(dyld4::KernelArgs*, void*, void*, unsigned long long)::$_1::operator()() const",
+        "start"
+      ]
+    },
+    {
+      "source_basename": "sh-2026-09-05-221953.000.ips",
+      "source_sha256": "96cd26ffacf443b115d1a1365361603fe37c0978c1a98f81714ed4b20e624965",
+      "pid": 16900,
+      "parentPid": 16863,
+      "procName": "sh",
+      "procPath": "/bin/sh",
+      "parentProc": "app-server",
+      "exception": {
+        "codes": "0x0000000000000000, 0x0000000000000000",
+        "rawCodes": [
+          0,
+          0
+        ],
+        "type": "EXC_CRASH",
+        "signal": "SIGABRT"
+      },
+      "termination": {
+        "namespace": "<0x23>",
+        "flags": 582,
+        "code": 2
+      },
+      "triggered_frames": [
+        "__abort_with_payload",
+        "abort_with_payload_wrapper_internal",
+        "abort_with_reason",
+        "ignition_halt",
+        "boot_boot",
+        "ignite",
+        "dyld4::CacheFinder::CacheFinder(dyld4::ProcessConfig::Process const&, dyld4::ProcessConfig::Logging const&, dyld4::SyscallDelegate&)",
+        "dyld4::ProcessConfig::DyldCache::DyldCache(dyld4::ProcessConfig::Process&, dyld4::ProcessConfig::Security const&, dyld4::ProcessConfig::Logging const&, dyld4::SyscallDelegate&, lsl::Allocator&, dyld4::ProcessConfig const&)",
+        "dyld4::ProcessConfig::ProcessConfig(dyld4::KernelArgs const*, dyld4::SyscallDelegate&, lsl::Allocator&)",
+        "dyld4::start(dyld4::KernelArgs*, void*, void*, unsigned long long)::$_1::operator()() const",
+        "start"
+      ]
+    }
+  ],
+  "interpretation": "Shell abort in dyld ignition/cache startup; underlying denied resource or mechanism not established"
+}

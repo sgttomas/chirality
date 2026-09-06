@@ -1,0 +1,25 @@
+{
+  "outputs": [
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/v2-events.ts",
+      "sha256": "57871a577546156ea9701bad96d8594ac85bc7cf597d90bde1a2f018cf54b15e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/role-policy.ts",
+      "sha256": "96db623331afcd4d83c0ee8d13d0e63363657165596761e7f5f611c559056f0c"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/v2-contracts.test.ts",
+      "sha256": "c6db4d84188a91240d789d2ae7be2f5eb5011af864caa0efcace5865be82b3c0"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/role-policy.test.ts",
+      "sha256": "63f3cdd5a2276ecb616467d8a0e3cfa5e48e7047914add7d312caa56a117e89f"
+    }
+  ],
+  "tests": {
+    "exit": 0,
+    "passed": 24
+  },
+  "typecheck_exit": 0
+}

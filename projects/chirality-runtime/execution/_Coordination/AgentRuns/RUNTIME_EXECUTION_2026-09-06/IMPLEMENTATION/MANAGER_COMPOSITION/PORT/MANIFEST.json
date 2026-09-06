@@ -1,0 +1,13 @@
+{
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable",
+  "role": "Agent 2 instruction-asserted; role not mechanically enforced",
+  "authority": "IMPLEMENTATION_AMENDMENT_10.json and IMPLEMENTATION/MANAGER_COMPOSITION/IMPLEMENTATION_SPLIT.json",
+  "derivativePackage": true,
+  "files": {
+    "packages/daemon/src/codex-manager.ts": "2ae635a78d8842aa5cf16bdf29c9fb11374eff0f40f676c98c7c619bf9726864",
+    "packages/daemon/src/codex-supervisor.ts": "b9ee235539cdf388a351865a89d24cc09d0cb56d6ba676ad29d87530243c0eca",
+    "packages/daemon/src/supervisor-server.ts": "9fa0eeac70fa7ec4559fd3a2720a1f9942e3f629a4a499fa8375f8aed3503937",
+    "tests/codex-manager.test.ts": "1e10fbdeae915a21132bfc39a2b18aa1c4ecf8cc512bf2d2cab6599f01574979",
+    "tests/codex-supervisor.test.ts": "4b92f2e0d244235b89217539c45ec6baa0398a206dc0e1286a0c1018aec54c81"
+  }
+}

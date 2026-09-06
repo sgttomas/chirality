@@ -1,0 +1,11 @@
+{
+  "typecheck": {
+    "exit_code": 0
+  },
+  "focused": {
+    "command": "npx vitest run tests/codex-session.test.ts",
+    "passed": 8,
+    "exit_code": 0
+  },
+  "provider_evidence": "controlled-process only; current-doc candidate event dialect"
+}

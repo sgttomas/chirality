@@ -1,0 +1,11 @@
+{
+  "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+  "projects/chirality-runtime/AGENTS.md": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+  "projects/chirality-runtime/packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/input.jsonl": "32b3c4baa779fa6ed89db8216b1d581706de169d7b899a90cd27e3f024ed495f",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/interactive.py": "466ea17a0164d97d083ef026dc274cb34b1f02d0f1288cafe060e45370e3cab6",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/network-deny.sb": "a472f408476fc3a975817208bb7cab143c21850567e578cda0f7d703a300244e",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/PROBE_CONFIG.toml": "7e6259fb94f6ceae2dbe4f0ae7c44a975266eec1ed2baf75d051671cf93a07c6",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/ADMISSION_EXTENSION/admission-input.jsonl": "672acb3047012a035cff7b94127b95dcff4c5581e8ba5f9830bf7b17b873aae9",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/ADMISSION_EXTENSION/RETURN.md": "ac8dae6deeb78e63559d02af994526f8b050d447c6879a6a8147d6d58eb90829"
+}

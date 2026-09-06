@@ -1,0 +1,7 @@
+{
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/ADMISSION_EXTENSION/SUPPORTED_SANDBOX_INPUT.jsonl": "9c96984ba04d163851cdbdea4cddb3ab1b8b37aab4f87aecfcbeefc5e3d82931",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/ADMISSION_EXTENSION/SUPPORTED_SANDBOX_RESPONSE.json": "8ea43763b2388678d810f43df41b398bc9a7229107beb0c9b409b51e77f86d50",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/NEGATIVE_TURN_SCHEMA/negative-input.jsonl": "f5b32929fbb41988df30646894aa860d768d45e6c71e8e9361568a2080ff6573",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/NEGATIVE_TURN_SCHEMA/RETURN.md": "4156f9cd409ef5ba56aa0489c9def5ab204af71d72d9c709600ffb118349f4c2",
+  "projects/chirality-runtime/packages/contracts/src/errors.ts": "c1f9418a954a0d4ea27ed1dd5d3c56956474cf402557cbf0631944c1f2f235c9"
+}

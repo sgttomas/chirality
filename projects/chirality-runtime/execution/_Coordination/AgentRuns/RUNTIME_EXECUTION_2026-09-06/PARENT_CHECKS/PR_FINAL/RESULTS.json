@@ -1,0 +1,133 @@
+{
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_entrypoints.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.092,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/0.log",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf",
+      "rawSha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_materialization_fence.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 1.477,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/1.log",
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c",
+      "rawSha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_harness_adapter.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 1.314,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/2.log",
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37",
+      "rawSha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_surface_ownership.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 1.415,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/3.log",
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618",
+      "rawSha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_work_graph_dispatch.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 2.896,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/4.log",
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6",
+      "rawSha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_tranche_manifest.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.361,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/5.log",
+      "sha256": "9bae91c712832b6f8942be58fb8d4cf76dce97e7e1da9bc71f3dbb99af45a0f2",
+      "rawSha256": "9bae91c712832b6f8942be58fb8d4cf76dce97e7e1da9bc71f3dbb99af45a0f2",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "status",
+        "--project",
+        "runtime"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.309,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/6.log",
+      "sha256": "4ad18c9107f93b0238112d1200ca236f69780e0fec4452ed6ab2179948b30eaf",
+      "rawSha256": "4ad18c9107f93b0238112d1200ca236f69780e0fec4452ed6ab2179948b30eaf",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "drift",
+        "--project",
+        "runtime"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.283,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/7.log",
+      "sha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482",
+      "rawSha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 36.248,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/8.log",
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+      "rawSha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/run_affected_tests.py",
+        "--base",
+        "origin/main"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 42.801,
+      "log": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/9.log",
+      "sha256": "faf928b03372c990098947d19fa46470c637d7071d6e08c492457f12f9004f6f",
+      "rawSha256": "faf928b03372c990098947d19fa46470c637d7071d6e08c492457f12f9004f6f",
+      "presentation": "Trailing whitespace stripped in log; raw digest retained"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "commit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "baseUrl": "https://raw.githubusercontent.com/openai/codex/758ef40f50c1a458425c7cfbf1eb12cbc07af0b0/",
+  "files": [
+    {
+      "path": "codex-rs/app-server-protocol/src/protocol/common.rs",
+      "sha256": "f301b8b3bdcee9275457348ea041f0187c7fd375b57a0fbac48e799fb4bc9235",
+      "bytes": 165684
+    },
+    {
+      "path": "codex-rs/app-server-protocol/src/protocol/v2/command_exec.rs",
+      "sha256": "e655da7da2984ad6ea198b55829b21db01e05993725dea0f11e9e3de7fb66784",
+      "bytes": 8395
+    },
+    {
+      "path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs",
+      "sha256": "95dd99bac8a2abdcc4ff9b7f92ea798e937bb3494c9764656f31513ff60488bb",
+      "bytes": 60838
+    },
+    {
+      "path": "codex-rs/app-server-protocol/src/protocol/v2/mod.rs",
+      "sha256": "e9c107e9598279f964eca4ee9f1f47e5a0a0a6cb68ed652cf452656c375d7e63",
+      "bytes": 1201
+    },
+    {
+      "path": "codex-rs/app-server-protocol/src/protocol/v2/notification.rs",
+      "sha256": "a514af3960b8b18f716a894941aa170ef80660d86ba494ed625921b64cfae22a",
+      "bytes": 2194
+    },
+    {
+      "path": "codex-rs/app-server-protocol/src/protocol/v2/permissions.rs",
+      "sha256": "d7c8e84080597d8f6384334560cac499011523b82f20a1212e91eec55603ae64",
+      "bytes": 28398
+    },
+    {
+      "path": "codex-rs/app-server-protocol/src/protocol/v2/shared.rs",
+      "sha256": "21ce79f0e572adea270093673512361186b0aa4f34cb7cc1c22b36da81134fd6",
+      "bytes": 12069
+    },
+    {
+      "path": "codex-rs/app-server/src/bespoke_event_handling.rs",
+      "sha256": "42e46071529deee6a38789319f641ed46d39f7aab260b0c973f74341f6d74f31",
+      "bytes": 162016
+    },
+    {
+      "path": "codex-rs/config/src/permissions_toml.rs",
+      "sha256": "8246747d3777d30f2bb3356353f76d8a675ef1b8a2774bbf08dfd67081d4111d",
+      "bytes": 21021
+    },
+    {
+      "path": "codex-rs/core/src/config/network_proxy_spec.rs",
+      "sha256": "880a0ed1055afb2302777a9a535c6f628a1ddb3746ff08d7bc1d2088cd9bc4bd",
+      "bytes": 14712
+    },
+    {
+      "path": "codex-rs/core/src/config/permissions.rs",
+      "sha256": "e68fe2f57c5ae312cad5aa140f82ea4699daf54973c8cf8ddf81bed51becadc6",
+      "bytes": 33983
+    },
+    {
+      "path": "codex-rs/core/src/network_policy_decision.rs",
+      "sha256": "ab5087590206b88f58cb071d22fa04db431b495a36393ff4dc6b75507ccb7582",
+      "bytes": 3841
+    },
+    {
+      "path": "codex-rs/core/src/tools/network_approval.rs",
+      "sha256": "f9bd87c5b6629126d518bc4097ab8ef23b1ad049bc7732ed2c7acd11ff46464e",
+      "bytes": 42262
+    },
+    {
+      "path": "codex-rs/network-proxy/src/config.rs",
+      "sha256": "d6817eec30fbe76675d1a7a518d54fd08caf7a1d7f8ae5ebd80e5ab12246b0f2",
+      "bytes": 31710
+    },
+    {
+      "path": "codex-rs/protocol/src/network_policy.rs",
+      "sha256": "aab0941fa48fedc5caf0761d9d47314e7c3849071d471f3acef4f587d7760d13",
+      "bytes": 735
+    },
+    {
+      "path": "codex-rs/protocol/src/protocol.rs",
+      "sha256": "ca51d3b5c624f47708d31be33772406c863bc746920ed67075fca82cd0f8392a",
+      "bytes": 215719
+    }
+  ]
+}

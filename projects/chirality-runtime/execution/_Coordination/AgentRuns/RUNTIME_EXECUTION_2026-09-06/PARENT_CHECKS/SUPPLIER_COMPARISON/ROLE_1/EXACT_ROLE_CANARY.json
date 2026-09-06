@@ -1,0 +1,39 @@
+{
+  "schema": "chirality-exact-role/v1",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "accountUsed": false,
+  "launchEvidence": "test-only-no-account-exact-vendor-factory",
+  "roleObedienceProven": false,
+  "roleMechanicallyEnforced": false,
+  "ownerLiveProof": false,
+  "passed": false,
+  "probes": [],
+  "sourcesBefore": {
+    "tests/exact-role-conformance.test.ts": "3d170f50b672ee1e1ce7d177a221ee651e15a148262c7d4a829781290a282889",
+    "packages/core/src/delegated-runtime.ts": "542f699b98cf646bcd2d3e0be7254f6f20ac8c7120eda4e0bd9a530a4e6fd1c3",
+    "packages/core/src/role-policy.ts": "96db623331afcd4d83c0ee8d13d0e63363657165596761e7f5f611c559056f0c",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb"
+  },
+  "nativePolicyDigest": "99ee2be6c0c5fa8c907ba115a4bd5995a0dbdd5f907f34bcc13b26ed25cbed00",
+  "failure": "Daemon compatibility basis is unavailable",
+  "cleanupFailures": 0,
+  "processes": 0,
+  "closedProcesses": 0,
+  "modelRequests": 0,
+  "childObserved": false,
+  "elapsedMs": 367,
+  "profileBudgetMs": 60000,
+  "probeBudgetMs": 10000,
+  "sourcesAfter": {
+    "tests/exact-role-conformance.test.ts": "3d170f50b672ee1e1ce7d177a221ee651e15a148262c7d4a829781290a282889",
+    "packages/core/src/delegated-runtime.ts": "542f699b98cf646bcd2d3e0be7254f6f20ac8c7120eda4e0bd9a530a4e6fd1c3",
+    "packages/core/src/role-policy.ts": "96db623331afcd4d83c0ee8d13d0e63363657165596761e7f5f611c559056f0c",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb"
+  },
+  "sourceStable": true
+}

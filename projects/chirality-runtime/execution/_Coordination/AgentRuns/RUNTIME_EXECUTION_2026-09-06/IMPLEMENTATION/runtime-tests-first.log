@@ -1,0 +1,36 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/omlx-client.test.ts (1 test) 3ms
+ ✓ packages/client/test/client.test.ts (4 tests) 70ms
+ ✓ packages/cli/test/cli.test.ts (26 tests) 75ms
+ ✓ tests/supervisor.test.ts (10 tests) 410ms
+ ✓ tests/session-and-residency.test.ts (5 tests) 488ms
+ ✓ tests/contracts-and-project.test.ts (10 tests) 583ms
+ ✓ tests/hosted-consent.test.ts (11 tests) 936ms
+ ✓ tests/worker-retirement.test.ts (13 tests) 1092ms
+ ✓ tests/turn-hardening.test.ts (8 tests) 1298ms
+ ✓ tests/delegated-runtime.test.ts (5 tests) 1337ms
+   ✓ opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads  495ms
+   ✓ opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay  312ms
+ ✓ tests/agent1-run.test.ts (9 tests) 1607ms
+   ✓ governed Agent 1 local-child pilot > runs exactly one read-only Agent 2, records parentage/model epoch, and requires review  455ms
+ ✓ tests/runtime-daemon-signal.test.ts (2 tests) 2142ms
+   ✓ runtime daemon process signal shutdown > tears down within a bound when SIGTERM arrives with an incomplete request held open  2141ms
+ ✓ tests/daemon.test.ts (15 tests) 14062ms
+   ✓ Unix-domain runtime daemon > uses private files, authenticates, and preserves UIEvent SSE wire format  356ms
+   ✓ Unix-domain runtime daemon > forces an incomplete ordinary request at the exact production grace and cleans metadata  2054ms
+   ✓ Unix-domain runtime daemon > forces stubborn SSE transport without waiting on interrupt acknowledgement and degrades  2038ms
+   ✓ Unix-domain runtime daemon > expires pre-identity Agent 1 cancellation at force and forbids a late interrupt  2086ms
+   ✓ Unix-domain runtime daemon > interrupts once when Agent 1 identity appears in a later pre-force event  2033ms
+   ✓ Unix-domain runtime daemon > isolates late prior-generation iterator events after a successful forced stop and restart  2098ms
+   ✓ Unix-domain runtime daemon > caps post-force transport settlement at 500 ms before reporting cleanup failure  2512ms
+
+ Test Files  13 passed (13)
+      Tests  119 passed (119)
+   Start at  20:53:48
+   Duration  14.50s (transform 696ms, setup 0ms, collect 2.48s, tests 24.10s, environment 1ms, prepare 509ms)

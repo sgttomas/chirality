@@ -1,0 +1,34 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/codex-containment.test.ts (2 tests | 1 failed) 44ms
+   × actual macOS Codex containment > contains shell and subprocess access offline and preserves supplied account files 41ms
+     → {"status":71,"signal":null,"output":[null,"","shell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted\nsandbox-exec: sandbox_apply: Operation not permitted\n"],"pid":98744,"stdout":"","stderr":"shell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted\nsandbox-exec: sandbox_apply: Operation not permitted\n"}: expected 71 to be +0 // Object.is equality
+   ✓ actual macOS Codex containment > rejects unsafe directory permissions and incomplete consent 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/codex-containment.test.ts > actual macOS Codex containment > contains shell and subprocess access offline and preserves supplied account files
+AssertionError: {"status":71,"signal":null,"output":[null,"","shell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted\nsandbox-exec: sandbox_apply: Operation not permitted\n"],"pid":98744,"stdout":"","stderr":"shell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted\nsandbox-exec: sandbox_apply: Operation not permitted\n"}: expected 71 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 71
+
+ ❯ tests/codex-containment.test.ts:26:53
+     24|       expect(controlWrite.status).not.toBe(0); expect(await readFile(c…
+     25|       const nested = run(`/usr/bin/sandbox-exec -p '(version 1)(allow …
+     26|       expect(nested.status, JSON.stringify(nested)).toBe(0);
+       |                                                     ^
+     27|       const allowed = run(`echo permitted > ${shellQuote(join(root, 'a…
+     28|       expect(allowed.status, JSON.stringify(allowed)).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  21:30:26
+   Duration  196ms (transform 23ms, setup 0ms, collect 23ms, tests 44ms, environment 0ms, prepare 31ms)

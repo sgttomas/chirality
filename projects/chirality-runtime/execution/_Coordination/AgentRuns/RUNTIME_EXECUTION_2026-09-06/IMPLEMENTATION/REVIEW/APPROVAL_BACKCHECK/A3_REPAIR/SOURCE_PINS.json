@@ -1,0 +1,7 @@
+{
+  "packages/core/src/agent1-run-coordinator.ts": "3f50333a7cf1c826a0fa6735eda54da01b767c9b4d9dc4b67e705f1af35ae8ec",
+  "packages/engine-pi-omlx/src/pi-turn-runtime.ts": "3057c424bb21afa4624374042ab8069da79d5b3d5b6209d403928e6622738cde",
+  "packages/engine-pi-omlx/src/pi-read-tool.ts": "189b388f2c99b3b96f52ca9684c66a6ef2b20b7d52d4cb2d66143a119fdc2d64",
+  "tests/agent1-run-coordinator.test.ts": "7e78cfd45dc2c658de8f9d90d7283bda2964e38bb778a0c1c31544691d50d894",
+  "tests/manager-pi-integration.test.ts": "16cae50e4f8d0a5ea67ea1f84c4e2e3a56e612991ff6b30b45e99cad430106bd"
+}

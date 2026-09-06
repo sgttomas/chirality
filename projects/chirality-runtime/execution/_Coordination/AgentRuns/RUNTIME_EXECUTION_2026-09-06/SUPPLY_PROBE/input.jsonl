@@ -1,0 +1,5 @@
+{"method": "initialize", "id": 1, "params": {"clientInfo": {"name": "chirality_runtime_offline_probe", "version": "0.0.0"}, "capabilities": {"experimentalApi": true}}}
+{"method": "initialized"}
+{"method": "config/read", "id": 2, "params": {"includeLayers": true, "cwd": "/private/tmp/runtime-execution-20260906/supply/work"}}
+{"method": "configRequirements/read", "id": 3, "params": {}}
+{"method": "experimentalFeature/list", "id": 4, "params": {"limit": 100}}

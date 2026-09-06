@@ -1,0 +1,15 @@
+{
+  "schema": "runtime-independent-review-seal/v1",
+  "status": "F1_CLOSED_FOR_PINNED_SOURCES",
+  "files": {
+    "BRIEF.md": "829e7fb478afb051c0b97ecf7447ef954bc8cd7c8023596b3f37041926c595bd",
+    "RETURN.md": "b60431dc01f26a5f1666b0f7ef2ea5f81508194be6a7feac422be79a746acb76",
+    "SOURCE_DRIFT.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "SOURCE_PINS.json": "821f33d859962b41edd458b95bcffa1a3047cc3cd071ff73976586f3ba70ac9b",
+    "backcheck.log": "432990c57d353bac1657ec84abf17d342594438117cc9dd5b01fc65ea9660651",
+    "backcheck.test.ts.source": "39cef738e81089d4287ea2637b2268c0f6df1f06e4587da9cd1e2d75fe9532b9",
+    "manager-integration.log": "8c6c2e4a26c1a7b028046abc2a2810041ad057e82752f9e4716312b4b7b019f2",
+    "publication-backcheck.log": "e74e1a00ed5f6910b32a375d3d4e8df3c8ef664f3b44ae831a0273436c1fa28a",
+    "publication-backcheck.test.ts.source": "2e6144661f915cb454ec6ae66394f86b6b6b9adbd40ab3104c1f4d4b84666d1b"
+  }
+}

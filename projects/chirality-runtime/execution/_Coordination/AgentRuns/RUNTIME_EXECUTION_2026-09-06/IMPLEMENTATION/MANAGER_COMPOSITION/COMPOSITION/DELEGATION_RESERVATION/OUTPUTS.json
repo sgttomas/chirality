@@ -1,0 +1,4 @@
+{
+  "packages/core/src/agent1-run-coordinator.ts": "3f50333a7cf1c826a0fa6735eda54da01b767c9b4d9dc4b67e705f1af35ae8ec",
+  "tests/agent1-run-coordinator.test.ts": "7e78cfd45dc2c658de8f9d90d7283bda2964e38bb778a0c1c31544691d50d894"
+}

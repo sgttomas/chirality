@@ -1,0 +1,3 @@
+# Independent deployed dependency integrity review
+
+OpenAI GPT-6; exact serving ID unavailable. Actual Agent2 instruction-asserted/not mechanically enforced. Read-only frozen core runtime-conformance/runtime-dependencies + tests; write own evidence only. Controlled checks, no vendor/providers/accounts/credentials/Git/product writes or delegation. Review deployed declared closure, required production vs optional/installed peers, resolution containment, mandatory basis and irreversible generation, metadata cache and costs. Parent confirms installed closure, not package-manager validity/semver satisfaction: absent peers recorded without autoinstall or new gate. Whole package disk bytes are not loaded-module proof.

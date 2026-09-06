@@ -11,10 +11,8 @@ import {
   SessionStore,
   TurnCoordinator
 } from "../../packages/core/src/index.js";
-import {
-  RuntimeDaemon,
-  installRuntimeDaemonSignalShutdown
-} from "../../packages/daemon/src/index.js";
+import { RuntimeDaemon } from "../../packages/daemon/src/runtime-daemon.js";
+import { installRuntimeDaemonSignalShutdown } from "../../packages/daemon/src/signal-shutdown.js";
 
 const runtimeDirectory = process.env["CHIRALITY_SIGNAL_FIXTURE_RUNTIME"];
 if (runtimeDirectory === undefined) throw new Error("fixture runtime directory is required");

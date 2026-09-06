@@ -1,0 +1,16 @@
+{
+  "typecheck": "PASS",
+  "nativeCompilerFocused": "1 PASS; 2 unrelated sandbox tests skipped",
+  "macOSContainmentOutsideEnclosingSandbox": "3 PASS",
+  "earlierSandboxedAttempt": "EPERM sandbox_apply; not counted as code failure or pass",
+  "preimageTestPackaging": "Original test preimage renamed byte-identically to .test.ts.source to exclude automatic test discovery; a wrong-cwd rename attempt made no change.",
+  "sourcePins": {
+    "packages/daemon/src/codex-containment.ts": "0ca637229afc4c139d0e03147f8b85ce478b5beee4f26ee5155ee7a84d1e5926",
+    "packages/daemon/src/standalone.ts": "29e357b97f04286cd1256cc6eade7ddfc86d01d3baed272c8bfec3529d1f7ea6",
+    "tests/codex-containment.test.ts": "9dd6a8d4e573c9d1ffca42be2cca9261e992a1d81c66ea762fa3f87f2d237a22"
+  },
+  "limits": [
+    "No exact vendor ask/on readback or kernelconformance run in this manager check.",
+    "Pinned source compiler andproxyflow justify candidate settings; actual canaries remain required."
+  ]
+}

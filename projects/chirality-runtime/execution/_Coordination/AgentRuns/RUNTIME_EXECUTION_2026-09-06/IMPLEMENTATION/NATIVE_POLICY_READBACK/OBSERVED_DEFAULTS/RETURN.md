@@ -1,0 +1,5 @@
+Exact discovery3 typed-readback metadata repair complete. Only observed null metadata is removed before strict table comparison: profile description/extends/workspace_roots, filesystem glob_scan_max_depth, and the twelve observed network proxy/mode/domain/socket option names. Any non-null value in those keys rejects; any unknown field still fails exact equality. Actual filesystem grants remain byte-key exact; quoted/misnested path keys from discovery3 are not normalized or accepted. Parent compiler repair owns those keys. Effective remote_plugin must now be explicitly false alongside plugins:false.
+
+Workspace typecheck PASS;17 session tests PASS (1021ms). Exact inert defaults accepted; non-null optional grant, unknown null option and remote_plugin:true reject. Prior active grant/hostoverride/drift tests remain passing. Discovery3 source copied intact for durable provenance. No vendor execution or positive policy/kernel proof added. Previous actor/test and seals preserved.
+
+OpenAI GPT-6 bounded Agent2, serving ID unavailable, role instruction-asserted/not mechanically enforced; no delegation.

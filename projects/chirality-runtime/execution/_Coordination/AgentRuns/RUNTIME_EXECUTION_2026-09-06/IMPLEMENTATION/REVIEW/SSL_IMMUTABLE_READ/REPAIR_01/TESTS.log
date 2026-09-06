@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/SSL_IMMUTABLE_READ/REPAIR_01/metadata-repro.test.ts (1 test) 5ms
+ ✓ tests/codex-immutable-file.test.ts (3 tests) 8ms
+ ✓ tests/codex-containment.test.ts (3 tests | 2 skipped) 22ms
+
+ Test Files  3 passed (3)
+      Tests  5 passed | 2 skipped (7)
+   Start at  23:50:21
+   Duration  217ms (transform 103ms, setup 0ms, collect 154ms, tests 36ms, environment 0ms, prepare 99ms)

@@ -1,0 +1,3 @@
+# Render-only two-job amendment brief
+
+Bounded ephemeral Agent 2, OpenAI GPT-6, exact serving model ID unavailable; role not mechanically enforced, instruction-asserted. Parent AMENDMENT2 authorizes only cli/src/runtime-jobs.ts, cli/test/runtime-jobs.test.ts and this evidence directory. Read Root/project AGENTS, DEL07 ScopeOfWork and existing launch-agent.ts (existing renderer hardcodes --runtime-daemon, so cannot safely reuse it for supervisor). Render two distinct jobs from exact trusted commands; validate private Unix configuration and exclude credential fields. No install, process launch, launchctl, production job claims, invented executable switches or changes to other source files.

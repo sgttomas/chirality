@@ -1,0 +1,10 @@
+{
+  "BRIEF.md": "fe7e75265a47409920a2577790a09ec64817f8bb81d5397c47ded5d9244d36b2",
+  "RENAME_MAP.json": "c54259353528f30f60faf6af4a5f7497d3732dd33fc85977c22f4228197a7c5d",
+  "RETURN.md": "43cde716636ea5ae0a66567ce9f6d07e5c0afa855ed212c2344227d9f0e3c2d8",
+  "SOURCE_DRIFT.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "SOURCE_PINS.json": "069a9ff3d082137d39b275c558846e60c48d042c5a35a3b85c1284e439a93b0f",
+  "TESTS.log": "7af28f96c1107fc4cf41fa167803b334f6f37c299a21cbfd37ae03a6f46c2125",
+  "ancestor-resolution-repro.test.ts.source": "ae46a9dc0646d68ac87ec9c9db9389c5f08cc0b6fdbec00560e4b6b9bbb361e5",
+  "flat-file-repro.test.ts.source": "fbbaf051ad401fefbf458774220ea2ccc477cca8de94fc86420abbbcb8a301e9"
+}

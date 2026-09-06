@@ -1,0 +1,10 @@
+{"profile": "network", "exit": 0, "stderr": ""}
+{"profile": "writes", "exit": 71, "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"}
+{"profile": "securityd", "exit": 71, "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"}
+{"profile": "reads", "exit": 71, "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"}
+{"profile": "reads_etc", "exit": 71, "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n"}
+{"profile": "network_identical_nested", "exit": 0, "stderr": ""}
+{"profile": "writes_identical_nested", "exit": 0, "stderr": ""}
+{"profile": "securityd_identical_nested", "exit": 0, "stderr": ""}
+{"profile": "reads_identical_nested", "exit": 0, "stderr": ""}
+{"profile": "reads_etc_identical_nested", "exit": 0, "stderr": ""}

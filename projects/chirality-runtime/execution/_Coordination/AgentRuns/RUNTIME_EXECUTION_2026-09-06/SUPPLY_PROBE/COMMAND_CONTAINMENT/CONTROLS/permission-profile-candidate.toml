@@ -1,0 +1,27 @@
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+allow_login_shell = false
+cli_auth_credentials_store = "file"
+check_for_update_on_startup = false
+web_search = "disabled"
+[sandbox_workspace_write]
+network_access = false
+exclude_slash_tmp = true
+exclude_tmpdir_env_var = true
+[features]
+plugins = false
+[analytics]
+enabled = false
+[feedback]
+enabled = false
+
+[projects."/private/tmp/runtime-execution-20260906/supply/work"]
+trust_level = "trusted"
+
+[permissions.chirality_probe.filesystem]
+":minimal" = "read"
+"/private/tmp/runtime-execution-20260906/supply/work" = "write"
+"/private/tmp/runtime-execution-20260906/supply/tmp" = "write"
+"/Users/ryan" = "deny"
+[permissions.chirality_probe.network]
+enabled = false

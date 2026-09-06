@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/descendant-tracker.test.ts (3 tests) 2436ms
+   ✓ observes an actual detached descendant after its controlled leader exits  2434ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  22:03:36
+   Duration  2.60s (transform 23ms, setup 0ms, collect 24ms, tests 2.44s, environment 0ms, prepare 27ms)

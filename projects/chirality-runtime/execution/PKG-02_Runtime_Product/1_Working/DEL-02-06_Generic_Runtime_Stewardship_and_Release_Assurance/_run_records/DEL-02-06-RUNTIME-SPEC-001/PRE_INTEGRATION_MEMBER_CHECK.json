@@ -1,0 +1,57 @@
+[
+  {
+    "manifest": "inventory/MANIFEST.sha256",
+    "member": "CURRENT_STATE_MATRIX.md",
+    "pass": true
+  },
+  {
+    "manifest": "inventory/MANIFEST.sha256",
+    "member": "SOURCE_CHECK.json",
+    "pass": true
+  },
+  {
+    "manifest": "clients/MANIFEST.sha256",
+    "member": "AFFECTED_CLIENT_CENSUS.md",
+    "pass": true
+  },
+  {
+    "manifest": "clients/MANIFEST.sha256",
+    "member": "RETURN.json",
+    "pass": true
+  },
+  {
+    "manifest": "clients/MANIFEST.sha256",
+    "member": "SOURCE_PINS.json",
+    "pass": true
+  },
+  {
+    "manifest": "evidence/MANIFEST.sha256",
+    "member": "PARENT_TECHNICAL_EVIDENCE.json",
+    "pass": true
+  },
+  {
+    "manifest": "evidence/MANIFEST.sha256",
+    "member": "REQUIREMENT_EVIDENCE.csv",
+    "pass": true
+  },
+  {
+    "manifest": "evidence/MANIFEST.sha256",
+    "member": "RETURN.json",
+    "pass": true
+  },
+  {
+    "manifest": "evidence/MANIFEST.sha256",
+    "member": "ROLLBACK_AND_PROFILE.md",
+    "pass": true
+  },
+  {
+    "manifest": "evidence/MANIFEST.sha256",
+    "member": "SIX_CARRIER_FAN_IN.csv",
+    "pass": true
+  },
+  {
+    "manifest": "evidence/MANIFEST.sha256",
+    "member": "TEN_FAILURE_CONDITIONS.csv",
+    "pass": true
+  }
+]

@@ -1,0 +1,4 @@
+{
+  "packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+  "tests/worker-retirement.test.ts": "a1a630abdfec29b61fd77c5c627244157f9ed6636506cd0a1bf53ccd7bbf92d0"
+}

@@ -1,0 +1,71 @@
+{
+  "state": "INTERRUPTED_BUILD_MANAGED_CHECKPOINT",
+  "timestamp_utc": "2026-09-06T06:22:01.463228+00:00",
+  "unified_exec_session": 26067,
+  "session_status": "Unknown process id",
+  "build_completion_record_exists": false,
+  "observed_build_processes": [],
+  "other_processes_not_owned_or_signaled": [
+    80359,
+    80755
+  ],
+  "completed": [
+    "independent source review admitted bounded implementation/build",
+    "reviewed network initialization patch and two regression tests applied",
+    "candidate1 literalroot rule retained",
+    "frozen four-job candidate2 compilation started"
+  ],
+  "not_completed": [
+    "candidate2 build completion/link/artifact capture",
+    "candidate2 version/signature inspection",
+    "network-policy source tests",
+    "network-approval source tests",
+    "network-constraints source tests",
+    "parent actual candidate2 conformance"
+  ],
+  "retained_root": "/private/tmp/runtime-execution-20260906/supplier-candidate",
+  "retained_subdirectories": [
+    "source",
+    "toolchain",
+    "cache",
+    "tmp",
+    "builds"
+  ],
+  "retained_artifacts": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server",
+      "bytes": 241191088,
+      "sha256": "a3ac0445f8fab23c62a97f3c9c8e420f094b67927948c1cfa69390b6e0742f93",
+      "candidate2_identity": false
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-code-mode-host",
+      "bytes": 75471112,
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "candidate2_identity": false
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server",
+      "bytes": 241191088,
+      "sha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+      "candidate2_identity": false
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-code-mode-host",
+      "bytes": 75471112,
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "candidate2_identity": false
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/target/aarch64-apple-darwin/release/codex-app-server",
+      "bytes": 241191088,
+      "sha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+      "candidate2_identity": false
+    }
+  ],
+  "source_status": " M codex-rs/Cargo.lock\n M codex-rs/core/src/session/session.rs\n M codex-rs/core/src/tools/network_approval_tests.rs\n M codex-rs/network-proxy/src/network_policy.rs\n M codex-rs/sandboxing/src/seatbelt_base_policy.sbpl\n",
+  "resume_command": "python3 /private/tmp/runtime-execution-20260906/supplier-candidate/builds/run.py candidate2",
+  "resume_note": "Same authorized incremental build. Preserve candidate2-interrupted.log before restarting because run.py writes candidate2.log. Do not infer candidate2 identity from stale target/release output; require candidate2.json exit0, then fresh separate artifact capture. Subsequent suites remain unrun and must be explicitly resumed within next authorized work.",
+  "cleanup": "None performed. Retain all source/cache/artifacts; unrelated processes untouched.",
+  "accepted_supply_or_release_changed": false
+}

@@ -1,0 +1,15 @@
+{
+  "amendment": 12,
+  "authority": "User direction to complete Runtime implementation and make any actual owner decision concrete; candidate preparation is not supply acceptance",
+  "basis": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/PLAN.md",
+  "basis_sha256": "73af174ef29a018ef5c9985c0ff9aa3a2274a89307f7f148615239e8548144d0",
+  "execution_owner": "WORKING_ITEMS delegates a bounded supplier-build specialist with its own durable exact brief and independent review",
+  "scratch_root": "/private/tmp/runtime-execution-20260906/supplier-candidate",
+  "evidence_root": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/SUPPLIER_CANDIDATE",
+  "authorized_work": "Fetch official source at exact commit 758ef40f50c1a458425c7cfbf1eb12cbc07af0b0; verify pinned inputs; review build configuration/downloaders and dependency execution requirements; prepare isolated Rust 1.95.0, dependency/artifact caches and necessary native tools in scratch; execute locked baseline and one-rule patched candidate builds; inspect/run version and relevant no-account local tests of those distinctly identified candidates. Download and execute the build dependencies needed for this ordinary software build; record provenance and checksums.",
+  "bounds": "No global tool installation, accepted-artifact overwrite, signing-key access, accepted pin edits or release claims. Maximum four parallel build jobs. Inspect free space before build and stop on actual resource exhaustion. Do not inherit provider/account credentials. Keep build/cache/temp output inside declared scratch; preserve existing HOME rather than repurpose it. Any ad-hoc execution signature must remain a separately hashed, explicitly local artifact, never vendor signing.",
+  "test_boundary": "Parent owns live credentials and final provider conformance. Manager may perform synthetic/local build and policy regression tests after verifying source and artifact identity; no external inference or operational account.",
+  "publication": "Commit patch, provenance/build recipe, validation and acceptance-impact support only; no binaries or bulky source/cache trees. Preserve unmodified baseline and patched identities separately for parent tests; cleanup only after their evidence is captured.",
+  "acceptance": "Candidate build and test evidence precedes any owner choice on changed-supply acceptance. The old accepted pin and holds remain unchanged.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

@@ -1,0 +1,6 @@
+{
+  "packages/core/src/hosted-consent.ts": "13026aed1c6cac03c6d75edb4fc5285a0d970c9b6c9f3a131b0e0575d03d46d8",
+  "packages/core/src/worker-retirement.ts": "90d933f530bc0158c561bc6d7f27939031f44d68d484ed8b6b5da5452ab8cc8e",
+  "tests/hosted-consent.test.ts": "0fcd59feb50ffda8dcc6a6a53f6f30d8a723f5cc17ad5623d8d64bba712a727e",
+  "tests/worker-retirement.test.ts": "e3d34bd6e8445969276c060e91962564a813347bb787b7a39325633472df413c"
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "bounded-implementation-brief/v1",
+  "manager": "/root/runtime_implementation_manager WORKING_ITEMS",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "roleEnforcement": "instruction-asserted; not mechanically enforced",
+  "authority": "IMPLEMENTATION_AMENDMENT_9.json parent release; user ordinary full runtime completion direction",
+  "specialists": {
+    "port": "/root/runtime_implementation_manager/approval_store",
+    "composition": "/root/runtime_implementation_manager/continuity"
+  },
+  "readContext": [
+    "Runtime accepted SOW and package sources",
+    "PI_BINDING_ASSESSMENT/ASSESSMENT.md",
+    "installed exact Pi0.82.0 API source read-only"
+  ],
+  "writes": {
+    "port": [
+      "packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "packages/engine-pi-omlx/src/pi-read-tool.ts",
+      "packages/engine-pi-omlx/src/pi-event-mapper.ts",
+      "packages/engine-pi-omlx/src/index.ts",
+      "tests/pi-turn-runtime.test.ts"
+    ],
+    "composition": [
+      "packages/daemon/src/standalone.ts",
+      "tests/standalone.test.ts",
+      "tests/pi-omlx-integration.test.ts"
+    ],
+    "manager": [
+      "packages/engine-pi-omlx/package.json",
+      "packages/daemon/package.json",
+      "packages/daemon/tsconfig.json",
+      "package-lock.json"
+    ]
+  },
+  "checks": [
+    "build/typecheck",
+    "actual SDK with local synthetic provider",
+    "client-daemon-engine SSE and interrupt",
+    "ambient resources/redirect/traversal/symlink/closed event failures"
+  ],
+  "limits": [
+    "No credentials or live server execution by children",
+    "No sibling/Root product writes",
+    "Candidate exact0.82 does not resolve TM-ROOT-106",
+    "Preserve Agent2 exactly one read tool resident model no fallback",
+    "No process-global fetch patch",
+    "No Git publication"
+  ],
+  "rollback": "Revert only own new tranche source paths using preserved preimages; leave accepted carriers/evidence untouched"
+}

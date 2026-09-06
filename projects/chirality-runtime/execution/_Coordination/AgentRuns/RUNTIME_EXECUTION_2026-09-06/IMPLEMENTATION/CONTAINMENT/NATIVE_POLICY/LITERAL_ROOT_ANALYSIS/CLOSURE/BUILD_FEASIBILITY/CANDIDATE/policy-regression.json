@@ -1,0 +1,23 @@
+{
+  "scope": "Direct exact-source base-policy diagnostic; not App Server turn or descendant conformance",
+  "results": [
+    {
+      "variant": "baseline",
+      "profile_sha256": "edb82c4ba671f890b937b312cee322fd65c63e74dd5b9b1abd1df85fbc930ee9",
+      "exit": -6,
+      "stdout": "",
+      "stderr": "",
+      "allowed_write_exists": false,
+      "outside_write_exists": false
+    },
+    {
+      "variant": "patched",
+      "profile_sha256": "0049596d1958b840ca897c308598c7963bdbf877d1347a760b076780e6f0baa1",
+      "exit": 0,
+      "stdout": "STARTEDREAD_DENIEDWRITE_DENIEDDONE",
+      "stderr": "nc: connectx to 127.0.0.1 port 9 (tcp) failed: Operation not permitted\n",
+      "allowed_write_exists": true,
+      "outside_write_exists": false
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/delegated-runtime.test.ts (28 tests | 23 skipped) 4160ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2028ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2028ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed | 23 skipped (28)
+   Start at  21:45:39
+   Duration  4.54s (transform 127ms, setup 0ms, collect 235ms, tests 4.16s, environment 0ms, prepare 35ms)

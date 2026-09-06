@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/manager-pi-integration.test.ts (4 tests) 620ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  22:58:29
+   Duration  1.71s (transform 208ms, setup 0ms, collect 770ms, tests 620ms, environment 0ms, prepare 58ms)

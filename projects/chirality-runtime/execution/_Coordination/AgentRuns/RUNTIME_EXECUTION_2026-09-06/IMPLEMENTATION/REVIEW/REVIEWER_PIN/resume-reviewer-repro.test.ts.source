@@ -1,0 +1,116 @@
+import { describe, expect, it } from "vitest";
+import { spawn } from "node:child_process";
+import { mkdtemp, readFile, realpath, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { PassThrough } from "node:stream";
+import { CodexTurnSession, type CodexDynamicTool } from "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts";
+
+function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "turn", tools?: readonly CodexDynamicTool[], posture: "off" | "ask-per-destination" | "on" = "off") {
+  const code = `
+ const mode=${JSON.stringify(mode)},posture=${JSON.stringify(posture)}; let configReads=0; const send=x=>process.stdout.write(JSON.stringify(x)+'\\n');
+ const response=(r,result)=>send({id:r.id,result});
+ const note=(method,params)=>send({method,params});
+ const end=status=>note('turn/completed',{threadId:'thread1',turn:{id:'turn1',status}});
+ require('node:readline').createInterface({input:process.stdin}).on('line',line=>{
+  const r=JSON.parse(line);
+  if(mode.startsWith('dynamic') && r.id===99 && r.result){
+   if(r.result.contentItems[0].type!=='inputText')process.exit(2);
+   note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'tool-output',delta:r.result.contentItems[0].text});
+   end(r.result.success?'completed':'failed');return;
+  }
+  if(mode.startsWith('named') && ['thread/start','thread/resume','turn/start'].includes(r.method) && (r.params.permissions!=='bound-profile' || 'permissionProfile' in r.params || 'sandbox' in r.params || 'sandboxPolicy' in r.params || 'policyDigest' in r.params))process.exit(4);
+  if(r.method==='initialize'){response(r,{});return;}
+  if(r.method==='initialized')return;
+  if(r.method==='config/read'){
+   configReads++;if(r.params.includeLayers!==true||r.params.cwd!=='/private/tmp')process.exit(3);
+   const selected={filesystem:{'/usr':'read','/private/tmp':'write','/private/protected':'deny'},network:{enabled:posture!=="off"}};
+   const config={permissions:{'bound-profile':selected},approvals_reviewer:'user',approval_policy:posture==='ask-per-destination'?'on-request':'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,network_proxy:posture!=='off'},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null,projects:{'/private/tmp':{trust_level:'trusted'}}};
+   if(mode==='named-null-defaults'||mode==='named-nonnull-default'||mode==='named-unknown-default'){
+    selected.description=null;selected.extends=null;selected.workspace_roots=null;selected.filesystem.glob_scan_max_depth=null;
+    for(const field of ['proxy_url','enable_socks5','socks_url','enable_socks5_udp','allow_upstream_proxy','dangerously_allow_non_loopback_proxy','dangerously_allow_all_unix_sockets','mode','domains','unix_sockets','allow_local_binding','mitm'])selected.network[field]=null;
+    if(mode==='named-nonnull-default')selected.network.allow_local_binding=true;
+    if(mode==='named-unknown-default')selected.network.future_grant=null;
+   }
+   if(mode==='named-reviewer-missing')delete config.approvals_reviewer;
+   if(mode==='named-reviewer-null')config.approvals_reviewer=null;
+   if(mode==='named-reviewer-auto'||(mode==='named-reviewer-drift'&&configReads>=3))config.approvals_reviewer='auto_review';
+   if(mode==='named-reviewer-shadow')config.approvals_reviewer='guardian_subagent';
+   if(mode==='named-proxy-missing')delete config.features.network_proxy;
+   if(mode==='named-proxy-null')config.features.network_proxy=null;
+   if(mode==='named-proxy-wrong'||(mode==='named-proxy-drift'&&configReads>=3))config.features.network_proxy=posture==='off';
+   if(mode==='named-remote-plugin')config.features.remote_plugin=true;
+   if(mode==='named-extra'||(mode==='named-drift'&&configReads>=3))selected.filesystem['/extra']='read';
+   if(mode==='named-network')selected.network.enabled=true;
+   if(mode==='named-preset')selected.filesystem[':defaults']='read';
+   if(mode==='named-missing')delete selected.filesystem['/private/protected'];
+   if(mode==='named-hook')config.hooks={run:['bad']};
+   if(mode==='named-mcp')config.mcp_servers={server:{command:'bad'}};
+   if(mode==='named-notify')config.notify=['bad'];
+   if(mode==='named-project')config.projects['/private/tmp'].command='bad';
+   response(r,{config});return;
+  }
+  if(r.method==='account/read'){if(r.params.refreshToken!==false)process.exit(9);response(r,{account:null,requiresOpenaiAuth:true});return;}
+  if(r.method==='thread/start'||r.method==='thread/resume'){
+   if(mode.startsWith('dynamic') && (!Array.isArray(r.params.dynamicTools)||r.params.dynamicTools[0].name!=='review'||r.params.dynamicTools[0].inputSchema.additionalProperties!==false||'handler' in r.params.dynamicTools[0]))process.exit(1);
+   if(r.params.model!=='fixture-model')process.exit(8);
+   if(!mode.startsWith('named') && r.method==='thread/start' && r.params.sandbox!=='workspace-write')process.exit(7);
+   if(r.method==='thread/resume'){if(r.params.approvalsReviewer!==undefined||r.params.approvalPolicy!==undefined)process.exit(11);response(r,{thread:{id:'thread1'},approvalsReviewer:'auto_review',approvalPolicy:'never'});return;} note('thread/started',{thread:{id:'thread1'}});response(r,{thread:{id:'thread1'}});return;
+  }
+  if(r.method==='turn/start'){
+   if(r.params.model!=='fixture-model'||r.params.input[0].type!=='text')process.exit(6);
+   if(mode==='reject'){send({id:r.id,error:{code:-32600,message:'fixture'}});return;}
+   if(mode==='malformed'){response(r,null);return;}
+   response(r,{turn:{id:'turn1',status:'inProgress'}});
+   note('turn/started',{threadId:'thread1',turn:{id:'turn1',status:'inProgress'}});
+   if(mode.startsWith('dynamic')){
+    const call={id:99,method:'item/tool/call',params:{threadId:mode==='dynamic-foreign'?'other':'thread1',turnId:'turn1',callId:'call1',tool:'review',arguments:mode==='dynamic-extra'?{text:'work',extra:true}:{text:'work'}}};
+    send(call);if(mode==='dynamic-duplicate')send(call);
+    if(mode==='dynamic-conflict'){call.params.arguments={text:'changed'};send(call);}
+    if(mode==='dynamic-early-terminal')end('completed');
+    return;
+   }
+   if(mode==='native-child'){
+    note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'collab1',type:'collabAgentToolCall',receiverThreadIds:['child-thread']}});
+    note('thread/started',{thread:{id:'child-thread'}});
+    note('turn/completed',{threadId:'child-thread',turn:{id:'child-turn',status:'completed'}});
+    note('item/agentMessage/delta',{threadId:'unassociated-child',turnId:'child-turn',itemId:'child-item',delta:'must not become primary output'});
+   }
+   if(mode==='foreign-request'){send({id:99,method:'item/tool/call',params:{threadId:'child-thread',turnId:'child-turn',callId:'child-call',tool:'review',arguments:{}}});return;}
+   if(mode==='approval'){send({id:99,method:'item/commandExecution/requestApproval',params:{threadId:'thread1',turnId:'turn1'}});return;}
+   if(mode==='silent'||mode==='interrupt')return;
+   if(mode==='flood'){process.stdout.write('x'.repeat(1100000));return;}
+   if(mode==='unknown'){note('item/future/event',{privateContent:'must not escape'});return;}
+   if(mode==='diagnostics'){note('thread/status/changed',{status:'active'});note('error',{willRetry:true,error:{message:'must not escape',codexErrorInfo:{responseStreamDisconnected:{httpStatusCode:null}}}});}
+   if(mode==='retry-exit'){note('error',{willRetry:true,error:{message:'secret diagnostic'}});setImmediate(()=>process.exit(0));return;}
+   if(mode==='diagnostic-flood'){for(let i=0;i<1025;i++)note('warning',{message:'private'});return;}
+   if(mode==='bad-terminal'){note('turn/completed',{threadId:'thread1',turn:{id:'turn1',status:'inProgress'}});return;}
+   note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'item1',type:'agentMessage',text:''}});
+   note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'item1',delta:'hello'});
+   note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'item1',type:'agentMessage',text:'hello'}});
+   end(mode==='failed'?'failed':'completed');
+   if(mode==='duplicate')end('completed');
+   if(mode==='conflict')end('failed');
+   if(mode==='late')note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'item1',delta:'late'});
+   return;
+  }
+  if(r.method==='turn/interrupt'){response(r,{});setImmediate(()=>end('interrupted'));return;}
+  process.exit(5);
+ });`;
+  const child = spawn(process.execPath, ["-e", code], { env: {}, stdio: "pipe", detached: process.platform !== "win32" });
+  child.stderr.resume();
+  const closed = new Promise<void>(resolve => child.once("close", () => resolve()));
+  const configuration = { commandNetworkPosture: posture, transport: { stdin: child.stdin, stdout: child.stdout, async close() { if (mode === "retry-exit") await Promise.race([closed, new Promise<void>(resolve => setTimeout(resolve, 30))]); if (child.pid) { try { process.kill(process.platform === "win32" ? child.pid : -child.pid, "SIGKILL"); } catch { /* exited */ } } await closed; } }, requestTimeoutMs: timeout, turnTimeoutMs: timeout, purpose, permissionProfile: mode.startsWith("named") ? "bound-profile" : undefined, policyDigest: mode.startsWith("named") ? "a".repeat(64) : undefined, dynamicTools: tools, toolTimeoutMs: 80 };
+  const session = new CodexTurnSession(configuration);
+  return { session, child, configuration, async close() { await session.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); } };
+}
+async function ready(f: ReturnType<typeof fixture>) { await f.session.initialize(); return f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); }
+const expectedPolicy = { filesystem: { "/usr": "read", "/private/tmp": "write", "/private/protected": "deny" }, network: { enabled: false } } as const;
+const turn = { threadId: "thread1", text: "fixture work", model: "fixture-model" };
+it("reproduces config-user accepting a resumed auto-review thread",async()=>{
+ const f=fixture("named",1000,"turn",undefined,"ask-per-destination");
+ try {await f.session.initialize();await f.session.verifyNativePolicy({...expectedPolicy,network:{enabled:true}});
+ await f.session.resumeThread({threadId:"thread1",model:"fixture-model",continuityChecked:true});
+ const id=await f.session.startTurn(turn);expect((await f.session.waitTurn(id)).status).toBe("completed");
+ }finally{await f.close();}
+});

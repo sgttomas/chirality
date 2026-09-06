@@ -1,0 +1,25 @@
+{
+  "context": "Parent reports implementation manager preserved and restored two early edits before N5; baseline subject rechecked here. New additive files outside this four-file subject excluded.",
+  "checks": [
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/protocol.ts",
+      "sha256": "1d8d329fb2f296de30aa13c04f5d528efa717a762b49936000a9b162f50bfa9e",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/errors.ts",
+      "sha256": "75d30b4139c8ba11264cb1165c4e51401cbc9c930770e8cb966513509b6b1501",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "38a55c95ba2ffa488e46a1debb48939a4aa8af2da89b80777e9d28f6f0c4adf4",
+      "match": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/cli/src/cli.ts",
+      "sha256": "77e2601afd3ee286444925fa08b1f890760f69e71b56c3feee690d034a4a53f5",
+      "match": true
+    }
+  ]
+}

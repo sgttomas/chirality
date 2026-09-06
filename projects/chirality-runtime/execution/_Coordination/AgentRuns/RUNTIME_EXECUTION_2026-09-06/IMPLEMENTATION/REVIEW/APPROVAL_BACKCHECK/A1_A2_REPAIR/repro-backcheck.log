@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/REVIEW/APPROVAL_BACKCHECK/A1_A2_REPAIR/transport-backcheck.test.ts (1 test) 9ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  23:16:26
+   Duration  470ms (transform 108ms, setup 0ms, collect 141ms, tests 9ms, environment 0ms, prepare 64ms)

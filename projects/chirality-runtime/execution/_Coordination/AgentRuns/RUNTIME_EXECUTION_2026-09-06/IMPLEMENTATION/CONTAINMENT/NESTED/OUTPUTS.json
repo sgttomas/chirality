@@ -1,0 +1,13 @@
+{
+  "status": "PASS_PROFILE_COMPATIBILITY_CHARACTERIZED",
+  "actual_codex_inner_profile": "NOT_PROVEN",
+  "files": {
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "51eda462da8b3cb18b44f743a7e1022c9fb16caa1b1a46998aa8cb31f37d1603",
+    "projects/chirality-runtime/tests/codex-containment.test.ts": "ddd9b76c02ee199dc85f13ce874c7f5e611dfa641779d56ff47fc92f30a046e5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NESTED/RETURN.md": "f43b77d40fcd4c3210fdb39ab702b81a255345677b2939c289798649a03dec60",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NESTED/isolate.py": "c4e75a5467c6b6fd6cc301c6ca9715a00b157db937be79861de61f1f4168edec",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NESTED/isolation.jsonl": "dbdf44ffc9d721e99ffc66569d3673024eb1648ccf255f3fdcee9cc9007ff7a0",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NESTED/initial.log": "776b9ee0b17f28dff2f74b003a10f78db3bd7f03da492089215f3e7935672df5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NESTED/final.log": "6602bcd37747b692193e099d20730beaf8254a77f3cdaa6fb00ede21b46e69c4"
+  }
+}

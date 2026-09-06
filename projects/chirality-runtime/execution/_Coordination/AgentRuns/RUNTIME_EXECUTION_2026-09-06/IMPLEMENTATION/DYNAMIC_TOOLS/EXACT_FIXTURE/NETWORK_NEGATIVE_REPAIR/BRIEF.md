@@ -1,0 +1,1 @@
+Parent requires shell STARTED/FINISHED and parsed curl status so off/deny cannot pass on shell abort. Same original fixture ownership released; no other frozen edits. OpenAI GPT-6, exact serving ID unavailable, instruction-asserted Agent 2; Agent 0 and Agent 2 not mechanically enforced. No vendor/network execution.

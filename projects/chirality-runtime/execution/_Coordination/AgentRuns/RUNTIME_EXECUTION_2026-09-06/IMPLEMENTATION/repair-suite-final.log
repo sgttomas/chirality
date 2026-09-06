@@ -1,0 +1,19 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/delegated-runtime.test.ts tests/worker-retirement.test.ts tests/codex-session.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/codex-session.test.ts (12 tests) 707ms
+ ✓ tests/worker-retirement.test.ts (19 tests) 1667ms
+   ✓ keeps terminal records readable across concurrent thread association in 30 interleavings  991ms
+ ✓ tests/delegated-runtime.test.ts (28 tests) 7437ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  998ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2028ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2029ms
+
+ Test Files  3 passed (3)
+      Tests  59 passed (59)
+   Start at  21:44:00
+   Duration  7.80s (transform 195ms, setup 0ms, collect 395ms, tests 9.81s, environment 0ms, prepare 78ms)

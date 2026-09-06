@@ -1,0 +1,8 @@
+{
+  "typecheck": 0,
+  "session_tests": {
+    "passed": 22,
+    "exit_code": 0
+  },
+  "actual_provider_dynamic_wire": "pending parent verification"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "path": "packages/core/src/runtime-conformance.ts",
+    "sha256": "689e20b61843bc4de1928e9e5dbf52a66278b85b5caa9ebaae59566f22c753ef"
+  },
+  {
+    "path": "packages/core/src/runtime-dependencies.ts",
+    "sha256": "6265140149676e86e41eb9b776bec0aed430bc316b2d6daa3d0c4aad17701187"
+  },
+  {
+    "path": "tests/standalone.test.ts",
+    "sha256": "a5afbf4cd198c454d51d9f7c5a08bf80862ba04a1dc812ddc244862703f2b1d5"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "mutableNonceAccepted": true,
+  "malformedError": {
+    "name": "TypeError",
+    "code": null
+  },
+  "acquired": 1,
+  "acquiredAfterClose": true
+}

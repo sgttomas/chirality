@@ -1,0 +1,5 @@
+{
+  "tests/exact-codex-conformance.test.ts": "cbf322430d2c908dbc58d7c1d5f82c610bea5812b79138eed1477a63bd1b6840",
+  "tests/fixtures/response-provider.mjs": "61ba9ec29a989f5d08d9694ed915efff12504af530d4737b84d6c5948d518b52",
+  "../../execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/03_EMPIRICAL_EVIDENCE/CONTAINMENT_AND_EGRESS.md": "e4e6de05f351683bd3342b960e6d235e9904d3de31017b9b0ba2672729f5a3eb"
+}

@@ -1,0 +1,5 @@
+# Native App Server policy integration brief
+
+Parent WORKING_ITEMS release: replace the experimental whole-provider wrapper with the ordinary trusted-provider/native-action-policy topology supported by accepted release plan lines 542/552/831 and CONTAINMENT/TOPOLOGY_ASSESSMENT. Executor OpenAI GPT-6, exact serving model ID unavailable; bounded Agent 2, instruction-asserted role, not mechanically enforced. No delegation.
+
+Writes only codex-supervisor.ts, codex-supervisor.test.ts and this evidence directory. Coordinate compiler and actor APIs with sibling specialists; they own those files. No actual vendor executable, account or network invocation. Preserve exact supply, auth/epoch/root checks, process cleanup and controlled-factory exclusion. Require immutable compiled policy digest to equal configured WorkerContinuity.policyDigest, and bind one named profile/digest to every actor start/resume/turn. No platform-default reads or ad hoc raw client overrides. Generated native policy is not itself proof of hard enforcement; parent G-SBX/live primary/descendant checks remain required.

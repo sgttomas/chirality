@@ -1,0 +1,5 @@
+{
+  "packages/daemon/src/standalone.ts": "e64286d37fb33d9ad4ffd065ee1204f2113d71a112a5ebc08b5f7d5fcd6b490f",
+  "tests/standalone.test.ts": "8b04956328f6cdf6b2549f374d99fe9d87a06298e06a82dffd2f61130efc2182",
+  "tests/pi-omlx-integration.test.ts": "996ca305f36fc19b86f5276f607d46616a15cc158a3b6efd136ec4287ff62850"
+}

@@ -1,0 +1,81 @@
+npm warn "login" is being parsed as a normal command line argument.
+npm warn Unknown cli config "--t". This will stop working in the next major version of npm.
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/codex-login.test.ts (6 tests) 587ms
+   ✓ operator-only sign-in component (controlled fixture) > fails for unsafe auth-file mode, mismatched completion, provider failure and clean exit  302ms
+ ❯ tests/delegated-runtime.test.ts (28 tests | 1 failed) 7895ms
+   ✓ opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads 113ms
+   ✓ opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields 27ms
+   ✓ opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing 33ms
+   ✓ opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay 95ms
+   ✓ opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim 50ms
+   ✓ keeps issued operation and configured identity immutable against caller mutation 90ms
+   ✓ returns typed safe mismatch for malicious compatibility fields 24ms
+   ✓ fences worker acquisition when shutdown occurs during consent read 56ms
+   ✓ starts a fresh daemon generation without reusing old admissions 101ms
+   ✓ drains admitted consent publication before successful close 53ms
+   ✓ rejects object and null turn requests with typed invalid request errors 23ms
+   ✓ binds daemon identity and rejects a mismatched configured project root 25ms
+   ✓ offers and executes explicit untyped with canonical v2 evidence 99ms
+   ✓ offers and executes explicit agent0 with canonical v2 evidence 155ms
+   ✓ offers and executes explicit agent1 with canonical v2 evidence 112ms
+   ✓ offers and executes explicit agent2 with canonical v2 evidence 131ms
+   ✓ offers and executes explicit task with canonical v2 evidence 173ms
+   ✓ exposes configured on honestly and rejects unknown roles 119ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1107ms
+   ✓ interrupts an active exact worker once and records the closed interrupted terminal 188ms
+   ✓ permits operator login without a pre-existing account and confines bypass admissions to login 76ms
+   ✓ rejects unsafe login URL output without sending arbitrary port fields 80ms
+   ✓ rejects malformed interruption and approval identities without coercion 80ms
+   × allows exact live-turn interruption after hosted launch verification becomes unavailable 623ms
+     → Approval requires this project's live worker generation
+   ✓ binds selected role policy to retirement and passes it to resume selection 174ms
+   ✓ cancels and drains a login startup racing daemon stop without returning a live login  2027ms
+   ✓ cancels a current login on shutdown and cannot admit another start 32ms
+   ✓ reports degraded shutdown within grace when configured login cancellation cannot drain  2028ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/delegated-runtime.test.ts > allows exact live-turn interruption after hosted launch verification becomes unavailable
+RuntimeError: Approval requires this project's live worker generation
+ ❯ runtimeErrorFromResponse packages/client/src/errors.ts:34:12
+ ❯ RuntimeClient.requestJson packages/client/src/client.ts:138:37
+ ❯ RuntimeClient.delegatedAdmission packages/client/src/client.ts:535:22
+ ❯ RuntimeClient.interruptDelegatedTurn packages/client/src/client.ts:512:23
+ ❯ tests/delegated-runtime.test.ts:270:10
+    268|   available = false;
+    269|   await expect(f.delegated.preflight("project", "turn:new")).rejects.t…
+    270|   expect(await f.client.interruptDelegatedTurn("project", "drift-inter…
+       |          ^
+    271|   expect((await turn).terminal.outcome).toBe("interrupted");
+    272|   await expect(f.delegated.preflight("project", "interrupt:foreign")).…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+RuntimeError: Trusted provider/model attribution is unavailable
+ ❯ runtimeErrorFromResponse packages/client/src/errors.ts:34:12
+ ❯ RuntimeClient.requestJson packages/client/src/client.ts:138:37
+ ❯ processTicksAndRejections node:internal/process/task_queues:104:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ENGINE_UNAVAILABLE', status: 503, details: undefined }
+This error originated in "tests/delegated-runtime.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "allows exact live-turn interruption after hosted launch verification becomes unavailable". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 33 passed (34)
+     Errors  1 error
+   Start at  21:43:43
+   Duration  8.22s (transform 155ms, setup 0ms, collect 309ms, tests 8.48s, environment 0ms, prepare 50ms)

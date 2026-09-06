@@ -1,0 +1,16 @@
+import {it,expect} from "vitest";
+import {mkdir,mkdtemp,writeFile,realpath,rm} from "node:fs/promises";
+import {join} from "node:path";
+import {createRequire} from "node:module";
+import {inventoryRuntimeDependencies} from "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/runtime-dependencies.ts";
+it.each(["peerDependencies","optionalDependencies"])("reproduces unbound ancestor resolution for declared %s",async field=>{
+ const parent=await realpath(await mkdtemp("/tmp/dependency-review-")); const runtime=join(parent,"runtime"),app=join(runtime,"packages/app"),outside=join(parent,"node_modules/escaped-dep");
+ await mkdir(app,{recursive:true});await mkdir(outside,{recursive:true});
+ await writeFile(join(app,"package.json"),JSON.stringify({name:"app",version:"1.0.0",[field]:{"escaped-dep":"*"}}));
+ await writeFile(join(outside,"package.json"),JSON.stringify({name:"escaped-dep",version:"1.0.0",main:"index.js"}));
+ await writeFile(join(outside,"index.js"),"module.exports='fixture only; never executed'\n");
+ try {
+ const actual=createRequire(join(app,"package.json")).resolve("escaped-dep");expect(actual).toBe(join(outside,"index.js"));
+ const inventory=await inventoryRuntimeDependencies(runtime,[app]); expect(inventory.files).toEqual([]); expect(inventory.packageCount).toBe(1);
+ }finally{await rm(parent,{recursive:true,force:true});}
+});

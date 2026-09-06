@@ -1,0 +1,7 @@
+{
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/LOGIN_SCHEMA_NEGATIVE/RETURN.md": "64858adc04357da8fceb2aa43f9d491b4a230ecb67e59099a35d52f251b2561b",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/SUPPLY_PROBE/LOGIN_SCHEMA_NEGATIVE/login-negative-input.jsonl": "43a601fea2cbd08d4b30a9426f96ba4c6eef5e45a2934ee8b350eaf2af380314",
+  "projects/chirality-runtime/packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e",
+  "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "51eda462da8b3cb18b44f743a7e1022c9fb16caa1b1a46998aa8cb31f37d1603",
+  "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "6c96b27a66c469bbbdd00d4f31a9db73a35d20e6040aa331826f23e93083ec0f"
+}

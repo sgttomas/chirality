@@ -1,0 +1,15 @@
+import { expect, it } from 'vitest';
+import { Writable,PassThrough } from 'node:stream';
+import { CodexTurnSession } from '../../../../../../../../packages/daemon/src/codex-session.ts';
+it('independently rejects success on the original asynchronous broken-pipe scenario',async()=>{
+ const stdout=new PassThrough(); let rejectedWrites=0,closed=false;
+ const send=(value:any)=>stdout.write(JSON.stringify(value)+'\n');
+ const stdin=new Writable({write(chunk,_encoding,callback){const request=JSON.parse(String(chunk));if(!request.method){rejectedWrites++;setImmediate(()=>callback(new Error('synthetic broken pipe')));return;}if(request.method!=='initialized')send({id:request.id,result:request.method==='thread/start'?{thread:{id:'t'}}:request.method==='turn/start'?{turn:{id:'u'}}:{}});callback();}});
+ const actor=new CodexTurnSession({commandNetworkPosture:'ask-per-destination',transport:{stdin,stdout,async close(){closed=true;}}});
+ try {
+ await actor.initialize();await actor.startThread({cwd:'/private/tmp',model:'fixture',continuityChecked:true});await actor.startTurn({threadId:'t',text:'fixture',model:'fixture'});
+ send({id:99,method:'item/commandExecution/requestApproval',params:{threadId:'t',turnId:'u',itemId:'i',startedAtMs:1,networkApprovalContext:{host:'example.com',protocol:'https'},availableDecisions:['accept','decline']}});
+ const [prompt]=actor.pendingNetworkApprovals();await expect(actor.replyNetworkApproval(prompt!.approvalId,'allow')).rejects.toThrow('Approval transport write failed');expect(rejectedWrites).toBe(1);
+ await new Promise(resolve=>setImmediate(resolve));expect(closed).toBe(true);await expect(actor.waitTurn('u')).rejects.toThrow('Approval transport write failed');
+ }finally{await actor.close();}
+});

@@ -1,0 +1,33 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/standalone.test.ts [ tests/standalone.test.ts ]
+Error: Transform failed with 1 error:
+/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/standalone.test.ts:67:20: ERROR: Syntax error "`"
+  Plugin: vite:esbuild
+  File: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/standalone.test.ts:67:20
+
+  Syntax error "`"
+  65 |    it("retires an eager process generation promptly and permanently rejects later capture", async () => {
+  66 |      const moduleUrl = pathToFileURL(resolve("packages/core/dist/runtime-conformance.js")).href;
+  67 |      const script = \`const m=await import(\${JSON.stringify(moduleUrl)}); const start=performance.now(); await Promis...
+     |                      ^
+  68 |      const { stdout } = await promisify(execFile)(process.execPath, ["--input-type=module", "-e", script], { env: {}, ...
+  69 |      const result = JSON.parse(stdout); expect(result.denied).toBe(2); expect(result.retirementMs).toBeLessThan(1000);
+
+ ❯ failureErrorWithLog node_modules/esbuild/lib/main.js:1748:15
+ ❯ node_modules/esbuild/lib/main.js:1017:50
+ ❯ responseCallbacks.<computed> node_modules/esbuild/lib/main.js:884:9
+ ❯ handleIncomingPacket node_modules/esbuild/lib/main.js:939:12
+ ❯ Socket.readFromStdout node_modules/esbuild/lib/main.js:862:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:48:06
+   Duration  143ms (transform 6ms, setup 0ms, collect 0ms, tests 0ms, environment 0ms, prepare 33ms)

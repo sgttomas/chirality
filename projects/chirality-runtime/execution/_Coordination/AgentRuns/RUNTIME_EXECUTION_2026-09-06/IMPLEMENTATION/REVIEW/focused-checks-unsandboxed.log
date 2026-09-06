@@ -1,0 +1,16 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --run tests/supervisor.test.ts tests/hosted-consent.test.ts tests/worker-retirement.test.ts tests/delegated-runtime.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/supervisor.test.ts (10 tests) 329ms
+ ✓ tests/hosted-consent.test.ts (11 tests) 555ms
+ ✓ tests/worker-retirement.test.ts (13 tests) 667ms
+ ✓ tests/delegated-runtime.test.ts (5 tests) 628ms
+
+ Test Files  4 passed (4)
+      Tests  39 passed (39)
+   Start at  20:54:38
+   Duration  993ms (transform 185ms, setup 0ms, collect 461ms, tests 2.18s, environment 0ms, prepare 127ms)

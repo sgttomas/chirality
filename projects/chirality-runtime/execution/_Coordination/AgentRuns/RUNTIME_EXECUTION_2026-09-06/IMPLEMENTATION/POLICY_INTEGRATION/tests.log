@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/delegated-runtime.test.ts (22 tests) 2414ms
+   ✓ routes existing approvals only, preserves generation binding and never claims provider application  1009ms
+
+ Test Files  1 passed (1)
+      Tests  22 passed (22)
+   Start at  21:34:08
+   Duration  2.71s (transform 118ms, setup 0ms, collect 170ms, tests 2.41s, environment 0ms, prepare 29ms)

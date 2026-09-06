@@ -1,0 +1,20 @@
+[
+  {
+    "profile": "none",
+    "exit": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "profile": "data",
+    "exit": 0,
+    "stdout": "STARTEDCANARY_DENIED",
+    "stderr": "Error opening /private/var/select/sh: Operation not permitted\nshell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted\n"
+  },
+  {
+    "profile": "both",
+    "exit": 0,
+    "stdout": "STARTEDCANARY_DENIED",
+    "stderr": "Error opening /private/var/select/sh: Operation not permitted\nshell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted\n"
+  }
+]

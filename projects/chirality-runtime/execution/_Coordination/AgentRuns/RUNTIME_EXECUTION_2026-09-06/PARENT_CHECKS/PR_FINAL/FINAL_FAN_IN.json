@@ -1,0 +1,47 @@
+{
+  "closure": "Validated implementation checkpoint for publication; product conformance incomplete",
+  "checks": {
+    "build": "PASS",
+    "typecheck": "PASS",
+    "runtimeTests": {
+      "passed": 474,
+      "skipped": 8,
+      "failed": 0
+    },
+    "affectedTests": {
+      "passed": 825,
+      "subtestsPassed": 9
+    },
+    "entrypointsAndG0ThroughG4": "PASS",
+    "harnessStatusDriftSelfCheck": "PASS",
+    "candidateWhitespace": "PASS",
+    "gitDiffCheck": "PASS",
+    "acceptedBasisFilesUnchanged": 43,
+    "frozenCodeFilesUnchangedAfterSuite": 452
+  },
+  "evidence": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/BUILD.json",
+      "sha256": "ab36f63f18641e70bfb81e8c5de419cc2af5a125930a9914b2ea0d885470e669"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/registered-final.json",
+      "sha256": "a328d469dd87172d12438091464efde7020a19957981aba044139744efb262cb"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/RESULTS.json",
+      "sha256": "e3f5f39a5ec2415e4bb74889fd9042b137e1cc56113d114b2f846e0112e53514"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/ACCEPTED_BASIS_CHECK.json",
+      "sha256": "58b2a64ed662dbdb71e3f1e6fc3c6c3f83d3fe1727431bf5d75a12900917d53d"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/PR_FINAL/CODE_SNAPSHOT.json",
+      "sha256": "bbab72bcb9608f1e1bb55b4c11b1c01e2a12bdc3c30c8e1108ca6b9af20a9d6f"
+    }
+  ],
+  "repairEvidence": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/PR_REPAIRS/MANAGER_RETURN.md",
+  "limits": "Eight opt-in live/supplier checks skipped; failed and unexecuted conformance profiles are not accepted. Supplier2 build remains interrupted. Owner holds/lifecycle/source acceptance unchanged.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced"
+}

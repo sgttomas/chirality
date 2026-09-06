@@ -1,0 +1,114 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 8
+  },
+  "counts": {
+    "category": {},
+    "event_type": {
+      "FINISH": 8,
+      "START": 8
+    },
+    "outcome": {
+      "PASS": 8,
+      "STARTED": 8
+    },
+    "reason_code": {}
+  },
+  "events": 16,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 851.42,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "MANAGER"
+    },
+    {
+      "duration_seconds": 109.092,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "N0"
+    },
+    {
+      "duration_seconds": 141.826,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "N1"
+    },
+    {
+      "duration_seconds": 141.826,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "N2"
+    },
+    {
+      "duration_seconds": 248.354,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "N3"
+    },
+    {
+      "duration_seconds": 191.745,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "N4"
+    },
+    {
+      "duration_seconds": 111.973,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "N5"
+    },
+    {
+      "duration_seconds": 124.257,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/runtime_spec_execution",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "N6"
+    }
+  ],
+  "sessions": 8,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

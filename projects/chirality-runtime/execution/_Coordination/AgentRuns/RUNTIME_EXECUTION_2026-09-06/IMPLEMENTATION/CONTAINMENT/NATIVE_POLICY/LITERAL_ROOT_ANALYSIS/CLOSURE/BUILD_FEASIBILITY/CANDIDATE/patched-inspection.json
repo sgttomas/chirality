@@ -1,0 +1,32 @@
+[
+  {
+    "command": [
+      "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server",
+      "--version"
+    ],
+    "exit": 0,
+    "stdout": "codex-app-server 0.149.0\n",
+    "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n"
+  },
+  {
+    "command": [
+      "/usr/bin/codesign",
+      "-dvv",
+      "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "Executable=/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server\nIdentifier=codex_app_server-d166c0eea6881610\nFormat=Mach-O thin (arm64)\nCodeDirectory v=20400 size=1869850 flags=0x20002(adhoc,linker-signed) hashes=58429+0 location=embedded\nSignature=adhoc\nInfo.plist=not bound\nTeamIdentifier=not set\nSealed Resources=none\nInternal requirements=none\n"
+  },
+  {
+    "command": [
+      "/usr/bin/codesign",
+      "--verify",
+      "--strict",
+      "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

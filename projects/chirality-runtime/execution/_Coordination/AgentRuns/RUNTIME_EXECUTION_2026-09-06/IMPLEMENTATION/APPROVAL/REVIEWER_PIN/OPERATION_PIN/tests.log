@@ -1,0 +1,71 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/codex-supervisor.test.ts (23 tests) 798ms
+ ❯ tests/codex-session.test.ts (44 tests | 1 failed) 3141ms
+   ✓ persistent known-method Codex actor (controlled provider) > initializes, sanitizes account, streams text and accepts only an actual terminal 37ms
+   ✓ persistent known-method Codex actor (controlled provider) > immutably binds the trusted named policy on start, resume and turn without legacy overrides 36ms
+   ✓ persistent known-method Codex actor (controlled provider) > rejects merged grants, missing denies, network changes and host-side overrides on readback  360ms
+   ✓ persistent known-method Codex actor (controlled provider) > accepts only the exact observed inert null profile defaults 33ms
+   ✓ persistent known-method Codex actor (controlled provider) > rechecks effective native policy before every turn and refuses expected-table replacement 33ms
+   ✓ persistent known-method Codex actor (controlled provider) > requires the complete valid named profile and digest pair 0ms
+   ✓ persistent known-method Codex actor (controlled provider) > quarantines native child notifications without primary output or terminal authority 32ms
+   ✓ persistent known-method Codex actor (controlled provider) > dispatches immutable registered dynamic tools with closed arguments and idempotent request IDs 34ms
+   ✓ persistent known-method Codex actor (controlled provider) > rejects extra tool input, foreign callbacks, conflicting duplicates and premature terminals 127ms
+   ✓ persistent known-method Codex actor (controlled provider) > bounds dynamic tool duration and outputs with sanitized failure responses 147ms
+   ✓ persistent known-method Codex actor (controlled provider) > aborts active dynamic work when the actor closes 33ms
+   ✓ persistent known-method Codex actor (controlled provider) > keeps dedicated login transport separate from model work 35ms
+   × persistent known-method Codex actor (controlled provider) > persists a durable thread across retired and successor actor processes 37ms
+     → Codex transport ended
+   ✓ persistent known-method Codex actor (controlled provider) > requires explicit model and caller continuity before selecting or resuming 33ms
+   ✓ persistent known-method Codex actor (controlled provider) > interrupt acknowledgement resolves only after the provider interruption terminal 34ms
+   ✓ persistent known-method Codex actor (controlled provider) > deduplicates identical terminals and retains failed terminal as provider outcome 63ms
+   ✓ persistent known-method Codex actor (controlled provider) > fails closed for approval requests, invalid terminals, malformed replies and floods 204ms
+   ✓ persistent known-method Codex actor (controlled provider) > does not rewrite terminal output from conflicting duplicate or late text 68ms
+   ✓ persistent known-method Codex actor (controlled provider) > quarantines unknown notifications as counts without secrets or turn authority 163ms
+   ✓ persistent known-method Codex actor (controlled provider) > never terminalizes retryable errors followed by a clean process exit 34ms
+   ✓ persistent known-method Codex actor (controlled provider) > refuses provider reuse of a previously terminal turn identifier 32ms
+   ✓ persistent known-method Codex actor (controlled provider) > rejects provider errors and times out without manufacturing terminal completion 167ms
+   ✓ routes exact attributed-host network choice allow without automatic decisions 3ms
+   ✓ routes exact attributed-host network choice deny without automatic decisions 2ms
+   ✓ routes exact attributed-host network choice acceptForSession without automatic decisions 0ms
+   ✓ cancels only the exact resolved network request, preserving typed request IDs 1ms
+   ✓ fails closed for off/on, foreign turns, combined permission requests and conflicting duplicate network prompts 1ms
+   ✓ invalidates pending network grants when turn interruption begins 0ms
+   ✓ honors exact server cancellation of a dynamic callback without late response or false terminal failure 0ms
+   ✓ requires explicit exact network_proxy feature for off, including operation-time drift 164ms
+   ✓ requires explicit exact network_proxy feature for ask-per-destination, including operation-time drift 160ms
+   ✓ requires explicit exact network_proxy feature for on, including operation-time drift 162ms
+   ✓ acknowledges an approval only after its successful write callback and fences concurrent sends 0ms
+   ✓ never reports applied transport success after async-error and prohibits replay 2ms
+   ✓ never reports applied transport success after no-callback and prohibits replay 31ms
+   ✓ pins user approval reviewer for off and refuses inherited, shadowed or changed review authority 190ms
+   ✓ pins user approval reviewer for ask-per-destination and refuses inherited, shadowed or changed review authority 197ms
+   ✓ pins user approval reviewer for on and refuses inherited, shadowed or changed review authority 189ms
+   ✓ overrides persisted reviewer and approval policy for native off operations and rejects caller authority 34ms
+   ✓ overrides persisted reviewer and approval policy for native ask-per-destination operations and rejects caller authority 32ms
+   ✓ overrides persisted reviewer and approval policy for native on operations and rejects caller authority 34ms
+   ✓ rejects native thread response that ignores trusted pins: named-response-missing 63ms
+   ✓ rejects native thread response that ignores trusted pins: named-response-auto 66ms
+   ✓ rejects native thread response that ignores trusted pins: named-response-policy 67ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/codex-session.test.ts > persistent known-method Codex actor (controlled provider) > persists a durable thread across retired and successor actor processes
+RuntimeError: Codex transport ended
+ ❯ protocol packages/daemon/src/codex-session.ts:27:39
+     25| }
+     26| const invalid = (message: string) => new RuntimeError("INVALID_REQUEST…
+     27| const protocol = (message: string) => new RuntimeError("ENGINE_UNAVAIL…
+       |                                       ^
+     28| function object(value: unknown): Record<string, unknown> {
+     29|   if (!value || typeof value !== "object" || Array.isArray(value)) thr…
+ ❯ Socket.<anonymous> packages/daemon/src/codex-session.ts:91:56
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 66 passed (67)
+   Start at  00:09:19
+   Duration  3.59s (transform 235ms, setup 0ms, collect 387ms, tests 3.94s, environment 0ms, prepare 121ms)

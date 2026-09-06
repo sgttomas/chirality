@@ -1,0 +1,35 @@
+{
+  "evidenceClass": "accepted-supply-offline-probe",
+  "protocolChecks": [
+    {
+      "method": "initialize",
+      "status": "passed"
+    },
+    {
+      "method": "config/read",
+      "status": "passed"
+    },
+    {
+      "method": "configRequirements/read",
+      "status": "passed"
+    },
+    {
+      "method": "experimentalFeature/list",
+      "status": "passed"
+    },
+    {
+      "method": "account/read",
+      "status": "passed"
+    }
+  ],
+  "authRequired": true,
+  "hostedTurnAvailable": false,
+  "exitCode": 0,
+  "signal": null,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "supply": {
+    "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+    "version": "0.149.0",
+    "signatureStatus": "OPEN_G5_FINDING_INVALID_VENDOR_SIGNATURE"
+  }
+}

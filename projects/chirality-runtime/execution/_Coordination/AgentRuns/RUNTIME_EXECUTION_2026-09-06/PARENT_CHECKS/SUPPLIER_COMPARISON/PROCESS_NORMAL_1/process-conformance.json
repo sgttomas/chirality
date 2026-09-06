@@ -1,0 +1,410 @@
+{
+  "scenario": "normal",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "accountUsed": false,
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "sourceBefore": {
+    "tests/exact-process-conformance.test.ts": "9c0bdbc7bc4c8a8d8383ad3fb00e7521135c7f77a5f0286853d0543e8aeb2e5d",
+    "tests/fixtures/process-response-provider.mjs": "2def930d92ba241f3117e405b34a7d652ffb5595e2f3064e07e78bc42aab2aca",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+  },
+  "publicRuntimeCancellationProven": false,
+  "processScope": "observed actual tool lineage only; no all-orphans proof",
+  "sibling": {
+    "pid": 76825,
+    "ppid": 76790,
+    "pgid": 76766,
+    "uid": 501,
+    "startIdentity": "Sun Sep 6 00:11:50 2026",
+    "positiveControlCount": 1
+  },
+  "policyDigest": "27f9cf325abb038043443640dfd97485aa726a732a4d144e0fa8c86cc21b741c",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/usr/lib": "read",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-rZjW5E/project": "write",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-rZjW5E/broker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-rZjW5E/broker/worker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-rZjW5E/project/.codex": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "terminal": {
+    "value": {
+      "threadId": "01a07558-3f20-7d10-a0e5-3fc11de5b501",
+      "turnId": "01a07558-3f8d-7f40-a933-8d416c867495",
+      "status": "completed",
+      "output": "PROCESS_PROFILE_COMPLETE"
+    }
+  },
+  "siblingSignalCount": 1,
+  "providerRecords": [
+    {
+      "request": 1,
+      "who": "primary",
+      "outputs": [],
+      "receivedAt": 1788675112872
+    },
+    {
+      "request": 2,
+      "who": "primary",
+      "outputs": [
+        {
+          "issued": {
+            "who": "primary",
+            "kind": "probe",
+            "issuedAt": 1788675112872
+          },
+          "output": "Chunk ID: 0ed8c4\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 48\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTEDError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONESIGNAL_DENIEDPROCESS_FINISHED"
+        }
+      ],
+      "receivedAt": 1788675112929
+    },
+    {
+      "request": 3,
+      "who": "primary",
+      "outputs": [
+        {
+          "issued": {
+            "who": "primary",
+            "kind": "probe",
+            "issuedAt": 1788675112872
+          },
+          "output": "Chunk ID: 0ed8c4\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 48\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTEDError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONESIGNAL_DENIEDPROCESS_FINISHED"
+        },
+        {
+          "issued": {
+            "who": "primary",
+            "kind": "spawn",
+            "issuedAt": 1788675112929
+          },
+          "output": "{\"agent_id\":\"01a07558-3fe4-7153-b6d4-bf0130ec3cc7\",\"nickname\":\"Kierkegaard\"}"
+        }
+      ],
+      "receivedAt": 1788675113038
+    },
+    {
+      "request": 4,
+      "who": "child",
+      "outputs": [],
+      "receivedAt": 1788675113049
+    },
+    {
+      "request": 5,
+      "who": "child",
+      "outputs": [
+        {
+          "issued": {
+            "who": "child",
+            "kind": "probe",
+            "issuedAt": 1788675113049
+          },
+          "output": "Chunk ID: 36d433\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 48\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTEDError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONESIGNAL_DENIEDPROCESS_FINISHED"
+        }
+      ],
+      "receivedAt": 1788675113098
+    },
+    {
+      "request": 6,
+      "who": "primary",
+      "outputs": [
+        {
+          "issued": {
+            "who": "primary",
+            "kind": "probe",
+            "issuedAt": 1788675112872
+          },
+          "output": "Chunk ID: 0ed8c4\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 48\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTEDError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONESIGNAL_DENIEDPROCESS_FINISHED"
+        },
+        {
+          "issued": {
+            "who": "primary",
+            "kind": "spawn",
+            "issuedAt": 1788675112929
+          },
+          "output": "{\"agent_id\":\"01a07558-3fe4-7153-b6d4-bf0130ec3cc7\",\"nickname\":\"Kierkegaard\"}"
+        },
+        {
+          "issued": {
+            "who": "primary",
+            "kind": "wait",
+            "issuedAt": 1788675113038
+          },
+          "output": "{\"status\":{\"01a07558-3fe4-7153-b6d4-bf0130ec3cc7\":{\"completed\":\"PROCESS_PROFILE_COMPLETE\"}},\"timed_out\":false}"
+        }
+      ],
+      "receivedAt": 1788675113104
+    }
+  ],
+  "providerFailures": [],
+  "beforeFixtureCleanup": {
+    "leader": {
+      "pid": 76827,
+      "ppid": 76790,
+      "pgid": 76827,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 00:11:50 2026"
+    },
+    "observed": 15,
+    "scans": 56,
+    "ownedGroup": [
+      {
+        "pid": 76827,
+        "ppid": 76790,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:50 2026"
+      }
+    ],
+    "detached": [],
+    "gone": [
+      {
+        "pid": 76931,
+        "ppid": 76827,
+        "pgid": 76931,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76932,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76934,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76939,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76942,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76947,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76949,
+        "ppid": 76931,
+        "pgid": 76931,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76963,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76973,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76974,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76975,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76976,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76977,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76980,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:53 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "afterFixtureCleanup": {
+    "leader": {
+      "pid": 76827,
+      "ppid": 76790,
+      "pgid": 76827,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 00:11:50 2026"
+    },
+    "observed": 15,
+    "scans": 58,
+    "ownedGroup": [],
+    "detached": [],
+    "gone": [
+      {
+        "pid": 76827,
+        "ppid": 76790,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:50 2026"
+      },
+      {
+        "pid": 76931,
+        "ppid": 76827,
+        "pgid": 76931,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76932,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76934,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76939,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76942,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76947,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76949,
+        "ppid": 76931,
+        "pgid": 76931,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76963,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76973,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76974,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76975,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76976,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76977,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:52 2026"
+      },
+      {
+        "pid": 76980,
+        "ppid": 76827,
+        "pgid": 76827,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 00:11:53 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "sourceAfter": {
+    "tests/exact-process-conformance.test.ts": "9c0bdbc7bc4c8a8d8383ad3fb00e7521135c7f77a5f0286853d0543e8aeb2e5d",
+    "tests/fixtures/process-response-provider.mjs": "2def930d92ba241f3117e405b34a7d652ffb5595e2f3064e07e78bc42aab2aca",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+  },
+  "supplyAfter": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "elapsedMs": 3673
+}
