@@ -1,13 +1,34 @@
-# Runtime project — candidate migration entry
+# Runtime project — loop entry
 
-Status: CANDIDATE_SETUP; no accepted product execution queue. Paths below are project-relative unless stated otherwise.
+Paths are project-relative except commands and explicitly repository-relative references.
 
-1. Resolve the active checkout with git rev-parse --show-toplevel; report branch, HEAD, origin/main and working-tree state. Read ../.. shared AGENTS and the actual requested role before action.
-2. Read chirality.project.json, docs/PRD.md and execution/_Coordination/HANDOFF_STATE.md. Inspect the Root migration record named there and its actual owner acts. Do not infer acceptance from filenames or installed code.
-3. During migration, work only within an explicit migration brief. Product work becomes selectable only from accepted project decomposition and deliverable-local Remaining/dependencies after actual activation and held gates. No accepted decomposition or queue currently exists in this bootstrap.
-4. Preserve immutable Root source snapshots, root-runtime-1 epoch1 and the separately recorded R16-B disposition; nine remaining compatibility holds are not lifted by tests or migration. Read actual current hold and client records before making a dependent claim.
-5. Project write containment excludes Root instructions and sibling projects. M2/G4 instruction changes and App/PEC changes need their separately scoped owners. No operational account, credential, user-data, socket or registration mutation follows from reading this manifest.
-6. First return: source/branch state; actual accepted authority versus candidate files; exact authorized migration scope; checks/evidence available; blocked product gates and next lawful work. If no current grant applies, return the blocked state without inventing implementation tasks.
-7. Record actual checks and a durable handoff with model attribution and accepted/candidate distinction. Human acceptance and PR merge remain actual owner acts under shared CHANGE and the governing run's closeout contract.
+## Map
 
-Current migration acceptance/application status: execution/_Coordination/MIGRATION_APPLICATION.md (project-relative). That actual record supersedes candidate-era status statements above only as far as its evidenced acts; it grants no product activation or release.
+Read shared `../../AGENTS.md` and the actual invoked role. Discover current authority at `execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md`, then `docs/PRD_AUTHORITY.md`, `docs/PRD.md` and `execution/_Decomposition/_AUTHORITY.md`. Use `execution/_Coordination/HANDOFF_STATE.md` and the newest `loop/LOOP_RECEIPTS.md` entry for continuity; historical payload labels do not override later owner acts.
+
+The work surface is the accepted seven-carrier register in `execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv` and each carrier's `ScopeOfWork.md`, `_STATUS.md` Remaining and `Dependencies.csv`. Discover declared coordination at `execution/_Coordination/_COORDINATION.md` and held gates at `execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv`. No workplan or inferred DAG priority is selected here.
+
+## Limits
+
+Use only the current brief's authorized scope. Read the deliverable's activation requirements before production dispatch. A migration, initialized status or passing test does not activate work or release a hold. Preserve accepted historical evidence, `root-runtime-1` epoch 1 and the separate R16-B disposition. Shared instruction/tool changes route to Root; sibling changes route to their owning sessions. No operational account/state or release act is implied.
+
+## Step 0 and first return
+
+From the checkout, refresh remote references and run discovery:
+
+```sh
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT"
+git fetch origin
+git status --short --branch
+git rev-parse HEAD origin/main
+git rev-list --left-right --count HEAD...origin/main
+python3 tools/practitioner_harness/harness.py status --project runtime
+python3 tools/practitioner_harness/harness.py drift --project runtime
+rg -n '^#|^##|^###' projects/chirality-runtime/loop/LOOP_RECEIPTS.md
+rg -n 'Current State|Remaining|Depends|HELD' projects/chirality-runtime/execution/PKG-*/1_Working/DEL-*/_STATUS.md
+```
+
+First return: branch/main divergence and local changes; accepted authority and effective-state evidence; current lifecycle/holds; the exact authorized task and its read/write limits; available checks and unresolved prerequisites; next lawful manager action. If no applicable activation exists, distinguish authorized readiness preparation from blocked production rather than inventing an execution queue.
+
+Record actual checks and a durable project handoff under the governing run's closeout contract, with truthful model and role attribution. Human acceptance and merge remain actual owner acts under shared CHANGE. Receipt prose is evidence; no Runtime receipt validator or automatic receipt-format enforcement is claimed.

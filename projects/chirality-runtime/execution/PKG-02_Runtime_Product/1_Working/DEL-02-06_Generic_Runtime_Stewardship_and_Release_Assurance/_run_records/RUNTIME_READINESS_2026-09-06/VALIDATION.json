@@ -1,0 +1,8 @@
+{
+  "continuity_checks_pass": true,
+  "source_contract_unchanged": true,
+  "future_run_not_created": true,
+  "node_count": 7,
+  "all_nodes_not_dispatched": true,
+  "scope": "preparation only"
+}
