@@ -25,7 +25,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { prepareCodexNativePolicy } from '../packages/daemon/src/codex-containment.js';
 beforeEach(() => { control.failure = 'fd-mode'; });
-it.skipIf(process.platform !== 'darwin').each(['fd-mode', 'fd-owner', 'path-replaced'])('rejects observed immutable identity drift: %s', async failure => {
+it.each(['fd-mode', 'fd-owner', 'path-replaced'])('rejects observed immutable identity drift: %s', async failure => {
   control.failure = failure;
   const base = await mkdtemp(join(await realpath(tmpdir()), 'immutable-identity-'));
   const root = join(base, 'project'), broker = join(base, 'broker'), worker = join(broker, 'worker'), home = join(worker, 'codex');
@@ -34,11 +34,4 @@ it.skipIf(process.platform !== 'darwin').each(['fd-mode', 'fd-owner', 'path-repl
     await expect(prepareCodexNativePolicy({ canonicalRoot: root, privateDirectory: worker, codexHome: home,
       immutableReadRoots: ['/private/etc/ssl/openssl.cnf'], protectedPaths: [broker] })).rejects.toThrow('Immutable file changed');
   } finally { await rm(base, { recursive: true, force: true }); }
-});
-
-it.runIf(process.platform !== 'darwin')('rejects native policy on unsupported platforms before macOS file access', async () => {
-  await expect(prepareCodexNativePolicy({ canonicalRoot: '/unsupported-platform/project',
-    privateDirectory: '/unsupported-platform/worker', codexHome: '/unsupported-platform/worker/codex',
-    immutableReadRoots: ['/private/etc/ssl/openssl.cnf'], protectedPaths: ['/unsupported-platform/broker']
-  })).rejects.toThrow('Native policy requires macOS Seatbelt verification');
 });

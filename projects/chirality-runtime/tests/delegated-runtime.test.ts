@@ -1,6 +1,6 @@
 import { PassThrough } from "node:stream";
 import { createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
-import { mkdtemp, mkdir, realpath, rm } from "node:fs/promises";
+import { mkdtemp, mkdir, realpath, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -19,13 +19,16 @@ import { createProjectFixture } from "./helpers.js";
 const cleanups: (() => Promise<unknown>)[] = [];
 afterEach(async () => { for (const cleanup of cleanups.splice(0).reverse()) await cleanup(); });
 const compatibility = { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) };
-async function fixture(slow = false, login?: RuntimeDaemonOptions["login"], hostedBlocked = false, commandNetworkPosture: "off" | "ask-per-destination" | "on" = "off", controlledNetwork = false) {
+async function fixture(slow = false, login?: RuntimeDaemonOptions["login"], hostedBlocked = false, commandNetworkPosture: "off" | "ask-per-destination" | "on" = "off", controlledNetwork = false, holdUntilReleased = false) {
   const root = await realpath(await mkdtemp(join(tmpdir(), "dr-")));
   cleanups.push(() => rm(root, { recursive: true, force: true }));
   const project = join(root, "project");
   const { manifestPath } = await createProjectFixture(project, "project");
   const identity = { canonicalRoot: project, cwd: project, accountId: "controlled-account", accountEpoch: 1, policyDigest: "fixture-policy" };
-  const worker = controlledNetwork ? controlledApprovalWorker(identity) : new ProcessSupervisor({ command: process.execPath, args: slow ? ["-e", "setTimeout(() => process.stdout.write('controlled:slow'), 900)"] : [resolve("tests/fixtures/delegated-worker.mjs")], cwd: project, env: {}, maxRunMs: 2000 });
+  const releasePath = join(root, "approval-worker-release");
+  // A host-owned explicit release, not elapsed time, ends this worker's turn.
+  const heldWorker = "const fs=require('node:fs'),path=require('node:path');const release=process.argv[1];let finished=false;const check=()=>{if(!finished&&fs.existsSync(release)){finished=true;watcher.close();process.stdout.write('controlled:released');}};const watcher=fs.watch(path.dirname(release),check);check();";
+  const worker = controlledNetwork ? controlledApprovalWorker(identity) : new ProcessSupervisor({ command: process.execPath, args: holdUntilReleased ? ["-e", heldWorker, releasePath] : slow ? ["-e", "setTimeout(() => process.stdout.write('controlled:slow'), 900)"] : [resolve("tests/fixtures/delegated-worker.mjs")], cwd: project, env: {}, maxRunMs: holdUntilReleased ? 10000 : 2000 });
   cleanups.push(() => worker.close());
   const server = await startSupervisorServer({ socketPath: join(root, "s", "s.sock"), supervisor: worker });
   cleanups.push(() => server.close());
@@ -47,7 +50,8 @@ async function fixture(slow = false, login?: RuntimeDaemonOptions["login"], host
   cleanups.push(() => daemon.stop());
   const client = new RuntimeClient({ socketPath: join(root, "d.sock"), tokenFile: registered.tokenFile });
   const operator = new RuntimeClient({ socketPath: join(root, "d.sock"), tokenFile: started.operatorTokenFile });
-  return { client, operator, delegated, binding, worker, retirement, identity, consent, daemon };
+  let release: Promise<void> | undefined;
+  return { client, operator, delegated, binding, worker, retirement, identity, consent, daemon, releaseWorker: () => release ??= writeFile(releasePath, "release", { flag: "wx" }) };
 }
 
 describe("opt-in delegated broker composition", () => {
@@ -193,26 +197,41 @@ it("exposes configured on honestly and rejects unknown roles", async () => {
   await expect(f.client.runDelegatedTurn("project", compatibility, { turnId: "unknown-role", prompt: "x", requestedRole: "admin" as never })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
 });
 it("routes existing approvals only, preserves generation binding and never claims provider application", async () => {
-  const f = await fixture(true);
+  const f = await fixture(false, undefined, false, "off", false, true);
   await f.client.grantDelegatedConsent("project", compatibility, { posture: "off", approvedBy: "fixture-owner", explicitUserAct: true });
-  const turn = f.client.runDelegatedTurn("project", compatibility, { turnId: "approval-turn", prompt: "slow" });
-  let request;
-  for (let count = 0; count < 100; count++) {
-    try { request = await f.delegated.requestApproval("project", "approval-turn", { host: "example.com", protocol: "https" }, "trusted-fixture-worker"); break; }
-    catch (error) { if ((error as { code?: string }).code !== "FORBIDDEN") throw error; await new Promise(resolve => setTimeout(resolve, 5)); }
+  const turn = f.client.runDelegatedTurn("project", compatibility, { turnId: "approval-turn", prompt: "held" });
+  let settled = false;
+  void turn.then(() => { settled = true; }, () => { settled = true; });
+  try {
+    let request;
+    for (let count = 0; count < 100; count++) {
+      try { request = await f.delegated.requestApproval("project", "approval-turn", { host: "example.com", protocol: "https" }, "trusted-fixture-worker"); break; }
+      catch (error) { if ((error as { code?: string }).code !== "FORBIDDEN") throw error; await new Promise(resolve => setTimeout(resolve, 5)); }
+    }
+    expect(request).toBeDefined();
+    const pending = await f.client.pendingDelegatedApprovals("project", "approval-turn");
+    expect(pending).toHaveLength(1);
+    const input = { turnId: "approval-turn", workerGeneration: request!.binding.workerGeneration, decision: "deny" as const, approvedBy: "fixture-human", explicitUserAct: true as const };
+    await expect(f.client.decideDelegatedApproval("project", request!.requestId, compatibility, { ...input, workerGeneration: "stale" })).rejects.toMatchObject({ code: "FORBIDDEN" });
+    await expect(f.client.decideDelegatedApproval("other-project", request!.requestId, compatibility, input)).rejects.toBeDefined();
+    const decided = await f.client.decideDelegatedApproval("project", request!.requestId, compatibility, input);
+    expect(decided).toMatchObject({ applied: false, record: { decision: { approvedBy: "fixture-human", decision: "deny" } } });
+    expect(await f.client.pendingDelegatedApprovals("project", "approval-turn")).toEqual([]);
+    await expect((f.client as any).requestJson("/v2/projects/project/delegated/approval-request", { method: "POST", body: { host: "example.com", protocol: "https" } })).rejects.toMatchObject({ code: "NOT_FOUND" });
+    expect(settled).toBe(false);
+    await f.releaseWorker();
+    expect((await turn).terminal.outcome).toBe("completed");
+    await expect(f.client.pendingDelegatedApprovals("project", "approval-turn")).rejects.toMatchObject({ code: "FORBIDDEN" });
+  } finally {
+    // Release is idempotent; failure still retires and joins the owned process.
+    try { await f.releaseWorker(); } finally {
+      if (!settled) {
+        try { await f.client.interruptDelegatedTurn("project", "approval-turn", compatibility); }
+        catch { await f.worker.close(); }
+      }
+      await turn.catch(() => undefined);
+    }
   }
-  expect(request).toBeDefined();
-  const pending = await f.client.pendingDelegatedApprovals("project", "approval-turn");
-  expect(pending).toHaveLength(1);
-  const input = { turnId: "approval-turn", workerGeneration: request!.binding.workerGeneration, decision: "deny" as const, approvedBy: "fixture-human", explicitUserAct: true as const };
-  await expect(f.client.decideDelegatedApproval("project", request!.requestId, compatibility, { ...input, workerGeneration: "stale" })).rejects.toMatchObject({ code: "FORBIDDEN" });
-  await expect(f.client.decideDelegatedApproval("other-project", request!.requestId, compatibility, input)).rejects.toBeDefined();
-  const decided = await f.client.decideDelegatedApproval("project", request!.requestId, compatibility, input);
-  expect(decided).toMatchObject({ applied: false, record: { decision: { approvedBy: "fixture-human", decision: "deny" } } });
-  expect(await f.client.pendingDelegatedApprovals("project", "approval-turn")).toEqual([]);
-  await expect((f.client as any).requestJson("/v2/projects/project/delegated/approval-request", { method: "POST", body: { host: "example.com", protocol: "https" } })).rejects.toMatchObject({ code: "NOT_FOUND" });
-  await turn;
-  await expect(f.client.pendingDelegatedApprovals("project", "approval-turn")).rejects.toMatchObject({ code: "FORBIDDEN" });
 });
 
 it("interrupts an active exact worker once and records the closed interrupted terminal", async () => {

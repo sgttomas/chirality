@@ -1,0 +1,32 @@
+62-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9184494Z    ^[[33m^[[2m✓^[[22m^[[39m offers and executes explicit agent2 with canonical v2 evidence ^[[33m 1473^[[2mms^[[22m^[[39m
+63-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9185941Z    ^[[33m^[[2m✓^[[22m^[[39m offers and executes explicit task with canonical v2 evidence ^[[33m 1381^[[2mms^[[22m^[[39m
+64-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9187406Z    ^[[33m^[[2m✓^[[22m^[[39m exposes configured on honestly and rejects unknown roles ^[[33m 803^[[2mms^[[22m^[[39m
+65:Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9192258Z ^[[31m   ^[[31m×^[[31m routes existing approvals only, preserves generation binding and never claims provider application^[[39m^[[33m 3957^[[2mms^[[22m^[[39m
+66-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9193383Z ^[[31m     → Approval binding is not a live worker turn^[[39m
+67-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9193998Z ^[[31m     → supervisor request rejected^[[39m
+68-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9194890Z    ^[[32m✓^[[39m interrupts an active exact worker once and records the closed interrupted terminal^[[32m 202^[[2mms^[[22m^[[39m
+69-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9196357Z    ^[[32m✓^[[39m permits operator login without a pre-existing account and confines bypass admissions to login^[[32m 50^[[2mms^[[22m^[[39m
+70-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9197404Z    ^[[32m✓^[[39m rejects unsafe login URL output without sending arbitrary port fields^[[32m 30^[[2mms^[[22m^[[39m
+71-Harness pre-merge	Test shared runtime	2026-09-06T06:58:48.9198390Z    ^[[32m✓^[[39m rejects malformed interruption and approval identities without coercion^[[32m 21^[[2mms^[[22m^[[39m
+--
+143-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2029237Z
+144-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2029548Z ^[[31m^[[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯^[[22m^[[39m
+145-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2029787Z
+146:Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2030764Z ^[[41m^[[1m FAIL ^[[22m^[[49m tests/delegated-runtime.test.ts^[[2m > ^[[22mroutes existing approvals only, preserves generation binding and never claims provider application
+147-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2032760Z ^[[31m^[[1mRuntimeError^[[22m: Approval binding is not a live worker turn^[[39m
+148-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2033759Z ^[[36m ^[[2m❯^[[22m runtimeErrorFromResponse packages/client/src/errors.ts:^[[2m34:12^[[22m^[[39m
+149-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2052575Z     ^[[90m 32| ^[[39m      ^[[33m?^[[39m (error^[[33m.^[[39mcode ^[[35mas^[[39m ^[[33mRuntimeErrorCode^[[39m)
+150-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2053396Z     ^[[90m 33| ^[[39m      ^[[33m:^[[39m ^[[32m"INTERNAL_FAILURE"^[[39m^[[33m;^[[39m
+151-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2054095Z     ^[[90m 34| ^[[39m    ^[[35mreturn^[[39m ^[[35mnew^[[39m ^[[33mRuntimeError^[[39m(
+152-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2054679Z     ^[[90m   | ^[[39m           ^[[31m^^[[39m
+--
+157-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2058716Z
+158-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2059274Z ^[[31m^[[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯^[[22m^[[39m
+159-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2059675Z
+160:Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2060801Z ^[[41m^[[1m FAIL ^[[22m^[[49m tests/delegated-runtime.test.ts^[[2m > ^[[22mroutes existing approvals only, preserves generation binding and never claims provider application
+161-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2061999Z ^[[31m^[[1mError^[[22m: supervisor request rejected^[[39m
+162-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2063024Z ^[[36m ^[[2m❯^[[22m Socket.<anonymous> packages/daemon/src/supervisor-server.ts:^[[2m180:271^[[22m^[[39m
+163-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2119248Z
+164-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2119303Z
+165-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2139447Z
+166-Harness pre-merge	Test shared runtime	2026-09-06T06:59:46.2140441Z ^[[2m Test Files ^[[22m ^[[1m^[[31m2 failed^[[39m^[[22m^[[2m | ^[[22m^[[1m^[[32m37 passed^[[39m^[[22m^[[2m | ^[[22m^[[33m2 skipped^[[39m^[[90m (41)^[[39m

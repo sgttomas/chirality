@@ -1,0 +1,16 @@
+{
+  "purpose": "Test-only delta after historical full macOS aggregate; remaining frozen files unchanged",
+  "changed": [
+    {
+      "path": "projects/chirality-runtime/tests/codex-immutable-file.test.ts",
+      "beforeSha256": "d028bb230a9ab2fa1ff4f4fe7dd045374e60303b27465d34e966fbefb43dc0cd",
+      "afterSha256": "97eff4706f1c39a753edcf7fa64d66210f239e4f2de0ed80f96ccb2cd46e34e0"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "beforeSha256": "1b16ab4f13677b56df704d304945f46114ac22b9df974bcf870961facfdb3196",
+      "afterSha256": "9648a53a0c67c00a0c4acc92f226b1cf7b2bfbd7ad98dde51116b54b32bf046e"
+    }
+  ],
+  "remainingFilesUnchanged": 450
+}

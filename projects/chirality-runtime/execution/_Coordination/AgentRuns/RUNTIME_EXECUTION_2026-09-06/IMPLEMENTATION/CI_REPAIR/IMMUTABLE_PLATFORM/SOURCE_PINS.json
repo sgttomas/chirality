@@ -1,0 +1,4 @@
+{
+  "tests/codex-immutable-file.test.ts": "97eff4706f1c39a753edcf7fa64d66210f239e4f2de0ed80f96ccb2cd46e34e0",
+  "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb"
+}

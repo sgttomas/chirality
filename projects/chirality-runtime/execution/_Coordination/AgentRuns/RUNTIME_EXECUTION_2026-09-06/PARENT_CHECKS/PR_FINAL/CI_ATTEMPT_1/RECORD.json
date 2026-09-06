@@ -1,0 +1,8 @@
+{
+  "runId": 34017845921,
+  "head": "a84bf29983dd9f851e6c07bf95254f281607b32e",
+  "result": "Linux shared-runtime suite failed: 4 failed,465 passed,13 skipped",
+  "rawSha256": "06299d954080b40d9d15fcea5d092d1c126920a5a75e231da458f5f67059a6c6",
+  "presentationSha256": "d0e76f2177a8623ab423de4616e4eeba4f16a0f0d9d3abb414e03e406b1818c0",
+  "normalization": "ANSI escapes and trailing whitespace removed; no result reinterpretation"
+}

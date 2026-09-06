@@ -1,0 +1,11 @@
+{
+  "authority": "Parent PR737 Linux CI repair grant",
+  "scope": [
+    "tests/codex-immutable-file.test.ts",
+    "execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CI_REPAIR/IMMUTABLE_PLATFORM"
+  ],
+  "objective": "Calibrate actual macOS immutable leaf fixtures and retain unsupported-platform rejection coverage",
+  "finding": "Three fixtures require macOS Seatbelt and real /private/etc/ssl/openssl.cnf; Linux correctly rejects before file checks",
+  "change": "Run actual immutable identity drift cases only on darwin. On other platforms assert explicit native policy rejection before any platform file assumption. No production platform bypass/mocking.",
+  "attribution": "OpenAI GPT-6 WORKING_ITEMS; exact model ID unavailable; role not mechanically enforced"
+}
