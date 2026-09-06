@@ -1,0 +1,14 @@
+{
+  "AMENDMENT_1.json": "2b4b1d64acb5a87e9936cb43b2184f8f9f5b61b3d6c970b68fa0b4e071714821",
+  "BRIEF.md": "fc91fad97074a71f17fee608f0b42c3bd7dd66f4e0f2bd1538083c92f5dfd99f",
+  "BRIEF.sha256": "7813bf15b1f71e4644ddd3cc9c9e2299f677a58935a9b572fb5d52723b2ed8c3",
+  "CHECKS.log": "8fc3650199d78aab5459c8f9d6303917237ccc3267f791762553c02a7c4eac5a",
+  "INPUTS.json": "3eaacb5f71d2ab456868ee82d1768b5e85ea96f3a30194ea4912d1f763b0185c",
+  "REPORT.md": "75de1c207cc663ab727402ace7be9e4137ca49d333be36a45b7b52fef78e4362",
+  "SOURCE_FREEZE.json": "c30277d42f27f9d99a3d11897938abb6a9a63abb3ab71283652922fa7cf930fb",
+  "_run_records/TASK_RUN_2026-09-06_P2.md": "01387629f567844d772c5dbee580e74b627ab0065e0563c5e97d44e3174b661d",
+  "exact-process-conformance.test.ts.postimage.source": "aaaebc5e663f4b1708cc27669b2980593858f069e091a5c1ec797a5cf014513e",
+  "exact-process-conformance.test.ts.preimage.source": "e6e23570565a892ebcbd302c3fe2b0ad983e60104284b8d944dc078c6e95a436",
+  "process-response-provider.mjs.postimage.source": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+  "process-response-provider.mjs.preimage.source": "d144efa6ed8e9a51bb983bbc451781c679d9729f751d164951cbc4315f7bcb76"
+}

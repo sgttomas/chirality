@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-06T18:57:46.068049+00:00",
+  "packages": [
+    {
+      "package": "BUILD",
+      "count": 24,
+      "mismatches": []
+    },
+    {
+      "package": "FIXTURE_ADAPTED",
+      "count": 8,
+      "mismatches": []
+    },
+    {
+      "package": "FIXTURE_PROPOSAL",
+      "count": 7,
+      "mismatches": []
+    }
+  ]
+}

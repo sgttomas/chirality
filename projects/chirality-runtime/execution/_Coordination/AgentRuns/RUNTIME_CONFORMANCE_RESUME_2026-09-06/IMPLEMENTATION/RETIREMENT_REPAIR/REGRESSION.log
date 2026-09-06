@@ -1,0 +1,49 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads 147ms
+ ✓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields 26ms
+ ✓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing 32ms
+ ✓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay 138ms
+ ✓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim 49ms
+ ✓ tests/delegated-runtime.test.ts > keeps issued operation and configured identity immutable against caller mutation 127ms
+ ✓ tests/delegated-runtime.test.ts > returns typed safe mismatch for malicious compatibility fields 24ms
+ ✓ tests/delegated-runtime.test.ts > fences worker acquisition when shutdown occurs during consent read 89ms
+ ✓ tests/delegated-runtime.test.ts > starts a fresh daemon generation without reusing old admissions 134ms
+ ✓ tests/delegated-runtime.test.ts > drains admitted consent publication before successful close 51ms
+ ✓ tests/delegated-runtime.test.ts > rejects object and null turn requests with typed invalid request errors 25ms
+ ✓ tests/delegated-runtime.test.ts > binds daemon identity and rejects a mismatched configured project root 26ms
+ ✓ tests/delegated-runtime.test.ts > offers and executes explicit untyped with canonical v2 evidence 130ms
+ ✓ tests/delegated-runtime.test.ts > offers and executes explicit agent0 with canonical v2 evidence 131ms
+ ✓ tests/delegated-runtime.test.ts > offers and executes explicit agent1 with canonical v2 evidence 140ms
+ ✓ tests/delegated-runtime.test.ts > offers and executes explicit agent2 with canonical v2 evidence 138ms
+ ✓ tests/delegated-runtime.test.ts > offers and executes explicit task with canonical v2 evidence 137ms
+ ✓ tests/delegated-runtime.test.ts > exposes configured on honestly and rejects unknown roles 48ms
+ ✓ tests/delegated-runtime.test.ts > routes existing approvals only, preserves generation binding and never claims provider application 487ms
+ ✓ tests/delegated-runtime.test.ts > interrupts an active exact worker once and records the closed interrupted terminal 369ms
+ ✓ tests/delegated-runtime.test.ts > permits operator login without a pre-existing account and confines bypass admissions to login 110ms
+ ✓ tests/delegated-runtime.test.ts > rejects unsafe login URL output without sending arbitrary port fields 85ms
+ ✓ tests/delegated-runtime.test.ts > rejects malformed interruption and approval identities without coercion 70ms
+ ✓ tests/delegated-runtime.test.ts > allows exact live-turn interruption after hosted launch verification becomes unavailable 355ms
+ ✓ tests/delegated-runtime.test.ts > binds selected role policy to retirement and passes it to resume selection 468ms
+ ✓ tests/delegated-runtime.test.ts > cancels and drains a login startup racing daemon stop without returning a live login 2069ms
+ ✓ tests/delegated-runtime.test.ts > cancels a current login on shutdown and cannot admit another start 37ms
+ ✓ tests/delegated-runtime.test.ts > reports degraded shutdown within grace when configured login cancellation cannot drain 2033ms
+ ✓ tests/delegated-runtime.test.ts > requires explicit on consent matching the immutable configured worker posture 184ms
+ ✓ tests/delegated-runtime.test.ts > leaves retirement unresolved when cleanup reports unresolved descendants 117ms
+ ✓ tests/delegated-runtime.test.ts > routes explicit allow through client, authenticated daemon, durable store, private supervisor and actual actor reply 182ms
+ ✓ tests/delegated-runtime.test.ts > routes explicit deny through client, authenticated daemon, durable store, private supervisor and actual actor reply 182ms
+ ✓ tests/delegated-runtime.test.ts > routes explicit acceptForSession through client, authenticated daemon, durable store, private supervisor and actual actor reply 184ms
+ ✓ tests/delegated-runtime.test.ts > carries provider cancellation into immutable resolution and refuses a queued explicit grant 222ms
+ ✓ tests/delegated-runtime.test.ts > joins successful wait to retirement failure without terminal, restart, or unrelated reconciliation 33ms
+ ✓ tests/delegated-runtime.test.ts > wait failure requires confirmed retirement before failed commitment (cleanup succeeds: true) 22ms
+ ✓ tests/delegated-runtime.test.ts > wait failure requires confirmed retirement before failed commitment (cleanup succeeds: false) 13ms
+ ✓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'completion' starts first (cleanup succeeds: true) 29ms
+ ✓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'completion' starts first (cleanup succeeds: false) 25ms
+ ✓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'interrupt' starts first (cleanup succeeds: true) 31ms
+ ✓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'interrupt' starts first (cleanup succeeds: false) 24ms
+
+ Test Files  1 passed (1)
+      Tests  41 passed (41)
+   Start at  12:56:14
+   Duration  9.40s (transform 188ms, setup 0ms, collect 328ms, tests 8.92s, environment 0ms, prepare 33ms)

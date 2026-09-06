@@ -1,0 +1,320 @@
+import { spawn, type ChildProcess } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { chmod, copyFile, mkdir, mkdtemp, readFile, readdir, realpath, rm, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { expect, it } from 'vitest';
+import { RuntimeError } from '@chirality/runtime-contracts';
+import { AuthRegistry, EngineRegistry, ProjectRegistry, ResidencyCoordinator, RuntimeService, SessionStore, TurnCoordinator } from '@chirality/runtime-core';
+import { RuntimeClient } from '@chirality/runtime-client';
+import { createControlledSupplyVerifierForTests, verifyExactSupply } from '../packages/core/src/exact-supply.js';
+import { DescendantTracker, censusProcesses } from '../packages/core/src/descendant-tracker.js';
+import { DelegatedRuntime } from '../packages/core/src/delegated-runtime.js';
+import { HostedConsentStore } from '../packages/core/src/hosted-consent.js';
+import { WorkerRetirementCoordinator } from '../packages/core/src/worker-retirement.js';
+import { CodexSupervisor } from '../packages/daemon/src/codex-supervisor.js';
+import { prepareCodexNativePolicy } from '../packages/daemon/src/codex-containment.js';
+import { RuntimeDaemon } from '../packages/daemon/src/runtime-daemon.js';
+import { startSupervisorServer, SupervisorClient } from '../packages/daemon/src/supervisor-server.js';
+import { createProjectFixture } from './helpers.js';
+// @ts-ignore Existing deterministic provider is an executable fixture.
+import { startProcessProvider } from './fixtures/process-response-provider.mjs';
+
+const scenarios = ['normal', 'cancel-primary', 'cancel-child', 'timeout-primary', 'timeout-child'];
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+async function until(check: () => Promise<boolean>, ms: number) {
+  const deadline = Date.now() + ms;
+  while (Date.now() < deadline) { if (await check()) return; await delay(20); }
+  throw new Error('Bounded public process observation timed out');
+}
+async function bounded<T>(promise: Promise<T>, ms: number): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try { return await Promise.race([promise, new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('Bounded public process wait timed out')), ms); })]); }
+  finally { clearTimeout(timer); }
+}
+function safeError(error: unknown) {
+  const e = error as { name?: unknown; code?: unknown; details?: { reason?: unknown }; message?: unknown; status?: unknown };
+  const actorProtocolFailure = error instanceof RuntimeError && e.code === 'ENGINE_UNAVAILABLE' && e.status === 503 && e.details?.reason === 'CODEX_PROTOCOL_FAILURE';
+  return { name: typeof e?.name === 'string' && /^[A-Za-z0-9_]{1,64}$/.test(e.name) ? e.name : 'Error',
+    code: typeof e?.code === 'string' && /^[A-Z0-9_]{1,64}$/.test(e.code) ? e.code : 'UNCLASSIFIED',
+    reason: typeof e?.details?.reason === 'string' && /^[A-Z0-9_]{1,64}$/.test(e.details.reason) ? e.details.reason : 'UNCLASSIFIED',
+    cause: actorProtocolFailure && e.message === 'Codex turn timed out' ? 'CONFIGURED_TURN_TIMEOUT' : actorProtocolFailure && e.message === 'Codex session closed' ? 'EXPLICIT_ACTOR_SESSION_CLOSE' : 'OTHER_FAILURE' };
+}
+type Census = Awaited<ReturnType<DescendantTracker['reconcile']>>;
+function fresh(snapshot: Census) { expect(snapshot.failure).toBeUndefined(); expect(snapshot.limitations).not.toContain('LATEST_CENSUS_MAY_BE_STALE'); }
+function clean(snapshot: Census) { fresh(snapshot); expect(snapshot.ownedGroup).toEqual([]); expect(snapshot.detached).toEqual([]); expect(snapshot.identityChanged).toEqual([]); }
+function assertCommittedRetirement(record: any, expected: 'completed' | 'interrupted' | 'failed', turnId: string, generation: string, retireCalls: any[]) {
+  expect(retireCalls.length).toBeGreaterThan(0);
+  for (const call of retireCalls) { expect(call.workerId).toBe(turnId); expect(call.generation).toBe(generation); expect(call.status).toBe('fulfilled'); }
+  expect(record).toMatchObject({ state: 'committed', terminal: { turnId, workerId: turnId, generation, outcome: expected } });
+}
+function assertCancelledPublicRun(result: any, turnId: string) {
+  expect(result.interrupt).toHaveProperty('value.interrupted', true);
+  expect(result.interrupt.value).toMatchObject({ turnId, workerGeneration: result.worker.generation });
+  expect(result.publicTurn).toHaveProperty('error'); expect(result.publicTurn).not.toHaveProperty('value');
+  expect(result.supervisorWait).toMatchObject({ workerId: turnId, generation: result.worker.generation, status: 'rejected',
+    error: { name: 'RuntimeError', code: 'ENGINE_UNAVAILABLE', reason: 'CODEX_PROTOCOL_FAILURE', cause: 'EXPLICIT_ACTOR_SESSION_CLOSE' } });
+  expect(result.supervisorWait.finishedAt).toBeGreaterThanOrEqual(result.interruptStartedAt);
+  expect(result.supervisorWait.finishedAt).toBeLessThanOrEqual(result.interruptFinishedAt);
+  expect(result.retirementCalls.some((call: any) => call.startedAt >= result.interruptStartedAt)).toBe(true);
+  expect(result.interruptFinishedAt).toBeGreaterThanOrEqual(Math.max(...result.retirementCalls.map((call: any) => call.finishedAt)));
+}
+it('correlates rejected pending run to exact actor close and matching public interruption', () => {
+  const closed = new RuntimeError('ENGINE_UNAVAILABLE', 'Codex session closed', 503, { reason: 'CODEX_PROTOCOL_FAILURE' });
+  const valid = { worker: { generation: 'g' }, interrupt: { value: { interrupted: true, turnId: 't', workerGeneration: 'g' } }, publicTurn: { error: safeError(new Error('wire redacted')) },
+    supervisorWait: { workerId: 't', generation: 'g', status: 'rejected', error: safeError(closed), finishedAt: 120 }, interruptStartedAt: 100, interruptFinishedAt: 150,
+    retirementCalls: [{ startedAt: 105, finishedAt: 140 }] };
+  assertCancelledPublicRun(valid, 't');
+  for (const error of [new Error('Codex session closed'), new RuntimeError('ENGINE_UNAVAILABLE', 'Codex transport ended', 503, { reason: 'CODEX_PROTOCOL_FAILURE' }), new RuntimeError('ENGINE_UNAVAILABLE', 'Codex session closed', 503, { reason: 'OTHER' })]) {
+    expect(() => assertCancelledPublicRun({ ...valid, supervisorWait: { ...valid.supervisorWait, error: safeError(error) } }, 't')).toThrow();
+  }
+  expect(() => assertCancelledPublicRun({ ...valid, supervisorWait: { ...valid.supervisorWait, generation: 'foreign' } }, 't')).toThrow();
+  expect(() => assertCancelledPublicRun({ ...valid, interrupt: { error: { code: 'FAILED' } } }, 't')).toThrow();
+  expect(() => assertCancelledPublicRun({ ...valid, supervisorWait: { ...valid.supervisorWait, finishedAt: 90 } }, 't')).toThrow();
+});
+it('rejects committed interruption when the real retirement operation rejected or never completed', () => {
+  const record = { state: 'committed', terminal: { turnId: 't', workerId: 't', generation: 'g', outcome: 'interrupted' } };
+  const call = { workerId: 't', generation: 'g', status: 'fulfilled' };
+  assertCommittedRetirement(record, 'interrupted', 't', 'g', [call]);
+  for (const status of ['rejected', 'pending']) expect(() => assertCommittedRetirement(record, 'interrupted', 't', 'g', [{ ...call, status }])).toThrow();
+  expect(() => assertCommittedRetirement(record, 'interrupted', 't', 'foreign', [call])).toThrow();
+  expect(() => assertCommittedRetirement({ state: 'reconciliation-required' }, 'interrupted', 't', 'g', [call])).toThrow();
+});
+it('never accepts stale empty census or detached survivors as retired', () => {
+  const empty = { failure: undefined, limitations: [], ownedGroup: [], detached: [], identityChanged: [] } as unknown as Census;
+  clean(empty);
+  expect(() => clean({ ...empty, failure: 'CENSUS_FAILED' })).toThrow();
+  expect(() => clean({ ...empty, limitations: ['LATEST_CENSUS_MAY_BE_STALE'] })).toThrow();
+  expect(() => clean({ ...empty, detached: [{ pid: 123 } as any] })).toThrow();
+});
+const markerValues = { started: 'PROCESS_STARTED', foreground: 'FOREGROUND_CHILD_DONE', 'signal-attempt': 'SIGNAL_ATTEMPTED', signal: 'SIGNAL_DENIED', ready: 'PROCESS_READY', finished: 'PROCESS_FINISHED' };
+const markerNames = [...Object.keys(markerValues), 'signal-status', 'pid'];
+function hostMarkers(markers: any, lifetime: boolean) {
+  for (const name of ['started', 'foreground', 'signal-attempt', 'signal'] as const) expect(markers[name]).toBe(`${markerValues[name]}\n`);
+  expect(markers['signal-status']).toMatch(/^[1-9][0-9]*\n$/);
+  expect(markers.ready).toBe(lifetime ? 'PROCESS_READY\n' : null);
+  expect(markers.finished).toBe(lifetime ? null : 'PROCESS_FINISHED\n');
+}
+function firstReturns(records: any[], calls: any[]) {
+  return calls.map(call => {
+    const recordsWithCall = records.flatMap(record => record.outputs.filter((output: any) => output.callId === call.callId).map((output: any) => ({ receivedAt: record.receivedAt, output: output.output, issued: output.issued }))).sort((a, b) => a.receivedAt - b.receivedAt);
+    const first = recordsWithCall[0];
+    if (first) { expect(first.issued).toMatchObject({ who: call.who, kind: call.kind, issuedAt: call.issuedAt }); expect(first.receivedAt).toBeGreaterThanOrEqual(call.issuedAt); }
+    return { ...call, firstReceivedAt: first?.receivedAt ?? null, firstElapsedMs: first ? first.receivedAt - call.issuedAt : null, output: first?.output ?? null };
+  });
+}
+it('uses only first attributed returned output despite replayed request history', () => {
+  const call = { callId: 'c', who: 'child', kind: 'probe', issuedAt: 50 }, output = { callId: 'c', issued: { who: 'child', kind: 'probe', issuedAt: 50 }, output: 'seen' };
+  expect(firstReturns([{ receivedAt: 100, outputs: [output] }, { receivedAt: 20000, outputs: [output] }], [call])[0].firstElapsedMs).toBe(50);
+});
+const sourcePaths = ['execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts', 'execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/tsconfig.json', 'tests/exact-process-runtime-conformance.test.ts', 'tests/fixtures/process-response-provider.mjs', 'tests/fixtures/response-provider.mjs', 'tests/helpers.ts',
+  'packages/core/src/delegated-runtime.ts', 'packages/core/src/worker-retirement.ts', 'packages/core/src/hosted-consent.ts', 'packages/core/src/descendant-tracker.ts', 'packages/core/src/exact-supply.ts',
+  'packages/daemon/src/codex-supervisor.ts', 'packages/daemon/src/codex-session.ts', 'packages/daemon/src/codex-containment.ts', 'packages/daemon/src/supervisor-server.ts', 'packages/daemon/src/runtime-daemon.ts',
+  'packages/core/dist/index.js', 'packages/core/dist/descendant-tracker.js', 'packages/core/dist/hosted-consent.js', 'packages/core/dist/role-policy.js', 'packages/core/dist/runtime-service.js',
+  'packages/client/dist/src/client.js', 'packages/contracts/dist/errors.js'];
+const runtimeRoot = fileURLToPath(new URL('../', import.meta.url));
+const pins = async () => {
+  // The evidence-local config resolves package barrels to current source. Pin full
+  // source trees and conservative dist trees as well; dist pins do not imply dist execution.
+  const packagePaths = (await Promise.all(['core', 'client', 'contracts'].map(async name => {
+    return (await Promise.all(['src', 'dist'].map(async tree => {
+      const root = `packages/${name}/${tree}`;
+      return (await readdir(join(runtimeRoot, root), { recursive: true })).filter(path => tree === 'src' ? path.endsWith('.ts') : path.endsWith('.js')).map(path => `${root}/${path}`);
+    }))).flat();
+  }))).flat();
+  return Object.fromEntries(await Promise.all([...new Set([...sourcePaths, ...packagePaths])].sort().map(async path => [path, createHash('sha256').update(await readFile(join(runtimeRoot, path))).digest('hex')])));
+};
+it('resolves direct lifecycle source and actual package runtime input pins without supplier launch', async () => {
+  const manifest = await pins();
+  for (const path of sourcePaths) expect(manifest[path]).toMatch(/^[a-f0-9]{64}$/);
+  expect(Object.keys(manifest).some(path => path === 'packages/core/dist/delegated-runtime.js')).toBe(true);
+});
+
+it.runIf(process.env.CHIRALITY_RUN_EXACT_PROCESS_RUNTIME === '1')('actual public Runtime process retirement with controlled no-account exact launcher', async () => {
+  const started = Date.now(), scenario = process.env.CHIRALITY_EXACT_PROCESS_SCENARIO ?? 'normal';
+  const supplied = process.env.CHIRALITY_EXACT_CODEX_PATH, evidence = process.env.CHIRALITY_EXACT_EVIDENCE_DIR;
+  if (!scenarios.includes(scenario) || !supplied || !evidence?.startsWith('/') || process.platform !== 'darwin' || process.arch !== 'arm64') throw new Error('Explicit bounded scenario, darwin-arm64 supplier and fresh absolute evidence path required');
+  const sha = process.env.CHIRALITY_EXACT_CANDIDATE_SHA256, size = process.env.CHIRALITY_EXACT_CANDIDATE_SIZE;
+  if ((sha === undefined) !== (size === undefined) || (sha !== undefined && (!/^[a-f0-9]{64}$/.test(sha) || !size || !/^[1-9][0-9]{0,9}$/.test(size) || Number(size) > 4294967296))) throw new Error('Complete exact candidate identity required');
+  const controlled = sha && size ? createControlledSupplyVerifierForTests({ sha256: sha, size: Number(size), version: 'unaccepted-candidate' }) : undefined;
+  const verify = (path: string) => controlled ? controlled.verify(path) : verifyExactSupply({ executablePath: path });
+  const result: Record<string, any> = { schema: 'chirality-public-process-retirement/v1', scenario, passed: false, accountUsed: false,
+    evidenceClass: controlled ? 'supplier-candidate-unaccepted' : 'accepted-supply-controlled-launch', bindingEvidenceClass: 'controlled-worker',
+    publicRuntimePathExercised: false, publicRuntimeCancellationProven: false, publicInterruptedEventObserved: false, publicInterruptedEventParity: 'UNPROVEN', productionLauncherProven: false,
+    transportLifecycle: 'controlled reproduction of production SIGTERM/500ms/SIGKILL; actual supervisor reconciliation code',
+    processScope: 'observed tool lineage only; no all-orphans proof', retirementCalls: [], transportCloses: [], censusFailures: [], accountObservations: [] };
+  let base = '', root = '', broker = '', phase = 'source-pins';
+  let child: ChildProcess | undefined, sibling: ChildProcess | undefined, childClosed: Promise<void> | undefined, siblingClosed: Promise<void> | undefined;
+  let externalTracker: DescendantTracker | undefined, workers: CodexSupervisor | undefined, retirement: WorkerRetirementCoordinator | undefined;
+  let provider: Awaited<ReturnType<typeof startProcessProvider>> | undefined, policy: Awaited<ReturnType<typeof prepareCodexNativePolicy>> | undefined;
+  let server: Awaited<ReturnType<typeof startSupervisorServer>> | undefined, daemon: RuntimeDaemon | undefined;
+  let signals = 0, siblingReady = false, outerCleanupStarted = false, terminalPromise: Promise<any> | undefined;
+  const turnId = `process-${scenario}`;
+  const groupSignal = (signal: NodeJS.Signals) => { if (child?.pid) try { process.kill(-child.pid, signal); } catch (error: any) { if (error.code !== 'ESRCH') throw error; } };
+  const watchdog = setTimeout(() => { result.watchdogFired = true; groupSignal('SIGKILL'); }, 55000);
+  const markers = async (who: string) => Object.fromEntries(await Promise.all(markerNames.map(async name => {
+    try { return [name, await readFile(join(root, `${who}.${name}`), 'utf8')]; } catch (error: any) { if (error.code === 'ENOENT') return [name, null]; throw error; }
+  })));
+  const census = async (label: string) => {
+    if (!externalTracker) throw new Error('Independent process tracker absent');
+    const snapshot = await externalTracker.reconcile();
+    try { fresh(snapshot); } catch (error) { result.censusFailures.push({ label, snapshot }); throw error; }
+    return snapshot;
+  };
+  const sentinelHash = async () => createHash('sha256').update(await readFile(join(broker, 'sentinel'))).digest('hex');
+  try {
+    result.sourcesBefore = await pins(); result.supplySha256 = (await verify(supplied)).sha256;
+    phase = 'setup'; base = await realpath(await mkdtemp(join(await realpath('/tmp'), 'epr-'))); root = join(base, 'p'); broker = join(base, 'r');
+    const worker = join(broker, 'w'), home = join(worker, 'h');
+    const { manifestPath } = await createProjectFixture(root, 'process-project');
+    await mkdir(worker, { recursive: true, mode: 0o700 }); await chmod(broker, 0o700); await mkdir(home, { mode: 0o700 });
+    await writeFile(join(broker, 'sentinel'), 'P2_PUBLIC_HOST_SENTINEL\n', { flag: 'wx', mode: 0o600 }); result.hostSentinelBefore = await sentinelHash();
+    result.markersBefore = { primary: await markers('primary'), child: await markers('child') };
+    for (const values of Object.values(result.markersBefore)) expect(Object.values(values as object).every(value => value === null)).toBe(true);
+    sibling = spawn(process.execPath, ['-e', 'process.on("SIGUSR1",()=>process.send({signal:true}));process.send({ready:true});setTimeout(()=>process.exit(0),55000);'], { cwd: broker, env: { PATH: '/usr/bin:/bin' }, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
+    siblingClosed = new Promise(resolve => sibling!.once('close', () => resolve()));
+    sibling.on('message', (message: any) => { if (message.ready) siblingReady = true; if (message.signal) signals++; });
+    await until(async () => siblingReady, 2000); sibling.kill('SIGUSR1'); await until(async () => signals === 1, 2000);
+    result.siblingBefore = (await censusProcesses()).find(row => row.pid === sibling!.pid); expect(result.siblingBefore).toBeDefined();
+    provider = await startProcessProvider({ projectRoot: root, siblingPid: sibling.pid!, scenario });
+    const binary = join(worker, 'app-server'); await copyFile(supplied, binary); await chmod(binary, 0o700); await verify(binary);
+    policy = await prepareCodexNativePolicy({ canonicalRoot: root, codexHome: home, privateDirectory: worker, protectedPaths: [broker], immutableReadRoots: ['/bin', '/usr/lib', '/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld'], commandNetworkPosture: 'off' });
+    result.policyDigest = policy.policyDigest; result.expectedPermissions = policy.expectedPermissions;
+    const identity = { canonicalRoot: root, cwd: root, accountId: 'no-account-process-fixture', accountEpoch: 1, policyDigest: policy.policyDigest };
+    const turnTimeoutMs = scenario.startsWith('timeout') ? 5000 : 30000; result.configuredTurnTimeoutMs = turnTimeoutMs;
+    workers = CodexSupervisor.controlledForTests({ identity, model: 'runtime-deterministic', allowUnauthenticatedModel: true, commandNetworkPosture: 'off', requestTimeoutMs: 8000, turnTimeoutMs, launch: async () => {
+      expect(child).toBeUndefined(); await verify(binary); const launch = await policy!.launchArguments(binary);
+      const config = ['model_provider="process_fixture"', 'model="runtime-deterministic"', 'model_providers.process_fixture.name="P2 public deterministic model"', `model_providers.process_fixture.base_url=${JSON.stringify(provider!.baseUrl)}`, 'model_providers.process_fixture.wire_api="responses"', 'model_providers.process_fixture.requires_openai_auth=false', 'model_providers.process_fixture.supports_websockets=false', 'model_providers.process_fixture.request_max_retries=0', 'model_providers.process_fixture.stream_max_retries=0', 'features.multi_agent=true'];
+      child = spawn(launch[0]!, [...launch.slice(1), ...config.flatMap(value => ['-c', value])], { cwd: root, env: policy!.environment, detached: true, stdio: 'pipe' });
+      childClosed = new Promise(resolve => child!.once('close', () => resolve())); child.on('error', () => {}); child.once('exit', () => groupSignal('SIGKILL'));
+      let stderrBytes = 0, wire = '';
+      child.stderr!.on('data', (bytes: Buffer) => { stderrBytes += bytes.length; if (stderrBytes > 65536) { result.stderrOverflow = true; groupSignal('SIGKILL'); } });
+      child.stdout!.on('data', (bytes: Buffer) => {
+        wire += bytes.toString(); if (wire.length > 2000000) { result.wireOverflow = true; groupSignal('SIGKILL'); return; }
+        for (let newline; (newline = wire.indexOf('\n')) >= 0;) {
+          const line = wire.slice(0, newline); wire = wire.slice(newline + 1);
+          try { const message = JSON.parse(line);
+            if (message.result && Object.hasOwn(message.result, 'account') && Object.hasOwn(message.result, 'requiresOpenaiAuth')) result.accountObservations.push({ hasAccount: message.result.account !== null, authRequired: message.result.requiresOpenaiAuth });
+          } catch { result.wireParseFailure = true; }
+        }
+      });
+      await new Promise<void>((resolve, reject) => { child!.once('spawn', resolve); child!.once('error', reject); });
+      externalTracker = new DescendantTracker({ leaderPid: child.pid!, intervalMs: 25, maxDurationMs: 55000 }); await externalTracker.start();
+      let closing: Promise<void> | undefined;
+      const close = () => closing ??= (async () => {
+        const closeRecord: Record<string, any> = { startedAt: Date.now(), outerCleanupStarted, status: 'pending' }; result.transportCloses.push(closeRecord);
+        try { groupSignal('SIGTERM'); await Promise.race([childClosed!, delay(500)]); groupSignal('SIGKILL'); await bounded(childClosed!, 8000); closeRecord.status = 'fulfilled'; }
+        catch (error) { closeRecord.status = 'rejected'; closeRecord.error = safeError(error); throw error; }
+        finally { closeRecord.finishedAt = Date.now(); }
+      })();
+      return { pid: child.pid!, descendantTracker: new DescendantTracker({ leaderPid: child.pid!, intervalMs: 25, maxDurationMs: 55000 }), permissionProfile: policy!.permissionProfile, policyDigest: policy!.policyDigest, expectedPermissions: policy!.expectedPermissions, transport: { stdin: child.stdin!, stdout: child.stdout!, close } };
+    } });
+    // The private wire deliberately redacts ordinary supervisor errors. Observe the
+    // genuine wait rejection before serialization; never infer timeout from the generic wire error.
+    const observedWorkers = { acquire: workers.acquire.bind(workers), inventory: workers.inventory.bind(workers), reconnect: workers.reconnect.bind(workers), retire: workers.retire.bind(workers), wait: async (workerId: string, generation: string) => {
+      result.supervisorWait = { workerId, generation, startedAt: Date.now(), status: 'pending' };
+      try { const value = await workers!.wait(workerId, generation); result.supervisorWait.status = 'fulfilled'; return value; }
+      catch (error) { result.supervisorWait.status = 'rejected'; result.supervisorWait.error = safeError(error); throw error; }
+      finally { result.supervisorWait.finishedAt = Date.now(); }
+    } };
+    server = await startSupervisorServer({ socketPath: join(broker, 's.sock'), supervisor: observedWorkers });
+    const privateClient = new SupervisorClient({ socketPath: join(broker, 's.sock'), credential: server.credential });
+    const supervisor = { acquire: async (id: string, prompt: string) => {
+      if (id !== turnId) throw new Error('Unexpected controlled worker identity'); result.acquireStartedAt = Date.now();
+      // Controlled-worker uses raw prompt; this adapter supplies only the trusted test envelope.
+      const handle = await privateClient.acquire(id, JSON.stringify({ prompt })); result.worker = handle; return handle;
+    }, inventory: privateClient.inventory.bind(privateClient), reconnect: privateClient.reconnect.bind(privateClient), wait: privateClient.wait.bind(privateClient), retire: async (workerId: string, generation: string) => {
+      const record: Record<string, any> = { workerId, generation, startedAt: Date.now(), outerCleanupStarted, status: 'pending' }; result.retirementCalls.push(record);
+      try { await privateClient.retire(workerId, generation); record.status = 'fulfilled'; }
+      catch (error) { record.status = 'rejected'; record.error = safeError(error); throw error; }
+      finally { record.finishedAt = Date.now(); }
+    } };
+    retirement = new WorkerRetirementCoordinator({ directory: join(broker, 'journal') });
+    const compatibility = { compatibilityIdentity: 'root-runtime-1', contractBasisSha256: createHash('sha256').update('P2 public fixture only; not accepted production basis').digest('hex') };
+    const consent = new HostedConsentStore({ canonicalRoot: root, codexHome: home });
+    const delegated = new DelegatedRuntime({ daemonId: 'process-fixture', projects: new Map([['process-project', { identity, compatibility, supervisor, consent, retirement, evidenceClass: 'controlled-worker' as const, commandNetworkPosture: 'off' as const, actual: { adapterId: 'codex', providerId: 'process_fixture', model: 'runtime-deterministic' } }]]) });
+    const directory = join(broker, 'runtime'), projects = new ProjectRegistry(directory), sessions = new SessionStore(directory, projects), engines = new EngineRegistry(), residency = new ResidencyCoordinator({ async listStatus() { return []; }, async load() {}, async unload() {} }, directory);
+    const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency), new AuthRegistry(directory), { async get() { return undefined; }, async status() { return { configured: false }; }, async set() {}, async remove() {} });
+    const registered = await service.registerProject(manifestPath, 'fixture-owner', 'public-process-test-only');
+    daemon = new RuntimeDaemon({ socketPath: join(broker, 'd.sock'), runtimeDirectory: directory, service, delegated }); await daemon.start();
+    const client = new RuntimeClient({ socketPath: join(broker, 'd.sock'), tokenFile: registered.tokenFile });
+    await client.grantDelegatedConsent('process-project', compatibility, { posture: 'off', approvedBy: 'fixture-owner', explicitUserAct: true });
+    phase = 'public-turn'; result.publicRuntimePathExercised = true; result.actionStartedAt = Date.now();
+    terminalPromise = client.runDelegatedTurn('process-project', compatibility, { turnId, prompt: 'PROCESS_PARENT_ONLY: follow bounded deterministic process probe.' }).then(value => ({ value }), error => ({ error: safeError(error) })).then(value => { result.publicTurnReceivedAt = Date.now(); result.publicTurn = value; return value; });
+    if (scenario !== 'normal') {
+      phase = 'lifetime-ready'; const role = scenario.endsWith('-child') ? 'child' : 'primary';
+      await until(async () => { const values = await markers(role); return values.ready === 'PROCESS_READY\n' && /^[1-9][0-9]*\n$/.test(values.pid ?? ''); }, 8000);
+      result.readyObservedAt = Date.now(); result.markersBeforeRetirement = { [role]: await markers(role) }; hostMarkers(result.markersBeforeRetirement[role], true);
+      const pid = Number(result.markersBeforeRetirement[role].pid.trim()); const before = await census('before-public-retirement'); result.beforePublicRetirement = before;
+      result.lifetimeIdentity = [...before.ownedGroup, ...before.detached].find(row => row.pid === pid && row.pid !== child!.pid); expect(result.lifetimeIdentity).toBeDefined();
+      if (scenario.startsWith('cancel')) {
+        phase = 'public-interrupt'; result.interruptStartedAt = Date.now();
+        result.interrupt = await client.interruptDelegatedTurn('process-project', turnId, compatibility).then(value => ({ value }), error => ({ error: safeError(error) })); result.interruptFinishedAt = Date.now();
+      }
+    }
+    phase = 'public-terminal'; const terminal = await bounded(terminalPromise, 10000); result.actionElapsedMs = Date.now() - result.actionStartedAt;
+    // Capture all actual state before asserting and before outer fixture teardown can help.
+    result.retirementBeforeFixtureCleanup = await retirement.read(turnId); result.inventoryBeforeFixtureCleanup = await privateClient.inventory();
+    result.afterPublicRetirement = await census('after-public-retirement');
+    result.markersAfterPublicRetirement = { primary: await markers('primary'), child: await markers('child') };
+    result.hostSentinelAfter = await sentinelHash(); result.firstReturns = firstReturns(provider.records, provider.issuedCalls);
+    result.siblingAfter = (await censusProcesses()).find(row => row.pid === sibling!.pid);
+    clean(result.afterPublicRetirement); expect(result.inventoryBeforeFixtureCleanup).toEqual([]);
+    const expected = scenario === 'normal' ? 'completed' : scenario.startsWith('cancel') ? 'interrupted' : 'failed';
+    assertCommittedRetirement(result.retirementBeforeFixtureCleanup, expected, turnId, result.worker.generation, result.retirementCalls);
+    for (const record of [...result.retirementCalls, ...result.transportCloses]) expect(record.outerCleanupStarted).toBe(false);
+    if (scenario.startsWith('cancel')) {
+      assertCancelledPublicRun(result, turnId);
+      result.publicPendingRunOutcome = 'rejected-after-confirmed-retirement';
+      result.publicInterruptedEventObserved = false;
+      result.publicInterruptedEventParity = 'UNRESOLVED';
+    } else if (scenario === 'normal') expect(terminal).toHaveProperty('value.terminal.outcome', 'completed');
+    else {
+      expect(terminal).toHaveProperty('error');
+      expect(result.supervisorWait).toHaveProperty('error.cause', 'CONFIGURED_TURN_TIMEOUT');
+      expect(result.supervisorWait.generation).toBe(result.worker.generation);
+      expect(result.publicTurnReceivedAt - result.acquireStartedAt).toBeGreaterThanOrEqual(turnTimeoutMs - 25);
+    }
+    const roles = scenario === 'normal' ? ['primary', 'child'] : [scenario.endsWith('-child') ? 'child' : 'primary'];
+    const probes = result.firstReturns.filter((call: any) => call.kind === 'probe'); expect(probes).toHaveLength(roles.length);
+    for (const role of roles) {
+      hostMarkers(result.markersAfterPublicRetirement[role], scenario !== 'normal');
+      const probe = probes.find((call: any) => call.who === role); expect(probe).toBeDefined();
+      if (scenario === 'normal') {
+        const lines = (probe.output ?? '').split(/\r?\n/);
+        for (const key of ['started', 'foreground', 'signal-attempt', 'signal', 'finished'] as const) expect(lines).toContain(markerValues[key]);
+      } else { expect(result.readyObservedAt - probe.issuedAt).toBeGreaterThanOrEqual(0); expect(result.publicTurnReceivedAt - probe.issuedAt).toBeLessThanOrEqual(10000); }
+    }
+    for (const call of result.firstReturns) { if (call.firstElapsedMs !== null) expect(call.firstElapsedMs).toBeLessThanOrEqual(10000); else if (scenario === 'normal') throw new Error('Completed public process profile lacks issued return'); }
+    expect(result.hostSentinelAfter).toBe(result.hostSentinelBefore); expect(provider.failures).toEqual([]); expect(result.censusFailures).toEqual([]);
+    expect(signals).toBe(1); expect(result.siblingAfter).toEqual(result.siblingBefore); expect(sibling.exitCode).toBeNull(); expect(sibling.signalCode).toBeNull();
+    sibling.kill('SIGUSR1'); await until(async () => signals === 2, 2000); result.siblingPostPositiveControl = true;
+    expect(result.accountObservations.length).toBeGreaterThan(0); for (const account of result.accountObservations) expect(account).toEqual({ hasAccount: false, authRequired: false });
+    if (scenario !== 'normal') expect(result.actionElapsedMs).toBeLessThanOrEqual(10000);
+    result.passed = true; result.publicRuntimeCancellationProven = scenario.startsWith('cancel');
+  } catch (error) { result.failure = safeError(error); result.failurePhase = phase; }
+  finally {
+    result.outerCleanupStartedAt = Date.now(); outerCleanupStarted = true;
+    const failures: any[] = []; const cleanup = async (name: string, action: () => Promise<unknown>) => { try { await bounded(action(), 8000); } catch (error) { failures.push({ name, error: safeError(error) }); } };
+    if (retirement) await cleanup('journal-before-cleanup', async () => { result.retirementAtCleanup = await retirement!.read(turnId); });
+    if (externalTracker) await cleanup('census-before-cleanup', async () => { result.censusAtCleanup = await census('fixture-cleanup-start'); });
+    await cleanup('daemon-stop', async () => { await daemon?.stop(); });
+    await cleanup('workers-close', async () => { await workers?.close(); });
+    await cleanup('server-close', async () => { await server?.close(); });
+    await cleanup('owned-vendor-fallback', async () => { groupSignal('SIGKILL'); if (childClosed) await childClosed; });
+    await cleanup('owned-sibling', async () => { if (sibling && sibling.exitCode === null && sibling.signalCode === null) sibling.kill('SIGTERM'); if (siblingClosed) await siblingClosed; });
+    if (externalTracker) await cleanup('independent-lineage', async () => { await until(async () => { const snapshot = await census('fixture-cleanup-poll'); return snapshot.ownedGroup.length === 0 && snapshot.detached.length === 0; }, 7500); result.afterFixtureCleanup = await census('fixture-cleanup-final'); clean(result.afterFixtureCleanup); });
+    await cleanup('external-tracker-stop', async () => { await externalTracker?.stop(); });
+    result.providerRecords = provider?.records; result.issuedCalls = provider?.issuedCalls; result.providerFailures = provider?.failures;
+    await cleanup('provider-close', async () => { await provider?.close(); }); await cleanup('policy-cleanup', async () => { await policy?.cleanup(); });
+    if (terminalPromise) await cleanup('public-turn-settlement', async () => { await terminalPromise; });
+    await cleanup('source-after', async () => { result.sourcesAfter = await pins(); result.sourceStable = JSON.stringify(result.sourcesBefore) === JSON.stringify(result.sourcesAfter); });
+    await cleanup('supplier-after', async () => { result.supplyAfter = (await verify(supplied)).sha256; });
+    clearTimeout(watchdog); result.siblingSignalCount = signals; result.cleanupFailures = failures; result.elapsedMs = Date.now() - started;
+    result.passed = result.passed && failures.length === 0 && result.censusFailures.length === 0 && result.sourceStable && result.supplyAfter === result.supplySha256 && result.elapsedMs <= 60000 && !result.watchdogFired && !result.wireOverflow && !result.wireParseFailure && !result.stderrOverflow;
+    if (!result.passed) result.publicRuntimeCancellationProven = false;
+    await mkdir(evidence, { recursive: true, mode: 0o700 }); await writeFile(join(evidence, 'PUBLIC_PROCESS_RETIREMENT.json'), JSON.stringify(result, null, 2) + '\n', { flag: 'wx', mode: 0o600 });
+    if (base && failures.length === 0) await rm(base, { recursive: true, force: true });
+  }
+  expect(result.passed, 'Public process retirement failed; preserve source-pinned evidence').toBe(true);
+}, 70000);

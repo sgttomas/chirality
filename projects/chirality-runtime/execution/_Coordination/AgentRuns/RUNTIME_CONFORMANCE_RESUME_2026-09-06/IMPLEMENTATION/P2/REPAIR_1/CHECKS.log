@@ -1,0 +1,13 @@
+2026-09-06 P2 REPAIR_1 checks
+node --check projects/chirality-runtime/tests/fixtures/process-response-provider.mjs
+Exit0, no output. Helper unchanged.
+
+From projects/chirality-runtime:
+CHIRALITY_RUN_EXACT_PROCESS_CONFORMANCE=0 node_modules/.bin/vitest run tests/exact-process-conformance.test.ts
+Exit0. Vitest3.2.7. Eight passed, one actual supplier profile skipped; tests22ms, total371ms, start12:38:25 America/Edmonton.
+New negative controls: matching exact RuntimeError timeout accepted at5000ms; unrelated post-ready transport error rejected at5000ms; ordinary Error with timeout-like message rejected; too-early200ms and over-budget10001ms rejected. Injected DescendantTracker census passes from valid leader to empty current set, fails with superficially empty stale lists on census exception, and remains rejected after recovery because failure is retained.
+All census calls in actual supplier fixture now flow through reconcileFresh; raw reconcile calls remain only in that wrapper and controlled negative test.
+
+git diff --check -- projects/chirality-runtime/tests/exact-process-conformance.test.ts projects/chirality-runtime/tests/fixtures/process-response-provider.mjs
+Exit0, no whitespace diagnostics.
+No actual supplier, account, provider listener, network/signal canary or production operation executed. Syntax-only /bin/sh -n occurs in existing pure construction tests. No active process remains.

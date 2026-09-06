@@ -1,0 +1,24 @@
+> **Generated view — not authority.** Produced by tools/practitioner_harness (command: drift).
+> Sources cited per finding; on any disagreement the cited source files govern.
+> Regenerate from project files; safe to delete. Structural checks are not approval,
+> issue, authentication, or acceptance of residual risk (K-AUTH-1; D-GOV-01).
+
+# Drift — Current State vs last history assertion
+
+| Project | Files | Matches | Mismatches | via strict rule | via assumption rules | Unparseable docs | Recorded baseline |
+|---|---|---|---|---|---|---|---|
+| chirality-runtime | 7 | 7 | 0 | 0 | 0 | 0 | 0/7 |
+
+Denominator: 7 status file(s) audited; 0 mismatch(es) measured.
+
+## Findings
+
+| Severity | Code | Dimension | Source | Invariant (ratification) | Message |
+|---|---|---|---|---|---|
+| INFO | DRIFT_BASELINE_COMPARISON | staleness/drift | `projects/chirality-runtime/_harness/adapter.yaml` | K-STATUS-1 (RATIFIED) | chirality-runtime: measured 0 mismatch(es) over 7 file(s) vs recorded baseline 0/7 (trend statement only). |
+
+## Summary
+
+Finding severities: INFO=1
+- files_total: 7
+- mismatches_total: 0

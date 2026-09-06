@@ -1,0 +1,74 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "BOUNDED_PREPARATION_COMPLETE": 1,
+      "CANDIDATE_PREPARATION": 1,
+      "INDEPENDENT_FINAL_REVIEW": 1,
+      "SOURCE_RUNNER_REVIEW": 1,
+      "SOURCE_TEST": 3,
+      "SOURCE_TEST_BUILD": 1
+    },
+    "event_type": {
+      "CHECK": 2,
+      "FINISH": 3,
+      "MILESTONE": 2,
+      "RETRY": 1,
+      "START": 3
+    },
+    "outcome": {
+      "FAIL": 1,
+      "PASS": 6,
+      "RETRY": 1,
+      "STARTED": 3
+    },
+    "reason_code": {
+      "REVIEWED_TEST_CLASSIFIER_REPAIR": 1,
+      "TEST_PARAMETER_CLASSIFIER": 1
+    }
+  },
+  "events": 11,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 2115.859,
+      "events": 5,
+      "final_outcome": "PASS",
+      "instance_id": "/root/supplier_manager/candidate3_repair_build",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "candidate3-repair-build"
+    },
+    {
+      "duration_seconds": 2244.045,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/supplier_manager/candidate3_review",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "candidate3-review"
+    },
+    {
+      "duration_seconds": 2244.113,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "/root/supplier_manager",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 1,
+      "role": "WORKING_ITEMS",
+      "session_id": "supplier-candidate3-manager"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-09-06T19:59:39.259213+00:00",
+  "files": {
+    "ATTEMPT2_ADMISSION.json": "9e9e3528ba17e957d438d5c23d2ce7c39bcda25f803c0935874b0dbe655ecf7b",
+    "BASELINE_REVIEW.md": "6a6b7c4417a923718e3688724af1c71691935224bfd5c787572bba8834a18936",
+    "BASELINE_VERIFICATION.json": "83e81269402c4a1d18d379296aeda2223709940695c061eccb4ce0d998bdd84c",
+    "CAPTURE_ADMISSION.json": "28e9095da6bad109576b7cd7853fc63301696767af45b1649a1bc6004baabc26",
+    "FINAL_VERIFICATION.json": "109ef96aeb5fe54df0356bfff647fe550a1fe217d0ad662ca13573ded35bccc4",
+    "FOCUSED_TEST_VERIFICATION.json": "4ddb4bc7e9b9f16edefb49586abf43391814fa36b6e1180240af5cfce5ff9d2c",
+    "GENERATED_POLICY_REVIEW.json": "0cdb36d1bb8c57b4074589853e8c8d5c959975ffc5d89ada810a38fe7fc9dd19",
+    "HELPER_TEST_FAILURE_01.json": "58181f1f002c491a392a234d7ec9dcc36eac68fc806bb42ced5e5d7618b6facd",
+    "RETURN.md": "820cb1dfebe0cc5a1594e994b6576d9cc3a247b8e83a07ffa811a0ddcb5408d0",
+    "SOURCE_RUNNER_ADMISSION.json": "40adaf9447a7242331c9ee7bf01e35ad02eb89f864ea24d8322304073e0d7163",
+    "SOURCE_RUNNER_ADMISSION.md": "cddc49c15032452dc6acfa06303c0afe357af9673de27130cff34e84957aee0f",
+    "final_verify.py": "3a16de8c06beb0c133fcab8cc360276ecce2a33e342aa616c63e5b289f10bb49"
+  },
+  "status": "immutable completed independent review snapshot",
+  "scope": "REVIEW only; derivative, unaccepted supply"
+}

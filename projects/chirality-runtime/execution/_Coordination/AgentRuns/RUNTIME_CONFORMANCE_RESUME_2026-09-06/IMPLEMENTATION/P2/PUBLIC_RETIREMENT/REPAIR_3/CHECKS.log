@@ -1,0 +1,7 @@
+2026-09-06 REPAIR3, from projects/chirality-runtime
+CHIRALITY_RUN_EXACT_PROCESS_RUNTIME=0 node_modules/.bin/vitest run --config execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts
+Exit0;7passed/1supplier skipped; tests10ms/total402ms; start13:14:47 America/Edmonton.
+node_modules/.bin/tsc --project execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/tsconfig.json
+Exit0;noEmit;no diagnostics.
+Added pure regression presents target in gone on first sample and would present same PID live on a later sample. It must reject immediately:1sample,0pauses,0current-census reads. Existing never-tracked shell-first retry and reuse/disappearance/deadline/failed-census controls remain passing.
+No supplier/provider/account/network/process-signal execution or shared production edits.

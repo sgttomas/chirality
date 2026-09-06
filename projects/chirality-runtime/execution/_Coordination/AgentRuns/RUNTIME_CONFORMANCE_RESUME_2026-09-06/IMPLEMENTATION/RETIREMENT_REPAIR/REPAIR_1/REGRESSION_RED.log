@@ -1,0 +1,84 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ↓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > runs client→authenticated daemon→private supervisor→controlled process and preserves v1 reads
+ ↓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > rejects client compatibility mismatch before consent or worker acquisition and preserves machine fields
+ ↓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > rejects missing consent, nonce replay and unbound requests without executing
+ ↓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > terminalizes controlled crash and refuses automatic turn replay
+ ↓ tests/delegated-runtime.test.ts > opt-in delegated broker composition > cannot upgrade fixture consent to a production containment claim
+ ↓ tests/delegated-runtime.test.ts > keeps issued operation and configured identity immutable against caller mutation
+ ↓ tests/delegated-runtime.test.ts > returns typed safe mismatch for malicious compatibility fields
+ ↓ tests/delegated-runtime.test.ts > fences worker acquisition when shutdown occurs during consent read
+ ↓ tests/delegated-runtime.test.ts > starts a fresh daemon generation without reusing old admissions
+ ↓ tests/delegated-runtime.test.ts > drains admitted consent publication before successful close
+ ↓ tests/delegated-runtime.test.ts > rejects object and null turn requests with typed invalid request errors
+ ↓ tests/delegated-runtime.test.ts > binds daemon identity and rejects a mismatched configured project root
+ ↓ tests/delegated-runtime.test.ts > offers and executes explicit untyped with canonical v2 evidence
+ ↓ tests/delegated-runtime.test.ts > offers and executes explicit agent0 with canonical v2 evidence
+ ↓ tests/delegated-runtime.test.ts > offers and executes explicit agent1 with canonical v2 evidence
+ ↓ tests/delegated-runtime.test.ts > offers and executes explicit agent2 with canonical v2 evidence
+ ↓ tests/delegated-runtime.test.ts > offers and executes explicit task with canonical v2 evidence
+ ↓ tests/delegated-runtime.test.ts > exposes configured on honestly and rejects unknown roles
+ ↓ tests/delegated-runtime.test.ts > routes existing approvals only, preserves generation binding and never claims provider application
+ ↓ tests/delegated-runtime.test.ts > interrupts an active exact worker once and records the closed interrupted terminal
+ ↓ tests/delegated-runtime.test.ts > permits operator login without a pre-existing account and confines bypass admissions to login
+ ↓ tests/delegated-runtime.test.ts > rejects unsafe login URL output without sending arbitrary port fields
+ ↓ tests/delegated-runtime.test.ts > rejects malformed interruption and approval identities without coercion
+ ↓ tests/delegated-runtime.test.ts > allows exact live-turn interruption after hosted launch verification becomes unavailable
+ ↓ tests/delegated-runtime.test.ts > binds selected role policy to retirement and passes it to resume selection
+ ↓ tests/delegated-runtime.test.ts > cancels and drains a login startup racing daemon stop without returning a live login
+ ↓ tests/delegated-runtime.test.ts > cancels a current login on shutdown and cannot admit another start
+ ↓ tests/delegated-runtime.test.ts > reports degraded shutdown within grace when configured login cancellation cannot drain
+ ↓ tests/delegated-runtime.test.ts > requires explicit on consent matching the immutable configured worker posture
+ ↓ tests/delegated-runtime.test.ts > leaves retirement unresolved when cleanup reports unresolved descendants
+ ↓ tests/delegated-runtime.test.ts > routes explicit allow through client, authenticated daemon, durable store, private supervisor and actual actor reply
+ ↓ tests/delegated-runtime.test.ts > routes explicit deny through client, authenticated daemon, durable store, private supervisor and actual actor reply
+ ↓ tests/delegated-runtime.test.ts > routes explicit acceptForSession through client, authenticated daemon, durable store, private supervisor and actual actor reply
+ ↓ tests/delegated-runtime.test.ts > carries provider cancellation into immutable resolution and refuses a queued explicit grant
+ ↓ tests/delegated-runtime.test.ts > joins successful wait to retirement failure without terminal, restart, or unrelated reconciliation
+ ↓ tests/delegated-runtime.test.ts > wait failure requires confirmed retirement before failed commitment (cleanup succeeds: true)
+ ↓ tests/delegated-runtime.test.ts > wait failure requires confirmed retirement before failed commitment (cleanup succeeds: false)
+ ↓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'completion' starts first (cleanup succeeds: true)
+ ↓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'completion' starts first (cleanup succeeds: false)
+ ↓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'interrupt' starts first (cleanup succeeds: true)
+ ↓ tests/delegated-runtime.test.ts > shares the retirement barrier when 'interrupt' starts first (cleanup succeeds: false)
+ × tests/delegated-runtime.test.ts > late approval failure joins settled retirement after turn cleanup (retirement succeeds: true) 28ms
+   → expected [ { workerId: 't', …(1) }, …(1) ] to deeply equal [ { workerId: 't', …(1) } ]
+ × tests/delegated-runtime.test.ts > late approval failure joins settled retirement after turn cleanup (retirement succeeds: false) 14ms
+   → expected [ { workerId: 't', …(1) }, …(1) ] to deeply equal [ { workerId: 't', …(1) } ]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/delegated-runtime.test.ts > late approval failure joins settled retirement after turn cleanup (retirement succeeds: true)
+ FAIL  tests/delegated-runtime.test.ts > late approval failure joins settled retirement after turn cleanup (retirement succeeds: false)
+AssertionError: expected [ { workerId: 't', …(1) }, …(1) ] to deeply equal [ { workerId: 't', …(1) } ]
+
+- Expected
++ Received
+
+  [
+    {
+      "generation": "controlled-generation",
+      "workerId": "t",
+    },
++   {
++     "generation": "controlled-generation",
++     "workerId": "t",
++   },
+  ]
+
+ ❯ tests/delegated-runtime.test.ts:576:19
+    574|   f.polling.reject(new Error("controlled late approval snapshot failur…
+    575|   await new Promise<void>(resolve => setImmediate(resolve));
+    576|   expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-ge…
+       |                   ^
+    577|   expect((f.runtime as unknown as { turnRetirements: Map<string, Promi…
+    578|   expect(await f.retirement.read("t")).toEqual(record);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 41 skipped (43)
+   Start at  13:00:46
+   Duration  495ms (transform 175ms, setup 0ms, collect 308ms, tests 43ms, environment 0ms, prepare 26ms)

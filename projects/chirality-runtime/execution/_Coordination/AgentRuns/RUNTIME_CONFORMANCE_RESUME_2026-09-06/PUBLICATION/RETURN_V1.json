@@ -1,0 +1,45 @@
+{
+  "status": "PREPARATION_COMPLETE_PUBLICATION_CONDITIONAL",
+  "parentBriefSha256": "acc394436c92e7048549bf5ee8c353786e8ae8086798f525c593bbf401df5379",
+  "role": "CHANGE /root/publication_resume_manager; instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "acceptedUpstream": "Gate3 V3 547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3; migration acceptance and prior owner grants; PR737 merge ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "derivative": true,
+  "writes": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/**"
+  ],
+  "toolsUsed": [
+    "exec_command: read-only Git, cat, sed, rg, Python reads/hashing and authorized PUBLICATION artifact writes",
+    "apply_patch: PUBLICATION drafts",
+    "collaboration.send_message: parent coordination"
+  ],
+  "sourceEdits": false,
+  "gitMutations": false,
+  "networkCalls": false,
+  "subdelegation": false,
+  "toolPolicyCompliance": "PASS",
+  "closure": "Bounded publication preparation complete. Actual probes/Candidate3 and final fan-in pending; no PR publication or release closure.",
+  "remaining": [
+    "Final exact source/validation/supplier conformance fan-in",
+    "Preserved raw evidence whitespace disposition remains actual global-validator/CI failure; source whitespace passes",
+    "Protected fixture maintenance stopped after automatic screening rejection; no retry/reroute",
+    "Parent closeout grant for project handoff/receipt and later routine scoped publication",
+    "Fresh Linux Runtime/App registration, governance and PEC CI; exact owner direction for any merge"
+  ],
+  "rerun": "Refresh read-only Git/scope/basis/whitespace inventory after final evidence freeze; rewrite current draft with final tests and exact supplier limits; rerun source checks only on relevant drift or unresolved failures.",
+  "files": {
+    "ACCEPTED_BASIS_V1.json": "32f0c42c969973692a4dc2beec786171c900ea776a8329a95c5e6a9d55ee1369",
+    "ALL_WHITESPACE_V1.json": "4abde51b3e0aa57ee648f0f075094a97814d8f7475b814df4ac46cfee9add8cf",
+    "CHANGED_INVENTORY_V1.json": "369ff1bc8012c5390b2d80d9ac7c6d294f04109030bf45465f0ee05c00d2aa4c",
+    "GIT_STATE_V1.json": "27e1fee15853fcef1732c19f73f0534c4b8d0137ae6136c387d5c1bb669ec8a8",
+    "PARENT_BRIEF.json": "acc394436c92e7048549bf5ee8c353786e8ae8086798f525c593bbf401df5379",
+    "PARENT_BRIEF.sha256": "65974e3bd50090981c8224d9fe6d33da003a23e417a8832365ebe6cdc1dc1274",
+    "PR_BODY_V1.md": "ea998cee072e2cabe7d58753469d3ad6ae6ceee655336186e78ecbe4735a208c",
+    "PR_TITLE_V1.txt": "d6be4d26cd00cf3cca2aac585efcec8718d50d07d5c1d09a25f8feeb19a75a2f",
+    "PUBLICATION_PLAN_V1.md": "93ec580e634abb6a1fe565b2921e9cc20adcc50efd91192ded68eb1111ad6533",
+    "SOURCE_WHITESPACE_V1.json": "b7edf7ffe7868b24e03009962d6796f205e617876a84be16d5448fa07082c58c",
+    "UNTRACKED_WHITESPACE_V1.json": "8e25db325429c4a132dda628999ed0164dc9c41bb7796f9ae1b843d0d180b136",
+    "VALIDATION_INDEX_V1.json": "83a73f4b7ae62b87b7584cf824781b88dd31e7bd0eaa4e0349b0e2308e042adb"
+  },
+  "recordedAt": "2026-09-06T19:43:39.116295+00:00"
+}

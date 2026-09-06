@@ -1,0 +1,6 @@
+{
+  "code": "APP_IMPORT_GRAPH_REACHED_ELECTRON_BOUNDARY",
+  "message": "APP_IMPORT_GRAPH_REACHED_ELECTRON_BOUNDARY",
+  "boundaryReached": true,
+  "note": "Actual full App bundle Node/CommonJS import probe. Electron is a fail-stop stub: no Electron process, daemon, registration or provider execution."
+}

@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-06T18:40:23.796214+00:00",
+  "hashes": {
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "agents/AGENT_TASK.md": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+    "projects/chirality-runtime/AGENTS.md": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+    "projects/chirality-runtime/loop/LOOP_INIT.md": "d9d644117688a896aba8a4496533b5fadadeb612b97dfd05d2796f7ad013b07b",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/BRIEF.md": "ee05cf842c8e4564ed6db7b18b97d0fd264325c723b0c099a8fec3f7c649a2dc",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/BASIS.json": "18e1770bbf0e55f496c2aabaa95581724d4a8923fa893c37ed5e106cd5bc38cb",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/NATIVE_CONFORMANCE/REMAINING_LIMBS/PLAN.md": "f7be8b813392266deb70b54c9e7ead8e4dcb4ef8bf42b7d16ddb361ded1a3d8c",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/SESSION_HANDOFF.md": "ba18d9af06d4a878da15118a7b40e9108327579098d54a6fef13798c5592461e",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/PROTECTED_PATTERNS/RETURN.md": "cc4015ee585c61815cbed4f8c1a296d775d5ae5394e4f4d47e5ad48876095810",
+    "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a",
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "projects/chirality-runtime/tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "projects/chirality-runtime/tests/codex-containment.test.ts": "96ee102c0fc93f74feb99204cf0edd4c073963a12bcbeca7b09f4b3cfc1385f4",
+    "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts": "4daffb1c5631734489a9bee9dc136a015bd43ca44991dd5216ebb85d14d1a569",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/exact-protected-path-conformance.test.ts.source": "4daffb1c5631734489a9bee9dc136a015bd43ca44991dd5216ebb85d14d1a569",
+    "projects/chirality-runtime/packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "driftFromP3Freeze": {
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": {
+      "freeze": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+      "now": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179"
+    },
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts": {
+      "freeze": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+      "now": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8"
+    },
+    "projects/chirality-runtime/tests/codex-containment.test.ts": {
+      "freeze": "4cd3238ded0ecea5917dc6be1ad718af71c8da953e8442a2927f278910e37865",
+      "now": "96ee102c0fc93f74feb99204cf0edd4c073963a12bcbeca7b09f4b3cfc1385f4"
+    }
+  },
+  "p3OutputMatches": {
+    "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts": true,
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/exact-protected-path-conformance.test.ts.source": true
+  }
+}

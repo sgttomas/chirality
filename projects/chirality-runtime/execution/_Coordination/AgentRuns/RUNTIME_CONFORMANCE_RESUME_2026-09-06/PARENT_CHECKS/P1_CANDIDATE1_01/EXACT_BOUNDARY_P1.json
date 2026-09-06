@@ -1,0 +1,307 @@
+{
+  "schema": "chirality-exact-boundary/v1",
+  "suite": "P1-read-environment",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "supplySize": 241191088,
+  "accountUsed": false,
+  "modelEvidence": "deterministic-loopback-only",
+  "passed": false,
+  "processBoundaryProven": false,
+  "roleBoundaryProven": false,
+  "sourcesBefore": {
+    "tests/exact-boundary-conformance.test.ts": "e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383",
+    "tests/fixtures/boundary-response-provider.mjs": "48055c740343bf0b3ff443aa9a3f2478c15d6bd28239e91a74e95a6a5c2ff588",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "hostSentinelsBefore": {
+    "ALLOWED": "104edfe5b761b3b1da5a0d70fd26f7cb881fb9c0339e6ffb50fa7873c9246e47",
+    "FOREIGN": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "BROKER": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "LITERAL": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "CONFIG": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "ALIAS": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "STARTUP_FILE": "777528aaa33fcdc20b2459fe1c15929de5d234aa17655bf0850736c9100caee9"
+  },
+  "policyDigest": "650c53cacc5109b1d0f1645ded702f1cd4eb34bf8c2550880c57a3f0660c9c09",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/private/etc/ssl/openssl.cnf": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/ebc-UtxMcn/p": "write",
+      "/private/tmp/ebc-UtxMcn/b": "deny",
+      "/private/tmp/ebc-UtxMcn/b/w": "deny",
+      "/private/tmp/ebc-UtxMcn/p/.codex": "deny",
+      "/private/tmp/ebc-UtxMcn/p/protected.txt": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "assertions": [
+    {
+      "name": "account-absent",
+      "passed": true
+    },
+    {
+      "name": "terminal-status",
+      "passed": true
+    },
+    {
+      "name": "terminal-output-marker",
+      "passed": true
+    },
+    {
+      "name": "peer-failures-empty",
+      "passed": true
+    },
+    {
+      "name": "probe-count",
+      "passed": true
+    },
+    {
+      "name": "primary:record",
+      "passed": true
+    },
+    {
+      "name": "primary:standalone-start-finish",
+      "passed": true
+    },
+    {
+      "name": "primary:ALLOWED",
+      "passed": true
+    },
+    {
+      "name": "primary:AMBIENT",
+      "passed": true
+    },
+    {
+      "name": "primary:CREDENTIAL_ENV",
+      "passed": true
+    },
+    {
+      "name": "primary:CWD",
+      "passed": true
+    },
+    {
+      "name": "primary:HOME",
+      "passed": true
+    },
+    {
+      "name": "primary:CODEX_HOME",
+      "passed": true
+    },
+    {
+      "name": "primary:TMPDIR",
+      "passed": true
+    },
+    {
+      "name": "primary:FOREIGN:denied",
+      "passed": true
+    },
+    {
+      "name": "primary:BROKER:denied",
+      "passed": true
+    },
+    {
+      "name": "primary:LITERAL:denied",
+      "passed": true
+    },
+    {
+      "name": "primary:CONFIG:denied",
+      "passed": true
+    },
+    {
+      "name": "primary:ALIAS:denied",
+      "passed": true
+    },
+    {
+      "name": "primary:probe-budget",
+      "passed": true
+    },
+    {
+      "name": "child:record",
+      "passed": true
+    },
+    {
+      "name": "child:standalone-start-finish",
+      "passed": true
+    },
+    {
+      "name": "child:ALLOWED",
+      "passed": true
+    },
+    {
+      "name": "child:AMBIENT",
+      "passed": true
+    },
+    {
+      "name": "child:CREDENTIAL_ENV",
+      "passed": true
+    },
+    {
+      "name": "child:CWD",
+      "passed": true
+    },
+    {
+      "name": "child:HOME",
+      "passed": true
+    },
+    {
+      "name": "child:CODEX_HOME",
+      "passed": true
+    },
+    {
+      "name": "child:TMPDIR",
+      "passed": true
+    },
+    {
+      "name": "child:FOREIGN:denied",
+      "passed": true
+    },
+    {
+      "name": "child:BROKER:denied",
+      "passed": true
+    },
+    {
+      "name": "child:LITERAL:denied",
+      "passed": true
+    },
+    {
+      "name": "child:CONFIG:denied",
+      "passed": true
+    },
+    {
+      "name": "child:ALIAS:denied",
+      "passed": true
+    },
+    {
+      "name": "child:probe-budget",
+      "passed": true
+    },
+    {
+      "name": "native-child-present",
+      "passed": true
+    },
+    {
+      "name": "startup-marker-absent",
+      "passed": false
+    }
+  ],
+  "terminalStatus": "completed",
+  "nativeChildren": [
+    {
+      "threadId": "01a077fe-caf9-77e1-a5c5-22299516ddcf",
+      "sourceTurnId": "01a077fe-caa5-7f32-8eae-68ab00424d60"
+    }
+  ],
+  "probes": [
+    {
+      "who": "primary",
+      "callId": "boundary_1",
+      "elapsedMs": 59,
+      "summary": {
+        "started": true,
+        "finished": true,
+        "values": {
+          "ALLOWED": "PASS",
+          "FOREIGN": "1",
+          "BROKER": "1",
+          "LITERAL": "1",
+          "CONFIG": "1",
+          "ALIAS": "1",
+          "AMBIENT": "ABSENT",
+          "CREDENTIAL_ENV": "ABSENT",
+          "CWD": "PASS",
+          "HOME": "PASS",
+          "CODEX_HOME": "PASS",
+          "TMPDIR": "PASS"
+        }
+      },
+      "supplierFailure": null
+    },
+    {
+      "who": "child",
+      "callId": "boundary_4",
+      "elapsedMs": 54,
+      "summary": {
+        "started": true,
+        "finished": true,
+        "values": {
+          "ALLOWED": "PASS",
+          "FOREIGN": "1",
+          "BROKER": "1",
+          "LITERAL": "1",
+          "CONFIG": "1",
+          "ALIAS": "1",
+          "AMBIENT": "ABSENT",
+          "CREDENTIAL_ENV": "ABSENT",
+          "CWD": "PASS",
+          "HOME": "PASS",
+          "CODEX_HOME": "PASS",
+          "TMPDIR": "PASS"
+        }
+      },
+      "supplierFailure": null
+    }
+  ],
+  "peerFailures": [],
+  "terminalOutput": {
+    "bytes": 25,
+    "sha256": "b6a2f75da092b81d464485a71b7bd02cd4b3361864c03a62137b8376e704ca07",
+    "primaryCompleteMarker": true
+  },
+  "hostSentinelsAfter": {
+    "ALLOWED": "104edfe5b761b3b1da5a0d70fd26f7cb881fb9c0339e6ffb50fa7873c9246e47",
+    "FOREIGN": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "BROKER": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "LITERAL": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "CONFIG": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "ALIAS": "73aab6d7f2c7d725e8878b722306c7ba6951d4daf2c246a7dc76c984999a1301",
+    "STARTUP_FILE": "777528aaa33fcdc20b2459fe1c15929de5d234aa17655bf0850736c9100caee9"
+  },
+  "hostSentinelsUnchanged": true,
+  "startupMarker": {
+    "present": true,
+    "regularFile": true,
+    "size": 11,
+    "expectedSyntheticBytes": true
+  },
+  "startupFileExecuted": true,
+  "failureAssertion": "startup-marker-absent",
+  "failurePhase": "assert:startup-marker-absent",
+  "failure": {
+    "kind": "Error",
+    "code": "OTHER"
+  },
+  "vendorProcessClosed": true,
+  "supplyRevalidated": true,
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-boundary-conformance.test.ts": "e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383",
+    "tests/fixtures/boundary-response-provider.mjs": "48055c740343bf0b3ff443aa9a3f2478c15d6bd28239e91a74e95a6a5c2ff588",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "sourceStable": true,
+  "elapsedMs": 3051,
+  "profileBudgetMs": 60000,
+  "probeBudgetMs": 10000,
+  "finalizationChecks": {
+    "hostSentinelsUnchanged": true,
+    "startupMarkerAbsent": false,
+    "cleanup": true,
+    "vendorProcessClosed": true,
+    "sourceStable": true,
+    "supplyRevalidated": true,
+    "profileBudget": true
+  }
+}

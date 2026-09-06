@@ -1,0 +1,2 @@
+tests/delegated-runtime.test.ts(48,108): error TS2322: Type 'import("/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime", { with: { "resolution-mode": "import" } }).DelegatedRuntime' is not assignable to type 'import("/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/dist/delegated-runtime", { with: { "resolution-mode": "import" } }).DelegatedRuntime'.
+  Types have separate declarations of a private property 'preflights'.

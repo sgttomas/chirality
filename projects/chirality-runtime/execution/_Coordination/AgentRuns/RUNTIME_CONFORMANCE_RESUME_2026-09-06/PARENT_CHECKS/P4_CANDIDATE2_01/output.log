@@ -1,0 +1,38 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-role-conformance.test.ts (6 tests | 1 failed) 4485ms
+   ✓ maps disabled-login supplier advertisement without inventing optional or required fields 1ms
+   ✓ preserves native namespace and refuses an invented native function 0ms
+   ✓ admits controlled fixture metadata but rejects its production hosted admission 1ms
+   ✓ requires standalone markers instead of an echoed failed command 0ms
+   ✓ resolves every selected runtime source pin without a supplier launch 1ms
+   × actual public role parity and native descent without implicit Chirality role assignment 4481ms
+     → Exact role fixture failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-role-conformance.test.ts > actual public role parity and native descent without implicit Chirality role assignment
+AssertionError: Exact role fixture failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-role-conformance.test.ts:263:83
+    261|     await mkdir(evidence, { recursive: true, mode: 0o700 }); await wri…
+    262|   }
+    263|   expect(result.passed, 'Exact role fixture failed; inspect calibrated…
+       |                                                                                   ^
+    264| }, 70000);
+    265|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  13:04:27
+   Duration  4.82s (transform 132ms, setup 0ms, collect 188ms, tests 4.48s, environment 0ms, prepare 25ms)

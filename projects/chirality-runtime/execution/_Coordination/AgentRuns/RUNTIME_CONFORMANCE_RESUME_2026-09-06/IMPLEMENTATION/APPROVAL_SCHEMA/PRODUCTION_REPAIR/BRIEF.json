@@ -1,0 +1,43 @@
+{
+  "timestampUtc": "2026-09-06T19:21:39.583860+00:00",
+  "requestedBy": "/root/conformance_manager",
+  "actualAgent": "/root/conformance_manager/approval_schema",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "role": "Agent2; instruction-asserted; no delegation",
+  "executionClass": "delegated-harness-native",
+  "authorization": "Parent actual _02 confirmed Invalid Codex identifier; parent releases source from P1 and grants exact two production repair files; no actual binary/network execution; fresh review and registered build required.",
+  "writeScope": [
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/codex-session.test.ts",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PRODUCTION_REPAIR/**",
+    "/private/tmp/runtime-conformance-resume-20260906/APPROVAL_SCHEMA/**"
+  ],
+  "sourcePins": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/codex-session.test.ts": "692a585f4f00b0c53c3345338af6a7b65f76f8929735de963040d84a0c39ed4d",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/network_approval.rs": "f9bd87c5b6629126d518bc4097ab8ef23b1ad049bc7732ed2c7acd11ff46464e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/approvals.rs": "a572c4322849ba5267a7315823413abd5c9b171c8cc15c0c39a80a23d442277e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/mod.rs": "e6218071821f7e1b3858d31c2a0aef5fa5b63dea0ab16dfbced716d825ddbcc9",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/approvals.rs": "efe1678b8e53feb750bc4e61939cca5950d66391385d986c1076f4c1db34c822",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/bespoke_event_handling.rs": "42e46071529deee6a38789319f641ed46d39f7aab260b0c973f74341f6d74f31",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-protocol/src/protocol/v2/item.rs": "95dd99bac8a2abdcc4ff9b7f92ea798e937bb3494c9764656f31513ff60488bb",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/environment.rs": "4dc4707a206c39fc729093e0b7d17651a8882a4f88b74bcad07ed014905618a9",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_02/EXACT_NETWORK_CANARY.json": "6a5df130535bcc11aac6a1e3a912deb68392afbad2b93be53e4fd57b1c1749b1"
+  },
+  "invariants": [
+    "global identifier unchanged",
+    "thread/turn/request ID checks unchanged",
+    "full original params signature retained",
+    "legacy conventional item IDs supported",
+    "no automatic or persistent grant",
+    "no unadvertised decline; cancel is not deny",
+    "unknown malformed decision variants fail closed"
+  ],
+  "acceptance": [
+    "source-derived bounded item ID grammar and context consistency",
+    "actual-source-shaped ID/choices controlled regressions",
+    "foreign/control/oversize/combined/replay failures produce no reply",
+    "strict noemit and relevant controlled tests",
+    "freeze and independent review before parent registered build"
+  ]
+}

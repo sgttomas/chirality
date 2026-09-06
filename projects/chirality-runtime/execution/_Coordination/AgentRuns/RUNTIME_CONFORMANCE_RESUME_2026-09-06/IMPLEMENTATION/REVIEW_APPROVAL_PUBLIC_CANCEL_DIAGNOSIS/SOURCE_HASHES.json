@@ -1,0 +1,13 @@
+{
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "d04124fa83bec8f402a90532af205838cdabbbb08a6277a193e4eebe9839518c",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/approval-store.ts": "4ac5d0197f528a6dce2dfd4cad007b4d806e622553ab921edcf24422fa1e1e91",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/hosted-consent.ts": "13026aed1c6cac03c6d75edb4fc5285a0d970c9b6c9f3a131b0e0575d03d46d8",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/approval-store.test.ts": "31599f398ab4e5a586a512da9470b10ad507ebf9d781e62042d72bdb3dbe4c0b",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/delegated-runtime.test.ts": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/EXACT_NETWORK_RUNTIME_CANARY.json": "033ef1ffec3711f00d72683264d5267e116ce35362f14018025ccfeaa729a4b3",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/CHECK.json": "03428df386fcf394cd8701b253d215c5f641b8f93812acb3062eb00e14f86116",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/BASIS.json": "18e1770bbf0e55f496c2aabaa95581724d4a8923fa893c37ed5e106cd5bc38cb",
+  "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/PLAN.md": "760b06055f90258a99cc908818c2e48cbd23a00d8b7a98d025bd15948074aaac"
+}

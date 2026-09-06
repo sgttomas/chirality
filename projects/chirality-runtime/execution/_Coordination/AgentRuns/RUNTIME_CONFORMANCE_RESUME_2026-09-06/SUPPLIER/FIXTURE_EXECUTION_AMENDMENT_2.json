@@ -1,0 +1,31 @@
+{
+  "amendment": 2,
+  "parent": "/root/supplier_manager",
+  "child": "/root/supplier_manager/build_specialist",
+  "authority": "HELP_HUMAN exact in-session instruction authorizes separately sealed test-only public-IP adaptation under existing owner/amendments12/14",
+  "decision": "Independent exact patch/recipe review accepted for bounded isolated execution; no source/supplier acceptance",
+  "basis": {
+    "FIXTURE_PROPOSAL/public-ip-fixtures.patch": "20f4c09cad6be3852180b827e549807fe4ba20e9df16eaa5088e42bfd2e4069f",
+    "FIXTURE_PROPOSAL/network_policy.rs.proposed": "f25717098a46248e398fa4034f01dea6ef8b5423e8db1feeed9770289e748434",
+    "FIXTURE_PROPOSAL/run.py.proposed": "3a2250c1b4f2ccb62e64d7a33306f62aacaeec38bb0d4c1dba6a2a8a21dfdcc0",
+    "FIXTURE_PROPOSAL/EXECUTION_RECIPE.md": "755b42a81668cc889d01eadd6929d7a6d52c079b0d998c8fa2ed876185e4a3fb",
+    "REVIEW/FIXTURE_PROPOSAL_REVIEW.md": "eba27edb8f6146d808322e0b807e1e512885b2d199adad96f8dc12c04b284adc",
+    "REVIEW/FIXTURE_PROPOSAL_VERIFICATION.json": "992bf3e519917ea23d1f68091707132b43aed316cc2b861e2fbe35dc512364fc"
+  },
+  "objective": "Execute reviewed isolated fixture-only network-policy suite, preserving original failed source suite and Candidate2 identity",
+  "preconditions": [
+    "All current exact source suites complete with logs/results preserved",
+    "No other heavy supplier runner active; max4jobs total",
+    "Original source equals BUILD/SOURCE_BEFORE.json and Candidate2 artifact/control hashes unchanged",
+    "Isolated target absent; copy topology within declared frozen inputs only; no shared inodes/hardlinks/symlink writes to original"
+  ],
+  "AllowedWriteTargets": [
+    "/private/tmp/runtime-supplier-resume-20260906/FIXTURE_ADAPTED/**",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/FIXTURE_ADAPTED/**",
+    "/private/tmp/runtime-supplier-resume-20260906/BUILD/**",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/BUILD/**"
+  ],
+  "procedure": "Follow sealed EXECUTION_RECIPE.md exactly: independent copies source/toolchain/cache; reviewed five-string test file and root-only runner; empty target; python3 /private/tmp/runtime-supplier-resume-20260906/FIXTURE_ADAPTED/builds/run.py network-policy-tests only. Frozen release max4jobs deny-network unchanged. No fetch/build-artifact/provider action. Allow preparatory offline script within BUILD scratch, no original writes. Stop and report concrete copy cycle/out-of-input symlink/missing frozen dependency/resource issue; do not widen network/source scope. Preserve all logs, no overwrite reruns.",
+  "outputs": "FIXTURE_ADAPTED isolated source/runner/patch/dependency/pre-post originals identities, exact command/result log/counts/test executable hash and structured return. Original FAIL remains FAIL; adapted source identity distinct from app-server Candidate2. Reviewer final fan-in before manager closure.",
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; roles instruction-asserted"
+}

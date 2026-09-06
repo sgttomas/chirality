@@ -1,0 +1,23 @@
+{
+  "authority": "Latest owner instruction in this session",
+  "primaryReference": "Runtime execution deliverables folders and their associated ScopeOfWork.md",
+  "implementationReferences": [
+    "Installed Pi SDK",
+    "Owner-suggested pingdotgg/t3code"
+  ],
+  "discussionRequiredBefore": [
+    "complete rethink",
+    "significant refactor",
+    "migration",
+    "overhaul"
+  ],
+  "currentBoundedWork": [
+    "Public cancellation fixture-only audit calibration",
+    "Isolated one-file supplier Candidate3 repair/build and review",
+    "Final source and packaging validation",
+    "Lossless evidence publication preparation"
+  ],
+  "nativeApproval": "Diagnosis/design only; no significant implementation before owner discussion",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "roleEnforcement": "instruction-asserted"
+}

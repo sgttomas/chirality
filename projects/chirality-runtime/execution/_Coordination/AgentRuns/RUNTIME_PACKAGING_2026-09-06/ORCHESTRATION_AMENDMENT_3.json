@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "authority": "Current owner resume instruction plus preserved OWNER_DIRECTION and implementation amendments11-14; continue ordinary unfinished work after packaging first priority",
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "branch": "codex/runtime-packaging-integration",
+  "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "packagingCheckpoint": "Full Runtime491 passed/9 skipped, build/typecheck, actual App CJS full-bundle import probe, governance825+9 and43 basis pins pass; independent review still pending at dispatch",
+  "posture": "MIXED",
+  "nodes": {
+    "packaging_manager": "final independent review and seal; exclusive four packaging production files",
+    "conformance_manager": "P1/P2/P4 fixture repairs and P3 canaries under exact disjoint Runtime test briefs; IMPLEMENTATION/**",
+    "supplier_manager": "verify/resume checkpointed Candidate2 cached four-job frozen build, source tests and independent review; SUPPLIER/** and existing supplier-owned scratch only",
+    "parent": "actual safe supplier-profile dispatch after verified artifacts/frozen fixture, cross-manager fan-in, run parent records",
+    "publication_manager": "preparation only; final PR must reflect eventual final scope; no commit/push/PR release yet"
+  },
+  "dependencies": [
+    "Packaging first-priority source repair locally validated before new technical lanes",
+    "Actual profiles require separately identified artifact plus independently reviewed/frozen fixture",
+    "Native approval implementation follows actual primary callback observations",
+    "Final publication depends on validated fan-in and remaining actual owner/external boundary"
+  ],
+  "limits": [
+    "No root/frontend/sibling or accepted authority/lifecycle/hold writes",
+    "No accepted-supply identity replacement",
+    "No historical recovery archive restore",
+    "No account/import/external inference/oMLX credential use",
+    "Parent-only fixed bounded network canaries per amendment13",
+    "No future merge without owner direction"
+  ],
+  "checkpointReferences": [
+    "RUNTIME_EXECUTION_2026-09-06/AGENT0_HANDOFF.md",
+    "RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/SESSION_HANDOFF.md",
+    "RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/INTERRUPTED_CHECKPOINT.json"
+  ]
+}

@@ -1,0 +1,51 @@
+    async fn read_file(
+        &self,
+        path: &PathUri,
+        options: ReadFileOptions,
+        sandbox: Option<&FileSystemSandboxContext>,
+    ) -> FileSystemResult<Vec<u8>> {
+        let sandbox = require_platform_sandbox(sandbox)?;
+        validate_native_path(path)?;
+        let response = self
+            .run_sandboxed(
+                sandbox,
+                FsHelperRequest::ReadFile(FsReadFileParams {
+                    path: path.clone(),
+                    follow_symlinks: (!options.follow_symlinks).then_some(false),
+                    sandbox: None,
+                }),
+            )
+            .await?
+            .expect_read_file()
+            .map_err(map_sandbox_error)?;
+        STANDARD.decode(response.data_base64).map_err(|err| {
+            io::Error::new(
+                io::ErrorKind::InvalidData,
+                format!("fs/readFile returned invalid base64 dataBase64: {err}"),
+            )
+        })
+    }
+
+    async fn write_file(
+        &self,
+        path: &PathUri,
+        contents: Vec<u8>,
+        options: WriteFileOptions,
+        sandbox: Option<&FileSystemSandboxContext>,
+    ) -> FileSystemResult<()> {
+        let sandbox = require_platform_sandbox(sandbox)?;
+        validate_native_path(path)?;
+        self.run_sandboxed(
+            sandbox,
+            FsHelperRequest::WriteFile(FsWriteFileParams {
+                path: path.clone(),
+                data_base64: STANDARD.encode(contents),
+                follow_symlinks: (!options.follow_symlinks).then_some(false),
+                sandbox: None,
+            }),
+        )
+        .await?
+        .expect_write_file()
+        .map_err(map_sandbox_error)?;
+        Ok(())
+    }

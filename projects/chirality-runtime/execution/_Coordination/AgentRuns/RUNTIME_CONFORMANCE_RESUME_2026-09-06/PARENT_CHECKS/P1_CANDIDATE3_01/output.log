@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-boundary-conformance.test.ts (3 tests) 2744ms
+   ✓ P1 actual primary and native read/environment boundary  2743ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  14:00:36
+   Duration  3.00s (transform 88ms, setup 0ms, collect 111ms, tests 2.74s, environment 0ms, prepare 35ms)

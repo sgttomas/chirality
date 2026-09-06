@@ -1,0 +1,11 @@
+{
+  "supersedes": "FREEZE_V1.json",
+  "files": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-conformance.test.ts": "f56992078da4f09197a4be09cc44e228b1ea2c0f182d3e6e5aa5a63582683792",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "d04124fa83bec8f402a90532af205838cdabbbb08a6277a193e4eebe9839518c"
+  },
+  "pureTests": "14 passed; 2 exact scenarios skipped",
+  "fullStrictNoEmit": "PASS",
+  "actualCanariesRun": false,
+  "sourceEdits": "two authorized fixture files only"
+}

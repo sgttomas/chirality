@@ -1,0 +1,10 @@
+{
+  "files": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "66df62f4a9f7e5e974d6a8471ed0192296aad8020167929017985d19c64ed2d0"
+  },
+  "pureTests": "30passed1actualskipped",
+  "fullStrictNoEmit": "PASS",
+  "productionEdits": false,
+  "actualSupplierRun": false,
+  "authority": "Parent explicit test-only cancellation evidence disposition; original failed assumption retained in PUBLIC_CANCEL_DIAGNOSIS"
+}

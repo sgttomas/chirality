@@ -1,0 +1,141 @@
+{
+  "schema": "chirality-runtime-derivative-limb-matrix/v1",
+  "basis": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CAPABILITY_MATRIX.md": "e63053c38c19b651a5cbf25edd539c7a017073bf30c16cb4a28b9722852d8f34",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/NATIVE_CONFORMANCE/REMAINING_LIMBS/PLAN.md": "f7be8b813392266deb70b54c9e7ead8e4dcb4ef8bf42b7d16ddb361ded1a3d8c",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/BOUNDARY_1/EXACT_BOUNDARY_P1.json": "da89c974e248b8332ae9c43191cb21f9aeb0e8f486281925e95638b847cda2c5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/PROCESS_NORMAL_1/process-conformance.json": "2dd5afdfc8107f844c0f7f11cbcb65d5b705472d0afb7e9ffa7a6cd336863a01",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/ROLE_1/EXACT_ROLE_CANARY.json": "614b3a2883fe7f11172333bc4a967cd6a87a0a3a601e1740c58401b99495f326"
+  },
+  "derivative": true,
+  "notProductionAdmission": true,
+  "attribution": "OpenAI GPT-6 WORKING_ITEMS; exact serving ID unavailable; instruction-asserted role",
+  "rows": [
+    {
+      "limb": "effective-policy",
+      "historicalObservation": "Original and candidate strict readback; text and second-process resume.",
+      "remaining": "Final-current complete policy/protection configuration binding.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.read",
+      "historicalObservation": "Candidate selected foreign/broker read denial and rooted work.",
+      "remaining": "Complete accepted read canary set and protected-pattern coverage.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.file-change",
+      "historicalObservation": "Candidate real apply_patch rooted success and foreign denial.",
+      "remaining": "Full protected-pattern matrix.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.shell-write",
+      "historicalObservation": "Candidate actual rooted shell write; baseline abort control.",
+      "remaining": "Complete accepted shell boundary set.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.network",
+      "historicalObservation": "Candidate public on positive and matched off denial; ask attempted but no prompt.",
+      "remaining": "Repair actual ask path; allow/deny/cancel and attributed public route.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.process",
+      "historicalObservation": "Controlled tests and actual P2 normal attempt; aggregate failed on marker parsing.",
+      "remaining": "Repair standalone markers/timing, then lifecycle canaries; not exhaustive orphan proof.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.environment",
+      "historicalObservation": "P1 actual environment summaries passed, but aggregate profile failed.",
+      "remaining": "Diagnose masked assertion; no aggregate P1 pass.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.approval",
+      "historicalObservation": "Controlled durable decision/transport, manager routing, no-UI and late grant checks.",
+      "remaining": "Actual supplier ask prompt and decision execution; missing managed-requirements callback source gate identified.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "primary.role",
+      "historicalObservation": "Controlled role/reuse tests; actual P4 failed before vendor launch on missing fixture compatibility basis.",
+      "remaining": "Repair fixture and run exact roles; labels remain instruction asserted.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.read",
+      "historicalObservation": "Candidate native child selected rooted/foreign read canaries.",
+      "remaining": "Complete descendant read/protection set.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.file-change",
+      "historicalObservation": "Candidate native child actual rooted patch and foreign denial.",
+      "remaining": "Full protected-pattern matrix.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.shell-write",
+      "historicalObservation": "Candidate native child actual rooted write.",
+      "remaining": "Complete accepted shell boundary set.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.network",
+      "historicalObservation": "Fixture supports native-child path; public supplier primary positive now works.",
+      "remaining": "Actual native-child off/on/ask limbs not yet run.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.process",
+      "historicalObservation": "Actual P2 native output and cleanup observed; aggregate failed on marker parsing.",
+      "remaining": "Repair fixture and complete lifecycle canaries; observed cleanup is not all-process proof.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.environment",
+      "historicalObservation": "P1 actual native environment summaries passed, but aggregate profile failed.",
+      "remaining": "Diagnose masked assertion; no aggregate P1 pass.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.approval",
+      "historicalObservation": "Native fixture prepared; no actual supplier request yet.",
+      "remaining": "Parentage-aware actual request attribution, allow/deny/cancel and absent-UI behavior.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.role",
+      "historicalObservation": "Native association metadata available; P4 failed before vendor launch.",
+      "remaining": "Repair fixture and run native role checks; never mechanical non-delegation claim.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    },
+    {
+      "limb": "owner-live-native-delegation",
+      "historicalObservation": "Not attempted. Deterministic no-account manager plus live local Pi passed, a different evidence class.",
+      "remaining": "Explicit hosted account/provider action and accepted live limb; cannot be replaced by fixture evidence.",
+      "currentResumeObservation": "Not yet executed; specialists repairing fixtures",
+      "accepted": false
+    }
+  ]
+}

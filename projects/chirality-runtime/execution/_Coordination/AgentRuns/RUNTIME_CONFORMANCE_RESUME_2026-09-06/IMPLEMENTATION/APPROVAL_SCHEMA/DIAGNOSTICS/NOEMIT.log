@@ -1,0 +1,2 @@
+tests/exact-network-conformance.test.ts(198,99): error TS7006: Parameter 'line' implicitly has an 'any' type.
+tests/exact-network-runtime-conformance.test.ts(249,99): error TS7006: Parameter 'line' implicitly has an 'any' type.

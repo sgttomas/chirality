@@ -1,0 +1,13 @@
+{
+  "status": "PROPOSAL_COMPLETE_NO_TRANSFORMATION",
+  "records": 60,
+  "newRecords": 2,
+  "old58Unchanged": true,
+  "exactTransformSha256": "10d67f111baf8096f428bc1fa085ea45adef1061e4a3d2c095f9ca1b8adcaab6",
+  "proposalWhitespace": {
+    "exitCode": 0,
+    "stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n"
+  },
+  "writes": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/WHITESPACE_PROPOSAL_2/** plus PUBLICATION/WHITESPACE_DRIFT_CHECK_V2.json",
+  "existingArtifactsOrGitStateChanged": false
+}

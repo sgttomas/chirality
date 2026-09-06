@@ -1,0 +1,11 @@
+P2 scoped validation, 2026-09-06 (America/Edmonton)
+node --check projects/chirality-runtime/tests/fixtures/process-response-provider.mjs
+Exit 0; no output.
+
+From projects/chirality-runtime:
+CHIRALITY_RUN_EXACT_PROCESS_CONFORMANCE=0 node_modules/.bin/vitest run tests/exact-process-conformance.test.ts
+Exit 0. Vitest 3.2.7. Six passed, one skipped (7 tests), 17ms tests, 302ms duration, start 12:30:55.
+The six controlled tests cover owned PID input validation; /bin/sh -n syntax-only parsing for both roles and both probe modes; bounded failure diagnostics; invalid provider config rejection before listener creation; standalone/host marker rejection of echoed commands, missing files, signal success and false interruption; first-output replay de-duplication, missing return, invalid timing and attribution rejection.
+No actual supplier binary, account, valid provider listener, oMLX, network canary or process signal probe executed by this child. /bin/sh -n only parses the generated command; it does not execute it.
+
+Scoped git diff --check produced no whitespace diagnostics. An adjacent optional vitest.config.ts read returned ENOENT; Runtime has no such file; no check failure was inferred from that missing optional file.

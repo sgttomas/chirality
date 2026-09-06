@@ -1,0 +1,42 @@
+# Public process-retirement fixture review
+
+RUN_STATUS: SUCCESS — independent review complete; one blocking cancellation-fixture finding.
+ControlSurface: MERGED
+TaskProfile: NONE
+TaskSkill: NONE
+ScopePath: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT
+ToolsUsed: zsh source/evidence reads; python3 hashes/evidence; no-cache default-skip Vitest; tsc --noEmit with evidence-local configuration.
+ToolPolicyCompliance: PASS
+WriteAuthorization: ALLOWED_WRITE_TARGETS — this review subtree only.
+Attribution: OpenAI GPT-6; exact serving model ID unavailable. Native Agent2 role/nondelegation instruction-asserted, not mechanically enforced. No delegation, source changes, supplier/provider/network/account execution.
+
+## Finding — P2 cancellation expects a successful pending-turn response that this actual path rejects
+
+`tests/exact-process-runtime-conformance.test.ts:241-244` requires the running public request to resolve with interrupted terminal and turn.interrupted event after the separate interrupt request succeeds. Real `CodexSupervisor.retire` (`packages/daemon/src/codex-supervisor.ts:285`) closes the actor session. `CodexTurnSession.close/fail` (`codex-session.ts:478,94-104`) rejects an active wait with Codex session closed. Supervisor result propagates that rejection; the private server (`supervisor-server.ts:137-139`) serializes it as ordinary supervisor rejection. In `DelegatedRuntime.executeTurn` catch (`delegated-runtime.ts:387-392` in reviewed source), successful retirement precedes durable interrupted commitment, but the original wait error is then rethrown. Therefore public interrupt acknowledgement plus clean retirement and committed interrupted record can be genuine while the original public run request rejects. The current assertion would fail that valid diagnostic observation.
+
+Existing API tests do not establish that this actual actor-close path resolves an event. `tests/delegated-runtime.test.ts:284-297` tests successful interruption with the generic worker fixture. The new controlled retirement barrier cases at lines531-550 explicitly call f.finish(), providing a successful worker result, and then correctly expect interrupted event. By contrast the failed-worker-result case at lines519-527 verifies rejection even when retirement succeeds and durable failed outcome commits. These are distinct branches. No established test warrants changing production API behavior simply to satisfy this fixture.
+
+Narrow required repair: preserve separate public interrupt response, original pending-run response/error, original pre-serialization supervisor failure, successful generation-bound retirement, durable journal and independent census. For a cancellation diagnostic, require successful matching interrupt acknowledgement, verified retirement and durable interrupted state; if actor-close rejects the pending run, explicitly record that branch and do not claim returned terminal/event success. Add a pure negative control rejecting any inference that an arbitrary rejected request itself proves cancellation, and retain all independent evidence requirements. Alternatively a future accepted API change could normalize this response, but that is separate from this bounded fixture review and no such change is required here. Current fixture cancellation profiles are not admitted unchanged.
+
+## Other reviewed mechanics
+
+The actual path is RuntimeClient socket HTTP -> RuntimeDaemon delegated routes -> source DelegatedRuntime with real WorkerRetirementCoordinator -> authenticated private SupervisorClient/server -> real CodexSupervisor controlledForTests -> supplied exact candidate and native policy. The controlled launch explicitly permits only unauthenticated fixture model; accountRead is performed and observed account responses must be null/authRequired false. Production launcher remains explicitly unproven; copied SIGTERM/500ms/SIGKILL lifecycle is truthfully labelled controlled reproduction. CodexSupervisor observedTransport remains actual shared source and rejects unresolved process census.
+
+Public journal, worker inventory and independent fresh census are captured before outer fixture teardown; success requires clean census including no changed identity, matching generation and fulfilled retirement, expected durable outcome, and retirement/transport close records beginning before outer cleanup. On failure the finally path reads journal/census before fallback and keeps passed false. Fallback cannot convert failed public evidence into pass. No individual observed PID is signaled; signals use the owned child group and owned sibling. Original raw cancel-child/timeout-primary failure JSON was read: those remain failed private-actor paths with 9385ms/9512ms elapsed, not repaired public proof.
+
+Host marker files, foreground execution, signal-attempt/nonzero-denial, pre/post sibling positive controls and unchanged synthetic sentinel remain required. Earliest issued-call returns ignore history replay. Normal requires both roles and standalone markers; lifetime requires selected role's ready/PID backed by independent lineage and no finished marker. Timeout reads the real original supervisor wait error before generic private-wire serialization, requires the exact current RuntimeError timeout cause, matching generation, >=4975ms since acquire, <=10s action/probe upper bounds; initialization before timer makes the lower check conservative. As in prior fixture, timing upper limits are pass conditions; sequential bounded cleanup can exceed the overall budget on failure and the 70s test timeout may then prevent final JSON. Parent output.log remains essential failure evidence.
+
+Evidence-local Vitest config aliases core/contracts/client barrels consistently to src; direct lifecycle imports also load src. TypeScript config has matching paths/noEmit. Pin discovery hashes both src and dist executable trees plus explicit daemon/fixture/config files; dist is over-inclusive under these aliases, not evidence that old dist executes. Comments claiming barrel dist loading are stale descriptive wording; result source manifest prevents silent source drift. Before/after pin checks do not replace the parent's final known input-generation freeze.
+
+## Validation and scope separation
+
+Verified frozen test SHA256 28c98d842570ac4af0ed3a63a4a785f1b49b3832a42551eaa7a3ecc42d71852d and Vitest config18bcdafacd2dce4e20cc816f8d7824570f57afab84c7da4c075445f545560884. SOURCE_BEFORE/AFTER capture exact reviewed files. Independent configured --no-cache run passed four pure checks and skipped actual profile; configured tsc --noEmit exit0. CHECKS.log contains outputs. P2/PUBLIC_RETIREMENT/REPORT.md was not present at review entry; author report/final package must still be consumed at fan-in. Reviewed author BRIEF and FOLLOWON_DIAGNOSIS report instead of inventing missing metadata.
+
+Retirement shared source late-poll repair is independently underway. This review does not admit the old production source or close that finding. Normal/timeout fixture mechanics are conditionally ready for parent diagnostics only after final source review/freeze, missing author package and this cancellation fixture finding are reconciled. Existing publicRuntimeCancellationProven must remain false until an actual admitted run proves the explicitly scoped public interruption/retirement claim. Returning a canonical interruption event remains separately unproven if the pending run rejects.
+
+Closure: fixture review complete with required correction; conformance incomplete. This is derivative evidence from accepted OWNER_DIRECTION/SPEC_FAN_IN through manager BASIS and author P2 briefs. Prior raw evidence, review freezes, governed states, supplier acceptance, full G-SBX/orphan proof, owner-live accounts, client/release/lifecycle/holds are unchanged. No process ownership transfers.
+
+Outputs: REPORT.md; SOURCE_BEFORE.json; SOURCE_AFTER.json; CHECKS.log; RUN_RECORD.md; OUTPUTS.json.
+MISSING: corrected cancellation assertion/calibration, final author report/hash package, independent production late-poll resolution and final source-pinned actual profiles.
+NEEDS_HUMAN_RULING: none for bounded fixture correction; no new API semantics change requested.
+DEPENDENCY_NOTES: fixture repair and independent source repair converge in final input freeze; no cycle.

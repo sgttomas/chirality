@@ -1,0 +1,110 @@
+import { ChildProcess } from 'node:child_process';
+import { PassThrough } from 'node:stream';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+import { createCodexTransportLifecycle, type CodexTransportLifecycleEvent } from '../packages/daemon/src/codex-transport-lifecycle.js';
+
+beforeEach(() => { vi.useFakeTimers(); vi.spyOn(process, 'kill').mockReturnValue(true); });
+afterEach(() => { vi.restoreAllMocks(); vi.useRealTimers(); });
+function fixture(pid: number | undefined = 424242) {
+  // No spawned process or signal is used by these controlled state-machine tests.
+  const child = new ChildProcess();
+  Object.defineProperty(child, 'pid', { value: pid });
+  child.stdin = new PassThrough(); child.stdout = new PassThrough(); child.stderr = new PassThrough();
+  const events: CodexTransportLifecycleEvent[] = [];
+  const transport = createCodexTransportLifecycle(child, { observe: event => events.push(event) });
+  const exit = () => { Object.defineProperty(child, 'exitCode', { value: 0, configurable: true }); child.emit('exit', 0, null); };
+  const close = () => { exit(); child.emit('close', 0, null); };
+  return { child, events, transport, exit, close };
+}
+
+it('ends owned stdin once, drains output, preserves listeners and joins reentrant/concurrent close', async () => {
+  const f = fixture(), end = vi.spyOn(f.child.stdin!, 'end');
+  let output = '', joined: Promise<void> | undefined;
+  f.child.stdout!.on('data', bytes => { output += bytes.toString(); });
+  f.child.stdin!.on('finish', () => { joined = f.transport.close(); f.child.stdout!.emit('data', Buffer.from('shutdown')); f.close(); });
+  const closing = f.transport.close();
+  expect(f.transport.close()).toBe(closing);
+  await vi.advanceTimersByTimeAsync(0); await closing;
+  expect(joined).toBe(closing); expect(end).toHaveBeenCalledTimes(1); expect(output).toBe('shutdown');
+  expect(process.kill).not.toHaveBeenCalled(); expect(vi.getTimerCount()).toBe(0);
+  expect(f.events.map(e => e.phase)).toEqual(['close-requested', 'stdin-eof', 'stdin-eof-finished', 'exit', 'close']);
+});
+
+it('uses the fixed EOF/TERM/KILL schedule and original owned group when EOF is ignored', async () => {
+  const f = fixture(), start = Date.now(); const closing = f.transport.close();
+  await vi.advanceTimersByTimeAsync(999); expect(process.kill).not.toHaveBeenCalled();
+  await vi.advanceTimersByTimeAsync(1); expect(process.kill).toHaveBeenLastCalledWith(-424242, 'SIGTERM');
+  await vi.advanceTimersByTimeAsync(499); expect(process.kill).toHaveBeenCalledTimes(1);
+  await vi.advanceTimersByTimeAsync(1); expect(process.kill).toHaveBeenLastCalledWith(-424242, 'SIGKILL');
+  f.close(); await closing;
+  expect(f.events.filter(e => e.phase === 'signal').map(e => [e.signal, e.at - start])).toEqual([['SIGTERM', 1000], ['SIGKILL', 1500]]);
+  expect(vi.getTimerCount()).toBe(0);
+});
+
+it('rejects at 3500ms when close never arrives and memoizes that rejection', async () => {
+  const f = fixture(), start = Date.now(), closing = f.transport.close();
+  const rejected = expect(closing).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE', details: { reason: 'CODEX_TRANSPORT_CLOSE_TIMEOUT' } });
+  await vi.advanceTimersByTimeAsync(3500); await rejected;
+  expect(f.events.at(-1)).toMatchObject({ phase: 'close-deadline', at: start + 3500 });
+  expect(f.transport.close()).toBe(closing); expect(process.kill).toHaveBeenCalledTimes(2); expect(vi.getTimerCount()).toBe(0);
+});
+
+it('does not signal after observed exit even when an inherited output pipe never closes', async () => {
+  const f = fixture(); f.exit(); const closing = f.transport.close();
+  const rejected = expect(closing).rejects.toMatchObject({ details: { reason: 'CODEX_TRANSPORT_CLOSE_TIMEOUT' } });
+  await vi.advanceTimersByTimeAsync(3500); await rejected;
+  expect(process.kill).not.toHaveBeenCalled(); expect(f.events.some(e => e.phase === 'stdin-eof')).toBe(false);
+});
+
+it('does not signal a process that exits during TERM grace', async () => {
+  const f = fixture(), closing = f.transport.close();
+  await vi.advanceTimersByTimeAsync(1000); f.exit();
+  await vi.advanceTimersByTimeAsync(500); f.child.emit('close'); await closing;
+  expect(process.kill).toHaveBeenCalledTimes(1);
+});
+
+it('treats asynchronous EPIPE as diagnostic, not proof of close, and permits a correlated actual close', async () => {
+  const f = fixture(), closing = f.transport.close();
+  await vi.advanceTimersByTimeAsync(0);
+  f.child.stdin!.emit('error', Object.assign(new Error('pipe'), { code: 'EPIPE' }));
+  expect(f.events.at(-1)).toMatchObject({ phase: 'stdin-error', code: 'EPIPE' });
+  await vi.advanceTimersByTimeAsync(10); f.close(); await closing;
+  expect(process.kill).not.toHaveBeenCalled();
+});
+
+it('keeps the deadline when ending stdin throws or the pipe is already destroyed', async () => {
+  for (const destroyed of [false, true]) {
+    const f = fixture();
+    if (destroyed) f.child.stdin!.destroy();
+    else vi.spyOn(f.child.stdin!, 'end').mockImplementation(() => { throw Object.assign(new Error('pipe'), { code: 'EPIPE' }); });
+    const closing = f.transport.close(), rejected = expect(closing).rejects.toMatchObject({ details: { reason: 'CODEX_TRANSPORT_CLOSE_TIMEOUT' } });
+    await vi.advanceTimersByTimeAsync(3500); await rejected;
+    if (!destroyed) expect(f.events.some(e => e.phase === 'stdin-error' && e.code === 'EPIPE')).toBe(true);
+  }
+});
+
+it('handles spawn failure/close without signaling or leaving an unhandled child error', async () => {
+  // A distinct ChildProcess represents failed spawn; it never acquires a group.
+  const child = new ChildProcess(); child.stdin = new PassThrough(); child.stdout = new PassThrough(); child.stderr = new PassThrough();
+  const transport = createCodexTransportLifecycle(child);
+  child.emit('error', Object.assign(new Error('spawn'), { code: 'ENOENT' }));
+  const closing = transport.close(); child.emit('close'); await closing;
+  expect(process.kill).not.toHaveBeenCalled();
+});
+
+it('preserves TERM failure through later close and tries the bounded KILL fallback', async () => {
+  const error = Object.assign(new Error('permission'), { code: 'EPERM' });
+  vi.mocked(process.kill).mockImplementationOnce(() => { throw error; });
+  const f = fixture(), closing = f.transport.close(), rejected = expect(closing).rejects.toBe(error);
+  await vi.advanceTimersByTimeAsync(1500); f.close(); await rejected;
+  expect(process.kill).toHaveBeenCalledTimes(2); expect(f.events.some(e => e.phase === 'signal-error' && e.code === 'EPERM')).toBe(true);
+});
+
+it('bounds stderr, swallows observer failures, and never signals again after known exit', async () => {
+  const f = fixture(); f.child.stderr!.emit('data', Buffer.alloc(65537));
+  expect(process.kill).toHaveBeenCalledTimes(1); expect(process.kill).toHaveBeenLastCalledWith(-424242, 'SIGKILL');
+  f.close(); f.child.stderr!.emit('data', Buffer.from('late')); await f.transport.close(); expect(process.kill).toHaveBeenCalledTimes(1);
+  const child = new ChildProcess(); child.stdin = new PassThrough(); child.stdout = new PassThrough(); child.stderr = new PassThrough();
+  const transport = createCodexTransportLifecycle(child, { observe: () => { throw new Error('diagnostic'); } });
+  child.emit('close'); await transport.close();
+});

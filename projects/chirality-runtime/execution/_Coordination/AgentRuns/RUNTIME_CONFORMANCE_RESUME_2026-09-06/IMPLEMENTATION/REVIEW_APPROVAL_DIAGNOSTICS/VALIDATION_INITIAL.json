@@ -1,0 +1,23 @@
+{
+  "PURE": {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "tests/exact-network-conformance.test.ts",
+      "tests/exact-network-runtime-conformance.test.ts"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 539,
+    "environment": "CHIRALITY_* omitted; values never recorded"
+  },
+  "STRICT_NOEMIT": {
+    "command": [
+      "./node_modules/.bin/tsc",
+      "-p",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_DIAGNOSTICS/tsconfig.check.json"
+    ],
+    "exitCode": 2,
+    "elapsedMs": 684,
+    "environment": "CHIRALITY_* omitted; values never recorded"
+  }
+}

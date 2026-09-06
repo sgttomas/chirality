@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "command": [
+        "node",
+        "/private/tmp/runtime-packaging-20260906/parent/app-build-after/build.mjs"
+      ],
+      "exitCode": 0,
+      "log": "0.log"
+    },
+    {
+      "command": [
+        "node",
+        "/private/tmp/runtime-packaging-20260906/parent/probe-app.cjs",
+        "/private/tmp/runtime-packaging-20260906/parent/app-build-after/dist-electron/main.js",
+        "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-app-dev/frontend",
+        "/private/tmp/runtime-packaging-20260906/parent/app-build-after/PROBE.json"
+      ],
+      "exitCode": 0,
+      "log": "1.log"
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/build-electron.mjs",
+      "sha256": "e2074b6c2dd67e19ad1c16240213b9d33d49569fd21c08e89c82ae4140003d5f"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "sha256": "ff324e424c772f94bbd59e628ed60ea3ef2e9d7398960ae341f10d55bc9e65b7"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "sha256": "39dfaa0e5acb70bf10bd0d58320bdf20f9d98ed7cc835f25123124201177dff7"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "sha256": "d76120502d5cc724ca2782be933a166f10ff092ef8a440e5bbadea5aed8a6391"
+    }
+  ],
+  "bundle": {
+    "path": "/private/tmp/runtime-packaging-20260906/parent/app-build-after/dist-electron/main.js",
+    "sha256": "40cd2b21f7543007b81e5c07524b91698e9af53200f91854eb662c6d3857fe60",
+    "size": 1532534,
+    "piRequirePresent": false
+  },
+  "verdict": "PASS exact full consumer bundle reaches Electron app boundary in Node/CommonJS; baseline failed ERR_PACKAGE_PATH_NOT_EXPORTED",
+  "limitations": "Electron fail-stop stub; no real Electron registration/client adoption/release acceptance. Separate bundled delegated-conformance import.meta inventory limitation retained."
+}

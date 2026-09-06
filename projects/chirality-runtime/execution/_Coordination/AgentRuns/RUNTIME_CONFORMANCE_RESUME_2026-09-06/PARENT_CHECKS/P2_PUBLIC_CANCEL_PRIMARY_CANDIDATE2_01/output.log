@@ -1,0 +1,38 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-process-runtime-conformance.test.ts (6 tests | 1 failed) 9724ms
+   ✓ correlates rejected pending run to exact actor close and matching public interruption 2ms
+   ✓ rejects committed interruption when the real retirement operation rejected or never completed 0ms
+   ✓ never accepts stale empty census or detached survivors as retired 0ms
+   ✓ uses only first attributed returned output despite replayed request history 0ms
+   ✓ resolves direct lifecycle source and actual package runtime input pins without supplier launch 5ms
+   × actual public Runtime process retirement with controlled no-account exact launcher 9715ms
+     → Public process retirement failed; preserve source-pinned evidence: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-process-runtime-conformance.test.ts > actual public Runtime process retirement with controlled no-account exact launcher
+AssertionError: Public process retirement failed; preserve source-pinned evidence: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-process-runtime-conformance.test.ts:319:94
+    317|     if (base && failures.length === 0) await rm(base, { recursive: tru…
+    318|   }
+    319|   expect(result.passed, 'Public process retirement failed; preserve so…
+       |                                                                                              ^
+    320| }, 70000);
+    321|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  13:06:51
+   Duration  10.07s (transform 152ms, setup 0ms, collect 211ms, tests 9.72s, environment 0ms, prepare 28ms)

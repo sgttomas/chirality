@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-process-runtime-conformance.test.ts (8 tests) 7764ms
+   ✓ actual public Runtime process retirement with controlled no-account exact launcher  7753ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  13:40:37
+   Duration  8.16s (transform 180ms, setup 0ms, collect 252ms, tests 7.76s, environment 0ms, prepare 29ms)

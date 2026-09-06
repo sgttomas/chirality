@@ -1,0 +1,117 @@
+{
+  "timestamp_utc": "2026-09-06T18:56:52.571119+00:00",
+  "source_checks": {
+    "original": {
+      "count": 6416,
+      "pre_post_equal": true,
+      "actual_mismatches": []
+    },
+    "adapted": {
+      "count": 6416,
+      "pre_post_equal": true,
+      "actual_mismatches": []
+    }
+  },
+  "sole_adapted_source_difference": [
+    "codex-rs/network-proxy/src/network_policy.rs"
+  ],
+  "matches_reviewed_adapted_source": true,
+  "reviewed_runner_matches": true,
+  "adapted_test_binary": {
+    "sha256": "bf96db62402a35f59507215c8085ceab5a039f8eac33b5ec045f1954a22afe49",
+    "bytes": 18422616,
+    "matches_record": true
+  },
+  "record_hashes_match": true,
+  "adapted_result_exit": 0,
+  "adapted_named_tests": [
+    [
+      "network_policy::tests::evaluate_host_policy_emits_domain_event_for_decider_ask",
+      "ok"
+    ],
+    [
+      "network_policy::tests::evaluate_host_policy_emits_domain_event_for_decider_allow_override",
+      "ok"
+    ],
+    [
+      "network_policy::tests::evaluate_host_policy_emits_execution_id_for_baseline_allow",
+      "ok"
+    ],
+    [
+      "network_policy::tests::evaluate_host_policy_emits_domain_event_for_baseline_deny",
+      "ok"
+    ],
+    [
+      "network_policy::tests::evaluate_host_policy_still_denies_not_allowed_local_without_decider_override",
+      "ok"
+    ],
+    [
+      "network_policy::tests::evaluate_host_policy_explicit_deny_never_calls_allowing_decider",
+      "ok"
+    ],
+    [
+      "network_policy::tests::evaluate_host_policy_emits_metadata_fields",
+      "ok"
+    ]
+  ],
+  "all_seven_pass": true,
+  "original_suite_exit": 101,
+  "original_failure_log_unchanged": true,
+  "dependency_pin_checks": [
+    {
+      "path": "/private/tmp/runtime-supplier-resume-20260906/FIXTURE_ADAPTED/toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin/rustc",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-supplier-resume-20260906/FIXTURE_ADAPTED/toolchain/rustup/toolchains/1.95.0-aarch64-apple-darwin/bin/cargo",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-supplier-resume-20260906/FIXTURE_ADAPTED/cache/v8/librusty_v8_ptrcomp_sandbox_release_aarch64-apple-darwin.a.gz",
+      "matches": true
+    },
+    {
+      "path": "/private/tmp/runtime-supplier-resume-20260906/FIXTURE_ADAPTED/cache/v8/src_binding_ptrcomp_sandbox_release_aarch64-apple-darwin.rs",
+      "matches": true
+    }
+  ],
+  "retained_artifacts": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-app-server",
+      "sha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+      "matches_previous_review": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "matches_previous_review": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server",
+      "sha256": "a3ac0445f8fab23c62a97f3c9c8e420f094b67927948c1cfa69390b6e0742f93",
+      "matches_previous_review": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "matches_previous_review": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server",
+      "sha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+      "matches_previous_review": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "matches_previous_review": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supply/app-server",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "matches_previous_review": true
+    }
+  ],
+  "preflight_copy_isolation": "Specialist PRE_RUN reports72839 independent files, zero retained symlinks/shared original inodes; reviewer verified separate source hashes and artifact identities, did not repeat exhaustive cache inode census.",
+  "no_reviewer_build_test_or_endpoint_execution": true
+}

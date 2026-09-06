@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-09-06T18:53:25.520313+00:00",
+  "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-app-server",
+  "sha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "bytes": 241188752,
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "parentVerified": true,
+  "supplierReview": "SUPPLIER/REVIEW/ARTIFACT_VERIFICATION.json",
+  "originalPolicySuite": "FAIL 4 passed 3 failed; separate DNS-free fixture adaptation pending",
+  "acceptance": false
+}

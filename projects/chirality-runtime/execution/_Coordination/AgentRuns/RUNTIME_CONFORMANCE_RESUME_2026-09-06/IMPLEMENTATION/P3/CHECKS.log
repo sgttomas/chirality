@@ -1,0 +1,12 @@
+Timestamp 2026-09-06T18:37:06.038504+00:00
+Working directory: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+Command: ./node_modules/.bin/vitest run tests/exact-protected-path-conformance.test.ts
+Exit: 0
+Vitest 3.2.7; 1 passed, 4 skipped (5 tests); final duration 281ms; 2026-09-06 12:36:27 local.
+
+Command: ./node_modules/.bin/tsc --noEmit --skipLibCheck --strict --noUncheckedIndexedAccess --module nodenext --target es2023 --moduleResolution nodenext tests/exact-protected-path-conformance.test.ts
+Exit: 0; no diagnostics.
+
+No CHIRALITY_RUN_EXACT_PROTECTED enablement; no supplier/provider/server execution.
+Earlier append used a repo-relative target from the Runtime working directory and failed with no such file; no source written by that failed command. Corrected append then final checks as above. A guessed PROTECTED_PATTERNS/REPORT.md read failed; discovery located and read RETURN.md.

@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-09-06T19:19:05.576724+00:00",
+  "testPath": "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts",
+  "testSha256": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3",
+  "parentEvidenceSha256": "0e65adf7884df5d5ed33e8f1063c1b8ecb6a2b9d454722ed7c58f447428fad0a",
+  "sourceInputs": {
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/apply_patch.rs": "78889d430bb1453aeb189bd050aef76f24cea2b974f4e8364c584f631320d61e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/invocation.rs": "ab6ce54396919236a2b68a5dc33f670663c67c12fa8def3b80588933d297047a",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/file_update.rs": "f954105ba036f1c3748fc2ed605ce9a677d619e56ce25f89bffdcad3377734f9",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/safety.rs": "6341d13d6d1b70ee5617548785257f01bb23e0d8e2d92753e0914380c6043a2b",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/runtimes/apply_patch.rs": "becc8bdafb970443afb5c2aaab74fa0df2cfdffdf257dcb5593c89a1119d6659",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/apply-patch/src/lib.rs": "5e6f736f3a4b66c1d651baa9b85ce6e6921de170faf901e6c2f78ad9a383eaf9",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/local_file_system.rs": "1c5d8bbf51529c0cc0f2c73f22b78189910ee7e31d42bbf4230861add1e688a0",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/sandboxed_file_system.rs": "0282cecf59842650b78a767d7156e5e112008ab1acbcaa5fc5ecc31654108e7a",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/exec-server/src/fs_sandbox.rs": "6bd757ade4b4df954c30478fdeecf4de955ee94bc959d88e0b546b8a28228b4e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/permissions.rs": "45347859f8d0f3b1ecb0ce40271c6447893f42f2a805191a3ee5959d47a82065",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/sandboxing/src/seatbelt.rs": "fe56fa7fbf4000e7f181373b94fd492e9ca0058cd7b62a9b192c84ae3d3c31b3",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/sandboxing/src/restricted_read_only_platform_defaults.sbpl": "092b34f8104b3a73da42bbcb600ba83f03c6f3eee1c8b39c02bf0939d824db56"
+  },
+  "buildRecipePath": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/run.py",
+  "buildRecipeSha256": "7dfcca33d72da5a8fee843bb7222f7de4890a52110c8211bb0b58688f19584de",
+  "sourceEdits": false,
+  "supplierExecution": false,
+  "authority": "Derivative read-only diagnosis; no supplier or conformance acceptance"
+}

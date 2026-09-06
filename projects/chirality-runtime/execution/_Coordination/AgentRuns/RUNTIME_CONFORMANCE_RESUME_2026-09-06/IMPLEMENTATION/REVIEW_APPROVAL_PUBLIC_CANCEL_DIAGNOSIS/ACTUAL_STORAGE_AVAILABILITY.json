@@ -1,0 +1,6 @@
+{
+  "originalCanaryRoot": "/private/tmp/enc-t79rKk",
+  "exists": false,
+  "approvalStorageExists": false,
+  "meaning": "Fixture cleanup removed original storage; no actual persisted request/decision/resolution or retirement journal was read by this diagnosis. Absence after cleanup does not prove a resolution was absent during execution."
+}

@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/codex-containment.test.ts (3 tests) 175ms
+ ✓ tests/codex-supervisor.test.ts (23 tests) 736ms
+ ✓ tests/approval-store.test.ts (21 tests) 1206ms
+ ✓ tests/codex-session.test.ts (56 tests) 2838ms
+
+ Test Files  4 passed (4)
+      Tests  103 passed (103)
+   Start at  13:25:03
+   Duration  3.12s (transform 317ms, setup 0ms, collect 591ms, tests 4.95s, environment 0ms, prepare 124ms)

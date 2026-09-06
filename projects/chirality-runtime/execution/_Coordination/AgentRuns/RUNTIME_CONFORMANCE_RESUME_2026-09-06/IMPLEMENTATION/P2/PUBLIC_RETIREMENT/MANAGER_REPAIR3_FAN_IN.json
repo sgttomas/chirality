@@ -1,0 +1,80 @@
+{
+  "derivative": true,
+  "verdict": "bounded parent cancellation rerun admitted; actual lifetime result pending",
+  "manifests": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/OUTPUTS.json",
+      "sha256": "71e2eeca6d24aee1a8c4d01c4625016530f42239f4513482d210ff165dbe8a7f",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/AMENDMENT.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/CHECKS.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/INPUTS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/REPORT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/SOURCE_FREEZE.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/exact-process-runtime-conformance.postimage.source",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/exact-process-runtime-conformance.preimage.source",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/repair-draft.source",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/OUTPUTS.json",
+      "sha256": "99506767c442ea0a6ca382ebb224596f002c14fdbc4d0db00d8fbd88547c6f95",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/CHECKS.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/INPUT_PACKAGE_VERIFICATION.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/REPORT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/RUN_RECORD.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/SOURCE_AFTER.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/REPAIR_3/SOURCE_BEFORE.json",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "sourceSha256": "c47e2efdfecff6a8b208e9715212a27f427b0f638c5291df136adc436467f272",
+  "limitations": [
+    "Interrupted returned-event parity unresolved",
+    "No supplier/all-orphans acceptance",
+    "Original readiness and cleanup failures preserved"
+  ]
+}

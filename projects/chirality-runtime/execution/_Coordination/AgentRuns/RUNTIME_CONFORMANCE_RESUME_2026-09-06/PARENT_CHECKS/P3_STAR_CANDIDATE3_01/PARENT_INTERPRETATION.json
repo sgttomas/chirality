@@ -1,0 +1,62 @@
+{
+  "sourceEvidenceSha256": "bfc42d3c42ffef89ee32461371453f51b0c4e5d9f385797e3b4b331e552d23c9",
+  "recordedTestVerdict": false,
+  "failure": "primary/MATCH must return actual terminal success/access-denial: expected false to be true // Object.is equality",
+  "profileElapsedMs": 2951,
+  "sourceStable": true,
+  "hostUnchanged": true,
+  "foreignTargetUnchanged": true,
+  "aliasUnchanged": true,
+  "vendorProcessClosed": true,
+  "cleanupFailures": 0,
+  "actorProbeCount": 24,
+  "selectedOriginalOutputs": [
+    {
+      "who": "primary",
+      "target": "POSITIVE",
+      "method": "apply_patch",
+      "output": "Exit code: 0\nWall time: 0 seconds\nOutput:\nSuccess. Updated the following files:\nA /private/tmp/epc-HPEJTB/p/packages/a/primary-positive-patch.txt\n",
+      "outputSha256": "cbf9f5da443b87b1cbb0c9490beea20277003ba443d168bd4f4ad9cf4165ac05"
+    },
+    {
+      "who": "primary",
+      "target": "ALIAS",
+      "method": "apply_patch",
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/foreign-alias: Operation not permitted (os error 1)",
+      "outputSha256": "e1c359307d18838bab2a5942beba5152bae0955781e69a0c57ea5f1704948520"
+    },
+    {
+      "who": "primary",
+      "target": "ABSENT",
+      "method": "apply_patch",
+      "output": "Exit code: 1\nWall time: 0 seconds\nOutput:\nFailed to write file /private/tmp/epc-HPEJTB/p/packages/c/private.env\n",
+      "outputSha256": "e8ccbb70a0d48ed625075b37bed752b1d7f3c8223f0082a223a26b35f9963d75"
+    },
+    {
+      "who": "child",
+      "target": "POSITIVE",
+      "method": "apply_patch",
+      "output": "Exit code: 0\nWall time: 0 seconds\nOutput:\nSuccess. Updated the following files:\nA /private/tmp/epc-HPEJTB/p/packages/a/child-positive-patch.txt\n",
+      "outputSha256": "0b5cfaab42a5f06bea655c26d1b4d72c213c9c9b2bfdad6f4051e1c792b4e9cd"
+    },
+    {
+      "who": "child",
+      "target": "ALIAS",
+      "method": "apply_patch",
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/foreign-alias: Operation not permitted (os error 1)",
+      "outputSha256": "e1c359307d18838bab2a5942beba5152bae0955781e69a0c57ea5f1704948520"
+    },
+    {
+      "who": "child",
+      "target": "ABSENT",
+      "method": "apply_patch",
+      "output": "Exit code: 1\nWall time: 0 seconds\nOutput:\nFailed to write file /private/tmp/epc-HPEJTB/p/packages/c/private.env\n",
+      "outputSha256": "e8ccbb70a0d48ed625075b37bed752b1d7f3c8223f0082a223a26b35f9963d75"
+    }
+  ],
+  "interpretation": "The unchanged fixture remains FAIL. This Candidate3 run observed actual EPERM for primary and child alias patch operations, successful project patch controls, and unchanged monitored host files. It did not reproduce the earlier Candidate2 foreign write. The known classifier and absent-target cause limits remain; full protected-family conformance and supply acceptance are not established.",
+  "screenedMaintenancePerformed": false,
+  "fixtureSha256": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3",
+  "conformanceAcceptance": false,
+  "supplierAcceptance": false
+}

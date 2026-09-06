@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-process-conformance.test.ts (7 tests | 1 skipped) 19ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed | 1 skipped (7)
+   Start at  12:34:49
+   Duration  298ms (transform 84ms, setup 0ms, collect 117ms, tests 19ms, environment 0ms, prepare 32ms)
+
+
+Independent reviewer: node --check tests/fixtures/process-response-provider.mjs exit 0. All P2 OUTPUTS.json hashes verified. Six source before/after hashes match frozen input. Actual supplier/provider/server/account execution not performed.

@@ -1,0 +1,21 @@
+{
+  "projects/chirality-runtime/tests/exact-process-conformance.test.ts": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+  "projects/chirality-runtime/tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+  "projects/chirality-runtime/tests/exact-role-conformance.test.ts": "153df38bd56b9dcae9cc1a446ce0e803b50e4885987cb01cf1ff59e279f00965",
+  "projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts": "baec50a52472f2691df400098cd5b531434628da9358617ab8ba32b22cdf9447",
+  "projects/chirality-runtime/tests/codex-supervisor.test.ts": "199c8bf041cd2c43b8004f142c11376ada63317971eea20cf3076bbde7afe3c5",
+  "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+  "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+  "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+  "projects/chirality-runtime/packages/core/src/process-supervisor.ts": "d4aebf122c39fe5b6e0b09bb2ccb83e0f60b410d497859caf743b50b15b305cb",
+  "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "542f699b98cf646bcd2d3e0be7254f6f20ac8c7120eda4e0bd9a530a4e6fd1c3",
+  "projects/chirality-runtime/packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588",
+  "projects/chirality-runtime/packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+  "projects/chirality-runtime/packages/client/src/client.ts": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_CHILD_01/process-conformance.json": "8efb3014edc55c9aafc91f5aa283d65d82da419b584172353f41791bec0e754a",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_CHILD_01/CHECK.json": "431386ceec837a25a142b1237607eb6ee405ac4b504f92688b2dd960f17745da",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_CHILD_01/output.log": "02a728055ee222b8226a5002f9c58d11de00b4c8e34c405a445c7fe90cab2134",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_TIMEOUT_PRIMARY_01/process-conformance.json": "4cd053023cc4b193ac3252750a8d53aace2c5e2277cec883a7e321fc9d59a750",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_TIMEOUT_PRIMARY_01/CHECK.json": "b13d8a68a410ee7e92c7250da626ddb63db742624ca9b44c94a47fb667522b63",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_TIMEOUT_PRIMARY_01/output.log": "fb7b5a31b84901e722b157811b40aa875406edf67b527be07ff6fdb5748361cd"
+}

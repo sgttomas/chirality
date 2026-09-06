@@ -1,0 +1,43 @@
+import { mkdtemp, mkdir, realpath, rm } from 'node:fs/promises';
+import { join } from 'node:path';
+import assert from 'node:assert/strict';
+import { DelegatedRuntime } from '/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/dist/delegated-runtime.js';
+import { WorkerRetirementCoordinator } from '/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/dist/worker-retirement.js';
+import { RuntimeError } from '/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/contracts/dist/index.js';
+const scratch = '/private/tmp/runtime-conformance-resume-20260906/P2';
+await mkdir(scratch, { recursive: true, mode: 0o700 });
+const base = await realpath(await mkdtemp(join(scratch, 'durable-repro-')));
+let live;
+let rejectWait;
+const waited = new Promise((_, reject) => { rejectWait = reject; });
+void waited.catch(() => {});
+const error = new RuntimeError('ENGINE_UNAVAILABLE', 'Controlled unresolved descendant', 503, { reason: 'DESCENDANT_RECONCILIATION_REQUIRED' });
+const identity = { canonicalRoot: base, cwd: base, accountId: 'controlled-no-account', accountEpoch: 1, policyDigest: 'a'.repeat(64) };
+const compatibility = { compatibilityIdentity: 'root-runtime-1', contractBasisSha256: 'b'.repeat(64) };
+const retirement = new WorkerRetirementCoordinator({ directory: join(base, 'journal') });
+const supervisor = {
+  acquire: async id => { live = { workerId: id, generation: 'controlled-generation', pid: 0, state: 'running' }; return { ...live }; },
+  inventory: async () => live ? [{ ...live }] : [],
+  reconnect: async () => ({ ...live }),
+  wait: async () => waited,
+  retire: async () => { rejectWait(error); throw error; },
+};
+const consent = { read: async () => ({ identity, posture: 'off', approvedBy: 'controlled-test', approvedAt: new Date().toISOString() }) };
+const runtime = new DelegatedRuntime({ daemonId: 'repro-only', projects: new Map([['p', { identity, compatibility, supervisor, consent, retirement, evidenceClass: 'controlled-worker' }]]) });
+try {
+  const preflight = await runtime.preflight('p', 'turn:t');
+  const turn = runtime.turn('p', { compatibility, preflight, turnId: 't', prompt: 'controlled no-exec reproduction' }).then(value => ({ value }), error => ({ error: { code: error.code, reason: error.details?.reason } }));
+  let interruptPreflight;
+  for (let attempt = 0; attempt < 100; attempt++) { try { interruptPreflight = await runtime.preflight('p', 'interrupt:t'); break; } catch { await new Promise(resolve => setTimeout(resolve, 1)); } }
+  assert.ok(interruptPreflight);
+  const interruption = await runtime.interruptTurn('p', { compatibility, preflight: interruptPreflight, turnId: 't' }).then(value => ({ value }), error => ({ error: { code: error.code, reason: error.details?.reason } }));
+  const completed = await turn;
+  const record = await retirement.read('t');
+  const restart = await retirement.restart('t', identity);
+  assert.equal(interruption.error.reason, 'DESCENDANT_RECONCILIATION_REQUIRED');
+  assert.equal(completed.error.reason, 'DESCENDANT_RECONCILIATION_REQUIRED');
+  assert.equal(record.state, 'committed');
+  assert.equal(record.terminal.outcome, 'interrupted');
+  assert.equal(restart.method, 'thread/start');
+  console.log(JSON.stringify({ reproduction: 'CONFIRMED_CURRENT_DEFECT_NOT_DESIRED_BEHAVIOR', accountUsed: false, processSpawned: false, interruption, turn: completed, durableState: record.state, durableOutcome: record.terminal.outcome, restart, controlledSupervisor: true }, null, 2));
+} finally { await rm(base, { recursive: true, force: true }); }

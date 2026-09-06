@@ -1,0 +1,10 @@
+{
+  "requestedBy": "/root/conformance_manager",
+  "authority": "Explicit native follow-up: diagnose actual parent marker/census race and repair bounded readiness in existing public fixture scope",
+  "objective": "Wait for marker PID in independently observed current owned identity within existing10s readiness budget; retain all failure/disappearance/cleanup assertions",
+  "allowedWriteTargets": [
+    "projects/chirality-runtime/tests/exact-process-runtime-conformance.test.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_2/**"
+  ],
+  "prohibited": "No shared production changes, supplier execution, cancellation inference from earlier failure, weakened identity/disappearance/census checks or cleanup error suppression"
+}

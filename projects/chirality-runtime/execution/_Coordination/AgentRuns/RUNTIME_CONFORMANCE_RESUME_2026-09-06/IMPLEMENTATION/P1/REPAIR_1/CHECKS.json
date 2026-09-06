@@ -1,0 +1,52 @@
+[
+  {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "tests/codex-containment.test.ts",
+      "tests/codex-session.test.ts",
+      "tests/codex-supervisor.test.ts"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "exitCode": 0,
+    "elapsedSeconds": 3.338,
+    "log": "check-1.log",
+    "sha256": "12b1dd2eb609167510fe345881fb7baad3beabfa113661d3450a115d1dec6537"
+  },
+  {
+    "command": [
+      "./node_modules/.bin/tsc",
+      "--noEmit",
+      "--target",
+      "ES2022",
+      "--module",
+      "NodeNext",
+      "--moduleResolution",
+      "NodeNext",
+      "--strict",
+      "--skipLibCheck",
+      "--esModuleInterop",
+      "tests/codex-containment.test.ts",
+      "tests/codex-session.test.ts",
+      "tests/codex-supervisor.test.ts"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "exitCode": 2,
+    "elapsedSeconds": 0.549,
+    "log": "check-2.log",
+    "sha256": "07c9306700fc46135bb2ffb68f7031af833a6ae474cecbf5edc91e9dd89b5309"
+  },
+  {
+    "command": [
+      "./node_modules/.bin/tsc",
+      "-p",
+      "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P1/REPAIR_1/tsconfig.check.json"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "exitCode": 0,
+    "elapsedSeconds": 0.72,
+    "log": "check-3.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "configuration": "tsconfig.check.json maps core alias to source to avoid existing direct-source/dist private-type duplication"
+  }
+]

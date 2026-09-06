@@ -1,0 +1,26 @@
+{
+  "allPinnedSourcesStable": true,
+  "matches": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/approval-store.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/contracts/src/delegated.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/codex-session.test.ts": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/agent/control.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/network_approval.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/bespoke_event_handling.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-protocol/src/protocol/event_mapping.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/request_processors/thread_processor.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/lib.rs": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_NATIVE_ASK_ALLOW_CANDIDATE2_01/EXACT_NETWORK_RUNTIME_CANARY.json": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/REFERENCE_PATTERNS/REPORT.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/REFERENCE_PATTERNS/SOURCE_MANIFEST.json": true,
+    "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/provider/Layers/CodexSessionRuntime.ts": true
+  },
+  "nativeSourceChanges": false,
+  "actualExecution": false
+}

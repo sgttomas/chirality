@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-network-conformance.test.ts (7 tests) 3893ms
+   ✓ actual primary command network via private approval bridge to owned destination  3890ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  13:39:49
+   Duration  4.19s (transform 111ms, setup 0ms, collect 159ms, tests 3.89s, environment 0ms, prepare 28ms)

@@ -1,0 +1,43 @@
+# P1 diagnostics frozen return
+
+RUN_STATUS: SUCCESS (bounded diagnostics implementation only; empirical P1 remains unaccepted)
+ControlSurface: FILE
+TaskProfile: NONE
+TaskSkill: NONE
+ScopePath: /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P1
+ToolsUsed: Python3 local file/evidence operations; bash local read/rg/git diff; Node local vitest/tsc, no supplier execution.
+ToolPolicyCompliance: PASS
+WriteAuthorization: ALLOWED_WRITE_TARGETS
+Attribution: OpenAI GPT-6; exact serving model ID unavailable. Fresh ephemeral Agent2, role/nondelegation instruction-asserted. No descendants created.
+
+## Diagnosis and changes
+
+Actual predecessor `RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/BOUNDARY_1/EXACT_BOUNDARY_P1.json` and adjacent output/check records were read, with matching private evidence under `/private/tmp/runtime-execution-20260906/patched-boundary-1/`. It records completed terminal, two passing anchored primary/native probes, source stability, zero cleanup failures and no startupFileExecuted field. The broad catch masks the particular assertion. These facts do not establish whether terminal output or the startup marker failed; no supplier/policy defect is inferred.
+
+The sole test-file repair names every account/terminal/probe/native/startup/host assertion. Catch persists the exact active stage and first assertion name, with bounded error class/code but no raw exception message, stack, command or environment. Terminal diagnostics expose only byte count, hash and standalone primary completion marker presence. Startup observation runs before terminal assertions and again after owned vendor/peer closure, before owned base removal. It reports presence, type/size and exact synthetic-byte match (only reads the expected tiny regular file), never marker contents. `startupFileExecuted: true` is a fail-closed marker-presence indicator, not proof of provenance. Host sentinel before/after SHA256s and unchanged verdict cover known allowed/foreign/broker/literal/.codex/alias/startup-file bytes. Every finalization requirement is individually recorded. Terminal completion matching was tightened from substring to standalone line; command marker semantics and first output once per call remain unchanged in the unedited provider. No policy, admission, supplier or production code changed.
+
+## Validation and freeze
+
+Focused Vitest: 2 pure tests passed; actual supplier test skipped. Explicit TypeScript noEmit check passed. Exact commands, exit codes, log hashes and durations: CHECKS.json. No build artifacts emitted. Historical evidence was not modified; preimage is `.source`, not a discoverable test.
+
+Frozen test SHA256: `e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383`.
+Input preimage hash and predecessor evidence hash: INPUTS.json. Full current input freeze: FROZEN_INPUTS.json. Output hashes: OUTPUTS.sha256.
+
+## Exact parent invocation and result contract
+
+From the Runtime workspace, with the parent-selected supplier identity verified separately, set `CHIRALITY_RUN_EXACT_BOUNDARY=1`, `CHIRALITY_EXACT_CODEX_PATH` to that exact absolute executable, `CHIRALITY_EXACT_EVIDENCE_DIR` to a fresh absolute private evidence directory. For an unaccepted candidate set both `CHIRALITY_EXACT_CANDIDATE_SHA256` and canonical decimal `CHIRALITY_EXACT_CANDIDATE_SIZE` from actual selected bytes. Do not label older bytes Candidate2. Then execute:
+
+```sh
+./node_modules/.bin/vitest run tests/exact-boundary-conformance.test.ts
+```
+
+Parent captures exit/log/source/supplier hashes before and after. Fixture exclusively creates `EXACT_BOUNDARY_P1.json` with flag wx. Inspect `assertions` (ordered named booleans), `failureAssertion` if any, `failurePhase`, safe `failure`, `terminalOutput`, `startupMarker`, `startupFileExecuted`, `hostSentinelsBefore/After`, `hostSentinelsUnchanged`, `finalizationChecks`, both `probes` (one per primary/native issued call), `nativeChildren`, source/supplier revalidation and cleanup. A terminal-output failure will still have startup observations; a startup failure will be explicitly named if prior assertions pass. An earlier setup/transport failure has phase and sanitized error, and may legitimately lack not-yet-reached facts. Required probes stay <=10s; full profile including cleanup <=60s. Passing requires genuine standalone start/end, known-byte positive reads, each explicit nonzero denial, approved environment facts, native identity, startup absence, unchanged host bytes, process closure, source stability, supplier revalidation and budget/cleanup success.
+
+## Handoff state
+
+Accepted upstream remains ../BASIS.json, predecessor OWNER_DIRECTION, accepted SPEC_FAN_IN and PLAN_V2/amendment11; this is a derivative implementation/evidence package. Closure: diagnostics slice frozen for fresh review and parent actual run only. Missing: actual rerun diagnosis and supplier-specific P1 verdict. Rerun required on eventual selected exact supplier/source/policy freeze. No aggregate conformance, supplier acceptance, hold release, lifecycle promotion, owner-live account evidence, merge or release act inferred.
+
+MISSING: Parent actual supplier run and review.
+NEEDS_HUMAN_RULING: none for this bounded slice.
+DEPENDENCY_NOTES: none; independent lanes may change production inputs, so parent must re-pin and verify the actual combined freeze.
+AppliedChanges: exact-boundary-conformance.test.ts diagnostics and P1-owned evidence only.

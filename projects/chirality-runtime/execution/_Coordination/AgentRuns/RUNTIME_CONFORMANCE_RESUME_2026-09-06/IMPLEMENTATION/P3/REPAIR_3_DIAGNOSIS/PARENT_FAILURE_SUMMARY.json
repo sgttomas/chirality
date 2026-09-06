@@ -1,0 +1,71 @@
+{
+  "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P3_STAR_CANDIDATE2_01/EXACT_PROTECTED_star.json",
+  "sha256": "9b0421d1dbc26694fe81ddbbc19e55cb0d7eda54a80ccf7b09189bc96d260eaa",
+  "observations": {
+    "supplySha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+    "supplySize": 241188752,
+    "sourcesBefore": {
+      "tests/exact-protected-path-conformance.test.ts": "e3482593af7c0dc031a91f157165a1c3c031bd59426c48b3217a9f1a02965942",
+      "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+      "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+      "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+      "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+    },
+    "failurePhase": "primary-and-native-actions",
+    "failure": "Codex transport ended",
+    "peerFailures": [
+      "Actual advertised tool missing"
+    ],
+    "probes": [
+      {
+        "who": "primary",
+        "callId": "protected_1",
+        "kind": "probe-shell",
+        "method": "exec_command",
+        "elapsedMs": 68,
+        "output": "Chunk ID: 755c5e\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 155\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROTECTED_primary_START\nPROTECTED_POSITIVE:PASS\nPROTECTED_READ_MATCH:1\nPROTECTED_WRITE_MATCH:1\nPROTECTED_READ_LATE:1\nPROTECTED_WRITE_LATE:1\nPROTECTED_READ_LITERAL:1\nPROTECTED_WRITE_LITERAL:1\nPROTECTED_READ_CONFIG:1\nPROTECTED_WRITE_CONFIG:1\nPROTECTED_READ_BROKER:1\nPROTECTED_WRITE_BROKER:1\nPROTECTED_READ_ALIAS:1\nPROTECTED_WRITE_ALIAS:1\nPROTECTED_READ_DIRECTORY:1\nPROTECTED_WRITE_DIRECTORY:1\nPROTECTED_READ_TRAVERSAL:1\nPROTECTED_WRITE_TRAVERSAL:1\nPROTECTED_WRITE_ABSENT:1\nPROTECTED_TRAVERSE_DIRECTORY:1\nPROTECTED_CREATE_DIRECTORY:1\nPROTECTED_primary_FINISH\n",
+        "outputSha256": "b56068b63cc83dd2a9612eb4fba07d23516c5a6994a0787ca736e3caa61001ce",
+        "summary": {
+          "started": true,
+          "finished": true,
+          "duplicates": false,
+          "values": {
+            "POSITIVE": "PASS",
+            "READ_MATCH": "1",
+            "WRITE_MATCH": "1",
+            "READ_LATE": "1",
+            "WRITE_LATE": "1",
+            "READ_LITERAL": "1",
+            "WRITE_LITERAL": "1",
+            "READ_CONFIG": "1",
+            "WRITE_CONFIG": "1",
+            "READ_BROKER": "1",
+            "WRITE_BROKER": "1",
+            "READ_ALIAS": "1",
+            "WRITE_ALIAS": "1",
+            "READ_DIRECTORY": "1",
+            "WRITE_DIRECTORY": "1",
+            "READ_TRAVERSAL": "1",
+            "WRITE_TRAVERSAL": "1",
+            "WRITE_ABSENT": "1",
+            "TRAVERSE_DIRECTORY": "1",
+            "CREATE_DIRECTORY": "1"
+          }
+        }
+      }
+    ],
+    "issuedCalls": [
+      {
+        "callId": "protected_1",
+        "who": "primary",
+        "kind": "probe-shell",
+        "startedAt": 1788721445294,
+        "method": "exec_command"
+      }
+    ],
+    "hostUnchanged": true,
+    "sourceStable": true,
+    "cleanupFailures": 0,
+    "elapsedMs": 2442
+  }
+}

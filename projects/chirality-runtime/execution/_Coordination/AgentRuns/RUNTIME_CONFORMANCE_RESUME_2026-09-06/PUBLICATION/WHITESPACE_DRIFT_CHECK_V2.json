@@ -1,0 +1,16 @@
+{
+  "originalCount": 58,
+  "currentFindingFiles": 60,
+  "changedOriginals": [],
+  "newFindingFiles": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/PATCH.diff": {
+      "sha256": "b45821d77ab6bdc0379c33601009475498962f9b99b6c12f0b452b5902d7e2e9",
+      "findings": 1
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/PURE_TESTS.log": {
+      "sha256": "e3274c7f743c63073776c1ffbbd120e6e9c521ca1363f850e757f76750090920",
+      "findings": 1
+    }
+  },
+  "resolvedOriginalFindings": []
+}

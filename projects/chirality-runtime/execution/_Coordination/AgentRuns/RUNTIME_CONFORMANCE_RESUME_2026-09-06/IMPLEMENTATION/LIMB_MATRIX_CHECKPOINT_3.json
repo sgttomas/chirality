@@ -1,0 +1,152 @@
+{
+  "schema": "chirality-runtime-derivative-limb-matrix/v1",
+  "basis": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CAPABILITY_MATRIX.md": "e63053c38c19b651a5cbf25edd539c7a017073bf30c16cb4a28b9722852d8f34",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/NATIVE_CONFORMANCE/REMAINING_LIMBS/PLAN.md": "f7be8b813392266deb70b54c9e7ead8e4dcb4ef8bf42b7d16ddb361ded1a3d8c",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/BOUNDARY_1/EXACT_BOUNDARY_P1.json": "da89c974e248b8332ae9c43191cb21f9aeb0e8f486281925e95638b847cda2c5",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/PROCESS_NORMAL_1/process-conformance.json": "2dd5afdfc8107f844c0f7f11cbcb65d5b705472d0afb7e9ffa7a6cd336863a01",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/PARENT_CHECKS/SUPPLIER_COMPARISON/ROLE_1/EXACT_ROLE_CANARY.json": "614b3a2883fe7f11172333bc4a967cd6a87a0a3a601e1740c58401b99495f326",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_INITIAL.json": "79f88835a213fdbeaa30aada6f4eb3736c250b539d236931ce71c726d8fe29ef",
+    "/private/tmp/runtime-conformance-resume-20260906/parent/p1-candidate1-01/EXACT_BOUNDARY_P1.json": "8cf4aefaab831e3ffb2ccf60d5d90775e6d108b2d78beb6838874e9f8d7f2c41",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P1_CANDIDATE1_02/EXACT_BOUNDARY_P1.json": "be555070804d65d217f7ccbbc757698acdd78039af872a61022f2b5ede003eb3",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_NORMAL_01/process-conformance.json": "468d9bad23198a6c7ee804ae5fd9a56c09a6770b98b6914fb3ece94a944484a9",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_1.json": "6b1cf8a5ea57ef4eafcb67146e3e2b624f86ff3fdd3a2d448b284fb2b608b750",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_PRIMARY_01/process-conformance.json": "288eaaa2e9c4662692d9706af10f018e5794191a3d8a352bcb3d5f39c6475297",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_CANCEL_CHILD_01/process-conformance.json": "8efb3014edc55c9aafc91f5aa283d65d82da419b584172353f41791bec0e754a",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_CANDIDATE1_TIMEOUT_PRIMARY_01/process-conformance.json": "4cd053023cc4b193ac3252750a8d53aace2c5e2277cec883a7e321fc9d59a750",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P4_CANDIDATE1_01/EXACT_ROLE_CANARY.json": "66ea5fc46d2f65915876a301e30be35214da19f9b8f3a475ae290132b0dbc8fd",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_CHECKPOINT_2.json": "3b17ff9451bda5ed4f328a08e966d3dbb9d38ddcf72abe97cce899933b9b26f9"
+  },
+  "derivative": true,
+  "notProductionAdmission": true,
+  "attribution": "OpenAI GPT-6 WORKING_ITEMS; exact serving ID unavailable; instruction-asserted role",
+  "rows": [
+    {
+      "limb": "effective-policy",
+      "historicalObservation": "Original and candidate strict readback; text and second-process resume.",
+      "remaining": "Final-current complete policy/protection configuration binding.",
+      "currentResumeObservation": "Paired parent same Candidate1/unchanged P1 fixture: default snapshot produced exact startup marker; reviewed snapshot-disabled v6 Runtime repair passes all checks, marker absent, host unchanged,cleanup0,sourceStable,2678ms. Final selected supplier rerun required; no supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.read",
+      "historicalObservation": "Candidate selected foreign/broker read denial and rooted work.",
+      "remaining": "Complete accepted read canary set and protected-pattern coverage.",
+      "currentResumeObservation": "Paired parent same Candidate1/unchanged P1 fixture: default snapshot produced exact startup marker; reviewed snapshot-disabled v6 Runtime repair passes all checks, marker absent, host unchanged,cleanup0,sourceStable,2678ms. Final selected supplier rerun required; no supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.file-change",
+      "historicalObservation": "Candidate real apply_patch rooted success and foreign denial.",
+      "remaining": "Full protected-pattern matrix.",
+      "currentResumeObservation": "Classifier finding closed/review admitted; actual Candidate1 star family fails before probe on demanded shell/login advertisement. Exact supplier omission being repaired using known optional schema. Other3 families held; no protected-family actual pass.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.shell-write",
+      "historicalObservation": "Candidate actual rooted shell write; baseline abort control.",
+      "remaining": "Complete accepted shell boundary set.",
+      "currentResumeObservation": "Classifier finding closed/review admitted; actual Candidate1 star family fails before probe on demanded shell/login advertisement. Exact supplier omission being repaired using known optional schema. Other3 families held; no protected-family actual pass.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.network",
+      "historicalObservation": "Candidate public on positive and matched off denial; ask attempted but no prompt.",
+      "remaining": "Repair actual ask path; allow/deny/cancel and attributed public route.",
+      "currentResumeObservation": "Parent reports distinct Candidate2 artifact built, source tests/review pending in supplier lane; no actual new network/approval pass in this lane. Public network fixture identity/evidence-safety repair remains test-only.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.process",
+      "historicalObservation": "Controlled tests and actual P2 normal attempt; aggregate failed on marker parsing.",
+      "remaining": "Repair standalone markers/timing, then lifecycle canaries; not exhaustive orphan proof.",
+      "currentResumeObservation": "Candidate1 normal and raw cancel-primary pass; raw cancel-child and raw timeout-primary fail disappearance despite correct interrupted/timeout result, final fixture cleanup clean. Raw actor path does not exercise public Runtime retirement. New actual public retirement fixture under construction; durable-journal retirement-failure concern under controlled repro. timeout-child remains unrun.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.environment",
+      "historicalObservation": "P1 actual environment summaries passed, but aggregate profile failed.",
+      "remaining": "Diagnose masked assertion; no aggregate P1 pass.",
+      "currentResumeObservation": "Paired parent same Candidate1/unchanged P1 fixture: default snapshot produced exact startup marker; reviewed snapshot-disabled v6 Runtime repair passes all checks, marker absent, host unchanged,cleanup0,sourceStable,2678ms. Final selected supplier rerun required; no supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.approval",
+      "historicalObservation": "Controlled durable decision/transport, manager routing, no-UI and late grant checks.",
+      "remaining": "Actual supplier ask prompt and decision execution; missing managed-requirements callback source gate identified.",
+      "currentResumeObservation": "Parent reports distinct Candidate2 artifact built, source tests/review pending in supplier lane; no actual new network/approval pass in this lane. Public network fixture identity/evidence-safety repair remains test-only.",
+      "accepted": false
+    },
+    {
+      "limb": "primary.role",
+      "historicalObservation": "Controlled role/reuse tests; actual P4 failed before vendor launch on missing fixture compatibility basis.",
+      "remaining": "Repair fixture and run exact roles; labels remain instruction asserted.",
+      "currentResumeObservation": "Calibrated controlled broker/test-adapter role fixture independently admitted but actual Candidate1 fails before read on unadvertised login argument. Exact pinned supplier omits login when allow_login_shell=false; test-only advertisement repair underway. No actual role parity pass; production envelope and owner-live remain unproven.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.read",
+      "historicalObservation": "Candidate native child selected rooted/foreign read canaries.",
+      "remaining": "Complete descendant read/protection set.",
+      "currentResumeObservation": "Paired parent same Candidate1/unchanged P1 fixture: default snapshot produced exact startup marker; reviewed snapshot-disabled v6 Runtime repair passes all checks, marker absent, host unchanged,cleanup0,sourceStable,2678ms. Final selected supplier rerun required; no supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.file-change",
+      "historicalObservation": "Candidate native child actual rooted patch and foreign denial.",
+      "remaining": "Full protected-pattern matrix.",
+      "currentResumeObservation": "Classifier finding closed/review admitted; actual Candidate1 star family fails before probe on demanded shell/login advertisement. Exact supplier omission being repaired using known optional schema. Other3 families held; no protected-family actual pass.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.shell-write",
+      "historicalObservation": "Candidate native child actual rooted write.",
+      "remaining": "Complete accepted shell boundary set.",
+      "currentResumeObservation": "Classifier finding closed/review admitted; actual Candidate1 star family fails before probe on demanded shell/login advertisement. Exact supplier omission being repaired using known optional schema. Other3 families held; no protected-family actual pass.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.network",
+      "historicalObservation": "Fixture supports native-child path; public supplier primary positive now works.",
+      "remaining": "Actual native-child off/on/ask limbs not yet run.",
+      "currentResumeObservation": "Parent reports distinct Candidate2 artifact built, source tests/review pending in supplier lane; no actual new network/approval pass in this lane. Public network fixture identity/evidence-safety repair remains test-only.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.process",
+      "historicalObservation": "Actual P2 native output and cleanup observed; aggregate failed on marker parsing.",
+      "remaining": "Repair fixture and complete lifecycle canaries; observed cleanup is not all-process proof.",
+      "currentResumeObservation": "Candidate1 normal and raw cancel-primary pass; raw cancel-child and raw timeout-primary fail disappearance despite correct interrupted/timeout result, final fixture cleanup clean. Raw actor path does not exercise public Runtime retirement. New actual public retirement fixture under construction; durable-journal retirement-failure concern under controlled repro. timeout-child remains unrun.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.environment",
+      "historicalObservation": "P1 actual native environment summaries passed, but aggregate profile failed.",
+      "remaining": "Diagnose masked assertion; no aggregate P1 pass.",
+      "currentResumeObservation": "Paired parent same Candidate1/unchanged P1 fixture: default snapshot produced exact startup marker; reviewed snapshot-disabled v6 Runtime repair passes all checks, marker absent, host unchanged,cleanup0,sourceStable,2678ms. Final selected supplier rerun required; no supplier acceptance.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.approval",
+      "historicalObservation": "Native fixture prepared; no actual supplier request yet.",
+      "remaining": "Parentage-aware actual request attribution, allow/deny/cancel and absent-UI behavior.",
+      "currentResumeObservation": "Parent reports distinct Candidate2 artifact built, source tests/review pending in supplier lane; no actual new network/approval pass in this lane. Public network fixture identity/evidence-safety repair remains test-only.",
+      "accepted": false
+    },
+    {
+      "limb": "descendant.role",
+      "historicalObservation": "Native association metadata available; P4 failed before vendor launch.",
+      "remaining": "Repair fixture and run native role checks; never mechanical non-delegation claim.",
+      "currentResumeObservation": "Calibrated controlled broker/test-adapter role fixture independently admitted but actual Candidate1 fails before read on unadvertised login argument. Exact pinned supplier omits login when allow_login_shell=false; test-only advertisement repair underway. No actual role parity pass; production envelope and owner-live remain unproven.",
+      "accepted": false
+    },
+    {
+      "limb": "owner-live-native-delegation",
+      "historicalObservation": "Not attempted. Deterministic no-account manager plus live local Pi passed, a different evidence class.",
+      "remaining": "Explicit hosted account/provider action and accepted live limb; cannot be replaced by fixture evidence.",
+      "currentResumeObservation": "Unexecuted; no-account controlled public role and actual supplier action observations cannot substitute production/owner-live evidence.",
+      "accepted": false
+    }
+  ],
+  "checkpoint": "3: actual fixture-schema failures and raw process lifecycle failures preserved"
+}

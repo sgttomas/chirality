@@ -1,0 +1,10 @@
+{
+  "class": "delegated-harness-native",
+  "parent": "/root/supplier_manager",
+  "children": [
+    "/root/supplier_manager/candidate3_repair_build",
+    "/root/supplier_manager/candidate3_review"
+  ],
+  "actual_execution": "collaboration.spawn_agent",
+  "role_enforcement": "instruction-asserted"
+}

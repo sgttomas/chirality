@@ -1,0 +1,8 @@
+{
+  "sourceHashVerified": "e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383",
+  "returnContractPresent": true,
+  "focusedChecks": "2 pure pass,1 exact skip; explicit noEmit pass",
+  "scope": "sole authorized test plus own evidence",
+  "verdict": "ADMIT_FRESH_REVIEW_ONLY",
+  "pending": "Fresh read-only review and parent exact supplier diagnostic"
+}

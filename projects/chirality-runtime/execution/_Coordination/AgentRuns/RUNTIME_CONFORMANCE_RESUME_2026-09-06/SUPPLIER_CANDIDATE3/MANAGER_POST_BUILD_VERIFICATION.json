@@ -1,0 +1,19 @@
+{
+  "artifact_checks": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-app-server",
+      "sha256": "b2a7e321d1c64794761803ba8895a15fafeeae9ac17c34abce942a82edaf7d4a",
+      "match": true,
+      "bytes": 241276384
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-code-mode-host",
+      "sha256": "95a089ef4cf82d85596dc6a5c6f1a0baae50fca9e23c89b77b91c68a403096f6",
+      "match": true,
+      "bytes": 75491736
+    }
+  ],
+  "old_supplier_seal_count": 70,
+  "old_supplier_seal_mismatches": [],
+  "source_sha256": "30bad4478319c71373b0d943d810dd9e8eaa08501d68fa667fc7b130d791e3b3"
+}

@@ -1,0 +1,13 @@
+{
+  "callbackThreadHashEqualsFixtureObservedChildIdHash": true,
+  "actorParentageProven": false,
+  "actualFailure": {
+    "classification": "FOREIGN_PRIMARY_TURN",
+    "code": "ENGINE_UNAVAILABLE",
+    "reason": "CODEX_PROTOCOL_FAILURE"
+  },
+  "approvalCount": 0,
+  "sourceStable": true,
+  "cleanupFailures": 0,
+  "calibration": "Provider fixture child ID corroborates callback origin; actual actor lifecycle ordering and parentage witness not retained in this evidence."
+}

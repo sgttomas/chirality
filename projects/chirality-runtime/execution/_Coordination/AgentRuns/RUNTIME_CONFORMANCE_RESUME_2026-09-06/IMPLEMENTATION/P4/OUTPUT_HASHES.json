@@ -1,0 +1,12 @@
+{
+  "projects/chirality-runtime/tests/exact-role-conformance.test.ts": "9b200f51b63a45fae6d3057ecda9ea41fe7f4e19ae1cfaae15b79ef30c258ea0",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPORT.md": "32971f95f2393c275fb5e5856d29fa2931ccbfed92a9aa6ce8008f6fe8871700",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/AMENDMENT_1.json": "6b35d7cfe5895745922decc245f685db4b59790aceadbffd97ac6e194f861755",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/BRIEF.sha256": "c902d3527e6b31b9f8a38e5616352bdb29bf12a3587bdd11e06cd2e642dea86a",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/CHECK.log": "925507369a2185096a5bf4603b079a1a1847fa78b07edcbb60c7a5f267da0e15",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/BRIEF.md": "250c8692f20cb23f9ef5c24b906c8d8983254ec6d70f6249b653ee7b6fb18cf4",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/INPUT_HASHES.json": "a5a879b3f8bec26857d12f747aa406a11186ee0bef502d5857bfadefc7f62536",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/_run_records/TASK_RUN_2026-09-06_P4.md": "0c14e6717e112cd6e387ac2e564f83c6daa4e016d2c494cc0645450495a6ec01",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/preimages/exact-role-conformance.source": "3d170f50b672ee1e1ce7d177a221ee651e15a148262c7d4a829781290a282889"
+}

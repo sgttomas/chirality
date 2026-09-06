@@ -1,0 +1,94 @@
+{
+  "derivative": true,
+  "status": "author evidence hash/bytes verified; fresh independent transport review pending",
+  "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/OUTPUTS.json",
+  "sha256": "434dac5f2fb9d20ca6c9c1f1284549906a0caa5c9f44c8efaef7a72ec3e9c110",
+  "checks": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/AMENDMENT.json",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/CHECKS.json",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/INPUTS.json",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/INTERIM_1/CHECKS.json",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/INTERIM_1/SOURCE_FREEZE.json",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/INTERIM_1/codex-supervisor.ts.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/INTERIM_1/codex-transport-lifecycle.test.ts.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/INTERIM_1/codex-transport-lifecycle.ts.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/INTERIM_1/exact-process-runtime-conformance.test.ts.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/REPORT.md",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/SOURCE_FREEZE.json",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/codex-supervisor.ts.after.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/codex-supervisor.ts.before.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/codex-transport-lifecycle.test.ts.after.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/codex-transport-lifecycle.ts.after.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/exact-process-runtime-conformance.test.ts.after.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1/exact-process-runtime-conformance.test.ts.before.source",
+      "hashMatches": true,
+      "sizeMatches": true
+    }
+  ],
+  "verificationNote": "Manifest uses outputs array; every entry verified against immutable evidence, not a flat-map assumption."
+}

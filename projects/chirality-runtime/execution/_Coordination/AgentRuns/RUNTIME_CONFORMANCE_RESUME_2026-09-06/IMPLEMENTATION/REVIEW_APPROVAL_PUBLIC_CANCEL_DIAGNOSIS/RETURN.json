@@ -1,0 +1,11 @@
+{
+  "verdict": "READ_ONLY_DIAGNOSIS_COMPLETE",
+  "immediateFailure": "Expected inactive binding403 at postinterrupt ApprovalStore.read",
+  "durableResolutionActual": "UNKNOWN; not retained before cleanup",
+  "sourceGuarantee": "Direct interrupt has no guaranteed approval resolution write",
+  "productionChangeProposed": false,
+  "next": "Bounded fixture private audit with unchanged resolution gate, then parent actual rerun",
+  "sourceOrTestEdited": false,
+  "actualExecuted": false,
+  "acceptance": false
+}

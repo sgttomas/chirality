@@ -1,0 +1,187 @@
+diff --git a/projects/chirality-runtime/package-lock.json b/projects/chirality-runtime/package-lock.json
+index c71e3decd..a35e57ef7 100644
+--- a/projects/chirality-runtime/package-lock.json
++++ b/projects/chirality-runtime/package-lock.json
+@@ -12,6 +12,7 @@
+       ],
+       "devDependencies": {
+         "@types/node": "24.12.4",
++        "esbuild": "0.28.1",
+         "typescript": "5.9.3",
+         "vitest": "3.2.7"
+       },
+diff --git a/projects/chirality-runtime/package.json b/projects/chirality-runtime/package.json
+index 3d162bfb6..d79b92e30 100644
+--- a/projects/chirality-runtime/package.json
++++ b/projects/chirality-runtime/package.json
+@@ -17,6 +17,7 @@
+   },
+   "devDependencies": {
+     "@types/node": "24.12.4",
++    "esbuild": "0.28.1",
+     "typescript": "5.9.3",
+     "vitest": "3.2.7"
+   }
+diff --git a/projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts b/projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts
+index 6f42dcb04..cfb2a797d 100644
+--- a/projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts
++++ b/projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts
+@@ -1,13 +1,25 @@
+ import { createHash, randomUUID } from "node:crypto";
+ import { realpath } from "node:fs/promises";
+ import { isAbsolute, relative, resolve, sep, join } from "node:path";
+-import { createAgentSession, DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager, type AgentSession } from "@earendil-works/pi-coding-agent";
+-import { createAssistantMessageEventStream, InMemoryCredentialStore, InMemoryModelsStore, type AssistantMessage, type Context, type Model, type SimpleStreamOptions } from "@earendil-works/pi-ai";
++import type { AgentSession, SessionManager } from "@earendil-works/pi-coding-agent";
++import type { AssistantMessage, Context, Model, SimpleStreamOptions } from "@earendil-works/pi-ai";
+ import { HarnessError, type AgentEngineRunInput, type UIEvent, type RuntimeToolDefinition } from "@chirality/runtime-contracts";
+ import type { PiTurnRuntimePort } from "./pi-omlx-engine.js";
+ import { normalizeOmlxBaseUrl } from "./omlx-client.js";
+ import { createPiReadTool, createBoundPiReadTool } from "./pi-read-tool.js";
+ import { mapPiEvent } from "./pi-event-mapper.js";
++// Keep both SDKs behind Node's native ESM loader. Nonliteral specifiers prevent a
++// CommonJS consumer bundle from rewriting their import-only exports to require()
++// or bundling a second copy of Pi's provider/model state. Do not inline these.
++const codingAgentSpecifier = "@earendil-works/pi-coding-agent";
++const piAiSpecifier = "@earendil-works/pi-ai";
++async function loadPiSdk() {
++  const [agent, ai] = await Promise.all([
++    import(codingAgentSpecifier) as Promise<typeof import("@earendil-works/pi-coding-agent")>,
++    import(piAiSpecifier) as Promise<typeof import("@earendil-works/pi-ai")>
++  ]);
++  return { ...agent, ...ai };
++}
+ export interface PiTurnRuntimeOptions {
+   baseUrl: string; model: { id: string; contextWindow: number; maxTokens: number }; canonicalRoot: string;
+   maxSessions?: number; sessionTtlMs?: number;
+@@ -57,7 +69,7 @@ export function createPiTurnRuntime(inputOptions: PiTurnRuntimeOptions): PiRunti
+   const active = new Map<string, { controller: AbortController; session?: AgentSession; interrupted: boolean }>();
+   const maxSessions = options.maxSessions ?? 32, sessionTtlMs = options.sessionTtlMs ?? 1800000;
+   if (!Number.isSafeInteger(maxSessions) || maxSessions < 1 || maxSessions > 128 || !Number.isSafeInteger(sessionTtlMs) || sessionTtlMs < 1 || sessionTtlMs > 86400000) throw new HarnessError("INVALID_REQUEST", 400, "Invalid Pi session cache bounds");
+-  const histories = new Map<string, { manager: SessionManager; fingerprint: string; lastUsed: number }>();
++  const histories = new Map<string, { manager?: SessionManager; fingerprint: string; lastUsed: number }>();
+   const retired = new Set<string>();
+   const bindings = new Map<string, { id: string; tool: RuntimeToolDefinition }>();
+   const releasedBindings = new Set<string>();
+@@ -101,6 +113,9 @@ export function createPiTurnRuntime(inputOptions: PiTurnRuntimeOptions): PiRunti
+     preflight,
+     async interrupt(sessionId) { const state = active.get(sessionId); if (state) { state.interrupted = true; state.controller.abort(); await state.session?.abort(); } },
+     async *startTurn(input, execution) {
++      // Retain the admitted request while native SDK loading yields to callers.
++      input = structuredClone(input);
++      execution = { ...execution };
+       await preflight(input, execution.credential);
+       if (execution.disableBuiltIns !== true || execution.disableAmbientResources !== true || !isAbsolute(execution.transcriptRoot) || resolve(execution.transcriptRoot) !== execution.transcriptRoot || inside(options.canonicalRoot, execution.transcriptRoot) || inside(execution.transcriptRoot, options.canonicalRoot)) throw new HarnessError("INVALID_REQUEST", 403, "Pi requires disabled ambient resources and external Runtime-owned transcript storage");
+       // Recheck mutable admissions synchronously after the awaited filesystem preflight.
+@@ -111,7 +126,7 @@ export function createPiTurnRuntime(inputOptions: PiTurnRuntimeOptions): PiRunti
+       let history = histories.get(input.session.sessionId);
+       if (history && history.fingerprint !== fingerprint(input, execution.credential, binding?.id)) throw new HarnessError("INVALID_REQUEST", 409, "Pi scope/account context changed; create a fresh Runtime session");
+       if (!history && (histories.size >= maxSessions || retired.size >= 1024)) throw new HarnessError("ENGINE_UNAVAILABLE", 503, "Pi session cache capacity reached");
+-      if (!history) { history = { manager: SessionManager.inMemory(options.canonicalRoot, { id: input.session.sessionId }), fingerprint: fingerprint(input, execution.credential, binding?.id), lastUsed: Date.now() }; histories.set(input.session.sessionId, history); }
++      if (!history) { history = { fingerprint: fingerprint(input, execution.credential, binding?.id), lastUsed: Date.now() }; histories.set(input.session.sessionId, history); }
+       const state: { controller: AbortController; session?: AgentSession; interrupted: boolean } = { controller: new AbortController(), interrupted: false };
+       if (active.has(input.session.sessionId)) throw new HarnessError("TURN_IN_PROGRESS", 409, "Pi session turn is already running");
+       active.set(input.session.sessionId, state);
+@@ -119,45 +134,48 @@ export function createPiTurnRuntime(inputOptions: PiTurnRuntimeOptions): PiRunti
+       const queue: UIEvent[] = [];
+       const enqueue = (event: UIEvent) => { bytes += Buffer.byteLength(JSON.stringify(event)); if (bytes > maxBytes || queue.length >= 4096) throw failure("Pi output budget exceeded"); queue.push(event); wake?.(); };
+       const timer = setTimeout(() => { problem = failure("Pi turn deadline exceeded"); state.controller.abort(); void state.session?.abort(); wake?.(); }, timeoutMs);
+-      const streamSimple = (model: Model<any>, context: Context, requestOptions?: SimpleStreamOptions) => {
+-        const stream = createAssistantMessageEventStream();
+-        const message: AssistantMessage = { role: "assistant", content: [], api: "openai-completions", provider: "omlx", model: options.model.id, usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, totalTokens: 0, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } }, stopReason: "stop", timestamp: Date.now() };
+-        void (async () => {
+-          try {
+-            if (++calls > input.opts.maxTurns || model.id !== options.model.id || model.provider !== "omlx" || model.baseUrl !== baseUrl) throw failure("Pi model request escaped its configured bound");
+-            if (context.tools && context.tools.length !== 0 && (context.tools.length !== 1 || context.tools[0]?.name !== input.opts.tools[0])) throw failure("Pi exposed unexpected tools");
+-            const signal = requestOptions?.signal ? AbortSignal.any([state.controller.signal, requestOptions.signal]) : state.controller.signal;
+-            const requestedTokens = requestOptions?.maxTokens ?? options.model.maxTokens;
+-            if (!Number.isSafeInteger(requestedTokens) || requestedTokens < 1) throw failure("Invalid local model token request");
+-            const body = JSON.stringify({ model: options.model.id, messages: messages(context), stream: false, max_tokens: Math.min(options.model.maxTokens, requestedTokens), ...(context.tools?.length ? { tools: context.tools.map(tool => ({ type: "function", function: { name: tool.name, description: tool.description, parameters: tool.parameters } })) } : {}) });
+-            if (Buffer.byteLength(body) > maxBytes) throw failure("Pi request budget exceeded");
+-            const response = await abortable(fetchImpl(`${baseUrl}/chat/completions`, { method: "POST", redirect: "manual", headers: { "content-type": "application/json", authorization: `Bearer ${execution.credential}` }, body, signal }), signal);
+-            if (response.status === 401 || response.status === 403) throw new HarnessError("PROVIDER_AUTH_FAILURE", 401, "Local model credential was rejected");
+-            if (!response.ok || (response.url && response.url !== `${baseUrl}/chat/completions`) || !response.body) throw failure("Local model request was rejected or redirected");
+-            const reader = response.body.getReader(); let length = 0; const chunks: Uint8Array[] = [];
+-            try { for (;;) { const part = await abortable(reader.read(), signal); if (part.done) break; length += part.value.length; if (length > maxBytes) throw failure("Local model response budget exceeded"); chunks.push(part.value); } } finally { void reader.cancel().catch(() => {}); }
+-            const payload = object(JSON.parse(Buffer.concat(chunks).toString("utf8")));
+-            if (payload.model !== options.model.id || !Array.isArray(payload.choices) || payload.choices.length !== 1) throw failure("Local model response identity/choice mismatch");
+-            const choice = object(payload.choices[0]), answer = object(choice.message);
+-            if (answer.role !== "assistant" || !["stop", "length", "tool_calls"].includes(choice.finish_reason) || (answer.content !== null && typeof answer.content !== "string" && !(answer.content === undefined && choice.finish_reason === "tool_calls" && Array.isArray(answer.tool_calls) && answer.tool_calls.length > 0))) throw failure("Unsupported local model answer");
+-            stream.push({ type: "start", partial: message });
+-            if (typeof answer.content === "string" && answer.content) { const index = message.content.length; message.content.push({ type: "text", text: answer.content }); stream.push({ type: "text_start", contentIndex: index, partial: message }); stream.push({ type: "text_delta", contentIndex: index, delta: answer.content, partial: message }); stream.push({ type: "text_end", contentIndex: index, content: answer.content, partial: message }); }
+-            if (answer.tool_calls !== undefined) {
+-              if (!context.tools?.length || !Array.isArray(answer.tool_calls) || answer.tool_calls.length > 8 || choice.finish_reason !== "tool_calls") throw failure("Invalid local model tool calls");
+-              const ids = new Set<string>();
+-              for (const raw of answer.tool_calls) { const call = object(raw), fn = object(call.function); if (typeof call.id !== "string" || !call.id || ids.has(call.id) || call.type !== "function" || fn.name !== input.opts.tools[0] || typeof fn.arguments !== "string") throw failure("Unexpected local model tool call"); ids.add(call.id); const tool = { type: "toolCall" as const, id: call.id, name: fn.name as string, arguments: object(JSON.parse(fn.arguments)) }; const index = message.content.length; message.content.push(tool); stream.push({ type: "toolcall_start", contentIndex: index, partial: message }); stream.push({ type: "toolcall_end", contentIndex: index, toolCall: tool, partial: message }); }
+-            }
+-            if (choice.finish_reason === "tool_calls" && !message.content.some(item => item.type === "toolCall")) throw failure("Missing local model tool calls");
+-            message.stopReason = choice.finish_reason === "tool_calls" ? "toolUse" : choice.finish_reason === "length" ? "length" : "stop";
+-            if (payload.usage !== undefined) { const usage = object(payload.usage); if (![usage.prompt_tokens, usage.completion_tokens].every(value => Number.isSafeInteger(value) && value >= 0)) throw failure("Malformed model usage"); message.usage.input = usage.prompt_tokens; message.usage.output = usage.completion_tokens; message.usage.totalTokens = usage.prompt_tokens + usage.completion_tokens; }
+-            stream.push({ type: "done", reason: message.stopReason, message }); stream.end(message);
+-          } catch (error) { problem ??= error instanceof HarnessError ? error : failure("Local model protocol request failed"); message.stopReason = state.controller.signal.aborted ? "aborted" : "error"; message.errorMessage = "Local model request failed"; stream.push({ type: "error", reason: message.stopReason, error: message }); stream.end(message); }
+-        })();
+-        return stream;
+-      };
+       let unsubscribe: (() => void) | undefined;
+       const run = (async () => {
+         try {
++          const { createAgentSession, DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager, createAssistantMessageEventStream, InMemoryCredentialStore, InMemoryModelsStore } = await abortable(loadPiSdk(), state.controller.signal);
++          // The reservation counts toward capacity even before the SDK exists.
++          const sessionManager = history.manager ??= SessionManager.inMemory(options.canonicalRoot, { id: input.session.sessionId });
++          const streamSimple = (model: Model<any>, context: Context, requestOptions?: SimpleStreamOptions) => {
++            const stream = createAssistantMessageEventStream();
++            const message: AssistantMessage = { role: "assistant", content: [], api: "openai-completions", provider: "omlx", model: options.model.id, usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, totalTokens: 0, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } }, stopReason: "stop", timestamp: Date.now() };
++            void (async () => {
++              try {
++                if (++calls > input.opts.maxTurns || model.id !== options.model.id || model.provider !== "omlx" || model.baseUrl !== baseUrl) throw failure("Pi model request escaped its configured bound");
++                if (context.tools && context.tools.length !== 0 && (context.tools.length !== 1 || context.tools[0]?.name !== input.opts.tools[0])) throw failure("Pi exposed unexpected tools");
++                const signal = requestOptions?.signal ? AbortSignal.any([state.controller.signal, requestOptions.signal]) : state.controller.signal;
++                const requestedTokens = requestOptions?.maxTokens ?? options.model.maxTokens;
++                if (!Number.isSafeInteger(requestedTokens) || requestedTokens < 1) throw failure("Invalid local model token request");
++                const body = JSON.stringify({ model: options.model.id, messages: messages(context), stream: false, max_tokens: Math.min(options.model.maxTokens, requestedTokens), ...(context.tools?.length ? { tools: context.tools.map(tool => ({ type: "function", function: { name: tool.name, description: tool.description, parameters: tool.parameters } })) } : {}) });
++                if (Buffer.byteLength(body) > maxBytes) throw failure("Pi request budget exceeded");
++                const response = await abortable(fetchImpl(`${baseUrl}/chat/completions`, { method: "POST", redirect: "manual", headers: { "content-type": "application/json", authorization: `Bearer ${execution.credential}` }, body, signal }), signal);
++                if (response.status === 401 || response.status === 403) throw new HarnessError("PROVIDER_AUTH_FAILURE", 401, "Local model credential was rejected");
++                if (!response.ok || (response.url && response.url !== `${baseUrl}/chat/completions`) || !response.body) throw failure("Local model request was rejected or redirected");
++                const reader = response.body.getReader(); let length = 0; const chunks: Uint8Array[] = [];
++                try { for (;;) { const part = await abortable(reader.read(), signal); if (part.done) break; length += part.value.length; if (length > maxBytes) throw failure("Local model response budget exceeded"); chunks.push(part.value); } } finally { void reader.cancel().catch(() => {}); }
++                const payload = object(JSON.parse(Buffer.concat(chunks).toString("utf8")));
++                if (payload.model !== options.model.id || !Array.isArray(payload.choices) || payload.choices.length !== 1) throw failure("Local model response identity/choice mismatch");
++                const choice = object(payload.choices[0]), answer = object(choice.message);
++                if (answer.role !== "assistant" || !["stop", "length", "tool_calls"].includes(choice.finish_reason) || (answer.content !== null && typeof answer.content !== "string" && !(answer.content === undefined && choice.finish_reason === "tool_calls" && Array.isArray(answer.tool_calls) && answer.tool_calls.length > 0))) throw failure("Unsupported local model answer");
++                stream.push({ type: "start", partial: message });
++                if (typeof answer.content === "string" && answer.content) { const index = message.content.length; message.content.push({ type: "text", text: answer.content }); stream.push({ type: "text_start", contentIndex: index, partial: message }); stream.push({ type: "text_delta", contentIndex: index, delta: answer.content, partial: message }); stream.push({ type: "text_end", contentIndex: index, content: answer.content, partial: message }); }
++                if (answer.tool_calls !== undefined) {
++                  if (!context.tools?.length || !Array.isArray(answer.tool_calls) || answer.tool_calls.length > 8 || choice.finish_reason !== "tool_calls") throw failure("Invalid local model tool calls");
++                  const ids = new Set<string>();
++                  for (const raw of answer.tool_calls) { const call = object(raw), fn = object(call.function); if (typeof call.id !== "string" || !call.id || ids.has(call.id) || call.type !== "function" || fn.name !== input.opts.tools[0] || typeof fn.arguments !== "string") throw failure("Unexpected local model tool call"); ids.add(call.id); const tool = { type: "toolCall" as const, id: call.id, name: fn.name as string, arguments: object(JSON.parse(fn.arguments)) }; const index = message.content.length; message.content.push(tool); stream.push({ type: "toolcall_start", contentIndex: index, partial: message }); stream.push({ type: "toolcall_end", contentIndex: index, toolCall: tool, partial: message }); }
++                }
++                if (choice.finish_reason === "tool_calls" && !message.content.some(item => item.type === "toolCall")) throw failure("Missing local model tool calls");
++                message.stopReason = choice.finish_reason === "tool_calls" ? "toolUse" : choice.finish_reason === "length" ? "length" : "stop";
++                if (payload.usage !== undefined) { const usage = object(payload.usage); if (![usage.prompt_tokens, usage.completion_tokens].every(value => Number.isSafeInteger(value) && value >= 0)) throw failure("Malformed model usage"); message.usage.input = usage.prompt_tokens; message.usage.output = usage.completion_tokens; message.usage.totalTokens = usage.prompt_tokens + usage.completion_tokens; }
++                stream.push({ type: "done", reason: message.stopReason, message }); stream.end(message);
++              } catch (error) { problem ??= error instanceof HarnessError ? error : failure("Local model protocol request failed"); message.stopReason = state.controller.signal.aborted ? "aborted" : "error"; message.errorMessage = "Local model request failed"; stream.push({ type: "error", reason: message.stopReason, error: message }); stream.end(message); }
++            })();
++            return stream;
++          };
+           const modelRuntime = await ModelRuntime.create({ credentials: new InMemoryCredentialStore(), modelsStore: new InMemoryModelsStore(), modelsPath: null, allowModelNetwork: false });
+           modelRuntime.registerProvider("omlx", { baseUrl, api: "openai-completions", streamSimple, models: [{ id: options.model.id, name: options.model.id, reasoning: false, input: ["text"], contextWindow: options.model.contextWindow, maxTokens: options.model.maxTokens, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } }] });
+           await modelRuntime.setRuntimeApiKey("omlx", execution.credential);
+@@ -167,7 +185,7 @@ export function createPiTurnRuntime(inputOptions: PiTurnRuntimeOptions): PiRunti
+           const resourceLoader = new DefaultResourceLoader({ cwd: options.canonicalRoot, agentDir: join(execution.transcriptRoot, "ambient-disabled"), settingsManager: settings, noExtensions: true, noSkills: true, noPromptTemplates: true, noThemes: true, noContextFiles: true, systemPrompt, appendSystemPrompt: [], extensionsOverride: base => ({ ...base, extensions: [], errors: [] }), skillsOverride: () => ({ skills: [], diagnostics: [] }), promptsOverride: () => ({ prompts: [], diagnostics: [] }), themesOverride: () => ({ themes: [], diagnostics: [] }), agentsFilesOverride: () => ({ agentsFiles: [] }), systemPromptOverride: () => systemPrompt, appendSystemPromptOverride: () => [] });
+           await resourceLoader.reload();
+           if (state.controller.signal.aborted) throw failure("Pi startup cancelled");
+-          const created = await createAgentSession({ cwd: options.canonicalRoot, agentDir: join(execution.transcriptRoot, "ambient-disabled"), modelRuntime, model, resourceLoader, sessionManager: history.manager, settingsManager: settings, noTools: "all", tools: [...input.opts.tools], customTools: [binding ? createBoundPiReadTool({ canonicalRoot: options.canonicalRoot, tool: binding.tool, protectedPaths: [...options.protectedPaths, execution.transcriptRoot], isCurrent: () => bindings.get(input.session.sessionId) === binding && !closed, signal: state.controller.signal }) : createPiReadTool({ canonicalRoot: options.canonicalRoot, name: input.opts.tools[0] as "read" | "read_file", protectedPaths: [...options.protectedPaths, execution.transcriptRoot] })] });
++          const created = await createAgentSession({ cwd: options.canonicalRoot, agentDir: join(execution.transcriptRoot, "ambient-disabled"), modelRuntime, model, resourceLoader, sessionManager, settingsManager: settings, noTools: "all", tools: [...input.opts.tools], customTools: [binding ? createBoundPiReadTool({ canonicalRoot: options.canonicalRoot, tool: binding.tool, protectedPaths: [...options.protectedPaths, execution.transcriptRoot], isCurrent: () => bindings.get(input.session.sessionId) === binding && !closed, signal: state.controller.signal }) : createPiReadTool({ canonicalRoot: options.canonicalRoot, name: input.opts.tools[0] as "read" | "read_file", protectedPaths: [...options.protectedPaths, execution.transcriptRoot] })] });
+           state.session = created.session;
+           if (created.modelFallbackMessage || JSON.stringify(created.session.getActiveToolNames()) !== JSON.stringify(input.opts.tools)) throw failure("Pi changed the exact model/tool binding");
+           unsubscribe = created.session.subscribe(event => { try { for (const projected of mapPiEvent(event, { sessionId: input.session.sessionId, turnId: input.turnId })) enqueue(projected); } catch (error) { problem ??= error; state.controller.abort(); void created.session.abort(); } });
+@@ -184,7 +202,7 @@ export function createPiTurnRuntime(inputOptions: PiTurnRuntimeOptions): PiRunti
+         try { state.session?.dispose(); } catch { problem ??= failure("Pi disposal failed"); }
+         finally {
+           active.delete(input.session.sessionId);
+-          if (problem || state.interrupted || closed || Buffer.byteLength(JSON.stringify(history.manager.getEntries())) > maxBytes * 4) invalidate(input.session.sessionId);
++          if (problem || state.interrupted || closed || Buffer.byteLength(JSON.stringify(history.manager?.getEntries() ?? [])) > maxBytes * 4) invalidate(input.session.sessionId);
+           else if (histories.get(input.session.sessionId) === history) history.lastUsed = Date.now();
+         }
+       })();

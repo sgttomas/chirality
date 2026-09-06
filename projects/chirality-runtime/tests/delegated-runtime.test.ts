@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, realpath, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { validateHarnessEventV2 } from "@chirality/runtime-contracts";
+import { RuntimeError, validateHarnessEventV2, type WorkerHandle, type WorkerResult } from "@chirality/runtime-contracts";
 import { ApprovalStore } from "../packages/core/src/approval-store.js";
 import { AuthRegistry, EngineRegistry, ProjectRegistry, ResidencyCoordinator, RuntimeService, SessionStore, TurnCoordinator } from "@chirality/runtime-core";
 import { RuntimeClient } from "@chirality/runtime-client";
@@ -376,7 +376,7 @@ it("requires explicit on consent matching the immutable configured worker postur
   expect((await f.client.runDelegatedTurn("project", compatibility, { turnId: "on-controlled", prompt: "hello" })).terminal.outcome).toBe("completed");
 });
 
-it("does not commit completed when worker retirement reports unresolved descendants", async () => {
+it("leaves retirement unresolved when cleanup reports unresolved descendants", async () => {
   const f = await fixture();
   await f.client.grantDelegatedConsent("project", compatibility, { posture: "off", approvedBy: "fixture-owner", explicitUserAct: true });
   const retire = f.binding.supervisor.retire.bind(f.binding.supervisor);
@@ -386,7 +386,9 @@ it("does not commit completed when worker retirement reports unresolved descenda
     throw new Error("controlled unresolved descendant observation");
   };
   await expect(f.client.runDelegatedTurn("project", compatibility, { turnId: "retirement-fails", prompt: "hello" })).rejects.toBeDefined();
-  expect((await f.retirement.read("retirement-fails"))?.terminal?.outcome).toBe("failed");
+  expect((await f.retirement.read("retirement-fails"))?.state).toBe("prepared");
+  expect((await f.retirement.read("retirement-fails"))?.terminal).toBeUndefined();
+  await expect(f.retirement.restart("retirement-fails", f.identity)).rejects.toMatchObject({ code: "DELEGATION_POLICY_VIOLATION" });
 });
 
 function controlledApprovalWorker(identity: Parameters<typeof createControlledCodexSupervisorForTests>[0]["identity"]) {
@@ -444,4 +446,134 @@ it("carries provider cancellation into immutable resolution and refuses a queued
   await expect(f.client.decideDelegatedApproval("project", prompt.requestId, compatibility, { turnId: "cancel-wire", workerGeneration: prompt.binding.workerGeneration, decision: "acceptForSession", approvedBy: "fixture-human", explicitUserAct: true })).rejects.toMatchObject({ code: "FORBIDDEN" });
   await f.client.interruptDelegatedTurn("project", "cancel-wire", compatibility); await settled;
   expect(await f.worker.inventory()).toEqual([]);
+});
+
+function retirementGate<T>() {
+  let resolve!: (value: T) => void, reject!: (error: unknown) => void;
+  const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
+  void promise.catch(() => {});
+  return { promise, resolve, reject };
+}
+
+/** No supplier, process or network: control retirement independently of wait. */
+async function controlledRetirementFixture(lateApproval = false) {
+  const root = await realpath(await mkdtemp(join(tmpdir(), "retirement-barrier-")));
+  cleanups.push(() => rm(root, { recursive: true, force: true }));
+  const identity = { canonicalRoot: root, cwd: root, accountId: "controlled-no-account", accountEpoch: 1, policyDigest: "fixture-policy" };
+  const retirement = new WorkerRetirementCoordinator({ directory: join(root, "journal") });
+  const waited = retirementGate<void>(), finished = retirementGate<WorkerResult>();
+  const retiring = retirementGate<void>(), cleanup = retirementGate<void>();
+  const pollingStarted = retirementGate<void>(), polling = retirementGate<never[]>();
+  const calls: { workerId: string; generation: string }[] = [];
+  let live: WorkerHandle | undefined;
+  const supervisor = {
+    async acquire(workerId: string) { live = { workerId, generation: "controlled-generation", pid: 0, state: "running" }; return { ...live }; },
+    async inventory() { return live ? [{ ...live }] : []; },
+    async reconnect() { if (!live) throw new Error("No controlled worker"); return { ...live }; },
+    async wait() { waited.resolve(); return finished.promise; },
+    async retire(workerId: string, generation: string) { calls.push({ workerId, generation }); retiring.resolve(); await cleanup.promise; live = undefined; },
+    async pendingNetworkApprovals() { pollingStarted.resolve(); return polling.promise; },
+    async replyNetworkApproval() { return { sent: true as const }; }
+  };
+  const consent = {
+    async read() { return { identity, posture: "off" as const, approvedBy: "controlled-test", approvedAt: "2026-09-06T00:00:00.000Z" }; },
+    async grant() {}, async authorizeDestination() {}
+  };
+  const runtime = new DelegatedRuntime({ daemonId: "retirement-test", projects: new Map([["p", { identity, compatibility, supervisor, retirement, consent, evidenceClass: "controlled-worker", ...(lateApproval ? { approvalForwardingEnabled: true, approvals: new ApprovalStore({ canonicalRoot: root, storageRoot: join(root, "approvals"), consent, isLive: async () => true }) } : {}) }]]) });
+  return {
+    runtime, retirement, identity, retiring, cleanup, calls, pollingStarted, polling,
+    finish() { finished.resolve({ worker: { ...live! }, exitCode: 0, signal: null, threadId: "controlled-thread", stdout: "controlled", stderr: "" }); },
+    fail(error: unknown) { finished.reject(error); },
+    async start() {
+      const preflight = await runtime.preflight("p", "turn:t");
+      const turn = runtime.turn("p", { turnId: "t", prompt: "no execution", compatibility, preflight });
+      void turn.catch(() => {});
+      await waited.promise;
+      return { turn };
+    },
+    async assertUnresolved() {
+      expect((await retirement.read("t"))?.state).toBe("prepared");
+      expect((await retirement.read("t"))?.terminal).toBeUndefined();
+      await expect(retirement.restart("t", identity)).rejects.toMatchObject({ code: "DELEGATION_POLICY_VIOLATION" });
+      const preflight = await runtime.preflight("p", "turn:next");
+      await expect(runtime.turn("p", { turnId: "next", previousTurnId: "t", prompt: "no replay", compatibility, preflight })).rejects.toMatchObject({ code: "DELEGATION_POLICY_VIOLATION" });
+      expect(await retirement.read("next")).toBeUndefined();
+      const replay = await runtime.preflight("p", "turn:t");
+      await expect(runtime.turn("p", { turnId: "t", prompt: "no replay", compatibility, preflight: replay })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    }
+  };
+}
+const unresolvedRetirement = () => new RuntimeError("ENGINE_UNAVAILABLE", "Controlled unresolved descendant", 503, { reason: "DESCENDANT_RECONCILIATION_REQUIRED" });
+
+it("joins successful wait to retirement failure without terminal, restart, or unrelated reconciliation", async () => {
+  const f = await controlledRetirementFixture();
+  await f.retirement.prepare({ turnId: "unrelated", identity: f.identity, state: "prepared" });
+  const { turn } = await f.start();
+  const error = unresolvedRetirement();
+  f.finish(); await f.retiring.promise;
+  expect((await f.retirement.read("t"))?.terminal).toBeUndefined();
+  f.cleanup.reject(error);
+  await expect(turn).rejects.toBe(error);
+  await f.assertUnresolved();
+  expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
+  expect((await f.retirement.read("unrelated"))?.state).toBe("prepared");
+});
+
+it.each([true, false])("wait failure requires confirmed retirement before failed commitment (cleanup succeeds: %s)", async succeeds => {
+  const f = await controlledRetirementFixture(), waitError = new Error("controlled transport failure"), cleanupError = unresolvedRetirement();
+  const { turn } = await f.start();
+  f.fail(waitError); await f.retiring.promise;
+  expect((await f.retirement.read("t"))?.terminal).toBeUndefined();
+  if (succeeds) f.cleanup.resolve(); else f.cleanup.reject(cleanupError);
+  await expect(turn).rejects.toBe(succeeds ? waitError : cleanupError);
+  if (succeeds) expect(await f.retirement.read("t")).toMatchObject({ state: "committed", terminal: { outcome: "failed" } });
+  else await f.assertUnresolved();
+  expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
+});
+
+it.each([
+  { first: "completion", succeeds: true }, { first: "completion", succeeds: false },
+  { first: "interrupt", succeeds: true }, { first: "interrupt", succeeds: false }
+])("shares the retirement barrier when $first starts first (cleanup succeeds: $succeeds)", async ({ first, succeeds }) => {
+  const f = await controlledRetirementFixture(), error = unresolvedRetirement();
+  const { turn } = await f.start();
+  const preflight = await f.runtime.preflight("p", "interrupt:t");
+  if (first === "completion") { f.finish(); await f.retiring.promise; }
+  const interrupted = f.runtime.interruptTurn("p", { turnId: "t", compatibility, preflight });
+  void interrupted.catch(() => {});
+  if (first === "interrupt") { await f.retiring.promise; f.finish(); }
+  // Drain the already-started admissions; cleanup is held by an explicit gate.
+  await new Promise<void>(resolve => setImmediate(resolve));
+  expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
+  expect((await f.retirement.read("t"))?.terminal).toBeUndefined();
+  if (succeeds) f.cleanup.resolve(); else f.cleanup.reject(error);
+  if (succeeds) {
+    await expect(interrupted).resolves.toMatchObject({ interrupted: true });
+    await expect(turn).resolves.toMatchObject({ terminal: { outcome: "interrupted" }, event: { type: "turn.interrupted" } });
+    expect(await f.retirement.read("t")).toMatchObject({ state: "committed", terminal: { outcome: "interrupted" } });
+  } else {
+    await expect(interrupted).rejects.toBe(error); await expect(turn).rejects.toBe(error);
+    await f.assertUnresolved();
+  }
+  expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
+});
+
+
+it.each([true, false])("late approval failure joins settled retirement after turn cleanup (retirement succeeds: %s)", async succeeds => {
+  const f = await controlledRetirementFixture(true), waitError = new Error("controlled wait failure"), cleanupError = unresolvedRetirement();
+  const { turn } = await f.start();
+  await f.pollingStarted.promise;
+  f.fail(waitError); await f.retiring.promise;
+  if (succeeds) f.cleanup.resolve(); else f.cleanup.reject(cleanupError);
+  await expect(turn).rejects.toBe(succeeds ? waitError : cleanupError);
+  const record = await f.retirement.read("t");
+  expect(record?.state).toBe(succeeds ? "committed" : "prepared");
+  if (succeeds) expect(record?.terminal?.outcome).toBe("failed");
+  else await f.assertUnresolved();
+  expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
+  f.polling.reject(new Error("controlled late approval snapshot failure"));
+  await new Promise<void>(resolve => setImmediate(resolve));
+  expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
+  expect((f.runtime as unknown as { turnRetirements: Map<string, Promise<void>> }).turnRetirements.size).toBe(0);
+  expect(await f.retirement.read("t")).toEqual(record);
 });

@@ -1,0 +1,511 @@
+{
+  "schema": "chirality-exact-role/v1",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "accountUsed": false,
+  "launchEvidence": "test-only-no-account-exact-vendor-factory",
+  "roleObedienceProven": false,
+  "roleMechanicallyEnforced": false,
+  "ownerLiveProof": false,
+  "passed": false,
+  "probes": [
+    {
+      "role": "untyped",
+      "elapsedMs": 2158,
+      "roleEvidence": {
+        "schemaVersion": "chirality.role-policy/v1",
+        "selectedRole": "untyped",
+        "enforcementLabel": "role not mechanically enforced",
+        "evidencePosture": "instruction-asserted",
+        "nonDelegationEvidence": "instruction+config asserted",
+        "settings": {
+          "allowedTools": [],
+          "readRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "writeRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "networkPosture": "off",
+          "processPolicy": "broker-managed",
+          "delegationPolicy": "native descent does not assign a role"
+        },
+        "offeredRoles": [
+          "untyped",
+          "agent0",
+          "agent1",
+          "agent2",
+          "task"
+        ],
+        "policyDigest": "27dd1e1106e42cd9de796d52893faccc02fa5a406742e408c076f1ab876f5579",
+        "actual": {
+          "adapterId": "codex",
+          "providerId": "runtime_deterministic",
+          "model": "runtime-deterministic"
+        },
+        "nativeDescendant": false,
+        "containmentEvidence": "declared-settings-only"
+      },
+      "outcome": "completed",
+      "nativePolicyDigest": "49deb33c24a96506c5226accfc1642c1d5409694091c2bdf03c0325ddfff6df6"
+    },
+    {
+      "role": "agent0",
+      "elapsedMs": 1523,
+      "roleEvidence": {
+        "schemaVersion": "chirality.role-policy/v1",
+        "selectedRole": "agent0",
+        "enforcementLabel": "role not mechanically enforced",
+        "evidencePosture": "instruction-asserted",
+        "nonDelegationEvidence": "instruction+config asserted",
+        "settings": {
+          "allowedTools": [],
+          "readRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "writeRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "networkPosture": "off",
+          "processPolicy": "broker-managed",
+          "delegationPolicy": "native descent does not assign a role"
+        },
+        "offeredRoles": [
+          "untyped",
+          "agent0",
+          "agent1",
+          "agent2",
+          "task"
+        ],
+        "policyDigest": "f27cafb20b4d8ad2054e022aee4df2942e97bcf08a26de7826010e778863041f",
+        "actual": {
+          "adapterId": "codex",
+          "providerId": "runtime_deterministic",
+          "model": "runtime-deterministic"
+        },
+        "nativeDescendant": false,
+        "containmentEvidence": "declared-settings-only"
+      },
+      "outcome": "completed",
+      "nativePolicyDigest": "49deb33c24a96506c5226accfc1642c1d5409694091c2bdf03c0325ddfff6df6"
+    }
+  ],
+  "reads": [
+    {
+      "who": "untyped",
+      "callId": "read_1",
+      "elapsedMs": 57,
+      "passed": true,
+      "outputSha256": "cae577c168e18461ef13d99c689df7f971e45d6eba15d6231437ce56879136aa"
+    },
+    {
+      "who": "agent0",
+      "callId": "read_3",
+      "elapsedMs": 50,
+      "passed": true,
+      "outputSha256": "122d32904d70b81d0eebf6038411ebfbf8301d1c17158ef9b76e6ca92f8859c6"
+    },
+    {
+      "who": "agent1",
+      "callId": "read_5",
+      "elapsedMs": 45,
+      "passed": true,
+      "outputSha256": "614b2c027eea5a82d0426f75a120bd8a9edf5b45612788268fc985440fee71de"
+    },
+    {
+      "who": "child",
+      "callId": "read_8",
+      "elapsedMs": 43,
+      "passed": true,
+      "outputSha256": "de4351462c8527311c29d9012daac8a5838b51defd842265130ae346fc9ccacb"
+    }
+  ],
+  "execSchemas": [
+    {
+      "who": "untyped",
+      "name": "exec_command",
+      "namespace": null,
+      "properties": [
+        "cmd",
+        "justification",
+        "max_output_tokens",
+        "prefix_rule",
+        "sandbox_permissions",
+        "shell",
+        "tty",
+        "workdir",
+        "yield_time_ms"
+      ],
+      "required": [
+        "cmd"
+      ]
+    },
+    {
+      "who": "agent0",
+      "name": "exec_command",
+      "namespace": null,
+      "properties": [
+        "cmd",
+        "justification",
+        "max_output_tokens",
+        "prefix_rule",
+        "sandbox_permissions",
+        "shell",
+        "tty",
+        "workdir",
+        "yield_time_ms"
+      ],
+      "required": [
+        "cmd"
+      ]
+    },
+    {
+      "who": "agent1",
+      "name": "exec_command",
+      "namespace": null,
+      "properties": [
+        "cmd",
+        "justification",
+        "max_output_tokens",
+        "prefix_rule",
+        "sandbox_permissions",
+        "shell",
+        "tty",
+        "workdir",
+        "yield_time_ms"
+      ],
+      "required": [
+        "cmd"
+      ]
+    },
+    {
+      "who": "child",
+      "name": "exec_command",
+      "namespace": null,
+      "properties": [
+        "cmd",
+        "justification",
+        "max_output_tokens",
+        "prefix_rule",
+        "sandbox_permissions",
+        "shell",
+        "tty",
+        "workdir",
+        "yield_time_ms"
+      ],
+      "required": [
+        "cmd"
+      ]
+    }
+  ],
+  "nativeMetadata": [
+    {
+      "method": "thread/started",
+      "threadId": "01a0781b-9a2d-7033-b2a1-d7dcdc98ecb2",
+      "source": "vscode"
+    },
+    {
+      "method": "thread/started",
+      "threadId": "01a0781b-a036-7f82-9d08-d82e7db237b9",
+      "source": "vscode"
+    },
+    {
+      "method": "thread/started",
+      "threadId": "01a0781b-a1ee-7b60-af5d-91f5e48f75a2",
+      "source": "vscode"
+    },
+    {
+      "method": "item/started",
+      "threadId": "01a0781b-a1ee-7b60-af5d-91f5e48f75a2",
+      "turnId": "01a0781b-a238-7c10-a667-e5b7f09eaba7",
+      "receiverThreadIds": []
+    },
+    {
+      "method": "item/completed",
+      "threadId": "01a0781b-a1ee-7b60-af5d-91f5e48f75a2",
+      "turnId": "01a0781b-a238-7c10-a667-e5b7f09eaba7",
+      "receiverThreadIds": [
+        "01a0781b-a275-79e0-8605-e23495971bfb"
+      ]
+    },
+    {
+      "method": "item/started",
+      "threadId": "01a0781b-a1ee-7b60-af5d-91f5e48f75a2",
+      "turnId": "01a0781b-a238-7c10-a667-e5b7f09eaba7",
+      "receiverThreadIds": [
+        "01a0781b-a275-79e0-8605-e23495971bfb"
+      ]
+    },
+    {
+      "method": "item/completed",
+      "threadId": "01a0781b-a1ee-7b60-af5d-91f5e48f75a2",
+      "turnId": "01a0781b-a238-7c10-a667-e5b7f09eaba7",
+      "receiverThreadIds": [
+        "01a0781b-a275-79e0-8605-e23495971bfb"
+      ]
+    }
+  ],
+  "brokerInputs": [
+    {
+      "workerId": "role-untyped",
+      "promptSha256": "fa0bd2a41c2941bb64a69a8b9ffb319eb681cb72b650ffac633e700a186c418c",
+      "transport": "raw-prompt"
+    },
+    {
+      "workerId": "role-agent0",
+      "promptSha256": "0ca50f67cf1ad95780e203b2ae0903fed86013e693d6b924fe074dd1ce4cb2c9",
+      "transport": "raw-prompt"
+    },
+    {
+      "workerId": "role-agent1",
+      "promptSha256": "edf9bc80f52d0c0e6e9922af8fadc3d67478f39117ec586dd1269c78936c453f",
+      "transport": "raw-prompt"
+    }
+  ],
+  "adapterEnvelopes": [
+    {
+      "workerId": "role-untyped",
+      "requestedRole": "untyped",
+      "roleEvidence": {
+        "schemaVersion": "chirality.role-policy/v1",
+        "selectedRole": "untyped",
+        "enforcementLabel": "role not mechanically enforced",
+        "evidencePosture": "instruction-asserted",
+        "nonDelegationEvidence": "instruction+config asserted",
+        "settings": {
+          "allowedTools": [],
+          "readRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "writeRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "networkPosture": "off",
+          "processPolicy": "broker-managed",
+          "delegationPolicy": "native descent does not assign a role"
+        },
+        "offeredRoles": [
+          "untyped",
+          "agent0",
+          "agent1",
+          "agent2",
+          "task"
+        ],
+        "policyDigest": "27dd1e1106e42cd9de796d52893faccc02fa5a406742e408c076f1ab876f5579",
+        "actual": {
+          "adapterId": "codex",
+          "providerId": "runtime_deterministic",
+          "model": "runtime-deterministic"
+        },
+        "nativeDescendant": false,
+        "containmentEvidence": "declared-settings-only"
+      },
+      "origin": "trusted-test-adapter"
+    },
+    {
+      "workerId": "role-agent0",
+      "requestedRole": "agent0",
+      "roleEvidence": {
+        "schemaVersion": "chirality.role-policy/v1",
+        "selectedRole": "agent0",
+        "enforcementLabel": "role not mechanically enforced",
+        "evidencePosture": "instruction-asserted",
+        "nonDelegationEvidence": "instruction+config asserted",
+        "settings": {
+          "allowedTools": [],
+          "readRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "writeRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "networkPosture": "off",
+          "processPolicy": "broker-managed",
+          "delegationPolicy": "native descent does not assign a role"
+        },
+        "offeredRoles": [
+          "untyped",
+          "agent0",
+          "agent1",
+          "agent2",
+          "task"
+        ],
+        "policyDigest": "f27cafb20b4d8ad2054e022aee4df2942e97bcf08a26de7826010e778863041f",
+        "actual": {
+          "adapterId": "codex",
+          "providerId": "runtime_deterministic",
+          "model": "runtime-deterministic"
+        },
+        "nativeDescendant": false,
+        "containmentEvidence": "declared-settings-only"
+      },
+      "origin": "trusted-test-adapter"
+    },
+    {
+      "workerId": "role-agent1",
+      "requestedRole": "agent1",
+      "roleEvidence": {
+        "schemaVersion": "chirality.role-policy/v1",
+        "selectedRole": "agent1",
+        "enforcementLabel": "role not mechanically enforced",
+        "evidencePosture": "instruction-asserted",
+        "nonDelegationEvidence": "instruction+config asserted",
+        "settings": {
+          "allowedTools": [],
+          "readRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "writeRoots": [
+            "/private/tmp/erc-6cdnve/p"
+          ],
+          "networkPosture": "off",
+          "processPolicy": "broker-managed",
+          "delegationPolicy": "native descent does not assign a role"
+        },
+        "offeredRoles": [
+          "untyped",
+          "agent0",
+          "agent1",
+          "agent2",
+          "task"
+        ],
+        "policyDigest": "c68fc6c68426b5a82e4a6a5320f232843ee7827e7522015937262adca1d51b62",
+        "actual": {
+          "adapterId": "codex",
+          "providerId": "runtime_deterministic",
+          "model": "runtime-deterministic"
+        },
+        "nativeDescendant": false,
+        "containmentEvidence": "declared-settings-only"
+      },
+      "origin": "trusted-test-adapter"
+    }
+  ],
+  "bindingEvidenceClass": "controlled-worker",
+  "productionRoleEnvelopeProven": false,
+  "adapterEvidence": "trusted-test-adapter-role-mapping",
+  "accountObservations": [
+    {
+      "hasAccount": false,
+      "authRequired": false
+    },
+    {
+      "hasAccount": false,
+      "authRequired": false
+    },
+    {
+      "hasAccount": false,
+      "authRequired": false
+    }
+  ],
+  "retirementRecords": [
+    {
+      "turnId": "role-untyped",
+      "identity": {
+        "canonicalRoot": "/private/tmp/erc-6cdnve/p",
+        "cwd": "/private/tmp/erc-6cdnve/p",
+        "accountId": "no-account-test",
+        "accountEpoch": 1,
+        "policyDigest": "49deb33c24a96506c5226accfc1642c1d5409694091c2bdf03c0325ddfff6df6"
+      },
+      "state": "committed",
+      "rolePolicyDigest": "27dd1e1106e42cd9de796d52893faccc02fa5a406742e408c076f1ab876f5579",
+      "threadId": "01a0781b-9a2d-7033-b2a1-d7dcdc98ecb2",
+      "terminal": {
+        "turnId": "role-untyped",
+        "workerId": "role-untyped",
+        "generation": "4b1f2cdc-1205-4e51-bf56-bdebbabd33ee",
+        "outcome": "completed",
+        "recordedAt": "2026-09-06T19:04:30.241Z"
+      }
+    },
+    {
+      "turnId": "role-agent0",
+      "identity": {
+        "canonicalRoot": "/private/tmp/erc-6cdnve/p",
+        "cwd": "/private/tmp/erc-6cdnve/p",
+        "accountId": "no-account-test",
+        "accountEpoch": 1,
+        "policyDigest": "49deb33c24a96506c5226accfc1642c1d5409694091c2bdf03c0325ddfff6df6"
+      },
+      "state": "committed",
+      "rolePolicyDigest": "f27cafb20b4d8ad2054e022aee4df2942e97bcf08a26de7826010e778863041f",
+      "threadId": "01a0781b-a036-7f82-9d08-d82e7db237b9",
+      "terminal": {
+        "turnId": "role-agent0",
+        "workerId": "role-agent0",
+        "generation": "1ceccb2f-5460-4217-9288-e657bf077e9d",
+        "outcome": "completed",
+        "recordedAt": "2026-09-06T19:04:31.764Z"
+      }
+    }
+  ],
+  "compatibility": {
+    "compatibilityIdentity": "root-runtime-1",
+    "contractBasisSha256": "658673d9c15059383accb3aaee8ca16dfaa5140f390afa349d741a4042d264a5"
+  },
+  "sourcesBefore": {
+    "tests/exact-role-conformance.test.ts": "4b72276d15f58899e0cdbc0f82fa8b082f04b975e95275d7d8104ffbe5b8dd30",
+    "packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+    "packages/daemon/src/runtime-daemon.ts": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5",
+    "packages/client/src/client.ts": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+    "packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+    "packages/core/src/role-policy.ts": "96db623331afcd4d83c0ee8d13d0e63363657165596761e7f5f611c559056f0c",
+    "packages/core/dist/delegated-runtime.js": "86dd3a197362253c75f71d0ccf997d21f82b26d4946b7fc7666f4b77d4bdf8a9",
+    "packages/core/dist/role-policy.js": "f8fb7030165f5b4de75197c298746200c36d55407a2fba8ad72574cb2501566a",
+    "packages/core/dist/worker-retirement.js": "8a7e70138b38d27e45d4c6541db2fe35399268896e2028198722b36b73340518",
+    "packages/client/dist/src/client.js": "3ae98b2e3b2390e75d02612bd676a8ae58cc8319d2e6b3af4bdbdba09d1a61e2",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179"
+  },
+  "supplySha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "nativePolicyDigest": "49deb33c24a96506c5226accfc1642c1d5409694091c2bdf03c0325ddfff6df6",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/erc-6cdnve/p": "write",
+      "/private/tmp/erc-6cdnve/p/.codex": "deny",
+      "/private/tmp/erc-6cdnve/r": "deny",
+      "/private/tmp/erc-6cdnve/r/w": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "forgedMechanicalLabelRejected": true,
+  "scopeFences": true,
+  "nativeChildId": "01a0781b-a275-79e0-8605-e23495971bfb",
+  "peerFailure": true,
+  "peerFailureReason": "Role selection marker unavailable",
+  "failurePhase": "role-agent1",
+  "failure": "expected 'failed' to be 'completed' // Object.is equality",
+  "cleanupFailures": 0,
+  "processes": 3,
+  "closedProcesses": 3,
+  "modelRequests": 10,
+  "childObserved": true,
+  "elapsedMs": 4476,
+  "profileBudgetMs": 60000,
+  "probeBudgetMs": 10000,
+  "sourcesAfter": {
+    "tests/exact-role-conformance.test.ts": "4b72276d15f58899e0cdbc0f82fa8b082f04b975e95275d7d8104ffbe5b8dd30",
+    "packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+    "packages/daemon/src/runtime-daemon.ts": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5",
+    "packages/client/src/client.ts": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+    "packages/core/src/worker-retirement.ts": "ab2a5150d9048d684887b16a2b72ce3c5c911525c23612c7e28afc1497dd50ed",
+    "packages/core/src/role-policy.ts": "96db623331afcd4d83c0ee8d13d0e63363657165596761e7f5f611c559056f0c",
+    "packages/core/dist/delegated-runtime.js": "86dd3a197362253c75f71d0ccf997d21f82b26d4946b7fc7666f4b77d4bdf8a9",
+    "packages/core/dist/role-policy.js": "f8fb7030165f5b4de75197c298746200c36d55407a2fba8ad72574cb2501566a",
+    "packages/core/dist/worker-retirement.js": "8a7e70138b38d27e45d4c6541db2fe35399268896e2028198722b36b73340518",
+    "packages/client/dist/src/client.js": "3ae98b2e3b2390e75d02612bd676a8ae58cc8319d2e6b3af4bdbdba09d1a61e2",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/daemon/src/codex-supervisor.ts": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179"
+  },
+  "sourceStable": true
+}

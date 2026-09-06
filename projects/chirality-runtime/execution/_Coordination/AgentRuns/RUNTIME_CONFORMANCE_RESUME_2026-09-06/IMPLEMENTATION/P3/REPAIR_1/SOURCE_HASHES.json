@@ -1,0 +1,23 @@
+{
+  "schema": "runtime-bounded-repair/v1",
+  "timestamp": "2026-09-06T18:44:49.522320+00:00",
+  "inputHashes": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/SOURCE_HASHES.json": "6c8b6a365ae5b3c8d91e68c90bb8cf94a75637244bc693a0b8f317326802a010",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/OUTPUTS.sha256": "562add1e2b1741a6c078b6c1086a5eadbdfc4644af758483afa9734072121f43",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPORT.md": "bf55183d75e619c0112a6ba04ebba33b686aaabf81430d744003efce43c7a3dd",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/CLASSIFIER_REPRO.json": "edd7fbbb7d80e70e78225214443e04a07a250fb9204dc516a2dafef38ed60362",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/OUTPUTS.sha256": "9a6353c752cf5028e467567883e978a64d437a1a6eac8e9fba23d7d29e67e980"
+  },
+  "sourceBefore": "4daffb1c5631734489a9bee9dc136a015bd43ca44991dd5216ebb85d14d1a569",
+  "sourceAfter": "540fd7ecc7909ec6c9327be8e4dbfc544babd65ed4645af51de1f7d4489e2f60",
+  "sourcePath": "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts",
+  "importHashesAtFreeze": {
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "projects/chirality-runtime/packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e",
+    "projects/chirality-runtime/tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef"
+  },
+  "supplierExecuted": false,
+  "sourceAcceptance": false,
+  "attribution": "OpenAI GPT-6; exact serving model ID unavailable; Agent2 role/nondelegation instruction-asserted"
+}

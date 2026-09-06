@@ -1,0 +1,20 @@
+{
+  "original58Unchanged": true,
+  "newFiles": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/PATCH.diff": {
+      "sha256": "b45821d77ab6bdc0379c33601009475498962f9b99b6c12f0b452b5902d7e2e9",
+      "findings": 1
+    },
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/PURE_TESTS.log": {
+      "sha256": "e3274c7f743c63073776c1ffbbd120e6e9c521ca1363f850e757f76750090920",
+      "findings": 1
+    }
+  },
+  "records": 60,
+  "allOriginalBytesDecodeAndMatchCurrent": true,
+  "allProjectedWhitespaceChecksPass": true,
+  "existingArtifactWrites": false,
+  "validatorSha256": "dcdf39a0003f82ba9689aa52f07915086802664f652c2a15e433f3663c347dae",
+  "driftRecordSha256": "615eedd1d775ff35468bbcd626500b7d437abf0ccbf785b909d9cf3a6657b4b3",
+  "pending": "Manager release and parent exact transformation grant; final all-files rescan still required"
+}

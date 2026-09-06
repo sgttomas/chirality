@@ -1,0 +1,105 @@
+{
+  "recordedAt": "2026-09-06T19:23:22.519813+00:00",
+  "inputs": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "8eb3a55df2670b7bba74cd50216a77b79ac3c83e5ac1f1dc710f2ba9be0faa6f",
+      "bytes": 26939
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "2830904ce136978e667cfd004fa8315bca9118b36b28bb993e2fc81e51cbaef1",
+      "bytes": 48673
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime.ts",
+      "sha256": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+      "bytes": 32651
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-process-runtime-conformance.test.ts",
+      "sha256": "c47e2efdfecff6a8b208e9715212a27f427b0f638c5291df136adc436467f272",
+      "bytes": 39784
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P2_PUBLIC_CANCEL_PRIMARY_CANDIDATE2_02/PUBLIC_PROCESS_RETIREMENT.json",
+      "sha256": "025e2019e1526b5db4e848dad9f38841be136dfda5bd24d747c59aea702fe406",
+      "bytes": 41538
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER/MANAGER_RETURN.md",
+      "sha256": "0f7d4a8dd5d7fd3fb58bac56a172e759430577a89c2897e36475dffd7a53596c",
+      "bytes": 6710
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/FOLLOWON_DIAGNOSIS/BRIEF.md",
+      "sha256": "8231f0aec9869a437a1482fdbb34ca5a64c0e360e6f3d1738c8c65b10ef9d41b",
+      "bytes": 1408
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P2/PUBLIC_RETIREMENT/ACTUAL_TEARDOWN_DIAGNOSIS/REPORT.md",
+      "sha256": "22419a16f1c4bd271e650d64d0a93c888a2f918197a6d5a53fa099d5b9474a54",
+      "bytes": 10202
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/lib.rs",
+      "sha256": "272c9443e54cf1d83c1b83855ccaa9647931eae8463524126fedf5bc4e0116e7",
+      "bytes": 57332
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-transport/src/transport/stdio.rs",
+      "sha256": "ffb372ec8a369b307ad3c0fb3d7af19982098360df12ed4158fe5180beb0a91b",
+      "bytes": 4021
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/message_processor.rs",
+      "sha256": "fcde1d673c5b6c96fb2a4ca1c75e688299b0a0b1206f927f4a53a11baa7d66d4",
+      "bytes": 67938
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/request_processors/thread_processor.rs",
+      "sha256": "49269190a4962d74e51678774c07b2e06bb19e54806f7fecf0cc1ef2250fa8d4",
+      "bytes": 231872
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/thread_manager.rs",
+      "sha256": "de66744ba42975b6094ce393a57991897ecfb7e19afc0f21252562fb086fef52",
+      "bytes": 85399
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/handlers.rs",
+      "sha256": "5e455a944935d3b84ebd15b9ae23214d86efa54d33d26fb93923e6771e869e89",
+      "bytes": 27000
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/unified_exec/process_manager.rs",
+      "sha256": "a7016c5c321df20a89b85fced47d002fd695e0e88fa690d66fd2dcad9f0e38d6",
+      "bytes": 61205
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/unified_exec/process.rs",
+      "sha256": "5cdbba59aec2ab739e93c3b1cb293f9b0945a25f9ad152d0f88ded37f1aedc56",
+      "bytes": 24202
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/utils/pty/src/process.rs",
+      "sha256": "f6dca08eec90266e43c7bebe9d1e651611d8d074614bae9df707c11c1c64d71c",
+      "bytes": 15105
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/utils/pty/src/pipe.rs",
+      "sha256": "ce78d972bb162d5a54c47214aa4c83777f895dd316f6b32b75493c608e0654ab",
+      "bytes": 10629
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/utils/pty/src/process_group.rs",
+      "sha256": "4c9c062f990c9bfef8c61641956765379586c4f4bb8fc61db67cf1a515d084d3",
+      "bytes": 9395
+    }
+  ]
+}

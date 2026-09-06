@@ -1,0 +1,41 @@
+{
+  "captured": 1788724687.688792,
+  "artifacts": [
+    {
+      "name": "codex-app-server",
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-app-server",
+      "sha256": "b2a7e321d1c64794761803ba8895a15fafeeae9ac17c34abce942a82edaf7d4a",
+      "bytes": 241276384,
+      "source_mtime_ns": 1788724658528732743,
+      "capture_mtime_ns": 1788724658528732743,
+      "source_inode": 77282354,
+      "capture_inode": 77282382,
+      "version": {
+        "exit": 0,
+        "stdout": "codex-app-server 0.149.0\n",
+        "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n"
+      },
+      "file": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-app-server: Mach-O 64-bit executable arm64",
+      "same_bytes_as_copied_target": false,
+      "provenance": "new app-server bytes from admitted repaired source"
+    },
+    {
+      "name": "codex-code-mode-host",
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-code-mode-host",
+      "sha256": "95a089ef4cf82d85596dc6a5c6f1a0baae50fca9e23c89b77b91c68a403096f6",
+      "bytes": 75491736,
+      "source_mtime_ns": 1788724301828966425,
+      "capture_mtime_ns": 1788724301828966425,
+      "source_inode": 77243267,
+      "capture_inode": 77282388,
+      "version": null,
+      "file": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-code-mode-host: Mach-O 64-bit executable arm64",
+      "same_bytes_as_copied_target": false,
+      "provenance": "fresh successful Candidate3 build; code-host may be unchanged dependency output"
+    }
+  ],
+  "completion_sha256": "75d82c2ff13ebd2f215160874a9e6936f0ad2f0013e4f426257d07559098fbc2",
+  "source_sha256": "30bad4478319c71373b0d943d810dd9e8eaa08501d68fa667fc7b130d791e3b3",
+  "runner_sha256": "a60caab58a4e9056c1e4ea3db8026daf165c16b1ec400cf8369b579ed698da28",
+  "acceptance": "unaccepted Candidate3 supplier artifact; actual alias backcheck remains parent-owned"
+}

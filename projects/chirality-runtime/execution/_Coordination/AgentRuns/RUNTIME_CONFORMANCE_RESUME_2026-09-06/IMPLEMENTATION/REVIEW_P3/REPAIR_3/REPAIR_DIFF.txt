@@ -1,0 +1,147 @@
+--- repair2
++++ repair3
+@@ -182,6 +182,65 @@
+   expect(() => protectedExecArguments(undefined, 'printf SAFE', '/synthetic/root')).toThrow('Invalid actual exec advertisement');
+ });
+
++// Metadata slug selects the exact supplier's catalogued freeform tool. All
++// Responses traffic still terminates at this fixture's deterministic loopback peer.
++const protectedFixtureModel = 'gpt-5.4';
++// Exact actual FILE_CHANGE_2 advertisement; provenance retained in REPAIR_3.
++const observedProtectedPatchSchema = {
++  "type": "custom",
++  "name": "apply_patch",
++  "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
++  "format": {
++    "type": "grammar",
++    "syntax": "lark",
++    "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
++  }
++};
++function selectProtectedPatchTool(tools: any[]) {
++  const candidates = tools.filter(tool => tool?.name === 'apply_patch');
++  if (candidates.length !== 1) throw new Error('Actual unique apply_patch advertisement required');
++  const tool = candidates[0];
++  if (tool.type !== 'custom' || tool.format?.type !== 'grammar' || tool.format?.syntax !== 'lark' || tool.format?.definition !== observedProtectedPatchSchema.format.definition || (tool.namespace !== undefined && (typeof tool.namespace !== 'string' || !/^[A-Za-z0-9_]{1,128}$/.test(tool.namespace)))) throw new Error('Unknown actual apply_patch format/grammar');
++  return tool;
++}
++function protectedPatchItem(tool: any, input: string, callId: string, itemId: string) {
++  selectProtectedPatchTool([tool]);
++  if (typeof input !== 'string' || !input.startsWith('*** Begin Patch\n') || !input.endsWith('*** End Patch') || input.length > 16384) throw new Error('Invalid bounded raw patch input');
++  return { type: 'custom_tool_call', id: itemId, call_id: callId, name: tool.name, ...(tool.namespace ? { namespace: tool.namespace } : {}), input, status: 'completed' };
++}
++function protectedToolMetadata(tools: any[]) {
++  if (tools.length > 96) throw new Error('Tool advertisement count bound');
++  const text = (value: unknown) => typeof value === 'string' ? value.slice(0, 128) : null;
++  return tools.map(tool => ({
++    type: text(tool?.type), name: text(tool?.name), namespace: text(tool?.namespace),
++    required: Array.isArray(tool?.parameters?.required) ? tool.parameters.required.slice(0, 32).map(text) : null,
++    propertyNames: tool?.parameters?.properties && typeof tool.parameters.properties === 'object' ? Object.keys(tool.parameters.properties).slice(0, 32).map(text) : null,
++    format: tool?.format ? { type: text(tool.format.type), syntax: text(tool.format.syntax), definitionSha256: typeof tool.format.definition === 'string' ? digest(tool.format.definition) : null } : null,
++  }));
++}
++it('P3 preserves the exact observed custom patch grammar and raw namespaced call wire', () => {
++  const patch = '*** Begin Patch\n*** Add File: /synthetic/allowed.txt\n+SAFE\n*** End Patch';
++  const tool = { ...observedProtectedPatchSchema, namespace: 'functions' };
++  expect(selectProtectedPatchTool([tool])).toBe(tool);
++  const item = protectedPatchItem(tool, patch, 'observed_call', 'observed_item');
++  expect(item).toEqual({ type: 'custom_tool_call', id: 'observed_item', call_id: 'observed_call', name: 'apply_patch', namespace: 'functions', input: patch, status: 'completed' });
++  expect(item).not.toHaveProperty('arguments');
++  expect(protectedToolMetadata([tool])[0]).toMatchObject({ name: 'apply_patch', type: 'custom', format: { type: 'grammar', syntax: 'lark', definitionSha256: digest(observedProtectedPatchSchema.format.definition) } });
++});
++it('P3 rejects absent, duplicate, noncustom or unknown patch grammar without fallback', () => {
++  expect(() => selectProtectedPatchTool([])).toThrow('Actual unique');
++  expect(() => selectProtectedPatchTool([observedProtectedPatchSchema, observedProtectedPatchSchema])).toThrow('Actual unique');
++  for (const tool of [
++    { ...observedProtectedPatchSchema, type: 'function' },
++    { ...observedProtectedPatchSchema, format: { type: 'text' } },
++    { ...observedProtectedPatchSchema, format: { ...observedProtectedPatchSchema.format, syntax: 'unknown' } },
++    { ...observedProtectedPatchSchema, format: { ...observedProtectedPatchSchema.format, definition: 'unknown grammar' } },
++    { ...observedProtectedPatchSchema, namespace: 'untrusted.namespace' },
++  ]) expect(() => selectProtectedPatchTool([tool])).toThrow('Unknown actual');
++  expect(() => protectedPatchItem(observedProtectedPatchSchema, JSON.stringify({ input: 'patch' }), 'call', 'item')).toThrow('Invalid bounded raw');
++  expect(protectedToolMetadata([{ name: 'exec_command', type: 'function', description: 'must not retain prompts or unrelated free text' }])).toEqual([{ type: 'function', name: 'exec_command', namespace: null, required: null, propertyNames: null, format: null }]);
++});
++
+ interface Issued { who: string; kind: string; startedAt?: number; method?: string; namespace?: string; target?: string }
+ interface Probe { who: string; callId: string; kind: string; target?: string; method?: string; namespace?: string; elapsedMs: number; output: string; outputSha256: string; summary?: ReturnType<typeof markers> }
+
+@@ -189,6 +248,7 @@
+   const issued = new Map<string, Issued>(), records: Probe[] = [], failures: string[] = [];
+   const controls: { who: string; callId: string; kind: string; output: string }[] = [];
+   const advertisedExecSchemas: { who: string; sha256: string; tool: unknown }[] = [];
++  const patchAdvertisements: { who: string; request: number; metadata: ReturnType<typeof protectedToolMetadata>; selectedSha256?: string; selectedSchema?: unknown }[] = [];
+   let count = 0, overdue: ReturnType<typeof setTimeout> | undefined;
+   let abort = () => {};
+   const fail = (message: string) => { failures.push(message); abort(); };
+@@ -224,7 +284,7 @@
+         const call_id = `protected_${count}`;
+         issued.set(call_id, { who, kind, startedAt: Date.now(), method: tool.name, namespace: tool.namespace, target });
+         if (kind.startsWith('probe')) overdue = setTimeout(() => fail('PROBE_EXCEEDED_10000_MS'), 10000);
+-        return { type: tool.type === 'custom' ? 'custom_tool_call' : 'function_call', id: `call_${count}`, call_id, name: tool.name, ...(tool.namespace ? { namespace: tool.namespace } : {}), ...(tool.type === 'custom' ? { input: args } : { arguments: JSON.stringify(args) }), status: 'completed' };
++        return tool.type === 'custom' ? protectedPatchItem(tool, args, call_id, `call_${count}`) : { type: 'function_call', id: `call_${count}`, call_id, name: tool.name, ...(tool.namespace ? { namespace: tool.namespace } : {}), arguments: JSON.stringify(args), status: 'completed' };
+       };
+       const message = (text: string) => ({ type: 'message', id: `msg_${count}`, role: 'assistant', status: 'completed', content: [{ type: 'output_text', text, annotations: [] }] });
+       let item: any;
+@@ -237,7 +297,11 @@
+       } else if (nextPatch) {
+         const index = patchesFor(who).findIndex(patch => patch.target === nextPatch.target);
+         if ([...issued.values()].some(entry => entry.who === who && entry.kind === `probe-patch-${index}`)) throw new Error('No patch resend without output');
+-        item = call(tools.find((entry: any) => entry.type === 'custom' && entry.name === 'apply_patch'), nextPatch.patch, `probe-patch-${index}`, nextPatch.target);
++        const advertisement: typeof patchAdvertisements[number] = { who, request: count, metadata: protectedToolMetadata(tools) };
++        patchAdvertisements.push(advertisement);
++        const tool = selectProtectedPatchTool(tools);
++        advertisement.selectedSha256 = digest(JSON.stringify(tool)); advertisement.selectedSchema = tool;
++        item = call(tool, nextPatch.patch, `probe-patch-${index}`, nextPatch.target);
+       } else if (who === 'child') item = message('PROTECTED_CHILD_COMPLETE');
+       else if (!own.some((entry: any) => entry.issued.kind === 'spawn')) {
+         const tool = tools.find((entry: any) => entry.type === 'function' && entry.name === 'spawn_agent');
+@@ -249,14 +313,14 @@
+         const tool = tools.find((entry: any) => entry.type === 'function' && ['wait_agent', 'wait'].includes(entry.name));
+         item = tool ? call(tool, { [tool.name === 'wait_agent' ? 'targets' : 'ids']: [id] }, 'wait') : nativeSearch(body.tools, issued, who, 'wait', count);
+       } else item = message('PROTECTED_PRIMARY_COMPLETE');
+-      const result = { id: `resp_${count}`, object: 'response', model: 'runtime-deterministic', status: 'completed', output: [item], usage: { input_tokens: 1, output_tokens: 1, total_tokens: 2 } };
++      const result = { id: `resp_${count}`, object: 'response', model: protectedFixtureModel, status: 'completed', output: [item], usage: { input_tokens: 1, output_tokens: 1, total_tokens: 2 } };
+       const frames = [{ type: 'response.created', response: { ...result, status: 'in_progress', output: [] } }, { type: 'response.output_item.added', output_index: 0, item: { ...item, ...(item.type === 'function_call' ? { arguments: '' } : item.type === 'custom_tool_call' ? { input: '' } : {}) } }, ...(item.type === 'function_call' ? [{ type: 'response.function_call_arguments.delta', item_id: item.id, output_index: 0, delta: item.arguments }, { type: 'response.function_call_arguments.done', item_id: item.id, output_index: 0, arguments: item.arguments }] : item.type === 'custom_tool_call' ? [{ type: 'response.custom_tool_call_input.delta', item_id: item.id, call_id: item.call_id, output_index: 0, delta: item.input }] : []), { type: 'response.output_item.done', output_index: 0, item }, { type: 'response.completed', response: result }];
+       response.writeHead(200, { 'Content-Type': 'text/event-stream' }).end(frames.map((frame, sequence_number) => `event: ${frame.type}\ndata: ${JSON.stringify({ ...frame, sequence_number, response_id: result.id })}\n\n`).join(''));
+     } catch (error) { fail(error instanceof Error ? error.message : 'BOUNDED_PEER_FAILURE'); response.writeHead(400).end('{}'); }
+   });
+   server.requestTimeout = 10000;
+   await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', resolve); });
+-  return { baseUrl: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`, records, failures, issued, controls, advertisedExecSchemas, setAbort(fn: () => void) { abort = fn; }, async close() { clearTimeout(overdue); server.closeAllConnections(); await new Promise<void>(resolve => server.close(() => resolve())); } };
++  return { baseUrl: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`, records, failures, issued, controls, advertisedExecSchemas, patchAdvertisements, setAbort(fn: () => void) { abort = fn; }, async close() { clearTimeout(overdue); server.closeAllConnections(); await new Promise<void>(resolve => server.close(() => resolve())); } };
+ }
+
+ for (const family of families) it.runIf(process.env.CHIRALITY_RUN_EXACT_PROTECTED === '1' && (!process.env.CHIRALITY_EXACT_PROTECTED_FAMILY || process.env.CHIRALITY_EXACT_PROTECTED_FAMILY === family.id))(`P3 actual protected ${family.id} primary/native profile`, async () => {
+@@ -269,7 +333,7 @@
+   const supply = await verify(supplied);
+   const base = await realpath(await mkdtemp(join(await realpath('/tmp'), 'epc-'))), root = join(base, 'p'), broker = join(base, 'b'), worker = join(broker, 'w'), home = join(worker, 'h');
+   const cleanup: (() => Promise<unknown>)[] = [() => rm(base, { recursive: true, force: true })];
+-  const observation: Record<string, any> = { schema: 'chirality-exact-protected/v1', suite: 'P3-protected', family: family.id, rule: family.rule, evidenceClass: fixtureVerifier ? 'supplier-candidate-unaccepted' : 'accepted-supply', supplySha256: supply.sha256, supplySize: Number(supply.identity.size), accountUsed: false, modelEvidence: 'deterministic-loopback-only', passed: false, conformanceAcceptance: false, fixtureTopology: 'synthetic user-owned protected files; does not establish immutable system-leaf enforcement', profileBudgetMs: 60000, probeBudgetMs: 10000 };
++  const observation: Record<string, any> = { schema: 'chirality-exact-protected/v1', suite: 'P3-protected', family: family.id, rule: family.rule, evidenceClass: fixtureVerifier ? 'supplier-candidate-unaccepted' : 'accepted-supply', supplySha256: supply.sha256, supplySize: Number(supply.identity.size), accountUsed: false, modelEvidence: 'deterministic-loopback-only', modelMetadataSlug: protectedFixtureModel, hostedModelUsed: false, passed: false, conformanceAcceptance: false, fixtureTopology: 'synthetic user-owned protected files; does not establish immutable system-leaf enforcement', profileBudgetMs: 60000, probeBudgetMs: 10000 };
+   const sourcePaths = ['tests/exact-protected-path-conformance.test.ts', 'tests/fixtures/response-provider.mjs', 'packages/daemon/src/codex-session.ts', 'packages/daemon/src/codex-containment.ts', 'packages/core/src/exact-supply.ts'];
+   const pins = async () => Object.fromEntries(await Promise.all(sourcePaths.map(async path => [path, digest(await readFile(path))])));
+   observation.sourcesBefore = await pins();
+@@ -322,9 +386,9 @@
+       { target: 'FUTURE_DIRECTORY', patch: `*** Begin Patch\n*** Add File: ${hostPaths.FUTURE_DIRECTORY}\n+UNAUTHORIZED_${who}\n*** End Patch` },
+     ];
+     const peer = await startProtectedPeer(root, commandFor, patchesFor);
+-    cleanup.push(async () => { observation.probes = peer.records; observation.peerFailures = peer.failures; observation.nativeToolOutputs = peer.controls; observation.advertisedExecSchemas = peer.advertisedExecSchemas; observation.issuedCalls = [...peer.issued].map(([callId, value]) => ({ callId, ...value })); await peer.close(); });
++    cleanup.push(async () => { observation.probes = peer.records; observation.peerFailures = peer.failures; observation.nativeToolOutputs = peer.controls; observation.advertisedExecSchemas = peer.advertisedExecSchemas; observation.patchAdvertisements = peer.patchAdvertisements; observation.issuedCalls = [...peer.issued].map(([callId, value]) => ({ callId, ...value })); await peer.close(); });
+     phase = 'launch'; await verify(binary); const launch = await policy.launchArguments(binary);
+-    const overrides = ['model_provider="runtime_deterministic"', 'model="runtime-deterministic"', 'model_providers.runtime_deterministic.name="Protected deterministic fixture"', `model_providers.runtime_deterministic.base_url=${JSON.stringify(peer.baseUrl)}`, 'model_providers.runtime_deterministic.wire_api="responses"', 'model_providers.runtime_deterministic.requires_openai_auth=false', 'model_providers.runtime_deterministic.supports_websockets=false', 'model_providers.runtime_deterministic.request_max_retries=0', 'model_providers.runtime_deterministic.stream_max_retries=0', 'features.multi_agent=true'];
++    const overrides = ['model_provider="runtime_deterministic"', `model=${JSON.stringify(protectedFixtureModel)}`, 'model_providers.runtime_deterministic.name="Protected deterministic fixture"', `model_providers.runtime_deterministic.base_url=${JSON.stringify(peer.baseUrl)}`, 'model_providers.runtime_deterministic.wire_api="responses"', 'model_providers.runtime_deterministic.requires_openai_auth=false', 'model_providers.runtime_deterministic.supports_websockets=false', 'model_providers.runtime_deterministic.request_max_retries=0', 'model_providers.runtime_deterministic.stream_max_retries=0', 'features.multi_agent=true'];
+     const child = spawn(launch[0]!, [...launch.slice(1), ...overrides.flatMap(value => ['-c', value])], { cwd: root, env: policy.environment, detached: true, stdio: 'pipe' });
+     const closed = new Promise<void>(resolve => child.once('close', () => resolve()));
+     const kill = () => { if (child.pid) try { process.kill(-child.pid, 'SIGKILL'); } catch { /* fixture-owned group already gone */ } };
+@@ -339,8 +403,8 @@
+     phase = 'initialize-policy-readback'; await actor.initialize(); await actor.verifyNativePolicy(policy.expectedPermissions); observation.policyReadbackVerified = true;
+     expect((await actor.accountRead()).hasAccount).toBe(false);
+     phase = 'primary-and-native-actions';
+-    const threadId = await actor.startThread({ cwd: root, model: 'runtime-deterministic', continuityChecked: true }); observation.threadId = threadId;
+-    const turnId = await actor.startTurn({ threadId, model: 'runtime-deterministic', text: 'Perform one bounded protected-path profile, then its native child, and finish.' }); observation.turnId = turnId;
++    const threadId = await actor.startThread({ cwd: root, model: protectedFixtureModel, continuityChecked: true }); observation.threadId = threadId;
++    const turnId = await actor.startTurn({ threadId, model: protectedFixtureModel, text: 'Perform one bounded protected-path profile, then its native child, and finish.' }); observation.turnId = turnId;
+     const terminal = await actor.waitTurn(turnId); observation.terminalStatus = terminal.status; observation.nativeChildren = actor.nativeChildren();
+     expect(terminal.status).toBe('completed'); expect(terminal.output).toContain('PROTECTED_PRIMARY_COMPLETE'); expect(peer.failures).toEqual([]);
+     expect(peer.records).toHaveLength(2 * (1 + patchesFor('primary').length));

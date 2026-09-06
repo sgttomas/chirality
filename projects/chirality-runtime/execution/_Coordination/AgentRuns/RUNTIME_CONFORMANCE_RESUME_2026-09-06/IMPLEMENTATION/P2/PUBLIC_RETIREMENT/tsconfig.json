@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2023",
+    "skipLibCheck": true,
+    "baseUrl": "../../../../../../../",
+    "paths": {
+      "@chirality/runtime-core": [
+        "packages/core/src/index.ts"
+      ],
+      "@chirality/runtime-contracts": [
+        "packages/contracts/src/index.ts"
+      ],
+      "@chirality/runtime-client": [
+        "packages/client/src/index.ts"
+      ]
+    }
+  },
+  "files": [
+    "../../../../../../../tests/exact-process-runtime-conformance.test.ts"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "status": "ACCEPTED_BOUNDED_ENGINEERING_EVIDENCE_WITH_RECORDED_ORIGINAL_SUITE_FAILURE",
+  "review_seal_sha256": "04ec849d66b494c5efef17578293036af107c97156ff851c8551434c8a1f2e67",
+  "child_seal_checks": [
+    {
+      "scope": "BUILD",
+      "count": 24,
+      "mismatches": []
+    },
+    {
+      "scope": "FIXTURE_PROPOSAL",
+      "count": 7,
+      "mismatches": []
+    },
+    {
+      "scope": "FIXTURE_ADAPTED",
+      "count": 8,
+      "mismatches": []
+    }
+  ],
+  "source_acceptance": "PENDING_OWNER",
+  "runtime_conformance": "PARENT_WORK_REMAINS",
+  "telemetry_summary_sha256": "c075b38773f403971610bcc303f73e681b3fd5a28a6d51d7213aec58f9154c2c",
+  "children": [
+    "/root/supplier_manager/build_specialist",
+    "/root/supplier_manager/constraint_reviewer",
+    "/root/supplier_manager/fixture_proposal"
+  ]
+}

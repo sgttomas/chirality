@@ -1,0 +1,11 @@
+{
+  "CHECKS.log": true,
+  "INPUTS.json": true,
+  "REPORT.md": true,
+  "RUN_RECORD.md": true,
+  "SOURCE_FREEZE.json": true,
+  "exact-process-conformance.test.ts.postimage.source": true,
+  "exact-process-conformance.test.ts.preimage.source": true,
+  "process-response-provider.mjs.postimage.source": true,
+  "process-response-provider.mjs.preimage.source": true
+}

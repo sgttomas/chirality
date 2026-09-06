@@ -1,0 +1,26 @@
+{
+  "verdict": "ACCEPT_BOUNDED_CANDIDATE_PREPARATION_FOR_EXISTING_PARENT_DIAGNOSTICS",
+  "seals": [
+    {
+      "path": "REPAIR_BUILD/OUTPUT_HASHES.json",
+      "files": 46,
+      "mismatches": [],
+      "sha256": "eb79828a2a234a6a0116f72a523d26cb52ff318f01197872663d1e239013b9e0"
+    },
+    {
+      "path": "REVIEW/SEAL_V2.json",
+      "files": 14,
+      "mismatches": [],
+      "sha256": "0814b1fd5481353eb7c1073d9552e2af3ac7fa71a87e63b44a2ac484c1c7a361"
+    }
+  ],
+  "artifact": "/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-app-server",
+  "sha256": "b2a7e321d1c64794761803ba8895a15fafeeae9ac17c34abce942a82edaf7d4a",
+  "bytes": 241276384,
+  "version": "0.149.0",
+  "source_tests": "helper15/15 protected4/4; original first helper14/1failure preserved",
+  "parent_route": "Existing unchanged P1/P3-star fixtures only under parent grant; no new fixture maintenance/known-bad C2 replay; failed/inconclusive observations not promoted",
+  "future_evidence": "Fresh actor-specific sentinels/positive controls are future unmet requirements, not work performed by this lane or present fixture",
+  "original70file_checks": "All specialist/reviewer/manager original-byte checks complete; parent may now archive originals losslessly and produce normalized derivative presentations with explicit old/new mapping; historical seals retain original-byte meaning",
+  "acceptance": "Supplier/source acceptance and actual containment/full conformance pending"
+}

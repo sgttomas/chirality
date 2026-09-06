@@ -1,0 +1,17 @@
+    let include_platform_defaults = file_system_sandbox_policy.include_platform_defaults();
+    let deny_read_policy =
+        build_seatbelt_unreadable_glob_policy(file_system_sandbox_policy, sandbox_policy_cwd);
+    let mut policy_sections = vec![
+        MACOS_SEATBELT_BASE_POLICY.to_string(),
+        file_read_policy,
+        file_write_policy,
+        network_policy,
+    ];
+    if include_platform_defaults {
+        policy_sections.push(MACOS_RESTRICTED_READ_ONLY_PLATFORM_DEFAULTS.to_string());
+        if profile == MacosSeatbeltProfile::Process {
+            policy_sections.push(MACOS_PROCESS_APPLICATIONS_READ_POLICY.to_string());
+        }
+    }
+    policy_sections.push(deny_read_policy);
+    // Renaming an allowed ancestor relocates its protected descendants past

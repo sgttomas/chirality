@@ -1,0 +1,19 @@
+{
+  "schema": "runtime-publication-presentation-snapshot/v1",
+  "derivative": true,
+  "historicalHashResolution": "ORIGINALS.json plus independent V1 map, exact path+original SHA256",
+  "package": {
+    "GLOBAL_WHITESPACE.json": "c4d13979fe091ad978f56f4b9c47128aa04c93095069ed2c504f0edc3d6e6c3e",
+    "HISTORICAL_RESOLUTION.json": "a064cae7009392812659666460358b84282acdba428d83037e3c30d04f79841d",
+    "ORIGINALS.json": "42bba244714bc635d270fbd4583a74fbe577bb69dea2580ddaedd9ce3f042494",
+    "README.md": "c406bea130b837b2ff1fce5e2c5bdf059b4792407ded0fc79536c360745b9961",
+    "RETURN.json": "5f135786338dfe46a6068e43cf6620a5eb34f30ce005d5ab06ab2a647fc6966b",
+    "VERIFICATION.json": "4eb1bbe35fe45f2d0c9f0e7a56a3f03e0a5ae0005d804e59174466eaabe5f8e9"
+  },
+  "presentations": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/REPAIR_1/PURE_TESTS.log": "e75b98cde2e15cb854182212df7a982e147924fd1055f39d6fab6376f028a95c",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PUBLIC_CANCEL_REPAIR/REPAIR_1/PURE.log": "24e57aeb469c4ce38f54c762b7d4b20ec5c771b81f0d30239604f0a40741485b",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/helper-tests.log": "c7a8a87f671045b291f8d58ecfc4722d90d6d7b69e6e03e0319a22dbd64b22dd",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/protected-glob-tests.log": "8fba3759c97d1927e93fac295163f956ec8b4e919eec9f86ddd19d2307e911ef"
+  }
+}

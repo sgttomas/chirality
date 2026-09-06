@@ -1,0 +1,9 @@
+# Cancellation contract calibration supplement
+
+This supplement preserves the original diagnosis/seal and distinguishes a fixture assumption from deliverable authority. DEL-02-10 ScopeOfWork OUT-002/CLM-001 require attributed request and decision records; OUT-003/CLM-002 constrain the terminal vocabulary. DEL-02-11 OUT-002/003 and CLM-002 require durable retirement state and exactly-once active-turn terminalization before further action. These cited clauses do not require a provider-resolved approval sidecar for a user-requested Runtime interruption.
+
+Accordingly, the original report's statement that cancellationStored must require a resolution described the then-frozen fixture condition, not an independently accepted contract obligation. A provider-resolved file may be absent when no provider-resolution event occurred. Its absence does not by itself establish a product defect. The immediate postinterrupt live-read403 remains expected, and original _01 still failed without sufficient retained audit evidence.
+
+The parent has now authorized a one-file fixture calibration that proves the accepted obligation directly: the actual immutable attributed request; no invented decision; exact interrupt ACK; actual interrupted durable retirement bound to the same root/account/policy/session/turn/worker generation; and worker closure before outer cleanup. Optional provider resolution is reported honestly and validated if present. No production schema, live-read guard, acceptance authority or provider-resolution event is invented. Missing or mismatched evidence still fails this composed proof. Author PUBLIC_CANCEL_REPAIR is separate from this read-only diagnosis and awaits its independent review.
+
+Role/model remain Agent2 instruction-asserted, OpenAI GPT-6 exact serving ID unavailable. This derivative supplement records parent disposition and cited SOW basis; it makes no new owner act.

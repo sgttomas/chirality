@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-process-runtime-conformance.test.ts (8 tests | 1 skipped) 9ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed | 1 skipped (8)
+   Start at  13:16:14
+   Duration  363ms (transform 153ms, setup 0ms, collect 215ms, tests 9ms, environment 0ms, prepare 28ms)

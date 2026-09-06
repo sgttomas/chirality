@@ -1,0 +1,19 @@
+{
+  "projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+  "projects/chirality-runtime/tests/delegated-runtime.test.ts": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REGRESSION.log": "57a3fa37baf5bc4c9bb6b3ec7e5dbade896e12231a2bd9548fbe962b4028c612",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REVIEW_INPUTS.json": "60a4a6e5e2ae813ea7349b3a92dfc9cc0a9d2853a822e713b4ec22b7fb57b679",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.test.ts.before.gz": "b78a3aef4bd358f84cd67ce064e73eed59dfb1cf9679072b51a645f476d5ff14",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/RETURN.md": "5aae2e46ab6e11968aacd0ea841a979fa28e8b9ffaccaa65ebb3120431907cbb",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.ts.before.gz": "8cdbc411cf59cf67ac19ca94cd2b0724b3f6e10c974805e878dfa5f2d6922d04",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/TYPECHECK.log": "dcf1bc5d3da21e9933cb58172e2394a646882ab24d60683478df3d99047ef8f3",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/PATCH_FROM_HEAD.diff": "baaa2d0355bbc87c20023fd447709129e08a7bfafc3c467963a080158ed921ea",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.ts.after.gz": "3ea7ff9ab735cd14610bd3727b4a87c89f69c5c91d53c3db0ffa6d9211a7cc17",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/INPUTS.json": "272a8925c824f6afab8b489ce226bec6b0168f4ed6fc08c9f7328b13f22a1c1a",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/BRIEF.md": "e25ecd7ccdca03e1ffecf8164765f7ac706384fddd8c7e556a53f7567c6e65f6",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/REGRESSION_RED.log": "1e7208b7295561df00c5de14ab1b5a30d7e7eb46e90aace5e755faae102de6ab",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/tsconfig.check.json": "baf461fa2c78fc5c4dece30c157e6ad830573f15349407bfaa9ca9110b4dcce3",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/delegated-runtime.test.ts.after.gz": "25d1de124e3aa9662a983c26f352793d83b5cc0f456a2449329a9c4ded78a0df",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/FREEZE.json": "5db086e5c2f07c7b50d5de7d067665f704b7c654e40a62d1b27f6b7183847c62",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/RETIREMENT_REPAIR/REPAIR_1/TYPECHECK_SOURCE.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,12 @@
+{
+  "status": "STOPPED_AFTER_SECOND_SCREENING_REJECTION",
+  "action": "Parent-approved narrowed defensive maintenance of existing protected fixture",
+  "instance": "/root/conformance_manager/p3_protected",
+  "toolMessage": "This content was flagged for possible cybersecurity risk.",
+  "sourceSha256After": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3",
+  "sourceUnchanged": true,
+  "expectedRepairEvidenceExists": false,
+  "next": "No further retries or alternate-agent execution of this blocked maintenance. Parent informed; unaffected authorized work continues. Existing admitted test and sealed defect evidence retained.",
+  "scopeGrant": "NARROWED_PARENT_GRANT.json",
+  "derivative": true
+}

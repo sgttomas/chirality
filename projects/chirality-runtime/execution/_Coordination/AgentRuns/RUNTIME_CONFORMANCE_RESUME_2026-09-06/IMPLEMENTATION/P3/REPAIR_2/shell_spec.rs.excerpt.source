@@ -1,0 +1,161 @@
+use codex_tools::JsonSchema;
+use codex_tools::ResponsesApiTool;
+use codex_tools::ToolSpec;
+use serde_json::Value;
+use serde_json::json;
+use std::collections::BTreeMap;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct CommandToolOptions {
+    pub allow_login_shell: bool,
+    pub exec_permission_approvals_enabled: bool,
+}
+
+#[cfg(test)]
+pub fn create_exec_command_tool(options: CommandToolOptions) -> ToolSpec {
+    create_exec_command_tool_with_environment_id(
+        options, /*include_environment_id*/ false, /*include_shell_parameter*/ true,
+    )
+}
+
+pub(crate) fn create_exec_command_tool_with_environment_id(
+    options: CommandToolOptions,
+    include_environment_id: bool,
+    include_shell_parameter: bool,
+) -> ToolSpec {
+    let yield_time_ms_description = if cfg!(windows) {
+        "Maximum time to wait before returning a session ID for a still-running command. Commands that finish sooner return immediately. For ordinary commands, omit this parameter to use the 10000 ms default. Effective range on Windows is 10000-30000 ms."
+    } else {
+        "Wait before yielding output. Defaults to 10000 ms; effective range is 250-30000 ms."
+    };
+    let mut properties = BTreeMap::from([
+        (
+            "cmd".to_string(),
+            JsonSchema::string(Some("Shell command to execute.".to_string())),
+        ),
+        (
+            "workdir".to_string(),
+            JsonSchema::string(Some(
+                "Working directory for the command. Defaults to the turn cwd."
+                    .to_string(),
+            )),
+        ),
+        (
+            "tty".to_string(),
+            JsonSchema::boolean(Some(
+                "True allocates a PTY for the command; false or omitted uses plain pipes."
+                    .to_string(),
+            )),
+        ),
+        (
+            "yield_time_ms".to_string(),
+            JsonSchema::number(Some(yield_time_ms_description.to_string())),
+        ),
+        (
+            "max_output_tokens".to_string(),
+            JsonSchema::number(Some(
+                "Output token budget. Defaults to 10000 tokens; larger requests may be capped by policy.".to_string(),
+            )),
+        ),
+    ]);
+    if include_shell_parameter {
+        properties.insert(
+            "shell".to_string(),
+            JsonSchema::string(Some(
+                "Shell binary to launch. Defaults to the user's default shell.".to_string(),
+            )),
+        );
+    }
+    if options.allow_login_shell {
+        properties.insert(
+            "login".to_string(),
+            JsonSchema::boolean(Some(
+                "True runs the shell with -l/-i semantics; false disables them. Defaults to true."
+                    .to_string(),
+            )),
+        );
+    }
+    if include_environment_id {
+        properties.insert(
+            "environment_id".to_string(),
+            JsonSchema::string(Some(
+                "Environment id from <environment_context>. Omit to use the primary environment."
+                    .to_string(),
+            )),
+        );
+    }
+    properties.extend(create_approval_parameters(
+        options.exec_permission_approvals_enabled,
+    ));
+
+    ToolSpec::Function(ResponsesApiTool {
+        name: "exec_command".to_string(),
+        description: if cfg!(windows) {
+            format!(
+                "Runs a command in a PTY, returning output or a session ID for ongoing interaction.\n\n{}",
+                windows_shell_guidance()
+            )
+        } else {
+            "Runs a command in a PTY, returning output or a session ID for ongoing interaction."
+                .to_string()
+        },
+        strict: false,
+        defer_loading: None,
+        parameters: JsonSchema::object(
+            properties,
+            Some(vec!["cmd".to_string()]),
+            Some(false.into()),
+        ),
+        output_schema: Some(unified_exec_output_schema()),
+    })
+}
+
+pub fn create_write_stdin_tool() -> ToolSpec {
+    let properties = BTreeMap::from([
+        (
+fn create_approval_parameters(
+    exec_permission_approvals_enabled: bool,
+) -> BTreeMap<String, JsonSchema> {
+    let mut sandbox_permission_values = vec![json!("use_default")];
+    if exec_permission_approvals_enabled {
+        sandbox_permission_values.push(json!("with_additional_permissions"));
+    }
+    sandbox_permission_values.push(json!("require_escalated"));
+    let sandbox_permissions_description = if exec_permission_approvals_enabled {
+        "Per-command sandbox override. Defaults to `use_default`; use `with_additional_permissions` with `additional_permissions`, or `require_escalated` for unsandboxed execution."
+    } else {
+        "Per-command sandbox override. Defaults to `use_default`; use `require_escalated` for unsandboxed execution."
+    };
+
+    let mut properties = BTreeMap::from([
+        (
+            "sandbox_permissions".to_string(),
+            JsonSchema::string_enum(
+                sandbox_permission_values,
+                Some(sandbox_permissions_description.to_string()),
+            ),
+        ),
+        (
+            "justification".to_string(),
+            JsonSchema::string(Some(
+                "User-facing approval question for `require_escalated`; omit otherwise.".to_string(),
+            )),
+        ),
+        (
+            "prefix_rule".to_string(),
+            JsonSchema::array(JsonSchema::string(/*description*/ None), Some(
+                    r#"Reusable approval prefix for `cmd`, only with `sandbox_permissions: "require_escalated"`; for example ["git", "pull"]."#.to_string(),
+                )),
+        ),
+    ]);
+
+    if exec_permission_approvals_enabled {
+        let mut additional_permissions = permission_profile_schema();
+        additional_permissions.description = Some(
+            "Sandboxed filesystem or network access for this command; only with `sandbox_permissions: \"with_additional_permissions\"`."
+                .to_string(),
+        );
+        properties.insert("additional_permissions".to_string(), additional_permissions);
+    }
+
+    properties

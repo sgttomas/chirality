@@ -1,0 +1,9 @@
+{
+  "command": [
+    "python3",
+    "tools/validation/validate_candidate_whitespace.py"
+  ],
+  "exitCode": 1,
+  "stdout": "Untracked text whitespace findings:\nprojects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/REPAIR_1/PURE_TESTS.log:11: blank line at end of file\nprojects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PUBLIC_CANCEL_REPAIR/REPAIR_1/PURE.log:12: blank line at end of file\nprojects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/helper-tests.log:31: blank line at end of file\nprojects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/REPAIR_BUILD/protected-glob-tests.log:104: blank line at end of file\nFAIL: candidate whitespace findings (untracked binary/symlink paths safely skipped: 8).\n",
+  "stderr": ""
+}

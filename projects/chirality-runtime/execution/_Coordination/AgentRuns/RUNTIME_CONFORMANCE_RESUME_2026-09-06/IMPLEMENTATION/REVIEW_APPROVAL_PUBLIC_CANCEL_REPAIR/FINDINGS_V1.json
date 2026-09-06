@@ -1,0 +1,23 @@
+{
+  "subjectSha256": "66df62f4a9f7e5e974d6a8471ed0192296aad8020167929017985d19c64ed2d0",
+  "status": "REPAIR_REQUIRED",
+  "findings": [
+    {
+      "id": "CANCEL-ACK",
+      "evidence": "Actual branch discards client.interruptDelegatedTurn result then marks cancelled; RuntimeClient method returns unchecked requestJson",
+      "required": "Assert interrupted true and exact turnId/workerGeneration, retain bounded correlated ACK evidence"
+    },
+    {
+      "id": "CANCEL-BASIS",
+      "evidence": "Independent helper invocation returns complete:true for contradictory prepared.terminal and invalid rolePolicyDigest with matching basisDigest",
+      "required": "Align prepared record validation with WorkerRetirementCoordinator.prepared invariants and reject these cases before composite proof"
+    }
+  ],
+  "independentRepro": {
+    "valid": true,
+    "contradictoryPreparedTerminal": true,
+    "invalidRoleDigest": true
+  },
+  "scriptSha256": "11fb3ac559ba508efb371db7f1ef0e8642a3b3feb28809944db6887c8ae9244a",
+  "actualSupplierExecuted": false
+}

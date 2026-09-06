@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-06T19:13:44.300438+00:00",
+  "seal": "45ad5095e0412bdf672abdf26f351bdd090cfb3ff185af5be9503577e8904c01",
+  "package": [
+    {
+      "path": "AMENDMENT.md",
+      "matches": true
+    },
+    {
+      "path": "AMENDMENT.sha256",
+      "matches": true
+    },
+    {
+      "path": "CHECKS.log",
+      "matches": true
+    },
+    {
+      "path": "OBSERVED_PATCH_SCHEMA.json",
+      "matches": true
+    },
+    {
+      "path": "REPORT.md",
+      "matches": true
+    },
+    {
+      "path": "SOURCE_HASHES.json",
+      "matches": true
+    },
+    {
+      "path": "exact-protected-path-conformance.test.ts.preimage.source",
+      "matches": true
+    },
+    {
+      "path": "exact-protected-path-conformance.test.ts.source",
+      "matches": true
+    }
+  ],
+  "sourceCopyMatches": true,
+  "denialClassifierUnchanged": true
+}

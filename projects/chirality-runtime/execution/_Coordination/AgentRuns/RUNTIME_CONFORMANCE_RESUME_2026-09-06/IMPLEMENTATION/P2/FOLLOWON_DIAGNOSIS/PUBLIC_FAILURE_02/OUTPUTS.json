@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "status": "diagnosis-complete-implementation-unstarted",
+  "outputs": [
+    {
+      "path": "ACTUAL_EVIDENCE_EXTRACT.json",
+      "sha256": "57a32f3b7e4bae18e2be1578a135a5ae2b69b15aff0a979bacbf3b2584eb64a2",
+      "bytes": 7964
+    },
+    {
+      "path": "INPUTS.json",
+      "sha256": "d7b4c030d04db8bd99842a22cf53dea4f19a99220b0d9453e23a6fc5f4d58373",
+      "bytes": 5335
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "a84c62beda71856d3e131a3b681710f7e8915b36a90d7d2e3aa5177f75dfb5a4",
+      "bytes": 9956
+    }
+  ]
+}

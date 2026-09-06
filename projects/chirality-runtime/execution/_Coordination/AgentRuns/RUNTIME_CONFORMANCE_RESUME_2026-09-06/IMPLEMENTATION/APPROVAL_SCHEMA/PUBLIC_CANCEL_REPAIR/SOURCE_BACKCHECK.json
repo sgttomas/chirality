@@ -1,0 +1,18 @@
+{
+  "allOtherReadPinsStable": true,
+  "matches": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/approval-store.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/hosted-consent.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/worker-retirement.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/delegated-runtime.test.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/approval-store.test.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/manager-approval-integration.test.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/EXACT_NETWORK_RUNTIME_CANARY.json": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/CHECK.json": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_PRIMARY_ASK_CANCEL_CANDIDATE2_01/output.log": true
+  },
+  "productionEdits": false,
+  "actualSupplierRun": false
+}

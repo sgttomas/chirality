@@ -1,0 +1,22 @@
+{
+  "derivative": true,
+  "implementationAuthorized": false,
+  "records": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/NATIVE_APPROVAL_DESIGN_DISCUSSION.md",
+      "sha256": "c60ade22c5b70fb21340b22734729e55426c792299f4105e74eb8a255f8262fd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_NATIVE_ATTRIBUTION_DIAGNOSIS/RETURN.md",
+      "sha256": "26727446a1f9856782d4d7208b3aad84d872d5165e2a46de71016ed3db6ca643"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/REFERENCE_PATTERNS/REPORT.md",
+      "sha256": "881abcb6c0a9bb7ed0b58a015b9fa764d744bb51440f8fbc897668335c18ce87"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/OWNER_SCOPE_CLARIFICATION_1.json",
+      "sha256": "277182395d3ed14ce97f661517477fafca6764a66977bda80b8afecea2ec77be"
+    }
+  ]
+}

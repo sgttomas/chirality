@@ -1,0 +1,99 @@
+[
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_instruction_entrypoints.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.035,
+    "log": "0.log",
+    "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_root_materialization_fence.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.252,
+    "log": "1.log",
+    "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_root_harness_adapter.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.158,
+    "log": "2.log",
+    "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_root_surface_ownership.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.163,
+    "log": "3.log",
+    "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_root_work_graph_dispatch.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.298,
+    "log": "4.log",
+    "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/validation/validate_instruction_tranche_manifest.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.123,
+    "log": "5.log",
+    "sha256": "9bae91c712832b6f8942be58fb8d4cf76dce97e7e1da9bc71f3dbb99af45a0f2"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "status",
+      "--project",
+      "runtime"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.108,
+    "log": "6.log",
+    "sha256": "97ad6feeb55543ca19b4d0c10a51a39262146212a00cff53e148f865cbaaf6ad"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "drift",
+      "--project",
+      "runtime"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.084,
+    "log": "7.log",
+    "sha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 12.405,
+    "log": "8.log",
+    "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945"
+  }
+]

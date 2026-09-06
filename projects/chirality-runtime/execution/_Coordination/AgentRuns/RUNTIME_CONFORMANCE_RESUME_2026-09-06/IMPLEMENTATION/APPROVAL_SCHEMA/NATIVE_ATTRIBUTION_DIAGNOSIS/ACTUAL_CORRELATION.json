@@ -1,0 +1,15 @@
+{
+  "nativeChildIdSource": "fixture reads supplier spawn function_call_output agent_id/id, not model prose",
+  "nativeChildIdSha256Json": "f2ee7bc6c7e649a9874fa51908c1f36bd1f1b529661c5140ae25747df2e8171f",
+  "callbackThreadIdSha256Json": "f2ee7bc6c7e649a9874fa51908c1f36bd1f1b529661c5140ae25747df2e8171f",
+  "callbackThreadMatchesObservedSpawnResult": true,
+  "actorFailure": {
+    "classification": "FOREIGN_PRIMARY_TURN",
+    "code": "ENGINE_UNAVAILABLE",
+    "reason": "CODEX_PROTOCOL_FAILURE"
+  },
+  "actualChildTurnLifecycleRecorded": false,
+  "actualParentageLifecycleRecorded": false,
+  "sourceStable": true,
+  "limitation": "Derived evidence correlation only; no producer-side authorization or lineage admission inferred."
+}

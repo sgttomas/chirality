@@ -1,0 +1,17 @@
+# Sealed independent packaging review brief
+
+RequestedBy / ParentInstanceID: /root/packaging_manager, WORKING_ITEMS Agent 1.
+RunID: RUNTIME_PACKAGING_2026-09-06. Package: PKG-02_Runtime_Product; selected DEL-02-06 bounded Runtime packaging compatibility repair.
+ChildInstanceID: /root/packaging_manager/review (record actual native launch separately).
+Form: fresh ephemeral generalist Agent 2; read-only on production and author outputs; no delegation.
+Model: inherited OpenAI GPT-6, exact serving ID unavailable; roles/non-delegation instruction-asserted, not mechanically enforced.
+
+Objective: independently attempt refutation of the Runtime Pi import/bundling repair and its evidence. Inspect actual diff and runtime behavior for CJS loading, preservation of ESM SDK use, cold SDK-load cancellation/deadline/close/binding-revoke behavior, concurrent same-session exclusion and distinct-session capacity, post-await account/scope binding, cleanup and no fallback. Verify synchronous factory, unchanged event/public package contract, and no weakening of dependency integrity or operational/client boundaries.
+
+AcceptedBasis: frozen PLAN_V1 and CONTEXT_SHA256; IMPLEMENTER/RETURN.md and terminal hashes bound by manager IMPLEMENTATION_FAN_IN.json at release. Current owner repair direction and prior accepted spec/amendment11, not lifecycle/release/supplier authority.
+DeclaredReads: root/project AGENTS and WORKING_ITEMS role; current run brief/plan/diagnosis/author evidence; Runtime packages/tests/manifests/dependencies; read-only current frontend build-electron/runtime-host/Pi adapter; accepted DEL-02-06 SOW and prior spec fan-in/owner direction/amendment11. No credential or operational state reads.
+AllowedTools: read; bash deterministic inspection and focused offline tests; no delegation, network provider, external messaging, Git mutation. Tests may create only owned temporary scratch or Runtime ignored build artifacts as registered checks require.
+AllowedWriteTargets: IMPLEMENTATION/REVIEW/** for review artifacts only; /private/tmp/runtime-packaging-20260906/manager/review/** for isolated checks. No production or author evidence repair. The durable existing test allocates and cleans isolated tmpdir scratch; allowed when run.
+Checks: authorize npm test -- tests/pi-packaging.test.ts and targeted existing Pi tests, npm run typecheck if needed. Parent owns whole registered suite. Do not execute frontend build into sibling directories; parent independently runs redirected real build in scratch.
+Acceptance: classify defects with actionable evidence and priority; return ADMIT or RETURN; distinguish implementation regression from fixture weakness. Reproduce source/hash/scope claims; verify exact coding-agent-only consumer externalization and real SDK offline turn, not mock-only/static success. Inspect failed cold-load attempts and final barrier evidence for criteria weakening. Disclose remaining Linux/Electron/client adoption limits; parent App fail-stop probe is module-load evidence only. Existing runtime-conformance import.meta CJS inventory warning remains distinct, unchanged, fail-closed v2 deployment limitation.
+ExpectedOutputs: REVIEW/RETURN.md plus command logs/findings/source hashes. No actionable findings means explicit empty ledger and bounded ADMIT, never full product release or client acceptance. Escalate defects to manager; do not fix them yourself.

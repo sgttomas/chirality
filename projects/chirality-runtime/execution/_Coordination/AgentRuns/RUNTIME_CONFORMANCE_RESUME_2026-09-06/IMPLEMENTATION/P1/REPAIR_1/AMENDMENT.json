@@ -1,0 +1,23 @@
+{
+  "authority": "Parent /root explicit 2026-09-06 ordinary Runtime repair direction; predecessor amendment11",
+  "objective": "Disable exact-known supplier shell_snapshot before session initialization and require exact false native readback with no weakened P1/policy",
+  "exclusiveOwner": "/root/conformance_manager/p1_boundary",
+  "allowedWriteTargets": [
+    "projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+    "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+    "projects/chirality-runtime/tests/codex-containment.test.ts",
+    "projects/chirality-runtime/tests/codex-session.test.ts",
+    "projects/chirality-runtime/tests/codex-supervisor.test.ts"
+  ],
+  "inputHashes": {
+    "packages/daemon/src/codex-containment.ts": "09aeb6e8057f8926678e012c81aab28a56616ef01485b9644514c44399587edb",
+    "packages/daemon/src/codex-session.ts": "4a72f135a8fe107831cc4f5fa2bca712c270f49b073b7a9a0af04683b5074d00",
+    "tests/codex-containment.test.ts": "4cd3238ded0ecea5917dc6be1ad718af71c8da953e8442a2927f278910e37865",
+    "tests/codex-session.test.ts": "8a4f0751303b349f9518003b2844a2eaa6cb76bb69ed2c0accb7e5c08c0fba04",
+    "tests/codex-supervisor.test.ts": "584abf689f35dd052d2a9446fa68e8659ed43dc81b6b22599fd10981947e0278"
+  },
+  "additionalEvidence": "P1/REPAIR_1/**",
+  "collisionCheck": "Parent confirms no other Runtime source owners, packaging released; these exact paths reserved for P1",
+  "limits": "No edits to exact-boundary fixture, supplier source/build/binary, production acceptance/pins or other files. tests/codex-supervisor.test.ts only synthetic config expectation alignment if needed. Parent alone actual comparison.",
+  "requiredValidation": "Exact known source/schema pins; false setting included in effective policy digest; config readback missing/null/true/drift rejected before operations; focused checks and fresh independent review"
+}

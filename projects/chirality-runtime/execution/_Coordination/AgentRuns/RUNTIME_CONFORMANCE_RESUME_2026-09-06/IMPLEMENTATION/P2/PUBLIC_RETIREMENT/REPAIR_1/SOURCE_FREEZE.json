@@ -1,0 +1,13 @@
+{
+  "frozenAt": "2026-09-06T19:04:28.080204+00:00",
+  "test": {
+    "path": "tests/exact-process-runtime-conformance.test.ts",
+    "sha256": "fcc54e168130b4d3b1d5e87012ee4b4647754ebf6b491f02aeaf261437e17815"
+  },
+  "unchangedConfigs": {
+    "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts": "18bcdafacd2dce4e20cc816f8d7824570f57afab84c7da4c075445f545560884",
+    "execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/tsconfig.json": "4fed90f9ed1bca52eb935336a423e8a1eaa030c539ad23a854a60f06b804ddb2"
+  },
+  "writeState": "source/test/config PAUSED after passing checks; parent diagnostic window reserved",
+  "authority": "../AMENDMENT_1.json after fresh public reviewer frozen finding"
+}

@@ -1,0 +1,230 @@
+{
+  "schema": "chirality-exact-runtime-network/v1",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "scenario": "ask-cancel",
+  "commandNetworkPosture": "ask-per-destination",
+  "launchEvidence": "test-only-no-account-exact-vendor-factory",
+  "managerModel": "owned-loopback-deterministic-Responses",
+  "target": "http://example.com/",
+  "targetAuthorization": "IMPLEMENTATION_AMENDMENT_13",
+  "publicZeroNetworkTrafficProven": false,
+  "approvalEvidence": "public-api-durable-store-candidate",
+  "storedAttributionProven": false,
+  "commandRole": "primary",
+  "nativeDescendantNetworkProven": false,
+  "accountUsed": false,
+  "passed": false,
+  "sourcesBefore": {
+    "tests/exact-network-runtime-conformance.test.ts": "d04124fa83bec8f402a90532af205838cdabbbb08a6277a193e4eebe9839518c",
+    "packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+    "packages/core/src/approval-store.ts": "4ac5d0197f528a6dce2dfd4cad007b4d806e622553ab921edcf24422fa1e1e91",
+    "packages/core/src/hosted-consent.ts": "13026aed1c6cac03c6d75edb4fc5285a0d970c9b6c9f3a131b0e0575d03d46d8",
+    "packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+    "packages/daemon/src/codex-supervisor.ts": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30"
+  },
+  "supplySha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "supplySize": 241188752,
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/private/etc/ssl/openssl.cnf": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/enc-t79rKk/p": "write",
+      "/private/tmp/enc-t79rKk/p/.codex": "deny",
+      "/private/tmp/enc-t79rKk/r": "deny",
+      "/private/tmp/enc-t79rKk/r/w": "deny"
+    },
+    "network": {
+      "enabled": true,
+      "proxy_url": "http://127.0.0.1:0",
+      "enable_socks5": true,
+      "socks_url": "http://127.0.0.1:0",
+      "enable_socks5_udp": true,
+      "allow_upstream_proxy": false,
+      "dangerously_allow_non_loopback_proxy": false,
+      "dangerously_allow_all_unix_sockets": false,
+      "mode": "full",
+      "domains": {},
+      "unix_sockets": {},
+      "allow_local_binding": false
+    }
+  },
+  "compatibility": {
+    "compatibilityIdentity": "root-runtime-1",
+    "contractBasisSha256": "80d59054683ed1b684ee0e36cd0dbbc4e3f48b5992abbcef22ace79b9b0a17dc"
+  },
+  "consentRecorded": true,
+  "bindingEvidenceClass": "controlled-worker",
+  "approvalPollFailure": {
+    "classification": "UNCLASSIFIED",
+    "code": "UNCLASSIFIED",
+    "reason": "UNCLASSIFIED"
+  },
+  "commandEmittedFor": "primary",
+  "approval": {
+    "requestId": "be099fd7-f59c-4809-9637-56be73fdddff",
+    "workerGeneration": "cc4e7694-2898-4da8-b1d3-49b5e11020ea",
+    "destination": "example.com",
+    "choice": "ask-cancel"
+  },
+  "staleGenerationRejected": true,
+  "processClosed": true,
+  "actorFailure": {
+    "classification": "UNCLASSIFIED",
+    "code": "ENGINE_UNAVAILABLE",
+    "reason": "CODEX_PROTOCOL_FAILURE"
+  },
+  "cancelled": true,
+  "commandElapsedMs": 222,
+  "commandBudgetMs": 10000,
+  "commandWithinBudget": true,
+  "failurePhase": "public-runtime-turn",
+  "fixtureFailure": {
+    "classification": "UNCLASSIFIED",
+    "code": "UNCLASSIFIED",
+    "reason": "UNCLASSIFIED"
+  },
+  "failureCode": "FORBIDDEN",
+  "failureStatus": 403,
+  "destinationHits": null,
+  "responseBodyPersisted": false,
+  "requestShape": {
+    "method": "GET",
+    "query": false,
+    "body": false,
+    "credentials": false,
+    "cookies": false,
+    "redirectsFollowed": false,
+    "maxResponseBytes": 16384
+  },
+  "commandReturnedMarker": false,
+  "approvalCount": 1,
+  "serverRequests": [
+    {
+      "method": "item/commandExecution/requestApproval",
+      "parameterKeys": [
+        "threadId",
+        "turnId",
+        "itemId",
+        "startedAtMs",
+        "environmentId",
+        "reason",
+        "networkApprovalContext",
+        "proposedNetworkPolicyAmendments",
+        "availableDecisions"
+      ],
+      "unknownParameterKeys": {
+        "type": "array",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "requestId": {
+        "type": "number",
+        "bytes": 1,
+        "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "stringLength": null,
+        "stringBytes": null,
+        "matchesCurrentIdentifier": false,
+        "hasControlCharacters": false,
+        "matchesObservedPrimary": null,
+        "supplierNetworkShape": false
+      },
+      "threadId": {
+        "type": "string",
+        "bytes": 38,
+        "sha256": "f3166697091498840d8d94dbb2f54774c141d648b8a5c5d5a3c759ded6bc2dc0",
+        "stringLength": 36,
+        "stringBytes": 36,
+        "matchesCurrentIdentifier": true,
+        "hasControlCharacters": false,
+        "matchesObservedPrimary": true,
+        "supplierNetworkShape": false
+      },
+      "turnId": {
+        "type": "string",
+        "bytes": 38,
+        "sha256": "0d5746cf80f5fdae18ba406fc41d8ef6f817fa1a54f075cada1b06de842364d3",
+        "stringLength": 36,
+        "stringBytes": 36,
+        "matchesCurrentIdentifier": true,
+        "hasControlCharacters": false,
+        "matchesObservedPrimary": true,
+        "supplierNetworkShape": false
+      },
+      "itemId": {
+        "type": "string",
+        "bytes": 72,
+        "sha256": "f5ed003144c2c404c1d5f1406ea693396410bc2aa66927a8ac0c397cfc3efa9c",
+        "stringLength": 70,
+        "stringBytes": 70,
+        "matchesCurrentIdentifier": false,
+        "hasControlCharacters": false,
+        "matchesObservedPrimary": null,
+        "supplierNetworkShape": true
+      },
+      "environmentId": {
+        "type": "string",
+        "bytes": 7,
+        "sha256": "ea17e25c6c7aa6ef9407f976a670e87e37bc7e2a86b7bd4a3305bb16f1ba6052",
+        "stringLength": 5,
+        "stringBytes": 5,
+        "matchesCurrentIdentifier": true,
+        "hasControlCharacters": false,
+        "matchesObservedPrimary": null,
+        "supplierNetworkShape": false
+      },
+      "startedAtMsValid": true,
+      "networkContext": {
+        "host": "example.com",
+        "protocol": "http",
+        "exactKeys": true
+      },
+      "availableDecisions": {
+        "type": "array",
+        "count": 4,
+        "withinBound": true,
+        "duplicates": false,
+        "choices": [
+          {
+            "tag": "accept"
+          },
+          {
+            "tag": "acceptForSession"
+          },
+          {
+            "tag": "applyNetworkPolicyAmendment",
+            "action": "allow",
+            "hostMatchesExpected": true
+          },
+          {
+            "tag": "cancel"
+          }
+        ]
+      }
+    }
+  ],
+  "terminalFailure": {
+    "classification": "UNCLASSIFIED",
+    "code": "UNCLASSIFIED",
+    "reason": "UNCLASSIFIED"
+  },
+  "profileElapsedMs": 4650,
+  "profileBudgetMs": 60000,
+  "profileWithinBudget": true,
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-network-runtime-conformance.test.ts": "d04124fa83bec8f402a90532af205838cdabbbb08a6277a193e4eebe9839518c",
+    "packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+    "packages/core/src/approval-store.ts": "4ac5d0197f528a6dce2dfd4cad007b4d806e622553ab921edcf24422fa1e1e91",
+    "packages/core/src/hosted-consent.ts": "13026aed1c6cac03c6d75edb4fc5285a0d970c9b6c9f3a131b0e0575d03d46d8",
+    "packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+    "packages/daemon/src/codex-supervisor.ts": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/daemon/src/supervisor-server.ts": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30"
+  },
+  "sourceStable": true
+}

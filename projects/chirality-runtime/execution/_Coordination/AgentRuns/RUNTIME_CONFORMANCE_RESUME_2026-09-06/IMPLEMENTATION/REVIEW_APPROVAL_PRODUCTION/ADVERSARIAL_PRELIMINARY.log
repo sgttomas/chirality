@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_PRODUCTION/independent.case.ts (38 tests) 11ms
+
+ Test Files  1 passed (1)
+      Tests  38 passed (38)
+   Start at  13:24:01
+   Duration  228ms (transform 66ms, setup 0ms, collect 87ms, tests 11ms, environment 0ms, prepare 31ms)

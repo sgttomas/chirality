@@ -1,0 +1,8 @@
+{
+  "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+  "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+  "tests/codex-containment.test.ts": "96ee102c0fc93f74feb99204cf0edd4c073963a12bcbeca7b09f4b3cfc1385f4",
+  "tests/codex-session.test.ts": "692a585f4f00b0c53c3345338af6a7b65f76f8929735de963040d84a0c39ed4d",
+  "tests/codex-supervisor.test.ts": "199c8bf041cd2c43b8004f142c11376ada63317971eea20cf3076bbde7afe3c5",
+  "tests/exact-boundary-conformance.test.ts": "e7a94692fd3b88a5f73da7171b22f020d956acc2ce5def7f15d5e6e7db836383"
+}

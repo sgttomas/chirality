@@ -1,0 +1,14 @@
+{
+  "AMENDMENT_1.json": true,
+  "BRIEF.md": true,
+  "BRIEF.sha256": true,
+  "CHECKS.log": true,
+  "INPUTS.json": true,
+  "REPORT.md": true,
+  "SOURCE_FREEZE.json": true,
+  "_run_records/TASK_RUN_2026-09-06_P2.md": true,
+  "exact-process-conformance.test.ts.postimage.source": true,
+  "exact-process-conformance.test.ts.preimage.source": true,
+  "process-response-provider.mjs.postimage.source": true,
+  "process-response-provider.mjs.preimage.source": true
+}

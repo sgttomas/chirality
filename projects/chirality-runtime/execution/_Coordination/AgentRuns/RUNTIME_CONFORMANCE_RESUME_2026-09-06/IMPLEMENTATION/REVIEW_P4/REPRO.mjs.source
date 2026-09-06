@@ -1,0 +1,21 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {runInNewContext} from 'node:vm';
+import {spawnSync} from 'node:child_process';
+import {CodexSupervisor} from '/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/dist/codex-supervisor.js';
+import {DelegatedRuntime} from '/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/dist/delegated-runtime.js';
+const identity={canonicalRoot:'/fixture',cwd:'/fixture',accountId:'no-account-test',accountEpoch:1,policyDigest:'fixture'};
+let launches=0;
+const supervisor=CodexSupervisor.controlledForTests({identity,model:'runtime-deterministic',allowUnauthenticatedModel:true,launch:async()=>{launches++;throw Error('must not launch')}});
+const compatibility={compatibilityIdentity:'root-runtime-1',contractBasisSha256:'a'.repeat(64)};
+const runtime=new DelegatedRuntime({daemonId:'exact-role-test',projects:new Map([['role-project',{identity,compatibility,supervisor,consent:{},retirement:{},evidenceClass:'provider-observed'}]])});
+const result={};
+try{await runtime.preflight('role-project','consent:off');result.preflight='unexpected-success'}catch(e){result.preflight=e.message}
+result.launches=launches;
+const text=await readFile('/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-role-conformance.test.ts','utf8');
+const line=text.split('\n').find(l=>l.trim().startsWith('const command ='));
+const allowed='/private/tmp/runtime-conformance-resume-20260906/REVIEW_P4/allowed.txt';
+await writeFile(allowed,'ROLE_SYNTHETIC_READ_BYTES');
+const command=runInNewContext(line+' command',{who:'agent0',allowed,denied:'/private/tmp/runtime-conformance-resume-20260906/REVIEW_P4/absent.txt',readBytes:'ROLE_SYNTHETIC_READ_BYTES',quote:v=>"'"+v.replaceAll("'","'\\''")+"'"});
+const shell=spawnSync('/bin/sh',['-c',command],{encoding:'utf8',timeout:1000});
+result.shell={command,status:shell.status,stdout:shell.stdout,stderr:shell.stderr,readMarker:shell.stdout.split(/\r?\n/).includes('ROLE_agent0_READ_OK')};
+console.log(JSON.stringify(result,null,2));

@@ -1,0 +1,17 @@
+import {readFile,mkdir,writeFile,rm,mkdtemp,realpath,lstat,open,readdir,symlink} from 'node:fs/promises';
+import {constants} from 'node:fs'; import {createHash} from 'node:crypto'; import {join} from 'node:path'; import vm from 'node:vm';
+import ts from '/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/node_modules/typescript/lib/typescript.js';
+const src=await readFile('/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-role-conformance.test.ts','utf8');
+const exact=src.slice(src.indexOf('function nativeSessionMetadata('),src.indexOf("it('requires canonical dated"))+src.slice(src.indexOf('async function readNativeSessionMetadata('),src.indexOf("it('reads only exact owned native SessionMeta"));
+const js=ts.transpile(exact,{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext});
+let opens=0,bytes=0;const observedOpen=async(...args)=>{opens++;const file=await open(...args);const raw=file.read.bind(file);file.read=async(...args)=>{const value=await raw(...args);bytes+=value.bytesRead;return value};return file};
+const read=vm.runInNewContext(js+';readNativeSessionMetadata',{JSON,Error,Date,Buffer,process,constants,createHash,join,lstat,realpath,open:observedOpen,readdir});
+const base=await mkdtemp('/private/tmp/runtime-conformance-resume-20260906/REVIEW_P4/REPAIR_4/synthetic-');
+const child='11111111-1111-1111-1111-111111111111',parent='22222222-2222-2222-2222-222222222222';
+const line=JSON.stringify({type:'session_meta',payload:{id:child,parent_thread_id:parent,cwd:'/fixture',source:{subagent:{thread_spawn:{parent_thread_id:parent,depth:1}}},base_instructions:'discard-this'}});
+const result={};
+try{const dir=join(base,'sessions','2026','09','06');await mkdir(dir,{recursive:true});
+const cases=[['misplaced',join(base,'sessions',`rollout-not-a-date-${child}.jsonl`)],['badFilename',join(dir,`rollout-not-a-date-${child}.jsonl`)],['wrongDepth',join(base,'sessions',`rollout-2026-09-06T12-34-56-${child}.jsonl`)],['wrongDate',join(dir,`rollout-2026-09-07T12-34-56-${child}.jsonl`)]];
+for(const [name,path] of cases){opens=0;bytes=0;await writeFile(path,'INVALID_JSON_DO_NOT_PARSE\n');try{await read(base,child,parent,'/fixture');result[name]={accepted:true}}catch(e){result[name]={accepted:false,error:e.message,opens,bytes}}await rm(path)}
+const valid=join(dir,`rollout-2026-09-06T12-34-56-${child}.jsonl`);await writeFile(valid,line+'\nSYNTHETIC_SECOND_RECORD_MUST_NOT_BE_READ\n');opens=0;bytes=0;const metadata=await read(base,child,parent,'/fixture');result.canonical={accepted:true,metadata,opens,bytes,expectedFirstLineBytes:Buffer.byteLength(line)+1,discardedBaseInstructions:!JSON.stringify(metadata).includes('discard-this')};await rm(valid);await symlink('/dev/null',valid);opens=0;bytes=0;try{await read(base,child,parent,'/fixture');result.symlink={accepted:true}}catch(e){result.symlink={accepted:false,error:e.message,opens,bytes}};
+}finally{await rm(base,{recursive:true,force:true});}console.log(JSON.stringify(result,null,2));

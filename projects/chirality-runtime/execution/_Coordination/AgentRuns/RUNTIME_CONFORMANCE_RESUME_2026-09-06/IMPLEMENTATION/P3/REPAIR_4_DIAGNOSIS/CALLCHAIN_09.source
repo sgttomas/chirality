@@ -1,0 +1,16 @@
+    }
+
+    fn file_system_for<'a>(
+        &'a self,
+        sandbox: Option<&'a FileSystemSandboxContext>,
+    ) -> io::Result<(
+        &'a dyn ExecutorFileSystem,
+        Option<&'a FileSystemSandboxContext>,
+    )> {
+        if sandbox.is_some_and(FileSystemSandboxContext::should_run_in_sandbox) {
+            Ok((self.sandboxed()?, sandbox))
+        } else {
+            Ok((&self.unsandboxed, sandbox))
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "chirality-bounded-manager-return/v1",
+  "derivative": true,
+  "parent": "/root",
+  "instance": "/root/conformance_manager",
+  "role": "WORKING_ITEMS / Agent 1",
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6",
+  "exactServingId": null,
+  "objectiveStatus": "Authorized bounded implementation and read-only diagnosis complete; full conformance unresolved",
+  "sourceFreeze": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/CONFORMANCE_SOURCE_FREEZE_FINAL.json",
+  "sourceFilesVerified": 18,
+  "finalReviewArtifactsVerified": 29,
+  "finalRegistered": {
+    "passed": 560,
+    "skipped": 14,
+    "failed": 0,
+    "suites": 75
+  },
+  "actualPublicPrimaryCancellationCandidate2": "PASS 11 tests, complete bounded audit; optional resolution absent",
+  "actualCandidate3": {
+    "p1": "PASS",
+    "p3Star": "FAIL, with explicit alias EPERM and unchanged monitored files; classifier and absent-file ambiguity remain"
+  },
+  "remainingAcceptedLimbs": 0,
+  "totalLimbs": 18,
+  "nativeImplementation": "STOPPED for owner discussion; read-only proposal complete",
+  "screenedFixtureMaintenance": "Blocked twice; no retry/rerouting or source edits; original records retained",
+  "supplierAccepted": false,
+  "lifecyclePromoted": false,
+  "holdsReleased": false,
+  "mergeAuthorized": false,
+  "furtherManagerWork": "None in this tranche",
+  "handoff": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/SESSION_HANDOFF_FINAL.md",
+  "matrix": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/LIMB_MATRIX_FINAL.json",
+  "publicationIdentity": "Historical artifact identities resolve through original-byte archive by path and SHA256; current presentations are derivative",
+  "telemetry": "Partial, retrospective recording timestamps; token usage unavailable"
+}

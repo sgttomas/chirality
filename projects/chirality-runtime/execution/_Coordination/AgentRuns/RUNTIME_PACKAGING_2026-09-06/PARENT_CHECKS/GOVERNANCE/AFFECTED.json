@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "tools/run_affected_tests.py",
+    "--base",
+    "origin/main"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 19.23,
+  "log": "affected.log",
+  "sha256": "2daa275e1037cbfcb239a90b4364af5ba60157934c350b897f1cb8227b0175b5"
+}

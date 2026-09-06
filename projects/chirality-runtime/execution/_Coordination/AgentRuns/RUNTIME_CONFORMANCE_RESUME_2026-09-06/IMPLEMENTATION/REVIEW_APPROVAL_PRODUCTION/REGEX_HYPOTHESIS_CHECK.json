@@ -1,0 +1,10 @@
+{
+  "hypothesis": "Review briefly suspected end-anchor permits final newline in the new component regexes",
+  "directNodeCheck": {
+    "environmentNewline": false,
+    "portNewline": false,
+    "uuidNewline": false
+  },
+  "disposition": "Withdrawn after direct check; no finding or requested source change",
+  "testImprovement": "Independent denied-case tests assert immediate pendingNetworkApprovals rejection so later turn timeout cannot satisfy denial evidence"
+}

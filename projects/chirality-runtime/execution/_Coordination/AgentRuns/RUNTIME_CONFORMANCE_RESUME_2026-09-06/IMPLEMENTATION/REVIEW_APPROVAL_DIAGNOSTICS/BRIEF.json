@@ -1,0 +1,38 @@
+{
+  "agent": "/root/conformance_manager/review_approval_diagnostics",
+  "parent": "/root/conformance_manager",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "role": "Agent2 ephemeral independent reviewer; instruction-asserted",
+  "executionClass": "delegated-harness-native",
+  "objective": "Independent review of diagnostics-only edits to private/public exact network fixtures; preserve approval behavior, pass/fail, sanitized bounded evidence and identical actor error rethrow. Await author freeze before final tests.",
+  "reads": [
+    "AGENTS.md",
+    "projects/chirality-runtime/AGENTS.md",
+    "projects/chirality-runtime/loop/LOOP_INIT.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/BASIS.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/PLAN.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/**",
+    "Runtime relevant source/tests",
+    "retained exact supplier source read-only"
+  ],
+  "writes": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_APPROVAL_DIAGNOSTICS/**",
+    "/private/tmp/runtime-conformance-resume-20260906/review-approval-diagnostics/**"
+  ],
+  "prohibited": [
+    "delegation",
+    "production or test edits",
+    "network or provider calls",
+    "supplier execution",
+    "build",
+    "git mutation",
+    "acceptance/hold/status/release change"
+  ],
+  "checks": [
+    "exact delta review",
+    "pure/default-skip regression",
+    "strict same-source noemit",
+    "before/after source hashes"
+  ],
+  "timestampUtc": "2026-09-06T19:13:14.991052+00:00"
+}

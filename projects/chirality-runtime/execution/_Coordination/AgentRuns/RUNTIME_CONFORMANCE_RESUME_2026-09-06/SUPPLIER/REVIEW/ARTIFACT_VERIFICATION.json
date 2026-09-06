@@ -1,0 +1,61 @@
+{
+  "timestamp_utc": "2026-09-06T18:40:07.120048+00:00",
+  "artifact_checks": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-app-server",
+      "sha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+      "bytes": 241188752,
+      "matches_manifest": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "bytes": 75471112,
+      "matches_manifest": true
+    }
+  ],
+  "control_preservation": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server",
+      "sha256": "a3ac0445f8fab23c62a97f3c9c8e420f094b67927948c1cfa69390b6e0742f93",
+      "bytes": 241191088,
+      "matches_historical_control": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "bytes": 75471112,
+      "matches_historical_control": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server",
+      "sha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+      "bytes": 241191088,
+      "matches_historical_control": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-code-mode-host",
+      "sha256": "1132f2d954e272fafc77d837e71ddd0918c6ce6487f961e30171413e9011eb81",
+      "bytes": 75471112,
+      "matches_historical_control": true
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supply/app-server",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "bytes": 179721344,
+      "matches_historical_control": true
+    }
+  ],
+  "completion_receipt_sha256": "846e0aa49d8cf87d3c5632735f5f055ad52cb333ce983450ea36cbc4c835b301",
+  "completion_matches_manifest": true,
+  "preflight_matches_manifest": true,
+  "fresh_source_hashes_match": {
+    "codex-rs/core/src/session/session.rs": true,
+    "codex-rs/network-proxy/src/network_policy.rs": true,
+    "codex-rs/core/src/tools/network_approval_tests.rs": true,
+    "codex-rs/sandboxing/src/seatbelt_base_policy.sbpl": true
+  },
+  "candidate2_distinct_from_controls": true,
+  "test_verdict": "pending",
+  "read_only_artifact_review": true
+}

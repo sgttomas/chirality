@@ -1,0 +1,11 @@
+{
+  "authority": "Parent /root via /root/conformance_manager current explicit post-batch REPAIR3 assignment; REPAIR_3_DIAGNOSIS/AMENDMENT.json",
+  "allowedWriteTargets": [
+    "projects/chirality-runtime/tests/exact-role-conformance.test.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P4/REPAIR_3/**"
+  ],
+  "objective": "Exact trusted prompt origins across lifecycle messages plus actual native SessionMeta corroboration",
+  "metadata_read_grant": "Bounded read-only first SessionMeta from exact fixture-owned private CODEX_HOME before cleanup; no symlinks, strict byte/record bounds, exact child/parent/cwd/native source; retained metadata only and actual collab/spawn/wait corroboration; no transcript/account read",
+  "limits": "No production or supplier execution/edit; no default role, no role enforcement or production envelope proof; network file ownership released to approval specialist",
+  "attribution": "OpenAI GPT-6 exact serving ID unavailable; Agent2/nondelegation instruction-asserted"
+}

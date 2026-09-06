@@ -1,0 +1,9 @@
+{
+  "sourceRecheck": "PASS",
+  "drift": {},
+  "sourceEdits": false,
+  "endpointActivity": false,
+  "binaryExecution": false,
+  "controlledTestsRun": false,
+  "staticRegexReproduction": "network#...#UUID rejected by current identifier"
+}

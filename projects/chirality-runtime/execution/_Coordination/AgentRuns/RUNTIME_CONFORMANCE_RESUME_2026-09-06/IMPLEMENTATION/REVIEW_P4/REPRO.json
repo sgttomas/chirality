@@ -1,0 +1,11 @@
+{
+  "preflight": "Verified hosted worker, account continuity or operator provider consent is unavailable",
+  "launches": 0,
+  "shell": {
+    "command": "printf 'ROLE_agent0_START\\n'; if [ \"$(/bin/cat '/private/tmp/runtime-conformance-resume-20260906/REVIEW_P4/allowed.txt')\" = 'ROLE_SYNTHETIC_READ_BYTES' ]; then printf 'ROLE_agent0_READ_OK\\n'; fi; if /bin/cat '/private/tmp/runtime-conformance-resume-20260906/REVIEW_P4/absent.txt' >/dev/null 2>&1; then printf 'ROLE_agent0_DENIAL_FAILED\\n'; else printf 'ROLE_agent0_DENIED\\n'; fi; printf 'ROLE_agent0_FINISH\\n'",
+    "status": 0,
+    "stdout": "ROLE_agent0_START\nROLE_agent0_READ_OK\nROLE_agent0_DENIED\nROLE_agent0_FINISH\n",
+    "stderr": "",
+    "readMarker": true
+  }
+}

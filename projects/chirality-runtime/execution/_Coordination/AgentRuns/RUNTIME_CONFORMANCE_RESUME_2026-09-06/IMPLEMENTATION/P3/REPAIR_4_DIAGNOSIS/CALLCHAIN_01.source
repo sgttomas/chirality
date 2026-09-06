@@ -1,0 +1,39 @@
+        let Some(turn_environment) = resolve_tool_environment(
+            &step_context.environments,
+            selected_environment_id.as_deref(),
+        )?
+        else {
+            return Err(FunctionCallError::RespondToModel(
+                "apply_patch is unavailable in this session".to_string(),
+            ));
+        };
+        let fs = turn_environment.environment.get_filesystem();
+        let sandbox = turn
+            .file_system_sandbox_context(/*additional_permissions*/ None, turn_environment);
+        match codex_apply_patch::verify_apply_patch_args_with_mode(
+            args,
+            turn_environment.cwd(),
+            apply_patch_file_update_mode(&turn),
+            fs.as_ref(),
+            Some(&sandbox),
+        )
+        .await
+        {
+            codex_apply_patch::MaybeApplyPatchVerified::Body(changes) => {
+                let tool_ctx = ToolCtx {
+                    session,
+                    step_context: Arc::clone(&step_context),
+                    call_id,
+                    tool_name,
+                };
+                let content = execute_verified_patch(
+                    changes,
+                    turn_environment.cwd(),
+                    turn_environment.clone(),
+                    Some(&tracker),
+                    tool_ctx,
+                )
+                .await?;
+                Ok(boxed_tool_output(ApplyPatchToolOutput::from_text(content)))
+            }
+            codex_apply_patch::MaybeApplyPatchVerified::CorrectnessError(parse_error) => {

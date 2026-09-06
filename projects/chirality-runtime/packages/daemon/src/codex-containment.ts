@@ -63,7 +63,7 @@ export async function prepareCodexContainment(options: CodexContainmentOptions) 
     sandbox_mode: 'workspace-write',
     sandbox_workspace_write: { writable_roots: [root], network_access: false, exclude_slash_tmp: true, exclude_tmpdir_env_var: true },
     approval_policy: 'never',
-    features: { plugins: false },
+    features: { plugins: false, shell_snapshot: false },
     allow_login_shell: false,
     cli_auth_credentials_store: 'file',
     check_for_update_on_startup: false,
@@ -223,7 +223,7 @@ export async function prepareCodexNativePolicy(options: CodexNativePolicyOptions
   }
   // A deterministic profile identity excludes ephemeral scratch names: scratch is
   // covered only by the canonical project grant, never by a global temp exception.
-  const identity = { version: 5, approvalsReviewer: 'user', canonicalRoot: root, reads, immutableFiles, denied, commandNetworkPosture, networkProxyFeature: commandNetworkPosture !== 'off', network, approvalPolicy, commandNetwork: commandNetworkEnabled, includePlatformDefaults: false, loginShell: false };
+  const identity = { version: 6, shellSnapshot: false, approvalsReviewer: 'user', canonicalRoot: root, reads, immutableFiles, denied, commandNetworkPosture, networkProxyFeature: commandNetworkPosture !== 'off', network, approvalPolicy, commandNetwork: commandNetworkEnabled, includePlatformDefaults: false, loginShell: false };
   const policyDigest = createHash('sha256').update(JSON.stringify(identity)).digest('hex');
   const profileId = `chirality_${policyDigest.slice(0, 24)}`;
   const scratchDirectory = await mkdtemp(join(root, '.chirality-scratch-'));
@@ -244,6 +244,8 @@ export async function prepareCodexNativePolicy(options: CodexNativePolicyOptions
     ['sandbox_workspace_write.writable_roots', [root]], ['sandbox_workspace_write.network_access', commandNetworkEnabled],
     ['sandbox_workspace_write.exclude_slash_tmp', true], ['sandbox_workspace_write.exclude_tmpdir_env_var', true],
     ['features.network_proxy', commandNetworkPosture !== 'off'],
+    // Snapshot creation launches its own login shell before tool sandboxing.
+    ['features.shell_snapshot', false],
     ['features.plugins', false], ['features.remote_plugin', false], ['analytics.enabled', false], ['feedback.enabled', false],
     ['projects', { [root]: { trust_level: 'trusted' } }],
     ['permissions', { [profileId]: expectedPermissions }],

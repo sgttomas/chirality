@@ -1,0 +1,5 @@
+# Lossless evidence presentation
+
+Raw command output and patch text may contain trailing whitespace or extra terminal blank lines. RAW_EVIDENCE_ORIGINALS.json stores the exact original bytes as base64, their original SHA256, and each current presentation SHA256. Decoding verifies every original and reconstructs it losslessly. Human-readable files now have whitespace-only normalization; patches should be restored from original_base64 before mechanical application.
+
+IMPLEMENTER/EVIDENCE_SHA256.json, IMPLEMENTATION_FAN_IN.json, REVIEW/MANIFEST.json, and original source checks retain their original-byte claims. They were verified before normalization and have not been rewritten as if the original bytes differed. Where a referenced evidence path has normalized presentation, resolve its original identity through RAW_EVIDENCE_ORIGINALS.json. Production source/test/manifests and authority records were not normalized by this operation. FINAL_MANIFEST_SHA256.json binds the current complete presentation package after manager closeout.

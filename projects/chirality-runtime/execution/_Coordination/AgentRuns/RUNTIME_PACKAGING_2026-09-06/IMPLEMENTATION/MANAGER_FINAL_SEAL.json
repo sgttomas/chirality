@@ -1,0 +1,16 @@
+{
+  "verdict": "PACKAGING_REPAIR_VALIDATED_FOR_PARENT_FAN_IN",
+  "manifest_sha256": "da62a20cbcf53f7118c1528426616d83e60245c399bc4ab0feccb9c8d41084a3",
+  "manifest_members": 50,
+  "return_sha256": "55fe85ccd692f6351316bd75d7110a2faf12ca4f8932318cfb61137d07328750",
+  "runtime_summary_sha256": "82ededea89b4f964c4b78d5471c0a9cf3d8b803a91cbc4b77e7f850a8f580406",
+  "production_hashes": {
+    "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts": "d76120502d5cc724ca2782be933a166f10ff092ef8a440e5bbadea5aed8a6391",
+    "projects/chirality-runtime/tests/pi-packaging.test.ts": "b6417a32a3f2fa568bfa650f1c5975c2dc16ca0567025fce4e708a42e7032769",
+    "projects/chirality-runtime/package.json": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+    "projects/chirality-runtime/package-lock.json": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf"
+  },
+  "lossless_originals_verified": 12,
+  "review": "ADMIT",
+  "write_ownership": "Only four declared production paths and IMPLEMENTATION evidence; unrelated authorized parent continuation is excluded from this manager scope audit."
+}

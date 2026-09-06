@@ -1,0 +1,19 @@
+{
+  "AMENDMENT.json": true,
+  "CHECKS.json": true,
+  "INPUTS.json": true,
+  "INTERIM_1/CHECKS.json": true,
+  "INTERIM_1/SOURCE_FREEZE.json": true,
+  "INTERIM_1/codex-supervisor.ts.source": true,
+  "INTERIM_1/codex-transport-lifecycle.test.ts.source": true,
+  "INTERIM_1/codex-transport-lifecycle.ts.source": true,
+  "INTERIM_1/exact-process-runtime-conformance.test.ts.source": true,
+  "REPORT.md": true,
+  "SOURCE_FREEZE.json": true,
+  "codex-supervisor.ts.after.source": true,
+  "codex-supervisor.ts.before.source": true,
+  "codex-transport-lifecycle.test.ts.after.source": true,
+  "codex-transport-lifecycle.ts.after.source": true,
+  "exact-process-runtime-conformance.test.ts.after.source": true,
+  "exact-process-runtime-conformance.test.ts.before.source": true
+}

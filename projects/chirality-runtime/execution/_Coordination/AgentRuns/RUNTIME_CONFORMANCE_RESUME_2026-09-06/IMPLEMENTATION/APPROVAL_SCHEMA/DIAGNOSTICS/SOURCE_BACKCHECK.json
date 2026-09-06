@@ -1,0 +1,32 @@
+{
+  "allUntouchedReadPinsStable": true,
+  "matches": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/AGENTS.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/AGENTS.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/loop/LOOP_INIT.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/BRIEF.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/BASIS.json": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/PLAN.md": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/approval-store.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/codex-session.test.ts": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/approval-store.test.ts": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/network_approval.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/approvals.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session/mod.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/approvals.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/bespoke_event_handling.rs": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-protocol/src/protocol/v2/item.rs": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/CHECK.json": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/EXACT_NETWORK_CANARY.json": true,
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PRIVATE_ASK_ALLOW_CANDIDATE2_01/output.log": true,
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/candidate2-artifacts/MANIFEST.json": true
+  },
+  "knownNoImplicitAnyErrorsInBefore": {
+    "exact-network-conformance.test.ts": true,
+    "exact-network-runtime-conformance.test.ts": true
+  },
+  "scratchCorrection": "An empty file was accidentally created at /private/tmp/runtime-conformance-resume-20260906/APPROVAL_SCHEMA_DIAGNOSTICS.tmp and immediately verified empty and removed; retained scratch is within APPROVAL_SCHEMA/."
+}

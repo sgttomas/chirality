@@ -26,7 +26,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
   if(r.method==='config/read'){
    configReads++;if(r.params.includeLayers!==true||r.params.cwd!=='/private/tmp')process.exit(3);
    const selected={filesystem:{'/usr':'read','/private/tmp':'write','/private/protected':'deny'},network:{enabled:posture!=="off"}};
-   const config={permissions:{'bound-profile':selected},approvals_reviewer:'user',approval_policy:posture==='ask-per-destination'?'on-request':'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,network_proxy:posture!=='off'},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null,projects:{'/private/tmp':{trust_level:'trusted'}}};
+   const config={permissions:{'bound-profile':selected},approvals_reviewer:'user',approval_policy:posture==='ask-per-destination'?'on-request':'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,shell_snapshot:false,network_proxy:posture!=='off'},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null,projects:{'/private/tmp':{trust_level:'trusted'}}};
    if(mode==='named-null-defaults'||mode==='named-nonnull-default'||mode==='named-unknown-default'){
     selected.description=null;selected.extends=null;selected.workspace_roots=null;selected.filesystem.glob_scan_max_depth=null;
     for(const field of ['proxy_url','enable_socks5','socks_url','enable_socks5_udp','allow_upstream_proxy','dangerously_allow_non_loopback_proxy','dangerously_allow_all_unix_sockets','mode','domains','unix_sockets','allow_local_binding','mitm'])selected.network[field]=null;
@@ -40,6 +40,9 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    if(mode==='named-proxy-missing')delete config.features.network_proxy;
    if(mode==='named-proxy-null')config.features.network_proxy=null;
    if(mode==='named-proxy-wrong'||(mode==='named-proxy-drift'&&configReads>=3))config.features.network_proxy=posture==='off';
+   if(mode==='named-snapshot-missing')delete config.features.shell_snapshot;
+   if(mode==='named-snapshot-null')config.features.shell_snapshot=null;
+   if(mode==='named-snapshot-true'||(mode.startsWith('named-snapshot-drift')&&configReads>=3))config.features.shell_snapshot=true;
    if(mode==='named-remote-plugin')config.features.remote_plugin=true;
    if(mode==='named-extra'||(mode==='named-drift'&&configReads>=3))selected.filesystem['/extra']='read';
    if(mode==='named-network')selected.network.enabled=true;
@@ -319,6 +322,100 @@ async function networkActor(posture: "off" | "ask-per-destination" | "on" = "ask
   const prompt = (id: string | number, change = {}) => send({ id, method: "item/commandExecution/requestApproval", params: { threadId: "network-thread", turnId: "network-turn", itemId: "network-item", startedAtMs: 1, networkApprovalContext: { host: "example.com", protocol: "https" }, availableDecisions: ["accept", "decline", "acceptForSession"], ...change } });
   return { actor, send, replies, prompt, stdin };
 }
+const supplierNetworkUuid = "00000000-0000-4000-8000-000000000000";
+const supplierPolicyChoice = (host = "example.com", action = "allow") => ({ applyNetworkPolicyAmendment: { network_policy_amendment: { host, action } } });
+function supplierNetworkPrompt(overrides: Record<string, unknown> = {}) {
+  return { itemId: `network#local#http#example.com#80#${supplierNetworkUuid}`, environmentId: "local", networkApprovalContext: { host: "example.com", protocol: "http" }, availableDecisions: ["accept", "acceptForSession", supplierPolicyChoice(), "cancel"], ...overrides };
+}
+it("accepts the observed supplier network callback shape without inventing decline or executing policy amendments", async () => {
+  const f = await networkActor();
+  try {
+    const params = supplierNetworkPrompt();
+    f.prompt(101, params); f.prompt(101, params);
+    expect(f.replies).toEqual([]);
+    const prompts = f.actor.pendingNetworkApprovals(); expect(prompts).toHaveLength(1);
+    expect(prompts[0]).toMatchObject({ threadId: "network-thread", turnId: "network-turn", networkApprovalContext: { host: "example.com", protocol: "http" }, availableDecisions: ["allow", "acceptForSession"] });
+    for (const unsupported of ["deny", "cancel", "applyNetworkPolicyAmendment"] as const) await expect(f.actor.replyNetworkApproval(prompts[0]!.approvalId, unsupported as "deny")).rejects.toThrow();
+    expect(f.replies).toEqual([]);
+    await f.actor.replyNetworkApproval(prompts[0]!.approvalId, "allow");
+    expect(f.replies).toEqual([{ id: 101, result: { decision: "accept" } }]);
+    f.prompt(101, params);
+    await expect(f.actor.waitTurn("network-turn")).rejects.toThrow();
+    expect(f.replies).toHaveLength(1);
+  } finally { await f.actor.close(); }
+});
+it.each([["http", "http"], ["https", "https"], ["socks5Tcp", "socks5-tcp"], ["socks5Udp", "socks5-udp"]])("correlates supplier %s context with its exact %s label", async (context, label) => {
+  const f = await networkActor();
+  try {
+    f.prompt(102, supplierNetworkPrompt({ itemId: `network#local#${label}#example.com#65535#${supplierNetworkUuid}`, networkApprovalContext: { host: "example.com", protocol: context } }));
+    expect(f.actor.pendingNetworkApprovals()).toHaveLength(1); expect(f.replies).toEqual([]);
+  } finally { await f.actor.close(); }
+});
+it("allows the bounded maximum supplier token and lowercase host correlation without rewriting signature input", async () => {
+  const f = await networkActor();
+  try {
+    const host = [...Array(3).fill("a".repeat(63)), "b".repeat(61)].join(".");
+    const environmentId = "e".repeat(128), itemId = `network#${environmentId}#socks5-tcp#${host}#65535#${supplierNetworkUuid}`;
+    expect(host).toHaveLength(253); expect(itemId).toHaveLength(444);
+    const params = supplierNetworkPrompt({ environmentId, itemId, networkApprovalContext: { host: host.toUpperCase(), protocol: "socks5Tcp" }, availableDecisions: ["accept", supplierPolicyChoice(host.toUpperCase(), "deny"), "cancel"] });
+    f.prompt(103, params); expect(f.actor.pendingNetworkApprovals()).toHaveLength(1); expect(f.replies).toEqual([]);
+    // Changing even an omitted known policy option must conflict with the full original request signature.
+    f.prompt(103, { ...params, availableDecisions: ["accept", supplierPolicyChoice(host.toUpperCase(), "allow"), "cancel"] });
+    await expect(f.actor.waitTurn("network-turn")).rejects.toThrow("Conflicting"); expect(f.replies).toEqual([]);
+  } finally { await f.actor.close(); }
+});
+it("rejects malformed, unbounded and inconsistent supplier identifiers before any reply", async () => {
+  const item = (environment = "local", protocol = "http", host = "example.com", port = "80", uuid = supplierNetworkUuid) => `network#${environment}#${protocol}#${host}#${port}#${uuid}`;
+  const cases: Record<string, unknown>[] = [
+    { itemId: null }, { itemId: {} }, { itemId: "" }, { itemId: "x".repeat(129) },
+    { environmentId: undefined }, { environmentId: null }, { environmentId: "" }, { environmentId: "foreign" }, { environmentId: {} },
+    { itemId: item("e".repeat(129)), environmentId: "e".repeat(129) }, { itemId: item("local\n"), environmentId: "local\n" },
+    { itemId: item("local", "https") }, { itemId: item("local", "socks5_tcp") }, { itemId: item("local", "http", "foreign.example") },
+    ...["-1", "65536", "080", "1e2", "", "00000"].map(port => ({ itemId: item("local", "http", "example.com", port) })),
+    ...["\n", "\r", "\t", "\0", "\u007f", " "].map(control => ({ itemId: item() + control })),
+    { itemId: item() + "#extra" }, { itemId: item().replace("network#", "different#") }, { itemId: item("local", "http", "example.com", "80", "a".repeat(36)) },
+    { itemId: item("local", "http", "example.com", "80", supplierNetworkUuid.replace("4000", "1000")) },
+    { itemId: item("local", "http", "example.com", "80", supplierNetworkUuid.replace("8000", "7000")) },
+    { itemId: item("local", "http", "example.com", "80", "AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA") },
+    { itemId: item("local", "http", "a".repeat(254)), networkApprovalContext: { host: "a".repeat(254), protocol: "http" } },
+    { itemId: "network#" + "x".repeat(438) },
+    { threadId: "foreign" }, { turnId: "foreign" }, { threadId: "network#thread" }, { turnId: "network#turn" },
+    ...["additionalPermissions", "proposedExecpolicyAmendment", "command", "cwd", "commandActions"].map(key => ({ [key]: {} })),
+  ];
+  for (const change of cases) {
+    const f = await networkActor();
+    try { f.prompt(104, supplierNetworkPrompt(change)); expect(() => f.actor.pendingNetworkApprovals()).toThrow(); await expect(f.actor.waitTurn("network-turn")).rejects.toThrow(); expect(f.replies).toEqual([]); }
+    finally { await f.actor.close(); }
+  }
+});
+it("fails closed for unknown or malformed offered objects even when accept is also present", async () => {
+  const invalidChoices: unknown[] = [null, [], {}, 1, true, "future-decision", { futureDecision: {} },
+    { applyNetworkPolicyAmendment: null }, { applyNetworkPolicyAmendment: [] }, { applyNetworkPolicyAmendment: {} },
+    { applyNetworkPolicyAmendment: { network_policy_amendment: [] } }, { applyNetworkPolicyAmendment: { network_policy_amendment: {} } },
+    { ...supplierPolicyChoice(), extra: true },
+    { applyNetworkPolicyAmendment: { network_policy_amendment: { host: "example.com", action: "allow", extra: true } } },
+    { applyNetworkPolicyAmendment: { network_policy_amendment: { host: "example.com", action: "allow" }, extra: true } },
+    supplierPolicyChoice("foreign.example"), supplierPolicyChoice("example.com", "future"),
+    { acceptWithExecpolicyAmendment: { execpolicy_amendment: ["curl"] } },
+  ];
+  for (const choice of invalidChoices) {
+    const f = await networkActor();
+    try { f.prompt(105, supplierNetworkPrompt({ availableDecisions: ["accept", choice, "cancel"] })); expect(() => f.actor.pendingNetworkApprovals()).toThrow(); await expect(f.actor.waitTurn("network-turn")).rejects.toThrow(); expect(f.replies).toEqual([]); }
+    finally { await f.actor.close(); }
+  }
+});
+it("rejects a resolved source-shaped callback replay without sending a grant", async () => {
+  const f = await networkActor();
+  try {
+    const params = supplierNetworkPrompt(); f.prompt("source-request", params);
+    const [prompt] = f.actor.pendingNetworkApprovals();
+    f.send({ method: "serverRequest/resolved", params: { threadId: "network-thread", requestId: "source-request" } });
+    expect(f.actor.pendingNetworkApprovals()).toEqual([]);
+    await expect(f.actor.replyNetworkApproval(prompt!.approvalId, "allow")).rejects.toThrow();
+    f.prompt("source-request", params); await expect(f.actor.waitTurn("network-turn")).rejects.toThrow(); expect(f.replies).toEqual([]);
+  } finally { await f.actor.close(); }
+});
+
 it.each(["allow", "deny", "acceptForSession"] as const)("routes exact attributed-host network choice %s without automatic decisions", async decision => {
   const f = await networkActor();
   try {
@@ -450,6 +547,30 @@ it.each(["named-response-missing", "named-response-auto", "named-response-policy
       await f.session.initialize(); await f.session.verifyNativePolicy(expectedPolicy);
       const request = method === "start" ? f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }) : f.session.resumeThread({ threadId: "thread1", model: "fixture-model", continuityChecked: true });
       await expect(request).rejects.toThrow("Effective thread approval settings");
+    } finally { await f.close(); }
+  }
+});
+
+
+it.each(["off", "ask-per-destination", "on"] as const)("disables shell snapshots for %s and rejects absent, enabled or changed startup authority", async posture => {
+  const expected = { ...expectedPolicy, network: { enabled: posture !== "off" } };
+  for (const mode of ["named", "named-snapshot-missing", "named-snapshot-null", "named-snapshot-true", "named-snapshot-drift-turn", "named-snapshot-drift-resume"]) {
+    const f = fixture(mode, 500, "turn", undefined, posture);
+    try {
+      await f.session.initialize();
+      if (["named-snapshot-missing", "named-snapshot-null", "named-snapshot-true"].includes(mode)) {
+        await expect(f.session.verifyNativePolicy(expected)).rejects.toThrow("Unsafe effective");
+        await expect(f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).rejects.toThrow();
+        continue;
+      }
+      await f.session.verifyNativePolicy(expected);
+      await f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true });
+      if (mode === "named-snapshot-drift-turn") await expect(f.session.startTurn(turn)).rejects.toThrow("Unsafe effective");
+      else if (mode === "named-snapshot-drift-resume") await expect(f.session.resumeThread({ threadId: "thread1", model: "fixture-model", continuityChecked: true })).rejects.toThrow("Unsafe effective");
+      else {
+        const id = await f.session.startTurn(turn); expect((await f.session.waitTurn(id)).status).toBe("completed");
+        await f.session.resumeThread({ threadId: "thread1", model: "fixture-model", continuityChecked: true });
+      }
     } finally { await f.close(); }
   }
 });

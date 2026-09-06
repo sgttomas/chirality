@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "selectionAuthority": "HUMAN priority; AGENT_0 bounded graph",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "parent": "/root HELP_HUMAN",
+  "manager": "/root/packaging_manager WORKING_ITEMS",
+  "delegationClass": "delegated-harness-native",
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving model ID unavailable",
+  "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "branch": "codex/runtime-packaging-integration",
+  "objective": "Repair the Runtime import/bundling boundary behind CI34019371445, preserving accepted API/security behavior",
+  "nodes": [
+    "manager diagnosis",
+    "bounded specialist implementation and regression",
+    "fresh independent specialist review",
+    "manager validated return",
+    "parent aggregate fan-in and continuation handoff"
+  ],
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "concurrency": "Parent currentness/CI/basis checks alongside manager; manager serializes all overlapping source writes",
+  "ownership": {
+    "manager": "Runtime production files explicitly named in manager briefs; run IMPLEMENTATION/**; /private/tmp/runtime-packaging-20260906/manager/**",
+    "parent": "run root orchestration records and PARENT_CHECKS/**; owned scratch"
+  },
+  "gates": [
+    "Observed pre-fix CommonJS failure and post-fix loading/SDK operation",
+    "Manager validates implementation and independent review",
+    "Build/typecheck/registered Runtime tests and applicable governance checks",
+    "Cross-scope repair only through owning session; future merge requires owner direction"
+  ],
+  "exclusions": [
+    "Root/frontend/sibling writes",
+    "supplier builds or source acceptance",
+    "provider/account/operational action",
+    "hold release or lifecycle promotion",
+    "release acceptance"
+  ],
+  "priorHandoff": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/AGENT0_HANDOFF.md"
+}

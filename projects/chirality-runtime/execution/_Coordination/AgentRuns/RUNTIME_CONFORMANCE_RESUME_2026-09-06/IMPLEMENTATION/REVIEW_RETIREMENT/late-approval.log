@@ -1,0 +1,3 @@
+turn error: wait failed
+before late polling failure: {"calls":1,"record":{"turnId":"t","identity":{"canonicalRoot":"/private/tmp/runtime-conformance-resume-20260906/REVIEW_RETIREMENT/state-f1NaTM","cwd":"/private/tmp/runtime-conformance-resume-20260906/REVIEW_RETIREMENT/state-f1NaTM","accountId":"controlled","accountEpoch":1,"policyDigest":"controlled"},"state":"committed","rolePolicyDigest":"b80cc5589848e28953ec229c6a7bc124c65d7f114540b5795708bee072a49117","terminal":{"turnId":"t","workerId":"t","generation":"controlled-generation","outcome":"failed","recordedAt":"2026-09-06T18:58:21.571Z"}}}
+after late polling failure: {"calls":2,"retirementMapSize":1}

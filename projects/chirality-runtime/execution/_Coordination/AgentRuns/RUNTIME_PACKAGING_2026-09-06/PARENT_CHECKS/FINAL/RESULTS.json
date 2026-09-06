@@ -1,0 +1,20 @@
+{
+  "registeredCommand": [
+    "python3",
+    "tools/software_workflow/run_registered_checks.py",
+    "projects/chirality-runtime/software-workflow.json",
+    "--output",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/FINAL/registered.json",
+    "--timeout-seconds",
+    "600"
+  ],
+  "registeredExitCode": 0,
+  "buildCommand": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "buildExitCode": 0,
+  "sourceFiles": 121,
+  "sourceUnchanged": true
+}

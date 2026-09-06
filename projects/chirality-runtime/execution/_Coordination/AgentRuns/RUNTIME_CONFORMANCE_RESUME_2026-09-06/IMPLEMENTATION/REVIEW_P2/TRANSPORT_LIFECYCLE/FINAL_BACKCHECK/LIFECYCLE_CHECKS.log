@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/codex-transport-lifecycle.test.ts (14 tests) 12ms
+
+ Test Files  1 passed (1)
+      Tests  14 passed (14)
+   Start at  13:35:26
+   Duration  896ms (transform 156ms, setup 0ms, collect 620ms, tests 12ms, environment 0ms, prepare 116ms)

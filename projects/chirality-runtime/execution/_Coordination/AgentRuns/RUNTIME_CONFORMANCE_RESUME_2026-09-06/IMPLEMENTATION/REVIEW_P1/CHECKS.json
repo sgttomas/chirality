@@ -1,0 +1,36 @@
+[
+  {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "tests/exact-boundary-conformance.test.ts",
+      "--no-cache"
+    ],
+    "CHIRALITY_RUN_EXACT_BOUNDARY": "0",
+    "exitCode": 0,
+    "elapsedSeconds": 0.515,
+    "log": "check-1.log",
+    "sha256": "8fcacb1112bc1bb6435138eb176ba139a57a124df917352aa32f5ab212c8256c"
+  },
+  {
+    "command": [
+      "./node_modules/.bin/tsc",
+      "--noEmit",
+      "--target",
+      "ES2022",
+      "--module",
+      "NodeNext",
+      "--moduleResolution",
+      "NodeNext",
+      "--strict",
+      "--skipLibCheck",
+      "--esModuleInterop",
+      "tests/exact-boundary-conformance.test.ts"
+    ],
+    "CHIRALITY_RUN_EXACT_BOUNDARY": "0",
+    "exitCode": 0,
+    "elapsedSeconds": 0.456,
+    "log": "check-2.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

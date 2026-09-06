@@ -1,0 +1,10 @@
+{
+  "timestampUtc": "2026-09-06T19:15:55.190685+00:00",
+  "requestedBy": "/root/conformance_manager",
+  "authorization": "Inert line:string annotation for preexisting TS7006 in each owned exact network fixture; retain prior strict fail/compat result; refreeze after strict noemit",
+  "writeScope": [
+    "projects/chirality-runtime/tests/exact-network-conformance.test.ts",
+    "projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts"
+  ],
+  "priorFreeze": "FREEZE_V1.json"
+}

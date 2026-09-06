@@ -1,0 +1,40 @@
+    for (tool_name, guardian) in [
+        ("shell_command", false),
+        ("exec_command", false),
+        ("exec_command", true),
+    ] {
+        for allow_login_shell in [false, true] {
+            let plan = probe(|turn| {
+                set_feature(turn, Feature::ShellTool, /*enabled*/ true);
+                set_feature(turn, Feature::UnifiedExec, tool_name == "exec_command");
+                set_feature(turn, Feature::ShellZshFork, /*enabled*/ false);
+                Arc::make_mut(&mut turn.model_info).shell_type = ConfigShellToolType::ShellCommand;
+                update_config(turn, |config| {
+                    config.permissions.allow_login_shell = !allow_login_shell;
+                });
+                let TurnEnvironmentState::Ready(environment) = turn
+                    .environments
+                    .environments
+                    .first_mut()
+                    .expect("primary environment")
+                else {
+                    panic!("primary environment should be ready");
+                };
+                environment.config_mut().allow_login_shell = allow_login_shell;
+                if guardian {
+                    turn.session_source = codex_protocol::protocol::SessionSource::SubAgent(
+                        codex_protocol::protocol::SubAgentSource::Other(
+                            crate::guardian::GUARDIAN_REVIEWER_NAME.to_string(),
+                        ),
+                    );
+                }
+            })
+            .await;
+
+            assert_eq!(
+                has_parameter(plan.visible_spec(tool_name), "login"),
+                allow_login_shell
+            );
+        }
+    }
+}

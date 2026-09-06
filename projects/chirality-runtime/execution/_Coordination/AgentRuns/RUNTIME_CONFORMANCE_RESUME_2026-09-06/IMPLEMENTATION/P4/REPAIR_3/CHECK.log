@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-role-conformance.test.ts (8 tests | 1 skipped) 15ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed | 1 skipped (8)
+   Start at  13:14:29
+   Duration  337ms (transform 132ms, setup 0ms, collect 187ms, tests 15ms, environment 0ms, prepare 31ms)

@@ -1,0 +1,20 @@
+{
+  "timestampUtc": "2026-09-06T19:56:05.910736+00:00",
+  "requestedBy": "/root/conformance_manager",
+  "actualAgent": "/root/conformance_manager/approval_schema",
+  "role": "Agent2 instruction-asserted; no delegation",
+  "model": "OpenAI GPT-6 exact serving identifier unavailable",
+  "authorization": "Same-test corrections within existing parent ACK/full retirement audit contract, read reviewer sealed findings first. Preserve V1 immutable. No production or native edits.",
+  "sourceBefore": "66df62f4a9f7e5e974d6a8471ed0192296aad8020167929017985d19c64ed2d0",
+  "reviewFindingsSha256": "b0e784467afbf521aa88606384b5a4e25c339bf4e228d7004896561c958d1080",
+  "writeScope": [
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/exact-network-runtime-conformance.test.ts",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/PUBLIC_CANCEL_REPAIR/REPAIR_1/**"
+  ],
+  "required": [
+    "validate exact interrupted ACK true/turn/generation before cancelled",
+    "reject prepared terminal, invalid role digest, invalid optional thread ID per existing coordinator",
+    "negative recomputed digest cases",
+    "pure/strict validation and independent backcheck"
+  ]
+}

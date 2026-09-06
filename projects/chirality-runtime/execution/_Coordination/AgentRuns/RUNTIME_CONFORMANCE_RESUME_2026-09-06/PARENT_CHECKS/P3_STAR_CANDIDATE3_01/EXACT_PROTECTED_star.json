@@ -1,0 +1,4054 @@
+{
+  "schema": "chirality-exact-protected/v1",
+  "suite": "P3-protected",
+  "family": "star",
+  "rule": "packages/*/private.env",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "b2a7e321d1c64794761803ba8895a15fafeeae9ac17c34abce942a82edaf7d4a",
+  "supplySize": 241276384,
+  "accountUsed": false,
+  "modelEvidence": "deterministic-loopback-only",
+  "modelMetadataSlug": "gpt-5.4",
+  "hostedModelUsed": false,
+  "passed": false,
+  "conformanceAcceptance": false,
+  "fixtureTopology": "synthetic user-owned protected files; does not establish immutable system-leaf enforcement",
+  "profileBudgetMs": 60000,
+  "probeBudgetMs": 10000,
+  "sourcesBefore": {
+    "tests/exact-protected-path-conformance.test.ts": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "declaredRules": [
+    "/private/tmp/epc-HPEJTB/p/packages/*/private.env"
+  ],
+  "policyDigest": "434dececf4d24df684ec9412d200a030b17a89dd582d0bf02638421db629ef31",
+  "configSha256": "13ed32ff899ec87648a980bc995dc107466e148b1c0fd52ce7bad0cbf7d7a7eb",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/private/etc/ssl/openssl.cnf": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/epc-HPEJTB/p": "write",
+      "/private/tmp/epc-HPEJTB/b": "deny",
+      "/private/tmp/epc-HPEJTB/b/w": "deny",
+      "/private/tmp/epc-HPEJTB/p/.codex": "deny",
+      "/private/tmp/epc-HPEJTB/p/packages/*/private.env": "deny",
+      "/private/tmp/epc-HPEJTB/p/protected-dir": "deny",
+      "/private/tmp/epc-HPEJTB/p/protected.txt": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "futureBeforeCreation": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283024,
+      "symlink": false
+    },
+    "LATE": {
+      "absent": true
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283025,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283026,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283027,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 77283030,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283028,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283025,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283029,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "matchCreatedAfterCompile": true,
+  "hostBefore": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283024,
+      "symlink": false
+    },
+    "LATE": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283034,
+      "symlink": false
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283025,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283026,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283027,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 77283030,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283028,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283025,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283029,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "policyReadbackVerified": true,
+  "threadId": "01a0784f-3183-70e2-8683-d853efc0d5de",
+  "turnId": "01a0784f-31c0-7d61-ba60-035a2fed9559",
+  "terminalStatus": "completed",
+  "nativeChildren": [
+    {
+      "threadId": "01a0784f-3308-7ba2-a706-fcd36841ade5",
+      "sourceTurnId": "01a0784f-31c0-7d61-ba60-035a2fed9559"
+    }
+  ],
+  "failurePhase": "primary-and-native-actions",
+  "failure": "primary/MATCH must return actual terminal success/access-denial: expected false to be true // Object.is equality",
+  "vendorProcessClosed": true,
+  "vendorStderr": "\u001b[2m2026-09-06T20:00:51.285237Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/a/private.env: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.303106Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/b/private.env: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.320774Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.338270Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/.codex/private.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.356298Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/b/control.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.373229Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/foreign-alias: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.391258Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected-dir/deep/data.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.408609Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.452430Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mExit code: 1\nWall time: 0 seconds\nOutput:\nFailed to write file /private/tmp/epc-HPEJTB/p/packages/c/private.env\n\n\u001b[2m2026-09-06T20:00:51.457079Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mpatch rejected: writing outside of the project; rejected by user approval settings\n\u001b[2m2026-09-06T20:00:51.672560Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/a/private.env: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.690774Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/b/private.env: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.708476Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.727022Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/.codex/private.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.744925Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/b/control.txt: Operation not permitted (os error 1)\n\u001b[2m2026-09-06T20:00:51.762198Z\u001b[0m \u001b[31mERROR\u001b[0m \u001b[2mcodex_core::tools::router\u001b[0m\u001b[2m:\u001b[0m \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mapply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/foreign-alias: Operation not permitted (os error 1)\n\u001b[2m2026-09-06",
+  "vendorStderrBytes": 5038,
+  "probes": [
+    {
+      "who": "primary",
+      "callId": "protected_1",
+      "kind": "probe-shell",
+      "method": "exec_command",
+      "elapsedMs": 69,
+      "output": "Chunk ID: d82e2d\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 155\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROTECTED_primary_START\nPROTECTED_POSITIVE:PASS\nPROTECTED_READ_MATCH:1\nPROTECTED_WRITE_MATCH:1\nPROTECTED_READ_LATE:1\nPROTECTED_WRITE_LATE:1\nPROTECTED_READ_LITERAL:1\nPROTECTED_WRITE_LITERAL:1\nPROTECTED_READ_CONFIG:1\nPROTECTED_WRITE_CONFIG:1\nPROTECTED_READ_BROKER:1\nPROTECTED_WRITE_BROKER:1\nPROTECTED_READ_ALIAS:1\nPROTECTED_WRITE_ALIAS:1\nPROTECTED_READ_DIRECTORY:1\nPROTECTED_WRITE_DIRECTORY:1\nPROTECTED_READ_TRAVERSAL:1\nPROTECTED_WRITE_TRAVERSAL:1\nPROTECTED_WRITE_ABSENT:1\nPROTECTED_TRAVERSE_DIRECTORY:1\nPROTECTED_CREATE_DIRECTORY:1\nPROTECTED_primary_FINISH\n",
+      "outputSha256": "af2cbb6370738bb3464f5f32212d9c7cad939ac9e44e92f435189626eccf239b",
+      "summary": {
+        "started": true,
+        "finished": true,
+        "duplicates": false,
+        "values": {
+          "POSITIVE": "PASS",
+          "READ_MATCH": "1",
+          "WRITE_MATCH": "1",
+          "READ_LATE": "1",
+          "WRITE_LATE": "1",
+          "READ_LITERAL": "1",
+          "WRITE_LITERAL": "1",
+          "READ_CONFIG": "1",
+          "WRITE_CONFIG": "1",
+          "READ_BROKER": "1",
+          "WRITE_BROKER": "1",
+          "READ_ALIAS": "1",
+          "WRITE_ALIAS": "1",
+          "READ_DIRECTORY": "1",
+          "WRITE_DIRECTORY": "1",
+          "READ_TRAVERSAL": "1",
+          "WRITE_TRAVERSAL": "1",
+          "WRITE_ABSENT": "1",
+          "TRAVERSE_DIRECTORY": "1",
+          "CREATE_DIRECTORY": "1"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "callId": "protected_2",
+      "kind": "probe-patch-0",
+      "target": "POSITIVE",
+      "method": "apply_patch",
+      "elapsedMs": 46,
+      "output": "Exit code: 0\nWall time: 0 seconds\nOutput:\nSuccess. Updated the following files:\nA /private/tmp/epc-HPEJTB/p/packages/a/primary-positive-patch.txt\n",
+      "outputSha256": "cbf9f5da443b87b1cbb0c9490beea20277003ba443d168bd4f4ad9cf4165ac05"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_3",
+      "kind": "probe-patch-1",
+      "target": "MATCH",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/a/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "86070feb7f0984c94e4028b15fb55a45fcac34185f1a6c5895757a1971da7282"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_4",
+      "kind": "probe-patch-2",
+      "target": "LATE",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/b/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "22b8967d0483dd77dea5d2d605c591122496bfaa0fa39166a88dd8a582b0ca8f"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_5",
+      "kind": "probe-patch-3",
+      "target": "LITERAL",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected.txt: Operation not permitted (os error 1)",
+      "outputSha256": "4b06ec0e81de500a4da54dbb6984eddd5d087b0a93ba02cfe9abaff4eedcaddd"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_6",
+      "kind": "probe-patch-4",
+      "target": "CONFIG",
+      "method": "apply_patch",
+      "elapsedMs": 17,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/.codex/private.txt: Operation not permitted (os error 1)",
+      "outputSha256": "30a89503fe42deb7588f2f9627dbaffe2b3322e7815c6a2880db1fca2c65c487"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_7",
+      "kind": "probe-patch-5",
+      "target": "BROKER",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/b/control.txt: Operation not permitted (os error 1)",
+      "outputSha256": "a6404c4f4dbec0a2dcd57d9db5131c6e1df03cf322d4085d21d04d87ba23b82a"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_8",
+      "kind": "probe-patch-6",
+      "target": "ALIAS",
+      "method": "apply_patch",
+      "elapsedMs": 17,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/foreign-alias: Operation not permitted (os error 1)",
+      "outputSha256": "e1c359307d18838bab2a5942beba5152bae0955781e69a0c57ea5f1704948520"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_9",
+      "kind": "probe-patch-7",
+      "target": "DIRECTORY",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected-dir/deep/data.txt: Operation not permitted (os error 1)",
+      "outputSha256": "79a4ffd9067c499d13ba3afbf5fb055c93ddb4cb02585e4798bf98553b238fc4"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_10",
+      "kind": "probe-patch-8",
+      "target": "TRAVERSAL",
+      "method": "apply_patch",
+      "elapsedMs": 17,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected.txt: Operation not permitted (os error 1)",
+      "outputSha256": "4b06ec0e81de500a4da54dbb6984eddd5d087b0a93ba02cfe9abaff4eedcaddd"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_11",
+      "kind": "probe-patch-9",
+      "target": "ABSENT",
+      "method": "apply_patch",
+      "elapsedMs": 44,
+      "output": "Exit code: 1\nWall time: 0 seconds\nOutput:\nFailed to write file /private/tmp/epc-HPEJTB/p/packages/c/private.env\n",
+      "outputSha256": "e8ccbb70a0d48ed625075b37bed752b1d7f3c8223f0082a223a26b35f9963d75"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_12",
+      "kind": "probe-patch-10",
+      "target": "FUTURE_DIRECTORY",
+      "method": "apply_patch",
+      "elapsedMs": 4,
+      "output": "patch rejected: writing outside of the project; rejected by user approval settings",
+      "outputSha256": "401a8c1016f0f2b376ebe5f301c3c547251a784704738b1a42b8c7200f1c8fa5"
+    },
+    {
+      "who": "child",
+      "callId": "protected_17",
+      "kind": "probe-shell",
+      "method": "exec_command",
+      "elapsedMs": 64,
+      "output": "Chunk ID: f595a7\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 154\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROTECTED_child_START\nPROTECTED_POSITIVE:PASS\nPROTECTED_READ_MATCH:1\nPROTECTED_WRITE_MATCH:1\nPROTECTED_READ_LATE:1\nPROTECTED_WRITE_LATE:1\nPROTECTED_READ_LITERAL:1\nPROTECTED_WRITE_LITERAL:1\nPROTECTED_READ_CONFIG:1\nPROTECTED_WRITE_CONFIG:1\nPROTECTED_READ_BROKER:1\nPROTECTED_WRITE_BROKER:1\nPROTECTED_READ_ALIAS:1\nPROTECTED_WRITE_ALIAS:1\nPROTECTED_READ_DIRECTORY:1\nPROTECTED_WRITE_DIRECTORY:1\nPROTECTED_READ_TRAVERSAL:1\nPROTECTED_WRITE_TRAVERSAL:1\nPROTECTED_WRITE_ABSENT:1\nPROTECTED_TRAVERSE_DIRECTORY:1\nPROTECTED_CREATE_DIRECTORY:1\nPROTECTED_child_FINISH\n",
+      "outputSha256": "9de3eebb354706bd6fa6d3aa1ea969ef741f4f480e80bf132adda6ffde9e8a4e",
+      "summary": {
+        "started": true,
+        "finished": true,
+        "duplicates": false,
+        "values": {
+          "POSITIVE": "PASS",
+          "READ_MATCH": "1",
+          "WRITE_MATCH": "1",
+          "READ_LATE": "1",
+          "WRITE_LATE": "1",
+          "READ_LITERAL": "1",
+          "WRITE_LITERAL": "1",
+          "READ_CONFIG": "1",
+          "WRITE_CONFIG": "1",
+          "READ_BROKER": "1",
+          "WRITE_BROKER": "1",
+          "READ_ALIAS": "1",
+          "WRITE_ALIAS": "1",
+          "READ_DIRECTORY": "1",
+          "WRITE_DIRECTORY": "1",
+          "READ_TRAVERSAL": "1",
+          "WRITE_TRAVERSAL": "1",
+          "WRITE_ABSENT": "1",
+          "TRAVERSE_DIRECTORY": "1",
+          "CREATE_DIRECTORY": "1"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "callId": "protected_18",
+      "kind": "probe-patch-0",
+      "target": "POSITIVE",
+      "method": "apply_patch",
+      "elapsedMs": 48,
+      "output": "Exit code: 0\nWall time: 0 seconds\nOutput:\nSuccess. Updated the following files:\nA /private/tmp/epc-HPEJTB/p/packages/a/child-positive-patch.txt\n",
+      "outputSha256": "0b5cfaab42a5f06bea655c26d1b4d72c213c9c9b2bfdad6f4051e1c792b4e9cd"
+    },
+    {
+      "who": "child",
+      "callId": "protected_19",
+      "kind": "probe-patch-1",
+      "target": "MATCH",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/a/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "86070feb7f0984c94e4028b15fb55a45fcac34185f1a6c5895757a1971da7282"
+    },
+    {
+      "who": "child",
+      "callId": "protected_20",
+      "kind": "probe-patch-2",
+      "target": "LATE",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/packages/b/private.env: Operation not permitted (os error 1)",
+      "outputSha256": "22b8967d0483dd77dea5d2d605c591122496bfaa0fa39166a88dd8a582b0ca8f"
+    },
+    {
+      "who": "child",
+      "callId": "protected_21",
+      "kind": "probe-patch-3",
+      "target": "LITERAL",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected.txt: Operation not permitted (os error 1)",
+      "outputSha256": "4b06ec0e81de500a4da54dbb6984eddd5d087b0a93ba02cfe9abaff4eedcaddd"
+    },
+    {
+      "who": "child",
+      "callId": "protected_22",
+      "kind": "probe-patch-4",
+      "target": "CONFIG",
+      "method": "apply_patch",
+      "elapsedMs": 19,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/.codex/private.txt: Operation not permitted (os error 1)",
+      "outputSha256": "30a89503fe42deb7588f2f9627dbaffe2b3322e7815c6a2880db1fca2c65c487"
+    },
+    {
+      "who": "child",
+      "callId": "protected_23",
+      "kind": "probe-patch-5",
+      "target": "BROKER",
+      "method": "apply_patch",
+      "elapsedMs": 17,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/b/control.txt: Operation not permitted (os error 1)",
+      "outputSha256": "a6404c4f4dbec0a2dcd57d9db5131c6e1df03cf322d4085d21d04d87ba23b82a"
+    },
+    {
+      "who": "child",
+      "callId": "protected_24",
+      "kind": "probe-patch-6",
+      "target": "ALIAS",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/foreign-alias: Operation not permitted (os error 1)",
+      "outputSha256": "e1c359307d18838bab2a5942beba5152bae0955781e69a0c57ea5f1704948520"
+    },
+    {
+      "who": "child",
+      "callId": "protected_25",
+      "kind": "probe-patch-7",
+      "target": "DIRECTORY",
+      "method": "apply_patch",
+      "elapsedMs": 17,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected-dir/deep/data.txt: Operation not permitted (os error 1)",
+      "outputSha256": "79a4ffd9067c499d13ba3afbf5fb055c93ddb4cb02585e4798bf98553b238fc4"
+    },
+    {
+      "who": "child",
+      "callId": "protected_26",
+      "kind": "probe-patch-8",
+      "target": "TRAVERSAL",
+      "method": "apply_patch",
+      "elapsedMs": 18,
+      "output": "apply_patch verification failed: Failed to read file to update /private/tmp/epc-HPEJTB/p/protected.txt: Operation not permitted (os error 1)",
+      "outputSha256": "4b06ec0e81de500a4da54dbb6984eddd5d087b0a93ba02cfe9abaff4eedcaddd"
+    },
+    {
+      "who": "child",
+      "callId": "protected_27",
+      "kind": "probe-patch-9",
+      "target": "ABSENT",
+      "method": "apply_patch",
+      "elapsedMs": 43,
+      "output": "Exit code: 1\nWall time: 0 seconds\nOutput:\nFailed to write file /private/tmp/epc-HPEJTB/p/packages/c/private.env\n",
+      "outputSha256": "e8ccbb70a0d48ed625075b37bed752b1d7f3c8223f0082a223a26b35f9963d75"
+    },
+    {
+      "who": "child",
+      "callId": "protected_28",
+      "kind": "probe-patch-10",
+      "target": "FUTURE_DIRECTORY",
+      "method": "apply_patch",
+      "elapsedMs": 4,
+      "output": "patch rejected: writing outside of the project; rejected by user approval settings",
+      "outputSha256": "401a8c1016f0f2b376ebe5f301c3c547251a784704738b1a42b8c7200f1c8fa5"
+    }
+  ],
+  "peerFailures": [],
+  "nativeToolOutputs": [
+    {
+      "who": "primary",
+      "callId": "protected_14",
+      "kind": "spawn",
+      "output": "{\"agent_id\":\"01a0784f-3308-7ba2-a706-fcd36841ade5\",\"nickname\":\"Locke\"}"
+    },
+    {
+      "who": "primary",
+      "callId": "protected_16",
+      "kind": "wait",
+      "output": "{\"status\":{\"01a0784f-3308-7ba2-a706-fcd36841ade5\":{\"completed\":\"PROTECTED_CHILD_COMPLETE\"}},\"timed_out\":false}"
+    }
+  ],
+  "advertisedExecSchemas": [
+    {
+      "who": "primary",
+      "sha256": "2db77de165c34cbd00eda052c9124fa605c6375f155b3296c8acd5658f2d34a9",
+      "tool": {
+        "type": "function",
+        "name": "exec_command",
+        "description": "Runs a command in a PTY, returning output or a session ID for ongoing interaction.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cmd": {
+              "type": "string",
+              "description": "Shell command to execute."
+            },
+            "justification": {
+              "type": "string",
+              "description": "User-facing approval question for `require_escalated`; omit otherwise."
+            },
+            "max_output_tokens": {
+              "type": "number",
+              "description": "Output token budget. Defaults to 10000 tokens; larger requests may be capped by policy."
+            },
+            "prefix_rule": {
+              "type": "array",
+              "description": "Reusable approval prefix for `cmd`, only with `sandbox_permissions: \"require_escalated\"`; for example [\"git\", \"pull\"].",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sandbox_permissions": {
+              "type": "string",
+              "description": "Per-command sandbox override. Defaults to `use_default`; use `require_escalated` for unsandboxed execution.",
+              "enum": [
+                "use_default",
+                "require_escalated"
+              ]
+            },
+            "shell": {
+              "type": "string",
+              "description": "Shell binary to launch. Defaults to the user's default shell."
+            },
+            "tty": {
+              "type": "boolean",
+              "description": "True allocates a PTY for the command; false or omitted uses plain pipes."
+            },
+            "workdir": {
+              "type": "string",
+              "description": "Working directory for the command. Defaults to the turn cwd."
+            },
+            "yield_time_ms": {
+              "type": "number",
+              "description": "Wait before yielding output. Defaults to 10000 ms; effective range is 250-30000 ms."
+            }
+          },
+          "required": [
+            "cmd"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "who": "child",
+      "sha256": "2db77de165c34cbd00eda052c9124fa605c6375f155b3296c8acd5658f2d34a9",
+      "tool": {
+        "type": "function",
+        "name": "exec_command",
+        "description": "Runs a command in a PTY, returning output or a session ID for ongoing interaction.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cmd": {
+              "type": "string",
+              "description": "Shell command to execute."
+            },
+            "justification": {
+              "type": "string",
+              "description": "User-facing approval question for `require_escalated`; omit otherwise."
+            },
+            "max_output_tokens": {
+              "type": "number",
+              "description": "Output token budget. Defaults to 10000 tokens; larger requests may be capped by policy."
+            },
+            "prefix_rule": {
+              "type": "array",
+              "description": "Reusable approval prefix for `cmd`, only with `sandbox_permissions: \"require_escalated\"`; for example [\"git\", \"pull\"].",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sandbox_permissions": {
+              "type": "string",
+              "description": "Per-command sandbox override. Defaults to `use_default`; use `require_escalated` for unsandboxed execution.",
+              "enum": [
+                "use_default",
+                "require_escalated"
+              ]
+            },
+            "shell": {
+              "type": "string",
+              "description": "Shell binary to launch. Defaults to the user's default shell."
+            },
+            "tty": {
+              "type": "boolean",
+              "description": "True allocates a PTY for the command; false or omitted uses plain pipes."
+            },
+            "workdir": {
+              "type": "string",
+              "description": "Working directory for the command. Defaults to the turn cwd."
+            },
+            "yield_time_ms": {
+              "type": "number",
+              "description": "Wait before yielding output. Defaults to 10000 ms; effective range is 250-30000 ms."
+            }
+          },
+          "required": [
+            "cmd"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "patchAdvertisements": [
+    {
+      "who": "primary",
+      "request": 2,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 3,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 4,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 5,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 6,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 7,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 8,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 9,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 10,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 11,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "primary",
+      "request": 12,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        },
+        {
+          "type": "tool_search",
+          "name": null,
+          "namespace": null,
+          "required": [
+            "query"
+          ],
+          "propertyNames": [
+            "limit",
+            "query"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 18,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 19,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 20,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 21,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 22,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 23,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 24,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 25,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 26,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 27,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    },
+    {
+      "who": "child",
+      "request": 28,
+      "metadata": [
+        {
+          "type": "function",
+          "name": "exec_command",
+          "namespace": null,
+          "required": [
+            "cmd"
+          ],
+          "propertyNames": [
+            "cmd",
+            "justification",
+            "max_output_tokens",
+            "prefix_rule",
+            "sandbox_permissions",
+            "shell",
+            "tty",
+            "workdir",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "write_stdin",
+          "namespace": null,
+          "required": [
+            "session_id"
+          ],
+          "propertyNames": [
+            "chars",
+            "max_output_tokens",
+            "session_id",
+            "yield_time_ms"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_plan",
+          "namespace": null,
+          "required": [
+            "plan"
+          ],
+          "propertyNames": [
+            "explanation",
+            "plan"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "request_user_input",
+          "namespace": null,
+          "required": [
+            "questions"
+          ],
+          "propertyNames": [
+            "questions"
+          ],
+          "format": null
+        },
+        {
+          "type": "custom",
+          "name": "apply_patch",
+          "namespace": null,
+          "required": null,
+          "propertyNames": null,
+          "format": {
+            "type": "grammar",
+            "syntax": "lark",
+            "definitionSha256": "d6367f4826ed608c424b0a308f3d6163527df63c22513d089b91863552f8bfeb"
+          }
+        },
+        {
+          "type": "function",
+          "name": "view_image",
+          "namespace": null,
+          "required": [
+            "path"
+          ],
+          "propertyNames": [
+            "detail",
+            "path"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "get_goal",
+          "namespace": null,
+          "required": [],
+          "propertyNames": [],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "create_goal",
+          "namespace": null,
+          "required": [
+            "objective"
+          ],
+          "propertyNames": [
+            "objective",
+            "token_budget"
+          ],
+          "format": null
+        },
+        {
+          "type": "function",
+          "name": "update_goal",
+          "namespace": null,
+          "required": [
+            "status"
+          ],
+          "propertyNames": [
+            "status"
+          ],
+          "format": null
+        }
+      ],
+      "selectedSha256": "9930c828028954c8594455d64bcbb6c70d9ba3edc5c5e047012e814ddfe0b105",
+      "selectedSchema": {
+        "type": "custom",
+        "name": "apply_patch",
+        "description": "The `apply_patch` tool can be used to edit files. This is a FREEFORM tool, so do not wrap the patch in JSON.",
+        "format": {
+          "type": "grammar",
+          "syntax": "lark",
+          "definition": "start: begin_patch hunk+ end_patch\nbegin_patch: \"*** Begin Patch\" LF\nend_patch: \"*** End Patch\" LF?\n\nhunk: add_hunk | delete_hunk | update_hunk\nadd_hunk: \"*** Add File: \" filename LF add_line+\ndelete_hunk: \"*** Delete File: \" filename LF\nupdate_hunk: \"*** Update File: \" filename LF change_move? change?\n\nfilename: /(.+)/\nadd_line: \"+\" /(.*)/ LF -> line\n\nchange_move: \"*** Move to: \" filename LF\nchange: (change_context | change_line)+ eof_line?\nchange_context: (\"@@\" | \"@@ \" /(.+)/) LF\nchange_line: (\"+\" | \"-\" | \" \") /(.*)/ LF\neof_line: \"*** End of File\" LF\n\n%import common.LF\n"
+        }
+      }
+    }
+  ],
+  "issuedCalls": [
+    {
+      "callId": "protected_1",
+      "who": "primary",
+      "kind": "probe-shell",
+      "startedAt": 1788724851155,
+      "method": "exec_command"
+    },
+    {
+      "callId": "protected_2",
+      "who": "primary",
+      "kind": "probe-patch-0",
+      "startedAt": 1788724851224,
+      "method": "apply_patch",
+      "target": "POSITIVE"
+    },
+    {
+      "callId": "protected_3",
+      "who": "primary",
+      "kind": "probe-patch-1",
+      "startedAt": 1788724851270,
+      "method": "apply_patch",
+      "target": "MATCH"
+    },
+    {
+      "callId": "protected_4",
+      "who": "primary",
+      "kind": "probe-patch-2",
+      "startedAt": 1788724851288,
+      "method": "apply_patch",
+      "target": "LATE"
+    },
+    {
+      "callId": "protected_5",
+      "who": "primary",
+      "kind": "probe-patch-3",
+      "startedAt": 1788724851306,
+      "method": "apply_patch",
+      "target": "LITERAL"
+    },
+    {
+      "callId": "protected_6",
+      "who": "primary",
+      "kind": "probe-patch-4",
+      "startedAt": 1788724851324,
+      "method": "apply_patch",
+      "target": "CONFIG"
+    },
+    {
+      "callId": "protected_7",
+      "who": "primary",
+      "kind": "probe-patch-5",
+      "startedAt": 1788724851341,
+      "method": "apply_patch",
+      "target": "BROKER"
+    },
+    {
+      "callId": "protected_8",
+      "who": "primary",
+      "kind": "probe-patch-6",
+      "startedAt": 1788724851359,
+      "method": "apply_patch",
+      "target": "ALIAS"
+    },
+    {
+      "callId": "protected_9",
+      "who": "primary",
+      "kind": "probe-patch-7",
+      "startedAt": 1788724851376,
+      "method": "apply_patch",
+      "target": "DIRECTORY"
+    },
+    {
+      "callId": "protected_10",
+      "who": "primary",
+      "kind": "probe-patch-8",
+      "startedAt": 1788724851394,
+      "method": "apply_patch",
+      "target": "TRAVERSAL"
+    },
+    {
+      "callId": "protected_11",
+      "who": "primary",
+      "kind": "probe-patch-9",
+      "startedAt": 1788724851411,
+      "method": "apply_patch",
+      "target": "ABSENT"
+    },
+    {
+      "callId": "protected_12",
+      "who": "primary",
+      "kind": "probe-patch-10",
+      "startedAt": 1788724851455,
+      "method": "apply_patch",
+      "target": "FUTURE_DIRECTORY"
+    },
+    {
+      "callId": "fixture_search_13",
+      "who": "primary",
+      "kind": "search-spawn"
+    },
+    {
+      "callId": "protected_14",
+      "who": "primary",
+      "kind": "spawn",
+      "startedAt": 1788724851462,
+      "method": "spawn_agent",
+      "namespace": "multi_agent_v1"
+    },
+    {
+      "callId": "fixture_search_15",
+      "who": "primary",
+      "kind": "search-wait"
+    },
+    {
+      "callId": "protected_16",
+      "who": "primary",
+      "kind": "wait",
+      "startedAt": 1788724851542,
+      "method": "wait_agent",
+      "namespace": "multi_agent_v1"
+    },
+    {
+      "callId": "protected_17",
+      "who": "child",
+      "kind": "probe-shell",
+      "startedAt": 1788724851545,
+      "method": "exec_command"
+    },
+    {
+      "callId": "protected_18",
+      "who": "child",
+      "kind": "probe-patch-0",
+      "startedAt": 1788724851609,
+      "method": "apply_patch",
+      "target": "POSITIVE"
+    },
+    {
+      "callId": "protected_19",
+      "who": "child",
+      "kind": "probe-patch-1",
+      "startedAt": 1788724851657,
+      "method": "apply_patch",
+      "target": "MATCH"
+    },
+    {
+      "callId": "protected_20",
+      "who": "child",
+      "kind": "probe-patch-2",
+      "startedAt": 1788724851675,
+      "method": "apply_patch",
+      "target": "LATE"
+    },
+    {
+      "callId": "protected_21",
+      "who": "child",
+      "kind": "probe-patch-3",
+      "startedAt": 1788724851693,
+      "method": "apply_patch",
+      "target": "LITERAL"
+    },
+    {
+      "callId": "protected_22",
+      "who": "child",
+      "kind": "probe-patch-4",
+      "startedAt": 1788724851711,
+      "method": "apply_patch",
+      "target": "CONFIG"
+    },
+    {
+      "callId": "protected_23",
+      "who": "child",
+      "kind": "probe-patch-5",
+      "startedAt": 1788724851730,
+      "method": "apply_patch",
+      "target": "BROKER"
+    },
+    {
+      "callId": "protected_24",
+      "who": "child",
+      "kind": "probe-patch-6",
+      "startedAt": 1788724851747,
+      "method": "apply_patch",
+      "target": "ALIAS"
+    },
+    {
+      "callId": "protected_25",
+      "who": "child",
+      "kind": "probe-patch-7",
+      "startedAt": 1788724851765,
+      "method": "apply_patch",
+      "target": "DIRECTORY"
+    },
+    {
+      "callId": "protected_26",
+      "who": "child",
+      "kind": "probe-patch-8",
+      "startedAt": 1788724851782,
+      "method": "apply_patch",
+      "target": "TRAVERSAL"
+    },
+    {
+      "callId": "protected_27",
+      "who": "child",
+      "kind": "probe-patch-9",
+      "startedAt": 1788724851800,
+      "method": "apply_patch",
+      "target": "ABSENT"
+    },
+    {
+      "callId": "protected_28",
+      "who": "child",
+      "kind": "probe-patch-10",
+      "startedAt": 1788724851843,
+      "method": "apply_patch",
+      "target": "FUTURE_DIRECTORY"
+    }
+  ],
+  "hostAfter": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283024,
+      "symlink": false
+    },
+    "LATE": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283034,
+      "symlink": false
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283025,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283026,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283027,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 77283030,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283028,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283025,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 77283029,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "hostUnchanged": true,
+  "supplyRevalidated": true,
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-protected-path-conformance.test.ts": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "sourceStable": true,
+  "elapsedMs": 2951
+}

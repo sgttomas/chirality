@@ -1,0 +1,9 @@
+{
+  "requestedBy": "/root/conformance_manager",
+  "authority": "Explicit follow-up to fresh REPAIR2 backcheck finding",
+  "scope": [
+    "tests/exact-process-runtime-conformance.test.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/REPAIR_3/**"
+  ],
+  "objective": "Reject marker target present in tracker gone immediately before retry; preserve not-yet-tracked readiness retry, all other gates, prior seals and no supplier/shared production writes"
+}

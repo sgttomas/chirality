@@ -1,0 +1,10 @@
+{
+  "status": "EXACT4_LOSSLESS_PRESENTATION_COMPLETE_GLOBAL_WHITESPACE_PASS",
+  "records": 4,
+  "originalBytes": 48176,
+  "strictRoundTripsPresentationAndHistoricalResolution": "PASS",
+  "globalWhitespaceExitCode": 0,
+  "existingV1SnapshotUnchanged": true,
+  "productionTestGitRootBinaryChanges": false,
+  "remaining": "Parent final freeze/checkpoint/PR publication; no conformance or release inference"
+}

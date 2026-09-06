@@ -1,0 +1,22 @@
+{
+  "class": "delegated-harness-native",
+  "parent": "/root/conformance_manager",
+  "derivative": true,
+  "model": "OpenAI GPT-6 exact serving identifier unavailable",
+  "roleEvidence": "instruction-asserted",
+  "initialDispatch": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/DISPATCH.json",
+    "sha256": "93f0a0d0eb12a08294e4180b726152ecd26c26b741ec09a1984cfa68f4b3a7cb"
+  },
+  "additionalActualInstances": {
+    "retirement_repair": "/root/conformance_manager/retirement_repair",
+    "review_retirement": "/root/conformance_manager/review_retirement",
+    "approval_schema": "/root/conformance_manager/approval_schema",
+    "review_approval_diagnostics": "/root/conformance_manager/review_approval_diagnostics",
+    "review_p1": "/root/conformance_manager/review_p1",
+    "review_p2": "/root/conformance_manager/review_p2",
+    "review_p3": "/root/conformance_manager/review_p3",
+    "review_p4": "/root/conformance_manager/review_p4"
+  },
+  "note": "Actual native dispatch/followup execution, no fabricated child IDs. Historical completed instances may not appear in current live agent inventory. Individual briefs and repair evidence preserve bounded paths and returns."
+}

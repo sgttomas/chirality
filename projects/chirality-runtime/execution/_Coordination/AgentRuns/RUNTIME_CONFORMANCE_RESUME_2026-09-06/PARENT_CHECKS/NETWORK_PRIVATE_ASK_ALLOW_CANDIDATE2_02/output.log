@@ -1,0 +1,34 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ❯ tests/exact-network-conformance.test.ts (7 tests | 1 failed) 3907ms
+   ✓ records closed callback diagnostics without raw IDs, unknown values or command data 2ms
+   ✓ observes only allowlisted failure classes and preserves the original failure and terminal outcome 0ms
+   ✓ does not count shell abort as command-level denial 0ms
+   ✓ retains the actual supplier failed-for diagnostic but discards command response body 0ms
+   ✓ limits public canary to the explicit GET target with ambient curl config and redirects disabled 0ms
+   ✓ requires a closed explicit network scenario 0ms
+   × actual primary command network via private approval bridge to owned destination 3904ms
+     → Owned destination command/approval canary failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/exact-network-conformance.test.ts > actual primary command network via private approval bridge to owned destination
+AssertionError: Owned destination command/approval canary failed; inspect calibrated evidence: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/exact-network-conformance.test.ts:278:106
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  13:18:30
+   Duration  4.23s (transform 117ms, setup 0ms, collect 171ms, tests 3.91s, environment 0ms, prepare 35ms)

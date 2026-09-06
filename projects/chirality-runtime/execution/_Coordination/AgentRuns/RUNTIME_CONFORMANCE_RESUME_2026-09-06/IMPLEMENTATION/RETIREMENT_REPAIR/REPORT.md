@@ -1,0 +1,25 @@
+# Retirement publication bounded repair return
+
+RUN_STATUS: PASS_WITH_BUILD_VALIDATION_PENDING. RequestedBy /root/conformance_manager. OpenAI GPT-6, exact serving model ID unavailable. Fresh ephemeral Agent2, no delegation; role enforcement instruction-asserted. Production scope authorized by AMENDMENT_1.json following parent exclusive twofile release and no-active-canary collision check. Accepted upstream owner direction/amendment11 and specification fan-in are indexed by ../BASIS.json. This packet is derivative implementation evidence, not accepted decomposition, supplier acceptance, hold release, lifecycle promotion or release authority.
+
+## Change and result
+
+Only packages/core/src/delegated-runtime.ts and tests/delegated-runtime.test.ts changed. Every turn failure now joins confirmed retirement before committing a terminal. The shared turnRetirements promise joins interruption, wait completion, catch/finally and approval-triggered cleanup; rejection is retained for the turn rather than silently retried into success. Approval-triggered detached rejection is observed and the awaited join still surfaces failure. A completed/failed transport outcome or interruption intent cannot substitute for retirement success.
+
+On failed retirement the actual durable coordinator retains prepared with no terminal. Both same-ID replay and previousTurnId restart refuse it. No blanket reconcile runs; unrelated prepared turn state is unchanged. WorkerRetirementCoordinator already refuses prepared and reconciliation-required records, so no coordinator/contracts/API expansion was necessary. Immediate per-turn reconciliation-required labelling would require a new scoped API and is explicitly deferred; prepared is already unresolved and restart-ineligible.
+
+The key is projectId + NUL + turnId. Active admission and durable no-replay permit one admitted worker per key. The helper receives that worker's trusted ID/generation from acquired handle or its corresponding live approval binding, sets the promise before supervisor invocation, and removes it only with executeTurn final cleanup. Tests assert exact workerId/generation and one supervisor retire call across both interrupt-first and completion-first schedules. No cross-generation restart can reuse the key because the durable record rejects it.
+
+## Validation
+
+REGRESSION.log: vitest run tests/delegated-runtime.test.ts --reporter=verbose, exit0, 41 passed, 9.40s. Seven new controlled no-process/no-network cases exercise success+retirement failure; wait error with retirement success/failure; and interrupt-first/completion-first with retirement success/failure. They assert no terminal while cleanup remains blocked, preserved wait error after successful cleanup, cleanup failure after unresolved retirement, exact single retirement, interrupted terminal only after successful join, rejected restart/replay, and unrelated state isolation. The authenticated integration regression now expects prepared/no terminal/restart rejection. Existing completed/crash/interrupt and approval integration checks pass.
+
+HISTORICAL_EXPECTATION_FAILURE.log: first run after production edit with old test expectation, 33 passed and one obsolete failed-terminal expectation failed because terminal was undefined. A path mistake prevented the intended test-edit script before that run; no out-of-scope file was written. This is retained as historical check evidence. P2 original actual-class repro and raw supplier process failure records remain unchanged.
+
+TYPECHECK.log: isolated no-emit test TypeScript invocation exits2 only because imported daemon declarations still name the pre-change private interruptRetirements field while source now names turnRetirements. This is a source/dist generation mismatch, not claimed typecheck success. Parent owns coordinated build and will regenerate declarations before final typecheck and actual supplier probes. No build output was emitted by this specialist.
+
+FREEZE.json binds final twofile source. PATCH.diff and gzip pre/postimages provide reviewable repair evidence. Inputs and amendment retain exact original SHA256 pins. Source/tests frozen after focused pass; independent manager review and parent combined-generation validation remain required.
+
+## Limits and handoff
+
+This repair establishes terminal-publication ordering under controlled supervisor outcomes. It does not prove actual supplier descendant retirement, resolve raw native cancellation failures, or establish security containment. Parent remains owner of Candidate2 profile execution. close() independently inventories and retires workers and is outside this bounded change; no claim of global shutdown retirement serialization is made. Failed cleanup remains unresolved evidence and requires later governed reconciliation rather than automatic replay. No account/provider/oMLX interaction, supplier process repro, operational/Git mutation, or governance/source-authority change occurred. Closure is bounded implementation/test completion with independent review and rebuilt parent validation pending, not Runtime/supplier acceptance.

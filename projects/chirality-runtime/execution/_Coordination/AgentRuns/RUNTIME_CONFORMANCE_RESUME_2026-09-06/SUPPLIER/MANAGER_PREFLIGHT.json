@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-09-06T18:29:15.054082+00:00",
+  "inputs": {
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION_AMENDMENT_12.json": "b4844e3e982c8445ebd5da9598bb7c33e559935a9430d30c8cd053ef66156d9b",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION_AMENDMENT_14.json": "745b20ee6601b935527f7e658a10c66390ad1981ba904985faa2a1519e477dd9",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/INTERRUPTED_CHECKPOINT.json": "0c79717eb77e44772ce847ea5af19eaea0f822f12af9a1fe10b3fc5e3e0f8832",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/CHECKPOINT_OUTPUTS.sha256": "f382f0fef3e7e438270048afc6d9f4d348b0652d2f7c687362d039c65f7f53b2",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE_2/SOURCE_AFTER.json": "965a32d15244206feaf85451542947a36dc575ea05dd9afa60b6aab428b8a476",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06/IMPLEMENTATION/CONTAINMENT/NATIVE_POLICY/LITERAL_ROOT_ANALYSIS/CLOSURE/BUILD_FEASIBILITY/CANDIDATE/LOCK_NORMALIZATION_V2.json": "5dcf0582fcfae54906ceba0de682ea00dd3c284588e852d90c7ac2bc09c4d005",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/run.py": "7dfcca33d72da5a8fee843bb7222f7de4890a52110c8211bb0b58688f19584de"
+  },
+  "source_checks": {
+    "codex-rs/core/src/session/session.rs": {
+      "expected": "3a8c9a19b161d49028c00c76944fe3691f6de298d528c351ebc3b44ab1e14088",
+      "actual": "3a8c9a19b161d49028c00c76944fe3691f6de298d528c351ebc3b44ab1e14088",
+      "match": true
+    },
+    "codex-rs/network-proxy/src/network_policy.rs": {
+      "expected": "29898c34d60d40eaf3eb333a77a999d41858aad0843997e31ca976517dcc1287",
+      "actual": "29898c34d60d40eaf3eb333a77a999d41858aad0843997e31ca976517dcc1287",
+      "match": true
+    },
+    "codex-rs/core/src/tools/network_approval_tests.rs": {
+      "expected": "da468d94d25a66ff6714252d39e96574de8953cad9fa53378b37c5cb4d7d9d38",
+      "actual": "da468d94d25a66ff6714252d39e96574de8953cad9fa53378b37c5cb4d7d9d38",
+      "match": true
+    },
+    "codex-rs/sandboxing/src/seatbelt_base_policy.sbpl": {
+      "expected": "241c0c312550f01b54de6336db4c82f8ea0f2c06c42a03557214a684e1464e23",
+      "actual": "241c0c312550f01b54de6336db4c82f8ea0f2c06c42a03557214a684e1464e23",
+      "match": true
+    },
+    "codex-rs/Cargo.lock": {
+      "expected": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
+      "actual": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
+      "match": true
+    }
+  },
+  "retained_artifacts": [
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supply/app-server",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "size": 179721344
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/baseline-artifacts/codex-app-server",
+      "sha256": "a3ac0445f8fab23c62a97f3c9c8e420f094b67927948c1cfa69390b6e0742f93",
+      "size": 241191088
+    },
+    {
+      "path": "/private/tmp/runtime-execution-20260906/supplier-candidate/builds/patched-artifacts/codex-app-server",
+      "sha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+      "size": 241191088
+    }
+  ],
+  "source_head": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "repo_head": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "scope": "manager read/hash checks only; no supplier source/binary modification"
+}

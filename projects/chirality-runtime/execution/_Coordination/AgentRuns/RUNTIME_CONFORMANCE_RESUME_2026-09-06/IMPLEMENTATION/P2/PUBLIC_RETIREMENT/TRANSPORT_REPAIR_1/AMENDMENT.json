@@ -1,0 +1,26 @@
+{
+  "authority": "parent conformance_manager explicit grant relaying owner-authorized Runtime implementation",
+  "recordedAt": "2026-09-06T19:25:08.945226+00:00",
+  "finalNames": "codex-transport-lifecycle.ts and codex-transport-lifecycle.test.ts; intervening process-transport names superseded before edits",
+  "role": "ephemeral Agent2 nondelegating instruction-asserted",
+  "model": "OpenAI GPT-6 exact serving ID unavailable",
+  "sourceWriteScope": [
+    "packages/daemon/src/codex-transport-lifecycle.ts",
+    "tests/codex-transport-lifecycle.test.ts",
+    "packages/daemon/src/codex-supervisor.ts",
+    "tests/exact-process-runtime-conformance.test.ts"
+  ],
+  "evidenceWriteScope": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/TRANSPORT_REPAIR_1",
+  "boundsMs": {
+    "eof": 1000,
+    "term": 500,
+    "finalClose": 2000,
+    "total": 3500
+  },
+  "forbidden": [
+    "supplier execution/edits/build",
+    "census-derived signaling",
+    "other source writes"
+  ],
+  "outputs": "source freeze, meaningful pure tests, source-alias noEmit and default-skip validation; independent review before parent actual profiles"
+}

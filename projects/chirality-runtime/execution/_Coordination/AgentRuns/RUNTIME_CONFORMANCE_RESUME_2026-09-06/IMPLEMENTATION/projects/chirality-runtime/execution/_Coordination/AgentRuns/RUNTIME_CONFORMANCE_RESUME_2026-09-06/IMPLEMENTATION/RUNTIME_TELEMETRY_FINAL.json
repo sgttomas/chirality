@@ -1,0 +1,324 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 27
+  },
+  "counts": {
+    "category": {},
+    "event_type": {
+      "FINISH": 27,
+      "START": 27
+    },
+    "outcome": {
+      "FAIL": 3,
+      "PASS": 24,
+      "STARTED": 27
+    },
+    "reason_code": {}
+  },
+  "events": 54,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 244.102,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p1_boundary",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P1-20260906"
+    },
+    {
+      "duration_seconds": 832.317,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p1_boundary",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P1-followon-20260906"
+    },
+    {
+      "duration_seconds": 0.052,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p1_boundary",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P1-repair1-20260906"
+    },
+    {
+      "duration_seconds": 398.816,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p2_process",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P2-20260906"
+    },
+    {
+      "duration_seconds": 467.637,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p2_process",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P2-followon-20260906"
+    },
+    {
+      "duration_seconds": 4271.501,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p2_process",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P2-public-20260906"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p2_process",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P2-repair1-20260906"
+    },
+    {
+      "duration_seconds": 771.679,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p3_protected",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P3-20260906"
+    },
+    {
+      "duration_seconds": 0.025,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p3_protected",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P3-repair1-20260906"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p3_protected",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P3-repair2-20260906"
+    },
+    {
+      "duration_seconds": 771.699,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p4_role",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P4-20260906"
+    },
+    {
+      "duration_seconds": 0.025,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p4_role",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P4-network-repair1-20260906"
+    },
+    {
+      "duration_seconds": 459.709,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p4_role",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P4-repair1-20260906"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/p4_role",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "P4-repair2-20260906"
+    },
+    {
+      "duration_seconds": 5970.864,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "manager-20260906"
+    },
+    {
+      "duration_seconds": 4271.339,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/retirement_repair",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "retirement-20260906"
+    },
+    {
+      "duration_seconds": 0.026,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p1",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-P1-repair1-20260906"
+    },
+    {
+      "duration_seconds": 168.57,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p1",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p1-20260906"
+    },
+    {
+      "duration_seconds": 372.759,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "/root/conformance_manager/review_p2",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p2-20260906"
+    },
+    {
+      "duration_seconds": 459.676,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p2",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p2-repair1-20260906"
+    },
+    {
+      "duration_seconds": 459.662,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "/root/conformance_manager/review_p3",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p3-20260906"
+    },
+    {
+      "duration_seconds": 0.026,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p3",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p3-repair1-20260906"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p3",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p3-repair2-20260906"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "/root/conformance_manager/review_p4",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p4-20260906"
+    },
+    {
+      "duration_seconds": 0.029,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p4",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p4-network-20260906"
+    },
+    {
+      "duration_seconds": 0.025,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p4",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p4-repair1-20260906"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/conformance_manager/review_p4",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_AGENT2",
+      "session_id": "review-p4-repair2-20260906"
+    }
+  ],
+  "sessions": 27,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

@@ -1,0 +1,18 @@
+    match apply_hunks_to_files(hunks, options, cwd, fs, sandbox, &mut delta).await {
+        Ok(affected_paths) => {
+            print_summary(&affected_paths, stdout).map_err(|error| {
+                ApplyPatchFailure::new(ApplyPatchError::from(error), delta.clone())
+            })?;
+            Ok(delta)
+        }
+        Err(error) => {
+            let msg = error.to_string();
+            writeln!(stderr, "{msg}").map_err(|error| {
+                ApplyPatchFailure::new(ApplyPatchError::from(error), delta.clone())
+            })?;
+            let error = if let Some(io) = error.downcast_ref::<std::io::Error>() {
+                ApplyPatchError::from(io)
+            } else {
+                ApplyPatchError::IoError(IoError {
+                    context: msg,
+                    source: std::io::Error::other(error),

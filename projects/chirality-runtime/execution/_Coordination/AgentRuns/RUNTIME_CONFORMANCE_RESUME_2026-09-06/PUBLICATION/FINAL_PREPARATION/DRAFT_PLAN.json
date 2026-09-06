@@ -1,0 +1,28 @@
+{
+  "status": "PREPARED_NOT_APPLIED_AWAIT_PARENT_FINAL_FAN_IN",
+  "productionSourceMatchesFinalParentCheck": true,
+  "sourceFiles": 22,
+  "sourceCheckSha256": "6a63d65dd49c638ca539b53809763ef604565359df22ee2ade0851b7e3ff3334",
+  "publicationBranch": "codex/runtime-packaging-integration",
+  "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+  "pushAfterParentGrant": "git push --set-upstream origin HEAD:refs/heads/codex/runtime-packaging-integration",
+  "pointerUpdates": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+      "beforeSha256": "59780049ddfccefe69d9d5c802b217648159113c2220f91e48f07d0918a7dbf1",
+      "operation": "replace with reviewed HANDOFF_STATE.proposed.md after parent final handoff exists"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_RECEIPTS.md",
+      "beforeSha256": "7504a180705eeec9df16d263d824497911c28c796875bdb3a6ecfb041c659899",
+      "operation": "append RECEIPT_3.proposed.md preserving all existing receipt bytes"
+    }
+  ],
+  "prBody": "PR_BODY.md; verify final parent handoff links before publication",
+  "whitespace": {
+    "exitCode": 0,
+    "stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n"
+  },
+  "noSourceTestsRootBinaryGitMutations": true,
+  "attribution": "OpenAI GPT-6 exact serving ID unavailable; CHANGE/Agent0 instruction-asserted"
+}

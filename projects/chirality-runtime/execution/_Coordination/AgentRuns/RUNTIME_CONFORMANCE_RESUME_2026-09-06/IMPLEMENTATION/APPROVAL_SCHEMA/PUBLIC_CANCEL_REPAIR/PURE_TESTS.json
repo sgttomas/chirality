@@ -1,0 +1,11 @@
+{
+  "command": [
+    "./node_modules/.bin/vitest",
+    "run",
+    "tests/exact-network-runtime-conformance.test.ts",
+    "tests/approval-store.test.ts"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+  "exitCode": 0,
+  "exactRunEnvironment": "all CHIRALITY_* removed"
+}

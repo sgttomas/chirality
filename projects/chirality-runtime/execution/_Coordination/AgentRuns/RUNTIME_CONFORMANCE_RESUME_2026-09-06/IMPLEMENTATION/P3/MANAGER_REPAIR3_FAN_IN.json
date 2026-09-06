@@ -1,0 +1,76 @@
+{
+  "derivative": true,
+  "verdict": "bounded parent rerun admitted; actual family execution pending",
+  "model": "OpenAI GPT-6 exact serving ID unavailable; instruction-asserted WORKING_ITEMS",
+  "manifests": [
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/OUTPUTS.sha256",
+      "sha256": "45ad5095e0412bdf672abdf26f351bdd090cfb3ff185af5be9503577e8904c01",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/AMENDMENT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/AMENDMENT.sha256",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/CHECKS.log",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/OBSERVED_PATCH_SCHEMA.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/REPORT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/SOURCE_HASHES.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/exact-protected-path-conformance.test.ts.preimage.source",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/REPAIR_3/exact-protected-path-conformance.test.ts.source",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "manifest": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/OUTPUTS.sha256",
+      "sha256": "5e166ffe16303bd569f818ec83ca82d5e035d865d1fcb643293471d7a9ef2d4d",
+      "checks": [
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/CHECKS.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/REPAIR_DIFF.txt",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/REPORT.md",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/SEAL_VERIFICATION.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/SOURCE_AFTER.json",
+          "matches": true
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/REVIEW_P3/REPAIR_3/SOURCE_BEFORE.json",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "sourceSha256": "4b891fb78052dc1d3a4146ac9900df22d765854b6f9e74f9f906b255a4f0bfc3"
+}

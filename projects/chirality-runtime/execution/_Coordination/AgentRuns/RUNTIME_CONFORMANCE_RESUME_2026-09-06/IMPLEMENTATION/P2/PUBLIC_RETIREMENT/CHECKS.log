@@ -1,0 +1,12 @@
+PUBLIC_RETIREMENT controlled checks, 2026-09-06 America/Edmonton
+Initial root-cwd Vitest failed only path-pin ENOENT (relative tests path); supplier remained skipped. After resolving pins from import.meta.url, root-cwd check passed. This failure is retained here; no actual conformance attempted.
+
+Initial noEmit single-file tsc identified private-class identity mismatch between direct core source and package core dist. No cast or production edit made. Added evidence-local alias configs mapping @chirality/runtime-core, runtime-contracts and runtime-client root barrels to respective src/index.ts in both Vitest and TypeScript. Direct lifecycle imports remain source; conservative source+dist file pins retained. No production module resolution changed.
+
+Final exact invocation from projects/chirality-runtime:
+CHIRALITY_RUN_EXACT_PROCESS_RUNTIME=0 node_modules/.bin/vitest run --config execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/vitest.config.ts
+Exit0; Vitest3.2.7;4passed,1supplier skipped; test7ms, total376ms; start12:57:59.
+node_modules/.bin/tsc --project execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P2/PUBLIC_RETIREMENT/tsconfig.json
+Exit0, no diagnostics. noEmit.
+Pure controls reject committed interrupted journal with failed/pending retirement, wrong generation and unresolved journal; reject stale empty census and detached survivors; first-return timing ignores replayed output; all source/config/package pins resolve.
+No actual supplier, valid provider listener, network/signal canary, account or production change executed. No active child-owned process remains. Source/test/config writes paused immediately on manager request after coherent checks.

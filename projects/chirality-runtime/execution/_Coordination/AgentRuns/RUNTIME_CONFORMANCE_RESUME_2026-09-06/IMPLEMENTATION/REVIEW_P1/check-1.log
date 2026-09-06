@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime
+
+ ✓ tests/exact-boundary-conformance.test.ts (3 tests | 1 skipped) 2ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 1 skipped (3)
+   Start at  12:32:22
+   Duration  282ms (transform 84ms, setup 0ms, collect 117ms, tests 2ms, environment 0ms, prepare 39ms)

@@ -1,0 +1,27 @@
+from pathlib import Path
+import os,subprocess,sys,shutil,json,hashlib
+scratch=Path('/private/tmp/runtime-conformance-resume-20260906/parent')
+durable=Path('/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS')
+attempt=os.environ.get('CHIRALITY_PARENT_ATTEMPT','01')
+if len(attempt)!=2 or not attempt.isdigit(): raise SystemExit('Two digit attempt required')
+profiles={
+'p1':('exact-boundary-conformance',{'CHIRALITY_RUN_EXACT_BOUNDARY':'1'}),
+'p4':('exact-role-conformance',{'CHIRALITY_RUN_EXACT_ROLE':'1'}),
+}
+for family in ['star','globstar','question','class']:
+ profiles['p3-'+family]=('exact-protected-path-conformance',{'CHIRALITY_RUN_EXACT_PROTECTED':'1','CHIRALITY_EXACT_PROTECTED_FAMILY':family})
+for scenario in ['ask-allow','ask-deny','ask-cancel','off','on']:
+ for layer in ['private','public-primary','public-native']:
+  values={'CHIRALITY_EXACT_NETWORK_TARGET':'example-domain','CHIRALITY_EXACT_NETWORK_SCENARIO':scenario}
+  if layer=='private': values['CHIRALITY_RUN_EXACT_NETWORK']='1'; test='exact-network-conformance'
+  else: values['CHIRALITY_RUN_EXACT_NETWORK_RUNTIME']='1'; values['CHIRALITY_EXACT_NETWORK_ROLE']='native-child' if layer=='public-native' else 'primary'; test='exact-network-runtime-conformance'
+  profiles['network-'+layer+'-'+scenario]=(test,values)
+for key in sys.argv[1:]:
+ if key not in ['p1', 'p3-star']: raise SystemExit('Only admitted existing P1 and P3-star diagnostics allowed')
+ test,values=profiles[key]; name=key+'-candidate3-'+attempt; output=scratch/name; target=durable/name.upper().replace('-','_')
+ if output.exists() or target.exists(): raise SystemExit('Fresh evidence path required: '+name)
+ env=dict(os.environ); env.update(values); env.update({'CHIRALITY_EXACT_CODEX_PATH':'/private/tmp/runtime-execution-20260906/supplier-candidate/candidate3/artifacts/codex-app-server','CHIRALITY_EXACT_CANDIDATE_SHA256':'b2a7e321d1c64794761803ba8895a15fafeeae9ac17c34abce942a82edaf7d4a','CHIRALITY_EXACT_CANDIDATE_SIZE':'241276384','CHIRALITY_EXACT_EVIDENCE_DIR':str(output)})
+ result=subprocess.run(['python3',str(scratch/'run_runtime_check.py'),name,'./node_modules/.bin/vitest','run','tests/'+test+'.test.ts'],env=env)
+ if output.exists(): shutil.copytree(output,target)
+ print(json.dumps({'profile':key,'exit':result.returncode,'durable':str(target)}),flush=True)
+ if result.returncode: raise SystemExit(result.returncode)

@@ -1,0 +1,14 @@
+{
+  "projects/chirality-runtime/tests/exact-role-conformance.test.ts": "4b72276d15f58899e0cdbc0f82fa8b082f04b975e95275d7d8104ffbe5b8dd30",
+  "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/P4_CANDIDATE2_01/EXACT_ROLE_CANARY.json": "6ba9ebf77e9d47fe928dff6574ea2f160a57a17dedb27e54dd4eb9a789d4ebec",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/agent/control.rs": "6969e371eba2d3076374a4a270475ecf7cd3239cad0bf0fec648d49c7013c1e9",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/codex_thread.rs": "0ebd8ce8b55b8912243224f38c17a1ac858c5642a4b2affa1c8685074a81ed90",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/session_prefix.rs": "b747faa987e6faecfe82f6d193d99b8a7e00a012ea8f933d96d5d250c5db2b9d",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/context/subagent_notification.rs": "e55f18adee1a906b66eec6b569750214a3881aa1e3781bf8fe17f00baed497b5",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/multi_agents/spawn.rs": "8164118d767555486d76aee36d1fc47511282f7f87bde1c0d5aa1f91fea44425",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/multi_agents_v2/spawn.rs": "1b6d8eb041c5d26152bf76f7ce01b98ccbf6d9e6dd67262ed63b487bb4aebac4",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/request_processors/thread_processor.rs": "49269190a4962d74e51678774c07b2e06bb19e54806f7fecf0cc1ef2250fa8d4",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/protocol/src/protocol.rs": "ca51d3b5c624f47708d31be33772406c863bc746920ed67075fca82cd0f8392a",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/rollout/src/lib.rs": "aff84bc75344e076cf29c169acaa3377a12b2933ef3d4f0f9bcce30b2638b089",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/rollout/src/metadata.rs": "0c50213d74a8c6293cbc78f9fe37bfefeccc480353dac36d114351d9fbe3552a"
+}

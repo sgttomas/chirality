@@ -1,0 +1,24 @@
+                }
+                Component::CurDir => { /* skip */ }
+                other => out.push(other.as_os_str()),
+            }
+        }
+        Some(out)
+    }
+
+    // Determine whether `path` is inside **any** writable root. Both `path`
+    // and roots are converted to absolute, normalized forms before the
+    // prefix check.
+    let is_path_writable = |path: &PathUri| {
+        // TODO(anp): Make sandbox policy path checks accept PathUri without host projection.
+        let Ok(path) = path.to_abs_path() else {
+            return false;
+        };
+        let abs = path.into_path_buf();
+        let abs = match normalize(&abs) {
+            Some(v) => v,
+            None => return false,
+        };
+
+        file_system_sandbox_policy.can_write_path_with_cwd(&abs, &native_cwd)
+    };

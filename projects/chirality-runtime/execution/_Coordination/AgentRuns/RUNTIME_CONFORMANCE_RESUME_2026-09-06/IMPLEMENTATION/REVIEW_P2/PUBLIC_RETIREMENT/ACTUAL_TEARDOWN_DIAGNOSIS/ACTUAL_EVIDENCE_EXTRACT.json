@@ -1,0 +1,271 @@
+{
+  "schema": "chirality-public-process-retirement/v1",
+  "scenario": "cancel-primary",
+  "passed": false,
+  "sourceStable": true,
+  "supplySha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "supplyAfter": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "retirementCalls": [
+    {
+      "workerId": "process-cancel-primary",
+      "generation": "50e2d662-582f-4939-8a45-439685dfbe23",
+      "startedAt": 1788722264988,
+      "outerCleanupStarted": false,
+      "status": "rejected",
+      "error": {
+        "name": "RuntimeError",
+        "code": "ENGINE_UNAVAILABLE",
+        "reason": "DESCENDANT_RECONCILIATION_REQUIRED",
+        "cause": "OTHER_FAILURE"
+      },
+      "finishedAt": 1788722265037
+    },
+    {
+      "workerId": "process-cancel-primary",
+      "generation": "50e2d662-582f-4939-8a45-439685dfbe23",
+      "startedAt": 1788722265114,
+      "outerCleanupStarted": true,
+      "status": "rejected",
+      "error": {
+        "name": "RuntimeError",
+        "code": "ENGINE_UNAVAILABLE",
+        "reason": "DESCENDANT_RECONCILIATION_REQUIRED",
+        "cause": "OTHER_FAILURE"
+      },
+      "finishedAt": 1788722265114
+    }
+  ],
+  "transportCloses": [
+    {
+      "startedAt": 1788722265007,
+      "outerCleanupStarted": false,
+      "status": "fulfilled",
+      "finishedAt": 1788722265010
+    }
+  ],
+  "interrupt": {
+    "error": {
+      "name": "RuntimeError",
+      "code": "ENGINE_UNAVAILABLE",
+      "reason": "DESCENDANT_RECONCILIATION_REQUIRED",
+      "cause": "OTHER_FAILURE"
+    }
+  },
+  "supervisorWait": {
+    "workerId": "process-cancel-primary",
+    "generation": "50e2d662-582f-4939-8a45-439685dfbe23",
+    "startedAt": 1788722262934,
+    "status": "rejected",
+    "error": {
+      "name": "RuntimeError",
+      "code": "ENGINE_UNAVAILABLE",
+      "reason": "DESCENDANT_RECONCILIATION_REQUIRED",
+      "cause": "OTHER_FAILURE"
+    },
+    "finishedAt": 1788722265036
+  },
+  "retirementBeforeFixtureCleanup": {
+    "turnId": "process-cancel-primary",
+    "identity": {
+      "canonicalRoot": "/private/tmp/epr-kcU587/p",
+      "cwd": "/private/tmp/epr-kcU587/p",
+      "accountId": "no-account-process-fixture",
+      "accountEpoch": 1,
+      "policyDigest": "1d155acc108f2c2c472ff708b9125f0e5c14fb21a69905e56c4d767339f7d323"
+    },
+    "state": "prepared",
+    "rolePolicyDigest": "88fd76af5e5b0fbd8688925366d6a93f608d42a2e03bdf1697fc8cf2ce543028"
+  },
+  "beforePublicRetirement": {
+    "leader": {
+      "pid": 71773,
+      "ppid": 71731,
+      "pgid": 71773,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 13:17:42 2026"
+    },
+    "observed": 5,
+    "scans": 48,
+    "ownedGroup": [
+      {
+        "pid": 71773,
+        "ppid": 71731,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:42 2026"
+      }
+    ],
+    "detached": [
+      {
+        "pid": 71873,
+        "ppid": 71773,
+        "pgid": 71873,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      },
+      {
+        "pid": 71877,
+        "ppid": 71873,
+        "pgid": 71873,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      }
+    ],
+    "gone": [
+      {
+        "pid": 71862,
+        "ppid": 71773,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      },
+      {
+        "pid": 71870,
+        "ppid": 71773,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "afterPublicRetirement": {
+    "leader": {
+      "pid": 71773,
+      "ppid": 71731,
+      "pgid": 71773,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 13:17:42 2026"
+    },
+    "observed": 5,
+    "scans": 51,
+    "ownedGroup": [],
+    "detached": [
+      {
+        "pid": 71873,
+        "ppid": 1,
+        "pgid": 71873,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      },
+      {
+        "pid": 71877,
+        "ppid": 71873,
+        "pgid": 71873,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      }
+    ],
+    "gone": [
+      {
+        "pid": 71773,
+        "ppid": 71731,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:42 2026"
+      },
+      {
+        "pid": 71862,
+        "ppid": 71773,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      },
+      {
+        "pid": 71870,
+        "ppid": 71773,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "afterFixtureCleanup": {
+    "leader": {
+      "pid": 71773,
+      "ppid": 71731,
+      "pgid": 71773,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 13:17:42 2026"
+    },
+    "observed": 5,
+    "scans": 224,
+    "ownedGroup": [],
+    "detached": [],
+    "gone": [
+      {
+        "pid": 71773,
+        "ppid": 71731,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:42 2026"
+      },
+      {
+        "pid": 71862,
+        "ppid": 71773,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      },
+      {
+        "pid": 71870,
+        "ppid": 71773,
+        "pgid": 71773,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      },
+      {
+        "pid": 71873,
+        "ppid": 71773,
+        "pgid": 71873,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      },
+      {
+        "pid": 71877,
+        "ppid": 71873,
+        "pgid": 71873,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 13:17:44 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "cleanupFailures": [
+    {
+      "name": "daemon-stop",
+      "error": {
+        "name": "RuntimeError",
+        "code": "ENGINE_UNAVAILABLE",
+        "reason": "DESCENDANT_RECONCILIATION_REQUIRED",
+        "cause": "OTHER_FAILURE"
+      }
+    },
+    {
+      "name": "workers-close",
+      "error": {
+        "name": "RuntimeError",
+        "code": "ENGINE_UNAVAILABLE",
+        "reason": "DESCENDANT_RECONCILIATION_REQUIRED",
+        "cause": "OTHER_FAILURE"
+      }
+    }
+  ],
+  "elapsedMs": 9815
+}

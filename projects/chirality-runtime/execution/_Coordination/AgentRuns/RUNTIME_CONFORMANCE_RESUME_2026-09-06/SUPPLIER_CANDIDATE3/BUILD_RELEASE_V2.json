@@ -1,0 +1,14 @@
+{
+  "status": "ADMITTED",
+  "source_sha256": "30bad4478319c71373b0d943d810dd9e8eaa08501d68fa667fc7b130d791e3b3",
+  "runner_sha256": "a60caab58a4e9056c1e4ea3db8026daf165c16b1ec400cf8369b579ed698da28",
+  "capture_sha256": "d951dfe66780abc31a934c9c6b2097a07a1d26080ed2c4803b56dbae79aa1bd2",
+  "phases": [
+    "helper-tests",
+    "protected-glob-tests",
+    "candidate3"
+  ],
+  "sequence": "Attempt2 fresh outputs; focused helper/protected-glob positive zero-failure tests required before build. Original attempt1FAIL14/1 remains immutable.",
+  "review_sha256": "9e9e3528ba17e957d438d5c23d2ce7c39bcda25f803c0935874b0dbe655ecf7b",
+  "authority": "Existing Candidate3 PARENT_BRIEF; bounded same-file test correction and new output paths; no source/supplier acceptance or actual canary grant"
+}

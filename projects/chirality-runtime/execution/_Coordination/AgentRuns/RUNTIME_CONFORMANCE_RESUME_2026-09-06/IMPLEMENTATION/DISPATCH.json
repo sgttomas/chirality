@@ -1,0 +1,12 @@
+{
+  "class": "delegated-harness-native",
+  "parent": "/root/conformance_manager",
+  "children": {
+    "P1": "/root/conformance_manager/p1_boundary",
+    "P2": "/root/conformance_manager/p2_process",
+    "P3": "/root/conformance_manager/p3_protected",
+    "P4": "/root/conformance_manager/p4_role"
+  },
+  "model": "OpenAI GPT-6; exact serving ID unavailable",
+  "roleEvidence": "instruction-asserted"
+}

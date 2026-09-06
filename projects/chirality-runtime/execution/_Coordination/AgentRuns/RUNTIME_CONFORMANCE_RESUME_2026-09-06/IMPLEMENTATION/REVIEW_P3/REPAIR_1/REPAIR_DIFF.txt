@@ -1,0 +1,42 @@
+--- original
++++ repair1
+@@ -37,8 +37,8 @@
+ // A generic error, loader failure, absent file, or the rejected patch echoed in
+ // text does not establish a filesystem-policy denial.
+ const patchDenied = (output: string) => output.split(/\r?\n/).some(line =>
+-  /^patch rejected: (?:writing outside of the project|.*(?:denied|not permitted|protected))/i.test(line)
+-  || /^(?:Failed to (?:read|write|create|delete|open)(?: file)?|Error(?: opening| writing)?|apply_patch(?: verification)? failed):?.*(?:Permission denied|Operation not permitted|access denied|outside (?:of )?(?:the )?(?:project|workspace)|protected path)/i.test(line));
++  /^patch rejected: writing outside of the project; rejected by user approval settings$/.test(line)
++  || /^(?:patch rejected: )?(?:Failed to (?:read|write|create|delete|open) file(?: to update)? [^\r\n]+: |apply_patch(?: verification)? failed: )?(?:Permission denied(?: \(os error 13\))?|Operation not permitted(?: \(os error 1\))?)$/.test(line));
+ const patchSucceeded = (output: string) => /^Success\. Updated the following files:\r?$/m.test(output);
+
+ it('P3 requires standalone unique markers and an actual access denial', () => {
+@@ -49,6 +49,28 @@
+   expect(patchDenied('patch rejected: writing outside of the project; rejected by user approval settings')).toBe(true);
+   expect(patchDenied('Failed to read file /synthetic/a: Operation not permitted (os error 1)')).toBe(true);
+   expect(patchSucceeded('Success. Updated the following files:\nA allowed.txt')).toBe(true);
++});
++
++it('P3 never mistakes a protected pathname or missing/context error for permission denial', () => {
++  for (const output of [
++    'patch rejected: Failed to read file to update /synthetic/protected.txt: No such file or directory (os error 2)',
++    'patch rejected: Failed to find expected lines in /synthetic/protected-dir/deep/data.txt',
++    'patch rejected: protected file was not found',
++    'patch rejected: unknown protected path failure',
++    'patch rejected: Failed to read file /synthetic/Permission denied: No such file or directory (os error 2)',
++    'Failed to read file /synthetic/protected.txt: file includes Permission denied text',
++    'apply_patch failed: expected context contains protected path',
++    '+patch rejected: writing outside of the project; rejected by user approval settings',
++    'patch rejected: writing outside of the project: unknown parse error',
++    'Operation not permitted (os error 2)',
++  ]) expect(patchDenied(output), output).toBe(false);
++  for (const output of [
++    'patch rejected: writing outside of the project; rejected by user approval settings',
++    'Failed to read file /synthetic/protected.txt: Operation not permitted (os error 1)',
++    'patch rejected: Failed to read file to update /synthetic/protected.txt: Permission denied (os error 13)',
++    'apply_patch verification failed: Permission denied',
++    'Operation not permitted',
++  ]) expect(patchDenied(output), output).toBe(true);
+ });
+
+ interface Issued { who: string; kind: string; startedAt?: number; method?: string; namespace?: string; target?: string }

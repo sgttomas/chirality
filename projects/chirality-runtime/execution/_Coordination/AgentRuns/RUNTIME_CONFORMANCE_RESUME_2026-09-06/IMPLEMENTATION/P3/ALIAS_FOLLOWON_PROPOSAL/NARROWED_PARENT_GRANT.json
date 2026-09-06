@@ -1,0 +1,21 @@
+{
+  "parent": "/root",
+  "manager": "/root/conformance_manager",
+  "status": "parent-authorized narrowed defensive maintenance; no actual execution by specialist",
+  "writeScope": [
+    "projects/chirality-runtime/tests/exact-protected-path-conformance.test.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/P3/DEFENSIVE_REPAIR/**"
+  ],
+  "change": "Separate fresh owned peractor synthetic target/link pairs in existing admitted fixture; same operations/policy and strict unchanged-target+real-denial+positive-control pass contract. Precise observed double-prefix EPERM parser regression only, existing falsepositive controls retained; generic write failure inconclusive.",
+  "prohibited": [
+    "No new fixture",
+    "No known-defective Candidate2 repeat",
+    "No reset after failure",
+    "No successful-mutation objective",
+    "No supplier source/build/execution",
+    "No new policy exceptions or operation types"
+  ],
+  "actualGate": "Parent-only postrepair independently reviewed Candidate3 after fixture independent review.",
+  "screeningRecord": "MANAGER_SCREENING_AND_SCOPE.md preserved; not repeating original blocked brief",
+  "role": "OpenAI GPT-6 exact servingID unavailable; WORKING_ITEMS instruction-asserted"
+}

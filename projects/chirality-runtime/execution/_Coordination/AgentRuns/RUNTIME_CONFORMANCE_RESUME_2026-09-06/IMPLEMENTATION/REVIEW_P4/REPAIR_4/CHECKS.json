@@ -1,0 +1,17 @@
+{
+  "pure": {
+    "command": "env -u CHIRALITY_RUN_EXACT_ROLE ./node_modules/.bin/vitest run tests/exact-role-conformance.test.ts -t 'retains exact|requires canonical dated|maps disabled|preserves native|admits controlled|requires standalone|resolves every'",
+    "exitCode": 0,
+    "passed": 7,
+    "skipped": 2,
+    "note": "Author-scratch metadata test excluded; exact extracted reader exercised independently in reviewer scratch."
+  },
+  "noEmit": {
+    "command": "./node_modules/.bin/tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop --skipLibCheck tests/exact-role-conformance.test.ts",
+    "exitCode": 0
+  },
+  "exactOriginBlockUnchanged": true,
+  "syntheticReader": "REPRO.json",
+  "supplierRun": false,
+  "networkRun": false
+}

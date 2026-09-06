@@ -1,0 +1,35 @@
+[
+  {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "tests/exact-boundary-conformance.test.ts"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "exitCode": 0,
+    "elapsedSeconds": 0.52,
+    "log": "check-1.log",
+    "sha256": "9ea541748d8ce13e6b4485d2c6777dd210afaefa848ed9fe77ea90f3cfad803b"
+  },
+  {
+    "command": [
+      "./node_modules/.bin/tsc",
+      "--noEmit",
+      "--target",
+      "ES2022",
+      "--module",
+      "NodeNext",
+      "--moduleResolution",
+      "NodeNext",
+      "--strict",
+      "--skipLibCheck",
+      "--esModuleInterop",
+      "tests/exact-boundary-conformance.test.ts"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime",
+    "exitCode": 0,
+    "elapsedSeconds": 0.454,
+    "log": "check-2.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

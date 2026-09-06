@@ -1,0 +1,284 @@
+{
+  "schema": "chirality-exact-protected/v1",
+  "suite": "P3-protected",
+  "family": "star",
+  "rule": "packages/*/private.env",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "supplySize": 241191088,
+  "accountUsed": false,
+  "modelEvidence": "deterministic-loopback-only",
+  "passed": false,
+  "conformanceAcceptance": false,
+  "fixtureTopology": "synthetic user-owned protected files; does not establish immutable system-leaf enforcement",
+  "profileBudgetMs": 60000,
+  "probeBudgetMs": 10000,
+  "sourcesBefore": {
+    "tests/exact-protected-path-conformance.test.ts": "540fd7ecc7909ec6c9327be8e4dbfc544babd65ed4645af51de1f7d4489e2f60",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "declaredRules": [
+    "/private/tmp/epc-UERoJh/p/packages/*/private.env"
+  ],
+  "policyDigest": "99f0b39d79aa0c716a553f7f3b849c10b11249cb648e27569c1fcfa7a0e81634",
+  "configSha256": "0b9fe6438025f290aee8fb45fa5f90c448a893263d14f1bee47e6325fee86b42",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/private/etc/ssl/openssl.cnf": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/epc-UERoJh/p": "write",
+      "/private/tmp/epc-UERoJh/b": "deny",
+      "/private/tmp/epc-UERoJh/b/w": "deny",
+      "/private/tmp/epc-UERoJh/p/.codex": "deny",
+      "/private/tmp/epc-UERoJh/p/packages/*/private.env": "deny",
+      "/private/tmp/epc-UERoJh/p/protected-dir": "deny",
+      "/private/tmp/epc-UERoJh/p/protected.txt": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "futureBeforeCreation": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858281,
+      "symlink": false
+    },
+    "LATE": {
+      "absent": true
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858282,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858283,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858284,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 76858287,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858285,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858282,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858286,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "matchCreatedAfterCompile": true,
+  "hostBefore": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858281,
+      "symlink": false
+    },
+    "LATE": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858291,
+      "symlink": false
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858282,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858283,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858284,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 76858287,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858285,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858282,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858286,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "policyReadbackVerified": true,
+  "threadId": "01a0780c-74c6-7242-a4d9-4b53611454f9",
+  "turnId": "01a0780c-7513-7a13-abb9-23c713bc38c2",
+  "failurePhase": "primary-and-native-actions",
+  "failure": "Codex transport ended",
+  "vendorProcessClosed": true,
+  "vendorStderr": "",
+  "vendorStderrBytes": 0,
+  "nativeChildren": [],
+  "probes": [],
+  "peerFailures": [
+    "Explicit shell/login advertisement required"
+  ],
+  "nativeToolOutputs": [],
+  "issuedCalls": [],
+  "hostAfter": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858281,
+      "symlink": false
+    },
+    "LATE": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858291,
+      "symlink": false
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858282,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858283,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858284,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 76858287,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858285,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858282,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76858286,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "hostUnchanged": true,
+  "supplyRevalidated": true,
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-protected-path-conformance.test.ts": "540fd7ecc7909ec6c9327be8e4dbfc544babd65ed4645af51de1f7d4489e2f60",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "sourceStable": true,
+  "elapsedMs": 2636
+}

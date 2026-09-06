@@ -1,0 +1,30 @@
+{
+  "timestampUtc": "2026-09-06T19:54:51.976009+00:00",
+  "requestedBy": "/root/conformance_manager",
+  "actualAgent": "/root/conformance_manager/approval_schema",
+  "model": "OpenAI GPT-6; exact serving identifier unavailable",
+  "role": "Agent2; instruction-asserted; no delegation",
+  "authorization": "Native attribution read-only diagnosis only; SOW primary, pinned SDK/t3code references secondary; significant registry/public schema/lifecycle refactor requires parent/owner discussion before implementation. No native production/test edits granted.",
+  "writeScope": "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/IMPLEMENTATION/APPROVAL_SCHEMA/NATIVE_ATTRIBUTION_DIAGNOSIS/**",
+  "sourcePins": {
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-session.ts": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/delegated-runtime.ts": "b3770b2eb41f8f3e6777f0ce09c873516464202d60b623f98b10174e8d0365fc",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/core/src/approval-store.ts": "4ac5d0197f528a6dce2dfd4cad007b4d806e622553ab921edcf24422fa1e1e91",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/contracts/src/delegated.ts": "d0e87d6d547ad33ef88739eb03d5c3bf5c006ca12b6743891c6744ba4c6d8d14",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/tests/codex-session.test.ts": "2d682ff9426de480a0579a4ecccbfdec38ab66fc015147b1ecf200f08e6f6b6d",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/agent/control.rs": "6969e371eba2d3076374a4a270475ecf7cd3239cad0bf0fec648d49c7013c1e9",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/network_approval.rs": "f9bd87c5b6629126d518bc4097ab8ef23b1ad049bc7732ed2c7acd11ff46464e",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/bespoke_event_handling.rs": "42e46071529deee6a38789319f641ed46d39f7aab260b0c973f74341f6d74f31",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server-protocol/src/protocol/event_mapping.rs": "16cbca2e29c6b396e4a2e6d7ff4f5c7860a63d98b3e6859822adce5422298c27",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/request_processors/thread_processor.rs": "49269190a4962d74e51678774c07b2e06bb19e54806f7fecf0cc1ef2250fa8d4",
+    "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/app-server/src/lib.rs": "272c9443e54cf1d83c1b83855ccaa9647931eae8463524126fedf5bc4e0116e7",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PARENT_CHECKS/NETWORK_PUBLIC_NATIVE_ASK_ALLOW_CANDIDATE2_01/EXACT_NETWORK_RUNTIME_CANARY.json": "34233e952eae0511d802949d1ca17eeeb5c1e955539f82ca863c943e6e77446c",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/REFERENCE_PATTERNS/REPORT.md": "881abcb6c0a9bb7ed0b58a015b9fa764d744bb51440f8fbc897668335c18ce87",
+    "/Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/REFERENCE_PATTERNS/SOURCE_MANIFEST.json": "30083e3ab0b81ed95a73460ac8f4f292468c67939fa61317c499a7e42b1f9187",
+    "/private/tmp/runtime-reference-patterns-20260906/t3code/apps/server/src/provider/Layers/CodexSessionRuntime.ts": "8f8ae973a07a5d39c5a3e4293ee5c411e4f9f104f9d7d65867e3c8b24aa39fbc"
+  }
+}

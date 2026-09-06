@@ -1,0 +1,40 @@
+{
+  "pathBase": "projects/chirality-runtime",
+  "exclusiveProductionOwners": {
+    "/root/conformance_manager/p1_boundary": [
+      "tests/exact-boundary-conformance.test.ts",
+      "packages/daemon/src/codex-containment.ts",
+      "tests/codex-containment.test.ts",
+      "tests/codex-supervisor.test.ts"
+    ],
+    "/root/conformance_manager/p2_process": [
+      "tests/exact-process-conformance.test.ts",
+      "tests/fixtures/process-response-provider.mjs",
+      "tests/exact-process-runtime-conformance.test.ts",
+      "packages/daemon/src/codex-transport-lifecycle.ts",
+      "packages/daemon/src/codex-supervisor.ts",
+      "tests/codex-transport-lifecycle.test.ts"
+    ],
+    "/root/conformance_manager/p3_protected": [
+      "tests/exact-protected-path-conformance.test.ts"
+    ],
+    "/root/conformance_manager/p4_role": [
+      "tests/exact-role-conformance.test.ts"
+    ],
+    "/root/conformance_manager/retirement_repair": [
+      "packages/core/src/delegated-runtime.ts",
+      "tests/delegated-runtime.test.ts"
+    ],
+    "/root/conformance_manager/approval_schema": [
+      "tests/exact-network-conformance.test.ts",
+      "tests/exact-network-runtime-conformance.test.ts",
+      "packages/daemon/src/codex-session.ts",
+      "tests/codex-session.test.ts"
+    ]
+  },
+  "managerWrites": "this IMPLEMENTATION/** only",
+  "reviewers": "review_p1,review_p2,review_p3,review_p4,review_retirement are read-only source; own evidence/scratch only",
+  "parentWrites": "PARENT_CHECKS and packaging/generated build/final integration under own separate authority",
+  "amendments": "P1/REPAIR_1/AMENDMENT.json; P2/AMENDMENT_1.json; P2/PUBLIC_RETIREMENT/BRIEF.md+AMENDMENT_1.json; P4/AMENDMENT_1+2.json; RETIREMENT_REPAIR/AMENDMENT_1.json; P3/REPAIR_3_DIAGNOSIS/AMENDMENT.json; P4/REPAIR_3_DIAGNOSIS/AMENDMENT.json; APPROVAL_SCHEMA/DIAGNOSTICS sealed amendment (parent authorized and P4 release recorded in live session); APPROVAL_SCHEMA/PRODUCTION_REPAIR parent actual-confirmed twofile release; P2/EOF_REPAIR final parent fourfile lifecycle naming/budget3500 grant",
+  "nonoverlapVerified": true
+}

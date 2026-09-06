@@ -1,0 +1,31 @@
+{
+  "validatorPath": "tools/validation/validate_candidate_whitespace.py",
+  "validatorSha256": "dcdf39a0003f82ba9689aa52f07915086802664f652c2a15e433f3663c347dae",
+  "priorMaps": [
+    {
+      "map": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/IMPLEMENTATION/RAW_EVIDENCE_ORIGINALS.json",
+      "sha256": "87f647837c46caf5b36718cf2fa70b907d9deb4ba0797a008c60e2bfe644e228",
+      "records": 12,
+      "originalDecodeMismatches": []
+    },
+    {
+      "map": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/PRESENTATION_ORIGINALS_1.json",
+      "sha256": "80f01079b2e2e93ef1b4f9d649576eade1e7ceb2f10a2aefb20ac0b0fe4ac47a",
+      "records": 1,
+      "originalDecodeMismatches": []
+    },
+    {
+      "map": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06/PARENT_CHECKS/PRESENTATION_ORIGINALS_2.json",
+      "sha256": "c0be3a79233cf5b7560872802694af3df94ca605ccbcbe628c7758d4ace07ba8",
+      "records": 1,
+      "originalDecodeMismatches": []
+    }
+  ],
+  "records": 58,
+  "allOriginalPathsUnchanged": true,
+  "allProjectedTextChecksPass": true,
+  "sourceOrHistoricalSealWrites": false,
+  "initialDiagnosticAttempt": "Incorrectly required git diff --no-index --check exit0; it returns exit1 for differing files with no diagnostics. Corrected to accept0/1 only with empty stdout/stderr; no artifact changed.",
+  "scope": "Only PUBLICATION/WHITESPACE_PROPOSAL files, temporary normalized diagnostic files removed on context close",
+  "finalGlobalCheckStillRequired": true
+}

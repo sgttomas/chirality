@@ -1,0 +1,88 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 4
+  },
+  "counts": {
+    "category": {
+      "ADAPTED_SOURCE_TEST": 1,
+      "BOUNDED_PREPARATION_COMPLETE": 1,
+      "BUILD": 1,
+      "CROSS_STREAM": 1,
+      "INDEPENDENT_REVIEW": 1,
+      "PREFLIGHT": 1,
+      "PREPARATION_COMPLETE_WITH_RESIDUAL": 1,
+      "SOURCE_REVIEW": 1,
+      "SOURCE_TEST": 4,
+      "TEST_FIXTURE_PROPOSAL": 2
+    },
+    "event_type": {
+      "CHECK": 6,
+      "FINISH": 4,
+      "MILESTONE": 2,
+      "NOTICE": 1,
+      "START": 4
+    },
+    "outcome": {
+      "FAIL": 1,
+      "INFO": 2,
+      "PASS": 10,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "BASELINE_LOCAL_DENY": 1
+    }
+  },
+  "events": 17,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1730.856,
+      "events": 9,
+      "final_outcome": "PASS",
+      "instance_id": "/root/supplier_manager/build-specialist",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "build-specialist"
+    },
+    {
+      "duration_seconds": 1789.166,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "/root/supplier_manager/constraint-reviewer",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "constraint-reviewer"
+    },
+    {
+      "duration_seconds": 191.683,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "/root/supplier_manager/fixture_proposal",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "Agent2",
+      "session_id": "fixture-proposal"
+    },
+    {
+      "duration_seconds": 1845.778,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "/root/supplier_manager",
+      "package_id": "PKG-02_Runtime_Product",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "supplier-manager"
+    }
+  ],
+  "sessions": 4,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

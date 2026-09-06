@@ -1,0 +1,6 @@
+{
+  "projects/chirality-runtime/tests/exact-role-conformance.test.ts": "153df38bd56b9dcae9cc1a446ce0e803b50e4885987cb01cf1ff59e279f00965",
+  "/private/tmp/runtime-execution-20260906/supplier-candidate/source/codex/codex-rs/core/src/tools/handlers/shell_spec.rs": "39e2d837cc76a1a2822363eb0932a8b1e2ac1188ee0fb38df9d57958e0b85320",
+  "projects/chirality-runtime/tests/fixtures/boundary-response-provider.mjs": "48055c740343bf0b3ff443aa9a3f2478c15d6bd28239e91a74e95a6a5c2ff588",
+  "projects/chirality-runtime/tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81"
+}

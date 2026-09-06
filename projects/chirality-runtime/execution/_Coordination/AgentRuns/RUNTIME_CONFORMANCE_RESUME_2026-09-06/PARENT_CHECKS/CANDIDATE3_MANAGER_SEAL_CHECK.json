@@ -1,0 +1,8 @@
+{
+  "manifestPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/SUPPLIER_CANDIDATE3/MANAGER_OUTPUT_MANIFEST.json",
+  "manifestSha256": "b59a0e56099a96770f5e7dc0f0a7113ff5f93761c978f0d5ca6b37fcde106c35",
+  "fileCount": 21,
+  "mismatches": [],
+  "status": "PASS",
+  "verification": "Parent independent direct bytes of completed manager outputs; descendant historical seals separately resolved through publication original-byte maps"
+}

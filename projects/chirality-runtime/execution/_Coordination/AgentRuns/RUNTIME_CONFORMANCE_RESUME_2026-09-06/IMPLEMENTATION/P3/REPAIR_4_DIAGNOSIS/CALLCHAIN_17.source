@@ -1,0 +1,24 @@
+    #[test]
+    fn helper_permissions_enable_minimal_reads_for_restricted_profile() {
+        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir().as_path())
+            .expect("absolute cwd");
+        let mut policy = restricted_policy(Vec::new());
+
+        add_helper_runtime_permissions(&mut policy, /*helper_read_roots*/ &[], cwd.as_path());
+
+        assert!(policy.include_platform_defaults());
+    }
+
+    #[test]
+    fn helper_permissions_enable_minimal_reads_for_restricted_profile_with_writes() {
+        let cwd = AbsolutePathBuf::from_absolute_path(std::env::temp_dir().as_path())
+            .expect("absolute cwd");
+        let mut policy = restricted_policy(vec![path_entry(
+            cwd.join("writable"),
+            FileSystemAccessMode::Write,
+        )]);
+
+        add_helper_runtime_permissions(&mut policy, /*helper_read_roots*/ &[], cwd.as_path());
+
+        assert!(policy.include_platform_defaults());
+    }

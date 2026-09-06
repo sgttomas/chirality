@@ -1,0 +1,30 @@
+{
+  "role": "CHANGE manager, instruction-asserted; OpenAI GPT-6 exact serving ID unavailable",
+  "objective": "Prepare reviewable final publication plan and draft PR for current Runtime continuation; actual tests and Candidate3 still ongoing",
+  "readScope": "Live root AGENTS/AGENT_CHANGE and applicable Runtime instructions; git read-only; current and prior accepted handoffs/owner grants; complete current Runtime diff/evidence; read-only GitHub PR737/CI details as needed",
+  "writeScope": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06/PUBLICATION/**"
+  ],
+  "noActions": [
+    "No commit/stage/push/PR creation/comment/merge yet",
+    "No production or other coordination pointer edits yet",
+    "No root/frontend/sibling writes",
+    "No authority/hold/lifecycle/source acceptance changes",
+    "Do not rewrite immutable sealed raw evidence for whitespace; diagnose exact issue and propose lossless handling if needed"
+  ],
+  "outputs": [
+    "Publication plan with exact eventual branch ref and current scope/checks",
+    "Draft PR title/body reflecting packaging+Runtime repairs and distinct unaccepted supplier work; pending results explicit",
+    "Read-only scope/whitespace/accepted-basis/status checks with concrete required final checks",
+    "Exact proposed final Runtime handoff/pointer/receipt paths and reviewable change plan for later grant",
+    "Source/tool/write-policy return and hashes"
+  ],
+  "context": {
+    "branch": "codex/runtime-packaging-integration",
+    "base": "ec491aee1870a2a6a8eb2faf2919d4d5db5124b4",
+    "gitSafety": "Branch initially tracks origin/main; eventual push must explicitly HEAD:refs/heads/codex/runtime-packaging-integration and set correct upstream; never bare push to main",
+    "validation": "Combined build03/typecheck02 and registered558pass14skip complete; actual repaired paths about to run; Candidate3 isolated compilation ongoing",
+    "sourceLimits": "Existing P3 fixture maintenance automatically rejected twice; no retries or rerouting. Actual Candidate2 alias defect preserved.",
+    "originalPreparation": "../RUNTIME_PACKAGING_2026-09-06/CHANGE/** is preparation for earlier packaging scope, not current final PR body"
+  }
+}

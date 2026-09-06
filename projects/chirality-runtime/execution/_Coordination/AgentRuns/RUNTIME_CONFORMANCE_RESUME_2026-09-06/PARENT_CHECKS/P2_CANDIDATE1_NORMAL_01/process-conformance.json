@@ -1,0 +1,510 @@
+{
+  "scenario": "normal",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "accountUsed": false,
+  "supplySha256": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "sourceBefore": {
+    "tests/exact-process-conformance.test.ts": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+    "tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+  },
+  "verdict": "PROFILE_PASS_NOT_FULL_G_SBX",
+  "publicRuntimeCancellationProven": false,
+  "processScope": "observed actual tool lineage only; no all-orphans proof",
+  "hostSentinelBefore": "e5c4c004a1c951d94520cbdb90e6258465e74a2d5253360e491d173ea02331f6",
+  "hostMarkersBefore": {
+    "primary": {
+      "started": null,
+      "foreground": null,
+      "signal-attempt": null,
+      "signal": null,
+      "ready": null,
+      "finished": null,
+      "signal-status": null,
+      "pid": null
+    },
+    "child": {
+      "started": null,
+      "foreground": null,
+      "signal-attempt": null,
+      "signal": null,
+      "ready": null,
+      "finished": null,
+      "signal-status": null,
+      "pid": null
+    }
+  },
+  "censusFailures": [],
+  "sibling": {
+    "pid": 55150,
+    "ppid": 55002,
+    "pgid": 54999,
+    "uid": 501,
+    "startIdentity": "Sun Sep 6 12:43:21 2026",
+    "positiveControlCount": 1
+  },
+  "policyDigest": "51556caf6df1eeb4484390ab16bbdaa5bc22975c85ed5275b09013db7a0eeda1",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/usr/lib": "read",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-Rqdyw1/project": "write",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-Rqdyw1/broker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-Rqdyw1/broker/worker": "deny",
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/exact-process-Rqdyw1/project/.codex": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "configuredTurnTimeoutMs": 30000,
+  "actionStartedAt": 1788720202897,
+  "terminalReceivedAt": 1788720203122,
+  "terminal": {
+    "value": {
+      "threadId": "01a07808-4447-7d63-9344-856655cc04e4",
+      "turnId": "01a07808-4496-7960-8301-5a88994087a8",
+      "status": "completed",
+      "output": "PROCESS_PROFILE_COMPLETE"
+    }
+  },
+  "firstOutputTimings": [
+    {
+      "callId": "process_call_1",
+      "who": "primary",
+      "kind": "probe",
+      "issuedAt": 1788720202921,
+      "firstReceivedAt": 1788720202974,
+      "firstOutputElapsedMs": 53,
+      "firstOutput": "Chunk ID: 06a3a7\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 53\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTED\nError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONE\nSIGNAL_ATTEMPTED\nSIGNAL_DENIED\nPROCESS_FINISHED\n",
+      "terminalElapsedMs": 201
+    },
+    {
+      "callId": "process_call_2",
+      "who": "primary",
+      "kind": "spawn",
+      "issuedAt": 1788720202974,
+      "firstReceivedAt": 1788720203066,
+      "firstOutputElapsedMs": 92,
+      "firstOutput": "{\"agent_id\":\"01a07808-44e0-74e0-888e-994f25d1e34a\",\"nickname\":\"Poincare\"}"
+    },
+    {
+      "callId": "process_call_3",
+      "who": "primary",
+      "kind": "wait",
+      "issuedAt": 1788720203066,
+      "firstReceivedAt": 1788720203120,
+      "firstOutputElapsedMs": 54,
+      "firstOutput": "{\"status\":{\"01a07808-44e0-74e0-888e-994f25d1e34a\":{\"completed\":\"PROCESS_PROFILE_COMPLETE\"}},\"timed_out\":false}"
+    },
+    {
+      "callId": "process_call_4",
+      "who": "child",
+      "kind": "probe",
+      "issuedAt": 1788720203071,
+      "firstReceivedAt": 1788720203116,
+      "firstOutputElapsedMs": 45,
+      "firstOutput": "Chunk ID: acedd6\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 53\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTED\nError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONE\nSIGNAL_ATTEMPTED\nSIGNAL_DENIED\nPROCESS_FINISHED\n",
+      "terminalElapsedMs": 51
+    }
+  ],
+  "hostMarkers": {
+    "primary": {
+      "started": "PROCESS_STARTED\n",
+      "foreground": "FOREGROUND_CHILD_DONE\n",
+      "signal-attempt": "SIGNAL_ATTEMPTED\n",
+      "signal": "SIGNAL_DENIED\n",
+      "ready": null,
+      "finished": "PROCESS_FINISHED\n",
+      "signal-status": "1\n",
+      "pid": null
+    },
+    "child": {
+      "started": "PROCESS_STARTED\n",
+      "foreground": "FOREGROUND_CHILD_DONE\n",
+      "signal-attempt": "SIGNAL_ATTEMPTED\n",
+      "signal": "SIGNAL_DENIED\n",
+      "ready": null,
+      "finished": "PROCESS_FINISHED\n",
+      "signal-status": "1\n",
+      "pid": null
+    }
+  },
+  "actionElapsedMs": 226,
+  "hostSentinelAfter": "e5c4c004a1c951d94520cbdb90e6258465e74a2d5253360e491d173ea02331f6",
+  "siblingAfter": {
+    "pid": 55150,
+    "ppid": 55002,
+    "pgid": 54999,
+    "uid": 501,
+    "startIdentity": "Sun Sep 6 12:43:21 2026"
+  },
+  "siblingPostProbePositiveControl": true,
+  "siblingSignalCount": 2,
+  "providerRecords": [
+    {
+      "request": 1,
+      "who": "primary",
+      "outputs": [],
+      "receivedAt": 1788720202921
+    },
+    {
+      "request": 2,
+      "who": "primary",
+      "outputs": [
+        {
+          "callId": "process_call_1",
+          "issued": {
+            "who": "primary",
+            "kind": "probe",
+            "issuedAt": 1788720202921
+          },
+          "output": "Chunk ID: 06a3a7\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 53\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTED\nError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONE\nSIGNAL_ATTEMPTED\nSIGNAL_DENIED\nPROCESS_FINISHED\n"
+        }
+      ],
+      "receivedAt": 1788720202974
+    },
+    {
+      "request": 3,
+      "who": "primary",
+      "outputs": [
+        {
+          "callId": "process_call_1",
+          "issued": {
+            "who": "primary",
+            "kind": "probe",
+            "issuedAt": 1788720202921
+          },
+          "output": "Chunk ID: 06a3a7\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 53\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTED\nError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONE\nSIGNAL_ATTEMPTED\nSIGNAL_DENIED\nPROCESS_FINISHED\n"
+        },
+        {
+          "callId": "process_call_2",
+          "issued": {
+            "who": "primary",
+            "kind": "spawn",
+            "issuedAt": 1788720202974
+          },
+          "output": "{\"agent_id\":\"01a07808-44e0-74e0-888e-994f25d1e34a\",\"nickname\":\"Poincare\"}"
+        }
+      ],
+      "receivedAt": 1788720203066
+    },
+    {
+      "request": 4,
+      "who": "child",
+      "outputs": [],
+      "receivedAt": 1788720203071
+    },
+    {
+      "request": 5,
+      "who": "child",
+      "outputs": [
+        {
+          "callId": "process_call_4",
+          "issued": {
+            "who": "child",
+            "kind": "probe",
+            "issuedAt": 1788720203071
+          },
+          "output": "Chunk ID: acedd6\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 53\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTED\nError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONE\nSIGNAL_ATTEMPTED\nSIGNAL_DENIED\nPROCESS_FINISHED\n"
+        }
+      ],
+      "receivedAt": 1788720203116
+    },
+    {
+      "request": 6,
+      "who": "primary",
+      "outputs": [
+        {
+          "callId": "process_call_1",
+          "issued": {
+            "who": "primary",
+            "kind": "probe",
+            "issuedAt": 1788720202921
+          },
+          "output": "Chunk ID: 06a3a7\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 53\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROCESS_STARTED\nError opening /private/var/select/sh: Operation not permitted\nFOREGROUND_CHILD_DONE\nSIGNAL_ATTEMPTED\nSIGNAL_DENIED\nPROCESS_FINISHED\n"
+        },
+        {
+          "callId": "process_call_2",
+          "issued": {
+            "who": "primary",
+            "kind": "spawn",
+            "issuedAt": 1788720202974
+          },
+          "output": "{\"agent_id\":\"01a07808-44e0-74e0-888e-994f25d1e34a\",\"nickname\":\"Poincare\"}"
+        },
+        {
+          "callId": "process_call_3",
+          "issued": {
+            "who": "primary",
+            "kind": "wait",
+            "issuedAt": 1788720203066
+          },
+          "output": "{\"status\":{\"01a07808-44e0-74e0-888e-994f25d1e34a\":{\"completed\":\"PROCESS_PROFILE_COMPLETE\"}},\"timed_out\":false}"
+        }
+      ],
+      "receivedAt": 1788720203120
+    }
+  ],
+  "providerFailures": [],
+  "issuedCalls": [
+    {
+      "callId": "process_call_1",
+      "who": "primary",
+      "kind": "probe",
+      "issuedAt": 1788720202921
+    },
+    {
+      "callId": "process_call_2",
+      "who": "primary",
+      "kind": "spawn",
+      "issuedAt": 1788720202974
+    },
+    {
+      "callId": "process_call_3",
+      "who": "primary",
+      "kind": "wait",
+      "issuedAt": 1788720203066
+    },
+    {
+      "callId": "process_call_4",
+      "who": "child",
+      "kind": "probe",
+      "issuedAt": 1788720203071
+    }
+  ],
+  "hostMarkersAtCleanup": {
+    "primary": {
+      "started": "PROCESS_STARTED\n",
+      "foreground": "FOREGROUND_CHILD_DONE\n",
+      "signal-attempt": "SIGNAL_ATTEMPTED\n",
+      "signal": "SIGNAL_DENIED\n",
+      "ready": null,
+      "finished": "PROCESS_FINISHED\n",
+      "signal-status": "1\n",
+      "pid": null
+    },
+    "child": {
+      "started": "PROCESS_STARTED\n",
+      "foreground": "FOREGROUND_CHILD_DONE\n",
+      "signal-attempt": "SIGNAL_ATTEMPTED\n",
+      "signal": "SIGNAL_DENIED\n",
+      "ready": null,
+      "finished": "PROCESS_FINISHED\n",
+      "signal-status": "1\n",
+      "pid": null
+    }
+  },
+  "beforeFixtureCleanup": {
+    "leader": {
+      "pid": 55152,
+      "ppid": 55002,
+      "pgid": 55152,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 12:43:21 2026"
+    },
+    "observed": 11,
+    "scans": 44,
+    "ownedGroup": [
+      {
+        "pid": 55152,
+        "ppid": 55002,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:21 2026"
+      }
+    ],
+    "detached": [],
+    "gone": [
+      {
+        "pid": 55194,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55195,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55196,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55197,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55202,
+        "ppid": 55152,
+        "pgid": 55202,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55205,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55206,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55207,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55215,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:23 2026"
+      },
+      {
+        "pid": 55218,
+        "ppid": 55152,
+        "pgid": 55218,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:23 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "afterFixtureCleanup": {
+    "leader": {
+      "pid": 55152,
+      "ppid": 55002,
+      "pgid": 55152,
+      "uid": 501,
+      "startIdentity": "Sun Sep 6 12:43:21 2026"
+    },
+    "observed": 11,
+    "scans": 46,
+    "ownedGroup": [],
+    "detached": [],
+    "gone": [
+      {
+        "pid": 55152,
+        "ppid": 55002,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:21 2026"
+      },
+      {
+        "pid": 55194,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55195,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55196,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55197,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55202,
+        "ppid": 55152,
+        "pgid": 55202,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55205,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55206,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55207,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:22 2026"
+      },
+      {
+        "pid": 55215,
+        "ppid": 55152,
+        "pgid": 55152,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:23 2026"
+      },
+      {
+        "pid": 55218,
+        "ppid": 55152,
+        "pgid": 55218,
+        "uid": 501,
+        "startIdentity": "Sun Sep 6 12:43:23 2026"
+      }
+    ],
+    "identityChanged": [],
+    "signalAuthority": "NONE",
+    "limitations": [
+      "UNOBSERVED_DETACH_BETWEEN_POLLS",
+      "PS_START_IDENTITY_COARSE_NOT_PID_SAFE"
+    ]
+  },
+  "sourceAfter": {
+    "tests/exact-process-conformance.test.ts": "cbe619b3b1c3e4c02b630bf76b74c4be53dfc97a2794f6cf6bae1871ca2f2e0a",
+    "tests/fixtures/process-response-provider.mjs": "57e3c4e09183a0cebe825ca41fb5892f3a8836c635227d27aa1d7ce526e87a81",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/core/src/descendant-tracker.ts": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+  },
+  "supplyAfter": "b1ba73f40c3a40ebc161ea75dd68c24e90589e6e74e651065167636ad56876b2",
+  "cleanupFailures": [],
+  "elapsedMs": 2477
+}

@@ -1,0 +1,7 @@
+{
+  "scope": "synthetic static schema check; no supplier or Runtime execution",
+  "supplierConstruction": "network#local#http#example.com#80#00000000-0000-4000-8000-000000000000",
+  "runtimeIdentifierRegex": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+  "currentValidatorAccepts": false,
+  "inference": "Every network#...#UUID value fails this regex; actual callback value was not captured."
+}

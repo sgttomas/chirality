@@ -1,0 +1,7 @@
+# Four new raw-log presentations
+
+The earlier exact60 transformation is complete and immutable under LOSSLESS_PRESENTATION_V1. Its subsequent global scan found four newly emitted raw logs listed exactly in EXACT_TRANSFORM_V3.json. This proposal removes only surplus terminal blank lines from those four readable presentations, after strict original-byte archive creation and roundtrip verification. Each projected result passes the actual scanner and Git new-file whitespace check. No file has been transformed by this proposal.
+
+Require the conformance manager to release the two public-cancel REPAIR_1 author/reviewer logs, the supplier manager to release the two Candidate3 source-test logs, and the parent to grant execution. Rehash all four before writing. Store their original path/hash/length/base64 and current presentation identity in a new PUBLICATION/LOSSLESS_PRESENTATION_V2 package; do not modify the V1 archive/snapshot or prior seals. Historical resolution uses exact path plus expected original hash, checking V1 and V2 maps independently. The final parent publication snapshot should cite both.
+
+No source, tests, binary, validator, attributes, Git state or authority changes. No blanket normalization. Rerun global validation after exact4 execution; any new findings require a fresh bounded proposal. OpenAI GPT-6, exact serving model ID unavailable; CHANGE role enforcement instruction-asserted.

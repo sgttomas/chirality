@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "expected_paths": [
+    "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+    "projects/chirality-runtime/tests/pi-packaging.test.ts",
+    "projects/chirality-runtime/package.json",
+    "projects/chirality-runtime/package-lock.json"
+  ],
+  "actual_paths": [
+    "projects/chirality-runtime/package-lock.json",
+    "projects/chirality-runtime/package.json",
+    "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+    "projects/chirality-runtime/tests/pi-packaging.test.ts"
+  ]
+}

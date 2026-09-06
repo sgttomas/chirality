@@ -1,0 +1,6 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run tests/pi-packaging.test.ts
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/341e/chirality/projects/chirality-runtime

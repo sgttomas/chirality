@@ -1,0 +1,393 @@
+{
+  "schema": "chirality-exact-protected/v1",
+  "suite": "P3-protected",
+  "family": "star",
+  "rule": "packages/*/private.env",
+  "evidenceClass": "supplier-candidate-unaccepted",
+  "supplySha256": "bc4bad750a7d7cdf4f02c2bb7f78cbac40be2727dc41bb0b1b4f2967efb21bf9",
+  "supplySize": 241188752,
+  "accountUsed": false,
+  "modelEvidence": "deterministic-loopback-only",
+  "passed": false,
+  "conformanceAcceptance": false,
+  "fixtureTopology": "synthetic user-owned protected files; does not establish immutable system-leaf enforcement",
+  "profileBudgetMs": 60000,
+  "probeBudgetMs": 10000,
+  "sourcesBefore": {
+    "tests/exact-protected-path-conformance.test.ts": "e3482593af7c0dc031a91f157165a1c3c031bd59426c48b3217a9f1a02965942",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "declaredRules": [
+    "/private/tmp/epc-DGqVp9/p/packages/*/private.env"
+  ],
+  "policyDigest": "38f4cfd1fb25813c25e990ca3705601c9e87dcc25ed8c40948edeabe49fc2422",
+  "configSha256": "50f334542c93b2322da8614bc8b4f9c9b0fb5a17241e7b896b641eb5b5a4a831",
+  "expectedPermissions": {
+    "filesystem": {
+      "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld": "read",
+      "/bin": "read",
+      "/private/etc/ssl/openssl.cnf": "read",
+      "/usr/bin/curl": "read",
+      "/usr/lib": "read",
+      "/private/tmp/epc-DGqVp9/p": "write",
+      "/private/tmp/epc-DGqVp9/b": "deny",
+      "/private/tmp/epc-DGqVp9/b/w": "deny",
+      "/private/tmp/epc-DGqVp9/p/.codex": "deny",
+      "/private/tmp/epc-DGqVp9/p/packages/*/private.env": "deny",
+      "/private/tmp/epc-DGqVp9/p/protected-dir": "deny",
+      "/private/tmp/epc-DGqVp9/p/protected.txt": "deny"
+    },
+    "network": {
+      "enabled": false
+    }
+  },
+  "futureBeforeCreation": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985313,
+      "symlink": false
+    },
+    "LATE": {
+      "absent": true
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985314,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985315,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985316,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 76985319,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985317,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985314,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985318,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "matchCreatedAfterCompile": true,
+  "hostBefore": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985313,
+      "symlink": false
+    },
+    "LATE": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985323,
+      "symlink": false
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985314,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985315,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985316,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 76985319,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985317,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985314,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985318,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "policyReadbackVerified": true,
+  "threadId": "01a0781b-3959-7761-9550-1c04779fb8b2",
+  "turnId": "01a0781b-399c-7c21-8c5e-9acdad025f17",
+  "failurePhase": "primary-and-native-actions",
+  "failure": "Codex transport ended",
+  "vendorProcessClosed": true,
+  "vendorStderr": "",
+  "vendorStderrBytes": 0,
+  "nativeChildren": [],
+  "probes": [
+    {
+      "who": "primary",
+      "callId": "protected_1",
+      "kind": "probe-shell",
+      "method": "exec_command",
+      "elapsedMs": 68,
+      "output": "Chunk ID: 755c5e\nWall time: 0.0000 seconds\nProcess exited with code 0\nOriginal token count: 155\nOutput:\nError opening /private/var/select/sh: Operation not permitted\nPROTECTED_primary_START\nPROTECTED_POSITIVE:PASS\nPROTECTED_READ_MATCH:1\nPROTECTED_WRITE_MATCH:1\nPROTECTED_READ_LATE:1\nPROTECTED_WRITE_LATE:1\nPROTECTED_READ_LITERAL:1\nPROTECTED_WRITE_LITERAL:1\nPROTECTED_READ_CONFIG:1\nPROTECTED_WRITE_CONFIG:1\nPROTECTED_READ_BROKER:1\nPROTECTED_WRITE_BROKER:1\nPROTECTED_READ_ALIAS:1\nPROTECTED_WRITE_ALIAS:1\nPROTECTED_READ_DIRECTORY:1\nPROTECTED_WRITE_DIRECTORY:1\nPROTECTED_READ_TRAVERSAL:1\nPROTECTED_WRITE_TRAVERSAL:1\nPROTECTED_WRITE_ABSENT:1\nPROTECTED_TRAVERSE_DIRECTORY:1\nPROTECTED_CREATE_DIRECTORY:1\nPROTECTED_primary_FINISH\n",
+      "outputSha256": "b56068b63cc83dd2a9612eb4fba07d23516c5a6994a0787ca736e3caa61001ce",
+      "summary": {
+        "started": true,
+        "finished": true,
+        "duplicates": false,
+        "values": {
+          "POSITIVE": "PASS",
+          "READ_MATCH": "1",
+          "WRITE_MATCH": "1",
+          "READ_LATE": "1",
+          "WRITE_LATE": "1",
+          "READ_LITERAL": "1",
+          "WRITE_LITERAL": "1",
+          "READ_CONFIG": "1",
+          "WRITE_CONFIG": "1",
+          "READ_BROKER": "1",
+          "WRITE_BROKER": "1",
+          "READ_ALIAS": "1",
+          "WRITE_ALIAS": "1",
+          "READ_DIRECTORY": "1",
+          "WRITE_DIRECTORY": "1",
+          "READ_TRAVERSAL": "1",
+          "WRITE_TRAVERSAL": "1",
+          "WRITE_ABSENT": "1",
+          "TRAVERSE_DIRECTORY": "1",
+          "CREATE_DIRECTORY": "1"
+        }
+      }
+    }
+  ],
+  "peerFailures": [
+    "Actual advertised tool missing"
+  ],
+  "nativeToolOutputs": [],
+  "advertisedExecSchemas": [
+    {
+      "who": "primary",
+      "sha256": "2db77de165c34cbd00eda052c9124fa605c6375f155b3296c8acd5658f2d34a9",
+      "tool": {
+        "type": "function",
+        "name": "exec_command",
+        "description": "Runs a command in a PTY, returning output or a session ID for ongoing interaction.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cmd": {
+              "type": "string",
+              "description": "Shell command to execute."
+            },
+            "justification": {
+              "type": "string",
+              "description": "User-facing approval question for `require_escalated`; omit otherwise."
+            },
+            "max_output_tokens": {
+              "type": "number",
+              "description": "Output token budget. Defaults to 10000 tokens; larger requests may be capped by policy."
+            },
+            "prefix_rule": {
+              "type": "array",
+              "description": "Reusable approval prefix for `cmd`, only with `sandbox_permissions: \"require_escalated\"`; for example [\"git\", \"pull\"].",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sandbox_permissions": {
+              "type": "string",
+              "description": "Per-command sandbox override. Defaults to `use_default`; use `require_escalated` for unsandboxed execution.",
+              "enum": [
+                "use_default",
+                "require_escalated"
+              ]
+            },
+            "shell": {
+              "type": "string",
+              "description": "Shell binary to launch. Defaults to the user's default shell."
+            },
+            "tty": {
+              "type": "boolean",
+              "description": "True allocates a PTY for the command; false or omitted uses plain pipes."
+            },
+            "workdir": {
+              "type": "string",
+              "description": "Working directory for the command. Defaults to the turn cwd."
+            },
+            "yield_time_ms": {
+              "type": "number",
+              "description": "Wait before yielding output. Defaults to 10000 ms; effective range is 250-30000 ms."
+            }
+          },
+          "required": [
+            "cmd"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "issuedCalls": [
+    {
+      "callId": "protected_1",
+      "who": "primary",
+      "kind": "probe-shell",
+      "startedAt": 1788721445294,
+      "method": "exec_command"
+    }
+  ],
+  "hostAfter": {
+    "MATCH": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985313,
+      "symlink": false
+    },
+    "LATE": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985323,
+      "symlink": false
+    },
+    "LITERAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985314,
+      "symlink": false
+    },
+    "CONFIG": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985315,
+      "symlink": false
+    },
+    "BROKER": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985316,
+      "symlink": false
+    },
+    "ALIAS": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 35,
+      "mode": 41453,
+      "ino": 76985319,
+      "symlink": true
+    },
+    "DIRECTORY": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985317,
+      "symlink": false
+    },
+    "TRAVERSAL": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985314,
+      "symlink": false
+    },
+    "FOREIGN": {
+      "sha256": "0f91efed1469f65ab261e0064d603268d7bda927ae1ecc11d758a1a1ea25432c",
+      "size": 29,
+      "mode": 33152,
+      "ino": 76985318,
+      "symlink": false
+    },
+    "ABSENT": {
+      "absent": true
+    },
+    "FUTURE_DIRECTORY": {
+      "absent": true
+    }
+  },
+  "hostUnchanged": true,
+  "supplyRevalidated": true,
+  "cleanupFailures": 0,
+  "sourcesAfter": {
+    "tests/exact-protected-path-conformance.test.ts": "e3482593af7c0dc031a91f157165a1c3c031bd59426c48b3217a9f1a02965942",
+    "tests/fixtures/response-provider.mjs": "0db5b30fb0511285675f23962a66a9f991f126f69f844381a406c34d8fdc59ef",
+    "packages/daemon/src/codex-session.ts": "868c4fb4e5500a1cd47ac93f553de9dd4bd0ad469fc2d972632ca2a9658e46f8",
+    "packages/daemon/src/codex-containment.ts": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+    "packages/core/src/exact-supply.ts": "579de962f095db69082f28e9212d63af59b44a1979c32598fc82c11039a2952e"
+  },
+  "sourceStable": true,
+  "elapsedMs": 2442
+}

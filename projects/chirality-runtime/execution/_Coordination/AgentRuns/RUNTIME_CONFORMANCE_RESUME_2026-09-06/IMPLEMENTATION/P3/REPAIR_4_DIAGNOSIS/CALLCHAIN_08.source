@@ -1,0 +1,15 @@
+                    modified.push(affected_path);
+                } else {
+                    try_write!(
+                        fs.write_file(
+                            &path_uri,
+                            new_contents.clone().into_bytes(),
+                            WriteFileOptions { follow_symlinks },
+                            sandbox,
+                        )
+                        .await
+                        .with_context(|| format!(
+                            "Failed to write file {}",
+                            path_uri.inferred_native_path_string()
+                        ))
+                    );
