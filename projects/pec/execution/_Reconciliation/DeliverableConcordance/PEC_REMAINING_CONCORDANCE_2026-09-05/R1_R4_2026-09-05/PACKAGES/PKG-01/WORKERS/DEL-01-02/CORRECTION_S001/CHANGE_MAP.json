@@ -1,0 +1,480 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "original_directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02",
+  "derivative_directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02/CORRECTION_S001",
+  "one_to_one_residual_id_map": {
+    "DEL-01-02::R-001": "DEL-01-02-REM-001",
+    "DEL-01-02::R-002": "DEL-01-02-REM-002"
+  },
+  "changed_cells": [
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 1,
+      "record_id": "DEL-01-02::MAP-SESSION",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 1,
+      "record_id": "DEL-01-02::MAP-SESSION",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 2,
+      "record_id": "DEL-01-02::MAP-WORKTREE-GITREF",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 2,
+      "record_id": "DEL-01-02::MAP-WORKTREE-GITREF",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 3,
+      "record_id": "DEL-01-02::MAP-PRESENCE-RECORD",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 3,
+      "record_id": "DEL-01-02::MAP-PRESENCE-RECORD",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 4,
+      "record_id": "DEL-01-02::MAP-HIERARCHY-EDGE",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 4,
+      "record_id": "DEL-01-02::MAP-HIERARCHY-EDGE",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 5,
+      "record_id": "DEL-01-02::MAP-SCOPE-CLAIM",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 5,
+      "record_id": "DEL-01-02::MAP-SCOPE-CLAIM",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 6,
+      "record_id": "DEL-01-02::MAP-LOSS-ON-REBUILD",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 6,
+      "record_id": "DEL-01-02::MAP-LOSS-ON-REBUILD",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 7,
+      "record_id": "DEL-01-02::MAP-OPERATIONAL",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 7,
+      "record_id": "DEL-01-02::MAP-OPERATIONAL",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 8,
+      "record_id": "DEL-01-02::MAP-TTL",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 8,
+      "record_id": "DEL-01-02::MAP-TTL",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 9,
+      "record_id": "DEL-01-02::MAP-NEVER-CITABLE",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 9,
+      "record_id": "DEL-01-02::MAP-NEVER-CITABLE",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 10,
+      "record_id": "DEL-01-02::MAP-MODEL-TESTS",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 10,
+      "record_id": "DEL-01-02::MAP-MODEL-TESTS",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 11,
+      "record_id": "DEL-01-02::MAP-CONTRACT",
+      "column": "ProposedResidualID",
+      "before": "DEL-01-02::R-002",
+      "after": "DEL-01-02-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 11,
+      "record_id": "DEL-01-02::MAP-CONTRACT",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 11,
+      "record_id": "DEL-01-02::MAP-CONTRACT",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 12,
+      "record_id": "DEL-01-02::MAP-SCOPE-TRACE",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 12,
+      "record_id": "DEL-01-02::MAP-SCOPE-TRACE",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 13,
+      "record_id": "DEL-01-02::MAP-ASSIGNMENT",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 13,
+      "record_id": "DEL-01-02::MAP-ASSIGNMENT",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 14,
+      "record_id": "DEL-01-02::MAP-LIFECYCLE",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 14,
+      "record_id": "DEL-01-02::MAP-LIFECYCLE",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 15,
+      "record_id": "DEL-01-02::MAP-DEPENDENCY",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 16,
+      "record_id": "DEL-01-02::MAP-REMAINING",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 16,
+      "record_id": "DEL-01-02::MAP-REMAINING",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 1,
+      "record_id": "DEL-01-02::R-001",
+      "column": "ResidualID",
+      "before": "DEL-01-02::R-001",
+      "after": "DEL-01-02-REM-001"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 1,
+      "record_id": "DEL-01-02::R-001",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 2,
+      "record_id": "DEL-01-02::R-002",
+      "column": "ResidualID",
+      "before": "DEL-01-02::R-002",
+      "after": "DEL-01-02-REM-002"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 2,
+      "record_id": "DEL-01-02::R-002",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 2,
+      "record_id": "DEL-01-02::R-002",
+      "column": "ExactGate",
+      "before": "No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82.",
+      "after": "NOT_SELECTABLE_UNTIL: No recorded selectable Remaining; later exact owner-ruled contract/Remaining application and source-write packet required. DEP-01-02-003 blocks only an item naming DEL-01-03 in Depends while ACTIVE PREREQUISITE PENDING; required maturity INITIALIZED. Owner acts observable on origin/main; no lifecycle or reliance authority from D82."
+    }
+  ],
+  "column_equality_proof": {
+    "CLAIMS.csv": {
+      "ClaimID": {
+        "unchanged": true,
+        "before_sha256": "5ed3eb62fcd3d62bd19ff35cb93d38b7a29eb78315d8cc760c47c51b659e220c",
+        "after_sha256": "5ed3eb62fcd3d62bd19ff35cb93d38b7a29eb78315d8cc760c47c51b659e220c"
+      },
+      "DeliverableID": {
+        "unchanged": true,
+        "before_sha256": "58ed35aeca0a0ff6ea741f35621c02347b9ec216ad2b73f04e69f9684d9de931",
+        "after_sha256": "58ed35aeca0a0ff6ea741f35621c02347b9ec216ad2b73f04e69f9684d9de931"
+      },
+      "ClaimClass": {
+        "unchanged": true,
+        "before_sha256": "d4d660c607e0c0f3e8e9b9c1c074709cb6f65d56863803ce2bc0cad527d1f80a",
+        "after_sha256": "d4d660c607e0c0f3e8e9b9c1c074709cb6f65d56863803ce2bc0cad527d1f80a"
+      },
+      "NormativeSource": {
+        "unchanged": true,
+        "before_sha256": "f0bfc11431e18677f56f0f7b819fcae218c57811ebc415d6be6d91d6fa531690",
+        "after_sha256": "f0bfc11431e18677f56f0f7b819fcae218c57811ebc415d6be6d91d6fa531690"
+      },
+      "ScopeItemIDs": {
+        "unchanged": true,
+        "before_sha256": "008dc429f18bf291f8a2ba1ffc2a9acf83f793e3e199648a66b5f6b120b1100a",
+        "after_sha256": "008dc429f18bf291f8a2ba1ffc2a9acf83f793e3e199648a66b5f6b120b1100a"
+      },
+      "DeclaredSource": {
+        "unchanged": true,
+        "before_sha256": "00b918bd6debb7c939bf4bb43a7d905801327310af77d6662b7022287af8b2a4",
+        "after_sha256": "00b918bd6debb7c939bf4bb43a7d905801327310af77d6662b7022287af8b2a4"
+      },
+      "CurrentState": {
+        "unchanged": true,
+        "before_sha256": "40b860554314565cb0d3ba0b98c1fe965bc63c24cc24efd5fadcc401fbde4a33",
+        "after_sha256": "40b860554314565cb0d3ba0b98c1fe965bc63c24cc24efd5fadcc401fbde4a33"
+      },
+      "ImplementationEvidence": {
+        "unchanged": true,
+        "before_sha256": "f79844ee7b6ee7de6bd217816f90e7dcbd8115ad125814e69f09008e25599674",
+        "after_sha256": "f79844ee7b6ee7de6bd217816f90e7dcbd8115ad125814e69f09008e25599674"
+      },
+      "VerificationEvidence": {
+        "unchanged": true,
+        "before_sha256": "f01ceabb96ffce691bf6352f5ce66407b12a1f086f721b550007828f5872d2d6",
+        "after_sha256": "f01ceabb96ffce691bf6352f5ce66407b12a1f086f721b550007828f5872d2d6"
+      },
+      "ValidationOrProvenanceEvidence": {
+        "unchanged": true,
+        "before_sha256": "75fd4ff7797fc1a61c0abc7fa3ecb7bfb11a7c5a4dad97906574b8d54460be33",
+        "after_sha256": "75fd4ff7797fc1a61c0abc7fa3ecb7bfb11a7c5a4dad97906574b8d54460be33"
+      },
+      "LifecycleEvidence": {
+        "unchanged": true,
+        "before_sha256": "21b094203d2bcac456165d577ea30f3c128236b72fcd2c80401f8b0a385915c6",
+        "after_sha256": "21b094203d2bcac456165d577ea30f3c128236b72fcd2c80401f8b0a385915c6"
+      },
+      "ExistingRemaining": {
+        "unchanged": true,
+        "before_sha256": "6374a1b25c89e25023ca75e8fc759709af3bdcc7ca20b1bf2b004bc9b0b70738",
+        "after_sha256": "6374a1b25c89e25023ca75e8fc759709af3bdcc7ca20b1bf2b004bc9b0b70738"
+      },
+      "Disposition": {
+        "unchanged": true,
+        "before_sha256": "227889caae271f1c136d031b5604d9815c58f816c4140879176af8a9c65cd320",
+        "after_sha256": "227889caae271f1c136d031b5604d9815c58f816c4140879176af8a9c65cd320"
+      },
+      "ProposedResidualID": {
+        "unchanged": false,
+        "before_sha256": "ff89738c7f45d8a0fe9bbaa43c9ab2aaedbd9b77398e6dbacf1b4fdfd1127133",
+        "after_sha256": "0ad8434cb40d698cbf64a87e1524a48fd74f30100808994bd99d7d6047ebdafd"
+      },
+      "ProposedResidualText": {
+        "unchanged": true,
+        "before_sha256": "190f7a06005e40b4fd5b03e74ca41b767cd1c0656133f4f49e82886d6062008d",
+        "after_sha256": "190f7a06005e40b4fd5b03e74ca41b767cd1c0656133f4f49e82886d6062008d"
+      },
+      "Depends": {
+        "unchanged": false,
+        "before_sha256": "165d7161a791a3d12b29a80f6d9597dbc042f19db60d6826e1cc929c9373dd6e",
+        "after_sha256": "ecfc24ff2f30b0a24fd200ec954a02a5f5fdee336afb1d0de5155eebc7552828"
+      },
+      "ExactGate": {
+        "unchanged": false,
+        "before_sha256": "5c79eea29f695efd2615aeb70abeca78deb67cda8c6114fa6dcafe8c985682c0",
+        "after_sha256": "8de7efe919f842e20e8ff11de822e2610a4ee599a0f54a4cad78c6218a6be9b8"
+      },
+      "AuthorityNeeded": {
+        "unchanged": true,
+        "before_sha256": "e35098b964b7c50ed0890566e9e463c0a03670c0566ded4859c6ae4b66cb4c41",
+        "after_sha256": "e35098b964b7c50ed0890566e9e463c0a03670c0566ded4859c6ae4b66cb4c41"
+      },
+      "Selectability": {
+        "unchanged": true,
+        "before_sha256": "08881165a244b5694dacbd009f051413b11dbaacf6acf0c13e342142eb2908ec",
+        "after_sha256": "08881165a244b5694dacbd009f051413b11dbaacf6acf0c13e342142eb2908ec"
+      },
+      "SourceCommit": {
+        "unchanged": true,
+        "before_sha256": "37a9b0894aa1197de78b8f7d63866b51624c406a0138e5f6d074fbaccad64aab",
+        "after_sha256": "37a9b0894aa1197de78b8f7d63866b51624c406a0138e5f6d074fbaccad64aab"
+      },
+      "SourceHashes": {
+        "unchanged": true,
+        "before_sha256": "68c2832a434d0c32c0f32659e726a11bbc45760dff1e5d3d57090ff21dc24720",
+        "after_sha256": "68c2832a434d0c32c0f32659e726a11bbc45760dff1e5d3d57090ff21dc24720"
+      },
+      "EvidenceReferences": {
+        "unchanged": true,
+        "before_sha256": "eaf3a1af34a949a3bc91ddbc0643aa9535fe5fe1d7bb53189ebc1242b8b875a3",
+        "after_sha256": "eaf3a1af34a949a3bc91ddbc0643aa9535fe5fe1d7bb53189ebc1242b8b875a3"
+      },
+      "Notes": {
+        "unchanged": true,
+        "before_sha256": "0a998a84ca02d794c397c7bf226b05fbc642e807cec2668489c96903e4c7030e",
+        "after_sha256": "0a998a84ca02d794c397c7bf226b05fbc642e807cec2668489c96903e4c7030e"
+      }
+    },
+    "RESIDUALS.csv": {
+      "ResidualID": {
+        "unchanged": false,
+        "before_sha256": "092e22dc8ecac73c5c7207f1a243050744c37f44094272da97ac67e9b54a8766",
+        "after_sha256": "a6db2729fd10b8b686fa21c136986e0f8b93f088afe576146606b6e2ad03e13a"
+      },
+      "DeliverableID": {
+        "unchanged": true,
+        "before_sha256": "2890f5fc52c886bc4f4ebc60cf31219d3100d8bfdd2bbaabb4945dfc2df4ebec",
+        "after_sha256": "2890f5fc52c886bc4f4ebc60cf31219d3100d8bfdd2bbaabb4945dfc2df4ebec"
+      },
+      "ClaimIDs": {
+        "unchanged": true,
+        "before_sha256": "19e864cefbafc4da9d4e95dcd01fc5363d4b58dc0d334a3c669e2d3aca0bbc5f",
+        "after_sha256": "19e864cefbafc4da9d4e95dcd01fc5363d4b58dc0d334a3c669e2d3aca0bbc5f"
+      },
+      "ProposedText": {
+        "unchanged": true,
+        "before_sha256": "d0b141527d7bec8e9bfc10037b3311085abd17cdf0624b8131536d2d5552e86b",
+        "after_sha256": "d0b141527d7bec8e9bfc10037b3311085abd17cdf0624b8131536d2d5552e86b"
+      },
+      "Depends": {
+        "unchanged": false,
+        "before_sha256": "1ee7f122a6108d1c74f562de3afa2499c7d6fd0dc02e2b1a3ee10d4aa1daced9",
+        "after_sha256": "21d00e642e090cc07ebbb7ee82d705bbec1d1310fb09ca203712365c173227c4"
+      },
+      "ExactGate": {
+        "unchanged": false,
+        "before_sha256": "9409f8b4a7078db01a474cdfcc33ea7ceb673710579f671d275965b34ac87c55",
+        "after_sha256": "8dd56e84b4f70226a1bb98e417658f2e2609f1bcc1ce856e31b94d3c14fd9e6b"
+      },
+      "ClosureEvidence": {
+        "unchanged": true,
+        "before_sha256": "5c3bd273210dd25e898e7e411d6cc646b42029475d5be89d16d6f6c53ad82d55",
+        "after_sha256": "5c3bd273210dd25e898e7e411d6cc646b42029475d5be89d16d6f6c53ad82d55"
+      },
+      "AuthorityNeeded": {
+        "unchanged": true,
+        "before_sha256": "23cc7c3002185ad86b130cac79b4366f64922b64c094963094abe692a380b70a",
+        "after_sha256": "23cc7c3002185ad86b130cac79b4366f64922b64c094963094abe692a380b70a"
+      },
+      "Selectability": {
+        "unchanged": true,
+        "before_sha256": "40f69dee23c11d55e18387b433f9f7684df60e21c3d7c6a21b7c9c17e4dcb771",
+        "after_sha256": "40f69dee23c11d55e18387b433f9f7684df60e21c3d7c6a21b7c9c17e4dcb771"
+      },
+      "Notes": {
+        "unchanged": true,
+        "before_sha256": "a78b75052eb15ce1eb867dc24ce19abe6a9949211b4aba0c0ffc34a95403e2ac",
+        "after_sha256": "a78b75052eb15ce1eb867dc24ce19abe6a9949211b4aba0c0ffc34a95403e2ac"
+      }
+    }
+  },
+  "proof_encoding": "SHA256 of JSON array of ordered column strings, ensure_ascii=False, default JSON separators",
+  "authorized_transformations_only": true
+}

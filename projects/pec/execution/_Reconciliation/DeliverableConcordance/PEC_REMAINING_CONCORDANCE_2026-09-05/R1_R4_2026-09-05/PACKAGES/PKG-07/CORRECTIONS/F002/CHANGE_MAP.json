@@ -1,0 +1,328 @@
+{
+  "finding_sha256": "d2eb1a8e90d8549321232c1acb4e730d397962ffbad8795dbb23a957f86152a8",
+  "brief_sha256": "c88527e0793f8a4455b5fa37742cf2279634ae22abc3ad0f8ee9784fac656b99",
+  "members": {
+    "DEL-07-01": {
+      "predecessor": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01",
+      "original": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01",
+      "authority_mapping_before_run_local_ids": [
+        {
+          "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+          "locus": "line 372, \u00a74 Packages, PKG-07 Scope Description",
+          "file_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+          "quote": "Best-effort freshness inputs: idempotent append-only event ingest, the daemon SSE / hooks CLI / cmux bridges, durable message store, the shared-runtime client seam \u2014 implementing the PKG-00 event contracts",
+          "quote_sha256": "905dc113b305bd4b303a476aeed11e24bc8482cbf82e71cbaf8d7af4a9cd98a4",
+          "claim_id": "DEL-07-01::PKG07-EVENT-CONTRACTS"
+        }
+      ],
+      "added_rows": [
+        {
+          "ClaimID": "DEL-07-01::PKG07-EVENT-CONTRACTS",
+          "DeliverableID": "DEL-07-01",
+          "ClaimClass": "observed behavior",
+          "NormativeSource": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md#\u00a74 PKG-07 Scope Description line372",
+          "ScopeItemIDs": "SOW-033",
+          "DeclaredSource": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+          "CurrentState": "Event-contract consumption/implementation compatibility remains UNKNOWN; documentary prerequisite alignment does not establish behavior.",
+          "ImplementationEvidence": "Current v2 production tree inspected: projects/pec/v2/src/pec_v2/__init__.py; projects/pec/v2/src/pec_v2/adapters/__init__.py; projects/pec/v2/src/pec_v2/adapters/config/__init__.py; projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py; projects/pec/v2/src/pec_v2/core/__init__.py; projects/pec/v2/src/pec_v2/core/ports/__init__.py; projects/pec/v2/src/pec_v2/core/ports/loop_registry.py. Current code defines loop registry/configuration; no ingest/message-store implementation was established. Bounded negative discovery is not proof of global implementation absence.",
+          "VerificationEvidence": "No current claim-specific event-contract consumption method/result is established by the inherited bounded evidence. No PASS or implementation-absence claim.",
+          "ValidationOrProvenanceEvidence": "projects/pec/execution/_Decomposition/_LATEST.md accepted rev1.4 hashes; projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/RUN_SUMMARY.md exact SPEC acceptance preserved; D81 acceptance/D82 permit report only.",
+          "LifecycleEvidence": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md declares OPEN; no transition proposed.",
+          "ExistingRemaining": "ABSENT \u2014 _STATUS.md has no Remaining section; does not warrant NONE.",
+          "Disposition": "UNKNOWN",
+          "ProposedResidualID": "DEL-07-01-REM-001",
+          "ProposedResidualText": "Establish source-state-bound implementation and claim-specific verification evidence for accepted SOW-033 and SOW-039, including event-id keying, append-only/idempotent ingest, durable queryable attributable messages and no ephemeral relay; report unsupported claims explicitly before proposing production work.",
+          "Depends": "DEL-00-02;DEL-01-04;DEL-01-03",
+          "ExactGate": "(gated: separate owner approval and exact application to Remaining; any source production requires its own F-PEC-1 packet; DEL-07-01 may not be accepted/live without DEL-03-05, simultaneity permitted)",
+          "AuthorityNeeded": "PEC owner for exact Remaining application; separately ruled source/acceptance/lifecycle acts as applicable.",
+          "Selectability": "NON_SELECTABLE_PENDING_OWNER_APPLICATION",
+          "SourceCommit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+          "SourceHashes": "{\"projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md\": \"cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae\", \"projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv\": \"7b012f1f83db623d59dcb3872b97882736166cbf18b76edd68f3d55dd1a16e0f\", \"projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md\": \"e20c22ee0d6fb78e54519194a8e1eb1e0ef9594b96fa5854525a0006df13a986\", \"projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_DEPENDENCIES.md\": \"8fc61c243907764803f40b04631b78883ad00b54a2189f727f71997af80ac6cb\", \"projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md\": \"f0841ea1987d66c9fe91c8451a48770a50cccac12be5735225b797be0c466501\", \"projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md\": \"2a2b1b40942725b21d5c0f1ab61a6bc85847c6502e0db20e88eb6280d4c6be22\", \"projects/pec/execution/_Decomposition/Deliverables.csv\": \"49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72\", \"projects/pec/execution/_Decomposition/ScopeLedger.csv\": \"2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25\", \"projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/RUN_SUMMARY.md\": \"e470eef97d63e05271ba1817431ba2938f8b6c3374d3283d370e5a76e6bf682d\", \"projects/pec/v2/src/pec_v2/__init__.py\": \"ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e\", \"projects/pec/v2/src/pec_v2/adapters/__init__.py\": \"8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22\", \"projects/pec/v2/src/pec_v2/adapters/config/__init__.py\": \"7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba\", \"projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py\": \"7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f\", \"projects/pec/v2/src/pec_v2/core/__init__.py\": \"33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a\", \"projects/pec/v2/src/pec_v2/core/ports/__init__.py\": \"669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb\", \"projects/pec/v2/src/pec_v2/core/ports/loop_registry.py\": \"3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662\"};projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md=7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+          "EvidenceReferences": "projects/pec/execution/_Decomposition/ScopeLedger.csv; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_DEPENDENCIES.md; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md; projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/RUN_SUMMARY.md; projects/pec/v2/src/pec_v2/__init__.py; projects/pec/v2/src/pec_v2/adapters/__init__.py; projects/pec/v2/src/pec_v2/adapters/config/__init__.py; projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py; projects/pec/v2/src/pec_v2/core/__init__.py; projects/pec/v2/src/pec_v2/core/ports/__init__.py; projects/pec/v2/src/pec_v2/core/ports/loop_registry.py; READ_MANIFEST.json checks;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md#line372",
+          "Notes": "F002 source-bound run-local behavioral mapping; exact quote/locus/hash in COVERAGE.md and CHANGE_MAP.json. PKG-00 retains contract definition; this member consumes. Inherited evidence residual text includes claim-specific evidence; no separate product obligation or authority is created. Runtime, source and owner gates preserved."
+        }
+      ],
+      "changed_cells": [
+        {
+          "file": "RESIDUALS.csv",
+          "row_id": "DEL-07-01-REM-001",
+          "column": "ClaimIDs",
+          "old": "DEL-07-01::SOW-033-IDEMPOTENT;DEL-07-01::SOW-033-APPEND-ONLY;DEL-07-01::SOW-033-EVENT-ID;DEL-07-01::SOW-039-DURABLE;DEL-07-01::SOW-039-QUERYABLE;DEL-07-01::SOW-039-NO-RELAY;DEL-07-01::PEC-K-09-ATTRIBUTABLE",
+          "new": "DEL-07-01::SOW-033-IDEMPOTENT;DEL-07-01::SOW-033-APPEND-ONLY;DEL-07-01::SOW-033-EVENT-ID;DEL-07-01::SOW-039-DURABLE;DEL-07-01::SOW-039-QUERYABLE;DEL-07-01::SOW-039-NO-RELAY;DEL-07-01::PEC-K-09-ATTRIBUTABLE;DEL-07-01::PKG07-EVENT-CONTRACTS",
+          "reason": "Reciprocal links for explicit F002 missing source mappings; existing evidence proposal already subsumes claim-specific evidence inquiry."
+        }
+      ],
+      "unchanged_original_claim_ids": [
+        "DEL-07-01::SOW-033-IDEMPOTENT",
+        "DEL-07-01::SOW-033-APPEND-ONLY",
+        "DEL-07-01::SOW-033-EVENT-ID",
+        "DEL-07-01::SOW-039-DURABLE",
+        "DEL-07-01::SOW-039-QUERYABLE",
+        "DEL-07-01::SOW-039-NO-RELAY",
+        "DEL-07-01::PEC-K-09-ATTRIBUTABLE",
+        "DEL-07-01::SCOPE-MAPPING",
+        "DEL-07-01::RESPONSIBLE-PARTY",
+        "DEL-07-01::LIFECYCLE-OPEN",
+        "DEL-07-01::REMAINING-ABSENT",
+        "DEL-07-01::DEPENDENCY-REGISTER",
+        "DEL-07-01::CO-LANDING-C-01",
+        "DEL-07-01::PEC-K-07-BOUNDARY"
+      ],
+      "counts": {
+        "claims": 15,
+        "unknown": 8,
+        "aligned": 7,
+        "residuals": 1,
+        "added_claim_rows": 1,
+        "added_claim_cells": 23,
+        "changed_existing_claim_cells": 0,
+        "changed_existing_residual_cells": 1
+      },
+      "original_hashes": {
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/RETURN.md": "f1ebce90eb0f3af72185eba7dd0f881fb65bdb293d1fdeaaf52787a856d3f059",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/CLAIMS.csv": "a88d180f015c359e86706778ec78c6b9e965db4aa1ed06480aa86d60bd30cc65",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/RESIDUALS.csv": "b1d71786b9ed0edbb3d025a39476152ae202cf049a658dd65162021a2594e6d0",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/COVERAGE.md": "4dfbcaba773f72428965980e40c6aa80467141d6120cfe17e303a10860307b8c",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/READ_MANIFEST.json": "b40a8df3dae22e8fff30455ddb7e24dac9355bf1eac30d60bc1d2ca25598bf14"
+      },
+      "predecessor_hashes": {
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/RETURN.md": "f1ebce90eb0f3af72185eba7dd0f881fb65bdb293d1fdeaaf52787a856d3f059",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/CLAIMS.csv": "a88d180f015c359e86706778ec78c6b9e965db4aa1ed06480aa86d60bd30cc65",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/RESIDUALS.csv": "b1d71786b9ed0edbb3d025a39476152ae202cf049a658dd65162021a2594e6d0",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/COVERAGE.md": "4dfbcaba773f72428965980e40c6aa80467141d6120cfe17e303a10860307b8c",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/READ_MANIFEST.json": "b40a8df3dae22e8fff30455ddb7e24dac9355bf1eac30d60bc1d2ca25598bf14"
+      },
+      "output_csv_hashes": {
+        "CLAIMS.csv": "6bde5a89ffb92854d0776948c5ff73c9a1f81255ab2b7709d6493fa2b292fe90",
+        "RESIDUALS.csv": "a2a5639cef2e66cbe00eeb5b002c389717371134fdd46f7bdb9fccfcf3406d53"
+      },
+      "f001_preserved": false,
+      "proposal_text_justification": "Existing proposal and ClosureEvidence request claim-specific evidence/contract mapping or owner disposition. Newly explicit subclaims are within that inquiry; proposal text and every original claim cell remain unchanged."
+    },
+    "DEL-07-03": {
+      "predecessor": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03",
+      "original": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03",
+      "authority_mapping_before_run_local_ids": [
+        {
+          "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+          "locus": "line 372, \u00a74 Packages, PKG-07 Scope Description",
+          "file_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+          "quote": "Best-effort freshness inputs: idempotent append-only event ingest, the daemon SSE / hooks CLI / cmux bridges, durable message store, the shared-runtime client seam \u2014 implementing the PKG-00 event contracts",
+          "quote_sha256": "905dc113b305bd4b303a476aeed11e24bc8482cbf82e71cbaf8d7af4a9cd98a4",
+          "claim_id": "DEL-07-03::PKG07-EVENT-CONTRACTS"
+        }
+      ],
+      "added_rows": [
+        {
+          "ClaimID": "DEL-07-03::PKG07-EVENT-CONTRACTS",
+          "DeliverableID": "DEL-07-03",
+          "ClaimClass": "observed behavior",
+          "NormativeSource": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md#\u00a74 PKG-07 Scope Description line372",
+          "ScopeItemIDs": "SOW-036",
+          "DeclaredSource": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+          "CurrentState": "Event-contract consumption/implementation compatibility remains UNKNOWN; documentary prerequisite alignment does not establish behavior.",
+          "ImplementationEvidence": "Current v2 inventory and source inspection: loop registry implementation, API schema and service-core checker; no claim-specific hooks implementation established",
+          "VerificationEvidence": "No current claim-specific event-contract consumption method/result is established by the inherited bounded evidence. No PASS or implementation-absence claim.",
+          "ValidationOrProvenanceEvidence": "D-PEC-65 exact local run repairs dependency evidence only; no hooks acceptance. projects/pec/execution/_Decomposition/_LATEST.md pins revision 1.4. Fallback quote SHA256 c7567c4a8d90839eef6b30f369d289621c1e88d50341cc5181f819f14c8afdd2",
+          "LifecycleEvidence": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md Current State OPEN; no advancement inferred",
+          "ExistingRemaining": "No ## Remaining section in exact _STATUS.md",
+          "Disposition": "UNKNOWN",
+          "ProposedResidualID": "DEL-07-03-REM-001",
+          "ProposedResidualText": "Resolve the SOW-036 hooks evidence gap by locating current source and claim-specific verification/acceptance for session start, session stop, status, scope declaration, and declared attributable use; if no evidence exists, obtain an exact owner production/application ruling before proposing implementation work.",
+          "Depends": "DEL-00-02;DEL-07-01",
+          "ExactGate": "(gated: later exact PEC owner application and source-path production ruling; ACTIVE PREREQUISITE DEP-07-03-003 to DEL-00-02 and DEP-07-03-004 to DEL-07-01 remain PENDING; no Root runtime authority)",
+          "AuthorityNeeded": "PEC owner exact application and source ruling; Root owner for runtime changes",
+          "Selectability": "NON_SELECTABLE_PENDING_OWNER_APPLICATION",
+          "SourceCommit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+          "SourceHashes": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md=7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81;projects/pec/execution/_Decomposition/ScopeLedger.csv=2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25;projects/pec/execution/_Decomposition/Deliverables.csv=49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md=984841782d524e77c912e03fb8ce9a6a0231b69ffe1ca660d7441e71327c894a;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md=c4b6f503ab7599978f7fe2e51625ccf5fecdeac295fb8203a3a3379b8bd66250;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv=4d34d5573233784950a315401cb4431d760cd9bcbc87e38c760d3ef320205834;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md=7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+          "EvidenceReferences": "READ_MANIFEST.json; COVERAGE.md; projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md#line372",
+          "Notes": "F002 source-bound run-local behavioral mapping; exact quote/locus/hash in COVERAGE.md and CHANGE_MAP.json. PKG-00 retains contract definition; this member consumes. Inherited evidence residual text includes claim-specific evidence; no separate product obligation or authority is created. Runtime, source and owner gates preserved."
+        }
+      ],
+      "changed_cells": [
+        {
+          "file": "RESIDUALS.csv",
+          "row_id": "DEL-07-03-REM-001",
+          "column": "ClaimIDs",
+          "old": "DEL-07-03::SOW-036.START;DEL-07-03::SOW-036.STOP;DEL-07-03::SOW-036.STATUS;DEL-07-03::SOW-036.SCOPE;DEL-07-03::SOW-036.DECLARED;DEL-07-03::SOW-036.ATTRIBUTABLE;DEL-07-03::ARTIFACT.TESTS",
+          "new": "DEL-07-03::SOW-036.START;DEL-07-03::SOW-036.STOP;DEL-07-03::SOW-036.STATUS;DEL-07-03::SOW-036.SCOPE;DEL-07-03::SOW-036.DECLARED;DEL-07-03::SOW-036.ATTRIBUTABLE;DEL-07-03::ARTIFACT.TESTS;DEL-07-03::PKG07-EVENT-CONTRACTS",
+          "reason": "Reciprocal links for explicit F002 missing source mappings; existing evidence proposal already subsumes claim-specific evidence inquiry."
+        }
+      ],
+      "unchanged_original_claim_ids": [
+        "DEL-07-03::SOW-036.START",
+        "DEL-07-03::SOW-036.STOP",
+        "DEL-07-03::SOW-036.STATUS",
+        "DEL-07-03::SOW-036.SCOPE",
+        "DEL-07-03::SOW-036.DECLARED",
+        "DEL-07-03::SOW-036.ATTRIBUTABLE",
+        "DEL-07-03::ARTIFACT.TESTS",
+        "DEL-07-03::CONTEXT.ASSIGNMENT",
+        "DEL-07-03::CONTEXT.SCOPE",
+        "DEL-07-03::LIFECYCLE.OPEN",
+        "DEL-07-03::DEP-07-03-003",
+        "DEL-07-03::DEP-07-03-004"
+      ],
+      "counts": {
+        "claims": 13,
+        "unknown": 8,
+        "aligned": 5,
+        "residuals": 1,
+        "added_claim_rows": 1,
+        "added_claim_cells": 23,
+        "changed_existing_claim_cells": 0,
+        "changed_existing_residual_cells": 1
+      },
+      "original_hashes": {
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/RETURN.md": "7ec40685c63b2c0b58c5fa2c0c142494b016144ce930049f0cb8c0419ee47a8b",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/CLAIMS.csv": "ccecb5d4140ee6d6a48f938ea20b59562c9c22dd66723564afd52b89003c3c03",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/RESIDUALS.csv": "11d890a495dc040ef6d989e797848b0edc679627df7f73d6f9e7d64282499c25",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/COVERAGE.md": "a326934d7384cb89d17db68728895998f04422fb82dbf5b5ccca9cc0e1fc3c47",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/READ_MANIFEST.json": "b4d388075d0d1d80c64a6f24b0cef47b3aa5c313ff394e644404c8183c6bcb0d"
+      },
+      "predecessor_hashes": {
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/RETURN.md": "a28ce9cc6e0ff008225fb825c29e7ec821b55145f44572067f4148c4b41fbf37",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/CLAIMS.csv": "ccecb5d4140ee6d6a48f938ea20b59562c9c22dd66723564afd52b89003c3c03",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/CHANGE_MAP.json": "3be9f63ea4eabc774eaf2b51fe2634408745312941b01c6cf34be4cc2b23808b",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/VALIDATION.json": "1baed8ba010c3841672bd0baf411ffb25d5cf0257755cbc2e775be47dbd4acce",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/RESIDUALS.csv": "e4a995fc2d28d4380306fa5568a9ae57153722d8bbcd12f540cf93613d0eeb0f",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/COVERAGE.md": "a04c88dd7130a95278005cca1289620c0076adc809831fa1e9288e99c6c66339",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/READ_MANIFEST.json": "51b917e135ff5842376b5e065ba33c858dcd1157547fdc889efa525a0951e08c"
+      },
+      "output_csv_hashes": {
+        "CLAIMS.csv": "493a480216fd1a6f7db1abcf92f576458f0f3ef236d225fdd0ec72e18d7919ef",
+        "RESIDUALS.csv": "37d446cc851147b016054848be2b0b8025ccb5b9a76dab06e25eb2830505c314"
+      },
+      "f001_preserved": true,
+      "proposal_text_justification": "Existing proposal and ClosureEvidence request claim-specific evidence/contract mapping or owner disposition. Newly explicit subclaims are within that inquiry; proposal text and every original claim cell remain unchanged."
+    },
+    "DEL-07-04": {
+      "predecessor": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04",
+      "original": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04",
+      "authority_mapping_before_run_local_ids": [
+        {
+          "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+          "locus": "line 372, \u00a74 Packages, PKG-07 Scope Description",
+          "file_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+          "quote": "Best-effort freshness inputs: idempotent append-only event ingest, the daemon SSE / hooks CLI / cmux bridges, durable message store, the shared-runtime client seam \u2014 implementing the PKG-00 event contracts",
+          "quote_sha256": "905dc113b305bd4b303a476aeed11e24bc8482cbf82e71cbaf8d7af4a9cd98a4",
+          "claim_id": "DEL-07-04::PKG07-EVENT-CONTRACTS"
+        },
+        {
+          "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+          "locus": "row DEL-07-04, AnticipatedArtifacts",
+          "file_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+          "quote": "Adapter + tests",
+          "quote_sha256": "3fbf333b2c918276550de4e03d93d13b991292df04bd58b4c336ff9932357495",
+          "claim_id": "DEL-07-04::ARTIFACT.TESTS"
+        }
+      ],
+      "added_rows": [
+        {
+          "ClaimID": "DEL-07-04::PKG07-EVENT-CONTRACTS",
+          "DeliverableID": "DEL-07-04",
+          "ClaimClass": "observed behavior",
+          "NormativeSource": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md#\u00a74 PKG-07 Scope Description line372",
+          "ScopeItemIDs": "SOW-037",
+          "DeclaredSource": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+          "CurrentState": "Event-contract consumption/implementation compatibility remains UNKNOWN; documentary prerequisite alignment does not establish behavior.",
+          "ImplementationEvidence": "Current v2 executable adapter inspected: JsonLoopRegistry validates JSON loop configuration, and core port exposes registered_loops; this does not establish SOW-037. Exact v2 cmux/DEL-07-04 search has no hits. Local only run is D65 dependency evidence repair. These bounded observations do not prove implementation absence.",
+          "VerificationEvidence": "No current claim-specific event-contract consumption method/result is established by the inherited bounded evidence. No PASS or implementation-absence claim.",
+          "ValidationOrProvenanceEvidence": "Accepted revision 1.4 decomposition; D65 run is dependency-evidence repair only; D81 acceptance and effective D82 govern report",
+          "LifecycleEvidence": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md#Current State: OPEN; no transition authorized",
+          "ExistingRemaining": "No ## Remaining section; no warranted NONE conclusion",
+          "Disposition": "UNKNOWN",
+          "ProposedResidualID": "DEL-07-04-REM-001",
+          "ProposedResidualText": "Resolve the SOW-037 evidence boundary by identifying an exact current optional cmux adapter and claim-relevant verification/acceptance evidence, or obtain the owning disposition for its optional activation and missing contract; preserve declaration, attribution and graceful absence. This is an evidence/authority candidate, not a finding that implementation is absent or an instruction to build it.",
+          "Depends": "DEL-00-02;DEL-07-01",
+          "ExactGate": "NOT_SELECTABLE_UNTIL: owner applies exact Remaining text under a separately ruled packet; any production needs its own exact PEC source grant and applicable prerequisite satisfaction; cmux remains optional",
+          "AuthorityNeeded": "PEC owner for exact application/source/activation/lifecycle acts; root retains runtime authority",
+          "Selectability": "NON_SELECTABLE_PENDING_OWNER_APPLICATION",
+          "SourceCommit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+          "SourceHashes": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv=5d684e2425e365b2e09bd3e6e7faf63d5a2efd7acbe50634d52075a30bc90fe6;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md=805a32c90214b9c3f401e06399d9e205207c629696e432829195975ab03097f9;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md=ef8ebf5df340578b317abb98f45c371df18d7c656ae403c74909019e9c91b4c7;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md=28916d18a838bf800f9b2ff9f274008e020a1bdb3c5d019bdcc9da8f7581cac5;projects/pec/execution/_Decomposition/Deliverables.csv=49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72;projects/pec/execution/_Decomposition/ScopeLedger.csv=2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25;projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py=7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f;projects/pec/v2/src/pec_v2/core/ports/loop_registry.py=3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md=7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+          "EvidenceReferences": "projects/pec/execution/_Decomposition/ScopeLedger.csv#SOW-037;projects/pec/execution/_Decomposition/Deliverables.csv#DEL-07-04;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md;projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py;projects/pec/v2/src/pec_v2/core/ports/loop_registry.py;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md#line372",
+          "Notes": "F002 source-bound run-local behavioral mapping; exact quote/locus/hash in COVERAGE.md and CHANGE_MAP.json. PKG-00 retains contract definition; this member consumes. Inherited evidence residual text includes claim-specific evidence; no separate product obligation or authority is created. Runtime, source and owner gates preserved."
+        },
+        {
+          "ClaimID": "DEL-07-04::ARTIFACT.TESTS",
+          "DeliverableID": "DEL-07-04",
+          "ClaimClass": "finite test method",
+          "NormativeSource": "projects/pec/execution/_Decomposition/Deliverables.csv#DEL-07-04 AnticipatedArtifacts",
+          "ScopeItemIDs": "SOW-037",
+          "DeclaredSource": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+          "CurrentState": "Anticipated optional adapter test artifact and finite claim-relevant results remain UNKNOWN.",
+          "ImplementationEvidence": "Current v2 executable adapter inspected: JsonLoopRegistry validates JSON loop configuration, and core port exposes registered_loops; this does not establish SOW-037. Exact v2 cmux/DEL-07-04 search has no hits. Local only run is D65 dependency evidence repair. These bounded observations do not prove implementation absence.",
+          "VerificationEvidence": "Accepted anticipated artifact is tests. No exact current cmux test method/results are established; no tests executed and no PASS asserted. A future finite method must state its fixtures and limits; optionality survives.",
+          "ValidationOrProvenanceEvidence": "Accepted revision 1.4 decomposition; D65 run is dependency-evidence repair only; D81 acceptance and effective D82 govern report",
+          "LifecycleEvidence": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md#Current State: OPEN; no transition authorized",
+          "ExistingRemaining": "No ## Remaining section; no warranted NONE conclusion",
+          "Disposition": "UNKNOWN",
+          "ProposedResidualID": "DEL-07-04-REM-001",
+          "ProposedResidualText": "Resolve the SOW-037 evidence boundary by identifying an exact current optional cmux adapter and claim-relevant verification/acceptance evidence, or obtain the owning disposition for its optional activation and missing contract; preserve declaration, attribution and graceful absence. This is an evidence/authority candidate, not a finding that implementation is absent or an instruction to build it.",
+          "Depends": "DEL-00-02;DEL-07-01",
+          "ExactGate": "NOT_SELECTABLE_UNTIL: owner applies exact Remaining text under a separately ruled packet; any production needs its own exact PEC source grant and applicable prerequisite satisfaction; cmux remains optional",
+          "AuthorityNeeded": "PEC owner for exact application/source/activation/lifecycle acts; root retains runtime authority",
+          "Selectability": "NON_SELECTABLE_PENDING_OWNER_APPLICATION",
+          "SourceCommit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+          "SourceHashes": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv=5d684e2425e365b2e09bd3e6e7faf63d5a2efd7acbe50634d52075a30bc90fe6;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md=805a32c90214b9c3f401e06399d9e205207c629696e432829195975ab03097f9;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md=ef8ebf5df340578b317abb98f45c371df18d7c656ae403c74909019e9c91b4c7;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md=28916d18a838bf800f9b2ff9f274008e020a1bdb3c5d019bdcc9da8f7581cac5;projects/pec/execution/_Decomposition/Deliverables.csv=49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72;projects/pec/execution/_Decomposition/ScopeLedger.csv=2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25;projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py=7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f;projects/pec/v2/src/pec_v2/core/ports/loop_registry.py=3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md=7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+          "EvidenceReferences": "projects/pec/execution/_Decomposition/ScopeLedger.csv#SOW-037;projects/pec/execution/_Decomposition/Deliverables.csv#DEL-07-04;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_CONTEXT.md;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv;projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md;projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py;projects/pec/v2/src/pec_v2/core/ports/loop_registry.py;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md#line372",
+          "Notes": "F002 run-local anticipated-test-artifact mapping, not an invented VER ID or mandatory activation/release gate. Existing optional evidence/authority residual already requests claim-relevant verification or owner disposition; no proposal expansion required. Exact quote/locus/hash in COVERAGE.md and CHANGE_MAP.json."
+        }
+      ],
+      "changed_cells": [
+        {
+          "file": "RESIDUALS.csv",
+          "row_id": "DEL-07-04-REM-001",
+          "column": "ClaimIDs",
+          "old": "DEL-07-04::SOW-037;DEL-07-04::SOW-037-DECLARED;DEL-07-04::SOW-037-ATTRIBUTABLE;DEL-07-04::SOW-037-ABSENCE",
+          "new": "DEL-07-04::SOW-037;DEL-07-04::SOW-037-DECLARED;DEL-07-04::SOW-037-ATTRIBUTABLE;DEL-07-04::SOW-037-ABSENCE;DEL-07-04::PKG07-EVENT-CONTRACTS;DEL-07-04::ARTIFACT.TESTS",
+          "reason": "Reciprocal links for explicit F002 missing source mappings; existing evidence proposal already subsumes claim-specific evidence inquiry."
+        }
+      ],
+      "unchanged_original_claim_ids": [
+        "DEL-07-04::SOW-037",
+        "DEL-07-04::SOW-037-DECLARED",
+        "DEL-07-04::SOW-037-ATTRIBUTABLE",
+        "DEL-07-04::SOW-037-ABSENCE",
+        "DEL-07-04::DOC-OPTIONAL",
+        "DEL-07-04::DOC-ASSIGNMENT",
+        "DEL-07-04::STATUS-OPEN",
+        "DEL-07-04::STATUS-REMAINING",
+        "DEL-07-04::DEP-07-04-001",
+        "DEL-07-04::DEP-07-04-002",
+        "DEL-07-04::DEP-07-04-003",
+        "DEL-07-04::DEP-07-04-004"
+      ],
+      "counts": {
+        "claims": 14,
+        "unknown": 6,
+        "aligned": 8,
+        "residuals": 1,
+        "added_claim_rows": 2,
+        "added_claim_cells": 46,
+        "changed_existing_claim_cells": 0,
+        "changed_existing_residual_cells": 1
+      },
+      "original_hashes": {
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/RETURN.md": "83c2fbfdb114bd7049629d18b9ddc7be8bc11c59e69b4690567e64b05d1ac6e4",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/CLAIMS.csv": "4059b8b273289b6639342ab0779b9de3cc709c2c8f963de11445f220dda062cb",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/RESIDUALS.csv": "3a77733ec6bbf55d62e21ecac9ef6d28eeff0edf83f14cfb998e34d0ff81d29b",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/COVERAGE.md": "8a7bd28c8f8f1ba06da56c545f62ea1ed564bc14e618f307abe42a123965c4ee",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/READ_MANIFEST.json": "ae9dc697b6f74603758fb01847f0d32f31ac1a211fbe0448f0cbc39aa9fe8b71"
+      },
+      "predecessor_hashes": {
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/RETURN.md": "83c2fbfdb114bd7049629d18b9ddc7be8bc11c59e69b4690567e64b05d1ac6e4",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/CLAIMS.csv": "4059b8b273289b6639342ab0779b9de3cc709c2c8f963de11445f220dda062cb",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/RESIDUALS.csv": "3a77733ec6bbf55d62e21ecac9ef6d28eeff0edf83f14cfb998e34d0ff81d29b",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/COVERAGE.md": "8a7bd28c8f8f1ba06da56c545f62ea1ed564bc14e618f307abe42a123965c4ee",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/READ_MANIFEST.json": "ae9dc697b6f74603758fb01847f0d32f31ac1a211fbe0448f0cbc39aa9fe8b71"
+      },
+      "output_csv_hashes": {
+        "CLAIMS.csv": "e5ddf1afd3519dd6ae34737e8f15d7a2db0a569f8cb51c43c160d01f2267de96",
+        "RESIDUALS.csv": "d4006656a24dac1b92b9baeeebfbcfec5f68e11df49ac6d33befd5c54035e6e0"
+      },
+      "f001_preserved": false,
+      "proposal_text_justification": "Existing proposal and ClosureEvidence request claim-specific evidence/contract mapping or owner disposition. Newly explicit subclaims are within that inquiry; proposal text and every original claim cell remain unchanged."
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "status": "IMMUTABLE_DERIVATIVE",
+  "missing_contract": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/ScopeOfWork.md",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "mappings": [
+    {
+      "ClaimID": "DEL-09-05::SOW-049",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "scope row SOW-049",
+      "quote": "| SOW-049 | IN | Dashboard — presence board: sessions × worktrees × live hierarchy with heartbeat age and advisory overlap warnings | PEC-DSH-005 | |",
+      "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+      "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::SOW-049-B1",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "scope row SOW-049 / sessions × worktrees",
+      "quote": "| SOW-049 | IN | Dashboard — presence board: sessions × worktrees × live hierarchy with heartbeat age and advisory overlap warnings | PEC-DSH-005 | |",
+      "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+      "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::SOW-049-B2",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "scope row SOW-049 / live hierarchy",
+      "quote": "| SOW-049 | IN | Dashboard — presence board: sessions × worktrees × live hierarchy with heartbeat age and advisory overlap warnings | PEC-DSH-005 | |",
+      "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+      "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::SOW-049-B3",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "scope row SOW-049 / heartbeat age",
+      "quote": "| SOW-049 | IN | Dashboard — presence board: sessions × worktrees × live hierarchy with heartbeat age and advisory overlap warnings | PEC-DSH-005 | |",
+      "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+      "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::SOW-049-B4",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "scope row SOW-049 / advisory overlap warnings",
+      "quote": "| SOW-049 | IN | Dashboard — presence board: sessions × worktrees × live hierarchy with heartbeat age and advisory overlap warnings | PEC-DSH-005 | |",
+      "quote_sha256": "3f41b986f676070709fd4e82a12452e292c65ee97c87c9c32c915d26e237f71f",
+      "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::PEC-DSH-005",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "PEC-DSH-005",
+      "quote": "| PEC-DSH-005 | Presence board: sessions × worktrees × live hierarchy, with heartbeat age and advisory overlap warnings. |",
+      "quote_sha256": "4127fc2546df1ceac76668c51024f132e1e0f6eddd0c6b21c28477bd85c3a229",
+      "source_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::PEC-K-01",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "PEC-K-01",
+      "quote": "| **PEC-K-01** | **Graceful absence.** No governed act may require a PEC read or write. Deleting PEC blocks nothing. The kill test (§12) passes at every release. |",
+      "quote_sha256": "886b1819cd649d691304769c9273e268037872d65ada447cf020d1e82b04af85",
+      "source_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::PEC-K-03",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "PEC-K-03",
+      "quote": "| **PEC-K-03** | **Pull-oriented interface; consumer-owned use.** PEC provides labeled, non-authoritative orientation data on request and never self-polls, schedules a consumer, injects into an agent, or claims an external cadence. An explicitly PEC-enabled consumer decides under its own authority whether and when to consume. If it injects PEC data, verify-before-rely is an interface precondition; injection is not required. |",
+      "quote_sha256": "00aa34d0c28ac3e6f0d628d6d8e3d7f0b5f6c43ccc3b8313719db0d5a7e41b53",
+      "source_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::PEC-K-06",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "PEC-K-06",
+      "quote": "| **PEC-K-06** | **Observation, not participation.** Read-only over Git; no leases, no claim arbitration, no merge opinions, no dispatch; conflicts surfaced, never prevented. |",
+      "quote_sha256": "56de277c5668e521686ace87d5782c967fac0df86ced906dabae2d91c2cf0394",
+      "source_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::PEC-K-11",
+      "source": "projects/pec/docs/PRD.md",
+      "locus": "PEC-K-11",
+      "quote": "| **PEC-K-11** | **Mode-capable and never forced.** PEC supports the §5 scope and mode parameters and never forces contact. Pipeline and unscoped-conversation modes support testable zero-contact operation. An explicitly PEC-enabled consumer owns its own mode mapping and contact cadence unless its owner separately adopts an exact duty. |",
+      "quote_sha256": "d87c7ed0db99e09b562737967ae895f32cbe834e4ad576c582729729cac2c965",
+      "source_sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::LIFECYCLE",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+      "locus": "Current State",
+      "quote": "**Current State:** OPEN",
+      "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+      "source_sha256": "6f1e3562d087b6e81efc2e00dc82bc2c621687f98fbe3d388d998b2dc5c94c0b",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::ASSIGNMENT",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_CONTEXT.md",
+      "locus": "ResponsibleParty",
+      "quote": "| ResponsibleParty | TBD (assignment at WORKING_ITEMS activation) |",
+      "quote_sha256": "4f746fb61f737ae04c526100332351efcfa3bdf831062dec67ba2266087161e8",
+      "source_sha256": "6c5455c38b85003e3632e52a961e0aae150eb4e25567bd6378d0c05207085569",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-001",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-001",
+      "quote": "{\"AnchorType\": \"IMPLEMENTS_NODE\", \"Confidence\": \"HIGH\", \"DependencyClass\": \"ANCHOR\", \"DependencyID\": \"DEP-09-05-001\", \"DependencyType\": \"OTHER\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/Deliverables.csv\", \"EvidenceQuote\": \"PackageID PKG-09\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"Tree anchor seeded under D-PEC-62\", \"Origin\": \"DECLARED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"NOT_APPLICABLE\", \"SatisfactionStatus\": \"SATISFIED\", \"SourceRef\": \"Deliverables.csv row DEL-09-05\", \"Statement\": \"DEL-09-05 is package-local to PKG-09.\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"\", \"TargetLocation\": \"execution/_Decomposition/SOFTWARE_DECOMP.md\", \"TargetName\": \"PKG-09_Dashboards\", \"TargetPackageID\": \"PKG-09\", \"TargetRefID\": \"PKG-09\", \"TargetType\": \"PACKAGE\"}",
+      "quote_sha256": "5bdf93ad974aa84508fdbbe62861f4970499ba07a1eb1e4f00b40c73a803130d",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-002",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-002",
+      "quote": "{\"AnchorType\": \"TRACES_TO_REQUIREMENT\", \"Confidence\": \"HIGH\", \"DependencyClass\": \"ANCHOR\", \"DependencyID\": \"DEP-09-05-002\", \"DependencyType\": \"OTHER\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/ScopeLedger.csv\", \"EvidenceQuote\": \"DeliverableIDs include DEL-09-05\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"Tree anchor seeded under D-PEC-62\", \"Origin\": \"DECLARED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"NOT_APPLICABLE\", \"SatisfactionStatus\": \"SATISFIED\", \"SourceRef\": \"ScopeLedger.csv row SOW-049\", \"Statement\": \"DEL-09-05 covers scope item SOW-049.\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"\", \"TargetLocation\": \"execution/_Decomposition/ScopeLedger.csv\", \"TargetName\": \"SOW-049\", \"TargetPackageID\": \"\", \"TargetRefID\": \"SOW-049\", \"TargetType\": \"REQUIREMENT\"}",
+      "quote_sha256": "daa2749214c53cda2f286b8ec5a4cf6682575f5c2e55213f11136bd68c1268f7",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-003",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-003",
+      "quote": "{\"AnchorType\": \"NOT_APPLICABLE\", \"Confidence\": \"MEDIUM\", \"DependencyClass\": \"EXECUTION\", \"DependencyID\": \"DEP-09-05-003\", \"DependencyType\": \"PREREQUISITE\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/Deliverables.csv\", \"EvidenceQuote\": \"A PKG-09-internal shared component: built and sequenced first, consumed by the other six views as a declared dependency\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"DERIVED; Flag=none; EdgeID=E-A10\", \"Origin\": \"EXTRACTED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"INITIALIZED\", \"SatisfactionStatus\": \"PENDING\", \"SourceRef\": \"Deliverables.csv row DEL-09-06\", \"Statement\": \"Shared drill-down component\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"DEL-09-06\", \"TargetLocation\": \"execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source\", \"TargetName\": \"Universal drill-down to cited source\", \"TargetPackageID\": \"PKG-09\", \"TargetRefID\": \"DEL-09-06\", \"TargetType\": \"DELIVERABLE\"}",
+      "quote_sha256": "10d6195671fd7fc98eee4253b4c6b468fcc43b5474a3c43f6abe1067ca554e27",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-004",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-004",
+      "quote": "{\"AnchorType\": \"NOT_APPLICABLE\", \"Confidence\": \"HIGH\", \"DependencyClass\": \"EXECUTION\", \"DependencyID\": \"DEP-09-05-004\", \"DependencyType\": \"PREREQUISITE\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/Deliverables.csv\", \"EvidenceQuote\": \"individually documented, Explain-shaped; rendered by the DEL-09-01..05 views\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"DECLARED; Flag=none; EdgeID=E-A16\", \"Origin\": \"DECLARED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"INITIALIZED\", \"SatisfactionStatus\": \"PENDING\", \"SourceRef\": \"Deliverables.csv row DEL-09-07\", \"Statement\": \"Views render the pressure rules\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"DEL-09-07\", \"TargetLocation\": \"execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules\", \"TargetName\": \"Explain-shaped pressure rules\", \"TargetPackageID\": \"PKG-09\", \"TargetRefID\": \"DEL-09-07\", \"TargetType\": \"DELIVERABLE\"}",
+      "quote_sha256": "b7101691ca07558a1a6f790bf25b7c3bb7c2b2a254ead60031727fef06d76050",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-005",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-005",
+      "quote": "{\"AnchorType\": \"NOT_APPLICABLE\", \"Confidence\": \"MEDIUM\", \"DependencyClass\": \"EXECUTION\", \"DependencyID\": \"DEP-09-05-005\", \"DependencyType\": \"PREREQUISITE\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/ScopeLedger.csv\", \"EvidenceQuote\": \"Dashboard — presence board: sessions × worktrees × live hierarchy with heartbeat age and advisory overlap warnings\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"DERIVED; Flag=PHASE_TENSION; EdgeID=E-N02\", \"Origin\": \"EXTRACTED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"INITIALIZED\", \"SatisfactionStatus\": \"PENDING\", \"SourceRef\": \"ScopeLedger.csv row SOW-049\", \"Statement\": \"Presence board renders live hierarchy edges produced by DEL-06-04; P4 producer for a P3 view — owner classification requested\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"DEL-06-04\", \"TargetLocation\": \"execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges\", \"TargetName\": \"Live hierarchy edges\", \"TargetPackageID\": \"PKG-06\", \"TargetRefID\": \"DEL-06-04\", \"TargetType\": \"DELIVERABLE\"}",
+      "quote_sha256": "d33952624a6f2839e5234fd7cc1548e1cd7f0c21954c5e86746b7449bff6834d",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-006",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-006",
+      "quote": "{\"AnchorType\": \"NOT_APPLICABLE\", \"Confidence\": \"MEDIUM\", \"DependencyClass\": \"EXECUTION\", \"DependencyID\": \"DEP-09-05-006\", \"DependencyType\": \"PREREQUISITE\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/Deliverables.csv\", \"EvidenceQuote\": \"Sessions x worktrees x live hierarchy with heartbeat age and advisory overlap warnings.\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"DERIVED; Flag=none; EdgeID=E-P64\", \"Origin\": \"EXTRACTED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"INITIALIZED\", \"SatisfactionStatus\": \"PENDING\", \"SourceRef\": \"Deliverables.csv row DEL-09-05\", \"Statement\": \"Correlation join feeds the board\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"DEL-06-03\", \"TargetLocation\": \"execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation\", \"TargetName\": \"Session×worktree×scope correlation\", \"TargetPackageID\": \"PKG-06\", \"TargetRefID\": \"DEL-06-03\", \"TargetType\": \"DELIVERABLE\"}",
+      "quote_sha256": "4970ae75f4ddf3808e310f11332557949ef2a9b8bc4def270e9a79454126757a",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-007",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-007",
+      "quote": "{\"AnchorType\": \"NOT_APPLICABLE\", \"Confidence\": \"MEDIUM\", \"DependencyClass\": \"EXECUTION\", \"DependencyID\": \"DEP-09-05-007\", \"DependencyType\": \"PREREQUISITE\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/ScopeLedger.csv\", \"EvidenceQuote\": \"Dashboard — presence board: sessions × worktrees × live hierarchy with heartbeat age and advisory overlap warnings\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"DERIVED; Flag=none; EdgeID=E-P65\", \"Origin\": \"EXTRACTED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"INITIALIZED\", \"SatisfactionStatus\": \"PENDING\", \"SourceRef\": \"ScopeLedger.csv row SOW-049\", \"Statement\": \"Heartbeat-age facts feed the board\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"DEL-06-05\", \"TargetLocation\": \"execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion\", \"TargetName\": \"TTL/heartbeat discipline & citation exclusion\", \"TargetPackageID\": \"PKG-06\", \"TargetRefID\": \"DEL-06-05\", \"TargetType\": \"DELIVERABLE\"}",
+      "quote_sha256": "66b96950869a9888b2d3fbcf4d28f2598c75174866be245e018b42340fd781dc",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    },
+    {
+      "ClaimID": "DEL-09-05::DEP-09-05-008",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "locus": "DEP-09-05-008",
+      "quote": "{\"AnchorType\": \"NOT_APPLICABLE\", \"Confidence\": \"MEDIUM\", \"DependencyClass\": \"EXECUTION\", \"DependencyID\": \"DEP-09-05-008\", \"DependencyType\": \"PREREQUISITE\", \"Direction\": \"UPSTREAM\", \"EvidenceFile\": \"execution/_Decomposition/Deliverables.csv\", \"EvidenceQuote\": \"Sessions x worktrees x live hierarchy with heartbeat age and advisory overlap warnings.\", \"Explicitness\": \"EXPLICIT\", \"FirstSeen\": \"2026-07-25\", \"FromDeliverableID\": \"DEL-09-05\", \"FromDeliverableName\": \"Presence board\", \"FromPackageID\": \"PKG-09\", \"LastSeen\": \"2026-07-25\", \"Notes\": \"DERIVED; Flag=none; EdgeID=E-P66\", \"Origin\": \"EXTRACTED\", \"ProposedMaturity\": \"TBD\", \"RegisterSchemaVersion\": \"v3.1\", \"RequiredMaturity\": \"INITIALIZED\", \"SatisfactionStatus\": \"PENDING\", \"SourceRef\": \"Deliverables.csv row DEL-09-05\", \"Statement\": \"Overlap warnings feed the board\", \"Status\": \"ACTIVE\", \"TargetDeliverableID\": \"DEL-06-06\", \"TargetLocation\": \"execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection\", \"TargetName\": \"Advisory overlap detection\", \"TargetPackageID\": \"PKG-06\", \"TargetRefID\": \"DEL-06-06\", \"TargetType\": \"DELIVERABLE\"}",
+      "quote_sha256": "581c6d0e4f67acf270592be75d425428c4e7cb2c23af6479a1f1a5c5918a6426",
+      "source_sha256": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+    }
+  ]
+}

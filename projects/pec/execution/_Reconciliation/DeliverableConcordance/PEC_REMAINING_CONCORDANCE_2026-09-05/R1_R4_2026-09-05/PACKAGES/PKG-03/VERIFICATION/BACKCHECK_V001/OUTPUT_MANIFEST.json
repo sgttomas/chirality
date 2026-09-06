@@ -1,0 +1,12 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "files": {
+    "RETURN.md": "528d3b07e34ce6fe5bec9285ed32294d4294491c81edde971c13f92ed6df94ef",
+    "BACKCHECK.md": "1819859a52ac24cf39d3b82eeef2b973233932a0057e93ee58650de6a3975fc1",
+    "CHECKED_CHANGES.csv": "dcaa926b082eb7c9935e34fcc30860e26a7ea5eae5e404540cbad288fab8d0c1",
+    "VALIDATION.json": "0865efe91bc9bf8b3f9103ea2dc1bafb9376ee9d45a43e852ef4e47407547fa3",
+    "backcheck.py": "86cbc5ab20dcea830338472b6167fac566b12eb3830c06657dd8bad0bcccd35e",
+    "READ_MANIFEST.json": "792d12f99fa98ebf16faa224c4c59abba7453ea0bbf8dd4ffe7f94a975920fec"
+  },
+  "self_excluding": true
+}

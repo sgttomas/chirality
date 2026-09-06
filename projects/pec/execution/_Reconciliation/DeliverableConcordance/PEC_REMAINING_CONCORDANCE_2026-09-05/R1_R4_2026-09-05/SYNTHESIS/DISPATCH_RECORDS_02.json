@@ -1,0 +1,29 @@
+{
+  "caller": "/root/pec_corpus_synthesis",
+  "parent": "/root",
+  "role_evidence": "instruction-asserted, not mechanically enforced",
+  "active_limit": 2,
+  "phase": "PARTIAL57_OF64",
+  "completed_immutable": [
+    "SCANNER",
+    "AGGREGATE_PARTIAL"
+  ],
+  "reused_native_specialists": [
+    {
+      "task": "/root/pec_corpus_synthesis/scanner_proposal",
+      "brief": "BRIEFS/APPLICATION_PREPARATION.md",
+      "brief_sha256": "1f5e752964f7a265f3eb0647f591f4fc0791272464f83534b9cdc92fdcb01652",
+      "write_scope": "APPLICATION_PREPARATION/**",
+      "objective": "exact57 carrier/application preparation",
+      "no_delegation": true
+    },
+    {
+      "task": "/root/pec_corpus_synthesis/aggregate_partial",
+      "brief": "BRIEFS/AGGREGATE_ADDITIVE.md",
+      "brief_sha256": "1bcfa9847279cf442e9afdd129dc5177b5b4f9810b75ce2600f9110b8c5d09f3",
+      "write_scope": "AGGREGATE_ADDITIVE/**",
+      "objective": "additive08 checks then09/00 successor only on explicit release",
+      "no_delegation": true
+    }
+  ]
+}

@@ -1,0 +1,484 @@
+{
+  "contract": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/ScopeOfWork.md",
+  "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e",
+  "definitions": {
+    "CLM-001": {
+      "line": 165,
+      "exact_first_paragraph": "The accepted `ScopeLedger.csv` row for `SOW-054` reads in full, under the register's ten columns `ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes`:",
+      "quote_sha256": "2080bf4758db411a2efac65047f15f6e4efc9612a7054a3e989a2293e45e3f0a"
+    },
+    "CLM-002": {
+      "line": 175,
+      "exact_first_paragraph": "`SOW-054`'s `SourceRef` cell names one locus, `PEC-SVC-003`, the `PRD.md` \u00a710 service requirement, quoted here in full as it reads: \"Full rebuild of the current corpus completes within a bound confirmed at Phase 1 (target: minutes); incremental reconcile within seconds.\" It is one of six `PEC-SVC-*` requirements in that block, and the other five are covered elsewhere: `PEC-SVC-001` and `PEC-SVC-002` by zero-dependency and locality enforcement under `SOW-052` and `SOW-053`, `PEC-SVC-004` by the standing kill test under `SOW-055`, `PEC-SVC-005` by the store path and content-minimal rule under `SOW-056`, and `PEC-SVC-006` by self-observability logging under `SOW-057` (CLM-017). This contract covers exactly one of the six.",
+      "quote_sha256": "439ebd974e5a8d9d8dc422f7ea167d0f63d7f560e19ac1cf28c2cd61de438bb6"
+    },
+    "CLM-003": {
+      "line": 176,
+      "exact_first_paragraph": "The requirement's two clauses are not symmetrically stated, and this contract does not average them. The rebuild clause states a **bound confirmed at Phase 1** with \"minutes\" marked explicitly as a *target*; the incremental clause states \"within seconds\" flat, with no confirmation act and no target marker. The scope-item restatement preserves the same asymmetry (\"a bound confirmed at P1 (target minutes); incremental reconcile within seconds\"). What neither states is the numeric bound itself, who performs the confirmation, or by what act it is confirmed (CON-001).",
+      "quote_sha256": "0b6eb210c1479451ddddb55c1e4ef460b9baeec24d1a7bf71421eb840bbfe8e8"
+    },
+    "CLM-004": {
+      "line": 177,
+      "exact_first_paragraph": "`OBJ-005` states \"Everything PEC holds can be deleted at any moment without blocking any governed act\", `SourceRef` `\u00a73.5` (`SOFTWARE_DECOMP.md` \u00a73; `PRD.md` \u00a73 outcome 5, which reads \"All of the above can be deleted at any moment without blocking any governed act.\"). At revision 1.2 its \"Mapped Scope Items\" cell reads \"SOW-010, SOW-021, SOW-025, SOW-052..056, SOW-088; bound by C1/C2 across all items\" and its `MappedDeliverables` cell reads \"DEL-00-01, DEL-01-03, DEL-01-05, DEL-03-01, DEL-03-06, DEL-10-02, DEL-10-03\". The objective's product invariant is `PEC-K-01` **Graceful absence**, whose statement reads in full: \"No governed act may require a PEC read or write. Deleting PEC blocks nothing. The kill test (\u00a712) passes at every release.\"",
+      "quote_sha256": "67e8b762b62b99f9e9fe55199464308e475f1f9e9ddcdf7ad81ac15550070f93"
+    },
+    "CLM-005": {
+      "line": 178,
+      "exact_first_paragraph": "The two clauses of `PEC-SVC-003` correspond one-to-one with this deliverable's two accepted upstream edges, and the register shows the correspondence directly: the full-rebuild clause is measured over `[E-P30]`'s predecessor `DEL-03-01`, whose exhibit rationale reads \"Perf bounds test the full rebuild\"; the incremental clause is measured over `[E-P31]`'s predecessor `DEL-03-02`, whose exhibit rationale reads \"Perf bounds test incremental reconcile\" (CLM-008). This contract states that correspondence as the register carries it and draws no further inference from it. In particular it does not use the correspondence to settle the Q1.4 tension between `OBJ-005` and `OBJ-002`: that tension arises from the same two clauses, it was routed to the owner, and it was ruled (CON-005). The correspondence is a fact about what this deliverable measures, not an argument about which objective the row serves.",
+      "quote_sha256": "cd72bac252f57ac2755416be19442924730d165447005fde37346a8606511286"
+    },
+    "CLM-006": {
+      "line": 179,
+      "exact_first_paragraph": "The assignment of `SOW-054` to `PKG-03` is decision-log entry `DL-11` (2026-07-24), whose Decision cell records the forced boundary calls of Phase 4. Quoting the clause that bears on this deliverable, with the preceding and following clauses elided:",
+      "quote_sha256": "78ae44ee7c25a094a1bd1b8687b37638a02b8ce7f4dfe6a53e81dd43ac9edd52"
+    },
+    "OUT-001": {
+      "line": 210,
+      "exact_first_paragraph": "A performance test suite in the PEC service core's test surface: it exercises the full-rebuild path through the upstream entry point and the incremental reconcile path through the upstream engine over a declared measurement corpus under declared measurement conditions, and produces timing measurements together with the conditions under which each was taken.",
+      "quote_sha256": "169e0e5a8a4297becb2bba8c9724a25d872256e93e0e7d1f7c0ea2a287ddfcf2"
+    },
+    "OUT-002": {
+      "line": 211,
+      "exact_first_paragraph": "The recorded bound: a durable, readable record of what the suite measured for each of the two paths, of the measurement conditions and corpus identity each measurement was taken under, of the register-stated target (\"minutes\" for the rebuild) and the register-stated seconds clause for the incremental path as distinct from any measured value, and of the conditioning each measurement carries (CON-003, CON-004). Its **confirmation state** \u2014 whether a bound has been confirmed for Phase 1, by whom, and by what act \u2014 is a field of this record rather than a third artifact, and it is a field this contract obliges to be recorded honestly, including as unconfirmed, rather than a claim this deliverable may make on its own authority (CON-001, REQ-013).",
+      "quote_sha256": "eb715bc3decefd28bd79f50951d12e3012c7e3d0ff17b28703454bfa4d0efdb7"
+    },
+    "CLM-007": {
+      "line": 215,
+      "exact_first_paragraph": "`DEL-03-06` is named \"Rebuild performance bounds\", Type `TEST_SUITE`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Perf tests + recorded bound\", `CoversScopeItems` `SOW-054`, `SupportsObjectives` `OBJ-005`, `ContextEnvelopeNotes` empty, with the register `Description` field reading \"Confirm the P1 rebuild bound (target minutes) and seconds-scale incremental reconcile against the current corpus.\" Sources: `Deliverables.csv` row `DEL-03-06` and the `SOFTWARE_DECOMP.md` \u00a75 PKG-03 table row \"| DEL-03-06 | Rebuild performance bounds | TEST_SUITE | S | P1 | SOW-054 |\".",
+      "quote_sha256": "f9da67d8602f46108c281d65415cd5499e341386b4ebea154c3a91bf8a93d769"
+    },
+    "CLM-008": {
+      "line": 216,
+      "exact_first_paragraph": "The `PKG-03` package charter (`SOFTWARE_DECOMP.md` \u00a74) is \"The guaranteed path from file truth to record tier: one-command rebuild, incremental Git-delta reconcile, drift classification, harness parity diffing, stream-loss recovery guarantee, store-only writes, rebuild performance bounds\", covering \"SOW-010, 018, 019, 020, 021, 038, 054 (7)\", with \"Stream ingest mechanics (PKG-07); parsers (PKG-02)\" recorded as explicitly out of package scope. Of those seven items this deliverable covers exactly one: the rebuild performance bounds, which the charter names last.",
+      "quote_sha256": "2976f626e92496993c3c1d50b845ace3812ecf9a6da6b091a9fcb058b46234ea"
+    },
+    "CLM-009": {
+      "line": 220,
+      "exact_first_paragraph": "This deliverable has **two** accepted `EXECUTION` upstream edges and **two** `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-03-06-001` through `DEP-03-06-004` at `RegisterSchemaVersion` `v3.1`, under the v3.1 column order `RegisterSchemaVersion,DependencyID,FromPackageID,FromDeliverableID,FromDeliverableName,DependencyClass,AnchorType,Direction,DependencyType,TargetType,TargetPackageID,TargetDeliverableID,TargetRefID,TargetName,TargetLocation,Statement,EvidenceFile,SourceRef,EvidenceQuote,Explicitness,RequiredMaturity,ProposedMaturity,SatisfactionStatus,Confidence,Origin,FirstSeen,LastSeen,Status,Notes`. The two anchors are `DEP-03-06-001` (`IMPLEMENTS_NODE`: package-local to `PKG-03`) and `DEP-03-06-002` (`TRACES_TO_REQUIREMENT`: the `SOW-054` requirement trace). Both `EXECUTION` rows share the following column values, attributed by column: `FromPackageID` `PKG-03`, `FromDeliverableID` `DEL-03-06`, `FromDeliverableName` \"Rebuild performance bounds\", `DependencyClass` `EXECUTION`, `AnchorType` `NOT_APPLICABLE`, `Direction` `UPSTREAM`, `DependencyType` `PREREQUISITE`, `TargetType` `DELIVERABLE`, `TargetPackageID` `PKG-03`, `EvidenceFile` `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`, `SourceRef` \"location TBD\", `EvidenceQuote` **empty**, `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PENDING`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `FirstSeen` and `LastSeen` `2026-07-25`, `Status` `ACTIVE`. They differ as follows:",
+      "quote_sha256": "f491d041ac199d0b47c3f431295245aa59ad73c57c60bcc8e70e7b7f91e5da90"
+    },
+    "CLM-010": {
+      "line": 231,
+      "exact_first_paragraph": "Both predecessors are at lifecycle state `INITIALIZED`, which is the maturity both edges require. `INITIALIZED` means each upstream **contract** is the reliable input: each accepted `ScopeOfWork.md` exists, and no reconciler, engine, store, schema, parser, or registry does. Nothing in this contract asserts that any upstream artifact exists or has been built, and nothing in it asserts that any bound has been measured or confirmed. From `[E-P30]`, the full-rebuild path this suite measures is `DEL-03-01`'s obligation, quoted here in full and without elision:",
+      "quote_sha256": "ce48b69665c08c06d1d1567701339eb8ee111148aa6627129cb9bce039f5cd82"
+    },
+    "CLM-011": {
+      "line": 282,
+      "exact_first_paragraph": "From `[E-P30]`, the upstream contract also records the conflict that conditions what a rebuild-bound measurement means. Its record reads in full:",
+      "quote_sha256": "af6ca6bd4f6caad6cb09435eab68337d6e3ed754758d0ba9fb7126aef1d4f312"
+    },
+    "CLM-012": {
+      "line": 305,
+      "exact_first_paragraph": "From `[E-P31]`, the incremental reconcile path this suite measures is `DEL-03-02`'s obligation, quoted here in full and without elision:",
+      "quote_sha256": "a6883d417aa6044260f830b0239fe85f8bf8ae8074514223b05f11926a21aec8"
+    },
+    "CLM-013": {
+      "line": 344,
+      "exact_first_paragraph": "From `[E-P31]`, the upstream contract also records that the examined-SHA baseline the incremental path turns on is unowned in the accepted corpus. The relevant part of its record reads in full:",
+      "quote_sha256": "1bc4413a2987bff06fc4c5cfa8028035bc8860315f90db8f11496bdc208b6d89"
+    },
+    "CLM-014": {
+      "line": 371,
+      "exact_first_paragraph": "The record-tier entity model both measured surfaces write into is not a declared edge of this deliverable. Register-wide constraint `C-03` `PACKAGE_LEVEL` states \"Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively\", with the exhibit's `Notes` cell recording \"Deliverable-level entry edges (E-P10..13) are PROPOSAL; validator proves transitive closure 13/13\" and its validation summary reading \"C-03 transitive closure: 13/13 PKG-03/04/05 members reachable from DEL-01-01\". This deliverable's paths are `[E-P30]` to `DEL-03-01` and `[E-P31]` to `DEL-03-02`, and thence to `DEL-01-01` by those deliverables' own declared and transitive paths. This contract writes no record-tier fact of its own and therefore binds to no entity type; the model reaches it only as a property of the acts it times (CON-002).",
+      "quote_sha256": "eca7bc199c36d29aa73ad0dda160efd97e7b495f4de62b2a8a6fad31d96f0951"
+    },
+    "CLM-015": {
+      "line": 372,
+      "exact_first_paragraph": "**No downstream consumer relation is recorded against this deliverable.** `_DEPENDENCIES.md` records an Upstream table with two rows and no downstream table, `Dependencies.csv` contains only the two anchors and the two upstream `EXECUTION` rows, and `DEL-03-06` appears in the accepted DAG exhibit's edge register exactly twice \u2014 as the `SuccessorID` of `E-P30` and of `E-P31` \u2014 and never as a `PredecessorID` (CLM-009). In the accepted graph this deliverable is a terminal node. It is also **not** a member of the exhibit's standing-node set: constraint row `C-08` `STANDING_NODES` names its parties as \"DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10\", and this deliverable is not among them. This contract therefore makes no claim to standing or release-gating force of its own, and nothing in it may be read as asserting one. Its relation to the `P1` exit test is stated in CLM-016 as the accepted source states it, and no further.",
+      "quote_sha256": "f98a09024c73933b7f1fc1d8d875cd3929a7bee06e3c353273be64f83311879d"
+    },
+    "CLM-016": {
+      "line": 373,
+      "exact_first_paragraph": "The `P1` exit test names a bound this deliverable measures and does not state its value. The `PRD.md` \u00a712 release-strategy row reads in full, under that table's columns `Phase | Scope | Exit test`: \"| **P1 \u2014 One-loop reconciler** | Reconciler + orientation store + API for PEC's own build graph, read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch \u2264 bound; kill test passes |\". Three exit conditions are named there and this deliverable serves one of them: \"rebuild-from-scratch \u2264 bound\". The parity-diff condition is `DEL-03-04`'s under `SOW-020` and the kill test is `DEL-10-02`'s under `SOW-055` (CLM-017). The bound in that clause is the bound `PEC-SVC-003` records as \"confirmed at Phase 1\", and no accepted source states its value or names the act that confirms it (CLM-003, CON-001). This deliverable is also absent from the `PRD.md` \u00a711 success-metric list, whose six numbered metrics are Step-0 cost, orientation defect rate, collision incidents, consumer uptake, parity DriftFindings per reconcile, and the kill test \u2014 no performance or rebuild-duration metric appears among them. Reporting the \u00a711 parity metric is `DEL-10-11`'s under `SOW-093`; this contract reports no \u00a711 metric and creates no reporting cadence.",
+      "quote_sha256": "3a62843e9f5467094ff6aa3dae3520f68ee2e4390d10120a93fadca2fc58c9f0"
+    },
+    "CLM-017": {
+      "line": 377,
+      "exact_first_paragraph": "The acts adjacent to this measurement are owned elsewhere and are cited here, never discharged. Within `PKG-03`: the one-command full rebuild and the reconciler write restriction are `DEL-03-01` (`SOW-010`, `SOW-021`); the Git-delta-keyed incremental reconcile is `DEL-03-02` (`SOW-018`); classifying and reporting drift between successive snapshots is `DEL-03-03` (`SOW-019`); parity-diffing PEC derivations against practitioner-harness output is `DEL-03-04` (`SOW-020`); the stream-loss recovery guarantee is `DEL-03-05` (`SOW-038`, `P3`). Outside it: the record-tier schema and entity model are `DEL-01-01` (`SOW-001`); the gitignored store, its safe-delete lifecycle, and its ingest-boundary content-minimal guard are `DEL-01-03` (`SOW-056`); self-observability logging is `DEL-01-04` (`SOW-057`); standing zero-dependency and locality enforcement is `DEL-01-05` (`SOW-052`, `SOW-053`); the loop-registration configuration is `DEL-01-06` (`SOW-094`); the seven feed grammars and the feed manifest are `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`); serving deltas since a caller-supplied commit SHA is `DEL-04-02` (`SOW-005`); stamping every orientation response with examined-through SHA, generation time, and per-feed freshness is `DEL-04-03` (`SOW-006`, `SOW-007`); rendering a measurement limitation into an orientation response is `DEL-04-05` (`SOW-009`); the **orientation latency budget** \u2014 \"Complete orientation reads in \u2264100 ms at p95 against the current corpus\" \u2014 is `DEL-08-04` (`SOW-041`, `PEC-API-002`), the corpus's other performance `TEST_SUITE` and the one most easily confused with this deliverable; the standing kill test is `DEL-10-02` (`SOW-055`); the tested no-ruling-write property of the API surface is `DEL-10-03` (`SOW-025`); the \u00a711 parity metric report is `DEL-10-11` (`SOW-093`); the directed bootstrap self-ingest validation is `DEL-10-10` (`SOW-064`). This contract produces only the performance tests and the recorded bound.",
+      "quote_sha256": "f66eff95030ef82dde84835e2143d64f760378735104d9d9572f2fd6334a16f0"
+    },
+    "CLM-018": {
+      "line": 378,
+      "exact_first_paragraph": "Phase staging, checked against the `PhaseHint` column of `Deliverables.csv` for every one of the twenty-eight deliverables this contract names in its own voice. Twenty-five are `P1`: `DEL-03-06` itself, its predecessors `DEL-03-01` and `DEL-03-02`, and `DEL-01-01`, `DEL-01-03`, `DEL-01-04`, `DEL-01-05`, `DEL-01-06`, `DEL-02-01`, `DEL-02-02`, `DEL-02-03`, `DEL-02-04`, `DEL-02-05`, `DEL-02-06`, `DEL-02-07`, `DEL-03-03`, `DEL-03-04`, `DEL-04-02`, `DEL-04-03`, `DEL-04-05`, `DEL-08-04`, `DEL-10-02`, `DEL-10-03`, `DEL-10-10`, and `DEL-10-11`. **Three** are exceptions, each cited only as a member of a quoted register cell or as the owner of scope this deliverable does not touch: `DEL-00-01` (`pre-P1`, named only as a member of the `OBJ-005` `MappedDeliverables` cell quoted at CLM-004), `DEL-10-01` (the Step-0 cost baseline, `pre-P1`, named at CLM-019 only as one of the corpus's `MEASUREMENT`-typed rows), and `DEL-03-05` (stream-loss recovery, `P3`). No claim in this contract stages any named deliverable into a different phase, and the `P1` measurement boundary of this suite is therefore the two `P1` reconcile paths of `PKG-03` and nothing later: no stream or event path and no presence-tier path is a measured subject of this suite.",
+      "quote_sha256": "25a41babf9275d339788e41420a906e374cec77337a74029134e2336958de4c7"
+    },
+    "CLM-019": {
+      "line": 379,
+      "exact_first_paragraph": "This deliverable is typed `TEST_SUITE`, not `MEASUREMENT`. The corpus distinguishes the two types and uses both \u2014 among the `MEASUREMENT`-typed rows are `DEL-10-01` (Step-0 cost baseline, `pre-P1`) and `DEL-10-11` (parity metric report, `P1`); among the `TEST_SUITE`-typed rows are `DEL-08-04`, `DEL-10-02`, `DEL-10-03`, `DEL-10-10`, and this deliverable. Decision-log entry `DL-13` records that the `MEASUREMENT` type was added for \u00a711 metric work, and \u00a711 contains no performance metric (CLM-016). The typing is consistent with what the register asks of this deliverable \u2014 executable tests that exercise two paths, plus the record of what they measured \u2014 and this contract states no \u00a711 metric obligation and no reporting cadence that no accepted source states.",
+      "quote_sha256": "89839bc23dbb6d7f6b771788308c4e9d4198633f9c00b0f41460f06d7bc94962"
+    },
+    "CLM-020": {
+      "line": 380,
+      "exact_first_paragraph": "The deliverable is at lifecycle state `INITIALIZED` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built, that any measurement has been taken, or that any bound has been confirmed.",
+      "quote_sha256": "133883e236ea1a38d71449cc7213013516d2532d3131c991f97cbe43b6f2e641"
+    },
+    "TBD-001": {
+      "line": 382,
+      "exact_first_paragraph": "`ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "quote_sha256": "8ec200c8565515ccbd8487c9e8632a45ac15d35278acbceb56347cd43f29286e"
+    },
+    "TBD-002": {
+      "line": 383,
+      "exact_first_paragraph": "The concrete identity of the measurement corpus \u2014 which loop or loops, which checkouts, which commit state, and what its size is in the counts the record-tier ingest is a function of \u2014 is fixed by no accepted source. This is the informational side of CON-002: REQ-004 obliges the corpus identity to be declared and recorded with every measurement, and settles nothing about which corpus is chosen.",
+      "quote_sha256": "66c7eb5be95f630e4a8857ccc2af273ed1efe3138dd556de0c80be5999ce3320"
+    },
+    "TBD-003": {
+      "line": 384,
+      "exact_first_paragraph": "The measurement environment and method parameters \u2014 the machine and operating environment, whether the store, filesystem cache, and process are cold or warm at the start of a timed run, how many repetitions are taken, which statistic is reported, and what repeatability tolerance is applied \u2014 are fixed by no accepted source. They are chosen during production within REQ-004 and REQ-010 and recorded with the measurement.",
+      "quote_sha256": "322ea565db14696d5ce5e29b7fcafeb0ea3db073326a032f31f534be0215ee2d"
+    },
+    "TBD-004": {
+      "line": 385,
+      "exact_first_paragraph": "Where the recorded bound durably lives, and in what form, is fixed by no accepted source beyond the register phrase \"recorded bound\". It is chosen during production within REQ-003 and REQ-007, inside this deliverable's own write set.",
+      "quote_sha256": "d37bde56601144846293025c4220f61311843521a0ee2ec0895863c223861c48"
+    },
+    "TBD-005": {
+      "line": 386,
+      "exact_first_paragraph": "The suite's concrete invocation surface \u2014 its verb, its arguments, its exit-status contract, and whether it executes inside the `PKG-03` test run or as a separately invoked performance run \u2014 is fixed by no accepted source beyond the register phrase \"Perf tests\". It is chosen during production within REQ-001, REQ-002, and REQ-014.",
+      "quote_sha256": "8f9704db684ae10b280f4307b78bf058d5593886c5da48fbc2e29fdcae09b93f"
+    },
+    "REQ-001": {
+      "line": 394,
+      "exact_first_paragraph": "The suite shall measure the elapsed duration of a full rebuild executed through the upstream reconciler's single command as that contract obliges it (CLM-010), for the loops the declared measurement corpus spans. It shall implement no rebuild of its own, shall define no second rebuild command, and shall not reach the rebuild by any path other than that entry point.",
+      "quote_sha256": "453bdc53feea265699332b21db574990d81bab85a6938dbb07af1c36596e1698"
+    },
+    "REQ-002": {
+      "line": 395,
+      "exact_first_paragraph": "The suite shall measure the elapsed duration of an incremental reconcile executed through the upstream incremental engine as that contract obliges it (CLM-012). It shall implement no delta acquisition, no delta-to-work resolution, and no reconcile path of its own, and shall not reach the incremental path by any path other than that engine.",
+      "quote_sha256": "01d25906db141735786b2bc3b4b5819d1d4b9c9445ec3ad015411d58761a4877"
+    },
+    "REQ-003": {
+      "line": 396,
+      "exact_first_paragraph": "The recorded bound shall distinguish, in every statement it makes, between (a) the register-stated target and clause text of `PEC-SVC-003` \u2014 \"minutes\" as an explicitly marked target for the rebuild, \"within seconds\" as the incremental clause \u2014 and (b) any value this suite measured. It shall present no register-stated target or clause as a measured value, and no measured value as a confirmed bound (REQ-013). Where a value is absent, the record shall say so explicitly rather than omit the field.",
+      "quote_sha256": "92d53808b3e653d0a17f73a4834312d12798a002bf63d958611e3e811709f096"
+    },
+    "REQ-004": {
+      "line": 397,
+      "exact_first_paragraph": "Every measurement the suite records shall carry its measurement conditions: the identity of the corpus measured over, including the commit state and the size counts that identify it (TBD-002); the measurement environment and the cold-or-warm state of store, cache, and process at the start of the timed run; the repetition count; and the statistic reported (TBD-003). A measurement recorded without its conditions is prohibited.",
+      "quote_sha256": "d5ea1dc542fa87c1196c2ee539c883ce4b2d0182bf04cdd51d669f6a56ddf771"
+    },
+    "REQ-005": {
+      "line": 398,
+      "exact_first_paragraph": "Every recorded rebuild measurement shall carry the coverage state of the rebuild it timed: whether that rebuild completed over every manifest-named feed for every loop in the corpus, or completed carrying stated coverage limitations, and if the latter, which loops and feeds those limitations named. The suite shall neither treat the two as interchangeable nor aggregate across them into a single reported figure. This requirement records the upstream open question (CLM-011, CON-003); it does not answer it, and no measurement or record produced under it may be read as answering it.",
+      "quote_sha256": "b7aa785294e3199a3189eaef3d0f509c745070f0841ea4e9a8071457e91f4e20"
+    },
+    "REQ-006": {
+      "line": 399,
+      "exact_first_paragraph": "Every recorded incremental measurement shall carry the subject of the run it timed: the baseline the run started from and where that baseline came from, the delta the run was given, and whether the run completed on the incremental path or fell back to the full-rebuild path as the upstream contract obliges for unresolvable change classes (CLM-012). A run that fell back shall not be recorded as an incremental measurement. This requirement records the upstream baseline-ownership gap (CLM-013, CON-004); it does not assign the missing obligation to any deliverable, and the suite shall not read a baseline out of, or write one into, another deliverable's artifact.",
+      "quote_sha256": "69ff081f4c27736ea8c129f9b372f6d22679d86984802fb6718f7798f2386cf3"
+    },
+    "REQ-007": {
+      "line": 400,
+      "exact_first_paragraph": "The suite shall write only into its own test workspace and into the recorded bound. It shall create, modify, or delete no source file, no governed file, no register, no lifecycle file, and no path outside that write set. Where a measured run itself writes \u2014 the rebuild and the incremental reconcile write into the store and into the views the upstream entry point declares \u2014 those writes are the measured deliverable's under its own contract and are not this suite's write set; the suite shall add nothing to that set, declare no generated view of its own, and shall leave the measured corpus byte-identical across a measurement run.",
+      "quote_sha256": "faf5fca8e5246a07ffd99c553afa68252c02f4671e4a17b46112a1033a45dd1e"
+    },
+    "REQ-008": {
+      "line": 401,
+      "exact_first_paragraph": "The suite shall perform no act owned by another deliverable. In particular it shall implement no reconciler, no incremental engine, no drift classification, no parity diff against practitioner-harness output, no stream-loss recovery act, no orientation-latency measurement, no examined-SHA or freshness stamping and no per-claim citation attachment, no \u00a711 metric report, and no kill test; each is cited to its owner in CLM-016 and CLM-017, and none is discharged here. No test in this deliverable shall assert a criterion belonging to any of them.",
+      "quote_sha256": "342132559b5117226ea2f393b0e2cf2b2611819f9c8059f5003ffd1ccffc4cb9"
+    },
+    "REQ-009": {
+      "line": 402,
+      "exact_first_paragraph": "Nothing the suite captures, retains, or writes into the recorded bound shall carry file content or diff content, per `PEC-K-10`, whose statement reads in full: \"**Content-minimal.** Paths, counts, SHAs, states, hashes \u2014 never file or diff content.\" A measurement record may carry paths, counts, identifiers, states, SHAs, hashes, and durations, and nothing else drawn from the corpus.",
+      "quote_sha256": "7f86b03e2a81a6d84bd66e7da253e6a0e5e8312ff6d90e25d3c8979af8931456"
+    },
+    "REQ-010": {
+      "line": 403,
+      "exact_first_paragraph": "The suite's measurement method shall be repeatable: repeated execution over the same corpus, the same commit state, and the same declared conditions shall reproduce each measurement within a declared tolerance, and that tolerance together with the repetition discipline that produced it shall be recorded with the measurement (TBD-003). A single unrepeated timing shall not be recorded as a measurement.",
+      "quote_sha256": "b7695420eaa519c5a6f225bd0074192424a15e7ab349b608078cfdb4cac6faee"
+    },
+    "REQ-011": {
+      "line": 404,
+      "exact_first_paragraph": "The suite and the recorded bound shall introduce no third-party runtime dependency and no external network egress, per `PEC-SVC-001` and `PEC-SVC-002`, whose standing enforcement is `DEL-01-05` covering `SOW-052` and `SOW-053` (CLM-017).",
+      "quote_sha256": "7ad1bf3bf804f5d4b43d62253d1bcf6e46af387736a213b8421ca64ed1e55f9e"
+    },
+    "REQ-012": {
+      "line": 405,
+      "exact_first_paragraph": "Nothing in this deliverable shall assert or require that an upstream reconciler, engine, store, schema, parser, registry, or corpus artifact exists. The suite is written against the upstream contracts quoted in CLM-010 through CLM-013, and where production must exercise a measurement path before a measured surface exists, it shall do so against an explicit interface-level stand-in identified as such, without discharging or constraining the deliverable that owns the real surface (CON-002).",
+      "quote_sha256": "9cd4c7a7a41325f2ca83095fb46b7bd71718987404182a1cd4ff92394824ae4c"
+    },
+    "REQ-013": {
+      "line": 406,
+      "exact_first_paragraph": "The suite shall not itself rule any bound confirmed. `PEC-SVC-003` states the rebuild bound as \"confirmed at Phase 1\" and no accepted source states its value, names the act that confirms it, or names who performs that act (CLM-003, CLM-016, CON-001). The recorded bound shall therefore state its confirmation field as unconfirmed, or as confirmed by a named dated act with a citation to that act, and shall never present this deliverable's own measurement as the confirmation. AC-015 routes the missing act to an accountable owner.",
+      "quote_sha256": "d420e8762c7232da0b0a7e6bccc6223f988854524914213cb1b07303f5ce7c39"
+    },
+    "REQ-014": {
+      "line": 407,
+      "exact_first_paragraph": "Tests shall implement the verification methods declared in this contract; they shall not define scope, requirements, or acceptance criteria.",
+      "quote_sha256": "eb95df994c7ff17df8baf3c751caddf02c21a1b284e9dd4f5e59e441c56c20b0"
+    },
+    "AC-001": {
+      "line": 409,
+      "exact_first_paragraph": "Every rebuild measurement is produced by invoking the upstream reconciler's single command; this deliverable's source contains no rebuild implementation and no second rebuild command; and the loops timed are exactly those the declared corpus spans.",
+      "quote_sha256": "b3a74539ffc0db4a031fe4e9307ec03695f02b66490490c66a33e98e04578892"
+    },
+    "AC-002": {
+      "line": 410,
+      "exact_first_paragraph": "Every incremental measurement is produced by invoking the upstream incremental engine; this deliverable's source contains no delta acquisition, no delta-to-work resolution, and no reconcile implementation of its own.",
+      "quote_sha256": "3b17387382371d90afffb2ebd161513ff58df3ba2b85a75ca07dbaa254414af7"
+    },
+    "AC-003": {
+      "line": 411,
+      "exact_first_paragraph": "The recorded bound states the `PEC-SVC-003` target and clause text and any measured value as separately labelled fields; no register-stated target appears as a measured value and no measured value appears as a confirmed bound; the confirmation field is present and reads either unconfirmed or a named dated confirming act with its citation; and every absent value is stated as absent rather than omitted.",
+      "quote_sha256": "af846b13808f6d48f3f9a8e4acd818dd4fee46efbf8364030a9e5ab258bf3420"
+    },
+    "AC-004": {
+      "line": 412,
+      "exact_first_paragraph": "Every measurement in the recorded bound carries corpus identity including commit state and size counts, measurement environment, cold-or-warm start state, repetition count, and reported statistic; and no measurement appears without a complete conditions set.",
+      "quote_sha256": "43c328110f18b6a1c9d02ec8b2558a948fcb15f9dccfdfe7458faed9daa3f79c"
+    },
+    "AC-005": {
+      "line": 413,
+      "exact_first_paragraph": "Every rebuild measurement carries the coverage state of the rebuild it timed; for a fixture corpus seeded to produce stated coverage limitations, the limitation-bearing measurement is recorded separately from an unlimited one and the two are not aggregated; and no record or output of this deliverable states or implies a resolution of whether a limitation-bearing rebuild is a rebuild \"in full\".",
+      "quote_sha256": "61470b8f5ef6eca33934b4c70c836fb93924af4614ee364e76fd4d5590b7d75e"
+    },
+    "AC-006": {
+      "line": 414,
+      "exact_first_paragraph": "Every incremental measurement carries its baseline, that baseline's provenance, the delta the run was given, and its completion path; a seeded run that falls back to the full-rebuild path is not recorded as an incremental measurement; and this deliverable's source contains no baseline write into, and no baseline read out of, another deliverable's artifact.",
+      "quote_sha256": "63f5bf66ddde9c33b5a68ab6bbe7b167cd331d94dab5e98956ffcf4ad25cfec2"
+    },
+    "AC-007": {
+      "line": 415,
+      "exact_first_paragraph": "A measurement run leaves the measured corpus byte-identical; every filesystem write this deliverable itself performs resolves under its own test workspace or the recorded bound; and the module contains no write, create, or delete call against any source file, governed file, register, or lifecycle file, and declares no generated view of its own.",
+      "quote_sha256": "215ccf5585e9b93b32974a8109418f80690e8279bc249eb73482b9dfadcf96c5"
+    },
+    "AC-008": {
+      "line": 416,
+      "exact_first_paragraph": "This deliverable's source contains no reconciler, incremental engine, drift-classification, parity-diff, stream-loss-recovery, orientation-latency, stamping, citation-attachment, \u00a711-metric-report, or kill-test path; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "quote_sha256": "e7eb80b511acc37c806ada6e9ffdc232108ccc5878eff89c6793b1ed972c7af5"
+    },
+    "AC-009": {
+      "line": 417,
+      "exact_first_paragraph": "For a content-dense fixture corpus, inspection of everything the suite captures, retains, and writes into the recorded bound finds no file content and no diff content \u2014 only paths, counts, identifiers, states, SHAs, hashes, and durations.",
+      "quote_sha256": "c1c9fa9049e7e6e160d261c3aa79315b0faf9e4665c5142052bd69cc03a19bd3"
+    },
+    "AC-010": {
+      "line": 418,
+      "exact_first_paragraph": "Repeated execution over the same corpus, commit state, and declared conditions reproduces each measurement within the declared tolerance; the tolerance and the repetition discipline appear in the recorded bound; and no single unrepeated timing is recorded as a measurement.",
+      "quote_sha256": "81ae49287f39aedfcc197fa1addfa00b58383fba82526381d1dad194ef6b169a"
+    },
+    "AC-011": {
+      "line": 419,
+      "exact_first_paragraph": "The suite and the recorded bound add no third-party runtime dependency and make no network call, leaving the standing zero-dependency and locality assertion intact.",
+      "quote_sha256": "6c2039f5215a3da7dc37af29014a7f502700503ed40803a754cbf449a3daf9b3"
+    },
+    "AC-012": {
+      "line": 420,
+      "exact_first_paragraph": "No element of this deliverable asserts or requires that an upstream reconciler, engine, store, schema, parser, registry, or corpus artifact exists; every measurement path exercised before its measured surface exists runs against a stand-in explicitly identified as a stand-in; and no stand-in result is presented as a measurement of the real surface.",
+      "quote_sha256": "72ed1d01d5aaae0ccb39ac69b7f527887b21e6c59bb99fd80f4f396438ea5978"
+    },
+    "AC-013": {
+      "line": 421,
+      "exact_first_paragraph": "The performance test suite implements VER-001 through VER-012, executes in its declared run, passes, and introduces no acceptance criterion absent from this contract.",
+      "quote_sha256": "61b739f44cdbbd8893f4f6b5b21eca4e737046b9771fe7767e2dd492dbc11532"
+    },
+    "AC-014": {
+      "line": 422,
+      "exact_first_paragraph": "An accountable owner confirms that the attribution `SOW-054` \u2192 `OBJ-005` remains acceptable given the recorded **MEDIUM-LOW** rating at Q1.4, the record's own characterization of the recommendation as made \"weakly \u2014 the row is a PKG-03 performance bound on the rebuild path\", the recorded alternatives `OBJ-002` and `OBJ-005;OBJ-002`, and the recorded finding that `PEC-SVC-003`'s two clauses point at different objectives (CON-005).",
+      "quote_sha256": "0e0406fa8ca5d7e5030bd44c7c94279bd24b9c538446ce6d172cc4a6b2ff9851"
+    },
+    "AC-015": {
+      "line": 423,
+      "exact_first_paragraph": "An accountable owner records who confirms the Phase 1 rebuild bound, by what act, and against what value, or records that no such act is owed and that the recorded bound stands as measurement only; and states whether the seconds clause of `PEC-SVC-003` is itself a bound or a target, which its text does not mark (CON-001, CLM-003).",
+      "quote_sha256": "853b0f91d3d29b62a821bd35fcd66865bb28e52056c456df59afd0b358e80eb9"
+    },
+    "AC-016": {
+      "line": 424,
+      "exact_first_paragraph": "The REVIEW gate confirms this contract's traceability to `SOW-054` and `OBJ-005`; confirms that the attribution is stated as SCA-002-authored and owner-ruled at Gate 3, at the MEDIUM-LOW strength the record carries and no more; and confirms that no `PKG-01`, `PKG-02`, sibling `PKG-03`, `PKG-04`, `PKG-08`, or `PKG-10` scope has been absorbed.",
+      "quote_sha256": "72660690f122cfa5819efb9c1dea388d940657c519e31ddd5959bd4960d2c1b2"
+    },
+    "CON-001": {
+      "line": 426,
+      "exact_first_paragraph": "The bound this deliverable exists to confirm is stated by no accepted source, and the confirming act is unowned. `PEC-SVC-003` records the rebuild bound as \"confirmed at Phase 1 (target: minutes)\" and the `PRD.md` \u00a712 `P1` exit test names \"rebuild-from-scratch \u2264 bound\" (CLM-016); neither states a value, names the act by which a bound becomes confirmed, nor names who performs it. The register `Description` for this deliverable uses the verb \u2014 \"Confirm the P1 rebuild bound (target minutes)\" \u2014 and the accepted corpus supplies no method for it. The incremental clause compounds the gap by asymmetry: \"within seconds\" carries no target marker and no confirmation act at all, so whether it is a bound already stated or a target still to be confirmed is undetermined by its own text (CLM-003). This contract records the gap rather than closing it. REQ-013 forbids the suite from ruling any bound confirmed on its own authority and obliges the confirmation state to be a recorded field, and AC-015 routes the missing act to an accountable owner. A production choice that fixed a numeric bound, or that treated this deliverable's measurement as the confirmation, would take a decision in the wrong place.",
+      "quote_sha256": "c5d25907d846d57580cdd26c4a074e936740b91df2050d423ef0b20d5098119c"
+    },
+    "CON-002": {
+      "line": 427,
+      "exact_first_paragraph": "Both measured surfaces are owned upstream and neither exists. `INITIALIZED` on both edges means each upstream contract is the reliable input and no artifact is (CLM-010, CLM-012), so a measurement method written here binds to obligations rather than to implementations. That is a real limit on what production may fix: the concrete shape of a rebuild invocation, the incremental engine's invocation surface, the store's engine, and the record-tier field sets are all unsettled upstream and are cited in those contracts' own unresolved records. Production may exercise a measurement path against an explicit stand-in (REQ-012), but a stand-in result is not a measurement of the real surface, and a production choice here that fixed an upstream invocation surface, field set, or schema shape would take a decision in the wrong place.",
+      "quote_sha256": "1e9083da9294f37ae8aacee22178535126a4eedb0f6d832c80d6ad25c6e65674"
+    },
+    "CON-003": {
+      "line": 428,
+      "exact_first_paragraph": "Upstream-carried, not resolved here: the full-rebuild contract records that no accepted source states whether a rebuild that completed with stated coverage limitations counts as a rebuild \"in full\" for `SOW-010`'s purposes (CLM-011). The question lands on this deliverable with a sharpness it does not have upstream, because a duration is a single number and it is exactly the kind of claim into which a conditioning can silently disappear: a bound measured over a limitation-bearing rebuild is a different claim from a bound measured over an unconditioned one, and the two would be indistinguishable once reported as \"the rebuild takes N minutes\". REQ-005 therefore obliges the coverage state to travel with every rebuild measurement and prohibits aggregation across the two cases. That obligation makes the ambiguity visible in the recorded bound; it does not settle the upstream question, which remains open in its own contract and is neither resolved nor narrowed here.",
+      "quote_sha256": "b9dcf098bdc46ab9b83989221b18658a9efe602e53f65b2ceed945d5a4252fb7"
+    },
+    "CON-004": {
+      "line": 429,
+      "exact_first_paragraph": "Upstream-carried, not resolved here: the incremental contract records that the examined-SHA baseline its path presupposes is obliged by no accepted source and that no holder for a reconcile's examined-through SHA is named anywhere in the accepted corpus (CLM-013). A seconds-scale measurement of that path is a measurement of a run from some baseline over some delta, and both are undetermined at the level of accepted truth. REQ-006 obliges both to be recorded with every incremental measurement and prohibits the suite from reading a baseline out of, or writing one into, another deliverable's artifact. This contract assigns the missing obligation to no one; whether the reconcile-side baseline should be a shared obligation stated once for `PKG-03` is a scope-change question, not a production decision, and it is not answered by anything recorded here.",
+      "quote_sha256": "ce05ff099062500647fe94507257f15a331a089dd1df75336e9fce85d7709f97"
+    },
+    "CON-005": {
+      "line": 430,
+      "exact_first_paragraph": "The objective attribution is qualified and the qualification is carried rather than smoothed. SCA-002 rated `SOW-054` \u2192 `OBJ-005` **MEDIUM-LOW** at Q1.4 \u2014 one of the lower ratings among the nine per-row attributions in that record, whose `Confidence` column carries `HIGH` twice, `MEDIUM-HIGH` once, `MEDIUM` three times, `MEDIUM-LOW` once (this row), `LOW-MEDIUM` once, and `LOW` once \u2014 recommended `OBJ-005` explicitly \"weakly\", and recorded `OBJ-002` and `OBJ-005;OBJ-002` as live alternatives on the ground that the two clauses of `PEC-SVC-003` point at different objectives. The same package corrected its own earlier truncation of that requirement at `C-20`, having cut the quotation \"at exactly the clause pointing elsewhere\". The owner ruled the question at Gate 3, all seven per-row attributions as recommended, and that ruled attribution is the accepted one and is used throughout this contract without reinterpretation. What this contract declines to do is restate a weakly recommended MEDIUM-LOW attribution as though it were unconditional: AC-014 routes the qualification, with its recorded alternatives, to an accountable owner at REVIEW. The clause-to-edge correspondence recorded at CLM-005 is deliberately not used as an argument here in either direction \u2014 it is the same two clauses the packet reasoned from, and reasoning from them again locally would be substituting this contract's judgment for a ruling that has already been made.",
+      "quote_sha256": "1d35d92ca6fb9ad0e770fc5ff1c9e44ced72d0e990378302e84e94a664dae1e8"
+    },
+    "CON-006": {
+      "line": 431,
+      "exact_first_paragraph": "What \"the current corpus\" denotes is fixed by no accepted source. The phrase occurs three times in the accepted basis and its source corpus and is defined at none of them: `PEC-SVC-003` (\"Full rebuild of the current corpus\"), `PEC-API-002` (\"\u2264100 ms at p95 against the current corpus\"), and the `SOW-041` SSOW row that restates the latter. The register `Description` for this deliverable repeats it once more (\"against the current corpus\"). A performance bound is meaningless without the corpus it is a bound over, and a bound measured over a corpus of one loop is a different claim from the same bound measured over five. This contract does not choose the corpus and does not read the phrase as fixing one: REQ-004 obliges the corpus actually measured over to be identified in the record, with the commit state and the size counts that make the identification checkable, so that the recorded bound states its own subject (TBD-002). Whether `PEC-SVC-003`'s \"current corpus\" denotes a particular loop set at a particular time is a question for the accepted sources, not for this deliverable's production.",
+      "quote_sha256": "a92b1f8329760d52a417ea541abcacb0238ea0295cae87c335ffb7ab996479f2"
+    },
+    "VER-001": {
+      "line": 452,
+      "exact_first_paragraph": "Rebuild-path measurement exercise: execute the timed rebuild through the upstream entry point over the declared corpus and capture the invocation record showing the command used; grep this deliverable's source for a rebuild implementation and for any second rebuild command, asserting none; and compare the loop set actually timed against the declared corpus, asserting equality.",
+      "quote_sha256": "96c4d538ce919f92945c229cb947715e30029085af0fd52bf76394785cc911e5"
+    },
+    "VER-002": {
+      "line": 453,
+      "exact_first_paragraph": "Incremental-path measurement exercise: execute the timed incremental reconcile through the upstream engine and capture the invocation record; grep this deliverable's source for delta acquisition, delta-to-work resolution, and reconcile implementation, asserting none is present.",
+      "quote_sha256": "9769ff56bc372bfc0732de24254ffe7c9de014fd098b3b8c2a0ebaa3ff709b98"
+    },
+    "VER-003": {
+      "line": 454,
+      "exact_first_paragraph": "Recorded-bound field inspection: read the recorded bound and assert field by field that the `PEC-SVC-003` target and clause text and any measured value occupy separately labelled fields, that no target appears as a measured value and no measured value as a confirmed bound, that the confirmation field is present and reads either unconfirmed or a named dated confirming act with its citation, and that every absent value is explicitly stated absent.",
+      "quote_sha256": "70b34a6b9c226086066c701c635f6d0f5f21ecbd5e4397f99e8f01cf1e561812"
+    },
+    "VER-004": {
+      "line": 455,
+      "exact_first_paragraph": "Conditions-completeness inspection: for every measurement in the recorded bound, assert the presence of corpus identity with commit state and size counts, measurement environment, cold-or-warm start state, repetition count, and reported statistic; assert that no measurement lacks any of them.",
+      "quote_sha256": "8108fadbabc5139db83c56ca8ff9022404d60988994b3ce16582b9a062e6efb5"
+    },
+    "VER-005": {
+      "line": 456,
+      "exact_first_paragraph": "Coverage-conditioning exercise: run the timed rebuild over a fixture corpus seeded to produce stated coverage limitations and over one seeded to produce none; assert each resulting measurement carries its coverage state and names the limited loops and feeds where applicable; assert the two are recorded separately and no aggregate figure spans them; and inspect the recorded bound and this deliverable's source for any statement resolving whether a limitation-bearing rebuild is a rebuild \"in full\", asserting none.",
+      "quote_sha256": "0497019826e80af3458750238725b67cb76c974e389ab5eb4156403e857b6e6b"
+    },
+    "VER-006": {
+      "line": 457,
+      "exact_first_paragraph": "Incremental-subject exercise: run the timed incremental reconcile from a recorded baseline over a seeded delta and assert the measurement carries the baseline, its provenance, the delta, and the completion path; seed a change class that forces the upstream fallback and assert the resulting run is not recorded as an incremental measurement; grep this deliverable's source for a baseline write into or read out of another deliverable's artifact, asserting none.",
+      "quote_sha256": "a2f73611e55e73189e89f0bab4a4573ebbcd6051f629b108469e3df8e8505fbc"
+    },
+    "VER-007": {
+      "line": 458,
+      "exact_first_paragraph": "Write-boundary exercise: hash the measured corpus tree before and after a measurement run and assert byte-identity; capture every filesystem write this deliverable itself performs and assert each resolves under its own test workspace or the recorded bound; inspect the module for write, create, or delete calls against source files, governed files, registers, or lifecycle files and for any generated-view declaration, asserting none.",
+      "quote_sha256": "72ef23ba60ea12410127ea971f1aea6f146f485f602fa5678ca55609b10ec92c"
+    },
+    "VER-008": {
+      "line": 459,
+      "exact_first_paragraph": "Boundary inspection: inspect this deliverable's source and call graph for reconciler, incremental-engine, drift-classification, parity-diff, stream-loss-recovery, orientation-latency, stamping, citation-attachment, \u00a711-metric-report, and kill-test paths, asserting each absent; review this deliverable's tests for any criterion belonging to another deliverable, asserting none.",
+      "quote_sha256": "fec53ae893cb0db6d3a0fb7534e6d7fad8ff58b0223b6312398952ebd64cdaca"
+    },
+    "VER-009": {
+      "line": 460,
+      "exact_first_paragraph": "Content-minimal inspection: run the suite over a content-dense fixture corpus carrying long prose bodies, quoted authored text, and diff-shaped content, then dump everything the suite captures, retains, and writes into the recorded bound and assert field by field that it carries only paths, counts, identifiers, states, SHAs, hashes, and durations.",
+      "quote_sha256": "47d0f714c63cba4d3f969a1e601e04329582537f91845f53075217eca72d88b6"
+    },
+    "VER-010": {
+      "line": 461,
+      "exact_first_paragraph": "Repeatability exercise: execute the full measurement set at least twice over the same corpus, commit state, and declared conditions and assert each measurement reproduces within the declared tolerance; read the recorded bound and assert the tolerance and repetition discipline are recorded; inspect the record for any measurement derived from a single unrepeated timing, asserting none.",
+      "quote_sha256": "d2e967f7ea5624e343d136ff5d45516e8644731080036296b245b24e298f644c"
+    },
+    "VER-011": {
+      "line": 462,
+      "exact_first_paragraph": "Inspect this deliverable's dependency manifest and import graph for third-party runtime dependencies and network calls, and re-run the zero-dependency and locality enforcement once the deliverable that owns it is available, without discharging it here.",
+      "quote_sha256": "2ea61cc755b5693058aee5f10ed9eea8363c7718ba31eeaaf753b01010c29931"
+    },
+    "VER-012": {
+      "line": 463,
+      "exact_first_paragraph": "Upstream-assumption inspection: grep this deliverable's source, fixtures, and call surface for any assertion or requirement that an upstream reconciler, engine, store, schema, parser, registry, or corpus artifact exists, asserting none; enumerate every stand-in used and assert each is identified as a stand-in at its use site and in any record it contributes to; assert no stand-in result appears in the recorded bound as a measurement of the real surface.",
+      "quote_sha256": "295a3dc6a23fd6e48f6911187c443ddc811acb785417b4cedf53f5ee13e39eb4"
+    },
+    "VER-013": {
+      "line": 464,
+      "exact_first_paragraph": "Run this deliverable's declared test run and confirm that each of VER-001 through VER-012 has a corresponding executing automated test and that no test asserts a criterion absent from this contract.",
+      "quote_sha256": "e7ae9c48d3f3406f7880770064df131f0c46bf5d2f85df34bf4dbf06b05ce4cc"
+    },
+    "AX-001": {
+      "line": 468,
+      "exact_first_paragraph": "`OBJ-005` governs: everything PEC holds can be deleted at any moment without blocking any governed act. A rebuild is what makes deletion survivable, and a rebuild whose duration is unknown makes deletability a claim nobody has priced. This deliverable is where that price is measured. It does not make the record tier deletable \u2014 the store lifecycle and the rebuild command do \u2014 but an unmeasured rebuild leaves `OBJ-005` true in principle and untested in practice, which is the condition `PEC-SVC-003` exists to end.",
+      "quote_sha256": "50dae032dec2f030db08c70d11e9f03c4af6aa57249b22643abb4ef02fd608aa"
+    },
+    "AX-002": {
+      "line": 469,
+      "exact_first_paragraph": "`PEC-K-01` graceful absence is `OBJ-005`'s product invariant and it sets this deliverable's honesty standard rather than its scope. \"Deleting PEC blocks nothing\" is only credible if what deletion costs is known and stated; a bound recorded without the conditions under which it was measured would substitute a reassuring number for that knowledge. REQ-004, REQ-005, and REQ-006 are that standard written as checkable obligations, and they are why this contract treats a conditioning field as part of the measurement rather than as commentary on it.",
+      "quote_sha256": "834d056b92fd7a69c0144f109bde2b54634eafabd6919e4d12c36c65c26d673b"
+    },
+    "AX-003": {
+      "line": 470,
+      "exact_first_paragraph": "A measurement is a claim about a subject, and this deliverable's characteristic failure mode is losing the subject. Durations aggregate easily, read authoritatively, and carry none of their own qualifications; \"the rebuild takes N minutes\" survives every context it is cut from. That is why the conditioning requirements are stated as prohibitions on recording rather than as recommendations for reporting, and why REQ-010 refuses a single unrepeated timing the status of a measurement.",
+      "quote_sha256": "e889a6bb3c92a4763a11f5e43cd78bef5d9f0f8b942d91828187f1d18adece63"
+    },
+    "AX-004": {
+      "line": 471,
+      "exact_first_paragraph": "`PEC-K-10` content-minimal binds this deliverable even though it writes no record-tier fact. A performance record is a natural place for a corpus excerpt to appear as an explanatory aid \u2014 a sample of the file that made a rebuild slow, a diff that shows why a delta was large \u2014 and the rule admits no such exception. REQ-009 restates the restriction over the suite's own surface so that the recorded bound cannot become the one durable artifact in `P1` that holds what the store may not.",
+      "quote_sha256": "a9e2045e557aa2617b1997be48bf98408d8f06f9e857a8b875b62ef90792235b"
+    },
+    "AX-005": {
+      "line": 472,
+      "exact_first_paragraph": "`PEC-K-07` \u2014 \"Ingest is best-effort; reconciliation is guaranteed. Streams optimize freshness; the reconciler over file truth is the source of every record-tier fact.\" \u2014 is why both measured paths matter and why they are not interchangeable. The incremental path is an optimization inside the guarantee, not a second guarantee, and its upstream contract obliges it to fall back to the rebuild where equivalence cannot be established. A seconds-scale figure taken from a run that fell back would be timing the guarantee and reporting the optimization, which is why REQ-006 makes the completion path a recorded field.",
+      "quote_sha256": "cc310c64607ff11e4ba8b86e0b9073420a55919c1a540c2e7bcf759da0ff9bc8"
+    },
+    "AX-006": {
+      "line": 473,
+      "exact_first_paragraph": "`PEC-K-02` files govern, and it bounds what this deliverable's own output is: \"**Files govern.** The record tier is regenerated from sources by one command; the presence tier is expected to be lost on rebuild; the database is gitignored and safe to delete; PEC output is never citable as authority; rulings and lifecycle state remain file-native.\" The recorded bound is a measurement record, not a ruling. It can state what was measured and under what conditions; it cannot make a bound confirmed, and REQ-013 states that limit as an obligation rather than leaving it to restraint.",
+      "quote_sha256": "e99c608a513075834f202ff4650b8fed084e0639b3726ecb1539eedc7b7ae222"
+    },
+    "AX-007": {
+      "line": 474,
+      "exact_first_paragraph": "`DL-11` is the decision that gives this deliverable its shape: the rebuild bounds came to `PKG-03` \"as reconcile performance\" while the reconciler entry point and the incremental engine stayed with their own deliverables (CLM-006). Absorbing either measured surface \u2014 building a faster rebuild path to measure, or an incremental engine to time \u2014 would undo that decision under the appearance of thoroughness. This contract measures and records; it builds neither thing it measures.",
+      "quote_sha256": "8ddf8e3b012c3b72a501b7db1729155ad64b8f4c61225fdc6878ca796c94c43b"
+    },
+    "AX-008": {
+      "line": 475,
+      "exact_first_paragraph": "Edge direction is a constraint on this contract, not a licence. `RequiredMaturity` `INITIALIZED` on both upstream edges means each upstream *contract* is the reliable input, not any upstream artifact; this contract is written against the obligations quoted in CLM-010 through CLM-013 and asserts nothing about upstream implementation state. Measuring two contracts imposes no obligation on either of them: CON-003 and CON-004 record gaps in the upstream record and assign work in neither place, and the two predecessors' own contracts already record this deliverable as the measurer, measured from outside.",
+      "quote_sha256": "23e430dcb4cb0a078a851349d301872c563206591d2b16a8d9f415b56ffcf8f6"
+    },
+    "AX-009": {
+      "line": 476,
+      "exact_first_paragraph": "Both edges cited here are `PROPOSAL` stratum and are *accepted* at that stratum: `D-PEC-62` \u00a71(4) records the owner accepting the DAG candidate v0.2 exhibit \"accepted, all strata as presented\", and that packet reads \"as presented\" as accepting the exhibit's **flags as flags**, so what remains recorded-but-unresolved is the specific annotated set \u2014 `E-A11` (AMBIGUOUS_BASIS), `E-P69`/`E-N02` (PHASE_TENSION), `E-N13`/`E-N18` (LOW_CONFIDENCE), the `C-02` direction, and the `C-08` standing-node set \u2014 none of which touches `[E-P30]` or `[E-P31]`, both of which carry an empty `Flag` column in the exhibit. Register-wide constraint `C-10` `STRATUM_RULE` ends \"strata are provenance not authority\"; citation does not convert `PROPOSAL` to `DECLARED`. That both edges additionally carry an empty `BasisCitation` in the exhibit and an empty `EvidenceQuote` with a \"location TBD\" `SourceRef` in the register (CLM-009) is a fact about the evidence trail, not a defect in their acceptance, and this contract records it rather than supplying the missing evidence.",
+      "quote_sha256": "48ae2f8c46aa2c2f79f19c7127b2ca30ca200d57eddf42ff7a7e51b4698091da"
+    },
+    "AX-010": {
+      "line": 477,
+      "exact_first_paragraph": "This deliverable is not a standing node and does not claim to be one. The `C-08` `STANDING_NODES` set names five deliverables and this is not among them (CLM-015), and the accepted graph records it as terminal, with no downstream consumer. The `P1` exit test names the bound it measures (CLM-016), but naming is not the same as gating, and the corpus's own record of which nodes gate releases excludes this one. This contract therefore states the relation exactly as the sources state it and asserts no release-gating force of its own \u2014 a discipline that matters precisely because a performance bound is the kind of artifact whose authority is easy to assume.",
+      "quote_sha256": "d965800c9cb12ee0aae9433bfaaa30a7cad8ad809086bebc2e19adea29408450"
+    },
+    "AX-011": {
+      "line": 478,
+      "exact_first_paragraph": "The objective mapping is stated at record strength and no higher. `SOW-054` \u2192 `OBJ-005` is SCA-002-authored and owner-ruled at Gate 3, and the same record rates it MEDIUM-LOW, recommends it weakly, and preserves two alternatives (CON-005). This contract uses the ruled attribution and supplies no fresh derivation of it; AC-014 asks an accountable owner to confirm the qualification rather than asking REVIEW to re-derive a ruling, and AC-016 asks REVIEW to check that this contract has stated the warrant at that strength and not above it.",
+      "quote_sha256": "dce0eefe75e79fa932b7d90ff722ae9766c40f21ee39dc4f8ef95d30e6e90e9c"
+    },
+    "AX-012": {
+      "line": 479,
+      "exact_first_paragraph": "Unknowns stay marked. TBD-001 through TBD-005 and CON-001 through CON-006 are recorded rather than resolved by inference, and two of the six conflicts are explicitly upstream-carried. `C-03` `PACKAGE_LEVEL`, `C-04` `PHASE_PRECEDENCE`, and `C-10` `STRATUM_RULE` are register-wide non-gating constraints recorded in `_DEPENDENCIES.md`, and blocker output under the `FULL_GRAPH` mode at threshold `INITIALIZED` is advisory visibility only, never work assignment. This contract is lifecycle-neutral: `_STATUS.md` remains the sole lifecycle authority and is untouched by this reconciliation; the deliverable is at `INITIALIZED` and nothing has been built.",
+      "quote_sha256": "6615465e4b41a4799ce801618639fe6edcaf332ad2124924655029feb2102236"
+    }
+  },
+  "source_inventory": [
+    "projects/pec/v2/config/loops.json",
+    "projects/pec/v2/config/loops.schema.json",
+    "projects/pec/v2/config/service_core_posture.json",
+    "projects/pec/v2/contracts/api/v1/schema.json",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md",
+    "projects/pec/v2/src/pec_v2/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+    "projects/pec/v2/src/pec_v2/core/__init__.py",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json",
+    "projects/pec/v2/tests/config/fixtures/malformed.json",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json",
+    "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+    "projects/pec/v2/tools/check_service_core_posture.py"
+  ],
+  "limits": "Current v2 inventory and declared INIT run records do not establish absence elsewhere, benchmark completion, owner confirmation, release, or applicability of old product source. Dated run records are live preserved provenance objects; no historical Git object is reused as current evidence."
+}

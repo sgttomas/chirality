@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "claim_rows": 88,
+  "defined_local_ids": 87,
+  "residual_rows": 2,
+  "counts": {
+    "ALIGNED": 26,
+    "UNKNOWN": 59,
+    "STALE_INPUT": 3
+  },
+  "source_hashes": 355,
+  "checks": [
+    "exact schemas/order",
+    "local ID coverage",
+    "unique IDs",
+    "sequential canonical residual IDs",
+    "reciprocal links",
+    "Depends and exact gate marker",
+    "LF CSV",
+    "source hash stability",
+    "scope validator",
+    "exact-file hold ALLOW"
+  ],
+  "source_unchanged": true,
+  "limitations": "Structural validation is not semantic acceptance; independent verifier pending.",
+  "base_bound_source_count": 347,
+  "run_local_derivative_context_count": 8,
+  "common_overlap_checked": 66
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "attempt": "correct0405 before verifier terminal",
+    "result": "collab spawn failed: agent thread limit reached",
+    "child_created": false
+  },
+  {
+    "attempt": "correct0405 after verifier terminal",
+    "result": "launched",
+    "child_created": true
+  },
+  {
+    "attempt": "correct0403 while correct0405 running",
+    "result": "collab spawn failed: agent thread limit reached",
+    "child_created": false
+  }
+]

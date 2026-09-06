@@ -1,0 +1,3 @@
+# Objective-relative graph
+
+Reporting: frozen basis → seven independent member workers → fresh verifier → manager fan-in → HELP_HUMAN synthesis. No reporting cycle. Product prerequisites in PRODUCTION_DEPENDENCIES.csv are retained as documentary edges, not ordering constraints for this read-only objective. Within PKG09, the recorded target direction is other views → DEL09-07 → DEL09-06; DEL09-06 has external producers. No package-internal SCC found by these direct records; this does not certify the full external product graph. Any external unresolved SCC remains with its owner; no cut/merge/waiver or register flip occurs.

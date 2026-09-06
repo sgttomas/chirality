@@ -1,0 +1,2212 @@
+[
+  {
+    "DeliverableID": "DEL-10-01",
+    "PackageID": "PKG-10",
+    "Name": "Step-0 cost baseline (pre-P1)",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1",
+    "AcceptedScopeItems": "SOW-058",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": true,
+    "required_definitions": [
+      {
+        "id": "REQ-001",
+        "line": 94
+      },
+      {
+        "id": "REQ-002",
+        "line": 95
+      },
+      {
+        "id": "REQ-003",
+        "line": 96
+      },
+      {
+        "id": "REQ-004",
+        "line": 97
+      },
+      {
+        "id": "REQ-005",
+        "line": 98
+      },
+      {
+        "id": "REQ-006",
+        "line": 99
+      },
+      {
+        "id": "REQ-007",
+        "line": 100
+      },
+      {
+        "id": "REQ-008",
+        "line": 101
+      },
+      {
+        "id": "REQ-009",
+        "line": 102
+      },
+      {
+        "id": "REQ-010",
+        "line": 103
+      },
+      {
+        "id": "REQ-011",
+        "line": 104
+      },
+      {
+        "id": "REQ-012",
+        "line": 105
+      },
+      {
+        "id": "AC-001",
+        "line": 107
+      },
+      {
+        "id": "AC-002",
+        "line": 108
+      },
+      {
+        "id": "AC-003",
+        "line": 109
+      },
+      {
+        "id": "AC-004",
+        "line": 110
+      },
+      {
+        "id": "AC-005",
+        "line": 111
+      },
+      {
+        "id": "AC-006",
+        "line": 112
+      },
+      {
+        "id": "AC-007",
+        "line": 113
+      },
+      {
+        "id": "AC-008",
+        "line": 114
+      },
+      {
+        "id": "VER-001",
+        "line": 129
+      },
+      {
+        "id": "VER-002",
+        "line": 130
+      },
+      {
+        "id": "VER-003",
+        "line": 131
+      },
+      {
+        "id": "VER-004",
+        "line": 132
+      },
+      {
+        "id": "VER-005",
+        "line": 133
+      }
+    ],
+    "status_sha256": "3309a68a1180b7fdf40722e5e63cc468a4f76fcf484b98799f700743a63ab5f2",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-01-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-01",
+        "FromDeliverableName": "Step-0 cost baseline (pre-P1)",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-01 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-01",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-01-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-01",
+        "FromDeliverableName": "Step-0 cost baseline (pre-P1)",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-058",
+        "TargetName": "SOW-058",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-01 covers scope item SOW-058.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-058",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-01",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-02",
+    "PackageID": "PKG-10",
+    "Name": "Kill test (standing release gate)",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate",
+    "AcceptedScopeItems": "SOW-055",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": true,
+    "required_definitions": [
+      {
+        "id": "REQ-001",
+        "line": 308
+      },
+      {
+        "id": "REQ-002",
+        "line": 309
+      },
+      {
+        "id": "REQ-003",
+        "line": 310
+      },
+      {
+        "id": "REQ-004",
+        "line": 311
+      },
+      {
+        "id": "REQ-005",
+        "line": 312
+      },
+      {
+        "id": "REQ-006",
+        "line": 313
+      },
+      {
+        "id": "REQ-007",
+        "line": 314
+      },
+      {
+        "id": "REQ-008",
+        "line": 315
+      },
+      {
+        "id": "REQ-009",
+        "line": 316
+      },
+      {
+        "id": "REQ-010",
+        "line": 317
+      },
+      {
+        "id": "REQ-011",
+        "line": 318
+      },
+      {
+        "id": "REQ-012",
+        "line": 319
+      },
+      {
+        "id": "REQ-013",
+        "line": 320
+      },
+      {
+        "id": "REQ-014",
+        "line": 321
+      },
+      {
+        "id": "AC-001",
+        "line": 326
+      },
+      {
+        "id": "AC-002",
+        "line": 327
+      },
+      {
+        "id": "AC-003",
+        "line": 328
+      },
+      {
+        "id": "AC-004",
+        "line": 329
+      },
+      {
+        "id": "AC-005",
+        "line": 330
+      },
+      {
+        "id": "AC-006",
+        "line": 331
+      },
+      {
+        "id": "AC-007",
+        "line": 332
+      },
+      {
+        "id": "AC-008",
+        "line": 333
+      },
+      {
+        "id": "AC-009",
+        "line": 334
+      },
+      {
+        "id": "AC-010",
+        "line": 335
+      },
+      {
+        "id": "AC-011",
+        "line": 336
+      },
+      {
+        "id": "AC-012",
+        "line": 337
+      },
+      {
+        "id": "AC-013",
+        "line": 338
+      },
+      {
+        "id": "VER-001",
+        "line": 358
+      },
+      {
+        "id": "VER-002",
+        "line": 359
+      },
+      {
+        "id": "VER-003",
+        "line": 360
+      },
+      {
+        "id": "VER-004",
+        "line": 361
+      },
+      {
+        "id": "VER-005",
+        "line": 362
+      },
+      {
+        "id": "VER-006",
+        "line": 363
+      },
+      {
+        "id": "VER-007",
+        "line": 364
+      },
+      {
+        "id": "VER-008",
+        "line": 365
+      },
+      {
+        "id": "VER-009",
+        "line": 366
+      },
+      {
+        "id": "VER-010",
+        "line": 367
+      },
+      {
+        "id": "VER-011",
+        "line": 368
+      },
+      {
+        "id": "VER-012",
+        "line": 369
+      }
+    ],
+    "status_sha256": "d3300fe1a73b53f510c3ee58088707743fd4b99b9b1f064239d45092cfd8e1c9",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-02-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-02",
+        "FromDeliverableName": "Kill test (standing release gate)",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-02 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-02",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-02-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-02",
+        "FromDeliverableName": "Kill test (standing release gate)",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-055",
+        "TargetName": "SOW-055",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-02 covers scope item SOW-055.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-055",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-02",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-02-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-02",
+        "FromDeliverableName": "Kill test (standing release gate)",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-01",
+        "TargetDeliverableID": "DEL-01-03",
+        "TargetRefID": "DEL-01-03",
+        "TargetName": "Store bootstrap & content-minimal guard",
+        "TargetLocation": "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard",
+        "Statement": "Kill test exercises store safe-delete semantics",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-01-03 Description column",
+        "EvidenceQuote": "Gitignored store path management, safe-delete semantics, and the ingest-boundary content-minimal enforcement layer (paths/counts/SHAs/states/hashes only).",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P71"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-02-004",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-02",
+        "FromDeliverableName": "Kill test (standing release gate)",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-03",
+        "TargetDeliverableID": "DEL-03-01",
+        "TargetRefID": "DEL-03-01",
+        "TargetName": "Full-rebuild reconciler (one command)",
+        "TargetLocation": "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command",
+        "Statement": "Kill test proves rebuildability after deletion",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-03-01 Description column",
+        "EvidenceQuote": "One-command full rebuild of the record tier from sources; writes restricted to the store and generated views; store safe to delete.",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P72"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-03",
+    "PackageID": "PKG-10",
+    "Name": "No-ruling-write verification",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification",
+    "AcceptedScopeItems": "SOW-025",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": true,
+    "required_definitions": [
+      {
+        "id": "REQ-001",
+        "line": 249
+      },
+      {
+        "id": "REQ-002",
+        "line": 250
+      },
+      {
+        "id": "REQ-003",
+        "line": 251
+      },
+      {
+        "id": "REQ-004",
+        "line": 252
+      },
+      {
+        "id": "REQ-005",
+        "line": 253
+      },
+      {
+        "id": "REQ-006",
+        "line": 254
+      },
+      {
+        "id": "REQ-007",
+        "line": 255
+      },
+      {
+        "id": "REQ-008",
+        "line": 256
+      },
+      {
+        "id": "REQ-009",
+        "line": 257
+      },
+      {
+        "id": "REQ-010",
+        "line": 258
+      },
+      {
+        "id": "REQ-011",
+        "line": 259
+      },
+      {
+        "id": "REQ-012",
+        "line": 260
+      },
+      {
+        "id": "AC-001",
+        "line": 265
+      },
+      {
+        "id": "AC-002",
+        "line": 266
+      },
+      {
+        "id": "AC-003",
+        "line": 267
+      },
+      {
+        "id": "AC-004",
+        "line": 268
+      },
+      {
+        "id": "AC-005",
+        "line": 269
+      },
+      {
+        "id": "AC-006",
+        "line": 270
+      },
+      {
+        "id": "AC-007",
+        "line": 271
+      },
+      {
+        "id": "AC-008",
+        "line": 272
+      },
+      {
+        "id": "AC-009",
+        "line": 273
+      },
+      {
+        "id": "AC-010",
+        "line": 274
+      },
+      {
+        "id": "VER-001",
+        "line": 292
+      },
+      {
+        "id": "VER-002",
+        "line": 293
+      },
+      {
+        "id": "VER-003",
+        "line": 294
+      },
+      {
+        "id": "VER-004",
+        "line": 295
+      },
+      {
+        "id": "VER-005",
+        "line": 296
+      },
+      {
+        "id": "VER-006",
+        "line": 297
+      },
+      {
+        "id": "VER-007",
+        "line": 298
+      },
+      {
+        "id": "VER-008",
+        "line": 299
+      }
+    ],
+    "status_sha256": "5b3c2e5567f8a62196b46b81a5117a2283de1cdc6b239620c3bc42c133f035bc",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-03-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-03",
+        "FromDeliverableName": "No-ruling-write verification",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-03 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-03",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-03-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-03",
+        "FromDeliverableName": "No-ruling-write verification",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-025",
+        "TargetName": "SOW-025",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-03 covers scope item SOW-025.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-025",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-03",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-03-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-03",
+        "FromDeliverableName": "No-ruling-write verification",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-08",
+        "TargetDeliverableID": "DEL-08-01",
+        "TargetRefID": "DEL-08-01",
+        "TargetName": "Unix-socket server + token-scoped access",
+        "TargetLocation": "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access",
+        "Statement": "The API surface under negative test is DEL-08-01's server",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-08-01 Description column",
+        "EvidenceQuote": "Local-only Unix-socket binding with token-scoped access classes (owner, harness, admin); auth-reuse choice tracked by OI-006.",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P54"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-03-004",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-03",
+        "FromDeliverableName": "No-ruling-write verification",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-08",
+        "TargetDeliverableID": "DEL-08-02",
+        "TargetRefID": "DEL-08-02",
+        "TargetName": "Versioned additive API schema",
+        "TargetLocation": "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema",
+        "Statement": "The schema defines the surface under negative test",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-08-02 Description column",
+        "EvidenceQuote": "Versioned API schema with additive-only evolution.",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P55"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-04",
+    "PackageID": "PKG-10",
+    "Name": "Orientation defect-rate spot-check",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check",
+    "AcceptedScopeItems": "SOW-059",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": false,
+    "required_definitions": [],
+    "status_sha256": "ab06eef6d934fb4e2f39def1a8c610a78c56b23f0f81780e92529e8ac496a189",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-04-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-04",
+        "FromDeliverableName": "Orientation defect-rate spot-check",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-04 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-04",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-04-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-04",
+        "FromDeliverableName": "Orientation defect-rate spot-check",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-059",
+        "TargetName": "SOW-059",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-04 covers scope item SOW-059.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-059",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-04",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-04-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-04",
+        "FromDeliverableName": "Orientation defect-rate spot-check",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-04",
+        "TargetDeliverableID": "DEL-04-03",
+        "TargetRefID": "DEL-04-03",
+        "TargetName": "Citation & freshness stamping",
+        "TargetLocation": "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping",
+        "Statement": "SOW-007 is covered by DEL-04-03",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-007 (ScopeItemStatement; DeliverableIDs names DEL-04-03)",
+        "EvidenceQuote": "Attach a citation (file path, anchor, and/or SHA) to every claim in an orientation response",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A21"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-05",
+    "PackageID": "PKG-10",
+    "Name": "Owner-consultation logging",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging",
+    "AcceptedScopeItems": "SOW-085",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": false,
+    "required_definitions": [],
+    "status_sha256": "5007aea8384903fedc7351ab023a1208b2bfed890d5cd8843b427c6277ec3c40",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-05-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-05",
+        "FromDeliverableName": "Owner-consultation logging",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-05 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-05",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-05-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-05",
+        "FromDeliverableName": "Owner-consultation logging",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-085",
+        "TargetName": "SOW-085",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-05 covers scope item SOW-085.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-085",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-05",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-05-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-05",
+        "FromDeliverableName": "Owner-consultation logging",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-01",
+        "TargetDeliverableID": "DEL-01-04",
+        "TargetRefID": "DEL-01-04",
+        "TargetName": "Self-observability logging",
+        "TargetLocation": "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging",
+        "Statement": "SOW-057 is covered by DEL-01-04",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-057 (ScopeItemStatement; DeliverableIDs names DEL-01-04)",
+        "EvidenceQuote": "Log PEC's own reconcile runs and ingest activity, inspectable (self-observability)",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A26"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-05-004",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-05",
+        "FromDeliverableName": "Owner-consultation logging",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-04",
+        "TargetDeliverableID": "DEL-04-01",
+        "TargetRefID": "DEL-04-01",
+        "TargetName": "Loop orientation return",
+        "TargetLocation": "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return",
+        "Statement": "Orientation reads are a logged consultation surface",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-05 Description column",
+        "EvidenceQuote": "Orientation-read and dashboard-consultation logging sufficient to evaluate the P2 exit test",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P75"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-05-005",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-05",
+        "FromDeliverableName": "Owner-consultation logging",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-09",
+        "TargetDeliverableID": "DEL-09-01",
+        "TargetRefID": "DEL-09-01",
+        "TargetName": "Overview dashboard",
+        "TargetLocation": "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard",
+        "Statement": "Dashboard consultation is the other logged surface",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-085",
+        "EvidenceQuote": "Log orientation-read and dashboard-consultation activity sufficient to evaluate the \u00a712 P2 exit test",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P76"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-06",
+    "PackageID": "PKG-10",
+    "Name": "Seeded-conflict overlap test",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test",
+    "AcceptedScopeItems": "SOW-061",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": false,
+    "required_definitions": [],
+    "status_sha256": "f2413ebc0314de0cfa5921c102bba8a526ff306911786fbb82a6f5c72a288557",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-06-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-06",
+        "FromDeliverableName": "Seeded-conflict overlap test",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-06 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-06",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-06-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-06",
+        "FromDeliverableName": "Seeded-conflict overlap test",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-061",
+        "TargetName": "SOW-061",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-06 covers scope item SOW-061.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-061",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-06",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-06-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-06",
+        "FromDeliverableName": "Seeded-conflict overlap test",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-06",
+        "TargetDeliverableID": "DEL-06-06",
+        "TargetRefID": "DEL-06-06",
+        "TargetName": "Advisory overlap detection",
+        "TargetLocation": "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection",
+        "Statement": "SOW-031 is covered by DEL-06-06",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-031 (ScopeItemStatement; DeliverableIDs names DEL-06-06)",
+        "EvidenceQuote": "Detect and surface advisory overlaps (write scopes, shared branches, same merge target) without ever blocking",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A23"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-07",
+    "PackageID": "PKG-10",
+    "Name": "Presence TTL honesty tests",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests",
+    "AcceptedScopeItems": "SOW-062",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": false,
+    "required_definitions": [],
+    "status_sha256": "02bc7ef9651c3a36ff391d93849be51cd458667142f63be76dd2d4c6f206fae3",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-07-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-07",
+        "FromDeliverableName": "Presence TTL honesty tests",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-07 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-07",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-07-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-07",
+        "FromDeliverableName": "Presence TTL honesty tests",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-062",
+        "TargetName": "SOW-062",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-07 covers scope item SOW-062.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-062",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-07",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-07-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-07",
+        "FromDeliverableName": "Presence TTL honesty tests",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-06",
+        "TargetDeliverableID": "DEL-06-05",
+        "TargetRefID": "DEL-06-05",
+        "TargetName": "TTL/heartbeat discipline & citation exclusion",
+        "TargetLocation": "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion",
+        "Statement": "SOW-030 is covered by DEL-06-05",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-030 (ScopeItemStatement; DeliverableIDs names DEL-06-05)",
+        "EvidenceQuote": "Carry TTLs and last-heartbeat age on presence records; never assert liveness beyond last heartbeat",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A24"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-08",
+    "PackageID": "PKG-10",
+    "Name": "Stream-loss recovery demonstration",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration",
+    "AcceptedScopeItems": "SOW-063",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": false,
+    "required_definitions": [],
+    "status_sha256": "c081994028e728ccd3e5951388958ace66474be90c6a3c2b03009da8de3fafdd",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-08-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-08",
+        "FromDeliverableName": "Stream-loss recovery demonstration",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-08 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-08",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-08-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-08",
+        "FromDeliverableName": "Stream-loss recovery demonstration",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-063",
+        "TargetName": "SOW-063",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-08 covers scope item SOW-063.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-063",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-08",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-08-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-08",
+        "FromDeliverableName": "Stream-loss recovery demonstration",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-03",
+        "TargetDeliverableID": "DEL-03-05",
+        "TargetRefID": "DEL-03-05",
+        "TargetName": "Stream-loss recovery guarantee",
+        "TargetLocation": "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee",
+        "Statement": "Exit demonstration of the recovery guarantee",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-03-05 Description column",
+        "EvidenceQuote": "Reconcile supremacy: no record-tier fact rests on a stream event alone; recovery path after stream gaps. Lands with the first ingest (DEL-07-01, P3) so ingest is never live without its safety invariant; the P4 exit demonstration is DEL-10-08.",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A20"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-08-004",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-08",
+        "FromDeliverableName": "Stream-loss recovery demonstration",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-07",
+        "TargetDeliverableID": "DEL-07-01",
+        "TargetRefID": "DEL-07-01",
+        "TargetName": "Idempotent event ingest + durable message store",
+        "TargetLocation": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store",
+        "Statement": "Demonstration needs live ingest to interrupt",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-03-05 Description column",
+        "EvidenceQuote": "Lands with the first ingest (DEL-07-01, P3) so ingest is never live without its safety invariant",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P78"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-09",
+    "PackageID": "PKG-10",
+    "Name": "Collision-incident measurement",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement",
+    "AcceptedScopeItems": "SOW-084",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": false,
+    "required_definitions": [],
+    "status_sha256": "9577e29a009bdcb2358ff7da50489f2002e73d9a8f1bc3f9f0f0dfbbc469f1bf",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-09-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-09",
+        "FromDeliverableName": "Collision-incident measurement",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-09 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-09",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-09-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-09",
+        "FromDeliverableName": "Collision-incident measurement",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-084",
+        "TargetName": "SOW-084",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-09 covers scope item SOW-084.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-084",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-09",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-09-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-09",
+        "FromDeliverableName": "Collision-incident measurement",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-06",
+        "TargetDeliverableID": "DEL-06-06",
+        "TargetRefID": "DEL-06-06",
+        "TargetName": "Advisory overlap detection",
+        "TargetLocation": "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection",
+        "Statement": "SOW-031 is covered by DEL-06-06",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-031 (ScopeItemStatement; DeliverableIDs names DEL-06-06)",
+        "EvidenceQuote": "Detect and surface advisory overlaps (write scopes, shared branches, same merge target) without ever blocking",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A25"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-10",
+    "PackageID": "PKG-10",
+    "Name": "Directed bootstrap self-ingest validation",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation",
+    "AcceptedScopeItems": "SOW-064",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": true,
+    "required_definitions": [
+      {
+        "id": "REQ-001",
+        "line": 338
+      },
+      {
+        "id": "REQ-002",
+        "line": 339
+      },
+      {
+        "id": "REQ-003",
+        "line": 340
+      },
+      {
+        "id": "REQ-004",
+        "line": 341
+      },
+      {
+        "id": "REQ-005",
+        "line": 342
+      },
+      {
+        "id": "REQ-006",
+        "line": 343
+      },
+      {
+        "id": "REQ-007",
+        "line": 344
+      },
+      {
+        "id": "REQ-008",
+        "line": 345
+      },
+      {
+        "id": "REQ-009",
+        "line": 346
+      },
+      {
+        "id": "REQ-010",
+        "line": 347
+      },
+      {
+        "id": "REQ-011",
+        "line": 348
+      },
+      {
+        "id": "REQ-012",
+        "line": 349
+      },
+      {
+        "id": "REQ-013",
+        "line": 350
+      },
+      {
+        "id": "REQ-014",
+        "line": 351
+      },
+      {
+        "id": "AC-001",
+        "line": 353
+      },
+      {
+        "id": "AC-002",
+        "line": 354
+      },
+      {
+        "id": "AC-003",
+        "line": 355
+      },
+      {
+        "id": "AC-004",
+        "line": 356
+      },
+      {
+        "id": "AC-005",
+        "line": 357
+      },
+      {
+        "id": "AC-006",
+        "line": 358
+      },
+      {
+        "id": "AC-007",
+        "line": 359
+      },
+      {
+        "id": "AC-008",
+        "line": 360
+      },
+      {
+        "id": "AC-009",
+        "line": 361
+      },
+      {
+        "id": "AC-010",
+        "line": 362
+      },
+      {
+        "id": "AC-011",
+        "line": 363
+      },
+      {
+        "id": "AC-012",
+        "line": 364
+      },
+      {
+        "id": "AC-013",
+        "line": 365
+      },
+      {
+        "id": "AC-014",
+        "line": 366
+      },
+      {
+        "id": "AC-015",
+        "line": 367
+      },
+      {
+        "id": "AC-016",
+        "line": 368
+      },
+      {
+        "id": "VER-001",
+        "line": 393
+      },
+      {
+        "id": "VER-002",
+        "line": 394
+      },
+      {
+        "id": "VER-003",
+        "line": 395
+      },
+      {
+        "id": "VER-004",
+        "line": 396
+      },
+      {
+        "id": "VER-005",
+        "line": 397
+      },
+      {
+        "id": "VER-006",
+        "line": 398
+      },
+      {
+        "id": "VER-007",
+        "line": 399
+      },
+      {
+        "id": "VER-008",
+        "line": 400
+      },
+      {
+        "id": "VER-009",
+        "line": 401
+      },
+      {
+        "id": "VER-010",
+        "line": 402
+      },
+      {
+        "id": "VER-011",
+        "line": 403
+      },
+      {
+        "id": "VER-012",
+        "line": 404
+      },
+      {
+        "id": "VER-013",
+        "line": 405
+      },
+      {
+        "id": "VER-014",
+        "line": 406
+      }
+    ],
+    "status_sha256": "24030ebc3d4badfce74149e729a67b6a525522ccd08f048dd4d31811d57905a3",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-10-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-10",
+        "FromDeliverableName": "Directed bootstrap self-ingest validation",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-10 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-10",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-10-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-10",
+        "FromDeliverableName": "Directed bootstrap self-ingest validation",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-064",
+        "TargetName": "SOW-064",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-10 covers scope item SOW-064.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-064",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-10-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-10",
+        "FromDeliverableName": "Directed bootstrap self-ingest validation",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-02",
+        "TargetDeliverableID": "DEL-02-05",
+        "TargetRefID": "DEL-02-05",
+        "TargetName": "Dependency register parser",
+        "TargetLocation": "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser",
+        "Statement": "The DAG's file form is read by the dependency register parser",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-02-05 (Description column)",
+        "EvidenceQuote": "`Dependencies.csv` and `WORK_GRAPH.json` into DependencyEdge.",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P73"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-10-004",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-10",
+        "FromDeliverableName": "Directed bootstrap self-ingest validation",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-03",
+        "TargetDeliverableID": "DEL-03-01",
+        "TargetRefID": "DEL-03-01",
+        "TargetName": "Full-rebuild reconciler (one command)",
+        "TargetLocation": "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command",
+        "Statement": "Self-ingest runs through the reconciler",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-010 (ScopeItemStatement; DeliverableIDs names DEL-03-01)",
+        "EvidenceQuote": "Make the record tier rebuildable in full from sources by one command; store gitignored and safe to delete; presence tier expected lost on rebuild",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P74"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-11",
+    "PackageID": "PKG-10",
+    "Name": "Parity metric (DriftFindings per reconcile)",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile",
+    "AcceptedScopeItems": "SOW-093",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": true,
+    "required_definitions": [
+      {
+        "id": "REQ-001",
+        "line": 227
+      },
+      {
+        "id": "REQ-002",
+        "line": 228
+      },
+      {
+        "id": "REQ-003",
+        "line": 229
+      },
+      {
+        "id": "REQ-004",
+        "line": 230
+      },
+      {
+        "id": "REQ-005",
+        "line": 231
+      },
+      {
+        "id": "REQ-006",
+        "line": 232
+      },
+      {
+        "id": "REQ-007",
+        "line": 233
+      },
+      {
+        "id": "REQ-008",
+        "line": 234
+      },
+      {
+        "id": "REQ-009",
+        "line": 235
+      },
+      {
+        "id": "REQ-010",
+        "line": 236
+      },
+      {
+        "id": "REQ-011",
+        "line": 237
+      },
+      {
+        "id": "REQ-012",
+        "line": 238
+      },
+      {
+        "id": "REQ-013",
+        "line": 239
+      },
+      {
+        "id": "AC-001",
+        "line": 241
+      },
+      {
+        "id": "AC-002",
+        "line": 242
+      },
+      {
+        "id": "AC-003",
+        "line": 243
+      },
+      {
+        "id": "AC-004",
+        "line": 244
+      },
+      {
+        "id": "AC-005",
+        "line": 245
+      },
+      {
+        "id": "AC-006",
+        "line": 246
+      },
+      {
+        "id": "AC-007",
+        "line": 247
+      },
+      {
+        "id": "AC-008",
+        "line": 248
+      },
+      {
+        "id": "AC-009",
+        "line": 249
+      },
+      {
+        "id": "AC-010",
+        "line": 250
+      },
+      {
+        "id": "AC-011",
+        "line": 251
+      },
+      {
+        "id": "AC-012",
+        "line": 252
+      },
+      {
+        "id": "AC-013",
+        "line": 253
+      },
+      {
+        "id": "AC-014",
+        "line": 254
+      },
+      {
+        "id": "AC-015",
+        "line": 255
+      },
+      {
+        "id": "VER-001",
+        "line": 273
+      },
+      {
+        "id": "VER-002",
+        "line": 274
+      },
+      {
+        "id": "VER-003",
+        "line": 275
+      },
+      {
+        "id": "VER-004",
+        "line": 276
+      },
+      {
+        "id": "VER-005",
+        "line": 277
+      },
+      {
+        "id": "VER-006",
+        "line": 278
+      },
+      {
+        "id": "VER-007",
+        "line": 279
+      },
+      {
+        "id": "VER-008",
+        "line": 280
+      },
+      {
+        "id": "VER-009",
+        "line": 281
+      },
+      {
+        "id": "VER-010",
+        "line": 282
+      },
+      {
+        "id": "VER-011",
+        "line": 283
+      },
+      {
+        "id": "VER-012",
+        "line": 284
+      },
+      {
+        "id": "VER-013",
+        "line": 285
+      }
+    ],
+    "status_sha256": "83e644c4f797d8b4c2a25952a0be3161d064dcee52e8b365faa845b9654f5bb6",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-11-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-11",
+        "FromDeliverableName": "Parity metric (DriftFindings per reconcile)",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-11 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-11",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-11-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-11",
+        "FromDeliverableName": "Parity metric (DriftFindings per reconcile)",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-093",
+        "TargetName": "SOW-093",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-11 covers scope item SOW-093.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-093",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-11",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-11-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-11",
+        "FromDeliverableName": "Parity metric (DriftFindings per reconcile)",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-03",
+        "TargetDeliverableID": "DEL-03-04",
+        "TargetRefID": "DEL-03-04",
+        "TargetName": "Practitioner-harness parity diff",
+        "TargetLocation": "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff",
+        "Statement": "Parity metric reports DEL-03-04's DriftFindings",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-11 Description column",
+        "EvidenceQuote": "DriftFindings against practitioner-harness output per reconcile, sourced from DEL-03-04's output (behavior in PKG-03; metric here, DL-14).",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A18"
+      }
+    ]
+  },
+  {
+    "DeliverableID": "DEL-10-12",
+    "PackageID": "PKG-10",
+    "Name": "Poll-adoption measurement",
+    "DeliverablePath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement",
+    "AcceptedScopeItems": "SOW-060",
+    "PackageEvidenceRoot": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10",
+    "contract_exists": false,
+    "required_definitions": [],
+    "status_sha256": "b16f2e2638df5c5fd31a57e04b1d2ca2c358d457454d9f36f714bae2d85adcbb",
+    "dependency_rows": [
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-12-001",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-12",
+        "FromDeliverableName": "Poll-adoption measurement",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "IMPLEMENTS_NODE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "PACKAGE",
+        "TargetPackageID": "PKG-10",
+        "TargetDeliverableID": "",
+        "TargetRefID": "PKG-10",
+        "TargetName": "PKG-10_Validation_Measurement",
+        "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "Statement": "DEL-10-12 is package-local to PKG-10.",
+        "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+        "SourceRef": "Deliverables.csv row DEL-10-12",
+        "EvidenceQuote": "PackageID PKG-10",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-12-002",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-12",
+        "FromDeliverableName": "Poll-adoption measurement",
+        "DependencyClass": "ANCHOR",
+        "AnchorType": "TRACES_TO_REQUIREMENT",
+        "Direction": "UPSTREAM",
+        "DependencyType": "OTHER",
+        "TargetType": "REQUIREMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "SOW-060",
+        "TargetName": "SOW-060",
+        "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+        "Statement": "DEL-10-12 covers scope item SOW-060.",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-060",
+        "EvidenceQuote": "DeliverableIDs include DEL-10-12",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "NOT_APPLICABLE",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "SATISFIED",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "Tree anchor seeded under D-PEC-62"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-12-003",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-12",
+        "FromDeliverableName": "Poll-adoption measurement",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-04",
+        "TargetDeliverableID": "DEL-04-01",
+        "TargetRefID": "DEL-04-01",
+        "TargetName": "Loop orientation return",
+        "TargetLocation": "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return",
+        "Statement": "SOW-004 is covered by DEL-04-01",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-004 (ScopeItemStatement; DeliverableIDs names DEL-04-01)",
+        "EvidenceQuote": "Serve per-loop orientation: newest applicable receipt, examined-through SHA, gate states, owner directions of record, open tranches/candidate briefs, parked lanes each with its unparking owner action",
+        "Explicitness": "EXPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "HIGH",
+        "Origin": "DECLARED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "DECLARED; Flag=none; EdgeID=E-A22"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-12-004",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-12",
+        "FromDeliverableName": "Poll-adoption measurement",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-08",
+        "TargetDeliverableID": "DEL-08-01",
+        "TargetRefID": "DEL-08-01",
+        "TargetName": "Unix-socket server + token-scoped access",
+        "TargetLocation": "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access",
+        "Statement": "R3-F1: adoption instrumentation observes API consumption",
+        "EvidenceFile": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "SourceRef": "\u00a74 package table row PKG-08",
+        "EvidenceQuote": "The machine-consumer surface: Unix-socket binding, token-scoped access classes, p95 latency, versioned additive schema, compact citation-bearing responses, SSE subscription",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-N08"
+      },
+      {
+        "RegisterSchemaVersion": "v3.1",
+        "DependencyID": "DEP-10-12-005",
+        "FromPackageID": "PKG-10",
+        "FromDeliverableID": "DEL-10-12",
+        "FromDeliverableName": "Poll-adoption measurement",
+        "DependencyClass": "EXECUTION",
+        "AnchorType": "NOT_APPLICABLE",
+        "Direction": "UPSTREAM",
+        "DependencyType": "PREREQUISITE",
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-07",
+        "TargetDeliverableID": "DEL-07-03",
+        "TargetRefID": "DEL-07-03",
+        "TargetName": "Hooks CLI bridge",
+        "TargetLocation": "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge",
+        "Statement": "Poll instrumentation observes session starts via the hooks bridge",
+        "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+        "SourceRef": "ScopeLedger.csv row SOW-036",
+        "EvidenceQuote": "Implement the harness hooks CLI bridge (session start/stop, status, scope declaration), declared and attributable",
+        "Explicitness": "IMPLICIT",
+        "RequiredMaturity": "INITIALIZED",
+        "ProposedMaturity": "TBD",
+        "SatisfactionStatus": "PENDING",
+        "Confidence": "MEDIUM",
+        "Origin": "EXTRACTED",
+        "FirstSeen": "2026-07-25",
+        "LastSeen": "2026-07-25",
+        "Status": "ACTIVE",
+        "Notes": "PROPOSAL; Flag=none; EdgeID=E-P77"
+      }
+    ]
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "package_validator": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06",
+      "claims": 82,
+      "residuals": 4,
+      "unknowns": 43,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "coverage": {
+    "defined_claims": 80,
+    "defined_req_ac_ver": 40,
+    "covered": 80,
+    "fallback_rows": 2,
+    "claims": 82,
+    "residuals": 4,
+    "dispositions": {
+      "ALIGNED": 36,
+      "UNKNOWN": 43,
+      "STALE_INPUT": 3
+    }
+  },
+  "source_unchanged": true,
+  "product_tests": "NOT_RUN: no relevant current parser execution evidence established; no production behavior claimed PASS",
+  "independent_verifier": "PENDING_PACKAGE_DISPATCH"
+}

@@ -1,0 +1,15 @@
+# DEL-06-01 coverage
+
+Source base `2be412ccea62bdc4bd96deb082c46d7a792076ea`; accepted revision 1.4 SOW-026. Derivative of accepted decomposition, not replacement authority. D82 activates this reporting; D81 acceptance supplies convention disposition despite retained historical candidate headings.
+
+11 claims: 7 UNKNOWN behavioral atoms and 4 documentary/lifecycle ALIGNED rows; 1 evidence-gap proposal; summary ASSESSED_UNKNOWN; warranted NONE false. No defined local REQ/AC/VER IDs exist in inspected deliverable files. ScopeOfWork.md and Specification.md absent; exact candidate-validation targets each allowed. This absence is not proof of unimplemented scope.
+
+CLAIM_MAPPING.json records the exact accepted SOW-026 table row, locus, quote SHA256 and seven atomic fallback mappings before claim ledger generation. DOC-ASSIGNMENT maps ResponsibleParty; DOC-SCOPE maps accepted row identity, intended artifacts and current context; DOC-DEPENDENCIES maps both execution edges; LIFECYCLE-OPEN maps status and empty Remaining. REQ/AC/VER coverage is zero defined / zero omitted. SourceRef PEC-PRS-001 is supporting PRD provenance, not independently invented contract scope. Content-minimal and daemon ownership constraints survive.
+
+Current v2 source boundary includes the typed loop-registry port and JSON adapter, service-core checking and generic API schema/tests. These do not supply a claim-specific presence implementation/test/acceptance mapping. No finite suites were rerun because none was mapped to session-presence assertions. No absent test suite pass is claimed. D65 local run concerns dependency evidence repair only. No direct DEL-06-01 acceptance record was identified by scoped decision search; UNKNOWN preserves that boundary and does not prove universal absence. The frozen PEC implementation is historical-only; it was not relied upon as current v2 code. No foreign runtime tree was inspected.
+
+Dependencies: DEP-06-01-003 → DEL-01-02 and DEP-06-01-004 → DEL-07-03 are ACTIVE PREREQUISITE/PENDING. This evidence-gap proposal Depends NONE because it is discovery/clarification, not the presence writer production act. Later production selection must apply exact named-target conjunction and owner source gates; no status flip or SCC resolution is inferred.
+
+No R0 claim reuse: DEL-06-01 was outside the six-deliverable R0 sample. Root/project instructions, accepted D81/D82 conventions and common basis were rehashed. Current metadata's revision1.4 is preserved; older pointer future-work prose cannot reopen completed ordinary SCA004 currency. No TM023 blanket gate, TM022 mirror, PRDv2.3/DPEC79 application, release or lifecycle act is created.
+
+Worker-only output completed; independent verifier and manager fan-in remain pending. Rerun on material source/hash/hold/accepted-scope drift or separately supplied current implementation/acceptance. Source hashes are stable during run; inputs outside frozen common manifest are listed, with package/common run artifacts treated as this run's derivative context, never independent product authority.

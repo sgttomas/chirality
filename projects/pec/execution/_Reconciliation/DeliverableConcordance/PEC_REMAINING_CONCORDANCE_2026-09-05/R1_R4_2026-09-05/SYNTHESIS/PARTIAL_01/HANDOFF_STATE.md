@@ -1,0 +1,5 @@
+# Partial observation snapshot 01
+
+Derivative of nine Agent0-cleared package reports at D82 base2be412ccea62bdc4bd96deb082c46d7a792076ea; exact inputs in READ_MANIFEST.json. 52 observed members, 2,249 claims,144 raw proposals. Census represents all64 IDs but PKG08/09 twelve members are MISSING_UNASSESSED and were not consumed. No warranted NONE is newly certified here. PKG00 representation exception is recorded in ../FANIN_EXCEPTION_01.md. Independent aggregate checks pending. No full synthesis or proposal acceptance implied.
+
+All original aggregate fields preserved exactly. Locator mapping contains only verified root-contained path normalization. Cross-package rows remain losslessly preserved heterogeneous originals in JSON columns; later semantic integration is required. No source/Remaining/control/lifecycle edits. Phased scope and native dispatch identities are in parent SYNTHESIS records. Next: finish aggregate validation, receive package-owned corrections and Agent0 explicit08/09 release, create new full derivative, prepare exact application candidate postimages and independent R4 review. Do not rewrite this partial snapshot to look complete.

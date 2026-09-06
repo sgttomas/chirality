@@ -1,0 +1,32 @@
+{
+  "status": "PASS_FOR_FULL_APPLICATION_PREPARATION",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "carrier_count": 64,
+  "proposed_item_count": 92,
+  "candidate_carrier_count": 58,
+  "no_application_carrier_count": 6,
+  "original_residual_count": 165,
+  "route_counts": {
+    "HELD": 70,
+    "EVIDENCE": 78,
+    "CONFIRMED_SCANNER_REPAIR": 2,
+    "CONDITIONAL": 3,
+    "PRODUCT_OBLIGATION": 6,
+    "DOCUMENTARY": 6
+  },
+  "item_counts": {
+    "EVIDENCE": 78,
+    "CONFIRMED_SCANNER_REPAIR": 2,
+    "PRODUCT_OBLIGATION": 6,
+    "DOCUMENTARY": 6
+  },
+  "all64_exact_preflight_allow": true,
+  "all64_source_preimages_equal_current": true,
+  "all58_apply_inverse_nonremaining_checks_pass": true,
+  "original_scanner_unchanged": true,
+  "selected11_aggregate_hashes_match_manifests": true,
+  "all_declared_final_read_hashes_reproduce": true,
+  "source_target_writes": 0,
+  "product_suite_run": false,
+  "independent_final_R4_review": "REQUIRED; author validation only"
+}

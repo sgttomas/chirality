@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "claims": 110,
+  "residuals": 9,
+  "unique_sources_rehashed": 909,
+  "mapping_quotes": 89,
+  "exact_hold_targets": 824,
+  "missing_contracts": [
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/ScopeOfWork.md",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/ScopeOfWork.md",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/ScopeOfWork.md",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/ScopeOfWork.md",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/ScopeOfWork.md",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/ScopeOfWork.md",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/ScopeOfWork.md"
+  ],
+  "defined_local_requirement_ids": []
+}

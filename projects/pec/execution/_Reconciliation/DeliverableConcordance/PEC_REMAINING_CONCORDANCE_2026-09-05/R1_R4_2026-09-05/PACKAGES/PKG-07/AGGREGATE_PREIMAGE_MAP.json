@@ -1,0 +1,26 @@
+[
+  {
+    "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_CLAIMS.csv",
+    "preserved_preimage": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_AGGREGATES/PACKAGE_CLAIMS.csv",
+    "sha256": "6c328ffbb054d276aff7de4b609969f46cd82e350e08e1888e09514570deed76",
+    "reason": "Original manager aggregate before verified correction selection; original verifier cited claim/residual aggregate hashes."
+  },
+  {
+    "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_RESIDUALS.csv",
+    "preserved_preimage": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_AGGREGATES/PACKAGE_RESIDUALS.csv",
+    "sha256": "6fa2e3c84aceffe6d5fffb0a347a0ff52d43be1501b8032780f79e7eae09989e",
+    "reason": "Original manager aggregate before verified correction selection; original verifier cited claim/residual aggregate hashes."
+  },
+  {
+    "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_SUMMARY.csv",
+    "preserved_preimage": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_AGGREGATES/PACKAGE_SUMMARY.csv",
+    "sha256": "e926405cd4b59e1dbf73333e4aad775a287ab203b3cbf557d0967ab6806d073d",
+    "reason": "Original manager aggregate before verified correction selection; original verifier cited claim/residual aggregate hashes."
+  },
+  {
+    "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/R4_DECISION_CANDIDATES.md",
+    "preserved_preimage": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_AGGREGATES/R4_DECISION_CANDIDATES.md",
+    "sha256": "87fe464b8225a2316ba6875ccdb25868d8d9077165d51e550668e97913baa92d",
+    "reason": "Original manager aggregate before verified correction selection; original verifier cited claim/residual aggregate hashes."
+  }
+]

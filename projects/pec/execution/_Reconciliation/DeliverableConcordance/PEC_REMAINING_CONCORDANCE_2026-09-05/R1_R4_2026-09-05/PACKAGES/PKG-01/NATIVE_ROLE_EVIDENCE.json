@@ -1,0 +1,27 @@
+{
+  "manager": "/root/pec_pkg01_reconciliation",
+  "supervisor": "/root",
+  "execution_class": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted; role not mechanically enforced",
+  "model_identity": "not reported; runtime did not expose concrete model identity",
+  "one_owning_worker_per_deliverable": true,
+  "worker_population": [
+    "/root/pec_pkg01_reconciliation/del01_01",
+    "/root/pec_pkg01_reconciliation/del01_02",
+    "/root/pec_pkg01_reconciliation/del01_03",
+    "/root/pec_pkg01_reconciliation/del01_04",
+    "/root/pec_pkg01_reconciliation/del01_05",
+    "/root/pec_pkg01_reconciliation/del01_06"
+  ],
+  "procedural_correction": {
+    "native_id": "/root/pec_pkg01_reconciliation/format_s001",
+    "scope": "two explicitly approved S001 derivative subtrees",
+    "nature": "mechanical shape only, not semantic rerun"
+  },
+  "independent_verifier": "/root/pec_pkg01_reconciliation/pkg01_verifier",
+  "maximum_active_agent2_children": 2,
+  "schedule": "01+02; 01+03 after02 validation;03+04 after01 validation;04+S001 after03;S001+05 after04;05+06 afterS001; verifier after all six member workers and S001 complete",
+  "sealed_brief_hash_errors": [],
+  "specialist_delegation": "none performed or authorized",
+  "status": "ALL_EIGHT_NATIVE_CHILDREN_TERMINAL_COMPLETE"
+}

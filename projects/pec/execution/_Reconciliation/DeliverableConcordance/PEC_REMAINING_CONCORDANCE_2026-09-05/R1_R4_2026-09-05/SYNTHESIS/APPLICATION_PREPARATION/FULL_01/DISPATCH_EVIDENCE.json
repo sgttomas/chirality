@@ -1,0 +1,13 @@
+{
+  "native_identity": "/root/pec_corpus_synthesis/scanner_proposal",
+  "parent_identity": "/root/pec_corpus_synthesis",
+  "role": "ephemeral Agent2; nondelegation instruction-asserted",
+  "objective": "exact all64 Remaining application preparation",
+  "brief_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/BRIEFS/APPLICATION_PREPARATION.md",
+  "brief_sha256": "1f5e752964f7a265f3eb0647f591f4fc0791272464f83534b9cdc92fdcb01652",
+  "scope_amendment_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PHASED_SCOPE_AMENDMENT_03_FULL.md",
+  "scope_amendment_sha256": "7c7e981c1b195e777c1baa26280a0a777a20a0cde878531f2de22da964bd1607",
+  "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/**",
+  "no_delegation": true,
+  "prior_partial_manifest_sha256": "8ad96b40722c3495d7650bd1765c40235b55db5d62fae05db50732098a1a9206"
+}

@@ -1,0 +1,69 @@
+{
+  "status": "STRUCTURAL_SOURCE_PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "members": [
+    {
+      "member": "DEL-07-01",
+      "claims": 14,
+      "residuals": 1,
+      "unknown": 7,
+      "dispositions": {
+        "ALIGNED": 7,
+        "UNKNOWN": 7
+      },
+      "sources": 156,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-02",
+      "claims": 13,
+      "residuals": 1,
+      "unknown": 5,
+      "dispositions": {
+        "ACCEPTED_DIVERGENCE": 1,
+        "ALIGNED": 7,
+        "UNKNOWN": 5
+      },
+      "sources": 341,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-03",
+      "claims": 12,
+      "residuals": 1,
+      "unknown": 7,
+      "dispositions": {
+        "ALIGNED": 5,
+        "UNKNOWN": 7
+      },
+      "sources": 64,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-04",
+      "claims": 12,
+      "residuals": 1,
+      "unknown": 4,
+      "dispositions": {
+        "ALIGNED": 8,
+        "UNKNOWN": 4
+      },
+      "sources": 336,
+      "errors": []
+    },
+    {
+      "member": "DEL-07-05",
+      "claims": 12,
+      "residuals": 1,
+      "unknown": 3,
+      "dispositions": {
+        "ALIGNED": 9,
+        "UNKNOWN": 3
+      },
+      "sources": 73,
+      "errors": []
+    }
+  ],
+  "claims": 63,
+  "residuals": 5,
+  "check_limitation": "Source/schema checks do not establish behavior or authorize any proposal."
+}

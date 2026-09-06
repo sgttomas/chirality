@@ -1,0 +1,94 @@
+{
+  "pass": true,
+  "claim_count": 450,
+  "residual_count": 38,
+  "deliverable_count": 6,
+  "dispositions": {
+    "ALIGNED": 187,
+    "UNKNOWN": 258,
+    "STALE_INPUT": 5
+  },
+  "worker_checks": [
+    {
+      "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01",
+      "claims": 99,
+      "residuals": 5,
+      "read_hashes": 140,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001",
+      "claims": 82,
+      "residuals": 18,
+      "read_hashes": 97,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001",
+      "claims": 81,
+      "residuals": 5,
+      "read_hashes": 97,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-04",
+      "claims": 88,
+      "residuals": 3,
+      "read_hashes": 87,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-05",
+      "claims": 10,
+      "residuals": 2,
+      "read_hashes": 659,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-06",
+      "claims": 90,
+      "residuals": 5,
+      "read_hashes": 168,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "source_definition_coverage": [
+    {
+      "deliverable": "DEL-03-01",
+      "defined_local_ids": 96,
+      "missing": []
+    },
+    {
+      "deliverable": "DEL-03-02",
+      "defined_local_ids": 81,
+      "missing": []
+    },
+    {
+      "deliverable": "DEL-03-03",
+      "defined_local_ids": 80,
+      "missing": []
+    },
+    {
+      "deliverable": "DEL-03-04",
+      "defined_local_ids": 86,
+      "missing": []
+    },
+    {
+      "deliverable": "DEL-03-05",
+      "defined_local_ids": 0,
+      "missing": []
+    },
+    {
+      "deliverable": "DEL-03-06",
+      "defined_local_ids": 88,
+      "missing": []
+    }
+  ],
+  "summaries_reproduced": true
+}

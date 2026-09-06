@@ -1,0 +1,312 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv": "4d34d5573233784950a315401cb4431d760cd9bcbc87e38c760d3ef320205834",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md": "984841782d524e77c912e03fb8ce9a6a0231b69ffe1ca660d7441e71327c894a",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_DEPENDENCIES.md": "b100e6b67a39d342751ec9e343d4bf391790bb5ffabb9974d3b001d703b42c69",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md": "896c1f6926360a9ae5db919f8506794ca2e2890d817dbf2c592e99733bb416fe",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md": "c4b6f503ab7599978f7fe2e51625ccf5fecdeac295fb8203a3a3379b8bd66250",
+    "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "de80f59952367a5369417a9405377b370bad4a9fef961ef449a81922246357e7",
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "agents/AGENT_TASK.md": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md": "2947d99e09f20f05f42fed2db592690bc3d97739f19349a09a04a97dd0016c43",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-07.md": "38c406b0cb19f64b93877ea9828acb838c0ccf5b2468cffb8e25f19b072937e2",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_BASIS.md": "112d608769f285366462f7a774d21a5d60184eb563475fc6c2d8280e68711d7d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/SOURCE_MANIFEST.json": "56a36276cc0adf8da6b98ca5b7189b4283333fdc297dfdf99693535d175f6b87",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/BRIEFS/DEL-07-03.md": "558b9d4c26a64634afadcca68258e33844649270a0dc336834d343669dc9c132",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "e7095343267c04b814410f7fb55a58d25088283d46c3c26e161737e2fc609097",
+    "projects/pec/v2/tools/check_service_core_posture.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "projects/pec/v2/config/loops.json": "4ce07ad061abd222acabb2afe0f619fdc840b4cc11d31e49f1dff8fcc299d32e",
+    "projects/pec/v2/config/service_core_posture.json": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "projects/pec/v2/config/loops.schema.json": "1f4d1f0cf9abe5754ebb4260f588dea0d71e7f3cc37af2487b30b9c4aa39ba9b",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+    "projects/pec/v2/src/pec_v2/__init__.py": "ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e",
+    "projects/pec/v2/src/pec_v2/core/__init__.py": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py": "8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py": "7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py": "7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py": "49b2f6a3b5088bceb82dc393cce050b8800af3a5ac5d34b3b6a3d7b71c01111b",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py": "d7efb486287d3703aa9ea007eb5376eba95689286bb322c887eeca8b193ac956",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py": "9e9519e6eaded2e9db427a6609c5880c5316f6528facae80776307793bb0071d",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py": "f9ec548b059cdcbc1080da4c0f53ef97d5cf7e9a7b75ce5ad12c74a9b86be091",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py": "44a1f3d683fc27ef15595f9dacfdd37f98476eac6ec4b88da4cd43ba8b472e31",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py": "54671ebf7071f04e3d2cea8411895d9429c84036efa82f7223aa7c440d2d9bad",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py": "c35fff6dba0aaa2d114b0d4e252d561d361979254e4ecf91cdd6c16236f7d425",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py": "2f691060cef7a41af2530909638f9612725eab441b515ac10f37071ee15c8870",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py": "206cc544fa564634ea413a2e6ff1eed7cb062d5c5cf7a2b4e8156c4fede7d416",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py": "e38af91183e30927c8d990a76ba715f3e1f300ac1e6b489a2408b48741632522",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py": "8966d0088ea15ad37854ecfd0f4869c67b61ce5f8809848d380f1fb858e450a0",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py": "476b8cef2afeabe4dddd5173009cee02a7a709e6ebadfe886160a1f4c3000fe9",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py": "48f739f0169f93a303c2c754209ecdc343b4aa7607ee750bc3c943377902d0bc",
+    "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json": "2e65c719af6c9eb7e170fb25d437b928847dc8d617c056093de213673b3e3396",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json": "2155849d9419f0239dca7a69d919ca9ee46a6434106d5326d85bc8c70afc5257",
+    "projects/pec/v2/tests/config/fixtures/malformed.json": "f37303491c50fa74756f547929f09c99900abfad5a9310cc2b46beb5027425b0",
+    "projects/pec/v2/contracts/api/v1/schema.json": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-65_register_evidence_repair.md": "fe00f0ddf47556d211c7006494022b814d75515039539c68c49cc9ef27d90e43"
+  },
+  "historical_sources": [],
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_DEPENDENCIES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_SEMANTIC.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "rg",
+        "--files",
+        "projects/pec/v2"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "projects/pec/v2/src/pec_v2/adapters/__init__.py\nprojects/pec/v2/src/pec_v2/adapters/config/loop_registry.py\nprojects/pec/v2/src/pec_v2/adapters/config/__init__.py\nprojects/pec/v2/src/pec_v2/__init__.py\nprojects/pec/v2/src/pec_v2/core/ports/loop_registry.py\nprojects/pec/v2/src/pec_v2/core/ports/__init__.py\nprojects/pec/v2/src/pec_v2/core/__init__.py\nprojects/pec/v2/docs/SERVICE_CORE_POSTURE.md\nprojects/pec/v2/tests/enforcement/test_dependency_assertion.py\nprojects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py\nprojects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py\nprojects/pec/v2/tests/enforcement/test_gate_registration.py\nprojects/pec/v2/tests/enforcement/test_locality_assertion.py\nprojects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py\nprojects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json\nprojects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json\nprojects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json\nprojects/pec/v2/tests/config/test_json_loop_registry.py\nprojects/pec/v2/tests/config/fixtures/malformed.json\nprojects/pec/v2/tests/config/fixtures/missing_loop_id.json\nprojects/pec/v2/tests/config/fixtures/duplicate_loop_id.json\nprojects/pec/v2/tests/config/test_loop_registry_contract.py\nprojects/pec/v2/contracts/api/v1/schema.json\nprojects/pec/v2/tools/check_service_core_posture.py\nprojects/pec/v2/config/loops.schema.json\nprojects/pec/v2/config/service_core_posture.json\nprojects/pec/v2/config/loops.json\n"
+    },
+    {
+      "command": [
+        "rg",
+        "-n",
+        "-i",
+        "hook|session.start|scope.declar",
+        "projects/pec/v2"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "result": ""
+    },
+    {
+      "command": [
+        "rg",
+        "-n",
+        "DEL-07-03|SOW-036",
+        "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+        "projects/pec/execution/_Decomposition/Deliverables.csv"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "projects/pec/execution/_Decomposition/Deliverables.csv:39:DEL-07-03,PKG-07,Hooks CLI bridge,\"Declared, attributable harness hooks CLI: session start/stop, status, scope declaration.\",BACKEND_FEATURE_SLICE,TBD,CLI + tests,SOW-036,,M,,P3\nprojects/pec/execution/_Decomposition/ScopeLedger.csv:37:SOW-036,IN,\"Implement the harness hooks CLI bridge (session start/stop, status, scope declaration), declared and attributable\",PEC-STR-003,PKG-07,DEL-07-03,,,FALSE,\nprojects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md:211:| SOW-036 | IN | Implement the harness hooks CLI bridge (session start/stop, status, scope declaration), declared and attributable | PEC-STR-003 | |\nprojects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md:468:| DEL-07-03 | Hooks CLI bridge | BACKEND_FEATURE_SLICE | M | P3 | SOW-036 |\n"
+    },
+    {
+      "command": [
+        "rg",
+        "-n",
+        "REQ-[0-9]+|AC-[0-9]+|VER-[0-9]+",
+        "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "result": ""
+    },
+    {
+      "command": [
+        "rg",
+        "--files",
+        "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge",
+        "projects/pec/v2"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md\nprojects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_DEPENDENCIES.md\nprojects/pec/v2/src/pec_v2/adapters/__init__.py\nprojects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md\nprojects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_SEMANTIC.md\nprojects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md\nprojects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_CONTEXT.md\nprojects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv\nprojects/pec/v2/src/pec_v2/adapters/config/loop_registry.py\nprojects/pec/v2/src/pec_v2/adapters/config/__init__.py\nprojects/pec/v2/src/pec_v2/__init__.py\nprojects/pec/v2/src/pec_v2/core/ports/loop_registry.py\nprojects/pec/v2/src/pec_v2/core/ports/__init__.py\nprojects/pec/v2/src/pec_v2/core/__init__.py\nprojects/pec/v2/tests/enforcement/test_dependency_assertion.py\nprojects/pec/v2/docs/SERVICE_CORE_POSTURE.md\nprojects/pec/v2/tests/config/test_json_loop_registry.py\nprojects/pec/v2/tests/config/fixtures/malformed.json\nprojects/pec/v2/tests/config/fixtures/missing_loop_id.json\nprojects/pec/v2/tests/config/fixtures/duplicate_loop_id.json\nprojects/pec/v2/tests/config/test_loop_registry_contract.py\nprojects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py\nprojects/pec/v2/contracts/api/v1/schema.json\nprojects/pec/v2/config/loops.schema.json\nprojects/pec/v2/config/service_core_posture.json\nprojects/pec/v2/config/loops.json\nprojects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py\nprojects/pec/v2/tools/check_service_core_posture.py\nprojects/pec/v2/tests/enforcement/test_gate_registration.py\nprojects/pec/v2/tests/enforcement/test_locality_assertion.py\nprojects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py\nprojects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py\nprojects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json\nprojects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json\nprojects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json\nprojects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py\nprojects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py\n"
+    },
+    {
+      "command": [
+        "rg",
+        "-n",
+        "DEL-07-03|PKG-07|hooks",
+        "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "result": ""
+    },
+    {
+      "command": "Python exact schemas/LF/unique IDs/residual sequential and reciprocal links/Depends/literal gates/selectability/common-pin comparison",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "PASS: 12 claims, 7 UNKNOWN, 5 ALIGNED, 1 residual; zero common pin drift"
+    }
+  ],
+  "source_unchanged": true
+}

@@ -1,0 +1,11 @@
+# DEL-08-05 V001 independent backcheck
+
+PASS for corrected report selection only. PKG08-V1-001 is resolved in WORKERS/DEL-08-05/CORRECTION_V001; the original verifier verdict and finding remain CORRECTION_REQUIRED / OPEN_ORIGINAL as immutable historical evidence.
+
+The fallback differs by exactly one literal byte-string replacement at /mappings/0/locus: Description → ScopeItemStatement. The corrected field exists in ScopeLedger.csv, row SOW-044 is physical line45, and its value is the unchanged scope quote. All three fallback source-file hashes, quote hashes, literal text and physical line locations reproduce. All other fallback values are unchanged. CLAIMS.csv, RESIDUALS.csv, COVERAGE.md and CURRENT_EVIDENCE.json are byte-identical to the originals.
+
+The 18 original claims remain 15 ALIGNED and3 UNKNOWN, with1 evidence-only residual. All claim source hashes, source commit, exact gates, NONE evidence dependency and reciprocal links reproduce. Original verifier, original worker and correction output manifests all match every declared entry; full original verifier read-source hashes also remain unchanged. Correction authoritative sources match D82 base; run-local context is explicitly derivative. Six fresh exact-target candidate-validation preflights returned ALLOW and confer no product authority.
+
+No claim, residual, source, owner gate or meaning changed. Remaining unknown SSE implementation/test evidence, missing canonical contract, P4 staging, TM023 dedicated held mapping and no invented scope remain. Broader original verification limits survive: DEL08-04's43 local absence classifications are not universal; all80 package UNKNOWNs and12 raw proposals remain, D66 decline and TM022 deferral survive, and held routing is not automatic executable Remaining.
+
+Accepted upstream is D81 calibration plus D82 base2be412ccea62bdc4bd96deb082c46d7a792076ea. This backcheck is a derivative of the frozen original review and fresh correction; no authoritative decomposition pointer is updated. No unresolved correction defect remains. Manager aggregate fan-in remains required. Rehash and repreflight on source/hold/authority changes. Only VERIFICATION/BACKCHECK_V001/** was written, with no delegation, Git mutation or product/lifecycle/Remaining act. Native Agent2 role is instruction-asserted, not mechanism-proven.

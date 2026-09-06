@@ -1,0 +1,8 @@
+ResidualID,Recommendation,Reason,Selectability
+DEL-02-07-REM-001,ELIGIBLE_FOR_LATER_EXACT_APPLICATION_PROPOSAL,"Accepted product/evidence obligation; scope, source and frozen-candidate gates still apply.",NON_SELECTABLE_PENDING_OWNER_APPLICATION
+DEL-02-07-REM-002,ELIGIBLE_FOR_LATER_EXACT_APPLICATION_PROPOSAL,"Accepted product/evidence obligation; scope, source and frozen-candidate gates still apply. Loop-to-project scope ambiguity remains conditional; no guessed mapping or production before accepted resolution.",NON_SELECTABLE_PENDING_OWNER_APPLICATION
+DEL-02-07-REM-003,ELIGIBLE_FOR_LATER_EXACT_APPLICATION_PROPOSAL,"Accepted product/evidence obligation; scope, source and frozen-candidate gates still apply.",NON_SELECTABLE_PENDING_OWNER_APPLICATION
+DEL-02-07-REM-004,ELIGIBLE_FOR_LATER_EXACT_APPLICATION_PROPOSAL,"Accepted product/evidence obligation; scope, source and frozen-candidate gates still apply.",NON_SELECTABLE_PENDING_OWNER_APPLICATION
+DEL-02-07-REM-005,HELD_ROUTING_ONLY,"Assignment belongs to later owning WORKING_ITEMS activation, not invented product work.",NON_SELECTABLE_PENDING_OWNER_APPLICATION
+DEL-02-07-REM-006,HELD_ROUTING_ONLY,Accepted future-production phrasing may be historical; retain qualification pending owner disposition.,NON_SELECTABLE_PENDING_OWNER_APPLICATION
+DEL-02-07-REM-007,HELD_ROUTING_ONLY,Historical observation only; current reliance needs separately scoped evidence refresh.,NON_SELECTABLE_PENDING_OWNER_APPLICATION

@@ -1,0 +1,132 @@
+{
+  "status": "PASS_REPORT_READY",
+  "errors": [],
+  "counts": {
+    "claims": 67,
+    "residuals": 5,
+    "dispositions": {
+      "UNKNOWN": 30,
+      "ALIGNED": 36,
+      "ACCEPTED_DIVERGENCE": 1
+    }
+  },
+  "members": [
+    {
+      "member": "DEL-07-01",
+      "claims": 15,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 8,
+        "ALIGNED": 7
+      },
+      "lowest_aligned": "DEL-07-01::CO-LANDING-C-01"
+    },
+    {
+      "member": "DEL-07-02",
+      "claims": 13,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 5,
+        "ALIGNED": 7,
+        "ACCEPTED_DIVERGENCE": 1
+      },
+      "lowest_aligned": "DEL-07-02::C13"
+    },
+    {
+      "member": "DEL-07-03",
+      "claims": 13,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 8,
+        "ALIGNED": 5
+      },
+      "lowest_aligned": "DEL-07-03::CONTEXT.ASSIGNMENT"
+    },
+    {
+      "member": "DEL-07-04",
+      "claims": 14,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 6,
+        "ALIGNED": 8
+      },
+      "lowest_aligned": "DEL-07-04::DEP-07-04-001"
+    },
+    {
+      "member": "DEL-07-05",
+      "claims": 12,
+      "residuals": 1,
+      "dispositions": {
+        "UNKNOWN": 3,
+        "ALIGNED": 9
+      },
+      "lowest_aligned": "DEL-07-05::D-PEC-66-ACT1"
+    }
+  ],
+  "proofs": {
+    "F001": [
+      {
+        "id": "DEL-07-03-REM-001",
+        "column": "Depends",
+        "before": "DEL-00-02;DEL-07-01",
+        "after": "NONE"
+      }
+    ],
+    "F002": {
+      "added_ids": [
+        "DEL-07-01::PKG07-EVENT-CONTRACTS",
+        "DEL-07-03::PKG07-EVENT-CONTRACTS",
+        "DEL-07-04::ARTIFACT.TESTS",
+        "DEL-07-04::PKG07-EVENT-CONTRACTS"
+      ],
+      "unchanged_original_claims": 63,
+      "residual_changes": [
+        {
+          "id": "DEL-07-01-REM-001",
+          "column": "ClaimIDs",
+          "before": "DEL-07-01::SOW-033-IDEMPOTENT;DEL-07-01::SOW-033-APPEND-ONLY;DEL-07-01::SOW-033-EVENT-ID;DEL-07-01::SOW-039-DURABLE;DEL-07-01::SOW-039-QUERYABLE;DEL-07-01::SOW-039-NO-RELAY;DEL-07-01::PEC-K-09-ATTRIBUTABLE",
+          "after": "DEL-07-01::SOW-033-IDEMPOTENT;DEL-07-01::SOW-033-APPEND-ONLY;DEL-07-01::SOW-033-EVENT-ID;DEL-07-01::SOW-039-DURABLE;DEL-07-01::SOW-039-QUERYABLE;DEL-07-01::SOW-039-NO-RELAY;DEL-07-01::PEC-K-09-ATTRIBUTABLE;DEL-07-01::PKG07-EVENT-CONTRACTS"
+        },
+        {
+          "id": "DEL-07-03-REM-001",
+          "column": "ClaimIDs",
+          "before": "DEL-07-03::SOW-036.START;DEL-07-03::SOW-036.STOP;DEL-07-03::SOW-036.STATUS;DEL-07-03::SOW-036.SCOPE;DEL-07-03::SOW-036.DECLARED;DEL-07-03::SOW-036.ATTRIBUTABLE;DEL-07-03::ARTIFACT.TESTS",
+          "after": "DEL-07-03::SOW-036.START;DEL-07-03::SOW-036.STOP;DEL-07-03::SOW-036.STATUS;DEL-07-03::SOW-036.SCOPE;DEL-07-03::SOW-036.DECLARED;DEL-07-03::SOW-036.ATTRIBUTABLE;DEL-07-03::ARTIFACT.TESTS;DEL-07-03::PKG07-EVENT-CONTRACTS"
+        },
+        {
+          "id": "DEL-07-04-REM-001",
+          "column": "ClaimIDs",
+          "before": "DEL-07-04::SOW-037;DEL-07-04::SOW-037-DECLARED;DEL-07-04::SOW-037-ATTRIBUTABLE;DEL-07-04::SOW-037-ABSENCE",
+          "after": "DEL-07-04::SOW-037;DEL-07-04::SOW-037-DECLARED;DEL-07-04::SOW-037-ATTRIBUTABLE;DEL-07-04::SOW-037-ABSENCE;DEL-07-04::PKG07-EVENT-CONTRACTS;DEL-07-04::ARTIFACT.TESTS"
+        }
+      ]
+    }
+  },
+  "historical_aggregate_exceptions": [
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/READ_MANIFEST.json",
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_CLAIMS.csv",
+      "preserved_preimage": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_AGGREGATES/PACKAGE_CLAIMS.csv",
+      "sha256": "6c328ffbb054d276aff7de4b609969f46cd82e350e08e1888e09514570deed76"
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/READ_MANIFEST.json",
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_RESIDUALS.csv",
+      "preserved_preimage": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_AGGREGATES/PACKAGE_RESIDUALS.csv",
+      "sha256": "6fa2e3c84aceffe6d5fffb0a347a0ff52d43be1501b8032780f79e7eae09989e"
+    }
+  ],
+  "hold_checks": 49,
+  "findings_closed": [
+    "F001",
+    "F002"
+  ],
+  "checked_population": 72,
+  "source_files": 468,
+  "source_unchanged": true,
+  "recommendations": {
+    "evidence_candidates": 4,
+    "conditional_optional_cmux": 1,
+    "product_tasks": 0
+  }
+}

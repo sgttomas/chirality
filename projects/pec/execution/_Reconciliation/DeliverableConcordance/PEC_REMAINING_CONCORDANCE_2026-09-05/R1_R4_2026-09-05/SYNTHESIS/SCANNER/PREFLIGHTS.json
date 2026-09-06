@@ -1,0 +1,560 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_CLAIMS.csv",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/PACKAGE_RESIDUALS.csv",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/OUTPUT_MANIFEST.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SOURCE_MANIFEST.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SEALED_WORKER_MANIFEST.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/FINAL_STRUCTURAL_VALIDATION.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/VERIFICATION.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/VALIDATION.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/OUTPUT_MANIFEST.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SCANNER_REPAIR_INPUTS.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "v2/tools/check_service_core_posture.py",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "v2/tests/enforcement/test_dependency_assertion.py",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "v2/tests/enforcement/test_locality_assertion.py",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "v2/software-workflow.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/PROBES.py",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/PROBE_RESULTS.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "software-workflow.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "v2/docs/SERVICE_CORE_POSTURE.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "v2/config/service_core_posture.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "AGENTS.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/BRIEFS/SCANNER.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PHASED_SCOPE_AMENDMENT_01.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/SYNTHESIS.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SYNTHESIS_CLARIFICATION_01.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Scripts/pec_reliance_hold.py",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-05/READ_MANIFEST.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D-PEC-77_REGISTERED_CHECKS.json",
+      "--operation",
+      "consume"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+  },
+  {
+    "command": "selected package output hash comparison and git show base target preimage comparison; exact probe fixture SHA256 reproduction",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "python": "Python 3.13.14"
+    },
+    "exit_code": 0,
+    "result": "PASS"
+  }
+]

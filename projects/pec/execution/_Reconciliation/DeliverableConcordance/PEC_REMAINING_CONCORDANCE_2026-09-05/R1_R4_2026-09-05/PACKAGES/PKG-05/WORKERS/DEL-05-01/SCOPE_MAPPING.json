@@ -1,0 +1,16 @@
+[
+  {
+    "scope": "SOW-022",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "line 197, Scope ledger table row SOW-022",
+    "quote": "| SOW-022 | IN | Deterministically evaluate gate preconditions reducible to file/Git facts: ruling presence, ruling-SHA reachability, receipt ancestry, snapshot/freeze presence, register-row status | PEC-GAT-001 | |",
+    "quote_sha256": "54ef6ef3aafadbb3842abc0443c5ecfecf9e2760195157ffade143f012a4727b"
+  },
+  {
+    "scope": "SOW-023",
+    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "locus": "line 198, Scope ledger table row SOW-023",
+    "quote": "| SOW-023 | IN | Shape gate verdicts as Explain objects (rule, threshold, contributing citations), advisory only | PEC-GAT-002 | Carries PEC-K-08 |",
+    "quote_sha256": "8d4e05b79108b4bb28d069edb4a8e1108184902ae7be1a832001cc1a4880a580"
+  }
+]

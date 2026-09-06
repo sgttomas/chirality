@@ -1,0 +1,113 @@
+# Sealed RECONCILIATION package-manager brief — PKG-04
+
+Parent/caller: HELP_HUMAN Agent0 `/root` directly. Role: RECONCILIATION Agent1.
+Actual execution class delegated-harness-native; role instruction-asserted, not
+mechanically enforced. Child IDs are recorded on launch, never fabricated.
+Authority D82 effective base 2be412ccea62bdc4bd96deb082c46d7a792076ea; accepted D81 calibration conventions.
+Read actual root AGENTS.md, projects/pec/AGENTS.md, agents/AGENT_RECONCILIATION.md,
+docs/DELIVERABLE_CONCORDANCE_METHOD.md, exact D82 ruling/D81 acceptance, COMMON
+RUN_BASIS/SOURCE_MANIFEST/SCOPE_CENSUS/AGENT0_GRAPH, and accepted CONVENTIONS.md.
+
+## Exact objective and scope
+
+Own R1–R4 read-only evidence production for PKG-04 only: DEL-04-01, DEL-04-02, DEL-04-03, DEL-04-04, DEL-04-05.
+Use each exact target path in COMMON/SCOPE_CENSUS.csv. Account every accepted
+claim and every deliverable; include warranted NONE only with complete current
+evidence and no UNKNOWN. Missing SOW uses explicit scope/locus/quote-hash mapping;
+no invented contract, implementation absence, assignment or release obligation.
+Read declared PEC scope/contracts/status/dependencies/current v2/decision/REVIEW/
+run evidence plus exact cited root interfaces. No broad foreign-project discovery;
+record unknown foreign observations. Frozen old PEC source is historical only.
+
+Only writable root: `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/**`. Do not write COMMON, other package roots,
+SYNTHESIS, R0, live deliverables/control/source/PRD/TM/Root or previous evidence.
+Tools read, scoped evidence writing and bounded read-only shell checks. No Git,
+network mutation, service startup or product mutating CLI. Bytecode/cache/build
+outputs scratch /tmp only. Isolate scratch probes and never execute dangerous
+fixture text. Source mutation and production are not authorized.
+
+## Manager execution
+
+First reproduce common source basis relevant to this package and actual effective
+ruling, current hold register and exact target paths. Step0 common evidence is
+context, not substitute for your actual act preflight. Invoke pec_reliance_hold.py
+using project-relative file TargetPath and operation candidate-validation or
+exact-correction-preparation as the actual act requires; malformed/unreadable
+register fails closed. No source/owner gate is bypassed by an ALLOW result.
+
+Freeze PACKAGE_BASIS.md, source manifests and sealed specialist briefs before
+native dispatch. At most2 active Agent2 children total for this package, including
+verifier. One owning specialist per deliverable, no specialist delegation. Numeric
+batches as needed. Each child writes only WORKERS/<DeliverableID>/**; a fresh
+independent verifier writes only VERIFICATION/** after workers complete.
+Preserve original findings and correction chain; fresh bounded specialists rerun
+defective ledgers in separate derivative subtrees, never manager silent patching.
+Report progress/material findings to HELP_HUMAN, not a common-manager supervisor.
+
+Worker output contracts: CLAIMS.csv, RESIDUALS.csv, COVERAGE.md, READ_MANIFEST.json,
+RETURN.md; claim-specific logs/probes when needed. CSV LF. Claim schema exactly:
+ClaimID,DeliverableID,ClaimClass,NormativeSource,ScopeItemIDs,DeclaredSource,CurrentState,ImplementationEvidence,VerificationEvidence,ValidationOrProvenanceEvidence,LifecycleEvidence,ExistingRemaining,Disposition,ProposedResidualID,ProposedResidualText,Depends,ExactGate,AuthorityNeeded,Selectability,SourceCommit,SourceHashes,EvidenceReferences,Notes.
+Residual schema: ResidualID,DeliverableID,ClaimIDs,ProposedText,Depends,ExactGate,
+ClosureEvidence,AuthorityNeeded,Selectability,Notes.
+Read-manifest schema: source_commit, hashes{repo-relative-path:sha256},
+historical_sources[{path,commit,sha256}], checks[{command,cwd,environment,exit_code,result}],
+source_unchanged. Base commit is 2be412ccea62bdc4bd96deb082c46d7a792076ea; additional evidence must bind to same
+base or explicitly become a historical object. Record every read-source hash.
+
+Preserve source local IDs as DeliverableID::LocalID and explicit fallback mapping.
+All defined REQ/AC/VER IDs covered; material additional IDs included or explicitly
+handled as nonclaims with source-grounded rationale. Claim class distinguishes
+documentary alignment, observed behavior, finite test method, human acceptance,
+lifecycle and release. Finite test PASS is not an all-input guarantee; new detector
+counterexample does not reverse prior exact owner acceptance. Acceptance continuity
+requires unchanged claim semantics or a separately accepted current artifact.
+
+Use accepted controlled dispositions and source/evidence distinctions. UNKNOWN
+prevents NONE; summary ASSESSED_UNKNOWN when any UNKNOWN remains. Truthful TBD
+assignment is documentary state, not invented product work. Current-scope source
+search miss alone is not DOCUMENTED_UNIMPLEMENTED. All proposals remain
+NON_SELECTABLE_PENDING_OWNER_APPLICATION. Preserve all exact owner/source gates.
+
+Depends semantics: only ACTIVE PREREQUISITE with TBD/PENDING/IN_PROGRESS and target
+named by item's Depends blocks that item. Other edge types order only; no register
+flip from observed predecessor evidence. Owner acts require origin/main evidence;
+predecessor commit/checks/run record may be branch-observable. Discovery proceeds
+regardless of unmet production prerequisite; report it, do not satisfy it.
+
+R0 reuse: identify selected evidence from SAMPLE_SUMMARY.csv (including V001
+corrected DEL01-06 derivative); rehash current sources, route fresh owner changes,
+carry immutable citations and record no-change/reuse evidence. One owning worker
+still validates each member; do not rerun finite tests gratuitously when exact
+source/method evidence is current. Preserve C05 chronology, narrow scanner-contract
+finding vs runtime confinement, and lexical normalization vs containment.
+
+Fresh independent verifier covers every non-ALIGNED/flagged claim and residual,
+plus deterministic lowest-ID ALIGNED per deliverable and claim-class/acceptance
+boundaries. Enumerate checked population, validate full aggregate schemas/IDs/
+source hashes/reciprocity, and expand affected verification on discrepancies.
+Do not duplicate every test suite without claim need. Seal verification and original
+manifests; package manager independently reproduces full aggregate fan-in.
+
+## Package outputs and return
+
+PACKAGE_BASIS.md; SOURCE_MANIFEST.json; DISPATCH_RECORDS (actual IDs, sealed brief
+hashes, scopes, terminal returns); WORKERS/**; VERIFICATION/**;
+PACKAGE_CLAIMS.csv and PACKAGE_RESIDUALS.csv selecting exact verified derivatives;
+PACKAGE_SUMMARY.csv with every member/unknown/warranted NONE; CROSS_PACKAGE_FINDINGS.csv;
+R4_DECISION_CANDIDATES.md; VALIDATION.json; OUTPUT_MANIFEST.json; HANDOFF_STATE.md.
+Keep raw residual proposals distinct from recommended product/evidence candidates,
+conditional interpretations and held routing/admin/lifecycle/historical concerns.
+No automatic TM mirrors. Cross-package conflicts name exact claim/source IDs and
+route through HELP_HUMAN; do not edit siblings or solve owner scope questions.
+
+Keep TM023 dedicated held mapping/no unrelated downstream gate, TM022 deferred,
+PRDv2.3/DPEC79 adopted-not-applied, ordinary SCA004 currency complete, frozen
+CHECKING/ISSUED and product/Root/reliance gates. No archived plan resurrection.
+At R4 prepare proposals only; exact Remaining application and scanner source/test
+repair remain later owner acts. No lifecycle reversal or issue/release claims.
+
+Return complete coverage/counts and selected paths/hashes, required derivative
+status, verification/correction outcomes, unresolved questions/gates, source/hold
+rerun triggers, exact write allowlist and terminal native-role evidence. Closure
+is package report readiness, not product/Remaining closure. HELP_HUMAN performs
+package-manager fan-in and dispatches separate synthesis.

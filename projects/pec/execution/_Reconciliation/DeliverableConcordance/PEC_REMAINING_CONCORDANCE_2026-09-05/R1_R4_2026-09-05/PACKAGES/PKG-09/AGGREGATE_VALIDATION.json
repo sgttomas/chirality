@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "claims": 110,
+  "residuals": 9,
+  "members": 7,
+  "read_hashes": 306,
+  "checks": [
+    {
+      "deliverable": "DEL-09-01",
+      "schema_ids_reciprocity_hashes_lf": "PASS",
+      "read_hashes": 255
+    },
+    {
+      "deliverable": "DEL-09-02",
+      "schema_ids_reciprocity_hashes_lf": "PASS",
+      "read_hashes": 239
+    },
+    {
+      "deliverable": "DEL-09-03",
+      "schema_ids_reciprocity_hashes_lf": "PASS",
+      "read_hashes": 67
+    },
+    {
+      "deliverable": "DEL-09-04",
+      "schema_ids_reciprocity_hashes_lf": "PASS",
+      "read_hashes": 58
+    },
+    {
+      "deliverable": "DEL-09-05",
+      "schema_ids_reciprocity_hashes_lf": "PASS",
+      "read_hashes": 240
+    },
+    {
+      "deliverable": "DEL-09-06",
+      "schema_ids_reciprocity_hashes_lf": "PASS",
+      "read_hashes": 240
+    },
+    {
+      "deliverable": "DEL-09-07",
+      "schema_ids_reciprocity_hashes_lf": "PASS",
+      "read_hashes": 70
+    }
+  ],
+  "semantic_verification": "Separate fresh verifier and manager row-by-row fan-in required"
+}

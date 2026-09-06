@@ -1,0 +1,531 @@
+{
+  "status": "PASS_FOR_DRAFT_BYTE_TRANSFORMS_ONLY",
+  "candidate_count": 58,
+  "all64_carriers_preimage_bound": true,
+  "target_writes": 0,
+  "checks": [
+    {
+      "DeliverableID": "DEL-00-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-01-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-01-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-01-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-01-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-01-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-02-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-02-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-02-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-02-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-02-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-02-06",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-02-07",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-03-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-03-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-03-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-03-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-03-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-03-06",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-05-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-05-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-06-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-06-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-06-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-06-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-06-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-06-06",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-07-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-07-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-07-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-07-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-07-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-08-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-08-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-08-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-08-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-09-01",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-09-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-09-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-09-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-09-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-09-06",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-09-07",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-02",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-03",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-04",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-05",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-06",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-07",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-08",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-09",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-10",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-11",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    },
+    {
+      "DeliverableID": "DEL-10-12",
+      "ApplyInMemory": true,
+      "InverseInMemory": true,
+      "NonRemainingBytePreservation": true,
+      "LifecycleAndLastUpdatedPreserved": true,
+      "OriginalCurrentBaseEquality": true,
+      "TargetUntouched": true
+    }
+  ],
+  "all_checks_pass": true
+}

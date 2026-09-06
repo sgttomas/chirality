@@ -1,0 +1,1466 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "original_directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01",
+  "derivative_directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/CORRECTION_S001",
+  "one_to_one_residual_id_map": {
+    "R-DEL-01-01-001": "DEL-01-01-REM-001",
+    "R-DEL-01-01-002": "DEL-01-01-REM-002",
+    "R-DEL-01-01-003": "DEL-01-01-REM-003",
+    "R-DEL-01-01-004": "DEL-01-01-REM-004"
+  },
+  "changed_cells": [
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 1,
+      "record_id": "DEL-01-01::CLM-001",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 1,
+      "record_id": "DEL-01-01::CLM-001",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 2,
+      "record_id": "DEL-01-01::CLM-002",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 2,
+      "record_id": "DEL-01-01::CLM-002",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 3,
+      "record_id": "DEL-01-01::CLM-003",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 3,
+      "record_id": "DEL-01-01::CLM-003",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 4,
+      "record_id": "DEL-01-01::OUT-001",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 4,
+      "record_id": "DEL-01-01::OUT-001",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 5,
+      "record_id": "DEL-01-01::OUT-002",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 5,
+      "record_id": "DEL-01-01::OUT-002",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 6,
+      "record_id": "DEL-01-01::OUT-003",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 6,
+      "record_id": "DEL-01-01::OUT-003",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 7,
+      "record_id": "DEL-01-01::CLM-004",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 7,
+      "record_id": "DEL-01-01::CLM-004",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 8,
+      "record_id": "DEL-01-01::CLM-005",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 8,
+      "record_id": "DEL-01-01::CLM-005",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 9,
+      "record_id": "DEL-01-01::CLM-006",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 9,
+      "record_id": "DEL-01-01::CLM-006",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 10,
+      "record_id": "DEL-01-01::CLM-007",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 10,
+      "record_id": "DEL-01-01::CLM-007",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 11,
+      "record_id": "DEL-01-01::CLM-008",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 11,
+      "record_id": "DEL-01-01::CLM-008",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 12,
+      "record_id": "DEL-01-01::CLM-009",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 12,
+      "record_id": "DEL-01-01::CLM-009",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 12,
+      "record_id": "DEL-01-01::CLM-009",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 13,
+      "record_id": "DEL-01-01::CLM-010",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 13,
+      "record_id": "DEL-01-01::CLM-010",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 14,
+      "record_id": "DEL-01-01::CLM-011",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 14,
+      "record_id": "DEL-01-01::CLM-011",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 15,
+      "record_id": "DEL-01-01::CLM-012",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 15,
+      "record_id": "DEL-01-01::CLM-012",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 16,
+      "record_id": "DEL-01-01::CLM-013",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 16,
+      "record_id": "DEL-01-01::CLM-013",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 16,
+      "record_id": "DEL-01-01::CLM-013",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 17,
+      "record_id": "DEL-01-01::TBD-001",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 17,
+      "record_id": "DEL-01-01::TBD-001",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 18,
+      "record_id": "DEL-01-01::TBD-002",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 18,
+      "record_id": "DEL-01-01::TBD-002",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 19,
+      "record_id": "DEL-01-01::CON-001",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 19,
+      "record_id": "DEL-01-01::CON-001",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 19,
+      "record_id": "DEL-01-01::CON-001",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 20,
+      "record_id": "DEL-01-01::CON-002",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 20,
+      "record_id": "DEL-01-01::CON-002",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 21,
+      "record_id": "DEL-01-01::REQ-001",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 21,
+      "record_id": "DEL-01-01::REQ-001",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 22,
+      "record_id": "DEL-01-01::REQ-002",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 22,
+      "record_id": "DEL-01-01::REQ-002",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 23,
+      "record_id": "DEL-01-01::REQ-003",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 23,
+      "record_id": "DEL-01-01::REQ-003",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 24,
+      "record_id": "DEL-01-01::REQ-004",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 24,
+      "record_id": "DEL-01-01::REQ-004",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 25,
+      "record_id": "DEL-01-01::REQ-005",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 25,
+      "record_id": "DEL-01-01::REQ-005",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 26,
+      "record_id": "DEL-01-01::REQ-006",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 26,
+      "record_id": "DEL-01-01::REQ-006",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 27,
+      "record_id": "DEL-01-01::REQ-007",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 27,
+      "record_id": "DEL-01-01::REQ-007",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 28,
+      "record_id": "DEL-01-01::REQ-008",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 28,
+      "record_id": "DEL-01-01::REQ-008",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 29,
+      "record_id": "DEL-01-01::REQ-009",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 29,
+      "record_id": "DEL-01-01::REQ-009",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 30,
+      "record_id": "DEL-01-01::REQ-010",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 30,
+      "record_id": "DEL-01-01::REQ-010",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 31,
+      "record_id": "DEL-01-01::REQ-011",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 31,
+      "record_id": "DEL-01-01::REQ-011",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 32,
+      "record_id": "DEL-01-01::REQ-012",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 32,
+      "record_id": "DEL-01-01::REQ-012",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 33,
+      "record_id": "DEL-01-01::REQ-013",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 33,
+      "record_id": "DEL-01-01::REQ-013",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 34,
+      "record_id": "DEL-01-01::AC-001",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 34,
+      "record_id": "DEL-01-01::AC-001",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 35,
+      "record_id": "DEL-01-01::AC-002",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 35,
+      "record_id": "DEL-01-01::AC-002",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 36,
+      "record_id": "DEL-01-01::AC-003",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 36,
+      "record_id": "DEL-01-01::AC-003",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 37,
+      "record_id": "DEL-01-01::AC-004",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 37,
+      "record_id": "DEL-01-01::AC-004",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 38,
+      "record_id": "DEL-01-01::AC-005",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 38,
+      "record_id": "DEL-01-01::AC-005",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 39,
+      "record_id": "DEL-01-01::AC-006",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 39,
+      "record_id": "DEL-01-01::AC-006",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 40,
+      "record_id": "DEL-01-01::AC-007",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 40,
+      "record_id": "DEL-01-01::AC-007",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 41,
+      "record_id": "DEL-01-01::AC-008",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 41,
+      "record_id": "DEL-01-01::AC-008",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 42,
+      "record_id": "DEL-01-01::AC-009",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 42,
+      "record_id": "DEL-01-01::AC-009",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 43,
+      "record_id": "DEL-01-01::AC-010",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 43,
+      "record_id": "DEL-01-01::AC-010",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 44,
+      "record_id": "DEL-01-01::AC-011",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 44,
+      "record_id": "DEL-01-01::AC-011",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 45,
+      "record_id": "DEL-01-01::AC-012",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 45,
+      "record_id": "DEL-01-01::AC-012",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 46,
+      "record_id": "DEL-01-01::VER-001",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 46,
+      "record_id": "DEL-01-01::VER-001",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 47,
+      "record_id": "DEL-01-01::VER-002",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 47,
+      "record_id": "DEL-01-01::VER-002",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 48,
+      "record_id": "DEL-01-01::VER-003",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 48,
+      "record_id": "DEL-01-01::VER-003",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 49,
+      "record_id": "DEL-01-01::VER-004",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 49,
+      "record_id": "DEL-01-01::VER-004",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 50,
+      "record_id": "DEL-01-01::VER-005",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 50,
+      "record_id": "DEL-01-01::VER-005",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 51,
+      "record_id": "DEL-01-01::VER-006",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 51,
+      "record_id": "DEL-01-01::VER-006",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 52,
+      "record_id": "DEL-01-01::VER-007",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 52,
+      "record_id": "DEL-01-01::VER-007",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 53,
+      "record_id": "DEL-01-01::VER-008",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 53,
+      "record_id": "DEL-01-01::VER-008",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 54,
+      "record_id": "DEL-01-01::VER-009",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 54,
+      "record_id": "DEL-01-01::VER-009",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 55,
+      "record_id": "DEL-01-01::VER-010",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 55,
+      "record_id": "DEL-01-01::VER-010",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 56,
+      "record_id": "DEL-01-01::VER-011",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 56,
+      "record_id": "DEL-01-01::VER-011",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 57,
+      "record_id": "DEL-01-01::VER-012",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 57,
+      "record_id": "DEL-01-01::VER-012",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 58,
+      "record_id": "DEL-01-01::AX-001",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 58,
+      "record_id": "DEL-01-01::AX-001",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 59,
+      "record_id": "DEL-01-01::AX-002",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 59,
+      "record_id": "DEL-01-01::AX-002",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 60,
+      "record_id": "DEL-01-01::AX-003",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 60,
+      "record_id": "DEL-01-01::AX-003",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 61,
+      "record_id": "DEL-01-01::AX-004",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 61,
+      "record_id": "DEL-01-01::AX-004",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 62,
+      "record_id": "DEL-01-01::AX-005",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 62,
+      "record_id": "DEL-01-01::AX-005",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 63,
+      "record_id": "DEL-01-01::AX-006",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 63,
+      "record_id": "DEL-01-01::AX-006",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 63,
+      "record_id": "DEL-01-01::AX-006",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 64,
+      "record_id": "DEL-01-01::AX-007",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 64,
+      "record_id": "DEL-01-01::AX-007",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 65,
+      "record_id": "DEL-01-01::AX-008",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 65,
+      "record_id": "DEL-01-01::AX-008",
+      "column": "ExactGate",
+      "before": "No work-selection authority from this assessment.",
+      "after": "NOT_SELECTABLE_UNTIL: No work-selection authority from this assessment."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 66,
+      "record_id": "DEL-01-01::AX-009",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 66,
+      "record_id": "DEL-01-01::AX-009",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 66,
+      "record_id": "DEL-01-01::AX-009",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 67,
+      "record_id": "DEL-01-01::AX-010",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 67,
+      "record_id": "DEL-01-01::AX-010",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 67,
+      "record_id": "DEL-01-01::AX-010",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 68,
+      "record_id": "DEL-01-01::CURRENT-LIFECYCLE",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 68,
+      "record_id": "DEL-01-01::CURRENT-LIFECYCLE",
+      "column": "ExactGate",
+      "before": "No lifecycle/release/source authority inferred.",
+      "after": "NOT_SELECTABLE_UNTIL: No lifecycle/release/source authority inferred."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 69,
+      "record_id": "DEL-01-01::UPSTREAM-ACCEPTANCE",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 69,
+      "record_id": "DEL-01-01::UPSTREAM-ACCEPTANCE",
+      "column": "ExactGate",
+      "before": "No lifecycle/release/source authority inferred.",
+      "after": "NOT_SELECTABLE_UNTIL: No lifecycle/release/source authority inferred."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 70,
+      "record_id": "DEL-01-01::REMAINING-CARRIER",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-004",
+      "after": "DEL-01-01-REM-004"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 70,
+      "record_id": "DEL-01-01::REMAINING-CARRIER",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 70,
+      "record_id": "DEL-01-01::REMAINING-CARRIER",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 71,
+      "record_id": "DEL-01-01::BASIS-CURRENCY",
+      "column": "ProposedResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 71,
+      "record_id": "DEL-01-01::BASIS-CURRENCY",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "record_index": 71,
+      "record_id": "DEL-01-01::BASIS-CURRENCY",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 1,
+      "record_id": "R-DEL-01-01-001",
+      "column": "ResidualID",
+      "before": "R-DEL-01-01-001",
+      "after": "DEL-01-01-REM-001"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 1,
+      "record_id": "R-DEL-01-01-001",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 2,
+      "record_id": "R-DEL-01-01-002",
+      "column": "ResidualID",
+      "before": "R-DEL-01-01-002",
+      "after": "DEL-01-01-REM-002"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 2,
+      "record_id": "R-DEL-01-01-002",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 3,
+      "record_id": "R-DEL-01-01-003",
+      "column": "ResidualID",
+      "before": "R-DEL-01-01-003",
+      "after": "DEL-01-01-REM-003"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 3,
+      "record_id": "R-DEL-01-01-003",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 3,
+      "record_id": "R-DEL-01-01-003",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 4,
+      "record_id": "R-DEL-01-01-004",
+      "column": "ResidualID",
+      "before": "R-DEL-01-01-004",
+      "after": "DEL-01-01-REM-004"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 4,
+      "record_id": "R-DEL-01-01-004",
+      "column": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "record_index": 4,
+      "record_id": "R-DEL-01-01-004",
+      "column": "ExactGate",
+      "before": "Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only.",
+      "after": "NOT_SELECTABLE_UNTIL: Later exact owner-ruled Remaining/application and DEL-01-01 path/act production authority on origin/main; D82 reporting grants no repair. D75 O-A selects DEL-01-06 only."
+    }
+  ],
+  "column_equality_proof": {
+    "CLAIMS.csv": {
+      "ClaimID": {
+        "unchanged": true,
+        "before_sha256": "1e040383b02f6cc176681afc15f887bb19d7fc8377d766740b23f5cd86accfbc",
+        "after_sha256": "1e040383b02f6cc176681afc15f887bb19d7fc8377d766740b23f5cd86accfbc"
+      },
+      "DeliverableID": {
+        "unchanged": true,
+        "before_sha256": "95e3d875bbb8d53be461fbaf2683ee26fe18deb16d85e1313a28bf65858d78bc",
+        "after_sha256": "95e3d875bbb8d53be461fbaf2683ee26fe18deb16d85e1313a28bf65858d78bc"
+      },
+      "ClaimClass": {
+        "unchanged": true,
+        "before_sha256": "673ed31360cc1499bb594f3e9527152bf6de83dbce4eb50094af4e728165593a",
+        "after_sha256": "673ed31360cc1499bb594f3e9527152bf6de83dbce4eb50094af4e728165593a"
+      },
+      "NormativeSource": {
+        "unchanged": true,
+        "before_sha256": "adcb59bc7a5645a250ad8f0239d897b9bc9aa32752151c2e2ea54754c2d7978a",
+        "after_sha256": "adcb59bc7a5645a250ad8f0239d897b9bc9aa32752151c2e2ea54754c2d7978a"
+      },
+      "ScopeItemIDs": {
+        "unchanged": true,
+        "before_sha256": "3c7206cfa5b34a3b993931ddb3cba33b9fcf986cac60ba77e27afd9c25fb1b10",
+        "after_sha256": "3c7206cfa5b34a3b993931ddb3cba33b9fcf986cac60ba77e27afd9c25fb1b10"
+      },
+      "DeclaredSource": {
+        "unchanged": true,
+        "before_sha256": "e533bdbe637fba50c1d14b21ed299f3f0d6de256164becbe0583c1b38d9396f2",
+        "after_sha256": "e533bdbe637fba50c1d14b21ed299f3f0d6de256164becbe0583c1b38d9396f2"
+      },
+      "CurrentState": {
+        "unchanged": true,
+        "before_sha256": "499664b826300ebf471402333ee539773c11ed10402f1ac3dc5d71ff38a420fe",
+        "after_sha256": "499664b826300ebf471402333ee539773c11ed10402f1ac3dc5d71ff38a420fe"
+      },
+      "ImplementationEvidence": {
+        "unchanged": true,
+        "before_sha256": "274710d3f4fd591af56512eda4bc9359cb8033ade7f18f4a78516683242ba845",
+        "after_sha256": "274710d3f4fd591af56512eda4bc9359cb8033ade7f18f4a78516683242ba845"
+      },
+      "VerificationEvidence": {
+        "unchanged": true,
+        "before_sha256": "4cc42b3e8c6520a7d36cc2f0b1bce178d04be4d3c832b23a55b68c21dfb65d77",
+        "after_sha256": "4cc42b3e8c6520a7d36cc2f0b1bce178d04be4d3c832b23a55b68c21dfb65d77"
+      },
+      "ValidationOrProvenanceEvidence": {
+        "unchanged": true,
+        "before_sha256": "40f989b266118f79095116cf101458881631fd74e990778fe97ae97cc1234622",
+        "after_sha256": "40f989b266118f79095116cf101458881631fd74e990778fe97ae97cc1234622"
+      },
+      "LifecycleEvidence": {
+        "unchanged": true,
+        "before_sha256": "a1f2db0d15f29f95c0238900213d44f6ac9b468411776cf8ab394544e35b855e",
+        "after_sha256": "a1f2db0d15f29f95c0238900213d44f6ac9b468411776cf8ab394544e35b855e"
+      },
+      "ExistingRemaining": {
+        "unchanged": true,
+        "before_sha256": "c5e1bfd873393696b548b802bd9a1ce1fc11585e8648511349f2741dfe105cc3",
+        "after_sha256": "c5e1bfd873393696b548b802bd9a1ce1fc11585e8648511349f2741dfe105cc3"
+      },
+      "Disposition": {
+        "unchanged": true,
+        "before_sha256": "d6906b3f8cb8b90ec4988c65c390ec0ef53c280f31a3c7543c032ba2525391f7",
+        "after_sha256": "d6906b3f8cb8b90ec4988c65c390ec0ef53c280f31a3c7543c032ba2525391f7"
+      },
+      "ProposedResidualID": {
+        "unchanged": false,
+        "before_sha256": "0bb6b4973aa7eb492349e90bc24fe2a1060836be4968952c4bcc642fa79e0290",
+        "after_sha256": "fc5ce2d4bf5159d949f442d66d7a4d922fda7d6a41292493e8e217346861fc50"
+      },
+      "ProposedResidualText": {
+        "unchanged": true,
+        "before_sha256": "a3771fa5b88fa796f8657d0146bbf790cd5b095405378afdb26871ce8d6361ed",
+        "after_sha256": "a3771fa5b88fa796f8657d0146bbf790cd5b095405378afdb26871ce8d6361ed"
+      },
+      "Depends": {
+        "unchanged": false,
+        "before_sha256": "e47c1cbf89ccf78772c9d4f7c3ca2aefb423d2d1840a5ee3842900dba7b90aa3",
+        "after_sha256": "ed2b2b741a3d8fdaf11ae74a8da95c92a74b9c6f49d96381bf79a99d5e079e0c"
+      },
+      "ExactGate": {
+        "unchanged": false,
+        "before_sha256": "c440f3a857cc177971bc838ec70b0bdbd6b3855238167742f6d41d7601b3942e",
+        "after_sha256": "14e46d995f4ee58db153bc2ad50af0e311c2823346779b72d6fb8aa39ee9f6f6"
+      },
+      "AuthorityNeeded": {
+        "unchanged": true,
+        "before_sha256": "4f19f4efb28deb0e2bf984efb3a12ac35de731a414a3fb8b181b5f908530ee09",
+        "after_sha256": "4f19f4efb28deb0e2bf984efb3a12ac35de731a414a3fb8b181b5f908530ee09"
+      },
+      "Selectability": {
+        "unchanged": true,
+        "before_sha256": "67f2708cd864fd25e58b7a32621cc1223de2e0f66fc74f0cb5bb2f76682cf290",
+        "after_sha256": "67f2708cd864fd25e58b7a32621cc1223de2e0f66fc74f0cb5bb2f76682cf290"
+      },
+      "SourceCommit": {
+        "unchanged": true,
+        "before_sha256": "6c701b4d099eafb1fadd063d434a7b096cea7158c27637fe6ed1dd5e5368f7d0",
+        "after_sha256": "6c701b4d099eafb1fadd063d434a7b096cea7158c27637fe6ed1dd5e5368f7d0"
+      },
+      "SourceHashes": {
+        "unchanged": true,
+        "before_sha256": "56f531078f5754256b20b09841f9cef1301c7e729fe4aacd6d3c2c919ec85205",
+        "after_sha256": "56f531078f5754256b20b09841f9cef1301c7e729fe4aacd6d3c2c919ec85205"
+      },
+      "EvidenceReferences": {
+        "unchanged": true,
+        "before_sha256": "cc50c43a45a11e7051a2b6c28037bdaea5e17dedf34e4f6c9ac7b85b04c57936",
+        "after_sha256": "cc50c43a45a11e7051a2b6c28037bdaea5e17dedf34e4f6c9ac7b85b04c57936"
+      },
+      "Notes": {
+        "unchanged": true,
+        "before_sha256": "4251b11630e06d89c5a1e6b38ba7960a5950c5e071146df4d473e7afb4e4fad7",
+        "after_sha256": "4251b11630e06d89c5a1e6b38ba7960a5950c5e071146df4d473e7afb4e4fad7"
+      }
+    },
+    "RESIDUALS.csv": {
+      "ResidualID": {
+        "unchanged": false,
+        "before_sha256": "c3fe947154e9c876b059740e61c17051879cbd4e3cfa4718fd824758889bfd27",
+        "after_sha256": "e674b4ab3f6147083cd57d5c7958bfd51e22c74f11725db73a146ffd2025e34c"
+      },
+      "DeliverableID": {
+        "unchanged": true,
+        "before_sha256": "3f6a2a2cca799905d43b8ea3a36423bb6cb80ac65b9db3927f33421cd553dc88",
+        "after_sha256": "3f6a2a2cca799905d43b8ea3a36423bb6cb80ac65b9db3927f33421cd553dc88"
+      },
+      "ClaimIDs": {
+        "unchanged": true,
+        "before_sha256": "2faf42b393ec0fd96292fc419dc2cdc2c8c77ed8924eb3e4cc456c46469fa6d4",
+        "after_sha256": "2faf42b393ec0fd96292fc419dc2cdc2c8c77ed8924eb3e4cc456c46469fa6d4"
+      },
+      "ProposedText": {
+        "unchanged": true,
+        "before_sha256": "f70ca0afcc67144cfc60bfd56e5024db88770d995bf06481b68f6e761fd544cd",
+        "after_sha256": "f70ca0afcc67144cfc60bfd56e5024db88770d995bf06481b68f6e761fd544cd"
+      },
+      "Depends": {
+        "unchanged": false,
+        "before_sha256": "6c9d17d9e3d9c3b042577f614350e32a90470f4183ea5ecd094e8168dd0d289d",
+        "after_sha256": "56ed51d26a6185f9753c61e59f9606808bb4c0502e4612b79a0dc5f6ee1e90c7"
+      },
+      "ExactGate": {
+        "unchanged": false,
+        "before_sha256": "8ba1051127a1c2591b48cee39b8a1f31e69a10fbe9b274903ef29f2682f973b6",
+        "after_sha256": "f817999724d196685184cb7067bfca1e3e595672d00b3266ab91873b8ebd0531"
+      },
+      "ClosureEvidence": {
+        "unchanged": true,
+        "before_sha256": "97518ac71769cc69f1dd05852cdd45e8d546bfb79e1ada6216e27e3a58a097d6",
+        "after_sha256": "97518ac71769cc69f1dd05852cdd45e8d546bfb79e1ada6216e27e3a58a097d6"
+      },
+      "AuthorityNeeded": {
+        "unchanged": true,
+        "before_sha256": "3f5debe73aa3ad4c0d76485d42c2cc2a2f7346575a1fc527988d7bc80a6518b8",
+        "after_sha256": "3f5debe73aa3ad4c0d76485d42c2cc2a2f7346575a1fc527988d7bc80a6518b8"
+      },
+      "Selectability": {
+        "unchanged": true,
+        "before_sha256": "0b0f9f439c464980d60d59b78f49d91e3ff0ad698037a12e755f9d099f1d7cfb",
+        "after_sha256": "0b0f9f439c464980d60d59b78f49d91e3ff0ad698037a12e755f9d099f1d7cfb"
+      },
+      "Notes": {
+        "unchanged": true,
+        "before_sha256": "2cfe3ae2cb0b8cc57a32cfc340a5b058b631f85b1b9468cdac38c3cd5e3bf9c4",
+        "after_sha256": "2cfe3ae2cb0b8cc57a32cfc340a5b058b631f85b1b9468cdac38c3cd5e3bf9c4"
+      }
+    }
+  },
+  "proof_encoding": "SHA256 of JSON array of ordered column strings, ensure_ascii=False, default JSON separators",
+  "authorized_transformations_only": true
+}

@@ -1,0 +1,67 @@
+{
+  "verdict": "PASS_REPORT_READY",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "claims": 245,
+  "residuals": 12,
+  "dispositions": {
+    "UNKNOWN": 80,
+    "ALIGNED": 112,
+    "ACCEPTED_DIVERGENCE": 2,
+    "DEFERRED_AGENT_WORKFLOW": 1,
+    "STALE_INPUT": 7,
+    "DOCUMENTED_UNIMPLEMENTED": 43
+  },
+  "members": 5,
+  "local_definitions": 221,
+  "REQ_AC_VER": 113,
+  "warranted_NONE": 0,
+  "structural": [
+    {
+      "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01",
+      "claims": 41,
+      "residuals": 1,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02",
+      "claims": 28,
+      "residuals": 1,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03",
+      "claims": 75,
+      "residuals": 4,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04",
+      "claims": 83,
+      "residuals": 5,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "directory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001",
+      "claims": 18,
+      "residuals": 1,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "manager_row_by_row_fanin": 245,
+  "common_source_rehash_count": 648,
+  "read_source_rehash_count": 159,
+  "original_verifier": "CORRECTION_REQUIRED preserved",
+  "correction": "DEL08-05 exact locator only; independent BACKCHECK_V001 PASS inspected separately",
+  "r4": {
+    "evidence_candidates": 4,
+    "conditional_historical": 2,
+    "held_routing": 6
+  },
+  "source_mutation": false,
+  "product_or_remaining_closure": false
+}

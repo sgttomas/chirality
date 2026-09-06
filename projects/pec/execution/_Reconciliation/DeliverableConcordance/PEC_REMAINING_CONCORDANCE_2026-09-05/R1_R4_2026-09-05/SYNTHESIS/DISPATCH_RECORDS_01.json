@@ -1,0 +1,22 @@
+{
+  "caller": "/root/pec_corpus_synthesis",
+  "parent": "/root",
+  "role_evidence": "instruction-asserted, not mechanically enforced",
+  "phase": "PARTIAL_52_OF_64",
+  "children": [
+    {
+      "native_task": "/root/pec_corpus_synthesis/scanner_proposal",
+      "brief": "BRIEFS/SCANNER.md",
+      "write_root": "SCANNER",
+      "role": "Agent2 ephemeral specialist",
+      "delegation": false
+    },
+    {
+      "native_task": "/root/pec_corpus_synthesis/aggregate_partial",
+      "brief": "BRIEFS/AGGREGATE_PARTIAL.md",
+      "write_root": "AGGREGATE_PARTIAL",
+      "role": "Agent2 ephemeral specialist",
+      "delegation": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "agent_id": "/root/pec_pkg10_reconciliation/semantic_correct_del10_03",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/BRIEF_SEMANTIC_CORRECTION_DEL10_03.md",
+  "brief_sha256": "5d017de2977897fa82c44580bb4dfe5861df7e11c6bdd1d7e75bf1f9f924c5cf",
+  "finding_map_sha256": "6a82e693b9bfca2d16a2c8a3e5877ba05d12bfe669a6fb9cb709b46ebf0c62c5",
+  "write_scope": "WORKERS/DEL-10-03/REVISION_V002/**",
+  "status": "COMPLETE",
+  "role_evidence": "instruction-asserted; not mechanically enforced",
+  "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/REVISION_V002/RETURN.md"
+}

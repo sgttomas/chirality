@@ -1,0 +1,2 @@
+FindingID,ClaimIDs,Source,RelatedDeliverables,Finding,Routing
+PKG05-X001,DEL-05-01::DEP-05-01-004;DEL-05-01::DEP-05-01-005;DEL-05-02::DEP-05-02-003;DEL-05-02::DEP-05-02-004,local Dependencies.csv rows DEP-05-01-004/005 and DEP-05-02-003/004,DEL-01-01;DEL-03-01,ACTIVE PREREQUISITE PENDING targets retained; observed predecessor evidence never flips registers; current reporting proceeds. Raw evidence-routing proposal Depends differs by item meaning; no ownership conflict established.,HELP_HUMAN synthesis; confirm exact item dependency semantics before later owner application

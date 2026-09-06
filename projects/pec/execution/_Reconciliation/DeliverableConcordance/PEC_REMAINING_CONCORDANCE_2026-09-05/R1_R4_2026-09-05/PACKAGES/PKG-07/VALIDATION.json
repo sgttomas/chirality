@@ -1,0 +1,105 @@
+{
+  "status": "PASS_REPORT_READY",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "claims": 67,
+  "residuals": 5,
+  "dispositions": {
+    "UNKNOWN": 30,
+    "ALIGNED": 36,
+    "ACCEPTED_DIVERGENCE": 1
+  },
+  "members": 5,
+  "all_members_assessed_unknown": true,
+  "warranted_none": 0,
+  "recommendations": {
+    "evidence_resolution_candidates": 4,
+    "conditional_optional_cmux": 1,
+    "product_implementation_tasks": 0
+  },
+  "independent_original_verification": "NOT_READY;F001/F002 preserved",
+  "independent_backcheck": "PASS_REPORT_READY;F001/F002 closed",
+  "manager_exact_correction_proof": {
+    "F001": [
+      {
+        "row": "DEL-07-03-REM-001",
+        "column": "Depends",
+        "old": "DEL-00-02;DEL-07-01",
+        "new": "NONE"
+      }
+    ],
+    "F002_added_claims": [
+      "DEL-07-01::PKG07-EVENT-CONTRACTS",
+      "DEL-07-03::PKG07-EVENT-CONTRACTS",
+      "DEL-07-04::PKG07-EVENT-CONTRACTS",
+      "DEL-07-04::ARTIFACT.TESTS"
+    ],
+    "F002_changed_residual_cells": [
+      {
+        "member": "DEL-07-01",
+        "column": "ClaimIDs",
+        "old": "DEL-07-01::SOW-033-IDEMPOTENT;DEL-07-01::SOW-033-APPEND-ONLY;DEL-07-01::SOW-033-EVENT-ID;DEL-07-01::SOW-039-DURABLE;DEL-07-01::SOW-039-QUERYABLE;DEL-07-01::SOW-039-NO-RELAY;DEL-07-01::PEC-K-09-ATTRIBUTABLE",
+        "new": "DEL-07-01::SOW-033-IDEMPOTENT;DEL-07-01::SOW-033-APPEND-ONLY;DEL-07-01::SOW-033-EVENT-ID;DEL-07-01::SOW-039-DURABLE;DEL-07-01::SOW-039-QUERYABLE;DEL-07-01::SOW-039-NO-RELAY;DEL-07-01::PEC-K-09-ATTRIBUTABLE;DEL-07-01::PKG07-EVENT-CONTRACTS"
+      },
+      {
+        "member": "DEL-07-03",
+        "column": "ClaimIDs",
+        "old": "DEL-07-03::SOW-036.START;DEL-07-03::SOW-036.STOP;DEL-07-03::SOW-036.STATUS;DEL-07-03::SOW-036.SCOPE;DEL-07-03::SOW-036.DECLARED;DEL-07-03::SOW-036.ATTRIBUTABLE;DEL-07-03::ARTIFACT.TESTS",
+        "new": "DEL-07-03::SOW-036.START;DEL-07-03::SOW-036.STOP;DEL-07-03::SOW-036.STATUS;DEL-07-03::SOW-036.SCOPE;DEL-07-03::SOW-036.DECLARED;DEL-07-03::SOW-036.ATTRIBUTABLE;DEL-07-03::ARTIFACT.TESTS;DEL-07-03::PKG07-EVENT-CONTRACTS"
+      },
+      {
+        "member": "DEL-07-04",
+        "column": "ClaimIDs",
+        "old": "DEL-07-04::SOW-037;DEL-07-04::SOW-037-DECLARED;DEL-07-04::SOW-037-ATTRIBUTABLE;DEL-07-04::SOW-037-ABSENCE",
+        "new": "DEL-07-04::SOW-037;DEL-07-04::SOW-037-DECLARED;DEL-07-04::SOW-037-ATTRIBUTABLE;DEL-07-04::SOW-037-ABSENCE;DEL-07-04::PKG07-EVENT-CONTRACTS;DEL-07-04::ARTIFACT.TESTS"
+      }
+    ],
+    "original_claim_cells_changed": 0
+  },
+  "manifests": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_WORKER_MANIFEST.json",
+      "sha256": "a127c07008fcc51368449d8a669c9e386c15441710be90ba5270fdac2c80e20b",
+      "files": 26,
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/OUTPUT_MANIFEST.json",
+      "sha256": "0a94db4b66e2317438097eb7f3f6009b11c9ba4dbb86f5a0c4da7d6b36c74aef",
+      "files": 11,
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/BACKCHECK_INPUT_MANIFEST.json",
+      "sha256": "0c2d0530631d3217311f7b1a00dc5c55da6607e41b7852b77851a1788be706f9",
+      "files": 35,
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/BACKCHECK/F001_F002/OUTPUT_MANIFEST.json",
+      "sha256": "e5763d8e04f6bf139910c49b7131d52a8a818fc17d620d7e954065f6785232d0",
+      "files": 8,
+      "pass": true
+    }
+  ],
+  "final_source_rechecks": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/BACKCHECK/F001_F002/READ_MANIFEST.json",
+      "hashes": 468,
+      "exact_historical_aggregate_preimages": [],
+      "pass": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/MANAGER_SEARCH_INPUTS.json",
+      "hashes": 269,
+      "exact_historical_aggregate_preimages": [],
+      "pass": true
+    }
+  ],
+  "source_fanin": "MANAGER_SOURCE_FANIN.json",
+  "proposal_scope_audit": "PROPOSAL_DEPENDS_AUDIT.csv",
+  "final_actual_target_preflights": 35,
+  "source_unchanged": true,
+  "native_roles": "instruction-asserted, not mechanically enforced",
+  "containment": "All declared writes package evidence subtree or scratch; no Git/source/Remaining/status/lifecycle/foreign writes. Parent CHANGE owns independent Git containment. No cache/pyc remains.",
+  "closure_meaning": "Package report/proposal readiness only; not product,Remaining,lifecycle,release or reliance closure."
+}

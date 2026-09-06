@@ -1,0 +1,86 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/ScopeOfWork.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md",
+      "--operation",
+      "candidate-validation"
+    ],
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+      "--operation",
+      "candidate-validation"
+    ],
+    "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "exit_code": 0
+  }
+]

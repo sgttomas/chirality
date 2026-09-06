@@ -1,0 +1,25 @@
+{
+  "verdict": "CORRECTION_REQUIRED",
+  "original_semantic_review_complete": true,
+  "structural_pass": true,
+  "claim_count": 245,
+  "residual_count": 12,
+  "local_definitions": 221,
+  "REQ_AC_VER": 113,
+  "dispositions": {
+    "UNKNOWN": 80,
+    "ALIGNED": 112,
+    "ACCEPTED_DIVERGENCE": 2,
+    "DEFERRED_AGENT_WORKFLOW": 1,
+    "STALE_INPUT": 7,
+    "DOCUMENTED_UNIMPLEMENTED": 43
+  },
+  "checked_claims": 174,
+  "checked_residuals": 12,
+  "all_non_aligned_checked": true,
+  "findings": [
+    "PKG08-V1-001"
+  ],
+  "universal_absence_claim": false,
+  "package_product_closure": false
+}

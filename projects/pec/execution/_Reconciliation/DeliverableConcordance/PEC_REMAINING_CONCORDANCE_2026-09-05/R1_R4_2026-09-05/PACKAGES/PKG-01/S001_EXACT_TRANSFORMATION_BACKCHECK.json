@@ -1,0 +1,24 @@
+{
+  "DEL-01-01": {
+    "result": "PASS",
+    "changed_cells": 160,
+    "id_map": {
+      "R-DEL-01-01-001": "DEL-01-01-REM-001",
+      "R-DEL-01-01-002": "DEL-01-01-REM-002",
+      "R-DEL-01-01-003": "DEL-01-01-REM-003",
+      "R-DEL-01-01-004": "DEL-01-01-REM-004"
+    },
+    "all_other_cells_exactly_equal": true,
+    "original_hashes_reproduced": 6
+  },
+  "DEL-01-02": {
+    "result": "PASS",
+    "changed_cells": 37,
+    "id_map": {
+      "DEL-01-02::R-001": "DEL-01-02-REM-001",
+      "DEL-01-02::R-002": "DEL-01-02-REM-002"
+    },
+    "all_other_cells_exactly_equal": true,
+    "original_hashes_reproduced": 5
+  }
+}

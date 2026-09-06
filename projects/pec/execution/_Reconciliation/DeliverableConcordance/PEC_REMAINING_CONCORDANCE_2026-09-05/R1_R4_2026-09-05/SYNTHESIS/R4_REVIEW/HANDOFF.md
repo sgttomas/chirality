@@ -1,0 +1,9 @@
+# R4 independent review handoff
+
+PASS_FOR_R4_REPORT_AND_PROPOSAL_READINESS. Return to RECONCILIATION manager `/root/pec_corpus_synthesis` and HELP_HUMAN. No unresolved material review defect; FINDINGS.csv is header-only. REVIEW.md and COVERAGE.json state exact populations and limits.
+
+Accepted upstream: D81 append-only calibration acceptance and D82 at 2be412ccea62bdc4bd96deb082c46d7a792076ea, exact accepted conventions and COMMON/selected package basis. Selected derivatives: FULL_02, APPLICATION_PREPARATION/FULL_01, immutable SCANNER plus FULL_02 scanner exact-acts supplement, and AGGREGATE_ADDITIVE/FINAL_STRUCTURAL_ACCOUNTING. Their exact manifest pins are in VALIDATION.json. Prior FULL_01, partial/additive/correction/publication histories remain preserved; this review changes no selection pointer or authoritative truth.
+
+All 64 carriers / 2604 claims / 165 raw proposals remain covered; 92 proposed items in 58 previews; 70 held plus3 conditional and6 no-application carriers. Unknowns remain explicit, and only DEL-10-01 exact before-leg baseline warrants NONE. The review has no readiness blocker, while substantive owner/product gates remain unresolved as recorded.
+
+Next owner decisions remain prospective: full report disposition, exact status/application and evidence-output grants; separately lawful frozen DEL-01-05 change then new carrier hashes and reissued preview; exact scanner source/evidence scope and later independent production verification and owner/REVIEW acceptance. No D83/D84 ruling, product repair, lifecycle or future merge is inferred. Any source/authority/hold/dependency/proposed-byte/selected-input change triggers affected rerun into a new immutable successor. Actual application/repair requires a new changed-claim multiset backcheck with no-change/held accounting, not reuse of this preparation review as post-repair evidence.

@@ -1,0 +1,9 @@
+# Worker return — DEL-01-01
+
+COMPLETE_FOR_PARENT_VERIFICATION / ASSESSED_UNKNOWN. 71 claims ({'ALIGNED': 23, 'UNKNOWN': 48}), 4 raw residual proposals. All 67 source local definitions plus four explicit fallback claims covered. Source commit 2be412ccea62bdc4bd96deb082c46d7a792076ea; read-source hashes and exact checks in READ_MANIFEST.json; source_unchanged true.
+
+Outputs: CLAIMS.csv, RESIDUALS.csv, COVERAGE.md, READ_MANIFEST.json, SOURCE_INVENTORY.json, RETURN.md, all under `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01`. Exact write allowlist `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/**`; no other worktree writes. Scratch script is /tmp/del0101_worker.py.
+
+Derivative report only, grounded in accepted revision1.4 decomposition, D81 conventions and effective D82. No sample reuse for this member. Scope/metadata currency is held for owner interpretation; D75 O-B remains unselected. Record model fulfillment and finite-method execution remain unproven; no absence or PASS invented. Accepted upstream hexagonal ADR continuity verified at exact hash f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5; dependency remains ACTIVE PREREQUISITE PENDING and lifecycle INITIALIZED unchanged.
+
+Closure means bounded worker evidence ready for fresh independent parent verifier, not Remaining/application/product/lifecycle closure. Parent must validate aggregate and route residuals; later exact owner ruling required before any application/repair. Rerun on material source/acceptance/hold drift. Native Agent2 execution instruction-asserted, role not mechanically enforced; no delegation performed.

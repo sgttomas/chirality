@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "claims": 11,
+  "unknown": 2,
+  "aligned": 9,
+  "residuals": 1,
+  "schema_ids_reciprocity_lf_source_hashes": "PASS",
+  "source_unchanged": true
+}

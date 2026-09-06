@@ -1,0 +1,33 @@
+{
+  "manifests": [
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/VERIFICATION/BACKCHECK_V001/OUTPUT_MANIFEST.json",
+      "entries": 6,
+      "sha256": "be09cb00c630debd8be4f3e3752189b8663f6b5b530928caa975282672a5c74a",
+      "pass": true
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/VERIFICATION/OUTPUT_MANIFEST.json",
+      "entries": 8,
+      "sha256": "b147b544b2b91f2579685441f1ca72c0d994134afd0db0a8e2d003b75cf128bb",
+      "pass": true
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001/OUTPUT_MANIFEST.json",
+      "entries": 10,
+      "sha256": "ad11297c2fc48f4ccc5eade32b2f26d505f59de3040fe229b88bfdf978e1826a",
+      "pass": true
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/OUTPUT_MANIFEST.json",
+      "entries": 8,
+      "sha256": "75fbcf1c790a6d41ce61da68ac51e26965ebe9353642780d1882f0ce15f01ba3",
+      "pass": true
+    }
+  ],
+  "all_verifier_read_hashes_reproduced": true,
+  "correction_exact_byte_delta_reproduced": true,
+  "claims_residuals_identical": true,
+  "all_paths_contained_unique_self_excluding": true,
+  "no_package_caches_present": true
+}

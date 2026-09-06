@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/SOURCE_MANIFEST.json",
+      "current_hashes": 87,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/MANAGER_READ_MANIFEST.json",
+      "current_hashes": 33,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/READ_MANIFEST.json",
+      "current_hashes": 413,
+      "explicit_historical_aggregate_preimages": [
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_CLAIMS.csv",
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/PACKAGE_RESIDUALS.csv"
+      ]
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05/READ_MANIFEST.json",
+      "current_hashes": 73,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02/READ_MANIFEST.json",
+      "current_hashes": 341,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/READ_MANIFEST.json",
+      "current_hashes": 64,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/READ_MANIFEST.json",
+      "current_hashes": 336,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/READ_MANIFEST.json",
+      "current_hashes": 156,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/READ_MANIFEST.json",
+      "current_hashes": 127,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03/READ_MANIFEST.json",
+      "current_hashes": 410,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04/READ_MANIFEST.json",
+      "current_hashes": 410,
+      "explicit_historical_aggregate_preimages": []
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01/READ_MANIFEST.json",
+      "current_hashes": 410,
+      "explicit_historical_aggregate_preimages": []
+    }
+  ],
+  "row_source_hash_population": 67,
+  "errors": [],
+  "derivative_supersession": "Original verifier aggregate references resolved only through exact sealed preimages; all other source hashes current.",
+  "source_mutation": false
+}

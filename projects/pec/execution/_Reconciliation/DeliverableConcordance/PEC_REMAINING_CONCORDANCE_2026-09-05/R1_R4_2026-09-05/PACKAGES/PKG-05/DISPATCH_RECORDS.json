@@ -1,0 +1,38 @@
+[
+  {
+    "agent_id": "/root/pec_pkg05_reconciliation/del0501",
+    "role": "Agent2 ephemeral generalist",
+    "role_enforcement": "instruction-asserted, not mechanically enforced",
+    "execution_class": "delegated-harness-native",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/BRIEFS/DEL-05-01.md",
+    "brief_sha256": "93198afb05b5f53160bc738daf92bb7a4f6b845256166d8cc44b7b082fafbb48",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/WORKERS/DEL-05-01/**",
+    "status": "COMPLETE",
+    "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/WORKERS/DEL-05-01/RETURN.md",
+    "return_sha256": "4b234d857f9208d34645d38d8e1258c8da42e6366466daa77cc002ce04181262"
+  },
+  {
+    "agent_id": "/root/pec_pkg05_reconciliation/del0502",
+    "role": "Agent2 ephemeral generalist",
+    "role_enforcement": "instruction-asserted, not mechanically enforced",
+    "execution_class": "delegated-harness-native",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/BRIEFS/DEL-05-02.md",
+    "brief_sha256": "9594bf6213af0696ef3435c62d77e52799e0b09d4612b471d12d64584efb9380",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/WORKERS/DEL-05-02/**",
+    "status": "COMPLETE",
+    "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/WORKERS/DEL-05-02/RETURN.md",
+    "return_sha256": "3862fdaa87103589270d7c99d6b2456a4144fea2dddbb0d2dc842e93de947e02"
+  },
+  {
+    "agent_id": "/root/pec_pkg05_reconciliation/verifier",
+    "role": "fresh independent Agent2 verifier",
+    "role_enforcement": "instruction-asserted, not mechanically enforced",
+    "execution_class": "delegated-harness-native",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/BRIEFS/VERIFIER.md",
+    "brief_sha256": "00fea5e6ec47cf4809b54186743d694609c8055ae979e69127ab6a01a0f7f27e",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/VERIFICATION/**",
+    "status": "COMPLETE",
+    "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/VERIFICATION/RETURN.md",
+    "return_sha256": "d44c57551df1f8acdde110c4c6ebf66db8f6c486733f81067fd58c0f2141465e"
+  }
+]

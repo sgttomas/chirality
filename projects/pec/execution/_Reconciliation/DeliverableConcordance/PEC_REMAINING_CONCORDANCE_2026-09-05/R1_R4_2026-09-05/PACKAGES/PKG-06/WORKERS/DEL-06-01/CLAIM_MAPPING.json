@@ -1,0 +1,51 @@
+[
+  {
+    "ClaimID": "DEL-06-01::SOW-026-A",
+    "locus": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md \u00a72.1 SOW-026",
+    "exact_quote": "| SOW-026 | IN | Record presence for harness-reported sessions: harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes | PEC-PRS-001 | Session identity/lifecycle stay daemon-owned (C13) |",
+    "quote_sha256": "3269fd84fe4c1cca90b4e50339ca86ecd45ccd3220df5a59c3e5aa12c84e8cd8",
+    "atomic_interpretation": "Record presence for sessions reported by their owning harness"
+  },
+  {
+    "ClaimID": "DEL-06-01::SOW-026-B",
+    "locus": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md \u00a72.1 SOW-026",
+    "exact_quote": "| SOW-026 | IN | Record presence for harness-reported sessions: harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes | PEC-PRS-001 | Session identity/lifecycle stay daemon-owned (C13) |",
+    "quote_sha256": "3269fd84fe4c1cca90b4e50339ca86ecd45ccd3220df5a59c3e5aa12c84e8cd8",
+    "atomic_interpretation": "Record harness kind"
+  },
+  {
+    "ClaimID": "DEL-06-01::SOW-026-C",
+    "locus": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md \u00a72.1 SOW-026",
+    "exact_quote": "| SOW-026 | IN | Record presence for harness-reported sessions: harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes | PEC-PRS-001 | Session identity/lifecycle stay daemon-owned (C13) |",
+    "quote_sha256": "3269fd84fe4c1cca90b4e50339ca86ecd45ccd3220df5a59c3e5aa12c84e8cd8",
+    "atomic_interpretation": "Record engine/model attribution when known"
+  },
+  {
+    "ClaimID": "DEL-06-01::SOW-026-D",
+    "locus": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md \u00a72.1 SOW-026",
+    "exact_quote": "| SOW-026 | IN | Record presence for harness-reported sessions: harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes | PEC-PRS-001 | Session identity/lifecycle stay daemon-owned (C13) |",
+    "quote_sha256": "3269fd84fe4c1cca90b4e50339ca86ecd45ccd3220df5a59c3e5aa12c84e8cd8",
+    "atomic_interpretation": "Record role"
+  },
+  {
+    "ClaimID": "DEL-06-01::SOW-026-E",
+    "locus": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md \u00a72.1 SOW-026",
+    "exact_quote": "| SOW-026 | IN | Record presence for harness-reported sessions: harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes | PEC-PRS-001 | Session identity/lifecycle stay daemon-owned (C13) |",
+    "quote_sha256": "3269fd84fe4c1cca90b4e50339ca86ecd45ccd3220df5a59c3e5aa12c84e8cd8",
+    "atomic_interpretation": "Record loop/package binding"
+  },
+  {
+    "ClaimID": "DEL-06-01::SOW-026-F",
+    "locus": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md \u00a72.1 SOW-026",
+    "exact_quote": "| SOW-026 | IN | Record presence for harness-reported sessions: harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes | PEC-PRS-001 | Session identity/lifecycle stay daemon-owned (C13) |",
+    "quote_sha256": "3269fd84fe4c1cca90b4e50339ca86ecd45ccd3220df5a59c3e5aa12c84e8cd8",
+    "atomic_interpretation": "Record declared write scopes"
+  },
+  {
+    "ClaimID": "DEL-06-01::SOW-026-G",
+    "locus": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md \u00a72.1 SOW-026",
+    "exact_quote": "| SOW-026 | IN | Record presence for harness-reported sessions: harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes | PEC-PRS-001 | Session identity/lifecycle stay daemon-owned (C13) |",
+    "quote_sha256": "3269fd84fe4c1cca90b4e50339ca86ecd45ccd3220df5a59c3e5aa12c84e8cd8",
+    "atomic_interpretation": "Keep session identity and lifecycle daemon-owned"
+  }
+]

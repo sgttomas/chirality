@@ -1,0 +1,18 @@
+{
+  "author": {
+    "child_id": "/root/pec_pkg00_reconciliation/gate_format_v002",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/BRIEF.md",
+    "sha256": "ef12b6064678cae045f09d3d6a7528aa157df1135ef957dea3f454edd51fe5cf",
+    "state": "COMPLETE",
+    "return_sha256": "6d0d3cd20515dd7d60ca1bbeee8d3fc10abcf59a42095e64549633b2781e377b"
+  },
+  "verifier": {
+    "child_id": "/root/pec_pkg00_reconciliation/verifier",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/VERIFIER_BRIEF.md",
+    "sha256": "e673532c4680d74a7d3c8731adcb585c3175b1f3d4202ecb187c54e72656104f",
+    "state": "COMPLETE",
+    "return_sha256": "1133dba3fbde75f517f343e57773a28a7f07c2027a3cdcda05d070a92024ca45"
+  },
+  "execution_class": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted"
+}

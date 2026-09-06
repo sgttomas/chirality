@@ -1,0 +1,8 @@
+{
+  "child_id": "/root/pec_pkg09_reconciliation/worker_06",
+  "role": "Agent2 instruction-asserted, not mechanically enforced",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/BRIEFS/DEL-09-06.md",
+  "brief_sha256": "eaa6fa7334e42531051754dcb3f94b1a9bb562afbea3af0f8b7e86abdea2a2e9",
+  "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-06/**",
+  "status": "DISPATCHED"
+}

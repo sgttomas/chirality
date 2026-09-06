@@ -1,0 +1,14 @@
+{
+  "receipt_command": [
+    "python3",
+    "tools/validation/validate_pec_loop_receipts.py",
+    "--repo-root",
+    "."
+  ],
+  "exit_code": 0,
+  "stdout": "VALID /Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied\n",
+  "stderr": "",
+  "own_candidate_whitespace": "PASS: all newly authored files plus exact append suffixes checked, including untracked files; no trailing whitespace, missing LF or excessive EOF blank lines. Historical prefixes excluded without mutation.",
+  "receipt_and_register_prefix_preservation": "PASS at authoring; original SHA256 and prefix lengths in AUTHORING_STATE.json",
+  "scope": "Only author allowlist; no Git mutation. Whole-branch containment/G4, candidate whitespace and CI remain CHANGE responsibilities."
+}

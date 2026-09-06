@@ -1,0 +1,58 @@
+{
+  "members": [
+    {
+      "DeliverableID": "DEL-04-01",
+      "ClaimCount": 87,
+      "ResidualCount": 3,
+      "UnknownCount": 4,
+      "dispositions": {
+        "ALIGNED": 36,
+        "DOCUMENTED_UNIMPLEMENTED": 47,
+        "UNKNOWN": 4
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "ClaimCount": 88,
+      "ResidualCount": 2,
+      "UnknownCount": 59,
+      "dispositions": {
+        "ALIGNED": 26,
+        "UNKNOWN": 59,
+        "STALE_INPUT": 3
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "ClaimCount": 84,
+      "ResidualCount": 2,
+      "UnknownCount": 35,
+      "dispositions": {
+        "ALIGNED": 47,
+        "UNKNOWN": 35,
+        "STALE_INPUT": 2
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "ClaimCount": 14,
+      "ResidualCount": 1,
+      "UnknownCount": 6,
+      "dispositions": {
+        "ALIGNED": 8,
+        "UNKNOWN": 6
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "ClaimCount": 82,
+      "ResidualCount": 2,
+      "UnknownCount": 49,
+      "dispositions": {
+        "ALIGNED": 33,
+        "UNKNOWN": 49
+      }
+    }
+  ],
+  "errors": []
+}

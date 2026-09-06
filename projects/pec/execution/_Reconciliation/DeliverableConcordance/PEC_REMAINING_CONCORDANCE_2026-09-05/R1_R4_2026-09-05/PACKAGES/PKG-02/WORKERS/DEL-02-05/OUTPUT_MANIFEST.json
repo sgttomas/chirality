@@ -1,0 +1,13 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/CLAIMS.csv": "dae5a1d22d6c7efe535d63984b143c094716daf9ee16b06b6dad50dbfbbc3688",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/COVERAGE.md": "9ba30f0c9b52f3f28582330c47137aad7d509c59d61f6de2c96283433e9fc515",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/READ_MANIFEST.json": "21222fdd6191428f7d4eff60f19b0737bf74a252a70e5224538f138762dfd393",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/RESIDUALS.csv": "6285ed94dbc52e0ad916a419190cb7e9cfb53ba9908d65b2dbf69f6676bb09b4",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/RETURN.md": "52e2cf682599e68936652c6d4860b43dcd76c968e2d69a0acbca83553cf7ed3d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/SOURCE_AUDIT.md": "1a28052c685e0b322b266ef0a5d70529d802b35e795e176e7bb2a5509e096b9d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/VALIDATION.json": "ca85fbad584a5b05746cb0d861d2c918767f3e274c8488c553ea5309e24c5df3"
+  },
+  "self_excluded": true
+}

@@ -1,0 +1,59 @@
+{
+  "status": "PASS_BOUNDED_AUTHOR_BACKCHECK_NOT_INDEPENDENT_ACCEPTANCE",
+  "finding_id": "V001",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "counts": {
+    "claims": 86,
+    "REQ_AC_VER": 44,
+    "residuals": 6,
+    "changed_claims": 45,
+    "changed_residuals": 2,
+    "changed_cells": 227,
+    "dispositions": {
+      "ALIGNED": 38,
+      "DEFERRED_AGENT_WORKFLOW": 1,
+      "IMPLEMENTED_DIFFERENTLY": 1,
+      "UNKNOWN": 46
+    }
+  },
+  "checks": {
+    "original_five_outputs_match_frozen_manifest": true,
+    "all_inherited_source_hashes_unchanged": true,
+    "finding_map_hash_matches_dispatch": true,
+    "full_population_and_schema_preserved": true,
+    "all_changed_cells_mapped_exactly": true,
+    "all_unaffected_cells_equal": true,
+    "all_six_residual_ids_and_reciprocal_links_preserved": true,
+    "explicit_NONE_and_nonempty_Depends": true,
+    "literal_gate_markers": true,
+    "all_gate_conditions_Depends_authority_selectability_identical": true,
+    "43_absence_dispositions_now_UNKNOWN": true,
+    "CLM020_AX011_historical_ALIGNED_current_absence_not_inferred": true,
+    "C05_lifecycle_and_owner_boundaries_unchanged": true,
+    "LF_CSV": true,
+    "exact_file_preflights_ALLOW": true
+  },
+  "original_outputs": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-10/RETURN.md": "6a8d6282dc43aeb2ee550c739773d6129bfa40269c4c2c51ccf2565b7fc9f017",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-10/CLAIMS.csv": "87cb501bc9a723580803de3461ab17ef66d2e890df4f911822d374a511251719",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-10/RESIDUALS.csv": "e30cbf7005deeaef448457999bb7d903bcc401b185607beea37c22e59f73b24f",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-10/COVERAGE.md": "56c13b8e12d4019fe8e61e26c0292d25280b26189f76acad6aba8a5d3ef7beb4",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-10/READ_MANIFEST.json": "0e2cc4c4fe508a5478784054fe9eadb762391c3b23c64b51d1203bfe80e31ae3"
+  },
+  "output_hashes": {
+    "CLAIMS.csv": "4fee4f76d806df123da5b5217d5b55f72825b4abeb5054aa76221bf9b886a6e7",
+    "RESIDUALS.csv": "120073deabb2839d44a87a83eedb4c39fcab4c8f71f8dd4f2545fe861d8079c8",
+    "COVERAGE.md": "f087fb0f7507f3c3f305efc7b191c277272709ced6662a8e53bd5edb35ef845d",
+    "READ_MANIFEST.json": "b317d0fedada228410385cec9b2165242d966dcc5ff751a7f26b41e5f1f4882c",
+    "CHANGE_MAP.json": "05159deab50c73abb2f8613358630dd2b6f1dd76b3c19c780077ee18b0101b8c"
+  },
+  "remaining_blockers": [
+    "Fresh independent V001 semantic verification and parent manager fan-in pending.",
+    "46 UNKNOWN claims remain; no warranted NONE.",
+    "All six residual proposals remain nonselectable pending owning application/grant."
+  ],
+  "rerun_triggers": [
+    "Changed bound source/evidence bytes, owner scope/authority or hold state; rerun exact-file candidate-validation preflight and affected assessment."
+  ],
+  "closure": "Derivative report readiness only; no source repair, product/Remaining closure, lifecycle change or release/reliance grant."
+}

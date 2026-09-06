@@ -1,0 +1,66 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "kind": "mapped derivative correction; not authoritative decomposition",
+  "finding": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/F001.md",
+    "sha256": "a40997b8359d26d6dae6134941a83cf5496bae50881260f7fd8770d2d0cbede9"
+  },
+  "explanation": "F001 corrects only DEL-07-03-REM-001 Depends from DEL-00-02;DEL-07-01 to NONE. Its proposed act is source/claim-specific evidence inquiry and obtaining an owner ruling, which D82 permits despite unmet production prerequisites. The seven linked claims describe future production behavior/method obligations; their Depends remain DEL-00-02;DEL-07-01. ACTIVE PENDING prerequisite bytes, ExactGate, claim semantics, proposal text, IDs and all owner/source/reliance conditions remain intact. NONE in the inquiry dependency cell is not warranted NONE for the deliverable and grants no production authority.",
+  "cell_changes": [
+    {
+      "ResidualID": "DEL-07-03-REM-001",
+      "column": "Depends",
+      "old": "DEL-00-02;DEL-07-01",
+      "new": "NONE"
+    }
+  ],
+  "files": [
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/CLAIMS.csv",
+      "original_sha256": "ccecb5d4140ee6d6a48f938ea20b59562c9c22dd66723564afd52b89003c3c03",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/CLAIMS.csv",
+      "corrected_sha256": "ccecb5d4140ee6d6a48f938ea20b59562c9c22dd66723564afd52b89003c3c03",
+      "change": "byte-identical"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/RESIDUALS.csv",
+      "original_sha256": "11d890a495dc040ef6d989e797848b0edc679627df7f73d6f9e7d64282499c25",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/RESIDUALS.csv",
+      "corrected_sha256": "e4a995fc2d28d4380306fa5568a9ae57153722d8bbcd12f540cf93613d0eeb0f",
+      "change": "one mapped cell"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/COVERAGE.md",
+      "original_sha256": "a326934d7384cb89d17db68728895998f04422fb82dbf5b5ccca9cc0e1fc3c47",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/COVERAGE.md",
+      "corrected_sha256": "a04c88dd7130a95278005cca1289620c0076adc809831fa1e9288e99c6c66339",
+      "change": "fresh correction clarification preserving immutable upstream reference"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/RETURN.md",
+      "original_sha256": "7ec40685c63b2c0b58c5fa2c0c142494b016144ce930049f0cb8c0419ee47a8b",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/RETURN.md",
+      "corrected_sha256": "a28ce9cc6e0ff008225fb825c29e7ec821b55145f44572067f4148c4b41fbf37",
+      "change": "fresh correction clarification preserving immutable upstream reference"
+    },
+    {
+      "original_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/READ_MANIFEST.json",
+      "original_sha256": "b4d388075d0d1d80c64a6f24b0cef47b3aa5c313ff394e644404c8183c6bcb0d",
+      "corrected_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/READ_MANIFEST.json",
+      "corrected_sha256": "51b917e135ff5842376b5e065ba33c858dcd1157547fdc889efa525a0951e08c",
+      "change": "source hash union, fresh rehash and actual correction preflights; original assertions referenced immutably"
+    }
+  ],
+  "original_read_manifest": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/READ_MANIFEST.json",
+    "sha256": "b4d388075d0d1d80c64a6f24b0cef47b3aa5c313ff394e644404c8183c6bcb0d"
+  },
+  "original_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/RETURN.md": "7ec40685c63b2c0b58c5fa2c0c142494b016144ce930049f0cb8c0419ee47a8b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/CLAIMS.csv": "ccecb5d4140ee6d6a48f938ea20b59562c9c22dd66723564afd52b89003c3c03",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/RESIDUALS.csv": "11d890a495dc040ef6d989e797848b0edc679627df7f73d6f9e7d64282499c25",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/COVERAGE.md": "a326934d7384cb89d17db68728895998f04422fb82dbf5b5ccca9cc0e1fc3c47",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/READ_MANIFEST.json": "b4d388075d0d1d80c64a6f24b0cef47b3aa5c313ff394e644404c8183c6bcb0d"
+  },
+  "independent_backcheck_required": true
+}

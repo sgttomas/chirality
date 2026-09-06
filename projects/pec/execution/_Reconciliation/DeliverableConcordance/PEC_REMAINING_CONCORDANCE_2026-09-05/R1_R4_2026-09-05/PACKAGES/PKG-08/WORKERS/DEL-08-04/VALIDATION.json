@@ -1,0 +1,27 @@
+{
+  "defined_local_ids": 82,
+  "definition_counts": {
+    "CLM": 15,
+    "OUT": 2,
+    "TBD": 4,
+    "REQ": 13,
+    "AC": 16,
+    "CON": 6,
+    "VER": 14,
+    "AX": 12
+  },
+  "claims": 83,
+  "dispositions": {
+    "ALIGNED": 30,
+    "DOCUMENTED_UNIMPLEMENTED": 43,
+    "STALE_INPUT": 2,
+    "UNKNOWN": 8
+  },
+  "residuals": 5,
+  "summary": "ASSESSED_UNKNOWN",
+  "warranted_none": false,
+  "exact_columns": true,
+  "reciprocal_links": true,
+  "source_unchanged": true,
+  "lf_csv": true
+}

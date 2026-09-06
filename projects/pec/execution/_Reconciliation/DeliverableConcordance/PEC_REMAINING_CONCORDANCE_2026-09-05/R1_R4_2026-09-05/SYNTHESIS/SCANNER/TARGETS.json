@@ -1,0 +1,33 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "targets": [
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "preimage_sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "exists": true,
+      "base_equals_current": true,
+      "postimage_sha256": null,
+      "authorization": "PROPOSED_ONLY; exact owner source fence and CHECKING path outstanding"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+      "preimage_sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "exists": true,
+      "base_equals_current": true,
+      "postimage_sha256": null,
+      "authorization": "PROPOSED_ONLY; exact owner source fence and CHECKING path outstanding"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+      "preimage_sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "exists": true,
+      "base_equals_current": true,
+      "postimage_sha256": null,
+      "authorization": "PROPOSED_ONLY; exact owner source fence and CHECKING path outstanding"
+    }
+  ],
+  "no_code_authored": true
+}

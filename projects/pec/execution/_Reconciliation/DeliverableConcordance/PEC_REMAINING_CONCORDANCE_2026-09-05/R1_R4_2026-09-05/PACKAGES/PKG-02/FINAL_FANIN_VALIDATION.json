@@ -1,0 +1,129 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "verdict": "PASS_REPORT_READINESS",
+  "errors": [],
+  "aggregate_claim_multiset": 495,
+  "aggregate_residual_multiset": 29,
+  "independent_checked_population": 524,
+  "unique_rehashed_files": 281,
+  "source_unchanged": true,
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "projects/pec",
+      "environment": "read-only; no product execution",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "projects/pec",
+      "environment": "read-only; no product execution",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "projects/pec",
+      "environment": "read-only; no product execution",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "projects/pec",
+      "environment": "read-only; no product execution",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "projects/pec",
+      "environment": "read-only; no product execution",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "projects/pec",
+      "environment": "read-only; no product execution",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "projects/pec",
+      "environment": "read-only; no product execution",
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    }
+  ],
+  "verifier_output_manifest_sha256": "1d1339d67aec04c384758dfe5249754f895c58e9de574bfe719276c56d5e6625",
+  "originals_preserved": true,
+  "corrections_required": false,
+  "all_local_ids": 484,
+  "all_REQ_AC_VER_ids": 240
+}

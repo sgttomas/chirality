@@ -1,0 +1,339 @@
+{
+  "finding_id": "V002",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "finding_map": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/FINDING_MAP_01.json",
+    "sha256": "6a82e693b9bfca2d16a2c8a3e5877ba05d12bfe669a6fb9cb709b46ebf0c62c5"
+  },
+  "original_outputs": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/RETURN.md": "f5f20065ed407df1d112f94c2b404edafa7c97c7e01aa1847486c547cfc743c1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/CLAIMS.csv": "a8455ffb22911fac44ad0a55fcfb5003585cfbdb952dc580c2e8de74ab063661",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/RESIDUALS.csv": "55903429e66ec125edcc81b1b5344a406d2d7377565bb079cf5ee6e3f73536df",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/COVERAGE.md": "fb03b281201acef2b0b1a133aec2d90a279eeff738db66d9a86bbd44254f3861",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/READ_MANIFEST.json": "22841d7beb55a7c930abdea768de784a8919639e5537b6d2dd7bb5219ccb1321"
+  },
+  "changes": [
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-008",
+      "column": "CurrentState",
+      "old": "July-authored current-state wording needs a dated reading: current DEL-10-03 is INITIALIZED; DEL-08-02 is CHECKING with exact accepted schema; local references now revision1.4.",
+      "new": "The July 25 contract records its accepted revision 1.2 / SCA-002 / D-PEC-64 basis and the then-deferred revision 1.1 pointer. This is historical provenance; current revision 1.4 references do not invalidate that dated record.",
+      "finding": "V002",
+      "reason": "The July 25 contract records its accepted revision 1.2 / SCA-002 / D-PEC-64 basis and the then-deferred revision 1.1 pointer. This is historical provenance; current revision 1.4 references do not invalidate that dated record."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-008",
+      "column": "Disposition",
+      "old": "STALE_INPUT",
+      "new": "ALIGNED",
+      "finding": "V002",
+      "reason": "The July 25 contract records its accepted revision 1.2 / SCA-002 / D-PEC-64 basis and the then-deferred revision 1.1 pointer. This is historical provenance; current revision 1.4 references do not invalidate that dated record."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-008",
+      "column": "ProposedResidualID",
+      "old": "DEL-10-03-REM-004",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July 25 contract records its accepted revision 1.2 / SCA-002 / D-PEC-64 basis and the then-deferred revision 1.1 pointer. This is historical provenance; current revision 1.4 references do not invalidate that dated record."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-008",
+      "column": "ProposedResidualText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July 25 contract records its accepted revision 1.2 / SCA-002 / D-PEC-64 basis and the then-deferred revision 1.1 pointer. This is historical provenance; current revision 1.4 references do not invalidate that dated record."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-008",
+      "column": "Notes",
+      "old": "Exact source clause: The accepted basis is `SOFTWARE_DECOMP.md` revision 1.2 at commit `3623b958b`, accepted through `SCA-002` under `D-PEC-64`. The revision 1.1 phrase still present in `_REFERENCES.md` is a deferred pointer sweep and superseded provenance; it is recorded here so the divergence is visible rather than silently normalized. STALE_INPUT marks use as a contemporary assertion; dated authoring truth is preserved and any addendum is conditional, not an automatic history rewrite.",
+      "new": "Exact source clause: The accepted basis is `SOFTWARE_DECOMP.md` revision 1.2 at commit `3623b958b`, accepted through `SCA-002` under `D-PEC-64`. The revision 1.1 phrase still present in `_REFERENCES.md` is a deferred pointer sweep and superseded provenance; it is recorded here so the divergence is visible rather than silently normalized. V002: July 25 authoring and July 26 matrix-only repair provenance qualify this as a historical documentary claim. No exact current reliance assertion substantiates stale-input misuse; no source correction is proposed. Existing runtime UNKNOWN rows and all owner gates remain unchanged.",
+      "finding": "V002",
+      "reason": "The July 25 contract records its accepted revision 1.2 / SCA-002 / D-PEC-64 basis and the then-deferred revision 1.1 pointer. This is historical provenance; current revision 1.4 references do not invalidate that dated record."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-009",
+      "column": "CurrentState",
+      "old": "July-authored current-state wording needs a dated reading: current DEL-10-03 is INITIALIZED; DEL-08-02 is CHECKING with exact accepted schema; local references now revision1.4.",
+      "new": "The July contract explicitly preserves unknowns and upstream owner jurisdiction at authoring. Its then-absent-surface statement is historical epistemic framing, not a current absence assertion. Runtime suite/evidence questions remain UNKNOWN in the existing obligation rows.",
+      "finding": "V002",
+      "reason": "The July contract explicitly preserves unknowns and upstream owner jurisdiction at authoring. Its then-absent-surface statement is historical epistemic framing, not a current absence assertion. Runtime suite/evidence questions remain UNKNOWN in the existing obligation rows."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-009",
+      "column": "Disposition",
+      "old": "STALE_INPUT",
+      "new": "ALIGNED",
+      "finding": "V002",
+      "reason": "The July contract explicitly preserves unknowns and upstream owner jurisdiction at authoring. Its then-absent-surface statement is historical epistemic framing, not a current absence assertion. Runtime suite/evidence questions remain UNKNOWN in the existing obligation rows."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-009",
+      "column": "ProposedResidualID",
+      "old": "DEL-10-03-REM-004",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract explicitly preserves unknowns and upstream owner jurisdiction at authoring. Its then-absent-surface statement is historical epistemic framing, not a current absence assertion. Runtime suite/evidence questions remain UNKNOWN in the existing obligation rows."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-009",
+      "column": "ProposedResidualText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract explicitly preserves unknowns and upstream owner jurisdiction at authoring. Its then-absent-surface statement is historical epistemic framing, not a current absence assertion. Runtime suite/evidence questions remain UNKNOWN in the existing obligation rows."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-009",
+      "column": "Notes",
+      "old": "Exact source clause: Unknowns remain marked. TBD-001 through TBD-005 and CON-001 through CON-003 are recorded rather than resolved by inference; in particular the surface under test does not yet exist, and its shape follows decisions that belong to the upstream deliverables and to their owner rulings, not to this contract. STALE_INPUT marks use as a contemporary assertion; dated authoring truth is preserved and any addendum is conditional, not an automatic history rewrite.",
+      "new": "Exact source clause: Unknowns remain marked. TBD-001 through TBD-005 and CON-001 through CON-003 are recorded rather than resolved by inference; in particular the surface under test does not yet exist, and its shape follows decisions that belong to the upstream deliverables and to their owner rulings, not to this contract. V002: July 25 authoring and July 26 matrix-only repair provenance qualify this as a historical documentary claim. No exact current reliance assertion substantiates stale-input misuse; no source correction is proposed. Existing runtime UNKNOWN rows and all owner gates remain unchanged.",
+      "finding": "V002",
+      "reason": "The July contract explicitly preserves unknowns and upstream owner jurisdiction at authoring. Its then-absent-surface statement is historical epistemic framing, not a current absence assertion. Runtime suite/evidence questions remain UNKNOWN in the existing obligation rows."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-010",
+      "column": "CurrentState",
+      "old": "July-authored current-state wording needs a dated reading: current DEL-10-03 is INITIALIZED; DEL-08-02 is CHECKING with exact accepted schema; local references now revision1.4.",
+      "new": "The July 25 authoring run records OPEN and no lifecycle mutation; current _STATUS.md remains the sole lifecycle authority and now records INITIALIZED. The historical lifecycle-neutral clause is documentary aligned and asserts no present test result.",
+      "finding": "V002",
+      "reason": "The July 25 authoring run records OPEN and no lifecycle mutation; current _STATUS.md remains the sole lifecycle authority and now records INITIALIZED. The historical lifecycle-neutral clause is documentary aligned and asserts no present test result."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-010",
+      "column": "Disposition",
+      "old": "STALE_INPUT",
+      "new": "ALIGNED",
+      "finding": "V002",
+      "reason": "The July 25 authoring run records OPEN and no lifecycle mutation; current _STATUS.md remains the sole lifecycle authority and now records INITIALIZED. The historical lifecycle-neutral clause is documentary aligned and asserts no present test result."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-010",
+      "column": "ProposedResidualID",
+      "old": "DEL-10-03-REM-004",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July 25 authoring run records OPEN and no lifecycle mutation; current _STATUS.md remains the sole lifecycle authority and now records INITIALIZED. The historical lifecycle-neutral clause is documentary aligned and asserts no present test result."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-010",
+      "column": "ProposedResidualText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July 25 authoring run records OPEN and no lifecycle mutation; current _STATUS.md remains the sole lifecycle authority and now records INITIALIZED. The historical lifecycle-neutral clause is documentary aligned and asserts no present test result."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::AX-010",
+      "column": "Notes",
+      "old": "Exact source clause: This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority, is untouched by the run that authored this document, and records `OPEN`; nothing here asserts that any test, registration, or tested surface exists. STALE_INPUT marks use as a contemporary assertion; dated authoring truth is preserved and any addendum is conditional, not an automatic history rewrite.",
+      "new": "Exact source clause: This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority, is untouched by the run that authored this document, and records `OPEN`; nothing here asserts that any test, registration, or tested surface exists. V002: July 25 authoring and July 26 matrix-only repair provenance qualify this as a historical documentary claim. No exact current reliance assertion substantiates stale-input misuse; no source correction is proposed. Existing runtime UNKNOWN rows and all owner gates remain unchanged.",
+      "finding": "V002",
+      "reason": "The July 25 authoring run records OPEN and no lifecycle mutation; current _STATUS.md remains the sole lifecycle authority and now records INITIALIZED. The historical lifecycle-neutral clause is documentary aligned and asserts no present test result."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CLM-010",
+      "column": "CurrentState",
+      "old": "July-authored current-state wording needs a dated reading: current DEL-10-03 is INITIALIZED; DEL-08-02 is CHECKING with exact accepted schema; local references now revision1.4.",
+      "new": "The July contract describes upstream INITIALIZED and local OPEN at authoring and frames REQ/AC/VER as future-production obligations. That historical no-implementation statement does not determine current runtime status. Accepted D-PEC-74 schema evidence and current runtime UNKNOWN remain distinct.",
+      "finding": "V002",
+      "reason": "The July contract describes upstream INITIALIZED and local OPEN at authoring and frames REQ/AC/VER as future-production obligations. That historical no-implementation statement does not determine current runtime status. Accepted D-PEC-74 schema evidence and current runtime UNKNOWN remain distinct."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CLM-010",
+      "column": "Disposition",
+      "old": "STALE_INPUT",
+      "new": "ALIGNED",
+      "finding": "V002",
+      "reason": "The July contract describes upstream INITIALIZED and local OPEN at authoring and frames REQ/AC/VER as future-production obligations. That historical no-implementation statement does not determine current runtime status. Accepted D-PEC-74 schema evidence and current runtime UNKNOWN remain distinct."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CLM-010",
+      "column": "ProposedResidualID",
+      "old": "DEL-10-03-REM-004",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract describes upstream INITIALIZED and local OPEN at authoring and frames REQ/AC/VER as future-production obligations. That historical no-implementation statement does not determine current runtime status. Accepted D-PEC-74 schema evidence and current runtime UNKNOWN remain distinct."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CLM-010",
+      "column": "ProposedResidualText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract describes upstream INITIALIZED and local OPEN at authoring and frames REQ/AC/VER as future-production obligations. That historical no-implementation statement does not determine current runtime status. Accepted D-PEC-74 schema evidence and current runtime UNKNOWN remain distinct."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CLM-010",
+      "column": "Notes",
+      "old": "Exact source clause: Both upstream contracts are at `INITIALIZED`: they are the reliable inputs, and no server, token mechanism, schema artifact, or API operation exists. `DEL-10-03` is itself at lifecycle state `OPEN` (`_STATUS.md`) with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that any test, registration, or tested surface has been built. STALE_INPUT marks use as a contemporary assertion; dated authoring truth is preserved and any addendum is conditional, not an automatic history rewrite.",
+      "new": "Exact source clause: Both upstream contracts are at `INITIALIZED`: they are the reliable inputs, and no server, token mechanism, schema artifact, or API operation exists. `DEL-10-03` is itself at lifecycle state `OPEN` (`_STATUS.md`) with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that any test, registration, or tested surface has been built. V002: July 25 authoring and July 26 matrix-only repair provenance qualify this as a historical documentary claim. No exact current reliance assertion substantiates stale-input misuse; no source correction is proposed. Existing runtime UNKNOWN rows and all owner gates remain unchanged.",
+      "finding": "V002",
+      "reason": "The July contract describes upstream INITIALIZED and local OPEN at authoring and frames REQ/AC/VER as future-production obligations. That historical no-implementation statement does not determine current runtime status. Accepted D-PEC-74 schema evidence and current runtime UNKNOWN remain distinct."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CON-003",
+      "column": "CurrentState",
+      "old": "July-authored current-state wording needs a dated reading: current DEL-10-03 is INITIALIZED; DEL-08-02 is CHECKING with exact accepted schema; local references now revision1.4.",
+      "new": "The July contract binds to upstream obligations and preserves upstream owner questions rather than claiming a built surface at authoring. Historical absence framing is documentary aligned; current schema acceptance does not establish the no-ruling-write runtime suite or resolve its evidence gaps.",
+      "finding": "V002",
+      "reason": "The July contract binds to upstream obligations and preserves upstream owner questions rather than claiming a built surface at authoring. Historical absence framing is documentary aligned; current schema acceptance does not establish the no-ruling-write runtime suite or resolve its evidence gaps."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CON-003",
+      "column": "Disposition",
+      "old": "STALE_INPUT",
+      "new": "ALIGNED",
+      "finding": "V002",
+      "reason": "The July contract binds to upstream obligations and preserves upstream owner questions rather than claiming a built surface at authoring. Historical absence framing is documentary aligned; current schema acceptance does not establish the no-ruling-write runtime suite or resolve its evidence gaps."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CON-003",
+      "column": "ProposedResidualID",
+      "old": "DEL-10-03-REM-004",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract binds to upstream obligations and preserves upstream owner questions rather than claiming a built surface at authoring. Historical absence framing is documentary aligned; current schema acceptance does not establish the no-ruling-write runtime suite or resolve its evidence gaps."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CON-003",
+      "column": "ProposedResidualText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract binds to upstream obligations and preserves upstream owner questions rather than claiming a built surface at authoring. Historical absence framing is documentary aligned; current schema acceptance does not establish the no-ruling-write runtime suite or resolve its evidence gaps."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CON-003",
+      "column": "Notes",
+      "old": "Exact source clause: The surface under test does not exist. Both upstream contracts are at `INITIALIZED` and both record open questions of their own that the accepted sources leave to a later owner ruling \u2014 the token mechanism and the transport question on the `DEL-08-01` side, the finer taxonomy of permitted additive change on the `DEL-08-02` side. This contract binds to those contracts' *obligations*, not to any artifact, and it must not be read as asserting that a server, a schema, or an operation exists, nor as pre-empting any of those open questions. STALE_INPUT marks use as a contemporary assertion; dated authoring truth is preserved and any addendum is conditional, not an automatic history rewrite.",
+      "new": "Exact source clause: The surface under test does not exist. Both upstream contracts are at `INITIALIZED` and both record open questions of their own that the accepted sources leave to a later owner ruling \u2014 the token mechanism and the transport question on the `DEL-08-01` side, the finer taxonomy of permitted additive change on the `DEL-08-02` side. This contract binds to those contracts' *obligations*, not to any artifact, and it must not be read as asserting that a server, a schema, or an operation exists, nor as pre-empting any of those open questions. V002: July 25 authoring and July 26 matrix-only repair provenance qualify this as a historical documentary claim. No exact current reliance assertion substantiates stale-input misuse; no source correction is proposed. Existing runtime UNKNOWN rows and all owner gates remain unchanged.",
+      "finding": "V002",
+      "reason": "The July contract binds to upstream obligations and preserves upstream owner questions rather than claiming a built surface at authoring. Historical absence framing is documentary aligned; current schema acceptance does not establish the no-ruling-write runtime suite or resolve its evidence gaps."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::TBD-004",
+      "column": "CurrentState",
+      "old": "July-authored current-state wording needs a dated reading: current DEL-10-03 is INITIALIZED; DEL-08-02 is CHECKING with exact accepted schema; local references now revision1.4.",
+      "new": "The July contract records an information dependency on then-unresolved schema and listener decisions and disclaims resolving them. This truthful historical TBD is documentary aligned. Current schema acceptance is preserved; operative enumeration/listener evidence remains UNKNOWN under REQ-003/004, AC-003 and VER-003 and REM-001, without a new current absence assertion.",
+      "finding": "V002",
+      "reason": "The July contract records an information dependency on then-unresolved schema and listener decisions and disclaims resolving them. This truthful historical TBD is documentary aligned. Current schema acceptance is preserved; operative enumeration/listener evidence remains UNKNOWN under REQ-003/004, AC-003 and VER-003 and REM-001, without a new current absence assertion."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::TBD-004",
+      "column": "Disposition",
+      "old": "STALE_INPUT",
+      "new": "ALIGNED",
+      "finding": "V002",
+      "reason": "The July contract records an information dependency on then-unresolved schema and listener decisions and disclaims resolving them. This truthful historical TBD is documentary aligned. Current schema acceptance is preserved; operative enumeration/listener evidence remains UNKNOWN under REQ-003/004, AC-003 and VER-003 and REM-001, without a new current absence assertion."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::TBD-004",
+      "column": "ProposedResidualID",
+      "old": "DEL-10-03-REM-004",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract records an information dependency on then-unresolved schema and listener decisions and disclaims resolving them. This truthful historical TBD is documentary aligned. Current schema acceptance is preserved; operative enumeration/listener evidence remains UNKNOWN under REQ-003/004, AC-003 and VER-003 and REM-001, without a new current absence assertion."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::TBD-004",
+      "column": "ProposedResidualText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "",
+      "finding": "V002",
+      "reason": "The July contract records an information dependency on then-unresolved schema and listener decisions and disclaims resolving them. This truthful historical TBD is documentary aligned. Current schema acceptance is preserved; operative enumeration/listener evidence remains UNKNOWN under REQ-003/004, AC-003 and VER-003 and REM-001, without a new current absence assertion."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::TBD-004",
+      "column": "Notes",
+      "old": "Exact source clause: How the suite mechanically enumerates the surface depends on decisions the upstream contracts expressly leave unresolved: the schema language, serialization, repository location, and version-identifier scheme on the `DEL-08-02` side, and the socket path, filesystem permissions, wire framing, and operation-to-access-class mapping on the `DEL-08-01` side. Each is recorded as unresolved in that deliverable's own contract. This contract records the information dependency and neither resolves those questions nor asserts any claim over them. STALE_INPUT marks use as a contemporary assertion; dated authoring truth is preserved and any addendum is conditional, not an automatic history rewrite.",
+      "new": "Exact source clause: How the suite mechanically enumerates the surface depends on decisions the upstream contracts expressly leave unresolved: the schema language, serialization, repository location, and version-identifier scheme on the `DEL-08-02` side, and the socket path, filesystem permissions, wire framing, and operation-to-access-class mapping on the `DEL-08-01` side. Each is recorded as unresolved in that deliverable's own contract. This contract records the information dependency and neither resolves those questions nor asserts any claim over them. V002: July 25 authoring and July 26 matrix-only repair provenance qualify this as a historical documentary claim. No exact current reliance assertion substantiates stale-input misuse; no source correction is proposed. Existing runtime UNKNOWN rows and all owner gates remain unchanged.",
+      "finding": "V002",
+      "reason": "The July contract records an information dependency on then-unresolved schema and listener decisions and disclaims resolving them. This truthful historical TBD is documentary aligned. Current schema acceptance is preserved; operative enumeration/listener evidence remains UNKNOWN under REQ-003/004, AC-003 and VER-003 and REM-001, without a new current absence assertion."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "id": "DEL-10-03::CONTROL-C08",
+      "column": "ProposedResidualText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "Prepare a bounded correction proposal for the live _DEPENDENCIES.md Standing obligation C-08 paraphrase that calls release gating owner-confirmed at D-PEC-62, while D-PEC-62 preserves its release-gating force as unresolved/non-gating. Correct that authority overstatement only through an exact owner-authorized act; preserve standing arithmetic exclusion and the separate AC-009 owner route. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "finding": "V002",
+      "reason": "Narrow REM-004 and its reciprocal text to the concrete live CONTROL-C08 authority discrepancy; preserve exact gate and other evidence."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "id": "DEL-10-03-REM-004",
+      "column": "ClaimIDs",
+      "old": "DEL-10-03::AX-008;DEL-10-03::AX-009;DEL-10-03::AX-010;DEL-10-03::CLM-010;DEL-10-03::CON-003;DEL-10-03::TBD-004;DEL-10-03::CONTROL-C08",
+      "new": "DEL-10-03::CONTROL-C08",
+      "finding": "V002",
+      "reason": "Narrow REM-004 and its reciprocal text to the concrete live CONTROL-C08 authority discrepancy; preserve exact gate and other evidence."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "id": "DEL-10-03-REM-004",
+      "column": "ProposedText",
+      "old": "Prepare a bounded current-state clarification proposal identifying the July contract provenance versus current revision1.4 references, DEL-10-03 INITIALIZED state, and accepted DEL-08-02 schema; correct the local C-08 owner-confirmed-release paraphrase only through an exact owner-authorized act. Preserve dated historical assertions rather than rewriting them as contemporary truth. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "new": "Prepare a bounded correction proposal for the live _DEPENDENCIES.md Standing obligation C-08 paraphrase that calls release gating owner-confirmed at D-PEC-62, while D-PEC-62 preserves its release-gating force as unresolved/non-gating. Correct that authority overstatement only through an exact owner-authorized act; preserve standing arithmetic exclusion and the separate AC-009 owner route. (gated: owner authorizes exact current-state clarification paths and text while preserving historical contract/run evidence; no blanket currency sweep)",
+      "finding": "V002",
+      "reason": "Narrow REM-004 and its reciprocal text to the concrete live CONTROL-C08 authority discrepancy; preserve exact gate and other evidence."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "id": "DEL-10-03-REM-004",
+      "column": "ClosureEvidence",
+      "old": "Owner-authorized dated clarification artifact with exact pre/post hashes, preserved historical sources, and bounded concordance backcheck.",
+      "new": "Owner-authorized exact C-08 authority-paraphrase correction artifact with pre/post hashes and bounded concordance backcheck against D-PEC-62; preserve historical contract/run records and standing arithmetic exclusion. Release-gating authority remains the separate AC-009 owner determination.",
+      "finding": "V002",
+      "reason": "Narrow REM-004 and its reciprocal text to the concrete live CONTROL-C08 authority discrepancy; preserve exact gate and other evidence."
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "id": "DEL-10-03-REM-004",
+      "column": "Notes",
+      "old": "Held owner-routing/conditional documentary concern, not an automatic executable Remaining mirror.",
+      "new": "V002 narrows this held documentary proposal to the concrete live CONTROL-C08 discrepancy. Six dated contract-provenance clauses create no correction obligation or backlink. No blanket currency sweep, source repair, owner act or executable Remaining application is authorized.",
+      "finding": "V002",
+      "reason": "Narrow REM-004 and its reciprocal text to the concrete live CONTROL-C08 authority discrepancy; preserve exact gate and other evidence."
+    }
+  ],
+  "non_csv_changes": {
+    "COVERAGE.md": "Updated disposition totals, narrowed REM004, distinguished fresh correction from inherited inspection, appended handoff.",
+    "READ_MANIFEST.json": "Inherited source hashes revalidated; binds preserved originals, correction brief and finding map; fresh exact-file preflights.",
+    "RETURN.md": "Fresh derivative handoff and hash report.",
+    "BACKCHECK.json": "Fresh bounded correction checks."
+  },
+  "unchanged_cells_equal": true
+}

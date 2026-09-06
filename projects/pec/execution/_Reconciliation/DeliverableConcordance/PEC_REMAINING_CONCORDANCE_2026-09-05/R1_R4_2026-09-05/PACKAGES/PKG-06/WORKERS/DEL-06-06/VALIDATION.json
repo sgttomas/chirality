@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "errors": [],
+  "members": [
+    {
+      "DeliverableID": "DEL-06-06",
+      "Claims": 8,
+      "Residuals": 1,
+      "Unknown": 4,
+      "DispositionCounts": {
+        "ALIGNED": 4,
+        "UNKNOWN": 4
+      }
+    }
+  ]
+}

@@ -1,0 +1,925 @@
+{
+  "deliverable": "DEL-10-01",
+  "revision": "REVISION_M001",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "original_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/CLAIMS.csv": "0b0674e21477b2ea57d7d65b53888817147bbd1d292a2fd819cc3c9c687770cf",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/COVERAGE.md": "93e3f0bf355329caa37f177c82156c9b11245c2dd5f13c2ab3007cbfc564e716",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/OUTPUT_HASHES.json": "c59c7e26c56a3111b08aa2984615fdebe69b931c0fca61a21a861126f8b97537",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/READ_MANIFEST.json": "04d84a22f4c39d90ed1eb7de114814739a602cbc6798db504bbacd1e286d86fb",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/RESIDUALS.csv": "a25f8b642ed9ed37ea91f99c23b184dea813abc840f50566d1aaf7e1ad27a44f",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/RETURN.md": "c151c21b7088e9fad3274f931ec506fbde5b083a620dea947e48a529eb02880b"
+  },
+  "output_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/REVISION_M001/CLAIMS.csv": "a08f42dc6772b16d52759f522d5d1114fe6b271e5397f8d21ff14001d3e2fd8b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/REVISION_M001/RESIDUALS.csv": "a25f8b642ed9ed37ea91f99c23b184dea813abc840f50566d1aaf7e1ad27a44f",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/REVISION_M001/COVERAGE.md": "c8ae6035f14a3702e5ff0cafb3f60cc0d926db3cfbce6528a5815414e0bceaac",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/REVISION_M001/READ_MANIFEST.json": "9a5ad5bf7882e3f5fc3a6fffe8fe8cbe5b8792e5c90063782e82db1f75ef97aa",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/REVISION_M001/RETURN.md": "104c13fdc83db794e3ef7d4e3870c792d57b663dc25ea132cb04bfa62c2ae28b"
+  },
+  "residual_id_map": {},
+  "changes": [
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "DEL-10-01::OUT-001",
+      "row_id_after": "DEL-10-01::OUT-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "DEL-10-01::OUT-001",
+      "row_id_after": "DEL-10-01::OUT-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 2,
+      "row_id_before": "DEL-10-01::OUT-002",
+      "row_id_after": "DEL-10-01::OUT-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 2,
+      "row_id_before": "DEL-10-01::OUT-002",
+      "row_id_after": "DEL-10-01::OUT-002",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 3,
+      "row_id_before": "DEL-10-01::CLM-001",
+      "row_id_after": "DEL-10-01::CLM-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 3,
+      "row_id_before": "DEL-10-01::CLM-001",
+      "row_id_after": "DEL-10-01::CLM-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "DEL-10-01::CLM-002",
+      "row_id_after": "DEL-10-01::CLM-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "DEL-10-01::CLM-002",
+      "row_id_after": "DEL-10-01::CLM-002",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 5,
+      "row_id_before": "DEL-10-01::CLM-003",
+      "row_id_after": "DEL-10-01::CLM-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 5,
+      "row_id_before": "DEL-10-01::CLM-003",
+      "row_id_after": "DEL-10-01::CLM-003",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 6,
+      "row_id_before": "DEL-10-01::TBD-001",
+      "row_id_after": "DEL-10-01::TBD-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 6,
+      "row_id_before": "DEL-10-01::TBD-001",
+      "row_id_after": "DEL-10-01::TBD-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 7,
+      "row_id_before": "DEL-10-01::TBD-002",
+      "row_id_after": "DEL-10-01::TBD-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 7,
+      "row_id_before": "DEL-10-01::TBD-002",
+      "row_id_after": "DEL-10-01::TBD-002",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 8,
+      "row_id_before": "DEL-10-01::TBD-003",
+      "row_id_after": "DEL-10-01::TBD-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 8,
+      "row_id_before": "DEL-10-01::TBD-003",
+      "row_id_after": "DEL-10-01::TBD-003",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 9,
+      "row_id_before": "DEL-10-01::CLM-004",
+      "row_id_after": "DEL-10-01::CLM-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 9,
+      "row_id_before": "DEL-10-01::CLM-004",
+      "row_id_after": "DEL-10-01::CLM-004",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 10,
+      "row_id_before": "DEL-10-01::CLM-005",
+      "row_id_after": "DEL-10-01::CLM-005",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 10,
+      "row_id_before": "DEL-10-01::CLM-005",
+      "row_id_after": "DEL-10-01::CLM-005",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 11,
+      "row_id_before": "DEL-10-01::CLM-006",
+      "row_id_after": "DEL-10-01::CLM-006",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 11,
+      "row_id_before": "DEL-10-01::CLM-006",
+      "row_id_after": "DEL-10-01::CLM-006",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 12,
+      "row_id_before": "DEL-10-01::CON-001",
+      "row_id_after": "DEL-10-01::CON-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 12,
+      "row_id_before": "DEL-10-01::CON-001",
+      "row_id_after": "DEL-10-01::CON-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 13,
+      "row_id_before": "DEL-10-01::CLM-007",
+      "row_id_after": "DEL-10-01::CLM-007",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 13,
+      "row_id_before": "DEL-10-01::CLM-007",
+      "row_id_after": "DEL-10-01::CLM-007",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 14,
+      "row_id_before": "DEL-10-01::CLM-008",
+      "row_id_after": "DEL-10-01::CLM-008",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 14,
+      "row_id_before": "DEL-10-01::CLM-008",
+      "row_id_after": "DEL-10-01::CLM-008",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 15,
+      "row_id_before": "DEL-10-01::CLM-009",
+      "row_id_after": "DEL-10-01::CLM-009",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 15,
+      "row_id_before": "DEL-10-01::CLM-009",
+      "row_id_after": "DEL-10-01::CLM-009",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 16,
+      "row_id_before": "DEL-10-01::CLM-010",
+      "row_id_after": "DEL-10-01::CLM-010",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 16,
+      "row_id_before": "DEL-10-01::CLM-010",
+      "row_id_after": "DEL-10-01::CLM-010",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 17,
+      "row_id_before": "DEL-10-01::CLM-011",
+      "row_id_after": "DEL-10-01::CLM-011",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 17,
+      "row_id_before": "DEL-10-01::CLM-011",
+      "row_id_after": "DEL-10-01::CLM-011",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 18,
+      "row_id_before": "DEL-10-01::CLM-012",
+      "row_id_after": "DEL-10-01::CLM-012",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 18,
+      "row_id_before": "DEL-10-01::CLM-012",
+      "row_id_after": "DEL-10-01::CLM-012",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 19,
+      "row_id_before": "DEL-10-01::REQ-001",
+      "row_id_after": "DEL-10-01::REQ-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 19,
+      "row_id_before": "DEL-10-01::REQ-001",
+      "row_id_after": "DEL-10-01::REQ-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 20,
+      "row_id_before": "DEL-10-01::REQ-002",
+      "row_id_after": "DEL-10-01::REQ-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 20,
+      "row_id_before": "DEL-10-01::REQ-002",
+      "row_id_after": "DEL-10-01::REQ-002",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 21,
+      "row_id_before": "DEL-10-01::REQ-003",
+      "row_id_after": "DEL-10-01::REQ-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 21,
+      "row_id_before": "DEL-10-01::REQ-003",
+      "row_id_after": "DEL-10-01::REQ-003",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 22,
+      "row_id_before": "DEL-10-01::REQ-004",
+      "row_id_after": "DEL-10-01::REQ-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 22,
+      "row_id_before": "DEL-10-01::REQ-004",
+      "row_id_after": "DEL-10-01::REQ-004",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 23,
+      "row_id_before": "DEL-10-01::REQ-005",
+      "row_id_after": "DEL-10-01::REQ-005",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 23,
+      "row_id_before": "DEL-10-01::REQ-005",
+      "row_id_after": "DEL-10-01::REQ-005",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 24,
+      "row_id_before": "DEL-10-01::REQ-006",
+      "row_id_after": "DEL-10-01::REQ-006",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 24,
+      "row_id_before": "DEL-10-01::REQ-006",
+      "row_id_after": "DEL-10-01::REQ-006",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 25,
+      "row_id_before": "DEL-10-01::REQ-007",
+      "row_id_after": "DEL-10-01::REQ-007",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 25,
+      "row_id_before": "DEL-10-01::REQ-007",
+      "row_id_after": "DEL-10-01::REQ-007",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 26,
+      "row_id_before": "DEL-10-01::REQ-008",
+      "row_id_after": "DEL-10-01::REQ-008",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 26,
+      "row_id_before": "DEL-10-01::REQ-008",
+      "row_id_after": "DEL-10-01::REQ-008",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 27,
+      "row_id_before": "DEL-10-01::REQ-009",
+      "row_id_after": "DEL-10-01::REQ-009",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 27,
+      "row_id_before": "DEL-10-01::REQ-009",
+      "row_id_after": "DEL-10-01::REQ-009",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 28,
+      "row_id_before": "DEL-10-01::REQ-010",
+      "row_id_after": "DEL-10-01::REQ-010",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 28,
+      "row_id_before": "DEL-10-01::REQ-010",
+      "row_id_after": "DEL-10-01::REQ-010",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 29,
+      "row_id_before": "DEL-10-01::REQ-011",
+      "row_id_after": "DEL-10-01::REQ-011",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 29,
+      "row_id_before": "DEL-10-01::REQ-011",
+      "row_id_after": "DEL-10-01::REQ-011",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 30,
+      "row_id_before": "DEL-10-01::REQ-012",
+      "row_id_after": "DEL-10-01::REQ-012",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 30,
+      "row_id_before": "DEL-10-01::REQ-012",
+      "row_id_after": "DEL-10-01::REQ-012",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 31,
+      "row_id_before": "DEL-10-01::AC-001",
+      "row_id_after": "DEL-10-01::AC-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 31,
+      "row_id_before": "DEL-10-01::AC-001",
+      "row_id_after": "DEL-10-01::AC-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 32,
+      "row_id_before": "DEL-10-01::AC-002",
+      "row_id_after": "DEL-10-01::AC-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 32,
+      "row_id_before": "DEL-10-01::AC-002",
+      "row_id_after": "DEL-10-01::AC-002",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 33,
+      "row_id_before": "DEL-10-01::AC-003",
+      "row_id_after": "DEL-10-01::AC-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 33,
+      "row_id_before": "DEL-10-01::AC-003",
+      "row_id_after": "DEL-10-01::AC-003",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 34,
+      "row_id_before": "DEL-10-01::AC-004",
+      "row_id_after": "DEL-10-01::AC-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 34,
+      "row_id_before": "DEL-10-01::AC-004",
+      "row_id_after": "DEL-10-01::AC-004",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 35,
+      "row_id_before": "DEL-10-01::AC-005",
+      "row_id_after": "DEL-10-01::AC-005",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 35,
+      "row_id_before": "DEL-10-01::AC-005",
+      "row_id_after": "DEL-10-01::AC-005",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 36,
+      "row_id_before": "DEL-10-01::AC-006",
+      "row_id_after": "DEL-10-01::AC-006",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 36,
+      "row_id_before": "DEL-10-01::AC-006",
+      "row_id_after": "DEL-10-01::AC-006",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 37,
+      "row_id_before": "DEL-10-01::AC-007",
+      "row_id_after": "DEL-10-01::AC-007",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 37,
+      "row_id_before": "DEL-10-01::AC-007",
+      "row_id_after": "DEL-10-01::AC-007",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 38,
+      "row_id_before": "DEL-10-01::AC-008",
+      "row_id_after": "DEL-10-01::AC-008",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 38,
+      "row_id_before": "DEL-10-01::AC-008",
+      "row_id_after": "DEL-10-01::AC-008",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 39,
+      "row_id_before": "DEL-10-01::VER-001",
+      "row_id_after": "DEL-10-01::VER-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 39,
+      "row_id_before": "DEL-10-01::VER-001",
+      "row_id_after": "DEL-10-01::VER-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 40,
+      "row_id_before": "DEL-10-01::VER-002",
+      "row_id_after": "DEL-10-01::VER-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 40,
+      "row_id_before": "DEL-10-01::VER-002",
+      "row_id_after": "DEL-10-01::VER-002",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 41,
+      "row_id_before": "DEL-10-01::VER-003",
+      "row_id_after": "DEL-10-01::VER-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 41,
+      "row_id_before": "DEL-10-01::VER-003",
+      "row_id_after": "DEL-10-01::VER-003",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 42,
+      "row_id_before": "DEL-10-01::VER-004",
+      "row_id_after": "DEL-10-01::VER-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 42,
+      "row_id_before": "DEL-10-01::VER-004",
+      "row_id_after": "DEL-10-01::VER-004",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 43,
+      "row_id_before": "DEL-10-01::VER-005",
+      "row_id_after": "DEL-10-01::VER-005",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 43,
+      "row_id_before": "DEL-10-01::VER-005",
+      "row_id_after": "DEL-10-01::VER-005",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 44,
+      "row_id_before": "DEL-10-01::AX-001",
+      "row_id_after": "DEL-10-01::AX-001",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 44,
+      "row_id_before": "DEL-10-01::AX-001",
+      "row_id_after": "DEL-10-01::AX-001",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 45,
+      "row_id_before": "DEL-10-01::AX-002",
+      "row_id_after": "DEL-10-01::AX-002",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 45,
+      "row_id_before": "DEL-10-01::AX-002",
+      "row_id_after": "DEL-10-01::AX-002",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 46,
+      "row_id_before": "DEL-10-01::AX-003",
+      "row_id_after": "DEL-10-01::AX-003",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 46,
+      "row_id_before": "DEL-10-01::AX-003",
+      "row_id_after": "DEL-10-01::AX-003",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 47,
+      "row_id_before": "DEL-10-01::AX-004",
+      "row_id_after": "DEL-10-01::AX-004",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 47,
+      "row_id_before": "DEL-10-01::AX-004",
+      "row_id_after": "DEL-10-01::AX-004",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 48,
+      "row_id_before": "DEL-10-01::AX-005",
+      "row_id_after": "DEL-10-01::AX-005",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 48,
+      "row_id_before": "DEL-10-01::AX-005",
+      "row_id_after": "DEL-10-01::AX-005",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 49,
+      "row_id_before": "DEL-10-01::AX-006",
+      "row_id_after": "DEL-10-01::AX-006",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 49,
+      "row_id_before": "DEL-10-01::AX-006",
+      "row_id_after": "DEL-10-01::AX-006",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 50,
+      "row_id_before": "DEL-10-01::AX-007",
+      "row_id_after": "DEL-10-01::AX-007",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 50,
+      "row_id_before": "DEL-10-01::AX-007",
+      "row_id_after": "DEL-10-01::AX-007",
+      "column": "ExactGate",
+      "old": "No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority.",
+      "new": "NOT_SELECTABLE_UNTIL: No outstanding gate for accepted DEL-10-01 scope; CHECKING source/lifecycle change requires separate owner act. C05 closed by separate ruling; no release authority."
+    }
+  ],
+  "coverage_appendix": "\n## Mechanical derivative REVISION_M001\n\nOriginal coverage above retained with exact residual-ID normalization where applicable. This derivative changes only residual IDs/reciprocal references, empty Depends to NONE, and governed ExactGate markers. No semantic rerun or new product tests. Original source assessment and owner conditions remain unchanged. Upstream original worker outputs are hash-bound by CHANGE_MAP.json and READ_MANIFEST.json; clarification: `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md`. Independent package verification and manager selection remain pending. Role instruction-asserted, not mechanically enforced.\n",
+  "non_csv_policy": "COVERAGE retains complete original text except exact residual ID substitutions plus the recorded appendix; READ_MANIFEST preserves original source map/historical records and appends exact provenance and correction checks; RETURN is derivative-specific and cites unchanged original return."
+}

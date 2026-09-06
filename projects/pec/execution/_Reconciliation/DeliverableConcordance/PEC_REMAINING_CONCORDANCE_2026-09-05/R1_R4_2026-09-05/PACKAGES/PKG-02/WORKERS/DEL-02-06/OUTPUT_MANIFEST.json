@@ -1,0 +1,15 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "kind": "D82_WORKER_DERIVATIVE_NOT_AUTHORITY",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/AUDIT_INPUT_STATE.json": "4aa004343551d563cec85d16af0b098b992e2a76bbc487bde5088df6d260c3b3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/CLAIMS.csv": "e8e436c136f59cd108b017608d1a6f4d1a98380f82b46f3affda63cd8733535b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/COVERAGE.md": "d45c81620f3703f0c7e527dc3901a251520693d74fccaca289c1afd6a17dd04c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/EVIDENCE_AUDIT.json": "5dda498bdbd01f59d1092ec5a5e94dd61da0038c7af587ffcd3e9874230f5edb",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/READ_MANIFEST.json": "f66022ef997e67624101deca173e41973a730560326a128746c471e29409c641",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/RESIDUALS.csv": "35967153cc101b326e69bf5ff0609d29afb334aedf666d91bd8abc0c5e30e106",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/RETURN.md": "b05dbe2a91bf18628c27fe6994a2088620b345e7b7ee1ae413c10c3f01c694fc",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/VALIDATION.json": "78c6b783f020316f6541ecbe78f99a953d13c8fd1a5b67bf2beec577ce18da30"
+  },
+  "self_excluded": "OUTPUT_MANIFEST.json"
+}

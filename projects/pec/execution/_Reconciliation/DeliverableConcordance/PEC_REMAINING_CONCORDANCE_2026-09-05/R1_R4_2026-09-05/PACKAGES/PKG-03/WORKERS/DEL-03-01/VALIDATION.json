@@ -1,0 +1,37 @@
+{
+  "base_binding": {
+    "tracked_sources": 129,
+    "same_run_derivative_inputs": [
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-03.md",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/COMMON_HANDOFF.md",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/BRIEFS/DEL-03-01.md",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/PACKAGE_BASIS.md",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/SOURCE_MANIFEST.json",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/validate_worker.py"
+    ],
+    "errors": []
+  },
+  "exact_schemas": "PASS (package validate_worker.py exit0)",
+  "unique_ids": "PASS",
+  "local_claim_coverage": {
+    "expected": 96,
+    "covered": 96,
+    "extra_section_claims": [
+      "EXACT_ACCEPTANCE",
+      "LIFECYCLE",
+      "RELEASE_BOUNDARY"
+    ]
+  },
+  "reciprocity": "PASS (all five residuals)",
+  "residual_sequence": "PASS DEL-03-01-REM-001..005",
+  "LF_csv": "PASS",
+  "hashes_final": "PASS",
+  "owner_application": "NOT_AUTHORIZED",
+  "product_test_execution": "NOT_RUN_NO_CANDIDATE",
+  "pass": true
+}

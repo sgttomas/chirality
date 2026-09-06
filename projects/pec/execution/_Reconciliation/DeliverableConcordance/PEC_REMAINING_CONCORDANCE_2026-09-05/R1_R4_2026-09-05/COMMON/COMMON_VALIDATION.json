@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "checks": {
+    "source_pin_equality": "648 hashes unchanged and source commit-bound",
+    "census": "64uniqueIDs/11packages",
+    "sealed_package_briefs": "11 hashes preserved",
+    "step0": "CHANGE exact block exit0 including fetch; carrier hashes decoded/verified",
+    "hold_preflight": "128 exact file targets ALLOW candidate-validation",
+    "write_scope": "COMMON only; package output trees remain other owners",
+    "candidate_whitespace": "PASS isolated complete COMMON candidate; no source index mutation"
+  },
+  "scope": "common preparation only; no discovery or manager dispatch"
+}

@@ -1,0 +1,13 @@
+# DEL-09-01 coverage
+
+ASSESSSED scope: SOW-045 / PEC-DSH-001, accepted revision1.4. Summary: ASSESSED_UNKNOWN; 11 claims, 5 documentary/lifecycle ALIGNED and 6 UNKNOWN; 1 evidence-only residual. NONE is not warranted.
+
+Missing ScopeOfWork.md is addressed by FALLBACK_SOURCE_MAP.json with exact scope/row/quote hashes. Five per-loop features are atomized; one anticipated view-test method remains unknown. No defined local REQ/AC/VER IDs exist. PEC-DSH-001 is retained; run-local feature names are explicit fallback IDs. Six dependency IDs are completely accounted in the documentary dependency row. E-A06/E-A12/E-P59/E-P60 are provenance edges, C04/C10 are non-gating register rules, OBJ-004 is the mapped objective, and D65 repair IDs/MAJ-4 are historical evidence-repair provenance, not additional overview product claims.
+
+Local semantic file is empty; OPEN lifecycle and truthful TBD assignment remain documentary facts. No contract, implementation absence, test threshold, assignment duty, acceptance, release or lifecycle act is invented. Consumer-owned optionality, source drilldown and advisory Explain boundaries survive. D65 run chronology reconciles the final 006 producer quote with current SOW-023; no stale-evidence repair is proposed. DEL04-01 exact SOW acceptance excludes source implementation and dependency satisfaction.
+
+Current v2 + review bounded search found no applicable overview production evidence. That is an evidence boundary, never proof of absent implementation. Every read source is SHA-bound; package-manifest inputs reproduce, additional REVIEW inputs are compared using read-only git show at the same base with manager clarification. Newly generated common/brief/manager files are derivative run inputs, not base-commit product artifacts. No frozen prototype claim is used. No product tests or services run.
+
+Evidence-only candidate Depends NONE. Production register targets DEL-09-06, DEL-09-07, DEL-04-01, DEL-05-01 remain ACTIVE/PENDING PREREQUISITE; later production must name justified targets and follow the exact conjunction. No satisfaction inferred from documentary predecessor acceptance. D82 report readiness does not authorize Remaining application/source/lifecycle changes. TM023 held mapping is no unrelated gate; TM022 deferred, ordinary SCA004 currency complete, PRDv2.3/DPEC79 adopted-not-applied remain preserved.
+
+Independent verifier still required. Source or hold drift, newly accepted dashboard artifacts, changed scope, source/acceptance semantics or owner application requires bounded rerun. Agent2 native role is instruction-asserted, not mechanically enforced; no delegation. Write allowlist is this WORKERS/DEL-09-01 subtree only.

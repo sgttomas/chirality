@@ -1,0 +1,464 @@
+{
+  "status": "PROSPECTIVE_INVERSE_ONLY",
+  "entries": [
+    {
+      "DeliverableID": "DEL-00-02",
+      "TargetPath": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "d9423d1622b1368256333ceb142ec2e044df9b54d20fb5b9475afad0316d2157",
+      "RestorePreimageSHA256": "99ff6d67b15056165a814e5b64086da6bd29cac0b86e9f6ddd7462f3e20cc71c",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-00-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-01-01",
+      "TargetPath": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "cd0f7192ef34c5bdfbbce16dfadfe87c8b1e4bd7baf81ceba009bd1f86090ce9",
+      "RestorePreimageSHA256": "c23a1a46e96361de3cae96d6be2f994fbc71482af52958b26751b016a4bfecd6",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-01-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-01-02",
+      "TargetPath": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "4ba0080ce68fde95ead018f253cf67f13f42204523b59c97390faa886b009ca9",
+      "RestorePreimageSHA256": "a37d37ee118dab727548742246f928405d79415e7e69b99142cdb10246964d60",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-01-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-01-03",
+      "TargetPath": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "e7759ffee2ce78bd182c75368c3681cba7345163871464ad5e517af917c47d62",
+      "RestorePreimageSHA256": "c2f5ee7bd025a83c73b7a884e7eecd5e9545496fb81fdc0ffc6deacfbbb7c959",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-01-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-01-04",
+      "TargetPath": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "fbdea25c189086b16752f0e7e5161877b3a47489f0d329d8f4b1390ad0e3cb00",
+      "RestorePreimageSHA256": "4810d911f12c793462123bd2a36003c35e64475b5280ec088766d3a64871afc1",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-01-04/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-01-05",
+      "TargetPath": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "7252d008ad3f862648c8f112091dc63fe83102e6ecb8804a0d11d7f740994064",
+      "RestorePreimageSHA256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-01-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-02-01",
+      "TargetPath": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "75f81a09e7de702b2b3376eaf92e2d7ca6cc4b8876ad7bd5a0f7344f2934253c",
+      "RestorePreimageSHA256": "86a95eebc0fe2ad74cce49e4a41b34cefc9dfcd2ab774f3099e253e6dff8e56f",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-02-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-02-02",
+      "TargetPath": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "bcf249e4b168fa4ee83c44f749efe17e011580f1bb9885546160dbf6ad878934",
+      "RestorePreimageSHA256": "69217baccc7e3d224744e911b80d2711cbedb7b8331353b912f28b53be56b566",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-02-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-02-03",
+      "TargetPath": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "ea96dffc276e0f93d520e336b749cbfaa49400ba095a94c31983f497b3b99482",
+      "RestorePreimageSHA256": "b7c0eb4d066686efd93f3dae15d76d1d7e2b3a6e94cb52170b55597078ce7de2",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-02-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-02-04",
+      "TargetPath": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "e6d7730f82c72dca5ba9166daedc5a4a919e6b22090d7661f0526fdae6b08c63",
+      "RestorePreimageSHA256": "7f603cbb185aeb39eec060563c7dc043fc08f3113b970004feddbf4dad60ed5f",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-02-04/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-02-05",
+      "TargetPath": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "b7f6477da993a99d30b6b38fd101c65456caf58f5e3a0e963b95347bb417f75a",
+      "RestorePreimageSHA256": "0eb7455c6e3e3af6def22578fffbe587b8e32dc007c4ab642bf50ada5c8fa66f",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-02-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-02-06",
+      "TargetPath": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "fa980fe47d8b916eaa70bde17221ec82eedc7ba93144ea8dc5e6db04b80a161e",
+      "RestorePreimageSHA256": "8142a9f53dd3e5b5fa2b398a76fedbe23a86accfeaf48e3ae7263754cd109ed4",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-02-06/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-02-07",
+      "TargetPath": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "4cea9b1c000db8a9248356412960f33d13b271530eb80f38ebd28d98d7ec42bd",
+      "RestorePreimageSHA256": "c26d6861c1f07ee33c8fec6c74d126270d619955da1068c853a4b0132c2a8792",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-02-07/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-03-01",
+      "TargetPath": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "bb653d0c168965872eb08aafb44779e954d87321a9ede9ca3fc2cc5fb8e200d2",
+      "RestorePreimageSHA256": "f8816dcaa48f3ca980f1b6db51129efb5d3a5095d0120fbf4698878e9b9121b5",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-03-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-03-02",
+      "TargetPath": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "ac3d6557c2b951d859dfb068b1c7730032cb9824e82df3cfa79bf8e974bb62d8",
+      "RestorePreimageSHA256": "4cf4d59c47254cd334e751889ba3e6327634e197b2edab7ffc58d3fd2791c160",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-03-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-03-03",
+      "TargetPath": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "aa69f1aefaf420ac248ee78164703d2f2dc1cc8c3f7ddeaa2c278ad10dc25698",
+      "RestorePreimageSHA256": "1b14db6bedec408a409e175fa78b6d92cd3de9a2adeefa45d2729954d537c416",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-03-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-03-04",
+      "TargetPath": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "3d199e1b442f5211aa7bca56d6c3a0e95b3556e5434040e5c84ad599574677b4",
+      "RestorePreimageSHA256": "7414b154f06470f422709874e2b0ecc7aa94a6f294c1c94cd590ded2de7f188a",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-03-04/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-03-05",
+      "TargetPath": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "9edd00fc30e90fb5faca40e4884f11018eefb6021d9f2f263f80552917120b96",
+      "RestorePreimageSHA256": "fd6080075a378ac9993c05d79b1e47f3b67329383e66dbd4be0f9f0028fbf6e5",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-03-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-03-06",
+      "TargetPath": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "e06d889a82758dea0de91c5b0e3213d37e68dcee27d2dacd872ac8c82d8e05b3",
+      "RestorePreimageSHA256": "a024c5ed98513acfde552d651ea0e7fd5c0f99c35eea7f300034d6aee1cf48a4",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-03-06/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "TargetPath": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "c08a317519a7dea41fdc852b9a43dce38f3fb8b669fd1cc276431e87c97e1ca6",
+      "RestorePreimageSHA256": "7c9902184deeb30b80728979fd76c710a23396ba549c144bc713134e51a94dd1",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-04-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "TargetPath": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "d1737e1c12b7c0696e34d5a3e712b6c24d9990441c59792f54ebe51e82fe1c77",
+      "RestorePreimageSHA256": "e11421d3eabcf50e240ef11e0af1f998a0de213ea3da5128e09f20feff5754d7",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-04-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "TargetPath": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "d86b2ece68ab59bb2c95363b54846265228a35bf37ff58777b72b8b5dc63384c",
+      "RestorePreimageSHA256": "08c9a093a7a412af8e7c8d4c9dc4e610533267ae2c55b4585ee7d1f8822b73ed",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-04-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "TargetPath": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "810c45ed2a8a84a67d01ea9369c8d0b30e408358cff40f3f79171c4869583b6b",
+      "RestorePreimageSHA256": "73f3247c1fd1b9e9cd7f944651c46a31b3fbb8fc2472c8828d930ba09c35ec44",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-04-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-05-01",
+      "TargetPath": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "181d44871e76c162423da7c86a3e8972722c0a57aaaffe6677720c51f47fe890",
+      "RestorePreimageSHA256": "95fb8f9d0ec0f23f047dcf2d8ce2b84614a1de6089b95d166d1a3630177942c2",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-05-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-05-02",
+      "TargetPath": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "c38758912526d25e7c8c6d4ab91cf48802a4aaf1efc9909426150df78b1c9009",
+      "RestorePreimageSHA256": "53a679574db2308af8d45c2ba28f5e29bfae2a294c7d1b053bb8e8391df49179",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-05-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-06-01",
+      "TargetPath": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "3e40cdcc9aa8dfb5a7dec3f3bec08c25ff2cf7f72c4772b5145aa6a3f7f176e1",
+      "RestorePreimageSHA256": "be64f574e68d322375d0c9ba3b7cf17cef1fa1c824fe9764a5643dc877850e4c",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-06-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-06-02",
+      "TargetPath": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "eb813cb7b5c3ab967f2b0e3cf893653b7bf083830a1795373a9eeda6554311bd",
+      "RestorePreimageSHA256": "9755a57025ae7217312cac26a53ff6b8cf6e7d5a073ffb318e1055c705c22a7c",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-06-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-06-03",
+      "TargetPath": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "3bb1d0c518104422299172da9205de319ee0da066e16403d84d8a322ee1359fa",
+      "RestorePreimageSHA256": "23fad2dc48088abf369db19931077af28e4e2644ba12d7e3ad4e169fb0c4f4f0",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-06-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-06-04",
+      "TargetPath": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "bfa6d3060a6b4941906ef2d9e93721ab41747c7658b58bb2e1c398043cd5f7f0",
+      "RestorePreimageSHA256": "22e3ed6b0bdc38aeb51e1cfdc96551421d95d36b1d22a3e2430696d7d62ae3ac",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-06-04/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-06-05",
+      "TargetPath": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "77b10a4849120b4d9682f2262bb87fc2a4b415c97fa50834f30c911920de0cba",
+      "RestorePreimageSHA256": "53d45abdbc213ee262a71b3715b278bb316426bae584637297b7c3a5c02983e0",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-06-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-06-06",
+      "TargetPath": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "3e8a16071e327f917d01e0ba09a81bfbeebb0eff2667f4dfd67b9003a711022b",
+      "RestorePreimageSHA256": "d497e47566f7b2ac1eb2144daa88dccad06d14356deaa2d250fdeafc3eeca330",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-06-06/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-07-01",
+      "TargetPath": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "6c6efcecce35e0dd2b2160a90fadb5ad6449f398585b3c6aed6d0c003a2bdff6",
+      "RestorePreimageSHA256": "f0841ea1987d66c9fe91c8451a48770a50cccac12be5735225b797be0c466501",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-07-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-07-02",
+      "TargetPath": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "28cb7ca72c0448b4f6f3b872fc6a892e9dada526dc4afe079db2c9279a2f7ba0",
+      "RestorePreimageSHA256": "2d662bcd27a1af9e2c2469e58060baa9b4c2681ab5ff2eee77846516ddf1066e",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-07-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-07-03",
+      "TargetPath": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "88e5b0e7b51f5a730388c44ae72a1ccf0322a9d5e676d14b32a95adc5418aaf3",
+      "RestorePreimageSHA256": "c4b6f503ab7599978f7fe2e51625ccf5fecdeac295fb8203a3a3379b8bd66250",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-07-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-07-04",
+      "TargetPath": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "f0e0d2f9c4f877b0d15fd8746181a3e3fc4785a05b657a7677350de74be41eab",
+      "RestorePreimageSHA256": "ef8ebf5df340578b317abb98f45c371df18d7c656ae403c74909019e9c91b4c7",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-07-04/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-07-05",
+      "TargetPath": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "f1ecdae9274f35f9fe3cd6ee029ecf48654aade44f3e3d06034c54ecab2638c2",
+      "RestorePreimageSHA256": "922b89de97d3a0013f05ff939e148f78450631b047fd75a72013332bf6bfa5f2",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-07-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-08-01",
+      "TargetPath": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "a0ee135508bdd96169b6df5c32f090ed8e1fc27e6f29b76d060f1db4e7f6a773",
+      "RestorePreimageSHA256": "a7e72ebf6c52876e2f59c9eedff3039c8e4b6f7e3d5779b591df11cba1449e5a",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-08-01/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-08-03",
+      "TargetPath": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "cd1d3a5090b067732f5ee58021eb68180ed1dadbecc75f50eb9a42cd0d637b96",
+      "RestorePreimageSHA256": "4b119028c9af1d82aa529cdd1bf851493f63b3471998ca0dbb3667e2caa0d5ee",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-08-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-08-04",
+      "TargetPath": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "db980b2a91d4fa5960502d7f350099f1fa026b6028ed463cd6a8561da7d42686",
+      "RestorePreimageSHA256": "f33ac4a98d0650deb5e6815eb7d201a55f79750ab76bde6f7b3edf9573f1d4a4",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-08-04/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-08-05",
+      "TargetPath": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "4597533665764708e722c0f25a8a7972726d7d1393f89626541069f00e30b5c3",
+      "RestorePreimageSHA256": "4cdf6ec8ae63491527cbc9c58641d402e9642c868879917a09727cbc67634960",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-08-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-02",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "4400e7538f1fc0e1ae672708a194c523b5f7f2b2dd819158f81b1ffb8eaa8652",
+      "RestorePreimageSHA256": "d3300fe1a73b53f510c3ee58088707743fd4b99b9b1f064239d45092cfd8e1c9",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-02/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-03",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "dd3e37de821a95fb65f1c26b3302e4c1ebed1d940fdee2d67ce556b42b60a2b6",
+      "RestorePreimageSHA256": "5b3c2e5567f8a62196b46b81a5117a2283de1cdc6b239620c3bc42c133f035bc",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-03/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-04",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "568d9a81a1f976aef34e608eb27b479fe5fae5c5ea397e4c9a589a2dc6ed1036",
+      "RestorePreimageSHA256": "ab06eef6d934fb4e2f39def1a8c610a78c56b23f0f81780e92529e8ac496a189",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-04/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-05",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "313017b00cba52cb00f2ed0d7f8788e4794c162497e477dd35048aed6e713f78",
+      "RestorePreimageSHA256": "5007aea8384903fedc7351ab023a1208b2bfed890d5cd8843b427c6277ec3c40",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-05/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-06",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "917d6dc9b4df7684fc22dd1e59da0bef9276c00ba957d92d94086441af698492",
+      "RestorePreimageSHA256": "f2413ebc0314de0cfa5921c102bba8a526ff306911786fbb82a6f5c72a288557",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-06/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-07",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "fbebc473f6ccc9642caaa0f777dc9e3caaa2caeb055d573195a7791e2c0e635f",
+      "RestorePreimageSHA256": "02bc7ef9651c3a36ff391d93849be51cd458667142f63be76dd2d4c6f206fae3",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-07/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-08",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "38fcb3461bcdcec5b17c86e3b77f292dc892f65f7793fda67c2281eede998e4c",
+      "RestorePreimageSHA256": "c081994028e728ccd3e5951388958ace66474be90c6a3c2b03009da8de3fafdd",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-08/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-09",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "be9147e6604253f1c199db6261f4a9168024d7f3d99ce09bbf6bfc874ce338cf",
+      "RestorePreimageSHA256": "9577e29a009bdcb2358ff7da50489f2002e73d9a8f1bc3f9f0f0dfbbc469f1bf",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-09/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-10",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "feef194d3da12cc8ec473c444e736ba07025c8b8bee591689917e9a97d8e08b7",
+      "RestorePreimageSHA256": "24030ebc3d4badfce74149e729a67b6a525522ccd08f048dd4d31811d57905a3",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-10/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-11",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "293d33aabdf39dcfd286d041b6d0d296776fc4e9bf8a2e1d08943f1c5f4892c2",
+      "RestorePreimageSHA256": "83e644c4f797d8b4c2a25952a0be3161d064dcee52e8b365faa845b9654f5bb6",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-11/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    },
+    {
+      "DeliverableID": "DEL-10-12",
+      "TargetPath": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md",
+      "ExpectedAppliedPostimageSHA256": "69780a53691ac3418de11f74292ea55d47343b503c141284118019840e1944a9",
+      "RestorePreimageSHA256": "b16f2e2638df5c5fd31a57e04b1d2ca2c358d457454d9f36f714bae2d85adcbb",
+      "RestoreCopy": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/PREIMAGES/DEL-10-12/_STATUS.md",
+      "InverseOperation": "Remove exact appended Remaining bytes only when complete current bytes equal authorized postimage; stop on drift; frozen preview requires new manifest after separate lawful change",
+      "RollbackAuthority": "Future owning packet must name lawful rollback; no automatic target action"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "DeliverableID": "DEL-06-01",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C01/DEL-06-01",
+    "hashes": {
+      "CLAIMS.csv": "6a114f630cf99471934aac9a061128b47783f9fac23f1cc7dcab524997d20413",
+      "RESIDUALS.csv": "d8fff5b70ea79d9a44353e9952b1a51a1a4d38f66107370f1d43d41bdcb2e444",
+      "READ_MANIFEST.json": "5025ab2dbfeffdba1e148bd003d29085d8a084d2605b82285f73357f58275b56",
+      "COVERAGE.md": "106b2299426a6861a537ebb5c793f36cfbcb6eaf4015969d6a1b9be403e0db55",
+      "RETURN.md": "7819eb488d66a1585d1dd27f9173ab7009a2eac3b58c0e39e17a0fc65a7e347d"
+    }
+  },
+  {
+    "DeliverableID": "DEL-06-02",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C01/DEL-06-02",
+    "hashes": {
+      "CLAIMS.csv": "58761ba0da23c7a7572e66ca12452c12f9d369b9756892f43da8b8e82bfba375",
+      "RESIDUALS.csv": "d815ca35b6333641e88b0ec5ab2f3659919878db9e41fa798695adece98b9f2a",
+      "READ_MANIFEST.json": "428b75461b39af3639baa47c6a028765692d6c0954af775d295784fcee742b9b",
+      "COVERAGE.md": "38bdbbdb3b9cece8f5efb83efa872780481e984efb4e2455d3a8870f341d9fb7",
+      "RETURN.md": "27493d83c9ab4cd1ffbb2bf72bab7edaeb5df2de2207660545522b6e8674fda6"
+    }
+  },
+  {
+    "DeliverableID": "DEL-06-03",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-03",
+    "hashes": {
+      "CLAIMS.csv": "2a2aa6557f595aafb45cb8c2d243d54f65fc456e05918c33f741ae44dc907d89",
+      "RESIDUALS.csv": "32942615f45e3780e72aff4135ae553fc635ce73ca6d05d7af307905aeb06b86",
+      "READ_MANIFEST.json": "28c3b7684ce817cd2aed2a891c2d5a9bd10e4f3d04ecfbb5c085f12613f8f57a",
+      "COVERAGE.md": "e78466a2c5ce78dc144ae564fc3b1a9148a7ef2661fd51a74b12b0bd95b409fc",
+      "RETURN.md": "e8cf09814155f6700d1b752a3dc4831a3579514fbcf258dc2aed5c04a71e1d92"
+    }
+  },
+  {
+    "DeliverableID": "DEL-06-04",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-04",
+    "hashes": {
+      "CLAIMS.csv": "08bf71ddcb10049eb390addbe98d77acfc245a916af0640a36d7bdb141a8007a",
+      "RESIDUALS.csv": "09a43512c3b19c7bf0972c93bde4e96776be112c537aa9a2cd6d3438721a42e7",
+      "READ_MANIFEST.json": "c19480b5363f537739d53287556cddc293d928b2465c04a8d42c763871fcdf30",
+      "COVERAGE.md": "5f3620498900cf893df6244ed6b33173d6f72f833bcf98c8ca992ca348cd517e",
+      "RETURN.md": "9d47fce7d0672e8a9ea29fc7dae09cfa4f9fff723f549b3202c9a32cb99740a4"
+    }
+  },
+  {
+    "DeliverableID": "DEL-06-05",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C02_DEPENDS/DEL-06-05",
+    "hashes": {
+      "CLAIMS.csv": "38f4778a2ccb1741f0cfdc26cddcc9ac12e6a5d7bb8d640d37480a37be01371b",
+      "RESIDUALS.csv": "7f776cc339d7ad216e89005447da1042bf59ac03c26177fa6e26c5fe684e6e1e",
+      "READ_MANIFEST.json": "39cc14f0e48f357cf04788c214a80190caa2c4d1d68e2474322ee929b8eea82e",
+      "COVERAGE.md": "fd5e326876291d801609ff2261b07f4992d4a271584d5e31c7a3c64180fb80c3",
+      "RETURN.md": "5c536883b1611a711f41e5275cba0b3aec796346c6cfec9aea720009c9a58f8c"
+    }
+  },
+  {
+    "DeliverableID": "DEL-06-06",
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C02_DEPENDS/DEL-06-06",
+    "hashes": {
+      "CLAIMS.csv": "c2e1e879d449cc9ed5bb4777eeae788e5b853c7c7f74466ba0e6565efae170ec",
+      "RESIDUALS.csv": "c84a9af48bdf2133e3459acb0a5747ebaaf558343ec2babc8a271a5c28a28f2e",
+      "READ_MANIFEST.json": "f50208beb6665e6c7c2556b79db95d99f191a00689314fcb6171f57abcf8bb7b",
+      "COVERAGE.md": "fcce99f0ffa9a979bb6588f28ebfc883b5aa0c5b5f612341cabf15773363d4e3",
+      "RETURN.md": "32a1fc28f99ee1b75e3778bb2cac488139611bc09cb452a23481f99d4a2ff8f6"
+    }
+  }
+]

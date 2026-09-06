@@ -1,0 +1,551 @@
+{
+  "definitions": [
+    {
+      "id": "CLM-001",
+      "text": "The accepted `ScopeLedger.csv` row for `SOW-014` reads in full, including its trailing fields (columns `ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes`):",
+      "line": 81,
+      "quote_sha256": "ce1240d808b591bb1dd6b86d47857dc0a258f38611f3787bbb95927f00b25722"
+    },
+    {
+      "id": "CLM-002",
+      "text": "The ledger `SourceRef` cell names two loci, and both are quoted here as they read. The first is `PRD.md` \u00a79.2 requirement `PEC-RCN-002`:",
+      "line": 88,
+      "quote_sha256": "cfbe1e47e93e2b3b9c8543e1f38382f6fd98ec76d98278b535a6c1bc7da282fd"
+    },
+    {
+      "id": "CLM-003",
+      "text": "The objective statements this deliverable serves are `OBJ-001` \"Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation\" (`SOFTWARE_DECOMP.md` \u00a73, `SourceRef` \u00a73.1; `PRD.md` \u00a73 outcome 1) and `OBJ-002` \"Staleness is detected structurally by SHA comparison, never by judgment\" (\u00a73, `SourceRef` \u00a73.2; `PRD.md` \u00a73 outcome 2). Both attributions are indirect through the record tier per the warrant above.",
+      "line": 104,
+      "quote_sha256": "b5ac3ddc74c671e9ad857c92fcd91fc66ae48504e52364a76504849ce0436579"
+    },
+    {
+      "id": "OUT-001",
+      "text": "A run-evidence JSON parser in the PEC service core: it reads `STATUS.json` and `RUNTIME_SUMMARY.json` files under `execution/**` in the checkouts it is pointed at, parses them under a declared grammar, and emits RunRecord summaries carrying citation provenance to their live sources.",
+      "line": 115,
+      "quote_sha256": "6d727d239f8b4a1398c86c382f5c2c170a09d26933fceccda73a3c10bd6f9f0c"
+    },
+    {
+      "id": "OUT-002",
+      "text": "A fixture test suite covering the parser against well-formed, malformed, unreadable, absent, and schema-unrecognized run-evidence fixtures, implementing the verification methods declared in this contract.",
+      "line": 116,
+      "quote_sha256": "9cc7449c60daaefde1d21b2b45c2601d7e941dfc102e009708f69f6e3e50ee93"
+    },
+    {
+      "id": "CLM-004",
+      "text": "`DEL-02-04` is named \"Run-evidence JSON parser\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-014`, `SupportsObjectives` `OBJ-001;OBJ-002`, `ContextEnvelopeNotes` empty, with the register `Description` field reading \"`STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` into RunRecord summaries.\" Sources: `Deliverables.csv` row `DEL-02-04` and the `SOFTWARE_DECOMP.md` \u00a75 PKG-02 table row \"| DEL-02-04 | Run-evidence JSON parser | BACKEND_FEATURE_SLICE | S | P1 | SOW-014 |\". The `Description` field is the sole register statement of the parser's output target: RunRecord summaries.",
+      "line": 120,
+      "quote_sha256": "1c8ca271b8a288eaf6cd49cf6d320b6e55372b076a53428ff902e2e7485a278a"
+    },
+    {
+      "id": "CLM-005",
+      "text": "The seven-way split of `PEC-RCN-002` into `SOW-011..017` is decision-log entry `DL-4` (2026-07-24), whose Decision cell reads \"PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind\" and whose Rationale cell reads \"Each feed is a separately testable parser with its own grammar; a single \\\"ingest everything\\\" item is not atomic\". This deliverable is one feed kind: run-evidence JSON. The other six feeds belong to `DEL-02-01` through `DEL-02-03` and `DEL-02-05` through `DEL-02-07`.",
+      "line": 121,
+      "quote_sha256": "149947ddbdef8c61b6ab11a3845b30fc17e847a79ecb346a651cd61bcb9c2d75"
+    },
+    {
+      "id": "CLM-006",
+      "text": "The `PKG-02` package charter (`SOFTWARE_DECOMP.md` \u00a74) is \"Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts ledgers, run-evidence JSON, dependency registers, workplans/LOOP_INIT, `adapter.yaml` manifests\", covering \"SOW-011..017 (7)\", with \"Writing anything; interpretation beyond declared grammars\" recorded as explicitly out of package scope.",
+      "line": 122,
+      "quote_sha256": "e81105ba8b76f588c7e88e706cc46c21328db03984dda6668ef117efb21eca25"
+    },
+    {
+      "id": "CLM-007",
+      "text": "This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P06]`, held as `Dependencies.csv` register row `DEP-02-04-003`. Attributed by column: `DependencyClass` `EXECUTION`, `AnchorType` `NOT_APPLICABLE`, `Direction` `UPSTREAM`, `DependencyType` `PREREQUISITE`, `TargetType` `DELIVERABLE`, `TargetPackageID` `PKG-01`, `TargetDeliverableID` and `TargetRefID` `DEL-01-01`, `TargetName` \"Record-tier schema & entity model\", `TargetLocation` `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model`, `Statement` \"Parser emits RunRecord entities\", `EvidenceFile` `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`, `SourceRef` and `EvidenceQuote` both \"\u00a73 mapping notes (as E-P03)\", `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PENDING`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `FirstSeen` and `LastSeen` `2026-07-25`, `Status` `ACTIVE`, `Notes` \"PROPOSAL; Flag=none; EdgeID=E-P06\". The \"(as E-P03)\" shorthand is a back-reference to the sibling edge whose `BasisCitation` carries the \u00a73 mapping-note text in full; the gate exhibit's own edge-register row for `E-P06` (columns `EdgeID,PredecessorID,SuccessorID,Stratum,EdgeKind,Flag,BasisCitation,Rationale`) reads `E-P06,DEL-01-01,DEL-02-04,PROPOSAL,CONSUMES,,\u00a73 mapping notes (as E-P03),Parser emits RunRecord entities`, with `Flag` empty. The two remaining rows in this deliverable's register are the `ANCHOR` rows `DEP-02-04-001` (package-local to `PKG-02`) and `DEP-02-04-002` (`SOW-014` requirement trace).",
+      "line": 126,
+      "quote_sha256": "be3fc68c1add568716fbf35d5b3faed0f763c56e75d92955426ece1abb6354d8"
+    },
+    {
+      "id": "CLM-008",
+      "text": "`DEL-01-01` is at lifecycle state `INITIALIZED`, which is the maturity `[E-P06]` requires. `INITIALIZED` means its **contract** is the reliable input: `DEL-01-01`'s accepted `ScopeOfWork.md` exists; no schema, no entity model, and no code do. Nothing in this contract asserts that any upstream artifact exists or has been built. The output-typing obligations this parser binds to are that contract's stated obligations, quoted here:",
+      "line": 127,
+      "quote_sha256": "7f5f69976e5ab389cf7f60dc3dc5fc7d2cd9ebf5bbb72b012c8ce473e63ea1b7"
+    },
+    {
+      "id": "CLM-009",
+      "text": "The one declared downstream consumer is `DEL-03-01` (Full-rebuild reconciler (one command)) via `[E-P22]`, whose gate-exhibit row carries `BasisCitation` \"PEC-RCN-002 feed list (DL-4)\" and `Rationale` \"Full rebuild ingests run-evidence JSON\", with `Flag` empty. That edge is informational here; it lives in the consumer's register and imposes no obligation on this deliverable beyond the outputs declared above.",
+      "line": 157,
+      "quote_sha256": "6151d39f0bb82a587132f3d8f05b969859ecb4a8adc4acfc99101c0a2097f991"
+    },
+    {
+      "id": "CLM-010",
+      "text": "Phase staging, checked against the `PhaseHint` column of `Deliverables.csv` for every deliverable this contract names in its own voice: `DEL-02-04` itself, its upstream `DEL-01-01`, its sibling parsers `DEL-02-01`, `DEL-02-02`, `DEL-02-03`, `DEL-02-05`, `DEL-02-06`, `DEL-02-07`, and the cited consumers and neighbours `DEL-01-03`, `DEL-01-05`, `DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-04-03`, `DEL-04-05`, and `DEL-10-02` are all `P1`. The one exception this contract names in its own voice is `DEL-01-02` (Presence-tier schema & entity model), which is `P3`; it is cited only as the owner of scope this deliverable does not touch. No claim in this contract stages any named deliverable into a different phase.",
+      "line": 158,
+      "quote_sha256": "8da2951a5a0046300b1e9eaa8912b60a6aad5004b57f652e01571d04fab4a131"
+    },
+    {
+      "id": "CLM-011",
+      "text": "The acts adjacent to this parser are owned elsewhere and are cited here, never discharged. The record-tier entity model that types this parser's output, RunRecord included, is `DEL-01-01` (`SOW-001`). The other six feed grammars are `DEL-02-01` through `DEL-02-03` and `DEL-02-05` through `DEL-02-07` (`SOW-011`..`SOW-013`, `SOW-015`..`SOW-017`); in particular `WORK_GRAPH.json` belongs to `DEL-02-05` under `SOW-015`, whose ledger `Notes` cell reads \"`WORK_GRAPH.json` feeds DependencyEdge, not RunRecord\". Full rebuild by one command is `DEL-03-01` (`SOW-010`, `SOW-021`); incremental Git-delta reconcile is `DEL-03-02` (`SOW-018`) and drift classification is `DEL-03-03` (`SOW-019`); examined-SHA and freshness stamping with per-claim citation attachment is `DEL-04-03` (`SOW-006`, `SOW-007`); rendering a measurement limitation into an orientation response is `DEL-04-05` (`SOW-009`); the gitignored store and its ingest-boundary content-minimal guard are `DEL-01-03` (`SOW-056`); standing zero-dependency and locality enforcement is `DEL-01-05` (`SOW-052`, `SOW-053`); the standing kill test is `DEL-10-02` (`SOW-055`); the presence tier is `DEL-01-02` (`SOW-002`). This contract produces only the parser and its fixture tests.",
+      "line": 162,
+      "quote_sha256": "c6309b6d295fcbb5a8dcce20506cea8921876c447bb9c3abcf518f25441a7798"
+    },
+    {
+      "id": "CLM-012",
+      "text": "`PEC-K-05` requires the two trust tiers never be blurred: \"Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations.\" The `SOW-014` ledger `Notes` cell and the `PRD.md` \u00a77.1 RunRecord row together place the boundary exactly where this parser meets it: checkout-contained run evidence under `execution/**` is record-tier input; runtime-daemon state under user data is presence-tier only and is not this deliverable's input at all.",
+      "line": 163,
+      "quote_sha256": "3d267965e0fe66b0404c7d2054c5022d5dd9412828edbab8df7201902df73616"
+    },
+    {
+      "id": "CLM-013",
+      "text": "The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.",
+      "line": 164,
+      "quote_sha256": "2b34727b4eff2c54fbed722c9ff5fc0939689fd5f22b4c905c56b3f2da9f2dd4"
+    },
+    {
+      "id": "CLM-014",
+      "text": "Observed corpus condition, recorded as observation and not as specification. A census of this checkout on 2026-07-25 finds **342** files named `STATUS.json` and **24** named `RUNTIME_SUMMARY.json` beneath a path segment `execution`, distributed across the root loop's `execution/` tree (272 and 21) and the projects `chirality-app-dev` (54 and 1) and `chirality-piping` (16 and 2). All 366 parse as well-formed JSON today. Their shape is heterogeneous: **189** of the 342 `STATUS.json` files carry no `schema` key at all, those that do carry **24** distinct `schema` values, and the corpus presents **1,096** distinct top-level keys; for `RUNTIME_SUMMARY.json`, 9 of 24 carry no `schema` key, 3 distinct `schema` values appear, and 115 distinct top-level keys. The `projects/pec` tree contains **zero** files of either name. These files are the corpus the parser will meet; they are not a contract, and no accepted PEC source adopts any of their shapes.",
+      "line": 165,
+      "quote_sha256": "64f6025ea77cd310dfdc515339d61eb4c66235729b68b870e8a834ea0be4013c"
+    },
+    {
+      "id": "TBD-001",
+      "text": "`ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "line": 167,
+      "quote_sha256": "8ec200c8565515ccbd8487c9e8632a45ac15d35278acbceb56347cd43f29286e"
+    },
+    {
+      "id": "TBD-002",
+      "text": "The grammar this parser declares \u2014 which keys of `STATUS.json` and `RUNTIME_SUMMARY.json` it reads, their semantics, how it recognizes a declared `schema` value, and how it treats a file carrying none \u2014 is fixed by no accepted source. It is chosen during production within REQ-002 and CLM-006, against the corpus condition of CLM-014.",
+      "line": 168,
+      "quote_sha256": "60653e0b437b44f1fc2b85d24d9d385302054be36b3bb096c3034efade48bb94"
+    },
+    {
+      "id": "TBD-003",
+      "text": "The field set of a RunRecord summary is not enumerated by any accepted source. `PRD.md` \u00a77.1 says \"Summaries of checkout-contained AgentRun evidence\" without listing fields, and the upstream contract quoted in CLM-008 obliges the RunRecord type to exist and bounds what it may admit without enumerating what it holds. The concrete summary shape therefore arrives from `DEL-01-01`'s production; this contract binds the parser to that type rather than defining it (REQ-003, CON-002).",
+      "line": 169,
+      "quote_sha256": "f1cfbc497ae7089060b8dc19c934bcd68bfcf2062c454298479836c74578e840"
+    },
+    {
+      "id": "TBD-004",
+      "text": "How a run-evidence file is bound to the loop, package, or deliverable it belongs to is fixed by no accepted source. Some observed files carry `package_id` or `deliverable_id` keys and most do not (CLM-014); whether binding is derived from path position, from file content, or from the feed manifest is a production choice within TBD-002, and it is not settled here.",
+      "line": 170,
+      "quote_sha256": "0942360c15e96c58740f49642746ea3c362e3c4a495132a1a94ecebf13caad13"
+    },
+    {
+      "id": "REQ-001",
+      "text": "The parser shall read files named `STATUS.json` and `RUNTIME_SUMMARY.json` located beneath `execution/**` in the checkouts it is pointed at, and shall emit from them RunRecord summaries, per the `SOW-014` statement (CLM-001) and the register `Description` (CLM-004).",
+      "line": 177,
+      "quote_sha256": "53712787436a1b056623d6cd8436f37c22b0146fefd9336778beadc2cf4ea0c0"
+    },
+    {
+      "id": "REQ-002",
+      "text": "The parser shall document the grammar it consumes \u2014 every key it reads and that key's semantics \u2014 and shall let no undeclared key influence its output, per the `PKG-02` out-of-scope line \"interpretation beyond declared grammars\" (CLM-006). Where a file declares a `schema` value the parser does not recognize, and where a file declares none, the grammar shall state what the parser does; silent best-effort interpretation of unrecognized shapes is prohibited.",
+      "line": 178,
+      "quote_sha256": "7e621bb5bedc238422547bf6933bfc20449f0e1d435fbc9d2f6060e72b62589d"
+    },
+    {
+      "id": "REQ-003",
+      "text": "The parser's emitted summaries shall be typed as the RunRecord entity of the upstream record-tier entity model quoted in CLM-008. This deliverable shall define no record-tier entity type of its own, shall add no type to that model, and shall not depend on any upstream artifact existing; it depends on the upstream contract only (CON-002).",
+      "line": 179,
+      "quote_sha256": "8b9f5d33f2b9a4614931e51ae7779104234a4c6c2d225653868abafe42cb8404"
+    },
+    {
+      "id": "REQ-004",
+      "text": "The parser shall admit only checkout-contained run evidence beneath `execution/**`. Runtime-daemon state under user data shall not be an input and shall not be representable in any emitted summary, per the `SOW-014` ledger note \"Daemon user-data state is presence-tier only\", the `PRD.md` \u00a77.1 RunRecord row (CLM-002), `D-GOV-20` \u00a75, and `PEC-K-05` (CLM-012).",
+      "line": 180,
+      "quote_sha256": "e6ae509926abf1a7eeba230dfe80e6e59ed0e22d8a46b8d6c74f826f58d83754"
+    },
+    {
+      "id": "REQ-005",
+      "text": "Every emitted summary shall carry provenance sufficient for a per-claim citation to its live source \u2014 file path, anchor, and/or SHA \u2014 per `PEC-ORI-004` and the upstream provenance obligation quoted in CLM-008. Attaching citations to an orientation response is `DEL-04-03`'s act under `SOW-007` (CLM-011); this requirement obliges the parser to carry what that act needs, and no more.",
+      "line": 181,
+      "quote_sha256": "ada7a548463882cf7be837b4cdea880359ee414256a6da1e230e2bd400eb2890"
+    },
+    {
+      "id": "REQ-006",
+      "text": "Where a run-evidence file is absent, unreadable, malformed as JSON, or carries a shape the declared grammar does not recognize, the parser shall report that condition explicitly to its caller, naming the file and the fault; a silently dropped, empty, partial, or defaulted summary is prohibited, per `PEC-ORI-006` (\"Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited\"). Rendering such a limitation into an orientation response is `SOW-009` / `DEL-04-05` scope (CLM-011); this deliverable makes the limitation available to that consumer.",
+      "line": 182,
+      "quote_sha256": "b49d50721942d3758773b2c6f5e1d14430ba6e93935eb11024d248abfe6417d7"
+    },
+    {
+      "id": "REQ-007",
+      "text": "The parser shall create, modify, or delete no source file, including the run-evidence files it reads, per `PEC-RCN-004` (\"it shall never modify a source file\"), `PEC-RCN-006` (\"The reconciler writes only its own store and generated views\"), and the `PKG-02` out-of-scope line \"Writing anything\".",
+      "line": 183,
+      "quote_sha256": "5bdb4220acd25bb8fb1a91b23a30d65514425d2b6f22b8e57687cab8b83a686f"
+    },
+    {
+      "id": "REQ-008",
+      "text": "The emitted summaries shall be content-minimal: paths, counts, identifiers, states, SHAs, and hashes, never file or diff content, per `PEC-K-10`. The observed corpus embeds free prose in fields such as blockers, unknowns, and returns (CLM-014); the parser shall not carry that prose into the record tier. Enforcement at the ingest boundary is `DEL-01-03`'s guard under `SOW-056` (CLM-011); this requirement binds what the parser emits so that the guard has nothing to admit.",
+      "line": 184,
+      "quote_sha256": "73e3900854a2143615c636b0dcab0822cbde53ab7889342207521e127da826fa"
+    },
+    {
+      "id": "REQ-009",
+      "text": "The parser shall be deterministic over its inputs: the same file set at the same content shall yield the same summaries, so that the record tier remains fully regenerable from sources per `PEC-K-02` and the upstream regenerability obligation quoted in CLM-008. The rebuild command itself is `DEL-03-01`'s under `SOW-010` (CLM-011).",
+      "line": 185,
+      "quote_sha256": "8b5b9897b12b6d5d0851af4327d4e2f98416533f2515acd5a9b76226cf5feb56"
+    },
+    {
+      "id": "REQ-010",
+      "text": "The parser and its fixtures shall introduce no third-party runtime dependency and no external network egress, per `PEC-SVC-001` and `PEC-SVC-002`, whose standing enforcement is `DEL-01-05` covering `SOW-052` and `SOW-053`.",
+      "line": 186,
+      "quote_sha256": "ffd2428e4e6a16c82792ccd3a908f9359017fd189f52dcbcc9597d21b2a45be0"
+    },
+    {
+      "id": "REQ-011",
+      "text": "The parser shall parse no feed owned by a sibling deliverable and shall perform no act owned by another package. In particular it shall not read `WORK_GRAPH.json` (`DEL-02-05` / `SOW-015`), shall emit no DependencyEdge, Receipt, DecisionRow, or Workplan/Step/Gate entity, and shall perform no reconciliation, drift classification, freshness stamping, or citation attachment (CLM-011).",
+      "line": 187,
+      "quote_sha256": "621a874efa9fe693e41533c66a7bde149c70c1a0551e026e2c51e30f4f540241"
+    },
+    {
+      "id": "REQ-012",
+      "text": "Tests shall implement the verification methods declared in this contract; they shall not define scope, requirements, or acceptance criteria.",
+      "line": 188,
+      "quote_sha256": "eb95df994c7ff17df8baf3c751caddf02c21a1b284e9dd4f5e59e441c56c20b0"
+    },
+    {
+      "id": "AC-001",
+      "text": "The parser reads a well-formed fixture pair and yields exactly the RunRecord summaries the fixture declares; every key it reads appears in the documented grammar; altering an undeclared key in the fixture changes nothing in its output; and a fixture with an unrecognized `schema` value and a fixture with no `schema` key are each handled as the documented grammar states.",
+      "line": 190,
+      "quote_sha256": "dfd60129e7b64773d66f756613aea58847cd85f4a922de230ba596bfa6e56532"
+    },
+    {
+      "id": "AC-002",
+      "text": "Every emitted summary is an instance of the upstream RunRecord type as that contract obliges it; no record-tier entity type is defined in this deliverable's source; and no element of this deliverable asserts or requires that an upstream schema, entity model, or store exists.",
+      "line": 191,
+      "quote_sha256": "570650f95564eee5a78eb0bda141b74c2a1bf9919e4bed72ea757e4a4d0b7497"
+    },
+    {
+      "id": "AC-003",
+      "text": "Only files beneath `execution/**` are read, and a fixture carrying runtime-daemon user-data state produces no summary and no record-tier field, so no presence fact can reach a record-tier citation through this parser.",
+      "line": 192,
+      "quote_sha256": "f32f9b6ea02f914b03adc46e1dfdb3e817355665997fbbedd9e0fd2a2aaeaed9"
+    },
+    {
+      "id": "AC-004",
+      "text": "Every emitted summary resolves to its live source: for a sample of each fixture kind, the recorded provenance is present and locatable by path, anchor, and/or SHA.",
+      "line": 193,
+      "quote_sha256": "bbf9fea6c485db3c98e30b5d819e50e3c2ac9ae6f748cef8ab127a33c3e70eee"
+    },
+    {
+      "id": "AC-005",
+      "text": "For absent, unreadable, malformed-JSON, and schema-unrecognized fixtures, the parser returns an explicit limitation naming the file and the fault, and never a silently dropped, empty, partial, or defaulted summary in its place.",
+      "line": 194,
+      "quote_sha256": "508fa56351f478e5798cda58e81e5f910a0dec54f155519d455072ebec0b5561"
+    },
+    {
+      "id": "AC-006",
+      "text": "A parser run over a fixture corpus leaves that corpus byte-identical, and the module contains no write, create, or delete call against any source path.",
+      "line": 195,
+      "quote_sha256": "d111181b58a1fb6378ed2dee49c7452da4d034cba08a184eb0bf4bcb3be69f4d"
+    },
+    {
+      "id": "AC-007",
+      "text": "The emitted summaries for a prose-bearing fixture contain no file content, no diff content, and no free-prose payload carried from the run-evidence file; only paths, counts, identifiers, states, SHAs, and hashes appear.",
+      "line": 196,
+      "quote_sha256": "19492be905314299c17622263b682563f0180818ae44dab8759a8d281bb8e206"
+    },
+    {
+      "id": "AC-008",
+      "text": "Two runs of the parser over the same unchanged fixture corpus produce identical summaries, and inspection finds no emitted field whose value a rebuild from the same sources could not reproduce.",
+      "line": 197,
+      "quote_sha256": "2237bc10e2e749f0f03be8c863c95c30bdda82475babbd05816469ca9fc4326b"
+    },
+    {
+      "id": "AC-009",
+      "text": "The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "line": 198,
+      "quote_sha256": "785515ba281f8327e485f1be8d2a92659658f63d024b6877f2a39fb6564d86f9"
+    },
+    {
+      "id": "AC-010",
+      "text": "The parser reads no sibling feed \u2014 `WORK_GRAPH.json` included \u2014 emits no entity type other than RunRecord, and performs no reconciliation, drift-classification, stamping, or citation-attachment act owned by `PKG-03` or `PKG-04`.",
+      "line": 199,
+      "quote_sha256": "6eef676d79a441f0251850d55e95488ada662d3b5ec6d9ec784a68720ceb1432"
+    },
+    {
+      "id": "AC-011",
+      "text": "The fixture test suite implements VER-001 through VER-010, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "line": 200,
+      "quote_sha256": "3f690ecc986e04bccaaa4a9e9181e1179a5386756105a70cef0f5851000b6459"
+    },
+    {
+      "id": "AC-012",
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-014`, `OBJ-001`, and `OBJ-002` as ruled at SCA-002 Gate 3 Q2, confirms that the indirect `OBJ-002` leg is stated no more strongly here than the Gate 3 record states it \u2014 including the recorded and unadopted N1 narrowing evidence and the absence of a confidence label on that group \u2014 and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, or `PKG-04` scope has been absorbed.",
+      "line": 201,
+      "quote_sha256": "593ab467b4bc91433cd258cb0438fdc2ae3a29a1cc048a9904aca669f9d0b9d2"
+    },
+    {
+      "id": "CON-001",
+      "text": "No accepted source declares a schema for `STATUS.json` or `RUNTIME_SUMMARY.json`. The corpus measured in CLM-014 is heterogeneous by a wide margin \u2014 most `STATUS.json` files declare no schema at all, those that do declare two dozen different ones, and over a thousand distinct top-level keys appear across the set. `PKG-02`'s charter permits a declared grammar and forbids \"interpretation beyond declared grammars\"; those two facts are in tension for this feed, because a grammar narrow enough to be declarable will not describe most of the corpus, and a grammar wide enough to describe the corpus is interpretation. This contract records the tension rather than resolving it: REQ-002 requires the grammar to be declared and to state its own behaviour on unrecognized shapes, and REQ-006 requires every file the grammar does not cover to surface as an explicit limitation rather than a silent omission. Choosing the grammar's breadth is a production decision bounded by those requirements; extending this deliverable to interpret shapes it has not declared would be a scope-change question, not a production decision.",
+      "line": 203,
+      "quote_sha256": "0a0e53db9d5d3ad81c4b5be6f6342e036e35c4e21aa478730c56d6041dc73b9e"
+    },
+    {
+      "id": "CON-002",
+      "text": "The RunRecord summary field set is owned upstream and does not yet exist. `DEL-01-01` is `INITIALIZED`: its contract obliges the RunRecord type and bounds what it may admit (CLM-008), but neither it nor any accepted source enumerates the type's fields (TBD-003). This parser's output typing therefore binds to an obligation, not to an artifact. Nothing in this contract defines, anticipates, or constrains that field set, and a production choice here that fixed it would take a decision in the wrong place.",
+      "line": 204,
+      "quote_sha256": "3ac152c7ee865098f106f9d3ff9f3c4dd400c7b40f634068c9d1acdf31885853"
+    },
+    {
+      "id": "CON-003",
+      "text": "The corpus this parser is first expected to meet is empty at the point of first reading. `OI-010`, resolved at Gate 2 (2026-07-24), records that \"... the first loop the P1 reconciler ingests is PEC v2's own build (bootstrap as thesis validation) ...\", and the `projects/pec` tree contains no `STATUS.json` and no `RUNTIME_SUMMARY.json` today (CLM-014). This is recorded as a stated condition, not a defect and not a licence to widen the read scope: the parser's coverage of a loop with no run evidence is a limitation to be stated under REQ-006, and reaching outside `execution/**` to find inputs is prohibited by REQ-004.",
+      "line": 205,
+      "quote_sha256": "4f605befa4b6e99cdb1a9be5219018e705c26f4a5d47f22293e7c0e017d95df0"
+    },
+    {
+      "id": "VER-001",
+      "text": "Execute the parser over a well-formed fixture pair and assert the emitted summaries equal the fixture's declared expectation; compare the set of keys actually read, by instrumentation or code inspection, against the documented grammar; mutate an undeclared key to assert output invariance; and execute the unrecognized-`schema` and absent-`schema` fixtures, asserting the documented behaviour in each case.",
+      "line": 219,
+      "quote_sha256": "264ae0c5d4560a97fd7f328d24cf9e05484a00f19e773514201e96314cb4d8e5"
+    },
+    {
+      "id": "VER-002",
+      "text": "Inspect this deliverable's source for any record-tier type definition and assert none is present; assert every emitted summary is constructed against the upstream RunRecord type as the contract quoted in CLM-008 obliges it; and grep the source and fixtures for any assumption that an upstream schema, model, or store exists, asserting none.",
+      "line": 220,
+      "quote_sha256": "0e90f23440bc36a74a67ab967c28dcd8ead8dee3f751829690019e770af95319"
+    },
+    {
+      "id": "VER-003",
+      "text": "Tier-boundary exercise: point the parser at a fixture tree containing files beneath and outside `execution/**` plus a runtime-daemon user-data state fixture, and assert that only the `execution/**` files are read and that the daemon-state fixture yields no summary and no record-tier field.",
+      "line": 221,
+      "quote_sha256": "98a1b80212468f3f5732b6a40ffa82a3f15071037c93b3edd7ea7e31a4bbc306"
+    },
+    {
+      "id": "VER-004",
+      "text": "Provenance resolution: for a sample summary from each fixture kind, resolve the recorded provenance to a live file source and assert that path, anchor, and/or SHA are present and locatable.",
+      "line": 222,
+      "quote_sha256": "fc88dda472235e5eed72aa793c95c11a5f5ad47f6012c5276e8b9587eb1645fd"
+    },
+    {
+      "id": "VER-005",
+      "text": "Execute the parser against absent, unreadable, malformed-JSON, and schema-unrecognized fixtures and assert, per case, an explicit limitation naming the file and the fault, with no dropped, empty, partial, or defaulted summary returned.",
+      "line": 223,
+      "quote_sha256": "ae4b8adaa2612de88f9d847704e80b76302dc3a2e233d35d9d0354d772ba1be9"
+    },
+    {
+      "id": "VER-006",
+      "text": "Hash the fixture corpus tree before and after a parser run and assert byte-identity; inspect the module's call graph for write, create, or delete operations against any source path.",
+      "line": 224,
+      "quote_sha256": "6819f49a663bb52b2ae33bfc171824b63ac2d5376a7caa13299c0d766d3786fe"
+    },
+    {
+      "id": "VER-007",
+      "text": "Content-minimal inspection: run the parser over a fixture whose run-evidence fields carry free prose, diff-shaped text, and file content, and assert field by field that the emitted summaries carry none of it, only paths, counts, identifiers, states, SHAs, and hashes.",
+      "line": 225,
+      "quote_sha256": "d6b5a71bb36915df5a3d4a565343b979f706b986508b14d6b132074601677b33"
+    },
+    {
+      "id": "VER-008",
+      "text": "Determinism check: run the parser twice over the same unchanged fixture corpus and assert the emitted summaries are identical; inspect the emitted field inventory for any value the parser did not derive from the source files.",
+      "line": 226,
+      "quote_sha256": "893c3844497b841f86400bb070dfc3673c886f15dc3ba08de201a6f081d2a5e4"
+    },
+    {
+      "id": "VER-009",
+      "text": "Inspect the `PKG-02` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here.",
+      "line": 227,
+      "quote_sha256": "d51f35962ec6bede3d1f106dc0e42ec6d42461b7596cb60962e483ac65c4d6b7"
+    },
+    {
+      "id": "VER-010",
+      "text": "Boundary inspection: assert the parser opens no file named `WORK_GRAPH.json` or any other sibling feed, emits no entity type other than RunRecord, and contains no reconciliation, drift-classification, stamping, or citation-attachment code path.",
+      "line": 228,
+      "quote_sha256": "7241df4835b8de902611a1430f071b4d2042929db2ae926db2124924c7158562"
+    },
+    {
+      "id": "VER-011",
+      "text": "Run the `PKG-02` test suite and confirm that each of VER-001 through VER-010 has a corresponding executing automated test and that no test asserts a criterion absent from this contract.",
+      "line": 229,
+      "quote_sha256": "bb35b5854e09ec99135128db5817786a547c364f9386c2d188b1c23a76aee89c"
+    },
+    {
+      "id": "AX-001",
+      "text": "`OBJ-001` governs: orientation is a sub-second query with per-claim citations. A run-evidence summary that cannot say which file it came from cannot serve a cited orientation, whatever else it holds; provenance is therefore a property of what this parser emits (REQ-005) rather than a decoration added downstream.",
+      "line": 233,
+      "quote_sha256": "9ce95c43698a4e0d3e18d650a222064cd2c08cbd0491c77fb2fe76bd032794a7"
+    },
+    {
+      "id": "AX-002",
+      "text": "`OBJ-002` governs indirectly, through the record tier. This deliverable produces facts the SHA comparison operates over; it does not perform that comparison, and no requirement here may be read as claiming otherwise. Its contribution to the objective is that its output is deterministic and regenerable (REQ-009), so a difference between two reconciles is a structural difference and never a judgment.",
+      "line": 234,
+      "quote_sha256": "d5f1d4aa4441e56323643caf3e6a9bb134c4aed0bc54e52453671d4ed512368b"
+    },
+    {
+      "id": "AX-003",
+      "text": "`PEC-K-05` governs the tier boundary, and this feed is where the boundary is most easily blurred: the same run produces checkout-contained evidence and daemon user-data state, and only the first is record-tier. `SOW-014`'s own ledger note draws the line. REQ-004 enforces it at the input, so that presence facts have no route into a record-tier citation through this parser.",
+      "line": 235,
+      "quote_sha256": "b04d9aa57b8c562338ea7be6f9e9ee138c322557485fa1a32b45c4dbe6d05ce4"
+    },
+    {
+      "id": "AX-004",
+      "text": "`PEC-K-10` content-minimal is a residency posture, not a storage optimization, and this feed carries the most prose of any in `PKG-02`: the observed corpus embeds blocker text, unknowns, and whole agent returns inside JSON fields (CLM-014). The strongest available enforcement is emitting a summary that has nowhere to put prose (REQ-008); the ingest-side guard is `DEL-01-03`'s.",
+      "line": 236,
+      "quote_sha256": "34a376a006e4954da49cb4610787e8c07dc5101847cb06575100ca1138ae9c50"
+    },
+    {
+      "id": "AX-005",
+      "text": "`PEC-K-02` files govern: run-evidence JSON is authored project truth and PEC's summary of it is a projection, regenerable and never citable as authority over the file itself. `PEC-RCN-004` and `PEC-RCN-006` make the read-only posture a rule rather than a habit (REQ-007).",
+      "line": 237,
+      "quote_sha256": "0f12b18d88ee626a37b3060f10cac6cdac5e37d9b36f5c2d71784091fffd41cd"
+    },
+    {
+      "id": "AX-006",
+      "text": "`PEC-K-01` graceful absence governs: no governed act may require a PEC read or write. A loop with no run evidence \u2014 which is the pec loop's condition today (CON-003) \u2014 is a stated coverage limitation, never a blocked act and never a silent gap.",
+      "line": 238,
+      "quote_sha256": "3d6b23d27ee39e870f5714b83b3a43aad42a4fa72eccb739380f33ef01e1a90b"
+    },
+    {
+      "id": "AX-007",
+      "text": "`DL-4` is the decision that makes this deliverable atomic: one feed kind, one separately testable unit, one declared grammar. Absorbing a sibling feed grammar (`DEL-02-01`..`DEL-02-03`, `DEL-02-05`..`DEL-02-07`), the entity model that types this output (`DEL-01-01`), the reconciler that consumes it (`DEL-03-01`), or the limitation-honesty surface (`DEL-04-05`) would undo that decision. REQ-011 states the boundary as a requirement so that it is checkable.",
+      "line": 239,
+      "quote_sha256": "0888a6099f996c9c91dbf7206f46b98996135eeadb6781afdec359e6b5bb6bf3"
+    },
+    {
+      "id": "AX-008",
+      "text": "The edges `[E-P06]` (upstream, `DEL-01-01` \u2192 `DEL-02-04`) and `[E-P22]` (downstream, `DEL-02-04` \u2192 `DEL-03-01`) are `PROPOSAL` stratum and are accepted: `D-PEC-62` \u00a71(4) accepted the candidate DAG v0.2 exhibit \"all strata as presented\", read in that packet as carrying the exhibit's flags as flags, so what remains recorded-but-unresolved is the specific annotated set (E-A11, E-P69/E-N02, E-N13/E-N18, the C-02 direction, the C-08 standing-node set) \u2014 none of which touches `E-P06` or `E-P22`, both of which carry an empty `Flag` column in the exhibit. Stratum is provenance, not authority: it records how an edge was derived, not whether it has been accepted, and citation does not convert `PROPOSAL` to `DECLARED`.",
+      "line": 240,
+      "quote_sha256": "f22935f49a4e07183c5e2be7b7881c555be78790255fc3c58af9279382d8d9c6"
+    },
+    {
+      "id": "AX-009",
+      "text": "Edge direction is a constraint on this contract, not a licence. `RequiredMaturity` `INITIALIZED` on `[E-P06]` means the upstream *contract* is the reliable input, not any upstream artifact; this contract is written against the obligations quoted in CLM-008 and asserts nothing about upstream implementation state. Consuming that contract imposes no obligation on `DEL-01-01`, and being consumed by `DEL-03-01` neither expands nor transfers scope in either direction.",
+      "line": 241,
+      "quote_sha256": "29f7eabb18f5f1aaf13c52c9c0d48da683dbf657ee8989188933bcd3f040b9e5"
+    },
+    {
+      "id": "AX-010",
+      "text": "Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-003 are recorded rather than resolved by inference. `C-04` `PHASE_PRECEDENCE` and `C-10` `STRATUM_RULE` are register-wide non-gating constraints recorded in `_DEPENDENCIES.md`, and blocker output under the `FULL_GRAPH` mode at threshold `INITIALIZED` is advisory visibility only, never work assignment.",
+      "line": 242,
+      "quote_sha256": "4a695f698feeffde470bf11493ae5ad45df16c1e0b7e1926f669c9f3b725fbbd"
+    },
+    {
+      "id": "AX-011",
+      "text": "This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by the run that authored this document; the deliverable is at `OPEN` and nothing has been built.",
+      "line": 243,
+      "quote_sha256": "4229c2f530e9957cb4e2ba1d5aea15facad827407dd101a81693b0e2889c1af7"
+    }
+  ],
+  "v2_files": [
+    "projects/pec/v2/config/loops.json",
+    "projects/pec/v2/config/loops.schema.json",
+    "projects/pec/v2/config/service_core_posture.json",
+    "projects/pec/v2/contracts/api/v1/schema.json",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md",
+    "projects/pec/v2/src/pec_v2/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+    "projects/pec/v2/src/pec_v2/core/__init__.py",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json",
+    "projects/pec/v2/tests/config/fixtures/malformed.json",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json",
+    "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+    "projects/pec/v2/tools/check_service_core_posture.py"
+  ],
+  "current_status": "# Status: DEL-02-04\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-07-25\n\n## History\n- 2026-07-25 \u2014 State set to OPEN (PREPARATION)\n- 2026-07-25 \u2014 State set to INITIALIZED (TASK+status-advance)\n",
+  "dependency_rows": [
+    {
+      "RegisterSchemaVersion": "v3.1",
+      "DependencyID": "DEP-02-04-001",
+      "FromPackageID": "PKG-02",
+      "FromDeliverableID": "DEL-02-04",
+      "FromDeliverableName": "Run-evidence JSON parser",
+      "DependencyClass": "ANCHOR",
+      "AnchorType": "IMPLEMENTS_NODE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "OTHER",
+      "TargetType": "PACKAGE",
+      "TargetPackageID": "PKG-02",
+      "TargetDeliverableID": "",
+      "TargetRefID": "PKG-02",
+      "TargetName": "PKG-02_File_Truth_Parsers",
+      "TargetLocation": "execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "Statement": "DEL-02-04 is package-local to PKG-02.",
+      "EvidenceFile": "execution/_Decomposition/Deliverables.csv",
+      "SourceRef": "Deliverables.csv row DEL-02-04",
+      "EvidenceQuote": "PackageID PKG-02",
+      "Explicitness": "EXPLICIT",
+      "RequiredMaturity": "NOT_APPLICABLE",
+      "ProposedMaturity": "TBD",
+      "SatisfactionStatus": "SATISFIED",
+      "Confidence": "HIGH",
+      "Origin": "DECLARED",
+      "FirstSeen": "2026-07-25",
+      "LastSeen": "2026-07-25",
+      "Status": "ACTIVE",
+      "Notes": "Tree anchor seeded under D-PEC-62"
+    },
+    {
+      "RegisterSchemaVersion": "v3.1",
+      "DependencyID": "DEP-02-04-002",
+      "FromPackageID": "PKG-02",
+      "FromDeliverableID": "DEL-02-04",
+      "FromDeliverableName": "Run-evidence JSON parser",
+      "DependencyClass": "ANCHOR",
+      "AnchorType": "TRACES_TO_REQUIREMENT",
+      "Direction": "UPSTREAM",
+      "DependencyType": "OTHER",
+      "TargetType": "REQUIREMENT",
+      "TargetPackageID": "",
+      "TargetDeliverableID": "",
+      "TargetRefID": "SOW-014",
+      "TargetName": "SOW-014",
+      "TargetLocation": "execution/_Decomposition/ScopeLedger.csv",
+      "Statement": "DEL-02-04 covers scope item SOW-014.",
+      "EvidenceFile": "execution/_Decomposition/ScopeLedger.csv",
+      "SourceRef": "ScopeLedger.csv row SOW-014",
+      "EvidenceQuote": "DeliverableIDs include DEL-02-04",
+      "Explicitness": "EXPLICIT",
+      "RequiredMaturity": "NOT_APPLICABLE",
+      "ProposedMaturity": "TBD",
+      "SatisfactionStatus": "SATISFIED",
+      "Confidence": "HIGH",
+      "Origin": "DECLARED",
+      "FirstSeen": "2026-07-25",
+      "LastSeen": "2026-07-25",
+      "Status": "ACTIVE",
+      "Notes": "Tree anchor seeded under D-PEC-62"
+    },
+    {
+      "RegisterSchemaVersion": "v3.1",
+      "DependencyID": "DEP-02-04-003",
+      "FromPackageID": "PKG-02",
+      "FromDeliverableID": "DEL-02-04",
+      "FromDeliverableName": "Run-evidence JSON parser",
+      "DependencyClass": "EXECUTION",
+      "AnchorType": "NOT_APPLICABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "TargetType": "DELIVERABLE",
+      "TargetPackageID": "PKG-01",
+      "TargetDeliverableID": "DEL-01-01",
+      "TargetRefID": "DEL-01-01",
+      "TargetName": "Record-tier schema & entity model",
+      "TargetLocation": "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model",
+      "Statement": "Parser emits RunRecord entities",
+      "EvidenceFile": "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "SourceRef": "\u00a7Deliverable Definition \u2014 Ontology / Boundaries, claim CLM-012",
+      "EvidenceQuote": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
+      "Explicitness": "IMPLICIT",
+      "RequiredMaturity": "INITIALIZED",
+      "ProposedMaturity": "TBD",
+      "SatisfactionStatus": "PENDING",
+      "Confidence": "MEDIUM",
+      "Origin": "EXTRACTED",
+      "FirstSeen": "2026-07-25",
+      "LastSeen": "2026-07-25",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P06"
+    }
+  ]
+}

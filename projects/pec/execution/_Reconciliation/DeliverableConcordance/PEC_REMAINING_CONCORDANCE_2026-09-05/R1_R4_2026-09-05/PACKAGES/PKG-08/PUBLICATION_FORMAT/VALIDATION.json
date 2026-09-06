@@ -1,0 +1,10 @@
+{
+  "status": "MANAGER_FORMAT_PASS_PENDING_INDEPENDENT_BACKCHECK",
+  "files_changed": 3,
+  "line_edits": 57,
+  "csv_Notes_cells_trimmed": 56,
+  "other_csv_values_changed": 0,
+  "python_ast_equal": true,
+  "preimages_lossless": true,
+  "original_snapshot_precheck_pass": true
+}

@@ -1,0 +1,324 @@
+{
+  "status": "PASS",
+  "changes": [
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::OUT-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::OUT-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::TBD-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::TBD-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CON-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::CLM-008",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-008",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-009",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::REQ-010",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AC-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AC-002",
+      "field": "ExactGate",
+      "before": "Owner interpretation/acceptance disposition; any edit requires exact CHECKING change authorization and REVIEW against resulting hashes",
+      "after": "NOT_SELECTABLE_UNTIL: Owner interpretation/acceptance disposition; any edit requires exact CHECKING change authorization and REVIEW against resulting hashes"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AC-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AC-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AC-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AC-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AC-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::VER-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::VER-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::VER-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::VER-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AX-001",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AX-002",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AX-003",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AX-004",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AX-005",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AX-006",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::AX-007",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::LIFECYCLE",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_CLAIMS.csv",
+      "row_id": "DEL-00-01::C05",
+      "field": "Depends",
+      "before": "",
+      "after": "NONE"
+    },
+    {
+      "file": "PACKAGE_RESIDUALS.csv",
+      "row_id": "DEL-00-01-REM-001",
+      "field": "ExactGate",
+      "before": "Owner interpretation/acceptance disposition; separate exact CHECKING change authorization before any edit",
+      "after": "NOT_SELECTABLE_UNTIL: Owner interpretation/acceptance disposition; separate exact CHECKING change authorization before any edit"
+    }
+  ],
+  "scope": "Selected final aggregate exact44-cell mapping",
+  "aggregate_hashes": {
+    "PACKAGE_CLAIMS.csv": "d17e7cac30dddfce44c73d1a1af85b2c16a6037ad24617e4dd26e16bc466a779",
+    "PACKAGE_RESIDUALS.csv": "eb02125660662c5268f1a7341562d2a791a13a60d7fb1b7561c35e305d567137",
+    "PACKAGE_SUMMARY.csv": "9c2636af974f9230aae706b67db0232497b7eeefbe4a0681937c1a8d3963365a"
+  },
+  "preimage_hashes": {
+    "PACKAGE_CLAIMS.csv": "18cc498be1be7d446c7e4a6c113f109c0a6fd3fb2044c7e101eabeee0544c49c",
+    "PACKAGE_RESIDUALS.csv": "b420fd6fd7160f2b73759532e9a5dd3e0127a6fe31b22c65fd62183a2d48fc9b",
+    "PACKAGE_SUMMARY.csv": "21f2eb9741ece875b345abac85e2055e8c1d19bf603bc00808aeb61447932eb8"
+  }
+}

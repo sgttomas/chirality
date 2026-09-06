@@ -1,0 +1,11 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "common_hashes_reproduced": 648,
+  "selected_worker_source_hashes_reproduced": 344,
+  "source_unchanged": true,
+  "product_tests_or_services_executed": false,
+  "mutation_allowlist": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/**",
+  "scratch_only": "/tmp",
+  "remaining_status_contract_dependency_source_writes": false,
+  "ignored_state_limit": "No product commands or imports/build/cache generators executed; source preservation hashes cover declared source boundary. Global Git/ignored containment is final CHANGE/Agent0 responsibility; sibling package writes are expected concurrent state."
+}

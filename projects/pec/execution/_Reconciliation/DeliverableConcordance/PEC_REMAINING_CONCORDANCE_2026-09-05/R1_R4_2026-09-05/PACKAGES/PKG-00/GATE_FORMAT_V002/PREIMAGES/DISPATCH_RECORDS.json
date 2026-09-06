@@ -1,0 +1,79 @@
+[
+  {
+    "deliverable": "DEL-00-01",
+    "child_id": "/root/pec_pkg00_reconciliation/del0001",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/DEL-00-01.md",
+    "brief_sha256": "0a98d85913860607fb2669369b185e3e882a7a5f71b44fc9c61b5703bce0d54a",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/**",
+    "state": "COMPLETE",
+    "execution_class": "delegated-harness-native",
+    "role": "Agent2 ephemeral",
+    "enforcement": "instruction-asserted; role not mechanically enforced",
+    "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/RETURN.md",
+    "terminal_return_sha256": "a1f28944385bc0a5751c0a288b53804e34b1dac946aec001a71e020b0c42d0c1"
+  },
+  {
+    "deliverable": "DEL-00-02",
+    "child_id": "/root/pec_pkg00_reconciliation/del0002",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/DEL-00-02.md",
+    "brief_sha256": "d2509fa8bb7d2a7f34fad956c02635024598bd801311a0e4c973991643e419e9",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-02/**",
+    "state": "COMPLETE",
+    "execution_class": "delegated-harness-native",
+    "role": "Agent2 ephemeral",
+    "enforcement": "instruction-asserted; role not mechanically enforced",
+    "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-02/RETURN.md",
+    "terminal_return_sha256": "79e2e7a846475b462382accf387f66fbdff58d5c60fa4a0e678f44cce756ac48"
+  },
+  {
+    "deliverable": "DEL-00-03",
+    "child_id": "/root/pec_pkg00_reconciliation/del0003",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/DEL-00-03.md",
+    "brief_sha256": "898411be07c723f470ea56064228a707e2bbbf38057d60466243b6c07ba787c9",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/**",
+    "state": "COMPLETE",
+    "execution_class": "delegated-harness-native",
+    "role": "Agent2 ephemeral",
+    "enforcement": "instruction-asserted; role not mechanically enforced",
+    "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/RETURN.md",
+    "terminal_return_sha256": "83c7f3bc1056a6c9612bfef8bde4737f84b0d43987d5b31ebe7a9cfbe4cc8519"
+  },
+  {
+    "deliverable": "ALL_PKG00",
+    "child_id": "/root/pec_pkg00_reconciliation/verifier",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/VERIFIER.md",
+    "brief_sha256": "736e3650cafabe9125791c1e1d546c9b0441603021d49a506d6e62255029807d",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/**",
+    "state": "COMPLETE",
+    "execution_class": "delegated-harness-native",
+    "role": "Agent2 independent verifier",
+    "enforcement": "instruction-asserted; role not mechanically enforced",
+    "terminal_return": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/BACKCHECK_V001/RETURN.md",
+    "terminal_return_sha256": "c51bc4be2554891382c4663189d567d236b220df7b31fe681be0ed1103bbbe36",
+    "findings_resolved": [
+      "V001",
+      "V002"
+    ]
+  },
+  {
+    "deliverable": "DEL-00-01",
+    "child_id": "/root/pec_pkg00_reconciliation/correction_v001",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/CORRECTION_V001.md",
+    "brief_sha256": "2981dcf78869acfe04686f7e42dfedb0737322d9289fa12d6c1f94ed1fbaccbc",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/**",
+    "state": "COMPLETE",
+    "execution_class": "delegated-harness-native",
+    "role": "Agent2 fresh ID correction",
+    "enforcement": "instruction-asserted; role not mechanically enforced",
+    "supplemental_brief": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/BRIEFS/CORRECTION_DEL0003_V001.md",
+      "sha256": "a92bee5c15c4764b9fca6b572d28c437e3505f9b5d384ddd16fbceca1e0410eb",
+      "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/**",
+      "authorization": "Agent0 instructed active fresh correction specialist supplemental bounded amendment if not finalized"
+    },
+    "terminal_returns": {
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/RETURN.md": "b824a7439f70e6c788e9c82646dbb1d7fd6cb4d9e70aaf86e7cb7111331e32d6",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/RETURN.md": "7d2f3a9d2a1abf8f63b47bf9807b1cda5e2ab96712c1068f2fe3dacfb6a2427f"
+    }
+  }
+]

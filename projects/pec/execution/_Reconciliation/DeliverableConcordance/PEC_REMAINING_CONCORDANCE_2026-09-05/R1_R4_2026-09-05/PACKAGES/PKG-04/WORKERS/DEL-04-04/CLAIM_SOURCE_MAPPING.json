@@ -1,0 +1,174 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "missing_contract": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/ScopeOfWork.md",
+  "mappings": [
+    {
+      "ClaimID": "DEL-04-04::SOW-008",
+      "mapping_kind": "PRESERVED_SOURCE_ID",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+        "line": 9,
+        "quote": "SOW-008,IN,Parameterize orientation by scope (loop / project / package) per the modes ladder,\"PEC-ORI-005, \u00a75\",PKG-04,DEL-04-04,OBJ-001,,FALSE,",
+        "quote_sha256": "1bf28bfc166720892f4a7e9da38d9abbfb825adf709a390ac423c0fe394dd371",
+        "source_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-SCOPE-001",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "line": 183,
+        "quote": "| SOW-008 | IN | Parameterize orientation by scope (loop / project / package) per the modes ladder | PEC-ORI-005, \u00a75 | |",
+        "quote_sha256": "8f8d0b1c4bdab8c3c7ff5db445e94c0fbff206e553ac3a22f99d95b59cf388c9",
+        "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-SCOPE-002",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "line": 183,
+        "quote": "| SOW-008 | IN | Parameterize orientation by scope (loop / project / package) per the modes ladder | PEC-ORI-005, \u00a75 | |",
+        "quote_sha256": "8f8d0b1c4bdab8c3c7ff5db445e94c0fbff206e553ac3a22f99d95b59cf388c9",
+        "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-SCOPE-003",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "line": 183,
+        "quote": "| SOW-008 | IN | Parameterize orientation by scope (loop / project / package) per the modes ladder | PEC-ORI-005, \u00a75 | |",
+        "quote_sha256": "8f8d0b1c4bdab8c3c7ff5db445e94c0fbff206e553ac3a22f99d95b59cf388c9",
+        "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-SCOPE-004",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "line": 183,
+        "quote": "| SOW-008 | IN | Parameterize orientation by scope (loop / project / package) per the modes ladder | PEC-ORI-005, \u00a75 | |",
+        "quote_sha256": "8f8d0b1c4bdab8c3c7ff5db445e94c0fbff206e553ac3a22f99d95b59cf388c9",
+        "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::OI-011",
+      "mapping_kind": "PRESERVED_SOURCE_ID",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "line": 613,
+        "quote": "| OI-011 | C3, C15 | **RESOLVED, THEN SUPERSEDED:** Gate 2 originally treated scoped session start and the conversation\u2192workbench transition as polling moments (DL-10). D-PEC-67's exact PEC-K-03/-11 rows and D-PEC-68's v2.2 concordance supersede that reading: PEC declares no polling moment; an explicitly enabled consumer owns mode mapping and cadence, and no receiving-loop duty is created | Closed |",
+        "quote_sha256": "7e1e9e00932d8510a3a187fd82ce7360c3dcd3eeee72ce91497b331239628c50",
+        "source_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-ARTIFACT-001",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+        "line": 27,
+        "quote": "DEL-04-04,PKG-04,Scope parameterization,Orientation parameterized by loop / project / package per the modes ladder (OI-011 resolved reading).,BACKEND_FEATURE_SLICE,TBD,Scope filters + tests,SOW-008,OBJ-001,S,,P2",
+        "quote_sha256": "2fa3c2b8339cd06fbca25c9ac0a241d03b2baa23f52a29a215ac7e295533b1a6",
+        "source_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-CONTRACT-001",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+        "line": 27,
+        "quote": "DEL-04-04,PKG-04,Scope parameterization,Orientation parameterized by loop / project / package per the modes ladder (OI-011 resolved reading).,BACKEND_FEATURE_SLICE,TBD,Scope filters + tests,SOW-008,OBJ-001,S,,P2",
+        "quote_sha256": "2fa3c2b8339cd06fbca25c9ac0a241d03b2baa23f52a29a215ac7e295533b1a6",
+        "source_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::DEP-04-04-001",
+      "mapping_kind": "PRESERVED_SOURCE_ID",
+      "source": {
+        "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+        "line": 2,
+        "quote": "v3.1,DEP-04-04-001,PKG-04,DEL-04-04,Scope parameterization,ANCHOR,IMPLEMENTS_NODE,UPSTREAM,OTHER,PACKAGE,PKG-04,,PKG-04,PKG-04_Orientation_Services,execution/_Decomposition/SOFTWARE_DECOMP.md,DEL-04-04 is package-local to PKG-04.,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-04-04,PackageID PKG-04,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62",
+        "quote_sha256": "36750f2e7759fc85399c1a5039ed0cba27a5d9fd79ed497a14f0d3883fbb4c57",
+        "source_sha256": "a0d76a37ab294995ab30f5fa047006c7379427aa06af0906c7f34443261eaee9",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::DEP-04-04-002",
+      "mapping_kind": "PRESERVED_SOURCE_ID",
+      "source": {
+        "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+        "line": 3,
+        "quote": "v3.1,DEP-04-04-002,PKG-04,DEL-04-04,Scope parameterization,ANCHOR,TRACES_TO_REQUIREMENT,UPSTREAM,OTHER,REQUIREMENT,,,SOW-008,SOW-008,execution/_Decomposition/ScopeLedger.csv,DEL-04-04 covers scope item SOW-008.,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-008,DeliverableIDs include DEL-04-04,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62",
+        "quote_sha256": "43017ff0ed17d72abf7ac885e7843d23e207bcc8d49f8b2fae2e182fde5d5edd",
+        "source_sha256": "a0d76a37ab294995ab30f5fa047006c7379427aa06af0906c7f34443261eaee9",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::DEP-04-04-003",
+      "mapping_kind": "PRESERVED_SOURCE_ID",
+      "source": {
+        "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+        "line": 4,
+        "quote": "v3.1,DEP-04-04-003,PKG-04,DEL-04-04,Scope parameterization,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-04,DEL-04-01,DEL-04-01,Loop orientation return,execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return,Scope parameterization parameterizes the orientation return,docs/PRD.md,PRD.md \u00a79.1 requirement PEC-ORI-005,Orientation shall be scope-parameterized (loop / project / package) per the modes ladder (\u00a75).,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P35",
+        "quote_sha256": "0cf01dbda8e840c11ed9bfa9f59c15d6ef0e1c07779c7e226147bd12a22b3ac9",
+        "source_sha256": "a0d76a37ab294995ab30f5fa047006c7379427aa06af0906c7f34443261eaee9",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-OWNER-001",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_CONTEXT.md",
+        "line": 13,
+        "quote": "| ResponsibleParty | TBD (assignment at WORKING_ITEMS activation) |",
+        "quote_sha256": "4f746fb61f737ae04c526100332351efcfa3bdf831062dec67ba2266087161e8",
+        "source_sha256": "3f068736b91bfdb60681e9019f5c936edd2d74b29e0f918989f0122015b1e700",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-PHASE-001",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+        "line": 27,
+        "quote": "DEL-04-04,PKG-04,Scope parameterization,Orientation parameterized by loop / project / package per the modes ladder (OI-011 resolved reading).,BACKEND_FEATURE_SLICE,TBD,Scope filters + tests,SOW-008,OBJ-001,S,,P2",
+        "quote_sha256": "2fa3c2b8339cd06fbca25c9ac0a241d03b2baa23f52a29a215ac7e295533b1a6",
+        "source_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    },
+    {
+      "ClaimID": "DEL-04-04::MAP-STATUS-001",
+      "mapping_kind": "DERIVATIVE_RUN_LOCAL_MAPPING",
+      "source": {
+        "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md",
+        "line": 3,
+        "quote": "**Current State:** OPEN",
+        "quote_sha256": "1c36d03a91bab2bce3c87f8d11c4ee43b67e11e3a627f6e39eb804e4d7486694",
+        "source_sha256": "2a4a026a6c9fb3baf40094cee6ce9d55ca787f75a2831623bd105ac72227612f",
+        "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+      }
+    }
+  ]
+}

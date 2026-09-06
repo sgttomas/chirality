@@ -1,0 +1,13 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "derivative": true,
+  "files": {
+    "CLAIMS.csv": "804d7c08ca82ab0690b6e9df7c59d3f941255c983fc65f017ccf68be12c35b73",
+    "COVERAGE.md": "f6f339f2c72a6a1d7775a3b131cd34504b02d947abffde546ba4f216dd095648",
+    "READ_MANIFEST.json": "b8db2168c93590dc69d8601890920292d67b29b811775ec5fceab7a05b0c3ee2",
+    "RESIDUALS.csv": "e5dae48534ed822a7bc52babc006cdd022c29b5102bf630f0cecb153c9f8f45e",
+    "RETURN.md": "694d38b48a7789625d29fb36950ee49525ea1e079f64b514b05ae0ce060df798",
+    "SOURCE_EXCERPTS.json": "30d33cfabd4c87e4daa624939eb39da10402801ed4f64dfa3735e517b7351b0e",
+    "VALIDATION.json": "29906f5bc3a74b0634ec69ac8051a4f9bf9100513561b28cce19d6320fede197"
+  }
+}

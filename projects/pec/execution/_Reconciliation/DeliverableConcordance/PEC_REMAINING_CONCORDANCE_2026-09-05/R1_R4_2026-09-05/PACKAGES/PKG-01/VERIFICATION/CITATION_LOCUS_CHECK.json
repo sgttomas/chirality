@@ -1,0 +1,552 @@
+[
+  {
+    "ClaimID": "DEL-01-01::CLM-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:75",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:76",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:77",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::OUT-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:81",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::OUT-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:82",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::OUT-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:83",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:87",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:88",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:89",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:90",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-008",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:94",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-009",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:95",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-010",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:96",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-011",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:100",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-012",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:101",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CLM-013",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:102",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::TBD-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:103",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::TBD-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:104",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CON-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:105",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::CON-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:106",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:113",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:114",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:115",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:116",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:117",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:118",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:119",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-008",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:120",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-009",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:121",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-010",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:122",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-011",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:123",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-012",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:124",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::REQ-013",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:125",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:127",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:128",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:129",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:130",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:131",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:132",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:133",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-008",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:134",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-009",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:135",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-010",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:136",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-011",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:137",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AC-012",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:138",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:152",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:153",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:154",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:155",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:156",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:157",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:158",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-008",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:159",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-009",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:160",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-010",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:161",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-011",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:162",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::VER-012",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:163",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:167",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:168",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:169",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:170",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:171",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:172",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:173",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-008",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:174",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-009",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:175",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-01::AX-010",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:176",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:37",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:38",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:39",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:40",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::OUT-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:53",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::OUT-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:54",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::OUT-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:55",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:57",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:58",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:59",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-008",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:60",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CLM-009",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:61",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::TBD-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:62",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::TBD-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:63",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::TBD-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:64",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:68",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:69",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:70",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:71",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:72",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:73",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:74",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::REQ-008",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:75",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AC-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:77",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AC-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:78",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AC-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:79",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AC-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:80",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AC-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:81",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AC-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:82",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AC-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:83",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::CON-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:85",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::VER-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:97",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::VER-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:98",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::VER-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:99",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::VER-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:100",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::VER-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:101",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::VER-006",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:102",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::VER-007",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:103",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AX-001",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:107",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AX-002",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:108",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AX-003",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:109",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AX-004",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:110",
+    "local_id_present": true
+  },
+  {
+    "ClaimID": "DEL-01-04::AX-005",
+    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md:111",
+    "local_id_present": true
+  }
+]

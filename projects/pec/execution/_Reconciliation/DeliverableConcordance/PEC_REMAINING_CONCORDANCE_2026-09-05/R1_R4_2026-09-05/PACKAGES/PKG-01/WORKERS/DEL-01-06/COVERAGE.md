@@ -1,0 +1,19 @@
+# DEL-01-06 current claim coverage
+
+Derivative R1 evidence, accepted upstream revision 1.4 and D81 accepted calibration selected V001; effective source 2be412ccea62bdc4bd96deb082c46d7a792076ea. ASSESSED_UNKNOWN. 38 claims: {'ALIGNED': 33, 'ACCEPTED_DIVERGENCE': 1, 'UNKNOWN': 1, 'PARTIALLY_IMPLEMENTED': 2, 'DEFERRED_AGENT_WORKFLOW': 1}. Three raw residuals: one conditional normalization interpretation and two held owner/administrative concerns; no automatic executable Remaining and no warranted NONE.
+
+All 37 SOW defined IDs covered exactly once: 7 CLM, 3 OUT, 2 TBD, 7 REQ, 6 AC, 1 CON, 6 VER, 5 AX. Purpose, scope and output-matrix prose maps through CLM-001..003, OUT-001..003, REQ-007 and CON-001; repeated matrix references are not new IDs. Scope SOW-077/SOW-094, OBJ-004.
+
+Additional mapped lifecycle row DEL-01-06::GATE5-001: projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md, heading Gate 5 owner outcome, quote `**Outcome:** retain `HOLD` at `INITIALIZED`; no transition applied or proposed.`, quote SHA256 18228bc1298e0ee1744c8e1dc626ce98aa5db50af0203f4ef383fdcdc4ba14c2.
+
+Selected immutable ledger: projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/CLAIMS.csv SHA256 9cc5f72e743a7dca4d94a535007194ed7d197eb69f152277e1e4f4b1c38fdf01; original evidence and V001 correction chain remain immutable. All current source, tests, config, method, exact SOW/REVIEW and acceptance-contract hashes match R0. Only historical authority containers _REGISTER.md and LOOP_RECEIPTS.md differ; current bytes reproduce effective base and D81 acceptance/D82 continuation dispose calibration and reporting gates only. No product acceptance continuity extrapolated from initial producer bytes.
+
+VER-001 remains finite registered malformed-fixture/default method ALIGNED. Existing verifier REGISTRY_TESTS.log records 12/12 PASS. Adapter PurePosixPath checks absolute/traversing/backslash locators, then returns original text; preserved PROBE_RESULTS.json shows ./ and repeated separators returned unchanged, absolute and ../ rejected. Owner interpretation remains conditional. No containment escape, failed registered fixture, or reversal of historical RF-001/RF-002 acceptance follows. Current adapter/port are stdlib with no network call; scanner broader limitations remain PKG01 detector concerns, not proof of this registry's egress. VER-005 recorded rerun is not waived or reopened. No gratuitous tests rerun.
+
+Exact SOW SHA 5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8 remains accepted; product/config/test artifact fitness is excluded by the acceptance contract. CLM-007 is preserved accepted future-production framing; source exists. Gate5 HOLD at INITIALIZED persists. TBD documentary state is accurate; durable future assignment is UNKNOWN and held outside automatic Remaining.
+
+All three dependencies are satisfied non-gating ANCHOR rows. No upstream prerequisite, every residual Depends NONE. Only named ACTIVE PREREQUISITE with TBD/PENDING/IN_PROGRESS blocks production. TM023 creates no unrelated gate; ordinary currency complete, TM022 deferred, PRDv2.3/D79 adopted-not-applied.
+
+Two worker exact-target candidate-validation preflights ALLOW; logged command/environment/result in READ_MANIFEST. ALLOW removes no owner gate. D81 calibration gate alone removed from proposals; exact Remaining application/source repair/REVIEW/lifecycle/metadata gates remain. All proposals NON_SELECTABLE_PENDING_OWNER_APPLICATION.
+
+Audit status: worker checks pass; independent verifier pending. Closure is bounded report readiness only. Rerun affected claims on source/method/authority/hold or cited evidence drift. No live files, status, source or historical snapshots changed.

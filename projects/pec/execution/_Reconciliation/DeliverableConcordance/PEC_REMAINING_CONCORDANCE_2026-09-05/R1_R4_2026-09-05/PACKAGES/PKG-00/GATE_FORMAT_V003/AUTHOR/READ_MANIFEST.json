@@ -1,0 +1,76 @@
+{
+  "parent": "/root/pec_pkg00_reconciliation",
+  "agent": "/root/pec_pkg00_reconciliation/gate_format_v002",
+  "role": "Agent 2 ephemeral; role not mechanically enforced",
+  "evidence": "instruction-asserted",
+  "source_base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "reads": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/PACKAGE_BASIS.md",
+      "sha256": "d46017e9351fcdeb33126fe9f4f3e168239151e036f101b42896ab89bf4299b2"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/BRIEF.md",
+      "sha256": "ef12b6064678cae045f09d3d6a7528aa157df1135ef957dea3f454edd51fe5cf"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR/CHANGE_MAP.json",
+      "sha256": "fda38683c69326ddbd728c73c015b60f445624ca92e29c5e31ab1d6666db9379"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR/CLAIMS.csv",
+      "sha256": "1fd06b719350b53351bcef93d848f8803e66d426fcd41611dd675c4b316a76a9"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR/READ_MANIFEST.json",
+      "sha256": "f65be990a0b5289bab946bd0339a7c95c659ff3393144e21a1e146147ef04954"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR/RESIDUALS.csv",
+      "sha256": "4b42507200e105d9f397b3f6b4b0b08335a6257e1f1c774f5ecb28a308daf980"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR/RETURN.md",
+      "sha256": "a50e2a581323991a86689fdd4790dd036ba4a8bca423adf5540dc5508309019c"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/CLAIMS.csv",
+      "sha256": "ace237c7f5928d30ca01af248d98ea0c67e3d4f7838976b18a004accacb1863e"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/RESIDUALS.csv",
+      "sha256": "f20bc9b345990afdfd931aa2d42d1857cd767970ed4c79d02777aab01d8fceb2"
+    }
+  ],
+  "preflight": {
+    "operation": "exact-correction-preparation",
+    "target": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V002/AUTHOR",
+    "status": "ALLOW"
+  },
+  "checks": {
+    "brief_hash_matches_seal": true,
+    "original_blank_Depends_count": 42,
+    "direct_changes": 42,
+    "composed_changes": 44,
+    "all_blank_Depends_replaced_with_literal_NONE": true,
+    "V002_gate_prefixes_preserved": true,
+    "all_other_bytes_unchanged": true,
+    "RESIDUALS_byte_identical_to_V002": true,
+    "all_read_inputs_rehashed_unchanged": true,
+    "semantic_tests": "NOT_RERUN per sealed brief"
+  },
+  "source_unchanged": true,
+  "source_unchanged_scope": "No source writes performed. V002/original inputs and other read inputs rehashed unchanged. Original source hashes remain in unchanged SourceHashes cells; broader source hash/semantic rerun deliberately not performed."
+}

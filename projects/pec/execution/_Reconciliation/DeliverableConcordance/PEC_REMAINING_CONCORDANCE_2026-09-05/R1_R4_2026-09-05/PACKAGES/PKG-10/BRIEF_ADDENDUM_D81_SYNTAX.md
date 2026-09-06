@@ -1,0 +1,3 @@
+# Exact D81 identifier/gate syntax addendum
+
+Read adopted project method projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md (its historical proposal label disposed by D81 ruling and D82 continuation). Residual IDs MUST use `<DeliverableID>-REM-001` sequence, with reciprocal claim links. Gate text includes `(gated: ...)`, `(stage-gated: ...)`, or `NOT_SELECTABLE_UNTIL:`. No R0 variation supersedes exact adopted syntax (HELP_HUMAN confirmation this run). Completed DEL10-02 original naming retained and queued for fresh naming-only correction derivative; no semantic rerun solely for ID normalization. This addendum is supplied to active03/04 and all later workers.

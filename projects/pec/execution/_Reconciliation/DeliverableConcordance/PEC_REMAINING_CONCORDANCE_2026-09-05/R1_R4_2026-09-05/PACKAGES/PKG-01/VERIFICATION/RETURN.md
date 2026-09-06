@@ -1,0 +1,9 @@
+# Terminal independent verifier return
+
+COMPLETE_FOR_MANAGER_FAN_IN / PASS_FOR_PACKAGE_REPORT_SELECTION. No unresolved verifier defects and no fresh correction requested. Selected DEL-01-01/02 CORRECTION_S001 and DEL-01-03..06 root ledgers reproduce 286 claims, 138 nonaligned, 126 UNKNOWN, 20 residuals. All six ASSESSED_UNKNOWN; no warranted NONE. Checked-ID ledger has 286 claim rows plus 20 residual rows. The independent mandatory semantic population and expanded boundaries are detailed in VERIFICATION.md.
+
+Full manifests/source bases, exact hold preflights, schemas/coverage, source hashes, citation loci, reciprocal IDs, S001 transformations, original immutability, aggregate equality and current acceptance continuity pass. Manager grouping: 10 eligible later proposal inputs, 1 conditional interpretation, 9 held routes. Scanner source/test/REVIEW proposal inputs are accurately bounded to two detector defects. No broad suite reexecution; exact unchanged R0 evidence reused.
+
+Accepted upstream: revision1.4 decomposition; D81 accepted final conventions and selected V001 calibration; D82 effective base 2be412ccea62bdc4bd96deb082c46d7a792076ea. This is a derivative, not accepted decomposition or executable Remaining. Owner/source/REVIEW/application decisions and substantive UNKNOWN remain open; no product closure, lifecycle act or reliance. Rerun affected work on source, method, authority, hold, ledger or proposal changes. Package manager owns next validated fan-in and HELP_HUMAN separate synthesis.
+
+Write allowlist: this package VERIFICATION/** only. All output files here are new verifier evidence; worker/source/common/sibling state untouched. Fresh native Agent2, no delegation, role instruction-asserted/not mechanically enforced. Model identity not independently exposed by this return.

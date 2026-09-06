@@ -1,0 +1,1084 @@
+{
+  "changed_inputs": [],
+  "claim_source_hashes_checked": 12038,
+  "claims": 2249,
+  "deliverables": 52,
+  "dispositions": {
+    "ACCEPTED_DIVERGENCE": 10,
+    "ALIGNED": 1076,
+    "DEFERRED_AGENT_WORKFLOW": 7,
+    "DOCUMENTED_UNIMPLEMENTED": 71,
+    "IMPLEMENTED_DIFFERENTLY": 3,
+    "LIFECYCLE_REASSESSMENT_REQUIRED": 1,
+    "PARTIALLY_IMPLEMENTED": 10,
+    "STALE_INPUT": 21,
+    "UNKNOWN": 1050
+  },
+  "exceptions": [
+    {
+      "id": "DEL-00-01::OUT-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::OUT-002",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-002",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-003",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::TBD-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::TBD-002",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-004",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-005",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-006",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CON-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-007",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::CLM-008",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-002",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-003",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-004",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-005",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-006",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-007",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-008",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-009",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::REQ-010",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AC-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "gate": "Owner interpretation/acceptance disposition; any edit requires exact CHECKING change authorization and REVIEW against resulting hashes",
+      "id": "DEL-00-01::AC-002",
+      "kind": "GATE_MARKER"
+    },
+    {
+      "id": "DEL-00-01::AC-003",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AC-004",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AC-005",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AC-006",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AC-007",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::VER-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::VER-002",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::VER-003",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::VER-004",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AX-001",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AX-002",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AX-003",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AX-004",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AX-005",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AX-006",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::AX-007",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::LIFECYCLE",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "id": "DEL-00-01::C05",
+      "kind": "EMPTY_DEPENDS"
+    },
+    {
+      "gate": "Owner interpretation/acceptance disposition; separate exact CHECKING change authorization before any edit",
+      "id": "DEL-00-01-REM-001",
+      "kind": "GATE_MARKER"
+    }
+  ],
+  "kind": "PARTIAL_STRUCTURAL_AGGREGATE_ONLY",
+  "limitations": [
+    "No full 64-member corpus or final R4 semantic review.",
+    "No source, status, Remaining, dependency, lifecycle, acceptance, or authority mutation.",
+    "Historical hash candidates are separately exposed, never substituted for current bytes.",
+    "Verifier population membership is distinguished from semantic acceptance."
+  ],
+  "manifest_reference_status_counts": {
+    "CURRENT_MATCH": 21111,
+    "HISTORICAL_COMMIT_MATCH": 13,
+    "PRESERVED_EXACT_HISTORICAL_DERIVATIVE": 19,
+    "PRESERVED_PUBLICATION_PREIMAGE": 10
+  },
+  "manifest_shapes": [
+    {
+      "entries": 44,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/MANAGER_READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 648,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/BACKCHECK_V001/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 178,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/BACKCHECK_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 9,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 153,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/selected_ids.json",
+      "root_type": "list"
+    },
+    {
+      "entries": 50,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 59,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-01/REVISION_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 87,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 61,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 68,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/REVISION_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 46,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SEALED_WORKER_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 653,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 11,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 780,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 58,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/CORRECTION_S001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 50,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 74,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02/CORRECTION_S001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 67,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 40,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 68,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 92,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 83,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-06/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/MANAGER_OUTPUT_MANIFEST_CHECK.json",
+      "root_type": "list"
+    },
+    {
+      "entries": 21,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/MANAGER_READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 62,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/ORIGINAL_WORKER_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/SELECTED_MEMBERS.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 140,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 264,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-01/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 77,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-02/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 80,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-03/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 80,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-04/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 81,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 82,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 91,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-06/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 10,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 103,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-07/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/ORIGINAL_SEALS/SELECTED_WORKERS_ORIGINAL.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/SELECTED_WORKERS.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 131,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 6,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/BACKCHECK_V001/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 183,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/BACKCHECK_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 841,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 140,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 97,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 9,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 84,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 97,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 86,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 87,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 659,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-06/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 168,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-06/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 200,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 207,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 17,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/MANAGER_READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 35,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/ORIGINAL_WORKER_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 25,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/SELECTED_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 99,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/BACKCHECK_C01/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 490,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/BACKCHECK_C01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 469,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 85,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 355,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 190,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 348,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 198,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 654,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 6,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 95,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 69,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/WORKERS/DEL-05-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 65,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/WORKERS/DEL-05-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 11,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/WORKER_OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 158,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C01/DEL-06-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 508,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C01/DEL-06-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 25,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C01/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 92,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C02_DEPENDS/DEL-06-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 206,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C02_DEPENDS/DEL-06-06/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 15,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C02_DEPENDS/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 9,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/MANAGER_ADDITIONAL_READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 48,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/ORIGINAL_WORKER_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 30,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/SELECTED_OUTPUTS.json",
+      "root_type": "list"
+    },
+    {
+      "entries": 66,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 664,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 158,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 508,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 69,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 202,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 7,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-05/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 75,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 189,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-06/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/AGGREGATE_PREIMAGE_MAP.json",
+      "root_type": "list"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/BACKCHECK/F001_F002/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 470,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/BACKCHECK/F001_F002/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 35,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/BACKCHECK_INPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 127,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F001/DEL-07-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 410,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 410,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 410,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/CORRECTIONS/F002/DEL-07-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 33,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/MANAGER_READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 26,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/ORIGINAL_WORKER_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 25,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/SELECTED_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 87,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 11,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 415,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 156,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 341,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 64,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 336,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 78,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 1,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/ADOPTED_METHOD_READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/AGGREGATE_INITIAL/PRESERVATION_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/AGGREGATE_INITIAL/SELECTED_DERIVATIVES.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 5,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/DEL-10-03_PRE_SEMANTIC_CORRECTION_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 5,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/DEL-10-10_PRE_SEMANTIC_CORRECTION_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 5,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/DEL10_02_ORIGINAL_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 128,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/PRE_VERIFICATION_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/SELECTED_DERIVATIVES.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 648,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/BACKCHECK_V001_V002/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 447,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/BACKCHECK_V001_V002/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 447,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/BACKCHECK_V001_V002/READ_MANIFEST_WORKING.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 12,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 409,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 409,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/VERIFICATION/READ_MANIFEST_WORKING.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 55,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 66,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-01/REVISION_M001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 86,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 96,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-02/REVISION_M001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 105,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 110,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-03/REVISION_V002/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 66,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 76,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/REVISION_M001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 35,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 74,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-06/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 32,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-07/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 36,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-08/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 72,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-09/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 156,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-10/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 166,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-10/REVISION_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 73,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-11/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 38,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-12/READ_MANIFEST.json",
+      "root_type": "dict"
+    }
+  ],
+  "missing_deliverables": 12,
+  "missing_packages": [
+    "PKG-08",
+    "PKG-09"
+  ],
+  "native_identity": "/root/pec_corpus_synthesis/aggregate_partial",
+  "packages": 9,
+  "residuals": 144,
+  "role": "ephemeral Agent2; instruction-asserted; no delegation",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "source_unchanged": true,
+  "status": "PARTIAL_EXCEPTIONS_REQUIRE_ROUTING",
+  "top_level_manifests": [
+    {
+      "entries": 72,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/OUTPUT_MANIFEST.json",
+      "package": "PKG-00",
+      "passed": 72,
+      "sha256": "141a5bba93c319eb2cb7c1da4092746e2692810a08462f1855ce16b9c98da617"
+    },
+    {
+      "entries": 101,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/OUTPUT_MANIFEST.json",
+      "package": "PKG-01",
+      "passed": 101,
+      "sha256": "918b4f61e90643d52f9cc8cb1fda8ad9b1488c7c537e912eeff0582f70eba361"
+    },
+    {
+      "entries": 103,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/OUTPUT_MANIFEST.json",
+      "package": "PKG-02",
+      "passed": 103,
+      "sha256": "d5764f02bc9e507f25eef834b4948ec7208b53d8669a0e1b322e822102397730"
+    },
+    {
+      "entries": 127,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/OUTPUT_MANIFEST.json",
+      "package": "PKG-03",
+      "passed": 127,
+      "sha256": "c5d2626feabb459cd76837e04316855f5f87600f01422ac5c2ff58d9fb5f10d8"
+    },
+    {
+      "entries": 97,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/OUTPUT_MANIFEST.json",
+      "package": "PKG-04",
+      "passed": 97,
+      "sha256": "ec19b222169df654764a50b17ae72cbf41f67a4213f0018358c25194b61d61da"
+    },
+    {
+      "entries": 34,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-05/OUTPUT_MANIFEST.json",
+      "package": "PKG-05",
+      "passed": 34,
+      "sha256": "963ccb7bf01cbcdf705dce35b8587addb47a2a4e68c790e81b2ac92c8a6cc2a2"
+    },
+    {
+      "entries": 132,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/OUTPUT_MANIFEST.json",
+      "package": "PKG-06",
+      "passed": 132,
+      "sha256": "8a9d52babfad7e2ccf682529c568d587f67beca083d04f985289397a528ae886"
+    },
+    {
+      "entries": 113,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/OUTPUT_MANIFEST.json",
+      "package": "PKG-07",
+      "passed": 113,
+      "sha256": "f4eb8e05315f04035763e858e716186c88e72b441714398ca571f461e9091bc7"
+    },
+    {
+      "entries": 196,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/OUTPUT_MANIFEST.json",
+      "package": "PKG-10",
+      "passed": 196,
+      "sha256": "3ff5ee8abd50523cdc53c6423cb15c750ab598248e19bc467a49fd12a5c557a2"
+    }
+  ]
+}

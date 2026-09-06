@@ -1,0 +1,124 @@
+{
+  "changed_inputs": [],
+  "claim_source_hashes_checked": 1487,
+  "claims": 245,
+  "deliverables": 5,
+  "dispositions": {
+    "ACCEPTED_DIVERGENCE": 2,
+    "ALIGNED": 112,
+    "DEFERRED_AGENT_WORKFLOW": 1,
+    "DOCUMENTED_UNIMPLEMENTED": 43,
+    "STALE_INPUT": 7,
+    "UNKNOWN": 80
+  },
+  "exceptions": [],
+  "kind": "ADDITIVE_PKG08_STRUCTURAL_AGGREGATE_ONLY",
+  "limitations": [
+    "No full 64-member corpus or final R4 semantic review.",
+    "DEL08-04 DOCUMENTED_UNIMPLEMENTED reports bounded local latency absence only; 80 wider package UNKNOWN claims retain uncertainty.",
+    "Four evidence, two conditional and six held routes remain proposals; fallback correction creates no scope or claim semantic change.",
+    "No source, status, Remaining, dependency, lifecycle, acceptance, or authority mutation.",
+    "Historical hash candidates are separately exposed, never substituted for current bytes.",
+    "Verifier population membership is distinguished from semantic acceptance."
+  ],
+  "manifest_reference_status_counts": {
+    "CURRENT_MATCH": 1534
+  },
+  "manifest_shapes": [
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/MANAGER_MANIFEST_BACKCHECK.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 0,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/SELECTED_DERIVATIVES.json",
+      "root_type": "list"
+    },
+    {
+      "entries": 648,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/SOURCE_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 6,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/VERIFICATION/BACKCHECK_V001/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 209,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/VERIFICATION/BACKCHECK_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/VERIFICATION/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 193,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/VERIFICATION/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 81,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-01/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 116,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-02/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 83,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-03/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 87,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-04/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 10,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 48,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/CORRECTION_V001/READ_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 8,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/OUTPUT_MANIFEST.json",
+      "root_type": "dict"
+    },
+    {
+      "entries": 37,
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/WORKERS/DEL-08-05/READ_MANIFEST.json",
+      "root_type": "dict"
+    }
+  ],
+  "missing_deliverables": 7,
+  "missing_packages": [
+    "PKG-09"
+  ],
+  "native_identity": "/root/pec_corpus_synthesis/aggregate_partial",
+  "packages": 1,
+  "residuals": 12,
+  "role": "ephemeral Agent2; instruction-asserted; no delegation",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "source_unchanged": true,
+  "status": "PARTIAL_STRUCTURAL_PASS",
+  "top_level_manifests": [
+    {
+      "entries": 96,
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/OUTPUT_MANIFEST.json",
+      "package": "PKG-08",
+      "passed": 96,
+      "sha256": "555775900d8a27b800a7b74c44a02169e8622b8f7bf3d935a12cfde7a0eb3a46"
+    }
+  ]
+}

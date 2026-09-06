@@ -1,0 +1,101 @@
+{
+  "status": "CORRECTION_REQUIRED",
+  "mechanical_status": "PASS",
+  "errors": [],
+  "claims": 87,
+  "residuals": 6,
+  "source_hashes_reproduced": 133,
+  "coverage": {
+    "DEL-00-01": {
+      "claims": 43,
+      "residuals": 1,
+      "defined_REQ_AC_VER": 21,
+      "missing": []
+    },
+    "DEL-00-02": {
+      "claims": 11,
+      "residuals": 4,
+      "defined_REQ_AC_VER": 0,
+      "missing": []
+    },
+    "DEL-00-03": {
+      "claims": 33,
+      "residuals": 1,
+      "defined_REQ_AC_VER": 32,
+      "missing": []
+    }
+  },
+  "checked_claims": 28,
+  "nonaligned_checked": 13,
+  "residuals_checked": 6,
+  "invalid_original_residual_ids": [
+    "DEL-00-01::R-001"
+  ],
+  "fallback_mappings": [
+    {
+      "ClaimID": "DEL-00-02::SCOPE-001",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-002",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-003",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-004",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-005",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-006",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-007",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-008",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::SCOPE-009",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::HOME-001",
+      "ok": true
+    },
+    {
+      "ClaimID": "DEL-00-02::MAP-001",
+      "ok": true
+    }
+  ],
+  "exact_acceptance_hash_checks": [
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md",
+      "accepted_sha256": "f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5",
+      "match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md",
+      "accepted_sha256": "cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae",
+      "match": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md",
+      "accepted_sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741",
+      "match": true
+    }
+  ],
+  "findings": [
+    "V001",
+    "V002"
+  ]
+}

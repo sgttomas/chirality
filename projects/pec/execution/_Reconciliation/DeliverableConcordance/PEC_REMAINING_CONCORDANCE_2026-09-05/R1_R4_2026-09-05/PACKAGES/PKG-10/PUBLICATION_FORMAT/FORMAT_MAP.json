@@ -1,0 +1,32 @@
+{
+  "kind": "publication EOF formatting only",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "authorization": "HELP_HUMAN bounded publication formatting instruction; exact two files from CHANGE 2.log",
+  "prior_package_manifest_sha256": "567e23b1e2075b47b7f818d8e371db14ab35b8b627cc9f53a31f651743c0ba93",
+  "changes": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/HANDOFF_STATE.md",
+      "pre_sha256": "a84489462ef4daa970eda3628878d9f31457a8a2f545b2316d3a61b3639158c0",
+      "post_sha256": "cab552d0e08d50c982a25b68391ff049c9eace6118c24a108408df4cd86e0374",
+      "pre_bytes": 6272,
+      "post_bytes": 6271,
+      "removed_terminal_LF_bytes": 1,
+      "transformation": "Remove surplus EOF LF bytes only; preserve exactly one final LF",
+      "non_whitespace_equal": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/R4_DECISION_CANDIDATES.md",
+      "pre_sha256": "c22f890162c985aac1403fa73e6f5b0bfb1ef3029d05b76638592df58147c139",
+      "post_sha256": "e1a237089066ba0899f084f298040cb9a316022131a1873cca8c4b880648a569",
+      "pre_bytes": 26947,
+      "post_bytes": 26946,
+      "removed_terminal_LF_bytes": 1,
+      "transformation": "Remove surplus EOF LF bytes only; preserve exactly one final LF",
+      "non_whitespace_equal": true
+    }
+  ],
+  "preserved_originals": "PUBLICATION_FORMAT/ORIGINALS_BASE64.json",
+  "prior_manifest_interpretation": "The preserved prior OUTPUT_MANIFEST and every unchanged historical manifest/read manifest retain their original hashes and logical original-path meaning. For the two normalized paths, validate historical pins against decoded ORIGINALS_BASE64 bytes; all other historical entries continue to bind unchanged bytes. New current OUTPUT_MANIFEST seals normalized publication bytes plus lossless carriers. No old seal is rewritten to claim it covered new bytes.",
+  "semantic_claim_source_receipt_changes": false,
+  "fresh_semantic_rerun": false
+}

@@ -1,0 +1,177 @@
+[
+  {
+    "path": "projects/pec/v2/config/loops.json",
+    "sha256": "4ce07ad061abd222acabb2afe0f619fdc840b4cc11d31e49f1dff8fcc299d32e",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/config/loops.schema.json",
+    "sha256": "1f4d1f0cf9abe5754ebb4260f588dea0d71e7f3cc37af2487b30b9c4aa39ba9b",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/config/service_core_posture.json",
+    "sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/contracts/api/v1/schema.json",
+    "sha256": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md",
+    "sha256": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/src/pec_v2/__init__.py",
+    "sha256": "ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/src/pec_v2/adapters/__init__.py",
+    "sha256": "8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/src/pec_v2/adapters/config/__init__.py",
+    "sha256": "7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+    "sha256": "7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/src/pec_v2/core/__init__.py",
+    "sha256": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+    "sha256": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+    "sha256": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json",
+    "sha256": "2e65c719af6c9eb7e170fb25d437b928847dc8d617c056093de213673b3e3396",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/config/fixtures/malformed.json",
+    "sha256": "f37303491c50fa74756f547929f09c99900abfad5a9310cc2b46beb5027425b0",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/config/fixtures/missing_loop_id.json",
+    "sha256": "2155849d9419f0239dca7a69d919ca9ee46a6434106d5326d85bc8c70afc5257",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/config/test_json_loop_registry.py",
+    "sha256": "d7efb486287d3703aa9ea007eb5376eba95689286bb322c887eeca8b193ac956",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/config/test_loop_registry_contract.py",
+    "sha256": "49b2f6a3b5088bceb82dc393cce050b8800af3a5ac5d34b3b6a3d7b71c01111b",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json",
+    "sha256": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json",
+    "sha256": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json",
+    "sha256": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py",
+    "sha256": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py",
+    "sha256": "8966d0088ea15ad37854ecfd0f4869c67b61ce5f8809848d380f1fb858e450a0",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py",
+    "sha256": "2f691060cef7a41af2530909638f9612725eab441b515ac10f37071ee15c8870",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py",
+    "sha256": "48f739f0169f93a303c2c754209ecdc343b4aa7607ee750bc3c943377902d0bc",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py",
+    "sha256": "476b8cef2afeabe4dddd5173009cee02a7a709e6ebadfe886160a1f4c3000fe9",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py",
+    "sha256": "e38af91183e30927c8d990a76ba715f3e1f300ac1e6b489a2408b48741632522",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py",
+    "sha256": "206cc544fa564634ea413a2e6ff1eed7cb062d5c5cf7a2b4e8156c4fede7d416",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py",
+    "sha256": "44a1f3d683fc27ef15595f9dacfdd37f98476eac6ec4b88da4cd43ba8b472e31",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py",
+    "sha256": "54671ebf7071f04e3d2cea8411895d9429c84036efa82f7223aa7c440d2d9bad",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py",
+    "sha256": "f9ec548b059cdcbc1080da4c0f53ef97d5cf7e9a7b75ce5ad12c74a9b86be091",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py",
+    "sha256": "c35fff6dba0aaa2d114b0d4e252d561d361979254e4ecf91cdd6c16236f7d425",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+    "sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/test_gate_registration.py",
+    "sha256": "9e9519e6eaded2e9db427a6609c5880c5316f6528facae80776307793bb0071d",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+    "sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "delta_terms": []
+  },
+  {
+    "path": "projects/pec/v2/tools/check_service_core_posture.py",
+    "sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "delta_terms": []
+  }
+]

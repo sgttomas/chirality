@@ -1,0 +1,17 @@
+{
+  "result": "CORRECTION_REQUIRED",
+  "structural_result": "PASS",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "claims": 418,
+  "required_ids": 179,
+  "residuals": 26,
+  "semantic_claims_checked": 346,
+  "semantic_residuals_checked": 26,
+  "nonaligned_checked": 213,
+  "finding_count": 2,
+  "affected_claims": 51,
+  "affected_residuals": 3,
+  "source_unchanged": true,
+  "product_tests_rerun": false,
+  "pending": "fresh mapped correction and independent backcheck"
+}

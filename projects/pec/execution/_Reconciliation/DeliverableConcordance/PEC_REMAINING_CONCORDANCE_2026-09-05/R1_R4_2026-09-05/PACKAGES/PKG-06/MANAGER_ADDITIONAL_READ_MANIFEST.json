@@ -1,0 +1,17 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/Dependencies.csv": "08e6cb7d44d6b2eb4d5c0a8b0c4639e708a6313f19aaf828f5b792d55ff1b8cf",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/Dependencies.csv": "736e78ac267fa360f64438fee36a5047dd8ea492d6a4d16f47a480022e67b318",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv": "7b4d78c8d9411f2de916ec6510186baecd79f7f5790d9afa97c7cd7d4fc56b76",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv": "ea565bfab56f302e5bd040d8e53315601ee15036574c24c65698cb56587aeba2",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv": "f4eaf5266f131437b31cee5edfd5dcbadc9c7aee59e5b41cba76107bc7f7f4fb",
+    "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/Dependencies.csv": "20ea5bc383816606453c448b3e8d8ec5f77c9e7d4282bda9564a58d2f382e66f"
+  },
+  "historical_sources": [],
+  "checks": [],
+  "source_unchanged": true
+}

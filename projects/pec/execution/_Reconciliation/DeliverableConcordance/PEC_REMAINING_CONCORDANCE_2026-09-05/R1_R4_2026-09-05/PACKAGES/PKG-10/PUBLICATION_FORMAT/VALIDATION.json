@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "decoded_originals_verified": 3,
+  "prior_manifest_logical_entries_verified": 192,
+  "exact_EOF_changes": 2,
+  "removed_LF_bytes": 2,
+  "non_whitespace_equal": true,
+  "all_other_original_sealed_entries_unchanged": true,
+  "semantic_source_claim_receipt_changes": false,
+  "command": [
+    "python3",
+    "tools/validation/validate_candidate_whitespace.py",
+    "--base-ref",
+    "HEAD",
+    "--paths",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10"
+  ],
+  "exit_code": 0,
+  "stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n",
+  "stderr": "",
+  "scope": "full unsuppressed PKG-10 candidate; no excluded paths/no-untracked flags",
+  "git_mutation": false
+}

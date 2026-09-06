@@ -1,0 +1,38 @@
+{
+  "verdict": "PASS",
+  "errors": [],
+  "members": {
+    "DEL-03-02": {
+      "claims": 82,
+      "residuals": 18,
+      "changed_cells": 19,
+      "dispositions": {
+        "ALIGNED": 34,
+        "UNKNOWN": 47,
+        "STALE_INPUT": 1
+      },
+      "selected": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-02/CORRECTION_V001"
+    },
+    "DEL-03-03": {
+      "claims": 81,
+      "residuals": 5,
+      "changed_cells": 26,
+      "dispositions": {
+        "ALIGNED": 26,
+        "UNKNOWN": 53,
+        "STALE_INPUT": 2
+      },
+      "selected": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03/CORRECTION_V001"
+    }
+  },
+  "original_seals_unchanged": true,
+  "original_verification_unchanged": true,
+  "full_selected_package": {
+    "claims": 450,
+    "residuals": 38,
+    "ALIGNED": 187,
+    "UNKNOWN": 258,
+    "STALE_INPUT": 5
+  },
+  "product_or_remaining_closure": false
+}

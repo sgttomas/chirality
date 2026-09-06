@@ -1,0 +1,58 @@
+{
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "initial": [
+    "PKG-00",
+    "PKG-01",
+    "PKG-10"
+  ],
+  "briefs": {
+    "PKG-08.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-08.md",
+      "sha256": "79ccb352ae6c99ed6b90804e8abdac6938578d9b1df0fd656c28d4a031ceec9d"
+    },
+    "PKG-09.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-09.md",
+      "sha256": "81a1491f28cc498bf85775a6434682caefbf6b14f76095fec9c6e48ebb42bfd5"
+    },
+    "PKG-02.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-02.md",
+      "sha256": "c6b2a7b0cd9dd41964a5682396913f5b7a32723a50577370d344e6b7f970b6f0"
+    },
+    "PKG-06.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-06.md",
+      "sha256": "a9b1dab840c69be8a43bf75a40f6a6ec4d95051fbcb9e1a718aa1a81c6488395"
+    },
+    "PKG-07.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-07.md",
+      "sha256": "38c406b0cb19f64b93877ea9828acb838c0ccf5b2468cffb8e25f19b072937e2"
+    },
+    "PKG-03.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-03.md",
+      "sha256": "e292b175fd8432ffc64a34d3a7c1ef8302334c216f055db7c45667ce71694807"
+    },
+    "PKG-04.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-04.md",
+      "sha256": "8907825b1a8bc3afc38ea10867e7031e7ab7af744622f221990b0c868299ef3a"
+    },
+    "PKG-00.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-00.md",
+      "sha256": "3260f65ce0caad30911afc24c3af50f1f41c2a6c3734c768a84c01340ee1eca3"
+    },
+    "PKG-10.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-10.md",
+      "sha256": "df9e2ccf2606f388bc816e324a2dd00b61a464b5c599aa310b437cff8933cf36"
+    },
+    "PKG-01.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-01.md",
+      "sha256": "85e091590ecf887d27f7c30c51dd5c449d1605a49c52c32ee439a04f221a0a20"
+    },
+    "PKG-05.md": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEFS/PKG-05.md",
+      "sha256": "f2641a65e0d7ef2810975321c05d3a3e96b38c29e380ef2d1d83fb95fd35df25"
+    }
+  },
+  "source_manifest_sha256": "2d01cd1578b7c40683ef4baab429c7112f3b450bf54bf3583abfac3253843f3b",
+  "census_sha256": "b2396dd6dafa23ffe3f3f53e586fbb487d3ae20f4b1b636c7da102c13544c87c",
+  "dispatch_owner": "HELP_HUMAN only",
+  "role": "common integration, no package-manager dispatch"
+}

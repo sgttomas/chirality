@@ -1,0 +1,9 @@
+{
+  "proposed_evidence_root": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D84_SCANNER_REPAIR_2026-09-05",
+  "exists_at_R4_inspection": false,
+  "act": "proposal only; no directory created",
+  "source_target_pin_manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/TARGETS.json",
+  "source_target_pin_manifest_sha256": "a388bc33c338da49a348464a2aba8eb24684e4422df8189f35d58df92e9e6b7b",
+  "source_write_target_count": 3,
+  "code_postimages": "not authored; no hashes invented"
+}

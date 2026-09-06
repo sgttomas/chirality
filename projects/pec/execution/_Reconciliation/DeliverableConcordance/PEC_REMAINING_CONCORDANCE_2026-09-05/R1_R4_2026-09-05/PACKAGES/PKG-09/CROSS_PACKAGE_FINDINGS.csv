@@ -1,0 +1,3 @@
+FindingID,ClaimIDs,SourceIDs,RelatedOwners,Finding,Route,Mutation
+PKG09-X01,DEL-09-06::PEC-DSH-006;DEL-09-06::DL-14;DEL-09-07::DEP-09-07-003,SOW-050;DL-14;DEP-09-07-003;E-A11,PKG-09;HELP_HUMAN,Shared citation component consumption is accepted; backend consumer applicability is a recorded ambiguity; preserve both without resolving by inference.,HELP_HUMAN owner dependency question; HELD,NONE
+PKG09-X02,DEL-09-07::DEP-09-07-008;DEL-09-07::SOW-051-RULE-05,DEP-09-07-008;E-P69;DEL-06-06;SOW-051,PKG-06;PKG-09;HELP_HUMAN,P3 overlap producer/P2 pressure consumer phase tension retains staged-rule-set versus soft-edge alternatives.,HELP_HUMAN owner classification; HELD,NONE

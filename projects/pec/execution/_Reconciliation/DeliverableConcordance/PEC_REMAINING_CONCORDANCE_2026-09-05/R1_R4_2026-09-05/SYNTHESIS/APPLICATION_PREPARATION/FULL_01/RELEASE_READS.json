@@ -1,0 +1,156 @@
+{
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PHASED_SCOPE_AMENDMENT_03_FULL.md": "7c7e981c1b195e777c1baa26280a0a777a20a0cde878531f2de22da964bd1607",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/PACKAGE_CLAIMS.csv": "d17e7cac30dddfce44c73d1a1af85b2c16a6037ad24617e4dd26e16bc466a779",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/PACKAGE_RESIDUALS.csv": "eb02125660662c5268f1a7341562d2a791a13a60d7fb1b7561c35e305d567137",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/OUTPUT_MANIFEST.json": "3604fb1a45c00d6e5ad7dbeff33c4fa9b59f148fbd638dbcc538fcd381e2de8c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/HANDOFF_STATE.md": "c5588b38e9e41054505025010ce18e674b87495f926bc37ca0893cf9927a7c54",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PACKAGE_CLAIMS.csv": "762bab07361677bcf9d9566978ae9367dda6fc3d51f8b9da0e242f0cd60e9779",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PACKAGE_RESIDUALS.csv": "4bd341e0b60b49702ce3ab87edec0efdbb9b1e1c4eae5a35af8cd82adba969b8",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/OUTPUT_MANIFEST.json": "0766370701de0aa23cb430d5127cda6fea43fe04514c9d2b09cdcec6e57cc4fe",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/HANDOFF_STATE.md": "eec053841fafc086d58aadf7d3aa3626c20225c8426a9901532bce8ed599c86a",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/FINAL_AGGREGATE_MAP.json": "a121035f76cb3c07fc4139d4d9ce88d321a3827f1e86570f2edf131f1ce38a1a"
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/PHASED_SCOPE_AMENDMENT_03_FULL.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/PACKAGE_CLAIMS.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/PACKAGE_RESIDUALS.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/OUTPUT_MANIFEST.json",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/HANDOFF_STATE.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PACKAGE_CLAIMS.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PACKAGE_RESIDUALS.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/OUTPUT_MANIFEST.json",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/HANDOFF_STATE.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/GATE_FORMAT_V003/FINAL_AGGREGATE_MAP.json",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    }
+  ]
+}

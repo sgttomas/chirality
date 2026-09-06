@@ -1,0 +1,87 @@
+{
+  "deliverable": "DEL-10-04",
+  "revision": "REVISION_M001",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "original_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/CLAIMS.csv": "8e9ef0e94cda1a36a32c0e9021139ea8206fd8d38bf82736459fc829341c7adb",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/COVERAGE.md": "4af688adb6dbdf30c08281532e5bba0164a2ac7c0d09fbc8dadd57b8fa2c961d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/READ_MANIFEST.json": "fe0feaaade2b2bcd20057d217b418c771747d364dd7b0b0b0667aac2c0eccdb1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/RESIDUALS.csv": "1fa664fbc8e863ed7f692fd4e3366577b615b442e509fd63d88f673ecfb1a7f1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/RETURN.md": "8c3764e38a32ad25058a57f3bed14243c65211ae08f0824336032ee2f14d008d"
+  },
+  "output_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/REVISION_M001/CLAIMS.csv": "f48587884160ab14130a569e9906f3e692e3d442251c4f77ff13f9b9fd3e51e0",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/REVISION_M001/RESIDUALS.csv": "1fa664fbc8e863ed7f692fd4e3366577b615b442e509fd63d88f673ecfb1a7f1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/REVISION_M001/COVERAGE.md": "170f70ec75304ab14d1f087b938e8fd19c6099218bda2078383395b005a884e6",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/REVISION_M001/READ_MANIFEST.json": "907e63dcd60a4b26433d1a087650b3f7a15d5cdb989ef446a0a0c9a5093bdcf5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-10/WORKERS/DEL-10-04/REVISION_M001/RETURN.md": "f4407b195f727b7cbc1eb6f6fc360758866b7e9ee951706e8ecb0d456d60ed26"
+  },
+  "residual_id_map": {},
+  "changes": [
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "DEL-10-04::SOW-059",
+      "row_id_after": "DEL-10-04::SOW-059",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 1,
+      "row_id_before": "DEL-10-04::SOW-059",
+      "row_id_after": "DEL-10-04::SOW-059",
+      "column": "ExactGate",
+      "old": "No production or lifecycle act authorized by assessment",
+      "new": "NOT_SELECTABLE_UNTIL: No production or lifecycle act authorized by assessment"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "DEL-10-04::CONTEXT-ASSIGNMENT",
+      "row_id_after": "DEL-10-04::CONTEXT-ASSIGNMENT",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 4,
+      "row_id_before": "DEL-10-04::CONTEXT-ASSIGNMENT",
+      "row_id_after": "DEL-10-04::CONTEXT-ASSIGNMENT",
+      "column": "ExactGate",
+      "old": "No production or lifecycle act authorized by assessment",
+      "new": "NOT_SELECTABLE_UNTIL: No production or lifecycle act authorized by assessment"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 5,
+      "row_id_before": "DEL-10-04::STATUS-OPEN",
+      "row_id_after": "DEL-10-04::STATUS-OPEN",
+      "column": "Depends",
+      "old": "",
+      "new": "NONE"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 5,
+      "row_id_before": "DEL-10-04::STATUS-OPEN",
+      "row_id_after": "DEL-10-04::STATUS-OPEN",
+      "column": "ExactGate",
+      "old": "No production or lifecycle act authorized by assessment",
+      "new": "NOT_SELECTABLE_UNTIL: No production or lifecycle act authorized by assessment"
+    },
+    {
+      "file": "CLAIMS.csv",
+      "data_row_1based": 6,
+      "row_id_before": "DEL-10-04::DEP-10-04-003",
+      "row_id_after": "DEL-10-04::DEP-10-04-003",
+      "column": "ExactGate",
+      "old": "No production or lifecycle act authorized by assessment",
+      "new": "NOT_SELECTABLE_UNTIL: No production or lifecycle act authorized by assessment"
+    }
+  ],
+  "coverage_appendix": "\n## Mechanical derivative REVISION_M001\n\nOriginal coverage above retained with exact residual-ID normalization where applicable. This derivative changes only residual IDs/reciprocal references, empty Depends to NONE, and governed ExactGate markers. No semantic rerun or new product tests. Original source assessment and owner conditions remain unchanged. Upstream original worker outputs are hash-bound by CHANGE_MAP.json and READ_MANIFEST.json; clarification: `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md`. Independent package verification and manager selection remain pending. Role instruction-asserted, not mechanically enforced.\n",
+  "non_csv_policy": "COVERAGE retains complete original text except exact residual ID substitutions plus the recorded appendix; READ_MANIFEST preserves original source map/historical records and appends exact provenance and correction checks; RETURN is derivative-specific and cites unchanged original return."
+}

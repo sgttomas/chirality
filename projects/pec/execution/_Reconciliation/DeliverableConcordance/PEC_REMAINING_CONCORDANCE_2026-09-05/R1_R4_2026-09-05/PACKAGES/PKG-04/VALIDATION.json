@@ -1,0 +1,327 @@
+{
+  "members": [
+    {
+      "DeliverableID": "DEL-04-01",
+      "ClaimCount": 87,
+      "ResidualCount": 3,
+      "UnknownCount": 4,
+      "dispositions": {
+        "ALIGNED": 36,
+        "DOCUMENTED_UNIMPLEMENTED": 47,
+        "UNKNOWN": 4
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "ClaimCount": 88,
+      "ResidualCount": 2,
+      "UnknownCount": 59,
+      "dispositions": {
+        "ALIGNED": 26,
+        "UNKNOWN": 59,
+        "STALE_INPUT": 3
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "ClaimCount": 85,
+      "ResidualCount": 2,
+      "UnknownCount": 35,
+      "dispositions": {
+        "ALIGNED": 47,
+        "UNKNOWN": 35,
+        "STALE_INPUT": 3
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "ClaimCount": 14,
+      "ResidualCount": 1,
+      "UnknownCount": 6,
+      "dispositions": {
+        "ALIGNED": 8,
+        "UNKNOWN": 6
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "ClaimCount": 83,
+      "ResidualCount": 3,
+      "UnknownCount": 49,
+      "dispositions": {
+        "ALIGNED": 30,
+        "UNKNOWN": 49,
+        "STALE_INPUT": 4
+      }
+    }
+  ],
+  "errors": [],
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "verdict": "PASS_PACKAGE_REPORT_READY",
+  "claims": 357,
+  "residuals": 11,
+  "members_count": 5,
+  "dispositions": {
+    "ALIGNED": 147,
+    "DOCUMENTED_UNIMPLEMENTED": 47,
+    "UNKNOWN": 153,
+    "STALE_INPUT": 10
+  },
+  "all_members_assessed_unknown": true,
+  "recommended_candidates": 8,
+  "held_routing": 3,
+  "manifest_checks": [
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/OUTPUT_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 7
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 200
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/OUTPUT_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 7
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 207
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/MANAGER_READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 17
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/ORIGINAL_WORKER_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 35
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/SOURCE_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 99
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/BACKCHECK_C01/OUTPUT_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 7
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/BACKCHECK_C01/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 490
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/OUTPUT_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 8
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 469
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/OUTPUT_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 7
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 85
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/OUTPUT_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 8
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 355
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-03/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 190
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 348
+    },
+    {
+      "manifest": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-05/READ_MANIFEST.json",
+      "result": "PASS",
+      "hash_entries": 198
+    }
+  ],
+  "worker_originals_unchanged": true,
+  "source_unchanged": true,
+  "scope_write_policy": "only PACKAGES/PKG-04/**",
+  "product_tests": "not run; no product changes; evidence checks only",
+  "aggregate_exact_equality": {
+    "CLAIMS.csv": {
+      "rows": 357,
+      "exact_ordered_field_equality": true
+    },
+    "RESIDUALS.csv": {
+      "rows": 11,
+      "exact_ordered_field_equality": true
+    }
+  },
+  "output_manifest_exact_coverage_verified": true,
+  "final_preflights": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    }
+  ],
+  "source_status_check": {
+    "command": "git status --short --untracked-files=all --ignored -- projects/pec/execution/PKG-04_Orientation_Services projects/pec/v2",
+    "exit_code": 0,
+    "result": "clean including ignored"
+  }
+}

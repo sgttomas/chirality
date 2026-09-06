@@ -1,0 +1,2035 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CALIBRATION_REPORT.md": "641134cf6055739266e876d3bf5389f1af8f47ddb3b9e2340c4546d90ff42d3b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md": "e7095343267c04b814410f7fb55a58d25088283d46c3c26e161737e2fc609097",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/RESIDUAL_RECOMMENDATIONS.csv": "193bbcc89cf9cd81807b000d6ad1054474f791e43923c59aee4734de0f55f5a5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/SAMPLE_SUMMARY.csv": "f4364ec4e721bdfcefde0c7e7893ec6b976c63b6920a1e76af5bfe45feffbdc0",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/PUBLICATION_MANIFEST.json": "a94e927ede5b0ee035f6c91dfea471ab9ef3858041807395d79eeb812c6365b5",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/VERIFIER/VERIFICATION.md": "7bf6289fb2198c385d95ae6856d57817d757171f8bb9870270faebe08517f2d1",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/VERIFIER/BACKCHECK_V001/BACKCHECK.md": "eb44c8016f911c5e356c062f42c30cfa7c5de09ff4ee590dbbc8aa6f94a69819",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/CHANGE_MAP.json": "15304a82564b2401a2484e03b29ad4b01bc49535991ad3e25fff1c10b41b2b2a",
+    "docs/DELIVERABLE_CONCORDANCE_METHOD.md": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627",
+    "agents/AGENT_RECONCILIATION.md": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "projects/pec/loop/LOOP_INIT.md": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264",
+    "projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv": "bf0d5537686d3dba23ad2e3c1b91d989850cda04e98e92dc545516829c9242b6",
+    "projects/pec/loop/LOOP_RECEIPTS.md": "41d74244fef0e192caf3b47ca01f644a522ecb462ed8181eee58796b2ded85dd",
+    "projects/pec/execution/_Decomposition/_LATEST.md": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+    "projects/pec/execution/_ScopeChange/_LATEST.md": "721a14dc27b4b595be79f591f49b7374a121c52a77eb0451d32d9aa32a9e6280",
+    "projects/pec/docs/PRD.md": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+    "projects/pec/software-workflow.json": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+    "_DomainEngines/profiles/pec.yaml": "6858d567ee27bae9b832115a40a41b106a9a2a58a62d661ca0e0c2acff9b314f",
+    "_DomainEngines/_DECISIONS/_REGISTER.md": "ebccf23234c7755a20555397fe12ccb708d7bebf6826fd9806b695f5fcd10e48",
+    "projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md": "8a9957b4150143c9958083107982dd8e5538a8d1cb69aa436a0bab953d00d24f",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv": "7ad0ee08c5ab08c47b83485d154bd395bd4931f1868f7f34c24449c049d6f735",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md": "2ed591ad9008ebfa144e9c5b9a7f0a1d5f2ff858002c9b6a49939dbe46b3ccb0",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md": "342fcb850982ef57ea5ab07dd95b886a381b058ce42c3162c8cd9b3eb4b61acc",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_DEPENDENCIES.md": "6cc0afcab91547528f3a3d5506a604606ead39ac393ce62bc5d0e82aa3ec38fc",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md": "7cc4faf411a85a3cf17a33a0a50f5065aace83ef3eef003298dc721bbe6dac0d",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "c65909ed431eb7c5a3ab6c77c01bdff34ae0b9911c2d9dc2d547579eb0c0636e",
+    "projects/pec/v2/tools/check_service_core_posture.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "projects/pec/v2/config/loops.json": "4ce07ad061abd222acabb2afe0f619fdc840b4cc11d31e49f1dff8fcc299d32e",
+    "projects/pec/v2/config/service_core_posture.json": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "projects/pec/v2/config/loops.schema.json": "1f4d1f0cf9abe5754ebb4260f588dea0d71e7f3cc37af2487b30b9c4aa39ba9b",
+    "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+    "projects/pec/v2/src/pec_v2/__init__.py": "ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e",
+    "projects/pec/v2/src/pec_v2/core/__init__.py": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a",
+    "projects/pec/v2/src/pec_v2/adapters/__init__.py": "8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22",
+    "projects/pec/v2/src/pec_v2/adapters/config/__init__.py": "7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py": "7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py": "49b2f6a3b5088bceb82dc393cce050b8800af3a5ac5d34b3b6a3d7b71c01111b",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py": "d7efb486287d3703aa9ea007eb5376eba95689286bb322c887eeca8b193ac956",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "projects/pec/v2/tests/enforcement/test_gate_registration.py": "9e9519e6eaded2e9db427a6609c5880c5316f6528facae80776307793bb0071d",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py": "f9ec548b059cdcbc1080da4c0f53ef97d5cf7e9a7b75ce5ad12c74a9b86be091",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py": "44a1f3d683fc27ef15595f9dacfdd37f98476eac6ec4b88da4cd43ba8b472e31",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py": "54671ebf7071f04e3d2cea8411895d9429c84036efa82f7223aa7c440d2d9bad",
+    "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py": "c35fff6dba0aaa2d114b0d4e252d561d361979254e4ecf91cdd6c16236f7d425",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py": "2f691060cef7a41af2530909638f9612725eab441b515ac10f37071ee15c8870",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py": "206cc544fa564634ea413a2e6ff1eed7cb062d5c5cf7a2b4e8156c4fede7d416",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py": "e38af91183e30927c8d990a76ba715f3e1f300ac1e6b489a2408b48741632522",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py": "8966d0088ea15ad37854ecfd0f4869c67b61ce5f8809848d380f1fb858e450a0",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py": "476b8cef2afeabe4dddd5173009cee02a7a709e6ebadfe886160a1f4c3000fe9",
+    "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py": "48f739f0169f93a303c2c754209ecdc343b4aa7607ee750bc3c943377902d0bc",
+    "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json": "bd2617a7cc47049af503c45fe6f86ec2c5f8270ae47950c9970288780c318cb8",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json": "eb25e52b14e4fcf98e48fec7a66d4988e5bfac590c6c30806cde3ed78338bacb",
+    "projects/pec/v2/tests/contracts/api/fixtures/v1_additive_candidate.json": "b3ed8554e93e1380617ceb9d1de6030e684ddd91c89763d0d7565af56e079718",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json": "2e65c719af6c9eb7e170fb25d437b928847dc8d617c056093de213673b3e3396",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json": "2155849d9419f0239dca7a69d919ca9ee46a6434106d5326d85bc8c70afc5257",
+    "projects/pec/v2/tests/config/fixtures/malformed.json": "f37303491c50fa74756f547929f09c99900abfad5a9310cc2b46beb5027425b0",
+    "projects/pec/v2/contracts/api/v1/schema.json": "0a4e42737e628be604bd163e8c6f835cda488f7978ae9e973cff03d1f8695c67",
+    "projects/pec/execution/_Decomposition/Companion_Inventory.csv": "18793e150c537371f80d659af2784674d42bac0de37bf7128e484774a557ec23",
+    "projects/pec/execution/_Decomposition/ContextBudgetQA.csv": "5c8d30994a99611b7023f8ac0995ee9a8efa0d2992f3c1a2683f4d2f9e8e2bef",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/RUN_BASIS.md": "924e482e7c075d3d616252194926934e04e0f660b5529d7e333a3a132269457d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/AGENT0_GRAPH.md": "1b1c5b39bbc9bd7dcb1953f194dc85abc167cb7e24ba994481363d515a6e8820",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SCOPE_CENSUS.csv": "b2396dd6dafa23ffe3f3f53e586fbb487d3ae20f4b1b636c7da102c13544c87c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/BRIEF_CLARIFICATION_01.md": "7eba84d24bb5ca4e1503d34bf798d65f2c6b68dd00647a8d559e425f28897f14",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/SOURCE_MANIFEST.json": "2d01cd1578b7c40683ef4baab429c7112f3b450bf54bf3583abfac3253843f3b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PACKAGE_BASIS.md": "7be1bc5226cf50d2b5cbcbe86ee74774acd9ebbf6eccedbaf50ffd3c6a781eea",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/SOURCE_MANIFEST.json": "bf69c9cec3e483630f048f0e6aac955f08311c380bcee3575ce12d8705991bb3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/PREFLIGHT.json": "f473bdc470309c60fc24bbed85f0d08a0a1ae9d5999451bb157b6130c4adea58",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/BRIEFS/DEL-09-01.md": "9d8a121c9f98623d0a1c1d3999b628bf156509d9c11e601c6183fa2314dc6aac",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/Review_Summary.md": "9f623e244269a1ae1cb524133d6c0a7b5e1b29905394136ae0d7341cc75e944e",
+    "projects/pec/execution/_Evaluation/Reviews/_LATEST.md": "1b04c0bdf971eac46d077f27e0825f46c2100056e5461ddcf17d7c69abe03bdf",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/Review_Summary.md": "6c6bf929f15b5fd15466b304cf28911da7fa129ed8fc13d319de5cf3ad45661c",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/RUN_SUMMARY.md": "d293768eec2fb7797c073f699d37571800def8f4f863f5379289522ed0a445b2",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/Decision_Log.md": "8b78cb074429027418aa25bbb056eff2081b377d90390e1babccc63cfdf985a6",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/Brief.md": "93cc9de5a9c275e190dce75c99ed33c528431f252bf4df4ad26ab1fbd1200666",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/QA_Report.md": "e4160c9660a17b72d720a16444471397626c1775f69d390b35b105acccb97de6",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/Review_Summary.md": "d8fd9dc496aab8b79fc8c54cef7530a8a73e4aa98c810fa92359bb265ba7c399",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/RUN_SUMMARY.md": "5241be8f0793db1607e7020d4f6bebdf1b6075bc4ca908562c9ce1f0bf39033e",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/Decision_Log.md": "3712578631dbac47a8ca65f8ed465a94b60f508e296eb8597a485e362455b11b",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/Brief.md": "4cc856c11369c1fb0134cfd25c1c088a24ab9bd6f2e5e72290f8aaada77d33d9",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/QA_Report.md": "9f053f4dc108af4b2da32ce4bb7d02016920eed226f105fb69333a9a4c71ee64",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/Review_Summary.md": "2e47d5454ca04ffa01e02b4a3b1152c25de27b033ba7452895f2a6a3fc0490cc",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/RUN_SUMMARY.md": "750ed7508de1ec78a5934cf66708e540364cd9016aa1e7cc47d354df94fbe21b",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/Decision_Log.md": "91294f2039a337a64d1e4cf499024e21d6f99fee27efc7cbf98a79fb86d44b15",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/Brief.md": "e398012f8d1080b1c62d8e6f091e18d359f79a4d542263e95775f8250f5a335f",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/QA_Report.md": "e2385be4dc325f17fe19d805935185eaf9ae2b109e5caaf73799621efcf8decb",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/Review_Summary.md": "640352b8acb742ae1d2a3bfa6718fef05794e88a13f786525465e5003c43c977",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/RUN_SUMMARY.md": "458b5cc85c688cb353db2f9960055040532239da84235d9b727918d8bc5c70c1",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/Decision_Log.md": "4d75dacbb68c2a7a88a2f57024a107c98fbf6a44a16993b80f7aee8813d438fc",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/Brief.md": "55e9f6acbfbbe4a957e8585485b2cc1d825abea5e00130b0d35e7d1f14a1b7aa",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/QA_Report.md": "9847d27a4df506a9c36634f1a809a264f9978235e27c33340691a6a0cb76481f",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/Review_Summary.md": "63611f1c3befa84a1d189275c6ef5581d0e989624d001517d7398fb86df8f0d3",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/RUN_SUMMARY.md": "96ed45e41cc1698acfb94f30bb977e6f0f9022cc48a2428cf3c2642ed585e4f1",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/Decision_Log.md": "cda1e9bd344fb20804d72f27e06f368ee246fe47572bbfd564f5f7ff128db1ec",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/Brief.md": "2185de6d09d1c64fa8712d226f44747b66833fa600e984dbc06df3903ec392e8",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/QA_Report.md": "c8132a3b0509de2bfc035c7db50ba548c712e2730a11bd42866256d950393da6",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Review_Summary.md": "970cddc654e4729735515a5c9a02b6e9213dbe72bb53c95891100c27df4c2aaa",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/RUN_SUMMARY.md": "a96389bfc56ac9bfd6572c2ca4f8f2a7eaa619cc031b6d9678d237b4a18e5a19",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Decision_Log.md": "2664c1a53209114cbca6ad993f6eed690576984cfbca65fbf15c8525e15ed102",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Brief.md": "783b1f0e4967c79ff67f463a2ac381478fafe0845a76b86aaa9a3ed7ee575b47",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/QA_Report.md": "23daa4a8487db180a41c57d504de3dad87bd1b116714a15997c7b70621407ce1",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/Review_Summary.md": "efa68e46c39c03a788f0876e2c59280d9e2bdc2374d8325f8bf566efefeee4e5",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/RUN_SUMMARY.md": "6e7edafcadefc636bceeaa26b379a968abdb1f26728acbade4e9566e5f838339",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/Decision_Log.md": "72d59a9fbc2553977dbeb21b27d90703f98a0793dc2cdf32e51897340d3f2109",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/Brief.md": "72bd7d2c9f8aa59c8b880507d38423a55ed2758520be013911c09e5bf6cacf35",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/QA_Report.md": "2998fb58f225ae18974f5fc8be76473ae0ebf10fd0f370a87323f53759599b46",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/Review_Summary.md": "2c6392bc8552aaf509a603c7011df336e7058a19b1baa2ba9dd187c0a0fe64e4",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/RUN_SUMMARY.md": "527538a90e8bae6a5420434918625c21706b94d4812c92726a9e2ba6697db70a",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/Decision_Log.md": "94349d1201f5a0f6a2c2087c1036f227d3665b9b048f3c43d34298ade4fdf367",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/Brief.md": "5dcf72ab8f53b6d6c8c1275929864d287cc37fc2e154f946f5b34bd054c9fdd5",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/QA_Report.md": "fce3c3e51e15d93d03054cb69f248ff07e7756a20981f92128cd056fd94d495b",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Review_Summary.md": "c5919cd313dece639c2c3ff11f6c6ad86a47c3c9aef4bfb9291668f76300f8fd",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/RUN_SUMMARY.md": "7c03be83d41351305d766bd750de679822bcd448c22bf835becc88b6b0556a63",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Decision_Log.md": "9cd4873d28640212fc7ca75609fc005e6f26b45fd7eecd094225767ce3bd7f23",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Brief.md": "f497aab1aa1cde634f657143a2c33fb5ada4df1a85a05a8d05dde04604cb1436",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/QA_Report.md": "a40a7311325d3d3efe8aaca543473b6f0632c3622cfdcbfb195b70aa3e4b0a3c",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/Review_Summary.md": "069c14a437db2087d04fba657dd8fbc25fa88a18bc0cc4b3de7a1a513e9d9680",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/RUN_SUMMARY.md": "44ca8b5b81e7af1814e0fe86657b2b65e82d65f64e9c2eef3b054273868839f0",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/Decision_Log.md": "cd1105759111ce2df4ce86d84868825f08350577d5953b7cf5d28ae73d824079",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/Brief.md": "5c839bd3b08e80ecf872fa6ebcefc90408cdb19f5909757966de42558c9316c5",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/QA_Report.md": "c854b7d6becd7f463e33975cd2389bec41fed58af38c8e83e7457fa53ed00bd7",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/Review_Summary.md": "ed0c901961ed303303548948150c8df2114d3c071fa07263efe268485f0f7cba",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/RUN_SUMMARY.md": "3f4ca2f976b31788cbf8525626ef4a3268b6b82fdf1149259f36ef7a50212661",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/Decision_Log.md": "c826d8c132c5b9ae3135cc0cda67973334b026a688961103954c29b19bc14955",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/Brief.md": "24af6f2a5cd915b29695ac241a8281dbbe97bdcbd164412ee9bd49645c3220da",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/QA_Report.md": "5ba5aad2913135573f63c5cd4ae9029f2a301f355d532139aaac3b904dc279b5",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/Review_Summary.md": "6f54a31b9b892afde3bfc26b680d4d3bd32f77bb7dcd9c66795c6ff030224b73",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/RUN_SUMMARY.md": "46d22b3cde87cc01726a9573fd05cb5e6a87fbd759d50df4b708098bf71abb44",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/Decision_Log.md": "6e7e85842a01b1c90bc5b143823faf07654e3d648ea2be155f64da119a6321bc",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/Brief.md": "257ce36f74f9c68a458d3b45f8788e207a8e99b08eff7f5f6b36de908872de53",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/QA_Report.md": "95dbd45290beb8aff590cf3b6a473b34dc18775ffa8eb059060b1e27365d734c",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/Review_Summary.md": "6956697fb3c575e8548dabe2335973c9f655c21c820d7cf1467a8cd287decc98",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/RUN_SUMMARY.md": "d6160d93611b7a4dea062a4ba7728ec75199418ea4da365e2d69b14055894667",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/Decision_Log.md": "1988c57e5fb6556abee9c3d56a81170f39ec490a30bf30a8fd9d9b39970c5bfa",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/Brief.md": "616ab783c834f6ae34ae23fd83735570eb6624e0202de101d401d7a3eebda833",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/QA_Report.md": "6b6cb6b334ebd19ed63fa161f186c0230988b48e5a4d02a8b35bd63c66ce8219",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/Review_Summary.md": "d4dea7e666562d86a622d7a1b6a8e1e28aaedcd12350f4fb862d7d296db0c901",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/RUN_SUMMARY.md": "04b82fa301051b8ba6c2932697ccc15aeedb6ca74cf2cdcc1fbf3439ce3ef474",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/Decision_Log.md": "581e8e2ab91c66ead0ed985d6acb87a492d91859281d2e21f9f20f50c4633692",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/Brief.md": "3c20eefca178d9efb910bc539cbee2a7a0fe910e78bfe422f39920add6c2a1d4",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/QA_Report.md": "c88683f288e6cc81b6db465a812ea8a34da804012af23b6ead6817b4c34cd414",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/Review_Summary.md": "c239ee8db38689b72aaac038ef5b4cca8dbddcb6ea78461fab89629498591552",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/RUN_SUMMARY.md": "1a8199fae1486d3d9f59f5f8313b00764a53aa13f364d0ce1e6ed0ca7c16a100",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/Decision_Log.md": "e9e4d05e0df45208d48ffe2c8e8fedeb6d48f4c45ba9e9edbc31dd6f47d7502a",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/Brief.md": "873b72d43bacf5f1692cbe3d316bd30a0969614149845c84ab5c6e07c57e71f4",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/QA_Report.md": "a30dcb245a19e81fdc820ed6f0f9c348bc38cf47bc3b0e6065f4534a106ed443",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Review_Summary.md": "d02969276b6a470e1207e4d15073a1f7c184076f956dff52d03fe3f4332ec8cb",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/RUN_SUMMARY.md": "e470eef97d63e05271ba1817431ba2938f8b6c3374d3283d370e5a76e6bf682d",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Decision_Log.md": "17385317540b90e4826e23f61b127aaf533b3699f37ecbe930f79c495dc51567",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Brief.md": "5eb78eb83bbc109e2820761f1e48856fc1afd1e1085ce88609c5fc3d48ebbe7d",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/QA_Report.md": "5d14c5ce1dbc21a9405b8be15f5b2749159e3a9f944cb3af1187a7cf12f8508e",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/Review_Summary.md": "7c8858d4fea3371552d072f78fd0b1eb08c90eab26cb85fc254f636ddd862148",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/RUN_SUMMARY.md": "01924a6cc557a011a197f0216c6ac02c609690653c4a86adea721a82c30136e8",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/Decision_Log.md": "9cac5ab9590a2efe7320f8135a717f7768319e9601e9aaffe72925c3145b1f81",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/Brief.md": "5620802b79ef9134a667fa5956907f3f6787889f5d4418a8a7539521aa87fdca",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/QA_Report.md": "37386409da20d76725bd131fa2c6a544f2c508405aed91070d87d8090cdee1c1",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/RUN_SUMMARY.md": "5cc0407ce6919cc3453419a7530b9a51aead3356f7c8dca1d1178e13819ce510",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/Decision_Log.md": "9b4f1b22f685c36eec44d2ab1fc9494b6aaa38ddce10a68ec68cf337f2765ec5",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/Brief.md": "65a7b8a61902d69a064c765e36a8dbf1bcaf094eb94d8a22b6427e1a5abab535",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/QA_Report.md": "bef4b92ab56023d818521da6a35c9f79ba0dc97558df6834fb9bbeedd3bf7a3a",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/Review_Summary.md": "c329116eb6827eb4ef07171036a54b16fd10f741d0136a487e28965651a127e1",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/RUN_SUMMARY.md": "1cfee0effef836c78d7f52d9f082c37360dfe58b8b94c91783d79ef769ec99e3",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/Decision_Log.md": "9ce6fbd1e1faa333ddacaf9becaa30c8b91afeef751f767393a778e9b9316ea0",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/Brief.md": "dd7dbb382bd42782f249b9dd8cca3a05444578cba10882012eae0e6f7ddab632",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/QA_Report.md": "33228a3faedaab556f4541603e89b860eadaf9ae9c238365ce51ff7a892042e6",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/Review_Summary.md": "3c9bf5704e21c56afc6f1d68f875530dfdc8f0e18d9b6a7e37feaca1078a356d",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/RUN_SUMMARY.md": "778e4e06b6c6477256d6e3a871436372a0a2e4ce5985de91e82e4497c91a7539",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/Decision_Log.md": "ce74136eb48329f2a293d6a6c5fbbde714a0f76e78fdd448eda73792b8cb2ea9",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/Brief.md": "c1ea7251823d3e2a07e6f35109c4be3ef1bf61fceba1e403e6e7093f1cb2c279",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/QA_Report.md": "1276b47e75424ebc5b662f8eccd7da6b7e6e887b0746b4ad53ac15d1d962c801",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/Review_Summary.md": "b246e91e90c99062637c83f175451e0f0aa38bb4680d3e5261bc7efdf154da47",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/RUN_SUMMARY.md": "6402067bbf7423ef26d37091323d5d479dc247ed5685f8ddd9ab7f48dd7c2d24",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/Decision_Log.md": "c2ba70f4016fc2264bc67b31f5d4091fb38cdb61cc5f4868973b7b1ecb31cca8",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/Brief.md": "139c204b158ae2083c0cc78986be8965adb6f71582c10cf4655d912617774484",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/QA_Report.md": "1ca11bdafd8e648cc19045e5c517c0c2b9f9aebb40393ad4b549843d4e4edcea",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/Review_Summary.md": "d078195bb6a0d00ace81846dca73b7dde13835bfb9aeca790de60580c57e6d21",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/RUN_SUMMARY.md": "ef9fca1e76c3341f960c8538794056e3dfedd6c458730e7a0452d7e881824e55",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/Decision_Log.md": "79aeba91eafded7be56c8a38aa66ab734d4f01aaa430b4f9cf41eef35cf446e5",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/Brief.md": "700d0e3e34f02727e41f3985ee24059b687183129bc1cce9a9e0ebc1da308166",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/QA_Report.md": "db1bbf0741cf17269f596b8e53e36e165878f6aa109d04139ae05959f425bed7",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/Review_Summary.md": "1ad48b4c384e8c2357016f4a4c18bbcaec38425b2367d779dfca9e77de395aab",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/RUN_SUMMARY.md": "37a450e2a6f5a2fd468ca5167bd47d812173a74fa91e719291f0534f1fcd9e51",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/Decision_Log.md": "d2f3befd97698910dc545fabffa08584907c10595725cc6ca09de2b33d9b9ea5",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/Brief.md": "dbb302b288239146c076b15cfff86fe9158a73e044e8c1ea306d44b31033b762",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/QA_Report.md": "40c9b2079d52d116c4bbb34329ace2ed98c6bd63953f1d45c7562847ac5cb11e",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/Review_Summary.md": "7f865f4f4fb8fbb7e2194b75bf02f75a1e84554583ba1cd615f15ce9e01aa601",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/RUN_SUMMARY.md": "dc7675e95fcc97eb94ed90066587bb485460356701e8cef9ee9f982f40d184b7",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/Decision_Log.md": "2878980d726d83bf06544157da027be819ba45b4c6da003b353d1d3f340fccb7",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/Brief.md": "faa288c40c3ff60f38f2bbfa4f78d4c6354537d1f7b76c23d5232f827af36120",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/QA_Report.md": "955e280185408aca8624c67d68a9771ee7e06349d047d847e61e364be0ffb8e2",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/Review_Summary.md": "c6c4916860ba21063a123ed7315d7da0aefc7bb4b5a906e777ebc18860132d15",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/RUN_SUMMARY.md": "81643923cd5cf0e255859fcefe95ee519b2ee8f910ce35a8ecb0a2814a148b2a",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/Decision_Log.md": "4e098c821713f5c2d51abc3ee3c1359839fe5c3b3fd13222e921c7aeec8e02e8",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/Brief.md": "5d25d4532e6e63114f6de28c3926025f409d527aeb99396fe0c97de97bbde314",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/QA_Report.md": "15e17dde26fcad856db964e6930f05610663907ad4bbe3e8720a43a0d02f2fbf",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/Review_Summary.md": "3c469d22d803dc0c77924fa0df3579d51ad4ddf072dd8aaee6780abfc70263c4",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/RUN_SUMMARY.md": "c01aba158404dc6d8d249005a7c75162a2fa0126b2e76ff7dea924682bfffc0f",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/Decision_Log.md": "4fbf866251614033c44fb4ac8575eb24ce1265593b4cf77f49c1da6c0885ed9d",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/Brief.md": "c5902ba51d86599039790f4df5646e3529a122ed4276c513373bab3202f75fcf",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/QA_Report.md": "9d4e0c142924262ab163477d2c51c1200d29bf742c4af0f591f6b411cb31c564",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/Review_Summary.md": "1a4b393e107eee12def9b9a02146ad8c1822c9dddfd7c49713018df818f1d263",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/RUN_SUMMARY.md": "6c886d15bc6f64f5e1a89a40b2ace21924f4fc811d1c0bdaa6a3332b47f8999a",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/Decision_Log.md": "986360dbdf258f69b036c9915b9226fc90b568b2e9a76dd40222bdef856dc9b9",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/Brief.md": "49cfd51ba7932303c6ab2fc9bac10b18cb47770949f6bac7f0591cb46a5c9721",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/QA_Report.md": "ed2880eb93e3ddfd306c948251c46dc9f0a6654e1880ae2cd3fa06e4b45837cb",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/Review_Summary.md": "987b03b37890dda566a06c79267f49d91025d405e4a4506acfd40567c48e8dfc",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/RUN_SUMMARY.md": "cc3523830de6bfc6a840417220d1164ff6672f7c24409a6bb08598365073d16c",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/Decision_Log.md": "509db346761329cc3d50166126599d51f522a5aacf95d131bbad388f7105eaa3",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/Brief.md": "f6515c127f0f59498e92f6d40a718588a7ecc52dc24846ac32dbf9c2df4d163b",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/QA_Report.md": "188343fe99ab7ec953f846b467338bbb161aec1ace5072824a216de64646c965",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/Review_Summary.md": "1809c1bcab8877fe04aab3487b924059e1ad6f5bcd9d624583f11172be411dee",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/RUN_SUMMARY.md": "51f197231ca27f013931085546d122ee96ba3d077d12fb8db3d0e31ac4816393",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/Decision_Log.md": "dda00c21761965dc2cdf0acc2e51403d4cbb7940e6e94439cd538344089f7b78",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/Brief.md": "91c03084d6eba7c8cd0faafb12c87b1873740f3b6381b24994207e4f4afe8030",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/QA_Report.md": "7cabfd9f38a639ed84a91bda3a96f5bcb43fbfd678d178eb4dcd3979383946ba",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/Review_Summary.md": "10092935ed4269ce33560f83cbe86899c8fa794be09aa71b84dc0104abd10375",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/RUN_SUMMARY.md": "5fde9fc734b0e9cc3327764d9920f67d0bf6bc51e1489001ef3619a2c95d48f8",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/Decision_Log.md": "f3423a8431753ba5eb8d395692ca0f7559168620b612bc95e6374b0d695a800e",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/Brief.md": "af9fedb427454e00e9bdd3e66b3bed2501b328da144a7dcb4db5d5a956c214eb",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/QA_Report.md": "18762f6de2b2fdb1fcde01e237406aaaff4f897beb9e2cd8206461a53bace785",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/Review_Summary.md": "28cb966046c7cc91c85f8d7d1866c362cb9c2d5052b117d0dd54bb4bf13ef19a",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/RUN_SUMMARY.md": "7a28b333e66410402015f92841c9e9a91ec37cb7b257343625c39a9b7a5272a1",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/Decision_Log.md": "5caf82f674ea7480aa767061cff9817937b3cb26a50d9c5ca20a9fb58d0649c6",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/Brief.md": "ac1c5c2266eda2fab3140eac4c09c0fb248010640ec2a35e9522c7b3acba3af0",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/QA_Report.md": "35f0d75cfca209ea755e5dc04f28b04380e7ea8a8425ed16d5eb064295276b9c",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/Review_Summary.md": "151535e65f0f17ac7ceb886bc2cf0950b52ca9d7e63c9ae2f307f086901f7c93",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/RUN_SUMMARY.md": "af94fe77bc80c87ffa3ac0fbddac31fabe7e140c4e269b68ecca9c29a817964d",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/Decision_Log.md": "f3ede028cbd1e3b2e779425af3b38da0b969de06b5f60cbe19c99411f2e72f60",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/Brief.md": "ebb62a82e13b24916285aa247ce6e9749a9bb5d3a7659710ab228acc32beaa25",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/QA_Report.md": "8b51151860e8dfe344892d8942373dc2f1b80d88814c18c0b216b6504015541d",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Review_Summary.md": "577190b78d1bbb50e46757275411ecc7d757bb950dd106e61edd322d21b4b72e",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/RUN_SUMMARY.md": "832ca460c8cb128529d2868dec769845eda2d8ad7443b7e71e9e2e5eb4666410",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Decision_Log.md": "1d1499c69bf1383a1a29420d9eabaed8489f8511590dce0d36de5bbf25dd727c",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Brief.md": "e3c4748a6e601acc3aa6f6600d0d18d9734757e6c04d3e6cab3cfd325f266c89",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/QA_Report.md": "50c8d4e4dbd59a29d3a3b69f4aa8f59ea6a3074d1184eb33918f008bdeaa4b6e",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/Review_Summary.md": "0a3864e4fadeb0a14255fa15c549b8432e69bbb65e054528582eac3f2502b4c3",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/RUN_SUMMARY.md": "a82324a10fea3d66bfce786c150f2d6f5ebf933f579603fa0ba3bbba5e89db81",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/Decision_Log.md": "c4e1b577b45f3b27fd7a925d927ab9fa06393f0b72ee9f2610e0e5f7a79336bf",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/Brief.md": "cbd43fe772f288816cc86e7622cdf5f2dc591cd725ba866280269223b4a868e4",
+    "projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/QA_Report.md": "59f22d4e7770cb5ae71a9ced475e45831176a83fd62f9c52859bb4f9c01ee77d"
+  },
+  "historical_sources": [],
+  "checks": [
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target AGENTS.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target loop/LOOP_INIT.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Decomposition/SOFTWARE_DECOMP.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Decomposition/ScopeLedger.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Decomposition/Deliverables.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/_DECISIONS/_REGISTER.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/_TaskManagement/REGISTER.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target loop/LOOP_RECEIPTS.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Decomposition/_LATEST.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_ScopeChange/_LATEST.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target docs/PRD.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target software-workflow.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_SEMANTIC.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_DEPENDENCIES.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tools/check_service_core_posture.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/config/loops.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/config/service_core_posture.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/config/loops.schema.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/docs/SERVICE_CORE_POSTURE.md --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/src/pec_v2/__init__.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/src/pec_v2/core/__init__.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/src/pec_v2/adapters/__init__.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/src/pec_v2/adapters/config/__init__.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/src/pec_v2/adapters/config/loop_registry.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/src/pec_v2/core/ports/__init__.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/src/pec_v2/core/ports/loop_registry.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/config/test_loop_registry_contract.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/config/test_json_loop_registry.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/test_locality_assertion.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/test_gate_registration.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/test_dependency_assertion.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/locality/external_call/core/app.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/locality/external_config/core/settings.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/locality/local_unix/core/app.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/dependency/conforming/core/app.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/contracts/api/test_api_schema_compatibility.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/contracts/api/fixtures/v1_meaning_changed_candidate.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/contracts/api/fixtures/v1_removed_element_candidate.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/contracts/api/fixtures/v1_additive_candidate.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/config/fixtures/duplicate_loop_id.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/config/fixtures/missing_loop_id.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/tests/config/fixtures/malformed.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target v2/contracts/api/v1/schema.json --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Decomposition/Companion_Inventory.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Decomposition/ContextBudgetQA.csv --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "python3 projects/pec/execution/_Scripts/pec_reliance_hold.py --register projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Scripts/pec_reliance_hold.py --operation candidate-validation",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "result": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n"
+    },
+    {
+      "command": "rg -n DEL-09-01|PEC-DSH-001|Overview dashboard projects/pec/v2 projects/pec/execution/_Evaluation/Reviews",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "result": "No relevant dashboard implementation or acceptance found; see DISCOVERY.log. Search miss establishes only evidence boundary."
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/_LATEST.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2153/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2151/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2029/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0904/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2305/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2031/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_2109/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1306/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2102/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2154/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1118/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-01_1935/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_1110/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-08-02_2026-08-01_2251/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2130/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2040/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2109/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-04-01_2026-08-09_2050/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-02-07_2026-08-09_2122/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/Review_Summary.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/RUN_SUMMARY.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/Decision_Log.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/Brief.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    },
+    {
+      "command": "git show 2be412ccea62bdc4bd96deb082c46d7a792076ea:projects/pec/execution/_Evaluation/Reviews/REV_DEL-03-01_2026-08-09_2126/QA_Report.md",
+      "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+      "environment": {},
+      "exit_code": 0,
+      "result": "SHA256_MATCH_BASE"
+    }
+  ],
+  "source_unchanged": true
+}

@@ -1,0 +1,51 @@
+{
+  "recorded_at_utc": "2026-09-06T00:18:40.555971+00:00",
+  "record_type": "Append-only publication successor relay",
+  "recorder": "/root/pec_remaining_reconciliation",
+  "authority": "Parent /root bounded COMMON-only relay under existing D-PEC-82; delegated-harness-native, role instruction-asserted, not mechanically enforced.",
+  "preserved_prior_record": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/FANIN_COMPLETE_11.json",
+    "sha256": "d51207a5b489e563d2357a769dbb69db7d046234bf5863151f45a601fa243996"
+  },
+  "package": "PKG-08",
+  "previous_output_manifest_sha256": "555775900d8a27b800a7b74c44a02169e8622b8f7bf3d935a12cfde7a0eb3a46",
+  "current_output_manifest": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/OUTPUT_MANIFEST.json",
+    "sha256": "62fe8ac718a11a25cce10517a44dcf2f4c2fb948cb0987008b5c9be6df5fac2f"
+  },
+  "parent_reported_verification": {
+    "manifest_hashes_reproduced": 111,
+    "independent_backcheck": "PASS",
+    "trims": 57,
+    "terminal_Notes_trims": 56,
+    "Python_whitespace_line": 1,
+    "claims": 245,
+    "raw_proposals": 12,
+    "semantics": "Unchanged"
+  },
+  "recorder_inspection": "Rehashed current manifest and provenance carriers; read terminal closeout, independent backcheck, current selection and format map. Parent performed the full manifest reproduction.",
+  "provenance": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PUBLICATION_FORMAT/PREIMAGES.json",
+      "sha256": "9c51c3dd9a637e19bc7305e7e59beb6c6755a79ec5ef236681487f1bf6c2eb8e"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PUBLICATION_FORMAT/FORMAT_MAP.json",
+      "sha256": "fecda6de0175cb0633e51568f34bac208338e160e89df3ae13726c660dc39783"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PUBLICATION_FORMAT/CURRENT_SELECTION.json",
+      "sha256": "e3732ac352c7d9418ab1693f0894ae081e38159b38e180d5f47171e128a40773"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PUBLICATION_FORMAT/CLOSEOUT.md",
+      "sha256": "7c7fca6397b6b331ec09c7ccd22125ffa4377767722e3bd824f9aef291185d4e"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-08/PUBLICATION_FORMAT/BACKCHECK/BACKCHECK.md",
+      "sha256": "ca1faecaddd81e8b9416979fafc4ca571089f51de9ced063dbabe1fa76e8fab3"
+    }
+  ],
+  "selection_instruction": "Synthesis consumes the current publication manifest and CURRENT_SELECTION, interpreting old byte identities through PREIMAGES and FORMAT_MAP. Historical fan-in snapshots and original findings remain unchanged. Parent released synthesis for final rebind.",
+  "next_stage": "Await terminal synthesis before authoring D-PEC-83 / D-PEC-84 or Receipt 171. D-PEC-84 must name the exact future scanner repair evidence home in its concrete path/act/check/rollback grant; no extra repair-proposal ceremony after a sufficient owner ruling. This record grants no repair or application authority."
+}

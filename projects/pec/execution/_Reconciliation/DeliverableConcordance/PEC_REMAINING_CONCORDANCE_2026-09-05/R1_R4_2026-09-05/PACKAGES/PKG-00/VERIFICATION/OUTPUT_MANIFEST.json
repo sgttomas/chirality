@@ -1,0 +1,15 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "files": {
+    "CHECKED_CLAIMS.csv": "7731dc2405f2db9ae308277c9dc301b3ccfc1d14463ea2c1a27be7000b3e1671",
+    "FINDINGS.csv": "f47a9cfdc1e329ef2f7f90848b76286ab3b23ab67d7da8f6fc3f6ceb25ce41a9",
+    "READ_MANIFEST.json": "b14635086e9be0fd51091ed05df7ef3705a7c4d93a626ea044278c16ed8aab81",
+    "RETURN.md": "0f8d407e0dec237bd97a886f0fce882b3182406b007f9da5d69b7cd455ae6d1f",
+    "VALIDATION.json": "ce4ae3d7684fdc9da953a8e617a3eea090cf33d48df55ab0725e49b998cdd548",
+    "VERIFICATION.md": "6875aa910eb56ebf3a9845b1b135eef0a20bcd76194bcfb2f4f7a29736b45d2c",
+    "checks.json": "2ecc58bd27138c48dc81ff36513904938e038e793b92f44b03196b8a0620b3a7",
+    "selected_ids.json": "808db4213e881db3b3e3852cdb9e4cce45b7e65c5d192ad8fbc1e71173d2cb1b",
+    "verify.py": "de36b6b5e41a9f73116ed7d21edc7c072d0ed17f83eba605f83ba4176ce60d79"
+  },
+  "self_excluded": "OUTPUT_MANIFEST.json"
+}

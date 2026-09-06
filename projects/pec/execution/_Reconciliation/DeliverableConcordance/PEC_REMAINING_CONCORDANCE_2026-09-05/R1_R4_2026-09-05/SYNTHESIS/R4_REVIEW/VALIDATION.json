@@ -1,0 +1,19 @@
+{
+  "status": "PASS_FOR_R4_REPORT_AND_PROPOSAL_READINESS",
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "checks_passed": 3785,
+  "checks_failed": 0,
+  "findings": 0,
+  "hold_preflights": 131,
+  "source_unchanged": true,
+  "source_rehash_at_seal": "PASS all799",
+  "production_suites_run": 0,
+  "source_mutations": 0,
+  "delegation": false,
+  "upstream_manifest_pins": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/OUTPUT_MANIFEST.json": "0062cc22f1a234444f9438d49c0f470448cdaa60fa2922eac670960c2beea92d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/OUTPUT_MANIFEST.json": "26fe5361866e8a600af90f1d5048d689d1c8f754c2adf1ae336aa12a4c0880bd",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/AGGREGATE_ADDITIVE/FINAL_STRUCTURAL_ACCOUNTING/OUTPUT_MANIFEST.json": "c378d3b9dd643539bb4ed1753219e85a9c9f5abb17613d4db8e3d449a92c0bfb"
+  },
+  "closure": "Report/application-proposal/scanner-proposal readiness only; no owner application/repair/lifecycle/release/Git permission"
+}

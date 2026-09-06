@@ -1,0 +1,11 @@
+# Bounded Agent2 return — DEL-06-02
+
+SUCCESS for evidence production; ASSESSED_UNKNOWN for deliverable concordance. 14 claims, 10 UNKNOWN, 4 ALIGNED, 1 canonical residual, 0 warranted NONE. All defined local REQ/AC/VER IDs: zero; accepted SOW-027 and material clauses mapped explicitly. Required artifacts CLAIMS.csv, RESIDUALS.csv, COVERAGE.md, READ_MANIFEST.json and this RETURN.md are complete. Supplementary preflights.json, discovery.json and build_evidence.py preserve probes/reproducibility.
+
+Accepted upstream: effective D82 base `2be412ccea62bdc4bd96deb082c46d7a792076ea`, revision1.4 decomposition and D81 calibration conventions. This is a derivative report, not authoritative decomposition. Source unchanged across read-hash recheck; exact hold checks ALLOW, including absent ScopeOfWork.md. CSV structural/reciprocity checks PASS. No product suite run; missing current scanner evidence remains UNKNOWN. Pending DEL-01-02 production dependency is preserved.
+
+Residual DEL-06-02-REM-001 is a nonselectable evidence-gap candidate only. No source/Remaining/lifecycle/assignment/Root/foreign-loop change or production selection. Fresh independent verifier and manager fan-in are outstanding; source/hold/owner changes trigger revalidation. Worker closure is report readiness only.
+
+Sole write allowlist: `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-02/**`. Tools: scoped Python file evidence writes, read-only cat/rg/sed and Python hold preflights. No network, service, Git action or delegation. Role: ephemeral Agent2 under /root/pec_pkg06_reconciliation, actual native child /root/pec_pkg06_reconciliation/del06_02; instruction-asserted, not mechanically enforced; no model identity asserted. TASK base contract read for boundaries; sealed ephemeral brief controls execution and output scope.
+
+Manager validator initially used nearest AGENTS project root and failed locator checks; initial result preserved. Manager corrected its script; final direct CLI validation PASS with 14 claims / 1 residual and zero errors (validator_final.json). Explicit canonical-root intermediate check also passed. READ_MANIFEST includes the corrected validator hash and final check.

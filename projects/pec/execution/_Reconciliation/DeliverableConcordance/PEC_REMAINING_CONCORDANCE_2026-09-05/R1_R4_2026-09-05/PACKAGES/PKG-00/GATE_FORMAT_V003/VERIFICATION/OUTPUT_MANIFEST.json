@@ -1,0 +1,11 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "files": {
+    "BACKCHECK.md": "86531f722bbd6fc21c9031db94f604a1f6d528e4cc76ed5dc3fb674d56e5e241",
+    "READ_MANIFEST.json": "c9a27dec95d80338868c7b331ebbe2ec230343230de29f2ab46f75d0fbad02db",
+    "RETURN.md": "1133dba3fbde75f517f343e57773a28a7f07c2027a3cdcda05d070a92024ca45",
+    "VALIDATION.json": "9c487fe0b501dd27a6f9a8aaad01f93d20f614710e2cf742e8fee81d89e26574",
+    "check.py": "f751bc794c78bb3a441132fa7ad1b5f0aa56e8abb315800c48fcd943ab5267bb"
+  },
+  "self_excluded": "OUTPUT_MANIFEST.json"
+}

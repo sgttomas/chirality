@@ -1,0 +1,15 @@
+{
+  "self_excluded": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/OUTPUT_MANIFEST.json",
+  "kind": "immutable fresh independent R4 review",
+  "status": "PASS_FOR_R4_REPORT_AND_PROPOSAL_READINESS",
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/CHECK_RESULTS.json": "d625c403ca6ce555b09e84482ca5e125032ecd026bb4478a5113fc185d4b227d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/COVERAGE.json": "0b4e52896fbcdd8dd99d7fb987706416ba9e654b35d2d897d458540fbefdb6ea",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/FINDINGS.csv": "b0139a2391c7f9774e963983416296c46c7ebb2721a8aea876822243fbb2beea",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/HANDOFF.md": "2849e9cff1259be3d0ebdfaae9ecb5b253040e04d8fd1e1e6b930c30c50339fc",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/READ_MANIFEST.json": "206ae7496344f1ea64a2418ddc7884db2e7eaed5932a1c438d46eb3b77ff8ad0",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/REVIEW.md": "2594d982b23092a8ca46baee7e3b3b04e0a604e98f654955324a18303bef209e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/VALIDATION.json": "81ca7fe3ffe97750d932641c0694da50cdae7c123b3e64780803087807bc016e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/review_checks.py": "39abaeedd2bb7e7f8fb50172976a2fd1699d6140884730138a36f57247d78833"
+  }
+}

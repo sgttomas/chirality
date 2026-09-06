@@ -1,0 +1,8 @@
+{
+  "child_id": "/root/pec_pkg09_reconciliation/verifier",
+  "role": "Fresh independent Agent2 instruction-asserted, not mechanically enforced",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/BRIEFS/VERIFIER.md",
+  "brief_sha256": "d632f1315638056a0feb97a1398a099f4c3e95e7d4951ac32ab46315fdd9a0f0",
+  "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/**",
+  "status": "DISPATCHED"
+}

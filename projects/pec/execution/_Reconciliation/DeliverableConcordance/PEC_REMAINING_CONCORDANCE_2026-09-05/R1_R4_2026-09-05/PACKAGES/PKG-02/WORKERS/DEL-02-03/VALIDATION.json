@@ -1,0 +1,10 @@
+[
+  {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-02/WORKERS/DEL-02-03",
+    "claims": 82,
+    "residuals": 4,
+    "unknowns": 34,
+    "errors": [],
+    "pass": true
+  }
+]

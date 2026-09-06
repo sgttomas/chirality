@@ -1,0 +1,40 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-01/READ_MANIFEST.json",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/WORKERS/DEL-06-02/READ_MANIFEST.json",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+    "stderr": ""
+  }
+]

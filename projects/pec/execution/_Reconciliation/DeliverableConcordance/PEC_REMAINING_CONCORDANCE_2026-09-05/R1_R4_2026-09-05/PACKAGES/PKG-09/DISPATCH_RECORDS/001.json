@@ -1,0 +1,9 @@
+{
+  "child_id": "/root/pec_pkg09_reconciliation/worker_01",
+  "role": "Agent2 instruction-asserted, not mechanically enforced",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/BRIEFS/DEL-09-01.md",
+  "brief_sha256": "9d8a121c9f98623d0a1c1d3999b628bf156509d9c11e601c6183fa2314dc6aac",
+  "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/WORKERS/DEL-09-01/**",
+  "status": "DISPATCHED",
+  "second_launch": "worker_02 rejected thread limit, no executed child"
+}

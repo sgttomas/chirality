@@ -1,0 +1,13 @@
+{
+  "receipt_command": [
+    "python3",
+    "tools/validation/validate_pec_loop_receipts.py",
+    "--repo-root",
+    "."
+  ],
+  "exit_code": 0,
+  "stdout": "VALID /Users/ryan/.codex/worktrees/54fc/chirality/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied\n",
+  "stderr": "",
+  "format_check": "PASS: exactly one terminal LF removed; final line is not blank; current appended receipt lines have no trailing whitespace; historical prefix unchanged.",
+  "scope": "Ledger one-byte formatting repair plus new FORMAT_SUCCESSOR_01 records only; no Git mutation. CHANGE must refresh staged ledger and final candidate check."
+}

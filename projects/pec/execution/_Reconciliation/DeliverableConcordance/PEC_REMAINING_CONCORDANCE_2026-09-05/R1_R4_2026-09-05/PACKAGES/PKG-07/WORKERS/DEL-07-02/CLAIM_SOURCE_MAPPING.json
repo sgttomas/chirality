@@ -1,0 +1,38 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "missing_contract": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/ScopeOfWork.md",
+  "mappings": [
+    {
+      "local_ids": [
+        "SOW-035-SUBSCRIBER",
+        "SOW-035-DECLARED",
+        "SOW-035-ATTRIBUTABLE"
+      ],
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "locus": "row SOW-035 Description / SOFTWARE_DECOMP.md \u00a72 SSOW row SOW-035",
+      "quote": "Implement the runtime-daemon SSE subscriber bridge, declared and attributable",
+      "quote_sha256": "44fe84721f12095b82430df19821d5c238809990f8f26b97faba419371715f38",
+      "file_sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25"
+    },
+    {
+      "local_ids": [
+        "ARTIFACT-TESTS"
+      ],
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "locus": "row DEL-07-02 AnticipatedArtifacts",
+      "quote": "Bridge + tests",
+      "quote_sha256": "057a32fc862b2b6ce315102d7a34ecfb33993998e036408f12f0cf253002026a",
+      "file_sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72"
+    },
+    {
+      "local_ids": [
+        "EVENT-CONTRACT"
+      ],
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "locus": "\u00a74 Packages table PKG-07 Scope Description",
+      "quote": "Best-effort freshness inputs: idempotent append-only event ingest, the daemon SSE / hooks CLI / cmux bridges, durable message store, the shared-runtime client seam \u2014 implementing the PKG-00 event contracts",
+      "quote_sha256": "905dc113b305bd4b303a476aeed11e24bc8482cbf82e71cbaf8d7af4a9cd98a4",
+      "file_sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81"
+    }
+  ]
+}

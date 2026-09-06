@@ -1,0 +1,90 @@
+[
+  {
+    "deliverable": "DEL-01-01",
+    "native_id": "/root/pec_pkg01_reconciliation/del01_01",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-01.md",
+    "brief_sha256": "63bb4cc18518a4ca623012494d2526fe9ebc846bf4989bcfca2bcfe1c6f34771",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/**",
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "return_sha256": "6ad0f5ed8e5e4838c598214fb18aa6722f3f7d34e57dc9ae4bb735a7f27fe889"
+  },
+  {
+    "deliverable": "DEL-01-02",
+    "native_id": "/root/pec_pkg01_reconciliation/del01_02",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-02.md",
+    "brief_sha256": "9a848f966966e135a8aadec98a7640b353383ffa7da7b10420f053e9b9605914",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02/**",
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "return_sha256": "b35fd8ea93b5121e62dd63e27720c701bb2345c3319b375318cc5dd4cb1b9fa6"
+  },
+  {
+    "deliverable": "DEL-01-03",
+    "native_id": "/root/pec_pkg01_reconciliation/del01_03",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-03.md",
+    "brief_sha256": "235170d656b3447cac33cf6e13ae423adf0cf4053ec7f96fd60f0c9bd9ec50a5",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-03/**",
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "return_sha256": "9d16bd1905ab9f215670e1e688ba1de235fc185e6b3efd749e2a34aeb98db781"
+  },
+  {
+    "deliverable": "DEL-01-04",
+    "native_id": "/root/pec_pkg01_reconciliation/del01_04",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-04.md",
+    "brief_sha256": "30dcfa05097ba393ab66807018a517e0be0d299f830f12f1de5ab9ade8e4b216",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-04/**",
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "return_sha256": "7693ec6af5e4689eecb2524350d4d5bf7657063e669f5234235463da1842dfe3"
+  },
+  {
+    "deliverable": "DEL-01-01;DEL-01-02",
+    "native_id": "/root/pec_pkg01_reconciliation/format_s001",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/FORMAT_CORRECTION_S001.md",
+    "brief_sha256": "98a9cfdd274c9fc3c88329d3925e3f0fc083c1052902e97c2a25e6c9ed8f5b4c",
+    "write_scope": [
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/CORRECTION_S001/**",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02/CORRECTION_S001/**"
+    ],
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "purpose": "fresh procedural correction; original worker semantics preserved",
+    "return_sha256": {
+      "DEL-01-01": "439fc9936e484aeef0c968ac4ba00eec296ee4a200785ac88b6271bc819a5d71",
+      "DEL-01-02": "efe6ec5323ac356628c0aa772df1af6ae866a710ae2eb277081db5c525cd6369"
+    }
+  },
+  {
+    "deliverable": "DEL-01-05",
+    "native_id": "/root/pec_pkg01_reconciliation/del01_05",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-05.md",
+    "brief_sha256": "c539bb660864681113a72c167322066ebcd838527869079b241dd0cef41baf7e",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-05/**",
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "return_sha256": "7a4330e7bca68f08832a9a72e72a6a7b0bb6dfac6be0566a0f5ab017080ebd2f"
+  },
+  {
+    "deliverable": "DEL-01-06",
+    "native_id": "/root/pec_pkg01_reconciliation/del01_06",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/DEL-01-06.md",
+    "brief_sha256": "5d81a518e00f53180eac912eb674b7e9ad7faa1ef74776f8ba63d3b5e6861798",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-06/**",
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "return_sha256": "b3bde3d6d7486daa018f1832822bd4cf7ec2098b0101a7f1926e6852e94de346"
+  },
+  {
+    "deliverable": "PKG-01 all6",
+    "native_id": "/root/pec_pkg01_reconciliation/pkg01_verifier",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/BRIEFS/VERIFIER.md",
+    "brief_sha256": "d76a3e5be3601fff1572433c9d052191d5e27c7bb035ed536b434ff316862ccd",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/VERIFICATION/**",
+    "status": "COMPLETE",
+    "role_evidence": "instruction-asserted; role not mechanically enforced",
+    "purpose": "fresh independent package verification",
+    "return_sha256": "bc71f56ac8d240180166a4a9ea26a3012f120f000a060db74c8d64425684675f"
+  }
+]

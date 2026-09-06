@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "claims": 14,
+  "dispositions": {
+    "ALIGNED": 8,
+    "UNKNOWN": 6
+  },
+  "residuals": 1,
+  "defined_local_REQ_AC_VER": 0,
+  "covered_defined_local_REQ_AC_VER": 0,
+  "source_mappings": 14,
+  "source_hashes": 348,
+  "source_unchanged": true,
+  "checks": [
+    "exact column order",
+    "unique compound IDs",
+    "owner-prefixed sequential residuals",
+    "reciprocal claim/residual links",
+    "literal gates",
+    "nonempty Depends",
+    "quote hashes and loci",
+    "source commit/hashes",
+    "LF CSV",
+    "complete fallback claim census"
+  ],
+  "independent_verification": "PENDING_MANAGER_DISPATCH"
+}

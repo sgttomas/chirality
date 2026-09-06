@@ -1,0 +1,3 @@
+FindingID,Severity,AffectedIDs,Issue,Correction,Evidence
+F001,REPORT_READINESS_BLOCKER,DEL-07-03-REM-001,Evidence-only inquiry inherits production Depends,Fresh derivative: residual Depends NONE only; preserve linked behavior/method claim production dependencies and all gates,F001.md
+F002,REPORT_READINESS_BLOCKER,DEL-07-01;DEL-07-03;DEL-07-04,Event-contract consumer behavior unaccounted; DEL07-04 anticipated tests lack explicit mapping,Fresh bounded source-grounded claim/existing-claim/nonclaim accounting; no forced duplicate rows or production mandate,F002.md

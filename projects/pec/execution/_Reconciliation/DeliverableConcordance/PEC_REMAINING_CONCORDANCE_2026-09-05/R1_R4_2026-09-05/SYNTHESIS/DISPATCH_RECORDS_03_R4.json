@@ -1,0 +1,21 @@
+{
+  "caller": "/root/pec_corpus_synthesis",
+  "parent": "/root",
+  "child": "/root/pec_corpus_synthesis/final_r4_verifier",
+  "role": "fresh independent ephemeral Agent2",
+  "role_evidence": "instruction-asserted, not mechanically enforced",
+  "no_delegation": true,
+  "brief": "BRIEFS/FINAL_R4_REVIEW.md",
+  "brief_sha256": "e09a1f412214788ccb25667f6872326e8ebc1a6498c111f2f420ce319ef0060d",
+  "write_scope": "R4_REVIEW/**",
+  "selected_manager_manifest": {
+    "path": "FULL_02/OUTPUT_MANIFEST.json",
+    "sha256": "0062cc22f1a234444f9438d49c0f470448cdaa60fa2922eac670960c2beea92d"
+  },
+  "selected_application_manifest": {
+    "path": "APPLICATION_PREPARATION/FULL_01/OUTPUT_MANIFEST.json",
+    "sha256": "26fe5361866e8a600af90f1d5048d689d1c8f754c2adf1ae336aa12a4c0880bd"
+  },
+  "active_specialists": 1,
+  "completed_author_and_structural_specialists": "terminal; source/role evidence preserved"
+}

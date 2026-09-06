@@ -1,0 +1,27 @@
+{
+  "self_excluded": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/OUTPUT_MANIFEST.json",
+  "kind": "full synthesis candidate for fresh independent R4 review",
+  "application_manifest": {
+    "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/OUTPUT_MANIFEST.json",
+    "sha256": "26fe5361866e8a600af90f1d5048d689d1c8f754c2adf1ae336aa12a4c0880bd"
+  },
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CONSOLIDATED_CLAIMS.csv": "82e9b1cd27325da2d1bfa6ccc9a1ee834e4c7714b87366bf2186883e2985464d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CONSOLIDATED_RESIDUALS.csv": "1e07247798e1e5e5dcc0e5fd1f8671b37d83613042a3070ab1aceb9402a2d21a",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CROSS_PACKAGE_FINDINGS.csv": "cd259670b1299a9f1efc68e125fa14ca1dbc2f783c469ca6c6234c43e6d04c21",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CROSS_PACKAGE_INPUTS.csv": "b2a00dbaa5572e295c14f4aa52f91ecba228cac57e9687d1860cff1c5062aa13",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/DELIVERABLE_CENSUS.csv": "c41de2697ece935bd854c322fbe7f99222c7af5f3a0f8c6454647946fb5112d9",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/DEPENDENCY_ANALYSIS.json": "094c588aec7fa534c7901e8e5423ebd7be9f2722120026e265674fa409b72a05",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/DEPENDENCY_ROWS.csv": "1a0ce2412e3c0e66645ab6f5b2f09692a2fd31d5718360bf2da15ef67e1cbef9",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/HANDOFF_STATE.md": "722aca3672664edc3e6fc9545ec7200653926498aef7943ee9eeb03b9f0c6062",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/PACKAGE_CENSUS.csv": "36eadb83a94f4c56226fb0a4fdb9efbb7ab8b57814139e94c1df122ae96a7bb7",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/POINTER_CORRECTION.json": "6914065b3beb300c623596f320cabf9b5ffce94ba3569d378fb8dabfe6afa803",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/R4_DECISION_PACKETS/OWNER_ROUTING.md": "4b1bdd3f57203567591e51f98a6512ae9e1abf88e04a27c41e459209eb06ebe3",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/R4_DECISION_PACKETS/REMAINING_APPLICATION.md": "96575055e8ce2bbe7babd778d36f6683c216119f2d2cc256c45c7856b826a14b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/R4_DECISION_PACKETS/SCANNER_EXACT_ACTS_AND_EVIDENCE.md": "1fa3bcb2f2c23830e26a4df142aaa15310c056e4d3773162d2a7d2b7bec4ea8e",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/READ_MANIFEST.json": "caf8d47d383025b7df0bdf504d9a02dc885db00e409f0079459f34d551a6160c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/REPORT.md": "b6f2374d5bbb636751f55f08e4ffb41792001281483435ef3b3f06ecb87706b4",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/SELECTED_MEMBER_INPUTS.json": "eac44c60d7d94a9f2201a02c0e85d7cb511cc4143dbe7756b89053de6c121a73",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/VALIDATION.json": "a860c4b8e37819926099e0522b2ab36bc7eb977cf7e74c8351b853f37598f808"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_remaining_application_proposal_2026-09-05.md",
+      "sha256": "9892db3ed95623532c025ca1bc7c6ec346f64110b30fb581d70c6e02a6ca492b"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-84_scanner_repair_proposal_2026-09-05.md",
+      "sha256": "d47eb83957e86cf6898b91ce128628f5de7f3bbaeee65169524d1670a3bc6259"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "e91fff1d51809715b8ba4e6f659cd15f24c80ac38d33653516f456e10641b7f4"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "sha256": "6539f7adb08ead6cb43e740cc453483ae19c823cb0c9fceea8d8fba37f4fc149"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/FINAL_COORDINATION_01/HANDOFF.md",
+      "sha256": "37abf3de85ef5074eef1c3f7520f5e873a0a991cbcd6861461d7655105cbe65e"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/FINAL_COORDINATION_01/AUTHORING_STATE.json",
+      "sha256": "a5c33e28539dce2332e5b2c11c5eb36851a752627aedba2c6c11557a59e9c5ba"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/FINAL_COORDINATION_01/VALIDATION.json",
+      "sha256": "9c7f03851f7f793d36a76eb14690b2d77f620436bdb1bc86f356b5ea838e0803"
+    }
+  ],
+  "self_excluded": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/FINAL_COORDINATION_01/AUTHOR_MANIFEST.json"
+}

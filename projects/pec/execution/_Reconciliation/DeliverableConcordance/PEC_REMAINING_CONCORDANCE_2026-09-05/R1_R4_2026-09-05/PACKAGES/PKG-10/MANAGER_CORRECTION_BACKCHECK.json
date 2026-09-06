@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "checks": [
+    {
+      "deliverable": "DEL-10-10",
+      "revision": "REVISION_V001",
+      "mapped_cells": 227,
+      "exact_map": true,
+      "unaffected_cells_equal": true
+    },
+    {
+      "deliverable": "DEL-10-03",
+      "revision": "REVISION_V002",
+      "mapped_cells": 35,
+      "exact_map": true,
+      "unaffected_cells_equal": true
+    }
+  ],
+  "source_mutation": false
+}

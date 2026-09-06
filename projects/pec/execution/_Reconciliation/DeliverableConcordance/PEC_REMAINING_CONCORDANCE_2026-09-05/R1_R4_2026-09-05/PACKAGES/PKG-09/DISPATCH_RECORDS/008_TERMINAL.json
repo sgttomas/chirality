@@ -1,0 +1,10 @@
+{
+  "child_id": "/root/pec_pkg09_reconciliation/verifier",
+  "status": "COMPLETED",
+  "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/RETURN.md",
+  "return_sha256": "d92aa70342a0cb01ce872ae35cd231f3a4ee78b24a93ed1cdfac9407dc1da3aa",
+  "claims": 110,
+  "residuals": 9,
+  "verdict": "PASS_FOR_DERIVATIVE_REPORT_FAN_IN",
+  "corrective_findings": 0
+}

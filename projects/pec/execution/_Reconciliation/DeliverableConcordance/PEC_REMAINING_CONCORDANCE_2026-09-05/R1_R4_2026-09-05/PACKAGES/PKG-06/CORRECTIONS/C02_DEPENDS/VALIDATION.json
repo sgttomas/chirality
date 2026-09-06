@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "errors": [],
+  "members": [
+    {
+      "DeliverableID": "DEL-06-05",
+      "Claims": 11,
+      "Residuals": 2,
+      "Unknown": 6,
+      "DispositionCounts": {
+        "ALIGNED": 5,
+        "UNKNOWN": 6
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-06",
+      "Claims": 8,
+      "Residuals": 1,
+      "Unknown": 4,
+      "DispositionCounts": {
+        "ALIGNED": 4,
+        "UNKNOWN": 4
+      }
+    }
+  ],
+  "command": "python3 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/validate_package.py projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C02_DEPENDS/DEL-06-05 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-06/CORRECTIONS/C02_DEPENDS/DEL-06-06",
+  "exit_code": 0,
+  "validator_sha256": "4c57d8a008efa9ed42fe14374a4d39a80c00075ef703c8da2a5adbaf7360aee5",
+  "changed_cells": 22,
+  "all_unlisted_csv_fields_equal": true,
+  "originals_unchanged": true,
+  "preflight_count": 40
+}

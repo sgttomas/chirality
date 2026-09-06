@@ -1,0 +1,8 @@
+{
+  "worker": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03/WORKERS/DEL-03-03",
+  "claims": 81,
+  "residuals": 5,
+  "read_hashes": 86,
+  "errors": [],
+  "pass": true
+}

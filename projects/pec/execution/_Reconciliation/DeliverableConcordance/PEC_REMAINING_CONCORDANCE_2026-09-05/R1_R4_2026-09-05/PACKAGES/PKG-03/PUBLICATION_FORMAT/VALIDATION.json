@@ -1,0 +1,22 @@
+{
+  "pass": true,
+  "decoded_preimages": 30,
+  "original_snapshot_files_reproduced": 123,
+  "normalized_files": 3,
+  "non_EOF_bytes_identical": true,
+  "original_manifests_preserved": true,
+  "claims_residuals_sources_receipts_unchanged": true,
+  "whitespace_command": [
+    "python3",
+    "tools/validation/validate_candidate_whitespace.py",
+    "--base-ref",
+    "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+    "--paths",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-03"
+  ],
+  "scratch": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/pec-pkg03-format-81c55rwk",
+  "real_git_index_or_object_mutation": false,
+  "whitespace_exit_code": 0,
+  "whitespace_result": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n",
+  "scope": "full PKG03 candidate; other packages remain owning-manager/CHANGE responsibility"
+}

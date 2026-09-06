@@ -1,0 +1,105 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "observations": [
+    {
+      "DependencyID": "DEP-06-05-004",
+      "FromDeliverableID": "DEL-06-05",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-06-01",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P44"
+    },
+    {
+      "DependencyID": "DEP-06-02-003",
+      "FromDeliverableID": "DEL-06-02",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-01-02",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P40"
+    },
+    {
+      "DependencyID": "DEP-06-03-003",
+      "FromDeliverableID": "DEL-06-03",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-06-01",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P41"
+    },
+    {
+      "DependencyID": "DEP-06-03-004",
+      "FromDeliverableID": "DEL-06-03",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-06-02",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P42"
+    },
+    {
+      "DependencyID": "DEP-06-01-003",
+      "FromDeliverableID": "DEL-06-01",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-01-02",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P39"
+    },
+    {
+      "DependencyID": "DEP-06-01-004",
+      "FromDeliverableID": "DEL-06-01",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-07-03",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P45"
+    },
+    {
+      "DependencyID": "DEP-06-04-003",
+      "FromDeliverableID": "DEL-06-04",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-01-02",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-N09"
+    },
+    {
+      "DependencyID": "DEP-06-04-004",
+      "FromDeliverableID": "DEL-06-04",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-06-01",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-N10"
+    },
+    {
+      "DependencyID": "DEP-06-04-005",
+      "FromDeliverableID": "DEL-06-04",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-07-02",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "DERIVED; Flag=none; EdgeID=E-P46"
+    },
+    {
+      "DependencyID": "DEP-06-04-006",
+      "FromDeliverableID": "DEL-06-04",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-07-03",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "DERIVED; Flag=none; EdgeID=E-P47"
+    },
+    {
+      "DependencyID": "DEP-06-06-003",
+      "FromDeliverableID": "DEL-06-06",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-06-03",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P43"
+    }
+  ],
+  "semantics": "Only ACTIVE PREREQUISITE in TBD/PENDING/IN_PROGRESS and explicitly named by a proposed item Depends gates that item. No register state changed; reporting independent of production prerequisites."
+}

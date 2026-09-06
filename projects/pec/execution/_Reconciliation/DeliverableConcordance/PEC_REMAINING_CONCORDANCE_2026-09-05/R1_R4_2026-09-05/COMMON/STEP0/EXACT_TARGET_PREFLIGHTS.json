@@ -1,0 +1,2441 @@
+{
+  "status": "PASS",
+  "operation": "candidate-validation",
+  "register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+  "register_state": "header-only",
+  "checks": [
+    {
+      "DeliverableID": "DEL-00-01",
+      "PackageID": "PKG-00",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-00-01",
+      "PackageID": "PKG-00",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-00-02",
+      "PackageID": "PKG-00",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-00-02",
+      "PackageID": "PKG-00",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-00-03",
+      "PackageID": "PKG-00",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-00-03",
+      "PackageID": "PKG-00",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-01",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-01",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-02",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-02",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-03",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-03",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-04",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-04",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-05",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-05",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-06",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-01-06",
+      "PackageID": "PKG-01",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-01",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-01",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-02",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-02",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-03",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-03",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-04",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-04",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-05",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-05",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-06",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-06",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-07",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-02-07",
+      "PackageID": "PKG-02",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-01",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-01",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-02",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-02",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-03",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-03",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-04",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-04",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-05",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-05",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-06",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-03-06",
+      "PackageID": "PKG-03",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-01",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-02",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-03",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-04",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-04-05",
+      "PackageID": "PKG-04",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-05-01",
+      "PackageID": "PKG-05",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-05-01",
+      "PackageID": "PKG-05",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-05-02",
+      "PackageID": "PKG-05",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-05-02",
+      "PackageID": "PKG-05",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-01",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-01",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-02",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-02",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-03",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-03",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-04",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-04",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-05",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-05",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-06",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-06-06",
+      "PackageID": "PKG-06",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-01",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-01",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-02",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-02",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-03",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-03",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-04",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-04",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-05",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-07-05",
+      "PackageID": "PKG-07",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-01",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-01",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-02",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-02",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-03",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-03",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-04",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-04",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-05",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-08-05",
+      "PackageID": "PKG-08",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-01",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-01",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-02",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-02",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-03",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-03",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-04",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-04",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-05",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-05",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-06",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-06",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-07",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-09-07",
+      "PackageID": "PKG-09",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-01",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-01",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-02",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-02",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-03",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-03",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-04",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-04",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-05",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-05",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-06",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-06",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-07",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-07",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-08",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-08",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-09",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-09",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-10",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-10",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-11",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-11",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-12",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    },
+    {
+      "DeliverableID": "DEL-10-12",
+      "PackageID": "PKG-10",
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "exit_code": 0,
+      "result": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      }
+    }
+  ],
+  "limits": "Absent SOW targets remain explicit; preflight matching uses exact logical file target. No production authority or bypass of owner/source gates."
+}

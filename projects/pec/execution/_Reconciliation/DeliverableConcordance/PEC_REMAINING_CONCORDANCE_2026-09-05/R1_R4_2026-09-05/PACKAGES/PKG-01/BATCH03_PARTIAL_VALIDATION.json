@@ -1,0 +1,50 @@
+{
+  "base": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "member_count": 5,
+  "members": {
+    "DEL-01-01": {
+      "claims": 71,
+      "residuals": 4,
+      "unknown": 48,
+      "nonaligned": 48,
+      "read_hashes": 58,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-01/CORRECTION_S001"
+    },
+    "DEL-01-02": {
+      "claims": 16,
+      "residuals": 2,
+      "unknown": 11,
+      "nonaligned": 11,
+      "read_hashes": 74,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-02/CORRECTION_S001"
+    },
+    "DEL-01-03": {
+      "claims": 54,
+      "residuals": 4,
+      "unknown": 33,
+      "nonaligned": 33,
+      "read_hashes": 40,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-03"
+    },
+    "DEL-01-04": {
+      "claims": 46,
+      "residuals": 2,
+      "unknown": 26,
+      "nonaligned": 26,
+      "read_hashes": 68,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-04"
+    },
+    "DEL-01-05": {
+      "claims": 61,
+      "residuals": 5,
+      "unknown": 7,
+      "nonaligned": 15,
+      "read_hashes": 85,
+      "selected_root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-01/WORKERS/DEL-01-05"
+    }
+  },
+  "claims": 248,
+  "residuals": 17,
+  "errors": [],
+  "structural_pass": true
+}

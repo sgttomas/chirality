@@ -1,0 +1,24 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "active_prerequisites": [
+    {
+      "id": "DEP-01-01-003",
+      "from": "DEL-01-01",
+      "target": "DEL-00-01",
+      "status": "PENDING",
+      "maturity": "INITIALIZED",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv"
+    },
+    {
+      "id": "DEP-01-02-003",
+      "from": "DEL-01-02",
+      "target": "DEL-01-03",
+      "status": "PENDING",
+      "maturity": "INITIALIZED",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/Dependencies.csv"
+    }
+  ],
+  "reporting_objective": "Read-only discovery and package report; no production prerequisite must be satisfied for inspection.",
+  "scc": "No directed cycle in inspected active local prerequisite subgraph; no ordering claim over uninspected foreign or complete project graph.",
+  "rule": "An ACTIVE PREREQUISITE TBD/PENDING/IN_PROGRESS blocks only an item whose Depends names the exact target; no register flips from predecessor evidence."
+}

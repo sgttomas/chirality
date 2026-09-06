@@ -1,0 +1,115 @@
+{
+  "rows": [
+    {
+      "DependencyID": "DEP-08-03-003",
+      "FromDeliverableID": "DEL-08-03",
+      "TargetDeliverableID": "DEL-08-02",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-N11",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "SHA256": "d46bb9f09a8d73e2dc767f544b0fbd5207d54032f70edfb1b03ce99379f385a3",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-03-004",
+      "FromDeliverableID": "DEL-08-03",
+      "TargetDeliverableID": "DEL-04-03",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P53",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "SHA256": "d46bb9f09a8d73e2dc767f544b0fbd5207d54032f70edfb1b03ce99379f385a3",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-04-003",
+      "FromDeliverableID": "DEL-08-04",
+      "TargetDeliverableID": "DEL-10-01",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "DECLARED; Flag=none; EdgeID=E-A28",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "SHA256": "1770f6fa3b2e740fff44f85c24d6d256e32ad50ba61e37c4495be9455fef6a4a",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-04-004",
+      "FromDeliverableID": "DEL-08-04",
+      "TargetDeliverableID": "DEL-08-03",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-N12",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "SHA256": "1770f6fa3b2e740fff44f85c24d6d256e32ad50ba61e37c4495be9455fef6a4a",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-04-005",
+      "FromDeliverableID": "DEL-08-04",
+      "TargetDeliverableID": "DEL-04-01",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P51",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "SHA256": "1770f6fa3b2e740fff44f85c24d6d256e32ad50ba61e37c4495be9455fef6a4a",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-04-006",
+      "FromDeliverableID": "DEL-08-04",
+      "TargetDeliverableID": "DEL-08-01",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P52",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "SHA256": "1770f6fa3b2e740fff44f85c24d6d256e32ad50ba61e37c4495be9455fef6a4a",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-05-003",
+      "FromDeliverableID": "DEL-08-05",
+      "TargetDeliverableID": "DEL-04-02",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P56",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "SHA256": "58b97ea5d8df6124ac6b94baa922983e82e05cadf8892404b174e6c4a262f1ba",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-05-004",
+      "FromDeliverableID": "DEL-08-05",
+      "TargetDeliverableID": "DEL-06-01",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P57",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "SHA256": "58b97ea5d8df6124ac6b94baa922983e82e05cadf8892404b174e6c4a262f1ba",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    },
+    {
+      "DependencyID": "DEP-08-05-005",
+      "FromDeliverableID": "DEL-08-05",
+      "TargetDeliverableID": "DEL-08-01",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "Status": "ACTIVE",
+      "Notes": "PROPOSAL; Flag=none; EdgeID=E-P58",
+      "Source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "SHA256": "58b97ea5d8df6124ac6b94baa922983e82e05cadf8892404b174e6c4a262f1ba",
+      "Meaning": "Future production prerequisite only when named by item Depends; discovery remains authorized; current predecessor evidence never flips register."
+    }
+  ],
+  "reporting_cycle": "No reporting dependency imposed; production subgraph 08-02 to08-03 to08-04 and08-01 to08-04/05 is acyclic; external incoming interfaces recorded without foreign graph inference.",
+  "declined_edge": "D66 E-N13/DEP-07-05-004 explicitly declined. No DEL07-05 to DEL08-02 dependency reinstated.",
+  "temporal_limit": "Source-bound frozen register values remain unchanged."
+}

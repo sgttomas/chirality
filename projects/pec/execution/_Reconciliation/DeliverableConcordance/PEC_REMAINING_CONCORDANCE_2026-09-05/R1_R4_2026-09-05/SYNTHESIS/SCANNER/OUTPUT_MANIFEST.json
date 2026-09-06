@@ -1,0 +1,17 @@
+{
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "native_identity": "/root/pec_corpus_synthesis/scanner_proposal",
+  "status": "READY_FOR_SYNTHESIS_REVIEW",
+  "kind": "bounded_scanner_repair_proposal_derivative",
+  "self_excluded": true,
+  "hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/HANDOFF.md": "55a97c850b03f0247329d01aeae328e5d78a41c5e0f23a8b4d5aa6b0b23ad221",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/PREFLIGHTS.json": "6eccd1ce3c3fb0c0d22b6185af33fab861ecfbc33294b594ae60651415473e1f",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/PROPOSAL.md": "bebfa8c83fdcfa5773612290dbf5076b85bf63d27ea5691ab08374ac10191dbf",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/READ_MANIFEST.json": "24fa18377aecd10ba9c87c3e7f65f05c8029b70e4ac3d1c3b9ca004400da3767",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/READ_PATHS.json": "2676a76b3df42d55c11c58159660a81e271d9efa926a38a0504714db637835e8",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/REGRESSION_PLAN.md": "ac15b7f87741fbce0f5ea2044b7aea86c08245a156111f6f50e0f3c8fdfaa0b7",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/TARGETS.json": "a388bc33c338da49a348464a2aba8eb24684e4422df8189f35d58df92e9e6b7b",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/VALIDATION.json": "681111c197d2d1d202677908abf717ee6152910df1cb1c9986c45eab75941ef0"
+  }
+}

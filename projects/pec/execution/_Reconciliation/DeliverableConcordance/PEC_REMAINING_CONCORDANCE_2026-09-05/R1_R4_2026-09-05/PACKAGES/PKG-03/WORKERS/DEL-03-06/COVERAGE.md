@@ -1,0 +1,17 @@
+# DEL-03-06 atomic coverage
+
+Status: ASSESSED_UNKNOWN; warranted NONE prohibited. Source commit 2be412ccea62bdc4bd96deb082c46d7a792076ea.
+
+All 88 defined local records preserved as DEL-03-06::LocalID: REQ14, AC16, VER13, OUT2, CLM20, TBD5, CON6, AX12. Two explicitly mapped fallback rows cover authoring basis and current lifecycle/Remaining. No defined local claim omitted; blockquoted upstream IDs and upstream register IDs are source context, not local definitions. Every first paragraph, line and quote hash is in SOURCE_EXCERPTS.json; continuation quotations were read against cited upstream sources. Output/evaluation matrix has 16 AC rows, 13 VER links and three HUMAN_REVIEW entries.
+
+Disposition counts: {"ALIGNED": 38, "STALE_INPUT": 2, "UNKNOWN": 50}. Claim classes: {"AUTHORITY_QUESTION": 4, "DECLARED_CURRENT_STATE": 1, "DOCUMENTARY_ALIGNMENT": 31, "FINITE_TEST_METHOD": 13, "HUMAN_ACCEPTANCE": 3, "LIFECYCLE": 1, "PRODUCT_ACCEPTANCE_CRITERION": 13, "PRODUCT_OUTPUT": 2, "PRODUCT_REQUIREMENT": 14, "PROVENANCE": 5, "RELEASE_BOUNDARY": 3}. Five residual proposals, all NON_SELECTABLE_PENDING_OWNER_APPLICATION.
+
+R1 inventory: canonical contract, local context/references/status/dependencies, three dated authoring/repair run records, current v2 source/test inventory, accepted scope and decisions, SCA002 warrant and August9 currency closeout. No R0 sample for this member and no product execution reused. Frozen prototype source is excluded from current completion. Source inspection/search absence is UNKNOWN, not DOCUMENTED_UNIMPLEMENTED. Source existence such as loop_registry.py is not downstream benchmark proof.
+
+R2 separates target minutes, unmarked seconds clause, observed durations, declared finite benchmark methods, owner confirmation and lifecycle/release. No numeric bound is invented. All 14 REQ and 13 executing VER obligations remain individually visible; documentary ALIGNED rows never establish behavior.
+
+R3 preserves two ACTIVE PENDING PREREQUISITE rows, DEL-03-01 and DEL-03-02, RequiredMaturity INITIALIZED. Residual001 names these exact upstream targets; documentary/owner interpretations name NONE. Discovery did not wait for production prerequisites and did not satisfy them. Other graph constraints are non-gating and no dependency value changed. Cross-package routing concerns: shared corpus term with DEL-08-04; DEL-03-01 limitation-bearing full rebuild; DEL-03-02 examined-baseline provenance; no new scope assigned.
+
+Dated/current comparison: July25 INIT truth about then-empty dependency evidence is preserved. CLM-009 and AX-009 still assert empty current cells although D65 repaired both; residual004 is restricted to that paraphrase. The frozen DAG exhibit still has empty BasisCitation and is not defective on that basis. Rev1.3 authoring provenance is retained; current discovery uses rev1.4. Ordinary currency remains complete, TM023 held, TM022 deferred and PRDv2.3/D79 adopted-not-applied. Historical upstream no-artifact wording is not used as current absence evidence; quoted DEL03-01/02 requirements compared retain their exact operative text.
+
+R4: residual001 is an evidence-gap/conditional production preparation candidate; residual004 is a narrow documentary candidate; residual002/003/005 are held owner/acceptance/source-interpretation routing. No automatic TM mirror, no SCA002 mapping reopening, no standing release obligation. This TEST_SUITE is terminal and not in C08 standing nodes; PRD P1 exit bound remains a separate phase criterion.

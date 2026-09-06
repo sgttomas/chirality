@@ -1,0 +1,107 @@
+[
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/del0401",
+    "role": "Agent2 ephemeral specialist",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/DEL-04-01.md",
+    "brief_sha256": "1dc338b1fc0f46054faece54163a2b046b9dbc2881c4af52ae6a9935bfc101d3",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/**",
+    "status": "COMPLETE",
+    "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-01/RETURN.md",
+    "return_sha256": "ea3b53add931c8f59280847a650041e6b37aa75333ae6302bc97a71a9c44d63f"
+  },
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/del0402",
+    "role": "Agent2 ephemeral specialist",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/DEL-04-02.md",
+    "brief_sha256": "d1bf55df58f1ca6ba5382692040af5205212527f444290f8097927ba36385823",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/**",
+    "status": "COMPLETE",
+    "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-02/RETURN.md",
+    "return_sha256": "4c3050e386ccac478341761eafcc9de410f44b85624763e1168f4a957de0857c"
+  },
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/del0403",
+    "role": "Agent2 ephemeral specialist",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/DEL-04-03.md",
+    "brief_sha256": "e912cd3a11b13462402bc0bfb4b9ebd2925171d552c66fd4d712abed26204bf2",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-03/**",
+    "status": "COMPLETE",
+    "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-03/RETURN.md",
+    "return_sha256": "4abcc664da20fe1dd3fd2549750630e34a9b1348ca1cc7007856fb730328ead2"
+  },
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/del0404",
+    "role": "Agent2 ephemeral specialist",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/DEL-04-04.md",
+    "brief_sha256": "67691de26b13164719a764c66b6167a66727996485aa7320614473012f3f0d93",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/**",
+    "status": "COMPLETE",
+    "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-04/RETURN.md",
+    "return_sha256": "54fb818398d3f1736ee0aa8c60c9a48b48d39886709d6b341c335fe4baa8a940"
+  },
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/del0405",
+    "role": "Agent2 ephemeral specialist",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/DEL-04-05.md",
+    "brief_sha256": "9ae32e76bd641aa9a03b66e8b7d6528d9b2cbd9b969dd70367b2b1b0f61db846",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-05/**",
+    "status": "COMPLETE",
+    "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/WORKERS/DEL-04-05/RETURN.md",
+    "return_sha256": "1d888b2a2b24d025fa340b984bbb5ab221f0d56547b757eecae2aa3f83f87337"
+  },
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/verifier",
+    "role": "Agent2 fresh independent verifier",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/VERIFIER.md",
+    "brief_sha256": "317fceda718cd87aa62eb05bb6f29d8730e30893460f21b86a27e83895b22b90",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/**",
+    "status": "COMPLETE_FRESH_DERIVATIVES_REQUIRED",
+    "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/RETURN.md",
+    "return_sha256": "097633e9316112a77b84d486a8fe062c1cb15562b4dec301d4280abbe20c5b3b"
+  },
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/correct0405",
+    "role": "Agent2 fresh correction specialist",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/DEL-04-05-C01.md",
+    "brief_sha256": "42c0cb68cda6c6765e5516674b075c061b88335cf3b4c9d90745ac356dec6beb",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/**",
+    "status": "COMPLETE",
+    "amendment": {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/CORRECTION_AMENDMENT_01.md",
+      "sha256": "d8d4b4c2d7e7aba684962ca31c9e6736b522a7cec40b8cac16194bcb0dcfa819",
+      "additional_sealed_brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/DEL-04-03-C01.md",
+      "additional_sealed_brief_sha256": "0610bb549dbb493e74308c29f376f6a61af67c00ca73af7bd573963caca736aa",
+      "additional_write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/**",
+      "authority": "HELP_HUMAN direct parent versioned bounded correction amendment"
+    },
+    "terminal_returns": [
+      {
+        "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-03/C01/RETURN.md",
+        "sha256": "ff034ae0e0061f42a9da263bb03a9333ecbefbb417ee33881af093ecf4f4c363"
+      },
+      {
+        "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/CORRECTIONS/DEL-04-05/C01/RETURN.md",
+        "sha256": "0b4b0f744d0721c5329441ba9a93e9b11841503691a238c0dcad5b7ee2e26cb1"
+      }
+    ]
+  },
+  {
+    "agent_id": "/root/pec_pkg04_reconciliation/verifier",
+    "turn": "C01_BACKCHECK",
+    "role": "Agent2 independent correction verifier",
+    "enforcement": "instruction-asserted; not mechanically enforced",
+    "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/BRIEFS/BACKCHECK_C01.md",
+    "brief_sha256": "3b030cac0bb4343c3d67c2c560793b9a725a6809e820f10d243dd2b3d8b432f0",
+    "write_scope": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/BACKCHECK_C01/**",
+    "status": "COMPLETE_PASS",
+    "return_path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-04/VERIFICATION/BACKCHECK_C01/RETURN.md",
+    "return_sha256": "a917f9cfdfe55d9f4825a2490fbb7eb3238a11757248e3e8d9a01b9f43617021"
+  }
+]

@@ -1,0 +1,556 @@
+{
+  "hashes": {
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md": "342fcb850982ef57ea5ab07dd95b886a381b058ce42c3162c8cd9b3eb4b61acc",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md": "c827fb9feeaa78156fd1c56221aa5fc426bdd2651895b752d2eec0841283c33e",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md": "3a330ed651b411c5ab5e1c0f618ebcc9c7a19b79cf51789778950bc7a8a009c3",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md": "61680c0f0eb67d39137d07fa637b7051b7661b6511b0aebd6eafa793be7f75c3",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md": "6f1e3562d087b6e81efc2e00dc82bc2c621687f98fbe3d388d998b2dc5c94c0b",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md": "51a95d30a7585a6448035dd9ff8a866017212648784b6118335922a8a3dbeead",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md": "35a457b82b888f218e677552b60976e8914b28f052c9bc36ad896f612f2187ed",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md": "2ed591ad9008ebfa144e9c5b9a7f0a1d5f2ff858002c9b6a49939dbe46b3ccb0",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md": "f757ca97a8f822bd74876b03ef3cbb4f5a61846cef0b369487cf730b680d4832",
+    "projects/pec/docs/PRD.md": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv": "c6ce35a3a0f9945124c0d503e03958f6a0072f221ecb15b4555970a465855caa",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md": "e53497585ebce826bd16244f924a9164f5cb46334e935daae50a55ebed1a9996",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_CONTEXT.md": "6c5455c38b85003e3632e52a961e0aae150eb4e25567bd6378d0c05207085569",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv": "c62d3d262b258be6151bb9ca6d8b8d096db917867febee7fc7bb4d5b0958dd68",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md": "a146fc6acb4fe5da4d513312f11c8c2db3c3d2cff77aa4720b484b260a1f86bf",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_DEPENDENCIES.md": "7c7c7096b84a35e5b5fed8eb86567dc24589ce476123c15291cd24e40b4db537",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md": "3a7828c69b35482b61f9f31adccfa879f38f794008785e4c7fbe4da7c02210f8",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv": "a515cb7511b45677c85de6d518c4e93331c8daef7f925ec3a2b281115e911241",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv": "7ad0ee08c5ab08c47b83485d154bd395bd4931f1868f7f34c24449c049d6f735",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md": "7cc4faf411a85a3cf17a33a0a50f5065aace83ef3eef003298dc721bbe6dac0d",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv": "7b14f37b9b344fbee944cf5d973f948b45d351cdb007b89de809ec2203440e21",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_REFERENCES.md": "0d34444f7faaa91e4e5aa8b4a16cb05707d491a353c863bb12387fedd9c08487",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_REFERENCES.md": "78ab3bb0f5957b152a05bd712b6f55fe900ebd4f47234bfa1c878daa8a620537",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv": "e45e2340c3af5084fa90413da6f8c276f2105d6e7a4605f1c8500067557f76cf",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_REFERENCES.md": "3275cdc25d61bdab3baa276ac917af67a666b7091dfe73078391c41f544c9f55",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_REFERENCES.md": "57c637d457886cda3c23a51b02167484eef670f4bcb7d41dae98547a61721145",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv": "481ef94fe68faff3e4d41f7c240f7208ed06cc4c339fb1166372fdef207dd946",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_REFERENCES.md": "7d814916e089a74cfc54c330e4041af2c40b7339b774b10d1062b4a6004f8580",
+    "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_REFERENCES.md": "d74fa83df09a07d1a96b7407c2a748b7e9821861e3556a54d0d0eb9ad859d168"
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Decomposition/ScopeLedger.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Decomposition/Deliverables.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "docs/PRD.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Decomposition/SOFTWARE_DECOMP.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_CONTEXT.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_DEPENDENCIES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_REFERENCES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_REFERENCES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_REFERENCES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_REFERENCES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_REFERENCES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    },
+    {
+      "command": [
+        "python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_REFERENCES.md",
+        "--operation",
+        "consume"
+      ],
+      "exit_code": 0,
+      "result": "{\"operation\": \"consume\", \"status\": \"ALLOW\"}"
+    }
+  ]
+}

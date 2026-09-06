@@ -1,0 +1,1986 @@
+[
+  {
+    "deterministic_lowest_aligned_per_deliverable": [
+      "DEL-00-01::AC-001",
+      "DEL-00-03::AC-001"
+    ],
+    "limitation": "Presence in a population file is structural accounting only; structural-only rows do not prove semantic review. Self-flagged boundary semantics remain governed by package verifier narrative and independent R4 review.",
+    "missing_explicit_population_ids": [],
+    "package": "PKG-00",
+    "population_rows": [
+      {
+        "id": "DEL-00-01::AC-001",
+        "original_row": {
+          "ClaimClass": "documentary_alignment",
+          "ClaimID": "DEL-00-01::AC-001",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md#AC-001; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md;projects/pec/execution/_Decomposition/ScopeLedger.csv;projects/pec/execution/_Decomposition/Deliverables.csv;projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::AC-002",
+        "original_row": {
+          "ClaimClass": "documentary_alignment",
+          "ClaimID": "DEL-00-01::AC-002",
+          "Disposition": "PARTIALLY_IMPLEMENTED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md#AC-002; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md;projects/pec/execution/_Decomposition/ScopeLedger.csv;projects/pec/execution/_Decomposition/Deliverables.csv;projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+          "Result": "SEMANTICS_SUPPORTED_RESIDUAL_ID_CORRECTION",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::AC-007",
+        "original_row": {
+          "ClaimClass": "human_acceptance",
+          "ClaimID": "DEL-00-01::AC-007",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md#AC-007; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md;projects/pec/execution/_Decomposition/ScopeLedger.csv;projects/pec/execution/_Decomposition/Deliverables.csv;projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md;projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/ARTIFACT_ACCEPTANCE_AND_DEL10_REPAIR_RULING_2026-08-01.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::C05",
+        "original_row": {
+          "ClaimClass": "human_acceptance",
+          "ClaimID": "DEL-00-01::C05",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::CLM-006",
+        "original_row": {
+          "ClaimClass": "documentary_alignment",
+          "ClaimID": "DEL-00-01::CLM-006",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md#CLM-006; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md;projects/pec/execution/_Decomposition/ScopeLedger.csv;projects/pec/execution/_Decomposition/Deliverables.csv;projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::LIFECYCLE",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-00-01::LIFECYCLE",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::REQ-002",
+        "original_row": {
+          "ClaimClass": "documentary_alignment",
+          "ClaimID": "DEL-00-01::REQ-002",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md#REQ-002; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md;projects/pec/execution/_Decomposition/ScopeLedger.csv;projects/pec/execution/_Decomposition/Deliverables.csv;projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::REQ-007",
+        "original_row": {
+          "ClaimClass": "documentary_alignment",
+          "ClaimID": "DEL-00-01::REQ-007",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md#REQ-007; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md;projects/pec/execution/_Decomposition/ScopeLedger.csv;projects/pec/execution/_Decomposition/Deliverables.csv;projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-01::VER-001",
+        "original_row": {
+          "ClaimClass": "finite_test_method",
+          "ClaimID": "DEL-00-01::VER-001",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md#VER-001; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md;projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md;projects/pec/execution/_Decomposition/ScopeLedger.csv;projects/pec/execution/_Decomposition/Deliverables.csv;projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::HOME-001",
+        "original_row": {
+          "ClaimClass": "human_acceptance",
+          "ClaimID": "DEL-00-02::HOME-001",
+          "Disposition": "DEFERRED_AGENT_WORKFLOW",
+          "Evidence": "projects/pec/execution/_Decomposition/Deliverables.csv #row DEL-00-02 / ContextEnvelopeNotes; quote-sha256=cb7d98a10611cde315145977fc6388ad7ce2656efc0a28c2152cdbb36b6585a0; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/docs/PRD.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::MAP-001",
+        "original_row": {
+          "ClaimClass": "human_acceptance",
+          "ClaimID": "DEL-00-02::MAP-001",
+          "Disposition": "DEFERRED_AGENT_WORKFLOW",
+          "Evidence": "projects/pec/execution/_Coordination/TM-PEC-023_SCOPE_CHANGE_MAPPING_SESSION_PREP_2026-08-03/OWNER_RULINGS_2026-08-03.md #Ruling 1(d); quote-sha256=76fe40c0a1e3b652d26b1c867e16c25878148eed33250b8daf1cecc3e0aa35e4; projects/pec/execution/_Coordination/TM-PEC-023_SCOPE_CHANGE_MAPPING_SESSION_PREP_2026-08-03/OWNER_RULINGS_2026-08-03.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/execution/_Coordination/TM-PEC-023_SCOPE_CHANGE_MAPPING_SESSION_PREP_2026-08-03/HANDOFF_STATE.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-001",
+        "original_row": {
+          "ClaimClass": "observed_behavior",
+          "ClaimID": "DEL-00-02::SCOPE-001",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/Deliverables.csv #row DEL-00-02 / Description; quote-sha256=2d09aaa6ca2b74a951cc1c7224639a8a3fc4011a6d05e34337952bbeb68509be; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-002",
+        "original_row": {
+          "ClaimClass": "observed_behavior",
+          "ClaimID": "DEL-00-02::SCOPE-002",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/ScopeLedger.csv #row SOW-034 / ScopeItemStatement; quote-sha256=fd5ce590791c0da8379de0ba92210988a5bd7e1d4f11d93a346dd46a832183c2; projects/pec/execution/_Decomposition/ScopeLedger.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-003",
+        "original_row": {
+          "ClaimClass": "observed_behavior",
+          "ClaimID": "DEL-00-02::SCOPE-003",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/ScopeLedger.csv #row SOW-034 / ScopeItemStatement; quote-sha256=fd5ce590791c0da8379de0ba92210988a5bd7e1d4f11d93a346dd46a832183c2; projects/pec/execution/_Decomposition/ScopeLedger.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-004",
+        "original_row": {
+          "ClaimClass": "observed_behavior",
+          "ClaimID": "DEL-00-02::SCOPE-004",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/ScopeLedger.csv #row SOW-034 / ScopeItemStatement; quote-sha256=fd5ce590791c0da8379de0ba92210988a5bd7e1d4f11d93a346dd46a832183c2; projects/pec/execution/_Decomposition/ScopeLedger.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-005",
+        "original_row": {
+          "ClaimClass": "observed_behavior",
+          "ClaimID": "DEL-00-02::SCOPE-005",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/Deliverables.csv #row DEL-00-02 / Description; quote-sha256=328fe0f7c868fc2e078fca62ce6f186acb527d79adf31b631e07bfa07fc64f1f; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-006",
+        "original_row": {
+          "ClaimClass": "observed_behavior",
+          "ClaimID": "DEL-00-02::SCOPE-006",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/Deliverables.csv #row DEL-00-02 / Description; quote-sha256=989602d41a6c45239bd3e6e69328facb25733dbd177f06786c688a4011e73cfe; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-007",
+        "original_row": {
+          "ClaimClass": "finite_test_method",
+          "ClaimID": "DEL-00-02::SCOPE-007",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/Deliverables.csv #row DEL-00-02 / AnticipatedArtifacts; quote-sha256=832c287d7a0946ce37ecf7c05802efe449dc1d24cea363cb6505c9bafbac6295; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-008",
+        "original_row": {
+          "ClaimClass": "documentary_alignment",
+          "ClaimID": "DEL-00-02::SCOPE-008",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/Deliverables.csv #row DEL-00-02 / AnticipatedArtifacts; quote-sha256=30112c4bf060059802124f0c5c372d29cde1593dd54278dba8bc02113d547d6f; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-02::SCOPE-009",
+        "original_row": {
+          "ClaimClass": "release_publication",
+          "ClaimID": "DEL-00-02::SCOPE-009",
+          "Disposition": "UNKNOWN",
+          "Evidence": "projects/pec/execution/_Decomposition/Deliverables.csv #row DEL-00-02 / Description; quote-sha256=c3ec11910b1bd4a0b2892b26eda2a439d0133d6727f572b4e58af6a6f18fb8c6; projects/pec/execution/_Decomposition/Deliverables.csv; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md; projects/pec/v2/contracts/api/v1/schema.json; projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py; projects/pec/software-workflow.json; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md; projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::AC-001",
+        "original_row": {
+          "ClaimClass": "ARTIFACT_ACCEPTANCE",
+          "ClaimID": "DEL-00-03::AC-001",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#AC-001; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md artifact path; D-PEC-72 packet \u00a7output; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::AC-009",
+        "original_row": {
+          "ClaimClass": "ARTIFACT_ACCEPTANCE",
+          "ClaimID": "DEL-00-03::AC-009",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#AC-009; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md \u00a7\u00a77,8,10; C-05 closure ruling; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::AC-011",
+        "original_row": {
+          "ClaimClass": "HUMAN_ACT",
+          "ClaimID": "DEL-00-03::AC-011",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#AC-011; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md \u00a75; _REVIEW.md Exact-byte acceptance and remaining gates; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::CON-001",
+        "original_row": {
+          "ClaimClass": "DEFERRED_AGENT_WORKFLOW",
+          "ClaimID": "DEL-00-03::CON-001",
+          "Disposition": "DEFERRED_AGENT_WORKFLOW",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#CON-001; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md \u00a7\u00a71, 5\u20136, 10; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "CORRECTION_REQUIRED_CLASS",
+          "SelectionReason": "ALL_NONALIGNED_AND_RESIDUAL"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::REQ-001",
+        "original_row": {
+          "ClaimClass": "DOCUMENTARY",
+          "ClaimID": "DEL-00-03::REQ-001",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#REQ-001; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md \u00a7\u00a71, 5\u20136, 10; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::REQ-009",
+        "original_row": {
+          "ClaimClass": "DOCUMENTARY",
+          "ClaimID": "DEL-00-03::REQ-009",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#REQ-009; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md \u00a7\u00a77,10; C-05 closure ruling; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::VER-001",
+        "original_row": {
+          "ClaimClass": "VERIFICATION_METHOD",
+          "ClaimID": "DEL-00-03::VER-001",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#VER-001; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md \u00a7\u00a71,6,10; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-00-03::VER-009",
+        "original_row": {
+          "ClaimClass": "VERIFICATION_METHOD",
+          "ClaimID": "DEL-00-03::VER-009",
+          "Disposition": "ALIGNED",
+          "Evidence": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md#VER-009; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md \u00a7\u00a77,8,10; C-05 closure ruling; projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md; projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md; READ_MANIFEST.json; selected accepted R0 projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/CLAIMS.csv; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/WORKERS/DEL-00-03/READ_MANIFEST.json",
+          "Result": "SUPPORTED_WITH_STATED_LIMITS",
+          "SelectionReason": "DETERMINISTIC_CLASS_SAMPLE_OR_ACCEPTANCE_BOUNDARY"
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/CHECKED_CLAIMS.csv"
+      }
+    ],
+    "required_non_aligned_or_residual_linked_claims_and_residuals": [
+      "DEL-00-01-REM-001",
+      "DEL-00-01::AC-002",
+      "DEL-00-02-REM-001",
+      "DEL-00-02-REM-002",
+      "DEL-00-02-REM-003",
+      "DEL-00-02-REM-004",
+      "DEL-00-02::HOME-001",
+      "DEL-00-02::MAP-001",
+      "DEL-00-02::SCOPE-001",
+      "DEL-00-02::SCOPE-002",
+      "DEL-00-02::SCOPE-003",
+      "DEL-00-02::SCOPE-004",
+      "DEL-00-02::SCOPE-005",
+      "DEL-00-02::SCOPE-006",
+      "DEL-00-02::SCOPE-007",
+      "DEL-00-02::SCOPE-008",
+      "DEL-00-02::SCOPE-009",
+      "DEL-00-03-REM-001",
+      "DEL-00-03::CON-001"
+    ],
+    "residual_coverage_normalization": {
+      "backcheck": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/BACKCHECK_V001/VALIDATION.json",
+      "ids": [
+        "DEL-00-01-REM-001",
+        "DEL-00-02-REM-001",
+        "DEL-00-02-REM-002",
+        "DEL-00-02-REM-003",
+        "DEL-00-02-REM-004",
+        "DEL-00-03-REM-001"
+      ],
+      "method": "Enumerated selected residual IDs from exact aggregate, joined to original verifier all6 residual statement and independent exact-change backcheck; preserves original non-tabular assertion, not invented per-ID verifier rows.",
+      "narrative": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-00/VERIFICATION/VERIFICATION.md"
+    }
+  },
+  {
+    "deterministic_lowest_aligned_per_deliverable": [
+      "DEL-09-01::CONSUMER-BOUNDARY",
+      "DEL-09-02::ASSIGNMENT",
+      "DEL-09-03::CONTEXT-ASSIGNMENT",
+      "DEL-09-04::ASSIGNMENT",
+      "DEL-09-05::ASSIGNMENT",
+      "DEL-09-06::DEP-09-06-001",
+      "DEL-09-07::ASSIGNMENT"
+    ],
+    "limitation": "Presence in a population file is structural accounting only; structural-only rows do not prove semantic review. Self-flagged boundary semantics remain governed by package verifier narrative and independent R4 review.",
+    "missing_explicit_population_ids": [],
+    "package": "PKG-09",
+    "population_rows": [
+      {
+        "id": "DEL-09-01-REM-001",
+        "original_row": {
+          "ClaimIDs": "DEL-09-01::OVERVIEW-GIT;DEL-09-01::OVERVIEW-RECEIPT;DEL-09-01::OVERVIEW-GATES;DEL-09-01::OVERVIEW-TRANCHES;DEL-09-01::OVERVIEW-PARKED;DEL-09-01::VIEW-TESTS",
+          "ResidualID": "DEL-09-01-REM-001",
+          "RoutingClass": "EVIDENCE_CANDIDATE",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-02-REM-001",
+        "original_row": {
+          "ClaimIDs": "DEL-09-02::SOW-046-CENSUS;DEL-09-02::SOW-046-STUCK-AGE;DEL-09-02::SOW-046-WORKFLOW-COMPLETENESS;DEL-09-02::ARTIFACT-TESTS",
+          "ResidualID": "DEL-09-02-REM-001",
+          "RoutingClass": "EVIDENCE_CANDIDATE",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-03-REM-001",
+        "original_row": {
+          "ClaimIDs": "DEL-09-03::SOW-047-01;DEL-09-03::SOW-047-02;DEL-09-03::SOW-047-03;DEL-09-03::SOW-047-04;DEL-09-03::SOW-047-05;DEL-09-03::SOW-047-06;DEL-09-03::SOW-047-07;DEL-09-03::SOW-047-08",
+          "ResidualID": "DEL-09-03-REM-001",
+          "RoutingClass": "EVIDENCE_CANDIDATE",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-04-REM-001",
+        "original_row": {
+          "ClaimIDs": "DEL-09-04::SOW-048;DEL-09-04::ARTIFACT-TESTS",
+          "ResidualID": "DEL-09-04-REM-001",
+          "RoutingClass": "EVIDENCE_CANDIDATE",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-048; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-04; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-048; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-04; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-05-REM-001",
+        "original_row": {
+          "ClaimIDs": "DEL-09-05::SOW-049-B1;DEL-09-05::SOW-049-B2;DEL-09-05::SOW-049-B3;DEL-09-05::SOW-049-B4",
+          "ResidualID": "DEL-09-05-REM-001",
+          "RoutingClass": "EVIDENCE_CANDIDATE",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-06-REM-001",
+        "original_row": {
+          "ClaimIDs": "DEL-09-06::PEC-DSH-006;DEL-09-06::PEC-K-08;DEL-09-06::DL-14;DEL-09-06::FALLBACK-TEST",
+          "ResidualID": "DEL-09-06-REM-001",
+          "RoutingClass": "EVIDENCE_CANDIDATE",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-07-REM-001",
+        "original_row": {
+          "ClaimIDs": "DEL-09-07::SOW-051-RULE-01;DEL-09-07::SOW-051-RULE-02;DEL-09-07::SOW-051-RULE-03;DEL-09-07::SOW-051-RULE-04;DEL-09-07::SOW-051-RULE-05;DEL-09-07::PEC-DSH-007-DOC;DEL-09-07::PEC-K-08;DEL-09-07::RENDER-CONSUMERS",
+          "ResidualID": "DEL-09-07-REM-001",
+          "RoutingClass": "EVIDENCE_CANDIDATE",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-07-REM-002",
+        "original_row": {
+          "ClaimIDs": "DEL-09-07::DEP-09-07-003",
+          "ResidualID": "DEL-09-07-REM-002",
+          "RoutingClass": "HELD_OWNER_QUESTION",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-003; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-07-REM-003",
+        "original_row": {
+          "ClaimIDs": "DEL-09-07::DEP-09-07-008",
+          "ResidualID": "DEL-09-07-REM-003",
+          "RoutingClass": "HELD_OWNER_QUESTION",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-008; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Exact reciprocal claim links; Depends NONE is proper for evidence/routing. Literal owner gate and NON_SELECTABLE_PENDING_OWNER_APPLICATION survive. Closure evidence requests future exact owner act; no production, lifecycle or register change is authorized."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_RESIDUALS.csv"
+      },
+      {
+        "id": "DEL-09-01::PEC-DSH-001",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-01::PEC-DSH-001",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary scope mapping checked against accepted decomposition and source PRD vocabulary; no behavior or acceptance inference."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::OVERVIEW-GIT",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-01::OVERVIEW-GIT",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::OVERVIEW-RECEIPT",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-01::OVERVIEW-RECEIPT",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::OVERVIEW-GATES",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-01::OVERVIEW-GATES",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::OVERVIEW-TRANCHES",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-01::OVERVIEW-TRANCHES",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::OVERVIEW-PARKED",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-01::OVERVIEW-PARKED",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::VIEW-TESTS",
+        "original_row": {
+          "ClaimClass": "finite test method",
+          "ClaimID": "DEL-09-01::VIEW-TESTS",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::LIFECYCLE-OPEN",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-09-01::LIFECYCLE-OPEN",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md Current State and History",
+          "Verdict": "PASS",
+          "VerificationNotes": "OPEN since PREPARATION verified; no Remaining heading. This documentary lifecycle observation does not establish implementation, acceptance, release or warranted NONE."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::DEPENDENCY-BOUNDARY",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-01::DEPENDENCY-BOUNDARY",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv row DEPENDENCY-BOUNDARY; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::CONSUMER-BOUNDARY",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-01::CONSUMER-BOUNDARY",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review; deterministic lowest-ID ALIGNED",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-045; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-01; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-01::RESPONSIBLE-PARTY",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-01::RESPONSIBLE-PARTY",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md Responsible Party; Deliverables.csv DEL-09-01",
+          "Verdict": "PASS",
+          "VerificationNotes": "TBD is truthful administrative state with assignment at activation; no automatic product/TM residual."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::PEC-DSH-002",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::PEC-DSH-002",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary scope mapping checked against accepted decomposition and source PRD vocabulary; no behavior or acceptance inference."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::SOW-046-CENSUS",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-02::SOW-046-CENSUS",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::SOW-046-STUCK-AGE",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-02::SOW-046-STUCK-AGE",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::SOW-046-WORKFLOW-COMPLETENESS",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-02::SOW-046-WORKFLOW-COMPLETENESS",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::ARTIFACT-TESTS",
+        "original_row": {
+          "ClaimClass": "finite test method",
+          "ClaimID": "DEL-09-02::ARTIFACT-TESTS",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::LIFECYCLE",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-09-02::LIFECYCLE",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md Current State and History",
+          "Verdict": "PASS",
+          "VerificationNotes": "OPEN since PREPARATION verified; no Remaining heading. This documentary lifecycle observation does not establish implementation, acceptance, release or warranted NONE."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::ASSIGNMENT",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::ASSIGNMENT",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review; deterministic lowest-ID ALIGNED",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md Responsible Party; Deliverables.csv DEL-09-02",
+          "Verdict": "PASS",
+          "VerificationNotes": "TBD is truthful administrative state with assignment at activation; no automatic product/TM residual."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::DEP-09-02-001",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::DEP-09-02-001",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv row DEP-09-02-001; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::DEP-09-02-002",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::DEP-09-02-002",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv row DEP-09-02-002; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::DEP-09-02-003",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::DEP-09-02-003",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv row DEP-09-02-003; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::DEP-09-02-004",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::DEP-09-02-004",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv row DEP-09-02-004; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::DEP-09-02-005",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::DEP-09-02-005",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv row DEP-09-02-005; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::DEP-09-02-006",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::DEP-09-02-006",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv row DEP-09-02-006; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-02::CONSUMER-BOUNDARY",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-02::CONSUMER-BOUNDARY",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-046; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-02; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-01",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-01",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-02",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-02",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-03",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-03",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-04",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-04",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-05",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-05",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-06",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-06",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-07",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-07",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::SOW-047-08",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-03::SOW-047-08",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::CONTEXT-SCOPE",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::CONTEXT-SCOPE",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary scope mapping checked against accepted decomposition and source PRD vocabulary; no behavior or acceptance inference."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::CONTEXT-ASSIGNMENT",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::CONTEXT-ASSIGNMENT",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review; deterministic lowest-ID ALIGNED",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md Responsible Party; Deliverables.csv DEL-09-03",
+          "Verdict": "PASS",
+          "VerificationNotes": "TBD is truthful administrative state with assignment at activation; no automatic product/TM residual."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::STATUS-OPEN",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-09-03::STATUS-OPEN",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md Current State and History",
+          "Verdict": "PASS",
+          "VerificationNotes": "OPEN since PREPARATION verified; no Remaining heading. This documentary lifecycle observation does not establish implementation, acceptance, release or warranted NONE."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::DEP-09-03-001",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::DEP-09-03-001",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv row DEP-09-03-001; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::DEP-09-03-002",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::DEP-09-03-002",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv row DEP-09-03-002; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::DEP-09-03-003",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::DEP-09-03-003",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv row DEP-09-03-003; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::DEP-09-03-004",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::DEP-09-03-004",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv row DEP-09-03-004; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::DEP-09-03-005",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::DEP-09-03-005",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv row DEP-09-03-005; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::PEC-K-03-11",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::PEC-K-03-11",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-03::PEC-K-02",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-03::PEC-K-02",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-047; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-03; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::SOW-048",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-04::SOW-048",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-048; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-04; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::ARTIFACT-TESTS",
+        "original_row": {
+          "ClaimClass": "finite test method",
+          "ClaimID": "DEL-09-04::ARTIFACT-TESTS",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-048; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-04; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::SCOPE-MAPPING",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::SCOPE-MAPPING",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-048; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-04; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary scope mapping checked against accepted decomposition and source PRD vocabulary; no behavior or acceptance inference."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::ASSIGNMENT",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::ASSIGNMENT",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review; deterministic lowest-ID ALIGNED",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_CONTEXT.md Responsible Party; Deliverables.csv DEL-09-04",
+          "Verdict": "PASS",
+          "VerificationNotes": "TBD is truthful administrative state with assignment at activation; no automatic product/TM residual."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::LIFECYCLE-OPEN",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-09-04::LIFECYCLE-OPEN",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md Current State and History",
+          "Verdict": "PASS",
+          "VerificationNotes": "OPEN since PREPARATION verified; no Remaining heading. This documentary lifecycle observation does not establish implementation, acceptance, release or warranted NONE."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::DEP-09-04-001",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::DEP-09-04-001",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv row DEP-09-04-001; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::DEP-09-04-002",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::DEP-09-04-002",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv row DEP-09-04-002; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::DEP-09-04-003",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::DEP-09-04-003",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv row DEP-09-04-003; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::DEP-09-04-004",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::DEP-09-04-004",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv row DEP-09-04-004; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::DEP-09-04-005",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::DEP-09-04-005",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv row DEP-09-04-005; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-04::CONSUMER-BOUNDARY",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-04::CONSUMER-BOUNDARY",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-048; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-04; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::SOW-049",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::SOW-049",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary scope mapping checked against accepted decomposition and source PRD vocabulary; no behavior or acceptance inference."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::SOW-049-B1",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-05::SOW-049-B1",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::SOW-049-B2",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-05::SOW-049-B2",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::SOW-049-B3",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-05::SOW-049-B3",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::SOW-049-B4",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-05::SOW-049-B4",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::PEC-DSH-005",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::PEC-DSH-005",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary scope mapping checked against accepted decomposition and source PRD vocabulary; no behavior or acceptance inference."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::PEC-K-01",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::PEC-K-01",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::PEC-K-03",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::PEC-K-03",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::PEC-K-06",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::PEC-K-06",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::PEC-K-11",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::PEC-K-11",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-049; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-05; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::LIFECYCLE",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-09-05::LIFECYCLE",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md Current State and History",
+          "Verdict": "PASS",
+          "VerificationNotes": "OPEN since PREPARATION verified; no Remaining heading. This documentary lifecycle observation does not establish implementation, acceptance, release or warranted NONE."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::ASSIGNMENT",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::ASSIGNMENT",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review; deterministic lowest-ID ALIGNED",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_CONTEXT.md Responsible Party; Deliverables.csv DEL-09-05",
+          "Verdict": "PASS",
+          "VerificationNotes": "TBD is truthful administrative state with assignment at activation; no automatic product/TM residual."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-001",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-001",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-001; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-002",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-002",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-002; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-003",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-003",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-003; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-004",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-004",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-004; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-005",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-005",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-005; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-006",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-006",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-006; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-007",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-007",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-007; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-05::DEP-09-05-008",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-05::DEP-09-05-008",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv row DEP-09-05-008; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::SOW-050",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::SOW-050",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary scope mapping checked against accepted decomposition and source PRD vocabulary; no behavior or acceptance inference."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::PEC-DSH-006",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-06::PEC-DSH-006",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::PEC-K-08",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-06::PEC-K-08",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::DL-14",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-06::DL-14",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::FALLBACK-TEST",
+        "original_row": {
+          "ClaimClass": "finite test method",
+          "ClaimID": "DEL-09-06::FALLBACK-TEST",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::DEP-09-06-001",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::DEP-09-06-001",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review; deterministic lowest-ID ALIGNED",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv row DEP-09-06-001; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::DEP-09-06-002",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::DEP-09-06-002",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv row DEP-09-06-002; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::DEP-09-06-003",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::DEP-09-06-003",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv row DEP-09-06-003; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::DEP-09-06-004",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::DEP-09-06-004",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv row DEP-09-06-004; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::DEP-09-06-005",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::DEP-09-06-005",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv row DEP-09-06-005; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::FALLBACK-LIFECYCLE",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-09-06::FALLBACK-LIFECYCLE",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md Current State and History",
+          "Verdict": "PASS",
+          "VerificationNotes": "OPEN since PREPARATION verified; no Remaining heading. This documentary lifecycle observation does not establish implementation, acceptance, release or warranted NONE."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::FALLBACK-ASSIGNMENT",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::FALLBACK-ASSIGNMENT",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md Responsible Party; Deliverables.csv DEL-09-06",
+          "Verdict": "PASS",
+          "VerificationNotes": "TBD is truthful administrative state with assignment at activation; no automatic product/TM residual."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-06::FALLBACK-PACKAGE-BOUNDARY",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-06::FALLBACK-PACKAGE-BOUNDARY",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-050; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-06; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::SOW-051-RULE-01",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-07::SOW-051-RULE-01",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::SOW-051-RULE-02",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-07::SOW-051-RULE-02",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::SOW-051-RULE-03",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-07::SOW-051-RULE-03",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::SOW-051-RULE-04",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-07::SOW-051-RULE-04",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::SOW-051-RULE-05",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-07::SOW-051-RULE-05",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::PEC-DSH-007-DOC",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::PEC-DSH-007-DOC",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::PEC-K-08",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-07::PEC-K-08",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::RENDER-CONSUMERS",
+        "original_row": {
+          "ClaimClass": "observed behavior",
+          "ClaimID": "DEL-09-07::RENDER-CONSUMERS",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7",
+          "Verdict": "PASS",
+          "VerificationNotes": "Accepted scope atom checked against mapped source; current artifact/claim-relevant finite verification not established. UNKNOWN is supported; source search misses and missing contracts do not prove DOCUMENTED_UNIMPLEMENTED. No test or acceptance PASS inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::PEC-K-01",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::PEC-K-01",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::PEC-K-02",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::PEC-K-02",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::PEC-K-03",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::PEC-K-03",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::PEC-K-06",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::PEC-K-06",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::PEC-K-11",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::PEC-K-11",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/_Decomposition/ScopeLedger.csv row SOW-051; projects/pec/execution/_Decomposition/Deliverables.csv row DEL-09-07; projects/pec/docs/PRD.md \u00a79.7; projects/pec/docs/PRD.md \u00a73 PEC-K-01/-02/-03/-05/-06/-08/-10/-11",
+          "Verdict": "PASS",
+          "VerificationNotes": "Declared documentary boundary matches source: consumer-owned optional contact/injection, advisory Explain, content-minimal source links and file authority. Runtime compliance remains unproven."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::LIFECYCLE",
+        "original_row": {
+          "ClaimClass": "lifecycle",
+          "ClaimID": "DEL-09-07::LIFECYCLE",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md Current State and History",
+          "Verdict": "PASS",
+          "VerificationNotes": "OPEN since PREPARATION verified; no Remaining heading. This documentary lifecycle observation does not establish implementation, acceptance, release or warranted NONE."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::ASSIGNMENT",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::ASSIGNMENT",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review; deterministic lowest-ID ALIGNED",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md Responsible Party; Deliverables.csv DEL-09-07",
+          "Verdict": "PASS",
+          "VerificationNotes": "TBD is truthful administrative state with assignment at activation; no automatic product/TM residual."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-001",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-001",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-001; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-002",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-002",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-002; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-003",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-003",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-003; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "PASS with explicit scope: held question existence and ACTIVE/PREREQUISITE/PENDING are known documentary facts. UNKNOWN applies only to owner applicability/phase classification per ImplementationEvidence. Edge preserved; no satisfaction/removal/softening inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-004",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-004",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-004; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-005",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-005",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-005; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-006",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-006",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-006; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-007",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-007",
+          "ReportedDisposition": "ALIGNED",
+          "SelectionReason": "Expanded complete package claim and class-boundary review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-007; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "Documentary register status and target checked; ACTIVE unsatisfied PREREQUISITE blocks only an item naming its target. No status flip or production permission inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      },
+      {
+        "id": "DEL-09-07::DEP-09-07-008",
+        "original_row": {
+          "ClaimClass": "documentary alignment",
+          "ClaimID": "DEL-09-07::DEP-09-07-008",
+          "ReportedDisposition": "UNKNOWN",
+          "SelectionReason": "Mandatory all non-ALIGNED review",
+          "SourceLocators": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv row DEP-09-07-008; projects/pec/loop/LOOP_INIT.md lines 209\u2013214",
+          "Verdict": "PASS",
+          "VerificationNotes": "PASS with explicit scope: held question existence and ACTIVE/PREREQUISITE/PENDING are known documentary facts. UNKNOWN applies only to owner applicability/phase classification per ImplementationEvidence. Edge preserved; no satisfaction/removal/softening inferred."
+        },
+        "population_file": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-09/VERIFICATION/CHECKED_CLAIMS.csv"
+      }
+    ],
+    "required_non_aligned_or_residual_linked_claims_and_residuals": [
+      "DEL-09-01-REM-001",
+      "DEL-09-01::OVERVIEW-GATES",
+      "DEL-09-01::OVERVIEW-GIT",
+      "DEL-09-01::OVERVIEW-PARKED",
+      "DEL-09-01::OVERVIEW-RECEIPT",
+      "DEL-09-01::OVERVIEW-TRANCHES",
+      "DEL-09-01::VIEW-TESTS",
+      "DEL-09-02-REM-001",
+      "DEL-09-02::ARTIFACT-TESTS",
+      "DEL-09-02::SOW-046-CENSUS",
+      "DEL-09-02::SOW-046-STUCK-AGE",
+      "DEL-09-02::SOW-046-WORKFLOW-COMPLETENESS",
+      "DEL-09-03-REM-001",
+      "DEL-09-03::SOW-047-01",
+      "DEL-09-03::SOW-047-02",
+      "DEL-09-03::SOW-047-03",
+      "DEL-09-03::SOW-047-04",
+      "DEL-09-03::SOW-047-05",
+      "DEL-09-03::SOW-047-06",
+      "DEL-09-03::SOW-047-07",
+      "DEL-09-03::SOW-047-08",
+      "DEL-09-04-REM-001",
+      "DEL-09-04::ARTIFACT-TESTS",
+      "DEL-09-04::SOW-048",
+      "DEL-09-05-REM-001",
+      "DEL-09-05::SOW-049-B1",
+      "DEL-09-05::SOW-049-B2",
+      "DEL-09-05::SOW-049-B3",
+      "DEL-09-05::SOW-049-B4",
+      "DEL-09-06-REM-001",
+      "DEL-09-06::DL-14",
+      "DEL-09-06::FALLBACK-TEST",
+      "DEL-09-06::PEC-DSH-006",
+      "DEL-09-06::PEC-K-08",
+      "DEL-09-07-REM-001",
+      "DEL-09-07-REM-002",
+      "DEL-09-07-REM-003",
+      "DEL-09-07::DEP-09-07-003",
+      "DEL-09-07::DEP-09-07-008",
+      "DEL-09-07::PEC-DSH-007-DOC",
+      "DEL-09-07::PEC-K-08",
+      "DEL-09-07::RENDER-CONSUMERS",
+      "DEL-09-07::SOW-051-RULE-01",
+      "DEL-09-07::SOW-051-RULE-02",
+      "DEL-09-07::SOW-051-RULE-03",
+      "DEL-09-07::SOW-051-RULE-04",
+      "DEL-09-07::SOW-051-RULE-05"
+    ]
+  }
+]

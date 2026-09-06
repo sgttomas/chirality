@@ -1,0 +1,70 @@
+[
+  {
+    "DeliverableID": "DEL-08-01",
+    "defined_local_ids": 41,
+    "claim_rows": 41,
+    "extra_ids": [],
+    "coverage_pass": true,
+    "claims_sha256": "8f2393206edd01dd1e56fe63b6b390984834b9fbf3567e7c308cda2b25a3a088"
+  },
+  {
+    "DeliverableID": "DEL-08-02",
+    "defined_local_ids": 27,
+    "claim_rows": 28,
+    "extra_ids": [
+      "DEL-08-02::TM-PEC-022"
+    ],
+    "coverage_pass": true,
+    "claims_sha256": "4abd3ee11b66bf26248af47145dc68b70df41ccf3ec65ec076c8764690c07314"
+  },
+  {
+    "DeliverableID": "DEL-08-03",
+    "defined_local_ids": 71,
+    "claim_rows": 75,
+    "extra_ids": [
+      "DEL-08-03::BASIS-CURRENCY",
+      "DEL-08-03::LIFECYCLE",
+      "DEL-08-03::REMAINING-COVERAGE",
+      "DEL-08-03::TM005-SEAM"
+    ],
+    "coverage_pass": true,
+    "claims_sha256": "9719e01256bb19eed748beb656eacb3dcfe939348bfbee564fe21c5754f77098"
+  },
+  {
+    "DeliverableID": "DEL-08-04",
+    "defined_local_ids": 82,
+    "claim_rows": 83,
+    "extra_ids": [
+      "DEL-08-04::RUN-F7"
+    ],
+    "coverage_pass": true,
+    "claims_sha256": "4a4146b9ca45e64ab2608068057ae2a53cae918631c13ec7dfaa4be88def1955"
+  },
+  {
+    "DeliverableID": "DEL-08-05",
+    "defined_local_ids": 0,
+    "claim_rows": 18,
+    "extra_ids": [
+      "DEL-08-05::DEP-08-05-001",
+      "DEL-08-05::DEP-08-05-002",
+      "DEL-08-05::DEP-08-05-003",
+      "DEL-08-05::DEP-08-05-004",
+      "DEL-08-05::DEP-08-05-005",
+      "DEL-08-05::FALLBACK-ASSIGNMENT",
+      "DEL-08-05::FALLBACK-CONSUMERS",
+      "DEL-08-05::FALLBACK-CONTRACT",
+      "DEL-08-05::FALLBACK-DELTA",
+      "DEL-08-05::FALLBACK-ENVELOPE",
+      "DEL-08-05::FALLBACK-LIFECYCLE",
+      "DEL-08-05::FALLBACK-OBJECTIVE",
+      "DEL-08-05::FALLBACK-PRESENCE",
+      "DEL-08-05::FALLBACK-PRODUCT-AUTHORITY",
+      "DEL-08-05::FALLBACK-STAGING",
+      "DEL-08-05::FALLBACK-TESTS",
+      "DEL-08-05::FALLBACK-TM023",
+      "DEL-08-05::SOW-044"
+    ],
+    "coverage_pass": true,
+    "claims_sha256": "a54b4aa7e34e4ef30ed2d40c58c6579f265258c103e1c8ee07cba28ea4133c97"
+  }
+]

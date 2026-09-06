@@ -1,0 +1,79 @@
+{
+  "status": "CORRECTION_REQUIRED",
+  "basis": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+  "findings": [
+    {
+      "id": "V001",
+      "deliverable": "DEL-10-10",
+      "claims": [
+        "DEL-10-10::OUT-001",
+        "DEL-10-10::REQ-001",
+        "DEL-10-10::REQ-002",
+        "DEL-10-10::REQ-003",
+        "DEL-10-10::REQ-004",
+        "DEL-10-10::REQ-005",
+        "DEL-10-10::REQ-006",
+        "DEL-10-10::REQ-007",
+        "DEL-10-10::REQ-008",
+        "DEL-10-10::REQ-009",
+        "DEL-10-10::REQ-010",
+        "DEL-10-10::REQ-011",
+        "DEL-10-10::REQ-012",
+        "DEL-10-10::REQ-013",
+        "DEL-10-10::REQ-014",
+        "DEL-10-10::AC-001",
+        "DEL-10-10::AC-002",
+        "DEL-10-10::AC-003",
+        "DEL-10-10::AC-004",
+        "DEL-10-10::AC-005",
+        "DEL-10-10::AC-006",
+        "DEL-10-10::AC-007",
+        "DEL-10-10::AC-008",
+        "DEL-10-10::AC-009",
+        "DEL-10-10::AC-010",
+        "DEL-10-10::AC-011",
+        "DEL-10-10::AC-012",
+        "DEL-10-10::AC-013",
+        "DEL-10-10::AC-014",
+        "DEL-10-10::VER-001",
+        "DEL-10-10::VER-002",
+        "DEL-10-10::VER-003",
+        "DEL-10-10::VER-004",
+        "DEL-10-10::VER-005",
+        "DEL-10-10::VER-006",
+        "DEL-10-10::VER-007",
+        "DEL-10-10::VER-008",
+        "DEL-10-10::VER-009",
+        "DEL-10-10::VER-010",
+        "DEL-10-10::VER-011",
+        "DEL-10-10::VER-012",
+        "DEL-10-10::VER-013",
+        "DEL-10-10::VER-014",
+        "DEL-10-10::CLM-020"
+      ],
+      "residuals": [
+        "DEL-10-10-REM-001",
+        "DEL-10-10-REM-002"
+      ],
+      "reason": "Historical CLM020 and future-production preamble plus local/v2 inventory do not establish current production absence. Exact contract TBD003 leaves record path/format/location undecided; code inventory cannot exclude progression evidence in other authorized loci. Current inspected evidence supports UNKNOWN for43 obligations. CLM020 may remain documentary/lifecycle ALIGNED only with historical no-implementation assertion explicitly separated from current status.",
+      "correction": "Fresh derivative reassess43 DOCUMENTED_UNIMPLEMENTED as UNKNOWN unless stronger current positive absence evidence is supplied and justified. Amend current/evidence prose and summary accordingly. Reframe REM001/002 to first identify source-bound existing progression/verification evidence or obtain explicit owner disposition, then produce only under exact production grant. Preserve current INITIALIZED, prior C05 acceptance, dependency values, all owner gates and nonselectability."
+    },
+    {
+      "id": "V002",
+      "deliverable": "DEL-10-03",
+      "claims": [
+        "DEL-10-03::AX-008",
+        "DEL-10-03::AX-009",
+        "DEL-10-03::AX-010",
+        "DEL-10-03::CLM-010",
+        "DEL-10-03::CON-003",
+        "DEL-10-03::TBD-004"
+      ],
+      "residuals": [
+        "DEL-10-03-REM-004"
+      ],
+      "reason": "Six clauses are explicit contract-time provenance/epistemic framing. Current differences in lifecycle/schema/reference bytes do not turn dated statements into present defects. Conditional qualifier STALE_INPUT if read as contemporary invents that misuse without an actual current reliance assertion. CONTROL-C08 separately is a live authority paraphrase and remains a concrete discrepancy.",
+      "correction": "Fresh documentary reassessment of six historical clauses (ALIGNED historical provenance where justified; preserve any genuinely unresolved operational questions separately). Remove automatic residual linkage for dated wording; narrow REM004 to actual CONTROL-C08 authority discrepancy unless another exact present assertion is substantiated. Preserve old revisions and authored records, no source repair."
+    }
+  ]
+}

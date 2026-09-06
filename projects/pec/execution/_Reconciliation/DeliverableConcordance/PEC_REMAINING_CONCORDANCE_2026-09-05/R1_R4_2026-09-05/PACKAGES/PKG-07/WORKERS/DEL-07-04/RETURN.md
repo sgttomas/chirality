@@ -1,0 +1,9 @@
+# Terminal worker return — DEL-07-04
+
+Status: SUCCESS / ASSESSED_UNKNOWN. 12 claims; 8 documentary/lifecycle ALIGNED; 4 behavioral UNKNOWN; 1 evidence/authority proposal; warranted NONE false. All exact-schema/LF/IDs/reciprocity/gates checks PASS. source_unchanged: true.
+
+Outputs: CLAIMS.csv, RESIDUALS.csv, COVERAGE.md, READ_MANIFEST.json, RETURN.md in this worker directory. Sole write allowlist: projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/PACKAGES/PKG-07/WORKERS/DEL-07-04/**; scratch /tmp. No Git, source/control mutation, network, product CLI, services or delegated children. Sealed brief SHA 3f85a8899371bf479e2835a886ca9538d8cf02a2b10db0500b2ab97c267ef53e. Explicit supplied checkout overrides base-shell Git root discovery. Agent2 native role instruction-asserted, not mechanically enforced.
+
+Accepted upstream D81/D82 and decomposition revision1.4 at 2be412ccea62bdc4bd96deb082c46d7a792076ea; derivative is ready for independent package verification, not accepted decomposition or product completion. Local OPEN state, truthful TBD, optional cmux and graceful absence preserved. Exact current implementation/verification/acceptance mapping remains unknown; source-search absence does not establish unimplementation. Conditional production Depends DEL-00-02 and DEL-07-01 stay ACTIVE/PENDING; residual evidence inquiry Depends NONE. All proposals NON_SELECTABLE_PENDING_OWNER_APPLICATION; exact owner/source/activation/lifecycle gates survive. Runtime remains root-owned.
+
+Handoff: parent independently verifies all four UNKNOWN rows, residual and lowest-ID ALIGNED/class boundaries before package fan-in. No source repair/application authorized. Rerun on source/hold/ruling/contract change, supplied current cmux evidence, or optionality disposition; preserve this original derivative. Closure means worker report readiness only. No R0 reuse or frozen old implementation reliance.

@@ -1,0 +1,18 @@
+{
+  "before_sha256": {
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/loop/LOOP_RECEIPTS.md": "41d74244fef0e192caf3b47ca01f644a522ecb462ed8181eee58796b2ded85dd"
+  },
+  "preserved_receipt_prefix_bytes": 433966,
+  "preserved_register_prefix_bytes": 51317,
+  "synthesis_root_sha256": "3a1b5fb19b6259d698e366dde4874c8b0260097c6c750ac74cbcc1174bd425f8",
+  "selected_manifest_hashes_reproduced": true,
+  "writes": [
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_remaining_application_proposal_2026-09-05.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-84_scanner_repair_proposal_2026-09-05.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "projects/pec/loop/LOOP_RECEIPTS.md",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/COMMON/FINAL_COORDINATION_01/HANDOFF.md"
+  ],
+  "scope": "Coordination proposals, new register rows, append-only receipt and COMMON closeout only."
+}

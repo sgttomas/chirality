@@ -1,0 +1,18 @@
+{
+  "claims": 88,
+  "local_claims": 86,
+  "REQ": 15,
+  "AC": 17,
+  "VER": 15,
+  "residuals": 3,
+  "dispositions": {
+    "ALIGNED": 38,
+    "UNKNOWN": 50
+  },
+  "source_hashes": 87,
+  "base_objects_verified": 77,
+  "deterministic_validation": "PASS",
+  "coverage": "PASS all local definitions and two explicit status mappings",
+  "source_unchanged": true,
+  "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea"
+}
