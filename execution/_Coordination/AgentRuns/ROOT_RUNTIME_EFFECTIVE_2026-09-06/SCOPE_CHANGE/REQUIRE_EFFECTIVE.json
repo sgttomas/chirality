@@ -1,0 +1,30 @@
+[
+  {
+    "config": "execution/_harness/adapter.yaml",
+    "require_effective": true,
+    "result": "PASS",
+    "stage": "effective",
+    "successor_bindings": 53
+  },
+  {
+    "config": "execution/_harness/root_guards.yaml",
+    "require_effective": true,
+    "result": "PASS",
+    "stage": "effective",
+    "successor_bindings": 53
+  },
+  {
+    "config": "execution/_harness/surface_ownership.yaml",
+    "require_effective": true,
+    "result": "PASS",
+    "stage": "effective",
+    "successor_bindings": 53
+  },
+  {
+    "config": "execution/_harness/work_graph.yaml",
+    "require_effective": true,
+    "result": "PASS",
+    "stage": "effective",
+    "successor_bindings": 53
+  }
+]

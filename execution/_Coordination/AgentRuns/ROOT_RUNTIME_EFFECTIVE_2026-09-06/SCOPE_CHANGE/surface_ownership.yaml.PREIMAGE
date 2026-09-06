@@ -2,8 +2,8 @@
 schema: root-surface-ownership/v1
 mode: governance-only
 governance_state:
-  path: execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06/GOVERNANCE_STATE_EFFECTIVE_576a1535.json
-  sha256: a54779343b6a9c9ef74664fd05efd05b7bae10a097106f3605560af8ef8c53ca
+  path: execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json
+  sha256: 68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86
 decomposition: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md
 entries:
 - id: GOV-01-01

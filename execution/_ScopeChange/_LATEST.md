@@ -1,32 +1,11 @@
 # Root Scope-Change Pointer
 
-- **Latest snapshot:** `SCA-004_2026-08-22_1749/`
-- **State:** `CLOSED_FOR_SCOPE_CHANGE_ONLY` — SCA-004 revision 1.3 accepted
-  and applied after owner Gate-3 approval R3-A, Gate-4 approval R3-B with
-  CONDITION R3-B-1, application-append approval reference `R4-A (record SHA-256 5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a)`, and Gate-5
-  confirmation reference `R6-A (record SHA-256 4e39bf6df909d63b910db3d953db720d2bceb2d27f26ce7454c93551f2a822de)`; Git effect `PR #633 merge 6d4438d8d3a580b65d6d50ad497dadfe07f177f2 (content 4ad3fea7ef9e397852913c08e533e1846e264134, PR head 17d3bc2af666005676a517c0a37e5ebd7b3a6614)`
-- **Authoritative decomposition:**
-  `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md`
-  revision 1.3 — **the accepted current basis**
-- **Decomposition truth changed:** yes — DEL-02-06 remains the standing
-  semantic-integration/release-assurance carrier; DEL-02-07 through
-  DEL-02-12 are added under PKG-02; DEL-04-11 is added under PKG-04; the
-  synchronized scope/objective mappings, forward trace, reverse trace, and
-  telemetry are revision 1.3. Counts are 53 deliverables, PKG-02=12,
-  PKG-04=11, 6 packages, 104 scope items, and 7 objectives. All ten
-  DEL-02-06 bindings remain `HELD_UNAVAILABLE`.
-- **Application evidence:**
-  `SCA-004_2026-08-22_1749/Gate_5_Application_Record.md`,
-  `Gate_5_Applied_Preview.md`, and `Gate_5_Validation.json`; exact Git slots
-  remain `TBD` until their later recorded backfill act.
-- **Prior closed amendment:** `SCA-002_2026-07-29_0800/`, revision 1.2,
-  `CLOSED_FOR_SCOPE_CHANGE_ONLY`; Git effect PR #417 merge
-  `6e21530f7182ca2a7e7831b9528f85889a4a4467` (Receipt 63).
-- **Next gate:** downstream propagation remains separately owned. No
-  PREPARATION, SOW, dependency, estimate, schedule, implementation, App,
-  cutover, release, or hold-lift authority is created by this pointer.
+- **Latest snapshot:** `SCA-005_2026-09-06_APPLICATION/`
+- **State:** `CLOSED_FOR_SCOPE_CHANGE_ONLY` — exact runtime/governance amendment applied and confirmed by `plans/steers/root_runtime_migration_gate5_confirmation_2026-09-06.md` (SHA256 `11123cce6854447778a0d4fff81a50fb2ad5acb568c03d5af6c80d2a1ba67a08`, published commit `576a1535ddf56c5ecbe69f7a44e140a776c46839`); this pointer move is included in that owner decision.
+- **Authoritative decomposition:** `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md`, exact SCA005 historical-source postimage; accepted V3 subject547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3.
+- **Decomposition truth changed:** yes — zero active Root product deliverables; six historical parents/53 RETIRED carriers;46 governance controls/seven runtime successors;104 scope rows/seven historical objectives conserved. Nine holds and R16-B disposition remain unchanged.
+- **Application evidence:** `SCA-005_2026-09-06_APPLICATION/Application_Validation.json`, `Post_Change_Coverage.json`, `Derivative_Disposition.csv`, and `Gate5_Owner_Preview.md`; applied subjectfcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9; completed journalbb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203.
+- **Prior closed amendment:** `SCA-004_2026-08-22_1749/`; its accepted historical evidence remains intact.
+- **Next work:** runtime remains INITIALIZED and unactivated. Feature activation, hold release, operational account-state migration, compatibility release, publication, receiving-loop adoption and performance of governance controls require their own governing acts. Retained audit warnings remain visible in the application snapshot.
 
-This pointer identifies SCA-004 revision 1.3 as the accepted current Root
-decomposition basis only after its separately authorized application,
-Gate-5 confirmation, and this pointer's own owner approval. It does not
-replace authoritative decomposition truth.
+This pointer records the separately confirmed scope-change basis. It does not replace authoritative decomposition truth or grant runtime production activation.

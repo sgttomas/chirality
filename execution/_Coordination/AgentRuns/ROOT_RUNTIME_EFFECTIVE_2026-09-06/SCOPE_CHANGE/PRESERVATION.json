@@ -1,0 +1,38 @@
+{
+  "state_template_exact": true,
+  "changed_state_fields_against_prior": [
+    "effect_configuration",
+    "effect_subject",
+    "effect_subject_sha256",
+    "gate5",
+    "stage"
+  ],
+  "all_live_output_hashes_match": true,
+  "preserved_historical_files": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/GOVERNANCE_STATE_APPLIED_RECORDED.json",
+      "sha256": "68f79b9e1e3d8d93d32161b82843edd547af561d6e2342aa210fa32518edaf86",
+      "HEAD_byte_identity": true
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-06_APPLICATION/Gate5_Effective_State_Template.json",
+      "sha256": "d72f1822a8de293bffb608d4af1aea57b43654bdbf08dc4a362ee279e066929c",
+      "HEAD_byte_identity": true
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-005_2026-09-06_APPLICATION/Gate5_LATEST_Postimage_Template.md",
+      "sha256": "985264c27a02305b30ff726d736f975c241e015afe5f59b492a46fe0ac9410fb",
+      "HEAD_byte_identity": true
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATION_SUBJECT.json",
+      "sha256": "fcbac0a047808f366d1e8a84d70de71d133d0f95b58a02f661609b8160c4e4b9",
+      "HEAD_byte_identity": true
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06/INTEGRATION/APPLICATOR_APPLY/journal.json",
+      "sha256": "bb38d99aac91bd6b7a7808b4760e1781b431624e0bb0754f4b08cb66d18fa203",
+      "HEAD_byte_identity": true
+    }
+  ]
+}
