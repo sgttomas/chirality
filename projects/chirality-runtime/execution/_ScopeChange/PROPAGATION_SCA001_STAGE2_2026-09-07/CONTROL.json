@@ -1,0 +1,15 @@
+{
+  "role": "SCOPE_CHANGE",
+  "model": "OpenAI GPT-6 exact serving identifier unavailable",
+  "roleEnforcement": "instruction-asserted",
+  "ownerQuote": "I approve both.",
+  "ownerRecord": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/OWNER_ACCEPTANCE.md",
+  "ownerRecordSha256": "b20d00386b79ff69d09ad2d8009f732b26a45d6be5884077fe056fa0cd9106be",
+  "acceptedSubject": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/HANDOFF_MANIFEST.json",
+  "subjectSha256": "c5054fd4f4c23338c28c3194a3227bac706f8d6813d3673deb40d8b50075a3fb",
+  "membersVerified": 33,
+  "scope": "Owning propagation addendum and same-target pointer only; WORKING_ITEMS owns SOW/applicationrun writes",
+  "currentState": "Awaiting actual application and independent review before final pointer/status",
+  "noNewAcceptanceGate": "Exact reviewed subject already accepted; no redundant vote inferred",
+  "publicationOrder": "Root adoption first; Runtime publication held until merged Root adoption"
+}

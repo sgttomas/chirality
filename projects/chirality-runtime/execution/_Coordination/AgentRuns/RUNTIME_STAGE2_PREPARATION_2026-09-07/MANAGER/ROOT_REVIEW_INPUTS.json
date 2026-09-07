@@ -1,0 +1,29 @@
+{
+  "status": "PROPOSED_REVIEW_INPUTS_NOT_ADOPTION",
+  "baseline": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "decomposition_basis_sha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1",
+  "postimages": [
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "candidate": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "preimage_sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+      "candidate_sha256": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54"
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "candidate": "DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "preimage_sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+      "candidate_sha256": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e"
+    }
+  ],
+  "candidate_manifest_sha256": "aa3b7251ad79b96a68dcec3aa879d1c3ebb8bcbf931294e5a2e940955518fa30",
+  "required_future_fields": {
+    "owning_stage2_application_grant": "PENDING actual exact subject grant",
+    "owning_stage2_acceptance_record_path_and_sha256": "PENDING actual act",
+    "independent_review_identity": "PENDING reviewer",
+    "runtime_propagation_snapshot_and_disposition": "PENDING owning application/verification",
+    "root_reviewed_successor_adoption_record": "PENDING Root owning act"
+  },
+  "owner": "App Root manager for Root recognition, Runtime owning workflow for application/acceptance",
+  "boundary": "Current adoption D36_STAGE1 does not recognize these Stage2 bytes. Do not update policy hashes or claim accepted successors from this proposed record."
+}

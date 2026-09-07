@@ -1,0 +1,39 @@
+{
+  "RequestedBy": "/root/custody_manager WORKING_ITEMS",
+  "RunID": "RUNTIME_STAGE2_PREPARATION_2026-09-07",
+  "PackageID": "PKG-02",
+  "Deliverables": [
+    "DEL-02-06",
+    "DEL-02-09"
+  ],
+  "ChildRole": "ephemeral Agent2 nondelegating instruction-asserted",
+  "Objective": "Refreeze two complete candidate SOW postimages and exact diff against actual accepted 9f21e4b86c304343b92ccd9ef10895b28c1a4f48 Stage1 basis; review prior supplements for semantic errors; preserve IDs, holds, lifecycle and all unrelated bytes. Preparation only.",
+  "AcceptedBasis": "Current live accepted decomposition plus SCA-001 and ACCEPTANCE_SCA001_STAGE1_2026-09-06; read prior AMENDMENT/CORRECTION_V2 and DOWNSTREAM_SOW for derivative input only",
+  "DeclaredReads": [
+    "AGENTS.md",
+    "agents/AGENT_WORKING_ITEMS.md",
+    "projects/chirality-runtime/**",
+    "tools/scope_of_work/**",
+    "docs/SOFTWARE_WORKFLOW_PROFILE.md"
+  ],
+  "AllowedTools": [
+    "read",
+    "local shell read-only Git",
+    "Python artifact writes under own output",
+    "scratch-only SOW validator after reading tool behavior"
+  ],
+  "AllowedWriteTargets": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/IMPLEMENTATION"
+  ],
+  "Exclusions": "No live SOW/source/Root/App/Git/old packet writes, tests/builds/supplier/account/credentials/network operations, acceptance or Stage2 application. No delegation.",
+  "ExpectedOutputs": [
+    "two full candidate ScopeOfWork.md",
+    "CANDIDATE.patch",
+    "INPUT_PINS.json",
+    "checks preserving all inherited IDs and basis links/procedure validity",
+    "RETURN.md",
+    "OUTPUT_MANIFEST.json"
+  ],
+  "AcceptanceCriteria": "Actual 9f21 basis, exact hashes/diffs; detect rather than carry semantic conflicts; clear future application/Root adoption remains ungranted. Parent independent review later.",
+  "Model": "OpenAI GPT-6 instruction attribution; exact serving ID unavailable"
+}

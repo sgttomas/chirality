@@ -1,0 +1,48 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 2
+  },
+  "counts": {
+    "category": {},
+    "event_type": {
+      "FINISH": 2,
+      "START": 2
+    },
+    "outcome": {
+      "PASS": 2,
+      "STARTED": 2
+    },
+    "reason_code": {}
+  },
+  "events": 4,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 246.881,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "manager",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS Agent1",
+      "session_id": "manager"
+    },
+    {
+      "duration_seconds": 246.809,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "stage2_sow_author",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral Agent2",
+      "session_id": "stage2_sow_author"
+    }
+  ],
+  "sessions": 2,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

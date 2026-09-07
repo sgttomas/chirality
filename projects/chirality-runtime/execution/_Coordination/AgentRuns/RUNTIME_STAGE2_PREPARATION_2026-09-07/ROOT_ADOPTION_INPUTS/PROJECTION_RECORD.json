@@ -1,0 +1,22 @@
+{
+  "status": "PREPARED_ONLY_NOT_ADOPTED",
+  "originalIndex": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/IMPLEMENTATION/POSTIMAGE_INDEX.json",
+    "sha256": "5f763d187b1a30957c38aa9e8fe14c7734d1409cb405af4375098ac2b208f1d5"
+  },
+  "consumer": {
+    "path": "tools/validation/root_runtime_successors.py",
+    "sha256": "3a093cebae5b55674b781e9d05349d9bae315c1328aef62634b3af79cc1a4cee",
+    "function": "_verify_adoption",
+    "lines": "110-111"
+  },
+  "mapping": {
+    "target": "target unchanged",
+    "preimage_sha256": "preimageSha256 unchanged value",
+    "candidate_sha256": "postimageSha256 unchanged value",
+    "candidate": "candidatePath resolved from IMPLEMENTATION directory to repository-root-relative path"
+  },
+  "order": "original two-row order preserved DEL06 then DEL09",
+  "validation": "2 live preimages and 2 candidate postimages rehashed; ordered target/before/after tuples identical",
+  "acceptance": "none; candidate bytes and frozen prior indexes/manifests unchanged"
+}

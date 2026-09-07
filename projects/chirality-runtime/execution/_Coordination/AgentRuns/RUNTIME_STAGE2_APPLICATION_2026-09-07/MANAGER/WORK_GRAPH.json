@@ -1,0 +1,39 @@
+{
+  "package": "PKG-02",
+  "selected": [
+    "DEL-02-06",
+    "DEL-02-09"
+  ],
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "authority": "OWNER_ACCEPTANCE.md actual both approval",
+  "nodes": [
+    {
+      "id": "A1",
+      "role": "WORKING_ITEMS",
+      "work": "record actual acceptance and seal application brief"
+    },
+    {
+      "id": "A2",
+      "role": "ephemeral Agent2",
+      "instance": "/root/custody_manager/stage2_sow_author",
+      "work": "exact twoSOW application and local evidence"
+    },
+    {
+      "id": "A3",
+      "role": "WORKING_ITEMS",
+      "work": "validated fan-in and freeze"
+    }
+  ],
+  "edges": [
+    [
+      "A1",
+      "A2"
+    ],
+    [
+      "A2",
+      "A3"
+    ]
+  ],
+  "external": "Parent-owned independent review follows freeze; SCOPE propagation and Root adoption routed through parent",
+  "write_containment": "Agent2 owns only two live SOWs and IMPLEMENTATION; manager owns application OWNER_ACCEPTANCE and MANAGER. Historical prep immutable. No concurrent overlap."
+}

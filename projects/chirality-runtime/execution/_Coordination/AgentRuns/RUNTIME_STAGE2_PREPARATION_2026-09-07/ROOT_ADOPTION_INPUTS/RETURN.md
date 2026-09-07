@@ -1,0 +1,9 @@
+# Root adoption interface supplement
+
+Append-only, preparation-only projection of the sealed IMPLEMENTATION/POSTIMAGE_INDEX.json. The two rows retain their exact order, target paths and hash values. Only preimage_sha256 → preimageSha256 and candidate_sha256 → postimageSha256 adapt the consumer field names; candidatePath is the same candidate resolved relative to repository root. PROJECTION_RECORD.json pins both the original index and inspected Root consumer. No SOW bytes, prior manifest, Root policy or acceptance state changes.
+
+The future whole accepted-subject manifest must declare `"pathBase": "repository root"`, use repository-root-relative member paths, and include this exact ROOT_ADOPTION_INPUTS/POSTIMAGE_INDEX.json with its SHA256. The actual future owning acceptance record must bind that whole subject manifest hash. Root's postimage_index reference must name this projected index and its exact hash; its ordered changes must equal the index's target/preimageSha256/postimageSha256 projection. The parent will assemble the root-relative whole manifest; this local supplement manifest alone is not owning acceptance or the final adoption subject.
+
+Current _verify_adoption validates that membership, field mapping, order and acceptance binding. Live current bytes, explicit Root adoption and publication remain independently checked; candidatePath grants nothing. Stage2 application/acceptance and Root reviewed successor adoption remain pending. This supplement prevents a known index-schema mismatch without selecting or applying a successor.
+
+WORKING_ITEMS Agent1, OpenAI GPT-6 exact serving identifier unavailable; instruction-asserted role. Two live preimages and candidate postimages rehashed successfully. No tests, product/source changes, provider operations or Git mutations.

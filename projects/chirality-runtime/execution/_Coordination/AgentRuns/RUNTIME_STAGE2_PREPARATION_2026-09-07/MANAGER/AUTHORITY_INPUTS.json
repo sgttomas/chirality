@@ -1,0 +1,94 @@
+{
+  "baseline": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "tree": "aa4cb1968e59ceb01faabad514538b56f071987e",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1"
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "d9d644117688a896aba8a4496533b5fadadeb612b97dfd05d2796f7ad013b07b"
+    },
+    {
+      "path": "projects/chirality-runtime/software-workflow.json",
+      "sha256": "cbd2c3e0ac8e1f90b4b0088a4919a709fa5300ab447dfaaf8dd061a1bcb1141f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+      "sha256": "bb8435b3b617812bb6bb1f7875f9e6a1697274371f0611d77bb9b82f78655ead"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA001_STAGE1_2026-09-06/OWNER_ACCEPTANCE.md",
+      "sha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv",
+      "sha256": "d7e7aa5ee900031d23baeb82479ac956a0e8ba731bfc39e1ee05f3877a949cdd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/INHERITED_REQUIREMENT_TRACE.csv",
+      "sha256": "671bf5a1f3aa35b61ebf76203dc4da6781968f5f8d503a7c806f618356175661"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv",
+      "sha256": "635fa7f9a05f0a1d17dc47e4db12e142433b11cdc7894708935d0515659ab882"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/ACCEPTED_EVIDENCE_CONTINUITY.csv",
+      "sha256": "866d643ed3b496b2835d1b5b1d536ac5a857239ebfb8a67132ed59c8b6c4ca8d"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/CHANGE_JOURNAL.csv",
+      "sha256": "d567f8f83cddff9e9b09f4502ba09db798941c54c7761f0bee745d0e5f436707"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/DEPENDENCY_DISTRIBUTION_PREVIEW.csv",
+      "sha256": "0af7f4331fabe74b6d38dbfe37449ac4279a1d5252d4db4c496409dd7b6adc2e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_PINS.csv",
+      "sha256": "aa8fe94a5fdcde958efc7457b31292a36d20a298c5bdfe74cd57ca6d661842d6"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/TRACE_PREVIEW.csv",
+      "sha256": "240a4055979a7ddb833f5308ca798734ab4f69cd6b8153af2b3cd1c62d08565c"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv",
+      "sha256": "4923353de43fbe99aecb585971a3ffb91e86787734ed93b9379300fa15378663"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/_AUTHORITY.md",
+      "sha256": "65b144cff2038bb403c2098aa95313753ea4b342f70e7a95baf1be4c098c7b89"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+      "sha256": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309"
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "sha256": "f97af1d323524f9a2be1dab8b5b33c1350c8f48c38cd3c6f8d0f8a9cd9821ea2"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/_COORDINATION.md",
+      "sha256": "3ea5ef1cb0eb57d7014002ebe333425a3cc2acb6ad8abe1527bc01157d171fc5"
+    }
+  ]
+}

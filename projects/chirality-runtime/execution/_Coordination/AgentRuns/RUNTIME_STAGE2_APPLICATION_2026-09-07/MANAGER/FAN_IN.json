@@ -1,0 +1,16 @@
+{
+  "status": "PASS_EXACT_APPLICATION",
+  "owner_acceptance_sha256": "b20d00386b79ff69d09ad2d8009f732b26a45d6be5884077fe056fa0cd9106be",
+  "child_manifest_sha256": "06a5bb1a39a32716c3ba2f70005c9cce32b42d5500e1e58595d386547e9e6516",
+  "actual_child": "/root/custody_manager/stage2_sow_author",
+  "checks": [
+    "Rehashed all9childoutputmembers",
+    "Rehashed all183non-targetinputs and92historicalreceiptentries",
+    "Rehashed both applied SOWs and retainedpreimages",
+    "Exactly2trackedpaths changed; appliedpostimages exactacceptedbytes"
+  ],
+  "semantic_changes_since_accepted_subject": false,
+  "independent_review": "PENDING parent-owned",
+  "Root_guards": "NOT_RUN pending owning Root adoption; no PASS claimed",
+  "publication": "HELD pending Root adoption merge"
+}

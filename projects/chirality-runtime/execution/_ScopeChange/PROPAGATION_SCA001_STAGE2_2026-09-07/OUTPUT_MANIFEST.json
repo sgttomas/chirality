@@ -1,0 +1,29 @@
+{
+  "status": "LOCAL_PROPAGATION_COMPLETE_ROOT_ADOPTION_PUBLICATION_PENDING",
+  "files": [
+    {
+      "path": "CONTROL.json",
+      "sha256": "1dba9949cce66e0e3d1fd4e4dfe2318a6b6439e140b330d8bf0475da1cb3b875"
+    },
+    {
+      "path": "LATEST_POSTIMAGE.md",
+      "sha256": "0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea"
+    },
+    {
+      "path": "LATEST_PREIMAGE.md",
+      "sha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026"
+    },
+    {
+      "path": "POINTER_JOURNAL.json",
+      "sha256": "613524c3c098038deeb5265cf061fb38572922ce5dea3b16ae19850ef267aa76"
+    },
+    {
+      "path": "PROPAGATION_RETURN.md",
+      "sha256": "6e3484cd879f3474e4cb50f3dce85dd8d4b694b2b46c41bf2001a96ab6a4e865"
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "b1b34720c6539fdc2721156ca525a0c729944d4cc856e86926ffd7f52623a9b0"
+    }
+  ]
+}

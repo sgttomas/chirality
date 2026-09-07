@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-06
 package_id: PKG-02
-decomposition_basis: projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@9f21e4b86c304343b92ccd9ef10895b28c1a4f48
+decomposition_basis: projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@1aadcc61b2739fdca25c4b07259655836516baa4
 project_scope_refs: [SOW-104]
 package_objective_refs: [OBJ-001, OBJ-002, OBJ-004, OBJ-007]
 ---
@@ -277,20 +277,6 @@ to specification, read-only inventory, evidence-matrix design and planning.
 - **REQ-041** — Electron daemon mode shall preserve the existing packaged-App
   identity and encrypted `safeStorage` credential boundary as single-owner;
   no client tranche may repartition credential custody by implication. Boundary-owner allocation: CLM-006.
-  Later binding disposition: D-GOV-36, `docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md`,
-  permits only the daemon-owned exact trusted supplier authentication process
-  for managed Codex authentication to persist credentials in an explicitly
-  configured built-in OS keyring as the narrow exception to D-GOV-20 items
-  2–3 and this requirement's exclusive Electron `safeStorage` formulation.
-  The packaged daemon remains the sole lifecycle and access controller.
-  Authentication is independently acquired for each canonical root in
-  root-private app-owned contexts. Cross-root credential copying, shared
-  authenticated homes, ambient credentials, client/tool-worker credential
-  access and plaintext fallback remain prohibited. Exact supplier, backend
-  and process/storage boundary qualification is required before operational
-  reliance; a custom adapter requires a demonstrated remaining gap.
-  D-GOV-36's bootstrap and logout boundaries apply through DEL-02-09/REQ-001
-  and DEL-02-09/REQ-002; every unaffected D-GOV-20 boundary remains in force.
 - **REQ-042** — Tracked project manifests shall remain secret-free and free of
   machine-specific absolute paths; authority-affecting manifest changes shall
   require explicit re-registration and shall not be inferred from local

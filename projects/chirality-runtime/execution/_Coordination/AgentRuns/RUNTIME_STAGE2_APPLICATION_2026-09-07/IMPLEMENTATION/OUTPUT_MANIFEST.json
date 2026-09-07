@@ -1,0 +1,52 @@
+{
+  "status": "APPLIED_EXACT_FROZEN_FOR_INDEPENDENT_REVIEW",
+  "pathBase": "this manifest directory",
+  "derivativePackage": true,
+  "files": [
+    {
+      "path": "APPLICATION_JOURNAL.json",
+      "sha256": "f7400f34bc62bcca45d053c531973b56d0b3860cd80b6e96fd6ae8be89222043",
+      "bytes": 2115
+    },
+    {
+      "path": "FRESHNESS.json",
+      "sha256": "abb93d600547a6376db53cd34a9e91969cd2ec1ef243768afc386f2dcf57bce2",
+      "bytes": 275
+    },
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "5cc507ae68666a14c47eafb7ab6cb038ced16ee347ee83be6f50b82c3ccf48ee",
+      "bytes": 55495
+    },
+    {
+      "path": "POSTIMAGE_INDEX.json",
+      "sha256": "ade3e354cfdeeaa327b1f734f3a3828edd727f5ac8297a94b05e5d61b4c0ae08",
+      "bytes": 1103
+    },
+    {
+      "path": "PREIMAGES/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+      "bytes": 52886
+    },
+    {
+      "path": "PREIMAGES/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+      "bytes": 12421
+    },
+    {
+      "path": "PRESERVATION.json",
+      "sha256": "83317354d029e14339b1b3e48f670c83edbab459bad27973ac893baeeacf9154",
+      "bytes": 49948
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "6286e9cf684e546a1d0322766bd202da236031f175f2acfe45bcc6e7a8e9ac70",
+      "bytes": 3069
+    },
+    {
+      "path": "VALIDATION.json",
+      "sha256": "258144a01df937ea6409271faaf23c298f6a7530fb3f7d7066c54ea42d154a5d",
+      "bytes": 2649
+    }
+  ]
+}

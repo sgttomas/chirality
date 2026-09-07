@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS_CANDIDATE_ONLY",
+  "candidateManifestSha256": "aa3b7251ad79b96a68dcec3aa879d1c3ebb8bcbf931294e5a2e940955518fa30",
+  "managerManifestSha256": "112aca9c717bd634d2e60a6bf6ae559a5fc8744d373c56ab765f4bfbed1cb38a",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "90b19fb77b47e00140d1dc4b7879d256d03459552689a5a623edaf5c97d9aeb4",
+      "bytes": 4229
+    }
+  ]
+}

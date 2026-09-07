@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS_PREPARATION_ONLY",
+  "originalReviewManifestSha256": "c06e52659d820cb5fe67eb14063e76ad9e3c0f9af33224b1ee6d45835c8774f0",
+  "interfaceSupplementManifestSha256": "76e65ad1574097e613f2832334da0faf9a241bb36a12602f58c0c81e9c26c537",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "b16b9e5ec25a27f6dfb81c3524e94e00f5c632ba89532a4e474644ca94632dd1"
+    }
+  ]
+}

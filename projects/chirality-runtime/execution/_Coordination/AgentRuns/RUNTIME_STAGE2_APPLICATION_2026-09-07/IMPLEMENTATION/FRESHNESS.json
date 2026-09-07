@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "baseline": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "subjectManifestVerified": true,
+  "subjectMembersVerified": 33,
+  "exactPreimagesAndCandidates": true,
+  "trackedDiffInitiallyEmpty": true,
+  "capturedInputs": 185,
+  "requirementCount": 66
+}
