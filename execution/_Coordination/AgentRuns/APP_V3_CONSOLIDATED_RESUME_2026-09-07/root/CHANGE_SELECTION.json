@@ -1,0 +1,44 @@
+{
+  "schema": "chirality-change-selection/v1",
+  "title": "Root D-GOV-36 narrow account-only authority application",
+  "base_head": "9428e4af44c91063f2188e31698e4c84d8549be9",
+  "canonical_paths": [
+    "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-ACCOUNT-AUTHORITY-20260907.yaml",
+    "execution/_Coordination/NOTICE_2026-09-07_APP_D-GOV-36_ACCOUNT_ONLY_PUBLIC_UNIX_AUTHORITY.md",
+    "execution/_Coordination/NOTICE_2026-09-07_RUNTIME_D-GOV-36_ACCOUNT_ONLY_PUBLIC_UNIX_AUTHORITY.md",
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-07_ROOT_D-GOV-36_ACCOUNT_ONLY_PUBLIC_UNIX_AUTHORITY.md",
+    "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-07_ROOT_D-GOV-36_ACCOUNT_ONLY_PUBLIC_UNIX_AUTHORITY.md",
+    "execution/_Coordination/LOOP_RECEIPTS.md"
+  ],
+  "evidence_paths": [
+    "execution/_Coordination/AgentRuns/ROOT_ACCOUNT_AUTHORITY_AMENDMENT_2026-09-07/author/OWNER_RULING.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/APPLIED_IDENTITIES.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/APPLICATION_CHECKS.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/APPLICATION_CHECKS.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/MANAGER_FAN_IN.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/HANDOFF.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/CHANGE_SELECTION.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/MANIFEST.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/author-v1/D36_PROPOSED_POSTIMAGE.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_REVIEW.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_MANIFEST.json"
+  ],
+  "exclude": [
+    "all App product, deliverable, receipt, and non-notice coordination paths",
+    "all Runtime canonical, product, deliverable, receipt, and non-notice coordination paths",
+    "all other shared-worktree untracked files",
+    "raw predecessor and candidate artifacts retained locally whose added-file whitespace does not pass publication checks; their relied-on immutable hashes are carried in the selected compact evidence"
+  ],
+  "required_precommit_checks": [
+    "verify every selected path is within canonical_paths or evidence_roots",
+    "verify index is empty before exact staging",
+    "run exact staged/candidate registered-scope whitespace check",
+    "run git diff --cached --check",
+    "run committed-range G4 with --added-manifests-only after commit",
+    "verify committed selection equals the frozen selected path set"
+  ],
+  "git_authority": "standing scoped all-Git grant; no redundant merge vote",
+  "semantic_status_before_publication": "APPLIED_UNPUBLISHED"
+}

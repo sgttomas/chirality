@@ -1,0 +1,41 @@
+{
+  "schema": "chirality-independent-applied-review/v1",
+  "verdict": "PASS",
+  "status_reviewed": "APPLIED_UNPUBLISHED",
+  "reviewer": {
+    "role": "bounded ephemeral Agent 2 under HELPS_HUMANS",
+    "role_enforcement": "instruction-asserted",
+    "nondelegation": "instruction-asserted"
+  },
+  "candidate_patch_sha256": "a4e94ea7a506cf71759208a7754fc8e1b218aeb0870952128529d2a1c9cca9ae",
+  "candidate_dispatch_basis_historical": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d",
+  "application_head_basis": "a52e754491041b43ac4bc9414dff9becd52207ff",
+  "validation_head": "9428e4af44c91063f2188e31698e4c84d8549be9",
+  "validation_origin_main": "9428e4af44c91063f2188e31698e4c84d8549be9",
+  "application_to_validation_target_delta": "ZERO",
+  "checks": {
+    "exact_effect_count": 8,
+    "all_live_effects_match_author_postimages": true,
+    "register_only_d36_row_changed": true,
+    "receipt_148_exact_suffix": true,
+    "candidate_reverse_apply": "PASS",
+    "d126_effective_sha_is_origin_main_ancestor": true,
+    "invented_vote_or_broader_authority": false,
+    "g4_ci_mode_independent_rerun": "PASS",
+    "application_checks_evidence": "PASS_WITH_BROAD_WORKSPACE_WHITESPACE_FAILURE_RETAINED",
+    "change_closeout_checks_deferred": true
+  },
+  "hashes": {
+    "d36": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1",
+    "register": "2d487f56cd69f634c71495dbff9654de1ad3e11218733e37c263b778b3e8e907",
+    "g4_manifest": "c6351c30772c3ae14043a60fb3430bacbbc7d7ad2cb5fd5d09138f5ace6dcab6",
+    "app_notice_pair": "0a6073781d267e18be144f05e77677b1e459747462f62f9743e94af0a86a3fb7",
+    "runtime_notice_pair": "7d7823b14de1e81911ca2384dead44253e56301d1f5e706c4bf783fdbb8d151d",
+    "receipt_148_append": "013249497fc4f9589856584cd34569e8639aee48c4efd1bd7c05cdfff36a2426",
+    "loop_receipts_full": "b47766923d655d7b7300f5399b72bb1ebb1abf7a15fc27b3fd9961871f5a9576",
+    "application_checks_md": "930fb317f9fd4b8eb0794ac73e8ad4fe6228e10dc9b76b9bfaa217ea5226406e",
+    "application_checks_json": "139d85c89a418cc1bcdf7f16ededddaf2967df035731bacf3f2ff0032c158199",
+    "applied_identities_json": "147d70ad72d078d0193b882a9e721f1ce9d9bfd116f437a7c17a8f86d8b191a2",
+    "final_review_md": "cd8ae2d5c27d6ce4196df2027e51b1b4ccb86744eaa0058c38096dd71421cd5b"
+  }
+}
