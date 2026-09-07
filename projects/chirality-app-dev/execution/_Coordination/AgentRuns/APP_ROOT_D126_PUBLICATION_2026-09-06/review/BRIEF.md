@@ -1,0 +1,4 @@
+# Fresh independent combined governance review
+
+Agent 2 ephemeral generalist, delegated-harness-native; parent HELPS_HUMANS root_custody_prep. No delegation. Serving model unavailable; role instruction-asserted.
+Review all changed/untracked combined candidate files against HEAD/main 2c75eb4, except disjoint Root publication change-preparation custody directory. Read canonical AGENTS, App AGENTS, v5 sealed brief/work graph/addendum and original Root application authority/review. Check exact source parity, register-only deltas, preservation, M2/G4 coverage, all evidence and limitations. Write only this review directory; no Git mutation or operational/source work. Return independent hash inventory, checks and findings. Review records and later mechanical freeze records cannot review themselves.

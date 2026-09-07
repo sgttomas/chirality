@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "original_path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/APPLIED_CORE.patch",
+  "sha256": "6d30e0250178a6360121519cdc8342e51a55176eee76ff80886ac3135ede1341",
+  "bytes": 16975,
+  "decoded_bytes_equal_original": true,
+  "prior_manifest_verification": "PRESERVATION.json",
+  "transport": "APPLIED_CORE_PATCH_LOSSLESS.json"
+}

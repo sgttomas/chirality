@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "BRIEF.md",
+      "sha256": "85f0bd8e3fc94c7d789a754bbdc6de0938169d504441f9b0c68d4c908c73f0ff",
+      "bytes": 877
+    },
+    {
+      "path": "CHECKED_FILES.json",
+      "sha256": "fdc0f64a4696df7009d737ade1da8a53e5e3f81b2ba6be759b7c6907292c2cc7",
+      "bytes": 8146
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "03dbd20b5c72621610d2890318dc598c82f2808742d5eae2e39f8b7acd967ddf",
+      "bytes": 2939
+    }
+  ]
+}

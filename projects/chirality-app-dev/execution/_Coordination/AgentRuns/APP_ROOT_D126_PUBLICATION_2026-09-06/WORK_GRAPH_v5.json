@@ -1,0 +1,61 @@
+{
+  "version": 5,
+  "selection_authority": "HUMAN",
+  "owner_verbatim": "You have approval to do so.",
+  "owner_date_local": "2026-09-06",
+  "referent": "Combined App/Root governance PR: canonical D126/register/slate and validated D36/register/M2G4/Root receipt/notices/essential evidence; not Runtime evidence-only PR; merge separate",
+  "status": "FROZEN_PUBLICATION_GRAPH_INVENTORY_GATE_PENDING",
+  "lane": "/private/tmp/chirality-root-d126-custody-application-20260906",
+  "branch": "codex/root-d126-custody-application",
+  "base": "2c75eb4 prior fresh base; current publication freshness must be verified",
+  "preservation": "Prior lane creation preserved all266untracked and1dirty App paths; unrelated data remains excluded",
+  "nodes": [
+    {
+      "role": "CHANGE",
+      "objective": "Freshness and exact publication inventory, then later scoped commit/push/openPR/freshCI",
+      "gates": [
+        "inventory before manager release",
+        "parent accepted frozen complete candidate before commit/push"
+      ]
+    },
+    {
+      "role": "HELPS_HUMANS root_custody_prep",
+      "objective": "Sole combined-record integration owner in Root lane; materialize canonical App D126/register/slate and required App receipt/check records",
+      "gates": [
+        "frozen graph",
+        "CHANGE exact inventory",
+        "parent release"
+      ],
+      "prohibited": "No Root semantic changes; validated41-member history preserved; metadata corrections via immutable addenda only as required"
+    },
+    {
+      "role": "fresh independent combined reviewer",
+      "objective": "Read-only review of entire combined publication candidate",
+      "state": "Required before final acceptance; exact sealed scope at dispatch"
+    },
+    {
+      "role": "parent HELP_HUMAN",
+      "objective": "Validate review/checks, freeze exact combined candidate and relay CHANGE release"
+    },
+    {
+      "role": "bounded recorder",
+      "writes": "Original App checkout control/** only; never combined lane"
+    }
+  ],
+  "sequence": [
+    "CHANGE freshness/inventory",
+    "Parent release sole manager",
+    "Canonical combined records and required receipts/checks",
+    "Fresh whole combined review and registered checks",
+    "Parent exact candidate freeze",
+    "CHANGE authorized commit/push/openPR and fresh CI"
+  ],
+  "limits": [
+    "No source implementation",
+    "No login/provider/credential/protected-fixture operations",
+    "No unrelated untracked evidence publication",
+    "No Runtime evidence-only PR",
+    "No merge or release"
+  ],
+  "closure": "Publication authorized within exact combined scope; not yet performed by this record"
+}

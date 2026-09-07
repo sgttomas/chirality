@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "method": "Live guard intersects_instruction_surface and covered_by on actual tracked+untracked diff; no commit or staging",
+  "touched": [
+    "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-D126-CUSTODY-APPLICATION.yaml"
+  ],
+  "declared": [
+    "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-D126-CUSTODY-APPLICATION.yaml"
+  ],
+  "missing": [],
+  "committed_range_check": "NOT_RUN_NO_COMMIT_AUTHORIZED"
+}

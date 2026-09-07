@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+    "preimage_sha256": null,
+    "postimage_sha256": "89760655129118c22f357d49ca17e9a349282664e48b8cdd7cfbf3e19970406e",
+    "application": "UNAPPLIED"
+  },
+  {
+    "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "preimage_sha256": "a9ffd0e3c07300bd22080ddc65bb1f10c834f8c7220092afd9a457b0349f1882",
+    "postimage_sha256": "2ddccd99442a48c398387306471ae8b240059e4dcc8481d653ddc447f94b5569",
+    "application": "UNAPPLIED"
+  }
+]

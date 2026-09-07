@@ -1,0 +1,3 @@
+Untracked text whitespace findings:
+execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/APPLIED_CORE.patch:58: trailing whitespace
+FAIL: candidate whitespace findings (untracked binary/symlink paths safely skipped: 0).

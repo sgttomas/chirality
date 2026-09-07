@@ -1,0 +1,13 @@
+{
+  "exit": 0,
+  "command": [
+    "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+    "tools/validation/validate_candidate_whitespace.py",
+    "--base-ref",
+    "origin/main",
+    "--paths",
+    "<PUBLICATION_SCOPE paths except not-yet-created OUTPUT_MANIFEST.json>"
+  ],
+  "log": "FINAL_SELECTED_WHITESPACE.log",
+  "qualification": "Final scope refresh includes all currentrecords/review. Output envelope only generatedaftercheck; no semantic change."
+}

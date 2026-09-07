@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ROOT_D126_PUBLICATION_2026-09-06/review/APP_HOLD.json",
+      "sha256": "ef47b2e2fb8517e84d74a3c654e52336b91750f52342aaefeac9c42d3b6ed45f",
+      "bytes": 1325
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ROOT_D126_PUBLICATION_2026-09-06/review/BRIEF.md",
+      "sha256": "cda1480c77790f88e10acb984a45ca06611965d5eeb3a6d201a909a11a0dd4af",
+      "bytes": 803
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ROOT_D126_PUBLICATION_2026-09-06/review/CHECKED_FILES.json",
+      "sha256": "9c5e2ee29251d470f96df338fd37bb2bc66484ec0cc688807ccfa1f8fed4fa2c",
+      "bytes": 17376
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ROOT_D126_PUBLICATION_2026-09-06/review/INDEPENDENT_CHECKS.json",
+      "sha256": "fbd8d7a9950e66130605d0faad0cdfd1d3df54b9d6574e1e45bea049bd48cf60",
+      "bytes": 1021
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ROOT_D126_PUBLICATION_2026-09-06/review/INDEPENDENT_WHITESPACE.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "bytes": 88
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ROOT_D126_PUBLICATION_2026-09-06/review/RETURN.md",
+      "sha256": "8eea1d25227c53a8b7cfbe3a8a2d35cc96d67949a830d7e0b469d5423b450e78",
+      "bytes": 3240
+    }
+  ]
+}

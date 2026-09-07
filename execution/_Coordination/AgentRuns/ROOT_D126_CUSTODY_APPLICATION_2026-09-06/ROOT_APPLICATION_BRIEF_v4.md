@@ -1,0 +1,7 @@
+# Sealed Root application brief v4
+
+Owner act (2026-09-06 America/Edmonton), verbatim:
+
+> Yes apply and validate this bounded Root governance change, including its required M2/G4 manifest, coordination records, and App/Runtime notices
+
+Apply only exact candidate patch a536943ebc8e646094f025e7f13b74413a6ae959abbc010149f11921ff05dcf9, preparation manifest5d0473ad6427c9f723f435c5688967f30624ae632549aeb084c9c8fc526dba1f, plus required M2/G4 and bounded evidence/notices described by preparation RETURN.md. CHANGE first supplies clean isolated lane and fresh base. HELPS_HUMANS root_custody_prep is sole Root integration writer. Re-read actual Root instruments; check exact preimages and next free D-GOV ID rather than silently collide. Preserve D-GOV-20 and excluded PRD/product/SOW surfaces. Freeze role/child scopes and fresh independent review. Run required Root checks and manifest actual-diff coverage. Replace preparation UNAPPLIED/TBD only with actual application state: APPLIED, unpublished, no invented commit/merge identity; record fixed later identity via owning immutable convention. Exact App/Runtime notices are authorized coordination, not foreign authority changes. No commit/push/publication/merge or live operations absent later release. Return exact applied manifest, commands/results, review, remaining gates and lane identity to parent. Parent recorder writes only current App control; no shared Root writer.
