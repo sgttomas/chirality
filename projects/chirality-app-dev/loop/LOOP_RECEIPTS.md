@@ -7192,3 +7192,12 @@
   - Checks: pre-append receipt validator, APP-HOLD, registered self-check/pytest/build, full tests/typechecks/release-quality and independent review pass; bounded actual Chrome render pass. Historical failed mock-provider timeout retained before unchanged successful rerun; no weakened check. Exact source and cleanup evidence in R. A1 requires new staging and fresh owner login proof; historical login proof is not reused.
   - Model-Attribution: WORKING_ITEMS PKG-02 with native TASK author and independent reviewer; roles instruction-asserted; exact serving model and token counts unavailable.
   - Gate-Outcome: `EXECUTED` — bounded D122 presentation checked under existing owner staged plan and satisfied host prerequisites; source publication/merge remain CHANGE/owner-controlled. V3-05 retained until actual merged-with-review condition. No live account/consent, lifecycle, supplier, full milestone or release acceptance; no D123 or Runtime/Root source change. Landed plan narrative deferred until actual landing.
+
+- **2026-09-07 — Receipt 259** (D122 merged factual closure).
+  - Receipt-ID: `Receipt-259`
+  - Examined-Through: `8275b4a7555c075f69605f8669ee344781f5950b`
+  - Parent-Receipt: `Receipt-258`
+  - Pointers: `execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/`; `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/D122_MERGED_RECONCILIATION_2026-09-07.md`; `plans/PLAN_COMPLETION_LOG.md` D122 landed entry.
+  - Checks: fresh APP-HOLD reliance and pre-append receipt validation pass; registered governance and post-append receipt/whitespace checks recorded in the run. Frontend gates skipped: factual record maintenance, no runtime source changed. Exact merged-source review and CI retained; no new operational proof.
+  - Model-Attribution: WORKING_ITEMS PKG-02, native delegated manager, role instruction-asserted; exact serving model and token count unavailable.
+  - Gate-Outcome: `EXECUTED` — removed only V3-05 under its observable merged-with-review condition after PR745. V3-03, lifecycle, Checking Approval SHA and dependencies unchanged. No full T6/live account/supplier/release claim. CHANGE owns this factual iteration's Git closeout; D123 source waits that predecessor.

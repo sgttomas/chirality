@@ -28,3 +28,7 @@ The owner selected "Runtime A; D122 A; D123 A". D-APP-122 A adopts only the acco
 ## 2026-09-07 — D122 presentation checked, pending merge
 
 Account footer/popover/Settings and shared existing controller are implemented under V3-05; final independent full-diff review and bounded Chrome proof passed. See `_run_records/D122_PRESENTATION_2026-09-07.md`. Actual shell account service remains unavailable; fake evidence is component-only. Keep V3-05 until actual merge and V3-03 live gates intact. A1 new-stage/fresh-owner proof applies; no lifecycle or dependency change.
+
+## 2026-09-07 — D122 presentation landed
+
+PR745 merged exact reviewed head3218ccb as8275b4a; V3-05 was removed under its existing merged-with-review condition. See `_run_records/D122_MERGED_RECONCILIATION_2026-09-07.md`. Account and consent remain unavailable in the actual shell; V3-03 stays gated. Prior pending-merge narratives are historical. No lifecycle, dependency or release acceptance.

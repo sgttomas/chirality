@@ -1,0 +1,62 @@
+{
+  "head": "8275b4a7555c075f69605f8669ee344781f5950b",
+  "status": "PASS ready for CHANGE factual commit",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+      "sha256": "76f58b23752f8b90961fe73f8d358e8ef821bf3b2bbdae0a05710c2094ab7f24",
+      "bytes": 17079
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+      "sha256": "7ac585ecb0cdf5d89a1bc16b52e37efa277dda768f645dc5cfeecc89a9d250ad",
+      "bytes": 6023
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md",
+      "sha256": "4ccd9026f6a3d1ad5574d186ef4af3aa913019cb823234bb9cd49fb050ee5d89",
+      "bytes": 259667
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "sha256": "f873f245104a8f42b9f6bf714b237e86359023aefcca0b3f11d367d6854bd99d",
+      "bytes": 597462
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/D122_MERGED_RECONCILIATION_2026-09-07.md",
+      "sha256": "a0e5b1c62bbba3aaa564670362866451b776fe29495e55852513aa9e4d4455b8",
+      "bytes": 1596
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/BRIEF.md",
+      "sha256": "ef5525ea1f494d89e4a945b11ab921f3e6722ddbdc7161a744d74d5f9f3b8e2a",
+      "bytes": 924
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/MERGE_BASIS.json",
+      "sha256": "0bffc409085bb32acad8503a61225e5923ed49d8363be04c40f69c79ff5841ad",
+      "bytes": 1818
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/RECEIPT_AND_DIFF_CHECKS.json",
+      "sha256": "570c17c3504a0c010c1f4ff034419aba665f31efaa10e1104c7c39625ab1ea31",
+      "bytes": 167
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/RETURN.md",
+      "sha256": "3d1e47b74e8e1d92fea9e98d3ba7f637b1a66a1de0cee3f21015bfa780c85bc7",
+      "bytes": 1241
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/RAW_IDENTITIES.json",
+      "sha256": "7de65675f68fab3933affd19165964549f1a19871b8eb0ed4c66e1572a72af01",
+      "bytes": 426
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/CHECK_SUMMARY.json",
+      "sha256": "bb3047da0da7b6af06a54f439fb2f7e79e80b0055366c50fe2d1bf0eb6e383af",
+      "bytes": 437
+    }
+  ],
+  "include_scope_manifest_itself": true
+}
