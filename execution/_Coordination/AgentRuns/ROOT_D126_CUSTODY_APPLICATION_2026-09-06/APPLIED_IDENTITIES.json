@@ -1,0 +1,38 @@
+[
+  {
+    "path": "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+    "preimage_sha256": null,
+    "applied_sha256": "5b734a7e39d3648b93ae6ce31789ada13f3aebf9d08bef9b38b0876dabbed04a",
+    "bytes": 5283
+  },
+  {
+    "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "preimage_sha256": "a9ffd0e3c07300bd22080ddc65bb1f10c834f8c7220092afd9a457b0349f1882",
+    "applied_sha256": "787dc50210288883f9d1b88444f8b7ee23e7ec56b5683261b545fc933e78b446",
+    "bytes": 36958
+  },
+  {
+    "path": "docs/governance_harness/tranche_manifests/ROOT-D126-CUSTODY-APPLICATION.yaml",
+    "preimage_sha256": null,
+    "applied_sha256": "56b66fc16380c571978cabc85a1179541fa968c849dbde8629b3cee2247dca91",
+    "bytes": 1409
+  },
+  {
+    "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+    "preimage_sha256": "00d395a6209dea0aefb293a108b1ff57a9b8cee73ee87d6963cb5c3527b4e56b",
+    "applied_sha256": "1ed3d5103309d9ba4b83633e28b255d38982c6fefcbfcefb4a1fc25cda973a2a",
+    "bytes": 562031
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_D126_CUSTODY_APPLICATION_2026-09-06.md",
+    "preimage_sha256": null,
+    "applied_sha256": "e39d51fe6528a63fbc4b4375196fccadc1149b0072bf3ab858d444214d6026a8",
+    "bytes": 1511
+  },
+  {
+    "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_D126_CUSTODY_APPLICATION_2026-09-06.md",
+    "preimage_sha256": null,
+    "applied_sha256": "494ef1bbffecce083a379a64bc9bd3f81b8fb461143c13c814187635d98d94bc",
+    "bytes": 1511
+  }
+]

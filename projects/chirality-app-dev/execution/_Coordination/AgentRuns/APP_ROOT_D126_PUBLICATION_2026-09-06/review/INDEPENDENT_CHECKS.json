@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "lossless_patch": "6d30e0250178a6360121519cdc8342e51a55176eee76ff80886ac3135ede1341",
+  "decoded_bytes": 16975,
+  "canonical_copies_equal": true,
+  "instruction_surfaces": [
+    "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-D126-CUSTODY-APPLICATION.yaml"
+  ],
+  "uncovered": [],
+  "historical_preserved": [
+    "docs/PRD_ROOT.md",
+    "docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/AUTHORITY_CANDIDATE/POSTIMAGES/docs/PRD_ROOT.md",
+    "execution/_ScopeChange/SCA-003_2026-08-02_2212/Basis_Reconciliation_Candidate/docs/PRD_ROOT.md",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/POSTIMAGES/docs/PRD_ROOT.md",
+    "execution/_ScopeChange/SCA-005_2026-09-05_2344/CANON/REVIEW_CORRECTION_V1/PREIMAGES/POSTIMAGES/docs/PRD_ROOT.md"
+  ]
+}

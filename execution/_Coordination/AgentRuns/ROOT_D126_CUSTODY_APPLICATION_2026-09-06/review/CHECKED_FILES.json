@@ -1,0 +1,185 @@
+{
+  "basis": "2c75eb4bf03436eb305310996044eca0b67d3116",
+  "files": [
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+      "sha256": "5b734a7e39d3648b93ae6ce31789ada13f3aebf9d08bef9b38b0876dabbed04a",
+      "bytes": 5283
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sha256": "787dc50210288883f9d1b88444f8b7ee23e7ec56b5683261b545fc933e78b446",
+      "bytes": 36958
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-D126-CUSTODY-APPLICATION.yaml",
+      "sha256": "56b66fc16380c571978cabc85a1179541fa968c849dbde8629b3cee2247dca91",
+      "bytes": 1409
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/AFFECTED_TESTS.log",
+      "sha256": "2b5ce1126ff079982f5a210a9a5471459785339fe5f0a225eea6539e131d90db",
+      "bytes": 4255
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/APPLIED_CORE.patch",
+      "sha256": "6d30e0250178a6360121519cdc8342e51a55176eee76ff80886ac3135ede1341",
+      "bytes": 16975
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/APPLIED_IDENTITIES.json",
+      "sha256": "b7d059e6d0632ac5c45f1bc613b626d0491439aa9676fd193d261429aabbfbcf",
+      "bytes": 1544
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/CHECKS.json",
+      "sha256": "f209c35b0ac99e97f4d080dd9827162a8f29ae971c225a23495daa142bb0dd8a",
+      "bytes": 3419
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/CUSTODY_DECISION_SLATE_v1.md",
+      "sha256": "429b2e8305d2e79b1a55f539174cc133e413bbf6c79eb951df77cb0c222b5cc2",
+      "bytes": 3755
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/D-APP-126_RULING_CREDENTIAL_CUSTODY_BOOTSTRAP_AND_LOGOUT_2026-09-06.md",
+      "sha256": "4480ad2e70bfcac6487980d9a310ae52720cb472c10467897d97aaf184e55a73",
+      "bytes": 3352
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/G4_WORKING_DIFF_COVERAGE.json",
+      "sha256": "d4c6f3afa017c1f61aa34ea3a6603fbfabe2534082a10529ebc8f1a8ad99096d",
+      "bytes": 713
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/HANDOFF_STATE.md",
+      "sha256": "505d4bea116bdb6720d73f67820a3b26a953a7be9c152d61009c221ed666a3b3",
+      "bytes": 4188
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/OWNER_APPLICATION_ACT.md",
+      "sha256": "c7d90edfb28332b72a9c4294a75962923f49233cafca5bd1290f8d14ab6bfd74",
+      "bytes": 920
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/PREIMAGE_IDENTITIES.json",
+      "sha256": "b300772812bb55527618bb4d11a7e15c21dbd711d04cc3a470f22ed08313c88d",
+      "bytes": 543
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/PRESERVATION.json",
+      "sha256": "c98536eba77d3a39a155e123d5d6cf773fa6f4b81df884ae1c170ba07cf2cdf6",
+      "bytes": 246
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/RETURN.md",
+      "sha256": "8d931954dc51ad8e61cfb26420f5d583d7ab91e8096e30d734462643a6693c3e",
+      "bytes": 3767
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/ROOT_APPLICATION_BRIEF_v4.md",
+      "sha256": "2d101feed49d52c808ce2fc278a8c252f012e8515ba8b62b409adf08e732e836",
+      "bytes": 1430
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/WORK_GRAPH_v4.json",
+      "sha256": "6d3c6affb1ba39d9b4f2532b862df41f20776c19f434ee07b26ea3832dc53720",
+      "bytes": 2337
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-00.log",
+      "sha256": "b1c92285a33b9781b75bf0a7c050bcd722e3aa4d5289a7523fa6978bcb19540c",
+      "bytes": 62
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-01.log",
+      "sha256": "fefc467383e924e152ddc9f8e4754108e1ab4d1c3c3878e928b9c82395ea552b",
+      "bytes": 6727
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-02.log",
+      "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c",
+      "bytes": 4
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-03.log",
+      "sha256": "99a766b6930cb255923f5204f559045caf5f41e445f02736bb9077cb46443cdf",
+      "bytes": 3326
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-04.log",
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c",
+      "bytes": 100
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-05.log",
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37",
+      "bytes": 92
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-06.log",
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618",
+      "bytes": 65
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-07.log",
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6",
+      "bytes": 188
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-08.log",
+      "sha256": "606f3e42f5508e620e5b25abccbbd4be9a20118c9c349c2a74832468746d7bd1",
+      "bytes": 5516
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-09.log",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf",
+      "bytes": 49
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-10.log",
+      "sha256": "4ccf5f85d9b8d7671439e98f1db06acf96fea86cd42c4485b56314d6ae065ef7",
+      "bytes": 25608
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-11.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "bytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-12.log",
+      "sha256": "a090db2dab2e3fc254bfb43427b76bffb65af25d44e7e7437a7e71fd20fe1c51",
+      "bytes": 2664
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/check-13.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/final-diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_D126_CUSTODY_APPLICATION_2026-09-06/final-whitespace.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "bytes": 88
+    },
+    {
+      "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+      "sha256": "1ed3d5103309d9ba4b83633e28b255d38982c6fefcbfcefb4a1fc25cda973a2a",
+      "bytes": 562031
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_D126_CUSTODY_APPLICATION_2026-09-06.md",
+      "sha256": "e39d51fe6528a63fbc4b4375196fccadc1149b0072bf3ab858d444214d6026a8",
+      "bytes": 1511
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_D126_CUSTODY_APPLICATION_2026-09-06.md",
+      "sha256": "494ef1bbffecce083a379a64bc9bd3f81b8fb461143c13c814187635d98d94bc",
+      "bytes": 1511
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "version": 4,
+  "selection_authority": "HUMAN",
+  "status": "FROZEN_AUTHORIZED_ROOT_APPLICATION_LANE_PENDING",
+  "owner_date_local": "2026-09-06",
+  "owner_verbatim": "Yes apply and validate this bounded Root governance change, including its required M2/G4 manifest, coordination records, and App/Runtime notices",
+  "referent": {
+    "patch_sha256": "a536943ebc8e646094f025e7f13b74413a6ae959abbc010149f11921ff05dcf9",
+    "manifest_sha256": "5d0473ad6427c9f723f435c5688967f30624ae632549aeb084c9c8fc526dba1f",
+    "path": "root-application-preparation/CANDIDATE.patch"
+  },
+  "nodes": [
+    {
+      "role": "CHANGE",
+      "objective": "Create clean isolated lane from freshly verified main; return exact lane/base identity",
+      "state": "PARENT_REPORTED_CREATING"
+    },
+    {
+      "id": "root_custody_prep",
+      "role": "HELPS_HUMANS",
+      "objective": "Sole Root integration owner applies and validates exact bounded governance recording",
+      "depends": [
+        "graph freeze",
+        "clean isolated lane identity",
+        "live Root entry/preimages/next-free ID check"
+      ],
+      "writes": [
+        "two decision patch targets (next free ID rechecked)",
+        "docs/governance_harness/tranche_manifests/ROOT-D126-CUSTODY-APPLICATION.yaml",
+        "bounded execution/_Coordination/ run receipt handoff evidence",
+        "exact routed App and Runtime notices within owning coordination surfaces"
+      ],
+      "required": [
+        "independent fresh semantic review",
+        "Root registered checks",
+        "M2/G4 actual diff manifest coverage",
+        "truthful APPLIED unpublished metadata and later fixed identity via owning immutable closeout convention"
+      ]
+    },
+    {
+      "id": "/root/v3_records",
+      "role": "bounded recorder",
+      "writes": [
+        "current App checkout control/** only"
+      ],
+      "objective": "Persist owner authorization and graph, no Root lane edits"
+    }
+  ],
+  "forbidden": [
+    "product/SOW or authority beyond chosen exception",
+    "commit/push/publication/merge absent later release",
+    "live login/provider/credential operations",
+    "protected-fixture retry",
+    "supplier acceptance/release"
+  ],
+  "closure": "Root application authorized, not claimed applied. Dependent implementation still requires owning main-observability gates."
+}

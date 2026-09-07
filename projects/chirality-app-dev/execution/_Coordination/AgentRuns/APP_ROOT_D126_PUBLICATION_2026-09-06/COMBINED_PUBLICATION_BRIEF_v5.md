@@ -1,0 +1,7 @@
+# Sealed combined governance publication brief v5
+
+Owner, verbatim: “You have approval to do so.” Referent is the combined App/Root governance PR described in WORK_GRAPH_v5.json, not a Runtime evidence-only PR. Merge remains separate.
+
+Lane /private/tmp/chirality-root-d126-custody-application-20260906; branch codex/root-d126-custody-application. CHANGE verifies fresh base/current state and exact inventory first. HELPS_HUMANS root_custody_prep remains held until freeze plus inventory and parent release; it is sole combined record integrator. Materialize canonical App D126 ruling/register/slate and required App receipt/check records alongside already validated D36/register/M2G4/Root receipt/notices/essential evidence. Preserve validated41-member packet history and unrelated App266untracked/1dirty custody; no bulk import or Root semantic change. Use immutable metadata addenda where owning instruments require correction.
+
+Require fresh independent review of complete combined diff and registered checks, parent exact freeze, then CHANGE scoped commit/push/openPR/freshCI. No source implementation, credential/provider/login operation, protected fixtures, supplier acceptance, merge or release. Recorder operates original App control only, never this combined lane. Return exact inventory, hashes, checks, independent review, PR and CI identities and remaining human gate; no predicted outcome.

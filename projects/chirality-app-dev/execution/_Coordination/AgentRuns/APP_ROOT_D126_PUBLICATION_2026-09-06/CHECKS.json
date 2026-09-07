@@ -1,0 +1,188 @@
+[
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_app_dev_loop_receipts.py",
+      "--repo-root",
+      "."
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-00.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "dispatch",
+      "--entry-path",
+      "HELP_HUMAN:D126:COMBINED_GOVERNANCE_PUBLICATION",
+      "--target",
+      "DEL-02-05",
+      "--target",
+      "DEL-05-02",
+      "--target",
+      "DEL-09-01"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exit": 0,
+    "log": "check-01.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "status"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exit": 0,
+    "log": "check-02.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/practitioner_harness/harness.py",
+      "status",
+      "--project",
+      "chirality-app-dev"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-03.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/practitioner_harness/harness.py",
+      "status",
+      "--project",
+      "root"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-04.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-05.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_materialization_fence.py"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-06.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_harness_adapter.py"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-07.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_surface_ownership.py"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-08.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_work_graph_dispatch.py"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-09.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_instruction_tranche_manifest.py"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-10.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_instruction_entrypoints.py"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-11.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_candidate_whitespace.py",
+      "--base-ref",
+      "origin/main"
+    ],
+    "cwd": ".",
+    "exit": 1,
+    "log": "check-12.log"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-13.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/run_affected_tests.py",
+      "--base",
+      "origin/main",
+      "--dry-run"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "log": "check-14.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/run_affected_tests.py",
+      "--base",
+      "origin/main"
+    ],
+    "exit": 0,
+    "log": "AFFECTED_TESTS.log",
+    "result": "825passed9subtests14.69s"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_candidate_whitespace.py",
+      "--base-ref",
+      "origin/main",
+      "--paths",
+      "<exactPUBLICATION_SCOPE.paths>"
+    ],
+    "exit": 0,
+    "log": "SCOPED_WHITESPACE.log",
+    "qualification": "Unscoped immutable rawpatch failure retained; exactpublication excludesraw andprovides verifiedlosslessJSON"
+  }
+]
