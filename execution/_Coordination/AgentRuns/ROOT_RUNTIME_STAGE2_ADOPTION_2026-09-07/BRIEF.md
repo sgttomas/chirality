@@ -1,0 +1,7 @@
+# Root Stage2 adoption — sealed application brief
+
+Owner Ryan Tufts: “I approve both.” Referent: accept/apply exact Runtime two-SOW subject c5054fd4f4c23338c28c3194a3227bac706f8d6813d3673deb40d8b50075a3fb and matching bounded Root adoption per reviewed proposal RETURN. Sole integrator HELPS_HUMANS root_custody_prep under App HELP_HUMAN. Native roles instruction-asserted; exact serving model unavailable.
+
+Base9f21e4b86c304343b92ccd9ef10895b28c1a4f48; isolated CHANGE lane. Write only new immutable policy/run, helper POLICY/POLICY_SHA two-line selection, actual D-GOV38/register/M2G4/receipt and AppRuntime notices; focused validation/review evidence. No algorithm/YAML/oldpolicy/history/Runtime live writes. Preserve Stage1 entry. Actual Runtime acceptance b20d00386b79ff69d09ad2d8009f732b26a45d6be5884077fe056fa0cd9106be independently read and verified; do not invent another acceptance.
+
+Checks: baseline Stage1, exact isolated Stage2 composition, missing/tampered acceptance/index/member and mixed/unapproved SOW negatives, unchanged53/46/7/9, fullregistered checks, independent complete review, exact selected/staged/committed whitespace via CHANGE. Runtime-first application is owned by Runtime; Root-first publication precedes Runtime publication, followed by published recognition backcheck. No operational/supplier/credential/protected-fixture/release act. Standing Git direction applies through CHANGE after parentfreeze.

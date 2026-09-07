@@ -1,0 +1,160 @@
+{
+  "pathBase": "repository root",
+  "files": [
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-38_runtime_stage2_successor_adoption.md",
+      "sha256": "d43c7fe4a04e0f79e428c7b3eeda041c95518a2940ac834260725a6d455d1613",
+      "bytes": 2770
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sha256": "a1ac18580d1e796098805d683774f35fc2a1f8de58bf96bdab4ec2117db813ba",
+      "bytes": 37889
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-STAGE2-ADOPTION-20260907.yaml",
+      "sha256": "8d7d2bbea68a5d2a593fc423f7f7c5abd1ad7b7f936f369c828d7c0cbc9eb3ba",
+      "bytes": 1385
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/BRIEF.md",
+      "sha256": "1b6f90b246afc8e1f430d0addc62ab9be18c7d31e71e4288706eb0e718c84ee6",
+      "bytes": 1441
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/CHECKS.json",
+      "sha256": "04c89e26d33c7d8c99e55fd041cfd3919b9925954c1e70ffad61262cf67359bb",
+      "bytes": 2314
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/COMPOSITION_DEVELOPMENT_NOTE.md",
+      "sha256": "0f71724bfc9c5612fb40461e668fa138fcc86e1a9b7c75dd602183b1f685ca91",
+      "bytes": 452
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/HANDOFF.md",
+      "sha256": "81cd5869bfa05e3d5fe39aa2a91f0a123859950b1efa589cc6efc37d08f59b9a",
+      "bytes": 2823
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/PRESERVATION.json",
+      "sha256": "6f1752590a98c2fda43bfca04b3a481e6b4863ff3f1cff1ca6f51a73dc44eca1",
+      "bytes": 9516
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/REVIEW_DISPATCH.json",
+      "sha256": "3a4f6de4f6bb26ac16a6b5a3770c8e947447c7a02ce752a6c752425ad2627121",
+      "bytes": 320
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/RUNTIME_OWNER_ACCEPTANCE_REFERENCE.md",
+      "sha256": "b20d00386b79ff69d09ad2d8009f732b26a45d6be5884077fe056fa0cd9106be",
+      "bytes": 2537
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/STAGE2_COMPOSITION.json",
+      "sha256": "7da1f28978752d7db14b553a34946480b3080ceadea57a18a89a1d585250dc42",
+      "bytes": 16915
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+      "sha256": "ad0517d90b0199a75dfc8b78f0664744f81ba45ccd204105b32b9306a78f9bcd",
+      "bytes": 3467
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/WORK_GRAPH.json",
+      "sha256": "fc2f2c787d88167f7770f535076c69c3cac2c3fac9bdf574ffc30ca435b3e4c1",
+      "bytes": 610
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-00.log",
+      "sha256": "4fdd5d9ad314849bf3f5bea9b45c797a96331f6eb4459d3adbe06fd5cbcd2b35",
+      "bytes": 3334
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-01.log",
+      "sha256": "ec7c2e135702f7aeb80f75dd5f1632ec38346373987042ad3abfd68ab47bb478",
+      "bytes": 25203
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-02.log",
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c",
+      "bytes": 100
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-03.log",
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37",
+      "bytes": 92
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-04.log",
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618",
+      "bytes": 65
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-05.log",
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6",
+      "bytes": 188
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-06.log",
+      "sha256": "a36dc919f9032c5a2909a4de29fddc3f70a0f573a276b2a79f643a278226681b",
+      "bytes": 5604
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-07.log",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf",
+      "bytes": 49
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-08.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "bytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-09.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-10.log",
+      "sha256": "48a416963e58f83a6a3082b94205699dae8655fa868b4ccb6f1405eab8ea200e",
+      "bytes": 3679
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/verify_stage2.py",
+      "sha256": "2815268727415f08741b149835d3b46d329ac9a49f67c1f12fc47bb345bc848d",
+      "bytes": 4931
+    },
+    {
+      "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+      "sha256": "ce1fbf5686f151ad17d66f759a16ec2785302972ada670fe88ab947cb51441e2",
+      "bytes": 564893
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07.md",
+      "sha256": "ae0db51def90b9017964c1d05f73da0532789802a00d6dde2b399d2077fd374f",
+      "bytes": 1362
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07.md",
+      "sha256": "ae0db51def90b9017964c1d05f73da0532789802a00d6dde2b399d2077fd374f",
+      "bytes": 1362
+    },
+    {
+      "path": "tools/validation/root_runtime_successors.py",
+      "sha256": "99cb743fb7c025b3f9b8a7997565a13b3ad03c58aa1129c79a6b5db3027dc5a9",
+      "bytes": 6362
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/ADDED_FILE_WHITESPACE.json",
+      "sha256": "ab9378d61118c4ccc7fec2f8904b961e7c009785330b0f648d1713bd0a7b6b5b",
+      "bytes": 3517
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/G4_ACTUAL_SCOPE.json",
+      "sha256": "bde04ac4c83cedc999a07926818864b28419442736901851103ad9c89a0d3539",
+      "bytes": 928
+    }
+  ]
+}

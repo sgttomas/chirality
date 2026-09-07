@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "changed_review_inputs": [
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/STAGE2_COMPOSITION.json"
+  ],
+  "historical_files_verified": 45,
+  "all_eight_negative_cases": [
+    {
+      "case": "missing subject member",
+      "result": "REJECTED",
+      "error": "governed file is absent: projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/AGENT0_HANDOFF.md"
+    },
+    {
+      "case": "tampered subject member",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/AGENT0_HANDOFF.md"
+    },
+    {
+      "case": "missing acceptance",
+      "result": "REJECTED",
+      "error": "governed file is absent: projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/OWNER_ACCEPTANCE.md"
+    },
+    {
+      "case": "tampered acceptance",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/OWNER_ACCEPTANCE.md"
+    },
+    {
+      "case": "tampered index",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/ROOT_ADOPTION_INPUTS/POSTIMAGE_INDEX.json"
+    },
+    {
+      "case": "mixed SOW",
+      "result": "REJECTED",
+      "error": "Runtime current bytes do not match baseline or an exact accepted successor"
+    },
+    {
+      "case": "unapproved third SOW",
+      "result": "REJECTED",
+      "error": "Runtime current bytes do not match baseline or an exact accepted successor"
+    },
+    {
+      "case": "tampered Root act",
+      "result": "REJECTED",
+      "error": "invalid Root Runtime successor adoption policy"
+    }
+  ],
+  "runtime_applied_postimages_verified": true,
+  "development_note": "Initial backcheck assertion expected both script and result to differ from prior inventory. Inventory already captured revised script; corrected assertion allows only those paths to differ. Semantic and hash checks unchanged."
+}

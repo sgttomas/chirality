@@ -1,0 +1,46 @@
+{
+  "pathBase": "repository root",
+  "status": "PASS",
+  "files": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/BACKCHECK.json",
+      "sha256": "909d1c13435b8365cc9ae6ddd9d0443348edd7587f43b4e8c271ce46e31a0a01",
+      "bytes": 2215
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/BRIEF.md",
+      "sha256": "74750c7462dd2c132b92b04f22f28f78e134ae31b4b28fda334b9f8566773cfa",
+      "bytes": 833
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/FINAL_REVIEWED_INPUTS.json",
+      "sha256": "188600b8b4cc196b5833ca70307d07340f3b41803044107eb580002c422292d1",
+      "bytes": 6886
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/INITIAL_REVIEW.md",
+      "sha256": "1a7e92d6e0ff719208d17192cf6b7f1365bc7a723702f789a460a2d55b7e61c7",
+      "bytes": 2066
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/INPUT_VERIFICATION.json",
+      "sha256": "4e4353656ee6120818ea34677f14794bb602ea1c19e324a11c7f00e74dbaa3be",
+      "bytes": 9250
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/PRESERVATION.json",
+      "sha256": "eb308fd9956650e98e1a20b07d9274dd11582c3425ecf08c002bf8856c0543ba",
+      "bytes": 1341
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/RETURN.md",
+      "sha256": "b9d2b80c7e7a9716591fbb7af5e8d8ca4190bf2c41c9a634c59043629382b126",
+      "bytes": 2391
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/REVIEWED_INPUTS.json",
+      "sha256": "0cf361d46ce230b3ea6fb236222b869d90f7ea433fb4d3386f08ad684ae02917",
+      "bytes": 5750
+    }
+  ]
+}

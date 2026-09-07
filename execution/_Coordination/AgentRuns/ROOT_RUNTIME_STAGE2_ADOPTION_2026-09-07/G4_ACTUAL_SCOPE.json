@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "method": "live G4 intersects_instruction_surface and covered_by over git tracked diff plus all untracked candidate files; schema check separately check-06.log",
+  "instruction_paths": [
+    "docs/governance_harness/_DECISIONS/D-GOV-38_runtime_stage2_successor_adoption.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-STAGE2-ADOPTION-20260907.yaml",
+    "tools/validation/root_runtime_successors.py"
+  ],
+  "declared": [
+    "tools/validation/root_runtime_successors.py",
+    "docs/governance_harness/_DECISIONS/D-GOV-38_runtime_stage2_successor_adoption.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-STAGE2-ADOPTION-20260907.yaml"
+  ],
+  "publication_requirement": "CHANGE still runs registered G4 against exact committed range with added-manifests-only"
+}
