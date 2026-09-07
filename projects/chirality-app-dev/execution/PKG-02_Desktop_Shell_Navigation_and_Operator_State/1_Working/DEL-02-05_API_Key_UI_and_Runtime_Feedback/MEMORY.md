@@ -20,3 +20,7 @@
 ## 2026-09-06 — D-APP-122 A owner selection
 
 The owner selected "Runtime A; D122 A; D123 A". D-APP-122 A adopts only the account-host prerequisite and exact account/Settings presentation loci for DEL-02-05-V3-05. Consult its ruling and the exact application snapshot; this memory is non-authoritative. Effect remains HELD until the owner act is observable on fetched origin/main. No new source implementation, dependency satisfaction, full-item/lifecycle closure or publication is established. Existing residuals and gates remain; a later source freeze must use current identities. See `_run_records/D_APP_122_OWNER_SELECTION_2026-09-06.md`.
+
+## 2026-09-07 — existing account host criterion
+
+2026-09-07 - DEP-02-05-014 host evidence reconciled PENDING to SATISFIED under D-APP-59 S1 Reach2 against existing committed source/check/run evidence, not D122 alone. Parent review/closeout precedes consumer activation. Account implementation and all Remaining, lifecycle, approval and live-contract gates unchanged. See `_run_records/DEP014_HOST_RECONCILIATION_2026-09-07.md`.

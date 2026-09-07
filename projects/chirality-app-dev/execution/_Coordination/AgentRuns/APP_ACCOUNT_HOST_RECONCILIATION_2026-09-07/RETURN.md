@@ -1,0 +1,1 @@
+DEP014 existing host criterion evidenced and bounded maintenance applied. Four deliverable files only; other dependency rows and all Remaining/lifecycle/approval bytes preserved. Parent review/CHANGE closeout required before consumer activation. No product edits or child dispatch. INPUTS/ASSESSMENT/APPLICATION and NEXT_BRIEF carry rationale, identities and minimal successor.

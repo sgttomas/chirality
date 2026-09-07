@@ -1,0 +1,31 @@
+{
+  "changes": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+      "before_sha256": "249ac0291f72ef8a84d0b51f18a2ffac9c2b486eeff58559c894d55e3fe03f76",
+      "after_sha256": "490988ad092a932885e9cbb18adeb8c1ec0ab2cf9ce88732968806014d9cc315"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+      "before_sha256": "01c256f2d508a53e238e34b436c63443deea73d7c9157976d360fe5238b8e472",
+      "after_sha256": "a3e5f3e03c9c255d495fef0a50aa3469708a6458c6c206084972bd184e0bfe13"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+      "before_sha256": "3fcfc73bdabd57df74b2ff5fa285ba48b00ff3fbaac941b9c6eca39fd13ef0b6",
+      "after_sha256": "2b4e565b58753909b240dd50afd0d813e18524eb8ad7f983c5c5f580101e78f7"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/DEP014_HOST_RECONCILIATION_2026-09-07.md",
+      "before_sha256": null,
+      "after_sha256": "8f3ee854bd8a01893b85471c2b348bd5714956b080ba3947360f44b4b435b11d"
+    }
+  ],
+  "other_rows_identical": true,
+  "changed_row_columns": [
+    "SatisfactionStatus",
+    "Notes"
+  ],
+  "remaining_lifecycle_approval_unchanged": true,
+  "status": "PARENT_REVIEW_REQUIRED_BEFORE_CONSUMPTION"
+}

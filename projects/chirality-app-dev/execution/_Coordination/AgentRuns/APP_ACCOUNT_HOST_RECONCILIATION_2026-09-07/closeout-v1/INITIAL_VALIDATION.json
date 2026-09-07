@@ -1,0 +1,11 @@
+{
+  "original_manifest_members_verified": 19,
+  "manifest_sha256": "38f98c46b6de3ea821e1d9bb37b3cb98867cc03b97ddf3c3bd27535f37f67f63",
+  "exact_deliverable_files_verified": 4,
+  "dependency_changed_columns": [
+    "SatisfactionStatus",
+    "Notes"
+  ],
+  "status_before_history_unchanged": true,
+  "receipt_prefix_unchanged": true
+}
