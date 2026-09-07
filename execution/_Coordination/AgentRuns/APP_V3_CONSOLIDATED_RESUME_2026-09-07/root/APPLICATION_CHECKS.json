@@ -1,0 +1,38 @@
+{
+  "schema": "chirality-root-d36-application-checks/v1",
+  "application_head": "a52e754491041b43ac4bc9414dff9becd52207ff",
+  "validation_head": "9428e4af44c91063f2188e31698e4c84d8549be9",
+  "results": {
+    "postimage_parity": "PASS",
+    "receipt_148_exact_suffix": "PASS",
+    "candidate_reverse_apply": "PASS",
+    "root_status": "PASS",
+    "g0": "PASS",
+    "g1": "PASS",
+    "g2": "PASS",
+    "g3": "PASS",
+    "g4_ci_mode": "PASS",
+    "self_check": {
+      "exit": 0,
+      "block": 0,
+      "review": 4,
+      "warn": 55,
+      "info": 14,
+      "not_applicable": 1
+    },
+    "instruction_entrypoints": "PASS",
+    "candidate_whitespace_whole_worktree": "FAIL_RETAINED_UNTRACKED_SHARED_EVIDENCE_FINDINGS",
+    "candidate_whitespace_exact_root_targets": "PASS",
+    "affected_tests": {
+      "result": "PASS",
+      "tests_passed": 836,
+      "subtests_passed": 45
+    },
+    "git_diff_check": "PASS"
+  },
+  "deferred_to_change": [
+    "exact staged/candidate registered-scope whitespace check",
+    "committed-range G4 --added-manifests-only check",
+    "commit, push, PR checks, and fetched-main observability backcheck"
+  ]
+}

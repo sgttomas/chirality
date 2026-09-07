@@ -1,0 +1,35 @@
+{
+  "schema": "chirality-root-d36-run-manifest/v1",
+  "status": "APPLICATION_REVIEWED_CHANGE_PUBLICATION_READY",
+  "identities": {
+    "candidate_patch_sha256": "a4e94ea7a506cf71759208a7754fc8e1b218aeb0870952128529d2a1c9cca9ae",
+    "d36_postimage_sha256": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1",
+    "applied_review_sha256": "cd8ae2d5c27d6ce4196df2027e51b1b4ccb86744eaa0058c38096dd71421cd5b",
+    "applied_review_manifest_sha256": "c07f8be9b82e36aa1c4fdf0043c74203936bf7f6600f76d626a200287462944c"
+  },
+  "basis": {
+    "candidate_dispatch": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d",
+    "application": "a52e754491041b43ac4bc9414dff9becd52207ff",
+    "validation_and_main": "9428e4af44c91063f2188e31698e4c84d8549be9"
+  },
+  "selected_compact_evidence": [
+    "execution/_Coordination/AgentRuns/ROOT_ACCOUNT_AUTHORITY_AMENDMENT_2026-09-07/author/OWNER_RULING.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/APPLIED_IDENTITIES.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/APPLICATION_CHECKS.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/APPLICATION_CHECKS.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/MANAGER_FAN_IN.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/HANDOFF.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/CHANGE_SELECTION.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/MANIFEST.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/author-v1/D36_PROPOSED_POSTIMAGE.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_REVIEW.md",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_MANIFEST.json"
+  ],
+  "raw_evidence_disposition": "Preserved byte-for-byte in the shared checkout but excluded from publication where added-file whitespace fails; selected compact evidence carries the exact relied-on hashes and review result.",
+  "attribution": {
+    "manager_role": "HELPS_HUMANS; instruction-asserted",
+    "author": "separate gpt-5.6-sol medium Agent 2; nondelegation instruction-asserted; interrupted after candidate production",
+    "reviewer": "separate gpt-5.6-sol medium Agent 2; nondelegation instruction-asserted; final applied review PASS",
+    "exact_serving_model_ids": "unavailable"
+  }
+}
