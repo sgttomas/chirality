@@ -1,0 +1,27 @@
+{
+  "typecheck": {
+    "command": "npm run typecheck --ignore-scripts",
+    "exit_code": 0
+  },
+  "main": {
+    "command": "npm test --ignore-scripts -- --config vitest.custody.config.ts tests/custody-config-status.test.ts tests/codex-login.test.ts tests/codex-session.test.ts tests/hosted-consent.test.ts",
+    "exit_code": 1,
+    "passed": 124,
+    "failed": 1,
+    "failure": "custody-config-status nativepolicyfixture omitted requiredprotectedPaths at line149; TypeError options.protectedPaths.length",
+    "disposition": "boundedfixturecorrection viaactualtestspecialist; rerunaffectedcommand"
+  },
+  "filtered": {
+    "command": "npm test --ignore-scripts -- --config vitest.custody.config.ts tests/codex-supervisor.test.ts tests/standalone.test.ts --testNamePattern '^.*custody '",
+    "exit_code": 0,
+    "passed": 7,
+    "skipped": 31
+  },
+  "conformance": {
+    "command": "npm test --ignore-scripts -- --config vitest.custody.config.ts tests/runtime-conformance.test.ts --testNamePattern '^invalidates changed binding'",
+    "exit_code": 0,
+    "passed": 13,
+    "skipped": 31
+  },
+  "measurement": "Results transcribed from actual tool outputs; no raw console log file was captured on these invocations."
+}

@@ -1,0 +1,20 @@
+--- a/projects/chirality-runtime/tests/custody-config-status.test.ts
++++ b/projects/chirality-runtime/tests/custody-config-status.test.ts
+@@ -143,12 +143,14 @@
+     expect(login.config.cli_auth_credentials_store).toBe("keyring");
+     const rootB = await prepareCodexContainment({ ...options, purpose: "trusted-login", canonicalRoot: "/synthetic/project-b", privateDirectory: "/synthetic/private-b", codexHome: "/synthetic/private-b/home" });
+     expect(rootB.environment.CODEX_HOME).not.toBe(login.environment.CODEX_HOME);
+-    await expect(prepareCodexNativePolicy({ ...options, purpose: "trusted-login", immutableReadRoots: [] })).rejects.toThrow();
++    await expect(prepareCodexNativePolicy({ ...options, purpose: "trusted-login", immutableReadRoots: [], protectedPaths: [] })).rejects.toThrow();
+     vi.mocked(fs.stat).mockImplementation(async path => ({ isDirectory: () => true, isFile: () => false, mode: 0o700, uid: String(path) === "/usr" ? 0 : process.getuid?.() }) as any);
+     vi.mocked(fs.lstat).mockImplementation(async () => ({ isDirectory: () => true, isFile: () => false, isSymbolicLink: () => false }) as any);
+-    const native = await prepareCodexNativePolicy({ ...options, immutableReadRoots: ["/usr"] });
++    const nativeOptions = { ...options, privateDirectory: "/synthetic/broker/worker", codexHome: "/synthetic/broker/worker/home", immutableReadRoots: ["/usr"], protectedPaths: ["/synthetic/broker"] };
++    const native = await prepareCodexNativePolicy(nativeOptions);
+     expect(native.configToml).toContain('cli_auth_credentials_store="keyring"');
+-    expect(native.expectedPermissions.filesystem[options.codexHome]).toBe("deny");
++    expect(native.expectedPermissions.filesystem[nativeOptions.privateDirectory]).toBe("deny");
++    expect(native.expectedPermissions.filesystem["/synthetic/broker"]).toBe("deny");
+     expect(native.enforcementEvidence).toBe("NOT_PROVEN_G_SBX");
+     await native.cleanup(); await worker.cleanup(); await login.cleanup(); await rootB.cleanup();
+     expect(childProcess.spawn).not.toHaveBeenCalled(); expect(fs.open).not.toHaveBeenCalled(); expect(fs.readFile).not.toHaveBeenCalled();

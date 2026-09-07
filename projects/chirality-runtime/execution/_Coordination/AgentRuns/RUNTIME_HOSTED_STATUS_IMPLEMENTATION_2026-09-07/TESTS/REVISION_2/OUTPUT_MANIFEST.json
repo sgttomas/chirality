@@ -1,0 +1,20 @@
+{
+  "status": "FROZEN_REPAIR_AWAITING_MANAGER_RERUN",
+  "files": [
+    {
+      "path": "LIVE_OUTPUT_PIN.json",
+      "sha256": "8308447a3eed8b2f0c47d37b36a9f9c3c1604f173d5008aaf2530ea1416c81d7",
+      "bytes": 356
+    },
+    {
+      "path": "REPAIR.patch",
+      "sha256": "920691fb70f69cdf2ef1a0ba9d57f6feb9043f4fd415eff7d01b005f2f61e756",
+      "bytes": 2154
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "56f6b60c69f9457a15146a329cbe6179c9a669b810ba191bb81a1974b22ac55b",
+      "bytes": 1228
+    }
+  ]
+}

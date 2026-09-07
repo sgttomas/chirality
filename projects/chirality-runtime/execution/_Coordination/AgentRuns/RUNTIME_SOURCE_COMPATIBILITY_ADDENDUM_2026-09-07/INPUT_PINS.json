@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/HANDOFF_MANIFEST.json",
+      "sha256": "407000872059e492f367eabfc314d76b8a459503e3164d245fb3100b1af09abb"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_DECISION_TEXT_2026-09-07/DECISION_TEXT.md",
+      "sha256": "dbb19e404ecf8a7cb2636df55192cd924820610260080c6df3ea2d1d1ebc00b4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "sha256": "d0e87d6d547ad33ef88739eb03d5c3bf5c006ca12b6743891c6744ba4c6d8d14"
+    }
+  ],
+  "App_findings": "Parent/App-lead relay; preliminary App-owned evidence, no local re-audit"
+}

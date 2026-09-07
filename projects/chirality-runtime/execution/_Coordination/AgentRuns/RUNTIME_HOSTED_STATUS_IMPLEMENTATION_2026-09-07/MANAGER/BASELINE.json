@@ -1,0 +1,7 @@
+{
+  "receipt": "/private/tmp/runtime-hosted-status-branch-ivikuc3t/RECEIPT.json",
+  "sha256": "d9ec46f0271be513566e9e4330c4eb7d10618a1fc94e7885e22093ac8b60c569",
+  "source_basis": "bf204d8fd0bc55363b189a471e01461eb0cdf28a",
+  "decomposition_basis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "branch": "codex/runtime-hosted-status-hardening"
+}

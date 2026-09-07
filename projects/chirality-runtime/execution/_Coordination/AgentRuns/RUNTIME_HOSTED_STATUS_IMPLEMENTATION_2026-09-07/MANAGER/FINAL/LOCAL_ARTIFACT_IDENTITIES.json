@@ -1,0 +1,677 @@
+{
+  "basis": "bf204d8fd0bc55363b189a471e01461eb0cdf28a plus exactuncommittedpatch",
+  "status": "LOCAL_TYPECHECK_OUTPUTS_NOT_RELEASE",
+  "artifacts": [
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/.tsbuildinfo",
+      "sha256": "0f397c824c86c87077809a0e995d1c829bea6611e3db479e4c1f31722db436d0"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/delegated.d.ts",
+      "sha256": "a3a8fd66dc4381534a15b872b4a64eac74b34159eaf5332b1b825ff4efaa09cc"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/delegated.d.ts.map",
+      "sha256": "b4c68dc44502fed41a6c0db493d11d0ed2a371f44899142d287e11009cad4c5c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/delegated.js",
+      "sha256": "bbc05cb27216744558900573f9f29aad3110fbeaa5dd18b733de892905d3246b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/delegated.js.map",
+      "sha256": "40b6e20d57e778bbd33c36bdffcd349519fce42bd6c6ef3b9f35b96ff456e978"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/engine.d.ts",
+      "sha256": "feba385641e2709dfee27d0299b73b398ea00dd4409e2ad30c71cd23c492dece"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/engine.d.ts.map",
+      "sha256": "8a8e34d993057a9e6f4b865ca116eb33546c6db11d3f078346eb76bd6a6a913a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/engine.js",
+      "sha256": "6efa6907bdb5906ce65c0f3ab5b79e75a204231c9a049e79315231bf58f61e2e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/engine.js.map",
+      "sha256": "1ced3e12766690223735fa2def27c1fc8c0c8ad4753b0ecda3263868ef3089b5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/errors.d.ts",
+      "sha256": "d969d8850bad8df51ccd57ebaa6f656622bbb817bfab404c2614d89dcaedf458"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/errors.d.ts.map",
+      "sha256": "5d17355ca08546628f8869b5c762dd81ee24f436ad644e691153a157d48b747c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/errors.js",
+      "sha256": "104e9031c10f52092f42b2321581fa28ee67fc532775efc7e03de679bc8257f5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/errors.js.map",
+      "sha256": "8a3536b7a0ae31318c19faa2c702ebbaf9f4a265a2e54d5aad6223fb1cf189db"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/events.d.ts",
+      "sha256": "d7033d0dafbe14516a80c3ce452261895be89740cac2cdf431b5134ff6b302f1"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/events.d.ts.map",
+      "sha256": "01eef95a3684bd4d4c5eaeeed205f7454cb5b93585509e94ce910684631bccee"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/events.js",
+      "sha256": "ab7ab1bc958390572a353df1670ba85f021bde06c45d4268ecd1b37f69026959"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/events.js.map",
+      "sha256": "0db7b7f0fcd7ae73095b6f4e237f5328f77fb9a8324f63e2ab1e5ec7fcabf977"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/agent-engine-port.d.ts",
+      "sha256": "cecfa3a73ea09b1bae9b700e513e502eb69e3733c3609292d52daf40966675f3"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/agent-engine-port.d.ts.map",
+      "sha256": "b513f3b3d0847b0c720c1f90dd2eae56a6b0f74f5a525cc9eca4e3deaceeafdf"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/agent-engine-port.js",
+      "sha256": "92cb1a7190d1eaac3fe9f0db3ef9e60bf8a1475624bc1a8aa2acd0cf3643fc2c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/agent-engine-port.js.map",
+      "sha256": "b320ded9656f72a7ce5f0cbe5f71ea4a64be2014146426450f217393fb84e73b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/domain-profile.d.ts",
+      "sha256": "8501384978d78cf9461256288a478e6e8dd316a3249c4982c8da0e9a6eec7d78"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/domain-profile.d.ts.map",
+      "sha256": "c09108d71cbe868704027797e0442d97e69a1bc97db6e89100570b62048f5442"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/domain-profile.js",
+      "sha256": "a6d3014c844395043479df84e517d7d2fa2aa921d719ad2395c88d5c9c5f8b0f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/domain-profile.js.map",
+      "sha256": "7827bfff1cd898884d1a9fd0af9dca288b83ba28620cb09b08b52658f5414c22"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/engine-conformance.d.ts",
+      "sha256": "1e271d51b82c47a5474024a478b06f03b1005f5f456d8167229e4735418fad03"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/engine-conformance.d.ts.map",
+      "sha256": "6831bef9a3c65be77f699b1b8a4ab451d2d874672002c7c3995f55556d8d56fd"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/engine-conformance.js",
+      "sha256": "d7a4afae08cd7c8b15a00085ef3b321c8e4c6120cb2914ff546a04ba3ffca1a4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/engine-conformance.js.map",
+      "sha256": "06bb5f07454f37c4b1c3891ed26d6b9c48c53f3b6ce196b326857915aaf67e58"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/errors.d.ts",
+      "sha256": "6db69274c5df3c929ecd61370aa56af9a67d2d0417dfc2b58d9a67451bb5ffa6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/errors.d.ts.map",
+      "sha256": "39e05e1e3efcae6b12173805455f181e2e7cc376946bdaa9176d842733654be3"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/errors.js",
+      "sha256": "ba1e348708ad337b33f8e6d8283d0b4e9d9a3f1b184df417330204ce494d4e1d"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/errors.js.map",
+      "sha256": "6e8553d87c6fcd987f18fbc7a8204b22d2029a47ef51f23e8dc00c0fcbd6e32f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/event-schema.d.ts",
+      "sha256": "3c29cc701a42dbbf5c810d0ae83711877bcecdc94886fcd2f8d12e329962c8f8"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/event-schema.d.ts.map",
+      "sha256": "637c7179ddbcae6e0a6023bfb4987a3440763815a653ec9cee829a928c340e3f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/event-schema.js",
+      "sha256": "c52c03dfe7b0bcdf77ca267216f5f42ae881d5891f0e5bc5177c78ddd5082a98"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/event-schema.js.map",
+      "sha256": "fa590b083d574592a82df07e05c823341071dc87226b8884247be2a3fe04699e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/index.d.ts",
+      "sha256": "ab918d9a88f11dee9d8250d46e88f59277cd580ac9fb9df371e5410b7e7ee1da"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/index.d.ts.map",
+      "sha256": "c7e9489c06bbd915675261ae8fa72abe9a65a669fc09595a981d559227016d29"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/index.js",
+      "sha256": "26eb70db9079d0de019b82e8930a04f00da9ceefb444f755948e5c9e9dcebe03"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/index.js.map",
+      "sha256": "584342fd27eef95605566833db9243409323a1a581e70dee3ab313f0d729f82e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/mcp/tool-names.d.ts",
+      "sha256": "a03ede025245f9ebfaa84ae39a65a2bc5ab3d59d68b7772361ad4f9881731344"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/mcp/tool-names.d.ts.map",
+      "sha256": "5395a169c4d8f6ba22e51c627e977ec31dac85628b7fd902d410e309d094099f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/mcp/tool-names.js",
+      "sha256": "42660fd25a8b011e1a683dbcacbe5526e2eebe5b5595e54b12b356d56c5d5e3c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/mcp/tool-names.js.map",
+      "sha256": "07aa6056a086815d275cad0b5e62a827707a3478516658f40ebf3eb8e882c87c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/operation-proposal.d.ts",
+      "sha256": "0740b9a240e92a9cd80bcf5ebba7bcb181510ebb6474c40d54b012a499c1c088"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/operation-proposal.d.ts.map",
+      "sha256": "6ee6b5919433ee0e8387c277b12d4197fc8b3264b70979cec392a5f806dc7363"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/operation-proposal.js",
+      "sha256": "588103f81186f833e1070947e5a2fca8657499b899da04c8a25c3485c7c97951"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/operation-proposal.js.map",
+      "sha256": "cd7b145245974a6996f367135843919b6d9de43f8011a93514671537879844e2"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/sdk-version.d.ts",
+      "sha256": "6541c40e24bbfdfcdef1ea21b8e2144c44b659e8ea1150b5e2875b51182bf593"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/sdk-version.d.ts.map",
+      "sha256": "671d3154dd36100a29ff4124fc39618ecad8847eb7274a87bd663683a1054a88"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/sdk-version.js",
+      "sha256": "90d521f8d59c6e1d107a5845eca286adf5acb17dd292f4645fd59f4d0dada3fe"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/sdk-version.js.map",
+      "sha256": "f3e079068d62c65c8236cf09076db13b1eaa1ef8007bcafefae5bdc21e55bcfd"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-catalog.d.ts",
+      "sha256": "028c6f4deee72a8bf744225325be355eb3fd06d2cfeb99a8c909e5470a6196f5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-catalog.d.ts.map",
+      "sha256": "2ccac5d9e1fb1f47f4a1c92c29ce6f0e13887b0696d20081ef01308986e15096"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-catalog.js",
+      "sha256": "501455dba18d1d772e8316921d00be70bd997833fe43474dd9bcc189d3ae821f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-catalog.js.map",
+      "sha256": "b1262df484992ad6dfdd1b57f959cd41842a10e9bf30498ea699500e3b5eb86b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-descriptor.d.ts",
+      "sha256": "5d5930e7fae6c0a387a9787c6a8420d09df2bbd39ccfe3345e5dfa8a20116f67"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-descriptor.d.ts.map",
+      "sha256": "5a5de844ccc043fe8585062032532f8cc5bb60ed9deb4cd065a05452136cdd6a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-descriptor.js",
+      "sha256": "39d4bcf7d42fda12d3d0921b1b9e0f02be050c43823d75dc6d1390a75847ed61"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/tool-descriptor.js.map",
+      "sha256": "48f2f289fdf75480d217bc48f2c0cb2c8680fd63979827df18460fe6fc9eb2da"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/transcript-replay.d.ts",
+      "sha256": "721386a257d6fd1b0e6377e72c529eb7a4c6ee942b39b9c2ffad856641f15edb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/transcript-replay.d.ts.map",
+      "sha256": "5ebd964a6d1a2a286e0f5a406147ac8d5aa5813f7823da60f138b9704c5edccb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/transcript-replay.js",
+      "sha256": "1de6a1f59ece42465efe4e4a0c8ce96ffacea96d986d0ebd5f4a6cba41c14c03"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/transcript-replay.js.map",
+      "sha256": "373e88eed2ec74e5d2a4cc49a8e3038ecaa733fe053279bd8c4acc295ea94bd4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/types.d.ts",
+      "sha256": "b557bfecd547a108b897665eae1a3b3b4e13f2af44047678b3f0240febe49a09"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/types.d.ts.map",
+      "sha256": "4ca019e668ac9c96685ea5347bd419d6bb9ac81cb8b4a3c9bd904d0baa77b137"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/types.js",
+      "sha256": "01ae2a5b120382f9a648ced7ee8507493a134f216d100fc61600c6c9738235d2"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/harness/types.js.map",
+      "sha256": "9540b49f3c80dbfbddcb9e4b0c01507bd5c71f7611fe31d7bcdbc983e6331b4e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/index.d.ts",
+      "sha256": "c5510f3e222fd4a739dad417f1d571b1c56e0fc00f50a1ee367a11c204034f90"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/index.d.ts.map",
+      "sha256": "e940824a1452dd9ab25925340a09d3784d70da8b914e8e40a3cb084d100edca5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/index.js",
+      "sha256": "1cf214b098626498dad6b2306f9979c47e14ca4ac08ab270e81c18b94424cdec"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/index.js.map",
+      "sha256": "69391717a8eada3853b0ddc7b9e540e21e00b248078eb0a7ed14d9cc59af3911"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/project.d.ts",
+      "sha256": "6860e8008cbb41c004e668c29ce046550337570b69af5683db32dcb6bcd9af57"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/project.d.ts.map",
+      "sha256": "94eb2d3e9250120d17ae41ed79ede61c717ac486de7e089e54f42d36625e60f6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/project.js",
+      "sha256": "c4b738172ad130f4ed956a3a072247c28fceb611b8305bd3f8023355a9e41300"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/project.js.map",
+      "sha256": "f4324940d8df01ab0b07bb260687f215bb9ea983de01be4406bfac1145ada5d3"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/protocol.d.ts",
+      "sha256": "3a11015153a6b76a469a66d980d669f9cbdb2cd032e68fff98948570de478cda"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/protocol.d.ts.map",
+      "sha256": "6e6c4afd5ad82c8ccb26cdc5d510424b98d8587f647a4631a021f889d8e7d68e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/protocol.js",
+      "sha256": "cf2ff3eb34d18a9800fe559f3e9b7f0e383758ec6e472626d7a16e2b05a0e304"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/protocol.js.map",
+      "sha256": "f6f7b1a7b2d98218f5ae05b608605286a1de3b5d8df468e9e7f76d0a9804bc77"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/residency.d.ts",
+      "sha256": "0a7aa581db9a2ded66d4c2d9612cd5d57fa8018dcb1df731faab9c99eea50394"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/residency.d.ts.map",
+      "sha256": "0e55a49cea42502a8aa0552f12705da54164fa77c50c219c381ba5cb27747250"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/residency.js",
+      "sha256": "2d703290035963687e2ef9b334c4e9eb489509add3b704fa6d2f6eabecc48a95"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/residency.js.map",
+      "sha256": "ebe30b50bb02d3a3fbcf3a7422f682424bf126c13ec5e44a09400f93bd506650"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/session.d.ts",
+      "sha256": "fee0437ea3a8d731cc6445f43f0310df46ebe29dfdb51d98029b340bf2faa686"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/session.d.ts.map",
+      "sha256": "93cd4ca619a571e834ac7d9ea72cfc3c549bf4b6fce13bbb5e3923312bfc65b2"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/session.js",
+      "sha256": "ee044e5b21c3aea4359782b5fa8259c30c07887c6e9205796a96a8ba23ea7c82"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/session.js.map",
+      "sha256": "647e6ecf4d5e709e17eeb6946920102e4cbe45033a53f06c134934f654a209d5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/v2-events.d.ts",
+      "sha256": "2f427896987712055d9f9ee19320b6f81365019a308fb7fc167e230ffa2d417e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/v2-events.d.ts.map",
+      "sha256": "7e6bf7fb6f00c51d674da38d9675df77a8725d607f8c12d9c92d61de7c41f6e6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/v2-events.js",
+      "sha256": "c90c7e9182e372be12fa6effa75634e010aa95f8d4756af5cbc5f73b1388107b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/dist/v2-events.js.map",
+      "sha256": "fac27f0a5c8c420ecebcf691c79de84bedf567eb0d458b9aa508dab67665273b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/.tsbuildinfo",
+      "sha256": "b111b90d7166de42423a2f860777c8074b09c6346f5036b2632d68b913e4331b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/client.d.ts",
+      "sha256": "71f2f7592a2efaff705ef7f39c6538fb873dcd29520334f7907d4c9a631466a4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/client.d.ts.map",
+      "sha256": "23d89fb03b1b9404edd09f9835e24ad80a1ba4b85d61c72b6dce9c6a95d38d3f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/client.js",
+      "sha256": "abf125ba8ca4d614082946558599606271bc234ba14ab6709160a6203c0aa981"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/client.js.map",
+      "sha256": "6b9b3d75ac8777f1719399ef3625fc1b43c0a5814b7d3688044dde61df4ad860"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/errors.d.ts",
+      "sha256": "3f477482a99a936db0b17c4506c33f188fb0d3eba8b7769b0b49b399f16ee7f3"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/errors.d.ts.map",
+      "sha256": "10308d2ef067691192ca9b6c286ba19538a5027a79c968afe7a655ad4ce46129"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/errors.js",
+      "sha256": "8fef0ceaccea464aad112775b14b444adc18ef6ab04a34c667f598e52a26441b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/errors.js.map",
+      "sha256": "0475987bf99b451022a69b3b575f95de72100f00cc206a9d897170f43045603b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/index.d.ts",
+      "sha256": "5d9870df6696a38979517dad85875360323cfba734aac8df68f9b9b45f3520e4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/index.d.ts.map",
+      "sha256": "3890f71612de1b5e9f362d80da58db84c42fc303faf239a822f43c2082d9f4f7"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/index.js",
+      "sha256": "d989feb92f4c39bf4fda95eec5ce7ea82e274df67c337c1c145b79039b8f60c2"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/index.js.map",
+      "sha256": "fab389f75cc7626c9ef339dc889138f8091ad70bcb469a6c1943e0318c4f8ceb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/sse.d.ts",
+      "sha256": "16188fca2134dc0138795ab428200853bf9f84175327b364f98e36a4f1a32e8f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/sse.d.ts.map",
+      "sha256": "88a54dcf322898207456d02ce81630e150c08e43c2c24173f4a386dac837d1b5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/sse.js",
+      "sha256": "08c8f58649698b79e26e5a68dce4b74d0ddc8ec0156e1e33b94dc8e39e425eec"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/src/sse.js.map",
+      "sha256": "2a6b6568d2018a1fe6d5a30cc80ae649f1c23831c419e779c325cf6f415e5847"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/test/client.test.d.ts",
+      "sha256": "43ad91bec5bd0d2576566c19960051c7ded34f25900af803ea7197114b2cb42c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/test/client.test.d.ts.map",
+      "sha256": "1c567b426c5283c868fdb1fd67d820948142ef5643e2683b2ea775ca1f730513"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/test/client.test.js",
+      "sha256": "5155282e86bb28c515ccde0fdd3d19864e6d8ae26e5f671d10cc18bcde86e729"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/dist/test/client.test.js.map",
+      "sha256": "49c00907885f3529e743bc276deaafd4d32abce2f25eae5f8c61c9abb6c05256"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/.tsbuildinfo",
+      "sha256": "2085829d6bd338033f45559006b0a353668600db08ef6d2ea36b90fe87ebaefa"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-containment.d.ts",
+      "sha256": "7cf48628dcaf15fe8fbdf34fa8492b2557795ae4fea0797cbf2438e272664b7f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-containment.d.ts.map",
+      "sha256": "9972b39c7ed64478bd7d3e67fc5e9a077b746ae6a57f8d88779fcab462e49284"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-containment.js",
+      "sha256": "6b76772802e0fd38e7b122ae9eea35dc258f3fd1baf5571948e69ab8d0714e78"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-containment.js.map",
+      "sha256": "a0cf351d1ebeb48a9b89c236ff8467ae4f983722281301acd8f5c5bff695fe79"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-login.d.ts",
+      "sha256": "4cbb002d20774dd97c0525e640b78ef9edbe5d2e3c83b5f25a60e60ab189ab13"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-login.d.ts.map",
+      "sha256": "d50db57757a0f67d963dfcd448bb25f555ad1c026aad666818c39b96168ac038"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-login.js",
+      "sha256": "5b3c56e4577ddbc466fe50edc7cca3e0546ec0b37001c4bb87d74d3f2b453574"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-login.js.map",
+      "sha256": "f9e3ab9cfd72c00044b5adb3d42768625f0ca362a1f93738338646ea8bdba032"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-manager.d.ts",
+      "sha256": "9637356dccc30a85a9e926527bc8efedd1c2f1afb50d9a74d2d52a9b5099584a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-manager.d.ts.map",
+      "sha256": "7a5c6804458d6e5a077a4917cb3f1f708144b7f048d9e0f5a4314540d5c36827"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-manager.js",
+      "sha256": "0ec547a773927ceea7bd54de74aa6c8f96a8326bcf3c3741fdb6935d51067325"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-manager.js.map",
+      "sha256": "0d019bd3c950a4cf333e9f85ed37e6641a439b2a4229db7b9ec6cb647472981b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-session.d.ts",
+      "sha256": "5975115370882da2c9fe288269e00c4b2b42175cc43df67222535ea1b724ec0f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-session.d.ts.map",
+      "sha256": "7f65bee9e5c20e0c05df34dae30aedc4e8b6015c8cac4366b3cdf2a561323986"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-session.js",
+      "sha256": "a92e9dffc41c1848f0a92f3908e57dcde3eb12bef645210dd966e75a6c6495da"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-session.js.map",
+      "sha256": "7ac8cd98fb1c04e4f3c837665b227faef0518c2e68c8f59bd75e77efb3088296"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-supervisor.d.ts",
+      "sha256": "cbd719259281bb906f621c0479f47f9f2c1803d507228ae3964b337e1f2cec68"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-supervisor.d.ts.map",
+      "sha256": "60c9f3acc297d2ebc272e0aa7cc80634c7e3c5a2406bd68b56c0ca655861b575"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-supervisor.js",
+      "sha256": "3b1fd4340409d67f43afe9c958b7317d9f8b8ce5279ad39ef3612a7244da3eec"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-supervisor.js.map",
+      "sha256": "d7264c56393b98d4994a75b2428da718fd19ab29baa73ced9577480da38d180d"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-transport-lifecycle.d.ts",
+      "sha256": "fa840fbd298b416bfaafc9657d863a8541898223f80a5db3ffa9ad0f0ef33d1e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-transport-lifecycle.d.ts.map",
+      "sha256": "91ac3e2f3149d26636c693c12800fc60d833f6dd338cd5176023b38e78b21436"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-transport-lifecycle.js",
+      "sha256": "9c90b10674dfa33ed745e8b3faee15218515104c47ef7035a43e34cb9bd1d677"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-transport-lifecycle.js.map",
+      "sha256": "2c6c0414cc0df5e88196650547a7ff8441700170ed08b26e2f93ab2439b6b4be"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-worker.d.ts",
+      "sha256": "adc8bb01d88e1e849d61480fcc2e0bf67b0792c98612fd1f8718a9ec9b8fa777"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-worker.d.ts.map",
+      "sha256": "a91d7f79b7a974016ffb12cd04f968e80891ac43de9b8269d80942b1d5e29cae"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-worker.js",
+      "sha256": "b382159aaf68ca5e46a93a8bae5190922f47eb9a37f44690ec2685a850d9ca89"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/codex-worker.js.map",
+      "sha256": "2f803197cca06e2173e92b957636540f090233e0574e3b8c7f8f4caa28791c6c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/index.d.ts",
+      "sha256": "96a8f12a5bd28a68a2b68ef542b19cb66fc51fc457d2915f9fb8e20df2107fc5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/index.d.ts.map",
+      "sha256": "f509b877c87ad17f49c8d8068225242f9850cb653c925160c57763b21fdc0be6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/index.js",
+      "sha256": "feb7f49a4d6775ebfb21427e4cafbd33ae2be5c162704a3d3f912aaab4b66209"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/index.js.map",
+      "sha256": "819209ba04595f00c6807ffabec776e8c33d7c79231036560ff0deefd07d4678"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/runtime-daemon.d.ts",
+      "sha256": "26767c9c1b8ba1a0dbf3842b719743107ccecccaed881c500d9e60add2f106f4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/runtime-daemon.d.ts.map",
+      "sha256": "2660528904e02fe3b0cc8c9d469c7fdf1cb08b2029d27c51e368f32c5ae45869"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/runtime-daemon.js",
+      "sha256": "6bbbd860ed5a76e4de002fba072a24e978c1e03b28c1538a3df1e49cf86bc94a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/runtime-daemon.js.map",
+      "sha256": "6ebf0217e48776313d4cb650bedc4043ecdedcaedaba3f20eb1c5caa0a1c12de"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/signal-shutdown.d.ts",
+      "sha256": "1fc57c826fabb309a42ffd8185bec473af501b348f0187e87e13ee04aa25a002"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/signal-shutdown.d.ts.map",
+      "sha256": "151b905cb9421f1cdf66fed7ecaf229334909b95aedffc0b64b0fc2125022c45"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/signal-shutdown.js",
+      "sha256": "e24a8160ab4afab3dc27a8b3e46f9e588059538113ac2c1bf2359aaab80d38cf"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/signal-shutdown.js.map",
+      "sha256": "791bc7c3779cd72d7e818ab0201752d2820ca954e6143d9ab237ced18b22475b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone-bin.d.ts",
+      "sha256": "133f23c90df4d8b9018fb4fef18de8abfbb0d3ee59c53e674e0c9e95bf13644a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone-bin.d.ts.map",
+      "sha256": "98f02be7af97ce607e15457ef04ee2a5bd7b63b34197684a4ff44f904b97e96f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone-bin.js",
+      "sha256": "ce4e6acc77896149f6f7c00fc6a585da31e31af3cec01d57727e31c22b7743ce"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone-bin.js.map",
+      "sha256": "9e877cef23ba07029db6cbfa05f6682c2a1cbd238c42069c9943a8209cc0d4d6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone.d.ts",
+      "sha256": "5c2f0b5e0da4a67cc527b71c1d5955617a51622e6919b6a1f1c0a678bf1c971b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone.d.ts.map",
+      "sha256": "6519286781be00cdef395e1bc4f453256239212bbb6f4e0ed4dd5b3a20d92d1d"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone.js",
+      "sha256": "534ebf464a663948fa87289fe58bb010ec6fd7f90e5ad0160a770bf51796abe2"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/standalone.js.map",
+      "sha256": "8d880f3072b0492de5368560e9094ef6dd19094ce44980f146e4180c105c13eb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/supervisor-server.d.ts",
+      "sha256": "3a92a80ed431f81e0a838fc5e5ace0458b503304dc80411475cb4f42a787a314"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/supervisor-server.d.ts.map",
+      "sha256": "f692d8259f0aba31bb6425d56e40318ff9182a9e827e6db6906ac094d69b27b8"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/supervisor-server.js",
+      "sha256": "5507047471c8e000a843664e2ab836720b32ca30105c60e366a9bd6adcf11f41"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/dist/supervisor-server.js.map",
+      "sha256": "efdf7fb3e7305aed3141782bdc5d7cec587c988030d6470fdd3573a091d70c84"
+    }
+  ],
+  "App": "No rebuildorportintegrationinRuntimegrant; App-ownedidentity/acceptancepending",
+  "CLI": "Runtimeclientstatusmethodupdated; no CLIproductsourcecallerchange or end-to-endCLIreadinessclaim",
+  "paired_rollout": "Only matchingupdatedclient+daemon supported; oldclientnewbodyaccepts unsupported; newclientoldbodyrejects tested"
+}

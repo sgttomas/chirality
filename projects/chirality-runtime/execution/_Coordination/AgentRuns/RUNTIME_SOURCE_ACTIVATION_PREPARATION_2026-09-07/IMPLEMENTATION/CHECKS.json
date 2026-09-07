@@ -1,0 +1,116 @@
+{
+  "status": "PASS_READ_ONLY_PREPARATION",
+  "baseline": "bf204d8fd0bc55363b189a471e01461eb0cdf28a",
+  "comparisons": [
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-login.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-conformance.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-login.test.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/hosted-consent.test.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-conformance.test.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/standalone.test.ts",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "previous_equals_main": true,
+      "working_equals_main": true
+    }
+  ],
+  "brief_hash_verified": true,
+  "hooks": {
+    "typecheck": "tsc -b --pretty false; package project references emit dist/build-info; tests excluded by package src includes",
+    "test": "vitest run; no npm pre/post scripts currently defined",
+    "login_session": "inline Node JSONL fixture processes, owned temp roots; remove obsolete synthetic auth-file hashing assertions",
+    "hosted_consent": "owned temp root setup/cleanup; ambient path refused without content read",
+    "conformance": "only invalidates changed binding name pattern uses generated noncredential artifacts",
+    "standalone_supervisor": "broader suites include process/protected-boundary hooks; do not run wholesale; new custody-prefixed cases require mocks and isolated setup"
+  },
+  "not_executed": [
+    "tests",
+    "typecheck",
+    "build",
+    "supplier",
+    "provider",
+    "keyring",
+    "credential reads",
+    "Git mutations"
+  ],
+  "missing_search_target": "tests/client.test.ts does not exist; new custody-config-status test covers client validator with mock response"
+}

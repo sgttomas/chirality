@@ -1,0 +1,36 @@
+{
+  "status": "FROZEN_CANDIDATE_VALIDATION_NOT_RUN",
+  "role": "ephemeral Agent2 nondelegating instruction-asserted",
+  "files": [
+    {
+      "path": "BASELINE_SOURCE_PINS.json",
+      "sha256": "8851d802777c444f472e0710c889d05532cf89c33ca82927f71106c53e823c31",
+      "bytes": 497
+    },
+    {
+      "path": "HOOK_INSPECTION.md",
+      "sha256": "5c9126a890db3248404ba780105e55433e3e1efe4731b909630fa68b88d3c07d",
+      "bytes": 4810
+    },
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "1ee5dc497fc3d87db2c8ea1a48f590a9308f30e39801a2baffdb3efa334b1dcb",
+      "bytes": 5342
+    },
+    {
+      "path": "LIVE_OUTPUT_PINS.json",
+      "sha256": "0d6feb379876e03f0a21205968c17136c9efaec4c8994c5c5e12290158159ac2",
+      "bytes": 1160
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "5a58f0201c38c0b346a7f6aa3aecb2df3889b993e344d337faf4019b0a05de8d",
+      "bytes": 4288
+    },
+    {
+      "path": "TEST_PATCH.diff",
+      "sha256": "87ed7c014e78c540f87cf70d6b51a66d0c25c0f09dffec73e910ca0c6693a6e7",
+      "bytes": 45149
+    }
+  ]
+}

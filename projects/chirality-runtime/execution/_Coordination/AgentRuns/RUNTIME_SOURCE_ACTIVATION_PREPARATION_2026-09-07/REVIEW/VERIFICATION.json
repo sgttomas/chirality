@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS_PROPOSAL_ONLY",
+  "manifestMembers": {
+    "IMPLEMENTATION": 4,
+    "MANAGER": 9
+  },
+  "inputPinsVerified": 30,
+  "mainSourceComparisonsVerified": 18,
+  "sourceActivation": "PENDING",
+  "implementationOrTestsRun": false
+}

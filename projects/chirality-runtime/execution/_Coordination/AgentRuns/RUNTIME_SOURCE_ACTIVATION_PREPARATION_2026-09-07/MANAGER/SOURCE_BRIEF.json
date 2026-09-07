@@ -1,0 +1,37 @@
+{
+  "RequestedBy": "HELP_HUMAN /root via WORKING_ITEMS /root/custody_manager",
+  "PackageID": "PKG-02",
+  "Role": "ephemeral Agent2 nondelegating instruction-asserted",
+  "Objective": "Reconcile existing NEXT_GRANT_BRIEF with current source, published Stage2 SOWs and reviewed wave1 capability findings; produce exact bounded source/synthetic proposal only. No redesign restart.",
+  "Baseline": "Local HEAD c8cf83dc7645ecb8291508aab22ec00f4bfbc0dd; origin/main reported PR744 merge bf204d8fd0bc55363b189a471e01461eb0cdf28a. Read-only compare relied source to main; no Git changes.",
+  "DeclaredReads": [
+    "AGENTS.md",
+    "agents/AGENT_WORKING_ITEMS.md",
+    "projects/chirality-runtime/**",
+    "docs/SOFTWARE_WORKFLOW_PROFILE.md"
+  ],
+  "StartingInputs": [
+    "RUNTIME_CUSTODY_AMENDMENT_PREPARATION_2026-09-06/BRIEF/NEXT_GRANT_BRIEF.md",
+    "RUNTIME_EXECUTION_WAVE1_2026-09-06/CAPABILITY/RETURN.md",
+    "RUNTIME_EXECUTION_WAVE1_2026-09-06/CAPABILITY/IDENTITY/REPORT.md",
+    "RUNTIME_EXECUTION_WAVE1_2026-09-06/CAPABILITY/APPROVAL_FINDINGS.md"
+  ],
+  "AllowedTools": [
+    "local reads",
+    "read-only Git",
+    "Python artifact writes"
+  ],
+  "AllowedWriteTargets": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/IMPLEMENTATION"
+  ],
+  "Exclusions": "No live source/test/SOW/Git edits; no tests/builds/dependency install/supplier/provider/keychain/credentials/protected operations; no delegation. No unsupported protocol/token/hash/email identities, custom adapter or supplier upgrade.",
+  "ExpectedOutputs": [
+    "PROPOSED_SOURCE_BRIEF.md exact filelist minimal coherent increment and explicit boundary for deferred pieces",
+    "INPUT_PINS.json",
+    "CHECKS.json source-to-main comparison and read-only command/hook inspection",
+    "RETURN.md",
+    "OUTPUT_MANIFEST.json"
+  ],
+  "AcceptanceCriteria": "Start from prepared list; inspect actual files/functions/API/test hooks. Split if bootstrap/lifecycle publicAPI architecture exceeds supported existing contract. Exact safe syntheticcommands, fixture/schema/compatibility consequences. Identity remains unavailable production; mockidentity not proof. Identify concrete contract delta before source work where needed, no invented product choice.",
+  "Model": "OpenAI GPT-6 attribution; exact serving ID unavailable"
+}

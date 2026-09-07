@@ -1,0 +1,25 @@
+{
+  "status": "FROZEN_PREPARATION_ONLY",
+  "files": [
+    {
+      "path": "CANDIDATE.patch",
+      "sha256": "bf9aaaf5602535d366e069a7dc54c872fcc347dd54c2b507193e2efe40f5d5fd",
+      "bytes": 833
+    },
+    {
+      "path": "PINS.json",
+      "sha256": "41a54930c5a576a6c2b96717f38abe5cbb6d6887aab05aa46cf36becdeecb4b5",
+      "bytes": 1581
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "c8ce9831640ec88709786966cee66640a5fcdc118b7324e9c68a7db5ce877300",
+      "bytes": 2465
+    },
+    {
+      "path": "supervisor.test.ts",
+      "sha256": "0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406",
+      "bytes": 12942
+    }
+  ]
+}

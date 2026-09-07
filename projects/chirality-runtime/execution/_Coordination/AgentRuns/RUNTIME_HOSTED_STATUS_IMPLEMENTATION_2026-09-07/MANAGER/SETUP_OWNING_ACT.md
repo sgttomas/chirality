@@ -1,0 +1,5 @@
+# Actual setup exception approval
+
+> I approve this setup exception. It's a low risk approval. You can approve such low risk things during this session in pursuit of this goal.
+
+Actual owner statement relayed via App lead task01a077e7-a59b-7701-a2f6-fa2edae479b2 and HELP_HUMAN /root to WORKING_ITEMS /root/custody_manager. Exact approved SETUP_REQUEST SHA256 7fe06df61ee0e55751db3d5fc6a02fc57dc2e16761ecf72c1d44e88746d9c25f, SETUP_MANIFEST SHA256 4e5fa01311aceae51d564cec84a06ce6ea294c79c95ccaae0a46341644dd5b86. This permits the exact npm ci command, pinned registry, Runtime-local installation/cache and preserved manifests/lock, with lifecycle scripts disabled. Subsequent checks remain the four approved commands. Comparable low-risk setup decisions route through parent/App lead within this session; no expanded source/live/credential authority inferred. No installation has occurred at the time of this record. OpenAI GPT-6 exact serving ID unavailable; instruction-asserted WORKING_ITEMS role.

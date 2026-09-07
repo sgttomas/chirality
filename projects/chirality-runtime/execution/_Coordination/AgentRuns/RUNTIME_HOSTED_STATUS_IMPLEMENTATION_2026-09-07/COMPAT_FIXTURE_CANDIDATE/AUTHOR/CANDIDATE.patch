@@ -1,0 +1,11 @@
+--- a/projects/chirality-runtime/tests/supervisor.test.ts
++++ b/projects/chirality-runtime/tests/supervisor.test.ts
+@@ -157,7 +157,7 @@
+   let starts = 0, cancels = 0;
+   const server = await startSupervisorServer({ socketPath: join(dir, "s.sock"), supervisor: workers, login: {
+     async startLogin() { starts++; return { loginId: "fixture-login", authUrl: "https://auth.openai.com/authorize" }; },
+-    async status() { return { state: "pending", evidenceClass: "controlled-fixture" }; },
++    async status() { return { schema: "chirality-hosted-login-status/v2", state: "pending", evidenceClass: "controlled-fixture", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" }, hostedReady: false }; },
+     async cancel() { cancels++; }
+   } });
+   try {

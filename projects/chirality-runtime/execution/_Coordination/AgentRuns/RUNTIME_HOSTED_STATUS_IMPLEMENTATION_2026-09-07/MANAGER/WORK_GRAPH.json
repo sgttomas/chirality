@@ -1,0 +1,36 @@
+{
+  "package": "PKG-02",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "source",
+      "instance": "/root/custody_manager/hosted_source",
+      "writes": "exact9sourcefiles+SOURCEevidence"
+    },
+    {
+      "id": "tests",
+      "instance": "/root/custody_manager/hosted_tests",
+      "writes": "exact6testconfigfiles+TESTSevidence"
+    },
+    {
+      "id": "manager",
+      "writes": "MANAGERevidence",
+      "work": "APIrelay,hookreview,only4authorizedcommands,fan-in"
+    }
+  ],
+  "edges": [
+    [
+      "source",
+      "manager"
+    ],
+    [
+      "tests",
+      "manager"
+    ]
+  ],
+  "concurrency": "Source/test edits disjoint, semanticAPIrelay throughmanager; validation waits completefan-in",
+  "external": "parentfreshindependent review thenstandingGit/requisiteCI",
+  "escalation": "Any newcontract/lifecycle/scopechoice beforeimplementation",
+  "model": "OpenAI GPT-6 exactservingIDunavailable",
+  "role_enforcement": "instruction-asserted"
+}

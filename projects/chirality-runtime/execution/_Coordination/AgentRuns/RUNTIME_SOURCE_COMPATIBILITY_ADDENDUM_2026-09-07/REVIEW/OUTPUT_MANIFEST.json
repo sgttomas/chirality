@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS_PROPOSAL_ONLY",
+  "subjectManifestSha256": "88f09831ed5f81099f91e1bd5c4c937481af2896edf19cb26e5fc9bc38a961e4",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "b744b24015ca8ef1f29b88146e042c3dd70aaa4b066405750b3362ee6290b7ec"
+    }
+  ]
+}
