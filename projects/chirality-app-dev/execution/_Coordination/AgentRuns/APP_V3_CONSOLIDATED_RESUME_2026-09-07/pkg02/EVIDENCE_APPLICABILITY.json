@@ -1,0 +1,65 @@
+{
+  "schema": "chirality-evidence-applicability/v1",
+  "runId": "APP_V3_CONSOLIDATED_RESUME_2026-09-07",
+  "packageId": "PKG-02",
+  "deliverableId": "DEL-02-04",
+  "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d",
+  "fetchedOriginMain": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+  "checkpoint": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/SESSION_HANDOFF.md",
+    "sha256": "11f8cf20956aec3223eae95dcaf4b7cf2f75b00bbf0f3d4efb4a74a3089eccbb",
+    "manifestSha256": "c7502a8b2df247c7f52d9abf19d4e64cff1d4ccce07cb601fcea010e364c2a41"
+  },
+  "source": [
+    {"path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx", "sha256": "916b9a0a12ab0722877e83e21c7a6377ea7155d11f054d92939bef56a3197f20"},
+    {"path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx", "sha256": "9d3318af24d2d1828716abca64dcf26701a3c83ca316f9fd1323ecc1e068f3ad"},
+    {"path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx", "sha256": "c8a013d5446e1ac6ec22df44be9042e7010480929c684f7519b99430767960a1"},
+    {"path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-strip.test.tsx", "sha256": "734a8919187b393f72c6b7eb5064248f6d9358a6ca3a4377fad15edb9225e1be"},
+    {"path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx", "sha256": "96201508edb3aedbfdfbfe48b30d314a8215b5615e68fe36ca6f60bfb0a786a3"}
+  ],
+  "review": {
+    "method": "TASK + software-code-review v1",
+    "child": "/root/app_pkg02_resume/d123_five_file_review",
+    "freshAndIndependentFromAuthor": true,
+    "completeFiveFileScope": true,
+    "verdict": "PASS",
+    "actionableFindings": 0,
+    "declaredInputs": 11,
+    "matchingInputs": 11,
+    "returnPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/review-five-files/RETURN.md",
+    "inputManifestPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/review-five-files/INPUT_MANIFEST.json"
+  },
+  "nestedManifests": [
+    {"path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/MANIFEST.json", "members": 52, "mismatches": 0},
+    {"path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/MANIFEST.json", "members": 39, "mismatches": 0},
+    {"path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation/MANIFEST.json", "members": 16, "mismatches": 0},
+    {"path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/MANIFEST.json", "members": 4, "mismatches": 0}
+  ],
+  "preservedValidation": {
+    "appTests": {"passed": 1831, "failed": 0, "skipped": 4},
+    "productionBuild": "PASS",
+    "configuredPremerge": "PASS_8_OF_8",
+    "registration": "CLI_EXIT_SUCCESS",
+    "sessionListReadiness": "HTTP_200",
+    "provider": "stub",
+    "nativeGui": "NOT_PROVED",
+    "liveSupplierAccount": "NOT_PROVED"
+  },
+  "successorScreenshotInspection": {
+    "paths": [
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-dark960.png",
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-light1440.png"
+    ],
+    "observed": "bottom strip readable with Details at right; truthful unavailable activity and duration; draft retained; account unavailable; local model unknown",
+    "residual": "narrow right-tab leading labels clip at 960",
+    "limits": "successor screenshot inspection only; not interactive, native GUI, live provider, account, or release proof"
+  },
+  "reuseVerdict": "ACCEPTED_EXACT_APPLICABILITY",
+  "rerunTriggers": [
+    "any of the five source/test hashes changes",
+    "any declared review input changes",
+    "a material review finding appears",
+    "CHANGE requires a new exact-head check",
+    "any later exact-candidate login proof requires a new A1 stage and fresh owner execution; this is not an added Git-publication prerequisite"
+  ]
+}

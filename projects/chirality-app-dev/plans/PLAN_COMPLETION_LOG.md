@@ -6,6 +6,12 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-09-07 — D122 account presentation landed
+
+PR745 merged reviewed head `3218ccb8f12f36b60d4a4142dfda27a17ce11b73` as `8275b4a7555c075f69605f8669ee344781f5950b`. The Navigator account row, upward popover and right-panel Settings now reuse the existing controller and preserve the primary dialogue. Actual Chrome proof covers light/dark and1440/960 widths, focus, draft preservation and collapsed access. Required CI passed; conditional macOS artifact verification was skipped.
+
+DEL-02-05-V3-05 is factually closed under its merged-with-review condition. V3-03 live account/consent remains gated; no full milestone, native-account, supplier or release acceptance follows. See `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/D122_MERGED_RECONCILIATION_2026-09-07.md`.
+
 ## 2026-08-21 - Login-session LaunchAgent proof preparation landed
 
 PR #601 nodes `5a527d6ff290b11b72ecf25e4907443f2fe9347a` and

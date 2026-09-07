@@ -1,0 +1,17 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "APP_V3_CONSOLIDATED_RESUME_2026-09-07",
+  "instanceId": "/root/app_pkg02",
+  "role": "WORKING_ITEMS",
+  "packageId": "PKG-02",
+  "deliverableId": "DEL-02-04",
+  "state": "COMPLETE",
+  "currentNode": "N4-terminal-checks",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "roleEnforcement": "instruction-asserted native delegation",
+  "contextOccupancy": "unavailable from runtime",
+  "substitution": null,
+  "completionVerdict": "BOUNDED_D123_PARTIAL_CLOSEOUT_ACCEPTED_PACKAGE_OPEN",
+  "nextOwner": "CHANGE_THROUGH_HELP_HUMAN"
+}

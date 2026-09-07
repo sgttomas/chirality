@@ -1,0 +1,199 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/API_READINESS.json",
+      "sha256": "bf07a47ea67684b0fa78cbd0cdd3002ea4912b8824f1bfd439b7da7347c83758",
+      "bytes": 228
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/ATTRIBUTION.json",
+      "sha256": "263a9756506b278ef49ceb54740487e5b285e48423018da82d54b84c68efdc77",
+      "bytes": 338
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/BUILD_RESULT.json",
+      "sha256": "53c61275d303353dc39991d395fefba29b14b6dfe88c94f3bb09dbffba87f2e9",
+      "bytes": 89
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/COMMANDS.json",
+      "sha256": "a792aa012abc25505d779928fcdf129bdf3536f9fbfbcae88c487c8052104505",
+      "bytes": 1414
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/CONFIGURED_PREMERGE_SUMMARY.json",
+      "sha256": "4ebb746d7b77a45138cc8feb78ca18bc36d9c98d08ca9eea2fd2e503a34746eb",
+      "bytes": 1956
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/DAEMON_LAUNCH.json",
+      "sha256": "725683f6ec1f142e3f40237f6a81dd65dd8f49b8793e26f15f4a270db4edc8fa",
+      "bytes": 1002
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/FINAL_INPUT_BACKCHECK.json",
+      "sha256": "c1dba0aece29b8fb3a7dcdcae3a0464a711d612c7b91a64befa326b832f86d10",
+      "bytes": 88
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/FIXTURE_SCOPE.json",
+      "sha256": "c58801edbcaf26bc531f77105018624df90a6522c807372aa7c502f28d6aaf5c",
+      "bytes": 299
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/FRONTEND_LAUNCH.json",
+      "sha256": "87fedd68dd92912d885bc59960dbd3258fe7d0b00d8be2e52b00979f7abc4d57",
+      "bytes": 1320
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/GENERATED_PRELAUNCH.json",
+      "sha256": "fad21efc8159d1c32538339e19b7789d0fc899e65e56f226afe3484ee87c55cc",
+      "bytes": 39787
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/INPUTS_AFTER.json",
+      "sha256": "e0d97985abfdb8edef34aab0c6da2722e3a823fe044a3ea2baa252ea51b90abd",
+      "bytes": 1296
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/INPUTS_BEFORE.json",
+      "sha256": "e0d97985abfdb8edef34aab0c6da2722e3a823fe044a3ea2baa252ea51b90abd",
+      "bytes": 1296
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/NATIVE_CLEANUP.json",
+      "sha256": "f977b40f3a132335a5411ccf3069e3b96837a72067b131d5d8a7e50c0a666d3a",
+      "bytes": 221
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/NATIVE_PROGRESS.json",
+      "sha256": "d2babea4ce26537c0c80b7c3d96c337f61801eb606af47a90102c2918450ac90",
+      "bytes": 50
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/NATIVE_RESULT.json",
+      "sha256": "5ccdd0a2e044c27ababb8529d342a81c03fab3fecbada147b92794bd906f3b4b",
+      "bytes": 100
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/PAIRING_PRELAUNCH_BINDING.json",
+      "sha256": "1f42b4c8b8a8021908c4b0aff6d6ca6d3dc0f10dba43a4c4d127943b10cb0ec9",
+      "bytes": 204
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/REGISTRATION.json",
+      "sha256": "39c0db2abe921c84106b15fb48f0f070eed7b56825d3cdb5f5e1cdf323ba1fba",
+      "bytes": 713
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/RETURN.md",
+      "sha256": "b61f623ab583ad975b0f66ea216fca07579d6fc64891ae252652b36821d3dd8a",
+      "bytes": 1637
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/REUSED_CHECKS.json",
+      "sha256": "fc6637d17a3275e431be452c877112e68dcd577796cf2392bf5e89085353bf0d",
+      "bytes": 327
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/RUNNING_DAEMON_IDENTITY.json",
+      "sha256": "4b17b6fae2af778c5f96ea502bcd3cdcec33aba83f7dedaa3822c8426e95b81a",
+      "bytes": 541
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/app-build.stderr",
+      "sha256": "06fd839039e3f03266767e9b30b87b0b1c15f1e44f23d1cdbc3cd1a14faf045a",
+      "bytes": 1562
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/app-build.stdout",
+      "sha256": "07e47ec42bb7001329c5fefedeca494f008085214670f4c4f43720eeaf72f5d9",
+      "bytes": 3085
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/app-tests.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/app-tests.stdout",
+      "sha256": "7cb0b3fe53e5829faee348d2a15c761b95f9cf714c701986487b1bf83a524e36",
+      "bytes": 644318
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/build_checks.py",
+      "sha256": "f01159fa3ce66da6516a631643b77a5406768b7c6ad903b158cae20bbe5adfcd",
+      "bytes": 3297
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/daemon.log",
+      "sha256": "a9be86728132ad96af5551b7a4cef82ecff123cd6af141f14b09a9953aab3dea",
+      "bytes": 960
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/frontend.log",
+      "sha256": "c7642a081fb94ca0bebd11a0f543914470287a4a6a73a74cb5fdd0026339f43d",
+      "bytes": 145
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/hold-dispatch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/hold-dispatch.stdout",
+      "sha256": "33dd95065904ab5b4efa137d3284eef4add37bc7033b1e0471f1b8f1ea2a0416",
+      "bytes": 793
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/hold-reliance.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/hold-reliance.stdout",
+      "sha256": "ae2e68a5645c7abe8d3fdc568ea6313d8ac926eb1838797f222268e3d56e546c",
+      "bytes": 793
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/native-ancestor.json",
+      "sha256": "19412ce230c85466f0bcc1ec72007fdd112ef2159cbd3f2209b7a9187b6fc505",
+      "bytes": 778
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/native-ancestor.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/native-ancestor.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/registration.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/release-quality.json",
+      "sha256": "9c843b502591c2177b5383b73887df655874513103f1a43ea0c93e956bd40555",
+      "bytes": 1174
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/release-quality.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/release-quality.stdout",
+      "sha256": "dfa5fcec61d8b3971ff3c120846ef772667208d3ab403d9924663a83b000c2cc",
+      "bytes": 18090
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/run_configured_release_quality.py",
+      "sha256": "3df0cfd9705219ab218ecae47f6e431687a09217220178b2ba116e11dd985cf7",
+      "bytes": 7983
+    }
+  ]
+}

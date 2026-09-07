@@ -1,0 +1,10 @@
+{
+  "role": "bounded ephemeral Agent2",
+  "parent": "/root/app_pkg02_resume",
+  "model": "inherited model unavailable",
+  "enforcement": "instruction-asserted",
+  "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d",
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "environment": "CHIRALITY_* and API keys removed; NEXT_TELEMETRY_DISABLED=1"
+}

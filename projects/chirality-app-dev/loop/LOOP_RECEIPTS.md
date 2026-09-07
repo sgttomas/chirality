@@ -7192,3 +7192,21 @@
   - Checks: pre-append receipt validator, APP-HOLD, registered self-check/pytest/build, full tests/typechecks/release-quality and independent review pass; bounded actual Chrome render pass. Historical failed mock-provider timeout retained before unchanged successful rerun; no weakened check. Exact source and cleanup evidence in R. A1 requires new staging and fresh owner login proof; historical login proof is not reused.
   - Model-Attribution: WORKING_ITEMS PKG-02 with native TASK author and independent reviewer; roles instruction-asserted; exact serving model and token counts unavailable.
   - Gate-Outcome: `EXECUTED` — bounded D122 presentation checked under existing owner staged plan and satisfied host prerequisites; source publication/merge remain CHANGE/owner-controlled. V3-05 retained until actual merged-with-review condition. No live account/consent, lifecycle, supplier, full milestone or release acceptance; no D123 or Runtime/Root source change. Landed plan narrative deferred until actual landing.
+
+- **2026-09-07 — Receipt 259** (D122 merged factual closure).
+  - Receipt-ID: `Receipt-259`
+  - Examined-Through: `8275b4a7555c075f69605f8669ee344781f5950b`
+  - Parent-Receipt: `Receipt-258`
+  - Pointers: `execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/`; `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/D122_MERGED_RECONCILIATION_2026-09-07.md`; `plans/PLAN_COMPLETION_LOG.md` D122 landed entry.
+  - Checks: fresh APP-HOLD reliance and pre-append receipt validation pass; registered governance and post-append receipt/whitespace checks recorded in the run. Frontend gates skipped: factual record maintenance, no runtime source changed. Exact merged-source review and CI retained; no new operational proof.
+  - Model-Attribution: WORKING_ITEMS PKG-02, native delegated manager, role instruction-asserted; exact serving model and token count unavailable.
+  - Gate-Outcome: `EXECUTED` — removed only V3-05 under its observable merged-with-review condition after PR745. V3-03, lifecycle, Checking Approval SHA and dependencies unchanged. No full T6/live account/supplier/release claim. CHANGE owns this factual iteration's Git closeout; D123 source waits that predecessor.
+
+- **2026-09-07 — Receipt 260** (D123 factual partial closeout prepared).
+  - Receipt-ID: `Receipt-260`
+  - Examined-Through: `1ffa47863b9a53ab359d84e1c72ca7d93a69b47d`
+  - Parent-Receipt: `Receipt-259`
+  - Pointers: R=`execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02`; preserved source/evidence run `execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07`; deliverable record `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/D123_FACTUAL_PARTIAL_CLOSEOUT_2026-09-07.md`.
+  - Checks: fresh fetch/current-source identity, APP-HOLD reliance/dispatch/accepted-dependency-consumption, authority corpus, independent-review applicability, nested-manifest rehash, preserved exact-input frontend validation, build and configured premerge checks pass as recorded in R. Final record checks, staged scope, fresh branch CI and matching-head publication remain CHANGE gates. If later exact-candidate login proof is sought, A1 requires a new stage and fresh owner execution; that proof consequence is not an added Git-publication prerequisite.
+  - Model-Attribution: WORKING_ITEMS PKG-02 `/root/app_pkg02`, model `gpt-5.6-sol`, reasoning `medium`; delegated-harness-native role instruction-asserted, token/context occupancy unavailable, no substitution recorded. Reused review child `/root/app_pkg02_resume/d123_five_file_review` was fresh and independent from the author; exact full input applicability revalidated.
+  - Gate-Outcome: `EXECUTED` — factual partial closeout and publication selection preparation only. Whole DEL-02-04-V3-01 Remaining, schema discipline, lifecycle, Checking Approval SHA, dependencies and removal condition stay unchanged. Registration is CLI success; HTTP 200 is session-list readiness. Screenshot inspection is browser/stub evidence, not interactive/native GUI/live supplier/account or release proof. CHANGE owns scoped Git/CI/publication closeout.

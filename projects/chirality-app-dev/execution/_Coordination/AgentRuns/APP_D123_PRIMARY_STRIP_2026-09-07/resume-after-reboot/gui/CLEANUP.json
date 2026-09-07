@@ -1,0 +1,18 @@
+{
+  "processes": [
+    {
+      "pid": 39813,
+      "signal": "SIGTERM",
+      "still_exists": false
+    },
+    {
+      "pid": 39808,
+      "signal": "SIGTERM",
+      "still_exists": false
+    }
+  ],
+  "socket_absent": true,
+  "port_connect_ex": 61,
+  "scratch_absent": true,
+  "credential_bytes_retained": false
+}

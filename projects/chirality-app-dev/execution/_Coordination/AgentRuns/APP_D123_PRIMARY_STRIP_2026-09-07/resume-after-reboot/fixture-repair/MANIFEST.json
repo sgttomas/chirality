@@ -1,0 +1,25 @@
+{
+  "pathBase": "repository root",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/APP_HOLD_DISPATCH.json",
+      "sha256": "8503ea7a3ef53964594fcdcdfa095d3f94ff23568fae017095153a1e94f3de8a",
+      "bytes": 787
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/DIFF.json",
+      "sha256": "01d9248733f6b0942729d7c1bb495de8efa5aa750f9a302d3fde12d1a31c05a1",
+      "bytes": 1025
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/IDENTITIES.json",
+      "sha256": "ce71190c581bf64d20a83f3eb4cd20c72075883bb391bd736aa6d1f59380dbfd",
+      "bytes": 438
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/RETURN.md",
+      "sha256": "60c84e261ae8e146a3e89ee2c46f45451abcb98b315ec0101a2dd5b66f5470fd",
+      "bytes": 1279
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "harness-self-check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "harness-pytest",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "app-hold-integrity",
+      "status": "PASS",
+      "exit_code": 0
+    }
+  ],
+  "receipt_validator": "PASS before and after",
+  "diff_check": "PASS",
+  "frontend": "SKIPPED no product source mutation"
+}

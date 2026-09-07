@@ -1,0 +1,49 @@
+{
+  "merge": {
+    "headRefOid": "3218ccb8f12f36b60d4a4142dfda27a17ce11b73",
+    "mergeCommit": {
+      "oid": "8275b4a7555c075f69605f8669ee344781f5950b"
+    },
+    "mergedAt": "2026-09-07T08:06:49Z",
+    "state": "MERGED",
+    "url": "https://github.com/sgttomas/chirality/pull/745"
+  },
+  "checks": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-07T08:01:07Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34098362015/job/101666933936",
+      "name": "Verify unsigned macOS artifact",
+      "startedAt": "2026-09-07T08:01:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Desktop Unsigned Artifact Verification"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-07T08:05:53Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34098361840/job/101666932359",
+      "name": "Harness pre-merge",
+      "startedAt": "2026-09-07T08:01:09Z",
+      "status": "COMPLETED",
+      "workflowName": "Harness Pre-merge Validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-07T08:03:04Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/34098361839/job/101666931803",
+      "name": "harness",
+      "startedAt": "2026-09-07T08:01:09Z",
+      "status": "COMPLETED",
+      "workflowName": "governance-harness"
+    }
+  ],
+  "source_count": 18,
+  "all_source_hashes_match": true,
+  "source_freeze_sha256": "c0b85d855b266d01401c0775c66c9bca80ba9e1625af0a66cef7daf8d9a54325",
+  "review_sha256": "fb330377d8c961ee0ad385dc5ac303fbd28940bffded9b31c0a31e017aab4450",
+  "review_verdict": "PASS",
+  "prior_ci_sha256": "42429d44900cdb33616efe53f204d75790b92e494818bcea02a1704a1bd94461"
+}

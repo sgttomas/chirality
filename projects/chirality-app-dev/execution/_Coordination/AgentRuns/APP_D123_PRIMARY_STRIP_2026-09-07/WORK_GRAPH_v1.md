@@ -1,0 +1,2 @@
+# Frozen work graph v1
+D122 committed predecessor → manager Step0/input freeze → TASK author (four source files plus author evidence) → manager fan-in/source freeze → fresh TASK software-code-review (review evidence only) → manager registered checks/actual Chrome proof → factual deliverable/receipt closeout → CHANGE. Author and reviewer never overlap source writes. Independent existing Runtime work is disjoint and outside this scope; fresh CHANGE basis precedes Runtime reliance. No source acceptance follows author completion alone.

@@ -1,0 +1,10 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/PREIMAGES.json",
+    "sha256": "16a7b987ab5e632d62e6354a54a30ac0e2a86e81467e885427ed94e7ee249154"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D122_POSTMERGE_2026-09-07/GOVERNANCE.json",
+    "sha256": "f7db6600aff754ffdd532750e540c080c19dcc17a92f74c99ed99a45288e6745"
+  }
+]

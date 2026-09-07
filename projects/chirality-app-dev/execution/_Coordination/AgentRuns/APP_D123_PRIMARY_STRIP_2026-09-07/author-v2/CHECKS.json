@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "scope": "PASS",
+  "whitespace": "PASS",
+  "activity_view_tail_sha256": "63776af830ad632c64e98823ee2a306221a8e54ed9708d58035890593df43740",
+  "focused_tests": 43,
+  "typecheck": "not run by brief; parent owns"
+}

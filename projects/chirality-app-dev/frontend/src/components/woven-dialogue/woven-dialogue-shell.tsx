@@ -652,7 +652,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           )}
         </aside>
 
-        <ActivityStrip reconnectControl={reconnectControl} running={streaming} events={events}
+        <ActivityStrip primarySessionId={primarySessionId} reconnectControl={reconnectControl} running={streaming} events={events}
           onOpenDetails={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'activity', coordinationCollapsed: false }); }} />
       </section>
       )}

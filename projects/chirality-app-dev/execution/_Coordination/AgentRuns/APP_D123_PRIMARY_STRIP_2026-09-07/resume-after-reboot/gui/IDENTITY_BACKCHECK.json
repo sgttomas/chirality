@@ -1,0 +1,18 @@
+{
+  "inputs": {
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx": "916b9a0a12ab0722877e83e21c7a6377ea7155d11f054d92939bef56a3197f20",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx": "9d3318af24d2d1828716abca64dcf26701a3c83ca316f9fd1323ecc1e068f3ad",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx": "c8a013d5446e1ac6ec22df44be9042e7010480929c684f7519b99430767960a1",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-strip.test.tsx": "734a8919187b393f72c6b7eb5064248f6d9358a6ca3a4377fad15edb9225e1be",
+    "projects/chirality-app-dev/frontend/package.json": "6631309a689a1eab981836f661a101471586999afe939ea3fa280a3fc025ff3c",
+    "projects/chirality-app-dev/frontend/package-lock.json": "89473868c8d28ce14e4256bad4218c6da4c145b2d1420f5fb9e4545799c156d3",
+    "projects/chirality-runtime/package.json": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+    "projects/chirality-runtime/package-lock.json": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx": "96201508edb3aedbfdfbfe48b30d314a8215b5615e68fe36ca6f60bfb0a786a3"
+  },
+  "generatedManifest": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/GENERATED_PRELAUNCH.json",
+  "generatedManifestSha256": "fad21efc8159d1c32538339e19b7789d0fc899e65e56f226afe3484ee87c55cc",
+  "generatedCount": 206,
+  "allUnchanged": true,
+  "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d"
+}

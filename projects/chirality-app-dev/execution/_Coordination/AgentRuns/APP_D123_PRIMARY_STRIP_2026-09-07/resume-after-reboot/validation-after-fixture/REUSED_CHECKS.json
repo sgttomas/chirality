@@ -1,0 +1,5 @@
+{
+  "runtime-build": "prior PASS; original inputs unchanged",
+  "app-typecheck": "prior PASS; only fixture assertion changed",
+  "source": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation/COMMANDS.json"
+}

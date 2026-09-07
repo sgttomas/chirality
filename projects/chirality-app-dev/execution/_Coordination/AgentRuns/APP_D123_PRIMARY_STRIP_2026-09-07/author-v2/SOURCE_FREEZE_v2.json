@@ -1,0 +1,25 @@
+{
+  "head": "c519efb7e4d0b615a90b3306910034d3a8916cf5",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "916b9a0a12ab0722877e83e21c7a6377ea7155d11f054d92939bef56a3197f20",
+      "baseline_sha256": "c391f11a2f7d270e463b3021c5e1ef6d0203d24b94835fef71dfaef3e7a4344e"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+      "sha256": "9d3318af24d2d1828716abca64dcf26701a3c83ca316f9fd1323ecc1e068f3ad",
+      "baseline_sha256": "c8adca9fc0f668e876b3a858054d8eeb0258ec71842d68a9d8ff1ff37e640fb0"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "c8a013d5446e1ac6ec22df44be9042e7010480929c684f7519b99430767960a1",
+      "baseline_sha256": "c8f92adc9294862c67c26ac63e3cb4711d49ed5189bdd97ecaef1f0010e5b523"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-strip.test.tsx",
+      "sha256": "734a8919187b393f72c6b7eb5064248f6d9358a6ca3a4377fad15edb9225e1be",
+      "baseline_sha256": null
+    }
+  ]
+}
