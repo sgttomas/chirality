@@ -1,0 +1,6 @@
+{
+  "fixture": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-root-runtime-composition-9s0udriv",
+  "git_toplevel": "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-root-runtime-composition-9s0udriv",
+  "status": "PASS",
+  "interpretation": "Four validators ran against composed fixture root, not live worktree"
+}

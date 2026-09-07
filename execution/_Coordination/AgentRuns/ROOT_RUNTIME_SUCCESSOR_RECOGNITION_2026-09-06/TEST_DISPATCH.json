@@ -1,0 +1,11 @@
+{
+  "parent": "/root/root_custody_prep",
+  "child": "/root/root_custody_prep/successor_negative_tests",
+  "role": "Agent2",
+  "write_scope": [
+    "tools/validation/test_root_runtime_successors.py",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/**"
+  ],
+  "disjoint": "parentownshelper/loader; childownsnewtestonly",
+  "authority": "OwnerRootrepairgrant; bounded independenttestimplementation, no delegatedchildren"
+}

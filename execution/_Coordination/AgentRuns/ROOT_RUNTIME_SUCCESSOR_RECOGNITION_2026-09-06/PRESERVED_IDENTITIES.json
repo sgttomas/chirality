@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "files": [
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "sha256": "5cc271f5027f0c80a69b81265ac1d3de288a81fed2418bf90be3cf1177d1e16b"
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "sha256": "e481e79f1dd28d41bf47db50c58fa1ad50ed14e559fc3975240b6862a31275d4"
+    },
+    {
+      "path": "execution/_harness/surface_ownership.yaml",
+      "sha256": "e77e420cf20c54cd40bbdcfb3ae19dd0f2979737526c04312fd91f803e01a816"
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "sha256": "a6de6a54e7a0aa3826a509a896598db8af6505c611434567db6a4cec18e9eb65"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06/GOVERNANCE_STATE_EFFECTIVE_576a1535.json",
+      "sha256": "a54779343b6a9c9ef74664fd05efd05b7bae10a097106f3605560af8ef8c53ca"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+      "sha256": "5b734a7e39d3648b93ae6ce31789ada13f3aebf9d08bef9b38b0876dabbed04a"
+    }
+  ],
+  "additional": "Existing source/status/control/manifest preservation verified by full Root loader and CIcomposition"
+}

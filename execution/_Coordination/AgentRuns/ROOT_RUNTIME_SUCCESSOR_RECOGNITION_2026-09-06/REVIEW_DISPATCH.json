@@ -1,0 +1,7 @@
+{
+  "parent": "/root/root_custody_prep",
+  "child": "/root/root_custody_prep/successor_independent_review",
+  "scope": "readonly complete candidate; run/review/** writes only",
+  "authority": "OwnerRootrepair direction and frozen independent_review graphnode",
+  "status": "ACTUAL_NATIVE_DISPATCH"
+}

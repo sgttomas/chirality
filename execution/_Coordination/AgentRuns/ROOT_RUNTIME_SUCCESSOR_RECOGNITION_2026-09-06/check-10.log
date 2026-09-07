@@ -1,0 +1,61 @@
+{
+  "checks": [
+    "practitioner_harness",
+    "validation"
+  ],
+  "paths": [
+    "docs/governance_harness/_DECISIONS/D-GOV-37_runtime_successor_recognition.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-SUCCESSOR-RECOGNITION-20260906.yaml",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/COMPOSITION_RESULT.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/IMPLEMENTATION_CORRECTIONS.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/OWNER_ACT.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/SUCCESSOR_ADOPTIONS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/TEST_DISPATCH.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/WORK_GRAPH.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-00.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-01.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-02.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-03.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-04.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-05.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-06.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-07.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-08.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-09.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/CHECKS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/OUTPUT_MANIFEST.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/RETURN.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/TEST_RUN_01.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/verify_composition.py",
+    "execution/_Coordination/LOOP_RECEIPTS.md",
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06.md",
+    "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06.md",
+    "tools/validation/root_governance_state.py",
+    "tools/validation/root_runtime_successors.py",
+    "tools/validation/test_root_runtime_successors.py"
+  ],
+  "reasons": {},
+  "schema": "chirality-affected-checks/v1"
+}
+[run-affected] running 2 suite(s); skipping 15: analysis, coordination, decomp, drawing_extract, equation_audit, pdf2md, publication, reporting, retrieval, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime
+[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3 -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 25%]
+........................................................................ [ 34%]
+........................................................................ [ 43%]
+........................................................................ [ 51%]
+....uuuuuuuuu........................................................... [ 59%]
+.....u.......................u.......................................... [ 67%]
+.......................u................................................ [ 76%]
+..................................u..................................... [ 84%]
+.............u.......................uu.uuuuuu.......................... [ 92%]
+............u......u........u.......u.u.uuuuuuuuuu....u............u...u [ 98%]
+uuu.uu...........                                                        [100%]
+836 passed, 45 subtests passed in 18.48s

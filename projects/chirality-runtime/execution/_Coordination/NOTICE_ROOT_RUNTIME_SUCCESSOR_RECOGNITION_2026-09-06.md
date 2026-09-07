@@ -1,0 +1,9 @@
+# Root accepted Runtime revision recognition
+
+Owner authorized a bounded Root reader repair: preserve immutable migration proof while recognizing later exact owning-accepted Runtime revisions. See `execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/OWNER_ACT.md`, `SUCCESSOR_ADOPTIONS.json` and final handoff/validation. Current code is candidate until its reviewed Git/publication gates complete.
+
+The initial Root adoption binds Runtime SCA001 Stage1 exact accepted61-member subjectcd88975f4d884c81d69c0e36e0afe0853b1dc0b5fb1d84f992089a866f5b3eae and three postimages. It does not adopt pending Stage2 SOW changes. Future SOW evolution requires exact owning acceptance and an explicit Root-reviewed adoption update; no automatic current-file repin.
+
+Original Gate3/Gate4/Gate5 bytes,53 historical sources,46 Root controls,seven Runtime identities and nine holds remain. Historical tested tooling is verified from published migration objects; current tooling follows owner M2/G4, source validation and independent review. Branch-local accepted bytes may validate CI, but recognition separately reports whether the actual acceptance/current bytes are on origin/main and grants no execution. Root require_effective semantics and foreign Runtime-write prohibition stay unchanged; Runtime owns its own publication/activation gates.
+
+Root first publication can validate unchanged main. Runtime then synchronizes the reviewed Root repair into its existing PR and reruns CI. No supplier/credential/provider/protected-fixture operation, product activation, hold release or release is authorized. Runtime owns correction of the previously missed active Root validation dependency in its impact/validation handoff; preserve historical failure evidence. App receives the integration consequence; no App frontend or authority-corpus repin occurs.

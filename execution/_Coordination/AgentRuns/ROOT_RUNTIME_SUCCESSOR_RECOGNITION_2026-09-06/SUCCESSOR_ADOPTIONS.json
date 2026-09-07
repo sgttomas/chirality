@@ -1,0 +1,41 @@
+{
+  "schema": "root-runtime-successor-adoptions/v1",
+  "root_owner_act": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/OWNER_ACT.md",
+    "sha256": "6cb2a9ef4ff8c08d6f2352781689dbbc31c50cc4fcea95873472ea7b96d9ee7d"
+  },
+  "adoptions": [
+    {
+      "id": "D36_STAGE1",
+      "acceptance": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA001_STAGE1_2026-09-06/OWNER_ACCEPTANCE.md",
+        "sha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f"
+      },
+      "subject": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/HANDOFF_MANIFEST.json",
+        "sha256": "cd88975f4d884c81d69c0e36e0afe0853b1dc0b5fb1d84f992089a866f5b3eae"
+      },
+      "postimage_index": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/POSTIMAGE_INDEX.json",
+        "sha256": "86052a0de234eb2b7c2d53e6d7d539ca67ec6a4105202bfde2585c288addacd8"
+      },
+      "changes": [
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+          "before": null,
+          "after": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+          "before": "ead0c52db231d955e1f0d593585e09b5b8009ac1df8c21ea58fd6271afc7d5c7",
+          "after": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+          "before": "64f37da455c6a1565eca4d7cc8dc0fb7638672f1b1df0288c4c038f476bdd767",
+          "after": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9"
+        }
+      ]
+    }
+  ]
+}

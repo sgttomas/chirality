@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/BRIEF.md",
+      "sha256": "e534e9f3f35f3eb277d2571be59c300d6a72ccd1b1b97cd18ca0d8834ac085b6",
+      "bytes": 423
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/INDEPENDENT_CHECKS.json",
+      "sha256": "f0aaca9285e563cc2c2821d85ca255a5dc4869fe646b24f1d9a81c5d6e69d527",
+      "bytes": 6123
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/RETURN.md",
+      "sha256": "61c3c4f0fa4351d036d8d063e25e290d0a88ed97d2f5fe118a77d5993ff0a0ff",
+      "bytes": 2776
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/REVIEWED_INPUTS.json",
+      "sha256": "76c885e0a443244ea3b0ba989908063164258f758233800dae89f6fedd958361",
+      "bytes": 9105
+    }
+  ]
+}
