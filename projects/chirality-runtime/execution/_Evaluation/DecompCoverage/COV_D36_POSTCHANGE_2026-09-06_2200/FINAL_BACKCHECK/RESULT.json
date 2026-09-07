@@ -1,0 +1,75 @@
+{
+  "check": "10",
+  "verdict": "PASS",
+  "checked_at": "2026-09-07T04:04:43.577316+00:00",
+  "snapshot": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY",
+  "pointer": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "pointer_sha256": "26e5a73eba23e4b69e72695a37ac430c61997ea7164b98df263abcbd94763e0d",
+  "pointer_targets": [
+    "SCA-001_2026-09-06_D36_CUSTODY/"
+  ],
+  "required_artifact_completeness": "PASS",
+  "pending_state_honesty": "PASS",
+  "final_owner_poststate_acceptance": "PENDING",
+  "SOW_stage2": "PENDING",
+  "overall_audit": "WARNINGS",
+  "retained_warning": "Check9b explicit companion inventory absent, owner-disclosed nonblocking debt",
+  "retained_info_count": 40,
+  "initial_auditor_manifest_sha256": "ce26a20449d25a498863f786a88bd3aed3b6421f25aa37d9ad3bcd6d9f274c32",
+  "initial_members_unchanged": 15,
+  "scope": "Same-run focused Check10 final backcheck; no second full audit or new exception. Supersedes only initial Check10 pending observation. Manager final reference/seal and independent review remain separate; not prerequisites invented for this check.",
+  "postimages": [
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+      "sha256": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309",
+      "matches_applied": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1",
+      "matches_applied": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9",
+      "matches_applied": true
+    }
+  ],
+  "SOWs": [
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+      "unchanged": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+      "sha256": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+      "unchanged": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+      "sha256": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+      "unchanged": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+      "unchanged": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+      "sha256": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+      "unchanged": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+      "sha256": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+      "unchanged": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+      "sha256": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b",
+      "unchanged": true
+    }
+  ]
+}

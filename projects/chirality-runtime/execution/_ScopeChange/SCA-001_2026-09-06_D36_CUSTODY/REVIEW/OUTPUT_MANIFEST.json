@@ -1,0 +1,16 @@
+{
+  "verdict": "PASS",
+  "scope": "Independent Stage1 evidence-accuracy review; owner acceptance and Stage2 pending",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "383f5520308ea48f5a18eb310a8ba0f027d01cd9163ba426581e0c0784a369f7",
+      "bytes": 4548
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "03054256b311990cf650b4877d70616142a1b58104caaf9f1d6f10fe2718388f",
+      "bytes": 2669
+    }
+  ]
+}

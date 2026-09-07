@@ -1,0 +1,14 @@
+{
+  "auditManifestSha256": "b63085403c0ab447ff9f534fc8973fcef9044978a14b023f02a8f9751f5ce297",
+  "verifiedAuditMembers": 13,
+  "verifiedInputPins": 36,
+  "result": "WARNINGS",
+  "blockers": 0,
+  "warnings": 1,
+  "info": 40,
+  "checksAddressed": 12,
+  "applicationAccepted": false,
+  "independentReview": "parent-owned pending",
+  "trackedChanges": 0,
+  "recommendation": "Present full disclosed audit and preexisting9b inventory warning with exact canonical application subject; owner may accept warning as non-blocking for bounded amendment, or authorize separate inventory repair. No implicit waiver or candidate expansion."
+}

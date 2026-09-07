@@ -1,0 +1,13 @@
+{
+  "prechange_manifest_sha256": "b63085403c0ab447ff9f534fc8973fcef9044978a14b023f02a8f9751f5ce297",
+  "changed_previous_inputs": [
+    "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+    "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv"
+  ],
+  "added_canonical_input": "CUSTODY_DISPOSITION_D36.md",
+  "scope_counts_unchanged": true,
+  "artifact_inventory_unchanged": true,
+  "contexts_unchanged": true,
+  "requirement_ids_unchanged": true,
+  "new_phase_observation": "Check10 INCOMPLETE pending final focused backcheck"
+}

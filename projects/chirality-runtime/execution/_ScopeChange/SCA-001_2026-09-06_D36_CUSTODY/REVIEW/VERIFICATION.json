@@ -1,0 +1,51 @@
+{
+  "verdict": "PASS",
+  "checks": [
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/MANAGER_OUTPUT_MANIFEST.json",
+      "sha256": "f774d7bacb2a42acf26c5bc892015749586389a4af6ecb11f9f2b06941c108af",
+      "members": 25,
+      "mismatches": []
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/AUDITOR_OUTPUT_MANIFEST.json",
+      "sha256": "ce26a20449d25a498863f786a88bd3aed3b6421f25aa37d9ad3bcd6d9f274c32",
+      "members": 15,
+      "mismatches": []
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/FINAL_BACKCHECK/OUTPUT_MANIFEST.json",
+      "sha256": "ad86dbf2f5b2096016bbbd238b87198dfaf1ee02cbe20f75b19e55849d039c22",
+      "members": 3,
+      "mismatches": []
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/FINAL_BACKCHECK/INPUT_PINS.json",
+      "sha256": "eee42fc69f00d715624f36a47aae32801f22c089e61d722ab1fb97ddd203ccd1",
+      "members": 26,
+      "mismatches": []
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/INPUT_PINS.json",
+      "sha256": "34b680378a507ed4f7d8b01cd16a1b377541d044ffbddeb504b2fea730254ac4",
+      "members": 44,
+      "mismatches": []
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/UNCHANGED_INPUTS.json",
+      "sha256": "357ced59b614d629903e15640e7b3e0c8c422a43d5039e3e97f213b1f7693c0b",
+      "members": 34,
+      "mismatches": []
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_PRECHANGE_AUTHORIZED_2026-09-06_2145/AUDITOR_OUTPUT_MANIFEST.json",
+      "sha256": "b63085403c0ab447ff9f534fc8973fcef9044978a14b023f02a8f9751f5ce297",
+      "members": 13,
+      "mismatches": []
+    }
+  ],
+  "canonicalPostimages": 3,
+  "retainedPreimages": 2,
+  "pointerSha256": "26e5a73eba23e4b69e72695a37ac430c61997ea7164b98df263abcbd94763e0d",
+  "limitations": "Documentary evidence review; no product, source, credential or operational execution."
+}

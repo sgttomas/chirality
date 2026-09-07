@@ -1,0 +1,131 @@
+{
+  "status": "APPLIED_VALIDATED_PENDING_FINAL_OWNER_AND_STAGE2",
+  "scope": "Manager-owned SCA files, REVIEW excluded",
+  "files": [
+    {
+      "path": "Amendment_Actions.csv",
+      "sha256": "9b1353fc0e1950008a9b199620b461efd092e25d8bacaa583e59b71ad12f0117",
+      "bytes": 1874
+    },
+    {
+      "path": "Application_Journal.json",
+      "sha256": "c3ac132544fe8cbb93f677163d9038bb85afcad574843e0ec3d5378156618f4e",
+      "bytes": 1618
+    },
+    {
+      "path": "Brief.md",
+      "sha256": "1518124974ff32e222647a1019e9666d329de33c8922d18412563b149c13c23e",
+      "bytes": 641
+    },
+    {
+      "path": "CONTROL/CONSERVATION_CHECK.json",
+      "sha256": "efa47c2d3b0f415680e1fa2df5490e15641121bd516aa2054f2f5378f69e0dde",
+      "bytes": 458
+    },
+    {
+      "path": "CONTROL/OWNER_SLATE.md",
+      "sha256": "a6a301d8acfaf953804da0ffdb9d1ea7f3945dfbc45e9e74376097a8145e1491",
+      "bytes": 5271
+    },
+    {
+      "path": "CONTROL/POSTIMAGE_INDEX.json",
+      "sha256": "86052a0de234eb2b7c2d53e6d7d539ca67ec6a4105202bfde2585c288addacd8",
+      "bytes": 1294
+    },
+    {
+      "path": "CONTROL/PREIMAGE_CHECK.json",
+      "sha256": "ad8c64b0810adf8c701224c7ad5f15b895bca112410747b763d366381ea9bf9a",
+      "bytes": 1396
+    },
+    {
+      "path": "CONTROL/Supersession_Map_Findings.csv",
+      "sha256": "c7312589902ad10316506093e0c700e5dcc7ec93cf66673c6233a2de073e79a1",
+      "bytes": 34
+    },
+    {
+      "path": "CONTROL/Supersession_Map_Verification_Findings.csv",
+      "sha256": "c7312589902ad10316506093e0c700e5dcc7ec93cf66673c6233a2de073e79a1",
+      "bytes": 34
+    },
+    {
+      "path": "CONTROL/Supersession_Map_Verified.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42",
+      "bytes": 2468
+    },
+    {
+      "path": "CONTROL/UNCHANGED_INPUTS.json",
+      "sha256": "357ced59b614d629903e15640e7b3e0c8c422a43d5039e3e97f213b1f7693c0b",
+      "bytes": 7364
+    },
+    {
+      "path": "Decision_Log.md",
+      "sha256": "46efa1c5443d995fc56774f87704715f0ded6f77ec7f5b81fa8bec8fd242a1ec",
+      "bytes": 1733
+    },
+    {
+      "path": "FINAL_BACKCHECK_REFERENCE.json",
+      "sha256": "7ba7c363e29f7ee11da6ff71be79e931a3e40e3a58331b56148bb11244bb38a1",
+      "bytes": 732
+    },
+    {
+      "path": "Handoff_State.md",
+      "sha256": "df65ebe09644237ad288ab2e79aba3ee8fdbf670e4ea9e59194e231ddd372776",
+      "bytes": 2794
+    },
+    {
+      "path": "Impact_Assessment.md",
+      "sha256": "4db68d04901414031086f9930b2275e96acd0bc4546be7f66eecd37291ffb49e",
+      "bytes": 6772
+    },
+    {
+      "path": "MANAGER_RETURN.md",
+      "sha256": "63146e9d769662f979f0d462b82eb6cd4b2a3ab889be5990a22a79af9ca885f6",
+      "bytes": 1793
+    },
+    {
+      "path": "PREIMAGES/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "ead0c52db231d955e1f0d593585e09b5b8009ac1df8c21ea58fd6271afc7d5c7",
+      "bytes": 7731
+    },
+    {
+      "path": "PREIMAGES/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "64f37da455c6a1565eca4d7cc8dc0fb7638672f1b1df0288c4c038f476bdd767",
+      "bytes": 1630
+    },
+    {
+      "path": "Post_Change_Coverage.json",
+      "sha256": "9b59155791e73618996ab7d69a1582c973858e7e3b7c9080c05e44dae0fa8e39",
+      "bytes": 3551
+    },
+    {
+      "path": "Pre_Change_Coverage.json",
+      "sha256": "4612a375d0529ac8012a9278e582e5b4c1b8fc01a06da8b0d5688dd98e7cc47f",
+      "bytes": 3350
+    },
+    {
+      "path": "Pre_Post_Comparison.json",
+      "sha256": "427abe3c296075d1d469b1528f8ab824f41e1c8e56d4be2181c455b4f82c8e7b",
+      "bytes": 601
+    },
+    {
+      "path": "Propagation_Plan.md",
+      "sha256": "ee505faa49604e854389627208213be87b5b0c43bbb56bfc7186d8f782c14b55",
+      "bytes": 1111
+    },
+    {
+      "path": "RUN_SUMMARY.md",
+      "sha256": "095a4e5559e3bd9ef23a2fbc8fe3e66f411a4f6a7f2551702a6b59058a568a1c",
+      "bytes": 1779
+    },
+    {
+      "path": "Supersession_Delta.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42",
+      "bytes": 2468
+    },
+    {
+      "path": "Supersession_Map.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42",
+      "bytes": 2468
+    }
+  ]
+}

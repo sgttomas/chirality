@@ -1,0 +1,3 @@
+# SCA-001 Stage1 brief
+
+SOFTWARE; Runtime PKG-02/SOW-104; exact three canonical changes listed CONTROL/POSTIMAGE_INDEX.json. Actual OptionA gate authority and relay in Decision_Log. Apply only these frozen bytes; preserve all historical pins and unchanged SOWs. Produce scoped postchange audit, claim-delta/map, pre/postcomparison and truthful pending handoff for final owner acceptance. Writes: three canonical targets; new owning SCA snapshot and permitted project _ScopeChange/_LATEST; new audit tool snapshot/_LATEST. No other live writes. Root source migration remains accepted. Exact baseline e1dee34315ff4ca448b0fbc14e5542b6bad9fac2.

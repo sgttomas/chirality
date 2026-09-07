@@ -1,0 +1,250 @@
+{
+  "pathBase": "repository root",
+  "status": "APPLIED_VALIDATED_PENDING_OWNER_ACCEPTANCE_AND_STAGE2",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/AGENT0_FINAL_HANDOFF.md",
+      "sha256": "6b125af9543e1eeadf0088691ccc2e3ed0540ccc8a5e3d84b04363866d61a8e2"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Amendment_Actions.csv",
+      "sha256": "9b1353fc0e1950008a9b199620b461efd092e25d8bacaa583e59b71ad12f0117"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Application_Journal.json",
+      "sha256": "c3ac132544fe8cbb93f677163d9038bb85afcad574843e0ec3d5378156618f4e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Brief.md",
+      "sha256": "1518124974ff32e222647a1019e9666d329de33c8922d18412563b149c13c23e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/CONSERVATION_CHECK.json",
+      "sha256": "efa47c2d3b0f415680e1fa2df5490e15641121bd516aa2054f2f5378f69e0dde"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/OWNER_SLATE.md",
+      "sha256": "a6a301d8acfaf953804da0ffdb9d1ea7f3945dfbc45e9e74376097a8145e1491"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/POSTIMAGE_INDEX.json",
+      "sha256": "86052a0de234eb2b7c2d53e6d7d539ca67ec6a4105202bfde2585c288addacd8"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/PREIMAGE_CHECK.json",
+      "sha256": "ad8c64b0810adf8c701224c7ad5f15b895bca112410747b763d366381ea9bf9a"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_Findings.csv",
+      "sha256": "c7312589902ad10316506093e0c700e5dcc7ec93cf66673c6233a2de073e79a1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_Verification_Findings.csv",
+      "sha256": "c7312589902ad10316506093e0c700e5dcc7ec93cf66673c6233a2de073e79a1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_Verified.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/UNCHANGED_INPUTS.json",
+      "sha256": "357ced59b614d629903e15640e7b3e0c8c422a43d5039e3e97f213b1f7693c0b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Decision_Log.md",
+      "sha256": "46efa1c5443d995fc56774f87704715f0ded6f77ec7f5b81fa8bec8fd242a1ec"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/FINAL_BACKCHECK_REFERENCE.json",
+      "sha256": "7ba7c363e29f7ee11da6ff71be79e931a3e40e3a58331b56148bb11244bb38a1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Handoff_State.md",
+      "sha256": "df65ebe09644237ad288ab2e79aba3ee8fdbf670e4ea9e59194e231ddd372776"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Impact_Assessment.md",
+      "sha256": "4db68d04901414031086f9930b2275e96acd0bc4546be7f66eecd37291ffb49e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/MANAGER_OUTPUT_MANIFEST.json",
+      "sha256": "f774d7bacb2a42acf26c5bc892015749586389a4af6ecb11f9f2b06941c108af"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/MANAGER_RETURN.md",
+      "sha256": "63146e9d769662f979f0d462b82eb6cd4b2a3ab889be5990a22a79af9ca885f6"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/PREIMAGES/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "ead0c52db231d955e1f0d593585e09b5b8009ac1df8c21ea58fd6271afc7d5c7"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/PREIMAGES/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "64f37da455c6a1565eca4d7cc8dc0fb7638672f1b1df0288c4c038f476bdd767"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Post_Change_Coverage.json",
+      "sha256": "9b59155791e73618996ab7d69a1582c973858e7e3b7c9080c05e44dae0fa8e39"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Pre_Change_Coverage.json",
+      "sha256": "4612a375d0529ac8012a9278e582e5b4c1b8fc01a06da8b0d5688dd98e7cc47f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Pre_Post_Comparison.json",
+      "sha256": "427abe3c296075d1d469b1528f8ab824f41e1c8e56d4be2181c455b4f82c8e7b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Propagation_Plan.md",
+      "sha256": "ee505faa49604e854389627208213be87b5b0c43bbb56bfc7186d8f782c14b55"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/REVIEW/OUTPUT_MANIFEST.json",
+      "sha256": "059e68768320268d02efc85b0bc042ed23e09a702019d0c4762d2761e8ba473f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/REVIEW/RETURN.md",
+      "sha256": "383f5520308ea48f5a18eb310a8ba0f027d01cd9163ba426581e0c0784a369f7"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/REVIEW/VALIDATION_SUPPLEMENT_BACKCHECK/OUTPUT_MANIFEST.json",
+      "sha256": "bd3be45851f8eb0b1bc62dc6cb8c9339a477ee0d58a3d00ac53b6c9bf04cfd32"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/REVIEW/VALIDATION_SUPPLEMENT_BACKCHECK/RETURN.md",
+      "sha256": "60dd86fca367d0b0dbbfdfb408c9c851112ef7865f7b39d1ca167f3118b59a39"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/REVIEW/VERIFICATION.json",
+      "sha256": "03054256b311990cf650b4877d70616142a1b58104caaf9f1d6f10fe2718388f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/RUN_SUMMARY.md",
+      "sha256": "095a4e5559e3bd9ef23a2fbc8fe3e66f411a4f6a7f2551702a6b59058a568a1c"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Delta.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Map.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/OUTPUT_MANIFEST.json",
+      "sha256": "3302e7e739a917f7c8cf27ded404e84b2df08d09b604249d54228d9cb7e70412"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/RESULTS.json",
+      "sha256": "930ad411e5c0745909b6a714c536137c4881d6c9b5f25435cee324478d0c64fc"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/RETURN.md",
+      "sha256": "9650727a0c5b1d59fd36bd5857a35d8470fe98cf994daab613583b96995aeb1f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/candidate_whitespace.txt",
+      "sha256": "38a56f94bf76214451d02bdfaba4fa5aa6e43f5d8299eaa9d89f82961f4391b1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/diff_check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/instruction_entrypoints.txt",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/runtime_drift.txt",
+      "sha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/runtime_status.txt",
+      "sha256": "4b1b91e12d22bd6ae92022796a9176a34a4c534c267a7711c826078bc8a7ed66"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/VALIDATION_SUPPLEMENT/scoped_whitespace.txt",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/ARTIFACT_SCAN.json",
+      "sha256": "1f50f2b9c5fd5027fec3bbf939bdf7bfd2cc16f819d6136494deab6df5d335c8"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/AUDITOR_OUTPUT_MANIFEST.json",
+      "sha256": "ce26a20449d25a498863f786a88bd3aed3b6421f25aa37d9ad3bcd6d9f274c32"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/Brief.md",
+      "sha256": "24d05af588048238f8468e748f577f242d959a5a00c0ecf8059b1f6986efbcd4"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/CHECK10_INITIAL_OBSERVATION.json",
+      "sha256": "41bf3377fc2db9ece210a94b72df83c7cb37fccff363063d13b57c4ddb51b115"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/COMPARISON.json",
+      "sha256": "427abe3c296075d1d469b1528f8ab824f41e1c8e56d4be2181c455b4f82c8e7b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/CONTEXT_AND_INVENTORY.json",
+      "sha256": "58152d7aa1b45450f10a6948997da463151479b55f141af36e64e5883d407f5e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/Decision_Log.md",
+      "sha256": "6d74c1cef152d1656de81e25fd9990a9283c377dd1d49dc84b4c66845adfec30"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/Decomp_Coverage_IssueLog.csv",
+      "sha256": "79c6c0e7f9c0c3805f1029d2d450539abb2304c3426a9713113129c8a9d4bf98"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/Decomp_Coverage_Matrix.csv",
+      "sha256": "a815978394bdda3a0d327573daa9bb4c49ae17a030c8af70c5693093077ad15f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/Decomp_Coverage_Report.md",
+      "sha256": "ffe921075f7fdec1e44cc7922219825c06b8ac1e34836fe5885c48a1a345db07"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/FINAL_BACKCHECK/INPUT_PINS.json",
+      "sha256": "eee42fc69f00d715624f36a47aae32801f22c089e61d722ab1fb97ddd203ccd1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/FINAL_BACKCHECK/OUTPUT_MANIFEST.json",
+      "sha256": "ad86dbf2f5b2096016bbbd238b87198dfaf1ee02cbe20f75b19e55849d039c22"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/FINAL_BACKCHECK/RESULT.json",
+      "sha256": "0db07b4b10bc3e44aa6d8e2c1fa6eb5b1f88d5faef1681ecdf0e7c645b52417f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/FINAL_BACKCHECK/RETURN.md",
+      "sha256": "8b03829bc393ec3fd0d9df763f4e5be44295e59dd261318d1eaa9e49cbf1c84d"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/INPUT_PINS.json",
+      "sha256": "34b680378a507ed4f7d8b01cd16a1b377541d044ffbddeb504b2fea730254ac4"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/QA_Report.md",
+      "sha256": "2892830d0c4a61bd2e58c4802d3edd5b9195f6c50f6173244ba512e6d0b3e8cb"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/REQUIREMENT_ID_CHECK.json",
+      "sha256": "be96ba9f8a4eec3c8ef35975384be3ff9efc9369415ea3c9735a7785a906caa2"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/RUN_SUMMARY.md",
+      "sha256": "6fd832c83edc26ab7a7c97b9a045a0504284133b2bf4325629bb86e2538a71ef"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/SOW_RESOLVER_RESULTS.json",
+      "sha256": "39c4feace00695ade5d8832064aa7f6c93151d7286d9e98713a92af193cff919"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/coverage_summary.json",
+      "sha256": "9b59155791e73618996ab7d69a1582c973858e7e3b7c9080c05e44dae0fa8e39"
+    }
+  ]
+}

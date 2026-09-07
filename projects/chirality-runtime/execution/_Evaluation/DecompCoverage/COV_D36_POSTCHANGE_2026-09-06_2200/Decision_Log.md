@@ -1,0 +1,7 @@
+# Postchange decisions
+
+Owner verbatim: “I approve Option A.” Relay: App Agent0 task 01a077e7-a59b-7701-a2f6-fa2edae479b2 → Runtime /root → SCOPE_CHANGE /root/custody_scope → this AUDIT_DECOMP child. Exact slate SHA256 a6a301d8acfaf953804da0ffdb9d1ea7f3945dfbc45e9e74376097a8145e1491, independently verified. PROPOSED label is historical relative to actual grant. Option A reauthorizes only this postchange run's exact a84c904be6802b5254a09c73b21ce45b705f6cdd097967a4d3a652d909d2a8d9 binding override. Former one-run grant is not reused.
+
+Three canonical hashes agree with Application_Journal.json and exact owner slate. D36 supplement now binds through actual approved application, with final poststate acceptance pending. No unchanged SOW is represented as propagated: DEL06 REQ041 and DEL09 REQ001/002 are pending Stage2. Requirement IDs and all other scope keys are unchanged. Check9b remains disclosed nonblocking debt selected in Option A; no waiver or repair. Filename-only matching method and INFO severity remain as prior audit.
+
+Check10 initially records actual absent pointer and in-progress assembly. It is INCOMPLETE pending same-run final focused backcheck, not final SKIPPED and not a circular requirement for future audit bytes before the audit. No future handoff or final seal pinned prematurely. Separate manager/review members are excluded from auditor manifest. Final owner acceptance and Git acts remain pending.

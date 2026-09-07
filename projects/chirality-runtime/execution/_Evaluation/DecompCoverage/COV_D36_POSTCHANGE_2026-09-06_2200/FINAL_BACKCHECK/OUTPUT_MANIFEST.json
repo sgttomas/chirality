@@ -1,0 +1,16 @@
+{
+  "files": [
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "eee42fc69f00d715624f36a47aae32801f22c089e61d722ab1fb97ddd203ccd1"
+    },
+    {
+      "path": "RESULT.json",
+      "sha256": "0db07b4b10bc3e44aa6d8e2c1fa6eb5b1f88d5faef1681ecdf0e7c645b52417f"
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "8b03829bc393ec3fd0d9df763f4e5be44295e59dd261318d1eaa9e49cbf1c84d"
+    }
+  ]
+}

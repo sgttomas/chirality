@@ -1,0 +1,108 @@
+{
+  "files": [
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md",
+      "sha256": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md",
+      "sha256": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+      "sha256": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+      "sha256": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md",
+      "sha256": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+      "sha256": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/AUDITOR_OUTPUT_MANIFEST.json",
+      "sha256": "ce26a20449d25a498863f786a88bd3aed3b6421f25aa37d9ad3bcd6d9f274c32"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/INPUT_PINS.json",
+      "sha256": "34b680378a507ed4f7d8b01cd16a1b377541d044ffbddeb504b2fea730254ac4"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Amendment_Actions.csv",
+      "sha256": "9b1353fc0e1950008a9b199620b461efd092e25d8bacaa583e59b71ad12f0117"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Application_Journal.json",
+      "sha256": "c3ac132544fe8cbb93f677163d9038bb85afcad574843e0ec3d5378156618f4e"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Brief.md",
+      "sha256": "1518124974ff32e222647a1019e9666d329de33c8922d18412563b149c13c23e"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Decision_Log.md",
+      "sha256": "46efa1c5443d995fc56774f87704715f0ded6f77ec7f5b81fa8bec8fd242a1ec"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Handoff_State.md",
+      "sha256": "df65ebe09644237ad288ab2e79aba3ee8fdbf670e4ea9e59194e231ddd372776"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Impact_Assessment.md",
+      "sha256": "4db68d04901414031086f9930b2275e96acd0bc4546be7f66eecd37291ffb49e"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Post_Change_Coverage.json",
+      "sha256": "9b59155791e73618996ab7d69a1582c973858e7e3b7c9080c05e44dae0fa8e39"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Pre_Change_Coverage.json",
+      "sha256": "4612a375d0529ac8012a9278e582e5b4c1b8fc01a06da8b0d5688dd98e7cc47f"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Pre_Post_Comparison.json",
+      "sha256": "427abe3c296075d1d469b1528f8ab824f41e1c8e56d4be2181c455b4f82c8e7b"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Propagation_Plan.md",
+      "sha256": "ee505faa49604e854389627208213be87b5b0c43bbb56bfc7186d8f782c14b55"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/RUN_SUMMARY.md",
+      "sha256": "095a4e5559e3bd9ef23a2fbc8fe3e66f411a4f6a7f2551702a6b59058a568a1c"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Delta.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Map.csv",
+      "sha256": "d4ff38db66e1d13bad5e059ccd1a6fbcc3880955101efa2ab587759831829d42"
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+      "sha256": "26e5a73eba23e4b69e72695a37ac430c61997ea7164b98df263abcbd94763e0d"
+    }
+  ]
+}

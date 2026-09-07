@@ -1,0 +1,15 @@
+{
+  "ledgerChangedFields": [
+    "DecisionRef",
+    "Notes"
+  ],
+  "ledgerRowCount": 1,
+  "unchangedPreauditInputsVerified": 34,
+  "candidate37Preserved": true,
+  "onlyNewCanonicalFile": "CUSTODY_DISPOSITION_D36.md",
+  "liveTrackedDiff": [
+    "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+    "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv"
+  ],
+  "productTestsRun": false
+}

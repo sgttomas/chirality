@@ -1,0 +1,3 @@
+# QA
+
+All twelve checks evaluated or explicitly skipped. No unresolved binding ambiguity after exact authorized override. Companion inventories parse 1 scope row, 7 carriers, 4 objectives, 66 requirements. Context fields match. Seven resolver calls pass. No MEMORY siblings found. Filename scan limits do not measure existence of implementation elsewhere or acceptance of evidence. Check 9b retains explicit inventory warning despite distributed discoverability. Original failed snapshot remains FAILED_INPUTS. Shell discovery encountered nonexistent guessed resolver filename; actual tools/scope_of_work/validate_scope_of_work.py was then read and used. No source tests were run.

@@ -1,0 +1,6 @@
+Untracked text whitespace findings:
+projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CUSTODY_AMENDMENT_PREPARATION_2026-09-06/AMENDMENT/CANONICAL.patch:28: trailing whitespace
+projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CUSTODY_AMENDMENT_PREPARATION_2026-09-06/AMENDMENT/CANONICAL.patch:30: trailing whitespace
+projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CUSTODY_AMENDMENT_PREPARATION_2026-09-06/AMENDMENT/CANONICAL.patch:34: trailing whitespace
+projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CUSTODY_AMENDMENT_PREPARATION_2026-09-06/AMENDMENT/CANONICAL.patch:38: trailing whitespace
+FAIL: candidate whitespace findings (untracked binary/symlink paths safely skipped: 0).

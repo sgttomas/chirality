@@ -1,0 +1,10 @@
+{
+  "time": "2026-09-07T04:02:27.377441+00:00",
+  "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "exists": false,
+  "text": null,
+  "sca_snapshot": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY",
+  "state": "IN_PROGRESS_PENDING_FINAL_BACKCHECK",
+  "application_journal_sha256": "c3ac132544fe8cbb93f677163d9038bb85afcad574843e0ec3d5378156618f4e",
+  "required_remaining_observation": "Final required artifacts, exact pointer, handoff-state honesty after manager writes. Not final SKIPPED."
+}

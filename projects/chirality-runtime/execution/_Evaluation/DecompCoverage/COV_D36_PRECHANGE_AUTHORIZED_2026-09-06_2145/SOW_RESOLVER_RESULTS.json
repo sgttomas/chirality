@@ -1,0 +1,114 @@
+[
+  {
+    "command": [
+      "python3",
+      "-B",
+      "tools/scope_of_work/validate_scope_of_work.py",
+      "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "--json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "valid": true
+    }
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "tools/scope_of_work/validate_scope_of_work.py",
+      "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "--json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "valid": true
+    }
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "tools/scope_of_work/validate_scope_of_work.py",
+      "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "--json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "valid": true
+    }
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "tools/scope_of_work/validate_scope_of_work.py",
+      "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "--json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "valid": true
+    }
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "tools/scope_of_work/validate_scope_of_work.py",
+      "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "--json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "valid": true
+    }
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "tools/scope_of_work/validate_scope_of_work.py",
+      "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "--json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "valid": true
+    }
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "tools/scope_of_work/validate_scope_of_work.py",
+      "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "--json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "valid": true
+    }
+  }
+]

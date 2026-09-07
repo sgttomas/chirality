@@ -1,0 +1,11 @@
+# Postapplication harness/governance verification supplement
+
+The earlier manager seal included exact byte/map/conservation and formal audit checks but did not yet run the controlling checklist's additional affected harness/governance commands. This supplement records their actual postapplication execution; original manager seal remains immutable.
+
+RESULTS.json contains exact argv, exit status and raw-output hashes. Runtime status PASS (7 INITIALIZED); Runtime drift PASS (0 mismatches/7); canonical instruction entrypoints PASS; git diff --check PASS. Exact Stage1 canonical paths, SCA records and postchange audit snapshot pass the registered candidate whitespace validator.
+
+The whole-worktree candidate whitespace command FAILS on four untracked blank-context lines28/30/34/38 in the previously frozen RUNTIME_CUSTODY_AMENDMENT_PREPARATION_2026-09-06/AMENDMENT/CANONICAL.patch. These are unified-diff context lines containing the required single context-prefix space; they are not whitespace in any applied canonical postimage. No other global finding was reported. The raw failure is preserved. The exact Stage1 --paths rerun is a scoped pass, not a claim that the whole worktree passes. Earlier frozen candidate patch remains unchanged; publication packaging, if later authorized, must account for this existing artifact-scanner mismatch without silently rewriting its seal.
+
+Applicability: Runtime adapter declares no additional validation surfaces; status/drift are loop-prescribed affected checks. Root instruction entrypoint check confirms shared instruction entry remains canonical; no instruction/adapter/tool changes request a Root M2/G4 re-audit here. Registered SOW schema/trace and12-check pre/post coverage were executed by the actual auditor; no need repeat them. No product source changed, so product tests/builds, supplier/credential operations and unrelated project checks are not applicable to this documentation-only application and were not run.
+
+No live canonical or source edits occurred during this supplement. Final owner acceptance, Stage2 propagation and all publication/Git acts remain pending. The disclosed global historical-patch whitespace finding is a validation limitation, not hidden success. SCOPE_CHANGE, OpenAI GPT-6 exact serving ID unavailable; role instruction-asserted.
