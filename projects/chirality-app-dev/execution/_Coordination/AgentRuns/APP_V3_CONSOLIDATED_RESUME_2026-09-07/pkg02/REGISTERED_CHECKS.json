@@ -1,0 +1,45 @@
+{
+  "schema": "chirality-software-check-evidence/v1",
+  "runId": "APP_V3_CONSOLIDATED_RESUME_2026-09-07",
+  "packageId": "PKG-02",
+  "deliverableId": "DEL-02-04",
+  "workspaceRoot": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "interpreter": {
+    "default": "/usr/bin/python3",
+    "defaultResult": "OPERATIONAL_FAILURE_PYYAML_NOT_IMPORTABLE",
+    "configured": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+    "configuredVersion": "3.13",
+    "pyyamlVersion": "6.0.3",
+    "installationPerformed": false
+  },
+  "checks": [
+    {"id": "app-hold-reliance", "status": "PASS", "verdict": "ALLOW", "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d", "scanFingerprint": "3ab7d76141a4b9f049a1972316d721037293c118ca206a659cd771aa3cdbff1e", "registerSha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc"},
+    {"id": "app-hold-dispatch", "status": "PASS", "verdict": "ALLOW", "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d", "scanFingerprint": "3ab7d76141a4b9f049a1972316d721037293c118ca206a659cd771aa3cdbff1e", "registerSha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc"},
+    {"id": "app-hold-accepted-dependency-consumption", "status": "PASS", "verdict": "ALLOW", "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d", "scanFingerprint": "3ab7d76141a4b9f049a1972316d721037293c118ca206a659cd771aa3cdbff1e", "registerSha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc"},
+    {"id": "app-hold-integrity", "status": "PASS", "exitCode": 0},
+    {"id": "authority-corpus", "status": "PASS", "result": "v20 no drift", "exitCode": 0},
+    {"id": "receipt-validator-initial", "status": "FAIL_REPAIRED", "reasonCode": "DUPLICATED_MEASUREMENT", "affected": "Receipt-260 Checks", "disposition": "removed exact counts from receipt and retained them in owning evidence"},
+    {"id": "receipt-validator-final", "status": "PASS", "exitCode": 0},
+    {"id": "harness-self-check-default-interpreter", "status": "OPERATIONAL_FAILURE", "exitCode": 2, "reason": "PyYAML not importable in /usr/bin/python3"},
+    {"id": "harness-self-check-pre-repair", "status": "FAIL_REPAIRED", "exitCode": 1, "reasonCode": "APP_DEV_RECEIPT_CONTRACT", "affected": "Receipt-260 exact measurements"},
+    {"id": "harness-self-check-final", "status": "PASS", "exitCode": 0, "preservedFindings": {"review": 4, "warn": 55, "info": 14, "notApplicable": 1}},
+    {"id": "harness-pytest-default-interpreter", "status": "OPERATIONAL_FAILURE", "exitCode": 2, "reason": "PyYAML not importable in /usr/bin/python3"},
+    {"id": "harness-pytest-pre-repair", "status": "FAIL_REPAIRED", "reasonCode": "APP_DEV_RECEIPT_CONTRACT", "affected": "Receipt-260 exact measurements"},
+    {"id": "harness-pytest-final", "status": "PASS", "exitCode": 0, "passed": 379},
+    {"id": "project-secret-scan", "status": "PASS", "blockedFindings": 0, "scannedFiles": 12814, "summarySha256": "d1dae5967531423d34fff75b8090dd4cac5f56e3edbd2c3572b6111b9cd920bb", "note": "temporary output remains outside the publication selection"},
+    {"id": "selection-whitespace-initial", "status": "FAIL_REPAIRED", "reason": "two preserved GUI JSON summaries lacked final newlines", "disposition": "excluded those redundant summaries without modifying preserved evidence; their containing GUI manifest remains selected"},
+    {"id": "selection-existence-uniqueness-whitespace-final", "status": "PASS", "selectedEntriesIncludingManifest": 51, "duplicatePaths": 0, "missingPaths": 0},
+    {"id": "git-diff-check", "status": "PASS", "exitCode": 0}
+  ],
+  "preservedExactInputProductChecks": {
+    "sourceChangedSinceEvidence": false,
+    "review": "PASS",
+    "frontendTests": "PASS",
+    "frontendBuild": "PASS",
+    "configuredPremerge": "PASS_8_OF_8",
+    "rerunDecision": "not repeated for read-only exact-input applicability; CHANGE fresh branch CI remains required"
+  },
+  "status": "PASS_AFTER_REPAIR",
+  "limitations": "Current self-check REVIEW/WARN findings pre-exist outside this bounded tranche. Passing checks do not prove native GUI, live supplier/account, lifecycle acceptance, or release readiness."
+}

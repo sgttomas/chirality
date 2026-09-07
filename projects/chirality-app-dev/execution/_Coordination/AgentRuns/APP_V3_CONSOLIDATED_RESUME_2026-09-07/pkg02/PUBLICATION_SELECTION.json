@@ -1,0 +1,89 @@
+{
+  "schema": "chirality-publication-selection/v1",
+  "runId": "APP_V3_CONSOLIDATED_RESUME_2026-09-07",
+  "packageId": "PKG-02",
+  "deliverableId": "DEL-02-04",
+  "pathBase": "repository root",
+  "policy": "D-APP-99 C3 compact commit-bound evidence",
+  "status": "MANAGER_VALIDATED_FOR_CHANGE_REVIEW",
+  "files": [
+    {"class": "product-source", "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"},
+    {"class": "product-source", "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx"},
+    {"class": "product-test", "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx"},
+    {"class": "product-test", "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-strip.test.tsx"},
+    {"class": "product-test", "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx"},
+
+    {"class": "deliverable-state", "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md"},
+    {"class": "deliverable-state", "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md"},
+    {"class": "deliverable-evidence", "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/D123_FACTUAL_PARTIAL_CLOSEOUT_2026-09-07.md"},
+    {"class": "loop-receipt", "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"},
+
+    {"class": "prior-run-brief", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/ACTIVATION.md"},
+    {"class": "prior-run-brief", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/PREPARED_BRIEF_v1.md"},
+    {"class": "prior-run-graph", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/WORK_GRAPH_v1.md"},
+    {"class": "prior-run-scope", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/SOURCE_SCOPE.json"},
+    {"class": "author-return", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/RETURN.md"},
+    {"class": "author-freeze", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/SOURCE_FREEZE_v2.json"},
+    {"class": "author-check-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/CHECKS.json"},
+    {"class": "author-attribution", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/_run_records/TASK_RUN_D123_AUTHOR_v2.md"},
+
+    {"class": "review-input-manifest", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/review-five-files/INPUT_MANIFEST.json"},
+    {"class": "review-return", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/review-five-files/RETURN.md"},
+    {"class": "fixture-amendment", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/TEST_FIXTURE_AMENDMENT.md"},
+    {"class": "fixture-repair-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/RETURN.md"},
+    {"class": "fixture-repair-manifest", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/MANIFEST.json"},
+    {"class": "fixture-repair-diff-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/DIFF.json"},
+
+    {"class": "validation-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/RETURN.md"},
+    {"class": "validation-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/BUILD_RESULT.json"},
+    {"class": "validation-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/CONFIGURED_PREMERGE_SUMMARY.json"},
+    {"class": "validation-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/REUSED_CHECKS.json"},
+    {"class": "validation-input-backcheck", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/FINAL_INPUT_BACKCHECK.json"},
+    {"class": "validation-command-record", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/COMMANDS.json"},
+    {"class": "validation-attribution", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/ATTRIBUTION.json"},
+    {"class": "native-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/NATIVE_RESULT.json"},
+    {"class": "native-cleanup-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/NATIVE_CLEANUP.json"},
+    {"class": "registration-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/REGISTRATION.json"},
+    {"class": "readiness-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/API_READINESS.json"},
+    {"class": "runtime-identity-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/RUNNING_DAEMON_IDENTITY.json"},
+    {"class": "local-raw-evidence-manifest", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/MANIFEST.json"},
+
+    {"class": "gui-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/RETURN.md"},
+    {"class": "gui-identity-backcheck", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/IDENTITY_BACKCHECK.json"},
+    {"class": "gui-cleanup-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/CLEANUP.json"},
+    {"class": "local-raw-evidence-manifest", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/MANIFEST.json"},
+    {"class": "representative-ui-capture", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-dark960.png"},
+    {"class": "representative-ui-capture", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-light1440.png"},
+
+    {"class": "manager-activation", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/ACTIVATION.md"},
+    {"class": "manager-work-graph", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/WORK_GRAPH.json"},
+    {"class": "manager-status", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/STATUS.json"},
+    {"class": "manager-applicability", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/EVIDENCE_APPLICABILITY.json"},
+    {"class": "manager-check-summary", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/REGISTERED_CHECKS.json"},
+    {"class": "manager-publication-selection", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/PUBLICATION_SELECTION.json"},
+    {"class": "manager-return", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/MANAGER_RETURN.md"},
+    {"class": "manager-handoff", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/HANDOFF.md"},
+    {"class": "manager-manifest", "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/MANIFEST.json"}
+  ],
+  "excludedLocalEvidence": {
+    "basis": "D-APP-99 C3",
+    "retention": "preserved unchanged in /Users/ryan/.codex/worktrees/85d6/chirality",
+    "classes": [
+      "bulk test stdout/stderr and historical failure payloads",
+      "full accessibility and DOM dumps",
+      "non-representative screenshots",
+      "captured font/CSS asset bundle",
+      "daemon/frontend logs and transient launch helpers",
+      "duplicate historical source patches and superseded review attempts"
+    ],
+    "identity": "preserved nested manifests and consolidated applicability record bind the retained local bytes"
+  },
+  "changeRequirements": [
+    "stage exactly this file list and no unrelated pending paths",
+    "verify every selected current hash against MANIFEST.json except MANIFEST.json itself",
+    "run secret, whitespace, scope, and staged-diff checks",
+    "treat any later exact-candidate login proof as requiring a new A1 stage and fresh owner execution, without adding it as a Git-publication prerequisite",
+    "require fresh source-bound branch CI and matching-head publication",
+    "do not infer merge, lifecycle, native GUI, live supplier/account, or release acceptance"
+  ]
+}

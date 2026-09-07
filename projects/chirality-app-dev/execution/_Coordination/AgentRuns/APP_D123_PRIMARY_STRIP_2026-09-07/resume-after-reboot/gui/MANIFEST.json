@@ -1,0 +1,265 @@
+{
+  "pathBase": "repository root",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/ASSET_BUNDLE.json",
+      "sha256": "55e9400d9947ce301c3898599c6e1578c5d5abe4d6139b02124590a08b0617a6",
+      "bytes": 5234
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/ASSET_INVENTORY.json",
+      "sha256": "21528b9c365cbaed4b5f870aa0973b6f2590143f7210bea99606b8b55bc9fa29",
+      "bytes": 10993
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/BROWSER_CLEANUP.json",
+      "sha256": "e63a1a2e9ca47cf565e342be271bfcb39f14b8373b890cb438aa64adb129244e",
+      "bytes": 72
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/CLEANUP.json",
+      "sha256": "8fb442f72b15d759f09c3e85155fdaa5eff723626586b3202f56edb883370e91",
+      "bytes": 314
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/DOM_PROPERTIES.json",
+      "sha256": "316add1e3596da3b0b607e0f482e6dcd52b96db16c8f92cb688ea4c446b3b9fc",
+      "bytes": 497
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/FINAL_AX.txt",
+      "sha256": "e10b7a18962940cd32bec13eedb676defdcafa4b7f0da716296a9690635b0fe3",
+      "bytes": 3890
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/FINAL_PROPERTIES.json",
+      "sha256": "d9a7a2c36941b76f770d4679ebba5204d95dd857d642ce5a184b39e5848315ce",
+      "bytes": 291
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/GUI_READY.json",
+      "sha256": "c4a77eb01c610e63fcdd6bf795735d056d10785dd0c74e336bf4f12d8a68b444",
+      "bytes": 362
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/IDENTITY_BACKCHECK.json",
+      "sha256": "b65efc7601ffc74a4e2c1ea995d49b12611ff5a0b27ca7952aa12fd216db629f",
+      "bytes": 1723
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/INVOCATIONS.md",
+      "sha256": "9794223f1ad0f48ef1d0a0721e1f4bcbb58f605c8550d71d9f634769812d997b",
+      "bytes": 948
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/RETURN.md",
+      "sha256": "c2c928e52c4eb8ec71a332f6ef8cc9cacb24d3284c8b0927e4a664c5ca25b16f",
+      "bytes": 3453
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/00300d73b9acb886.woff2",
+      "sha256": "cb2c5eee2c0a43ff30d2365407c7bc8b20e3bd90720a4a64102ba0b328022a02",
+      "bytes": 19580
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/29271324027b81d2.woff2",
+      "sha256": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
+      "bytes": 24184
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/34f8294b3ae9bcec.woff2",
+      "sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "bytes": 22588
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/43309b7b62f82656.woff2",
+      "sha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "bytes": 22832
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/6d231f7e43251f8d.css",
+      "sha256": "ebb22c12107072128b4e9905d4aee5f9f6463c10eab96c1ebcb2fd1eb0015ebc",
+      "bytes": 5133
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/79d09ceabfae564f.svg",
+      "sha256": "3e7920928fba9e3ad7d0af7355bbef692f245a16d593037a90d5070d245156ae",
+      "bytes": 935
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/7f81824c28e3c546.css",
+      "sha256": "65ed3c6af817a3cdf9fa2ce750d64941655960cd71719f0fe6640b6852218bbe",
+      "bytes": 70056
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/910caf7f2727617a.woff2",
+      "sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "bytes": 24252
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/a365b551013d8bb3.woff2",
+      "sha256": "e279e4f8baa0d4634d98868092f2198ae0dcd9e142c935822c385b9843352a9b",
+      "bytes": 20516
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/b5a710a2a0958782.woff2",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "bytes": 14708
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/c647d8de97d4443f.woff2",
+      "sha256": "d3f861b1ca55e50ca94de4c1756cb0d67c73de615172adf6b5b2078d939c723a",
+      "bytes": 20900
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/df9f713c7962dd69.woff2",
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+      "bytes": 14888
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/f270ede5abf27bf3.woff2",
+      "sha256": "6de912e531b6c98084f1b2d5e5a91bad77be4e68bc4e396e43c46fc435e5f3d9",
+      "bytes": 24356
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/assets/manifest.json",
+      "sha256": "c977c1df618899052344e9f8c7dea2cbf50a00ef79b87b3fecd8fbe500c3d2d7",
+      "bytes": 4837
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/cleanup_fixture.py",
+      "sha256": "bb65d58a46fffba72372f73037a53dbe1d87ab0f3ce0ac78350e9584b4852178",
+      "bytes": 1125
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/dark1440.dom.txt",
+      "sha256": "b21e20973e1a07267ebac3c0e2e53e965be2440bfcc2dc6ed56975062c5fcefe",
+      "bytes": 3504
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/dark1440.png",
+      "sha256": "06644aa231433ef8964bc9b8756f24b0b25fe4f7adc62dcb3b5709f9a7abb478",
+      "bytes": 46320
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/dark960.dom.txt",
+      "sha256": "b21e20973e1a07267ebac3c0e2e53e965be2440bfcc2dc6ed56975062c5fcefe",
+      "bytes": 3504
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/dark960.png",
+      "sha256": "6b68c7b49af07e5800af2dfce91e64e470f4d654cb0e573446cab03486c7e9c3",
+      "bytes": 40268
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/fixture-work.json",
+      "sha256": "0245c9a2f6aeb8da310297b24e0ead802eb29647b702a8e6eaba62bd4c13d456",
+      "bytes": 397
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/gui-daemon.log",
+      "sha256": "9e366630ec2b238b94f47e817c804a59b5f900a31d18c0bee4d85bdfc2610db5",
+      "bytes": 966
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/gui-daemon_LAUNCH.json",
+      "sha256": "99f054782cb3b55d0724523696c181c8239c61a0d495f624cd6711bb58221ee1",
+      "bytes": 999
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/gui-frontend.log",
+      "sha256": "629c09c7c403aedc467513e9cd349e7c5edacceed1431709ae2c83ab6800a1b1",
+      "bytes": 145
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/gui-frontend_LAUNCH.json",
+      "sha256": "e99368230740fec9ab126e733496bb311d26879342f10f3fae4c1d836daa59bd",
+      "bytes": 1182
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/launch_browser_fixture.py",
+      "sha256": "6d5735afd517de375a70e6fbc8a493423c5ad352735209d8fdef20da11ce0cea",
+      "bytes": 4481
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/light1440.dom.txt",
+      "sha256": "d09d5524f18309df86cfca7293805ba1d794a62082e25d464f028c9392ab3036",
+      "bytes": 3407
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/light1440.png",
+      "sha256": "6d4fdb1191e326ce5dd5c46af05730f965cd286fbb586da16a1147a2da067a6a",
+      "bytes": 48239
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/light960.dom.txt",
+      "sha256": "f7bb054f20be5af433ab4f0529d7f5bfaf337cc15392f6ca825179a4a03b3aae",
+      "bytes": 3504
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/light960.png",
+      "sha256": "40867d77f420469942edc470c97517a406d53e8850cc02059b14c4bb1bf05c45",
+      "bytes": 42488
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-dark1440.dom.txt",
+      "sha256": "e816008b09794c9db609999cd24025f59b8bd20a3ac4cf778e4f08c164488cde",
+      "bytes": 3560
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-dark1440.png",
+      "sha256": "c5714ef5d275ba4906fbd6f287ea520fe0f46298690060d57e6cce4492d0ef3a",
+      "bytes": 47403
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-dark960.dom.txt",
+      "sha256": "e816008b09794c9db609999cd24025f59b8bd20a3ac4cf778e4f08c164488cde",
+      "bytes": 3560
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-dark960.png",
+      "sha256": "efaa9771a73f242e312f00748eeec3e337110ab210166b11eacff99f257f115f",
+      "bytes": 42661
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-light1440.dom.txt",
+      "sha256": "de55275c2591fd43e94b2dfa5f30f8831390af727545ef284bfd4b52fb6a2340",
+      "bytes": 3560
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-light1440.png",
+      "sha256": "7e29f494aa9a78466efa6492bec47ced04b859d247600cb941438fdbc1c82273",
+      "bytes": 49326
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-light960.dom.txt",
+      "sha256": "de55275c2591fd43e94b2dfa5f30f8831390af727545ef284bfd4b52fb6a2340",
+      "bytes": 3560
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-light960.png",
+      "sha256": "78643927368b4bac3c437d349541f786e1351c00449d4319e492cf0d91cff5a8",
+      "bytes": 44230
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/registration-work.json",
+      "sha256": "de5d9ee3e707d4a255e52a926120d4e5a0a6b72eb784c0efd4abff5b1cc704f7",
+      "bytes": 622
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/registration-work.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/stub-running.dom.txt",
+      "sha256": "b273b44ec6a84b4235bb9ba88cf8b35077f6b9f6e9e760df43c6b06e9a48c560",
+      "bytes": 3512
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/stub-running.png",
+      "sha256": "002cb9e39dcd13ae92570ad2fa8e2ced8ef5ad59be1c173266c86ff2b3539a63",
+      "bytes": 43676
+    }
+  ]
+}

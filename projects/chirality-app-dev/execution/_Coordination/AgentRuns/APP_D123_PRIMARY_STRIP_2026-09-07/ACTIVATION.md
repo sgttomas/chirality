@@ -1,0 +1,2 @@
+# D123 activation
+Parent HELP_HUMAN authorizes the prepared bounded four-file increment after committed/pushed D122 factual predecessor c519efb7e4d0b615a90b3306910034d3a8916cf5. Main8275b4a. PREPARED_BRIEF_v1.md now active with source, tests and evidence obligations unchanged. Manager WORKING_ITEMS PKG-02 sole integration owner. Fresh Step0 and APP-HOLD dispatch/dependency pass. A1 new staging and fresh owner-executed login proof required for future claims. No CSS, new timers, event semantics, Runtime or ActivityView behavior change.

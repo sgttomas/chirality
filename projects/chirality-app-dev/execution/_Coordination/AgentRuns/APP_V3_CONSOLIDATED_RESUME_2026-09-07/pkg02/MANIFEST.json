@@ -1,0 +1,315 @@
+{
+  "schema": "chirality-publication-manifest/v1",
+  "runId": "APP_V3_CONSOLIDATED_RESUME_2026-09-07",
+  "packageId": "PKG-02",
+  "deliverableId": "DEL-02-04",
+  "generatedAt": "2026-09-07",
+  "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d",
+  "originMainObserved": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+  "selectionPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/PUBLICATION_SELECTION.json",
+  "selectionSha256": "70d9f1d8e7d7ba256800d8baa60cd3119f20edaf9a1e157728062199c858d209",
+  "memberCount": 50,
+  "members": [
+    {
+      "class": "product-source",
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "916b9a0a12ab0722877e83e21c7a6377ea7155d11f054d92939bef56a3197f20",
+      "bytes": 28679
+    },
+    {
+      "class": "product-source",
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+      "sha256": "9d3318af24d2d1828716abca64dcf26701a3c83ca316f9fd1323ecc1e068f3ad",
+      "bytes": 13354
+    },
+    {
+      "class": "product-test",
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "c8a013d5446e1ac6ec22df44be9042e7010480929c684f7519b99430767960a1",
+      "bytes": 23415
+    },
+    {
+      "class": "product-test",
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-strip.test.tsx",
+      "sha256": "734a8919187b393f72c6b7eb5064248f6d9358a6ca3a4377fad15edb9225e1be",
+      "bytes": 6884
+    },
+    {
+      "class": "product-test",
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+      "sha256": "96201508edb3aedbfdfbfe48b30d314a8215b5615e68fe36ca6f60bfb0a786a3",
+      "bytes": 4109
+    },
+    {
+      "class": "deliverable-state",
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md",
+      "sha256": "9c5ea688fbf7268846e3107dbae8c859be325a86562acc61c7e08ac9a773dca7",
+      "bytes": 12979
+    },
+    {
+      "class": "deliverable-state",
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/MEMORY.md",
+      "sha256": "9be60e65b8a49c9e9690a7b857f2f87132c9ff613783288e121fcd514f97033f",
+      "bytes": 8855
+    },
+    {
+      "class": "deliverable-evidence",
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/D123_FACTUAL_PARTIAL_CLOSEOUT_2026-09-07.md",
+      "sha256": "3bafd79a85ab633de7a5753f09b50f20a11977c48e7aad505b639f53c0b45a5c",
+      "bytes": 4706
+    },
+    {
+      "class": "loop-receipt",
+      "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "sha256": "d75b6a87b014de771417354e80416642442647f2d028aad264d4d514b5397ea7",
+      "bytes": 599458
+    },
+    {
+      "class": "prior-run-brief",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/ACTIVATION.md",
+      "sha256": "fe915bc908f0da379dd17a22a7252b5a422a0c42ba3aff2ebc6a79e586f6b526",
+      "bytes": 540
+    },
+    {
+      "class": "prior-run-brief",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/PREPARED_BRIEF_v1.md",
+      "sha256": "c2769743d1d10f265cdc59808876fd677f1f1dbca300bd4b9087b443db9a2bca",
+      "bytes": 3704
+    },
+    {
+      "class": "prior-run-graph",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/WORK_GRAPH_v1.md",
+      "sha256": "0517e1a51256a9ecc90bd91fcf96e4a59afaf6ba5f321596bcfac4a994699c94",
+      "bytes": 552
+    },
+    {
+      "class": "prior-run-scope",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/SOURCE_SCOPE.json",
+      "sha256": "05846074e19bc20471b98295cc0ede149c2935553c83443cd6917fbf236ce268",
+      "bytes": 1217
+    },
+    {
+      "class": "author-return",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/RETURN.md",
+      "sha256": "88065bcd79f33c7f1955afb7508f8f802d100d62f18f356dda394f99dddfe8be",
+      "bytes": 2066
+    },
+    {
+      "class": "author-freeze",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/SOURCE_FREEZE_v2.json",
+      "sha256": "4e5263cf04c4c22b438af90af7262d66bb96c8caa5c4a4cff5d774aad276de32",
+      "bytes": 1188
+    },
+    {
+      "class": "author-check-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/CHECKS.json",
+      "sha256": "43c524efa5371477ed7459e2c5769bcc66d46ea4f7be6e0e8b9ef1c33deae36d",
+      "bytes": 236
+    },
+    {
+      "class": "author-attribution",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/_run_records/TASK_RUN_D123_AUTHOR_v2.md",
+      "sha256": "0f6ae81e939df8ee9377f08250b2d97fd9e2c92f11523196708bc88da879b988",
+      "bytes": 1576
+    },
+    {
+      "class": "review-input-manifest",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/review-five-files/INPUT_MANIFEST.json",
+      "sha256": "c83c846f1dbce57aa0e844901bbc615f2cc646fdc8596072e736ccaea27512ea",
+      "bytes": 2700
+    },
+    {
+      "class": "review-return",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/review-five-files/RETURN.md",
+      "sha256": "ffd15bb0eb26b0dc434f8da8577998a624bb54f45bdc78b4c3949c5b81ba3107",
+      "bytes": 2179
+    },
+    {
+      "class": "fixture-amendment",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/TEST_FIXTURE_AMENDMENT.md",
+      "sha256": "f6fd9b9c72613bf6d3fe0eea45a98be2af15c42499650449ad9db5b6cc98b80b",
+      "bytes": 827
+    },
+    {
+      "class": "fixture-repair-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/RETURN.md",
+      "sha256": "60c84e261ae8e146a3e89ee2c46f45451abcb98b315ec0101a2dd5b66f5470fd",
+      "bytes": 1279
+    },
+    {
+      "class": "fixture-repair-manifest",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/MANIFEST.json",
+      "sha256": "1053a5301a5508cb934f584df5b5e78bebaead9f36fdf4b55e7784b2b7a52346",
+      "bytes": 1168
+    },
+    {
+      "class": "fixture-repair-diff-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/DIFF.json",
+      "sha256": "01d9248733f6b0942729d7c1bb495de8efa5aa750f9a302d3fde12d1a31c05a1",
+      "bytes": 1025
+    },
+    {
+      "class": "validation-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/RETURN.md",
+      "sha256": "b61f623ab583ad975b0f66ea216fca07579d6fc64891ae252652b36821d3dd8a",
+      "bytes": 1637
+    },
+    {
+      "class": "validation-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/BUILD_RESULT.json",
+      "sha256": "53c61275d303353dc39991d395fefba29b14b6dfe88c94f3bb09dbffba87f2e9",
+      "bytes": 89
+    },
+    {
+      "class": "validation-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/CONFIGURED_PREMERGE_SUMMARY.json",
+      "sha256": "4ebb746d7b77a45138cc8feb78ca18bc36d9c98d08ca9eea2fd2e503a34746eb",
+      "bytes": 1956
+    },
+    {
+      "class": "validation-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/REUSED_CHECKS.json",
+      "sha256": "fc6637d17a3275e431be452c877112e68dcd577796cf2392bf5e89085353bf0d",
+      "bytes": 327
+    },
+    {
+      "class": "validation-input-backcheck",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/FINAL_INPUT_BACKCHECK.json",
+      "sha256": "c1dba0aece29b8fb3a7dcdcae3a0464a711d612c7b91a64befa326b832f86d10",
+      "bytes": 88
+    },
+    {
+      "class": "validation-command-record",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/COMMANDS.json",
+      "sha256": "a792aa012abc25505d779928fcdf129bdf3536f9fbfbcae88c487c8052104505",
+      "bytes": 1414
+    },
+    {
+      "class": "validation-attribution",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/ATTRIBUTION.json",
+      "sha256": "263a9756506b278ef49ceb54740487e5b285e48423018da82d54b84c68efdc77",
+      "bytes": 338
+    },
+    {
+      "class": "native-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/NATIVE_RESULT.json",
+      "sha256": "5ccdd0a2e044c27ababb8529d342a81c03fab3fecbada147b92794bd906f3b4b",
+      "bytes": 100
+    },
+    {
+      "class": "native-cleanup-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/NATIVE_CLEANUP.json",
+      "sha256": "f977b40f3a132335a5411ccf3069e3b96837a72067b131d5d8a7e50c0a666d3a",
+      "bytes": 221
+    },
+    {
+      "class": "registration-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/REGISTRATION.json",
+      "sha256": "39c0db2abe921c84106b15fb48f0f070eed7b56825d3cdb5f5e1cdf323ba1fba",
+      "bytes": 713
+    },
+    {
+      "class": "readiness-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/API_READINESS.json",
+      "sha256": "bf07a47ea67684b0fa78cbd0cdd3002ea4912b8824f1bfd439b7da7347c83758",
+      "bytes": 228
+    },
+    {
+      "class": "runtime-identity-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/RUNNING_DAEMON_IDENTITY.json",
+      "sha256": "4b17b6fae2af778c5f96ea502bcd3cdcec33aba83f7dedaa3822c8426e95b81a",
+      "bytes": 541
+    },
+    {
+      "class": "local-raw-evidence-manifest",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/validation-after-fixture/MANIFEST.json",
+      "sha256": "abfa39e1fdb7ffcf722821a78992004d5fa92767eabc06cf204da0786fd2ab85",
+      "bytes": 11465
+    },
+    {
+      "class": "gui-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/RETURN.md",
+      "sha256": "c2c928e52c4eb8ec71a332f6ef8cc9cacb24d3284c8b0927e4a664c5ca25b16f",
+      "bytes": 3453
+    },
+    {
+      "class": "gui-identity-backcheck",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/IDENTITY_BACKCHECK.json",
+      "sha256": "b65efc7601ffc74a4e2c1ea995d49b12611ff5a0b27ca7952aa12fd216db629f",
+      "bytes": 1723
+    },
+    {
+      "class": "gui-cleanup-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/CLEANUP.json",
+      "sha256": "8fb442f72b15d759f09c3e85155fdaa5eff723626586b3202f56edb883370e91",
+      "bytes": 314
+    },
+    {
+      "class": "local-raw-evidence-manifest",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/MANIFEST.json",
+      "sha256": "b8288f435f9c4ea494ff3768a14d7461aa7f7796b01bb4eebfe1ffc571b7e5a4",
+      "bytes": 14362
+    },
+    {
+      "class": "representative-ui-capture",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-dark960.png",
+      "sha256": "efaa9771a73f242e312f00748eeec3e337110ab210166b11eacff99f257f115f",
+      "bytes": 42661
+    },
+    {
+      "class": "representative-ui-capture",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/gui/post-turn-light1440.png",
+      "sha256": "7e29f494aa9a78466efa6492bec47ced04b859d247600cb941438fdbc1c82273",
+      "bytes": 49326
+    },
+    {
+      "class": "manager-activation",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/ACTIVATION.md",
+      "sha256": "351b8708c1993e9013d03946dcc9b1c85e9bef33358c07b9a7207c9d26d6abdc",
+      "bytes": 2759
+    },
+    {
+      "class": "manager-work-graph",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/WORK_GRAPH.json",
+      "sha256": "a7f4a19ae1ea679ca04e0b16dc85cd96a0c98a904014929fd4f95d3c756a1445",
+      "bytes": 2483
+    },
+    {
+      "class": "manager-status",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/STATUS.json",
+      "sha256": "5c83d9631d23719131d928fe87c8e7ae8302ceb9b18a80ee298b698ac1cbd42a",
+      "bytes": 597
+    },
+    {
+      "class": "manager-applicability",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/EVIDENCE_APPLICABILITY.json",
+      "sha256": "80a80af2dac522c5d4c13343155590017ed0a8973f0e50dd8be74dd84ebed99c",
+      "bytes": 4471
+    },
+    {
+      "class": "manager-check-summary",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/REGISTERED_CHECKS.json",
+      "sha256": "6c7f3967bbfd43f8cea7398670133f5b45abe5bc6a3f0e01b519bab102166c21",
+      "bytes": 4188
+    },
+    {
+      "class": "manager-publication-selection",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/PUBLICATION_SELECTION.json",
+      "sha256": "70d9f1d8e7d7ba256800d8baa60cd3119f20edaf9a1e157728062199c858d209",
+      "bytes": 10806
+    },
+    {
+      "class": "manager-return",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/MANAGER_RETURN.md",
+      "sha256": "1c02d390f6822de5a15bd2e1f4e159e2d42972dd83312bbf0df454d6bb3fd78c",
+      "bytes": 5379
+    },
+    {
+      "class": "manager-handoff",
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/HANDOFF.md",
+      "sha256": "607a5ae8918f0e404fe29568c64005f6872a3ea2a143b7541965784375b208ab",
+      "bytes": 2100
+    }
+  ],
+  "selfExclusion": "MANIFEST.json is selected but excludes itself from member hashing."
+}

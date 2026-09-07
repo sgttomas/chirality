@@ -1,0 +1,64 @@
+{
+  "schema": "chirality-working-items-work-graph/v1",
+  "runId": "APP_V3_CONSOLIDATED_RESUME_2026-09-07",
+  "instanceId": "/root/app_pkg02",
+  "packageId": "PKG-02",
+  "selectedDeliverables": ["DEL-02-04"],
+  "version": 1,
+  "selectionAuthority": "consolidated HELP_HUMAN sealed brief",
+  "posture": "TERMINAL_FAN_OUT_IN_WITH_VERIFIED_REUSE",
+  "nodes": [
+    {
+      "id": "N1-live-entry",
+      "owner": "WORKING_ITEMS",
+      "writes": ["pkg02 live-entry evidence"],
+      "returns": ["APP-HOLD and live-state verdicts"],
+      "gate": "all required preflights ALLOW"
+    },
+    {
+      "id": "N2-evidence-applicability",
+      "owner": "WORKING_ITEMS",
+      "dependsOn": ["N1-live-entry"],
+      "reads": ["preserved D123 manifests", "fresh five-file review return"],
+      "writes": ["pkg02 applicability record"],
+      "returns": ["exact input and nested-manifest match"],
+      "gate": "zero missing or mismatched members"
+    },
+    {
+      "id": "N3-factual-closeout",
+      "owner": "WORKING_ITEMS",
+      "dependsOn": ["N2-evidence-applicability"],
+      "writes": ["DEL-02-04 factual records", "App receipt", "pkg02 return surfaces"],
+      "returns": ["partial closeout and exact publication selection"],
+      "gate": "Remaining and lifecycle retained; claims calibrated"
+    },
+    {
+      "id": "N4-terminal-checks",
+      "owner": "WORKING_ITEMS",
+      "dependsOn": ["N3-factual-closeout"],
+      "writes": ["pkg02 registered-check evidence and manifest"],
+      "returns": ["publication-ready selection for CHANGE"],
+      "gate": "registered governance checks, receipt validation, diff check, secret/scope/hash checks pass"
+    }
+  ],
+  "edges": [
+    ["N1-live-entry", "N2-evidence-applicability"],
+    ["N2-evidence-applicability", "N3-factual-closeout"],
+    ["N3-factual-closeout", "N4-terminal-checks"]
+  ],
+  "concurrency": "none; one integration owner for factual surfaces",
+  "reviewReuse": {
+    "childInstance": "/root/app_pkg02_resume/d123_five_file_review",
+    "method": "TASK + software-code-review v1",
+    "independentFromAuthor": true,
+    "scope": "100% of the five-file D123 source/test result",
+    "acceptance": "reuse only after exact rehash of every declared review input"
+  },
+  "escalationPoints": [
+    "any source or review-input mismatch",
+    "APP-HOLD failure",
+    "need for product repair",
+    "competing App receipt writer",
+    "registered-check failure not attributable to the recorded default-interpreter limitation"
+  ]
+}

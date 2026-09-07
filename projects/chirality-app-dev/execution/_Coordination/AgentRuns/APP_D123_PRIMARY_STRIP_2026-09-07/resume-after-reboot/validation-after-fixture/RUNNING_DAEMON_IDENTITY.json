@@ -1,0 +1,7 @@
+{
+  "pid": 36225,
+  "actual_ps": "36225 36220 node /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules/.bin/electron --user-data-dir=/private/tmp/ch-d123-resume-premerge /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-electron/main.js --runtime-daemon",
+  "socket": "/private/tmp/ch-d123-resume-premerge/runtime/control.sock",
+  "artifact_manifest_sha256": "fad21efc8159d1c32538339e19b7789d0fc899e65e56f226afe3484ee87c55cc",
+  "artifact_hashes_unchanged": true
+}

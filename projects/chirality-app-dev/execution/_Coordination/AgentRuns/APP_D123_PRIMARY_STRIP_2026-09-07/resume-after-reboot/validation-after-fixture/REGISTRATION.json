@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "command": [
+    "node",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/dist-runtime/chirality-cli.mjs",
+    "project",
+    "register",
+    "--manifest",
+    "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/chirality.project.json",
+    "--approved-by",
+    "owner-authorized-app-v3-integration",
+    "--approval-reference",
+    "APP_D123_PRIMARY_STRIP_2026-09-07-owner-staged-execution",
+    "--json"
+  ],
+  "public_result": {
+    "projectId": "chirality-app-dev",
+    "tokenFile": "/private/tmp/ch-d123-resume-premerge/runtime/auth/tokens/project-027a26d8-3b11-45f2-b6e0-ae05eb53321a.token"
+  },
+  "other_fields_omitted": true
+}

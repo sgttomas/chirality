@@ -74,23 +74,43 @@ export function ActivityShelf({
   );
 }
 
-/** Fixed status line; counts describe the observed buffer, never inferred work. */
-export function ActivityStrip({ reconnectControl, onOpenDetails, running, events }: {
-  reconnectControl?: React.ReactNode; onOpenDetails: () => void; running: boolean; events: readonly HarnessEvent[];
+type PrimaryTurnActivity = { actions: number; children: number; elapsed?: number };
+
+/** Project only an explicitly identified, bounded primary turn in observation order. */
+export function derivePrimaryTurnActivity(events: readonly HarnessEvent[], primarySessionId?: string): PrimaryTurnActivity | null {
+  if (typeof primarySessionId !== 'string' || !primarySessionId.trim()) return null;
+  const primary = events.filter(event => event.sessionId === primarySessionId);
+  // A newer incomplete turn must not fall back to a completed older turn.
+  const latest = [...primary].reverse().find(event => event.turnId !== undefined || event.type.startsWith('turn.'));
+  if (typeof latest?.turnId !== 'string' || !latest.turnId.trim()) return null;
+  const turn = primary.filter(event => event.turnId === latest.turnId);
+  const starts = turn.filter(event => event.type === 'turn.started');
+  const ends = turn.filter(event => ['turn.completed', 'turn.failed', 'turn.interrupted'].includes(event.type));
+  if (starts.length !== 1 || ends.length > 1) return null;
+  if ([...primary].reverse().find(event => event.type === 'turn.started') !== starts[0]) return null;
+  const startIndex = turn.indexOf(starts[0]);
+  const endIndex = ends.length ? turn.indexOf(ends[0]) : turn.length - 1;
+  if (endIndex < startIndex || (ends.length && endIndex !== turn.length - 1)) return null;
+  const observed = turn.slice(startIndex, endIndex + 1);
+  const times = observed.map(event => Date.parse(event.timestamp));
+  if (times.some((time, index) => !Number.isFinite(time) || (index > 0 && time < times[index - 1]))) return null;
+  return {
+    actions: deriveToolActivity(observed).length,
+    children: deriveSubagentActivity(observed).length,
+    elapsed: ends.length ? times[times.length - 1] - times[0] : undefined
+  };
+}
+
+/** Fixed status line; counts describe the observed primary turn, never complete work. */
+export function ActivityStrip({ reconnectControl, onOpenDetails, running, events, primarySessionId }: {
+  reconnectControl?: React.ReactNode; onOpenDetails: () => void; running: boolean; events: readonly HarnessEvent[]; primarySessionId?: string;
 }): JSX.Element {
-  const sessions = new Map<string, HarnessEvent[]>();
-  for (const event of events) {
-    const source = sessions.get(event.sessionId) ?? [];
-    source.push(event); sessions.set(event.sessionId, source);
-  }
-  const actions = [...sessions.values()].reduce((count, source) => count + deriveToolActivity(source).length, 0);
-  const children = [...sessions.values()].reduce((count, source) => count + deriveSubagentActivity(source).length, 0);
-  const start = [...events].reverse().find(event => event.type === 'turn.started');
-  const end = start ? [...events].reverse().find(event => event.sessionId === start.sessionId && Boolean(start.turnId) && event.turnId === start.turnId && ['turn.completed', 'turn.failed', 'turn.interrupted'].includes(event.type) && Date.parse(event.timestamp) >= Date.parse(start.timestamp)) : undefined;
-  const elapsed = start && end ? Math.max(0, Date.parse(end.timestamp) - Date.parse(start.timestamp)) : undefined;
+  const observedTurn = derivePrimaryTurnActivity(events, primarySessionId);
+  // Streaming may begin before its first event; do not label an older completed turn current.
+  const turn = running && observedTurn?.elapsed !== undefined ? null : observedTurn;
   return <div className="woven-activity-strip" aria-label="Activity status">
     {reconnectControl}
-    <span role="status">{running ? 'Working' : 'Idle'}{actions || children ? ` · ${actions} actions · ${children} children observed` : ''}{elapsed !== undefined && Number.isFinite(elapsed) ? ` · Last turn: ${(elapsed / 1000).toFixed(1)} s` : ''}</span>
+    <span role="status">{running ? 'Working' : 'Idle'}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ' · Primary turn activity unavailable'}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ' · Turn duration unavailable'}</span>
     <button type="button" onClick={onOpenDetails}>Details ›</button>
   </div>;
 }

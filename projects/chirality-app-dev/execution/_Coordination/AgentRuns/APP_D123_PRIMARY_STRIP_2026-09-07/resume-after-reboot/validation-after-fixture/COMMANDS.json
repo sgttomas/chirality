@@ -1,0 +1,59 @@
+[
+  {
+    "name": "hold-dispatch",
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "dispatch",
+      "--entry-path",
+      "WORKING_ITEMS:D123:VALIDATION:RESUME",
+      "--target",
+      "DEL-02-04"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "started": "2026-09-07T16:23:43.750033+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "hold-reliance",
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "WORKING_ITEMS:D123:VALIDATION:RESUME",
+      "--target",
+      "DEL-02-04"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+    "started": "2026-09-07T16:23:44.421970+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "app-tests",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--reporter=json"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+    "started": "2026-09-07T16:23:45.268282+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "app-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+    "started": "2026-09-07T16:23:49.423577+00:00",
+    "exit_code": 0
+  }
+]

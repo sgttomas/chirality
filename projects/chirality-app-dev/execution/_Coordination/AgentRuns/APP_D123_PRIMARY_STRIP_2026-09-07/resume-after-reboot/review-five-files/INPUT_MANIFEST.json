@@ -1,0 +1,53 @@
+{
+  "head": "1ffa47863b9a53ab359d84e1c72ca7d93a69b47d",
+  "pathBase": "repository root",
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "916b9a0a12ab0722877e83e21c7a6377ea7155d11f054d92939bef56a3197f20"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx",
+      "sha256": "9d3318af24d2d1828716abca64dcf26701a3c83ca316f9fd1323ecc1e068f3ad"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "c8a013d5446e1ac6ec22df44be9042e7010480929c684f7519b99430767960a1"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-strip.test.tsx",
+      "sha256": "734a8919187b393f72c6b7eb5064248f6d9358a6ca3a4377fad15edb9225e1be"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx",
+      "sha256": "96201508edb3aedbfdfbfe48b30d314a8215b5615e68fe36ca6f60bfb0a786a3"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/PREPARED_BRIEF_v1.md",
+      "sha256": "c2769743d1d10f265cdc59808876fd677f1f1dbca300bd4b9087b443db9a2bca"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/author-v2/SOURCE_FREEZE_v2.json",
+      "sha256": "4e5263cf04c4c22b438af90af7262d66bb96c8caa5c4a4cff5d774aad276de32"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/review-v2/RETURN.md",
+      "sha256": "a5aad4aaf6d9fdbdca872f6789d56742d04522f5a7cf6108b75054b88f9d9573"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/FIVE_FILE_REVIEW_BRIEF.md",
+      "sha256": "cd4d55553a39768db6cec050d9e5b9f193be827f2373bcf411e7c04db88862d8"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/TEST_FIXTURE_AMENDMENT.md",
+      "sha256": "f6fd9b9c72613bf6d3fe0eea45a98be2af15c42499650449ad9db5b6cc98b80b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_D123_PRIMARY_STRIP_2026-09-07/resume-after-reboot/fixture-repair/RETURN.md",
+      "sha256": "60c84e261ae8e146a3e89ee2c46f45451abcb98b315ec0101a2dd5b66f5470fd"
+    }
+  ],
+  "fourFrozenHashesUnchanged": true,
+  "activityViewTailUnchangedAgainstHead": true,
+  "fifthHashMatchesApproved": true
+}

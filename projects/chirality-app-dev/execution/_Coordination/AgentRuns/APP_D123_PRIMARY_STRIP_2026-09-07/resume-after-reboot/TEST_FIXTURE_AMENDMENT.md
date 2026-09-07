@@ -1,0 +1,4 @@
+# Lead-authorized fixture correction
+Actual App lead /root approved under owner delegated low-risk authority on2026-09-07. This is a lead act, not a new owner quote.
+Additional sole source/test write target: frontend/src/__tests__/components/activity-view-local-state.test.tsx. Replace old global2actions expectation with explicit Primary turn activity unavailable and absence2actions. Preserve all ActivityView collision/clear/sharedbuffer assertions and four frozen D123 sourcefiles.
+Bounded Agent2 records pre/posthash, exactdiff, APP-HOLD dispatch DEL02-04 and outputmanifest under resume-after-reboot/fixture-repair. No other writes/sourcebehaviorchanges/tests/builds/delegation. Next fresh independent review coverscompletefivefilediff, then manager resumes fulltests+requiredchecks; oldfailuremanifest remainsimmutable.

@@ -84,7 +84,7 @@ vi.mock('../../lib/woven-dialogue/selected-session-replay', () => ({
   })
 }));
 vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
-  ActivityStrip: ({ onOpenDetails }: { onOpenDetails: () => void }) => <button onClick={onOpenDetails} data-activity-strip="mounted">Details</button>,
+  ActivityStrip: ({ onOpenDetails, primarySessionId }: { onOpenDetails: () => void; primarySessionId?: string }) => <button onClick={onOpenDetails} data-primary-session={primarySessionId} data-activity-strip="mounted">Details</button>,
   ActivityView: () => <div data-activity-view="mounted" />
 }));
 vi.mock('../../components/woven-dialogue/selected-session-replay-lens', () => ({
@@ -308,6 +308,7 @@ it('opens Settings from the sole footer or collapsed account control without rem
   vi.stubGlobal('window', { innerWidth: 1440, innerHeight: 900, addEventListener: vi.fn(), removeEventListener: vi.fn(), localStorage: { getItem: () => null, setItem: vi.fn() } });
   await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
   const chat = tree.root.findByProps({ 'data-chat-panel': 'mounted' });
+  expect(tree.root.findByProps({ 'data-activity-strip': 'mounted' }).props['data-primary-session']).toBe('primary');
   const mounted = shellState.mounted;
   const unmounted = shellState.unmounted;
   expect(tree.root.findAllByProps({ 'data-account-control': 'true' })).toHaveLength(1);
@@ -319,6 +320,7 @@ it('opens Settings from the sole footer or collapsed account control without rem
   act(() => tree.root.findByProps({ 'data-account-control': 'true' }).props.onClick());
   expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(chat);
   expect(shellState.mounted).toBe(mounted); expect(shellState.unmounted).toBe(unmounted);
+  expect(tree.root.findByProps({ 'data-activity-strip': 'mounted' }).props['data-primary-session']).toBe('primary');
   act(() => tree.unmount());
   vi.unstubAllGlobals();
 });
