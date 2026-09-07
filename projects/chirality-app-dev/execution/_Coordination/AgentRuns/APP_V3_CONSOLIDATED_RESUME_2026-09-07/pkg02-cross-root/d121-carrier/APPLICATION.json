@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-d121-carrier-application/v1",
+  "owner": "PKG-02 WORKING_ITEMS /root/app_pkg02",
+  "sourcePatch": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/pdf-application/ACCEPTED.patch",
+  "sourcePatchSha256": "e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32",
+  "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+  "preimageSha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd",
+  "postimageSha256": "af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960",
+  "hunksApplied": 1,
+  "appHoldBefore": "ALLOW",
+  "appHoldAfter": "ALLOW",
+  "repoHead": "f3f68d744fc745996776cfbe8f30cbd2bb7b100a",
+  "scanFingerprintSha256": "b30a546177fbdf6ea49e3407f8b1df994b83061c7024cc0dfe6ccabc646af437",
+  "registerSha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "diffCheck": "PASS",
+  "status": "APPLIED_EXACT",
+  "limits": "This carrier records the ruled D121 scope and qualification conditions. It does not activate PDF source, prove native PDF behavior, publish capability, close T3, or create account authority. PKG-09 owns the combined carrier receipt."
+}

@@ -1,0 +1,58 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "version": 1,
+  "selection_authority": "HELP_HUMAN sealed brief; D121 owner ruling already RULED",
+  "package_id": "PKG-09",
+  "selected_deliverables": ["DEL-09-06"],
+  "posture": "MIXED",
+  "runtime": {
+    "manager_instance": "/root/app_pkg09",
+    "model": "gpt-5.6-sol",
+    "reasoning": "medium",
+    "role_enforcement": "instruction-asserted"
+  },
+  "nodes": [
+    {
+      "id": "N1",
+      "owner": "WORKING_ITEMS manager direct",
+      "objective": "Verify exact accepted carrier identities and prepare PKG09 application/proof briefs",
+      "writes": ["projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121/**"],
+      "state": "COMPLETE"
+    },
+    {
+      "id": "N2",
+      "owner": "PKG09 WORKING_ITEMS integration owner",
+      "objective": "Apply only the accepted DEL-09-06 status and SOW hunks",
+      "writes": [
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md"
+      ],
+      "state": "HOLD_PARENT_RELEASE"
+    },
+    {
+      "id": "N3",
+      "owner": "future TASK author",
+      "objective": "Implement the PKG09-owned D121 packaged proof extension on a parent-frozen shared source identity",
+      "writes": [
+        "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+        "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+        "run-local author evidence named by the released brief"
+      ],
+      "state": "HOLD_SHARED_FREEZE_AND_PROCESS_LANE"
+    },
+    {
+      "id": "N4",
+      "owner": "fresh TASK software-code-review",
+      "objective": "Review 100% of the frozen complete D121 diff without writes",
+      "writes": [],
+      "state": "HOLD_N3_RETURN"
+    }
+  ],
+  "edges": [
+    {"from": "N1", "to": "N2", "gate": "parent exact-application release"},
+    {"from": "N2", "to": "N3", "gate": "accepted carrier application plus PKG02 shared source freeze and process-lane release"},
+    {"from": "N3", "to": "N4", "gate": "author terminal return and frozen complete diff"}
+  ],
+  "concurrency": "N2 is serialized with PKG02 carrier integration by the parent. N3 starts only after PKG02 freezes the first ten loci. N4 is fresh and separate from N3.",
+  "escalation": "Any preimage drift, extra source locus, policy relaxation, package/lock change, new IPC/capability, proof failure, or missing native evidence returns to HELP_HUMAN; no local reinterpretation."
+}

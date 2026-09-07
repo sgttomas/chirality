@@ -1,0 +1,135 @@
+{
+  "schema": "chirality-d121-carrier-independent-review/v1",
+  "verdict": "PASS",
+  "repo_head": "f3f68d744fc745996776cfbe8f30cbd2bb7b100a",
+  "role": "ephemeral Agent 2 independent reviewer",
+  "role_enforcement": "instruction-asserted",
+  "nondelegation": "instruction-asserted",
+  "basis": {
+    "ruling": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-121_RULING_PDF_DESIGN_AND_QUALIFICATION_2026-09-06.md",
+      "sha256": "fa410ae195c74fab2ad3de7cb5d64e244a327905ea3d1f76849f6b51fb74caeb"
+    },
+    "design": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pdf-scope/DESIGN.md",
+      "sha256": "c42f617eafd3cce21047d4cf5977fd058207ef55fd8b090b337b2422f62bc687"
+    },
+    "accepted_patch": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/pdf-application/ACCEPTED.patch",
+      "sha256": "e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32"
+    },
+    "corrected_identities": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121/PREFLIGHT_AND_IDENTITIES_v2.json",
+      "sha256": "08ede4514628d0e7fc359db6eb73a66a4a2ad280cd4213cb3d5457c2cc819919"
+    },
+    "v1_failure_notice": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121/V1_FAILURE_NOTICE.md",
+      "sha256": "698b4600b21abc64e704f84990680ff7b1d083aa13e4bd3e402ff89b10d2090c",
+      "status": "FAILED_SUPERSEDED",
+      "use_prohibited": true
+    },
+    "pkg02_application": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02-cross-root/d121-carrier/APPLICATION.json",
+      "sha256": "be4919c7314750711f65cf400a9457b30a840ece9b0e92c88ebf99506a0700a9",
+      "status": "APPLIED_EXACT"
+    }
+  },
+  "carriers": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+      "head_preimage_sha256": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd",
+      "live_sha256": "af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960",
+      "retained_postimage_sha256": "af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960",
+      "byte_compare": "PASS",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+      "head_preimage_sha256": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0",
+      "live_sha256": "0f4b65b53f0e05183fcd8a5f489bb2da8ccdb4ead6fab22944f89f8daf42e6ba",
+      "retained_postimage_sha256": "0f4b65b53f0e05183fcd8a5f489bb2da8ccdb4ead6fab22944f89f8daf42e6ba",
+      "byte_compare": "PASS",
+      "additions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md",
+      "head_preimage_sha256": "1fed47a10b3f480a545947e6cf1d60ef7e150f166caceb4a26c0267f92dde652",
+      "live_sha256": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0",
+      "retained_postimage_sha256": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0",
+      "byte_compare": "PASS",
+      "additions": 3,
+      "deletions": 3
+    }
+  ],
+  "checks": {
+    "live_union_equals_retained_postimages": "PASS",
+    "head_union_equals_corrected_preimages": "PASS",
+    "git_apply_reverse_check_p0": "PASS",
+    "carrier_changed_paths_exact": "PASS",
+    "per_file_changed_line_multisets_equal_accepted_patch": "PASS",
+    "carrier_diff_additions": 12,
+    "carrier_diff_deletions": 3,
+    "carrier_diff_sha256": "2d627e8479ee7f13663fe211dac00895fe6720d11701bccda55ff7e1a59e66d1",
+    "git_diff_check": "PASS",
+    "sow_validation": {
+      "result": "PASS",
+      "format": "SOW_V1",
+      "valid": true,
+      "issues": []
+    },
+    "review_checklist": {
+      "result": "PASS",
+      "item_count": 1,
+      "acceptance_id": "DEL-09-06-AC-001",
+      "verification_ids": [
+        "DEL-09-06-VER-001"
+      ]
+    },
+    "lifecycle": {
+      "DEL-02-03": "IN_PROGRESS",
+      "DEL-09-06": "IN_PROGRESS",
+      "result": "PASS"
+    },
+    "checking_approval_sha": {
+      "DEL-02-03": "8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec",
+      "DEL-09-06": "8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec",
+      "result": "PASS"
+    },
+    "source_and_proof_remain_held": "PASS",
+    "authority_overclaim_absent": "PASS",
+    "inline_pdf_preview": {
+      "head": false,
+      "live": false,
+      "working_tree_diff": "NONE",
+      "live_file_sha256": "2620c7ebc966e303e332543c30444925d3be7b8c2ae81bf52cab88ed5475a20a",
+      "result": "PASS"
+    },
+    "app_hold_dispatch": {
+      "verdict": "ALLOW",
+      "targets": [
+        "DEL-02-03",
+        "DEL-09-06"
+      ],
+      "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+      "scan_fingerprint_sha256": "b30a546177fbdf6ea49e3407f8b1df994b83061c7024cc0dfe6ccabc646af437"
+    },
+    "v1_failure_and_v2_supersession_explicit": "PASS",
+    "write_containment": "PASS_INSTRUCTION_ASSERTED"
+  },
+  "tools": {
+    "python": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+    "sow_validator_sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+    "checklist_deriver_sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109"
+  },
+  "findings": [],
+  "limitations": [
+    "PASS validates the carrier application only.",
+    "No source activation, native PDF capability proof, lifecycle closure, publication, promotion, or release authority is established."
+  ],
+  "rerun_triggers": [
+    "Any carrier or retained postimage byte changes.",
+    "Accepted patch, ruling, design, validation tool, APP-HOLD identity, source/proof hold, or inlinePdfPreview changes."
+  ]
+}

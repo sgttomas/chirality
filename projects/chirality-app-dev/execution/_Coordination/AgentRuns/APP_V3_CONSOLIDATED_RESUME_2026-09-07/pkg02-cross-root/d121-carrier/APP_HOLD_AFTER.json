@@ -1,0 +1,25 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "HELP_HUMAN:APP_V3_CROSS_ROOT_SHELL",
+  "operation": "reliance",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "f3f68d744fc745996776cfbe8f30cbd2bb7b100a",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-03",
+      "entry_path": "HELP_HUMAN:APP_V3_CROSS_ROOT_SHELL",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "b30a546177fbdf6ea49e3407f8b1df994b83061c7024cc0dfe6ccabc646af437",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-02-03"
+  ],
+  "verdict": "ALLOW"
+}
