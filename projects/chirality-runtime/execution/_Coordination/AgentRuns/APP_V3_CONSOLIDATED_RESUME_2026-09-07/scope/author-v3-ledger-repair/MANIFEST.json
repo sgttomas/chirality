@@ -1,0 +1,36 @@
+{
+  "schema": "runtime-sca002-ledger-repair-manifest/v1",
+  "status": "CANDIDATE_NOT_APPLIED",
+  "verdict": "READY_FOR_INDEPENDENT_REVIEW",
+  "canonicalPreimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+  "separateOwnerApprovalRequired": true,
+  "canonicalApplied": false,
+  "gitStateMutated": false,
+  "role": "bounded nondelegating ephemeral Agent 2 under Runtime SCOPE_CHANGE; instruction-asserted",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/POSTIMAGE/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "c6e985bc25bf4f10ca8a8f27d82484736e0febbe85a95a6e3d9e2cc825c4cadc"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/CANDIDATE.patch",
+      "sha256": "ecb1cb62c2b8bb1b060cca52e02867d777464eab9726b54849fc1f17064838fd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/PREIMAGE_INDEX.json",
+      "sha256": "eb25d6e0d5119766f6e8a8e42763450352ce61cdaf824814ef88572a36b40447"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/POSTIMAGE_INDEX.json",
+      "sha256": "44a2204e43145e8f02aa3a799cdae1b6ece8f2eaf95bbcb5f35d42482a194ec6"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/CHECKS.json",
+      "sha256": "63f27fa0d9a85425abcb7ca5c8f3cac20c314a0afc70065b95a9dc7b5da36e10"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/RETURN.md",
+      "sha256": "3be88a1e40575275428d1f21c3d741e52a88fded9f4cc9539f88e09dfa6d5ba3"
+    }
+  ]
+}

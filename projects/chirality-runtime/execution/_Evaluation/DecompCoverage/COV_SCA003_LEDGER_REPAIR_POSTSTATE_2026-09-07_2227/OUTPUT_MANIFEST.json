@@ -1,0 +1,31 @@
+{
+  "kind": "immutable-decomposition-coverage-audit-snapshot",
+  "run_label": "SCA003_LEDGER_REPAIR_POSTSTATE",
+  "snapshot": "COV_SCA003_LEDGER_REPAIR_POSTSTATE_2026-09-07_2227",
+  "verdict": "NON_BLOCKING_PASS",
+  "members": [
+    {"path": "Brief.md", "sha256": "4c38ee6892bfbc4ce0aca4d6a7aaf02b4e26842ecbc4f316519fe9e1cdf9e072", "bytes": 3972},
+    {"path": "CHECKS.json", "sha256": "c0c8bad26705d2e3836f7a9d1854ca011b793e1aec7b3db71e6ac4358cf05fad", "bytes": 2566},
+    {"path": "Decision_Log.md", "sha256": "6982871056a126e6838fe81ff87fa70fa96969316fd5d39a94b73aa8f83c5ac9", "bytes": 1175},
+    {"path": "Decomp_Coverage_IssueLog.csv", "sha256": "3ab480016f360ad7ce8ef8107a1fac4517ef789a12711122e1b28e3fdf6be9c5", "bytes": 12180},
+    {"path": "Decomp_Coverage_Matrix.csv", "sha256": "3f12b117eecda38fbe2c51796c22df5efb7f580aa244dc10fdefe4146bd06c9a", "bytes": 1135},
+    {"path": "Decomp_Coverage_Report.md", "sha256": "f05ceaf05793eff10ce66d4ac8b1748924d65b23a9aea6a636c0660551e6772e", "bytes": 6257},
+    {"path": "INPUT_PINS.json", "sha256": "210e955746dc0a22d72f4bd2302eb48501fbd2ef1eb2b7a11fd72ff644a5f600", "bytes": 2415},
+    {"path": "QA_Report.md", "sha256": "284e6af701432a3f3e51fdc6bdf9b27de2d76c5f1da38053ef8cfa9db1fe648b", "bytes": 2599},
+    {"path": "RETURN.md", "sha256": "c90d6c2bc7f71c9d2204c8bb8b7cf660a0b1bbe0169c4c054404021cbe8328fa", "bytes": 3928},
+    {"path": "RUN_SUMMARY.md", "sha256": "21f27590ab6e05114e83034ee1e79c05dc53202a2d7f931c4db7d1e8d76d609c", "bytes": 1398},
+    {"path": "coverage_summary.json", "sha256": "b4c27f461ee8a7c4863dd55229dbe262dfad5c3dd357423587fef5df07c8a738", "bytes": 1889}
+  ],
+  "memberCount": 11,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "pointer": {
+    "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/_LATEST.md",
+    "sha256": "74f4ccdeff8a96f0b5ab0220915c5b268eec92d8ae9070609b0a544661c1310e",
+    "bytes": 662
+  },
+  "expected_source_snapshot": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-003_2026-09-07_1616/SNAPSHOT_MANIFEST.json",
+  "source_snapshot_sha256": "ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48",
+  "canonical_ledger_sha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d",
+  "role": "dedicated AUDIT_DECOMP Agent 2; instruction-asserted",
+  "nondelegation": "instruction-asserted; no delegation performed"
+}

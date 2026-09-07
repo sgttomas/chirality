@@ -1,0 +1,19 @@
+# AUDIT_DECOMP return to Runtime SCOPE_CHANGE
+
+Verdict: **NON_BLOCKING_PASS**.
+
+Snapshot: `/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SCA003_LEDGER_REPAIR_POSTSTATE_2026-09-07_2227/`
+
+Canonical `RUNTIME_SCOPE_LEDGER.csv` SHA256 is `bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d`, byte-identical to the owner-approved v6 postimage. The exact patch SHA256 is `9b2e2d0975cdacebb7aabd826bc339389afb3130284548b620346a8eb9a20855`; relative to preimage SHA256 `e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920`, only `DecisionRef` and `Notes` changed. The other SCA-002 canonical files retain SHA256 `19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d` and `413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e`.
+
+SCA-003 `SNAPSHOT_MANIFEST.json` SHA256 is `ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48`; all 16 declared members and byte counts verify. `_ScopeChange/_LATEST.md` SHA256 is `941753dfbe4ebedd9385aa8934acefe7c4a46360fbf126648ba93a3d233b3972` and exactly equals SCA-003 `LATEST_POSTIMAGE.md`. SCA-002 manifest SHA256 remains `8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3`. The first blocked audit manifest, return and issue log remain `f2044a82fe16474865c6c1f99d66aa9c886851afedb1b72d22924f9ed7cc8369`, `912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1`, and `130ae0490e693ee92a2774b88efb08297bdc2d9b7660a8c5b4a7a23fa9e59af7`.
+
+The repaired ledger truthfully makes the first audit blocker dated history, records its metadata inconsistency as resolved, contains no repair-pending or proposed/candidate self-label, and leaves this fresh audit and separate Gate 5 acceptance as future acts. `CandidateState = GATE3_REVIEW_NOT_ACCEPTED` is explicitly historical migration/decomposition metadata. External owner evidence rehashes to `ff389e47a48386aeabe344496acf509386301aa0b72868a690ba5b4190bfe67c` and `f4fcbe92c15c3a9803f6835dfa1d9dc1563101ec3a6e7308b251b0570c314872`; it establishes `HOST-P1`, `POLICY-R1`, and `ACCOUNT-WIRE-V1` as contract basis while all named implementation and evidence gates remain unmet.
+
+One SOW, one package, seven carriers, four objectives, 66 qualified inherited requirements, nine holds plus R16-B, historical basis `9f21e4b86c304343b92ccd9ef10895b28c1a4f48`, `root-runtime-1` epoch 1, project authorization, security/exclusion boundaries and no activation are conserved. All seven carriers remain `INITIALIZED`; their SOWs validate; no protected deliverable file differs from basis `579015fab0c121e702d10c255d2824a86bcad58d`.
+
+## Precise separate Gate 5 subject
+
+> Confirm the SCA-003 postchange state under `agents/AGENT_SCOPE_CHANGE.md` lines 590–597: only `RUNTIME_SCOPE_LEDGER.csv` `DecisionRef` and `Notes` changed from preimage SHA256 `e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920` to exact postimage SHA256 `bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d`; immutable SCA-003 snapshot manifest SHA256 is `ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48`; fresh independent audit snapshot is `COV_SCA003_LEDGER_REPAIR_POSTSTATE_2026-09-07_2227` with verdict `NON_BLOCKING_PASS` and its `OUTPUT_MANIFEST.json` SHA256 as presented by SCOPE_CHANGE. Confirm this exact postchange validation and handoff state, then decide which downstream reruns to trigger and whether to authorize a separate CHANGE handoff for Git staging. This confirmation grants no SOW/source/supplier/process/credential/lifecycle/activation/hold/protected-fixture/hosted-readiness/Root-adoption/publication/release act beyond the separately decided next action.
+
+No audit remediation is required. This audit grants no Gate 5 acceptance, closure or publication. Role and nondelegation: dedicated AUDIT_DECOMP Agent 2, instruction-asserted; no delegation performed.

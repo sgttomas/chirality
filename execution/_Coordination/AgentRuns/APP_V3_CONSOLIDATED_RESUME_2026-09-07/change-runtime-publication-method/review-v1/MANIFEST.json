@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-runtime-publication-method-independent-review-manifest/v1",
+  "verdict": "PASS",
+  "frozen_at_utc": "2026-09-07T23:17:03Z",
+  "members": [
+    {
+      "path": "RETURN.md",
+      "sha256": "01f39fdaf60708182f1ddd2199dfeb810e9b9daa7f601393543d74f0289dd8d3",
+      "bytes": 3192
+    },
+    {
+      "path": "CHECKS.json",
+      "sha256": "2769d092d444f2523f0b75b7549bc2de2447c5df177dcd4fd9d359a6214a57f8",
+      "bytes": 2810
+    }
+  ],
+  "member_count": 2,
+  "validation": {
+    "member_hashes_and_bytes": "2/2 PASS",
+    "json_parse": "PASS",
+    "scoped_candidate_whitespace": "PASS"
+  },
+  "manifest_self_hash": "EXCLUDED_BY_CONTRACT"
+}

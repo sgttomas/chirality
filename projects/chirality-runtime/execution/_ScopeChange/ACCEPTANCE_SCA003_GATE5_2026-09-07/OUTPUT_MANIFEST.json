@@ -1,0 +1,42 @@
+{
+  "schema": "runtime-scope-change-gate5-acceptance/v1",
+  "date": "2026-09-07",
+  "status": "GATE5_ACCEPTED_FOR_SCA002_TO_SCA003_CHAIN",
+  "members": [
+    {"path":"CHAIN_CLOSURE.md","sha256":"6dc2635b771ec2d326740143394e8d5e40b2ef8a8a51d9d057399735c17dfd8d","bytes":1276},
+    {"path":"CHANGE_HANDOFF.md","sha256":"d69532d097fe9e02aa02145960a44ce679350aac50ed62b7f986d6995246b48c","bytes":3025},
+    {"path":"LATEST_POSTIMAGE.md","sha256":"78a35e83db927cdd82e47119b40b4d99d70a77d0034b2e39887e5e3f4509dfe6","bytes":1220},
+    {"path":"LATEST_PREIMAGE.md","sha256":"941753dfbe4ebedd9385aa8934acefe7c4a46360fbf126648ba93a3d233b3972","bytes":1050},
+    {"path":"OWNER_ACCEPTANCE.md","sha256":"edfd03dfc559438531af1e714532210caf54aae4b959f246e9065f75eba0365e","bytes":3064},
+    {"path":"POINTER_JOURNAL.json","sha256":"323f31b78afc446659525eb3f020a621f20fb108ed356fe7fb8cdb3e50895800","bytes":583}
+  ],
+  "memberCount": 6,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "acceptedSubject": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/GATE5_POSTSTATE_MANIFEST.json",
+    "sha256": "0fcaae692e617419b6ea34fc4b57aaf6c855317803adbe3e88ebec2ff963470b",
+    "ownerAnswer": "Accept poststate and clarification"
+  },
+  "chain": {
+    "sca002PatchSha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395",
+    "sca002SnapshotManifestSha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3",
+    "sca003PatchSha256": "9b2e2d0975cdacebb7aabd826bc339389afb3130284548b620346a8eb9a20855",
+    "sca003SnapshotManifestSha256": "ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48",
+    "auditManifestSha256": "93e17c03c0091b16abbf9b8a8d31c06dcce33f7048b2e1f6f215bd097bf79012"
+  },
+  "canonicalPostimages": {
+    "ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d",
+    "Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e",
+    "RUNTIME_SCOPE_LEDGER.csv": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d"
+  },
+  "scopeEvidenceSelection": {
+    "files": 103,
+    "bytes": 409979,
+    "treeDigestAlgorithm": "SHA256 of newline-terminated sorted '<file_sha256> <bytes> <path_relative_to_scope>' records",
+    "sha256": "101b5fa5d9bb57dedbd3c130d9142a2fa3e3e8b7136721c33e60dc8e9f988850"
+  },
+  "pointerSha256": "78a35e83db927cdd82e47119b40b4d99d70a77d0034b2e39887e5e3f4509dfe6",
+  "closure": "CLOSED_FOR_SCOPE_CHANGE_ONLY",
+  "next": "CHANGE controlled Git publication of exact selected chain under standing grant",
+  "authorityLimits": "No product release or SOW/source/supplier/process/credential/lifecycle/activation/hold/protected-fixture/hosted-readiness/Root-adoption authority."
+}

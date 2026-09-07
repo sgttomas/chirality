@@ -1,0 +1,50 @@
+{
+  "schema": "chirality-runtime-prospective-candidate-review-manifest/v1",
+  "verdict": "RETURN_FOR_AUTHOR_REMEDIATION",
+  "candidate_status": "PROSPECTIVE / NOT EFFECTIVE",
+  "reviewer": "independent nondelegating ephemeral Agent 2 under Runtime SCOPE_CHANGE; instruction-asserted",
+  "inputs": [
+    {
+      "path": "SEALED_BRIEF.md",
+      "sha256": "4d206cf017750d4246f59e2d6abe73ae6bf4b8103f4f7491ffc3cc5d1746f50d"
+    },
+    {
+      "path": "../AUTHOR_FREEZE.json",
+      "sha256": "9713156056df0ff3ed9f6739f5d7eb02da6777c30c921f2c50135dacdbdc0745"
+    },
+    {
+      "path": "../author-v1/MANIFEST.json",
+      "sha256": "344f9f8800c5ac94ad49ba6910a997ce8ac67eb966f0459ce66ae220a72d84b7"
+    },
+    {
+      "path": "../author-v1/CANDIDATE.patch",
+      "sha256": "bbbf69bab5ef0ba19053bbf7838d82adf57372d3f2d56403cf1552babe8a9c05"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+      "sha256": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1",
+      "status": "APPLIED_UNPUBLISHED"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_REVIEW.md",
+      "sha256": "cd8ae2d5c27d6ce4196df2027e51b1b4ccb86744eaa0058c38096dd71421cd5b"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_MANIFEST.json",
+      "sha256": "c07f8be9b82e36aa1c4fdf0043c74203936bf7f6600f76d626a200287462944c"
+    }
+  ],
+  "members": [
+    {
+      "path": "CHECKS.json",
+      "sha256": "d3fcbce9a6d58aa10dea75cfb9f1ef08267f66935485447d0799e43fc23330b7"
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "a69b1cdfb5afeff141b6c671f1f14766f4363c731885f62de862d4c780ddcac6"
+    }
+  ],
+  "canonical_applied": false,
+  "candidate_modified": false,
+  "git_state_mutated": false
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "runtime-sca002-ledger-repair-final-review-manifest/v1",
+  "status": "REVIEW_COMPLETE",
+  "verdict": "PASS_DECISION_READY_METADATA_REPAIR",
+  "candidate": {
+    "authorManifestPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v4-ledger-repair/MANIFEST.json",
+    "authorManifestSha256": "7645678894c9d5f704d29d4207e60a4654275c2e702ab2dab7a12e630e397109",
+    "patchSha256": "64c2748759644761e1924c59cb6dcc6eb70d0046e5d5daae2f0627a3038a43be",
+    "postimageSha256": "e07accd8ad81429a83bd53673de97af38c721dd03799a5bc6af89d12f9d29854",
+    "canonicalPreimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920"
+  },
+  "predecessorReview": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/review-v3-ledger-repair/MANIFEST.json",
+    "sha256": "e9d408fefd8d7339101652d13afbc63f0b6fad7f3169bd09aa10e6be9a54aef7",
+    "verdict": "RETURN_FOR_REMEDIATION",
+    "blockersResolved": 2
+  },
+  "authorityAndEvidence": {
+    "gate2_4GrantSha256": "d7cc63c4f2b738be6db52aea3ae6ed476e3ad9def152778e58ab8eaccb97005d",
+    "decisionSubjectSha256": "3be40d62ada16bb7d2588c948904c0a6ec9fb5f83d64c15e6c40dbdaaeffcaf1",
+    "sca001Stage1OwnerAcceptanceSha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f",
+    "sca001Stage1PointerPostimageSha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026",
+    "sca001Stage2PropagationReturnSha256": "6e3484cd879f3474e4cb50f3dce85dd8d4b694b2b46c41bf2001a96ab6a4e865",
+    "sca001Stage2PointerPostimageSha256": "0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea",
+    "sca002SnapshotManifestSha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3",
+    "sca002ApplicationJournalSha256": "78cbfb2e304e675369d364ff807427a133388b70ed07ddcdbd3f86bf685a7786",
+    "sca002ActivePointerSha256": "512b66c08858b11835b6fd4e661aee7d33443fcf339e1fd496a2952339068a00",
+    "blockingAuditManifestSha256": "f2044a82fe16474865c6c1f99d66aa9c886851afedb1b72d22924f9ed7cc8369",
+    "blockingAuditReturnSha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1",
+    "blockingAuditIssueLogSha256": "130ae0490e693ee92a2774b88efb08297bdc2d9b7660a8c5b4a7a23fa9e59af7"
+  },
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/review-v4-ledger-repair/CHECKS.json",
+      "sha256": "e2ef87e9596ae3a76253d0fc2a779608ed68f81349a5c6c53341e2f9d705d418"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/review-v4-ledger-repair/RETURN.md",
+      "sha256": "ba00128c7fe7008d83ea54534192746d47d3f30fccd8a7b63e93c994d3f8085a"
+    }
+  ],
+  "separateOwnerApprovalRequired": true,
+  "canonicalApplied": false,
+  "gitStateMutatedByReviewer": false,
+  "role": "independent nondelegating ephemeral Agent 2 reviewer under Runtime SCOPE_CHANGE; instruction-asserted"
+}

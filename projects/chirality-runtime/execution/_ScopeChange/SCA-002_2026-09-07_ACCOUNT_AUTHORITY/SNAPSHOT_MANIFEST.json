@@ -1,0 +1,32 @@
+{
+  "kind": "immutable-runtime-scope-change-application-snapshot",
+  "amendment_id": "SCA-002",
+  "state": "APPLIED_GATE5_AUDIT_PENDING",
+  "application_basis": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "approved_patch_sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395",
+  "members": [
+    {"path": "Amendment_Actions.csv", "sha256": "4fa81b63f353f77bc127364fabf2ee32c4cde0a0fde6a30f884fb417afe08e80"},
+    {"path": "Application_Journal.json", "sha256": "78cbfb2e304e675369d364ff807427a133388b70ed07ddcdbd3f86bf685a7786"},
+    {"path": "Brief.md", "sha256": "dbfa1af4df2dbb16619b870855dbc8a09787263e806994c1b2facf06cf11a3c0"},
+    {"path": "Decision_Log.md", "sha256": "dbbb46b5d98611013210dc5d9a646477d3ab056f73b21a49b261d7137d22acd4"},
+    {"path": "Handoff_State.md", "sha256": "89778c66523d9237b9b7579841964ff579a79a2ccdfbc75e54d6662e5bda11dc"},
+    {"path": "Impact_Assessment.md", "sha256": "45a8574aa75f243ff19325f5974555d6845c1e1f390cec0d56dc12b58ee63af2"},
+    {"path": "Post_Change_Coverage.json", "sha256": "0166bcd0afe73771f489c6eb4bdcacb573422ec8daf9fee7c8cf091b45ae4f14"},
+    {"path": "Pre_Change_Coverage.json", "sha256": "499c972ce7c471a9ab24d96b9f2dad769aa45b04cb3f99d848f969bf252ac973"},
+    {"path": "Propagation_Plan.md", "sha256": "7f9880c7e926a99e02e1da80db6818231a7c8dbe7c13ebeec2f306ab2b0fa1d0"},
+    {"path": "RUN_SUMMARY.md", "sha256": "d624243c238b06fdfe0670d7e54494ade2b0df4933bf51c1179f01da4d9959f7"},
+    {"path": "Supersession_Delta.csv", "sha256": "0ec62ccb3eba8ac61d4084f4a095d35033591fd72e8f696032ff35c559f0c6ff"},
+    {"path": "Supersession_Map.csv", "sha256": "0e4edab7e205d89c9180507127ddbb1cb2cd566b866861d75b704689cfdefb0a"},
+    {"path": "Supersession_Map_Findings.csv", "sha256": "c7312589902ad10316506093e0c700e5dcc7ec93cf66673c6233a2de073e79a1"}
+  ],
+  "active_pointer": {
+    "path": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+    "sha256": "512b66c08858b11835b6fd4e661aee7d33443fcf339e1fd496a2952339068a00"
+  },
+  "canonical_postimages": {
+    "ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d",
+    "Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e",
+    "RUNTIME_SCOPE_LEDGER.csv": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920"
+  },
+  "gate5_owner_acceptance": "PENDING"
+}

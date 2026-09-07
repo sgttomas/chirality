@@ -1,0 +1,88 @@
+{
+  "verdict": "PASS_AUTHOR_QA_READY_FOR_INDEPENDENT_REVIEW",
+  "candidateStatus": "PROSPECTIVE / NOT EFFECTIVE",
+  "checks": [
+    {
+      "id": "supplied-hashes",
+      "status": "PASS",
+      "evidence": "Root D36 postimage, independent review, Root full patch, Runtime canonical preimages, and conserved surfaces match every supplied SHA256."
+    },
+    {
+      "id": "root-review",
+      "status": "PASS",
+      "evidence": "Review SHA256 32d44d... matches; recorded verdict is PASS — READY FOR FAITHFUL CANONICAL APPLICATION. Review is not application or effect."
+    },
+    {
+      "id": "patch-applicability",
+      "status": "PASS",
+      "evidence": "git apply --check CANDIDATE.patch passed against current Runtime canonical preimages without applying."
+    },
+    {
+      "id": "patch-whitespace",
+      "status": "PASS",
+      "evidence": "git apply --check --whitespace=error-all passed; git diff --no-index --check passed for each target/postimage pair."
+    },
+    {
+      "id": "patch-scope",
+      "status": "PASS",
+      "evidence": "Patch targets exactly the new supplement, the decomposition working surface, and RUNTIME_SCOPE_LEDGER.csv; numstat is 37/0, 4/0, and 1/1."
+    },
+    {
+      "id": "csv-parse",
+      "status": "PASS",
+      "evidence": "Canonical and candidate ledgers parse as one-row CSV documents."
+    },
+    {
+      "id": "ledger-field-conservation",
+      "status": "PASS",
+      "evidence": "Only DecisionRef and Notes differ. ScopeItemID, InOutStatus, ScopeItemStatement, SourceRef, PackageID, DeliverableIDs, ObjectiveIDs, PRDItem, Categories, OpenIssue, SourceLineage, and CandidateState are byte-value identical."
+    },
+    {
+      "id": "candidate-state",
+      "status": "PASS",
+      "evidence": "SOW-104 remains GATE3_REVIEW_NOT_ACCEPTED; no activation is claimed."
+    },
+    {
+      "id": "decomposition-append-only",
+      "status": "PASS",
+      "evidence": "Candidate decomposition begins with the complete canonical preimage and adds only the four-line account-control amendment section."
+    },
+    {
+      "id": "root-identity-binding",
+      "status": "PASS",
+      "evidence": "Each postimage names the exact Root candidate path/hash and independent review path/hash/verdict; each marks the Runtime binding PROSPECTIVE / NOT EFFECTIVE, records confirmed local Root application, and states that publication/main identity remains absent."
+    },
+    {
+      "id": "conservation",
+      "status": "PASS",
+      "evidence": "One SOW row, PKG-02, seven carriers, OBJ-001/002/004/007, 66 inherited requirement rows, ten hold-map rows interpreted as nine holds plus R16-B, historical DEL-02-06/09 basis 9f21e4b..., and root-runtime-1 epoch 1 are preserved."
+    },
+    {
+      "id": "overclaim-scan",
+      "status": "PASS",
+      "evidence": "Manual review of effective/applied/published/accepted/ready/activation/closure matches found only historical facts, quoted Root review status, prospective claims, explicit prohibitions, or remaining gates; no Runtime or Root effect/publication/application is asserted."
+    },
+    {
+      "id": "canonical-and-git-mutation",
+      "status": "PASS",
+      "evidence": "git diff --name-only remained empty. No patch was applied; all author writes are confined to scope/author-v1."
+    }
+  ],
+  "limitations": [
+    "This is author QA, not the required independent Runtime candidate review.",
+    "Root local application is parent-confirmed, but no accepted or published Root main identity is supplied.",
+    "No canonical file, SCA snapshot/pointer, SOW, notice, source, process, credential, fixture, supplier state, or Git state was changed."
+  ],
+  "remainingGates": [
+    "Independent full-byte Runtime candidate review",
+    "Runtime Gate 2 impact acceptance",
+    "Runtime Gate 3 exact-amendment acceptance",
+    "Runtime Gate 4 propagation-plan acceptance only",
+    "Runtime canonical application plus immutable SCA snapshot/pointer act",
+    "Runtime Gate 5 poststate audit/acceptance",
+    "CHANGE publication and actual canonical commit",
+    "Root successor adoption",
+    "Later independently reviewed DEL-02-06/09 SOW propagation using the actual accepted canonical commit",
+    "Separate full-wire, recipient, successor-recovery, source, supplier, paired-evidence, protected-fixture, and release gates"
+  ]
+}

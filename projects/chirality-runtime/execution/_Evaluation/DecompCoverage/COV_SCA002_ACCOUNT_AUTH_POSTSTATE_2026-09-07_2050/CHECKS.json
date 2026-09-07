@@ -1,0 +1,44 @@
+{
+  "run_label": "SCA002_ACCOUNT_AUTH_POSTSTATE",
+  "deterministic": true,
+  "verdict": "BLOCKED",
+  "checks": [
+    {"id": "1", "name": "package_forward_coverage", "status": "PASS", "observed": "1/1"},
+    {"id": "2", "name": "deliverable_forward_coverage", "status": "PASS", "observed": "7/7"},
+    {"id": "3", "name": "reverse_folder_coverage", "status": "PASS", "observed": "8/8 declared package/deliverable folders"},
+    {"id": "4", "name": "id_consistency", "status": "PASS", "observed": "7 full slugs and parent package exact"},
+    {"id": "5", "name": "context_fidelity", "status": "PASS", "observed": "7/7"},
+    {"id": "6", "name": "artifact_presence", "status": "PASS_WITH_INFO", "observed": "7/7 SOW_V1 valid; 0/40 future outputs at INITIALIZED"},
+    {"id": "7", "name": "objective_mapping", "status": "PASS", "observed": "4/4 objectives; every objective supported by 7 existing non-retired deliverables"},
+    {"id": "8", "name": "ledger_integrity", "status": "BLOCKER", "observed": "1/1 structural mapping valid; current account-control DecisionRef/Notes contradict completed approval/application"},
+    {"id": "9", "name": "derivative_package_parity", "status": "SKIPPED", "observed": "not variant-owned for SOFTWARE"},
+    {"id": "9b", "name": "package_shape_conformance", "status": "PASS", "observed": "authoritative and derived companion roles discoverable"},
+    {"id": "10", "name": "active_snapshot_and_handoff", "status": "PASS", "observed": "13/13 members plus pointer hash; exactly one active SCA; no closure overclaim"},
+    {"id": "11", "name": "lifecycle_distribution", "status": "PASS", "observed": "INITIALIZED=7"}
+  ],
+  "application": {
+    "basis": "579015fab0c121e702d10c255d2824a86bcad58d",
+    "patch_sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395",
+    "target_count": 3,
+    "live_equals_postimages": true,
+    "deliverable_file_diff_from_basis": 0
+  },
+  "conservation": {
+    "scope_rows": 1,
+    "packages": 1,
+    "deliverables": 7,
+    "objectives": 4,
+    "qualified_inherited_requirements": 66,
+    "holds": 9,
+    "r16b_dispositions": 1,
+    "full_wire_source_gate_rows": 7,
+    "historical_sow_basis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+    "runtime_identity": "root-runtime-1 epoch 1"
+  },
+  "snapshot": {
+    "manifest_members": 13,
+    "member_hash_failures": 0,
+    "pointer_hash_match": true,
+    "gate5_owner_acceptance": "PENDING"
+  }
+}

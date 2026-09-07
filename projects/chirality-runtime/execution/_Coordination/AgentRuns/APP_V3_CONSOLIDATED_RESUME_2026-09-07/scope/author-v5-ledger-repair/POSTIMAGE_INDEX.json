@@ -1,0 +1,57 @@
+{
+  "schema": "runtime-sca002-ledger-repair-postimage/v3",
+  "status": "CANDIDATE_NOT_APPLIED",
+  "verdict": "READY_FOR_FINAL_REVIEW",
+  "target": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "postimage": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v5-ledger-repair/POSTIMAGE/RUNTIME_SCOPE_LEDGER.csv",
+    "preimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+    "postimageSha256": "ea49773b7385473bd068144d40dfcb5a8be7fbba61aa5565302d4fcef62874be"
+  },
+  "patch": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v5-ledger-repair/CANDIDATE.patch",
+    "sha256": "4be2ef41f8f622d31835f0e4e3d6e9d5f9740a1a283a598ff12fff284474e80a"
+  },
+  "changedFields": [
+    "DecisionRef",
+    "Notes"
+  ],
+  "preservedFields": [
+    "ScopeItemID",
+    "InOutStatus",
+    "ScopeItemStatement",
+    "SourceRef",
+    "PackageID",
+    "DeliverableIDs",
+    "ObjectiveIDs",
+    "PRDItem",
+    "Categories",
+    "OpenIssue",
+    "SourceLineage",
+    "CandidateState"
+  ],
+  "selfCurrentState": {
+    "historicalAudit": "The first postapplication audit dated 2026-09-07 blocked on the then-current metadata.",
+    "repair": "This proposed exact postimage resolves that metadata inconsistency if applied.",
+    "future": "A fresh independent audit rerun and separate Gate 5 owner acceptance remain future acts."
+  },
+  "contractState": {
+    "accepted": [
+      "HOST-P1",
+      "POLICY-R1",
+      "ACCOUNT-WIRE-V1"
+    ],
+    "stillUnmet": [
+      "source/implementation",
+      "supplier identity/qualification",
+      "signing/identity proof",
+      "paired Runtime/App/CLI conformance evidence",
+      "recovery/lifecycle",
+      "protected-fixture",
+      "hold",
+      "hosted-readiness",
+      "release"
+    ]
+  },
+  "effect": "No effect until final independent review, separate owner approval and governed application."
+}

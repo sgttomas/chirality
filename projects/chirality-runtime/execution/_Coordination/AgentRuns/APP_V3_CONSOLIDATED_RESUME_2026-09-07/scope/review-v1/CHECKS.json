@@ -1,0 +1,121 @@
+{
+  "schema": "chirality-runtime-prospective-candidate-review/v1",
+  "verdict": "RETURN_FOR_AUTHOR_REMEDIATION",
+  "candidate_status": "PROSPECTIVE / NOT EFFECTIVE",
+  "reviewer": {
+    "role": "independent nondelegating ephemeral Agent 2 under Runtime SCOPE_CHANGE",
+    "role_enforcement": "instruction-asserted",
+    "nondelegation": "instruction-asserted"
+  },
+  "reviewed_candidate": {
+    "author_freeze_sha256": "9713156056df0ff3ed9f6739f5d7eb02da6777c30c921f2c50135dacdbdc0745",
+    "author_manifest_sha256": "344f9f8800c5ac94ad49ba6910a997ce8ac67eb966f0459ce66ae220a72d84b7",
+    "candidate_patch_sha256": "bbbf69bab5ef0ba19053bbf7838d82adf57372d3f2d56403cf1552babe8a9c05",
+    "base_commit": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+    "canonical_applied": false
+  },
+  "blocking_findings": [
+    {
+      "id": "ROOT-IDENTITY-CURRENCY-001",
+      "severity": "BLOCKS_DECISION_READY_EXACT_CANDIDATE",
+      "status": "FAIL",
+      "affected_postimages": [
+        "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+        "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+        "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv"
+      ],
+      "evidence": "The frozen Runtime postimages cite the Root author artifact D36_PROPOSED_POSTIMAGE.md at SHA256 2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1 and FINAL_PREAPPLICATION_REVIEW.md at SHA256 32d44dcc5de4dfc6056ce4e430966f7b46248cd477fc66814f049d08c001d439. During this independent review, the manager supplied and the reviewer verified the current live Root canonical path docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md at the same content SHA256, plus FINAL_APPLIED_REVIEW.md SHA256 cd8ae2d5c27d6ce4196df2027e51b1b4ccb86744eaa0058c38096dd71421cd5b and FINAL_APPLIED_MANIFEST.json SHA256 c07f8be9b82e36aa1c4fdf0043c74203936bf7f6600f76d626a200287462944c. The applied review verdict is PASS — LIVE APPLICATION MATCHES THE FROZEN REVIEWED CANDIDATE and status_reviewed is APPLIED_UNPUBLISHED. Because exact path plus SHA and review state are part of the intended durable binding, the superseded author-path/preapplication-only citation is not the final current Root identity binding for Runtime Gate 3.",
+      "required_remediation": "Refresh the Root identity paragraph/fields in all three Runtime postimages to cite the live canonical Root path and SHA, the applied-state review path and SHA, and its manifest path and SHA. Preserve APPLIED_UNPUBLISHED and PROSPECTIVE / NOT EFFECTIVE for Runtime reliance, state that Root publication/effective main identity is still pending, then regenerate the patch, indexes, author checks, return, manifest, and manager freeze for a fresh independent review. Do not broaden the authority or change any other ledger field."
+    }
+  ],
+  "checks": [
+    {
+      "id": "author-freeze-and-manifest",
+      "status": "PASS",
+      "evidence": "AUTHOR_FREEZE.json SHA256 is 9713156056df0ff3ed9f6739f5d7eb02da6777c30c921f2c50135dacdbdc0745. Author MANIFEST.json recomputes to 344f9f8800c5ac94ad49ba6910a997ce8ac67eb966f0459ce66ae220a72d84b7, matching AUTHOR_FREEZE.json. Every declared author manifest member exists and matches its declared SHA256."
+    },
+    {
+      "id": "frozen-patch-and-postimages",
+      "status": "PASS",
+      "evidence": "CANDIDATE.patch recomputes to bbbf69bab5ef0ba19053bbf7838d82adf57372d3f2d56403cf1552babe8a9c05. Postimages recompute respectively to 84b9bd1908ca2f26539c91bec1d67ef1a06b7b26c907cb6cfe24d6445d0bae9b, a366ed3044f226f9dc5a02866a48f5027497397997b596603deb81b3d3c193dd, and 511a8b9cf806d8b00768f11bfc59c9cab7c7a618b9ddf62ab99fd5abf997a19c."
+    },
+    {
+      "id": "current-preimages",
+      "status": "PASS",
+      "evidence": "The supplement target is absent. Current decomposition and ledger preimages recompute to d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1 and 3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9, matching PREIMAGE_INDEX.json. CUSTODY_DISPOSITION_D36.md remains e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309."
+    },
+    {
+      "id": "patch-applicability-scope-and-whitespace",
+      "status": "PASS",
+      "evidence": "git apply --check and git apply --check --whitespace=error-all both pass without application. The patch targets exactly ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md, Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md, and RUNTIME_SCOPE_LEDGER.csv, with numstat 37/0, 4/0, and 1/1."
+    },
+    {
+      "id": "ledger-field-conservation",
+      "status": "PASS",
+      "evidence": "Independent CSV parsing yields one canonical row and one candidate row. Only DecisionRef and Notes differ. CandidateState remains GATE3_REVIEW_NOT_ACCEPTED; every other field, including ScopeItemID, statement, source, package, carriers, objectives, lineage, open issue and candidate state, is unchanged."
+    },
+    {
+      "id": "decomposition-append-only-and-supplement-authority",
+      "status": "PASS",
+      "evidence": "The decomposition postimage begins byte-for-byte with the full canonical preimage and appends only the four-line account-control amendment section. The new supplement limits itself to the narrow inherited-contract interpretation, conservation, explicit unresolved gates and later propagation; it creates no broader authority, implementation permission, acceptance, activation or release."
+    },
+    {
+      "id": "root-original-binding",
+      "status": "PASS_AS_HISTORICAL_PROVENANCE_ONLY",
+      "evidence": "The cited Root author candidate path exists and hashes to 2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1. The cited preapplication review exists, hashes to 32d44dcc5de4dfc6056ce4e430966f7b46248cd477fc66814f049d08c001d439, and records PASS — READY FOR FAITHFUL CANONICAL APPLICATION. These remain valid provenance but are no longer the complete current applied-state identity."
+    },
+    {
+      "id": "root-live-applied-unpublished-state",
+      "status": "PASS",
+      "evidence": "The live Root canonical path hashes to 2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1 and is byte-identical to the author postimage. FINAL_APPLIED_REVIEW.md hashes to cd8ae2d5c27d6ce4196df2027e51b1b4ccb86744eaa0058c38096dd71421cd5b and records PASS for APPLIED_UNPUBLISHED state. Its manifest hashes to c07f8be9b82e36aa1c4fdf0043c74203936bf7f6600f76d626a200287462944c. The review expressly states that publication/effective main identity remains pending."
+    },
+    {
+      "id": "status-language-and-overclaim-scan",
+      "status": "PASS_EXCEPT_FOR_IDENTITY_CURRENCY_FINDING",
+      "evidence": "Every use of applied, effective, accepted, published, ready and activation was inspected. The Runtime candidate remains PROSPECTIVE / NOT EFFECTIVE and GATE3_REVIEW_NOT_ACCEPTED; no Runtime acceptance/application, Root publication/main effect, SOW propagation, wire/source activation, operational readiness or release is claimed. The statement that Root is locally applied but unpublished is now independently supported. The defect is the missing current live-path/applied-review binding, not a broader-authority overclaim."
+    },
+    {
+      "id": "structural-conservation",
+      "status": "PASS",
+      "evidence": "The candidate preserves one SOW row, PKG-02_Runtime_Product, seven deliverable carriers, OBJ-001/002/004/007, all 66 INHERITED_REQUIREMENT_TRACE.csv rows, ten HOLD_SUCCESSOR_MAP.csv rows interpreted as nine holds plus one R16-B disposition, the seven explicit full-wire/source gate rows, historical DEL-02-06 and DEL-02-09 decomposition basis 9f21e4b86c304343b92ccd9ef10895b28c1a4f48, and root-runtime-1 epoch 1."
+    },
+    {
+      "id": "prohibited-output-and-mutation-absence",
+      "status": "PASS",
+      "evidence": "The author tree contains only its sealed brief, patch, indexes, checks, return, manifest and three postimages. It contains no final DEL-02-06/09 SOW postimages or notices. The candidate patch contains no SOW, notice, SCA pointer, Root, source, process, credential, supplier or fixture path. Canonical hashes remain preimages and git diff --name-only is empty; no candidate application or tracked Git mutation occurred."
+    },
+    {
+      "id": "gate-2-impact-subject",
+      "status": "PASS_DECISION_PREPARED_UNACCEPTED",
+      "evidence": "The impact package identifies the one MODIFY action, exact three canonical surfaces, unchanged identities/topology, DEL-02-06 CLM-003/REQ-010 and DEL-02-09 REQ-001/002 implications, conserved historical surfaces, affected later SOW propagation, draft notice classes and separate full-wire/source/consumer/supplier/release gates. It remains explicitly unaccepted."
+    },
+    {
+      "id": "gate-3-exact-candidate-subject",
+      "status": "FAIL_NOT_DECISION_READY",
+      "evidence": "The semantic amendment and every candidate byte are otherwise reviewable, but the exact Root path/review binding is stale relative to the now-verified live APPLIED_UNPUBLISHED identity. A refreshed freeze and independent review are required before Runtime Gate 3."
+    },
+    {
+      "id": "gate-4-propagation-subject",
+      "status": "PASS_DECISION_PREPARED_UNACCEPTED",
+      "evidence": "The package identifies later complete DEL-02-06 and DEL-02-09 SOW postimages, actual accepted Runtime commit as their future basis, Runtime immutable SCA/pointer handling, Gate 5, CHANGE, Root successor adoption, App/CLI notices and later consumer/wire/source/supplier/fixture gates in non-circular order. No future SOW bytes, routed notices or acceptance are claimed."
+    },
+    {
+      "id": "required-ordering",
+      "status": "PASS_SUBJECT_TO_REFREEZE",
+      "evidence": "The recorded order is Root prospective identity; Runtime candidate review and Gates 2-4; Runtime application and immutable SCA/pointer act; Gate 5; CHANGE publication and actual canonical commit; Root adoption; SOW postimages based on that actual commit; later adoption, consumer, wire, source, supplier, paired-evidence, fixture and release gates. The identity-currency remediation must precede the refreshed Runtime candidate review."
+    }
+  ],
+  "remaining_gates": [
+    "Author refresh limited to the live Root canonical path and applied-state review/manifest identities, followed by manager re-freeze",
+    "Fresh independent full-byte Runtime candidate review",
+    "Runtime Gate 2 impact acceptance",
+    "Runtime Gate 3 exact-amendment acceptance",
+    "Runtime Gate 4 propagation-plan acceptance only",
+    "Runtime canonical application plus immutable SCA snapshot and pointer act",
+    "Runtime Gate 5 actual-poststate audit and acceptance",
+    "CHANGE publication and actual Runtime canonical commit capture",
+    "Root successor adoption",
+    "Later independently reviewed DEL-02-06/09 SOW propagation using the actual accepted Runtime canonical commit",
+    "Separate downstream adoption, consumer, full-wire, recipient, successor-recovery, source, supplier, paired-evidence, protected-fixture and release gates"
+  ]
+}

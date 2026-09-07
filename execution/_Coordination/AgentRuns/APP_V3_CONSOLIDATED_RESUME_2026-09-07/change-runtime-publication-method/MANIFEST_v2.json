@@ -1,0 +1,37 @@
+{
+  "schema": "chirality-runtime-publication-method-manifest/v2",
+  "status": "INDEPENDENT_REVIEW_PASS__AGENT0_AUTHORIZED_FOR_CHANGE",
+  "predecessor": {
+    "path": "MANIFEST.json",
+    "sha256": "8569ade597709e63880d0a7d211e5f188f5c6e257fde9befb0e8d746fedb7be3",
+    "preserved": true
+  },
+  "review": {
+    "path": "review-v1/MANIFEST.json",
+    "sha256": "d22eb2a994509fea7b368664e343c469558b838cca7a19a2234f60f17de26764",
+    "verdict": "PASS"
+  },
+  "authorization": {
+    "path": "AUTHORIZATION_AND_HANDOFF.md",
+    "sha256": "d595e076b12697c6db8dfb65802f30334b88c5f6eadd99f1360d1dc55350dbbd",
+    "bytes": 4116,
+    "disposition": "delegated consolidated Agent0 low-risk mechanical publication adjustment; CHANGE may apply exact reviewed patch and perform routine closeout under standing Git grant"
+  },
+  "exact_patch": {
+    "path": "PROPOSED_GITATTRIBUTES.patch",
+    "sha256": "e7414a95778094423910c711c5004523cf40f4a0bdf26759445a50f1dc58da20",
+    "gitattributes_preimage_sha256": "021e250c8f66ea1e9ea5af85575f17626e8cb93121a6f49fa321bcb35c7afb79",
+    "gitattributes_postimage_sha256": "7d9d8cedce4e8ee24ca95a754ae8f335eb0c2204b628d837ca1e2d3950c13c4f",
+    "literal_paths": 28,
+    "unexpected_matches": 0
+  },
+  "original_selection": {
+    "sha256": "25340309aa51d4bdb2601103a8b894dbe536dde5b9b4b49a6e0f5a9bc09ce9bb",
+    "member_count": 170,
+    "total_bytes": 574611,
+    "hash_or_byte_drift": 0
+  },
+  "authority_added_beyond_exact_mechanical_adjustment": false,
+  "canonical_source_validator_workflow_or_original_evidence_modified": false,
+  "manifest_self_hash": "EXCLUDED_BY_CONTRACT"
+}

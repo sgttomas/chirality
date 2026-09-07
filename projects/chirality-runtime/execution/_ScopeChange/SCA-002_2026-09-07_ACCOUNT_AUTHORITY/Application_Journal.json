@@ -1,0 +1,16 @@
+{
+  "application_basis": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "approved_patch_sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395",
+  "method": "exact reviewed patch applied through apply_patch; resulting bytes verified",
+  "targets": [
+    {"path": "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md", "preimage": "ABSENT", "postimage": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d"},
+    {"path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md", "preimage": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1", "postimage": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e"},
+    {"path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv", "preimage": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9", "postimage": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920"}
+  ],
+  "scope_match": "PASS",
+  "whitespace": "PASS",
+  "canonical_applied": true,
+  "publication": "NOT_PERFORMED",
+  "gate5_acceptance": "PENDING"
+}
+

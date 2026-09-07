@@ -1,0 +1,50 @@
+{
+  "schema": "runtime-sca002-ledger-repair-preimage/v1",
+  "status": "VERIFIED",
+  "head": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "originMain": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "target": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "sha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+    "rows": 1
+  },
+  "authority": {
+    "gate2_4Grant": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/GATE2_4_OWNER_GRANT.md",
+      "sha256": "d7cc63c4f2b738be6db52aea3ae6ed476e3ad9def152778e58ab8eaccb97005d"
+    },
+    "decisionSubjectSha256": "3be40d62ada16bb7d2588c948904c0a6ec9fb5f83d64c15e6c40dbdaaeffcaf1",
+    "approvedPatchSha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395",
+    "sca002Snapshot": {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-002_2026-09-07_ACCOUNT_AUTHORITY/SNAPSHOT_MANIFEST.json",
+      "sha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3"
+    },
+    "applicationJournalSha256": "78cbfb2e304e675369d364ff807427a133388b70ed07ddcdbd3f86bf685a7786",
+    "activePointerSha256": "512b66c08858b11835b6fd4e661aee7d33443fcf339e1fd496a2952339068a00"
+  },
+  "audit": {
+    "snapshot": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SCA002_ACCOUNT_AUTH_POSTSTATE_2026-09-07_2050",
+    "verdict": "BLOCKED",
+    "returnSha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1",
+    "issueLogSha256": "130ae0490e693ee92a2774b88efb08297bdc2d9b7660a8c5b4a7a23fa9e59af7",
+    "outputManifestPath": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SCA002_ACCOUNT_AUTH_POSTSTATE_2026-09-07_2050/OUTPUT_MANIFEST.json",
+    "outputManifestSha256": "f2044a82fe16474865c6c1f99d66aa9c886851afedb1b72d22924f9ed7cc8369",
+    "outputManifestContentPinsSourceSnapshot": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3"
+  },
+  "conservation": {
+    "scopeRows": 1,
+    "package": "PKG-02_Runtime_Product",
+    "deliverableCarriers": 7,
+    "objectiveIds": [
+      "OBJ-001",
+      "OBJ-002",
+      "OBJ-004",
+      "OBJ-007"
+    ],
+    "qualifiedInheritedRequirementRows": 66,
+    "holdMapRows": 10,
+    "holdInterpretation": "nine holds plus separate R16-B",
+    "historicalSowBasis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+    "runtimeIdentity": "root-runtime-1 epoch 1"
+  }
+}

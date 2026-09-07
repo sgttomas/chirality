@@ -1,0 +1,40 @@
+{
+  "schema": "runtime-sca002-ledger-repair-review-manifest/v1",
+  "status": "REVIEW_COMPLETE",
+  "verdict": "RETURN_FOR_REMEDIATION",
+  "candidate": {
+    "authorManifestPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/MANIFEST.json",
+    "authorManifestSha256": "ed86340cea71d7003246f20b003ece2ac211b91ac7a9b355c66d6c7cc0378b67",
+    "postimageSha256": "c6e985bc25bf4f10ca8a8f27d82484736e0febbe85a95a6e3d9e2cc825c4cadc",
+    "patchSha256": "ecb1cb62c2b8bb1b060cca52e02867d777464eab9726b54849fc1f17064838fd",
+    "canonicalPreimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920"
+  },
+  "authorityAndEvidence": {
+    "gate2_4GrantSha256": "d7cc63c4f2b738be6db52aea3ae6ed476e3ad9def152778e58ab8eaccb97005d",
+    "decisionSubjectSha256": "3be40d62ada16bb7d2588c948904c0a6ec9fb5f83d64c15e6c40dbdaaeffcaf1",
+    "sca002SnapshotManifestSha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3",
+    "sca002ApplicationJournalSha256": "78cbfb2e304e675369d364ff807427a133388b70ed07ddcdbd3f86bf685a7786",
+    "sca002ActivePointerSha256": "512b66c08858b11835b6fd4e661aee7d33443fcf339e1fd496a2952339068a00",
+    "blockingAuditManifestSha256": "f2044a82fe16474865c6c1f99d66aa9c886851afedb1b72d22924f9ed7cc8369",
+    "blockingAuditReturnSha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1",
+    "sca001Stage1OwnerAcceptanceSha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f",
+    "sca001Stage1PointerPostimageSha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026",
+    "sca001Stage2PropagationReturnSha256": "6e3484cd879f3474e4cb50f3dce85dd8d4b694b2b46c41bf2001a96ab6a4e865",
+    "sca001Stage2PointerPostimageSha256": "0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea"
+  },
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/review-v3-ledger-repair/CHECKS.json",
+      "sha256": "b6984b6e63553706b24cb6955fa0f9260362bab2e06e17c7c21d704b84632964"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/review-v3-ledger-repair/RETURN.md",
+      "sha256": "a1b5df5482ddc12f00f84e2739b0a34fdcd278234a38bf3e14fdbf9c079e29eb"
+    }
+  ],
+  "separateOwnerApprovalRequired": true,
+  "currentCandidateApprovalRecommended": false,
+  "canonicalApplied": false,
+  "gitStateMutatedByReviewer": false,
+  "role": "independent nondelegating ephemeral Agent 2 reviewer under Runtime SCOPE_CHANGE; instruction-asserted"
+}

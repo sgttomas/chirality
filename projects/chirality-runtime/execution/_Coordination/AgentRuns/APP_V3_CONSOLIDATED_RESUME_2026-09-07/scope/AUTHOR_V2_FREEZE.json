@@ -1,0 +1,21 @@
+{
+  "status": "FROZEN_FOR_FINAL_INDEPENDENT_REVIEW",
+  "manager_validation": "PASS",
+  "application_basis": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+  "head_equals_origin_main": true,
+  "candidate_patch_sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395",
+  "author_manifest_sha256": "54a94c193e0064ce2242c58dca2031959b8bca267593de90d2a9eed0574c005a",
+  "manifest_members": "PASS",
+  "patch_applicability": "PASS",
+  "patch_whitespace": "PASS",
+  "root_published_identity": {
+    "d36_sha256": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1",
+    "pr": 748,
+    "exact_head": "f3f68d744fc745996776cfbe8f30cbd2bb7b100a",
+    "fetched_main": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327"
+  },
+  "runtime_candidate_status": "PROSPECTIVE / NOT EFFECTIVE",
+  "canonical_applied": false,
+  "role_attribution": "instruction-asserted"
+}
+

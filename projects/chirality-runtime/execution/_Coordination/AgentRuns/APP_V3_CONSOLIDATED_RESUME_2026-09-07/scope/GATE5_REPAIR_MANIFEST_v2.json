@@ -1,0 +1,69 @@
+{
+  "schema": "runtime-sca002-gate5-ledger-repair-decision/v2",
+  "date": "2026-09-07",
+  "status": "PASS_DECISION_READY_METADATA_REPAIR_WAITING_OWNER_APPROVAL",
+  "canonicalApplied": false,
+  "canonicalPreimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+  "members": [
+    {
+      "path": "scope/GATE5_REPAIR_DECISION_SUBJECT_v2.md",
+      "sha256": "34038595a2a6ea385fc8bc161defee2e21b59152b7492742c7c1ceca2f231f68",
+      "bytes": 5479
+    },
+    {
+      "path": "scope/GATE5_REPAIR_HANDOFF_v2.md",
+      "sha256": "ac3beb2115a7692db79931da319a43fd10a89b6aae153bd9ed1857de637354cd",
+      "bytes": 1499
+    },
+    {
+      "path": "scope/author-v6-ledger-repair/MANIFEST.json",
+      "sha256": "f98e20e7db16bcabfeed39329b1c65241bebd4171a7be1f75f5dc1b300d19f59",
+      "bytes": 2345
+    },
+    {
+      "path": "scope/author-v6-ledger-repair/CANDIDATE.patch",
+      "sha256": "9b2e2d0975cdacebb7aabd826bc339389afb3130284548b620346a8eb9a20855",
+      "bytes": 10200
+    },
+    {
+      "path": "scope/author-v6-ledger-repair/POSTIMAGE/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d",
+      "bytes": 6229
+    },
+    {
+      "path": "scope/review-v6-ledger-repair/RETURN.md",
+      "sha256": "710226fd44079818d937729fc08aa5763b461f62b27ea9d93aa2a645fff8bed0",
+      "bytes": 4038
+    },
+    {
+      "path": "scope/review-v6-ledger-repair/MANIFEST.json",
+      "sha256": "721a73781e09672ddf49984278609c2cc1391436298a391f72a854aebd5ac7fe",
+      "bytes": 3214
+    },
+    {
+      "path": "scope/GATE2_4_OWNER_GRANT.md",
+      "sha256": "d7cc63c4f2b738be6db52aea3ae6ed476e3ad9def152778e58ab8eaccb97005d",
+      "bytes": 1444
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SCA002_ACCOUNT_AUTH_POSTSTATE_2026-09-07_2050/RETURN.md",
+      "sha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1",
+      "bytes": 2171
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SCA002_ACCOUNT_AUTH_POSTSTATE_2026-09-07_2050/OUTPUT_MANIFEST.json",
+      "sha256": "f2044a82fe16474865c6c1f99d66aa9c886851afedb1b72d22924f9ed7cc8369",
+      "bytes": 2084
+    }
+  ],
+  "memberCount": 10,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "supersedesDecisionPacket": {
+    "decisionSubject": "scope/GATE5_REPAIR_DECISION_SUBJECT.md",
+    "handoff": "scope/GATE5_REPAIR_HANDOFF.md",
+    "manifest": "scope/GATE5_REPAIR_MANIFEST.json",
+    "reason": "V6 removes self-staling candidate-time wording and records accepted contract basis separately from unmet implementation/evidence gates."
+  },
+  "nextDecision": "Exact v6 ledger metadata repair Gates 2-4 confirmation and limited application/snapshot/pointer/audit-rerun authority; Gate 5 owner acceptance remains separate after a clean audit.",
+  "authorityLimits": "No canonical application before explicit approval; no Git/publication/Root adoption/SOW/source/supplier/lifecycle/activation/hosted-readiness/protected-fixture/hold/release authority."
+}

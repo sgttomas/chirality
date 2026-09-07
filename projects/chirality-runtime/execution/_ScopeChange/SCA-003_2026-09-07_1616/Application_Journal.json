@@ -1,0 +1,20 @@
+{
+  "schema": "runtime-scope-change-application-journal/v1",
+  "amendmentId": "SCA-003",
+  "appliedAtUtc": "2026-09-07T22:16:40Z",
+  "applicationBasisHead": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "ownerGrantSha256": "47d3e5415ad945fd3cbe2ffb781fdfd55ffdbb8aca6732f62979b3b38021c78c",
+  "candidatePatchSha256": "9b2e2d0975cdacebb7aabd826bc339389afb3130284548b620346a8eb9a20855",
+  "actions": [
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "preimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+      "postimageSha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d",
+      "changedFields": ["DecisionRef", "Notes"],
+      "result": "EXACT_POSTIMAGE_PASS"
+    }
+  ],
+  "canonicalApplication": "COMPLETE",
+  "auditState": "PENDING_FRESH_INDEPENDENT_AUDIT",
+  "gate5OwnerAcceptance": "PENDING"
+}

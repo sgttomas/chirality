@@ -1,0 +1,76 @@
+{
+  "schema": "runtime-sca002-ledger-repair-author-qa/v3",
+  "verdict": "READY_FOR_FINAL_REVIEW",
+  "checks": [
+    {
+      "id": "canonical-preimage",
+      "status": "PASS",
+      "evidence": "Current canonical RUNTIME_SCOPE_LEDGER.csv SHA256 is e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920; HEAD and origin/main are both 579015fab0c121e702d10c255d2824a86bcad58d."
+    },
+    {
+      "id": "predecessor",
+      "status": "PASS",
+      "evidence": "Author-v4 manifest SHA256 7645678894c9d5f704d29d4207e60a4654275c2e702ab2dab7a12e630e397109 and review-v4 manifest SHA256 65257a958fc70bf62a468c36f9ab1165f0f13e57b61e8bd2460601ed24ebda6b rehash exactly. V5 is append-only and leaves both predecessors untouched."
+    },
+    {
+      "id": "csv-and-field-diff",
+      "status": "PASS",
+      "evidence": "Canonical and proposed postimage parse as one data row with 14 fields. Only DecisionRef and Notes differ; all other 12 fields are byte-identical, including CandidateState = GATE3_REVIEW_NOT_ACCEPTED."
+    },
+    {
+      "id": "patch-strict-applicability",
+      "status": "PASS",
+      "evidence": "CANDIDATE.patch names only projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv, passes git apply --check --whitespace=error-all against the current preimage, and has numstat 1 insertion / 1 deletion."
+    },
+    {
+      "id": "self-current-wording",
+      "status": "PASS",
+      "evidence": "DecisionRef and Notes record the first postapplication audit dated 2026-09-07 as a historical blocker on the then-current metadata and state that this proposed exact postimage resolves the inconsistency. The stale phrases that metadata repair remains pending or Gate 5 remains blocked pending repair are absent. A fresh independent audit rerun and separate Gate 5 owner acceptance remain future acts."
+    },
+    {
+      "id": "accepted-contract-evidence",
+      "status": "PASS",
+      "evidence": "The candidate records owner acceptance of HOST-P1, POLICY-R1 and ACCOUNT-WIRE-V1 as contract basis. DECISIONS.md rehashes to ff389e47a48386aeabe344496acf509386301aa0b72868a690ba5b4190bfe67c and MANIFEST_v2.json rehashes to f4fcbe92c15c3a9803f6835dfa1d9dc1563101ec3a6e7308b251b0570c314872."
+    },
+    {
+      "id": "contract-versus-gates",
+      "status": "PASS",
+      "evidence": "Accepted contract choices are explicitly established and distinguished from still-unmet source/implementation, supplier identity/qualification, signing/identity proof, paired Runtime/App/CLI conformance evidence, recovery/lifecycle, protected-fixture, hold, hosted-readiness and release gates. The inaccurate blanket statement that all full-wire gates remain unresolved is absent."
+    },
+    {
+      "id": "sca001-state",
+      "status": "PASS",
+      "evidence": "SCA-001 Stage 1 custody canonical application remains recorded as completed and owner-accepted; Stage 2 DEL-02-06/09 SOW propagation remains recorded as applied and locally validated. Pending Root successor adoption/publication and Runtime publication remain distinct."
+    },
+    {
+      "id": "sca002-state",
+      "status": "PASS",
+      "evidence": "Published Root D36, Runtime Gate 2 acceptance, Gates 3 and 4 approval, and exact SCA-002 application remain recorded. Future SCA-002 account-authority DEL-02-06/09 SOW propagation remains pending and bound to the actual accepted Runtime publication commit."
+    },
+    {
+      "id": "candidate-state-and-effect",
+      "status": "PASS",
+      "evidence": "CandidateState remains the historical migration/decomposition candidate-stratum field and is not presented as current SCA-002 Gate 3 status. The SCA-002 supplement remains applied canonical but not effective for dependent reliance until Runtime publication/main identity and required Root successor adoption. No activation or Gate 5 acceptance is claimed."
+    },
+    {
+      "id": "conservation",
+      "status": "PASS",
+      "evidence": "The candidate preserves one SOW-104 row, PKG-02, seven carriers, OBJ-001/002/004/007, 66 qualified inherited requirements, nine holds plus separate R16-B, historical basis 9f21e4b86c304343b92ccd9ef10895b28c1a4f48, root-runtime-1 epoch 1, project authorization, security/exclusion/REQ-027 boundaries, and no activation."
+    },
+    {
+      "id": "mutation-boundary",
+      "status": "PASS",
+      "evidence": "Writes are confined to author-v5-ledger-repair. Canonical, SCA snapshots and pointers, audit output, prior evidence, SOWs, source and Git state were not modified by this author."
+    }
+  ],
+  "requiredNext": [
+    "Fresh independent final review of the exact v5 candidate",
+    "Separate owner approval of the exact v5 patch/postimage",
+    "Governed exact application with immutable repair snapshot and permitted pointer handling",
+    "Fresh independent AUDIT_DECOMP rerun",
+    "Separate Gate 5 owner acceptance",
+    "CHANGE Runtime publication",
+    "Root successor adoption",
+    "Later separately governed SCA-002 account-authority DEL-02-06/09 SOW propagation"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "runtime-sca002-ledger-repair-preimage/v3",
+  "status": "VERIFIED",
+  "head": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "originMain": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "target": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "sha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+    "rows": 1
+  },
+  "predecessor": {
+    "authorV4ManifestPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v4-ledger-repair/MANIFEST.json",
+    "authorV4ManifestSha256": "7645678894c9d5f704d29d4207e60a4654275c2e702ab2dab7a12e630e397109",
+    "reviewV4ManifestPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/review-v4-ledger-repair/MANIFEST.json",
+    "reviewV4ManifestSha256": "65257a958fc70bf62a468c36f9ab1165f0f13e57b61e8bd2460601ed24ebda6b",
+    "reviewV4Verdict": "PASS_DECISION_READY_METADATA_REPAIR",
+    "requiredCorrections": [
+      "Make the first postapplication audit blocker a dated historical fact and the proposed postimage self-current after hypothetical application.",
+      "Record HOST-P1, POLICY-R1 and ACCOUNT-WIRE-V1 as accepted contract basis and distinguish them from still-unmet implementation and release gates."
+    ]
+  },
+  "acceptedContractBasis": {
+    "choices": [
+      "HOST-P1",
+      "POLICY-R1",
+      "ACCOUNT-WIRE-V1"
+    ],
+    "decisionRecord": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/OWNER_DECISIONS/DECISIONS.md",
+      "sha256": "ff389e47a48386aeabe344496acf509386301aa0b72868a690ba5b4190bfe67c"
+    },
+    "manifest": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/OWNER_DECISIONS/MANIFEST_v2.json",
+      "sha256": "f4fcbe92c15c3a9803f6835dfa1d9dc1563101ec3a6e7308b251b0570c314872"
+    },
+    "effect": "Accepted contract basis only; no canonical/SOW/source/hold/activation/supplier/hosted-readiness/release authority."
+  },
+  "sca001": {
+    "stage1State": "APPLIED_AND_OWNER_ACCEPTED",
+    "stage1OwnerAcceptanceSha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f",
+    "stage1PointerPostimageSha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026",
+    "stage2State": "EXACT_SOW_PROPAGATION_APPLIED_AND_LOCALLY_VALIDATED",
+    "stage2PropagationReturnSha256": "6e3484cd879f3474e4cb50f3dce85dd8d4b694b2b46c41bf2001a96ab6a4e865",
+    "stage2PointerPostimageSha256": "0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea",
+    "pending": [
+      "Root successor adoption/publication",
+      "Runtime publication"
+    ]
+  },
+  "sca002": {
+    "snapshotManifestSha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3",
+    "applicationJournalSha256": "78cbfb2e304e675369d364ff807427a133388b70ed07ddcdbd3f86bf685a7786",
+    "firstPostapplicationAuditDate": "2026-09-07",
+    "firstPostapplicationAuditManifestSha256": "f2044a82fe16474865c6c1f99d66aa9c886851afedb1b72d22924f9ed7cc8369",
+    "firstPostapplicationAuditReturnSha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1",
+    "firstPostapplicationAuditIssueLogSha256": "130ae0490e693ee92a2774b88efb08297bdc2d9b7660a8c5b4a7a23fa9e59af7",
+    "historicalAuditFinding": "BLOCKED_ON_THEN_CURRENT_LEDGER_METADATA",
+    "proposedRepairEffect": "RESOLVES_EXACT_METADATA_INCONSISTENCY_IF_APPLIED",
+    "futureActs": [
+      "Fresh independent AUDIT_DECOMP rerun",
+      "Separate Gate 5 owner acceptance",
+      "Runtime publication",
+      "Root successor adoption",
+      "Later separately governed SCA-002 account-authority DEL-02-06/09 SOW propagation"
+    ]
+  },
+  "conservation": {
+    "scopeRows": 1,
+    "package": "PKG-02_Runtime_Product",
+    "deliverableCarriers": 7,
+    "objectiveIds": [
+      "OBJ-001",
+      "OBJ-002",
+      "OBJ-004",
+      "OBJ-007"
+    ],
+    "qualifiedInheritedRequirementRows": 66,
+    "holdInterpretation": "nine holds plus separate R16-B",
+    "historicalSowBasis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+    "runtimeIdentity": "root-runtime-1 epoch 1"
+  }
+}

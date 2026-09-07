@@ -1,0 +1,62 @@
+{
+  "schema": "runtime-sca002-ledger-repair-author-qa/v1",
+  "verdict": "READY_FOR_INDEPENDENT_REVIEW",
+  "checks": [
+    {
+      "id": "preimage",
+      "status": "PASS",
+      "evidence": "Current ledger SHA256 is e3621b3c... and parses as one row."
+    },
+    {
+      "id": "field-level-diff",
+      "status": "PASS",
+      "evidence": "Only DecisionRef and Notes change; twelve other fields including CandidateState are identical."
+    },
+    {
+      "id": "completed-acts",
+      "status": "PASS",
+      "evidence": "DecisionRef records published Root D36, accepted Gate 2, approved Gates 3-4, exact SCA-002 application, and exact grant/snapshot/application identities."
+    },
+    {
+      "id": "gate5-blocker",
+      "status": "PASS",
+      "evidence": "DecisionRef records the blocking poststate audit and leaves metadata repair, clean rerun and owner acceptance pending."
+    },
+    {
+      "id": "candidate-state-schema",
+      "status": "PASS",
+      "evidence": "Notes explicitly define GATE3_REVIEW_NOT_ACCEPTED as the preserved historical migration/decomposition candidate-stratum field, not current SCA-002 Gate 3 status."
+    },
+    {
+      "id": "effect-boundary",
+      "status": "PASS",
+      "evidence": "Notes state the supplement is applied canonical but not effective for dependent reliance until Runtime publication/main identity and Root successor adoption; project authorization, all wire/source gates and no activation remain."
+    },
+    {
+      "id": "patch",
+      "status": "PASS",
+      "evidence": "One-file patch applies cleanly to current ledger and passes whitespace-strict apply check; numstat 1/1."
+    },
+    {
+      "id": "conservation",
+      "status": "PASS",
+      "evidence": "One row, PKG-02, seven carriers, four objectives, 66 requirements, nine holds plus R16-B, historical SOW basis and root-runtime-1 epoch 1 remain."
+    },
+    {
+      "id": "mutation",
+      "status": "PASS",
+      "evidence": "Candidate-only writes are confined to author-v3-ledger-repair; canonical, SCA-002, audit and Git state are not modified."
+    }
+  ],
+  "overclaimReview": "PASS: completed Gates 2-4 and exact application are stated as historical facts; Gate 5 acceptance, repair application, publication, Root adoption, SOW propagation, activation and release remain pending.",
+  "requiredNext": [
+    "Independent candidate review",
+    "Separate owner approval of exact one-file metadata repair",
+    "Governed application plus immutable repair snapshot/pointer handling",
+    "Clean AUDIT_DECOMP rerun",
+    "Gate 5 owner acceptance",
+    "CHANGE publication and actual Runtime main identity",
+    "Root successor adoption",
+    "Later separately governed SOW propagation"
+  ]
+}

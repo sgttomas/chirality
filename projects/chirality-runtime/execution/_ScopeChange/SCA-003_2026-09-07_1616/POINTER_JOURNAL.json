@@ -1,0 +1,10 @@
+{
+  "schema": "runtime-scope-change-pointer-journal/v1",
+  "pointer": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "preimageSha256": "512b66c08858b11835b6fd4e661aee7d33443fcf339e1fd496a2952339068a00",
+  "postimageSha256": "941753dfbe4ebedd9385aa8934acefe7c4a46360fbf126648ba93a3d233b3972",
+  "preimageCopy": "LATEST_PREIMAGE.md",
+  "postimageCopy": "LATEST_POSTIMAGE.md",
+  "newTarget": "SCA-003_2026-09-07_1616/",
+  "result": "EXACT_POSTIMAGE_PASS"
+}

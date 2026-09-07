@@ -1,0 +1,48 @@
+{
+  "run_label": "SCA002_ACCOUNT_AUTH_POSTSTATE",
+  "timestamp": "2026-09-07T20:50:18Z",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-002_2026-09-07_ACCOUNT_AUTHORITY/SNAPSHOT_MANIFEST.json",
+  "expected_handoff_phase": "SCA-002 exact canonical application; Gate 5 owner acceptance pending",
+  "decomposition_path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "v1.0 plus exact SCA-002 account-control append",
+  "scope": "PKG-02_Runtime_Product",
+  "repository_topology": {
+    "packages": 1,
+    "deliverables": 7,
+    "objectives": 4,
+    "scope_items": 1,
+    "ledger_rows": 1
+  },
+  "partitions_declared": 1,
+  "partitions_found": 1,
+  "production_units_declared": 7,
+  "production_units_found": 7,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "artifact_measurement": "0 of 40 anticipated production outputs present; all seven SOW_V1 contracts valid at INITIALIZED",
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 1,
+  "issues_warning": 0,
+  "issues_info": 40,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 7
+  },
+  "overall_status": "BLOCKERS",
+  "closure_readiness": "FAIL",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}
