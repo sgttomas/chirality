@@ -1,0 +1,71 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "files": [
+    {
+      "path": "AUTHORITY_INPUTS.json",
+      "sha256": "6eeda267f5cac8e101ed909c14a05780b12db708d7919c910f226af5a0bc2b0f",
+      "bytes": 4091
+    },
+    {
+      "path": "AUTHOR_BRIEF.json",
+      "sha256": "8930f78665648e601104f37cf4f3ce957bd9a1f5cb5bec994012a12901175b50",
+      "bytes": 1953
+    },
+    {
+      "path": "FAN_IN.json",
+      "sha256": "db5e87bf268eb6022ef1d5c5d87268f1f06ca3f135f3b9f5b2a003b2be122075",
+      "bytes": 942
+    },
+    {
+      "path": "LIVE_CARRIER_INPUTS.json",
+      "sha256": "f2fc595e3ff4d355dd2f88d2498e24a64caa6281c7298122ebd11ae1bd86b3ea",
+      "bytes": 9703
+    },
+    {
+      "path": "RESIDUAL_AND_GATES.md",
+      "sha256": "53e63ba926ad5fa6904e2cf549312e53e617747b918a19ec5479c1bcd0aca1c9",
+      "bytes": 3927
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "c05221734a66e733d0bb71b791725d127750c3cd9d33b925f14d335738059737",
+      "bytes": 2730
+    },
+    {
+      "path": "ROOT_REVIEW_INPUTS.json",
+      "sha256": "fc87ccf8ac98bc5b0e8649a251400a48d965e5194df8b876984b242a133ca20b",
+      "bytes": 1909
+    },
+    {
+      "path": "RUNTIME_EVENTS.jsonl",
+      "sha256": "d40515eb01e992d56413f86ea8730a79eaaae9fcd60b57299dcd0b3255de1233",
+      "bytes": 2474
+    },
+    {
+      "path": "RUNTIME_SUMMARY.json",
+      "sha256": "eb142fae9396f603c2830675088c4992d3236cf17569f4704431d3f15a094dff",
+      "bytes": 1099
+    },
+    {
+      "path": "discovery_drift.txt",
+      "sha256": "8d162792978fe099aa7635049084ce9bb7abeb85389d233d76b1f01413c08db4",
+      "bytes": 123
+    },
+    {
+      "path": "discovery_drift_qualified_interpreter.txt",
+      "sha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482",
+      "bytes": 1106
+    },
+    {
+      "path": "discovery_status.txt",
+      "sha256": "8d162792978fe099aa7635049084ce9bb7abeb85389d233d76b1f01413c08db4",
+      "bytes": 123
+    },
+    {
+      "path": "discovery_status_qualified_interpreter.txt",
+      "sha256": "82b78ec6043855ad4ae510028e440ed6d39e10ace8ca17b5373cd7baf3d8cf45",
+      "bytes": 3002
+    }
+  ],
+  "author_manifest_sha256": "aa3b7251ad79b96a68dcec3aa879d1c3ebb8bcbf931294e5a2e940955518fa30"
+}

@@ -1,0 +1,11 @@
+# Stage2 application and propagation return
+
+Actual owner ruling “I approve both.” accepted and authorized the exact33member prepared subject c5054fd4f4c23338c28c3194a3227bac706f8d6813d3673deb40d8b50075a3fb and matching Root adoption. OWNER_ACCEPTANCE.md records the exact act, reference and limits; no repeat acceptance vote is required for this unchanged applied subject.
+
+Both live SOWs match accepted postimages: DEL06 e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54; DEL09 5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e. Both decomposition_basis fields identify actual accepted merge9f21e4b86c304343b92ccd9ef10895b28c1a4f48. Application journal/preimages/checks are sealed in IMPLEMENTATION; WORKING_ITEMS fan-in in MANAGER. Live SOW schema passes;66 requirement IDs and183 non-target inputs preserved;92 historical excluded entries unchanged. Independent application review PASS and subsequent PROPAGATION_BACKCHECK PASS support local completion.
+
+Owning propagation addendum is execution/_ScopeChange/PROPAGATION_SCA001_STAGE2_2026-09-07. Same SCA pointer records locally applied/reviewed Stage2 with Root adoption/publication still pending. Prior61memberStage1 and33memberStage2preparation subjects remain unchanged. No full Runtime or release closure is claimed. Root guard not run against knowingly pending adoption; no false PASS.
+
+Next owner is App lead coordinating Root-first adoption publication. Runtime publication remains held until the actual Root merge arrives, then CHANGE may safely synchronize and publish under standing owner Git authority with exact hashes, exclusions, fresh CI and match-head merge. No source activation, supplier/credential/login/protected operation or release follows. The contract is applied locally, not yet published/effective through Root recognition. Root-compatible accepted preparation index and actual OWNER_ACCEPTANCE supply adoption inputs; this application packet supplies executed evidence.
+
+HANDOFF_MANIFEST uses repository-root paths and binds application plus propagation evidence without circular self-hash. HELP_HUMAN /root; OpenAI GPT-6 exact serving ID unavailable; Agent0 and delegated role enforcement instruction-asserted.

@@ -1,0 +1,9 @@
+{
+  "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "sameSnapshot": "SCA-001_2026-09-06_D36_CUSTODY/",
+  "beforeSha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026",
+  "afterSha256": "0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea",
+  "addendumSha256": "6e3484cd879f3474e4cb50f3dce85dd8d4b694b2b46c41bf2001a96ab6a4e865",
+  "authority": "Actual owner Stage2 acceptance/application grant and parent confirmed same-target owning propagation scope",
+  "newActiveSnapshot": false
+}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS_CANDIDATE_PREPARATION_ONLY",
+  "child": "/root/custody_manager/stage2_sow_author",
+  "child_manifest_sha256": "aa3b7251ad79b96a68dcec3aa879d1c3ebb8bcbf931294e5a2e940955518fa30",
+  "sealed_brief_sha256": "8930f78665648e601104f37cf4f3ce957bd9a1f5cb5bec994012a12901175b50",
+  "checks": [
+    "Read child return, exact patch, validation and conservation evidence",
+    "Verified all9childmembers+54childinputs and manager carrier/authority pins",
+    "Reverified two livepreimages/candidatepostimages",
+    "Independently compared both procedure and matrix sections byte-for-byte",
+    "Tracked diff and index remain empty"
+  ],
+  "acceptance": "Manager accepts child preparation for independent review only; no owning SOW acceptance/application",
+  "baseline": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "roles": "actual native Agent1/Agent2 instruction-asserted",
+  "model": "OpenAI GPT-6 exact serving ID unavailable"
+}

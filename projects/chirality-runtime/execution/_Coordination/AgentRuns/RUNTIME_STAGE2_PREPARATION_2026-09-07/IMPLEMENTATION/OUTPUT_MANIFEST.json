@@ -1,0 +1,52 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "derivative_package": true,
+  "accepted_basis_commit": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "files": [
+    {
+      "path": "CANDIDATE.patch",
+      "sha256": "7ad332abb5f7e62b639ff93c456a9983d7dee06556acbae6df0a28253513b4d8",
+      "bytes": 5986
+    },
+    {
+      "path": "CHECKS.json",
+      "sha256": "83ab1b4e71fb3f9aea372c5af2b6eaf56bb96a020861abe6aef653f8187abddf",
+      "bytes": 5429
+    },
+    {
+      "path": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+      "bytes": 53974
+    },
+    {
+      "path": "DEL-02-06_VALIDATION.json",
+      "sha256": "2dacebd740a541188e30c7ec65fa1e53bf4cac15e0718d5e0f36dae0df791f27",
+      "bytes": 854
+    },
+    {
+      "path": "DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+      "bytes": 14600
+    },
+    {
+      "path": "DEL-02-09_VALIDATION.json",
+      "sha256": "1050493c0a71389daff847f3b96ee7c95fd5df1fa9ac8fc67330e891895b4637",
+      "bytes": 826
+    },
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "be902d1709a1cb5323deda7e6980bb3a6167968a080b964afda43cac6e9678cb",
+      "bytes": 13811
+    },
+    {
+      "path": "POSTIMAGE_INDEX.json",
+      "sha256": "5f763d187b1a30957c38aa9e8fe14c7734d1409cb405af4375098ac2b208f1d5",
+      "bytes": 871
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "1196f8fab6a30efbb75f33c8883f7611830ba0e4fe100cba3fa3acbd83d613de",
+      "bytes": 4920
+    }
+  ]
+}

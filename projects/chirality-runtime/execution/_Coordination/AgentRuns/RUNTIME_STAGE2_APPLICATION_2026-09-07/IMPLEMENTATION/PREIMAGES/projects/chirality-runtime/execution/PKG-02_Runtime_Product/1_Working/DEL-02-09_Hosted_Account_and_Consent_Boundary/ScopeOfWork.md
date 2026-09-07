@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-09
 package_id: PKG-02
-decomposition_basis: projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@9f21e4b86c304343b92ccd9ef10895b28c1a4f48
+decomposition_basis: projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md@8209bc54e0d133b19437c93b184cd50ba3d43489
 project_scope_refs: [SOW-104]
 package_objective_refs: [OBJ-001, OBJ-002, OBJ-004, OBJ-007]
 ---
@@ -75,37 +75,8 @@ invented by this Scope of Work.
   with `network_access = true`.
 - **REQ-001** — The hosted-account boundary shall use root-private app-owned
   `CODEX_HOME`; ambient `~/.codex` is excluded.
-  Later binding disposition: D-GOV-36, `docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md`,
-  permits the daemon-owned exact trusted supplier authentication process for
-  managed Codex authentication to use an explicitly configured built-in OS
-  keyring under DEL-02-06/REQ-041's narrow custody exception. Each canonical
-  root independently acquires authentication in its root-private app-owned
-  context; cross-root credential copying, shared authenticated homes, ambient
-  credentials, client/tool-worker credential access and plaintext fallback
-  remain prohibited. Exact supplier, backend and process/storage boundary
-  qualification is required before operational reliance; a custom adapter
-  requires a demonstrated remaining gap.
-  An account-only nonexecuting bootstrap auth namespace is permitted for
-  sign-in before folder selection. It grants neither project/no-folder
-  execution nor folder consent; bootstrap credentials are not copied into
-  root contexts. Local profile/settings are neither client authority nor an
-  additional cloud account. The target remains one OpenAI sign-in experience
-  with independent folder consent; current documentation does not prove the
-  actual multi-root experience. Authenticated project-scoped Unix control, no
-  TCP control listener and operational/non-authoritative credential state
-  remain unchanged. This does not accept B2 execution-context semantics.
 - **REQ-002** — The boundary shall preserve account/epoch and policy continuity,
   and consent shall not cross root, account, or policy-digest drift.
-  Under D-GOV-36, global account switch/sign-out shall durably fence every
-  hosted context in the active account generation. Local-model contexts are
-  unaffected; folder disconnect is local to that folder. Retire tool/turn
-  execution first, retain only necessary purpose-limited context for a
-  separately authorized bounded remote-revoke attempt, then retire auth
-  processes and clear local credentials, verifying cleanup. Ungranted,
-  offline or impossible revoke proceeds to local cleanup with remote state
-  unknown. Credentials shall not be retained indefinitely; no browser-wide
-  or provider-global revocation is claimed. Human-approval assurance remains
-  separate. These dispositions grant no implementation or operational act.
 - **REQ-003** — The `K-ROLE-2` digest and role controls shall preserve the A3
   parity, label, and evidence-posture distinctions stated in `CLM-002` without
   changing hard filesystem/network/process containment.

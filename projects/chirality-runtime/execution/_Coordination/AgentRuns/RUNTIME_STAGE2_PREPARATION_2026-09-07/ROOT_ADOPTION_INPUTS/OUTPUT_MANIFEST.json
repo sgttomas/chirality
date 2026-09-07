@@ -1,0 +1,21 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "pathBase": "ROOT_ADOPTION_INPUTS directory; local supplement only, not future accepted subject",
+  "files": [
+    {
+      "path": "POSTIMAGE_INDEX.json",
+      "sha256": "ade3e354cfdeeaa327b1f734f3a3828edd727f5ac8297a94b05e5d61b4c0ae08",
+      "bytes": 1103
+    },
+    {
+      "path": "PROJECTION_RECORD.json",
+      "sha256": "f743f6e0819e11e6d6be5848721a041cab53b59f0ed5174737818c4681c8d0f9",
+      "bytes": 1065
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "ae18e87e2501216b3e9b680c96595c28c1691c5092b9e0662473265f1cae402c",
+      "bytes": 1807
+    }
+  ]
+}

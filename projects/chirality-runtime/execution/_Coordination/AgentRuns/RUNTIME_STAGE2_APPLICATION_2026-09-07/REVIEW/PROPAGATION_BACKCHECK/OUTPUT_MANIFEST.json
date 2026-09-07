@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "624e977eed629fda3ca9cd7fa83044c5b9cde24801050b21c901a689f7c71db7"
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "d1492f90b9ac1f731a08e3d5417f70c7f71c965ed4b87a60ee98ca23306c3cc0"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "verifiedManifests": [
+    {
+      "manifest": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/IMPLEMENTATION/OUTPUT_MANIFEST.json",
+      "sha256": "06a5bb1a39a32716c3ba2f70005c9cce32b42d5500e1e58595d386547e9e6516",
+      "membersVerified": 9
+    },
+    {
+      "manifest": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/MANAGER/OUTPUT_MANIFEST.json",
+      "sha256": "e9672147f08ec9383ccae6f1d88391ef544652de53439e7292387ac273b26d9c",
+      "membersVerified": 7
+    },
+    {
+      "manifest": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/REVIEW/OUTPUT_MANIFEST.json",
+      "sha256": "77d265ab8c5698c99d2aaa6d9bb5c27a135fa19772d88f1956d0116ec0727fc6",
+      "membersVerified": 2
+    }
+  ],
+  "livePostimages": [
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "preimageSha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+      "postimageSha256": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+      "candidatePath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/IMPLEMENTATION/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md"
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "preimageSha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+      "postimageSha256": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+      "candidatePath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/IMPLEMENTATION/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md"
+    }
+  ],
+  "applicationStatus": "EXACT_APPLIED_AND_REVIEWED",
+  "RootGuard": "NOT_RUN_PENDING_ADOPTION",
+  "RootPublication": "PENDING",
+  "RuntimePublication": "HELD_UNTIL_ROOT_ADOPTION_MERGED",
+  "localSOWPropagation": "COMPLETE",
+  "fullClosure": false,
+  "noNewAcceptanceVote": true
+}
