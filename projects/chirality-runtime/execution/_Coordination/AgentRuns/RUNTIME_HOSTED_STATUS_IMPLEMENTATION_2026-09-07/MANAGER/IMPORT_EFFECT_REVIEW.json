@@ -1,0 +1,22 @@
+{
+  "status": "PASS_DECLARED_READ_ONLY_CLOSURE",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-conformance.ts",
+      "sha256": "233262aa737db7c9ae53ee97a4ca9129b415e44fbb47f257db4543e69d12a9d1"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-dependencies.ts",
+      "sha256": "4aa3803ab336268c1947af8257b2d3e97d17c2e49309bd675fdd4827d25010f3"
+    }
+  ],
+  "actual_effect": "Core import eagerly starts ArtifactGeneration constructor inventory/hash of Runtime packages/*/dist,workspace manifests,lock and resolved productiondependency package bytes. Filters do not suppress imports.",
+  "boundaries": [
+    "Canonical Runtime root and workspace containment required",
+    "Selected dependency actual root must remain within Runtime; aliases rejected except contained registeredworkspace links",
+    "Walker rejects symlinks and nonregularfiles; depth64,file50000,byte2GiB,package1024 bounds",
+    "External lookup locations existence-only lstat then deny if found; no external manifests/content read",
+    "No packageentrypoint execution, credential/home enumeration, supplier invocation, conformanceverifier or provider/keychain/network effects"
+  ],
+  "disposition": "Within authorizedlocalread/sourceanddependencyverification; no newpermission required. Prior claim filter preventsinventory withdrawn; testbodies remainselectedonly. No core change or mockframework needed."
+}

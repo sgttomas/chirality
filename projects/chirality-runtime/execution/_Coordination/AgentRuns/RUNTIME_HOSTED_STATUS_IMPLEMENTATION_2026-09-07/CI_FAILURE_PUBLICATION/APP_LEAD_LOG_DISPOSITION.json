@@ -1,0 +1,11 @@
+{
+  "actor": "App lead under owner delegated low-risk authority; relayed by parent HELP_HUMAN",
+  "decision": "APPROVED same exact lossless archive/map for frozen test log, conditional on exact hash/byte roundtrip and explicit historical manifest mapping",
+  "originalSha256": "4fb1c597ebf131ea70446b39eee46ce4654fafdc332be8256d46b80fb8bd2b1c",
+  "originalBytes": 1068,
+  "conditionMet": true,
+  "rawPathPublished": false,
+  "originalLocalFileUnchanged": true,
+  "scope": "Evidence representation only; no semantic/source/test rewrites or attributes changes",
+  "notNewOwnerQuote": true
+}

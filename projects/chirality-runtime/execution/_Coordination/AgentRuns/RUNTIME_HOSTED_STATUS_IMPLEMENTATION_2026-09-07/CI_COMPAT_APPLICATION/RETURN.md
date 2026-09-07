@@ -1,0 +1,5 @@
+# Bounded fixture application return
+
+Exact approved supervisor fixture applied by actual bounded Agent2, manager verified postimage0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406. One selected private authenticated login-channel test passed;11 unrelated tests skipped. Existingchannelassertions preserved. No other production source/test was changed by this manager. CHANGE owns separate config/attributes adjustments.
+
+Original15finalpostimages all rehashed unchanged, so145previousselectedPASS/typecheck evidence remains applicable; this one newfixturePASS is additional, not a fullsuite result. Newcase uses ownedUnixsocket/temp and no workeracquisition; no provider/keyring/supplier/protected effects. Parentconfirmed exactisolatedconfig/command within delegatedAppgrant. Preimage/journal and actualApp-leaddelegatedact retained; no newownerquote or sourceactivation inferred. FreshCI/review and parentpublicationfan-in remain; no release/consumeracceptance claimed. OpenAI GPT-6 exactIDunavailable; actualAgent1/Agent2 rolesinstruction-asserted.

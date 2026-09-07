@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-07T08:29:19.670740+00:00",
+  "authority": "Actual App lead delegated disposition relayed by WORKING_ITEMS; not a new owner quote",
+  "candidateManifest": "b7b0cdb5e1b8521739dab2875570dd0762b433dc77059a1ab70f4bd8e8ca242f",
+  "commandManifest": "4606b66c1658954f416843fc86560fe10a55b14971a83606581c73989c60448b",
+  "files": [
+    {
+      "target": "projects/chirality-runtime/tests/codex-manager.test.ts",
+      "beforeSha256": "33a1239db2f4bda8609875d391ff5cf6e11edf47e6139d9a806ce03ef372d703",
+      "candidateSha256": "d502da9f3d993daa699ffb4fc2db1a58e96b0f2dae309c5a667b072ff02bc76d",
+      "bytes": 9946
+    },
+    {
+      "target": "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "beforeSha256": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+      "candidateSha256": "95c58c4c661c42fe7dac43cc741fd51fa2910f86f28edc23669d41db72a41bbf",
+      "bytes": 46353
+    },
+    {
+      "target": "projects/chirality-runtime/tests/manager-approval-integration.test.ts",
+      "beforeSha256": "a15e7098c6448f04fb463afa2c616eac3f6b9c9a71042f5910c865a553a52c2b",
+      "candidateSha256": "823ff9339b82f1942233bb7f8e4612b837d8bea92d750e5f132d34f079a0d26b",
+      "bytes": 10269
+    }
+  ],
+  "exactApplied": true,
+  "otherLiveWrites": false,
+  "priorSealsVerified": true
+}

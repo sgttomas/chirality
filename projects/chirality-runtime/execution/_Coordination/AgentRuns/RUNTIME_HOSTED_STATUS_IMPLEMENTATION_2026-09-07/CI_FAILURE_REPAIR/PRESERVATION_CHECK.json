@@ -1,0 +1,156 @@
+{
+  "checks": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/APP_CLI_HANDOFF.md",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/FAN_IN.json",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/LOCAL_ARTIFACT_IDENTITIES.json",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/PATCH.diff",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/client/src/client.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-login.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-login.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/tests/codex-login.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-login.test.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/tests/codex-session.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/tests/custody-config-status.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/custody-config-status.test.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/tests/standalone.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/standalone.test.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/POSTIMAGES/projects/chirality-runtime/vitest.custody.config.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/vitest.custody.config.ts",
+      "liveUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/RETURN.md",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/VALIDATION.json",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/runtime-hosted-final-publication-qow8_y7e/HARNESS_FAILED_LOG.json",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/runtime-hosted-final-publication-qow8_y7e/FAILURE_EXCERPT.json",
+      "pass": true
+    }
+  ]
+}

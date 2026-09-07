@@ -1,0 +1,21 @@
+{
+  "status": "FROZEN_FOR_VALIDATION_AND_INDEPENDENT_REVIEW",
+  "supersedesSourceSubject": "aab1473a59fc468a10c98f192a9df2cfce2891d6633797a1b2d0b66b8ad10819",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "4079afb4b37fba09c4f748383d243aee949c6aaa83b10298621cc277cacc4eb3",
+      "bytes": 965
+    },
+    {
+      "path": "SOURCE_HASHES.json",
+      "sha256": "1176a64b9d6d53673647e73156aeeb95f53979d928e4d44bf5fc4fa78f373903",
+      "bytes": 1866
+    },
+    {
+      "path": "SOURCE_PATCH.diff",
+      "sha256": "f305b07f008ab0da7d294921d9b7f61d15620d42f057bdeb6d1c54d67fd45c5f",
+      "bytes": 53399
+    }
+  ]
+}

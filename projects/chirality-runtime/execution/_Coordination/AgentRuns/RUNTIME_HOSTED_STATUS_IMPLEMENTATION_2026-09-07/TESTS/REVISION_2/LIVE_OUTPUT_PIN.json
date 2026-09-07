@@ -1,0 +1,7 @@
+{
+  "path": "projects/chirality-runtime/tests/custody-config-status.test.ts",
+  "beforeSha256": "21febcd62cd1329b50e80010ec3fe1c485ad3114e7ca0a0365aa457b9669fec7",
+  "sha256": "bf858b8cafcc0b631da5bec1136abbb110814f266c02e36b00bc03b221965a43",
+  "bytes": 14739,
+  "priorManifestSha256": "a34d118da921a9273b1ef44b700e189aa6b7e273a9bf296d4357f7c99f4290f4"
+}

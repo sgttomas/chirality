@@ -1,0 +1,101 @@
+{
+  "allPass": true,
+  "checks": [
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/BRIEF.json",
+      "expected": "3fbdf87543347fab459740e3677cd1071c705434f3c507229fff82c349ce70dc",
+      "actual": "3fbdf87543347fab459740e3677cd1071c705434f3c507229fff82c349ce70dc",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/runtime-hosted-final-publication-qow8_y7e/HARNESS_FAILED_LOG.json",
+      "expected": "a7f5da57a26469dd32a2c867b6060475f66a7faffa1d1d142f728639b3c19999",
+      "actual": "a7f5da57a26469dd32a2c867b6060475f66a7faffa1d1d142f728639b3c19999",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/runtime-hosted-final-publication-qow8_y7e/FAILURE_EXCERPT.json",
+      "expected": "f32ef162815f5275f1989129072c4ec5769290cd64133b273ee14d4202af3dcf",
+      "actual": "f32ef162815f5275f1989129072c4ec5769290cd64133b273ee14d4202af3dcf",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/tests/codex-manager.test.ts",
+      "expected": "33a1239db2f4bda8609875d391ff5cf6e11edf47e6139d9a806ce03ef372d703",
+      "actual": "33a1239db2f4bda8609875d391ff5cf6e11edf47e6139d9a806ce03ef372d703",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "expected": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+      "actual": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/tests/manager-approval-integration.test.ts",
+      "expected": "a15e7098c6448f04fb463afa2c616eac3f6b9c9a71042f5910c865a553a52c2b",
+      "actual": "a15e7098c6448f04fb463afa2c616eac3f6b9c9a71042f5910c865a553a52c2b",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "expected": "393a22ca6f10c56f82d43f193120da200bde5de6126364b6dfff77a285c88064",
+      "actual": "393a22ca6f10c56f82d43f193120da200bde5de6126364b6dfff77a285c88064",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "expected": "6b3a0e7fb393ea0bea43989b65ffcb84fd644729a8ac9117e9d5c981ce550f89",
+      "actual": "6b3a0e7fb393ea0bea43989b65ffcb84fd644729a8ac9117e9d5c981ce550f89",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "expected": "071ad5f7953c928c9553ad9978dff607a395b9d7e78cb43e18960873cc199d90",
+      "actual": "071ad5f7953c928c9553ad9978dff607a395b9d7e78cb43e18960873cc199d90",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "expected": "34e684d4f9ebdf422217448c8926bee91e275ac12ec4b93248a5c64193481acf",
+      "actual": "34e684d4f9ebdf422217448c8926bee91e275ac12ec4b93248a5c64193481acf",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "expected": "acd763f395957dddec190bba6878bd326c6c1a2dc1a6de14cd804550aac3aa6b",
+      "actual": "acd763f395957dddec190bba6878bd326c6c1a2dc1a6de14cd804550aac3aa6b",
+      "pass": true
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/client/src/client.ts",
+      "expected": "3d0c73a51e472c64b789baca9ff5ea50ff9d8c84e345e067e48168c216000cf1",
+      "actual": "3d0c73a51e472c64b789baca9ff5ea50ff9d8c84e345e067e48168c216000cf1",
+      "pass": true
+    },
+    {
+      "path": "AUTHOR/FAILURE_MAPPING.json",
+      "expected": "a4e28122c40b8e0a9657fb9699ff71cab2e68eb53f7b86f874c32a4b3b67de1f",
+      "actual": "a4e28122c40b8e0a9657fb9699ff71cab2e68eb53f7b86f874c32a4b3b67de1f",
+      "pass": true
+    },
+    {
+      "path": "AUTHOR/INPUT_PINS.json",
+      "expected": "44a71ed2cbab6abd8170ef2acaf26160adcdbac6467d3a11ca6149165656d0d8",
+      "actual": "44a71ed2cbab6abd8170ef2acaf26160adcdbac6467d3a11ca6149165656d0d8",
+      "pass": true
+    },
+    {
+      "path": "AUTHOR/REPORT.md",
+      "expected": "91eee2d43828f720e5d5fb5307ea7f54841aab0052c577a09b6ae69737f7e98e",
+      "actual": "91eee2d43828f720e5d5fb5307ea7f54841aab0052c577a09b6ae69737f7e98e",
+      "pass": true
+    },
+    {
+      "path": "AUTHOR/RETURN.md",
+      "expected": "1f6c00d7d4c0b9678d4a013dca74a223ca05d7755b6f2e3687fe7ebc509890bb",
+      "actual": "1f6c00d7d4c0b9678d4a013dca74a223ca05d7755b6f2e3687fe7ebc509890bb",
+      "pass": true
+    }
+  ]
+}

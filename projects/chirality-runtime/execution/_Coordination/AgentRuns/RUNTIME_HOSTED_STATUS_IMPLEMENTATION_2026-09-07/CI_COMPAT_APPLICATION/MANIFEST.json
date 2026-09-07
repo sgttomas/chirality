@@ -1,0 +1,51 @@
+{
+  "status": "FROZEN_APPLIED_VALIDATED",
+  "pathBase": "repository root",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/AUTHOR/APPLICATION_JOURNAL.json",
+      "sha256": "f01ec3ee3ab114bb4f89cf3870f6ca9a041471a7eb64ef94537d5bf5c8914981",
+      "bytes": 1050
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/AUTHOR/OUTPUT_MANIFEST.json",
+      "sha256": "fcce4b2c3ed0da0096cb2e223fde4a88004bf40ebc516df6d407a8094f9a57cb",
+      "bytes": 537
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/AUTHOR/RETURN.md",
+      "sha256": "27549b6799db45667b2fb746b3cb742ce9aaa9daceab0fdc794df75554504b85",
+      "bytes": 976
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/AUTHOR/supervisor.test.ts.preimage",
+      "sha256": "f0776501dfd7aa107fa1da17178b015c65f85fd37598ab0e5f3bb687931b3332",
+      "bytes": 12745
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/BRIEF.json",
+      "sha256": "58f9455431aaa3723d0c05f48db68257584348911fe17957aaad3ed5ee74836b",
+      "bytes": 1106
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/DELEGATED_ACT.md",
+      "sha256": "ab974674397c8d1b30350e16df455bdd2d37a45056b5b08419d4d506fa9a17ad",
+      "bytes": 1079
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/RESULT.json",
+      "sha256": "191a5d525c71fa0fb5dea0ff36134b2f8f1a7e39b05fb13cae6121053576b23a",
+      "bytes": 833
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/RETURN.md",
+      "sha256": "5edf1b0774cacb371253fbce7de99f5ff19c9deb3595d5cb9581f8f54fe3e097",
+      "bytes": 1069
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/vitest.channel.config.ts",
+      "sha256": "d41d668ca64bcff27daa4cd873117b286892fd585f03e3208e2a23a2ff65c835",
+      "bytes": 275
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "FROZEN_FOR_VALIDATION_AND_INDEPENDENT_REVIEW",
+  "files": [
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "5e6952100712ad9960fe56aa45d046286420f1920fb705876cbf89388e1e9a93",
+      "bytes": 10609
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "6dd1d10a0b4a9d0bf5892d54cc44dd6e40792a92e15de571cbdeaf536cf6b30b",
+      "bytes": 6445
+    },
+    {
+      "path": "SOURCE_HASHES.json",
+      "sha256": "adc55a50d769932f02df4d204561e378db6e8d2e4730db66989832d8635abb4b",
+      "bytes": 1866
+    },
+    {
+      "path": "SOURCE_PATCH.diff",
+      "sha256": "be88e902aa4cb1cc49b5599c177bb83d659b5c78d77bf08da74044e8b5a5b09b",
+      "bytes": 53430
+    }
+  ]
+}

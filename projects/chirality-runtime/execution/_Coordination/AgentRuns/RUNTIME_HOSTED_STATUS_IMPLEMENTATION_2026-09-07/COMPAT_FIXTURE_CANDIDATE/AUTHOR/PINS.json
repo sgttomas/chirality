@@ -1,0 +1,37 @@
+{
+  "inputs": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/BRIEF.json",
+      "sha256": "a3aff9fcdba559e14ea37e3f79909224e4799c19be952eddad3ccb92f3186d7f"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/supervisor.test.ts",
+      "sha256": "f0776501dfd7aa107fa1da17178b015c65f85fd37598ab0e5f3bb687931b3332"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "sha256": "acd763f395957dddec190bba6878bd326c6c1a2dc1a6de14cd804550aac3aa6b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "sha256": "071ad5f7953c928c9553ad9978dff607a395b9d7e78cb43e18960873cc199d90"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/process-supervisor.ts",
+      "sha256": "d4aebf122c39fe5b6e0b09bb2ccb83e0f60b410d497859caf743b50b15b305cb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/descendant-tracker.ts",
+      "sha256": "f424579b33d54ec23d1b0e39e12c4c24c587b380187cbf861017931c8d8dd588"
+    }
+  ],
+  "liveTarget": "projects/chirality-runtime/tests/supervisor.test.ts",
+  "beforeSha256": "f0776501dfd7aa107fa1da17178b015c65f85fd37598ab0e5f3bb687931b3332",
+  "candidateSha256": "0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406",
+  "checks": {
+    "oneExactStatusReturnReplaced": true,
+    "allOtherBytesAndAssertionsPreserved": true,
+    "liveSourceUnchanged": true,
+    "testExecution": "NOT_RUN"
+  }
+}

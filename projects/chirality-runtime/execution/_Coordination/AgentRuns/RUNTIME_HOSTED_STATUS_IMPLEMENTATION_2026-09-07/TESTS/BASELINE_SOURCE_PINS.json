@@ -1,0 +1,14 @@
+[
+  {
+    "path": "projects/chirality-runtime/packages/client/src/client.ts",
+    "revision": "bf204d8fd0bc55363b189a471e01461eb0cdf28a",
+    "sha256": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367",
+    "bytes": 23242
+  },
+  {
+    "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+    "revision": "bf204d8fd0bc55363b189a471e01461eb0cdf28a",
+    "sha256": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+    "bytes": 26967
+  }
+]

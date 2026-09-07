@@ -1,0 +1,20 @@
+{
+  "role": "ephemeral Agent2 nondelegating instruction-asserted",
+  "objective": "Prepareonly completepostimage/diff for tests/supervisor.test.ts private login fixture validv2unavailablestatus; preserveall otherbytes/assertions",
+  "read": [
+    "tests/supervisor.test.ts",
+    "packages/contracts/src/delegated.ts",
+    "packages/daemon/src/supervisor-server.ts"
+  ],
+  "allowed_writes": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/AUTHOR/**"
+  ],
+  "exclusions": "No livefilewrites or testexecution; nootherfixturechanges; candidateoutside15approvedpathsrequiresowningdisposition beforeapplication",
+  "outputs": [
+    "completecandidate supervisor.test.ts",
+    "CANDIDATE.patch",
+    "pins/return/effects/manifest"
+  ],
+  "validation": "Exactlyonefixturestatusreturn changed; strictv2fields, existing channelassertions preserved; disclose selectedcase Unixsocket/temp/eagerimporteffects versusfullsuiteprocess tests",
+  "model": "OpenAI GPT-6 exactIDunavailable"
+}

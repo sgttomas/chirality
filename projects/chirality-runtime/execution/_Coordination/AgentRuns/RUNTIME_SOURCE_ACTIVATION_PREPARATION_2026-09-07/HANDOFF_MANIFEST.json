@@ -1,0 +1,90 @@
+{
+  "pathBase": "repository root",
+  "status": "REVIEWED_PROPOSAL_NOT_ACTIVATED",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/AGENT0_HANDOFF.md",
+      "sha256": "cc9a8a76651c2693f0806d1205467c9934b1bae302317be2e23dbbfa818f1b44"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/IMPLEMENTATION/CHECKS.json",
+      "sha256": "a48dd5c2f54bd3d506a0302ea0346d05d0f7b81b0d2504b3228f8c6d42299741"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/IMPLEMENTATION/INPUT_PINS.json",
+      "sha256": "39b18e96c39a993b49b6f790a95b56cedcdd367062378d1574a517d9065d338c"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/IMPLEMENTATION/OUTPUT_MANIFEST.json",
+      "sha256": "2322bc94edfa26ba4d81ed4b49233588021a2a5d478466446cf93f958337190a"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/IMPLEMENTATION/PROPOSED_SOURCE_BRIEF.md",
+      "sha256": "951670bf92201391b949dbda2c6e5d7bda54ab5071882afab4f125265cb8b2cd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/IMPLEMENTATION/RETURN.md",
+      "sha256": "676019095cb076fe5fa8accef30b569fa9a775d65e07d583af5a0c265a4e9c25"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/AUTHORITY_INPUTS.json",
+      "sha256": "2ab193523153069d8b3d061209ebe4d4780cadc4c5013a5c398f3602e316a49f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/DECISION_PACKET.md",
+      "sha256": "8c5469c05ce6c76f64f74413e16c091c4a4962a9cc5aadecee6d305aae950c8c"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/DISCOVERY_drift.txt",
+      "sha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/DISCOVERY_status.txt",
+      "sha256": "fe28b709dfe5735afbacee881792ea54fd64506ccb41a8be943ab2a4ba2d1285"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/FAN_IN.json",
+      "sha256": "450a97a9b6c92d7698248b0a64061e8c44942710199fb04dc1d04b92dcb0d868"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/OUTPUT_MANIFEST.json",
+      "sha256": "61c3d3c545360e1d0beadbc7fdcf8afda5a03bedb55e1655640ff02a29dad4b1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/RUNTIME_EVENTS.jsonl",
+      "sha256": "ba77c99f938d1dac9f3f8e9414838d3adf751b91e72f25abea09a2530f5977a4"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/RUNTIME_SUMMARY.json",
+      "sha256": "f416197801e81474a95ff31eae89e499e9d2c8a94659a071cb1e72284456821d"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/SOURCE_AUTHORITY.md",
+      "sha256": "629405bccc512933245491b00935833305b3ab89a4d1b8e8f50b1fa46f7f33ac"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/SOURCE_BRIEF.json",
+      "sha256": "f9ac4ff9e6d88cb784753d660174f3a4abd3f97b55d9d9ab96c82afd56bb9e94"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/REVIEW/AUTHORITY_CLARIFICATION/OUTPUT_MANIFEST.json",
+      "sha256": "e2f146e180621e0311916cdabf584a414234e60254c66105cef4d7a8d40fb6e3"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/REVIEW/AUTHORITY_CLARIFICATION/RETURN.md",
+      "sha256": "f4e84b23ac648fbf3bb13fa04e4a5e6734e0ab98fd8aaecbd4cbbe4bb0caab2e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/REVIEW/OUTPUT_MANIFEST.json",
+      "sha256": "7811c5ebf63048c2d6787831424c0501cb5c49dce73d9bfdbb37c2a7c5786da8"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/REVIEW/RETURN.md",
+      "sha256": "f0d7debfe1f9ba8bf1feaf723ebcc070b3508d0b1ee899a5bbcd088dabd23448"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/REVIEW/VERIFICATION.json",
+      "sha256": "16196c730f570f50977171a05902fb0ecdd6eef83a8ec51424bacc9384245566"
+    }
+  ]
+}

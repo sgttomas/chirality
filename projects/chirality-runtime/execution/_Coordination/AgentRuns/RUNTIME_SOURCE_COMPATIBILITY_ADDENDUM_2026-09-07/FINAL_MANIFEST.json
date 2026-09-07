@@ -1,0 +1,32 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "pathBase": "repository root",
+  "note": "Includes initial manifest unchanged plus additive evidence completion; no prior artifact modified.",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/COMPATIBILITY_ADDENDUM.md",
+      "sha256": "c8838c3c1fc7488e2c76c3aeaefcab90fe270219cc5e48bde77766c8f513183c",
+      "bytes": 6325
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/DECISION_TEXT.md",
+      "sha256": "9915daf6d11779c8715661ccdc58186d04e5db8c2eee7185bd9dc3ed70537c69",
+      "bytes": 2305
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/EVIDENCE_COMPLETION.md",
+      "sha256": "4712e6c3d45d4d3003b1ed10a3ba5ed04ad4358e1785b5df18e4634bfab89f7d",
+      "bytes": 1992
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/INPUT_PINS.json",
+      "sha256": "e515524e28cf1fda2ef7ef546a3cd78bed04223fc83a94492ad1ce7c2f58c49b",
+      "bytes": 1125
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/OUTPUT_MANIFEST.json",
+      "sha256": "dbeae1868afaa7cb22aff8bb46754a73e9f6cd7db3ad6653b849a2730bb4e6e2",
+      "bytes": 889
+    }
+  ]
+}

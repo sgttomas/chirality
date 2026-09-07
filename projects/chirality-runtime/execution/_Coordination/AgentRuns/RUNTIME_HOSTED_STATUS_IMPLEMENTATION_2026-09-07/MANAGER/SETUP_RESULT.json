@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "command": "npm ci --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org --cache=./.custody-npm-cache",
+  "exit_code": 0,
+  "output": "added290packagesin8s; node-domexceptiondeprecation andnpmversionnotice only; no upgradeperformed",
+  "package_lock_workspace_manifest_hashes": "UNCHANGED",
+  "accepted29packetmembers": "UNCHANGED",
+  "lifecycle_scripts": "DISABLED",
+  "provider_supplier_keychain_operations": false,
+  "postcheck_correction": "Initial postcheck used Runtimecwd asrepositoryroot and failedpathresolution; correctedabsolute root verifiedhashes. Typecheck had started after failedhelper, no source edits or package changes inferred."
+}

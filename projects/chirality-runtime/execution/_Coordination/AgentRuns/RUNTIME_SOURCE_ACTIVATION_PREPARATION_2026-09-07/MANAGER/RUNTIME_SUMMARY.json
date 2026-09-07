@@ -1,0 +1,48 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 2
+  },
+  "counts": {
+    "category": {},
+    "event_type": {
+      "FINISH": 2,
+      "START": 2
+    },
+    "outcome": {
+      "PASS": 2,
+      "STARTED": 2
+    },
+    "reason_code": {}
+  },
+  "events": 4,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 408.673,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "manager",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS Agent1",
+      "session_id": "RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07-manager"
+    },
+    {
+      "duration_seconds": 408.587,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "source_proposal",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral Agent2",
+      "session_id": "RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07-source_proposal"
+    }
+  ],
+  "sessions": 2,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

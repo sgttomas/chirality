@@ -1,0 +1,20 @@
+{
+  "role": "ephemeralAgent2 nondelegating",
+  "objective": "Apply exactapproved onefixturepostimage afterprehash; evidenceonly no tests",
+  "target": "projects/chirality-runtime/tests/supervisor.test.ts",
+  "prehash": "f0776501dfd7aa107fa1da17178b015c65f85fd37598ab0e5f3bb687931b3332",
+  "posthash": "0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406",
+  "candidate_root": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/AUTHOR",
+  "allowed_writes": [
+    "projects/chirality-runtime/tests/supervisor.test.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/AUTHOR"
+  ],
+  "authority": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/DELEGATED_ACT.md",
+  "exclusions": "No otherlivewrites/tests/Git/provider/protected; preserveoldseals",
+  "outputs": [
+    "preimage",
+    "applicationjournal",
+    "return",
+    "manifest"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "exitCode": 0,
+  "suitesPassed": 3,
+  "testsPassed": 57,
+  "suiteCounts": {
+    "codex-manager": 9,
+    "delegated-runtime": 44,
+    "manager-approval-integration": 4
+  },
+  "unhandledErrorsReported": 0,
+  "newRemainingTempPaths": [],
+  "sourceChanges": false,
+  "extraTestCommands": false,
+  "oldSeals": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/OUTPUT_MANIFEST.json",
+      "sha256": "54425c1aecf7569e9668f7bb1fce7ebbf9b842bc0ab8118bc28589ff199f9628",
+      "allMembersUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/OUTPUT_MANIFEST.json",
+      "sha256": "b7b0cdb5e1b8521739dab2875570dd0762b433dc77059a1ab70f4bd8e8ca242f",
+      "allMembersUnchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/VALIDATION_CONFIG/OUTPUT_MANIFEST.json",
+      "sha256": "4606b66c1658954f416843fc86560fe10a55b14971a83606581c73989c60448b",
+      "allMembersUnchanged": true
+    }
+  ]
+}

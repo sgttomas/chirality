@@ -1,0 +1,15 @@
+{
+  "status": "PASS_PROPOSAL_ONLY",
+  "actual_child": "/root/custody_manager/source_proposal",
+  "child_manifest_sha256": "2322bc94edfa26ba4d81ed4b49233588021a2a5d478466446cf93f958337190a",
+  "input_entries_rehashed": 30,
+  "checks": [
+    "Read exact proposal/schema/writeallowlist/commands and dependentcontract boundary",
+    "All child output and input hashes verified",
+    "Published current HEAD and unchanged tracked source verified",
+    "Authority chain reconciled; no exact sourceactivation inferred"
+  ],
+  "implementation": "NOT_STARTED",
+  "independent_review": "PENDING parent-owned",
+  "roles": "instruction-asserted; exact serving model/resources unavailable"
+}

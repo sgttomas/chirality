@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-07T07:46:42.778552+00:00",
+  "command": "npm run typecheck --ignore-scripts",
+  "cwd": "projects/chirality-runtime",
+  "exit_code": 127,
+  "stdout": "@chirality/runtime-workspace@0.1.0 typecheck\n> tsc -b --pretty false",
+  "stderr": "sh: tsc: command not found",
+  "cause": "Runtime node_modules absent",
+  "test_commands": "NOT_RUN missingvitest/dependencies; no point repeatingknownsetupfailure",
+  "disposition": "STOP per explicitmissingdependenciesprerequisite; no install/dependencyborrow performed",
+  "source_status": "implemented pendingvalidation"
+}

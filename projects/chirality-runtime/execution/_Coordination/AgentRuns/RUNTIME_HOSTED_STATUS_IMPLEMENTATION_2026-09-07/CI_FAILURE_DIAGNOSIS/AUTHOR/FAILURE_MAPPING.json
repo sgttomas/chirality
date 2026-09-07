@@ -1,0 +1,62 @@
+[
+  {
+    "case": "tests/codex-manager.test.ts > executes JSONL callback tools across authenticated private channel",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/codex-manager.test.ts > cannot turn plain text into delegation or review",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/codex-manager.test.ts > binds callback reply bytes to HMAC and worker generation",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/codex-manager.test.ts > cancels a pending daemon callback and retires its supervisor-owned actor",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/codex-manager.test.ts > preserves governed callback failure instead of treating provider text as success",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/codex-manager.test.ts > bounds a stuck callback and retires its manager actor without fabricating success",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/delegated-runtime.test.ts > permits operator login without a pre-existing account and confines bypass admissions to login",
+    "cause": "strict unavailable v2 status/extra secret mismatch"
+  },
+  {
+    "case": "tests/delegated-runtime.test.ts > routes explicit allow through client, authenticated daemon, durable store, private supervisor and actual actor reply",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/delegated-runtime.test.ts > routes explicit deny through client, authenticated daemon, durable store, private supervisor and actual actor reply",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/delegated-runtime.test.ts > routes explicit acceptForSession through client, authenticated daemon, durable store, private supervisor and actual actor reply",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/delegated-runtime.test.ts > carries provider cancellation into immutable resolution and refuses a queued explicit grant",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/manager-approval-integration.test.ts > routes an actual manager prompt through approval-only public controls for allow",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/manager-approval-integration.test.ts > routes an actual manager prompt through approval-only public controls for deny",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/manager-approval-integration.test.ts > routes an actual manager prompt through approval-only public controls for acceptForSession",
+    "cause": "controlled account/read variant type:fixture rejected"
+  },
+  {
+    "case": "tests/manager-approval-integration.test.ts > does not carry cancelled or changed-consent manager approval authority",
+    "cause": "controlled account/read variant type:fixture rejected"
+  }
+]

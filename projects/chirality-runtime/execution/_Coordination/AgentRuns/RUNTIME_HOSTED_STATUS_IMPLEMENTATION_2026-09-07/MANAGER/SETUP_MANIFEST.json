@@ -1,0 +1,31 @@
+{
+  "status": "PROPOSED_SETUP_EXCEPTION_NOT_EXECUTED",
+  "pathBase": "repository root",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/SETUP_REQUEST.md",
+      "sha256": "7fe06df61ee0e55751db3d5fc6a02fc57dc2e16761ecf72c1d44e88746d9c25f",
+      "bytes": 2660
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/SETUP_INPUT_PINS.json",
+      "sha256": "13dad791745b483f6960dd33b74f5a862761fca7efd2371607f54b6f446afab5",
+      "bytes": 1645
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/SETUP_AUTHORITY_AND_NETWORK.md",
+      "sha256": "3d7d941c3707a9a9b4f29a10c57e2c22a7a9560c88f6d2f4773ad635b0b6a425",
+      "bytes": 1699
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/VALIDATION_ATTEMPT_1.json",
+      "sha256": "74c64feb47049dd326eac73b00ecb46ef0ea6cb6c9b49aa741acd11f3870142c",
+      "bytes": 580
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/IMPORT_EFFECT_REVIEW.json",
+      "sha256": "102505c2a803cf0e2648c4d44f00e7e0ca53333a9c3438a84f1d21c5ec02934c",
+      "bytes": 1452
+    }
+  ]
+}

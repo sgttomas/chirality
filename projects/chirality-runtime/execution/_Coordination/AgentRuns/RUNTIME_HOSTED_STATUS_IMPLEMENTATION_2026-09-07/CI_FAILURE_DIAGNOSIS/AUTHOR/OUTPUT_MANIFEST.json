@@ -1,0 +1,25 @@
+{
+  "status": "FROZEN_READ_ONLY_DIAGNOSIS",
+  "files": [
+    {
+      "path": "FAILURE_MAPPING.json",
+      "sha256": "a4e28122c40b8e0a9657fb9699ff71cab2e68eb53f7b86f874c32a4b3b67de1f",
+      "bytes": 3202
+    },
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "44a71ed2cbab6abd8170ef2acaf26160adcdbac6467d3a11ca6149165656d0d8",
+      "bytes": 3170
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "91eee2d43828f720e5d5fb5307ea7f54841aab0052c577a09b6ae69737f7e98e",
+      "bytes": 7666
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "1f6c00d7d4c0b9678d4a013dca74a223ca05d7755b6f2e3687fe7ebc509890bb",
+      "bytes": 870
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "pathBase": "repository root",
+  "status": "FROZEN_CANDIDATE_FOR_REVIEW",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/AUTHOR/CANDIDATE.patch",
+      "sha256": "bf9aaaf5602535d366e069a7dc54c872fcc347dd54c2b507193e2efe40f5d5fd",
+      "bytes": 833
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/AUTHOR/OUTPUT_MANIFEST.json",
+      "sha256": "d229195063b8f6bdacf5ab56c2ea1a5f0c72a128715957180380e5311e1e35ff",
+      "bytes": 650
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/AUTHOR/PINS.json",
+      "sha256": "41a54930c5a576a6c2b96717f38abe5cbb6d6887aab05aa46cf36becdeecb4b5",
+      "bytes": 1581
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/AUTHOR/RETURN.md",
+      "sha256": "c8ce9831640ec88709786966cee66640a5fcdc118b7324e9c68a7db5ce877300",
+      "bytes": 2465
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/AUTHOR/supervisor.test.ts",
+      "sha256": "0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406",
+      "bytes": 12942
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/BRIEF.json",
+      "sha256": "a3aff9fcdba559e14ea37e3f79909224e4799c19be952eddad3ccb92f3186d7f",
+      "bytes": 1067
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/COMPAT_FIXTURE_CANDIDATE/MANAGER_RETURN.md",
+      "sha256": "c0f43ee8390136114574c687e0cadff0f1bd9abc26f83c23a8c9ca96da885360",
+      "bytes": 1258
+    }
+  ]
+}
