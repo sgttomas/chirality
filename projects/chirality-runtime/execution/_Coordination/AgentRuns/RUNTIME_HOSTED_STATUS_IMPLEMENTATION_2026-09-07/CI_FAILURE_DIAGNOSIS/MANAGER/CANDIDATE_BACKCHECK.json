@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/CANDIDATE.patch",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/COMMANDS_AND_EFFECTS.md",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/FAILURE_MAPPING.json",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/PINS.json",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/RETURN.md",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/codex-manager.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/delegated-runtime.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/manager-approval-integration.test.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/VALIDATION_CONFIG/COMMAND.json",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/VALIDATION_CONFIG/RETURN.md",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/VALIDATION_CONFIG/vitest.config.ts",
+      "pass": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-manager.test.ts",
+      "livePreimageUnchanged": true,
+      "candidateMatch": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "livePreimageUnchanged": true,
+      "candidateMatch": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/manager-approval-integration.test.ts",
+      "livePreimageUnchanged": true,
+      "candidateMatch": true
+    }
+  ],
+  "configRoot": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime",
+  "tests": "NOT_RUN"
+}

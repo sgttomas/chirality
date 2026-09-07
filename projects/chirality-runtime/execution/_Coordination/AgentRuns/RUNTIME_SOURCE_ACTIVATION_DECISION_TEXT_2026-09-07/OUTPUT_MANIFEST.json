@@ -1,0 +1,15 @@
+{
+  "status": "FROZEN_PROPOSED_TEXT_FOR_REVIEW",
+  "pathBase": "repository root",
+  "priorSubject": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/HANDOFF_MANIFEST.json",
+    "sha256": "407000872059e492f367eabfc314d76b8a459503e3164d245fb3100b1af09abb"
+  },
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_DECISION_TEXT_2026-09-07/DECISION_TEXT.md",
+      "sha256": "dbb19e404ecf8a7cb2636df55192cd924820610260080c6df3ea2d1d1ebc00b4",
+      "bytes": 2602
+    }
+  ]
+}

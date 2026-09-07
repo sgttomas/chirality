@@ -1,0 +1,497 @@
+diff --git a/projects/chirality-runtime/tests/codex-login.test.ts b/projects/chirality-runtime/tests/codex-login.test.ts
+index b9807c7eb..42cfb5f33 100644
+--- a/projects/chirality-runtime/tests/codex-login.test.ts
++++ b/projects/chirality-runtime/tests/codex-login.test.ts
+@@ -1,9 +1,9 @@
+ import { describe, expect, it } from "vitest";
+ import { spawn } from "node:child_process";
+-import { mkdtemp, readFile, realpath, rm } from "node:fs/promises";
++import { mkdtemp, readdir, realpath, rm } from "node:fs/promises";
+ import { tmpdir } from "node:os";
+ import { join } from "node:path";
+-import { createHash } from "node:crypto";
++import { PassThrough } from "node:stream";
+ import { CodexLogin, createControlledCodexLoginForTests } from "../packages/daemon/src/codex-login.js";
+ async function fixture(mode = "success", authUrl = "https://auth.openai.com/authorize?state=fixture", timeoutMs = 1000) {
+   const codexHome = await mkdtemp(join(await realpath(tmpdir()), "login-fixture-"));
+@@ -20,11 +20,10 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
+   if(mode==='exit'){setTimeout(()=>process.exit(0),20);return;}
+   if(mode==='pending')return;
+   setTimeout(()=>{
+-   if(mode!=='failed')require('node:fs').writeFileSync(process.env.CODEX_HOME+'/auth.json',JSON.stringify({fixture:'not-a-real-credential'}),{mode:mode==='unsafe'?0o644:0o600});
+    send({method:'account/login/completed',params:{loginId:mode==='mismatch'?'other':'login1',success:mode!=='failed',error:null}});
+   },20);return;
+  }
+- if(r.method==='account/read'){if(r.params.refreshToken!==false)process.exit(8);send({id:r.id,result:{account:{fixture:true},requiresOpenaiAuth:true}});return;}
++ if(r.method==='account/read'){if(r.params.refreshToken!==false)process.exit(8);send({id:r.id,result:{account:{type:'apiKey'},requiresOpenaiAuth:true}});return;}
+  if(r.method==='account/login/cancel'){send({id:r.id,result:{}});send({method:'account/login/completed',params:{loginId:'login1',success:false,error:'canceled'}});return;}
+  process.exit(9);
+ });`;
+@@ -35,15 +34,16 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
+   return { login, codexHome, child, async close() { await login.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); await rm(codexHome, { recursive: true, force: true }); } };
+ }
+ describe("operator-only sign-in component (controlled fixture)", () => {
+-  it("waits for actual completion and binds private persisted auth without exposing it", async () => {
++  it("reports completed ceremony with unavailable identity and never creates credential files", async () => {
+     const f = await fixture();
+     try {
+       expect(await f.login.startLogin()).toEqual({ loginId: "login1", authUrl: "https://auth.openai.com/authorize?state=fixture" });
+       await expect.poll(async () => (await f.login.status()).state).toBe("completed");
+-      const bytes = await readFile(join(f.codexHome, "auth.json")); const status = await f.login.status();
+-      expect(status.authBindingSha256).toBe(createHash("sha256").update(bytes).digest("hex")); expect(status.hasAccount).toBe(true); expect(status.evidenceClass).toBe("controlled-fixture");
+-      expect(JSON.stringify(status)).not.toContain("not-a-real-credential");
+-      await f.login.close(); expect(await readFile(join(f.codexHome, "auth.json"))).toEqual(bytes);
++      const status = await f.login.status();
++      expect(status).toEqual({ schema: "chirality-hosted-login-status/v2", state: "completed", loginId: "login1", hasAccount: true,
++        evidenceClass: "controlled-fixture", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" }, hostedReady: false });
++      expect(await readdir(f.codexHome)).toEqual([]);
++      await f.login.close(); expect(await readdir(f.codexHome)).toEqual([]);
+     } finally { await f.close(); }
+   });
+   it("rejects nonofficial origins, plain HTTP and URL credentials", async () => {
+@@ -53,14 +53,14 @@ describe("operator-only sign-in component (controlled fixture)", () => {
+       finally { await f.close(); }
+     }
+   });
+-  it("fails for unsafe auth-file mode, mismatched completion, provider failure and clean exit", async () => {
+-    for (const mode of ["unsafe", "mismatch", "failed", "exit"]) {
++  it("fails for mismatched completion, provider failure and clean exit", async () => {
++    for (const mode of ["mismatch", "failed", "exit"]) {
+       const f = await fixture(mode);
+-      try { await f.login.startLogin(); await expect.poll(async () => (await f.login.status()).state).toBe("failed"); expect((await f.login.status()).authBindingSha256).toBeUndefined(); }
++      try { await f.login.startLogin(); await expect.poll(async () => (await f.login.status()).state).toBe("failed"); expect(await f.login.status()).toMatchObject({ binding: { state: "unavailable" }, hostedReady: false }); }
+       finally { await f.close(); }
+     }
+   });
+-  it("cancels pending login and prevents double start without clearing persisted home", async () => {
++  it("cancels pending login and prevents double start without creating account state", async () => {
+     const f = await fixture("pending");
+     try { await f.login.startLogin(); expect((await f.login.status()).state).toBe("pending"); await expect(f.login.startLogin()).rejects.toThrow("single-use"); await f.login.cancel(); expect((await f.login.status()).state).toBe("failed"); }
+     finally { await f.close(); }
+@@ -79,3 +79,30 @@ describe("operator-only sign-in component (controlled fixture)", () => {
+     await expect(login.startLogin()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); await login.close();
+   });
+ });
++
++
++it.each(["close", "cancel"] as const)("custody %s during account projection cannot revive completed login", async action => {
++  const stdin = new PassThrough(), stdout = new PassThrough();
++  let accountRequest!: number; let entered!: () => void;
++  const reading = new Promise<void>(resolve => { entered = resolve; });
++  const send = (value: unknown) => stdout.write(JSON.stringify(value) + "\n");
++  stdin.on("data", bytes => {
++    for (const line of bytes.toString().trim().split("\n")) {
++      const r = JSON.parse(line);
++      if (r.method === "initialize") send({ id: r.id, result: {} });
++      else if (r.method === "account/login/start") {
++        send({ id: r.id, result: { type: "chatgpt", loginId: "race", authUrl: "https://auth.openai.com/fixture" } });
++        send({ method: "account/login/completed", params: { loginId: "race", success: true } });
++      } else if (r.method === "account/read") { accountRequest = r.id; entered(); }
++      else if (r.method !== "initialized") throw new Error("Unexpected synthetic method");
++    }
++  });
++  const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/never-opened", transport: { stdin, stdout, async close() {} }, timeoutMs: 1000 });
++  try {
++    await login.startLogin(); const projection = login.status(); await reading;
++    await login[action]();
++    send({ id: accountRequest, result: { account: { type: "apiKey" }, requiresOpenaiAuth: true } });
++    expect(await projection).toMatchObject({ state: "failed", binding: { state: "unavailable" }, hostedReady: false });
++    expect(await login.status()).toMatchObject({ state: "failed", hostedReady: false });
++  } finally { await login.close(); stdin.destroy(); stdout.destroy(); }
++});
+diff --git a/projects/chirality-runtime/tests/codex-session.test.ts b/projects/chirality-runtime/tests/codex-session.test.ts
+index fb423f4b6..7888eb58c 100644
+--- a/projects/chirality-runtime/tests/codex-session.test.ts
++++ b/projects/chirality-runtime/tests/codex-session.test.ts
+@@ -54,7 +54,21 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
+    if(mode==='named-project')config.projects['/private/tmp'].command='bad';
+    response(r,{config});return;
+   }
+-  if(r.method==='account/read'){if(r.params.refreshToken!==false)process.exit(9);response(r,{account:null,requiresOpenaiAuth:true});return;}
++  if(r.method==='account/read'){
++   if(r.params.refreshToken!==false)process.exit(9);
++   let account=null;let result;
++   if(mode==='account-api')account={type:'apiKey'};
++   if(mode==='account-chatgpt')account={type:'chatgpt',email:'synthetic@example.test',planType:'plus'};
++   if(mode==='account-null-email')account={type:'chatgpt',email:null,planType:'plus'};
++   if(mode==='account-extra')account={type:'apiKey',token:'fixture-secret-must-not-escape'};
++   if(mode==='account-unknown')account={type:'unregistered',accountId:'caller-claimed-identity'};
++   if(mode==='account-array')account=[];
++   if(mode==='account-bad-plan')account={type:'chatgpt',email:null,planType:null};
++   result={account,requiresOpenaiAuth:true};
++   if(mode==='account-outer-extra')result.accessToken='fixture-secret-must-not-escape';
++   if(mode==='account-bad-boolean')result.requiresOpenaiAuth='true';
++   response(r,result);return;
++  }
+   if(r.method==='thread/start'||r.method==='thread/resume'){
+    if(mode.startsWith('dynamic') && (!Array.isArray(r.params.dynamicTools)||r.params.dynamicTools[0].name!=='review'||r.params.dynamicTools[0].inputSchema.additionalProperties!==false||'handler' in r.params.dynamicTools[0]))process.exit(1);
+    if(r.params.model!=='fixture-model')process.exit(8);
+@@ -574,3 +588,30 @@ it.each(["off", "ask-per-destination", "on"] as const)("disables shell snapshots
+     } finally { await f.close(); }
+   }
+ });
++
++
++describe("custody account-only projection", () => {
++  it.each(["account-api", "account-chatgpt", "account-null-email"])("projects %s to presence without an identity claim", async mode => {
++    const f = fixture(mode, 1000, "login");
++    try { await f.session.initialize(); expect(await f.session.accountRead()).toEqual({ authRequired: true, hasAccount: true }); }
++    finally { await f.close(); }
++  });
++  it.each(["account-extra", "account-outer-extra", "account-unknown", "account-array", "account-bad-plan", "account-bad-boolean"])("rejects %s without exporting unrecognized account material", async mode => {
++    const f = fixture(mode, 1000, "login");
++    try {
++      await f.session.initialize();
++      await expect(f.session.accountRead()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++      await expect(f.session.accountRead()).rejects.not.toThrow("fixture-secret-must-not-escape");
++    } finally { await f.close(); }
++  });
++  it("prohibits thread start, resume, turn and dynamic tools on a login actor", async () => {
++    const f = fixture("normal", 1000, "login");
++    try {
++      await f.session.initialize();
++      await expect(f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++      await expect(f.session.resumeThread({ threadId: "thread1", model: "fixture-model", continuityChecked: true })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++      await expect(f.session.startTurn(turn)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++    } finally { await f.close(); }
++    expect(() => new CodexTurnSession({ purpose: "login", transport: { stdin: new PassThrough(), stdout: new PassThrough(), async close() {} }, dynamicTools: [{ name: "review", description: "synthetic", inputSchema: { type: "object", properties: {}, additionalProperties: false }, async handler() { throw new Error("must never run"); } }] })).toThrow("Unsupported dynamic tool registry");
++  });
++});
+diff --git a/projects/chirality-runtime/tests/codex-supervisor.test.ts b/projects/chirality-runtime/tests/codex-supervisor.test.ts
+index 7e7ab6956..dd2d4271e 100644
+--- a/projects/chirality-runtime/tests/codex-supervisor.test.ts
++++ b/projects/chirality-runtime/tests/codex-supervisor.test.ts
+@@ -5,7 +5,8 @@ import { join } from "node:path";
+ import { afterEach, beforeEach, describe, expect, it } from "vitest";
+ import { prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
+ import { DescendantTracker } from "../packages/core/src/descendant-tracker.js";
+-import { CodexSupervisor, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
++import { CodexSupervisor, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
++import { recordKey } from "@chirality/runtime-core";
+ import type { WorkerContinuity } from "@chirality/runtime-contracts";
+ 
+ let root: string;
+@@ -23,7 +24,7 @@ readline.createInterface({input:process.stdin}).on('line', line => {
+  if(r.method==='initialized')return;
+  if(r.method==='config/read'){const table=JSON.parse(process.argv[3]);if(process.argv[4]==='broaden')table.filesystem['/']='write';return send({id:r.id,result:{config:{permissions:{[process.argv[2]]:table},approvals_reviewer:'user',approval_policy:'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,shell_snapshot:false,network_proxy:table.network.enabled},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null}}});}
+  if(r.method==='initialize')return send({id:r.id,result:{userAgent:'controlled-fixture'}});
+- if(r.method==='account/read')return send({id:r.id,result:{requiresOpenaiAuth:true,account:process.argv[1]==='no-account'?null:{type:'fixture'}}});
++ if(r.method==='account/read')return send({id:r.id,result:{requiresOpenaiAuth:true,account:process.argv[1]==='no-account'?null:{type:'apiKey'}}});
+  if(r.method==='thread/start'||r.method==='thread/resume'){thread=r.params.threadId||thread;return send({id:r.id,result:{thread:{id:thread},approvalsReviewer:r.params.approvalsReviewer,approvalPolicy:r.params.approvalPolicy}});}
+  if(r.method==='turn/start'){
+   const text=r.params.input[0].text;
+@@ -110,24 +111,11 @@ describe("Codex supervisor adapter without account/network use", () => {
+     await expect(s.acquire("invalid-policy", JSON.stringify({ prompt: "hello" }))).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+     expect(await s.inventory()).toEqual([]);
+   });
+-  it.runIf(process.platform === "darwin")("rejects production continuity policy mismatch before account or executable use", async () => {
+-    const project = join(root, "project"), broker = join(root, "broker"), worker = join(broker, "worker"), home = join(worker, "codex");
+-    await mkdir(project, { mode: 0o700 }); await mkdir(home, { recursive: true, mode: 0o700 });
+-    const declared = { ...identity, canonicalRoot: project, cwd: project };
+-    const consent = { approvedBy: "fixture", approvalReference: "no-account-no-execution" };
+-    const policy = await prepareCodexNativePolicy({ canonicalRoot: project, codexHome: home, privateDirectory: worker,
+-      immutableReadRoots: ["/bin", "/usr/lib", "/usr/bin/curl", "/private/etc/ssl/openssl.cnf", "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld"], protectedPaths: [broker], providerNetworkConsent: consent });
+-    try {
+-      const options = { executablePath: join(worker, "missing-pinned-binary"), identity: declared, model: "explicit-model", codexHome: home, privateDirectory: worker, protectedPaths: [broker], authBindingSha256: "a".repeat(64), providerNetworkConsent: consent };
+-      const mismatch = new CodexSupervisor(options); supervisors.push(mismatch);
+-      await expect(mismatch.verifyHostedBoundary(declared)).rejects.toThrow("differs from the compiled native action policy");
+-      const correct = { ...declared, policyDigest: policy.policyDigest };
+-      const accountAbsent = new CodexSupervisor({ ...options, identity: correct }); supervisors.push(accountAbsent);
+-      await expect(accountAbsent.verifyHostedBoundary(correct)).rejects.toThrow("account binding is unavailable");
+-      const changedPosture = new CodexSupervisor({ ...options, identity: correct, commandNetworkPosture: "on" }); supervisors.push(changedPosture);
+-      await expect(changedPosture.verifyHostedBoundary(correct)).rejects.toThrow("differs from the compiled native action policy");
+-      expect(await mismatch.inventory()).toEqual([]); expect(await accountAbsent.inventory()).toEqual([]);
+-    } finally { await policy.cleanup(); }
++  it("custody rejects all production continuity declarations while identity is unavailable", async () => {
++    const s = new CodexSupervisor({ executablePath: join(root, "missing"), identity, model: "explicit-model", codexHome: join(root, "missing-home"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-effects" } }); supervisors.push(s);
++    await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++    await expect(s.verifyHostedBoundary({ ...identity, policyDigest: "caller-claimed-policy" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++    expect(await s.inventory()).toEqual([]);
+   });
+   it("cannot upgrade the controlled launcher into hosted boundary admission", async () => {
+     await expect(fixture().verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+@@ -183,29 +171,44 @@ describe("Codex supervisor adapter without account/network use", () => {
+     await expect(s.acquire("worker", "raw prompt")).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+     await expect(s.acquire("worker", JSON.stringify({ prompt: "hello", executable: "/bin/sh" }))).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+   });
+-  it("checks account-file digest and symlink exclusion before any real executable launch", async () => {
+-    const privateRoot = join(root, "private"), codexHome = join(privateRoot, "home");
+-    await mkdir(codexHome, { recursive: true, mode: 0o700 });
+-    const auth = join(codexHome, "auth.json"); await writeFile(auth, '{"fixture":"not-an-account"}', { mode: 0o600 });
+-    const s = new CodexSupervisor({ executablePath: join(privateRoot, "missing-pinned-binary"), identity, model: "explicit-model", codexHome, privateDirectory: privateRoot, authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "fixture-no-launch" } });
+-    supervisors.push(s);
++  it("custody unavailable identity does not become a credential-file binding", async () => {
++    const s = new CodexSupervisor({ executablePath: join(root, "missing-vendor"), identity, model: "explicit-model", codexHome: join(root, "missing-account"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-effects" } }); supervisors.push(s);
+     await expect(s.verifyHostedBoundary({ ...identity, accountEpoch: 2 })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+     await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+-    const target = join(privateRoot, "fixture-auth.json"); await writeFile(target, '{"fixture":"not-an-account"}', { mode: 0o600 }); await rm(auth); await symlink(target, auth);
+-    await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+     expect(await s.inventory()).toEqual([]);
+   });
+-  it("real adapter refuses unbound account and missing exact supply without launching", async () => {
+-    const s = new CodexSupervisor({ executablePath: join(root, "missing"), identity, model: "explicit-model", codexHome: join(root, "home"), privateDirectory: join(root, "private"), authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "fixture-no-launch" } });
++  it("custody real adapter refuses unavailable identity without launching", async () => {
++    const s = new CodexSupervisor({ executablePath: join(root, "missing"), identity, model: "explicit-model", codexHome: join(root, "home"), privateDirectory: join(root, "private"), managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "fixture-no-launch" } });
+     supervisors.push(s);
+     await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+     expect(await s.inventory()).toEqual([]);
+   });
+ });
+ 
+-it("blocks production regular and manager admission without conformance before account reads or worker launch", async () => {
+-  const s = new CodexSupervisor({ identity, model: "fixture-not-production", executablePath: join(root, "absent-vendor"), codexHome: join(root, "absent-account"), privateDirectory: root, authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-owner-act" } }); supervisors.push(s);
+-  await expect(s.acquire("missing-conformance", JSON.stringify({ prompt: "must not launch" }))).rejects.toThrow(/conformance/);
+-  await expect(s.startManager("missing-manager-conformance", JSON.stringify({ prompt: "must not launch", canonicalRoot: root, model: "fixture-not-production" }))).rejects.toThrow(/conformance/);
++it("custody blocks production regular and manager admission before account reads or worker launch", async () => {
++  const s = new CodexSupervisor({ identity, model: "fixture-not-production", executablePath: join(root, "absent-vendor"), codexHome: join(root, "absent-account"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-owner-act" } }); supervisors.push(s);
++  await expect(s.acquire("missing-conformance", JSON.stringify({ prompt: "must not launch" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++  await expect(s.startManager("missing-manager-conformance", JSON.stringify({ prompt: "must not launch", canonicalRoot: root, model: "fixture-not-production" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+   expect(await s.inventory()).toEqual([]);
+ });
++
++
++it("custody changes the config digest without treating unavailable binding as an account digest", () => {
++  const common = { model: "synthetic", executablePath: "/synthetic/vendor", identity, codexHome: "/synthetic/home", privateDirectory: "/synthetic/private", protectedPaths: [], providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-effects" }, commandNetworkPosture: "off" as const, requestTimeoutMs: 10000, turnTimeoutMs: 120000, maxWorkers: 16 };
++  const policy = { configToml: 'cli_auth_credentials_store="keyring"\n', expectedPermissions: { filesystem: { [root]: "write" as const }, network: { enabled: false } } };
++  const managedAuth = { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } };
++  const current = codexRuntimeConformanceConfigDigest({ ...common, managedAuth }, policy);
++  // Baseline bf204d8f digest used this auth-file field; hold all other inputs fixed to isolate its replacement.
++  const legacyFields = { model: common.model, executablePath: common.executablePath, identity: common.identity,
++    codexHome: common.codexHome, privateDirectory: common.privateDirectory, protectedPaths: common.protectedPaths,
++    authBindingSha256: "a".repeat(64), providerNetworkConsent: common.providerNetworkConsent,
++    commandNetworkPosture: common.commandNetworkPosture, requestTimeoutMs: common.requestTimeoutMs,
++    turnTimeoutMs: common.turnTimeoutMs, maxWorkers: common.maxWorkers,
++    nativeConfig: policy.configToml, expectedPermissions: policy.expectedPermissions };
++  const legacy = recordKey(legacyFields);
++  const replacement = Object.fromEntries(Object.entries(legacyFields).map(([key, value]) => key === "authBindingSha256" ? ["managedAuth", managedAuth] : [key, value]));
++  expect(current).toBe(recordKey(replacement));
++  expect(current).not.toBe(legacy);
++  expect(managedAuth.binding).toEqual({ schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" });
++  expect(() => codexRuntimeConformanceConfigDigest({ ...common, managedAuth: { backend: "keyring", binding: { ...managedAuth.binding, accountDigest: "a".repeat(64) } } } as any, policy)).toThrow();
++});
+diff --git a/projects/chirality-runtime/tests/standalone.test.ts b/projects/chirality-runtime/tests/standalone.test.ts
+index 2bc9d06b1..85420beb2 100644
+--- a/projects/chirality-runtime/tests/standalone.test.ts
++++ b/projects/chirality-runtime/tests/standalone.test.ts
+@@ -154,14 +154,24 @@ describe("actual two-job standalone runtime", () => {
+     // Restore so the supervisor can perform its own epoch-checked teardown.
+     await rm(path); await writeFile(path, await readFile(target), { mode: 0o600 });
+   }, 30_000);
+-  it("seats hosted-validation only with a dedicated worker-private subtree", async () => {
+-    const f = await fixture();
++  it("custody seats hosted v2 unavailable configuration only with a dedicated worker-private subtree", async () => {
++    const f = await fixture(false);
+     const privateDirectory = join(f.config.runtimeDirectory, "worker"); await mkdir(privateDirectory, { mode: 0o700 });
+     const executablePath = join(privateDirectory, "fixture-not-vendor"); await writeFile(executablePath, "#!/bin/sh\nexit 0\n", { mode: 0o700 });
+-    const hosted = { ...f.config, mode: "hosted-validation" as const, project: { ...f.config.project, codexHome: "worker/codex" },
+-      worker: { executablePath, privateDirectory: "worker", model: "explicit-model", authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "validation-only-no-account-use" } } };
++    const hosted = { ...f.config, schema: "chirality-standalone-hosted/v2" as const, mode: "hosted-validation" as const, project: { ...f.config.project, codexHome: "worker/codex" },
++      worker: { executablePath, privateDirectory: "worker", model: "explicit-model", managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "validation-only-no-account-use" } } };
+     await writeFile(f.configPath, JSON.stringify(hosted), { mode: 0o600 });
+     expect((await readStandaloneConfig(f.configPath)).mode).toBe("hosted-validation");
++    for (const invalid of [
++      { ...hosted, schema: "chirality-standalone/v1", worker: { ...hosted.worker, managedAuth: undefined, authBindingSha256: "a".repeat(64) } },
++      { ...hosted, worker: { ...hosted.worker, authBindingSha256: "a".repeat(64) } },
++      ...["file", "auto"].map(backend => ({ ...hosted, worker: { ...hosted.worker, managedAuth: { ...hosted.worker.managedAuth, backend } } })),
++      { ...hosted, worker: { ...hosted.worker, managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "verified", accountId: "caller-identity" } } } },
++      { ...hosted, worker: { ...hosted.worker, purpose: "trusted-login" } },
++    ]) {
++      await writeFile(f.configPath, JSON.stringify(invalid), { mode: 0o600 });
++      await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++    }
+     const conformance = { recordPath: "conformance/record.json", acceptancePath: "conformance/acceptance.json", ownerActPath: f.configPath, ownerActSha256: "a".repeat(64), activationId: "mechanical-fixture", gateIdentity: "fixture-G4" };
+     await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, conformance } }));
+     expect((await readStandaloneConfig(f.configPath)).mode).toBe("hosted-validation");
+@@ -218,3 +228,13 @@ it("starts a real local-only daemon job without any Codex supervisor credential"
+   expect(await daemon.stop()).toMatchObject({ code: 0 });
+   await expect(lstat(join(f.config.runtimeDirectory, f.config.supervisorCredential))).rejects.toMatchObject({ code: "ENOENT" });
+ });
++
++
++it("custody preserves controlled-worker and local-engine-only v1 configuration", async () => {
++  const f = await fixture(false);
++  expect(await readStandaloneConfig(f.configPath)).toEqual(f.config);
++  const local = { schema: "chirality-standalone/v1", mode: "local-engine-only", runtimeDirectory: f.config.runtimeDirectory, daemonSocket: "local.sock", project: { projectId: "project", canonicalRoot: f.config.project.identity.canonicalRoot }, engine: { baseUrl: "http://127.0.0.1:65530/v1", model: { id: "local-fixture", contextWindow: 8192, maxTokens: 512 }, credentialFile: "local-secret.json", approvalReference: "synthetic-selection" } };
++  await writeFile(f.configPath, JSON.stringify(local), { mode: 0o600 });
++  await writeFile(join(f.config.runtimeDirectory, "local-secret.json"), JSON.stringify({ providerId: "omlx", credential: "synthetic-not-a-provider-account" }), { mode: 0o600 });
++  expect(await readStandaloneConfig(f.configPath)).toEqual(local);
++});
+--- /dev/null
++++ b/projects/chirality-runtime/tests/custody-config-status.test.ts
+@@ -0,0 +1,156 @@
++import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
++import { Readable } from "node:stream";
++import * as fs from "node:fs/promises";
++import * as childProcess from "node:child_process";
++import * as core from "@chirality/runtime-core";
++import { RuntimeError, validateHostedLoginStatus, validateHostedManagedAuth } from "@chirality/runtime-contracts";
++import { RuntimeClient } from "../packages/client/src/client.js";
++import { RuntimeDaemon } from "../packages/daemon/src/runtime-daemon.js";
++import { SupervisorClient } from "../packages/daemon/src/supervisor-server.js";
++import { CodexLogin } from "../packages/daemon/src/codex-login.js";
++import { CodexSupervisor } from "../packages/daemon/src/codex-supervisor.js";
++import { prepareCodexContainment, prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
++
++// Mocks guard source-level process/filesystem effects. No supplier is invoked.
++vi.mock("node:child_process", async importOriginal => ({ ...await importOriginal<typeof import("node:child_process")>(), spawn: vi.fn(() => { throw new Error("Unexpected process launch"); }) }));
++vi.mock("node:fs/promises", async importOriginal => {
++  const actual = await importOriginal<typeof import("node:fs/promises")>();
++  return { ...actual, ...Object.fromEntries(["stat", "lstat", "realpath", "mkdtemp", "writeFile", "open", "rm", "mkdir", "readFile"].map(key => [key, vi.fn(() => { throw new Error(`Unexpected filesystem effect: ${key}`); })])) };
++});
++vi.mock("@chirality/runtime-core", async importOriginal => {
++  const actual = await importOriginal<typeof import("@chirality/runtime-core")>();
++  return { ...actual, ...Object.fromEntries(["privateDirectory", "verifyExactSupply", "revalidateExactSupply", "assertContinuity"].map(key => [key, vi.fn(() => { throw new Error(`Unexpected admission effect: ${key}`); })])) };
++});
++const binding = { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } as const;
++const managedAuth = { backend: "keyring", binding } as const;
++const status = { schema: "chirality-hosted-login-status/v2", state: "completed", loginId: "fixture-login-1", hasAccount: true, evidenceClass: "controlled-fixture", binding, hostedReady: false } as const;
++const oldStatus = { state: "completed", loginId: "fixture-login-1", hasAccount: true, evidenceClass: "controlled-fixture", authBindingSha256: "a".repeat(64) };
++const malformed: unknown[] = [oldStatus, { ...status, schema: undefined }, { ...status, schema: "chirality-hosted-login-status/v1" }, { ...status, hostedReady: true }, { ...status, authBindingSha256: "a".repeat(64) }, { ...status, token: "synthetic-secret" }, { ...status, email: "synthetic@example.test" }, { ...status, planType: "plus" }, { ...status, authUrl: "https://auth.openai.com/fixture" }, { ...status, binding: { ...binding, accountId: "caller-principal" } }, { ...status, binding: { schema: binding.schema, state: "verified" } }, { ...status, loginId: "x".repeat(513) }, { ...status, hasAccount: "true" }, { ...status, extra: null }];
++const fileEffects = [fs.stat, fs.lstat, fs.realpath, fs.mkdtemp, fs.writeFile, fs.open, fs.rm, fs.mkdir, fs.readFile];
++const originalPlatform = Object.getOwnPropertyDescriptor(process, "platform")!;
++beforeEach(() => { vi.clearAllMocks(); });
++afterEach(() => { Object.defineProperty(process, "platform", originalPlatform); vi.restoreAllMocks(); });
++
++function clientFixture(body: unknown) {
++  const client = new RuntimeClient({ socketPath: "/synthetic/runtime.sock", tokenFile: "/synthetic/token", loadToken: async () => "synthetic-control-token" });
++  const request = vi.spyOn(client as any, "request").mockImplementation(async () => Object.assign(Readable.from([JSON.stringify(body)]), { statusCode: 200 }));
++  return { client, request };
++}
++// Baseline bf204d8f client.ts SHA256 ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367:
++// hostedLoginStatus called requestJson(GET); successful JSON was returned via unchecked `value as T`.
++// This source-pinned semantic fixture is not an old packaged binary qualification.
++async function oldClientStatus(client: RuntimeClient, projectId: string): Promise<unknown> {
++  return client.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/login/status`, { method: "GET" });
++}
++function daemonFixture(body: unknown, authorized = true) {
++  const auth = vi.fn(async () => { if (!authorized) throw new RuntimeError("FORBIDDEN", "Synthetic authorization denied", 403); return { clientId: "fixture" }; });
++  const requireAuthorized = vi.fn(async () => ({ canonicalRoot: "/synthetic/project" }));
++  const assertProjectRoot = vi.fn();
++  const loginStatus = vi.fn(async () => body);
++  const daemon = new RuntimeDaemon({ socketPath: "/synthetic/runtime.sock", runtimeDirectory: "/synthetic", service: { auth: { authenticate: auth }, projects: { requireAuthorized } } as any, delegated: { assertProjectRoot } as any, loginProjectId: "project", login: { status: loginStatus, startLogin: vi.fn(), cancel: vi.fn() } as any });
++  const generation = {};
++  Object.assign(daemon, { lifecycle: "RUNNING", generation });
++  const request = { method: "GET", url: "/v2/projects/project/login/status", headers: { authorization: "Bearer synthetic-control-token" } };
++  let code = 0, result: unknown;
++  const response = { headersSent: false, writeHead(value: number) { code = value; }, end(value: string) { result = JSON.parse(value); } };
++  return { auth, requireAuthorized, assertProjectRoot, loginStatus, request, async route() { await (daemon as any).route(request, response, generation); return { code, body: result }; } };
++}
++
++describe("custody versioned unavailable status and compatibility", () => {
++  it.each(["pending", "completed", "failed"] as const)("accepts %s ceremony only as unavailable", state => {
++    expect(validateHostedLoginStatus({ ...status, state })).toEqual({ ...status, state });
++  });
++  it.each(malformed.map((body, index) => ({ body, index })))("rejects malformed, legacy, mixed or secret-bearing status $index", ({ body }) => {
++    expect(() => validateHostedLoginStatus(body)).toThrowError(expect.objectContaining({ code: "INVALID_REQUEST" }));
++  });
++  it("preserves the public opaque login identifier bound independently of the producer", () => {
++    expect(validateHostedLoginStatus({ ...status, loginId: "x".repeat(512) }).loginId).toHaveLength(512);
++  });
++  it("supports paired updated daemon/client with completed ceremony and no hosted readiness", async () => {
++    const daemon = daemonFixture(status); const projection = await daemon.route();
++    expect(projection).toEqual({ code: 200, body: status });
++    const { client } = clientFixture(projection.body);
++    expect(await client.hostedLoginStatus("project")).toEqual(status);
++    expect(daemon.auth).toHaveBeenCalledWith("Bearer synthetic-control-token", "credentials:write", "project");
++    expect(daemon.assertProjectRoot).toHaveBeenCalledWith("project", "/synthetic/project");
++  });
++  it("rejects old daemon status in the updated client with INVALID_REQUEST", async () => {
++    const { client } = clientFixture(oldStatus);
++    await expect(client.hostedLoginStatus("project")).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++  });
++  it("records unsupported old-client/new-daemon acceptance unchanged and symmetric GET requests", async () => {
++    const projection = await daemonFixture(status).route();
++    const old = clientFixture(projection.body), updated = clientFixture(projection.body);
++    expect(await oldClientStatus(old.client, "project")).toEqual(status);
++    expect(await updated.client.hostedLoginStatus("project")).toEqual(status);
++    expect(old.request.mock.calls).toEqual(updated.request.mock.calls);
++    expect(old.request.mock.calls[0]).toEqual(["/v2/projects/project/login/status", expect.objectContaining({ method: "GET", accept: "application/json", body: undefined, token: "synthetic-control-token" })]);
++    expect(Object.keys(old.request.mock.calls[0]![1] as object).sort()).toEqual(["accept", "body", "method", "signal", "token"]);
++  });
++  it("keeps authorization rejection separate from status-version compatibility", async () => {
++    const f = daemonFixture(status, false);
++    expect(await f.route()).toMatchObject({ code: 403, body: { error: { code: "FORBIDDEN" } } });
++    expect(f.loginStatus).not.toHaveBeenCalled(); expect(f.requireAuthorized).not.toHaveBeenCalled();
++  });
++  it.each(malformed.map((body, index) => ({ body, index })))("rejects unsafe internal daemon projection $index as INTERNAL_FAILURE", async ({ body }) => {
++    expect(await daemonFixture(body).route()).toMatchObject({ code: 500, body: { error: { code: "INTERNAL_FAILURE" } } });
++  });
++  it("validates supervisor status on the existing login-status operation", async () => {
++    const client = new SupervisorClient({ socketPath: "/synthetic/supervisor.sock", credential: { owner: "synthetic-owner", epoch: "synthetic-epoch", token: "a".repeat(64) } });
++    const request = vi.spyOn(client as any, "request").mockResolvedValue(status);
++    expect(await client.loginStatus()).toEqual(status); expect(request).toHaveBeenCalledWith("login-status");
++    for (const body of malformed) { request.mockResolvedValue(body); await expect(client.loginStatus()).rejects.toMatchObject({ code: "INTERNAL_FAILURE" }); }
++  });
++});
++
++describe("custody purpose configuration and admission before effects", () => {
++  it("accepts only keyring with the exact unavailable binding", () => {
++    expect(validateHostedManagedAuth(managedAuth)).toEqual(managedAuth);
++    for (const value of [{ ...managedAuth, backend: "file" }, { ...managedAuth, backend: "auto" }, { ...managedAuth, token: "synthetic" }, { ...managedAuth, binding: { ...binding, state: "verified" } }, { ...managedAuth, binding: { ...binding, digest: "a".repeat(64) } }]) {
++      expect(() => validateHostedManagedAuth(value)).toThrowError(expect.objectContaining({ code: "INVALID_REQUEST" }));
++    }
++  });
++  it("refuses production login and every worker admission without touching filesystem or spawning", async () => {
++    const identity = { canonicalRoot: "/synthetic/project", cwd: "/synthetic/project", accountId: "declared-continuity-only", accountEpoch: 1, policyDigest: "synthetic-policy" };
++    const options = { canonicalRoot: identity.canonicalRoot, executablePath: "/synthetic/missing-supplier", codexHome: "/synthetic/private/home", privateDirectory: "/synthetic/private", providerNetworkConsent: { approvedBy: "fixture", approvalReference: "not-qualification" } };
++    const login = new CodexLogin(options);
++    const supervisor = new CodexSupervisor({ ...options, identity, model: "synthetic-model", managedAuth });
++    try {
++      await expect(login.startLogin()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++      await expect(supervisor.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++      await expect(supervisor.acquire("worker", JSON.stringify({ prompt: "must not launch" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++      await expect(supervisor.startManager("manager", JSON.stringify({ prompt: "must not launch", canonicalRoot: identity.canonicalRoot, model: "synthetic-model" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++      expect(await supervisor.inventory()).toEqual([]);
++    } finally { await login.close(); await supervisor.close(); }
++    for (const effect of [...fileEffects, core.privateDirectory, core.verifyExactSupply, core.revalidateExactSupply, core.assertContinuity]) expect(effect).not.toHaveBeenCalled();
++    expect(childProcess.spawn).not.toHaveBeenCalled();
++  });
++  it("renders the trusted-login exception only for that purpose and keeps independent root homes", async () => {
++    Object.defineProperty(process, "platform", { value: "darwin", configurable: true });
++    vi.mocked(fs.stat).mockImplementation(async () => ({ isDirectory: () => true, isFile: () => true, mode: 0o700, uid: process.getuid?.() }) as any);
++    vi.mocked(fs.realpath).mockImplementation(async path => String(path));
++    vi.mocked(fs.mkdtemp).mockImplementation(async prefix => `${prefix}synthetic`);
++    vi.mocked(fs.writeFile).mockResolvedValue(undefined);
++    vi.mocked(fs.rm).mockResolvedValue(undefined);
++    const options = { canonicalRoot: "/synthetic/project-a", privateDirectory: "/synthetic/private-a", codexHome: "/synthetic/private-a/home", providerNetworkConsent: { approvedBy: "fixture", approvalReference: "render-only" } };
++    const worker = await prepareCodexContainment(options);
++    const workerProfile = vi.mocked(fs.writeFile).mock.calls.at(-1)![1];
++    expect(workerProfile).toContain('(deny mach-lookup (global-name "com.apple.securityd"))');
++    expect(worker.config.cli_auth_credentials_store).toBe("file");
++    const login = await prepareCodexContainment({ ...options, purpose: "trusted-login" });
++    const loginProfile = vi.mocked(fs.writeFile).mock.calls.at(-1)![1];
++    expect(loginProfile).not.toContain('(deny mach-lookup (global-name "com.apple.securityd"))');
++    expect(login.config.cli_auth_credentials_store).toBe("keyring");
++    const rootB = await prepareCodexContainment({ ...options, purpose: "trusted-login", canonicalRoot: "/synthetic/project-b", privateDirectory: "/synthetic/private-b", codexHome: "/synthetic/private-b/home" });
++    expect(rootB.environment.CODEX_HOME).not.toBe(login.environment.CODEX_HOME);
++    await expect(prepareCodexNativePolicy({ ...options, purpose: "trusted-login", immutableReadRoots: [] })).rejects.toThrow();
++    vi.mocked(fs.stat).mockImplementation(async path => ({ isDirectory: () => true, isFile: () => false, mode: 0o700, uid: String(path) === "/usr" ? 0 : process.getuid?.() }) as any);
++    vi.mocked(fs.lstat).mockImplementation(async () => ({ isDirectory: () => true, isFile: () => false, isSymbolicLink: () => false }) as any);
++    const native = await prepareCodexNativePolicy({ ...options, immutableReadRoots: ["/usr"] });
++    expect(native.configToml).toContain('cli_auth_credentials_store="keyring"');
++    expect(native.expectedPermissions.filesystem[options.codexHome]).toBe("deny");
++    expect(native.enforcementEvidence).toBe("NOT_PROVEN_G_SBX");
++    await native.cleanup(); await worker.cleanup(); await login.cleanup(); await rootB.cleanup();
++    expect(childProcess.spawn).not.toHaveBeenCalled(); expect(fs.open).not.toHaveBeenCalled(); expect(fs.readFile).not.toHaveBeenCalled();
++  });
++});
+--- /dev/null
++++ b/projects/chirality-runtime/vitest.custody.config.ts
+@@ -0,0 +1,17 @@
++import { fileURLToPath } from "node:url";
++import { defineConfig } from "vitest/config";
++
++// Only the four owner-approved invocations may select tests from this inventory.
++export default defineConfig({
++  root: fileURLToPath(new URL(".", import.meta.url)),
++  plugins: [],
++  test: {
++    setupFiles: [], globalSetup: [],
++    include: [
++      "tests/custody-config-status.test.ts", "tests/codex-login.test.ts",
++      "tests/codex-session.test.ts", "tests/codex-supervisor.test.ts",
++      "tests/standalone.test.ts", "tests/hosted-consent.test.ts",
++      "tests/runtime-conformance.test.ts",
++    ],
++  },
++});

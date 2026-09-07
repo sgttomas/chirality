@@ -1,0 +1,37 @@
+{
+  "authority": "Parent preparation-only instruction; no application or execution grant",
+  "diagnosisManifestSha256": "54425c1aecf7569e9668f7bb1fce7ebbf9b842bc0ab8118bc28589ff199f9628",
+  "files": [
+    {
+      "target": "projects/chirality-runtime/tests/codex-manager.test.ts",
+      "beforeSha256": "33a1239db2f4bda8609875d391ff5cf6e11edf47e6139d9a806ce03ef372d703",
+      "candidateSha256": "d502da9f3d993daa699ffb4fc2db1a58e96b0f2dae309c5a667b072ff02bc76d",
+      "bytes": 9946
+    },
+    {
+      "target": "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "beforeSha256": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+      "candidateSha256": "95c58c4c661c42fe7dac43cc741fd51fa2910f86f28edc23669d41db72a41bbf",
+      "bytes": 46353
+    },
+    {
+      "target": "projects/chirality-runtime/tests/manager-approval-integration.test.ts",
+      "beforeSha256": "a15e7098c6448f04fb463afa2c616eac3f6b9c9a71042f5910c865a553a52c2b",
+      "candidateSha256": "823ff9339b82f1942233bb7f8e4612b837d8bea92d750e5f132d34f079a0d26b",
+      "bytes": 10269
+    }
+  ],
+  "runner": {
+    "path": "projects/chirality-runtime/vitest.config.ts",
+    "sha256": "aa69b354dbd3e57358d86823fd80b32d5fbfdbf5fe7c079df0591573088632d2"
+  },
+  "packageSha256": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+  "checks": {
+    "allThreeControlledAccountDiscriminatorsOnly": true,
+    "originalApprovalAssertionsAndFinalTurnAwaitPreserved": true,
+    "onlyOriginalAssertionChanged": "positive login-status exact equality migrated to v2 unavailable",
+    "unusedLegacyStatusBuildersUnchanged": true,
+    "liveFilesUnchanged": true,
+    "tests": "NOT_RUN"
+  }
+}

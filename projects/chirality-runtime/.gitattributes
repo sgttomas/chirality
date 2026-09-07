@@ -10,3 +10,11 @@ execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_V
 execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_Verified.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Delta.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Map.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Preserve sealed unified-diff blank-context prefixes in these exact evidence files.
+# Only raw patch blank-at-eol classification differs; source whitespace checks remain default.
+execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/FINAL/PATCH.diff whitespace=-blank-at-eol,blank-at-eof,space-before-tab
+execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/PATCH.diff whitespace=-blank-at-eol,blank-at-eof,space-before-tab
+execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/SOURCE/REVISION1/SOURCE_PATCH.diff whitespace=-blank-at-eol,blank-at-eof,space-before-tab
+execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/SOURCE/SOURCE_PATCH.diff whitespace=-blank-at-eol,blank-at-eof,space-before-tab
+execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/TESTS/TEST_PATCH.diff whitespace=-blank-at-eol,blank-at-eof,space-before-tab

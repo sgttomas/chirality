@@ -1,0 +1,939 @@
+diff --git a/projects/chirality-runtime/packages/client/src/client.ts b/projects/chirality-runtime/packages/client/src/client.ts
+index feb578d22..63afc5c3f 100644
+--- a/projects/chirality-runtime/packages/client/src/client.ts
++++ b/projects/chirality-runtime/packages/client/src/client.ts
+@@ -4,6 +4,7 @@ import { resolve } from "node:path";
+ import {
+   RUNTIME_ROUTES,
+   RuntimeError,
++  validateHostedLoginStatus,
+   type Agent1RunRequest,
+   type DelegatedPreflight,
+   type HostedLoginStatus,
+@@ -500,7 +501,7 @@ export class RuntimeClient {
+   }
+ 
+   async hostedLoginStatus(projectId: string): Promise<HostedLoginStatus> {
+-    return this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/login/status`, { method: "GET" });
++    return validateHostedLoginStatus(await this.requestJson(`/v2/projects/${encodeURIComponent(projectId)}/login/status`, { method: "GET" }));
+   }
+ 
+   async cancelHostedLogin(projectId: string, compatibility: RuntimeCompatibilityIdentity): Promise<{ cancelled: true }> {
+diff --git a/projects/chirality-runtime/packages/contracts/src/delegated.ts b/projects/chirality-runtime/packages/contracts/src/delegated.ts
+index 5290f1e2e..a08d8d6bd 100644
+--- a/projects/chirality-runtime/packages/contracts/src/delegated.ts
++++ b/projects/chirality-runtime/packages/contracts/src/delegated.ts
+@@ -1,3 +1,4 @@
++import { RuntimeError } from "./errors.js";
+ import type { HarnessEventV2, EventAttributionV2 } from "./v2-events.js";
+ /** Additive runtime-owned v2 boundary; not a vendor wire protocol. */
+ export interface WorkerContinuity {
+@@ -124,12 +125,51 @@ export interface DelegatedTurnResponse {
+   evidenceClass: "controlled-worker" | "provider-observed";
+ }
+ 
++/** Unavailable is the only qualified binding state in this increment. */
++export interface HostedAccountBinding {
++  schema: "chirality-hosted-account-binding/v1";
++  state: "unavailable";
++  reason: "canonical-identity-producer-unavailable";
++}
++export interface HostedManagedAuth {
++  backend: "keyring";
++  binding: HostedAccountBinding;
++}
+ export interface HostedLoginStatus {
++  schema: "chirality-hosted-login-status/v2";
+   state: "pending" | "completed" | "failed";
+   loginId?: string;
++  /** Supplier presence only; never a principal or a readiness signal. */
+   hasAccount?: boolean;
+-  authBindingSha256?: string;
+   evidenceClass: "exact-supply-login" | "controlled-fixture";
++  binding: HostedAccountBinding;
++  hostedReady: false;
++}
++function hostedRecord(value: unknown, allowed: readonly string[]): Record<string, unknown> {
++  if (!value || typeof value !== "object" || Array.isArray(value)
++    || Object.keys(value).some(key => !allowed.includes(key))) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted status/configuration fields");
++  return value as Record<string, unknown>;
++}
++export function validateHostedAccountBinding(value: unknown): HostedAccountBinding {
++  const binding = hostedRecord(value, ["schema", "state", "reason"]);
++  if (binding.schema !== "chirality-hosted-account-binding/v1" || binding.state !== "unavailable"
++    || binding.reason !== "canonical-identity-producer-unavailable") throw new RuntimeError("INVALID_REQUEST", "Invalid unavailable hosted account binding");
++  return { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" };
++}
++export function validateHostedManagedAuth(value: unknown): HostedManagedAuth {
++  const auth = hostedRecord(value, ["backend", "binding"]);
++  if (auth.backend !== "keyring") throw new RuntimeError("INVALID_REQUEST", "Hosted managed authentication requires explicit keyring configuration");
++  return { backend: "keyring", binding: validateHostedAccountBinding(auth.binding) };
++}
++export function validateHostedLoginStatus(value: unknown): HostedLoginStatus {
++  const status = hostedRecord(value, ["schema", "state", "loginId", "hasAccount", "evidenceClass", "binding", "hostedReady"]);
++  if (status.schema !== "chirality-hosted-login-status/v2" || !["pending", "completed", "failed"].includes(status.state as string)
++    || !["exact-supply-login", "controlled-fixture"].includes(status.evidenceClass as string) || status.hostedReady !== false
++    || ("loginId" in status && (typeof status.loginId !== "string" || status.loginId.length > 512))
++    || ("hasAccount" in status && typeof status.hasAccount !== "boolean")) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted login status");
++  return { schema: "chirality-hosted-login-status/v2", state: status.state as HostedLoginStatus["state"],
++    evidenceClass: status.evidenceClass as HostedLoginStatus["evidenceClass"], binding: validateHostedAccountBinding(status.binding), hostedReady: false,
++    ...("loginId" in status ? { loginId: status.loginId as string } : {}), ...("hasAccount" in status ? { hasAccount: status.hasAccount as boolean } : {}) };
+ }
+ 
+ /** Private daemon/supervisor approval capability, never a public request-mint API. */
+diff --git a/projects/chirality-runtime/packages/daemon/src/codex-containment.ts b/projects/chirality-runtime/packages/daemon/src/codex-containment.ts
+index 18dec1880..ed5620009 100644
+--- a/projects/chirality-runtime/packages/daemon/src/codex-containment.ts
++++ b/projects/chirality-runtime/packages/daemon/src/codex-containment.ts
+@@ -4,6 +4,8 @@ import { mkdtemp, realpath, rm, stat, lstat, writeFile, open } from 'node:fs/pro
+ import { join, relative, isAbsolute, dirname, resolve } from 'node:path';
+ 
+ export interface CodexContainmentOptions {
++  /** Internal auth-only purpose. Never populated from worker or client input. */
++  purpose?: "worker" | "trusted-login";
+   canonicalRoot: string;
+   codexHome: string;
+   privateDirectory: string;
+@@ -26,6 +28,7 @@ const quote = (value: string): string => {
+  * Provider-enabled network is inherited by subprocesses: Codex config below is not a
+  * mechanism-proven subprocess network boundary in that mode. */
+ export async function prepareCodexContainment(options: CodexContainmentOptions) {
++  if (options.purpose !== undefined && options.purpose !== 'worker' && options.purpose !== 'trusted-login') throw new Error('Unsupported containment purpose');
+   if (process.platform !== 'darwin') throw new Error('Codex containment requires macOS sandbox-exec');
+   await stat('/usr/bin/sandbox-exec');
+   const root = await realpath(options.canonicalRoot);
+@@ -53,7 +56,7 @@ export async function prepareCodexContainment(options: CodexContainmentOptions)
+     '(version 1)', '(allow default)',
+     `(deny file-read-data (require-not (require-any (literal "/") ${readable.map(path => `(subpath ${quote(path)})`).join(' ')} (literal "/dev/null") (literal "/dev/urandom") (literal "/dev/random"))))`,
+     `(deny file-write* (require-not (require-any (subpath ${quote(root)}) (subpath ${quote(privateDirectory)}) (literal "/dev/null"))))`,
+-    '(deny mach-lookup (global-name "com.apple.securityd"))',
++    ...(options.purpose === 'trusted-login' ? [] : ['(deny mach-lookup (global-name "com.apple.securityd"))']),
+     ...(consent ? [] : ['(deny network*)']),
+     '',
+   ].join('\n');
+@@ -65,7 +68,7 @@ export async function prepareCodexContainment(options: CodexContainmentOptions)
+     approval_policy: 'never',
+     features: { plugins: false, shell_snapshot: false },
+     allow_login_shell: false,
+-    cli_auth_credentials_store: 'file',
++    cli_auth_credentials_store: options.purpose === 'trusted-login' ? 'keyring' : 'file',
+     check_for_update_on_startup: false,
+     web_search: 'disabled',
+     analytics: { enabled: false },
+@@ -142,6 +145,7 @@ export interface CodexNativePolicyOptions extends CodexContainmentOptions {
+  * Caller authenticates provider consent and verifies exact supply, effective config,
+  * and the selected profile on every thread/turn. Never expose args to client override. */
+ export async function prepareCodexNativePolicy(options: CodexNativePolicyOptions) {
++  if (options.purpose !== undefined && options.purpose !== "worker") throw new Error("Native workers cannot select the trusted login purpose");
+   if (process.platform !== 'darwin') throw new Error('Native policy requires macOS Seatbelt verification');
+   const commandNetworkPosture = options.commandNetworkPosture ?? 'off';
+   if (!['off', 'ask-per-destination', 'on'].includes(commandNetworkPosture)) throw new Error('Unsupported command network posture');
+@@ -240,7 +244,7 @@ export async function prepareCodexNativePolicy(options: CodexNativePolicyOptions
+   };
+   const entries: Array<[string, unknown]> = [
+     ['approval_policy', approvalPolicy], ['approvals_reviewer', 'user'], ['sandbox_mode', 'workspace-write'], ['allow_login_shell', false],
+-    ['cli_auth_credentials_store', 'file'], ['check_for_update_on_startup', false], ['web_search', 'disabled'],
++    ['cli_auth_credentials_store', 'keyring'], ['check_for_update_on_startup', false], ['web_search', 'disabled'],
+     ['sandbox_workspace_write.writable_roots', [root]], ['sandbox_workspace_write.network_access', commandNetworkEnabled],
+     ['sandbox_workspace_write.exclude_slash_tmp', true], ['sandbox_workspace_write.exclude_tmpdir_env_var', true],
+     ['features.network_proxy', commandNetworkPosture !== 'off'],
+diff --git a/projects/chirality-runtime/packages/daemon/src/codex-login.ts b/projects/chirality-runtime/packages/daemon/src/codex-login.ts
+index 73490d073..48e06e80d 100644
+--- a/projects/chirality-runtime/packages/daemon/src/codex-login.ts
++++ b/projects/chirality-runtime/packages/daemon/src/codex-login.ts
+@@ -1,9 +1,5 @@
+ import { spawn } from "node:child_process";
+-import { constants } from "node:fs";
+-import { lstat, open, realpath } from "node:fs/promises";
+-import { createHash } from "node:crypto";
+-import { join } from "node:path";
+-import { RuntimeError } from "@chirality/runtime-contracts";
++import { RuntimeError, validateHostedLoginStatus, type HostedLoginStatus } from "@chirality/runtime-contracts";
+ import { isContained, privateDirectory, revalidateExactSupply, verifyExactSupply } from "@chirality/runtime-core";
+ import { prepareCodexContainment } from "./codex-containment.js";
+ import { CodexTurnSession, type CodexSessionTransport } from "./codex-session.js";
+@@ -14,13 +10,7 @@ export interface CodexLoginOptions {
+   providerNetworkConsent: { approvedBy: string; approvalReference: string };
+   timeoutMs?: number;
+ }
+-export interface CodexLoginStatus {
+-  state: "pending" | "completed" | "failed";
+-  loginId?: string;
+-  hasAccount?: boolean;
+-  authBindingSha256?: string;
+-  evidenceClass: "exact-supply-login" | "controlled-fixture";
+-}
++export type CodexLoginStatus = HostedLoginStatus;
+ const unavailable = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
+ /** Operator-only, explicit-consent sign-in lifecycle; construction performs no login. */
+ export class CodexLogin {
+@@ -43,17 +33,18 @@ export class CodexLogin {
+   private get evidenceClass(): CodexLoginStatus["evidenceClass"] { return this.fixture ? "controlled-fixture" : "exact-supply-login"; }
+   private async launch(): Promise<CodexSessionTransport> {
+     if (this.fixture) return this.fixture;
++    this.requireQualifiedLoginPurpose();
+     if (process.platform !== "darwin" || process.arch !== "arm64") throw unavailable("Exact login requires darwin-arm64");
+     const consent = this.options.providerNetworkConsent;
+     if (!consent || typeof consent.approvedBy !== "string" || !consent.approvedBy.trim() || typeof consent.approvalReference !== "string" || !consent.approvalReference.trim()) throw unavailable("Explicit trusted provider consent is required for sign-in");
+     if (!isContained(this.options.privateDirectory, this.options.codexHome) || this.options.privateDirectory === this.options.codexHome || !isContained(this.options.privateDirectory, this.options.executablePath)) throw unavailable("Login home and exact executable must be inside the dedicated private directory");
+     await privateDirectory(this.options.privateDirectory); await privateDirectory(this.options.codexHome);
+     const supply = await verifyExactSupply({ executablePath: this.options.executablePath });
+-    const containment = await prepareCodexContainment({ canonicalRoot: this.options.canonicalRoot, privateDirectory: this.options.privateDirectory, codexHome: this.options.codexHome, providerNetworkConsent: consent });
++    const containment = await prepareCodexContainment({ canonicalRoot: this.options.canonicalRoot, privateDirectory: this.options.privateDirectory, codexHome: this.options.codexHome, providerNetworkConsent: consent, purpose: "trusted-login" });
+     try {
+       const args = await containment.launchArguments(supply.executablePath);
+       await revalidateExactSupply(supply);
+-      const flags = ["-c", 'cli_auth_credentials_store="file"', "-c", "features.plugins=false", "-c", "allow_login_shell=false", "-c", 'approval_policy="never"', "-c", "check_for_update_on_startup=false", "-c", "analytics.enabled=false", "-c", "feedback.enabled=false"];
++      const flags = ["-c", 'cli_auth_credentials_store="keyring"', "-c", "features.plugins=false", "-c", "allow_login_shell=false", "-c", 'approval_policy="never"', "-c", "check_for_update_on_startup=false", "-c", "analytics.enabled=false", "-c", "feedback.enabled=false"];
+       const child = spawn("/usr/bin/sandbox-exec", [...args, ...flags], { env: containment.environment, cwd: this.options.canonicalRoot, shell: false, detached: true, stdio: "pipe" });
+       const closed = new Promise<void>(resolve => child.once("close", () => resolve()));
+       const signal = (value: NodeJS.Signals) => { if (child.pid) { try { process.kill(-child.pid, value); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ESRCH") throw error; } } };
+@@ -83,49 +74,42 @@ export class CodexLogin {
+       return await this.actor.loginStart();
+     } catch (error) { await this.close(); throw error; }
+   }
+-  private async authBinding(): Promise<string> {
+-    await privateDirectory(this.options.codexHome);
+-    if (await realpath(this.options.codexHome) !== this.options.codexHome) throw unavailable("Login home alias rejected");
+-    const path = join(this.options.codexHome, "auth.json");
+-    let handle;
+-    try {
+-      const before = await lstat(path, { bigint: true });
+-      if (!before.isFile() || before.isSymbolicLink() || before.uid !== BigInt(process.getuid?.() ?? -1) || (before.mode & 0o077n) !== 0n || before.size < 1n || before.size > 1048576n) throw unavailable("Login credential record is not private bounded data");
+-      handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+-      const opened = await handle.stat({ bigint: true });
+-      if (opened.dev !== before.dev || opened.ino !== before.ino) throw unavailable("Credential record changed before binding");
+-      const buffer = Buffer.alloc(Number(before.size) + 1);
+-      let length = 0;
+-      while (length < buffer.length) { const { bytesRead } = await handle.read(buffer, length, buffer.length - length, null); if (!bytesRead) break; length += bytesRead; }
+-      const bytes = buffer.subarray(0, length);
+-      const after = await handle.stat({ bigint: true }), current = await lstat(path, { bigint: true });
+-      if (after.dev !== current.dev || after.ino !== current.ino || after.mtimeNs !== before.mtimeNs || after.ctimeNs !== before.ctimeNs || after.size !== before.size || bytes.length !== Number(before.size)) throw unavailable("Credential record changed during binding");
+-      const value: unknown = JSON.parse(bytes.toString()); if (!value || typeof value !== "object" || Array.isArray(value)) throw unavailable("Invalid credential record");
+-      return createHash("sha256").update(bytes).digest("hex");
+-    } catch { throw unavailable("Private login credential binding is unavailable"); }
+-    finally { await handle?.close(); }
++  private requireQualifiedLoginPurpose(): void {
++    // Exact executable provenance alone cannot qualify this new keyring/process purpose.
++    // No independent qualifying basis or operational unlock is supplied in this increment.
++    throw unavailable("Trusted keyring login purpose is not independently qualified");
++  }
++  private projectStatus(current: { state: HostedLoginStatus["state"]; loginId?: string; hasAccount?: boolean }): CodexLoginStatus {
++    return validateHostedLoginStatus({ schema: "chirality-hosted-login-status/v2", ...current,
++      evidenceClass: this.evidenceClass, hostedReady: false,
++      binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } });
+   }
+   async status(): Promise<CodexLoginStatus> {
+-    if (this.result) return { ...this.result };
++    if (this.result) return validateHostedLoginStatus(this.result);
+     const current = this.actor?.loginStatus();
+-    if (!current || this.expired || (this.closed && current.state !== "completed")) return { state: "failed", evidenceClass: this.evidenceClass };
+-    if (current.state !== "completed") { if (current.state === "failed") await this.close(); return { ...current, evidenceClass: this.evidenceClass }; }
++    if (!current || this.expired || this.closed) return this.projectStatus({ state: "failed" });
++    if (current.state !== "completed") { if (current.state === "failed") await this.close(); return this.projectStatus(current); }
+     try {
+       const account = await this.actor!.accountRead();
+-      if (!account.hasAccount) throw unavailable("Provider completion has no persisted account");
+-      const authBindingSha256 = await this.authBinding();
+-      this.result = { state: "completed", loginId: current.loginId, hasAccount: true, authBindingSha256, evidenceClass: this.evidenceClass };
+-      clearTimeout(this.timer); await this.close(); return { ...this.result };
+-    } catch { this.result = { state: "failed", loginId: current.loginId, evidenceClass: this.evidenceClass }; await this.close(); return { ...this.result }; }
++      // Cancellation, timeout or close during account/read must not revive the ceremony.
++      if (this.closed || this.expired) return this.projectStatus({ state: "failed", loginId: current.loginId });
++      if (!account.hasAccount) throw unavailable("Provider completion has no account");
++      this.result = this.projectStatus({ state: "completed", loginId: current.loginId, hasAccount: true });
++      clearTimeout(this.timer); await this.close(); return validateHostedLoginStatus(this.result);
++    } catch {
++      this.result ??= this.projectStatus({ state: "failed", loginId: current.loginId });
++      await this.close(); return validateHostedLoginStatus(this.result);
++    }
+   }
+   async cancel(): Promise<void> {
++    this.closed = true;
+     try { if (this.actor?.loginStatus().state === "pending") await this.actor.loginCancel(); }
+     finally { await this.close(); }
+   }
+   async close(): Promise<void> {
+     this.closed = true; clearTimeout(this.timer);
+     if (this.actor) await this.actor.close(); else if (this.fixture) await this.fixture.close();
+-    // Persistent CODEX_HOME and auth.json are deliberately preserved.
++    // Persistent managed-auth storage remains supplier-owned; this component never reads credentials.
+   }
+ }
+ export const createControlledCodexLoginForTests = CodexLogin.controlledForTests;
+diff --git a/projects/chirality-runtime/packages/daemon/src/codex-session.ts b/projects/chirality-runtime/packages/daemon/src/codex-session.ts
+index fe18abdb2..e888c7802 100644
+--- a/projects/chirality-runtime/packages/daemon/src/codex-session.ts
++++ b/projects/chirality-runtime/packages/daemon/src/codex-session.ts
+@@ -368,7 +368,16 @@ export class CodexTurnSession {
+   }
+   async accountRead(): Promise<{ authRequired: boolean; hasAccount: boolean }> {
+     this.assertReady(); const result = await this.request("account/read", { refreshToken: false });
+-    if (typeof result.requiresOpenaiAuth !== "boolean" || !("account" in result) || (result.account !== null && (typeof result.account !== "object" || Array.isArray(result.account)))) { this.fail(protocol("Unsupported account response")); throw this.failure; }
++    const bounded = (value: unknown): value is string => typeof value === "string" && value.length <= 1024 && !/[\x00-\x1f\x7f]/.test(value);
++    const account = result.account;
++    const accountObject = account !== null && typeof account === "object" && !Array.isArray(account) ? account as Record<string, unknown> : undefined;
++    const knownAccount = account === null || (accountObject && (
++      (accountObject.type === "apiKey" && Object.keys(accountObject).length === 1)
++      || (accountObject.type === "chatgpt" && Object.keys(accountObject).sort().join(",") === "email,planType,type"
++        && (accountObject.email === null || bounded(accountObject.email)) && bounded(accountObject.planType))));
++    if (Object.keys(result).sort().join(",") !== "account,requiresOpenaiAuth" || typeof result.requiresOpenaiAuth !== "boolean" || !knownAccount) {
++      this.fail(protocol("Unsupported account response")); throw this.failure;
++    }
+     return { authRequired: result.requiresOpenaiAuth, hasAccount: result.account !== null };
+   }
+   async loginStart(): Promise<{ loginId: string; authUrl: string }> {
+diff --git a/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts b/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts
+index 4a48dcc13..e2c352c55 100644
+--- a/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts
++++ b/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts
+@@ -1,12 +1,7 @@
+-import { spawn } from "node:child_process";
+-import { constants } from "node:fs";
+-import { lstat, open, realpath } from "node:fs/promises";
+-import { createHash, randomUUID } from "node:crypto";
+-import { join } from "node:path";
+-import { RuntimeError, type DelegatedHarnessProcessSupervisorPort, type WorkerContinuity, type WorkerHandle, type WorkerResult, type NetworkApprovalPrompt, type NetworkApprovalChoice, type HostedConsent } from "@chirality/runtime-contracts";
+-import { assertContinuity, recordKey, verifyConfiguredRuntimeConformance, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore, isContained, privateDirectory, revalidateExactSupply, sameContinuity, verifyExactSupply } from "@chirality/runtime-core";
++import { randomUUID } from "node:crypto";
++import { RuntimeError, validateHostedManagedAuth, type HostedManagedAuth, type DelegatedHarnessProcessSupervisorPort, type WorkerContinuity, type WorkerHandle, type WorkerResult, type NetworkApprovalPrompt, type NetworkApprovalChoice, type HostedConsent } from "@chirality/runtime-contracts";
++import { assertContinuity, recordKey, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore } from "@chirality/runtime-core";
+ import { prepareCodexNativePolicy } from "./codex-containment.js";
+-import { createCodexTransportLifecycle } from "./codex-transport-lifecycle.js";
+ import { CodexTurnSession, type CodexSessionTransport, type CodexDynamicTool } from "./codex-session.js";
+ 
+ import { ManagerMailbox, type ManagerMessage } from "./codex-manager.js";
+@@ -18,7 +13,7 @@ export interface CodexSupervisorOptions {
+   identity: WorkerContinuity;
+   codexHome: string;
+   privateDirectory: string;
+-  authBindingSha256: string;
++  managedAuth: HostedManagedAuth;
+   providerNetworkConsent: { approvedBy: string; approvalReference: string };
+   requestTimeoutMs?: number;
+   turnTimeoutMs?: number;
+@@ -31,7 +26,7 @@ type NativePermissions = Awaited<ReturnType<typeof prepareCodexNativePolicy>>["e
+ export function codexRuntimeConformanceConfigDigest(options: CodexSupervisorOptions, policy: { configToml: string; expectedPermissions: NativePermissions }): string {
+   return recordKey({ model: options.model, executablePath: options.executablePath, identity: options.identity,
+             codexHome: options.codexHome, privateDirectory: options.privateDirectory, protectedPaths: options.protectedPaths,
+-            authBindingSha256: options.authBindingSha256, providerNetworkConsent: options.providerNetworkConsent,
++            managedAuth: validateHostedManagedAuth(options.managedAuth), providerNetworkConsent: options.providerNetworkConsent,
+             commandNetworkPosture: options.commandNetworkPosture ?? "off", requestTimeoutMs: options.requestTimeoutMs ?? 10000,
+             turnTimeoutMs: options.turnTimeoutMs ?? 120000, maxWorkers: options.maxWorkers ?? 16,
+             nativeConfig: policy.configToml, expectedPermissions: policy.expectedPermissions });
+@@ -55,63 +50,24 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
+     if (!options || typeof options.model !== "string" || !options.model.trim() || options.model.length > 128 || /[\x00-\x1f]/.test(options.model)) throw new RuntimeError("INVALID_REQUEST", "Explicit Codex model required");
+     for (const value of [options.requestTimeoutMs ?? 10_000, options.turnTimeoutMs ?? 120_000, options.maxWorkers ?? 16]) if (!Number.isSafeInteger(value) || value < 1 || value > 600_000) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
+     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw new RuntimeError("INVALID_REQUEST", "Unsupported executable command-network posture");
++    validateHostedManagedAuth(options.managedAuth);
+     this.options = structuredClone(options);
+   }
+   /** Controlled adapter tests are structurally excluded from verifyHostedBoundary. */
+   static controlledForTests(options: { commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
+     const result = new CodexSupervisor({ identity: options.identity, model: options.model, privateDirectory: options.identity.canonicalRoot, codexHome: options.identity.canonicalRoot,
+-      commandNetworkPosture: options.commandNetworkPosture, executablePath: "controlled-fixture-only", authBindingSha256: "", providerNetworkConsent: { approvedBy: "", approvalReference: "" }, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs });
++      commandNetworkPosture: options.commandNetworkPosture, executablePath: "controlled-fixture-only", managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } }, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs });
+     result.fixtureLauncher = options.launch;
+     result.fixtureAllowUnauthenticatedModel = options.allowUnauthenticatedModel === true;
+     return result;
+   }
+-  private async accountBinding(): Promise<void> {
+-    if (typeof this.options.authBindingSha256 !== "string" || !/^[a-f0-9]{64}$/.test(this.options.authBindingSha256)) throw unavailable("Exact operator-approved account-file binding is required");
+-    const path = join(this.options.codexHome, "auth.json");
+-    let handle;
+-    try {
+-      const initial = await lstat(path, { bigint: true });
+-      if (!initial.isFile() || initial.isSymbolicLink() || initial.uid !== BigInt(process.getuid!()) || (initial.mode & 0o777n) !== 0o600n || initial.size > 1024n * 1024n || await realpath(path) !== path) throw unavailable("Account file must be canonical owner-private 0600");
+-      handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+-      const before = await handle.stat({ bigint: true });
+-      if (before.ino !== initial.ino || before.dev !== initial.dev) throw unavailable("Account file changed before binding check");
+-      const bytes = await handle.readFile();
+-      const after = await handle.stat({ bigint: true }), current = await lstat(path, { bigint: true });
+-      if (after.ino !== current.ino || after.dev !== current.dev || after.mtimeNs !== before.mtimeNs || after.ctimeNs !== before.ctimeNs || after.size !== before.size || createHash("sha256").update(bytes).digest("hex") !== this.options.authBindingSha256) throw unavailable("Account binding drifted; operator rebind with a new epoch is required");
+-    } catch (error) { if (error instanceof RuntimeError) throw error; throw unavailable("Root-private account binding is unavailable"); }
+-    finally { await handle?.close(); }
++  private requireHostedIdentity(): void {
++    // Neither caller continuity, ceremony presence nor fixture data supplies a principal.
++    throw unavailable("Canonical hosted identity producer is unavailable");
+   }
+-  private async nativePolicy() {
+-    const protectedPaths = this.options.protectedPaths;
+-    if (!Array.isArray(protectedPaths) || protectedPaths.length === 0 || protectedPaths.some(path => typeof path !== "string") || !protectedPaths.some(path => path !== this.options.privateDirectory && isContained(path, this.options.privateDirectory))) throw unavailable("Native action policy requires an explicit broker control root covering worker-private storage");
+-    let policy: Awaited<ReturnType<typeof prepareCodexNativePolicy>>;
+-    try {
+-      policy = await prepareCodexNativePolicy({ canonicalRoot: this.options.identity.canonicalRoot, codexHome: this.options.codexHome,
+-        privateDirectory: this.options.privateDirectory, immutableReadRoots: ["/bin", "/usr/lib", "/usr/bin/curl", "/private/etc/ssl/openssl.cnf", "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld"],
+-        protectedPaths: [...protectedPaths], commandNetworkPosture: this.options.commandNetworkPosture ?? "off", providerNetworkConsent: this.options.providerNetworkConsent });
+-    } catch { throw unavailable("Native action policy could not be compiled safely"); }
+-    if (policy.policyDigest !== this.options.identity.policyDigest) {
+-      await policy.cleanup();
+-      throw unavailable("Configured continuity policy digest differs from the compiled native action policy");
+-    }
+-    return policy;
+-  }
+-  async verifyHostedBoundary(identity: WorkerContinuity): Promise<void> {
++  async verifyHostedBoundary(_identity: WorkerContinuity): Promise<void> {
+     if (this.fixtureLauncher) throw unavailable("Controlled Codex fixture cannot establish a hosted boundary");
+-    if (process.platform !== "darwin") throw unavailable("Hosted validation requires macOS containment");
+-    await assertContinuity(identity);
+-    if (!sameContinuity(identity, this.options.identity)) throw unavailable("Hosted worker continuity differs from trusted configuration");
+-    await privateDirectory(this.options.privateDirectory); await privateDirectory(this.options.codexHome);
+-    if (!isContained(this.options.privateDirectory, this.options.codexHome) || !isContained(this.options.privateDirectory, this.options.executablePath)) throw unavailable("Hosted home and exact binary must lie inside the dedicated worker-private root");
+-    const consent = this.options.providerNetworkConsent;
+-    if (!consent || typeof consent.approvedBy !== "string" || !consent.approvedBy.trim() || typeof consent.approvalReference !== "string" || !consent.approvalReference.trim()) throw unavailable("Explicit trusted provider network consent is required");
+-    const policy = await this.nativePolicy();
+-    await policy.cleanup();
+-    await this.accountBinding();
+-    await verifyExactSupply({ executablePath: this.options.executablePath });
+-    // Preflight also serves consent management, including revocation from on/ask.
+-    // Inspect the bound home here; enforce executable command posture only at acquire.
+-    await new HostedConsentStore({ canonicalRoot: identity.canonicalRoot, codexHome: this.options.codexHome }).read(identity);
++    this.requireHostedIdentity();
+   }
+   private async observedTransport<T extends { pid: number; transport: CodexSessionTransport }>(launched: T, tracker: DescendantTracker): Promise<T> {
+     const diagnostic = (state: Awaited<ReturnType<DescendantTracker["reconcile"]>>) => new RuntimeError("ENGINE_UNAVAILABLE", "Observed worker descendants require reconciliation", 503, {
+@@ -143,37 +99,13 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
+       const fixture = await this.fixtureLauncher();
+       return fixture.descendantTracker ? this.observedTransport(fixture, fixture.descendantTracker) : fixture;
+     }
+-    const supply = await verifyExactSupply({ executablePath: this.options.executablePath });
+-    const policy = await this.nativePolicy();
+-    let policyCleaning: Promise<void> | undefined;
+-    const cleanupPolicy = () => policyCleaning ??= policy.cleanup();
+-    try {
+-      await this.accountBinding(); await revalidateExactSupply(supply);
+-      // Exact trusted provider host; primary/descendant actions receive the native named policy.
+-      // This topology still needs empirical G-SBX evidence; no whole-provider wrapper is claimed.
+-      const [executable, ...args] = await policy.launchArguments(supply.executablePath);
+-      const child = spawn(executable!, args, { cwd: this.options.identity.canonicalRoot, env: policy.environment, shell: false, detached: true, stdio: "pipe" });
+-      const transport = createCodexTransportLifecycle(child);
+-      let closing: Promise<void> | undefined;
+-      const close = () => closing ??= Promise.resolve().then(async () => {
+-        let transportError: unknown;
+-        try { await transport.close(); } catch (error) { transportError = error; }
+-        try { await cleanupPolicy(); }
+-        catch (error) { if (transportError) throw new AggregateError([transportError, error], "Codex transport and policy cleanup failed", { cause: transportError }); throw error; }
+-        if (transportError) throw transportError;
+-      });
+-      try { await new Promise<void>((resolve, reject) => { child.once("spawn", resolve); child.once("error", reject); }); }
+-      catch { await close(); throw unavailable("Contained Codex process could not start"); }
+-      const tracker = new DescendantTracker({ leaderPid: child.pid!, intervalMs: 100,
+-        maxDurationMs: Math.min(3_600_000, (this.options.turnTimeoutMs ?? 120_000) + (this.options.requestTimeoutMs ?? 10_000) * 12 + 5000) });
+-      return await this.observedTransport({ pid: child.pid!, transport: { stdin: transport.stdin, stdout: transport.stdout, close }, permissionProfile: policy.permissionProfile, policyDigest: policy.policyDigest, expectedPermissions: policy.expectedPermissions }, tracker);
+-    } catch (error) {
+-      try { await cleanupPolicy(); }
+-      catch (cleanupError) { if (cleanupError !== error) throw new AggregateError([error, cleanupError], "Codex launch and policy cleanup failed", { cause: error }); }
+-      throw error;
+-    }
++    // No production transport can be created until a separately qualified identity
++    // producer and its conformance admission contract are supplied.
++    this.requireHostedIdentity();
++    throw unavailable("Hosted production launch is unavailable");
+   }
+   async startManager(workerId: string, input: string): Promise<WorkerHandle> {
++    if (!this.fixtureLauncher) this.requireHostedIdentity();
+     id(workerId);
+     if (typeof input !== "string" || Buffer.byteLength(input) > 65536) throw unavailable("Invalid manager envelope");
+     const request = JSON.parse(input);
+@@ -196,6 +128,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
+   }
+   async acquire(workerId: string, input: string): Promise<WorkerHandle> { return this.acquireInternal(workerId, input); }
+   private async acquireInternal(workerId: string, input: string, dynamicTools?: readonly CodexDynamicTool[]): Promise<WorkerHandle> {
++    if (!this.fixtureLauncher) this.requireHostedIdentity();
+     id(workerId);
+     if (this.closed || this.entries.has(workerId) || this.acquiring.has(workerId) || this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker is unavailable or already acquired");
+     if (typeof input !== "string" || Buffer.byteLength(input) > 65536) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted turn envelope");
+@@ -213,19 +146,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
+     this.pendingAcquisitions.set(workerId, new Promise<void>(resolve => { finishAcquisition = resolve; }));
+     try {
+       if (this.fixtureLauncher) await assertContinuity(this.options.identity);
+-      else {
+-        if (this.options.conformance === undefined) throw unavailable("Accepted runtime conformance is required before hosted worker admission");
+-        await this.verifyHostedBoundary(this.options.identity);
+-        const consent = await new HostedConsentStore({ canonicalRoot: this.options.identity.canonicalRoot, codexHome: this.options.codexHome }).read(this.options.identity);
+-        if (consent?.posture !== (this.options.commandNetworkPosture ?? "off")) throw unavailable("Recorded command-network consent must match the configured executable posture");
+-        const policy = await this.nativePolicy();
+-        try {
+-          // Semantic launch inputs only: acceptance artifact locations/pins are excluded to avoid a hash fixed point.
+-          const configDigest = codexRuntimeConformanceConfigDigest(this.options, policy);
+-          await verifyConfiguredRuntimeConformance(this.options.conformance, { ...this.options.identity, executablePath: this.options.executablePath,
+-            configDigest, accountDigest: this.options.authBindingSha256, consentVersion: recordKey(consent) });
+-        } finally { await policy.cleanup(); }
+-      }
++      else this.requireHostedIdentity();
+       if (this.closed) throw unavailable("Supervisor is closing");
+       const launched = await this.launch();
+       if (this.closed) { await launched.transport.close(); throw unavailable("Supervisor closed during acquisition"); }
+@@ -245,7 +166,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
+           if (launched.expectedPermissions) await session.verifyNativePolicy(launched.expectedPermissions);
+           const account = await session.accountRead();
+           if (!account.hasAccount && !(this.fixtureLauncher && this.fixtureAllowUnauthenticatedModel && account.authRequired === false)) throw unavailable("Codex has no root-private authenticated account");
+-          if (!this.fixtureLauncher) await this.accountBinding();
++          if (!this.fixtureLauncher) this.requireHostedIdentity();
+           const threadId = request.resumeThreadId
+             ? await session.resumeThread({ threadId: request.resumeThreadId, model: this.options.model, continuityChecked: true })
+             : await session.startThread({ cwd: this.options.identity.canonicalRoot, model: this.options.model, continuityChecked: true });
+@@ -276,7 +197,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
+     const entry = this.entry(workerId, generation);
+     if (entry.handle.state !== "running") throw unavailable("Approval worker is no longer running");
+     if (!this.fixtureLauncher) {
+-      await this.accountBinding();
++      this.requireHostedIdentity();
+       const consent = await new HostedConsentStore({ canonicalRoot: this.options.identity.canonicalRoot, codexHome: this.options.codexHome }).read(this.options.identity);
+       if (consent?.posture !== "ask-per-destination" || this.options.commandNetworkPosture !== "ask-per-destination") throw unavailable("Approval consent or configured identity changed");
+     }
+diff --git a/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts b/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts
+index 4daa33f67..ebf29e2b5 100644
+--- a/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts
++++ b/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts
+@@ -9,6 +9,7 @@ import {
+   HarnessError,
+   RUNTIME_API_VERSION,
+   RuntimeError,
++  validateHostedLoginStatus,
+   deriveTranscriptView,
+   type Agent1RunRequest,
+   type CreateSessionRequest,
+@@ -292,12 +293,10 @@ export class RuntimeDaemon {
+         delegated.assertProjectRoot(projectId, project.canonicalRoot);
+         if (method === "GET" && segments[4] === "status") {
+           const status = await this.loginOperation(generation, () => login.status());
+-          if (!status || !["pending", "completed", "failed"].includes(status.state) || !["exact-supply-login", "controlled-fixture"].includes(status.evidenceClass)
+-            || (status.loginId !== undefined && (typeof status.loginId !== "string" || status.loginId.length > 512))
+-            || (status.hasAccount !== undefined && typeof status.hasAccount !== "boolean")
+-            || (status.authBindingSha256 !== undefined && !/^[0-9a-f]{64}$/.test(status.authBindingSha256))) throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login status", 500);
+-          return this.json(response, 200, { state: status.state, evidenceClass: status.evidenceClass,
+-            ...(status.loginId !== undefined ? { loginId: status.loginId } : {}), ...(status.hasAccount !== undefined ? { hasAccount: status.hasAccount } : {}), ...(status.authBindingSha256 !== undefined ? { authBindingSha256: status.authBindingSha256 } : {}) });
++          let safeStatus: HostedLoginStatus;
++          try { safeStatus = validateHostedLoginStatus(status); }
++          catch { throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login status", 500); }
++          return this.json(response, 200, safeStatus);
+         }
+         if (method === "POST" && (segments[4] === "start" || segments[4] === "cancel")) {
+           const body = await this.body<any>(request);
+diff --git a/projects/chirality-runtime/packages/daemon/src/standalone.ts b/projects/chirality-runtime/packages/daemon/src/standalone.ts
+index 1a0d53e3b..725050f33 100644
+--- a/projects/chirality-runtime/packages/daemon/src/standalone.ts
++++ b/projects/chirality-runtime/packages/daemon/src/standalone.ts
+@@ -1,7 +1,7 @@
+ import { constants } from "node:fs";
+ import { open, lstat, readdir, realpath, unlink } from "node:fs/promises";
+ import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
+-import { RuntimeError, type EngineSelection, type ProviderCredentialPort, type RuntimeCompatibilityIdentity, type WorkerContinuity } from "@chirality/runtime-contracts";
++import { RuntimeError, validateHostedManagedAuth, type HostedManagedAuth, type EngineSelection, type ProviderCredentialPort, type RuntimeCompatibilityIdentity, type WorkerContinuity } from "@chirality/runtime-contracts";
+ import {
+   assertContinuity, type RuntimeConformanceConfiguration, GovernedAgent1RunCoordinator, type Agent1ManagerRuntimePort, ApprovalStore, AuthRegistry, DelegatedRuntime, EngineRegistry, HostedConsentStore, privateDirectory,
+   privateRead, ProcessSupervisor, ProjectRegistry, publishPrivate, recordKey, ResidencyCoordinator,
+@@ -15,7 +15,6 @@ import { RuntimeDaemon } from "./runtime-daemon.js";
+ import { startSupervisorServer, SupervisorClient, type SupervisorCredential } from "./supervisor-server.js";
+ 
+ interface StandaloneBase {
+-  schema: "chirality-standalone/v1";
+   runtimeDirectory: string;
+   daemonSocket: string;
+   supervisorSocket: string;
+@@ -29,8 +28,8 @@ interface StandaloneBase {
+   };
+ }
+ export type DelegatedStandaloneConfig = StandaloneBase & (
+-  { mode: "controlled-worker"; worker: { executablePath: string; args: string[]; maxRunMs?: number } } |
+-  { mode: "hosted-validation"; worker: { conformance?: RuntimeConformanceConfiguration; executablePath: string; privateDirectory: string; model: string; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; authBindingSha256: string; providerNetworkConsent: { approvedBy: string; approvalReference: string }; maxRunMs?: number } }
++  { schema: "chirality-standalone/v1"; mode: "controlled-worker"; worker: { executablePath: string; args: string[]; maxRunMs?: number } } |
++  { schema: "chirality-standalone-hosted/v2"; mode: "hosted-validation"; worker: { conformance?: RuntimeConformanceConfiguration; executablePath: string; privateDirectory: string; model: string; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; managedAuth: HostedManagedAuth; providerNetworkConsent: { approvedBy: string; approvalReference: string }; maxRunMs?: number } }
+ );
+ export interface LocalStandaloneConfig {
+   schema: "chirality-standalone/v1";
+@@ -89,12 +88,14 @@ export async function readStandaloneConfig(path: string): Promise<StandaloneConf
+   const config = await privateRead<StandaloneConfig>(path);
+   if (config?.mode === "local-engine-only") return validateLocalConfig(config, path);
+   keys(config, ["schema", "mode", "runtimeDirectory", "daemonSocket", "supervisorSocket", "supervisorCredential", "project", "worker"]);
+-  if (config.schema !== "chirality-standalone/v1" || !["controlled-worker", "hosted-validation"].includes(config.mode)) throw unavailable("Only controlled-worker or explicitly configured hosted-validation modes are supported");
++  if (!["controlled-worker", "hosted-validation"].includes(config.mode)) throw unavailable("Only controlled-worker or explicitly configured hosted-validation modes are supported");
++  if (config.schema !== (config.mode === "hosted-validation" ? "chirality-standalone-hosted/v2" : "chirality-standalone/v1")) throw invalid("Unsupported standalone schema for mode");
+   absolute(config.runtimeDirectory);
+   if (!within(config.runtimeDirectory, path)) throw invalid("Configuration must reside in its private runtime directory");
+   await privateTree(config.runtimeDirectory);
+   keys(config.project, ["projectId", "identity", "compatibility", "codexHome", "retirementDirectory"]);
+-  keys(config.worker, config.mode === "controlled-worker" ? ["executablePath", "args", "maxRunMs"] : ["executablePath", "privateDirectory", "model", "commandNetworkPosture", "authBindingSha256", "providerNetworkConsent", "maxRunMs", "conformance"]);
++  keys(config.worker, config.mode === "controlled-worker" ? ["executablePath", "args", "maxRunMs"] : ["executablePath", "privateDirectory", "model", "commandNetworkPosture", "managedAuth", "providerNetworkConsent", "maxRunMs", "conformance"]);
++  if (config.mode === "hosted-validation") validateHostedManagedAuth(config.worker.managedAuth);
+   keys(config.project.identity, ["canonicalRoot", "accountId", "accountEpoch", "policyDigest", "cwd"]);
+   keys(config.project.compatibility, ["compatibilityIdentity", "contractBasisSha256"]);
+   if (typeof config.project.projectId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(config.project.projectId)) throw invalid("A bounded project ID is required");
+@@ -120,9 +121,8 @@ export async function readStandaloneConfig(path: string): Promise<StandaloneConf
+     }
+     if (config.worker.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(config.worker.commandNetworkPosture)) throw invalid("Unsupported executable command network posture");
+     if (typeof config.worker.model !== "string" || !config.worker.model.trim() || config.worker.model.length > 128 || /[\x00-\x1f]/.test(config.worker.model)
+-      || typeof config.worker.authBindingSha256 !== "string" || !/^[a-f0-9]{64}$/.test(config.worker.authBindingSha256)
+       || typeof config.worker.providerNetworkConsent.approvedBy !== "string" || !config.worker.providerNetworkConsent.approvedBy.trim()
+-      || typeof config.worker.providerNetworkConsent.approvalReference !== "string" || !config.worker.providerNetworkConsent.approvalReference.trim()) throw invalid("Hosted validation requires exact account binding, model and attributed provider consent");
++      || typeof config.worker.providerNetworkConsent.approvalReference !== "string" || !config.worker.providerNetworkConsent.approvalReference.trim()) throw invalid("Hosted validation requires managed authentication, model and attributed provider consent");
+     const workerPrivate = child(config.runtimeDirectory, config.worker.privateDirectory);
+     const overlaps = (a: string, b: string) => a === b || within(a, b) || within(b, a);
+     if (overlaps(config.runtimeDirectory, config.project.identity.canonicalRoot)) throw invalid("Hosted project root must be disjoint from broker runtime storage");
+@@ -163,7 +163,7 @@ export async function startStandaloneJob(role: "daemon" | "supervisor", configPa
+       ? new ProcessSupervisor({ command: config.worker.executablePath, args: config.worker.args, cwd: config.project.identity.canonicalRoot,
+         env: { CODEX_HOME: codexHome }, maxRunMs: config.worker.maxRunMs ?? 30_000 })
+       : new CodexSupervisor({ executablePath: config.worker.executablePath, model: config.worker.model, identity: config.project.identity,
+-        codexHome, privateDirectory: child(config.runtimeDirectory, config.worker.privateDirectory), protectedPaths: [config.runtimeDirectory], commandNetworkPosture: config.worker.commandNetworkPosture ?? "off", authBindingSha256: config.worker.authBindingSha256,
++        codexHome, privateDirectory: child(config.runtimeDirectory, config.worker.privateDirectory), protectedPaths: [config.runtimeDirectory], commandNetworkPosture: config.worker.commandNetworkPosture ?? "off", managedAuth: config.worker.managedAuth,
+         providerNetworkConsent: config.worker.providerNetworkConsent, turnTimeoutMs: config.worker.maxRunMs ?? 120_000,
+         ...(config.worker.conformance === undefined ? {} : { conformance: { ...config.worker.conformance,
+           recordPath: child(config.runtimeDirectory, config.worker.conformance.recordPath), acceptancePath: child(config.runtimeDirectory, config.worker.conformance.acceptancePath) } }) });
+diff --git a/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts b/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts
+index 2fdd674bb..0ca408d69 100644
+--- a/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts
++++ b/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts
+@@ -4,7 +4,7 @@ import { dirname, isAbsolute, parse, join } from "node:path";
+ import { randomBytes, randomUUID, timingSafeEqual, createHmac } from "node:crypto";
+ import type { SupervisorManagerPort, ManagerMessage } from "./codex-manager.js";
+ import type { CodexLoginStatus } from "./codex-login.js";
+-import { RuntimeError, type DelegatedHarnessProcessSupervisorPort, type WorkerHandle, type WorkerResult, type WorkerContinuity, type SupervisorNetworkApprovalPort, type NetworkApprovalPrompt, type NetworkApprovalChoice, type SupervisorApprovalDescription, type RuntimeCompatibilityIdentity } from "@chirality/runtime-contracts";
++import { RuntimeError, validateHostedLoginStatus, type DelegatedHarnessProcessSupervisorPort, type WorkerHandle, type WorkerResult, type WorkerContinuity, type SupervisorNetworkApprovalPort, type NetworkApprovalPrompt, type NetworkApprovalChoice, type SupervisorApprovalDescription, type RuntimeCompatibilityIdentity } from "@chirality/runtime-contracts";
+ 
+ function reconciliationDetails(value: unknown): Record<string, unknown> | undefined {
+   if (!value || typeof value !== "object" || (value as Record<string, unknown>).reason !== "DESCENDANT_RECONCILIATION_REQUIRED") return undefined;
+@@ -92,7 +92,11 @@ export async function startSupervisorServer(options: { socketPath: string; super
+           else if (op === "login-start" || op === "login-status" || op === "login-cancel") {
+             if (r.generation !== null || r.input !== undefined || options.login === undefined) throw new Error("Login service unavailable");
+             if (op === "login-start") result = await options.login.startLogin();
+-            else if (op === "login-status") result = await options.login.status();
++            else if (op === "login-status") {
++              const status = await options.login.status();
++              try { result = validateHostedLoginStatus(status); }
++              catch { throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login status", 500); }
++            }
+             else result = await options.login.cancel();
+           }
+           else if (op === "verify-hosted") {
+@@ -158,7 +162,11 @@ export class SupervisorClient implements DelegatedHarnessProcessSupervisorPort {
+     return await this.request("approval-describe", { ...(workerId ? { workerId, generation } : {}) }) as SupervisorApprovalDescription;
+   }
+   async startLogin(): Promise<{ loginId: string; authUrl: string }> { return this.request("login-start") as Promise<{ loginId: string; authUrl: string }>; }
+-  async loginStatus(): Promise<CodexLoginStatus> { return this.request("login-status") as Promise<CodexLoginStatus>; }
++  async loginStatus(): Promise<CodexLoginStatus> {
++    const status = await this.request("login-status");
++    try { return validateHostedLoginStatus(status); }
++    catch { throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login status", 500); }
++  }
+   async cancelLogin(): Promise<void> { await this.request("login-cancel"); }
+   async verifyHostedBoundary(identity: WorkerContinuity): Promise<void> {
+     await this.request("verify-hosted", { input: JSON.stringify(identity) });
+diff --git a/projects/chirality-runtime/tests/codex-login.test.ts b/projects/chirality-runtime/tests/codex-login.test.ts
+index b9807c7eb..42cfb5f33 100644
+--- a/projects/chirality-runtime/tests/codex-login.test.ts
++++ b/projects/chirality-runtime/tests/codex-login.test.ts
+@@ -1,9 +1,9 @@
+ import { describe, expect, it } from "vitest";
+ import { spawn } from "node:child_process";
+-import { mkdtemp, readFile, realpath, rm } from "node:fs/promises";
++import { mkdtemp, readdir, realpath, rm } from "node:fs/promises";
+ import { tmpdir } from "node:os";
+ import { join } from "node:path";
+-import { createHash } from "node:crypto";
++import { PassThrough } from "node:stream";
+ import { CodexLogin, createControlledCodexLoginForTests } from "../packages/daemon/src/codex-login.js";
+ async function fixture(mode = "success", authUrl = "https://auth.openai.com/authorize?state=fixture", timeoutMs = 1000) {
+   const codexHome = await mkdtemp(join(await realpath(tmpdir()), "login-fixture-"));
+@@ -20,11 +20,10 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
+   if(mode==='exit'){setTimeout(()=>process.exit(0),20);return;}
+   if(mode==='pending')return;
+   setTimeout(()=>{
+-   if(mode!=='failed')require('node:fs').writeFileSync(process.env.CODEX_HOME+'/auth.json',JSON.stringify({fixture:'not-a-real-credential'}),{mode:mode==='unsafe'?0o644:0o600});
+    send({method:'account/login/completed',params:{loginId:mode==='mismatch'?'other':'login1',success:mode!=='failed',error:null}});
+   },20);return;
+  }
+- if(r.method==='account/read'){if(r.params.refreshToken!==false)process.exit(8);send({id:r.id,result:{account:{fixture:true},requiresOpenaiAuth:true}});return;}
++ if(r.method==='account/read'){if(r.params.refreshToken!==false)process.exit(8);send({id:r.id,result:{account:{type:'apiKey'},requiresOpenaiAuth:true}});return;}
+  if(r.method==='account/login/cancel'){send({id:r.id,result:{}});send({method:'account/login/completed',params:{loginId:'login1',success:false,error:'canceled'}});return;}
+  process.exit(9);
+ });`;
+@@ -35,15 +34,16 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
+   return { login, codexHome, child, async close() { await login.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); await rm(codexHome, { recursive: true, force: true }); } };
+ }
+ describe("operator-only sign-in component (controlled fixture)", () => {
+-  it("waits for actual completion and binds private persisted auth without exposing it", async () => {
++  it("reports completed ceremony with unavailable identity and never creates credential files", async () => {
+     const f = await fixture();
+     try {
+       expect(await f.login.startLogin()).toEqual({ loginId: "login1", authUrl: "https://auth.openai.com/authorize?state=fixture" });
+       await expect.poll(async () => (await f.login.status()).state).toBe("completed");
+-      const bytes = await readFile(join(f.codexHome, "auth.json")); const status = await f.login.status();
+-      expect(status.authBindingSha256).toBe(createHash("sha256").update(bytes).digest("hex")); expect(status.hasAccount).toBe(true); expect(status.evidenceClass).toBe("controlled-fixture");
+-      expect(JSON.stringify(status)).not.toContain("not-a-real-credential");
+-      await f.login.close(); expect(await readFile(join(f.codexHome, "auth.json"))).toEqual(bytes);
++      const status = await f.login.status();
++      expect(status).toEqual({ schema: "chirality-hosted-login-status/v2", state: "completed", loginId: "login1", hasAccount: true,
++        evidenceClass: "controlled-fixture", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" }, hostedReady: false });
++      expect(await readdir(f.codexHome)).toEqual([]);
++      await f.login.close(); expect(await readdir(f.codexHome)).toEqual([]);
+     } finally { await f.close(); }
+   });
+   it("rejects nonofficial origins, plain HTTP and URL credentials", async () => {
+@@ -53,14 +53,14 @@ describe("operator-only sign-in component (controlled fixture)", () => {
+       finally { await f.close(); }
+     }
+   });
+-  it("fails for unsafe auth-file mode, mismatched completion, provider failure and clean exit", async () => {
+-    for (const mode of ["unsafe", "mismatch", "failed", "exit"]) {
++  it("fails for mismatched completion, provider failure and clean exit", async () => {
++    for (const mode of ["mismatch", "failed", "exit"]) {
+       const f = await fixture(mode);
+-      try { await f.login.startLogin(); await expect.poll(async () => (await f.login.status()).state).toBe("failed"); expect((await f.login.status()).authBindingSha256).toBeUndefined(); }
++      try { await f.login.startLogin(); await expect.poll(async () => (await f.login.status()).state).toBe("failed"); expect(await f.login.status()).toMatchObject({ binding: { state: "unavailable" }, hostedReady: false }); }
+       finally { await f.close(); }
+     }
+   });
+-  it("cancels pending login and prevents double start without clearing persisted home", async () => {
++  it("cancels pending login and prevents double start without creating account state", async () => {
+     const f = await fixture("pending");
+     try { await f.login.startLogin(); expect((await f.login.status()).state).toBe("pending"); await expect(f.login.startLogin()).rejects.toThrow("single-use"); await f.login.cancel(); expect((await f.login.status()).state).toBe("failed"); }
+     finally { await f.close(); }
+@@ -79,3 +79,30 @@ describe("operator-only sign-in component (controlled fixture)", () => {
+     await expect(login.startLogin()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); await login.close();
+   });
+ });
++
++
++it.each(["close", "cancel"] as const)("custody %s during account projection cannot revive completed login", async action => {
++  const stdin = new PassThrough(), stdout = new PassThrough();
++  let accountRequest!: number; let entered!: () => void;
++  const reading = new Promise<void>(resolve => { entered = resolve; });
++  const send = (value: unknown) => stdout.write(JSON.stringify(value) + "\n");
++  stdin.on("data", bytes => {
++    for (const line of bytes.toString().trim().split("\n")) {
++      const r = JSON.parse(line);
++      if (r.method === "initialize") send({ id: r.id, result: {} });
++      else if (r.method === "account/login/start") {
++        send({ id: r.id, result: { type: "chatgpt", loginId: "race", authUrl: "https://auth.openai.com/fixture" } });
++        send({ method: "account/login/completed", params: { loginId: "race", success: true } });
++      } else if (r.method === "account/read") { accountRequest = r.id; entered(); }
++      else if (r.method !== "initialized") throw new Error("Unexpected synthetic method");
++    }
++  });
++  const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/never-opened", transport: { stdin, stdout, async close() {} }, timeoutMs: 1000 });
++  try {
++    await login.startLogin(); const projection = login.status(); await reading;
++    await login[action]();
++    send({ id: accountRequest, result: { account: { type: "apiKey" }, requiresOpenaiAuth: true } });
++    expect(await projection).toMatchObject({ state: "failed", binding: { state: "unavailable" }, hostedReady: false });
++    expect(await login.status()).toMatchObject({ state: "failed", hostedReady: false });
++  } finally { await login.close(); stdin.destroy(); stdout.destroy(); }
++});
+diff --git a/projects/chirality-runtime/tests/codex-session.test.ts b/projects/chirality-runtime/tests/codex-session.test.ts
+index fb423f4b6..7888eb58c 100644
+--- a/projects/chirality-runtime/tests/codex-session.test.ts
++++ b/projects/chirality-runtime/tests/codex-session.test.ts
+@@ -54,7 +54,21 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
+    if(mode==='named-project')config.projects['/private/tmp'].command='bad';
+    response(r,{config});return;
+   }
+-  if(r.method==='account/read'){if(r.params.refreshToken!==false)process.exit(9);response(r,{account:null,requiresOpenaiAuth:true});return;}
++  if(r.method==='account/read'){
++   if(r.params.refreshToken!==false)process.exit(9);
++   let account=null;let result;
++   if(mode==='account-api')account={type:'apiKey'};
++   if(mode==='account-chatgpt')account={type:'chatgpt',email:'synthetic@example.test',planType:'plus'};
++   if(mode==='account-null-email')account={type:'chatgpt',email:null,planType:'plus'};
++   if(mode==='account-extra')account={type:'apiKey',token:'fixture-secret-must-not-escape'};
++   if(mode==='account-unknown')account={type:'unregistered',accountId:'caller-claimed-identity'};
++   if(mode==='account-array')account=[];
++   if(mode==='account-bad-plan')account={type:'chatgpt',email:null,planType:null};
++   result={account,requiresOpenaiAuth:true};
++   if(mode==='account-outer-extra')result.accessToken='fixture-secret-must-not-escape';
++   if(mode==='account-bad-boolean')result.requiresOpenaiAuth='true';
++   response(r,result);return;
++  }
+   if(r.method==='thread/start'||r.method==='thread/resume'){
+    if(mode.startsWith('dynamic') && (!Array.isArray(r.params.dynamicTools)||r.params.dynamicTools[0].name!=='review'||r.params.dynamicTools[0].inputSchema.additionalProperties!==false||'handler' in r.params.dynamicTools[0]))process.exit(1);
+    if(r.params.model!=='fixture-model')process.exit(8);
+@@ -574,3 +588,30 @@ it.each(["off", "ask-per-destination", "on"] as const)("disables shell snapshots
+     } finally { await f.close(); }
+   }
+ });
++
++
++describe("custody account-only projection", () => {
++  it.each(["account-api", "account-chatgpt", "account-null-email"])("projects %s to presence without an identity claim", async mode => {
++    const f = fixture(mode, 1000, "login");
++    try { await f.session.initialize(); expect(await f.session.accountRead()).toEqual({ authRequired: true, hasAccount: true }); }
++    finally { await f.close(); }
++  });
++  it.each(["account-extra", "account-outer-extra", "account-unknown", "account-array", "account-bad-plan", "account-bad-boolean"])("rejects %s without exporting unrecognized account material", async mode => {
++    const f = fixture(mode, 1000, "login");
++    try {
++      await f.session.initialize();
++      await expect(f.session.accountRead()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++      await expect(f.session.accountRead()).rejects.not.toThrow("fixture-secret-must-not-escape");
++    } finally { await f.close(); }
++  });
++  it("prohibits thread start, resume, turn and dynamic tools on a login actor", async () => {
++    const f = fixture("normal", 1000, "login");
++    try {
++      await f.session.initialize();
++      await expect(f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++      await expect(f.session.resumeThread({ threadId: "thread1", model: "fixture-model", continuityChecked: true })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++      await expect(f.session.startTurn(turn)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++    } finally { await f.close(); }
++    expect(() => new CodexTurnSession({ purpose: "login", transport: { stdin: new PassThrough(), stdout: new PassThrough(), async close() {} }, dynamicTools: [{ name: "review", description: "synthetic", inputSchema: { type: "object", properties: {}, additionalProperties: false }, async handler() { throw new Error("must never run"); } }] })).toThrow("Unsupported dynamic tool registry");
++  });
++});
+diff --git a/projects/chirality-runtime/tests/codex-supervisor.test.ts b/projects/chirality-runtime/tests/codex-supervisor.test.ts
+index 7e7ab6956..dd2d4271e 100644
+--- a/projects/chirality-runtime/tests/codex-supervisor.test.ts
++++ b/projects/chirality-runtime/tests/codex-supervisor.test.ts
+@@ -5,7 +5,8 @@ import { join } from "node:path";
+ import { afterEach, beforeEach, describe, expect, it } from "vitest";
+ import { prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
+ import { DescendantTracker } from "../packages/core/src/descendant-tracker.js";
+-import { CodexSupervisor, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
++import { CodexSupervisor, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
++import { recordKey } from "@chirality/runtime-core";
+ import type { WorkerContinuity } from "@chirality/runtime-contracts";
+ 
+ let root: string;
+@@ -23,7 +24,7 @@ readline.createInterface({input:process.stdin}).on('line', line => {
+  if(r.method==='initialized')return;
+  if(r.method==='config/read'){const table=JSON.parse(process.argv[3]);if(process.argv[4]==='broaden')table.filesystem['/']='write';return send({id:r.id,result:{config:{permissions:{[process.argv[2]]:table},approvals_reviewer:'user',approval_policy:'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,shell_snapshot:false,network_proxy:table.network.enabled},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null}}});}
+  if(r.method==='initialize')return send({id:r.id,result:{userAgent:'controlled-fixture'}});
+- if(r.method==='account/read')return send({id:r.id,result:{requiresOpenaiAuth:true,account:process.argv[1]==='no-account'?null:{type:'fixture'}}});
++ if(r.method==='account/read')return send({id:r.id,result:{requiresOpenaiAuth:true,account:process.argv[1]==='no-account'?null:{type:'apiKey'}}});
+  if(r.method==='thread/start'||r.method==='thread/resume'){thread=r.params.threadId||thread;return send({id:r.id,result:{thread:{id:thread},approvalsReviewer:r.params.approvalsReviewer,approvalPolicy:r.params.approvalPolicy}});}
+  if(r.method==='turn/start'){
+   const text=r.params.input[0].text;
+@@ -110,24 +111,11 @@ describe("Codex supervisor adapter without account/network use", () => {
+     await expect(s.acquire("invalid-policy", JSON.stringify({ prompt: "hello" }))).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+     expect(await s.inventory()).toEqual([]);
+   });
+-  it.runIf(process.platform === "darwin")("rejects production continuity policy mismatch before account or executable use", async () => {
+-    const project = join(root, "project"), broker = join(root, "broker"), worker = join(broker, "worker"), home = join(worker, "codex");
+-    await mkdir(project, { mode: 0o700 }); await mkdir(home, { recursive: true, mode: 0o700 });
+-    const declared = { ...identity, canonicalRoot: project, cwd: project };
+-    const consent = { approvedBy: "fixture", approvalReference: "no-account-no-execution" };
+-    const policy = await prepareCodexNativePolicy({ canonicalRoot: project, codexHome: home, privateDirectory: worker,
+-      immutableReadRoots: ["/bin", "/usr/lib", "/usr/bin/curl", "/private/etc/ssl/openssl.cnf", "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld"], protectedPaths: [broker], providerNetworkConsent: consent });
+-    try {
+-      const options = { executablePath: join(worker, "missing-pinned-binary"), identity: declared, model: "explicit-model", codexHome: home, privateDirectory: worker, protectedPaths: [broker], authBindingSha256: "a".repeat(64), providerNetworkConsent: consent };
+-      const mismatch = new CodexSupervisor(options); supervisors.push(mismatch);
+-      await expect(mismatch.verifyHostedBoundary(declared)).rejects.toThrow("differs from the compiled native action policy");
+-      const correct = { ...declared, policyDigest: policy.policyDigest };
+-      const accountAbsent = new CodexSupervisor({ ...options, identity: correct }); supervisors.push(accountAbsent);
+-      await expect(accountAbsent.verifyHostedBoundary(correct)).rejects.toThrow("account binding is unavailable");
+-      const changedPosture = new CodexSupervisor({ ...options, identity: correct, commandNetworkPosture: "on" }); supervisors.push(changedPosture);
+-      await expect(changedPosture.verifyHostedBoundary(correct)).rejects.toThrow("differs from the compiled native action policy");
+-      expect(await mismatch.inventory()).toEqual([]); expect(await accountAbsent.inventory()).toEqual([]);
+-    } finally { await policy.cleanup(); }
++  it("custody rejects all production continuity declarations while identity is unavailable", async () => {
++    const s = new CodexSupervisor({ executablePath: join(root, "missing"), identity, model: "explicit-model", codexHome: join(root, "missing-home"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-effects" } }); supervisors.push(s);
++    await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++    await expect(s.verifyHostedBoundary({ ...identity, policyDigest: "caller-claimed-policy" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++    expect(await s.inventory()).toEqual([]);
+   });
+   it("cannot upgrade the controlled launcher into hosted boundary admission", async () => {
+     await expect(fixture().verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+@@ -183,29 +171,44 @@ describe("Codex supervisor adapter without account/network use", () => {
+     await expect(s.acquire("worker", "raw prompt")).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+     await expect(s.acquire("worker", JSON.stringify({ prompt: "hello", executable: "/bin/sh" }))).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+   });
+-  it("checks account-file digest and symlink exclusion before any real executable launch", async () => {
+-    const privateRoot = join(root, "private"), codexHome = join(privateRoot, "home");
+-    await mkdir(codexHome, { recursive: true, mode: 0o700 });
+-    const auth = join(codexHome, "auth.json"); await writeFile(auth, '{"fixture":"not-an-account"}', { mode: 0o600 });
+-    const s = new CodexSupervisor({ executablePath: join(privateRoot, "missing-pinned-binary"), identity, model: "explicit-model", codexHome, privateDirectory: privateRoot, authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "fixture-no-launch" } });
+-    supervisors.push(s);
++  it("custody unavailable identity does not become a credential-file binding", async () => {
++    const s = new CodexSupervisor({ executablePath: join(root, "missing-vendor"), identity, model: "explicit-model", codexHome: join(root, "missing-account"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-effects" } }); supervisors.push(s);
+     await expect(s.verifyHostedBoundary({ ...identity, accountEpoch: 2 })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+     await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+-    const target = join(privateRoot, "fixture-auth.json"); await writeFile(target, '{"fixture":"not-an-account"}', { mode: 0o600 }); await rm(auth); await symlink(target, auth);
+-    await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+     expect(await s.inventory()).toEqual([]);
+   });
+-  it("real adapter refuses unbound account and missing exact supply without launching", async () => {
+-    const s = new CodexSupervisor({ executablePath: join(root, "missing"), identity, model: "explicit-model", codexHome: join(root, "home"), privateDirectory: join(root, "private"), authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "fixture-no-launch" } });
++  it("custody real adapter refuses unavailable identity without launching", async () => {
++    const s = new CodexSupervisor({ executablePath: join(root, "missing"), identity, model: "explicit-model", codexHome: join(root, "home"), privateDirectory: join(root, "private"), managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "fixture-no-launch" } });
+     supervisors.push(s);
+     await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+     expect(await s.inventory()).toEqual([]);
+   });
+ });
+ 
+-it("blocks production regular and manager admission without conformance before account reads or worker launch", async () => {
+-  const s = new CodexSupervisor({ identity, model: "fixture-not-production", executablePath: join(root, "absent-vendor"), codexHome: join(root, "absent-account"), privateDirectory: root, authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-owner-act" } }); supervisors.push(s);
+-  await expect(s.acquire("missing-conformance", JSON.stringify({ prompt: "must not launch" }))).rejects.toThrow(/conformance/);
+-  await expect(s.startManager("missing-manager-conformance", JSON.stringify({ prompt: "must not launch", canonicalRoot: root, model: "fixture-not-production" }))).rejects.toThrow(/conformance/);
++it("custody blocks production regular and manager admission before account reads or worker launch", async () => {
++  const s = new CodexSupervisor({ identity, model: "fixture-not-production", executablePath: join(root, "absent-vendor"), codexHome: join(root, "absent-account"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-owner-act" } }); supervisors.push(s);
++  await expect(s.acquire("missing-conformance", JSON.stringify({ prompt: "must not launch" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
++  await expect(s.startManager("missing-manager-conformance", JSON.stringify({ prompt: "must not launch", canonicalRoot: root, model: "fixture-not-production" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+   expect(await s.inventory()).toEqual([]);
+ });
++
++
++it("custody changes the config digest without treating unavailable binding as an account digest", () => {
++  const common = { model: "synthetic", executablePath: "/synthetic/vendor", identity, codexHome: "/synthetic/home", privateDirectory: "/synthetic/private", protectedPaths: [], providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-effects" }, commandNetworkPosture: "off" as const, requestTimeoutMs: 10000, turnTimeoutMs: 120000, maxWorkers: 16 };
++  const policy = { configToml: 'cli_auth_credentials_store="keyring"\n', expectedPermissions: { filesystem: { [root]: "write" as const }, network: { enabled: false } } };
++  const managedAuth = { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } };
++  const current = codexRuntimeConformanceConfigDigest({ ...common, managedAuth }, policy);
++  // Baseline bf204d8f digest used this auth-file field; hold all other inputs fixed to isolate its replacement.
++  const legacyFields = { model: common.model, executablePath: common.executablePath, identity: common.identity,
++    codexHome: common.codexHome, privateDirectory: common.privateDirectory, protectedPaths: common.protectedPaths,
++    authBindingSha256: "a".repeat(64), providerNetworkConsent: common.providerNetworkConsent,
++    commandNetworkPosture: common.commandNetworkPosture, requestTimeoutMs: common.requestTimeoutMs,
++    turnTimeoutMs: common.turnTimeoutMs, maxWorkers: common.maxWorkers,
++    nativeConfig: policy.configToml, expectedPermissions: policy.expectedPermissions };
++  const legacy = recordKey(legacyFields);
++  const replacement = Object.fromEntries(Object.entries(legacyFields).map(([key, value]) => key === "authBindingSha256" ? ["managedAuth", managedAuth] : [key, value]));
++  expect(current).toBe(recordKey(replacement));
++  expect(current).not.toBe(legacy);
++  expect(managedAuth.binding).toEqual({ schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" });
++  expect(() => codexRuntimeConformanceConfigDigest({ ...common, managedAuth: { backend: "keyring", binding: { ...managedAuth.binding, accountDigest: "a".repeat(64) } } } as any, policy)).toThrow();
++});
+diff --git a/projects/chirality-runtime/tests/standalone.test.ts b/projects/chirality-runtime/tests/standalone.test.ts
+index 2bc9d06b1..85420beb2 100644
+--- a/projects/chirality-runtime/tests/standalone.test.ts
++++ b/projects/chirality-runtime/tests/standalone.test.ts
+@@ -154,14 +154,24 @@ describe("actual two-job standalone runtime", () => {
+     // Restore so the supervisor can perform its own epoch-checked teardown.
+     await rm(path); await writeFile(path, await readFile(target), { mode: 0o600 });
+   }, 30_000);
+-  it("seats hosted-validation only with a dedicated worker-private subtree", async () => {
+-    const f = await fixture();
++  it("custody seats hosted v2 unavailable configuration only with a dedicated worker-private subtree", async () => {
++    const f = await fixture(false);
+     const privateDirectory = join(f.config.runtimeDirectory, "worker"); await mkdir(privateDirectory, { mode: 0o700 });
+     const executablePath = join(privateDirectory, "fixture-not-vendor"); await writeFile(executablePath, "#!/bin/sh\nexit 0\n", { mode: 0o700 });
+-    const hosted = { ...f.config, mode: "hosted-validation" as const, project: { ...f.config.project, codexHome: "worker/codex" },
+-      worker: { executablePath, privateDirectory: "worker", model: "explicit-model", authBindingSha256: "a".repeat(64), providerNetworkConsent: { approvedBy: "fixture", approvalReference: "validation-only-no-account-use" } } };
++    const hosted = { ...f.config, schema: "chirality-standalone-hosted/v2" as const, mode: "hosted-validation" as const, project: { ...f.config.project, codexHome: "worker/codex" },
++      worker: { executablePath, privateDirectory: "worker", model: "explicit-model", managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "validation-only-no-account-use" } } };
+     await writeFile(f.configPath, JSON.stringify(hosted), { mode: 0o600 });
+     expect((await readStandaloneConfig(f.configPath)).mode).toBe("hosted-validation");
++    for (const invalid of [
++      { ...hosted, schema: "chirality-standalone/v1", worker: { ...hosted.worker, managedAuth: undefined, authBindingSha256: "a".repeat(64) } },
++      { ...hosted, worker: { ...hosted.worker, authBindingSha256: "a".repeat(64) } },
++      ...["file", "auto"].map(backend => ({ ...hosted, worker: { ...hosted.worker, managedAuth: { ...hosted.worker.managedAuth, backend } } })),
++      { ...hosted, worker: { ...hosted.worker, managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "verified", accountId: "caller-identity" } } } },
++      { ...hosted, worker: { ...hosted.worker, purpose: "trusted-login" } },
++    ]) {
++      await writeFile(f.configPath, JSON.stringify(invalid), { mode: 0o600 });
++      await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
++    }
+     const conformance = { recordPath: "conformance/record.json", acceptancePath: "conformance/acceptance.json", ownerActPath: f.configPath, ownerActSha256: "a".repeat(64), activationId: "mechanical-fixture", gateIdentity: "fixture-G4" };
+     await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, conformance } }));
+     expect((await readStandaloneConfig(f.configPath)).mode).toBe("hosted-validation");
+@@ -218,3 +228,13 @@ it("starts a real local-only daemon job without any Codex supervisor credential"
+   expect(await daemon.stop()).toMatchObject({ code: 0 });
+   await expect(lstat(join(f.config.runtimeDirectory, f.config.supervisorCredential))).rejects.toMatchObject({ code: "ENOENT" });
+ });
++
++
++it("custody preserves controlled-worker and local-engine-only v1 configuration", async () => {
++  const f = await fixture(false);
++  expect(await readStandaloneConfig(f.configPath)).toEqual(f.config);
++  const local = { schema: "chirality-standalone/v1", mode: "local-engine-only", runtimeDirectory: f.config.runtimeDirectory, daemonSocket: "local.sock", project: { projectId: "project", canonicalRoot: f.config.project.identity.canonicalRoot }, engine: { baseUrl: "http://127.0.0.1:65530/v1", model: { id: "local-fixture", contextWindow: 8192, maxTokens: 512 }, credentialFile: "local-secret.json", approvalReference: "synthetic-selection" } };
++  await writeFile(f.configPath, JSON.stringify(local), { mode: 0o600 });
++  await writeFile(join(f.config.runtimeDirectory, "local-secret.json"), JSON.stringify({ providerId: "omlx", credential: "synthetic-not-a-provider-account" }), { mode: 0o600 });
++  expect(await readStandaloneConfig(f.configPath)).toEqual(local);
++});

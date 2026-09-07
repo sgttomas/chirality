@@ -1,0 +1,126 @@
+{
+  "baseline": "bf204d8fd0bc55363b189a471e01461eb0cdf28a",
+  "receipt": {
+    "path": "/private/tmp/runtime-hosted-status-branch-ivikuc3t/RECEIPT.json",
+    "sha256": "d9ec46f0271be513566e9e4330c4eb7d10618a1fc94e7885e22093ac8b60c569"
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "bytes": 14994
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "sha256": "f97af1d323524f9a2be1dab8b5b33c1350c8f48c38cd3c6f8d0f8a9cd9821ea2",
+      "bytes": 4177
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+      "bytes": 53974
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+      "bytes": 14600
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-login.test.ts",
+      "sha256": "3f54f3c806bfd35208899f5da57a342e4d3680c07ad8c0321d8ee4c7c82e2c3e",
+      "bytes": 6074
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "sha256": "2d682ff9426de480a0579a4ecccbfdec38ab66fc015147b1ecf200f08e6f6b6d",
+      "bytes": 49444
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "sha256": "199c8bf041cd2c43b8004f142c11376ada63317971eea20cf3076bbde7afe3c5",
+      "bytes": 19542
+    },
+    {
+      "path": "projects/chirality-runtime/tests/standalone.test.ts",
+      "sha256": "ab697a4a8949de40d00e0cf85e7162453061636b8ba03469ca6ac0f41b530a4b",
+      "bytes": 17973
+    },
+    {
+      "path": "projects/chirality-runtime/tests/hosted-consent.test.ts",
+      "sha256": "0fcd59feb50ffda8dcc6a6a53f6f30d8a723f5cc17ad5623d8d64bba712a727e",
+      "bytes": 5557
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-conformance.test.ts",
+      "sha256": "088ac67e53a38ec3f0fae30b6ce795ecf3b4cdf9238b7475ee8da3357457cad3",
+      "bytes": 12906
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "sha256": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+      "bytes": 463
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367",
+      "bytes": 23242
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5",
+      "bytes": 44572
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "sha256": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+      "bytes": 17621
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "sha256": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+      "bytes": 18193
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/TESTS_BRIEF.json",
+      "sha256": "2ede79c509b084ca4db62ac031da6fae56a1ddc3f8c6bf212eb6c402434b2298",
+      "bytes": 2283
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/OWNING_ACT.md",
+      "sha256": "3e0ce60000c7d91d9e7020c1cdfc7ceb12bed8a19c0eda2251989031594403c1",
+      "bytes": 1845
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/IMPLEMENTATION/PROPOSED_SOURCE_BRIEF.md",
+      "sha256": "951670bf92201391b949dbda2c6e5d7bda54ab5071882afab4f125265cb8b2cd",
+      "bytes": 15145
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/COMPATIBILITY_ADDENDUM.md",
+      "sha256": "c8838c3c1fc7488e2c76c3aeaefcab90fe270219cc5e48bde77766c8f513183c",
+      "bytes": 6325
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/DECISION_TEXT.md",
+      "sha256": "9915daf6d11779c8715661ccdc58186d04e5db8c2eee7185bd9dc3ed70537c69",
+      "bytes": 2305
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/HANDOFF_MANIFEST.json",
+      "sha256": "407000872059e492f367eabfc314d76b8a459503e3164d245fb3100b1af09abb"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/HANDOFF_MANIFEST.json",
+      "sha256": "e34b08f130508d2456b7a460deb740a9e0900d2344ae47df9c6422c2fa88f59e"
+    }
+  ],
+  "newTargetsAbsent": {
+    "tests/custody-config-status.test.ts": true,
+    "vitest.custody.config.ts": true
+  }
+}

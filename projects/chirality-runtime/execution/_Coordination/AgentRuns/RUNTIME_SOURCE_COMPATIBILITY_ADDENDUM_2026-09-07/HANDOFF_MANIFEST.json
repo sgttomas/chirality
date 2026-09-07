@@ -1,0 +1,38 @@
+{
+  "pathBase": "repository root",
+  "status": "REVIEWED_PROPOSED_NOT_ACTIVATED",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/COMPATIBILITY_ADDENDUM.md",
+      "sha256": "c8838c3c1fc7488e2c76c3aeaefcab90fe270219cc5e48bde77766c8f513183c"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/DECISION_TEXT.md",
+      "sha256": "9915daf6d11779c8715661ccdc58186d04e5db8c2eee7185bd9dc3ed70537c69"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/EVIDENCE_COMPLETION.md",
+      "sha256": "4712e6c3d45d4d3003b1ed10a3ba5ed04ad4358e1785b5df18e4634bfab89f7d"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/FINAL_MANIFEST.json",
+      "sha256": "88f09831ed5f81099f91e1bd5c4c937481af2896edf19cb26e5fc9bc38a961e4"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/INPUT_PINS.json",
+      "sha256": "e515524e28cf1fda2ef7ef546a3cd78bed04223fc83a94492ad1ce7c2f58c49b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/OUTPUT_MANIFEST.json",
+      "sha256": "dbeae1868afaa7cb22aff8bb46754a73e9f6cd7db3ad6653b849a2730bb4e6e2"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/REVIEW/OUTPUT_MANIFEST.json",
+      "sha256": "ccf96dd81123095b9e5297b0aecf4c46cb27ab8cd457b371808842a633621c41"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07/REVIEW/RETURN.md",
+      "sha256": "b744b24015ca8ef1f29b88146e042c3dd70aaa4b066405750b3362ee6290b7ec"
+    }
+  ]
+}

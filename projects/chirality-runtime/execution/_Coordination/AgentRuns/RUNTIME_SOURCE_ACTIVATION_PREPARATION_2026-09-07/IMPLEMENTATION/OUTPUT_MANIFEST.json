@@ -1,0 +1,25 @@
+{
+  "status": "FROZEN_FOR_MANAGER_REVIEW",
+  "files": [
+    {
+      "path": "CHECKS.json",
+      "sha256": "a48dd5c2f54bd3d506a0302ea0346d05d0f7b81b0d2504b3228f8c6d42299741",
+      "bytes": 4065
+    },
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "39b18e96c39a993b49b6f790a95b56cedcdd367062378d1574a517d9065d338c",
+      "bytes": 6284
+    },
+    {
+      "path": "PROPOSED_SOURCE_BRIEF.md",
+      "sha256": "951670bf92201391b949dbda2c6e5d7bda54ab5071882afab4f125265cb8b2cd",
+      "bytes": 15145
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "676019095cb076fe5fa8accef30b569fa9a775d65e07d583af5a0c265a4e9c25",
+      "bytes": 1686
+    }
+  ]
+}

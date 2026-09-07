@@ -1,0 +1,155 @@
+{
+  "baseline": "bf204d8fd0bc55363b189a471e01461eb0cdf28a",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07/MANAGER/SOURCE_BRIEF.json",
+      "sha256": "f9ac4ff9e6d88cb784753d660174f3a4abd3f97b55d9d9ab96c82afd56bb9e94",
+      "bytes": 2353
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "bytes": 14994
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "sha256": "f97af1d323524f9a2be1dab8b5b33c1350c8f48c38cd3c6f8d0f8a9cd9821ea2",
+      "bytes": 4177
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-login.ts",
+      "sha256": "31753ae41c77ea317c5d1ad7f915f81d790ab3377768f5d878a25287c156f357",
+      "bytes": 9744
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "c7692849b1466213981b0bff606533355ee63e8c4a8b347baefc7ff2113c669f",
+      "bytes": 48706
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "sha256": "1bfb5d8a007061a7bceab4e2906df4095f6169170664257e77fb2edc3f090179",
+      "bytes": 18193
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "sha256": "0954da134c0074ead083b2ea5ca34970d9536ff4eafdb921c4c5dcf7789c7030",
+      "bytes": 8981
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "b4b76607ad6650aea47f6aa5d30aeb4c362d39d36c22772d679bcc5173737210",
+      "bytes": 26967
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "sha256": "de9a9f25fa3fec9106159bfd57282350fbb3c97259aeb52bcd4025347864b917",
+      "bytes": 33295
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "1dee850f23d8c99f4a9184cc3f77a764482e0dd59a96f80cdcdcd1c1bd4d92f5",
+      "bytes": 44572
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "sha256": "b446781ac548c586091ae38d09bd9a40e4efdd29fabd37bde92963d3b489ee30",
+      "bytes": 17621
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "sha256": "d0e87d6d547ad33ef88739eb03d5c3bf5c006ca12b6743891c6744ba4c6d8d14",
+      "bytes": 5703
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-conformance.ts",
+      "sha256": "233262aa737db7c9ae53ee97a4ca9129b415e44fbb47f257db4543e69d12a9d1",
+      "bytes": 23300
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "ac41f4cf3977a86660cf61d64a1ebe816666dcc8aa3ffe7b3e6f65992de01367",
+      "bytes": 23242
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-login.test.ts",
+      "sha256": "3f54f3c806bfd35208899f5da57a342e4d3680c07ad8c0321d8ee4c7c82e2c3e",
+      "bytes": 6074
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "sha256": "2d682ff9426de480a0579a4ecccbfdec38ab66fc015147b1ecf200f08e6f6b6d",
+      "bytes": 49444
+    },
+    {
+      "path": "projects/chirality-runtime/tests/hosted-consent.test.ts",
+      "sha256": "0fcd59feb50ffda8dcc6a6a53f6f30d8a723f5cc17ad5623d8d64bba712a727e",
+      "bytes": 5557
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-conformance.test.ts",
+      "sha256": "088ac67e53a38ec3f0fae30b6ce795ecf3b4cdf9238b7475ee8da3357457cad3",
+      "bytes": 12906
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "sha256": "199c8bf041cd2c43b8004f142c11376ada63317971eea20cf3076bbde7afe3c5",
+      "bytes": 19542
+    },
+    {
+      "path": "projects/chirality-runtime/tests/standalone.test.ts",
+      "sha256": "ab697a4a8949de40d00e0cf85e7162453061636b8ba03469ca6ac0f41b530a4b",
+      "bytes": 17973
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "sha256": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+      "bytes": 463
+    },
+    {
+      "path": "projects/chirality-runtime/tsconfig.json",
+      "sha256": "8a0d13f1f7fe753b63c7a11262446c29b11b365fbd126971cf4f4ffb719b2469",
+      "bytes": 298
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+      "sha256": "3b14197e0ee6cc749515c27953f5f20138404f98323be386655a7c3a58122833",
+      "bytes": 345
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CUSTODY_AMENDMENT_PREPARATION_2026-09-06/BRIEF/NEXT_GRANT_BRIEF.md",
+      "sha256": "660aa9e9a280f676e7c3f62f56e1f71b67f2c738a18b8fd03fd9678a93c977a4",
+      "bytes": 11588
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_WAVE1_2026-09-06/CAPABILITY/RETURN.md",
+      "sha256": "da9d0b6acc2c1012b1404703d35da0ec15ffd11871655c6a796010f89ad7a182",
+      "bytes": 3436
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_WAVE1_2026-09-06/CAPABILITY/IDENTITY/REPORT.md",
+      "sha256": "6e8555597a378eb59ca1ea2e281832c0ca4c00e697ea49130e3f5ba9f1b33e0a",
+      "bytes": 7494
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_WAVE1_2026-09-06/CAPABILITY/APPROVAL_FINDINGS.md",
+      "sha256": "d9867f3b192101202db820fe96d4634184557d13720e1b6fcbb29b06cca0d022",
+      "bytes": 6824
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+      "bytes": 53974
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+      "bytes": 14600
+    }
+  ]
+}

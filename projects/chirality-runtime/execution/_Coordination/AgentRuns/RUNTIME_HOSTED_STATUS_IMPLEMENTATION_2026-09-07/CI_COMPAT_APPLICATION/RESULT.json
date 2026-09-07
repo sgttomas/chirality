@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "command": "npm test --ignore-scripts -- --config execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/vitest.channel.config.ts tests/supervisor.test.ts --testNamePattern '^keeps login commands on the private authenticated capability channel$'",
+  "cwd": "projects/chirality-runtime",
+  "exitCode": 0,
+  "passed": 1,
+  "skipped": 11,
+  "effect": "OwnedtempUnixsocketauthenticatedchannel; no acquire/workerlaunch inselectedcase; filteredunrelated11tests; boundedcoreimportreadonlyinventory remains",
+  "previous145results": "REUSED exact15source/testpostimages verifiedunchanged; no repeatnecessary",
+  "live_fixture_sha256": "0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406",
+  "authority": "App leaddelegateddisposition,notnewownerquote"
+}

@@ -1,0 +1,45 @@
+{
+  "status": "FROZEN_PREPARATION_ONLY",
+  "files": [
+    {
+      "path": "CANDIDATE.patch",
+      "sha256": "af2a5b29069a890f402c1b2e22e6c696e57186c375115cd8e32fc718b5436dd0",
+      "bytes": 9477
+    },
+    {
+      "path": "COMMANDS_AND_EFFECTS.md",
+      "sha256": "37a5afe3cf21beb9f835e539012082ca73c81c157fe04d784e5eabde527060ed",
+      "bytes": 4203
+    },
+    {
+      "path": "FAILURE_MAPPING.json",
+      "sha256": "a4e28122c40b8e0a9657fb9699ff71cab2e68eb53f7b86f874c32a4b3b67de1f",
+      "bytes": 3202
+    },
+    {
+      "path": "PINS.json",
+      "sha256": "3f942529c81558917b24ffc19795ef656dd0c5f00e960f7758125224982656c6",
+      "bytes": 1692
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "354fbe1300354ca0be49a4d433ee99f7f650a256020de2c16087728589f79e97",
+      "bytes": 1636
+    },
+    {
+      "path": "codex-manager.test.ts",
+      "sha256": "d502da9f3d993daa699ffb4fc2db1a58e96b0f2dae309c5a667b072ff02bc76d",
+      "bytes": 9946
+    },
+    {
+      "path": "delegated-runtime.test.ts",
+      "sha256": "95c58c4c661c42fe7dac43cc741fd51fa2910f86f28edc23669d41db72a41bbf",
+      "bytes": 46353
+    },
+    {
+      "path": "manager-approval-integration.test.ts",
+      "sha256": "823ff9339b82f1942233bb7f8e4612b837d8bea92d750e5f132d34f079a0d26b",
+      "bytes": 10269
+    }
+  ]
+}

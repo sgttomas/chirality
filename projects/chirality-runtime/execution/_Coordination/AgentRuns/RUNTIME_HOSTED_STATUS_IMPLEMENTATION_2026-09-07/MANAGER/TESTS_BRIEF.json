@@ -1,0 +1,40 @@
+{
+  "Role": "ephemeral Agent2 nondelegating instruction-asserted",
+  "Parent": "/root/custody_manager WORKING_ITEMS PKG02",
+  "RunID": "RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07",
+  "Objective": "Implement exactly6test/configpaths with approvedsyntheticcases and bothdirectioncompatibility matrix; inspect suitehooks/importeffects. Do not run any tests: manager owns4commands after sourcefan-in. Newclientoldbodyrejects, oldclientnewbodyaccepts unchanged. Productionbeforeeffects proofs; legacyhostedconfigrejection/localcontrolledpreserved.",
+  "AcceptedSubjects": [
+    "407000872059e492f367eabfc314d76b8a459503e3164d245fb3100b1af09abb",
+    "e34b08f130508d2456b7a460deb740a9e0900d2344ae47df9c6422c2fa88f59e"
+  ],
+  "Reads": [
+    "AGENTS.md",
+    "agents/AGENT_WORKING_ITEMS.md",
+    "projects/chirality-runtime/**",
+    "docs/SOFTWARE_WORKFLOW_PROFILE.md"
+  ],
+  "RequiredRead": "Both accepted source/compatibility packet briefs/addenda and latestdecisiontext, liveSOWs, actual OWNingAct",
+  "AllowedWriteTargets": [
+    "projects/chirality-runtime/tests/codex-login.test.ts",
+    "projects/chirality-runtime/tests/codex-session.test.ts",
+    "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+    "projects/chirality-runtime/tests/standalone.test.ts",
+    "projects/chirality-runtime/tests/custody-config-status.test.ts",
+    "projects/chirality-runtime/vitest.custody.config.ts",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/TESTS"
+  ],
+  "Precondition": "Read-only until parent relays freshCHANGEbaseline receipt; then exacthashfreshness check before firstwrites",
+  "Tools": [
+    "read",
+    "local shell read-only",
+    "bounded file edit",
+    "artifact write"
+  ],
+  "Exclusions": "No delegation/test/build/productexecution, no dependency/Git/supplier/account/keychain/protected/AppRoot/otherlivefile edits. No oldpacketchange. Sourceauthor and testauthor disjoint; coordination via manager only. Report new contract/scopechoice before editing.",
+  "Outputs": [
+    "INPUT_PINS.json",
+    "RETURN.md with exactfunctions/semantics and limitations",
+    "OUTPUT_MANIFEST.json; source/test patches are live and separately hashed"
+  ],
+  "model": "OpenAI GPT-6 exactservingIDunavailable"
+}

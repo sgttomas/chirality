@@ -1,0 +1,46 @@
+{
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "lockfileVersion": 3,
+  "registry_hosts": [
+    "registry.npmjs.org"
+  ],
+  "files": [
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "sha256": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae"
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "sha256": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/cli/package.json",
+      "sha256": "e52451b6ad80bf3e21f71790a61b41187e914b49efe2abd2a44be0ca6ff6e852"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/package.json",
+      "sha256": "d55665d055e3d1bd8cb1113ed7412356b41a02d1ede6871775f2691607b3cc14"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/package.json",
+      "sha256": "4cc45f200987ec95bc2f766b0c5ce69ea94d8218a1bc1c10148f535e0766d541"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "sha256": "2d6f3a71730758459a8f6ba85f77dc71298916a39594d72198d392d2ee48cc80"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/package.json",
+      "sha256": "5d4893d6a40cfafeecf1e882e7c9b14917bba53f9a656a5627bda39eaa06b838"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-claude/package.json",
+      "sha256": "af37df0f66294009f70712757d2006bf845bcaa3c797f3ba7c3c1aef31fd7a6a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/package.json",
+      "sha256": "d9af45d3c65fbe17995f988eb6d4d340e022697329168bde0b6920101a6e65e6"
+    }
+  ]
+}

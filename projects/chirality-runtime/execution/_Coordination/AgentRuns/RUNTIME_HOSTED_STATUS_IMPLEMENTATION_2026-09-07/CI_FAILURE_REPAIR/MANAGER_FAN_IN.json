@@ -1,0 +1,62 @@
+{
+  "child": "/root/custody_manager/hosted_tests",
+  "childManifestSha256": "047f20d749e9a4e5f3d93a875a17c2600b0f97e5dd62aa8f2b9558e4231a7387",
+  "role": "instruction-asserted Agent2; actual native execution",
+  "checks": [
+    {
+      "path": "APPLICATION_JOURNAL.json",
+      "pass": true
+    },
+    {
+      "path": "COMMAND.json",
+      "pass": true
+    },
+    {
+      "path": "LIVE_OUTPUT_MANIFEST.json",
+      "pass": true
+    },
+    {
+      "path": "PREIMAGES/codex-manager.test.ts",
+      "pass": true
+    },
+    {
+      "path": "PREIMAGES/delegated-runtime.test.ts",
+      "pass": true
+    },
+    {
+      "path": "PREIMAGES/manager-approval-integration.test.ts",
+      "pass": true
+    },
+    {
+      "path": "RETURN.md",
+      "pass": true
+    },
+    {
+      "path": "RUNTIME_EVENTS.jsonl",
+      "pass": true
+    },
+    {
+      "path": "TEST_OUTPUT.log",
+      "pass": true
+    },
+    {
+      "path": "TEST_RESULT.json",
+      "pass": true
+    },
+    {
+      "path": "VALIDATION_SUMMARY.json",
+      "pass": true
+    }
+  ],
+  "validation": {
+    "exitCode": 0,
+    "suites": 3,
+    "passed": 57,
+    "failed": 0,
+    "unhandled": "none reported",
+    "formerlyFailingCases": 15,
+    "newSecretNegative": "passed"
+  },
+  "cleanup": "No new fixture-prefix paths; no independent process census",
+  "testsRerunByManager": false
+}

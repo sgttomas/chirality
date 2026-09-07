@@ -1,0 +1,51 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "child_manifest_sha256": "2322bc94edfa26ba4d81ed4b49233588021a2a5d478466446cf93f958337190a",
+  "files": [
+    {
+      "path": "AUTHORITY_INPUTS.json",
+      "sha256": "2ab193523153069d8b3d061209ebe4d4780cadc4c5013a5c398f3602e316a49f",
+      "bytes": 3303
+    },
+    {
+      "path": "DECISION_PACKET.md",
+      "sha256": "8c5469c05ce6c76f64f74413e16c091c4a4962a9cc5aadecee6d305aae950c8c",
+      "bytes": 4514
+    },
+    {
+      "path": "DISCOVERY_drift.txt",
+      "sha256": "f2357b8fede46b0ca65c8ef2679d7ff62137bf3cd307dc4600f81f6969ca4482",
+      "bytes": 1106
+    },
+    {
+      "path": "DISCOVERY_status.txt",
+      "sha256": "fe28b709dfe5735afbacee881792ea54fd64506ccb41a8be943ab2a4ba2d1285",
+      "bytes": 3007
+    },
+    {
+      "path": "FAN_IN.json",
+      "sha256": "450a97a9b6c92d7698248b0a64061e8c44942710199fb04dc1d04b92dcb0d868",
+      "bytes": 679
+    },
+    {
+      "path": "RUNTIME_EVENTS.jsonl",
+      "sha256": "ba77c99f938d1dac9f3f8e9414838d3adf751b91e72f25abea09a2530f5977a4",
+      "bytes": 2544
+    },
+    {
+      "path": "RUNTIME_SUMMARY.json",
+      "sha256": "f416197801e81474a95ff31eae89e499e9d2c8a94659a071cb1e72284456821d",
+      "bytes": 1193
+    },
+    {
+      "path": "SOURCE_AUTHORITY.md",
+      "sha256": "629405bccc512933245491b00935833305b3ab89a4d1b8e8f50b1fa46f7f33ac",
+      "bytes": 2477
+    },
+    {
+      "path": "SOURCE_BRIEF.json",
+      "sha256": "f9ac4ff9e6d88cb784753d660174f3a4abd3f97b55d9d9ab96c82afd56bb9e94",
+      "bytes": 2353
+    }
+  ]
+}

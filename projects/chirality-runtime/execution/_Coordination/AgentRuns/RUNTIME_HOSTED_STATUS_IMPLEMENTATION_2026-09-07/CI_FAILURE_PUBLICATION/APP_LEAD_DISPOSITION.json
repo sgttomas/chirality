@@ -1,0 +1,16 @@
+{
+  "actor": "App lead under owner delegated low-risk authority; relayed by parent HELP_HUMAN to CHANGE",
+  "decision": "APPROVED exact lossless JSON archive/map conditional on byte roundtrip and explicit historical path resolution",
+  "notNewOwnerQuote": true,
+  "archiveSha256": "b62e26255d9a7662686b779332d9e3920a5c4eb1976fb838c6f7ff72a6b8ba05",
+  "mapSha256": "99bda816f4fbe567b8d609a1e93ac1eab99ef5670a06f957a7605f38949ab6c4",
+  "originalSha256": "af2a5b29069a890f402c1b2e22e6c696e57186c375115cd8e32fc718b5436dd0",
+  "originalBytes": 9477,
+  "conditionMet": true,
+  "scratchReconstructionVerified": true,
+  "originalLocalFileUnchanged": true,
+  "rawPathPublished": false,
+  "sourceOrAttributeChanges": false,
+  "roleEnforcement": "instruction-asserted",
+  "model": "OpenAI GPT-6; exact serving ID unavailable"
+}

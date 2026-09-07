@@ -1,0 +1,91 @@
+{
+  "pathBase": "repository root",
+  "status": "FROZEN_STATIC_REVIEW_CHECKPOINT",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/PATCH.diff",
+      "sha256": "0297700e5cc362b62124e401a96606f57de3431373926f158aed777cb5f8c073",
+      "bytes": 83132
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "3d0c73a51e472c64b789baca9ff5ea50ff9d8c84e345e067e48168c216000cf1",
+      "bytes": 23304
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "sha256": "acd763f395957dddec190bba6878bd326c6c1a2dc1a6de14cd804550aac3aa6b",
+      "bytes": 8639
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "sha256": "36afa315ce8e17935a2f357a6057e1cf80ff6b29c1f7b6672f716e7b85ced7d4",
+      "bytes": 18722
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-login.ts",
+      "sha256": "b914c3ac6172a7dba479deab39082f544347423eb75e55534469b0007718e3c2",
+      "bytes": 8498
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "393a22ca6f10c56f82d43f193120da200bde5de6126364b6dfff77a285c88064",
+      "bytes": 49384
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "6b3a0e7fb393ea0bea43989b65ffcb84fd644729a8ac9117e9d5c981ce550f89",
+      "bytes": 19568
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "34e684d4f9ebdf422217448c8926bee91e275ac12ec4b93248a5c64193481acf",
+      "bytes": 43940
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "sha256": "93ed41aa11109bdd091eab21e1bed374860ce063313e0be487b1ab13e1338ebc",
+      "bytes": 33487
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "sha256": "071ad5f7953c928c9553ad9978dff607a395b9d7e78cb43e18960873cc199d90",
+      "bytes": 17989
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/tests/codex-login.test.ts",
+      "sha256": "7aeea63d2ae52615a298ada1fb1ea381b85a11a3b4588c96a93885bac3822a2e",
+      "bytes": 7651
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/tests/codex-session.test.ts",
+      "sha256": "284e6492d66cb500760fffa381ee2ca82bcebe0b49245c59e962612808e3a016",
+      "bytes": 52215
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "sha256": "b4e05d10d6c8e946b0d4c8ace147509192e58bab1d173e27fe84b5dc50c3168c",
+      "bytes": 20709
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/tests/custody-config-status.test.ts",
+      "sha256": "21febcd62cd1329b50e80010ec3fe1c485ad3114e7ca0a0365aa457b9669fec7",
+      "bytes": 14451
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/tests/standalone.test.ts",
+      "sha256": "c3bf51e90a08abaa4ce300356be197a55c8f004339f59625c3b21b8ebac38336",
+      "bytes": 20072
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/POSTIMAGES/projects/chirality-runtime/vitest.custody.config.ts",
+      "sha256": "a9a1cff62226ae4944629e4a8fb3ac9ebbcc1d521fd43d3a47a90b96382bf62c",
+      "bytes": 602
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/MANAGER/REVIEW_CHECKPOINT/STATE.json",
+      "sha256": "5910a1517d2f5f6dbdf4f4e0e526648a2cd2396200da5b0ff12d5607a81235b1",
+      "bytes": 3125
+    }
+  ]
+}

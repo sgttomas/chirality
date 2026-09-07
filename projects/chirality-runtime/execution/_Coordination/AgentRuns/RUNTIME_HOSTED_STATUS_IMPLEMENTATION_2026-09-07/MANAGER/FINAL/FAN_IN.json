@@ -1,0 +1,33 @@
+{
+  "status": "PASS_IMPLEMENTATION_AND_AUTHORIZED_VALIDATION",
+  "actual_agents": [
+    "/root/custody_manager/hosted_source",
+    "/root/custody_manager/hosted_tests"
+  ],
+  "source_final_manifest": {
+    "path": "SOURCE/REVISION1/OUTPUT_MANIFEST.json",
+    "sha256": "bbc4e4539487d0b4f48b04bfc8af1ad396112897719d162ae61b9332bcddf97a"
+  },
+  "tests_revision_manifests": [
+    {
+      "path": "TESTS/OUTPUT_MANIFEST.json",
+      "sha256": "a34d118da921a9273b1ef44b700e189aa6b7e273a9bf296d4357f7c99f4290f4"
+    },
+    {
+      "path": "TESTS/REVISION_2/OUTPUT_MANIFEST.json",
+      "sha256": "fa42b54cacc88091fa0be0a02625e5f3b4586faee37f188bdb578edf75a031a1"
+    }
+  ],
+  "manager_review": [
+    "Exact9source/6testscope, no package/lockoroldpacketdrift",
+    "Sharedstatusfields+asymmetricmixedpairs reviewed",
+    "PublicloginId512 preserved aftermanagercorrection",
+    "Read-onlyimportinventory closure reviewed; finalmockedhooks/selectedbodies reviewed",
+    "Firstmainfixturefailure repaired inownedtestfile; affectedcommandrerunpassed",
+    "Productionbeforeeffects, localcontrolledretention and oldbindinginvalidation tested"
+  ],
+  "results": "typecheckPASS;145selectedtestsPASS62excludedSKIP",
+  "parent_independent_review": "PENDING_CURRENT_FINAL_SUBJECT",
+  "model": "OpenAI GPT-6 exactservingIDunavailable",
+  "roles": "instruction-asserted, actualnativeexecution"
+}

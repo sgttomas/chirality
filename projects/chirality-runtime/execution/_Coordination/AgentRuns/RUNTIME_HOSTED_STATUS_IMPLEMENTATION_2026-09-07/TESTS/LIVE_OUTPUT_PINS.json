@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-runtime/tests/codex-login.test.ts",
+      "sha256": "7aeea63d2ae52615a298ada1fb1ea381b85a11a3b4588c96a93885bac3822a2e",
+      "bytes": 7651
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "sha256": "284e6492d66cb500760fffa381ee2ca82bcebe0b49245c59e962612808e3a016",
+      "bytes": 52215
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "sha256": "b4e05d10d6c8e946b0d4c8ace147509192e58bab1d173e27fe84b5dc50c3168c",
+      "bytes": 20709
+    },
+    {
+      "path": "projects/chirality-runtime/tests/standalone.test.ts",
+      "sha256": "c3bf51e90a08abaa4ce300356be197a55c8f004339f59625c3b21b8ebac38336",
+      "bytes": 20072
+    },
+    {
+      "path": "projects/chirality-runtime/tests/custody-config-status.test.ts",
+      "sha256": "21febcd62cd1329b50e80010ec3fe1c485ad3114e7ca0a0365aa457b9669fec7",
+      "bytes": 14451
+    },
+    {
+      "path": "projects/chirality-runtime/vitest.custody.config.ts",
+      "sha256": "a9a1cff62226ae4944629e4a8fb3ac9ebbcc1d521fd43d3a47a90b96382bf62c",
+      "bytes": 602
+    }
+  ]
+}

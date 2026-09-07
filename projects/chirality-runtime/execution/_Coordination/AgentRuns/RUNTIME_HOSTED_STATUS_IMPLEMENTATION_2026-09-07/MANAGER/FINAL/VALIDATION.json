@@ -1,0 +1,54 @@
+{
+  "status": "PASS_APPROVED_CHECKS",
+  "typecheck": {
+    "command": "npm run typecheck --ignore-scripts",
+    "exit_code": 0
+  },
+  "main": {
+    "command": "npm test --ignore-scripts -- --config vitest.custody.config.ts tests/custody-config-status.test.ts tests/codex-login.test.ts tests/codex-session.test.ts tests/hosted-consent.test.ts",
+    "exit_code": 0,
+    "passed": 125,
+    "attempts": 2,
+    "first_failure": "testfixturemissingprotectedPaths; boundedtestrepair,no sourcechange"
+  },
+  "filtered": {
+    "command": "npm test --ignore-scripts -- --config vitest.custody.config.ts tests/codex-supervisor.test.ts tests/standalone.test.ts --testNamePattern '^.*custody '",
+    "exit_code": 0,
+    "passed": 7,
+    "skipped": 31
+  },
+  "conformance": {
+    "command": "npm test --ignore-scripts -- --config vitest.custody.config.ts tests/runtime-conformance.test.ts --testNamePattern '^invalidates changed binding'",
+    "exit_code": 0,
+    "passed": 13,
+    "skipped": 31
+  },
+  "scope": {
+    "source_files": 9,
+    "test_config_files": 6,
+    "tracked_change_paths": [
+      "projects/chirality-runtime/packages/client/src/client.ts",
+      "projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "projects/chirality-runtime/packages/daemon/src/codex-containment.ts",
+      "projects/chirality-runtime/packages/daemon/src/codex-login.ts",
+      "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "projects/chirality-runtime/tests/codex-login.test.ts",
+      "projects/chirality-runtime/tests/codex-session.test.ts",
+      "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "projects/chirality-runtime/tests/standalone.test.ts"
+    ],
+    "new_files": [
+      "projects/chirality-runtime/tests/custody-config-status.test.ts",
+      "projects/chirality-runtime/vitest.custody.config.ts"
+    ],
+    "git_diff_check": "PASS",
+    "historical_receipt_entries_verified": 125,
+    "accepted29members": "UNCHANGED",
+    "package_lock_workspace_manifests": "UNCHANGED"
+  },
+  "limits": "Resultsfromactualtooloutputs;145selectedPASS,62unselectedSKIP. Importinventoryread-onlyasrecorded. No product/supplier/provider/keyring/protectedqualification. No freshCI or consumeracceptance claimed."
+}

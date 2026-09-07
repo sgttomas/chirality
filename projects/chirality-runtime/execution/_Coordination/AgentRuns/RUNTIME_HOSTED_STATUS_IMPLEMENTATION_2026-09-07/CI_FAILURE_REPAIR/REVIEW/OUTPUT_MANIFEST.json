@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS_EXACT_TEST_REPAIR",
+  "subjectManifestSha256": "9a1c29e021af809363a30279e6c5a90463db367d60667b87d258717a35ece827",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "2346b0ccf19e7754baf7196630719eb50f69d99164c7c1f5df54590bc985a323"
+    }
+  ]
+}

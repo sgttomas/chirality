@@ -1,0 +1,22 @@
+{
+  "role": "ephemeralAgent2 nondelegating",
+  "objective": "Read-only causaldiagnosis15CI failures3unhandled atPR746819bdb29; inspect3testfiles/logs/source. Classify controlledfixture vsprodrefusal vs sourcebug, exactminimalcandidateproposal preservingapproval assertions. No edits/tests.",
+  "reads": [
+    "/private/tmp/runtime-hosted-final-publication-qow8_y7e/HARNESS_FAILED_LOG.json",
+    "/private/tmp/runtime-hosted-final-publication-qow8_y7e/FAILURE_EXCERPT.json",
+    "projects/chirality-runtime/tests/codex-manager.test.ts",
+    "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+    "projects/chirality-runtime/tests/manager-approval-integration.test.ts",
+    "projects/chirality-runtime/packages/**"
+  ],
+  "writes": [
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR"
+  ],
+  "outputs": [
+    "REPORT.md causes/failingcase mappings/minimalfilelinefix/effects+negativechecks",
+    "INPUT_PINS.json",
+    "RETURN+manifest"
+  ],
+  "exclusions": "No liveedits/localtests/provider/supplier/keychain/protected/Git; no changedassertionstofailure/no productionunlock",
+  "model": "OpenAI GPT-6 exactIDunavailable"
+}

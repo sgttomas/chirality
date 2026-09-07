@@ -1,0 +1,20 @@
+{
+  "status": "FROZEN_PREPARATION_ONLY",
+  "files": [
+    {
+      "path": "CANDIDATE_BACKCHECK.json",
+      "sha256": "1714caacdc5ca07894df55a701d42215bdba7f74db790ea89032c290b75b12d0",
+      "bytes": 3035
+    },
+    {
+      "path": "DIAGNOSIS_BACKCHECK.json",
+      "sha256": "e1d1038511e440a77722947f8dc3ca879f80b9fa26cbd3c9d49ba5609a6b16bf",
+      "bytes": 5073
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "f74d3a9c11a4da56044d0894a97988b074d6369ffde64054e1dbe6215e861ed4",
+      "bytes": 2743
+    }
+  ]
+}

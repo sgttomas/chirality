@@ -1,0 +1,15 @@
+{
+  "at": "2026-09-07T08:06:47.473258+00:00",
+  "authorityClass": "actual App lead disposition under owner session delegation; not a new owner quote",
+  "briefSha256": "58f9455431aaa3723d0c05f48db68257584348911fe17957aaad3ed5ee74836b",
+  "authorityPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_COMPAT_APPLICATION/DELEGATED_ACT.md",
+  "authoritySha256": "ab974674397c8d1b30350e16df455bdd2d37a45056b5b08419d4d506fa9a17ad",
+  "target": "projects/chirality-runtime/tests/supervisor.test.ts",
+  "beforeSha256": "f0776501dfd7aa107fa1da17178b015c65f85fd37598ab0e5f3bb687931b3332",
+  "afterSha256": "0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406",
+  "approvedCandidateSha256": "0aabf0d7b49e76192b1c38cc1910ae4bf13e6b8033b0d71476728dc819ba3406",
+  "exactPostimageApplied": true,
+  "candidateManifestPreserved": "d229195063b8f6bdacf5ab56c2ea1a5f0c72a128715957180380e5311e1e35ff",
+  "testExecution": "NOT_RUN; manager owns selected case",
+  "otherLiveWrites": false
+}

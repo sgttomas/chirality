@@ -1,0 +1,9 @@
+{
+  "verdict": "PASS_EXACT_CI_COMPAT_APPLICATION",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "cf9f22f2e7579adab603aa6a4397e5e749e825172193b23a593c24cf35df5d3e"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "status": "APPLIED_EXACT_POSTIMAGE_TEST_PENDING",
+  "files": [
+    {
+      "path": "APPLICATION_JOURNAL.json",
+      "sha256": "f01ec3ee3ab114bb4f89cf3870f6ca9a041471a7eb64ef94537d5bf5c8914981",
+      "bytes": 1050
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "27549b6799db45667b2fb746b3cb742ce9aaa9daceab0fdc794df75554504b85",
+      "bytes": 976
+    },
+    {
+      "path": "supervisor.test.ts.preimage",
+      "sha256": "f0776501dfd7aa107fa1da17178b015c65f85fd37598ab0e5f3bb687931b3332",
+      "bytes": 12745
+    }
+  ]
+}

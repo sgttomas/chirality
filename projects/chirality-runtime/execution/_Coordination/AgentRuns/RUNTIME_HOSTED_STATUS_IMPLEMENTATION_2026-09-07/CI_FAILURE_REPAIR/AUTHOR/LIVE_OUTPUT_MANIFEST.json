@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "projects/chirality-runtime/tests/codex-manager.test.ts",
+      "sha256": "d502da9f3d993daa699ffb4fc2db1a58e96b0f2dae309c5a667b072ff02bc76d",
+      "bytes": 9946
+    },
+    {
+      "path": "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "sha256": "95c58c4c661c42fe7dac43cc741fd51fa2910f86f28edc23669d41db72a41bbf",
+      "bytes": 46353
+    },
+    {
+      "path": "projects/chirality-runtime/tests/manager-approval-integration.test.ts",
+      "sha256": "823ff9339b82f1942233bb7f8e4612b837d8bea92d750e5f132d34f079a0d26b",
+      "bytes": 10269
+    }
+  ]
+}

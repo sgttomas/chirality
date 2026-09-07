@@ -1,0 +1,7 @@
+# Lossless publication reference resolution
+
+This derivative publication representation preserves the original candidate patch without changing the accepted candidate manifest or any sealed source artifact. ORIGINAL_BYTES.json contains its exact original bytes in base64, original repository path, length, and SHA256.
+
+The historical manifest pins CANDIDATE.patch to af2a5b29069a890f402c1b2e22e6c696e57186c375115cd8e32fc718b5436dd0. That raw path is deliberately absent from this Git publication and remains unchanged in the local preparation checkout. It is not correct to claim every historical manifest member exists at its original path in the published tree. To validate that historical member, decode the data field, require exactly 9477 bytes, and require the recorded SHA256. A historical snapshot may be reconstructed in owned scratch by placing those verified bytes at originalPath; do not overwrite newer repository state. All other candidate manifest members remain published at their recorded locations.
+
+The sole raw whitespace finding is the valid single-space unified-diff context marker at line 15. No normalization, new Git attributes, or weakened source checks are applied. The archived patch is redundant with the included complete candidate postimages and application preimages, but its original bytes remain fully recoverable. This archive is reference preservation, not new acceptance authority. Existing source and required CI checks remain controlling.
