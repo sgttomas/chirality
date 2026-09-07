@@ -1,0 +1,99 @@
+[
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/practitioner_harness/harness.py",
+      "status",
+      "--project",
+      "root"
+    ],
+    "exit": 0,
+    "log": "check-00.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "exit": 0,
+    "log": "check-01.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_materialization_fence.py"
+    ],
+    "exit": 0,
+    "log": "check-02.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_harness_adapter.py"
+    ],
+    "exit": 0,
+    "log": "check-03.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_surface_ownership.py"
+    ],
+    "exit": 0,
+    "log": "check-04.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_root_work_graph_dispatch.py"
+    ],
+    "exit": 0,
+    "log": "check-05.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_instruction_tranche_manifest.py"
+    ],
+    "exit": 0,
+    "log": "check-06.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_instruction_entrypoints.py"
+    ],
+    "exit": 0,
+    "log": "check-07.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/validation/validate_candidate_whitespace.py",
+      "--base-ref",
+      "origin/main"
+    ],
+    "exit": 0,
+    "log": "check-08.log"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "log": "check-09.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3",
+      "tools/run_affected_tests.py",
+      "--base",
+      "origin/main"
+    ],
+    "exit": 0,
+    "log": "check-10.log"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "touched": [
+    "docs/governance_harness/_DECISIONS/D-GOV-37_runtime_successor_recognition.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-SUCCESSOR-RECOGNITION-20260906.yaml",
+    "tools/validation/root_governance_state.py",
+    "tools/validation/root_runtime_successors.py",
+    "tools/validation/test_root_runtime_successors.py"
+  ],
+  "declared": [
+    "docs/governance_harness/_DECISIONS/D-GOV-37_runtime_successor_recognition.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "tools/validation/root_governance_state.py",
+    "tools/validation/root_runtime_successors.py",
+    "tools/validation/test_root_runtime_successors.py",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-SUCCESSOR-RECOGNITION-20260906.yaml"
+  ],
+  "method": "Actual tracked/untracked paths through live guard predicates; official committed range after CHANGE commit"
+}
