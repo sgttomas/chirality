@@ -1,0 +1,7 @@
+{
+  "parent": "/root/root_custody_prep",
+  "agent": "/root/root_custody_prep/stage2_adoption_review",
+  "role": "independent bounded Agent 2",
+  "scope": "complete resulting candidate, actual Runtime33 subject and acceptance, full-subject negative cases, M2/G4 and notices",
+  "write_scope": "this run/review/** only"
+}

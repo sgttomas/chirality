@@ -9,8 +9,8 @@ import json
 import subprocess
 from pathlib import Path
 
-POLICY = 'execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/SUCCESSOR_ADOPTIONS.json'
-POLICY_SHA = '0c224adac116ffc3931db85cc17050174397a0f447198709ba629b36fa592ea9'
+POLICY = 'execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json'
+POLICY_SHA = 'ad0517d90b0199a75dfc8b78f0664744f81ba45ccd204105b32b9306a78f9bcd'
 SUPPLEMENT = 'projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md'
 
 
