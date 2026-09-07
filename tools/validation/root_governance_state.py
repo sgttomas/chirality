@@ -191,10 +191,14 @@ def load_governance_state(root: Path, config: dict, require_effective: bool = Fa
         'projects/chirality-runtime/execution/_Decomposition/'+name for name in [
             'Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md','RUNTIME_DELIVERABLE_REGISTER.csv',
             'RUNTIME_OBJECTIVE_REGISTER.csv','RUNTIME_SCOPE_LEDGER.csv']}
+    runtime_baseline = {}
     for required in runtime_authorities:
         pin=next((r for r in targets if r['Target']==required),None)
         if not pin or not pin['ApprovedSHA256']: raise GovernanceError('runtime authority missing approved binding')
-        reference(root,{'path':required,'sha256':pin['ApprovedSHA256']})
+        # The migration postimage stays historical truth; current owning
+        # revisions are checked separately through exact Root adoption.
+        reference(root,{'path':pin['ApprovedSource'],'sha256':pin['ApprovedSHA256']})
+        runtime_baseline[required] = pin['ApprovedSHA256']
     approved_targets={r['Target']:r for r in targets}
     gov_allowed={r['Target'] for r in targets if not r['Target'].startswith('projects/') and not STATUS.fullmatch(r['Target'])}
     guard_inventory=_csv(root,PLAN+'/GUARDS/WRITE_PATH_INVENTORY.csv')
@@ -206,7 +210,18 @@ def load_governance_state(root: Path, config: dict, require_effective: bool = Fa
         wanted_path=source['Successor']+'/ScopeOfWork.md' if runtime else source['Successor']
         if binding.get('target')!=target or binding.get('path')!=wanted_path:
             raise GovernanceError('wrong successor path or qualified identity')
-        actual=reference(root,binding)
+        if runtime:
+            runtime_baseline[wanted_path] = binding['sha256']
+            if state['stage'] == 'effective':
+                historical = subprocess.run(['git','-C',str(root),'show',
+                    state['gate5']['commit']+':'+wanted_path], capture_output=True, check=False)
+                safe_path(root, wanted_path)
+                if historical.returncode or hashlib.sha256(historical.stdout).hexdigest() != binding['sha256']:
+                    raise GovernanceError('historical Runtime successor mismatch: '+wanted_path)
+            else:
+                reference(root, binding)
+        else:
+            reference(root,binding)
         if not runtime:
             approved=approved_targets.get(wanted_path)
             if not approved or approved['ApprovedSHA256']!=binding['sha256']:
@@ -225,6 +240,8 @@ def load_governance_state(root: Path, config: dict, require_effective: bool = Fa
         (runtime_ids if runtime else gov_ids).append(target)
     if len(gov_ids)!=46 or len(runtime_ids)!=7 or len(set(gov_ids+runtime_ids))!=53:
         raise GovernanceError('successor partition mismatch')
+    from root_runtime_successors import recognize
+    runtime_recognition = recognize(root, runtime_baseline)
     transaction=state.get('transaction')
     if state['stage'] in {'applied_pending_confirmation','effective'} and transaction is None:
         raise GovernanceError('applied state requires transaction reference')
@@ -260,7 +277,16 @@ def load_governance_state(root: Path, config: dict, require_effective: bool = Fa
         import yaml
         for item in tested:
             if item.get('path') not in configs:
-                reference(root,item)
+                if item.get('path', '').startswith('tools/'):
+                    # Gate5 tested implementation is historical proof, not a
+                    # perpetual lock on later owner-authorized M2 tool work.
+                    historical = subprocess.run(['git','-C',str(root),'show',
+                        state['gate5']['commit']+':'+item['path']], capture_output=True, check=False)
+                    safe_path(root, item['path'])
+                    if historical.returncode or hashlib.sha256(historical.stdout).hexdigest() != item['sha256']:
+                        raise GovernanceError('historical tested implementation mismatch: '+item['path'])
+                else:
+                    reference(root,item)
                 continue
             original=reference(root,by_target[item['path']])
             if digest(original)!=item.get('sha256'): raise GovernanceError('configuration snapshot differs from tested bytes')
@@ -282,7 +308,7 @@ def load_governance_state(root: Path, config: dict, require_effective: bool = Fa
     held=[h['SourceJSONPointer'] for h in holds if h['CurrentDisposition']=='HELD_UNAVAILABLE']
     if len(held)!=9: raise GovernanceError('approved nine-hold partition mismatch')
     return dict(state,held_capabilities=held,source_statuses=status_rows,source_ids=sorted(source_ids),governance_ids=gov_ids,
-                runtime_ids=runtime_ids,successors=successors)
+                runtime_ids=runtime_ids,successors=successors, runtime_successor_recognition=runtime_recognition)
 
 
 def status_verification(root: Path, config: dict) -> str:

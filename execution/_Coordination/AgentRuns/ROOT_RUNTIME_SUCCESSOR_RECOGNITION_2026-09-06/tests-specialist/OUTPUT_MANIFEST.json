@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "tools/validation/test_root_runtime_successors.py",
+      "sha256": "7499377342dff66b1c741ce95f0c413b2b26b4e328fee0587ae7ec1ef7a3bf80",
+      "bytes": 10142
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/BRIEF.md",
+      "sha256": "1362cbc3a0098b55add0918cc677fa9252e05afcb284814fa3987c1866191852",
+      "bytes": 943
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/CHECKS.json",
+      "sha256": "8dcc7d943c83dec3bbedbe6bc3e7dec5f02c6c3514268424a2cc85d2ec7995c2",
+      "bytes": 441
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/RETURN.md",
+      "sha256": "95e6ffda96f99cb8873181bff25a8bda4606b64cc6ef9f7ff1bc798a1a3f35bd",
+      "bytes": 1080
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/TEST_RUN_01.log",
+      "sha256": "24b81482d31355c0ea7252131cf7f82d0b7711f3999514ade3d0166b0381d813",
+      "bytes": 1401
+    }
+  ]
+}

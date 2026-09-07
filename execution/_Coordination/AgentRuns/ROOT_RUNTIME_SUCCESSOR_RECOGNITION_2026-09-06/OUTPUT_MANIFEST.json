@@ -1,0 +1,248 @@
+{
+  "status": "VALIDATED_REVIEWED_ROOT_REPAIR_CANDIDATE",
+  "files": [
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-37_runtime_successor_recognition.md",
+      "sha256": "c812b81f200e6e4d23ae741a7bc640df0d1e881e11da500cb10f47358534a3e7",
+      "bytes": 3660
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sha256": "deb20d9d47c02bd0f2861e0f0c2efa9ee27f7975438df14ebbe89518ff871eeb",
+      "bytes": 37464
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-SUCCESSOR-RECOGNITION-20260906.yaml",
+      "sha256": "d7f5e2604444433d53ce8473f029d8efb0a09f8d9c8bf87cf5ec31332e49f1e0",
+      "bytes": 1511
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/BRIEF.md",
+      "sha256": "db5c24176fb7a732990f4481cd24f8e2af5c0f26e4ef4ea5f5fbf0b17b3435d7",
+      "bytes": 1584
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/CHECKS.json",
+      "sha256": "04c89e26d33c7d8c99e55fd041cfd3919b9925954c1e70ffad61262cf67359bb",
+      "bytes": 2314
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/COMPOSITION_RESULT.json",
+      "sha256": "d6e193a9cad150c866962d3ed881580a53f3d734a776234181164788ad7f204f",
+      "bytes": 16098
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/COMPOSITION_ROOT_CHECK.json",
+      "sha256": "90811f02e7dc12b1bb2e883b560cfc833854e97c0928c1ebebe76a06dbab852b",
+      "bytes": 346
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/FINAL_ENVELOPE_ENVIRONMENT_NOTE.md",
+      "sha256": "46389e56d296d2e6ad17315d7c06259e94d11bdc590d073791edad0305f7a497",
+      "bytes": 407
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/G4_WORKING_DIFF_COVERAGE.json",
+      "sha256": "d2329599cc073b37f5b9a30da12c2ce93c3f227951f399afdeb3b39897461e68",
+      "bytes": 970
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/HANDOFF.md",
+      "sha256": "01c8c329e7b1a91556651c0abd39d812c7b4a76cc254b338a6ed3b82bfa75125",
+      "bytes": 3436
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/IMPLEMENTATION_CORRECTIONS.md",
+      "sha256": "ef02b0a1e79e413d921bd23b1b074ba3bbbed2a056872368cf0a716ee8a1320a",
+      "bytes": 417
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/NEW_FILE_GIT_WHITESPACE_CHECK.json",
+      "sha256": "115c6a0cd02c176a93a0976ce432fc461e0a7147f5ca7b6f9d34a6806073fabe",
+      "bytes": 6796
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/OWNER_ACT.md",
+      "sha256": "6cb2a9ef4ff8c08d6f2352781689dbbc31c50cc4fcea95873472ea7b96d9ee7d",
+      "bytes": 1063
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/PRESERVED_IDENTITIES.json",
+      "sha256": "f498615c5cc6db698bc82a2fc6aea011400106ccf0fafa181d1d3b44b714f069",
+      "bytes": 1169
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/PUBLICATION_SCOPE.json",
+      "sha256": "8b683eba3b6eb710ad59ffd4d0bc6c373277076845ac0430dd27b00a99d5e3a7",
+      "bytes": 5311
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/RETURN.md",
+      "sha256": "cb3ca1e8d330d347abdcaf71eddacbe7df9bf5bf9592621c82cd3027f21c0e23",
+      "bytes": 3231
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/REVIEW_DISPATCH.json",
+      "sha256": "142f26fb46fc41855b4eae0fbc4516be8e3121284f80c4412f04fadf78370630",
+      "bytes": 300
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/SUCCESSOR_ADOPTIONS.json",
+      "sha256": "0c224adac116ffc3931db85cc17050174397a0f447198709ba629b36fa592ea9",
+      "bytes": 1918
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/TEST_DISPATCH.json",
+      "sha256": "22b0b89a17ad579daa038fa2141df935287812fd20fb0b4117262ffbedfceece",
+      "bytes": 474
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/WORK_GRAPH.json",
+      "sha256": "2fe642ecce58ed56608ebf90f1e169ab555b8eb1bc5ba7b7afa15a8f708ed29e",
+      "bytes": 932
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-00.log",
+      "sha256": "7edccf24549ea1c6bff121b56473f4ca96b98f231b350f13c55b174c2f2595e6",
+      "bytes": 3340
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-01.log",
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+      "bytes": 24824
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-02.log",
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c",
+      "bytes": 100
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-03.log",
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37",
+      "bytes": 92
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-04.log",
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618",
+      "bytes": 65
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-05.log",
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6",
+      "bytes": 188
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-06.log",
+      "sha256": "93db9f473689f8d91d53ad32f457d4edbdb42e95f43a34e94f569a476c4cc8ad",
+      "bytes": 5563
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-07.log",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf",
+      "bytes": 49
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-08.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "bytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-09.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/check-10.log",
+      "sha256": "308a767111ea5658e968538673606c4f1792b876ec74ef11cb7a0724467a25e4",
+      "bytes": 4790
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/BRIEF.md",
+      "sha256": "e534e9f3f35f3eb277d2571be59c300d6a72ccd1b1b97cd18ca0d8834ac085b6",
+      "bytes": 423
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/INDEPENDENT_CHECKS.json",
+      "sha256": "f0aaca9285e563cc2c2821d85ca255a5dc4869fe646b24f1d9a81c5d6e69d527",
+      "bytes": 6123
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/OUTPUT_MANIFEST.json",
+      "sha256": "8b6536eee142b2b9c9ff9a88705061ca002b88e823db080a0069224567aa4267",
+      "bytes": 967
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/RETURN.md",
+      "sha256": "61c3c4f0fa4351d036d8d063e25e290d0a88ed97d2f5fe118a77d5993ff0a0ff",
+      "bytes": 2776
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/review/REVIEWED_INPUTS.json",
+      "sha256": "76c885e0a443244ea3b0ba989908063164258f758233800dae89f6fedd958361",
+      "bytes": 9105
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/BRIEF.md",
+      "sha256": "1362cbc3a0098b55add0918cc677fa9252e05afcb284814fa3987c1866191852",
+      "bytes": 943
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/CHECKS.json",
+      "sha256": "8dcc7d943c83dec3bbedbe6bc3e7dec5f02c6c3514268424a2cc85d2ec7995c2",
+      "bytes": 441
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/OUTPUT_MANIFEST.json",
+      "sha256": "e0dc48c6cb83e8e22f335c9aa2a9f5b766d50f1ed47bf7b230bd393953a6c52c",
+      "bytes": 1173
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/RETURN.md",
+      "sha256": "95e6ffda96f99cb8873181bff25a8bda4606b64cc6ef9f7ff1bc798a1a3f35bd",
+      "bytes": 1080
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/tests-specialist/TEST_RUN_01.log",
+      "sha256": "24b81482d31355c0ea7252131cf7f82d0b7711f3999514ade3d0166b0381d813",
+      "bytes": 1401
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/verify_composition.py",
+      "sha256": "e27426945db4b8181e88d893082ded9098e21e4f8e5089697c4c4a7f3bb6d5e8",
+      "bytes": 3696
+    },
+    {
+      "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+      "sha256": "4c80232dcc12135f905a61a40d3a3aa5e68e2a88e411127f2633ea0254dee65f",
+      "bytes": 563568
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06.md",
+      "sha256": "d69a9927a5306baceb6430ed813fff7a2b7ac19ae6038dde2816486363a5ea3d",
+      "bytes": 1865
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06.md",
+      "sha256": "d69a9927a5306baceb6430ed813fff7a2b7ac19ae6038dde2816486363a5ea3d",
+      "bytes": 1865
+    },
+    {
+      "path": "tools/validation/root_governance_state.py",
+      "sha256": "955204f44db75f16367b4fdebfd8995f15f464dab90dda8fe7b56efe416313d5",
+      "bytes": 20768
+    },
+    {
+      "path": "tools/validation/root_runtime_successors.py",
+      "sha256": "3a093cebae5b55674b781e9d05349d9bae315c1328aef62634b3af79cc1a4cee",
+      "bytes": 6368
+    },
+    {
+      "path": "tools/validation/test_root_runtime_successors.py",
+      "sha256": "7499377342dff66b1c741ce95f0c413b2b26b4e328fee0587ae7ec1ef7a3bf80",
+      "bytes": 10142
+    }
+  ],
+  "review_manifest_sha256": "8b6536eee142b2b9c9ff9a88705061ca002b88e823db080a0069224567aa4267",
+  "checks": "836 tests /45 subtests; baseline and exact Runtime composition four guards PASS; no execution authority",
+  "historical_preservation": "PRESERVED_IDENTITIES.json plus strict Root loader; historical snapshots unchanged"
+}

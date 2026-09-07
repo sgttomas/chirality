@@ -1,0 +1,40 @@
+{
+  "status": "FROZEN",
+  "parent": "/root",
+  "manager": "/root/root_custody_prep",
+  "basis": "e1dee34315ff4ca448b0fbc14e5542b6bad9fac2",
+  "nodes": [
+    {
+      "id": "integrate",
+      "role": "HELPS_HUMANS",
+      "scope": [
+        "tools/validation/root_governance_state.py",
+        "tools/validation/root_runtime_successors.py",
+        "focusedtests",
+        "Rootrun",
+        "M2manifest",
+        "Rootreceipt",
+        "AppRuntimenotices"
+      ],
+      "owner_act": "You have approval to make this change in Root"
+    },
+    {
+      "id": "independent_review",
+      "role": "boundedAgent2",
+      "scope": [
+        "readonlycompletecandidate",
+        "reviewevidenceonly"
+      ],
+      "after": [
+        "integrate",
+        "checks"
+      ]
+    }
+  ],
+  "exclusions": [
+    "historicalmigrationmutation",
+    "Runtimelivewrites",
+    "credential/supplier/protectedfixture",
+    "arbitraryoverrideflags"
+  ]
+}

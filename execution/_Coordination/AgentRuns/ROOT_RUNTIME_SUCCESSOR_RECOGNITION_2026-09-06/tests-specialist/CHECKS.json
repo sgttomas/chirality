@@ -1,0 +1,9 @@
+{
+  "source_compile": "PASS",
+  "test_command": "python3 -m unittest discover -s tools/validation -p test_root_runtime_successors.py -v",
+  "tests": 11,
+  "test_result": "PASS",
+  "scope": "synthetic evidence verification only; no supplier/operational proof",
+  "input_helper_sha256": "3a093cebae5b55674b781e9d05349d9bae315c1328aef62634b3af79cc1a4cee",
+  "source_sha256": "7499377342dff66b1c741ce95f0c413b2b26b4e328fee0587ae7ec1ef7a3bf80"
+}

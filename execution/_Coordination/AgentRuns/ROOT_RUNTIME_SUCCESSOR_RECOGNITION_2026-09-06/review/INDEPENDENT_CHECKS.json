@@ -1,0 +1,77 @@
+{
+  "focused_unittest": {
+    "command": "/Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3 -B -m unittest discover -s tools/validation -p test_root_runtime_successors.py -v",
+    "exit": 0,
+    "tests": 11
+  },
+  "real_subject": {
+    "runtime_head": "04a110a4443a532fcf7f31124e5c857f88c27949",
+    "members": 61,
+    "all_sha256_verified": true,
+    "actual_acceptance_read": true,
+    "index_and_three_postimages_verified": true
+  },
+  "direct_load_require_effective": [
+    {
+      "root": "/private/tmp/chirality-root-runtime-revision-recognition-20260906",
+      "recognition": {
+        "state": "migration-baseline",
+        "adoptions": [],
+        "published": true,
+        "current_bindings": {
+          "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv": "4923353de43fbe99aecb585971a3ffb91e86787734ed93b9379300fa15378663",
+          "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv": "64f37da455c6a1565eca4d7cc8dc0fb7638672f1b1df0288c4c038f476bdd767",
+          "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md": "ead0c52db231d955e1f0d593585e09b5b8009ac1df8c21ea58fd6271afc7d5c7",
+          "projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv": "d7e7aa5ee900031d23baeb82479ac956a0e8ba731bfc39e1ee05f3877a949cdd",
+          "projects/chirality-runtime/docs/PRD.md": "ec2837e50ae89d1aa333f8bef20ec483f0e7bb0ccfbec56633e354dfd81f4e68",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b"
+        },
+        "execution_authority": false
+      },
+      "counts": [
+        53,
+        46,
+        7,
+        9
+      ]
+    },
+    {
+      "root": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-root-runtime-composition-9s0udriv",
+      "recognition": {
+        "state": "accepted-pending-publication",
+        "adoptions": [
+          "D36_STAGE1"
+        ],
+        "published": false,
+        "current_bindings": {
+          "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv": "4923353de43fbe99aecb585971a3ffb91e86787734ed93b9379300fa15378663",
+          "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9",
+          "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1",
+          "projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv": "d7e7aa5ee900031d23baeb82479ac956a0e8ba731bfc39e1ee05f3877a949cdd",
+          "projects/chirality-runtime/docs/PRD.md": "ec2837e50ae89d1aa333f8bef20ec483f0e7bb0ccfbec56633e354dfd81f4e68",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+          "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b",
+          "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309"
+        },
+        "execution_authority": false
+      },
+      "counts": [
+        53,
+        46,
+        7,
+        9
+      ]
+    }
+  ]
+}
