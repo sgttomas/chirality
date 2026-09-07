@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "method": "git diff --no-index --check /dev/null for each added file; git diff --check for tracked modifications",
+  "paths": [
+    "docs/governance_harness/_DECISIONS/D-GOV-38_runtime_stage2_successor_adoption.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-STAGE2-ADOPTION-20260907.yaml",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/CHECKS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/COMPOSITION_DEVELOPMENT_NOTE.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/HANDOFF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/PRESERVATION.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/REVIEW_DISPATCH.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/RUNTIME_OWNER_ACCEPTANCE_REFERENCE.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/STAGE2_COMPOSITION.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/WORK_GRAPH.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-00.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-01.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-02.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-03.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-04.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-05.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-06.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-07.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-08.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-09.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-10.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/INPUT_VERIFICATION.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/PRESERVATION.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/RETURN.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/review/REVIEWED_INPUTS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/verify_stage2.py",
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07.md",
+    "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07.md"
+  ],
+  "tracked_paths": [
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "execution/_Coordination/LOOP_RECEIPTS.md",
+    "tools/validation/root_runtime_successors.py"
+  ],
+  "limitation": "final publication metadata and review follow-ons receive final mechanical recheck before freeze"
+}

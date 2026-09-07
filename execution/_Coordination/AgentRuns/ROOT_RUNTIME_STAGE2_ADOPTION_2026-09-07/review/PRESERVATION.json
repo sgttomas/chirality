@@ -1,0 +1,39 @@
+{
+  "tracked_delta": [
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "execution/_Coordination/LOOP_RECEIPTS.md",
+    "tools/validation/root_runtime_successors.py"
+  ],
+  "checked_immutable_inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "sha256": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SUCCESSOR_RECOGNITION_2026-09-06/SUCCESSOR_ADOPTIONS.json",
+      "sha256": "0c224adac116ffc3931db85cc17050174397a0f447198709ba629b36fa592ea9",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "sha256": "e481e79f1dd28d41bf47db50c58fa1ad50ed14e559fc3975240b6862a31275d4",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "execution/_harness/root_guards.yaml",
+      "sha256": "5cc271f5027f0c80a69b81265ac1d3de288a81fed2418bf90be3cf1177d1e16b",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "execution/_harness/work_graph.yaml",
+      "sha256": "a6de6a54e7a0aa3826a509a896598db8af6505c611434567db6a4cec18e9eb65",
+      "unchanged_from_base": true
+    }
+  ]
+}

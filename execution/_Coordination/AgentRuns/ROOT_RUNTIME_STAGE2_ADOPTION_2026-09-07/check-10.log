@@ -1,0 +1,51 @@
+{
+  "checks": [
+    "practitioner_harness",
+    "validation"
+  ],
+  "paths": [
+    "docs/governance_harness/_DECISIONS/D-GOV-38_runtime_stage2_successor_adoption.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-STAGE2-ADOPTION-20260907.yaml",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/RUNTIME_OWNER_ACCEPTANCE_REFERENCE.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/WORK_GRAPH.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-00.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-01.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-02.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-03.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-04.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-05.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-06.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-07.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-08.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/check-09.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/verify_stage2.py",
+    "execution/_Coordination/LOOP_RECEIPTS.md",
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07.md",
+    "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07.md",
+    "tools/validation/root_runtime_successors.py"
+  ],
+  "reasons": {},
+  "schema": "chirality-affected-checks/v1"
+}
+[run-affected] running 2 suite(s); skipping 15: analysis, coordination, decomp, drawing_extract, equation_audit, pdf2md, publication, reporting, retrieval, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime
+[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3 -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 25%]
+........................................................................ [ 34%]
+........................................................................ [ 43%]
+........................................................................ [ 51%]
+.......u.u.uuuuuu.u.....................u............................... [ 59%]
+...............u........................................................ [ 67%]
+............................................u........................... [ 76%]
+.....................................u.................................. [ 84%]
+...........u...........u..uuuuuu.u...................................... [ 92%]
+.............u........u......u.....u..u.uuuuuuuuuuu............u...uuuu. [ 98%]
+uu...............                                                        [100%]
+836 passed, 45 subtests passed in 30.89s

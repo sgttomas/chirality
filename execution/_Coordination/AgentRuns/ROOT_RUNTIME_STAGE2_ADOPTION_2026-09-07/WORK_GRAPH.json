@@ -1,0 +1,28 @@
+{
+  "status": "FROZEN",
+  "parent": "/root",
+  "integration_owner": "/root/root_custody_prep",
+  "basis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "nodes": [
+    {
+      "id": "apply",
+      "role": "HELPS_HUMANS",
+      "scope": "sealed BRIEF explicit loci"
+    },
+    {
+      "id": "validate",
+      "after": [
+        "apply"
+      ],
+      "scope": "temporary composition/synthetic checks and run evidence"
+    },
+    {
+      "id": "review",
+      "role": "fresh bounded Agent2",
+      "after": [
+        "apply"
+      ],
+      "scope": "read-only completecandidate; review evidence only"
+    }
+  ]
+}
