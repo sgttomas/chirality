@@ -1,0 +1,25 @@
+{
+  "status": "OWNER_ACCEPTED_STAGE1_ONLY",
+  "files": [
+    {
+      "path": "LATEST_POSTIMAGE.md",
+      "sha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026"
+    },
+    {
+      "path": "LATEST_PREIMAGE.md",
+      "sha256": "26e5a73eba23e4b69e72695a37ac430c61997ea7164b98df263abcbd94763e0d"
+    },
+    {
+      "path": "OWNER_ACCEPTANCE.md",
+      "sha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f"
+    },
+    {
+      "path": "POINTER_JOURNAL.json",
+      "sha256": "5bb7c83f6159d00d74e974432ddb9e1174a5f7d0611795e7754b64a4675e3f08"
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "8c13c1c27c4fda09ddd5b331fe1f50637e615eb813fc3a2d4d92562fe888c774"
+    }
+  ]
+}

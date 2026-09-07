@@ -1,0 +1,5 @@
+# Stage1 propagation
+
+OptionA approved exact three canonical writes, owning SCA records, one postchange audit and permitted pending-state pointer. Only canonical bytes in Application_Journal changed. No _CONTEXT/_STATUS/Dependencies/SOW or other registry edits. Seven IDs,66 inherited requirements,four objectives,nine holds/topology remain. Historical source maps NO_CHANGE; original pins are historical subject identities, not new revision hashes.
+
+DEL06/09 SOW propagation remains PENDING Stage2; other five SOWs unchanged. App consumer disposition and source/qualification work are separate. Coverage/trace numeric derivatives are conservation candidates to verify, not product acceptance; frozen historical packages stay immutable. No implicit new dependencies/estimate/schedule. Independent review follows applied audit, final owner acceptance remains pending. Then separately authorized CHANGE exact accepted decomposition commit, reviewed/refrozen basis repins, and owning SOW application. Check10 final pointer backcheck after normal pending-state pointer creation; no full closure or release claimed.

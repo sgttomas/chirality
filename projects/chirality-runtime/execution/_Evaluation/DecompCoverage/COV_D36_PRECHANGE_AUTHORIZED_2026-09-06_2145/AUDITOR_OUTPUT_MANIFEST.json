@@ -1,0 +1,57 @@
+{
+  "scope": "Auditor-owned immediate files only; excludes MANAGER/, REVIEW/ and future parent whole manifest",
+  "files": [
+    {
+      "path": "ARTIFACT_SCAN.json",
+      "sha256": "1f50f2b9c5fd5027fec3bbf939bdf7bfd2cc16f819d6136494deab6df5d335c8"
+    },
+    {
+      "path": "Brief.md",
+      "sha256": "706b10f8f65ab5fa9a4771cf72ab7c2603cbe0b5e84677fdf47576651fe11208"
+    },
+    {
+      "path": "CONTEXT_AND_INVENTORY.json",
+      "sha256": "58152d7aa1b45450f10a6948997da463151479b55f141af36e64e5883d407f5e"
+    },
+    {
+      "path": "Decision_Log.md",
+      "sha256": "979947e67eeb4dc430896e341345db6176442fcc8755e294c13b3cbcc20f341c"
+    },
+    {
+      "path": "Decomp_Coverage_IssueLog.csv",
+      "sha256": "79c6c0e7f9c0c3805f1029d2d450539abb2304c3426a9713113129c8a9d4bf98"
+    },
+    {
+      "path": "Decomp_Coverage_Matrix.csv",
+      "sha256": "a815978394bdda3a0d327573daa9bb4c49ae17a030c8af70c5693093077ad15f"
+    },
+    {
+      "path": "Decomp_Coverage_Report.md",
+      "sha256": "ff1f202bc2077a25c975710a3e5edd547b6d4d5870b787d41fbeb2898f39db58"
+    },
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "f27902e9b249c71c92ab9f99fe43a12a3b690ce1e5bd00500536440965dd2c29"
+    },
+    {
+      "path": "QA_Report.md",
+      "sha256": "613a58e92bbc8711d29a21c3be676a2aaa3ad139efc03a354e064fc858ef0af0"
+    },
+    {
+      "path": "REQUIREMENT_ID_CHECK.json",
+      "sha256": "be96ba9f8a4eec3c8ef35975384be3ff9efc9369415ea3c9735a7785a906caa2"
+    },
+    {
+      "path": "RUN_SUMMARY.md",
+      "sha256": "077f98ce108e05df94e5dbbba1460d60b14e060a884cb4c01f7b4cf426573276"
+    },
+    {
+      "path": "SOW_RESOLVER_RESULTS.json",
+      "sha256": "39c4feace00695ade5d8832064aa7f6c93151d7286d9e98713a92af193cff919"
+    },
+    {
+      "path": "coverage_summary.json",
+      "sha256": "4612a375d0529ac8012a9278e582e5b4c1b8fc01a06da8b0d5688dd98e7cc47f"
+    }
+  ]
+}

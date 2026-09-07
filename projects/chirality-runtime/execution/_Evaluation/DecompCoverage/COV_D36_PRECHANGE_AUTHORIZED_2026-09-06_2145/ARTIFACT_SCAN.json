@@ -1,0 +1,322 @@
+[
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "anticipated": "Runtime integration brief and declared write-locus record",
+    "present_by_filename": false,
+    "best_filename_score": 0.4533,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/PRE_INTEGRATION_MEMBER_CHECK.json",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "anticipated": " versioned-contract delta or no-change record",
+    "present_by_filename": false,
+    "best_filename_score": 0.4776,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/accepted_inputs/DEGRADED_MODE_CONTRACT_CANDIDATE.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "anticipated": " DEL-02-07 through DEL-02-12 fan-in matrix",
+    "present_by_filename": false,
+    "best_filename_score": 0.3607,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/BOUNDED_V2_TRANCHE_CLARIFICATION.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "anticipated": " affected-client conformance or migration matrix",
+    "present_by_filename": false,
+    "best_filename_score": 0.5161,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/clients/AFFECTED_CLIENT_CENSUS.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "anticipated": " ten-binding hold disposition",
+    "present_by_filename": false,
+    "best_filename_score": 0.7,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/integration/TBD_DISPOSITIONS.csv",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "anticipated": " accountable-human release disposition",
+    "present_by_filename": false,
+    "best_filename_score": 0.5306,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/integration/TBD_DISPOSITIONS.csv",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "anticipated": "DelegatedHarnessProcessSupervisorPort contract",
+    "present_by_filename": false,
+    "best_filename_score": 0.2545,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_REFERENCES.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "anticipated": " purpose-limited Unix-socket protocol with 0700/0600 ownership controls and authentication-token, owner, generation, and stale-recovery rules",
+    "present_by_filename": false,
+    "best_filename_score": 0.1471,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "anticipated": " worker acquisition inventory reconnect and generation-fencing implementation",
+    "present_by_filename": false,
+    "best_filename_score": 0.2222,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "anticipated": " daemon-plus-supervisor launch integration",
+    "present_by_filename": false,
+    "best_filename_score": 0.3265,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+    "anticipated": " Agent 0/1/2 role-entry parity and hard-containment tests",
+    "present_by_filename": false,
+    "best_filename_score": 0.254,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "anticipated": "Exact supply manifest and protocol pin contract",
+    "present_by_filename": false,
+    "best_filename_score": 0.2759,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "anticipated": " enumerated OpenAI service-endpoint policy",
+    "present_by_filename": false,
+    "best_filename_score": 0.3333,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "anticipated": " three-posture G-APPR exact-pin prompt-delivery and destination-grouping fixtures",
+    "present_by_filename": false,
+    "best_filename_score": 0.2278,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/SCA005_INIT/Validation.json",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "anticipated": " G-WIRE and G-SUPPLY conformance fixtures",
+    "present_by_filename": false,
+    "best_filename_score": 0.3636,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_REFERENCES.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+    "anticipated": " pin-drift evidence and refusal cases",
+    "present_by_filename": false,
+    "best_filename_score": 0.3902,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_REFERENCES.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "anticipated": "HostedEngineConsentPort contract",
+    "present_by_filename": false,
+    "best_filename_score": 0.3256,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_DEPENDENCIES.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "anticipated": " root-private CODEX_HOME and account-continuity controls",
+    "present_by_filename": false,
+    "best_filename_score": 0.2769,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "anticipated": " K-ROLE-2 digest schema",
+    "present_by_filename": false,
+    "best_filename_score": 0.4242,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "anticipated": " Agent 0/1/2 parity and labelled Agent 2/TASK fallback controls",
+    "present_by_filename": false,
+    "best_filename_score": 0.2295,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_run_records/SCA005_INIT/Validation.json",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "anticipated": " per-root three-posture consent-state model",
+    "present_by_filename": false,
+    "best_filename_score": 0.3019,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+    "anticipated": " isolation consent and continuity tests",
+    "present_by_filename": false,
+    "best_filename_score": 0.3137,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "anticipated": "Runtime API v2 contract",
+    "present_by_filename": false,
+    "best_filename_score": 0.3704,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_CONTEXT.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "anticipated": " attributed approval request and decision schemas",
+    "present_by_filename": false,
+    "best_filename_score": 0.2642,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_run_records/SCA005_INIT/Validation.json",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "anticipated": " closed HarnessEvent v2 union whose only terminal identifiers are turn.completed, turn.failed, turn.interrupted, and turn.cancelled",
+    "present_by_filename": false,
+    "best_filename_score": 0.16,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "anticipated": " role-posture and instruction-asserted evidence projection",
+    "present_by_filename": false,
+    "best_filename_score": 0.3529,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "anticipated": " networkApprovalContext routing showing host/protocol, same-destination queued-request grouping caveat, and acceptForSession only by explicit user act",
+    "present_by_filename": false,
+    "best_filename_score": 0.1429,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_run_records/SCA005_INIT/Validation.json",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+    "anticipated": " adapter projection and redaction fixtures",
+    "present_by_filename": false,
+    "best_filename_score": 0.4082,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_DEPENDENCIES.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "anticipated": "WorkerRetirementCoordinatorPort contract",
+    "present_by_filename": false,
+    "best_filename_score": 0.25,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "anticipated": " retirement journal and reconciliation state",
+    "present_by_filename": false,
+    "best_filename_score": 0.3704,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "anticipated": " exactly-once terminalization implementation",
+    "present_by_filename": false,
+    "best_filename_score": 0.32,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_run_records/SCA005_INIT/Validation.json",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "anticipated": " conditional thread/resume continuity checks and fresh-thread fallback",
+    "present_by_filename": false,
+    "best_filename_score": 0.2632,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+    "anticipated": " crash retirement and replay tests",
+    "present_by_filename": false,
+    "best_filename_score": 0.3636,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "anticipated": "Runtime and client conformance matrix",
+    "present_by_filename": false,
+    "best_filename_score": 0.36,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "anticipated": " exact source-identity evidence packet",
+    "present_by_filename": false,
+    "best_filename_score": 0.4167,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "anticipated": " Agent 0/1/2 parity and labelled-fallback fixtures",
+    "present_by_filename": false,
+    "best_filename_score": 0.2857,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "anticipated": " instruction-asserted versus mechanism-proven claim matrix and hard-containment crosschecks",
+    "present_by_filename": false,
+    "best_filename_score": 0.2474,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/SCA005_INIT/Independent_Review.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "anticipated": " three-posture G-APPR exact-pin proof of prompt delivery, acceptForSession explicit-user-act gating, and destination-grouping observation",
+    "present_by_filename": false,
+    "best_filename_score": 0.1429,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/SCA005_INIT/Validation.json",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "anticipated": " shared-release evidence fan-in",
+    "present_by_filename": false,
+    "best_filename_score": 0.3902,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/SCA005_INIT/Review_Checklist.md",
+    "matched_file": null
+  },
+  {
+    "deliverable": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+    "anticipated": " ten-binding hold-aware disposition",
+    "present_by_filename": false,
+    "best_filename_score": 0.35,
+    "best_path": "PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_run_records/SCA005_INIT/Validation.json",
+    "matched_file": null
+  }
+]

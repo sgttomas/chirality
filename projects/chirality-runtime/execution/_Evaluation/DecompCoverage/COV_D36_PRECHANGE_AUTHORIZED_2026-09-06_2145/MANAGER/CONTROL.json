@@ -1,0 +1,15 @@
+{
+  "role": "SCOPE_CHANGE",
+  "parent": "/root",
+  "child": "/root/custody_scope/prechange_audit",
+  "ownerQuote": "Yes I approve the one-run audit-method exception.",
+  "relay": "App Agent0 task01a077e7-a59b-7701-a2f6-fa2edae479b2 -> Runtime /root -> SCOPE_CHANGE",
+  "referent": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_WAVE1_2026-09-06/SCOPE/AUDIT_BINDING_OVERRIDE_PROPOSED.md",
+  "sha256": "a84c904be6802b5254a09c73b21ce45b705f6cdd097967a4d3a652d909d2a8d9",
+  "scope": "One fresh approved audit, exact companion/fullslug binding only, all12 checks; no authority/application/source/operational act",
+  "basis": "e1dee34315ff4ca448b0fbc14e5542b6bad9fac2",
+  "parentReportedPreflight": "Fresh fetch HEAD/main equal divergence0/0; harness status7INITIALIZED; drift0/7 mismatches. Parent reported, not rerun by manager.",
+  "managerChecks": "13 prior SCOPE input hashes independently reverified unchanged; proposal hash verified",
+  "model": "OpenAI GPT-6 exact serving identifier unavailable",
+  "roleEnforcement": "instruction-asserted"
+}

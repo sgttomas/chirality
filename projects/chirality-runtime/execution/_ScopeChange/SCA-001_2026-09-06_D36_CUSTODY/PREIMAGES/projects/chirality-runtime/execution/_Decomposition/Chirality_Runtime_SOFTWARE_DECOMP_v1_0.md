@@ -36,8 +36,6 @@ Artifacts retain the source carrier taxonomy: requirement and release-assurance 
 
 ## Inherited contract interpretation
 
-Later custody disposition: `CUSTODY_DISPOSITION_D36.md` binds D-GOV-36/D-APP-126 to DEL-02-06 REQ-041 and DEL-02-09 REQ-001/002 only after the exact Runtime owning amendment is accepted and applied. Its limited exception and supplementary lifecycle/bootstrap detail govern those facts; all other inherited requirements and immutable historical evidence remain.
-
 `OWNERSHIP_OVERLAY.md` supplies the only prospective interpretation changes to immutable source contracts: qualified owner and locus, governance/client split, and later recorded dispositions. No blanket replacement of the word Root is permitted. Preserve DEL-02-06 REQ-027: first activation is specification, read-only inventory, evidence-matrix design and planning; it writes no implementation bytes. Later actual authorization must name its exact subject. Read all inherited conditions, exclusions and evaluation matrices, not only the generated requirement rows.
 
 `HOLD_SUCCESSOR_MAP.csv` preserves ten historical markers. Nine are still held; R16-B separately records Tier-0 continue-separate. TM-ROOT-106 remains open; R18 closed TM-ROOT-122. `ACCEPTED_EVIDENCE_CONTINUITY.csv` preserves six semantic files and the compatibility JSON at source paths/hashes. Keep root-runtime-1 epoch 1 and null held identities. Acceptance of a historical semantic subject is not acceptance of current implementation or release.
@@ -58,7 +56,3 @@ Zero destination carriers are activated. No materialization, status change, sour
 - OI-04: inherited historical findings and production-contract warnings remain in the SCA-005 baseline; this partition cannot waive or backfill them.
 
 Decisions proposed: preserve stable IDs and historical evidence; use one domain package; partition objectives explicitly; retain scope through pinned full contracts; keep nine holds and later dispositions; make source retirement conditional on accepted successors. CHANGE_JOURNAL.csv records exact source-to-destination changes. No new scope, held feature work, release, or PR merge is selected by this draft.
-
-### Custody amendment record — candidate for owning acceptance
-
-D36/D126 choices are owner-selected and observable at main e1dee34315ff4ca448b0fbc14e5542b6bad9fac2. The exact Runtime postimages and propagation remain candidate until the owning SCOPE_CHANGE acceptance/application. This revision introduces the named custody supplement and updates SOW-104 decision references without changing partition, IDs, inherited requirement count, lifecycle or holds. The owning immutable amendment snapshot must record the exact acceptance/application identity; no historical migration snapshot or hash map is rewritten.

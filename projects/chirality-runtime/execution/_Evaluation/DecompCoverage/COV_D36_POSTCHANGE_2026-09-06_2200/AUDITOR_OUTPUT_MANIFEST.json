@@ -1,0 +1,65 @@
+{
+  "scope": "Own immediate files only; MANAGER/ REVIEW/ future BACKCHECK and parent seal excluded",
+  "files": [
+    {
+      "path": "ARTIFACT_SCAN.json",
+      "sha256": "1f50f2b9c5fd5027fec3bbf939bdf7bfd2cc16f819d6136494deab6df5d335c8"
+    },
+    {
+      "path": "Brief.md",
+      "sha256": "24d05af588048238f8468e748f577f242d959a5a00c0ecf8059b1f6986efbcd4"
+    },
+    {
+      "path": "CHECK10_INITIAL_OBSERVATION.json",
+      "sha256": "41bf3377fc2db9ece210a94b72df83c7cb37fccff363063d13b57c4ddb51b115"
+    },
+    {
+      "path": "COMPARISON.json",
+      "sha256": "427abe3c296075d1d469b1528f8ab824f41e1c8e56d4be2181c455b4f82c8e7b"
+    },
+    {
+      "path": "CONTEXT_AND_INVENTORY.json",
+      "sha256": "58152d7aa1b45450f10a6948997da463151479b55f141af36e64e5883d407f5e"
+    },
+    {
+      "path": "Decision_Log.md",
+      "sha256": "6d74c1cef152d1656de81e25fd9990a9283c377dd1d49dc84b4c66845adfec30"
+    },
+    {
+      "path": "Decomp_Coverage_IssueLog.csv",
+      "sha256": "79c6c0e7f9c0c3805f1029d2d450539abb2304c3426a9713113129c8a9d4bf98"
+    },
+    {
+      "path": "Decomp_Coverage_Matrix.csv",
+      "sha256": "a815978394bdda3a0d327573daa9bb4c49ae17a030c8af70c5693093077ad15f"
+    },
+    {
+      "path": "Decomp_Coverage_Report.md",
+      "sha256": "ffe921075f7fdec1e44cc7922219825c06b8ac1e34836fe5885c48a1a345db07"
+    },
+    {
+      "path": "INPUT_PINS.json",
+      "sha256": "34b680378a507ed4f7d8b01cd16a1b377541d044ffbddeb504b2fea730254ac4"
+    },
+    {
+      "path": "QA_Report.md",
+      "sha256": "2892830d0c4a61bd2e58c4802d3edd5b9195f6c50f6173244ba512e6d0b3e8cb"
+    },
+    {
+      "path": "REQUIREMENT_ID_CHECK.json",
+      "sha256": "be96ba9f8a4eec3c8ef35975384be3ff9efc9369415ea3c9735a7785a906caa2"
+    },
+    {
+      "path": "RUN_SUMMARY.md",
+      "sha256": "6fd832c83edc26ab7a7c97b9a045a0504284133b2bf4325629bb86e2538a71ef"
+    },
+    {
+      "path": "SOW_RESOLVER_RESULTS.json",
+      "sha256": "39c4feace00695ade5d8832064aa7f6c93151d7286d9e98713a92af193cff919"
+    },
+    {
+      "path": "coverage_summary.json",
+      "sha256": "9b59155791e73618996ab7d69a1582c973858e7e3b7c9080c05e44dae0fa8e39"
+    }
+  ]
+}

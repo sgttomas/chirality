@@ -1,0 +1,10 @@
+{
+  "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "sameSnapshot": "SCA-001_2026-09-06_D36_CUSTODY/",
+  "beforeSha256": "26e5a73eba23e4b69e72695a37ac430c61997ea7164b98df263abcbd94763e0d",
+  "afterSha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026",
+  "acceptancePath": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA001_STAGE1_2026-09-06/OWNER_ACCEPTANCE.md",
+  "acceptanceSha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f",
+  "scope": "same-target owner-status/reference update approved by parent under existing owning pointer authority",
+  "newActiveSnapshot": false
+}

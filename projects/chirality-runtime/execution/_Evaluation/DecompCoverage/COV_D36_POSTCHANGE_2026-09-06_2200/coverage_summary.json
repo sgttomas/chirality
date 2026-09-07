@@ -1,0 +1,98 @@
+{
+  "run_label": "D36_POSTCHANGE",
+  "timestamp": "2026-09-07T04:02:27.377862+00:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "547d1f3369e71aa96d1b61561f6b1603b978016c7335fca39f86df97ddd73fc3; applied SCA-001_2026-09-06_D36_CUSTODY/Application_Journal.json under Option A",
+  "expected_handoff_phase": "D36 Runtime applied canonical amendment postchange audit; final pointer backcheck pending",
+  "decomposition_path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "v1.0 + exact D36 applied amendment; final owner poststate acceptance pending",
+  "scope": "PKG-02_Runtime_Product",
+  "repository_topology": {
+    "packages": 1,
+    "deliverables": 7,
+    "objectives": 4,
+    "scope_items": 1,
+    "ledger_rows": 1
+  },
+  "partitions_declared": 1,
+  "partitions_found": 1,
+  "production_units_declared": 7,
+  "production_units_found": 7,
+  "forward_coverage_partitions_pct": 100,
+  "forward_coverage_production_units_pct": 100,
+  "reverse_coverage_pct": 100,
+  "context_fidelity_pct": 100,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "WARN",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "WARN",
+  "handoff_state_status": "WARN",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 1,
+  "issues_info": 40,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 7
+  },
+  "overall_status": "WARNINGS",
+  "closure_readiness": "WARN",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  },
+  "checks": {
+    "1": [
+      "PASS",
+      "One declared package folder exists with exact full slug."
+    ],
+    "2": [
+      "PASS",
+      "Seven of seven declared full-slug deliverable folders exist."
+    ],
+    "3": [
+      "PASS",
+      "No undeclared package or deliverable folder in this scoped package."
+    ],
+    "4": [
+      "PASS",
+      "All full-slug keys match exactly under owner-approved binding."
+    ],
+    "5": [
+      "PASS",
+      "All seven contexts match name, package identity, type, responsible, description and M envelope."
+    ],
+    "6": [
+      "PASS",
+      "Seven SOW_V1 contracts pass current resolver. Filename absence findings remain INFO at actual INITIALIZED lifecycle; product completion not evaluated."
+    ],
+    "7": [
+      "PASS",
+      "Four ledger objectives each map to all seven existing non-retired carriers; objective companion and coverage counts agree."
+    ],
+    "8": [
+      "PASS",
+      "One IN SOW-104 row references the exact package, seven units and four objectives; all 66 inherited requirement IDs match live SOW IDs."
+    ],
+    "9": [
+      "SKIPPED",
+      "Derivative-package parity is not SOFTWARE-variant-owned by this audit."
+    ],
+    "9b": [
+      "WARNING",
+      "Distributed role labeling is discoverable and no heavy duplicated truth or derived amendment authority was found; explicit companion inventory section absent."
+    ],
+    "10": [
+      "INCOMPLETE",
+      "SCA assembly is in progress; actual pointer observation recorded. Same-run focused final snapshot/pointer backcheck required."
+    ],
+    "11": [
+      "PASS",
+      "Seven INITIALIZED; sibling MEMORY files absent. No lifecycle elevation inferred."
+    ]
+  },
+  "postchange_final_backcheck": "PENDING"
+}

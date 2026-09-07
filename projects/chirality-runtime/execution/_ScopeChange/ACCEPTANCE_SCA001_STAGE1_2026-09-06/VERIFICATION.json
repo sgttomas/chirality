@@ -1,0 +1,10 @@
+{
+  "subjectManifest": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/HANDOFF_MANIFEST.json",
+  "subjectSha256": "cd88975f4d884c81d69c0e36e0afe0853b1dc0b5fb1d84f992089a866f5b3eae",
+  "verifiedMembers": 61,
+  "canonicalAndEvidenceChanged": false,
+  "newAuditRun": false,
+  "acceptanceScope": "Stage1 final poststate only",
+  "stage2": "PENDING",
+  "gitAuthority": "NOT_GRANTED"
+}

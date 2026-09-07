@@ -1,0 +1,17 @@
+{
+  "scope": "MANAGER files only",
+  "files": [
+    {
+      "path": "CONTROL.json",
+      "sha256": "a8996ec47906b3d0a389ace0f45886381357703f13b99aa95f6880373fc51298"
+    },
+    {
+      "path": "FAN_IN.json",
+      "sha256": "7ff34aacc5c55b5e25d8b8270669cf672585a6345357e2ef1d05731856d9b7a0"
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "ce14d551e1aea2ad2ff5aaf7db8439c786cb160cdc7951bd675669ebda1e3281"
+    }
+  ]
+}

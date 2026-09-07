@@ -1,0 +1,12 @@
+# Preserve exact sealed audit CSV bytes and recognize their CRLF record terminators.
+# Scope is limited to these ten files; retain all three default Git whitespace checks.
+execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/Decomp_Coverage_IssueLog.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_Evaluation/DecompCoverage/COV_D36_POSTCHANGE_2026-09-06_2200/Decomp_Coverage_Matrix.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_Evaluation/DecompCoverage/COV_D36_PRECHANGE_AUTHORIZED_2026-09-06_2145/Decomp_Coverage_IssueLog.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_Evaluation/DecompCoverage/COV_D36_PRECHANGE_AUTHORIZED_2026-09-06_2145/Decomp_Coverage_Matrix.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Amendment_Actions.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_Findings.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_Verification_Findings.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/Supersession_Map_Verified.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Delta.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/Supersession_Map.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

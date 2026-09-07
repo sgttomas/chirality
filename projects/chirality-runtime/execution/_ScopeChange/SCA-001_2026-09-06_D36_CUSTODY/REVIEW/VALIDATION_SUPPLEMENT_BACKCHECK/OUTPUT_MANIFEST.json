@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS_WITH_DISCLOSED_VALIDATION_LIMITATION",
+  "initialReviewManifestSha256": "059e68768320268d02efc85b0bc042ed23e09a702019d0c4762d2761e8ba473f",
+  "managerSupplementManifestSha256": "3302e7e739a917f7c8cf27ded404e84b2df08d09b604249d54228d9cb7e70412",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "60dd86fca367d0b0dbbfdfb408c9c851112ef7865f7b39d1ca167f3118b59a39",
+      "bytes": 2024
+    }
+  ]
+}

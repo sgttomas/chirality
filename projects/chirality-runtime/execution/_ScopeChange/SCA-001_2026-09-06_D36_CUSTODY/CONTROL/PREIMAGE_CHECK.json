@@ -1,0 +1,26 @@
+[
+  {
+    "target": "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+    "preimageSha256": null,
+    "postimage": "POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+    "postimageSha256": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309",
+    "role": "candidate authoritative companion supplement",
+    "state": "PREIMAGE_VERIFIED"
+  },
+  {
+    "target": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+    "preimageSha256": "ead0c52db231d955e1f0d593585e09b5b8009ac1df8c21ea58fd6271afc7d5c7",
+    "postimage": "POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+    "postimageSha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1",
+    "role": "canonical working surface",
+    "state": "PREIMAGE_VERIFIED"
+  },
+  {
+    "target": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "preimageSha256": "64f37da455c6a1565eca4d7cc8dc0fb7638672f1b1df0288c4c038f476bdd767",
+    "postimage": "POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "postimageSha256": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9",
+    "role": "canonical working surface",
+    "state": "PREIMAGE_VERIFIED"
+  }
+]
