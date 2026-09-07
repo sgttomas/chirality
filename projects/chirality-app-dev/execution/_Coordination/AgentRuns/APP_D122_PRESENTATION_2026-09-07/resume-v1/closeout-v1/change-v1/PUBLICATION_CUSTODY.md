@@ -1,0 +1,7 @@
+# D122 publication custody
+
+The parent-accepted SELECTED_SCOPE is retained as the proposed selection. CHANGE publishes its 49 members except the original review-v4/REVIEW_RETURN_v4.md, plus SELECTED_SCOPE and this compact disposition. REVIEW_RETURN_v4_LOSSLESS.json reconstructs the review’s exact original bytes, with original path, byte count and SHA-256. The raw Markdown remains unchanged locally: six two-space Markdown line breaks were rejected by the untracked candidate-whitespace rule. No review or source claim was edited.
+
+RAW_MANIFEST retains hashes and local paths for all 375 run members, including the original 215-member handoff, full raw commands, observed assets, generated captures, failures and corrected reruns. Unselected members remain local under D99. Representative screenshots, source/build identities and concise check summaries are published; this is not a portable archive at every original raw path. Manager return states rerun requirements and limits. Reproduce product validation using the recorded source and registered commands; original browser observations are historical evidence, not a live-account qualification.
+
+Exact committed source remains the 18-member v4 freeze. Remaining V3-05 is retained until actual merged-with-review observability. No live provider, supplier acceptance or release claim is made. Transport/commit/CI evidence generated after freezing is local-only; no recursive commit inclusion.

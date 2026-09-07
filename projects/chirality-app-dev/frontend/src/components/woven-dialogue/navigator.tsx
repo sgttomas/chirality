@@ -282,9 +282,9 @@ export function Navigator({
 
       <footer className="woven-compatibility">
         {footerSlot}
-        <Link href={legacyHref} target="_blank" rel="noreferrer" aria-label="Open legacy interface in a new window">
+        {!footerSlot ? <Link href={legacyHref} target="_blank" rel="noreferrer" aria-label="Open legacy interface in a new window">
           Legacy window
-        </Link>
+        </Link> : null}
       </footer>
     </nav>
   );

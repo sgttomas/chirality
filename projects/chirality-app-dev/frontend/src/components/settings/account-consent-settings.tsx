@@ -43,20 +43,19 @@ export type AccountConsentSettingsProps = {
   port?: HostedEngineConsentPort | null;
 };
 
-export function AccountConsentSettings({ port = null }: AccountConsentSettingsProps): JSX.Element {
-  const [snapshot, setSnapshot] = useState<HostedEngineConsentSnapshot | null>(() =>
-    port ? port.getSnapshot() : null
-  );
+export function useAccountConsentController(port: HostedEngineConsentPort | null = null): AccountConsentSettingsViewProps {
+  const [observed, setObserved] = useState(() => ({ port, snapshot: port ? port.getSnapshot() : null }));
+  const snapshot = observed.port === port ? observed.snapshot : port ? port.getSnapshot() : null;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!port) {
-      setSnapshot(null);
+      setObserved({ port, snapshot: null });
       return undefined;
     }
-    setSnapshot(port.getSnapshot());
-    return port.subscribe(setSnapshot);
+    setObserved({ port, snapshot: port.getSnapshot() });
+    return port.subscribe(snapshot => setObserved({ port, snapshot }));
   }, [port]);
 
   const perform = useCallback(
@@ -80,25 +79,21 @@ export function AccountConsentSettings({ port = null }: AccountConsentSettingsPr
     [port]
   );
 
-  return (
-    <AccountConsentSettingsView
-      snapshot={snapshot}
-      busy={busy}
-      error={error}
-      onLogin={() => void perform((p) => p.login())}
-      onLogout={() => void perform((p) => p.logout())}
-      onGrantConsent={() => void perform((p) => p.grantConsent())}
-      onRevokeConsent={() => void perform((p) => p.revokeConsent())}
-      onSelectNetworkPosture={(posture) => void perform((p) => p.selectNetworkPosture(posture))}
-      onResolveNetworkPrompt={(promptId, decision) =>
-        void perform((p) => p.resolveNetworkPrompt(promptId, decision))
-      }
-      onSelectRole={(role) => void perform((p) => p.selectRole(role))}
-    />
-  );
+  return { snapshot, busy, error,
+    onLogin: () => void perform(p => p.login()), onLogout: () => void perform(p => p.logout()),
+    onGrantConsent: () => void perform(p => p.grantConsent()), onRevokeConsent: () => void perform(p => p.revokeConsent()),
+    onSelectNetworkPosture: posture => void perform(p => p.selectNetworkPosture(posture)),
+    onResolveNetworkPrompt: (id, decision) => void perform(p => p.resolveNetworkPrompt(id, decision)),
+    onSelectRole: role => void perform(p => p.selectRole(role)) };
+}
+
+export function AccountConsentSettings({ port = null }: AccountConsentSettingsProps): JSX.Element {
+  const controller = useAccountConsentController(port);
+  return <AccountConsentSettingsView {...controller} />;
 }
 
 export type AccountConsentSettingsViewProps = {
+  presentation?: 'combined' | 'account' | 'folder';
   snapshot: HostedEngineConsentSnapshot | null;
   busy: boolean;
   error: string | null;
@@ -172,6 +167,7 @@ function approvalsLabel(snapshot: HostedEngineConsentSnapshot): string {
 }
 
 export function AccountConsentSettingsView({
+  presentation = 'combined',
   snapshot,
   busy,
   error,
@@ -195,13 +191,14 @@ export function AccountConsentSettingsView({
   return (
     <section className="consent-settings" data-product-posture={PRODUCT_POSTURE_LABEL}>
       <header className="consent-settings-header">
-        <h3 className="api-key-settings-title">Hosted engine account &amp; consent</h3>
+        <h3 className="api-key-settings-title">{presentation === 'account' ? 'OpenAI account' : presentation === 'folder' ? 'Consent and permissions' : 'Hosted engine account & consent'}</h3>
         <span className="consent-badge" data-posture-label="true">
           {PRODUCT_POSTURE_LABEL}
         </span>
       </header>
 
-      <p className="api-key-hint consent-explainer" data-explainer="per-root-login">
+      {presentation === 'account' ? <p className="api-key-hint">One account for the app. Consent and permissions are per folder.</p> : <>
+      {presentation === 'folder' ? <p className="api-key-hint">Consent is bound to this folder; it is never carried across roots, accounts, policies, or root generations.</p> : <p className="api-key-hint consent-explainer" data-explainer="per-root-login">
         Sign-in and consent are per working root. Signing in here applies only to the active
         root
         {snapshot ? (
@@ -212,7 +209,7 @@ export function AccountConsentSettingsView({
         ) : null}
         ; every other root asks separately, and consent is never carried across roots,
         accounts, policies, or root generations.
-      </p>
+      </p>}
 
       <p
         className="api-key-hint consent-explainer"
@@ -235,33 +232,36 @@ export function AccountConsentSettingsView({
         {snapshot ? ` ${privateHomeLabel(snapshot.privateHome.status)}` : ''}
       </p>
 
+      </>}
+
       {!snapshot ? (
         <p className="api-key-status" data-account="unknown" data-consent="unknown">
-          Account and consent controls are not connected in this build.
+          {presentation === 'account' ? 'Account service unavailable in this build.' : presentation === 'folder' ? 'Folder consent controls are not connected in this build.' : 'Account and consent controls are not connected in this build.'}
         </p>
       ) : (
         <>
-          <div className="consent-section" data-section="account">
+          {presentation !== 'folder' ? <div className="consent-section" data-section="account">
             <p
               className="api-key-status consent-status"
               data-account={snapshot.account.status}
               data-account-identity={accountIdentityMarker(snapshot)}
             >
-              {accountLabel(snapshot)}
+              {presentation === 'account' ? (snapshot.account.status === 'loggedIn' ? `Signed in as ${describeAccountIdentity(snapshot.account.identity)}` : 'Not signed in') : accountLabel(snapshot)}
             </p>
             <div className="consent-actions">
               {loggedIn ? (
                 <button type="button" className="button-muted" onClick={onLogout} disabled={busy}>
-                  Sign out of this root
+                  {presentation === 'account' ? 'Sign out' : 'Sign out of this root'}
                 </button>
               ) : (
                 <button type="button" onClick={onLogin} disabled={busy}>
-                  Sign in for this root
+                  {presentation === 'account' ? 'Sign in' : 'Sign in for this root'}
                 </button>
               )}
             </div>
-          </div>
+          </div> : null}
 
+          {presentation !== 'account' ? <>
           <div className="consent-section" data-section="consent">
             <p className="api-key-status consent-status" data-consent={consentStatus}>
               {consentLabel(snapshot)}
@@ -446,6 +446,7 @@ export function AccountConsentSettingsView({
               by descent.
             </p>
           </fieldset>
+          </> : null}
         </>
       )}
 

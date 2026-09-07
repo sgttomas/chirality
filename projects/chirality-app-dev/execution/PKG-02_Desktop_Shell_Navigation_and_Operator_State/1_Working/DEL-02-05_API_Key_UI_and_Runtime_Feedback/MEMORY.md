@@ -24,3 +24,7 @@ The owner selected "Runtime A; D122 A; D123 A". D-APP-122 A adopts only the acco
 ## 2026-09-07 — existing account host criterion
 
 2026-09-07 - DEP-02-05-014 host evidence reconciled PENDING to SATISFIED under D-APP-59 S1 Reach2 against existing committed source/check/run evidence, not D122 alone. Parent review/closeout precedes consumer activation. Account implementation and all Remaining, lifecycle, approval and live-contract gates unchanged. See `_run_records/DEP014_HOST_RECONCILIATION_2026-09-07.md`.
+
+## 2026-09-07 — D122 presentation checked, pending merge
+
+Account footer/popover/Settings and shared existing controller are implemented under V3-05; final independent full-diff review and bounded Chrome proof passed. See `_run_records/D122_PRESENTATION_2026-09-07.md`. Actual shell account service remains unavailable; fake evidence is component-only. Keep V3-05 until actual merge and V3-03 live gates intact. A1 new-stage/fresh-owner proof applies; no lifecycle or dependency change.

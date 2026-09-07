@@ -1,0 +1,95 @@
+{
+  "head": "2e2a1911f4acb6375fa04aa5964e34006b5e0e0d",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/account-presentation.test.tsx",
+      "sha256": "16c603eab68c96818a059a97f9444528d24ece8a1f8c94a7715803fcae6637f7",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/shell-frame.test.tsx",
+      "sha256": "cf1ae32558fd8526172f8e01c928ef9d6ac7608c4c9ff6f50b4396808ec15313",
+      "baseline_sha256": "685ae077256d720e9d7a06627b7667bdf4660e1dd34961d299e2cc13d2db6756"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "c8f92adc9294862c67c26ac63e3cb4711d49ed5189bdd97ecaef1f0010e5b523",
+      "baseline_sha256": "594f54051787a08200e03562131738eb8650ca8eddc0693dd8f9734a3dfa0899"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "sha256": "7c3a378567527a8eec5314c51808149d386f722b858824f38a72297e9b652677",
+      "baseline_sha256": "d134734016fe0d7544db3cf252c57cea1183dfbbf9ee8724fd0fcb1d50351923"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/settings/account-consent-settings.tsx",
+      "sha256": "e96729bb6fcb83807d8eb0bb080ce15018e5f2b57e40a93c31f07fa163f8e769",
+      "baseline_sha256": "0f956ce10510985f0e7e49ff7602b48f04f6b12568b954640f08d69fe191cb69"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/settings/runtime-settings-controller.tsx",
+      "sha256": "fb45c1f0144810d862e8507e2323dae231cf5a11b703cd6b5c2a0de83f56042b",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/settings/runtime-settings.tsx",
+      "sha256": "ad56dbf921e91173f6d3037eaa9d0a8d4425f1b1b020be74ac34da10b1cc9fed",
+      "baseline_sha256": "6405917d760d95fa0d1c28ac4330b8a04aac2cbbe1cd66bc28b3513626215497"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/settings/settings-view.module.css",
+      "sha256": "d9bfa50df612d0d26c827f9cb9c8fabee7786fb6b4152afced83b7f655201413",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/settings/settings-view.tsx",
+      "sha256": "1fa142b3c81d5b2bef40923179b671e6fcef1c1da37d9d54e43ac82676fb80c4",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/account-controls.module.css",
+      "sha256": "5e488d5967989065b3de1e2cd12995f3725db11b2100fc383999d417f65185a0",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/account-popover.tsx",
+      "sha256": "abaf102e044407613edae654eb3e2116360dff9dee6809a5779ae888bc1f3fb2",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/account-row.tsx",
+      "sha256": "477b4fb43ca28d33a8620026eae74b9eab91d12fd704ba5b66ea631e56959295",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/account-settings-controls.tsx",
+      "sha256": "db9747a25bd43db0973e8fb0e68bc1bac7211ea4c7395907755c2ecd55d8e048",
+      "baseline_sha256": null
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+      "sha256": "d8263effddf028e9a69c34923c74f56311b7b44ca32c42d37c15e37129d9d6ce",
+      "baseline_sha256": "bc95396dcdd74e2da85d97c0374f1cd4ac00726f6fec63464128aaa17b939ec6"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/theme-control.tsx",
+      "sha256": "bd8bb8e268378fd616d54560cb882f0e5d19025b96d4a7f29d2f4bf23f53eee4",
+      "baseline_sha256": "79c9e492f9126dcb35ef33cf3a3d7aa4077ab75e7dc52fb5c0b8fa6a02a50dc0"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "1b8ccf834d150dc943eb0e156de6ead59779c8e35674377b7cab84f5fe8b5560",
+      "baseline_sha256": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "ae5f4c1d206f8421b33af2e113147c99defb36f48f00fd668cafba8a61da4208",
+      "baseline_sha256": "33ada3e4d9b4ce3970c7c0e2ed07fad0020fac0fd152696762a4c41373cbcd70"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "c391f11a2f7d270e463b3021c5e1ef6d0203d24b94835fef71dfaef3e7a4344e",
+      "baseline_sha256": "205b39a280d68a5ff1aaccf3e4a0a139904257f3d52db8536a4d3785dd5a5801"
+    }
+  ]
+}

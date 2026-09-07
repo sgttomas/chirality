@@ -25,7 +25,7 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => workspace.value
 }));
 vi.mock('../../components/settings/api-key-settings', () => ({ ApiKeySettings: () => null }));
-vi.mock('../../components/settings/runtime-settings', () => ({ RuntimeSettings: () => null }));
+vi.mock('../../components/settings/runtime-settings', () => ({ RuntimeSettings: () => null, RuntimeSettingsView: () => null }));
 
 function setWorkspace(overrides: Partial<WorkspaceFixture> = {}): void {
   workspace.value = {
@@ -155,7 +155,7 @@ describe('ShellFrame', () => {
       'dark',
       'system'
     ]);
-    expect(options.map((node) => textOf(node))).toEqual(['Light', 'Dark', 'Auto']);
+    expect(options.map((node) => textOf(node))).toEqual(['Light', 'Dark', 'System']);
     expect(options.map((node) => node.props['aria-pressed'])).toEqual([
       true,
       false,
@@ -182,12 +182,12 @@ describe('ShellFrame', () => {
   });
 });
 
-it('anchors woven Settings outside its trigger and dismisses with Escape or an outside pointer', async () => {
+it('anchors the woven account popover outside its trigger and dismisses with Escape or an outside pointer', async () => {
   const handlers = new Map<string, (event: unknown) => void>();
   class FixtureNode {}
   const trigger = { getBoundingClientRect: () => ({ top: 700, bottom: 730, left: 24 }), focus: vi.fn() };
-  const panel = { style: {} as Record<string, string> };
-  const disclosure = { open: true, querySelector: (selector: string) => selector === 'summary' ? trigger : panel, contains: (target: unknown) => target === trigger };
+  const panel = { style: {} as Record<string, string>, focus: vi.fn() };
+  const root = { contains: (target: unknown) => target === trigger };
   vi.stubGlobal('Node', FixtureNode);
   vi.stubGlobal('document', { documentElement: { setAttribute: vi.fn() }, addEventListener: (name: string, handler: (event: unknown) => void) => handlers.set(name, handler), removeEventListener: (name: string) => handlers.delete(name) });
   vi.stubGlobal('window', { innerHeight: 800, innerWidth: 1000, addEventListener: vi.fn(), removeEventListener: vi.fn() });
@@ -195,16 +195,54 @@ it('anchors woven Settings outside its trigger and dismisses with Escape or an o
   const { ShellFrame } = await import('../../components/shell/shell-frame');
   let tree!: ReactTestRenderer;
   try {
-    act(() => { tree = renderer.create(<ShellFrame section="CHAT" title="Chat" subtitle="" variant="workspace" renderWorkspaceContent={({ settingsControl }) => settingsControl} />, { createNodeMock: element => element.props.className === 'shell-root-disclosure' ? disclosure : null }); });
-    tree.root.findByProps({ className: 'shell-root-disclosure' }).props.onToggle();
-    expect(panel.style.bottom).toBe('108px'); // Popup ends eight pixels before the trigger.
+    await act(async () => { tree = renderer.create(<ShellFrame section="CHAT" title="Chat" subtitle="" variant="workspace" renderWorkspaceContent={({ settingsControl }) => settingsControl} />, { createNodeMock: element => element.type === 'button' && element.props['aria-haspopup'] === 'dialog' ? trigger : element.props.role === 'dialog' ? panel : root }); });
+    const toggle = () => tree.root.findByProps({ 'aria-haspopup': 'dialog' });
+    act(() => toggle().props.onClick());
+    expect(panel.style.bottom).toBe('108px');
     expect(panel.style.maxHeight).toBe('684px');
-    handlers.get('keydown')?.({ key: 'Escape' });
-    expect(disclosure.open).toBe(false); expect(trigger.focus).toHaveBeenCalledTimes(1);
-    disclosure.open = true;
-    handlers.get('pointerdown')?.({ target: new FixtureNode() });
-    expect(disclosure.open).toBe(false);
+    expect(panel.focus).toHaveBeenCalledTimes(1);
+    act(() => handlers.get('keydown')?.({ key: 'Escape', preventDefault: vi.fn() }));
+    expect(toggle().props['aria-expanded']).toBe(false); expect(trigger.focus).toHaveBeenCalledTimes(1);
+    act(() => toggle().props.onClick());
+    act(() => handlers.get('pointerdown')?.({ target: new FixtureNode() }));
+    expect(toggle().props['aria-expanded']).toBe(false);
+    act(() => toggle().props.onClick());
+    act(() => handlers.get('keydown')?.({ key: ',', metaKey: true }));
+    expect(toggle().props['aria-expanded']).toBe(false);
     act(() => tree.unmount());
     expect(handlers.size).toBe(0);
   } finally { vi.unstubAllGlobals(); }
+});
+
+it('focuses mounted Settings on every generic, group and keyboard invocation', async () => {
+  const handlers = new Map<string, (event: unknown) => void>();
+  const focus = vi.fn();
+  const folderFocus = vi.fn();
+  const localFocus = vi.fn();
+  const trigger = { focus: vi.fn(), getBoundingClientRect: () => ({ top: 700, bottom: 730, left: 24 }) };
+  const settings = { focus, querySelector: (selector: string) => ({ focus: selector.includes('folder') ? folderFocus : localFocus, scrollIntoView: vi.fn() }) };
+  vi.stubGlobal('document', { documentElement: { setAttribute: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal('window', { innerHeight: 800, innerWidth: 1000, addEventListener: (name: string, handler: (event: unknown) => void) => handlers.set(name, handler), removeEventListener: (name: string) => handlers.delete(name) });
+  setWorkspace({ projectRoot: '/example' });
+  const { ShellFrame } = await import('../../components/shell/shell-frame');
+  const opened = vi.fn();
+  let tree!: ReactTestRenderer;
+  try {
+    await act(async () => { tree = renderer.create(<ShellFrame section="CHAT" title="Chat" subtitle="" variant="workspace" onOpenSettings={opened} renderWorkspaceContent={({ settingsControl, settingsView }) => <>{settingsControl}{settingsView}</>} />, { createNodeMock: element => element.props['aria-label'] === 'Settings' ? settings : element.props['aria-haspopup'] === 'dialog' ? trigger : element.props.role === 'dialog' ? { style: {}, focus: vi.fn() } : null }); });
+    const invoke = (label: string) => {
+      act(() => tree.root.findByProps({ 'aria-haspopup': 'dialog' }).props.onClick());
+      act(() => tree.root.findAllByType('button').find(node => textOf(node) === label)!.props.onClick());
+    };
+    focus.mockClear();
+    invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(1);
+    invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(2);
+    invoke('This folder…'); expect(folderFocus).toHaveBeenCalledTimes(1);
+    invoke('This folder…'); expect(folderFocus).toHaveBeenCalledTimes(2);
+    invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(3);
+    act(() => handlers.get('keydown')?.({ key: ',', metaKey: true, preventDefault: vi.fn() }));
+    expect(focus).toHaveBeenCalledTimes(4);
+    act(() => handlers.get('keydown')?.({ key: ',', ctrlKey: true, preventDefault: vi.fn() }));
+    expect(focus).toHaveBeenCalledTimes(5);
+    expect(opened).toHaveBeenCalledTimes(7);
+  } finally { act(() => tree?.unmount()); vi.unstubAllGlobals(); }
 });

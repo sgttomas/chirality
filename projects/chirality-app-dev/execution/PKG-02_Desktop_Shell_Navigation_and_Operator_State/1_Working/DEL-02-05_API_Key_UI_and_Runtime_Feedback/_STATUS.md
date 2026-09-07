@@ -1,7 +1,7 @@
 # Status: DEL-02-05
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-09-06
+**Last Updated:** 2026-09-07
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -28,6 +28,7 @@
   Removed when: merged with review PASS; live flows remain DEL-02-05-V3-03.
 
 ## History
+- 2026-09-07 - D122 bounded account row/popover/Settings presentation implemented, independently reviewed and checked; final Chrome render corrected the legacy footer typography cascade. Source, checks, failures and limitations in `_run_records/D122_PRESENTATION_2026-09-07.md`. V3-05 stays Remaining until merged with review PASS; live V3-03, dependencies, lifecycle and Checking Approval SHA unchanged. A1 new staging/fresh owner proof required.
 - 2026-09-07 - DEP-02-05-014 host evidence reconciled PENDING to SATISFIED under D-APP-59 S1 Reach2 against existing committed source/check/run evidence, not D122 alone. Parent review/closeout precedes consumer activation. Account implementation and all Remaining, lifecycle, approval and live-contract gates unchanged. See `_run_records/DEP014_HOST_RECONCILIATION_2026-09-07.md`.
 - 2026-09-06 - Owner selected D-APP-122 A in the exact slate response "Runtime A; D122 A; D123 A": DEL-02-05-V3-05 now records the approved account-host prerequisite and exact account/Settings presentation loci. Ruling effect remains HELD until observed on fetched origin/main; source implementation is not selected here. Full accepted residuals, dependency satisfaction, lifecycle and Checking Approval SHA are unchanged. Evidence: `_run_records/D_APP_122_OWNER_SELECTION_2026-09-06.md`; exact reviewed application package `execution/_Coordination/AgentRuns/APP_SHELL_RESUME_2026-09-06/account-scope/ruling-application-v1/`.
 - 2026-09-05 - D-APP-109 (owner direction 2026-09-05): dependency register re-extracted against the applied decomposition row L311 with the held edge proposals emitted as cycle-participating, non-gating rows (run `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/`); `_CONTEXT.md` Traceability, Anticipated Artifacts, and Source Authority aligned to the applied row. No Remaining, lifecycle, Checking Approval SHA, product, or release change.

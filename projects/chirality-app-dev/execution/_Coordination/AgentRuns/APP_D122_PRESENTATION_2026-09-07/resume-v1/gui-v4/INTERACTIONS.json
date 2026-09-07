@@ -1,0 +1,11 @@
+{
+  "folder": "folder",
+  "keyboard": "Settings",
+  "escape": "Account and settings",
+  "final": {
+    "accountControls": 1,
+    "dialogues": 1,
+    "draft": "D122 final draft — retained across account and Settings.",
+    "theme": "system"
+  }
+}

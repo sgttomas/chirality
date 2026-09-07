@@ -1,0 +1,37 @@
+[
+  {
+    "size": "12px",
+    "spacing": "normal",
+    "text": "Account service unavailable in this build.",
+    "transform": "none",
+    "weight": "400"
+  },
+  {
+    "size": "12px",
+    "spacing": "normal",
+    "text": "Consent for work: unavailable",
+    "transform": "none",
+    "weight": "400"
+  },
+  {
+    "size": "12px",
+    "spacing": "normal",
+    "text": "oMLX server status unknown.",
+    "transform": "none",
+    "weight": "400"
+  },
+  {
+    "size": "12px",
+    "spacing": "normal",
+    "text": "Runtime controls are available only in Chirality Desktop.",
+    "transform": "none",
+    "weight": "400"
+  },
+  {
+    "size": "12px",
+    "spacing": "normal",
+    "text": "Chirality 2.0.0 · Opt-in Preview",
+    "transform": "none",
+    "weight": "400"
+  }
+]
