@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-09-07 - The exact owner-accepted D121 carrier amendment was applied across its three owning surfaces after the ruling became observable on main: PKG02 applied DEL-02-03 `_STATUS.md`; PKG09 applied DEL-09-06 `_STATUS.md` and `ScopeOfWork.md`. Direct hashes and byte comparisons match accepted patch `e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32`; a fresh independent reviewer returned PASS over the complete `+12/-3` union. The initial PKG09 preparation contained one manually transcribed wrong postimage hash and is preserved as failed/superseded evidence; corrected v2 identities were recomputed from bytes before application. DEL-09-06-V3-07 and its AC-001/VER-001 criterion are now seated, but remain open pending a separately frozen twelve-locus source candidate and actual unsigned packaged multi-page/page-navigation native proof. `inlinePdfPreview` remains false. Lifecycle, Checking Approval SHA, release fences, supplier status and release authority are unchanged. Evidence: `_run_records/D121_CARRIER_APPLICATION_2026-09-07.md` and `execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121/`.
 - 2026-08-20 - The selected D-APP-97 packaged-security residual passed against
   a fresh unsigned arm64 app built from the accepted N1/N2 API-key precedence
   bytes. Compact D-APP-99 evidence identity-binds the DMG, executable,

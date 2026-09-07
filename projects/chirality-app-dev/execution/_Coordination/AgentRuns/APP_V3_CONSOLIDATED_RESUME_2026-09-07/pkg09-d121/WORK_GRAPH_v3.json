@@ -1,0 +1,27 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "version": 3,
+  "supersedes": "WORK_GRAPH_v2.json",
+  "package_id": "PKG-09",
+  "selected_deliverables": ["DEL-09-06"],
+  "posture": "MIXED",
+  "nodes": [
+    {"id": "N1", "state": "REJECTED_WRONG_POSTIMAGE_HASH_TRANSCRIPTION", "evidence": "V1_FAILURE_NOTICE.md"},
+    {"id": "N1R", "state": "COMPLETE", "evidence": "PREFLIGHT_AND_IDENTITIES_v2.json"},
+    {"id": "N2-PKG02", "state": "COMPLETE", "evidence": "../pkg02-cross-root/d121-carrier/APPLICATION.json"},
+    {"id": "N2-PKG09", "state": "COMPLETE", "evidence": "application-v2/APPLICATION.json"},
+    {"id": "N2-REVIEW", "state": "PASS", "evidence": "review-v1/RETURN.md"},
+    {"id": "N2-RECORD", "state": "COMPLETE_PENDING_CHANGE_COMMIT", "evidence": "MANAGER_RETURN_FINAL.md"},
+    {"id": "N3", "state": "HOLD_EXPLICIT_SOURCE_RELEASE_AND_PKG02_FREEZE", "evidence": "PACKAGED_PROOF_BRIEF.md"},
+    {"id": "N4", "state": "HOLD_N3_TERMINAL_RETURN", "evidence": "fresh reviewer brief to be frozen later"}
+  ],
+  "source_gate": "D121 ruling must remain observable on fetched main; applied carrier bytes/checks/run record must be observable on the run branch; safe synchronized twelve-locus inputs must be frozen; and HELP_HUMAN must explicitly release each source/process stage. D121 does not require a separate carrier merge between predecessor and source increment. PKG09 loci 11-12 still require the accepted PKG02 loci 1-10 freeze.",
+  "runtime": {
+    "manager": "/root/app_pkg09",
+    "reviewer": "/root/app_pkg09/d121_carrier_review",
+    "model": "gpt-5.6-sol",
+    "reasoning": "medium",
+    "role_enforcement": "instruction-asserted",
+    "token_context_occupancy": "unavailable"
+  }
+}

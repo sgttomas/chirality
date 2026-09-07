@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-008]
 
 This Scope of Work defines `DEL-09-06` in service of project scope [SOW-019, SOW-020, SOW-022, SOW-023] and package objectives [OBJ-008].
 
-- **OUT-001** — A security-control evidence set covering renderer network allowlisting, Anthropic provider endpoint policy, API key storage, resolution and redaction, attachment validation and budgets, partial and total attachment failure behavior, retry preservation, and repeatable security-significant validation.
+- **OUT-001** — A security-control evidence set covering renderer network allowlisting, Anthropic provider endpoint policy, API key storage, resolution and redaction, attachment validation and budgets, partial and total attachment failure behavior, retry preservation, and repeatable security-significant validation. Include the D121 bounded built-in PDF renderer-policy security evidence set; existing attachment budgets are unchanged.
 
 ## Deliverable Definition — Ontology
 
@@ -207,7 +207,7 @@ This Scope of Work defines `DEL-09-06` in service of project scope [SOW-019, SOW
 > | C-001 | Converted to explicit `TBD` slots for exact test file paths and command names rather than inventing implementation locations. |
 > | D-001 | Incorporated the source-named validation command family while retaining current-run output and exact artifact paths as `TBD`. |
 
-- **AC-001** — Evidence verifies UI safeStorage and environment key precedence without secret leakage, only the accepted Anthropic endpoint and product network scope, secret-free renderer policy logs, server-side attachment type, path, symlink, readability and byte-budget enforcement, partial-failure continuation, ATTACHMENT_FAILURE on total failure with empty text, retry-state preservation where applicable, and repeatable validation; unselected implementation paths and unavailable outputs remain explicit TBD blockers.
+- **AC-001** — Evidence verifies UI safeStorage and environment key precedence without secret leakage, only the accepted Anthropic endpoint and product network scope, secret-free renderer policy logs, server-side attachment type, path, symlink, readability and byte-budget enforcement, partial-failure continuation, ATTACHMENT_FAILURE on total failure with empty text, retry-state preservation where applicable, and repeatable validation; unselected implementation paths and unavailable outputs remain explicit TBD blockers. For D121, require exact central policy ownership and trusted-server eligibility finalization, preserved nonce/window/IPC/egress controls, and actual packaged multi-page built-in PDF proof with the accepted negative controls; absent native feasibility remains a blocker.
 
 ## Production and Verification Method — Praxeology
 
@@ -322,7 +322,7 @@ This Scope of Work defines `DEL-09-06` in service of project scope [SOW-019, SOW
 > | F-001 | Converted to explicit implementation target path slots, all retained as `TBD` pending implementation-owner selection. |
 > | X-001 | Converted to explicit evidence artifact path slots, all retained as `TBD` pending validation run and artifact-location selection. |
 
-- **VER-001** — Run or inspect key precedence and redaction tests, provider endpoint and renderer network-guard tests, attachment allowlist, unsafe-file and budget fixtures, partial and total failure and retry tests, secret scans, and the applicable source-named validation command evidence, retaining unconfirmed paths or artifacts as TBD.
+- **VER-001** — Run or inspect key precedence and redaction tests, provider endpoint and renderer network-guard tests, attachment allowlist, unsafe-file and budget fixtures, partial and total failure and retry tests, secret scans, and the applicable source-named validation command evidence, retaining unconfirmed paths or artifacts as TBD. For D121, execute the accepted central-finalizer, response-spoofing, selector/descriptor, streaming/failure/range, ancestry/navigation and actual packaged PDF evidence matrix under DEL-09-06-V3-07; retain full source and fixture identities.
 
 ## Governing Values and Decisions — Axiology
 

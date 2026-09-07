@@ -1,0 +1,60 @@
+{
+  "schema": "app-pkg09-d121-preparation/v2",
+  "supersedes": "PREFLIGHT_AND_IDENTITIES.json",
+  "v1_status": "FAILED_WRONG_DEL09_STATUS_POSTIMAGE_TRANSCRIPTION",
+  "observed_at_head": "f3f68d744fc745996776cfbe8f30cbd2bb7b100a",
+  "origin_main": "9428e4af44c91063f2188e31698e4c84d8549be9",
+  "ruling_observable_on_origin_main": true,
+  "accepted_patch": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_RULED_INCREMENT_2026-09-06/pdf-application/ACCEPTED.patch",
+    "sha256_direct": "e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32",
+    "git_apply_p0_check": "PASS",
+    "isolated_apply": "PASS",
+    "result_matches_all_retained_postimages_byte_for_byte": true
+  },
+  "carriers": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_STATUS.md",
+      "owner": "PKG02",
+      "before_sha256_direct": "da18f6ef905840270718f88947fcbfdd13d26609f1c9a06522f1463385999ecd",
+      "retained_postimage_sha256_direct": "af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960",
+      "isolated_patch_result_sha256_direct": "af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960",
+      "byte_compare": "PASS"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+      "owner": "PKG09",
+      "before_sha256_direct": "d8152c669ca3e57768004e184ec75ac9aaccaba5791d96589547e017545c1fe0",
+      "retained_postimage_sha256_direct": "0f4b65b53f0e05183fcd8a5f489bb2da8ccdb4ead6fab22944f89f8daf42e6ba",
+      "isolated_patch_result_sha256_direct": "0f4b65b53f0e05183fcd8a5f489bb2da8ccdb4ead6fab22944f89f8daf42e6ba",
+      "byte_compare": "PASS"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md",
+      "owner": "PKG09",
+      "before_sha256_direct": "1fed47a10b3f480a545947e6cf1d60ef7e150f166caceb4a26c0267f92dde652",
+      "retained_postimage_sha256_direct": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0",
+      "isolated_patch_result_sha256_direct": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0",
+      "byte_compare": "PASS"
+    }
+  ],
+  "carrier_change_from_origin_main_to_head": "NONE",
+  "postimage_sow_validation": {
+    "python": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+    "format": "SOW_V1",
+    "valid": true,
+    "issues": [],
+    "derived_item_count": 1,
+    "acceptance_id": "DEL-09-06-AC-001",
+    "verification_id": "DEL-09-06-VER-001"
+  },
+  "app_hold": {
+    "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+    "scan_fingerprint_sha256": "b30a546177fbdf6ea49e3407f8b1df994b83061c7024cc0dfe6ccabc646af437",
+    "reliance": "ALLOW",
+    "accepted_dependency_consumption": "ALLOW",
+    "active_hold_deliverables": []
+  },
+  "application_performed": false,
+  "parent_release": "PENDING"
+}

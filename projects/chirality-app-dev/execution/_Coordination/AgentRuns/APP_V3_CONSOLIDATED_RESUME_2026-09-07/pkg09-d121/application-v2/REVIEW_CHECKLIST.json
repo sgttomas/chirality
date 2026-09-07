@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 210,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0"
+      },
+      "text": "Evidence verifies UI safeStorage and environment key precedence without secret leakage, only the accepted Anthropic endpoint and product network scope, secret-free renderer policy logs, server-side attachment type, path, symlink, readability and byte-budget enforcement, partial-failure continuation, ATTACHMENT_FAILURE on total failure with empty text, retry-state preservation where applicable, and repeatable validation; unselected implementation paths and unavailable outputs remain explicit TBD blockers. For D121, require exact central policy ownership and trusted-server eligibility finalization, preserved nonce/window/IPC/egress controls, and actual packaged multi-page built-in PDF proof with the accepted negative controls; absent native feasibility remains a blocker.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-06-VER-001",
+          "source_line": 325,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run or inspect key precedence and redaction tests, provider endpoint and renderer network-guard tests, attachment allowlist, unsafe-file and budget fixtures, partial and total failure and retry tests, secret scans, and the applicable source-named validation command evidence, retaining unconfirmed paths or artifacts as TBD. For D121, execute the accepted central-finalizer, response-spoofing, selector/descriptor, streaming/failure/range, ancestry/navigation and actual packaged PDF evidence matrix under DEL-09-06-V3-07; retain full source and fixture identities."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-06",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "app-registered-checks/v1",
+  "basis_head": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+  "configured_python": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+  "checks": [
+    {
+      "name": "accepted-patch-and-three-postimage-byte-parity",
+      "result": "PASS",
+      "details": "Patch e37b19f489ad616b272e8f2aa511208bc7c32487cfbbc90734e12c18d222bb32; live postimages af33c2623097cdffb3eedb58819a0bfbdf8c5dcb987b4f13befbeed6b72b1960, 0f4b65b53f0e05183fcd8a5f489bb2da8ccdb4ead6fab22944f89f8daf42e6ba, 02725ce67b4329672abec8fd6838f0c37c8261cf764bfd4a1894d8c12215b7d0; byte parity 3/3"
+    },
+    {
+      "name": "complete-reverse-patch-check",
+      "result": "PASS",
+      "details": "git apply -p0 --reverse --check; exact +12/-3 union"
+    },
+    {
+      "name": "independent-three-carrier-review",
+      "result": "PASS",
+      "details": "RETURN 4bad420a228ba05df58e9ba9a7498b011b1a9572062e7ecb595e645dfb6d2505; no findings"
+    },
+    {
+      "name": "review-applicability-after-safe-sync",
+      "result": "PASS",
+      "details": "CHANGE fast-forward f3f68d744fc745996776cfbe8f30cbd2bb7b100a to e8cdc460cffccfe9e58ab4e5b9bbc05350c09327 was tree-identical for incoming content and preserved 1004 local members; manager rehashed all three carriers and reviewer artifacts after sync"
+    },
+    {
+      "name": "scope-of-work-validation",
+      "result": "PASS",
+      "details": "SOW_V1, no issues; generated checklist 2cd5fc07681b3c4535ecad5bcf58e7b9343ff58e3311187d7ecd4762797c24e4"
+    },
+    {
+      "name": "app-hold-closeout-reliance",
+      "result": "ALLOW",
+      "details": "DEL-02-03 and DEL-09-06; register c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc; scan d27f77a49487b75c51d2ba7a3929587bcc8231651a67ed73a05a02b2a838478b"
+    },
+    {
+      "name": "receipt-validator-post-append",
+      "result": "PASS",
+      "details": "exit 0"
+    },
+    {
+      "name": "authority-corpus-post-append",
+      "result": "PASS",
+      "details": "v20, all eight members MATCH, no drift"
+    },
+    {
+      "name": "practitioner-harness-status-post-append",
+      "result": "PASS",
+      "details": "exit 0; stdout SHA-256 7ac7c9dfec4c1e304f953b410da0b984e587fbd4e7513d0c26931f82c9055706"
+    },
+    {
+      "name": "practitioner-harness-self-check-post-append",
+      "result": "PASS_WITH_BASELINE_FINDINGS",
+      "details": "exit 0; stdout SHA-256 d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945; pre-existing REVIEW/WARN findings retained"
+    },
+    {
+      "name": "practitioner-harness-pytest",
+      "result": "PASS",
+      "details": "379 passed in 29.45s before record append; later changes were carrier/control records, and post-append receipt/diff/corpus/harness checks passed. A redundant second invocation did not retain its terminal summary and is not claimed as evidence."
+    },
+    {
+      "name": "selected-diff-whitespace",
+      "result": "PASS",
+      "details": "git diff --check over three carriers, DEL09 MEMORY/run record and LOOP_RECEIPTS"
+    },
+    {
+      "name": "frontend-source-build-native",
+      "result": "SKIPPED_NOT_APPLICABLE",
+      "details": "carrier and evidence records only; no frontend source changed; inlinePdfPreview remains false"
+    }
+  ]
+}

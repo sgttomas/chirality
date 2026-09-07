@@ -1,0 +1,25 @@
+{
+  "schema": "chirality-agent-return-manifest/v1",
+  "run_id": "APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121/review-v1",
+  "verdict": "PASS",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "4bad420a228ba05df58e9ba9a7498b011b1a9572062e7ecb595e645dfb6d2505"
+    },
+    {
+      "path": "CHECKS.json",
+      "sha256": "a312494a9d4476391a45c6eddf7cc1f893390455dc90c931becd01aea767520f"
+    }
+  ],
+  "sealed_brief": {
+    "path": "SEALED_BRIEF.md",
+    "sha256": "5d0c8653487fd14e95baeb9326b0c9e7593c8f53803d7d34d82d429e13cff608"
+  },
+  "write_targets": [
+    "RETURN.md",
+    "CHECKS.json",
+    "MANIFEST.json"
+  ],
+  "write_containment": "PASS_INSTRUCTION_ASSERTED"
+}
