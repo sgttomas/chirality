@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "duration_seconds": 18.867,
+      "exit_code": 0,
+      "id": "harness-self-check",
+      "status": "PASS",
+      "timeout_seconds": 600.0
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "scan",
+        "--require-register-match"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "duration_seconds": 0.979,
+      "exit_code": 0,
+      "id": "app-hold-integrity",
+      "status": "PASS",
+      "timeout_seconds": 600.0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": ".",
+      "duration_seconds": 42.74,
+      "exit_code": 0,
+      "id": "harness-pytest",
+      "status": "PASS",
+      "timeout_seconds": 600.0
+    }
+  ],
+  "raw_sha256": "f51ca9bbd5328f61571b4bfc4c3618cde39cdd73af9d536b8edc7b66394cb362",
+  "raw_bytes": 71089,
+  "raw_classification": "local-only bulk check output; retained unchanged",
+  "limitations": "Self-check warnings are preserved in raw output; zero exit does not dispose of warnings or establish product acceptance."
+}

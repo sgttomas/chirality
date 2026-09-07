@@ -1,0 +1,55 @@
+{
+  "limitation": "Interactive mock previously security blocked; not reopened or rehosted. Source and retained image inspection only. Images 13/14/15 visually inspected this run; Q7 and D122 status truthfulness supersede reference.",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/mock/chirality-shell-mocks.html",
+      "sha256": "b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6",
+      "bytes": 2202977
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/01_DECISIONS.md",
+      "sha256": "8cc5bc8cb2eb0688ca3db69ed24e00bee9c460aefa1d7165cb1a129688a04ed1",
+      "bytes": 25899
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/02_CURRENT_STATE.md",
+      "sha256": "85bbf16115ee149827b190e7a510c4426bb0ab0c95a42c29978e6e2d8eb18baf",
+      "bytes": 14124
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/05_LOGO_AND_BRAND.md",
+      "sha256": "84b466fde1fea8418f41778a51ecadfde496322edeac14f6ec2aa508dc509d2b",
+      "bytes": 8343
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/README.md",
+      "sha256": "357470dcc187271549d21fe2ea00a27453650287d1e51b68b63a31041a807aa5",
+      "bytes": 8480
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md",
+      "sha256": "e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb",
+      "bytes": 29142
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md",
+      "sha256": "d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45",
+      "bytes": 33247
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/redesign_alignment/mock-walk-13.png",
+      "sha256": "1201233eda96b6318f331a2e930af9b810547734bc1810618b8807b495f54275",
+      "bytes": 86202
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/redesign_alignment/mock-walk-14.png",
+      "sha256": "495dac55d880b6980ef4d7003f76cc53d54cf72e7158c4db31bca0d6c0f64ac2",
+      "bytes": 90727
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/redesign_alignment/mock-walk-15.png",
+      "sha256": "74df5388496f3dfad6a553de0271adfcbc8e0e7d99fde7abc99978ded22e00e1",
+      "bytes": 99054
+    }
+  ]
+}

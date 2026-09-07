@@ -1,0 +1,1 @@
+Initial identity inventory expected raw REVIEW_RETURN committed; D99 compact publication retained manager/review summary instead. Failed before any live carrier mutation. Corrected inventory distinguishes committed source/check/run records from retained local raw review; no nonexistent committed review claim.

@@ -1,0 +1,43 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "WORKING_ITEMS:PKG02:HOST_RECONCILIATION:CLOSEOUT",
+  "operation": "reliance",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-01",
+      "entry_path": "WORKING_ITEMS:PKG02:HOST_RECONCILIATION:CLOSEOUT",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-03",
+      "entry_path": "WORKING_ITEMS:PKG02:HOST_RECONCILIATION:CLOSEOUT",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-05",
+      "entry_path": "WORKING_ITEMS:PKG02:HOST_RECONCILIATION:CLOSEOUT",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "d3b394d9856b9170c50b78c5be6309602852ac0e8d1ad917af2cda2aaf4c0ed7",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-02-01",
+    "DEL-02-03",
+    "DEL-02-05"
+  ],
+  "verdict": "ALLOW"
+}

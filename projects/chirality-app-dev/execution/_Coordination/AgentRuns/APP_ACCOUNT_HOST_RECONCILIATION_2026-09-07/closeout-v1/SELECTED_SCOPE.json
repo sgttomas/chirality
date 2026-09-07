@@ -1,0 +1,204 @@
+{
+  "schema": "app-host-reconciliation-closeout-scope/v1",
+  "status": "frozen checked local scope; CHANGE determines publication under D99",
+  "members": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+      "sha256": "490988ad092a932885e9cbb18adeb8c1ec0ab2cf9ce88732968806014d9cc315",
+      "bytes": 16512,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md",
+      "sha256": "2b4e565b58753909b240dd50afd0d813e18524eb8ad7f983c5c5f580101e78f7",
+      "bytes": 5135,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+      "sha256": "a3e5f3e03c9c255d495fef0a50aa3469708a6458c6c206084972bd184e0bfe13",
+      "bytes": 21021,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/DEP014_HOST_RECONCILIATION_2026-09-07.md",
+      "sha256": "8f3ee854bd8a01893b85471c2b348bd5714956b080ba3947360f44b4b435b11d",
+      "bytes": 2028,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/APPLICATION.json",
+      "sha256": "e11fec692ee5e811a3b4926bb3e5edbff5503a330ebeb928006a8907584a0c15",
+      "bytes": 1661,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/ASSESSMENT.md",
+      "sha256": "47ff8a17fb5a5dccff7bfed761781d5975d7c8b83d68d17d764b7d18dfa5b1eb",
+      "bytes": 1535,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/ATTEMPT01.md",
+      "sha256": "9143b71579c0ce50352bd328297f1d7d854f0b9190dec81acce907a8a1776ab8",
+      "bytes": 311,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/BRIEF.md",
+      "sha256": "9784e23315e5b295f7de3bb7b36fa5461a4abc5c5abed7596090717fb7bfc03d",
+      "bytes": 1024,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/Dependencies.csv.after",
+      "sha256": "490988ad092a932885e9cbb18adeb8c1ec0ab2cf9ce88732968806014d9cc315",
+      "bytes": 16512,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/Dependencies.csv.before",
+      "sha256": "249ac0291f72ef8a84d0b51f18a2ffac9c2b486eeff58559c894d55e3fe03f76",
+      "bytes": 15892,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/Dependencies.csv.diff",
+      "sha256": "b0e37923637d054ccd18fbb3a110e74d0ef2d1469905107943846b68d779b714",
+      "bytes": 8812,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/INPUTS.json",
+      "sha256": "1c944696d0e2ffb37c8dfca08a3ad3e41b29fd0db2ce346fa8b0b7eb193187f7",
+      "bytes": 2414,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/MEMORY.md.after",
+      "sha256": "2b4e565b58753909b240dd50afd0d813e18524eb8ad7f983c5c5f580101e78f7",
+      "bytes": 5135,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/MEMORY.md.before",
+      "sha256": "3fcfc73bdabd57df74b2ff5fa285ba48b00ff3fbaac941b9c6eca39fd13ef0b6",
+      "bytes": 4704,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/MEMORY.md.diff",
+      "sha256": "4cd2952e28d6ac8e6ec0b43887da0e14d4690b05ca1454d7f0dd5b0f6461ab00",
+      "bytes": 1141,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/NEXT_BRIEF.md",
+      "sha256": "6f269f2bf70fad04fff4b24bd2d25dfbf3b38b2374ac55df42d8769e37d0a6e9",
+      "bytes": 1609,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/OUTPUT_MANIFEST.json",
+      "sha256": "38f98c46b6de3ea821e1d9bb37b3cb98867cc03b97ddf3c3bd27535f37f67f63",
+      "bytes": 4937,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/PREFLIGHT.json",
+      "sha256": "c6a3956ba92c95b6cb874d0cc50e350233f2391f3c18ffee9deb9bbbb53a0509",
+      "bytes": 1305,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/RETURN.md",
+      "sha256": "41c8b96394362886a9a560d4471123da3d2713874d606b90f42eeeb85eac8124",
+      "bytes": 378,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/_STATUS.md.after",
+      "sha256": "a3e5f3e03c9c255d495fef0a50aa3469708a6458c6c206084972bd184e0bfe13",
+      "bytes": 21021,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/_STATUS.md.before",
+      "sha256": "01c256f2d508a53e238e34b436c63443deea73d7c9157976d360fe5238b8e472",
+      "bytes": 20640,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/_STATUS.md.diff",
+      "sha256": "9bb36bd8f495caab06a49b0e088e5a3940f34f8cb8b743663b87c631c42b3c8f",
+      "bytes": 2366,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/_run_records_DEP014_HOST_RECONCILIATION_2026-09-07.md.after",
+      "sha256": "8f3ee854bd8a01893b85471c2b348bd5714956b080ba3947360f44b4b435b11d",
+      "bytes": 2028,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/_run_records_DEP014_HOST_RECONCILIATION_2026-09-07.md.diff",
+      "sha256": "012e6cf5ec329faee5a7f8e73cf0543b5b06b4e0347139044963cca0d4ab9176",
+      "bytes": 2178,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/CHECK_SUMMARY.json",
+      "sha256": "46eea9be5fda5269e665b9ca9dfe337477cd91a3a3f9af3d7731f5b764a14ef4",
+      "bytes": 1298,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/HANDOFF.md",
+      "sha256": "1c3ceed92a1f163e616aee71f9d1fb9167021102cbee7486c3bce0699b593c2d",
+      "bytes": 1410,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/INITIAL_VALIDATION.json",
+      "sha256": "5ee81d53f26900e40f87430c5b257c10c6c8484016f91473ec74d0d98498a971",
+      "bytes": 333,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/PREFLIGHT.json",
+      "sha256": "efe2bad0f550ac75f66496e63fc7730fd088a758be2435a555a9345f4e1acdd3",
+      "bytes": 1341,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/RECEIPT_APPEND.md",
+      "sha256": "e3ea5bfcc615e8776a878ea1d1bd824646d30b60e6fe4e9b620e99d0e32b0e64",
+      "bytes": 1987,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/RECEIPT_BEFORE.sha256",
+      "sha256": "24db354fe87c67e2de292ea9eb19f61584e2654a602918144afb172f1102517d",
+      "bytes": 65,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/REGISTERED_CHECKS.json",
+      "sha256": "f51ca9bbd5328f61571b4bfc4c3618cde39cdd73af9d536b8edc7b66394cb362",
+      "bytes": 71089,
+      "classification": "local-only"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_ACCOUNT_HOST_RECONCILIATION_2026-09-07/closeout-v1/RESULT.json",
+      "sha256": "11155c9f8f522c1ae5ee13eb0dff440a27f7a11743ed1b68fc446471991c5741",
+      "bytes": 1246,
+      "classification": "compact-publication-candidate"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "sha256": "a6c0366bbf5d2e72705bb79bf1ba8f81f4769dbfdb38781b1cd24a649c6ed94a",
+      "bytes": 594451,
+      "classification": "compact-publication-candidate"
+    }
+  ]
+}

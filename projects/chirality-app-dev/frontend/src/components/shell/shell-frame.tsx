@@ -6,6 +6,10 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNod
 import { deriveRuntimeConnectivityPresentation } from '../../lib/shell/runtime-connectivity';
 import { ApiKeySettings } from '../settings/api-key-settings';
 import { RuntimeSettings } from '../settings/runtime-settings';
+import { useRuntimeSettingsController } from '../settings/runtime-settings-controller';
+import { useAccountConsentController } from '../settings/account-consent-settings';
+import { SettingsView } from '../settings/settings-view';
+import { AccountRow } from './account-row';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { useRuntimeConnectivitySnapshot } from './runtime-connectivity-provider';
 import { ThemeControl } from './theme-control';
@@ -64,8 +68,10 @@ type ShellFrameProps = {
   children?: ReactNode;
   folderLocked?: boolean;
   onFolderSelectionPending?: (pending: boolean) => void;
-  renderWorkspaceContent?: (controls: { reconnectControl: ReactNode; settingsControl: ReactNode }) => ReactNode;
+  renderWorkspaceContent?: (controls: { reconnectControl: ReactNode; settingsControl: ReactNode; settingsView: ReactNode }) => ReactNode;
   variant?: 'default' | 'workspace';
+  onOpenSettings?: () => void;
+  legacyHref?: string;
 };
 
 /**
@@ -86,7 +92,9 @@ export function ShellFrame({
   variant = 'default',
   folderLocked = false,
   onFolderSelectionPending,
-  renderWorkspaceContent
+  renderWorkspaceContent,
+  onOpenSettings,
+  legacyHref = '/?legacy=1'
 }: ShellFrameProps): JSX.Element {
   const pathname = usePathname();
   const {
@@ -317,10 +325,9 @@ export function ShellFrame({
             </section>
           </details>);
   if (variant === 'workspace' && renderWorkspaceContent) {
-    return <main className="shell shell--workspace shell--stone">{renderWorkspaceContent({
-      reconnectControl,
-      settingsControl: <div className="woven-settings-controls">{settingsControl}<ThemeControl /></div>
-    })}</main>;
+    return <main className="shell shell--workspace shell--stone"><AccountPresentation folder={projectRoot} legacyHref={legacyHref} onOpenSettings={onOpenSettings}>
+      {controls => renderWorkspaceContent({ reconnectControl, ...controls })}
+    </AccountPresentation></main>;
   }
 
   return (
@@ -386,4 +393,28 @@ export function ShellFrame({
       {children}
     </main>
   );
+}
+
+/** One runtime/account controller survives footer relocation and Settings changes. */
+function AccountPresentation({ folder, legacyHref, onOpenSettings, children }: {
+  folder: string | null; legacyHref: string; onOpenSettings?: () => void;
+  children: (controls: { settingsControl: ReactNode; settingsView: ReactNode }) => ReactNode;
+}): JSX.Element {
+  const runtime = useRuntimeSettingsController();
+  const account = useAccountConsentController();
+  const [target, setTarget] = useState<{ group?: 'folder' | 'local-model'; sequence: number } | null>(null);
+  const open = useCallback((group?: 'folder' | 'local-model') => {
+    setTarget(current => ({ group, sequence: (current?.sequence ?? 0) + 1 }));
+    onOpenSettings?.();
+  }, [onOpenSettings]);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.addEventListener) return;
+    const shortcut = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === ',') { event.preventDefault(); open(); }
+    };
+    window.addEventListener('keydown', shortcut);
+    return () => window.removeEventListener('keydown', shortcut);
+  }, [open]);
+  return <>{children({ settingsControl: <AccountRow account={account} runtime={runtime} folder={folder} legacyHref={legacyHref} onOpenSettings={open} />,
+    settingsView: <SettingsView account={account} runtime={runtime} folder={folder} target={target} /> })}</>;
 }

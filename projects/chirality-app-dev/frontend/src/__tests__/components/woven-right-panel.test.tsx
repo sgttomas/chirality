@@ -11,9 +11,13 @@ vi.mock('../../components/shell/file-tree-panel', () => ({ FileTreePanel: () => 
 const handoff = vi.hoisted(() => vi.fn(async (_input: unknown) => {}));
 vi.mock('../../components/shell/document-view', () => ({ handoffDocument: handoff, DocumentView: ({ target }: { target: string }) => <p>Document {target}</p> }));
 const handlers = { onView: vi.fn(), onOpenFile: vi.fn(), onClose: vi.fn(), onExpand: vi.fn(), coordination: <p>Recorded agents and session content</p> };
-it.each(['settings'] as const)('retains content for future stored %s views', view => {
-  const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: view }} sessionOpen={false} />);
-  expect(html).toContain('Existing file contents'); expect(html).not.toContain('placeholder');
+it('renders the stored Settings view and its breadcrumb without falling back to Files', () => {
+  const state = { ...createDefaultWovenWorkspaceState(), rightPanelView: 'settings' as const };
+  const html = renderToStaticMarkup(<RightPanel {...handlers} state={state} sessionOpen={false} settingsView={<p>Account and appearance controls</p>} />);
+  expect(html).toContain('Account and appearance controls'); expect(html).toContain('Settings breadcrumb');
+  expect(html).not.toContain('Existing file contents');
+  const unavailable = renderToStaticMarkup(<RightPanel {...handlers} state={state} sessionOpen={false} />);
+  expect(unavailable).toContain('Settings are unavailable.');
 });
 it('shows document breadcrumb and current controls without deferred popout', () => {
   const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), openDocumentPath: 'pkg/spec.md' }} sessionOpen={false} />);

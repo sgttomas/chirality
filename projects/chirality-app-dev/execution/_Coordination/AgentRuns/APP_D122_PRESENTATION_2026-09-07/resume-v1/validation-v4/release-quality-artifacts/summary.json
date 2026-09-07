@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-09-07T07:49:14.075Z",
+  "profile": "runtime-premerge-evidence",
+  "status": "fail",
+  "releaseClaim": false,
+  "section9Policy": {
+    "standaloneSection9IsBlockingForThisWrapper": true,
+    "premergeSection9IsReportOnly": true
+  },
+  "commands": [
+    {
+      "id": "full_test",
+      "status": "fail",
+      "command": "npm run test -- --testTimeout=15000",
+      "exitCode": 1,
+      "startedAt": "2026-09-07T07:48:40.266Z",
+      "endedAt": "2026-09-07T07:48:46.526Z",
+      "durationMs": 6260,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stderr.log"
+    },
+    {
+      "id": "typecheck",
+      "status": "pass",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "startedAt": "2026-09-07T07:48:46.526Z",
+      "endedAt": "2026-09-07T07:48:52.464Z",
+      "durationMs": 5938,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stderr.log"
+    },
+    {
+      "id": "section9",
+      "status": "pass",
+      "command": "npm run harness:validate:section9",
+      "exitCode": 0,
+      "startedAt": "2026-09-07T07:48:52.464Z",
+      "endedAt": "2026-09-07T07:49:03.200Z",
+      "durationMs": 10736,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stderr.log"
+    },
+    {
+      "id": "premerge",
+      "status": "pass",
+      "command": "npm run harness:validate:premerge",
+      "exitCode": 0,
+      "startedAt": "2026-09-07T07:49:03.200Z",
+      "endedAt": "2026-09-07T07:49:14.072Z",
+      "durationMs": 10872,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stderr.log"
+    }
+  ],
+  "summaryConsistency": {
+    "id": "summary.consistency",
+    "status": "pass",
+    "checks": [
+      {
+        "id": "summary.section9",
+        "status": "pass",
+        "artifactPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+        "errors": []
+      },
+      {
+        "id": "summary.section8",
+        "status": "pass",
+        "artifactPath": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+        "errors": []
+      }
+    ]
+  },
+  "artifacts": {
+    "releaseQualitySummary": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json",
+    "section8Summary": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+    "section9Summary": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+    "section9Manifest": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json"
+  },
+  "boundaries": [
+    "No release publication authorization.",
+    "No lifecycle issuance.",
+    "No professional approval.",
+    "No certification, sealing, authentication, notarization, code-compliance acceptance, or release-readiness claim."
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "head": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "host_origin_commit": "8aaee11f6b0c96430e67d61b69452780210b3835",
+  "origin_ancestor": true,
+  "inputs": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/shell-frame.tsx",
+      "sha256": "bc95396dcdd74e2da85d97c0374f1cd4ac00726f6fec63464128aaa17b939ec6",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "205b39a280d68a5ff1aaccf3e4a0a139904257f3d52db8536a4d3785dd5a5801",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "e0a4b5eb9a8c01289f9862e778a8ab238596ed7ac5e1650fcb15c56ede35b450",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/shell-frame.test.tsx",
+      "sha256": "685ae077256d720e9d7a06627b7667bdf4660e1dd34961d299e2cc13d2db6756",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/MANAGER_RETURN.md",
+      "sha256": "eea6b62acc868032ab92cb32753f74790fbe3a7088ffcaec4b17a3f37e0dd820",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg02/GUI_PROOF_RECORD.md",
+      "sha256": "1964f09144bb80c19d0d0026e033a696dfa8929d92e866a9c6b75d10ea475c47",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg09/REGISTERED_CHECKS.json",
+      "sha256": "af8ccaf1aa2aaaaf5b5e83612c880b4d347ee15f33d214405f131fa06b4a03d7",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_INTEGRATION_2026-09-06/pkg09/RETURN.md",
+      "sha256": "1de73741ad4289d1e3145e73846ea1bff7529ebec122d93cfc61bbe205c78ffc",
+      "matches_HEAD": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_run_records/APP_V3_INTEGRATION_2026-09-06.md",
+      "sha256": "3b7640a7f64a6cb43ebb660e94ebec0afbb23b41f3466cacfe4bb16266f1bbb5",
+      "matches_HEAD": true
+    }
+  ]
+}

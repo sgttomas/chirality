@@ -44,8 +44,8 @@ vi.mock('../../components/workspace/harness-events-provider', () => ({
   useHarnessStreaming: () => shellState.streaming
 }));
 vi.mock('../../components/shell/shell-frame', () => ({
-  ShellFrame: ({ children, title, renderWorkspaceContent }: { children?: React.ReactNode; title: string; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => (
-    <div data-shell-frame={title}>{renderWorkspaceContent ? renderWorkspaceContent({}) : children}</div>
+  ShellFrame: ({ children, title, renderWorkspaceContent, onOpenSettings, legacyHref }: { children?: React.ReactNode; title: string; onOpenSettings?: () => void; legacyHref?: string; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => (
+    <div data-shell-frame={title}>{renderWorkspaceContent ? renderWorkspaceContent({ settingsControl: <><button data-account-control="true" onClick={onOpenSettings}>Account settings</button><a href={legacyHref}>Legacy window</a></>, settingsView: <div data-settings-view="true">Settings controls</div> }) : children}</div>
   )
 }));
 vi.mock('../../components/shell/chat-panel', () => ({
@@ -301,4 +301,24 @@ describe('WovenDialogueShell composition', () => {
 
     expect(html).toContain('href="/workbench?agent=CHANGE&amp;legacy=1"');
   });
+});
+
+it('opens Settings from the sole footer or collapsed account control without remounting the chat', async () => {
+  let tree!: ReactTestRenderer;
+  vi.stubGlobal('window', { innerWidth: 1440, innerHeight: 900, addEventListener: vi.fn(), removeEventListener: vi.fn(), localStorage: { getItem: () => null, setItem: vi.fn() } });
+  await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+  const chat = tree.root.findByProps({ 'data-chat-panel': 'mounted' });
+  const mounted = shellState.mounted;
+  const unmounted = shellState.unmounted;
+  expect(tree.root.findAllByProps({ 'data-account-control': 'true' })).toHaveLength(1);
+  act(() => tree.root.findByProps({ 'data-account-control': 'true' }).props.onClick());
+  expect(tree.root.findAllByProps({ 'data-settings-view': 'true' })).toHaveLength(1);
+  expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(chat);
+  act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
+  expect(tree.root.findAllByProps({ 'data-account-control': 'true' })).toHaveLength(1);
+  act(() => tree.root.findByProps({ 'data-account-control': 'true' }).props.onClick());
+  expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(chat);
+  expect(shellState.mounted).toBe(mounted); expect(shellState.unmounted).toBe(unmounted);
+  act(() => tree.unmount());
+  vi.unstubAllGlobals();
 });
