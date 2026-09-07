@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "liveSowSchema": [
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-B",
+        "/private/tmp/chirality-runtime-custody-amendment-20260906/tools/scope_of_work/validate_scope_of_work.py",
+        "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "format": "SOW_V1",
+        "issues": [],
+        "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+        "valid": true
+      },
+      "stderr": ""
+    },
+    {
+      "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-B",
+        "/private/tmp/chirality-runtime-custody-amendment-20260906/tools/scope_of_work/validate_scope_of_work.py",
+        "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "format": "SOW_V1",
+        "issues": [],
+        "target": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+        "valid": true
+      },
+      "stderr": ""
+    }
+  ],
+  "exactPostimages": true,
+  "preimagesRetained": true,
+  "all66IDsPreserved": true,
+  "scopedWhitespace": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "rootGuards": "NOT_RUN; pending owning Root adoption",
+  "productTestsBuildsSupplierAccountOperations": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "result": "PREWRITE_HELPER_ERROR",
+      "detail": "PosixPath mistakenly subscripted in prewrite rehash expression; stopped before any live writes."
+    },
+    {
+      "attempt": 2,
+      "result": "PASS",
+      "detail": "Corrected helper path expression; repeated all freshness checks before exact copy."
+    }
+  ]
+}

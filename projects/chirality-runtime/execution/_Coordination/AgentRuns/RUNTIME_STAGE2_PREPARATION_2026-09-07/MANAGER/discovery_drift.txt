@@ -1,0 +1,1 @@
+ERROR: PyYAML is required to read adapter manifests but is not importable in this interpreter (operational error, exit 2).

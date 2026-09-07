@@ -1,0 +1,42 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "owner_acceptance_sha256": "b20d00386b79ff69d09ad2d8009f732b26a45d6be5884077fe056fa0cd9106be",
+  "child_manifest_sha256": "06a5bb1a39a32716c3ba2f70005c9cce32b42d5500e1e58595d386547e9e6516",
+  "files": [
+    {
+      "path": "APPLY_BRIEF.json",
+      "sha256": "1c81f23e617d4cba358b4d425b7c2a8aa647355f5584a2d0522842e8eff832ad",
+      "bytes": 3007
+    },
+    {
+      "path": "FAN_IN.json",
+      "sha256": "7d4d3d1fdbfb78b4caf197c15476d7f9cdb3ae570701f93db2eccb5446074342",
+      "bytes": 777
+    },
+    {
+      "path": "HISTORICAL_PRESERVATION.json",
+      "sha256": "6c3b68f59ccbcd54c957200efde4b0f8db812194e820dd070df44fbeb1b18084",
+      "bytes": 22922
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "8cf5c78d47b16dac4705ad6020d95cff0123186525799227265cc49eacc08bed",
+      "bytes": 2967
+    },
+    {
+      "path": "RUNTIME_EVENTS.jsonl",
+      "sha256": "209181737dfc95f2f535feb22b59f0076484b0d040e253060b66079b01e8c227",
+      "bytes": 3094
+    },
+    {
+      "path": "RUNTIME_SUMMARY.json",
+      "sha256": "bb7f4574952f880f68d13ad690c375c3bdc1375f177ba16cf76efb2992077c5c",
+      "bytes": 1147
+    },
+    {
+      "path": "WORK_GRAPH.json",
+      "sha256": "2853e4f90067746519c09901f6e5b3f2440e906d82ad8d9889142831a2328b7a",
+      "bytes": 1008
+    }
+  ]
+}

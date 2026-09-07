@@ -1,0 +1,39 @@
+{
+  "verdict": "PASS",
+  "manifests": [
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA001_STAGE2_2026-09-07/OUTPUT_MANIFEST.json",
+      "sha256": "c7653834a45f096ea68358702dc6bc292ffeddd46c050d7e493bbe81088a45ae",
+      "members": 6
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/IMPLEMENTATION/OUTPUT_MANIFEST.json",
+      "sha256": "06a5bb1a39a32716c3ba2f70005c9cce32b42d5500e1e58595d386547e9e6516",
+      "members": 9
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/MANAGER/OUTPUT_MANIFEST.json",
+      "sha256": "e9672147f08ec9383ccae6f1d88391ef544652de53439e7292387ac273b26d9c",
+      "members": 7
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/REVIEW/OUTPUT_MANIFEST.json",
+      "sha256": "77d265ab8c5698c99d2aaa6d9bb5c27a135fa19772d88f1956d0116ec0727fc6",
+      "members": 2
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/HANDOFF_MANIFEST.json",
+      "sha256": "cd88975f4d884c81d69c0e36e0afe0853b1dc0b5fb1d84f992089a866f5b3eae",
+      "members": 61
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/HANDOFF_MANIFEST.json",
+      "sha256": "c5054fd4f4c23338c28c3194a3227bac706f8d6813d3673deb40d8b50075a3fb",
+      "members": 33
+    }
+  ],
+  "pointerSha256": "0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea",
+  "sameTarget": "SCA-001_2026-09-06_D36_CUSTODY/",
+  "localPropagation": "COMPLETE",
+  "fullClosure": false
+}

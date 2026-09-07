@@ -1,0 +1,24 @@
+[
+  {
+    "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "preimageSha256": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+    "postimageSha256": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+    "candidatePath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/IMPLEMENTATION/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "appliedSha256": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+    "preimagePath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/IMPLEMENTATION/PREIMAGES/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "appliedAtUTC": "2026-09-07T06:21:41.082562+00:00",
+    "operation": "exact reviewed byte copy",
+    "status": "APPLIED_EXACT"
+  },
+  {
+    "target": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "preimageSha256": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+    "postimageSha256": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+    "candidatePath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/IMPLEMENTATION/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "appliedSha256": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+    "preimagePath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/IMPLEMENTATION/PREIMAGES/projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "appliedAtUTC": "2026-09-07T06:21:41.083273+00:00",
+    "operation": "exact reviewed byte copy",
+    "status": "APPLIED_EXACT"
+  }
+]
