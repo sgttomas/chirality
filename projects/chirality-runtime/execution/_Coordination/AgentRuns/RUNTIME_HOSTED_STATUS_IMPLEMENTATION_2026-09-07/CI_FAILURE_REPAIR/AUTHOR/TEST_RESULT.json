@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "npm",
+    "test",
+    "--ignore-scripts",
+    "--",
+    "--config",
+    "execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/VALIDATION_CONFIG/vitest.config.ts",
+    "tests/codex-manager.test.ts",
+    "tests/delegated-runtime.test.ts",
+    "tests/manager-approval-integration.test.ts"
+  ],
+  "cwd": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime",
+  "startedAt": "2026-09-07T08:29:38.843637+00:00",
+  "endedAt": "2026-09-07T08:29:49.018241+00:00",
+  "exitCode": 0,
+  "cleanup": {
+    "method": "Read-only before/after listing of owned fixture name prefixes; no removal or process probing by agent",
+    "tempRoots": [
+      "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T",
+      "/private/tmp"
+    ],
+    "before": [],
+    "after": [],
+    "newRemainingPaths": [],
+    "limitation": "No independent process census; test cleanup/inventory assertions and command completion supply process evidence"
+  }
+}

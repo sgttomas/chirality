@@ -1,0 +1,65 @@
+{
+  "reportedCIHead": "819bdb29 (PR746, parent-supplied identity; no Git query performed)",
+  "files": [
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/BRIEF.json",
+      "sha256": "3fbdf87543347fab459740e3677cd1071c705434f3c507229fff82c349ce70dc",
+      "bytes": 1225
+    },
+    {
+      "path": "/private/tmp/runtime-hosted-final-publication-qow8_y7e/HARNESS_FAILED_LOG.json",
+      "sha256": "a7f5da57a26469dd32a2c867b6060475f66a7faffa1d1d142f728639b3c19999",
+      "bytes": 81929
+    },
+    {
+      "path": "/private/tmp/runtime-hosted-final-publication-qow8_y7e/FAILURE_EXCERPT.json",
+      "sha256": "f32ef162815f5275f1989129072c4ec5769290cd64133b273ee14d4202af3dcf",
+      "bytes": 5223
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/tests/codex-manager.test.ts",
+      "sha256": "33a1239db2f4bda8609875d391ff5cf6e11edf47e6139d9a806ce03ef372d703",
+      "bytes": 9947
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "sha256": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+      "bytes": 44513
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/tests/manager-approval-integration.test.ts",
+      "sha256": "a15e7098c6448f04fb463afa2c616eac3f6b9c9a71042f5910c865a553a52c2b",
+      "bytes": 10270
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "393a22ca6f10c56f82d43f193120da200bde5de6126364b6dfff77a285c88064",
+      "bytes": 49384
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "6b3a0e7fb393ea0bea43989b65ffcb84fd644729a8ac9117e9d5c981ce550f89",
+      "bytes": 19568
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "sha256": "071ad5f7953c928c9553ad9978dff607a395b9d7e78cb43e18960873cc199d90",
+      "bytes": 17989
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "34e684d4f9ebdf422217448c8926bee91e275ac12ec4b93248a5c64193481acf",
+      "bytes": 43940
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/contracts/src/delegated.ts",
+      "sha256": "acd763f395957dddec190bba6878bd326c6c1a2dc1a6de14cd804550aac3aa6b",
+      "bytes": 8639
+    },
+    {
+      "path": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "3d0c73a51e472c64b789baca9ff5ea50ff9d8c84e345e067e48168c216000cf1",
+      "bytes": 23304
+    }
+  ]
+}

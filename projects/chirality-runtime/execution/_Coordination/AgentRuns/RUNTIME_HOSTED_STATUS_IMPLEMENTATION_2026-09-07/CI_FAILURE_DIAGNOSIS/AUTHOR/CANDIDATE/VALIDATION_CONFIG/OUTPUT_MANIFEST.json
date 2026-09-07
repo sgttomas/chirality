@@ -1,0 +1,20 @@
+{
+  "status": "FROZEN_PROPOSED_VALIDATION_SUPPLEMENT",
+  "files": [
+    {
+      "path": "COMMAND.json",
+      "sha256": "aa27d698f79841c32eeb27fbc81c6d6e8a765efaaca30545f02795227b8e9aa8",
+      "bytes": 753
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "9f4fa0990a61681b08528782d225143d1d0a7eba9e6c56c3191c579d98bb87b9",
+      "bytes": 872
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "cb9daa278d0abb13504c165f22c08a9744c2e806c21ca433a996491a9aab1240",
+      "bytes": 394
+    }
+  ]
+}

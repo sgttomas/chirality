@@ -1,0 +1,91 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "pathBase": "repository root",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/APP_LEAD_ACT.md",
+      "sha256": "c915107a0a2800309d8249593fa67664a68da17b4d15966e82bde61f886b12ae",
+      "bytes": 1376
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/APPLICATION_JOURNAL.json",
+      "sha256": "33a70cbe4f3c3aee0af04c8e7e4d4b34e5c870239a5069118910a1319ddf63e4",
+      "bytes": 1321
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/COMMAND.json",
+      "sha256": "aa27d698f79841c32eeb27fbc81c6d6e8a765efaaca30545f02795227b8e9aa8",
+      "bytes": 753
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/LIVE_OUTPUT_MANIFEST.json",
+      "sha256": "d5711d0a6699c411f42ebf98b996bb2019d9eecb0e76d470b2fba888ede6fe16",
+      "bytes": 608
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/OUTPUT_MANIFEST.json",
+      "sha256": "047f20d749e9a4e5f3d93a875a17c2600b0f97e5dd62aa8f2b9558e4231a7387",
+      "bytes": 1826
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/PREIMAGES/codex-manager.test.ts",
+      "sha256": "33a1239db2f4bda8609875d391ff5cf6e11edf47e6139d9a806ce03ef372d703",
+      "bytes": 9947
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/PREIMAGES/delegated-runtime.test.ts",
+      "sha256": "af1a9e548a4bd4c0ca2c0aac972137db2e4de861c4f35ae4782001ee2ba157e0",
+      "bytes": 44513
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/PREIMAGES/manager-approval-integration.test.ts",
+      "sha256": "a15e7098c6448f04fb463afa2c616eac3f6b9c9a71042f5910c865a553a52c2b",
+      "bytes": 10270
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/RETURN.md",
+      "sha256": "5b77194f6bcb8f60dbf53b17f183b6785d65a40b1ac61f32b170f107579e7013",
+      "bytes": 2108
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/RUNTIME_EVENTS.jsonl",
+      "sha256": "2d1dd8f9a36d0e23d611d1e1344c75381c9ee0b87802e09360323606f80967cf",
+      "bytes": 677
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/TEST_OUTPUT.log",
+      "sha256": "4fb1c597ebf131ea70446b39eee46ce4654fafdc332be8256d46b80fb8bd2b1c",
+      "bytes": 1068
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/TEST_RESULT.json",
+      "sha256": "ad7f814caebcdc0c1d0c11556afc8430c20b9ddbc61b824839062a3bb8eae23d",
+      "bytes": 1040
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/AUTHOR/VALIDATION_SUMMARY.json",
+      "sha256": "4fdfa56182aaef58a20fd823882e08394b3700e36990181f835db31c1c12b54f",
+      "bytes": 1272
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/MANAGER_FAN_IN.json",
+      "sha256": "759e909ef4c7d52cf5cdde5ae433c34771d20942f3f4e1078f6c2fff30f79237",
+      "bytes": 1336
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/MANAGER_POSTIMAGE_BACKCHECK.json",
+      "sha256": "497cc03d88016e91286fb4d496fa0085bd8aa59b850b3861e8638326afb816a4",
+      "bytes": 814
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/PRESERVATION_CHECK.json",
+      "sha256": "6377dc93f79edfc93bd4ba7d4776a64c6b99a670db252449d02284f03999d648",
+      "bytes": 6836
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_REPAIR/RETURN.md",
+      "sha256": "ddd3bc553aee3955c250c415cc57bca5fedfea47ffaef14d4e506277ee2167f2",
+      "bytes": 1511
+    }
+  ]
+}

@@ -20,7 +20,7 @@ async function setup(mode = 'tools') {
   const finish=()=>{send({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{id:'message',type:'agentMessage',text:'reviewed'}}});send({method:'turn/completed',params:{threadId:'thread',turn:{id:'turn',status:'completed'}}});};
   stdin.on('data',bytes=>{buffer+=bytes.toString();let newline;while((newline=buffer.indexOf('\n'))>=0){const r=JSON.parse(buffer.slice(0,newline));buffer=buffer.slice(newline+1);received.push(r);
    if(r.method==='initialize')send({id:r.id,result:{userAgent:'controlled'}});
-   if(r.method==='account/read')send({id:r.id,result:{requiresOpenaiAuth:true,account:{type:'apiKey'}}});
+   if(r.method==='account/read')send({id:r.id,result:{requiresOpenaiAuth:true,account:{type:'fixture'}}});
    if(r.method==='thread/start')send({id:r.id,result:{thread:{id:'thread'}}});
    if(r.method==='turn/start'){send({id:r.id,result:{turn:{id:'turn',status:'inProgress'}}}); setImmediate(()=> mode==='text' ? finish() : send({id:91,method:'item/tool/call',params:{threadId:'thread',turnId:'turn',callId:'delegate-call',tool:'delegate_agent',arguments:{sealedBrief:'Read the approved file'}}}));}
    if(r.id===91 && r.result)send({id:92,method:'item/tool/call',params:{threadId:'thread',turnId:'turn',callId:'review-call',tool:'review',arguments:{childSessionId:'child',decision:'accepted',rationale:'Verified actual return'}}});

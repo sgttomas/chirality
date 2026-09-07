@@ -1,0 +1,17 @@
+{
+  "status": "PROPOSED_NOT_EXECUTED",
+  "cwd": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime",
+  "argv": [
+    "npm",
+    "test",
+    "--ignore-scripts",
+    "--",
+    "--config",
+    "execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07/CI_FAILURE_DIAGNOSIS/AUTHOR/CANDIDATE/VALIDATION_CONFIG/vitest.config.ts",
+    "tests/codex-manager.test.ts",
+    "tests/delegated-runtime.test.ts",
+    "tests/manager-approval-integration.test.ts"
+  ],
+  "candidateManifestSha256": "b7b0cdb5e1b8521739dab2875570dd0762b433dc77059a1ab70f4bd8e8ca242f",
+  "replaces": "Prior COMMANDS_AND_EFFECTS.md default-config invocation only; effect scope and exact three live candidate postimages unchanged"
+}

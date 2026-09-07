@@ -34,7 +34,7 @@ async function fixture() {
             notify({ method: "turn/completed", params: { threadId: "manager-thread", turn: { id: "manager-turn", status: "completed" } } }); continue;
           }
           if (request.method === "thread/start") expect(request.params.dynamicTools.map((tool: any) => tool.name)).toEqual(["delegate_agent", "review"]);
-          notify({ id: request.id, result: request.method === "account/read" ? { requiresOpenaiAuth: true, account: { type: "apiKey" } } : request.method === "thread/start" ? { thread: { id: "manager-thread" } } : request.method === "turn/start" ? { turn: { id: "manager-turn" } } : {} });
+          notify({ id: request.id, result: request.method === "account/read" ? { requiresOpenaiAuth: true, account: { type: "fixture" } } : request.method === "thread/start" ? { thread: { id: "manager-thread" } } : request.method === "turn/start" ? { turn: { id: "manager-turn" } } : {} });
           if (request.method === "turn/start") setImmediate(() => notify({ id: "network-prompt", method: "item/commandExecution/requestApproval", params: { threadId: "manager-thread", turnId: "manager-turn", itemId: "network", startedAtMs: 1, networkApprovalContext: { host: "example.com", protocol: "https" }, availableDecisions: ["accept", "decline", "acceptForSession"] } }));
         }
       });
