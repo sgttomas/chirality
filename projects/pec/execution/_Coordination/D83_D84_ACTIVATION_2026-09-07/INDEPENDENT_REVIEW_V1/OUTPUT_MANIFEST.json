@@ -1,0 +1,53 @@
+{
+  "schema": "pec-independent-review-manifest/v1",
+  "verdict": "PASS_FOR_RULING_PUBLICATION_AND_PROPOSAL_READINESS",
+  "derivative_package": true,
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "BRIEF.md",
+      "sha256": "f4d5cd8ca527e64910ead04df55e06c3743d7eaaa7655b802fc4bd6b09177da4",
+      "bytes": 1691
+    },
+    {
+      "path": "FINDINGS.md",
+      "sha256": "b0da2acf4fac5326022d8d5d6c7b259ee410f7d6d4a5c4eaa3830c2e2e63c787",
+      "bytes": 1096
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "8554ed8150c755c69be269d435b166cf9f04ca2635834a780163e70f860cca18",
+      "bytes": 1975
+    },
+    {
+      "path": "P1_INITIAL_OBSERVATION.json",
+      "sha256": "0c5c37677751a74f7d3419f34fcc5dcd7ba2f9f233c6aeff51271774cd59fe7b",
+      "bytes": 576
+    },
+    {
+      "path": "READ_MANIFEST.json",
+      "sha256": "40abbbb7dcc4586db6e2bc88820e9e7cb53184c88746e06944cb2e76c67bc16c",
+      "bytes": 264731
+    },
+    {
+      "path": "READ_MANIFEST_INITIAL.json",
+      "sha256": "c7c45bfb9bf21cc450a825d2aac2e1ad5ce7b0ec63fa3e211d2553e96814245f",
+      "bytes": 246888
+    },
+    {
+      "path": "REVIEW.md",
+      "sha256": "b41f69d2e87c6aa4000613884496bcfa8b95aa2d201f8c6a46331e31a04dd451",
+      "bytes": 4568
+    },
+    {
+      "path": "VALIDATION.json",
+      "sha256": "773faf5674f76d86c503183692dcc7c7d34d78965bcb15ae1e6f5ca10954f5bd",
+      "bytes": 7268
+    },
+    {
+      "path": "VALIDATION_INITIAL.json",
+      "sha256": "5976335ab5d97779d890ad50a7b86e1d59b803401df86b3c9b28db21db840e99",
+      "bytes": 46290
+    }
+  ]
+}

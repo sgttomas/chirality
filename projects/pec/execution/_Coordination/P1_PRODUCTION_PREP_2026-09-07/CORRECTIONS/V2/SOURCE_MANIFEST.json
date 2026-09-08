@@ -1,0 +1,11 @@
+{
+  "original_manifest_path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/OUTPUT_MANIFEST.json",
+  "original_manifest_sha256": "a418452faf3d3fb3cd2771f2e8ec5f20a5dfe72d75d9e8cff3e314c010177dae",
+  "sources": [
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "sections": "3.3, 3.4"
+    }
+  ]
+}

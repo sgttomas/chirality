@@ -1,0 +1,51 @@
+{
+  "schema": "pec-derivative-output-manifest/v1",
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "BRIEF.md",
+      "sha256": "70cd1076d22ac1bc4e0e32a5bb4e197bcdb21057cca1f41381c4de0359192e23",
+      "bytes": 1461
+    },
+    {
+      "path": "CHECKS.json",
+      "sha256": "7db7313d539e0daadddf1f983841c91db16eeab87dec5778da8539cfc4d67d60",
+      "bytes": 913
+    },
+    {
+      "path": "HANDOFF_STATE.md",
+      "sha256": "7c9984076ee2bfca2831225c2057419c2e1528bd68d1a9fa875ae496b738c656",
+      "bytes": 2720
+    },
+    {
+      "path": "HOLD_PREFLIGHTS.json",
+      "sha256": "039e5a1e4c25f8c64276bb58d2befeb98461c30e836ef2f5525adaca7936ce4c",
+      "bytes": 3960
+    },
+    {
+      "path": "READ_MANIFEST.json",
+      "sha256": "05410afb44952ea95513fb30e32794309c7bed519773a81e62e24e9044e3d455",
+      "bytes": 6502
+    },
+    {
+      "path": "ROUTE_PROPOSAL.md",
+      "sha256": "723381a947da7fed4486b28f66cce2e714559d57e0a68251ba0d1837bdd6733e",
+      "bytes": 10488
+    },
+    {
+      "path": "STATUS_POSTIMAGE_CANDIDATE.md",
+      "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+      "bytes": 1336
+    },
+    {
+      "path": "STATUS_PREIMAGE.md",
+      "sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+      "bytes": 483
+    },
+    {
+      "path": "TARGETS.json",
+      "sha256": "7230d2abd1e592074da7fc04b580c9f48c63d0c946e2e796b6c200d311d8bb34",
+      "bytes": 2815
+    }
+  ]
+}

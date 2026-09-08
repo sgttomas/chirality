@@ -1,0 +1,45 @@
+{
+  "schema": "pec-native-dispatch-record/v1",
+  "parent": "/root",
+  "parent_role": "HELP_HUMAN",
+  "role_enforcement": "instruction-asserted",
+  "model_policy": {
+    "requested_model": "gpt-5.6-sol",
+    "requested_reasoning": "medium",
+    "serving_identity_claimed": false
+  },
+  "nodes": [
+    {
+      "id": "/root/pec_session_authority",
+      "role": "RECONCILIATION",
+      "state": "active-recorder",
+      "brief": "BRIEFS/pec_session_authority.md",
+      "descendants": "none"
+    },
+    {
+      "id": "/root/pec_change_sol",
+      "role": "CHANGE",
+      "state": "active-publication-owner",
+      "brief": "BRIEFS/pec_change_sol.md"
+    },
+    {
+      "id": "/root/pec_d83_application",
+      "role": "RECONCILIATION",
+      "state": "running-read-only-preparation; mutation-awaits-main-and-parent-release",
+      "scope": "exact 57 ordinary entries / 89 items; frozen carrier excluded"
+    },
+    {
+      "id": "/root/pec_d84_reversal",
+      "role": "REVIEW",
+      "state": "planned-not-launched",
+      "scope": "exact D84 L status-only administrative reversal and independent verification"
+    },
+    {
+      "id": "/root/pec_d84_repair",
+      "role": "WORKING_ITEMS",
+      "state": "running-read-only-preparation; production-awaits-main-S-A/L-and-verified-reversal",
+      "scope": "exact D84 three-path repair plus fresh verifier and backcheck"
+    }
+  ],
+  "agent2_production_specialists_launched_by_this_record": []
+}

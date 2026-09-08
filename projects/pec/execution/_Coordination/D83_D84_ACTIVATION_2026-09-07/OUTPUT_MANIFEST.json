@@ -1,0 +1,195 @@
+{
+  "kind": "immutable ruling-publication integration derivative; not decomposition truth",
+  "status": "PASS_FOR_RULING_AND_PREPARATION_PUBLICATION",
+  "base": "35249accf139f52478d029458946e50ed25ee5dc",
+  "self_excluded": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/ACTIVATION.md",
+      "sha256": "9499716b1c3aca4d770d8249313d8bd9ded6b1b6c3aae0a8d2e63fd28bdad996"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/AGENT0_GRAPH_V1.md",
+      "sha256": "974e8553f753571074edd4837141dc3ab627f8a5cae5cd5e09faa14e6cf6d156"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/AGENT0_GRAPH_V3.md",
+      "sha256": "672c1862e3033288fb848baa626059a72a770a7c17c2472a856bdaeb1cd2b20c"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/AUTHORITY_CURRENCY.md",
+      "sha256": "358e32695a16531aabe7fe382a3ee763f7536145a0218b187684a3bb705832a9"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/AUTHORITY_READ_MANIFEST.json",
+      "sha256": "3e2245431cf702b48673b70ff983ba28e6e8294e28ee1e9edae04fe2e0adf3e1"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/AUTHOR_CHECKS_V1.json",
+      "sha256": "3a6a9ce497b6f5f8081453f018ebcfb558c8273974c41a4971d33f151942113e"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_activation_verifier.md",
+      "sha256": "d2ec33c1e212bf2a36f0f28264a053d10a72deb2c3d6cca793e4da67315ba6bb"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_change.md",
+      "sha256": "4bdc75b3fa44c019f729f6cb830010c9ae75cbf593bdbf1a200c3130602d80c6"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_checking_route.md",
+      "sha256": "60b2b52b897e75d39e2a453c570f90665b86ffbddbb80acb6f9aabbcb90f69c6"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_p1_prepare.md",
+      "sha256": "39f8a5a38ae47b8635647621aead2811d500ea59a094bb1be54df91e87a5f890"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_ruling_integration.md",
+      "sha256": "a8cd1d51ebdd549b4cee23882dab65244d0fffe3a07cd4c24ca08bf52eca0a73"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/root.md",
+      "sha256": "9c5f8d32253f5d392f5fdaa85198ac64ef7f2d9ab53efc5e3df3ab6458a578c1"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/CHANGE_READINESS.md",
+      "sha256": "1b5d18f0091bfa0136cb9c0c011f49371ab15f922d91f78c59e4c32fccafc878"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/D85_POINTER_V1_PREIMAGE.md",
+      "sha256": "ca5146d91c23b3c567c0c0f7309283e65dffbe6e88d17c0b52e0747b7eed4f28"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/DISPATCH_RECORDS_V1.json",
+      "sha256": "a0ea1fd7e647c730e70bd2e96cef72f88e7c38187cb4bc7626e104ea4e09098d"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/DISPATCH_RECORDS_V3.json",
+      "sha256": "5adb50907f7177ebb4b860fd5c2da0d6f3499a10aa66105fd67b3f0502833e5a"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/FINAL_AUDIT.json",
+      "sha256": "20a24670e722c917d414fb9d20d13d9ff0b17c71b827f2211da0dab24ae8d277"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/FINAL_HANDOFF_STATE.md",
+      "sha256": "6c7f1d30e4b2aedf2f162ab307240229dad110b3147c40ac052e5f4e5a1b4aa2"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/HANDOFF_STATE.md",
+      "sha256": "3664e010f808bc592841725bc853c692c9fbc2e4fdd606f1d8241fb22770bd9b"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/BRIEF.md",
+      "sha256": "f4d5cd8ca527e64910ead04df55e06c3743d7eaaa7655b802fc4bd6b09177da4"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/FINDINGS.md",
+      "sha256": "b0da2acf4fac5326022d8d5d6c7b259ee410f7d6d4a5c4eaa3830c2e2e63c787"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/HANDOFF.md",
+      "sha256": "8554ed8150c755c69be269d435b166cf9f04ca2635834a780163e70f860cca18"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/OUTPUT_MANIFEST.json",
+      "sha256": "6bd963899a4cf670693950cda20f92c276df3a7eb725a394237befc6272abaa1"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/P1_INITIAL_OBSERVATION.json",
+      "sha256": "0c5c37677751a74f7d3419f34fcc5dcd7ba2f9f233c6aeff51271774cd59fe7b"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/READ_MANIFEST.json",
+      "sha256": "40abbbb7dcc4586db6e2bc88820e9e7cb53184c88746e06944cb2e76c67bc16c"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/READ_MANIFEST_INITIAL.json",
+      "sha256": "c7c45bfb9bf21cc450a825d2aac2e1ad5ce7b0ec63fa3e211d2553e96814245f"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/REVIEW.md",
+      "sha256": "b41f69d2e87c6aa4000613884496bcfa8b95aa2d201f8c6a46331e31a04dd451"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/VALIDATION.json",
+      "sha256": "773faf5674f76d86c503183692dcc7c7d34d78965bcb15ae1e6f5ca10954f5bd"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/VALIDATION_INITIAL.json",
+      "sha256": "5976335ab5d97779d890ad50a7b86e1d59b803401df86b3c9b28db21db840e99"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/P1_FAN_IN.json",
+      "sha256": "cf2534f8ea9cd8e773167ced59398c1ffaeb28bf9c98a8f8ee40a00583f59fe5"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/P1_FAN_IN_V2.json",
+      "sha256": "b56daf03bf4a8d60699d6cf21f01dcca539ef062a7a984a92b9b0660d49f9b72"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/PREFLIGHT.json",
+      "sha256": "53495a6d5bcb0ec4cad9c399fbe1b9738a4f9fceb764aa1144b9d15ef5ca95a3"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/RECEIPT_APPEND_CHECK.json",
+      "sha256": "56e5cde078847fcead8fbe0ccd074b589a37a5b4972176d33bfbfa04a3c2804f"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/RECEIPT_APPEND_CHECK_INITIAL_FAILURE.json",
+      "sha256": "3598f7f6742d40c0f465667b9705c3d0543f50c95067efd724782f3648da8603"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/RECEIPT_PREIMAGE.json",
+      "sha256": "4c13fce781f604d76cf6965ae02d15b866db8fce8bd4a4975acf83dc038abee0"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/ROUTE_FAN_IN.json",
+      "sha256": "eed57515d31610628004988136fc6a0e89c7282631e8fdc6ddb68cf529dbbbfb"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/SELF_CHECK_POST_AUTHOR.json",
+      "sha256": "fd62252c1516439431b74be64147597d0140524d08117c4a0175312f1b28644b"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/STEP0.json",
+      "sha256": "764818baa690f5b4c9542e3c3c38e6d5d36d8f3cdf4b6d426f297207454da080"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D84_CHECKING_ROUTE_PREP_2026-09-07/OUTPUT_MANIFEST.json",
+      "sha256": "ec2ff62fd8ba274722f35ad30a75244954a01e2eecf4b9272255ae650765faa5"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/OUTPUT_MANIFEST.json",
+      "sha256": "4f83533beadad4cdff56f061d50d34a556f4e54df12ffbe4da3218fd85321fd2"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CURRENT_SELECTION.json",
+      "sha256": "e6b7fd693b0fee323314c4f64e64b4e143794a44c5dd8ed2f9d06d1298f6ab7e"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_RULING_2026-09-07.md",
+      "sha256": "b002945953945ac11d78e1fe0eba516909fb58ba4659e9179d49607c15be2492"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-84_RULING_2026-09-07.md",
+      "sha256": "6d9812b46874c39a4617476b8ba7b40702b3a3227c0511fc95b95aaeb8a2fe7a"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_P1_STORE_GUARD_PROPOSAL_2026-09-07.md",
+      "sha256": "7389826daee63f0466550202277b2d2144c8a733ec74c7711ec66f298dba7def"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "ae233d59674072d7115bc0e446e0276eac60c614fe75fd52a50bab21f311c6c2"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "sha256": "4ec04222056daba2744782abba9b7e43c9d938c949904ee93527ae5e3b35b591"
+    }
+  ],
+  "additive_exclusions": [
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/CHANGE_PUBLICATION/**"
+  ]
+}

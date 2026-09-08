@@ -1,0 +1,166 @@
+{
+  "interpreter": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "checks": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+        "--operation",
+        "historical-read-only-inspection"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"historical-read-only-inspection\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+        "--operation",
+        "historical-read-only-inspection"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"historical-read-only-inspection\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+        "--operation",
+        "historical-read-only-inspection"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"historical-read-only-inspection\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+        "--operation",
+        "historical-read-only-inspection"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"historical-read-only-inspection\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+        "--operation",
+        "historical-read-only-inspection"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"historical-read-only-inspection\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    }
+  ],
+  "test_execution": "NOT_RUN: preparation only; no product behavior measured"
+}

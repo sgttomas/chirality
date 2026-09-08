@@ -1,0 +1,151 @@
+{
+  "root": "/Users/ryan/.codex/worktrees/b347/chirality",
+  "working_root": "/Users/ryan/.codex/worktrees/b347/chirality/projects/pec",
+  "status": "current-read evidence; acceptance follows cited owning records",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "agents/AGENT_REVIEW.md",
+      "sha256": "40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab",
+      "bytes": 25946,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "bytes": 12871,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "sha256": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+      "bytes": 19657,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645",
+      "bytes": 54429,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "bytes": 88,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "bytes": 2760,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_remaining_application_proposal_2026-09-05.md",
+      "sha256": "9892db3ed95623532c025ca1bc7c6ec346f64110b30fb581d70c6e02a6ca492b",
+      "bytes": 6965,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-84_scanner_repair_proposal_2026-09-05.md",
+      "sha256": "d47eb83957e86cf6898b91ce128628f5de7f3bbaeee65169524d1670a3bc6259",
+      "bytes": 5851,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+      "bytes": 483,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REVIEW.md",
+      "sha256": "fd9158b211f27b2bf6d451f68f620788522a80a57bf99264ee1e009cb95258d9",
+      "bytes": 12429,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Review_Findings.csv",
+      "sha256": "414339c78c45598ff75d247f7456c30c5b37b7b440b39a2d37c064db391ac00a",
+      "bytes": 2245,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+      "sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53",
+      "bytes": 27479,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/FINAL_ACCEPTANCE_RULING_2026-08-03.md",
+      "sha256": "8cb00b09a5331f40a6d040d4619013d6917b0a36b2098ee305fc1c279f6e7533",
+      "bytes": 1647,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/ACCEPTANCE_PACKET_2026-08-03.md",
+      "sha256": "e3d6f2ae9e52b149abb75f5bba8815a7eb65a549ebf3be258eae8581ff43b596",
+      "bytes": 10041,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/R4_DECISION_PACKETS/SCANNER_EXACT_ACTS_AND_EVIDENCE.md",
+      "sha256": "1fa3bcb2f2c23830e26a4df142aaa15310c056e4d3773162d2a7d2b7bec4ea8e",
+      "bytes": 6797,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/PROPOSAL.md",
+      "sha256": "bebfa8c83fdcfa5773612290dbf5076b85bf63d27ea5691ab08374ac10191dbf",
+      "bytes": 8729,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/TARGETS.json",
+      "sha256": "a388bc33c338da49a348464a2aba8eb24684e4422df8189f35d58df92e9e6b7b",
+      "bytes": 1411,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/REGRESSION_PLAN.md",
+      "sha256": "ac15b7f87741fbce0f5ea2044b7aea86c08245a156111f6f50e0f3c8fdfaa0b7",
+      "bytes": 4306,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Review_Summary.md",
+      "sha256": "970cddc654e4729735515a5c9a02b6e9213dbe72bb53c95891100c27df4c2aaa",
+      "bytes": 506,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/Decision_Log.md",
+      "sha256": "2664c1a53209114cbca6ad993f6eed690576984cfbca65fbf15c8525e15ed102",
+      "bytes": 445,
+      "read_mode": "controlling-text"
+    },
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+      "bytes": 28510,
+      "read_mode": "hash-only-source"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+      "sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+      "bytes": 4162,
+      "read_mode": "hash-only-source"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+      "sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+      "bytes": 7350,
+      "read_mode": "hash-only-source"
+    }
+  ]
+}

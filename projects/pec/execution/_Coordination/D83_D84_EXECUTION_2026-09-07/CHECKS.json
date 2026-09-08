@@ -1,0 +1,26 @@
+{
+  "schema": "pec-d83-d84-execution-checks/v1",
+  "scope": "governance and coordination recording only",
+  "receipt_prevalidation": "PASS",
+  "receipt_postvalidation": "PASS",
+  "receipt_preimage": {
+    "bytes": 438609,
+    "sha256": "4ec04222056daba2744782abba9b7e43c9d938c949904ee93527ae5e3b35b591",
+    "prefix_preserved": true
+  },
+  "register_preimage_sha256": "ae233d59674072d7115bc0e446e0276eac60c614fe75fd52a50bab21f311c6c2",
+  "register_change": "D-PEC-84 row only",
+  "route_hash_reproduced": true,
+  "status_preimage_matches_live": true,
+  "scanner_preimages_match": true,
+  "historical_read_only_hold_preflights": "PASS 4/4",
+  "task_management_live": "PASS 18 rows",
+  "task_management_closed": "PASS 7 rows",
+  "practitioner_self_check": "PASS with inherited INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=55",
+  "json_parse": "PASS",
+  "git_diff_check": "PASS",
+  "scope_containment": "PASS: only authorized new coordination/ruling paths, D84 register row and Receipt 173 suffix",
+  "product_source_kill_parity": "NOT_APPLICABLE: no product capability changed and no product execution occurred",
+  "git_remote_and_pr_checks": "DEFERRED to CHANGE",
+  "independent_general_review": "NOT_ADDED: faithful owner transcription and exact existing candidate binding accepted by HELP_HUMAN; downstream author/verifier/backcheck requirements remain"
+}

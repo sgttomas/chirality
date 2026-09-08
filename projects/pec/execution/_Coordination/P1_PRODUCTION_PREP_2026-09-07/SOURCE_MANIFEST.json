@@ -1,0 +1,279 @@
+{
+  "captured_at_utc": "2026-09-08T03:32:00.115882+00:00",
+  "head": "35249accf139f52478d029458946e50ed25ee5dc",
+  "origin_main": "35249accf139f52478d029458946e50ed25ee5dc",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1"
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "sha256": "f97af1d323524f9a2be1dab8b5b33c1350c8f48c38cd3c6f8d0f8a9cd9821ea2"
+    },
+    {
+      "path": "plans/steers/root_runtime_migration_gate5_confirmation_2026-09-06.md",
+      "sha256": "11123cce6854447778a0d4fff81a50fb2ad5acb568c03d5af6c80d2a1ba67a08"
+    },
+    {
+      "path": "projects/pec/.gitignore",
+      "sha256": "93f7c8ad2e972efd1ec16864258f9c203bef7f190d79051bdc36d9ef4cad2aec"
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846"
+    },
+    {
+      "path": "projects/pec/docs/PRD.md",
+      "sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/Dependencies.csv",
+      "sha256": "a8573c64bf2828add66cba70e00b91115e8d885060b905a689e5ee1d60654467"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+      "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md",
+      "sha256": "41c871a5e4c07655a1f526aeb20f74603099f0b5997bbba4d7a8fcc2897ceeea"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md",
+      "sha256": "f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "sha256": "40575c559c6c46ef69a864edf884c358310fe75c67567a3f6ef2e5b02fccc093"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+      "sha256": "c23a1a46e96361de3cae96d6be2f994fbc71482af52958b26751b016a4bfecd6"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv",
+      "sha256": "e422c16797c1f5bf0ea19f47a714eacd4bbaa4534b7358a5cde7f413266a4fad"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "sha256": "c2f5ee7bd025a83c73b7a884e7eecd5e9545496fb81fdc0ffc6deacfbbb7c959"
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "sha256": "5f68759d07cc001e139fc351e33748ef7f03ba5ba9cd7ed77a6182ad8161bd65"
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+      "sha256": "564955235aeab60f169e6377dd9d5bb5fbe2a88a8cc66094e17f6f83987792d2"
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+      "sha256": "f8816dcaa48f3ca980f1b6db51129efb5d3a5095d0120fbf4698878e9b9121b5"
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "sha256": "2daee4e76382186657c52b01caf5c4435c8d6a501c6d2b305c9b1c9703a916e4"
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+      "sha256": "6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae"
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+      "sha256": "7c9902184deeb30b80728979fd76c710a23396ba549c144bc713134e51a94dd1"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_ROOT_RUNTIME_AUTHORITY_2026-09-06.md",
+      "sha256": "f79df4639912c5c40cf25947c2ccfd4657bc4292e437ed2cd95ce0c4d672ab34"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/_LATEST.md",
+      "sha256": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CANDIDATES/DEL-01-01/_STATUS.md",
+      "sha256": "37d11e4937651bfb29108db79031b2b73902f40a06d0b928ccc5340941843eb3"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CANDIDATES/DEL-01-03/_STATUS.md",
+      "sha256": "c6153c5c06334b00dbff29b460a48c40347e76c5dd13b5a23e918e36e3eac91e"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CANDIDATES/DEL-03-01/_STATUS.md",
+      "sha256": "46a49e2444c22c5c622943def0ed069345f6b0e8b639e54d6684b00abf1cf80d"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CANDIDATES/DEL-04-01/_STATUS.md",
+      "sha256": "c08a317519a7dea41fdc852b9a43dce38f3fb8b669fd1cc276431e87c97e1ca6"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SELECTED_OUTPUTS.json",
+      "sha256": "9068f81da9b325b15d76c4df64f3b5db7d3a7c2de2f78aed31ae78a89ce356c1"
+    },
+    {
+      "path": "projects/pec/execution/_ScopeChange/_LATEST.md",
+      "sha256": "721a14dc27b4b595be79f591f49b7374a121c52a77eb0451d32d9aa32a9e6280"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "sha256": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570"
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+    },
+    {
+      "path": "projects/pec/v2/config/loops.json",
+      "sha256": "4ce07ad061abd222acabb2afe0f619fdc840b4cc11d31e49f1dff8fcc299d32e"
+    },
+    {
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "sha256": "1f4d1f0cf9abe5754ebb4260f588dea0d71e7f3cc37af2487b30b9c4aa39ba9b"
+    },
+    {
+      "path": "projects/pec/v2/config/service_core_posture.json",
+      "sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/__init__.py",
+      "sha256": "ae46d431c13413d5bcbb6ab60a97f6db09510dd97903c1f2a8586a3567b17c1e"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/__init__.py",
+      "sha256": "8c80e607671eef1a35dca0334503deb151418c03b618af0c4577514d0184ef22"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/__init__.py",
+      "sha256": "7a9bdbc59b96d3c9f306af483d18d6c0b23b7071481fd6ab79204ba398513cba"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "sha256": "7101740dea837e6077e048ec2a8ef8600c7d1014bd339915aaea285b8236eb2f"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/__init__.py",
+      "sha256": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+      "sha256": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "sha256": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662"
+    },
+    {
+      "path": "projects/pec/v2/tests/config/test_json_loop_registry.py",
+      "sha256": "d7efb486287d3703aa9ea007eb5376eba95689286bb322c887eeca8b193ac956"
+    },
+    {
+      "path": "projects/pec/v2/tests/config/test_loop_registry_contract.py",
+      "sha256": "49b2f6a3b5088bceb82dc393cce050b8800af3a5ac5d34b3b6a3d7b71c01111b"
+    },
+    {
+      "path": "projects/pec/v2/tests/contracts/api/test_api_schema_compatibility.py",
+      "sha256": "efdd32f24c0045160d7a736b1ffbdc2b8685246a66c8c362aba8899747decc92"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/conforming/core/app.py",
+      "sha256": "8966d0088ea15ad37854ecfd0f4869c67b61ce5f8809848d380f1fb858e450a0"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_direct/core/app.py",
+      "sha256": "2f691060cef7a41af2530909638f9612725eab441b515ac10f37071ee15c8870"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/app.py",
+      "sha256": "48f739f0169f93a303c2c754209ecdc343b4aa7607ee750bc3c943377902d0bc"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/third_party_transitive/core/helper.py",
+      "sha256": "476b8cef2afeabe4dddd5173009cee02a7a709e6ebadfe886160a1f4c3000fe9"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/contracts/chirality_contracts/__init__.py",
+      "sha256": "e38af91183e30927c8d990a76ba715f3e1f300ac1e6b489a2408b48741632522"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/dependency/workspace_contract/core/app.py",
+      "sha256": "206cc544fa564634ea413a2e6ff1eed7cb062d5c5cf7a2b4e8156c4fede7d416"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/locality/external_call/core/app.py",
+      "sha256": "44a1f3d683fc27ef15595f9dacfdd37f98476eac6ec4b88da4cd43ba8b472e31"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/locality/external_config/core/settings.py",
+      "sha256": "54671ebf7071f04e3d2cea8411895d9429c84036efa82f7223aa7c440d2d9bad"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/locality/local_loopback/core/app.py",
+      "sha256": "f9ec548b059cdcbc1080da4c0f53ef97d5cf7e9a7b75ce5ad12c74a9b86be091"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/fixtures/locality/local_unix/core/app.py",
+      "sha256": "c35fff6dba0aaa2d114b0d4e252d561d361979254e4ecf91cdd6c16236f7d425"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+      "sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_gate_registration.py",
+      "sha256": "9e9519e6eaded2e9db427a6609c5880c5316f6528facae80776307793bb0071d"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+      "sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20"
+    },
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md",
+      "sha256": "3309a68a1180b7fdf40722e5e63cc468a4f76fcf484b98799f700743a63ab5f2"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/artifacts/STEP0_COST_BASELINE.md",
+      "sha256": "0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md",
+      "sha256": "1db130d79ed49205a7842471629a1e554359a14e81aa65a95334f11ab9a3b9a4"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+      "sha256": "513f768c71d87e309980ec273014eb0213055490098c9eb30b234776c5dbaae8"
+    }
+  ]
+}

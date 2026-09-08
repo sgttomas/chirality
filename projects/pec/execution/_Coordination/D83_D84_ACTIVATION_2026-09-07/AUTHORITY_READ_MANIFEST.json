@@ -1,0 +1,42 @@
+{
+  "role": "current-currency-read-basis; not PEC adoption",
+  "base": "35249accf139f52478d029458946e50ed25ee5dc",
+  "files": [
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_ROOT_RUNTIME_AUTHORITY_2026-09-06.md",
+      "sha256": "f79df4639912c5c40cf25947c2ccfd4657bc4292e437ed2cd95ce0c4d672ab34"
+    },
+    {
+      "path": "plans/steers/root_runtime_migration_gate5_confirmation_2026-09-06.md",
+      "sha256": "11123cce6854447778a0d4fff81a50fb2ad5acb568c03d5af6c80d2a1ba67a08"
+    },
+    {
+      "path": "execution/_ScopeChange/_LATEST.md",
+      "sha256": "d9fe2eb5340e588f781b90caf7ec10dda24528fe71fb283ba7d7e2a7df0689f1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+      "sha256": "78a35e83db927cdd82e47119b40b4d99d70a77d0034b2e39887e5e3f4509dfe6"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-39_runtime_account_authority_successor_adoption.md",
+      "sha256": "899f3ea3f6110e5c3d46cff38c4a4402a6ce386de2af92c4f7679334db8ed575"
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "sha256": "3cdab5aedc364f1648be2108a281453a98a7f2e0b968eceeaff52cd4dc6e5b8f"
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "sha256": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645"
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sha256": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18"
+    }
+  ]
+}

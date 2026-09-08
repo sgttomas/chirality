@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "execution/_Scripts/pec_reliance_hold.py",
+    "--register",
+    "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+    "--target",
+    "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+    "--operation",
+    "candidate-validation"
+  ],
+  "cwd": "{WORKING_ROOT}",
+  "exit_code": 0,
+  "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+  "stderr": "",
+  "original_manifest_and_outputs": "ALL_MATCH",
+  "product_or_lifecycle_mutation": "NONE"
+}

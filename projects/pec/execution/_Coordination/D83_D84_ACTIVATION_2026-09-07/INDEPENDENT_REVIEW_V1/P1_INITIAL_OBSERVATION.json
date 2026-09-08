@@ -1,0 +1,9 @@
+{
+  "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/PROPOSAL.md",
+  "sha256": "d8affa0a474fc9c969bb9df1a59df3acdfa7a3bd2e42e5d299e8dacb8e6ab952",
+  "material_finding": "Future production write set preserves lifecycle; final clause says INITIALIZED until separately ruled, contrary to SPEC 3.3 WORKING_ITEMS start transition. Routed to parent for owning-author correction.",
+  "exact_original_clauses": [
+    "append truthful production evidence/residuals only; preserve lifecycle",
+    "Lifecycle remains INITIALIZED until separately ruled."
+  ]
+}

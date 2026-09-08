@@ -1,0 +1,47 @@
+{
+  "class": "delegated-harness-native",
+  "enforcement": "instruction-asserted",
+  "records": [
+    {
+      "agent": "/root",
+      "parent": null,
+      "role": "HELP_HUMAN",
+      "brief": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/root.md",
+      "brief_sha256": "9c5f8d32253f5d392f5fdaa85198ac64ef7f2d9ab53efc5e3df3ab6458a578c1",
+      "status_at_recording": "active"
+    },
+    {
+      "agent": "/root/pec_change",
+      "parent": "/root",
+      "role": "CHANGE",
+      "brief": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_change.md",
+      "brief_sha256": "4bdc75b3fa44c019f729f6cb830010c9ae75cbf593bdbf1a200c3130602d80c6",
+      "status_at_recording": "branch_setup_complete; closeout_pending"
+    },
+    {
+      "agent": "/root/pec_ruling_integration",
+      "parent": "/root",
+      "role": "RECONCILIATION",
+      "brief": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_ruling_integration.md",
+      "brief_sha256": "a8cd1d51ebdd549b4cee23882dab65244d0fffe3a07cd4c24ca08bf52eca0a73",
+      "status_at_recording": "active"
+    },
+    {
+      "agent": "/root/pec_checking_route",
+      "parent": "/root",
+      "role": "REVIEW",
+      "brief": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_checking_route.md",
+      "brief_sha256": "60b2b52b897e75d39e2a453c570f90665b86ffbddbb80acb6f9aabbcb90f69c6",
+      "status_at_recording": "active"
+    },
+    {
+      "agent": "/root/pec_p1_prepare",
+      "parent": "/root",
+      "role": "WORKING_ITEMS",
+      "brief": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_p1_prepare.md",
+      "brief_sha256": "39f8a5a38ae47b8635647621aead2811d500ea59a094bb1be54df91e87a5f890",
+      "status_at_recording": "active"
+    }
+  ],
+  "planned_verifier": "fresh parent-dispatched evidence-only independent verifier; not yet launched at V1"
+}

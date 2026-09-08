@@ -1,0 +1,44 @@
+{
+  "schema": "pec-change-publication/v1",
+  "role": "CHANGE Agent 1; requested gpt-5.6-sol / medium; serving identity not independently exposed",
+  "branch": "codex/pec-d83-d84-activation-20260907",
+  "prior_head": "121ba425e13adf196b8a1b775d54f7cb0a5a94fe",
+  "fresh_origin_main": "c5192790f98ec024e7c2728cb1d4df3ae2b2a2dd",
+  "recorder_manifest_sha256": "059487318b951b58aba0df8334f7d8d46403e439cc403b4094b9836f142b09f0",
+  "recorder_entries_verified": 12,
+  "release": "HELP_HUMAN released the completed recorder package for scoped commit, push, PR #753 update and merge under the standing owner authority.",
+  "scope": "Additive D83_D84_EXECUTION coordination package, D84 L ruling, D84 register-row successor, Receipt 173 suffix, and this separately sealed CHANGE evidence only.",
+  "checks": [
+    {
+      "command": "python3 tools/validation/validate_pec_loop_receipts.py --repo-root .",
+      "exit": 0,
+      "result": "VALID; frozen through Receipt-166; versioned receipt contract satisfied"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "exit": 0,
+      "result": "PASS with inherited INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=55"
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main",
+      "exit": 0,
+      "result": "PASS; zero untracked binary or symlink paths skipped"
+    }
+  ],
+  "pr_before_update": {
+    "number": 753,
+    "head": "121ba425e13adf196b8a1b775d54f7cb0a5a94fe",
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "merge_state": "CLEAN",
+    "completed_checks": {
+      "harness": "SUCCESS",
+      "pec": "SUCCESS"
+    }
+  },
+  "deferred": "Final pushed head, fresh CI verdicts, merge result and fetched-main observability are recorded by CHANGE after those external acts; no claim is backdated into this precommit record."
+}
