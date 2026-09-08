@@ -1,0 +1,475 @@
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/agents-projection.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/agents-projection.test.tsx
+index 7d3b7754b..9ede538cb 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/agents-projection.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/agents-projection.test.tsx
+@@ -1,57 +1,206 @@
+ import React from 'react';
+ import { renderToStaticMarkup } from 'react-dom/server';
++import { act, create, type ReactTestRenderer } from 'react-test-renderer';
+ import { describe, expect, it, vi } from 'vitest';
+ import { AgentsProjection } from '../../components/woven-dialogue/agents-projection';
+ import { buildRecordedAgentHierarchy } from '../../lib/woven-dialogue/recorded-agent-hierarchy';
+ 
+-describe('Agents projection evidence presentation', () => {
+-  it('shows currency, provenance, diagnostics, and detached recorded sessions', () => {
+-    const hierarchy = buildRecordedAgentHierarchy([
+-      {
+-        sessionId: 'detached-child',
+-        parentSessionId: 'missing-parent',
+-        sourceReference: 'session:detached-child',
+-        observedAt: '2026-07-23T10:01:00Z',
+-        currency: 'UNKNOWN',
+-        engineSelection: {
+-          adapterId: 'pi',
+-          providerId: 'omlx',
+-          model: 'local-model'
+-        }
+-      },
+-      {
+-        sessionId: 'cycle-first',
+-        parentSessionId: 'cycle-second',
+-        sourceReference: 'session:cycle-first',
+-        observedAt: '2026-07-23T10:02:00Z'
+-      },
+-      {
+-        sessionId: 'cycle-second',
+-        parentSessionId: 'cycle-first',
+-        sourceReference: 'session:cycle-second',
+-        observedAt: '2026-07-23T10:03:00Z'
+-      }
+-    ]);
++const removedMetadata = [
++  'pi',
++  'omlx',
++  'local-model',
++  'Currency:',
++  'session:root-session',
++  '2026-07-23T10:00:00Z',
++  'artifact:return',
++  'approval:record',
++  'status unknown',
++  'INVALID_CURRENCY',
++  'missing-parent',
++  'root-session',
++  'child-session'
++];
+ 
+-    const html = renderToStaticMarkup(
+-      <AgentsProjection
+-        hierarchy={hierarchy}
+-        loading={false}
+-        error={null}
+-        selectionDisabled={false}
+-        onRefresh={vi.fn()}
+-        onSelectSession={vi.fn()}
+-      />
++function fullHierarchy() {
++  return buildRecordedAgentHierarchy([
++    {
++      sessionId: 'supervisor-session',
++      sourceReference: 'session:supervisor-session',
++      observedAt: '2026-07-23T09:59:00Z',
++      persona: 'HELP_HUMAN',
++      role: 'agent0'
++    },
++    {
++      sessionId: 'root-session',
++      sourceReference: 'session:root-session',
++      observedAt: '2026-07-23T10:00:00Z',
++      currency: 'CURRENT',
++      persona: 'WORKING_ITEMS',
++      role: 'agent1',
++      status: 'running',
++      engineSelection: { adapterId: 'pi', providerId: 'omlx', model: 'local-model' },
++      outputArtifact: 'artifact:return',
++      approvalRef: 'approval:record'
++    },
++    {
++      sessionId: 'child-session',
++      parentSessionId: 'root-session',
++      sourceReference: 'session:child-session',
++      observedAt: '2026-07-23T10:01:00Z',
++      persona: 'TASK',
++      role: 'agent2'
++    },
++    {
++      sessionId: 'unknown-session',
++      sourceReference: 'session:unknown-session',
++      observedAt: '2026-07-23T10:02:00Z',
++      currency: 'invalid'
++    },
++    {
++      sessionId: 'detached-session',
++      parentSessionId: 'missing-parent',
++      sourceReference: 'session:detached-session',
++      observedAt: '2026-07-23T10:03:00Z',
++      persona: 'RESEARCH',
++      role: 'agent1'
++    }
++  ]);
++}
++
++function renderProjection(
++  overrides: Partial<React.ComponentProps<typeof AgentsProjection>> = {}
++): string {
++  return renderToStaticMarkup(
++    <AgentsProjection
++      hierarchy={fullHierarchy()}
++      loading={false}
++      error={null}
++      selectionDisabled={false}
++      onRefresh={vi.fn()}
++      onSelectSession={vi.fn()}
++      {...overrides}
++    />
++  );
++}
++
++describe('Agents projection minimal presentation', () => {
++  it('shows recorded agent type, persona, and human-readable tree relationships', () => {
++    const html = renderProjection();
++
++    expect(html).toContain('<strong>Agent 1</strong><span>WORKING_ITEMS</span>');
++    expect(html).toContain('<strong>Agent 2</strong><span>TASK</span>');
++    expect(html).toContain('<strong>Agent 0</strong><span>HELP_HUMAN</span>');
++    expect(html).toContain('Top-level');
++    expect(html).toContain('Parent: WORKING_ITEMS');
++    expect(html).toContain('Agents reporting to WORKING_ITEMS');
++  });
++
++  it('omits unknown type and persona without inferring either', () => {
++    const html = renderProjection();
++    const unknownRoot = html.match(/<button[^>]*><small>Top-level<\/small><\/button>/g);
++
++    expect(unknownRoot).toHaveLength(1);
++    expect(html).not.toContain('Role not recorded');
++    expect(html).not.toContain('Agent type unknown');
++  });
++
++  it('uses plain relationship-unavailable language for detached agents', () => {
++    const html = renderProjection();
++
++    expect(html).toContain('<h3>Parent relationship unavailable</h3>');
++    expect(html).toContain('<strong>Agent 1</strong><span>RESEARCH</span>');
++    expect(html.match(/Parent relationship unavailable/g)).toHaveLength(2);
++    expect(html).not.toContain('unresolved');
++    expect(html).not.toContain('conflicting');
++  });
++
++  it('does not expose runtime, provenance, identifier, evidence, or diagnostic metadata', () => {
++    const html = renderProjection();
++
++    for (const text of removedMetadata) {
++      expect(html).not.toContain(text);
++    }
++  });
++
++  it('keeps refresh and error access, including the loading guard', () => {
++    const refresh = vi.fn();
++    let tree: ReactTestRenderer;
++
++    act(() => {
++      tree = create(
++        <AgentsProjection
++          hierarchy={fullHierarchy()}
++          loading={false}
++          error="Agents could not be refreshed."
++          selectionDisabled={false}
++          onRefresh={refresh}
++          onSelectSession={vi.fn()}
++        />
++      );
++    });
++    const refreshButton = tree!.root.findAllByType('button')[0];
++    act(() => refreshButton.props.onClick());
++    expect(refresh).toHaveBeenCalledTimes(1);
++    expect(tree!.root.findByProps({ role: 'alert' }).children.join('')).toBe(
++      'Agents could not be refreshed.'
+     );
+ 
+-    expect(html).toContain('Relationships unavailable or conflicting');
+-    expect(html).toContain('detached-child');
+-    expect(html).toContain('Currency: UNKNOWN');
+-    expect(html).toContain('session:detached-child');
+-    expect(html).toContain('PARENT_SESSION_UNAVAILABLE');
+-    expect(html).toContain('selected model: local-model');
+-    expect(html).toContain('Recorded parent: <code>missing-parent</code>');
+-    expect(html).toContain('Recorded parent: <code>cycle-second</code>');
+-    expect(html).toContain('Recorded parent: <code>cycle-first</code>');
++    act(() => {
++      tree!.update(
++        <AgentsProjection
++          hierarchy={fullHierarchy()}
++          loading
++          error={null}
++          selectionDisabled={false}
++          onRefresh={refresh}
++          onSelectSession={vi.fn()}
++        />
++      );
++    });
++    expect(tree!.root.findAllByType('button')[0].props.disabled).toBe(true);
++    expect(tree!.root.findAllByType('button')[0].children.join('')).toBe('Refreshing…');
++  });
++
++  it('preserves selected and disabled session selection with the recorded session id internally', () => {
++    const selectSession = vi.fn();
++    let tree: ReactTestRenderer;
++
++    act(() => {
++      tree = create(
++        <AgentsProjection
++          hierarchy={fullHierarchy()}
++          loading={false}
++          error={null}
++          selectedSessionId="child-session"
++          selectionDisabled={false}
++          onRefresh={vi.fn()}
++          onSelectSession={selectSession}
++        />
++      );
++    });
++    const agentButtons = tree!.root.findAllByType('button').slice(1);
++    const selected = agentButtons.find((button) => button.props['aria-pressed'] === true);
++    expect(selected?.props.className).toContain('woven-agent-card--selected');
++    act(() => selected?.props.onClick());
++    expect(selectSession).toHaveBeenCalledWith('child-session');
++
++    act(() => {
++      tree!.update(
++        <AgentsProjection
++          hierarchy={fullHierarchy()}
++          loading={false}
++          error={null}
++          selectionDisabled
++          onRefresh={vi.fn()}
++          onSelectSession={selectSession}
++        />
++      );
++    });
++    expect(tree!.root.findAllByType('button').slice(1).every((button) => button.props.disabled)).toBe(
++      true
++    );
++    expect(tree!.root.findByProps({ role: 'status' }).children.join('')).toContain(
++      'Agent selection is paused'
++    );
+   });
+ });
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/agents-projection.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/agents-projection.tsx
+index 0b78156ed..6d0ae03de 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/agents-projection.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/agents-projection.tsx
+@@ -16,16 +16,35 @@ type AgentsProjectionProps = {
+   onSelectSession: (sessionId: string) => void;
+ };
+ 
+-function attributionLabel(session: OperatorSessionProjection): string {
+-  const selection = [session.adapterId, session.providerId].filter(Boolean);
+-  if (session.model) {
+-    selection.push(`selected model: ${session.model}`);
++type Relationship =
++  | { kind: 'ROOT' }
++  | { kind: 'CHILD'; parent: OperatorSessionProjection }
++  | { kind: 'DETACHED' };
++
++const ROLE_LABELS: Record<NonNullable<OperatorSessionProjection['role']>, string> = {
++  agent0: 'Agent 0',
++  agent1: 'Agent 1',
++  agent2: 'Agent 2'
++};
++
++function recordedAgentLabel(session: OperatorSessionProjection): string | undefined {
++  return session.persona ?? (session.role ? ROLE_LABELS[session.role] : undefined);
++}
++
++function relationshipLabel(relationship: Relationship): string {
++  if (relationship.kind === 'ROOT') {
++    return 'Top-level';
+   }
+-  return selection.length > 0 ? selection.join(' · ') : 'Engine attribution not recorded';
++  if (relationship.kind === 'DETACHED') {
++    return 'Parent relationship unavailable';
++  }
++  const parentLabel = recordedAgentLabel(relationship.parent);
++  return parentLabel ? `Parent: ${parentLabel}` : 'Parent relationship recorded';
+ }
+ 
+ function SessionCard({
+   session,
++  relationship,
+   depth,
+   childrenByParentSessionId,
+   selectedSessionId,
+@@ -33,6 +52,7 @@ function SessionCard({
+   onSelectSession
+ }: {
+   session: OperatorSessionProjection;
++  relationship: Relationship;
+   depth: number;
+   childrenByParentSessionId: RecordedAgentHierarchy['childrenByParentSessionId'];
+   selectedSessionId?: string;
+@@ -40,6 +60,8 @@ function SessionCard({
+   onSelectSession: (sessionId: string) => void;
+ }): JSX.Element {
+   const children = childrenByParentSessionId[session.sessionId] ?? [];
++  const roleLabel = session.role ? ROLE_LABELS[session.role] : undefined;
++  const agentLabel = recordedAgentLabel(session);
+ 
+   return (
+     <li className="woven-agent-branch">
+@@ -57,54 +79,20 @@ function SessionCard({
+           onSelectSession(session.sessionId);
+         }}
+       >
+-        <span className="woven-agent-card-topline">
+-          <strong>{session.role ?? 'Role not recorded'}</strong>
+-          <span>{session.runtimeStatus ?? 'status unknown'}</span>
+-        </span>
+-        <span>{session.persona ?? session.sessionId}</span>
+-        <small>{attributionLabel(session)}</small>
+-        <small>Currency: {session.currency}</small>
+-        {session.parentage.state === 'RECORDED' ? (
+-          <small>
+-            Recorded parent: <code>{session.parentage.parentSessionId}</code>{' '}
+-            ({session.parentage.parentAvailable ? 'record available' : 'record unavailable'})
+-          </small>
+-        ) : (
+-          <small>Recorded parent: not recorded</small>
+-        )}
+-        <small>
+-          Source: <code>{session.sourceReference}</code>
+-        </small>
+-        <small>Observed: {session.observedAt}</small>
+-        {session.outputArtifactReference ? (
+-          <small>
+-            Return: <code>{session.outputArtifactReference}</code>
+-          </small>
+-        ) : null}
+-        {session.approvalEvidenceReference ? (
+-          <small>
+-            Approval evidence: <code>{session.approvalEvidenceReference}</code>
+-          </small>
+-        ) : null}
+-        {session.diagnostics.length > 0 ? (
+-          <span className="woven-agent-diagnostics" role="status">
+-            {session.diagnostics.map((diagnostic) => (
+-              <small key={diagnostic.code}>
+-                {diagnostic.code}: {diagnostic.message}
+-              </small>
+-            ))}
+-          </span>
+-        ) : null}
+-        <small>
+-          Session: <code>{session.sessionId}</code>
+-        </small>
++        {roleLabel ? <strong>{roleLabel}</strong> : null}
++        {session.persona ? <span>{session.persona}</span> : null}
++        <small>{relationshipLabel(relationship)}</small>
+       </button>
+       {children.length > 0 ? (
+-        <ol className="woven-agent-children" aria-label={`Children of ${session.sessionId}`}>
++        <ol
++          className="woven-agent-children"
++          aria-label={agentLabel ? `Agents reporting to ${agentLabel}` : 'Child agents'}
++        >
+           {children.map((child) => (
+             <SessionCard
+               key={child.sessionId}
+               session={child}
++              relationship={{ kind: 'CHILD', parent: session }}
+               depth={depth + 1}
+               childrenByParentSessionId={childrenByParentSessionId}
+               selectedSessionId={selectedSessionId}
+@@ -128,11 +116,9 @@ export function AgentsProjection({
+   onSelectSession
+ }: AgentsProjectionProps): JSX.Element {
+   return (
+-    <section className="woven-projection" aria-label="Recorded agent sessions">
++    <section className="woven-projection" aria-label="Recorded agent tree">
+       <div className="woven-projection-toolbar">
+-        <p>
+-          Recorded sessions and exact parent links only. This view is not an editable work graph.
+-        </p>
++        <p>Recorded agent tree</p>
+         <button type="button" className="button-muted" disabled={loading} onClick={onRefresh}>
+           {loading ? 'Refreshing…' : 'Refresh'}
+         </button>
+@@ -140,7 +126,7 @@ export function AgentsProjection({
+ 
+       {selectionDisabled ? (
+         <p className="woven-projection-notice" role="status">
+-          Session selection is paused while the primary dialogue is running.
++          Agent selection is paused while the primary dialogue is running.
+         </p>
+       ) : null}
+       {error ? (
+@@ -151,14 +137,15 @@ export function AgentsProjection({
+ 
+       {!loading && hierarchy.roots.length === 0 ? (
+         hierarchy.detached.length === 0 ? (
+-          <p className="panel-empty">No recorded sessions are available for this Working Root.</p>
++          <p className="panel-empty">No recorded agents are available for this Working Root.</p>
+         ) : null
+       ) : (
+-        <ol className="woven-agent-tree" aria-label="Sessions without a recorded parent">
++        <ol className="woven-agent-tree" aria-label="Top-level agents">
+           {hierarchy.roots.map((session) => (
+             <SessionCard
+               key={session.sessionId}
+               session={session}
++              relationship={{ kind: 'ROOT' }}
+               depth={0}
+               childrenByParentSessionId={hierarchy.childrenByParentSessionId}
+               selectedSessionId={selectedSessionId}
+@@ -170,17 +157,14 @@ export function AgentsProjection({
+       )}
+ 
+       {hierarchy.detached.length > 0 ? (
+-        <section className="woven-detached-agents" aria-label="Sessions with unresolved relationships">
+-          <h3>Relationships unavailable or conflicting</h3>
+-          <p>
+-            These sessions are recorded, but their parent links cannot form a safe hierarchy.
+-            They are shown without inferred placement.
+-          </p>
++        <section className="woven-detached-agents" aria-label="Agents without an available parent">
++          <h3>Parent relationship unavailable</h3>
+           <ol className="woven-agent-tree">
+             {hierarchy.detached.map((session) => (
+               <SessionCard
+                 key={session.sessionId}
+                 session={session}
++                relationship={{ kind: 'DETACHED' }}
+                 depth={0}
+                 childrenByParentSessionId={{}}
+                 selectedSessionId={selectedSessionId}
+@@ -191,30 +175,6 @@ export function AgentsProjection({
+           </ol>
+         </section>
+       ) : null}
+-
+-      {hierarchy.unresolvedParentSessionIds.length > 0 ? (
+-        <div className="woven-unresolved-parents">
+-          <h3>Parent records unavailable</h3>
+-          <ul>
+-            {hierarchy.unresolvedParentSessionIds.map((sessionId) => (
+-              <li key={sessionId}>{sessionId}</li>
+-            ))}
+-          </ul>
+-        </div>
+-      ) : null}
+-
+-      {hierarchy.diagnostics.length > 0 ? (
+-        <section className="woven-hierarchy-diagnostics" aria-label="Hierarchy disclosures">
+-          <h3>Hierarchy disclosures</h3>
+-          <ul>
+-            {hierarchy.diagnostics.map((diagnostic, index) => (
+-              <li key={`${diagnostic.code}:${index}`}>
+-                <strong>{diagnostic.code}</strong>: {diagnostic.message}
+-              </li>
+-            ))}
+-          </ul>
+-        </section>
+-      ) : null}
+     </section>
+   );
+ }

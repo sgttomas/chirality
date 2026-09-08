@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-format-disposition/v4",
+  "created_at": "2026-09-08T03:22:27.582876+00:00",
+  "verdict": "READY",
+  "ci_failure": {
+    "run_id": 34182630185,
+    "job_url": "https://github.com/sgttomas/chirality/actions/runs/34182630185",
+    "head_sha": "6670864ab2409d20674773d9ff8c58518ddd0eb8",
+    "finding_count": 9,
+    "classification": "format-mandated unified-diff added blank lines in immutable SOURCE.patch",
+    "externally_retained_raw_log": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02-agents-presentation/format-disposition-v1/CI_FAILURE_RAW.log",
+      "sha256": "708a5181b382f6ef9f00667bc950a6bdc7a7c08a422230493f58e785bfe3a020",
+      "selected_for_publication": false
+    }
+  },
+  "repair": {
+    "gitattributes_pre_sha256": "7d9d8cedce4e8ee24ca95a754ae8f335eb0c2204b628d837ca1e2d3950c13c4f",
+    "gitattributes_post_sha256": "02be0186e8e4b68e74668e20030a4fdbd9e234a2bce6dcf0fd86f20cd316dfd6",
+    "scope": "one exact SOURCE.patch -whitespace rule",
+    "source_patch_sha256": "23462b0f2020c5dbaf9ab19d95d8a276bbe2c59d51df6688c499d33d35f252a8",
+    "prior_63_selected_bytes_unchanged": true
+  },
+  "excluded_failed_records": [
+    "PUBLICATION_SELECTION_v2.json",
+    "PUBLICATION_MANIFEST_v2.json",
+    "PUBLICATION_SELECTION_v3.json",
+    "PUBLICATION_MANIFEST_v3.json",
+    "format-disposition-v1/**",
+    "format-disposition-v2/**"
+  ]
+}

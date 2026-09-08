@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-browser-source-verification/v1",
+  "baseCommit": "4f98be53e7359b72521f20181537f67fd63ad69b",
+  "briefSha256": "df33ceab93150c41e1fd77d2e920323cd878dba53750d950dfb539a7c1aa1e08",
+  "ownerDirectionSha256": "f41e000e395c37c0ddacdcba08daffe1de2a57cce089e5649da2a5689f098720",
+  "authorPatchSha256": "23462b0f2020c5dbaf9ab19d95d8a276bbe2c59d51df6688c499d33d35f252a8",
+  "reviewManifestSha256": "c76e430d3ee34edfa9071f4991e43e50e617ac5a2abfb1314f9c14a1d9264820",
+  "liveComponentSha256": "99f516d8e16a79d5082c2892e41b4d86582d492692ce05d32415bab99547adb4",
+  "liveFocusedTestSha256": "1da832039a57f3ba036728380df8adfb787161511c77c4f89e9a9f0033407338",
+  "productionCssSha256": "cb6898e8f127c64ad04dde7a466c8dbf27a425151c8a8010774a5edb467392aa",
+  "hierarchyBuilderSha256": "058b6162af31ff187255d6cb04b01ae90f06811fc83c5f7bfcacc9a9bbfc2236",
+  "contractsSha256": "43a4a029ce254ed003da04359ce2044e95af26968b2e0198ef8def7cc26023be",
+  "fixtureProductionCopiesEqualLive": true,
+  "productSourceChangedByVisualRun": false,
+  "verifiedAt": "2026-09-08T02:50:49Z"
+}

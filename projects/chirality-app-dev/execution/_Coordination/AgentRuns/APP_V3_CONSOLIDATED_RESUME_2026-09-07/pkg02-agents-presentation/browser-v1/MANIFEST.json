@@ -1,0 +1,223 @@
+{
+  "schema": "chirality-browser-manifest/v1",
+  "generatedAt": "2026-09-08T02:50:49Z",
+  "verdict": "PASS",
+  "fileCount": 43,
+  "items": [
+    {
+      "path": "CHECKS.json",
+      "sha256": "0e613dd1848c9b53dd5cd1a5d880245e673dba34df5bcdf8aae925c1f41b61c1",
+      "bytes": 1462
+    },
+    {
+      "path": "CLEANUP.json",
+      "sha256": "e84c69487602733defc616496d9ee3d1e8dc1449f401b4e56542e1c98a8bb76a",
+      "bytes": 382
+    },
+    {
+      "path": "COMMANDS.json",
+      "sha256": "1ab5fbc9faafd4452ae1def6bd847eed37568fd8019bff9d35221832765780b9",
+      "bytes": 1687
+    },
+    {
+      "path": "IMAGE_INDEX.md",
+      "sha256": "ba6e75778aac19200f28be51861ea2c310b9939846aef9f93f8cfb79faab614c",
+      "bytes": 1348
+    },
+    {
+      "path": "INTERACTIONS.json",
+      "sha256": "ff5306e03732219f961caeede18af9aba76da9cde903808ac8db41b425351c63",
+      "bytes": 2018
+    },
+    {
+      "path": "PROCESS.json",
+      "sha256": "cf0090033d9e077137256f6a3becced4a2219e47b8f60c6f114c174456d54dd0",
+      "bytes": 902
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "95fe29340e8f8099bc929de86f124c9933b1887d11ff763414218e0b6b349467",
+      "bytes": 2197
+    },
+    {
+      "path": "SCREENSHOTS.json",
+      "sha256": "edd97e04e24468e8f0a82b795911d82ebf663b068c9154f1510cec8eb4e537a5",
+      "bytes": 3280
+    },
+    {
+      "path": "SERVER_LOG.txt",
+      "sha256": "dc66d4681b778f45639ce088cbec8853b71eee6b025162e2fe8da688f6333eae",
+      "bytes": 2678
+    },
+    {
+      "path": "SOURCE_VERIFICATION.json",
+      "sha256": "82fd379b86a79cdbe0a2145e5a7ef12e6b3106c42b3ebbec9700aa98784a9b53",
+      "bytes": 1077
+    },
+    {
+      "path": "VISUAL_BRIEF_COPY.md",
+      "sha256": "df33ceab93150c41e1fd77d2e920323cd878dba53750d950dfb539a7c1aa1e08",
+      "bytes": 2624
+    },
+    {
+      "path": "ax/chrome-dark-initial.txt",
+      "sha256": "cb906d9736156d5d389758bf39484aef5edac1c03d93926f63dfe744fc299f2e",
+      "bytes": 1696
+    },
+    {
+      "path": "ax/chrome-light-disabled.txt",
+      "sha256": "b0a7cc9bf3e75ab950ca068c7615e3cd0f58c53fa27b7c187b1f30b5a1f28d84",
+      "bytes": 1874
+    },
+    {
+      "path": "ax/chrome-light-initial.txt",
+      "sha256": "2692444dd1457b7c1b58cba6525ff77ccc71d948d9c21e3a8e32da94e530601b",
+      "bytes": 1698
+    },
+    {
+      "path": "ax/chrome-light-refresh-complete.txt",
+      "sha256": "4f1fa3d610d55ecf216cd6af7f1e0ee89a459f38e4b555def2b990c6e591c23d",
+      "bytes": 1696
+    },
+    {
+      "path": "ax/chrome-light-refresh.txt",
+      "sha256": "206cdbaf68a6af61605d18cc4de18e6db2db68257794219ee278bedc2f4bfb16",
+      "bytes": 1715
+    },
+    {
+      "path": "ax/chrome-light-selected.txt",
+      "sha256": "0db36161b23c3ed7f0d469adadfb4c6a9e7632896967a6b88b30809601223041",
+      "bytes": 1675
+    },
+    {
+      "path": "ax/safari-dark-initial.txt",
+      "sha256": "3a6571be351da4304e075a7e051912c26f1b01b77666132dea9ce5498aa2384e",
+      "bytes": 1420
+    },
+    {
+      "path": "ax/safari-light-disabled.txt",
+      "sha256": "f8ce0ac4448ea135ae0955d40a1eeeba302a11ed31ac75c0fc74cd5f40cbc071",
+      "bytes": 1888
+    },
+    {
+      "path": "ax/safari-light-initial.txt",
+      "sha256": "27e3be9b6711276a8b6f066b15b7aa607ed0a346ed7687d3be00e2999b30d0c8",
+      "bytes": 1421
+    },
+    {
+      "path": "ax/safari-light-refresh-complete.txt",
+      "sha256": "f8f3f4bc67ee03cc8f47f8719f8a741f4781c095a581aa67d7b90c7a07d4d8d6",
+      "bytes": 1419
+    },
+    {
+      "path": "ax/safari-light-refresh.txt",
+      "sha256": "cc2e27e69996a7481b95bd81a748b2174296c6d8c1b70a25ac2d12acfa9dcdbb",
+      "bytes": 1438
+    },
+    {
+      "path": "ax/safari-light-selected.txt",
+      "sha256": "d12d93b042afdc4d9667888d0239d504ebe9ef6d2ff44f4cac7ae85a696e51d8",
+      "bytes": 1418
+    },
+    {
+      "path": "fixture/bundle.js",
+      "sha256": "78bbbfdcd841623ceddde75cd655cd555bda0570a0320631e4f0fcfbda05b8eb",
+      "bytes": 1078316
+    },
+    {
+      "path": "fixture/fixture.css",
+      "sha256": "ca46364552fc8daafbcefed366d7366ec678caafdf68494ec1c0be9bf0f95e33",
+      "bytes": 945
+    },
+    {
+      "path": "fixture/index.html",
+      "sha256": "9e4c4e444ee2eeabbcda5df5c2270ac9e9396de346bd7f8444333a4d4033445a",
+      "bytes": 416
+    },
+    {
+      "path": "fixture/main.tsx",
+      "sha256": "c46c06a3519bbcf28bdf022cc6c021f021a37296b5abf3b813f4da4770951024",
+      "bytes": 3605
+    },
+    {
+      "path": "fixture/production/globals.css",
+      "sha256": "cb6898e8f127c64ad04dde7a466c8dbf27a425151c8a8010774a5edb467392aa",
+      "bytes": 98623
+    },
+    {
+      "path": "fixture/production/src/components/woven-dialogue/agents-projection.tsx",
+      "sha256": "99f516d8e16a79d5082c2892e41b4d86582d492692ce05d32415bab99547adb4",
+      "bytes": 5691
+    },
+    {
+      "path": "fixture/production/src/lib/woven-dialogue/contracts.ts",
+      "sha256": "43a4a029ce254ed003da04359ce2044e95af26968b2e0198ef8def7cc26023be",
+      "bytes": 2768
+    },
+    {
+      "path": "fixture/production/src/lib/woven-dialogue/recorded-agent-hierarchy.ts",
+      "sha256": "058b6162af31ff187255d6cb04b01ae90f06811fc83c5f7bfcacc9a9bbfc2236",
+      "bytes": 10103
+    },
+    {
+      "path": "screenshots/chrome-dark-initial.jpg",
+      "sha256": "d9159ebcdfdaacaa5a80d0ef37a3459638e5f4ed5efdc189086c24cc4a71adaf",
+      "bytes": 25460
+    },
+    {
+      "path": "screenshots/chrome-light-disabled.jpg",
+      "sha256": "e1e95f95d1d3d86eecd7740bbb85c315880e290336124956db927b8eba4c0e87",
+      "bytes": 28116
+    },
+    {
+      "path": "screenshots/chrome-light-initial.jpg",
+      "sha256": "738fe9e4cfd324c5311f72b004fbcc210f8339d22b48c9dac725b3a8dec4c6ad",
+      "bytes": 26934
+    },
+    {
+      "path": "screenshots/chrome-light-refresh-complete.jpg",
+      "sha256": "a13ae55c8bc2ef220c9441c7fe79f765e4540f69b22105121a5ff339d21e2335",
+      "bytes": 27080
+    },
+    {
+      "path": "screenshots/chrome-light-refresh.jpg",
+      "sha256": "fc028738f5060962da97a4e0efe222d0c23164e0e945d0696a3d9afdde0c0973",
+      "bytes": 27164
+    },
+    {
+      "path": "screenshots/chrome-light-selected.jpg",
+      "sha256": "5e8ca7cfc86c9bd4218d79e0d42284e7d5d779e6b76efc8d6c3e2ea8639f23c4",
+      "bytes": 27237
+    },
+    {
+      "path": "screenshots/safari-dark-initial.jpg",
+      "sha256": "94f033091233a8731d5a6b15c44785b8c1211c4355b392ab5b65277fb4a6f064",
+      "bytes": 39945
+    },
+    {
+      "path": "screenshots/safari-light-disabled.jpg",
+      "sha256": "7e26d7557d0e741f20c7e9c8759e912d52672e64fadecf2694e6e96e24008e99",
+      "bytes": 43785
+    },
+    {
+      "path": "screenshots/safari-light-initial.jpg",
+      "sha256": "867cd5ff4cf26c7c1e224ee44a789423fe8fd0f33bed295587a8059299c09045",
+      "bytes": 42603
+    },
+    {
+      "path": "screenshots/safari-light-refresh-complete.jpg",
+      "sha256": "d8c50179e8d1de824307be2d9881b85af0815fee79bdb05aa32fff0e024731d1",
+      "bytes": 42574
+    },
+    {
+      "path": "screenshots/safari-light-refresh.jpg",
+      "sha256": "0a113f9f514d6ecd666ee449fc0e559b8f9ac20eb52e2b52d015dbc5646e7071",
+      "bytes": 42614
+    },
+    {
+      "path": "screenshots/safari-light-selected.jpg",
+      "sha256": "8173398bd9cda80277a4e9156d9f850ea822ad87bfe8fb1e258a60bfaa74df71",
+      "bytes": 43665
+    }
+  ]
+}

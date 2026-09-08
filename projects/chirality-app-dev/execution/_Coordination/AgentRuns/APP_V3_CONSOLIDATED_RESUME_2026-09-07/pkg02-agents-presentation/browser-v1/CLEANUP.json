@@ -1,0 +1,12 @@
+{
+  "schema": "chirality-browser-cleanup/v1",
+  "performedAt": "2026-09-08T02:50:49Z",
+  "chromeOwnedTabsClosed": true,
+  "safariOwnedTabClosed": true,
+  "serverStopMethod": "Ctrl-C sent to owned exec session 9760",
+  "serverExitCode": 0,
+  "serverPidAbsent": true,
+  "port64503ListenerAbsent": true,
+  "otherProcessesTouched": false,
+  "scratchPreservedForOwnerInspection": true
+}

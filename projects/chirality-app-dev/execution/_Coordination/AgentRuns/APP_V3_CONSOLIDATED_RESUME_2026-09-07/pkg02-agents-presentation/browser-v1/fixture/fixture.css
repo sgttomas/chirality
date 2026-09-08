@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.fixture-shell {
+  width: min(100%, 390px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 14px;
+}
+
+.fixture-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.fixture-heading p {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fixture-panel {
+  min-height: 0;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.woven-projection-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@media (max-width: 360px) {
+  .fixture-shell {
+    padding: 8px;
+  }
+
+  .fixture-panel {
+    padding: 8px;
+  }
+}

@@ -1,0 +1,42 @@
+Browser tab: 730583419, Title: "Agents Projection Visual Fixture", URL: "http://127.0.0.1:64503/?theme=dark".
+1 AXWebArea Agents Projection Visual Fixture, URL: 127.0.0.1:64503/?theme=dark
+	2 container
+		3 text BROWSER VISUAL FIXTURE · SYNTHETIC RECORDS
+		4 container
+			5 text Refresh completed  0  time s .
+		6 container Recorded agent tree
+			7 text Recorded agent tree
+			8 button Refresh
+			9 content list Top-level agents
+				10 container
+					11 checkbox Agent 0 HELP_HUMAN Top-level, Value: 0
+						12 text Agent 0
+						13 text HELP_HUMAN
+						14 text Top-level
+					15 content list Agents reporting to HELP_HUMAN
+						16 container
+							17 checkbox Agent 1 WORKING_ITEMS Parent: HELP_HUMAN, Value: 0
+								18 text Agent 1
+								19 text WORKING_ITEMS
+								20 text Parent: HELP_HUMAN
+							21 content list Agents reporting to WORKING_ITEMS
+								22 checkbox Agent 2 REVIEW Parent: WORKING_ITEMS, Value: 0
+									23 text Agent 2
+									24 text REVIEW
+									25 text Parent: WORKING_ITEMS
+								26 checkbox Agent 2 TASK Parent: WORKING_ITEMS, Value: 0
+									27 text Agent 2
+									28 text TASK
+									29 text Parent: WORKING_ITEMS
+						30 checkbox Parent: HELP_HUMAN, Value: 0
+							31 text Parent: HELP_HUMAN
+			32 container Agents without an available parent
+				33 heading Parent relationship unavailable, Value: 3
+					34 text Parent relationship unavailable
+				35 content list
+					36 checkbox Agent 2 RESEARCHER Parent relationship unavailable, Value: 0
+						37 text Agent 2
+						38 text RESEARCHER
+						39 text Parent relationship unavailable
+
+The focused UI element is 1 AXWebArea Agents Projection Visual Fixture, URL: 127.0.0.1:64503/?theme=dark

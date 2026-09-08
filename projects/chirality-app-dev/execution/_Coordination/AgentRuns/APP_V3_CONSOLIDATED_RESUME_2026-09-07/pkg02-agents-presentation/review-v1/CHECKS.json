@@ -1,0 +1,90 @@
+{
+  "schema": "chirality-independent-review-checks/v1",
+  "verdict": "PASS",
+  "reviewer": {
+    "role": "Agent 2",
+    "model": "gpt-5.6-sol",
+    "reasoning": "medium",
+    "fresh": true,
+    "nondelegating": true,
+    "role_enforcement": "instruction-asserted"
+  },
+  "inputs": {
+    "review_brief_sha256": "ff07e1db5229ffdcd43fa314d6f392e123ff1a88ede21165945f998671ef27e8",
+    "owner_direction_sha256": "f41e000e395c37c0ddacdcba08daffe1de2a57cce089e5649da2a5689f098720",
+    "author_brief_sha256": "d80ebbfafd6d02774f67198db7e4bf644320ea83d11c5c0e24f64c314faa261c",
+    "author_manifest_sha256": "44a0908e83464783531257bb6866de7ce49cbfd50f9f0866f90f8b546c06f4b1",
+    "source_patch_sha256": "23462b0f2020c5dbaf9ab19d95d8a276bbe2c59d51df6688c499d33d35f252a8",
+    "base_commit": "4f98be53e7359b72521f20181537f67fd63ad69b",
+    "component_postimage_sha256": "99f516d8e16a79d5082c2892e41b4d86582d492692ce05d32415bab99547adb4",
+    "test_postimage_sha256": "1da832039a57f3ba036728380df8adfb787161511c77c4f89e9a9f0033407338"
+  },
+  "checks": [
+    {
+      "name": "frozen_input_identity",
+      "status": "PASS",
+      "detail": "Review brief, owner direction, author brief, author manifest, source patch, and both live postimages independently match every sealed SHA-256 pin."
+    },
+    {
+      "name": "exact_two_locus_patch",
+      "status": "PASS",
+      "detail": "Fresh base-to-live diff hashes exactly to SOURCE.patch, names only the component and focused test, reverse-applies cleanly, and passes git diff --check."
+    },
+    {
+      "name": "complete_source_review",
+      "status": "PASS",
+      "detail": "Reviewed all 44 additions and 84 deletions in the component and all 195 additions and 46 deletions in the test, plus the hierarchy builder, contracts-by-type usage, caller, and relevant existing CSS selectors."
+    },
+    {
+      "name": "minimal_recorded_presentation",
+      "status": "PASS",
+      "detail": "Cards render only known Agent 0/1/2 labels, recorded personas, and relationship copy; absent values remain omitted and parent labels use recorded in-view persona/type or a truthful generic phrase."
+    },
+    {
+      "name": "metadata_and_identifier_nonpresentation",
+      "status": "PASS",
+      "detail": "No engine, provider, model, currency, source, observation, runtime status, artifact, approval, diagnostic, session ID, or parent ID is rendered; session IDs remain internal to identity, lookup, selected state, and callbacks."
+    },
+    {
+      "name": "hierarchy_and_interaction_preservation",
+      "status": "PASS",
+      "detail": "Roots and recursive children retain hierarchy-builder placement; detached and cyclic records remain flat in the truthful unavailable-parent section; refresh, loading guard, error alert, selected state, disabled selection, and exact callback identity remain intact."
+    },
+    {
+      "name": "accessibility",
+      "status": "PASS",
+      "detail": "Projection, top-level list, child lists, detached section, refresh control, error alert, selection status, and agent buttons retain meaningful accessible names or text without exposing raw identifiers."
+    },
+    {
+      "name": "test_quality",
+      "status": "PASS",
+      "detail": "The six focused tests exercise rendered output and callbacks across known and unknown attribution, roots/children/detached placement, forbidden metadata, refresh/error/loading, selection, and disabled behavior; no still-required prior behavior is dropped."
+    },
+    {
+      "name": "focused_vitest",
+      "status": "PASS",
+      "command": "npx vitest run src/__tests__/components/agents-projection.test.tsx",
+      "exit_status": 0,
+      "detail": "1 test file passed; 6 tests passed; duration 167ms."
+    },
+    {
+      "name": "registered_frontend_typecheck",
+      "status": "PASS",
+      "command": "npm run typecheck",
+      "exit_status": 0,
+      "detail": "Both frontend and Electron TypeScript no-emit checks passed."
+    },
+    {
+      "name": "forbidden_side_effects",
+      "status": "PASS",
+      "detail": "No product source, tests, author evidence, Git, receipts, unrelated evidence, browser, native, Electron, Runtime, daemon, network, or server state was modified or invoked."
+    }
+  ],
+  "finding_counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "fresh_review_required_after_repair": false
+}

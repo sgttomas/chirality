@@ -1,0 +1,113 @@
+{
+  "schema": "chirality-browser-screenshots/v1",
+  "items": [
+    {
+      "path": "screenshots/chrome-dark-initial.jpg",
+      "sha256": "d9159ebcdfdaacaa5a80d0ef37a3459638e5f4ed5efdc189086c24cc4a71adaf",
+      "bytes": 25460,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1534,
+      "height": 750
+    },
+    {
+      "path": "screenshots/chrome-light-disabled.jpg",
+      "sha256": "e1e95f95d1d3d86eecd7740bbb85c315880e290336124956db927b8eba4c0e87",
+      "bytes": 28116,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1534,
+      "height": 750
+    },
+    {
+      "path": "screenshots/chrome-light-initial.jpg",
+      "sha256": "738fe9e4cfd324c5311f72b004fbcc210f8339d22b48c9dac725b3a8dec4c6ad",
+      "bytes": 26934,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1534,
+      "height": 750
+    },
+    {
+      "path": "screenshots/chrome-light-refresh-complete.jpg",
+      "sha256": "a13ae55c8bc2ef220c9441c7fe79f765e4540f69b22105121a5ff339d21e2335",
+      "bytes": 27080,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1534,
+      "height": 750
+    },
+    {
+      "path": "screenshots/chrome-light-refresh.jpg",
+      "sha256": "fc028738f5060962da97a4e0efe222d0c23164e0e945d0696a3d9afdde0c0973",
+      "bytes": 27164,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1534,
+      "height": 750
+    },
+    {
+      "path": "screenshots/chrome-light-selected.jpg",
+      "sha256": "5e8ca7cfc86c9bd4218d79e0d42284e7d5d779e6b76efc8d6c3e2ea8639f23c4",
+      "bytes": 27237,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1534,
+      "height": 750
+    },
+    {
+      "path": "screenshots/safari-dark-initial.jpg",
+      "sha256": "94f033091233a8731d5a6b15c44785b8c1211c4355b392ab5b65277fb4a6f064",
+      "bytes": 39945,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1272,
+      "height": 698
+    },
+    {
+      "path": "screenshots/safari-light-disabled.jpg",
+      "sha256": "7e26d7557d0e741f20c7e9c8759e912d52672e64fadecf2694e6e96e24008e99",
+      "bytes": 43785,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1272,
+      "height": 698
+    },
+    {
+      "path": "screenshots/safari-light-initial.jpg",
+      "sha256": "867cd5ff4cf26c7c1e224ee44a789423fe8fd0f33bed295587a8059299c09045",
+      "bytes": 42603,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1272,
+      "height": 698
+    },
+    {
+      "path": "screenshots/safari-light-refresh-complete.jpg",
+      "sha256": "d8c50179e8d1de824307be2d9881b85af0815fee79bdb05aa32fff0e024731d1",
+      "bytes": 42574,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1272,
+      "height": 698
+    },
+    {
+      "path": "screenshots/safari-light-refresh.jpg",
+      "sha256": "0a113f9f514d6ecd666ee449fc0e559b8f9ac20eb52e2b52d015dbc5646e7071",
+      "bytes": 42614,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1272,
+      "height": 698
+    },
+    {
+      "path": "screenshots/safari-light-selected.jpg",
+      "sha256": "8173398bd9cda80277a4e9156d9f850ea822ad87bfe8fb1e258a60bfaa74df71",
+      "bytes": 43665,
+      "magicHex": "ffd8ff",
+      "format": "JPEG",
+      "width": 1272,
+      "height": 698
+    }
+  ]
+}

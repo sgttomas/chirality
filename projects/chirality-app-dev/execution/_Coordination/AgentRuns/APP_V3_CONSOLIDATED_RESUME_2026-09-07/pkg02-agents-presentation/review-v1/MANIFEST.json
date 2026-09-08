@@ -1,0 +1,31 @@
+{
+  "schema": "chirality-evidence-manifest/v1",
+  "algorithm": "sha256",
+  "verdict": "PASS",
+  "reviewed_author_manifest": {
+    "path": "../author-v1/MANIFEST.json",
+    "sha256": "44a0908e83464783531257bb6866de7ce49cbfd50f9f0866f90f8b546c06f4b1"
+  },
+  "reviewed_source_patch": {
+    "path": "../author-v1/SOURCE.patch",
+    "sha256": "23462b0f2020c5dbaf9ab19d95d8a276bbe2c59d51df6688c499d33d35f252a8"
+  },
+  "files": [
+    {
+      "path": "SEALED_BRIEF.md",
+      "bytes": 2166,
+      "sha256": "ff07e1db5229ffdcd43fa314d6f392e123ff1a88ede21165945f998671ef27e8"
+    },
+    {
+      "path": "CHECKS.json",
+      "bytes": 4350,
+      "sha256": "5f5af11078fb52e4cb015860f05cc25096a7914c684ad635183c7e2291c9ced0"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 2547,
+      "sha256": "4660bc520a828f4b7c7572761bc03714f7bd84a5486303b80a7af2f075b39a8a"
+    }
+  ],
+  "recompute": "cd review-v1 && shasum -a 256 SEALED_BRIEF.md CHECKS.json RETURN.md"
+}

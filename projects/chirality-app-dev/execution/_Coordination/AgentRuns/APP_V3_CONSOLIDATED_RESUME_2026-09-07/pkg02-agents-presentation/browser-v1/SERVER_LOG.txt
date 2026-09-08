@@ -1,0 +1,38 @@
+127.0.0.1 - - [07/Sep/2026 20:39:39] "GET /?theme=light HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:39:39] "GET /fixture.css HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:39:39] "GET /production/globals.css HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:39:39] "GET /bundle.js HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:39:39] code 404, message File not found
+127.0.0.1 - - [07/Sep/2026 20:39:39] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [07/Sep/2026 20:41:10] "GET /?theme=dark HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:41:10] "GET /production/globals.css HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:41:10] "GET /bundle.js HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:41:10] "GET /fixture.css HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:41:27] "GET /?theme=light&disabled=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:42:28] "GET /?theme=light HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:42:28] "GET /production/globals.css HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:42:28] "GET /fixture.css HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:42:28] "GET /bundle.js HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:42:28] code 404, message File not found
+127.0.0.1 - - [07/Sep/2026 20:42:28] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [07/Sep/2026 20:43:45] "GET /?theme=dark HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:43:45] "GET /bundle.js HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:43:58] "GET /?theme=light&disabled=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:47:47] "GET /bundle.js HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:47:52] "GET /?theme=light HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:47:52] "GET /fixture.css HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:47:52] "GET /production/globals.css HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:47:52] "GET /bundle.js HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:48:39] "GET /?theme=dark HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:48:39] "GET /bundle.js HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:48:39] "GET /?theme=light&disabled=1 HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:48:53] "GET /?theme=light HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:48:53] "GET /fixture.css HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:48:53] "GET /bundle.js HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 20:48:53] "GET /production/globals.css HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:49:42] "GET /?theme=dark HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:49:42] "GET /bundle.js HTTP/1.1" 304 -
+127.0.0.1 - - [07/Sep/2026 20:49:43] "GET /?theme=light&disabled=1 HTTP/1.1" 304 -
+Serving HTTP on 127.0.0.1 port 64503 (http://127.0.0.1:64503/) ...
+
+Keyboard interrupt received, exiting.

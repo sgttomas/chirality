@@ -1,0 +1,58 @@
+{
+  "schema": "chirality-task-checks/v1",
+  "environment": {
+    "node": "v24.18.0",
+    "npm": "11.16.0"
+  },
+  "checks": [
+    {
+      "name": "app_hold_dispatch_preflight",
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02-agents-presentation/SEALED_BRIEF.md --target DEL-02-02",
+      "exit_status": 0,
+      "result": "ALLOW",
+      "repo_head": "4f98be53e7359b72521f20181537f67fd63ad69b",
+      "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+      "scan_fingerprint_sha256": "ff6ce063eaf9c7611ce5be39133c032e7f06abf1612da03e45e61168c4b4b399"
+    },
+    {
+      "name": "focused_vitest",
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+      "command": "npx vitest run src/__tests__/components/agents-projection.test.tsx",
+      "exit_status": 0,
+      "stdout": "Test Files 1 passed (1)\nTests 6 passed (6)\nDuration 166ms"
+    },
+    {
+      "name": "registered_frontend_typecheck",
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+      "command": "npm run typecheck",
+      "exit_status": 0,
+      "stdout": "> chirality-frontend@2.0.0 typecheck\n> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false"
+    },
+    {
+      "name": "source_whitespace",
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "command": "git diff --check -- <the two authorized source/test paths>",
+      "exit_status": 0,
+      "stdout": ""
+    },
+    {
+      "name": "source_patch_scope_and_reverse_application",
+      "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+      "command": "cmp fresh-two-path-diff author-v1/SOURCE.patch && git apply --reverse --check author-v1/SOURCE.patch && git apply --numstat author-v1/SOURCE.patch",
+      "exit_status": 0,
+      "stdout": "195 46 frontend/src/__tests__/components/agents-projection.test.tsx\n44 84 frontend/src/components/woven-dialogue/agents-projection.tsx\nexactly two authorized source/test paths"
+    }
+  ],
+  "not_run_by_brief": [
+    "full suite",
+    "build",
+    "premerge",
+    "Electron",
+    "browser",
+    "native UI",
+    "local server",
+    "daemon",
+    "network"
+  ]
+}
