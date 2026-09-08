@@ -1,0 +1,3 @@
+# Check-basis note
+
+The supplied PR base `d4b8a8cec2e4d3c636740cb97a27fe3b1a3ef327` is recorded as the review base but is not present in this isolated lane's Git object database, so `validate_candidate_whitespace.py` correctly refused it as a non-commit. Candidate whitespace was rerun successfully against the lane's fetched `origin/main` (`579015fab0c121e702d10c255d2824a86bcad58d`), the same comparison basis used by the prior Root adoption runs. The failed invocation changed no governed state; the successful result is `check-10.log`. Affected tests did accept the supplied base string and passed before this whitespace retry.

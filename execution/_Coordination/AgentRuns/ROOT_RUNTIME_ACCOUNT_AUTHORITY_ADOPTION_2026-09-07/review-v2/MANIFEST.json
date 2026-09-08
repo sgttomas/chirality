@@ -1,0 +1,27 @@
+{
+  "schema": "root-runtime-account-authority-adoption-independent-review-manifest/v2",
+  "pathBase": "repository root",
+  "status": "SEALED_PASS",
+  "verdict": "PASS",
+  "reviewBasis": {
+    "head": "c3e9ab0f8e49314befc1fc81a9e01346641a7344",
+    "successorOutputManifestSha256": "b52174e10fe2ab514588261305e3a77ada42e423e4937a3ce01663e77cb00c0e",
+    "successorCandidateDiffGzipSha256": "124daed6c1424e2917ae9998cb083269f610bf9ec70ed485833c4e94532174d8"
+  },
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v2/RETURN.md",
+      "sha256": "3e33f6cbd6bc70ece098c81984d2a177eab44958c61d54064c6c35ea32223c4e",
+      "bytes": 3400
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v2/CHECKS.json",
+      "sha256": "86a226f7c7096d1bac83cf942cb748e899bdbccab4479c47497d6e922a7a4736",
+      "bytes": 3645
+    }
+  ],
+  "memberCount": 2,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "reviewV1FindingDisposition": "REPAIRED_AND_INDEPENDENTLY_VERIFIED",
+  "publicationDisposition": "ELIGIBLE_FOR_AUTHORIZED_GIT_PR_STEP_WITH_CI_AND_FETCHED_MAIN_BACKCHECK_PENDING"
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "root-runtime-account-authority-adoption-independent-review-checks/v2",
+  "status": "PASS",
+  "role": "ephemeral Agent 2 independent reviewer",
+  "roleEnforcement": "instruction-asserted",
+  "nondelegation": "instruction-asserted",
+  "sealedBasis": {
+    "head": "c3e9ab0f8e49314befc1fc81a9e01346641a7344",
+    "successorManifestExpected": "b52174e10fe2ab514588261305e3a77ada42e423e4937a3ce01663e77cb00c0e",
+    "successorManifestActual": "b52174e10fe2ab514588261305e3a77ada42e423e4937a3ce01663e77cb00c0e",
+    "successorDiffExpected": "124daed6c1424e2917ae9998cb083269f610bf9ec70ed485833c4e94532174d8",
+    "successorDiffActual": "124daed6c1424e2917ae9998cb083269f610bf9ec70ed485833c4e94532174d8",
+    "successorDiffUncompressedSha256": "c17346761b0d00b8dfeecdb2bbed2f9d49bdb96436e7426b2d46998bea9a73f4"
+  },
+  "preservedEvidence": {
+    "originalAuthorManifest": "7a4df3f1b9595ff9163dcc80d9362647e199541a527aa51259ca387463768afa",
+    "originalCandidateDiff": "4f8ae520b4dc4a90a40a8507ccf4cea0de7e26354d79d297f57a882c71575ce9",
+    "reviewV1Manifest": "96fc52b9bb9425b1a2bdf3ed0048077f7d3d5aab6fb3d659bf47c3b1039b9522",
+    "reviewV1Return": "b6e97b0b2d941957245205b056557a718e86e8d5f776775ed9fe553ceee0ef74",
+    "result": "PASS"
+  },
+  "checks": [
+    {
+      "id": "v2-manifest-and-diff",
+      "result": "PASS",
+      "evidence": "54 manifest members match hashes and byte counts; complete 53-path resulting diff reproduces exactly; package count including manifest is 55"
+    },
+    {
+      "id": "append-only-scope",
+      "result": "PASS",
+      "evidence": "relative to v1 only helper/test postimages differ; repair-v2 and v2 freeze artifacts are new; no policy/governance/Runtime/SOW/broad-scope change"
+    },
+    {
+      "id": "safe-baseline-predicate",
+      "result": "PASS",
+      "evidence": "baseline requires absent(SUPPLEMENT) and absent(ACCOUNT_SUPPLEMENT); absent calls safe_path with canonical traversal and symlink enforcement"
+    },
+    {
+      "id": "injected-account-forms",
+      "result": "PASS",
+      "interpreter": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "evidence": "independent disposable file, directory and dangling-symlink injections each rejected"
+    },
+    {
+      "id": "exact-baseline",
+      "result": "PASS",
+      "evidence": "exact baseline with both supplements absent returns migration-baseline, published=true, execution_authority=false"
+    },
+    {
+      "id": "focused-tests",
+      "result": "PASS",
+      "command": "PYTHONPATH=tools/validation /Users/ryan/.local/share/mise/installs/python/3.13/bin/python -m unittest tools.validation.test_root_runtime_successors -v",
+      "evidence": "13 tests passed, including file/directory/dangling-symlink regression"
+    },
+    {
+      "id": "three-adoption-composition",
+      "result": "PASS",
+      "evidence": "D36_STAGE1, D36_STAGE2, D36_ACCOUNT_AUTHORITY unchanged; accepted-pending-publication; published=false; execution_authority=false"
+    },
+    {
+      "id": "root-guards-and-counts",
+      "result": "PASS",
+      "interpreter": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "evidence": "G0/G1/G2/G3 pass; 53/46/7/9 retained"
+    },
+    {
+      "id": "author-affected-checks",
+      "result": "PASS",
+      "evidence": "repair-v2 check record reports 838 passed and 48 subtests passed; candidate whitespace passes; git diff --check exits zero"
+    },
+    {
+      "id": "publication-boundary",
+      "result": "PASS",
+      "evidence": "no publication, activation, execution, or release claim; CI and fetched-main backcheck remain"
+    }
+  ],
+  "verdict": "PASS"
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "-m",
+      "unittest",
+      "tools.validation.test_root_runtime_successors",
+      "-v"
+    ],
+    "exit": 0,
+    "log": "check-00.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/verify_composition.py"
+    ],
+    "exit": 0,
+    "log": "check-01.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/verify_injected_account.py"
+    ],
+    "exit": 0,
+    "log": "check-02.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "tools/validation/validate_root_materialization_fence.py"
+    ],
+    "exit": 0,
+    "log": "check-03.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "tools/validation/validate_root_harness_adapter.py"
+    ],
+    "exit": 0,
+    "log": "check-04.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "tools/validation/validate_root_surface_ownership.py"
+    ],
+    "exit": 0,
+    "log": "check-05.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "tools/validation/validate_root_work_graph_dispatch.py"
+    ],
+    "exit": 0,
+    "log": "check-06.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "tools/run_affected_tests.py",
+      "--base",
+      "c3e9ab0f8e49314befc1fc81a9e01346641a7344"
+    ],
+    "exit": 0,
+    "log": "check-07.log"
+  },
+  {
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "tools/validation/validate_candidate_whitespace.py",
+      "--base-ref",
+      "origin/main"
+    ],
+    "exit": 0,
+    "log": "check-08.log"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "log": "check-09.log"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "schema": "runtime-sca002-ledger-repair-postimage/v4",
+  "status": "CANDIDATE_NOT_APPLIED",
+  "verdict": "READY_FOR_FINAL_REVIEW",
+  "target": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "postimage": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v6-ledger-repair/POSTIMAGE/RUNTIME_SCOPE_LEDGER.csv",
+    "preimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+    "postimageSha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d"
+  },
+  "patch": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v6-ledger-repair/CANDIDATE.patch",
+    "sha256": "9b2e2d0975cdacebb7aabd826bc339389afb3130284548b620346a8eb9a20855"
+  },
+  "changedFields": ["DecisionRef", "Notes"],
+  "preservedFields": ["ScopeItemID", "InOutStatus", "ScopeItemStatement", "SourceRef", "PackageID", "DeliverableIDs", "ObjectiveIDs", "PRDItem", "Categories", "OpenIssue", "SourceLineage", "CandidateState"],
+  "selfCurrentState": {
+    "historicalAudit": "The first postapplication audit dated 2026-09-07 blocked on the then-current ledger metadata.",
+    "repairState": "The exact ledger state records resolution of that metadata inconsistency.",
+    "future": "A fresh independent audit rerun and separate Gate 5 owner acceptance remain future acts."
+  },
+  "contractState": {
+    "accepted": ["HOST-P1", "POLICY-R1", "ACCOUNT-WIRE-V1"],
+    "stillUnmet": ["source/implementation", "supplier identity/qualification", "signing/identity proof", "paired Runtime/App/CLI conformance evidence", "recovery/lifecycle", "protected-fixture", "hold", "hosted-readiness", "release"]
+  },
+  "effect": "No effect until final independent review, separate owner approval and governed application."
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "runtime-sca002-ledger-repair-author-qa/v2",
+  "verdict": "READY_FOR_FINAL_REVIEW",
+  "checks": [
+    {
+      "id": "historical-hashes",
+      "status": "PASS",
+      "evidence": "SCA-001 Stage 1 owner acceptance and pointer postimage, Stage 2 propagation return and pointer postimage, SCA-002 snapshot/application, and audit identities match cited hashes."
+    },
+    {
+      "id": "review-v3-remediation",
+      "status": "PASS",
+      "evidence": "Both blockers resolved: no unqualified custody-application-pending phrase and no ambiguous DEL-02-06/09 propagation-pending phrase remains."
+    },
+    {
+      "id": "state-distinction",
+      "status": "PASS",
+      "evidence": "DecisionRef and Notes distinguish completed SCA-001 custody and local SOW propagation from pending SCA-001 Root adoption/publication and Runtime publication, and from future SCA-002 account-authority SOW propagation."
+    },
+    {
+      "id": "sca002-facts",
+      "status": "PASS",
+      "evidence": "Published Root D36, Runtime Gates 2-4, exact SCA-002 application, current audit blocker, metadata repair/clean rerun/Gate 5 pending, and later publication/adoption/SOW obligations are retained."
+    },
+    {
+      "id": "csv-field-diff",
+      "status": "PASS",
+      "evidence": "Both CSVs parse as one row; only DecisionRef and Notes change; CandidateState remains byte-identical."
+    },
+    {
+      "id": "candidate-state",
+      "status": "PASS",
+      "evidence": "Notes preserve GATE3_REVIEW_NOT_ACCEPTED as historical migration/decomposition candidate-stratum metadata rather than current SCA-002 Gate 3 status."
+    },
+    {
+      "id": "patch",
+      "status": "PASS",
+      "evidence": "Exact one-file patch applies cleanly to current preimage and passes whitespace-strict check; numstat 1/1."
+    },
+    {
+      "id": "conservation",
+      "status": "PASS",
+      "evidence": "One SOW, PKG-02, seven carriers, four objectives, 66 requirements, nine holds plus R16-B, historical SOW basis, root-runtime-1 epoch 1, full-wire/source limits and no activation remain."
+    },
+    {
+      "id": "overclaim",
+      "status": "PASS",
+      "evidence": "Completed local SCA-001 acts are accurately bounded; no full closure, Gate 5 acceptance, Runtime publication, Root successor adoption, SCA-002 SOW propagation, activation or release is claimed."
+    },
+    {
+      "id": "mutation",
+      "status": "PASS",
+      "evidence": "Writes confined to author-v4-ledger-repair; no prior artifact, canonical, SCA, audit, pointer or Git mutation."
+    }
+  ],
+  "requiredNext": [
+    "Final independent review",
+    "Separate owner approval of exact regenerated patch/postimage and governed repair application",
+    "Immutable repair snapshot/pointer handling",
+    "Clean AUDIT_DECOMP rerun",
+    "Separate Gate 5 owner acceptance",
+    "CHANGE Runtime publication",
+    "Root successor adoption",
+    "Later separately governed SCA-002 account-authority SOW propagation"
+  ]
+}

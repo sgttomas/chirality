@@ -1,0 +1,170 @@
+{
+  "schema": "chirality-runtime-final-prospective-candidate-review/v2",
+  "verdict": "PASS_DECISION_READY_PROSPECTIVE",
+  "candidate_status": "PROSPECTIVE / NOT EFFECTIVE",
+  "reviewer": {
+    "role": "independent nondelegating ephemeral Agent 2 under Runtime SCOPE_CHANGE",
+    "role_enforcement": "instruction-asserted",
+    "nondelegation": "instruction-asserted"
+  },
+  "governing_protocol": {
+    "path": "agents/AGENT_SCOPE_CHANGE.md",
+    "citations": [
+      "Gate 2 — Impact Assessment",
+      "Gate 3 — Amendment Approval",
+      "Gate 4 — Propagation Plan Approval",
+      "Gate 5 — Execute and Validate",
+      "SPEC — all five gates require explicit human confirmation and exact approved text"
+    ]
+  },
+  "reviewed_freeze": {
+    "path": "../AUTHOR_V2_FREEZE.json",
+    "sha256": "89b4d23c8bf8aa38852cfffd638e4dabb276de7b1fc14a71935ac794b9dd9678",
+    "application_basis": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+    "head_equals_origin_main": true,
+    "author_manifest_sha256": "54a94c193e0064ce2242c58dca2031959b8bca267593de90d2a9eed0574c005a",
+    "candidate_patch_sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395",
+    "canonical_applied": false
+  },
+  "candidate_postimages": [
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+      "sha256": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d"
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e"
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920"
+    }
+  ],
+  "root_published_binding": {
+    "canonical_path": "/Users/ryan/.codex/worktrees/85d6/chirality/docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+    "canonical_sha256": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1",
+    "historical_applied_review_path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_REVIEW.md",
+    "historical_applied_review_sha256": "cd8ae2d5c27d6ce4196df2027e51b1b4ccb86744eaa0058c38096dd71421cd5b",
+    "historical_applied_manifest_path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_MANIFEST.json",
+    "historical_applied_manifest_sha256": "c07f8be9b82e36aa1c4fdf0043c74203936bf7f6600f76d626a200287462944c",
+    "publication_evidence_path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-root/RETURN.md",
+    "publication_evidence_sha256": "de700461af5d85d64e7606e5c89d06d3ce30b848822492adc97f1398e01986bf",
+    "publication_manifest_path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-root/MANIFEST.json",
+    "publication_manifest_sha256": "fe774deb86c6419bc05302f54475068461f1c2110e7000e9057b4fdcc0b57b43",
+    "pull_request": 748,
+    "exact_head": "f3f68d744fc745996776cfbe8f30cbd2bb7b100a",
+    "fetched_main_merge": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+    "state": "MERGED / MAIN-OBSERVABLE"
+  },
+  "runtime_sync_binding": {
+    "evidence_path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-runtime-third-sync/RETURN.md",
+    "evidence_sha256": "02388f2a307ba9e461d4bafbbda9b58d620f0b7e43a8b9a1c17f20c1de9bda5b",
+    "manifest_path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-runtime-third-sync/MANIFEST.json",
+    "manifest_sha256": "73e588dcbcada92f87100ea72b6ca1fce901713fdb6479b4cbe7ad85d0b45ed9",
+    "runtime_head": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+    "runtime_origin_main": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+    "candidate_target_intersections": 0
+  },
+  "checks": [
+    {
+      "id": "immutable-predecessor-review",
+      "status": "PASS",
+      "evidence": "Review-v1 CHECKS.json, RETURN.md and MANIFEST.json remain byte-identical at d3fcbce9a6d58aa10dea75cfb9f1ef08267f66935485447d0799e43fc23330b7, a69b1cdfb5afeff141b6c671f1f14766f4363c731885f62de862d4c780ddcac6 and a96e49e733138eb2e1cce49fec9f3358ab2205e05aa6d8a248e5b5b574968055."
+    },
+    {
+      "id": "freeze-and-author-manifest",
+      "status": "PASS",
+      "evidence": "AUTHOR_V2_FREEZE.json recomputes to 89b4d23c8bf8aa38852cfffd638e4dabb276de7b1fc14a71935ac794b9dd9678. Author MANIFEST.json recomputes to 54a94c193e0064ce2242c58dca2031959b8bca267593de90d2a9eed0574c005a and every declared member exists and matches its SHA256. Freeze patch and manifest references match the recomputed bytes."
+    },
+    {
+      "id": "synced-application-basis",
+      "status": "PASS",
+      "evidence": "Runtime HEAD and origin/main both resolve to e8cdc460cffccfe9e58ab4e5b9bbc05350c09327 with divergence 0/0. The merge has parents 9428e4af44c91063f2188e31698e4c84d8549be9 and exact PR #748 head f3f68d744fc745996776cfbe8f30cbd2bb7b100a; the exact head is an ancestor of fetched main."
+    },
+    {
+      "id": "current-preimages",
+      "status": "PASS",
+      "evidence": "The supplement target remains absent. Current decomposition and ledger hashes are d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1 and 3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9, exactly matching PREIMAGE_INDEX.json on basis e8cdc460cffccfe9e58ab4e5b9bbc05350c09327. No target preimage drift exists."
+    },
+    {
+      "id": "patch-hash-applicability-scope-and-whitespace",
+      "status": "PASS",
+      "evidence": "CANDIDATE.patch recomputes to 4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395. git apply --check and git apply --check --whitespace=error-all pass without application. The patch targets exactly the new supplement, decomposition working surface and authoritative ledger, with numstat 37/0, 4/0 and 1/1."
+    },
+    {
+      "id": "postimage-hashes",
+      "status": "PASS",
+      "evidence": "The supplement, decomposition and ledger postimages recompute respectively to 19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d, 413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e and e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920."
+    },
+    {
+      "id": "root-publication-and-sync-evidence",
+      "status": "PASS",
+      "evidence": "All cited Root live, applied-review, applied-manifest, publication-return, publication-manifest, Runtime-sync-return and Runtime-sync-manifest paths exist and match the exact candidate-recorded SHA256 values. The Root canonical content at the external path, current Runtime checkout and merge commit all hashes to 2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1."
+    },
+    {
+      "id": "review-v1-remediation",
+      "status": "PASS",
+      "evidence": "All three postimages replace the Root author-path and preapplication-only binding with the live published canonical identity, historical applied review/manifest, publication evidence/manifest, PR #748 exact head/fetched-main identity and Runtime sync evidence/manifest. No D36_PROPOSED_POSTIMAGE or FINAL_PREAPPLICATION_REVIEW citation remains. The remainder of each v1 postimage is unchanged."
+    },
+    {
+      "id": "ledger-field-conservation",
+      "status": "PASS",
+      "evidence": "Independent CSV parsing yields one row before and after. Only DecisionRef and Notes differ. CandidateState remains GATE3_REVIEW_NOT_ACCEPTED; ScopeItemID, InOutStatus, statement, source, package, all seven carriers, all four objectives, PRD item, categories, open issue and source lineage remain identical."
+    },
+    {
+      "id": "decomposition-append-only-and-supplement-authority",
+      "status": "PASS",
+      "evidence": "The decomposition postimage is the complete canonical preimage plus one four-line account-control amendment section. The supplement adds only the narrow account-control interpretation, preserved prohibitions, conservation and explicit later gates; it grants no broader authority."
+    },
+    {
+      "id": "status-and-overclaim-scan",
+      "status": "PASS",
+      "evidence": "Every use of applied, effective, accepted, published, ready and activation was inspected. Root publication is correctly described as MERGED / MAIN-OBSERVABLE using exact evidence, while every Runtime surface remains PROSPECTIVE / NOT EFFECTIVE and GATE3_REVIEW_NOT_ACCEPTED. Synced-basis acceptance/applicability rerun, Runtime Gates 2-4, application, SCA, Gate 5, Runtime publication, Root successor adoption, SOW propagation and all operational gates remain pending."
+    },
+    {
+      "id": "structural-conservation",
+      "status": "PASS",
+      "evidence": "The candidate preserves one SOW row, PKG-02_Runtime_Product, seven deliverable carriers, OBJ-001/002/004/007, 66 qualified inherited requirement rows, ten hold-map rows interpreted as nine holds plus R16-B, seven full-wire/source gates, historical DEL-02-06 and DEL-02-09 SOW basis 9f21e4b86c304343b92ccd9ef10895b28c1a4f48, and root-runtime-1 epoch 1."
+    },
+    {
+      "id": "prohibited-output-and-mutation-absence",
+      "status": "PASS",
+      "evidence": "Author-v2 contains only its brief, candidate patch, indexes, checks, return, manifest and three postimages. No final DEL-02-06/09 SOW postimages or notices exist. The patch contains no SOW, notice, SCA pointer, Root, source, process, credential, supplier or fixture target. Canonical preimages remain unchanged and tracked git diff is empty."
+    },
+    {
+      "id": "gate-2-impact-readiness",
+      "status": "PASS_DECISION_READY_UNACCEPTED",
+      "evidence": "The exact impact/downstream disposition identifies the one narrow MODIFY action, three canonical surfaces, DEL-02-06 CLM-003/REQ-010 and DEL-02-09 REQ-001/002, preserved topology and identifiers, later SOW/notice/adoption work and separate full-wire/source/consumer/supplier/release gates. Root publication and synced basis are now exactly evidenced. No Gate 2 acceptance is claimed."
+    },
+    {
+      "id": "gate-3-exact-candidate-readiness",
+      "status": "PASS_DECISION_READY_UNACCEPTED",
+      "evidence": "The exact three-file candidate is frozen, fully hashed, independently reviewed, applicable to unchanged preimages at e8cdc460cffccfe9e58ab4e5b9bbc05350c09327 and bound to the published Root identity. No Gate 3 acceptance or canonical application is claimed."
+    },
+    {
+      "id": "gate-4-propagation-readiness",
+      "status": "PASS_DECISION_READY_UNACCEPTED",
+      "evidence": "The propagation subject is limited to the Runtime SCA/application and pointer act, Gate 5, CHANGE publication/actual Runtime commit, Root successor adoption, draft affected-client notices, and later complete DEL-02-06/09 SOW postimages based on the actual accepted Runtime commit. Future SOW bytes remain absent and unaccepted. No Gate 4 acceptance or routing is claimed."
+    },
+    {
+      "id": "ordering",
+      "status": "PASS",
+      "evidence": "Published Root identity and Runtime sync precede the reviewed Runtime candidate; next are explicit Runtime Gates 2-4, Runtime application/SCA, Gate 5, CHANGE actual Runtime commit, Root successor adoption, later reviewed SOW postimages based on that actual commit, and separate consumer/wire/source/supplier/evidence/fixture/release gates. No circular commit basis is introduced."
+    }
+  ],
+  "blocking_findings": [],
+  "remaining_gates": [
+    "Owning Runtime acceptance of the synced application basis and exact preimage/applicability rerun at application",
+    "Runtime Gate 2 acceptance of the exact impact and downstream disposition",
+    "Runtime Gate 3 acceptance of the reviewed exact three-file amendment",
+    "Runtime Gate 4 acceptance of the propagation plan and draft notices only",
+    "Runtime canonical application plus a new immutable SCA snapshot and pointer act",
+    "Runtime Gate 5 audit and acceptance of the actual poststate",
+    "CHANGE publication and capture of the actual Runtime canonical commit",
+    "Root successor adoption of the accepted Runtime transition",
+    "Later independent review, acceptance, application and publication of complete DEL-02-06/09 SOW postimages based on the actual accepted Runtime commit",
+    "Later required Root adoption and affected-client notice adoption",
+    "Separate consumer-contract, full-wire, recipient-delivery, successor-recovery, source/synthetic activation, supplier/backend qualification, paired Runtime/App/CLI evidence, protected-fixture, lifecycle and release gates"
+  ],
+  "review_effect": "Independent review evidence only; no acceptance, application, pointer movement, publication, adoption, activation or operational authority."
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "chirality-runtime-candidate-author-qa/v2",
+  "verdict": "READY_FOR_FINAL_INDEPENDENT_REVIEW",
+  "candidateStatus": "PROSPECTIVE / NOT EFFECTIVE",
+  "checks": [
+    {
+      "id": "synced-basis",
+      "status": "PASS",
+      "evidence": "Runtime HEAD and origin/main equal e8cdc460...; sync evidence and manifest match supplied hashes; zero candidate target intersections and unchanged preimages/conserved inputs recorded."
+    },
+    {
+      "id": "root-publication-identities",
+      "status": "PASS",
+      "evidence": "Published D36 hash, PR748 exact head f3f68d..., fetched main e8cdc46..., publication return and manifest all match supplied identities. Earlier APPLIED_UNPUBLISHED review remains historical."
+    },
+    {
+      "id": "identity-remediation",
+      "status": "PASS",
+      "evidence": "All three postimages cite published Root canonical, publication evidence/manifest, PR/head/main, and Runtime sync evidence/manifest. No proposed-path or preapplication-review binding remains."
+    },
+    {
+      "id": "patch",
+      "status": "PASS",
+      "evidence": "git apply --check and --whitespace=error-all pass against synced canonical preimages without application; exact three-target numstat is 37/0, 4/0, 1/1."
+    },
+    {
+      "id": "csv",
+      "status": "PASS",
+      "evidence": "One row before/after; only DecisionRef and Notes differ; GATE3_REVIEW_NOT_ACCEPTED remains."
+    },
+    {
+      "id": "append-only",
+      "status": "PASS",
+      "evidence": "Decomposition postimage is canonical preimage plus one four-line section."
+    },
+    {
+      "id": "conservation",
+      "status": "PASS",
+      "evidence": "One SOW, PKG-02, seven carriers, four objectives, 66 requirements, nine holds plus R16-B, seven gates, historical SOW basis and root-runtime-1 epoch 1 remain."
+    },
+    {
+      "id": "overclaim",
+      "status": "PASS",
+      "evidence": "Root publication is main-observable, but Runtime remains PROSPECTIVE / NOT EFFECTIVE; synced-basis acceptance/applicability, Runtime gates/application/publication/adoption and downstream gates remain explicit."
+    },
+    {
+      "id": "mutation",
+      "status": "PASS",
+      "evidence": "No Runtime canonical or tracked Git mutation. Writes confined to author-v2; author-v1 and review-v1 unchanged."
+    }
+  ],
+  "remainingGates": [
+    "Final independent Runtime candidate review",
+    "Owning Runtime acceptance of synced basis and exact preimage/applicability rerun",
+    "Runtime Gates 2-4",
+    "Runtime application and immutable SCA snapshot/pointer act",
+    "Runtime Gate 5 audit/acceptance",
+    "CHANGE publication and actual Runtime commit",
+    "Root successor adoption",
+    "Later DEL-02-06/09 SOW propagation based on actual accepted Runtime commit",
+    "Consumer, wire, recipient, recovery, source, supplier, evidence, fixture and release gates"
+  ]
+}

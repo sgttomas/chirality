@@ -1,0 +1,28 @@
+{
+  "schema": "chirality-runtime-publication-method-manifest/v1",
+  "status": "PASS_ACTIONABLE_METHOD__NO_EXECUTION",
+  "frozen_at_utc": "2026-09-07T23:03:34Z",
+  "members": [
+    {
+      "path": "METHOD_ASSESSMENT.md",
+      "sha256": "54123a45c1ba725f5bdfe8c6109894f4d09e5d25a67964c6a8c4d62c22fccf0b",
+      "bytes": 6529
+    },
+    {
+      "path": "PROPOSED_GITATTRIBUTES.patch",
+      "sha256": "e7414a95778094423910c711c5004523cf40f4a0bdf26759445a50f1dc58da20",
+      "bytes": 4369
+    }
+  ],
+  "member_count": 2,
+  "validation": {
+    "member_hashes_and_bytes": "2/2 PASS",
+    "json_parse": "PASS",
+    "scoped_whitespace": "PASS",
+    "proposed_patch_applies_to_pinned_preimage": "PASS"
+  },
+  "execution_performed": false,
+  "authority_added": false,
+  "source_canonical_validator_attributes_git_or_evidence_modified": false,
+  "manifest_self_hash": "EXCLUDED_BY_CONTRACT"
+}

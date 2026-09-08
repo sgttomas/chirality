@@ -1,0 +1,16 @@
+{
+  "decomp_variant": "SOFTWARE",
+  "application_basis": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "canonical_preimages": {
+    "Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1",
+    "RUNTIME_SCOPE_LEDGER.csv": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9",
+    "ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md": "ABSENT"
+  },
+  "topology": {"packages": 1, "deliverables": 7, "objectives": 4, "scope_items": 1, "ledger_rows": 1},
+  "qualified_inherited_requirements": 66,
+  "holds": "nine plus separate R16-B",
+  "historical_sow_basis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "runtime_identity": "root-runtime-1 epoch 1",
+  "baseline_status": "NON_BLOCKING_PRECHANGE_CONSERVATION_PASS"
+}
+

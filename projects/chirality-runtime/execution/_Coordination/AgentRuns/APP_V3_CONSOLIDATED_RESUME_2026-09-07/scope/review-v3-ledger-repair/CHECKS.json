@@ -1,0 +1,68 @@
+{
+  "schema": "runtime-sca002-ledger-repair-independent-review/v1",
+  "verdict": "RETURN_FOR_REMEDIATION",
+  "role": "independent nondelegating ephemeral Agent 2 reviewer under Runtime SCOPE_CHANGE; role and nondelegation instruction-asserted",
+  "checks": [
+    {
+      "id": "author-freeze-and-manifest",
+      "status": "PASS",
+      "evidence": "Every declared MANIFEST.json member rehashes exactly. Author manifest SHA256 is ed86340cea71d7003246f20b003ece2ac211b91ac7a9b355c66d6c7cc0378b67; candidate postimage SHA256 is c6e985bc25bf4f10ca8a8f27d82484736e0febbe85a95a6e3d9e2cc825c4cadc; patch SHA256 is ecb1cb62c2b8bb1b060cca52e02867d777464eab9726b54849fc1f17064838fd."
+    },
+    {
+      "id": "canonical-preimage",
+      "status": "PASS",
+      "evidence": "Current canonical RUNTIME_SCOPE_LEDGER.csv SHA256 is e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920, exactly matching the declared preimage. HEAD and origin/main are both 579015fab0c121e702d10c255d2824a86bcad58d."
+    },
+    {
+      "id": "one-file-patch",
+      "status": "PASS",
+      "evidence": "Patch names only projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv, applies to the current preimage, passes git apply --check --whitespace=error-all, and has numstat 1 insertion / 1 deletion."
+    },
+    {
+      "id": "csv-and-field-diff",
+      "status": "PASS",
+      "evidence": "Canonical and postimage parse as one data row with 14 fields. Only DecisionRef and Notes differ. CandidateState remains byte-value GATE3_REVIEW_NOT_ACCEPTED and Notes explicitly define it as historical migration/decomposition candidate-stratum metadata rather than current SCA-002 Gate 3 status."
+    },
+    {
+      "id": "sca002-current-state",
+      "status": "PASS",
+      "evidence": "The rewritten fields accurately cite the published Root D36 identity, Runtime Gate 2 acceptance, Gate 3 and Gate 4 approval, exact SCA-002 application, the blocking audit, and pending metadata repair/rerun/Gate 5. SCA-002 snapshot manifest SHA256 8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3, Application_Journal.json SHA256 78cbfb2e304e675369d364ff807427a133388b70ed07ddcdbd3f86bf685a7786, and active pointer SHA256 512b66c08858b11835b6fd4e661aee7d33443fcf339e1fd496a2952339068a00 verify."
+    },
+    {
+      "id": "sca001-custody-status",
+      "status": "FAIL",
+      "evidence": "DecisionRef retains the unqualified current-facing phrase 'Runtime custody application pending' exactly once. Accepted SCA-001 evidence resolves that state: OWNER_ACCEPTANCE.md SHA256 9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f records Stage 1 poststate accepted, and its LATEST_POSTIMAGE.md SHA256 d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026 says earlier pending prose is historical. The retained phrase is neither historically qualified nor scoped to an unresolved act, so the rewritten field remains internally misleading."
+    },
+    {
+      "id": "sca001-sow-propagation-status",
+      "status": "FAIL",
+      "evidence": "DecisionRef also ends with 'DEL-02-06/09 SOW propagation pending'. SCA-001 PROPAGATION_RETURN.md SHA256 6e3484cd879f3474e4cb50f3dce85dd8d4b694b2b46c41bf2001a96ab6a4e865 and LATEST_POSTIMAGE.md SHA256 0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea record exact Stage 2 DEL-02-06/09 SOW propagation applied and locally validated. Root successor adoption/publication and Runtime publication remain pending, but local SOW propagation does not."
+    },
+    {
+      "id": "effect-and-later-gates",
+      "status": "PASS_WITH_REPAIR_REQUIRED",
+      "evidence": "Notes correctly retain the account-control supplement as applied canonical yet not effective for dependent reliance until Runtime publication/main identity and required Root successor adoption, and preserve project authorization, full-wire/source gates, no activation, and Gate 5 pending. DecisionRef must distinguish those true pending gates from completed SCA-001 custody application and local SOW propagation."
+    },
+    {
+      "id": "conservation",
+      "status": "PASS",
+      "evidence": "The postimage preserves one SOW-104 row, PKG-02, seven deliverable carriers, OBJ-001/002/004/007, all non-metadata fields, nine holds plus R16-B, full-wire/source gates, historical SOW basis 9f21e4b86c304343b92ccd9ef10895b28c1a4f48, and root-runtime-1 epoch 1. The accepted poststate audit independently records 66 qualified inherited requirements and the same conservation counts."
+    },
+    {
+      "id": "scope-and-overclaim",
+      "status": "PASS_EXCEPT_FOR_STALE_STATUS_TEXT",
+      "evidence": "No schema, topology, lifecycle, SOW, source, wire, supplier, release, or other semantic expansion is introduced. The candidate claims no Gate 5 acceptance or publication. The two stale SCA-001 status phrases prevent decision readiness."
+    },
+    {
+      "id": "mutation-boundary",
+      "status": "PASS",
+      "evidence": "Review performed read-only against candidate, canonical, SCA, audit, SOW, source, pointer, and Git state. Reviewer writes are confined to review-v3-ledger-repair."
+    }
+  ],
+  "requiredRemediation": [
+    "Replace or explicitly historical-qualify 'Runtime custody application pending' in DecisionRef so it records the accepted SCA-001 Stage 1 poststate rather than presenting a current pending state.",
+    "Replace 'DEL-02-06/09 SOW propagation pending' with the exact SCA-001 Stage 2 state: locally applied and validated; keep Root successor adoption/publication and Runtime publication pending and do not imply full closure.",
+    "Regenerate the complete CSV postimage, one-file patch, indexes, checks, return, and manifest, then obtain a fresh independent review."
+  ],
+  "ownerApproval": "Do not seek approval for the current candidate. After remediation passes independent review, the Runtime owner must explicitly approve the exact regenerated one-file RUNTIME_SCOPE_LEDGER.csv patch/postimage identity and its governed application plus immutable repair snapshot/pointer handling. A clean AUDIT_DECOMP rerun must then precede separate Gate 5 owner acceptance."
+}

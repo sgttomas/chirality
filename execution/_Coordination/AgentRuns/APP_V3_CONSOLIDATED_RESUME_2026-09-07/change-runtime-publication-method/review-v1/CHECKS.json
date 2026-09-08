@@ -1,0 +1,71 @@
+{
+  "schema": "chirality-runtime-publication-method-independent-review-checks/v1",
+  "verdict": "PASS",
+  "frozen_at_utc": "2026-09-07T23:17:03Z",
+  "execution": {
+    "agent_form": "ephemeral_agent_2",
+    "nondelegating": true,
+    "role_enforcement": "instruction-asserted",
+    "live_gitattributes_modified": false,
+    "live_git_index_modified": false,
+    "source_canonical_evidence_process_modified": false
+  },
+  "inputs": {
+    "method_assessment_sha256": "54123a45c1ba725f5bdfe8c6109894f4d09e5d25a67964c6a8c4d62c22fccf0b",
+    "proposed_patch_sha256": "e7414a95778094423910c711c5004523cf40f4a0bdf26759445a50f1dc58da20",
+    "gitattributes_preimage_sha256": "021e250c8f66ea1e9ea5af85575f17626e8cb93121a6f49fa321bcb35c7afb79",
+    "selection_sha256": "25340309aa51d4bdb2601103a8b894dbe536dde5b9b4b49a6e0f5a9bc09ce9bb",
+    "classification_sha256": "17c5c27a2b7ee8c881c4ed8891507a96c5d85059f064de2b64b0b94a8c6bebf3",
+    "raw_failure_sha256": "f5c1f4d5a775c3da96c866af168785ea2f3ca6818e58628505f90a0056e72afd",
+    "validator_sha256": "dcdf39a0003f82ba9689aa52f07915086802664f652c2a15e433f3663c347dae",
+    "workflow_sha256": "9e6a9ef814c79f1c35a00d154986bf3ba7174c49450d0e9cc36bca1de8f73079",
+    "base_head": "579015fab0c121e702d10c255d2824a86bcad58d"
+  },
+  "patch": {
+    "apply_check": "PASS",
+    "postimage_sha256": "7d9d8cedce4e8ee24ca95a754ae8f335eb0c2204b628d837ca1e2d3950c13c4f",
+    "rule_count": 28,
+    "unique_rule_paths": 28,
+    "blank_at_eof_only_rules": 23,
+    "disabled_whitespace_rules": 2,
+    "cr_at_eol_rules": 3,
+    "glob_metacharacter_rules": 0,
+    "rules_equal_classified_paths": true
+  },
+  "attribute_scope": {
+    "candidate_universe_paths": 72981,
+    "changed_assignments": 28,
+    "changed_paths_equal_rule_paths": true,
+    "unexpected_matches": [],
+    "missing_matches": []
+  },
+  "selection_integrity": {
+    "member_count": 170,
+    "total_bytes": 574611,
+    "pre_patch_hash_or_byte_mismatches": [],
+    "post_patch_hash_or_byte_mismatches": [],
+    "content_drift": false
+  },
+  "failure_reproduction": {
+    "git_diff_cached_check_exit": 2,
+    "output_sha256": "f5c1f4d5a775c3da96c866af168785ea2f3ca6818e58628505f90a0056e72afd",
+    "output_bytes": 15822,
+    "output_lines": 61,
+    "diagnostics": 42,
+    "affected_files": 28,
+    "byte_equal_to_frozen_raw_failure": true
+  },
+  "post_patch_validation": {
+    "staged_validator_exit": 0,
+    "staged_git_diff_check_exit": 0,
+    "base_range_validator_exit": 0,
+    "base_range_git_diff_check_exit": 0,
+    "validator_output": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).",
+    "info_attributes_used": false,
+    "local_whitespace_config_used": false,
+    "skip_used": false,
+    "waiver_used": false,
+    "hidden_masking_detected": false
+  },
+  "findings": []
+}

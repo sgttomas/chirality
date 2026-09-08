@@ -1,0 +1,67 @@
+{
+  "status": "VERIFIED",
+  "baseCommit": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+  "canonicalPreimages": [
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "exists": true,
+      "sha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1"
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "exists": true,
+      "sha256": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9"
+    }
+  ],
+  "preservedCandidate": {
+    "directory": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_ACCOUNT_AUTHORITY_AMENDMENT_2026-09-07/CANDIDATE",
+    "manifestSha256": "05164e2fcec77a5c0a5b441e8d7eb0e728d115b24f81ba600f0bee04cf20a864",
+    "patchSha256": "b64c4f6b6d7c5cc79254743dc03619f72ed2957eeb6cdd82e82e2543facd4e76",
+    "use": "source candidate; refreshed only for the exact Root identity and truthful prospective status"
+  },
+  "prospectiveRootDependency": {
+    "candidatePath": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/author-v1/D36_PROPOSED_POSTIMAGE.md",
+    "candidateSha256": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1",
+    "candidateInternalStatus": "APPLIED_UNPUBLISHED (local application confirmed by parent; unpublished; no accepted main identity supplied)",
+    "reviewPath": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_PREAPPLICATION_REVIEW.md",
+    "reviewSha256": "32d44dcc5de4dfc6056ce4e430966f7b46248cd477fc66814f049d08c001d439",
+    "reviewVerdict": "PASS — READY FOR FAITHFUL CANONICAL APPLICATION",
+    "fullPatchSha256": "a4e94ea7a506cf71759208a7754fc8e1b218aeb0870952128529d2a1c9cca9ae",
+    "authorityEffect": "PROSPECTIVE / NOT EFFECTIVE for Runtime reliance"
+  },
+  "readOnlyConservation": [
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+      "sha256": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv",
+      "sha256": "4923353de43fbe99aecb585971a3ffb91e86787734ed93b9379300fa15378663"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv",
+      "sha256": "d7e7aa5ee900031d23baeb82479ac956a0e8ba731bfc39e1ee05f3877a949cdd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/INHERITED_REQUIREMENT_TRACE.csv",
+      "sha256": "671bf5a1f3aa35b61ebf76203dc4da6781968f5f8d503a7c806f618356175661"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv",
+      "sha256": "635fa7f9a05f0a1d17dc47e4db12e142433b11cdc7894708935d0515659ab882"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/SOURCE_PINS.csv",
+      "sha256": "aa8fe94a5fdcde958efc7457b31292a36d20a298c5bdfe74cd57ca6d661842d6"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/_AUTHORITY.md",
+      "sha256": "65b144cff2038bb403c2098aa95313753ea4b342f70e7a95baf1be4c098c7b89"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "status": "PASS_PREPARATION_ONLY",
+  "role_attribution": "SCOPE_CHANGE Agent 1; instruction-asserted",
+  "git": {
+    "head": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+    "stored_origin_main": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+    "tracked_diff_at_entry": "empty",
+    "mutation_performed": false
+  },
+  "canonical_preimages": [
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+      "sha256": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309",
+      "expected_change": "none"
+    }
+  ],
+  "preserved_candidate": {
+    "manifest_sha256": "05164e2fcec77a5c0a5b441e8d7eb0e728d115b24f81ba600f0bee04cf20a864",
+    "patch_sha256": "b64c4f6b6d7c5cc79254743dc03619f72ed2957eeb6cdd82e82e2543facd4e76",
+    "git_apply_check": "PASS against current canonical preimages",
+    "postimages": [
+      {
+        "path": "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+        "sha256": "859f23a78addb5d2e7d2a5f0afce29b535bca75843acaba19d1ad0f3359c0c14"
+      },
+      {
+        "path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+        "sha256": "62fbf33f6f1ba01637b8a5e0bb5b2295392eed010b4d0d0dd173911dda45ff2d"
+      },
+      {
+        "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+        "sha256": "055fc9e05ec694db6cb82475c689fcdb99a398a01ea53c3d877321e3f0286588"
+      }
+    ],
+    "disposition": "preserve as source candidate; refresh exact Root identity and prospective wording before freezing a new candidate"
+  },
+  "frozen_external_inputs": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/ROOT_ACCOUNT_AUTHORITY_AMENDMENT_2026-09-07/HANDOFF.md",
+      "sha256": "adfec412d21934f9d889f33294b258171de7b0e6b30126cbd8ed051d4fdc7182",
+      "status": "PAUSED_REVIEWED_CANDIDATE_ONLY; canonical_applied=false"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/ROOT_ACCOUNT_AUTHORITY_AMENDMENT_2026-09-07/HANDOFF_MANIFEST.json",
+      "sha256": "dfda24500412b419a82ba5737f0270afa7881e949bbef0f8ecdf322f27d6db22"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_HANDOFF_2026-09-07/CONSOLIDATED_AGENT0_PLAN.md",
+      "sha256": "60b06a685c57414290f1bf20d57fd2899fb9552f62cf5f2086f8fc1af3e0bfe3"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_HANDOFF_2026-09-07/WORKTREE_RECOVERY_ADDENDUM.md",
+      "sha256": "75b3e087aca70c0ef8aaf0c82286c80cdc450ac157752cca6857dc334508cc59"
+    }
+  ],
+  "conservation": {
+    "scope_rows": 1,
+    "package": "PKG-02_Runtime_Product",
+    "deliverable_carriers": 7,
+    "objective_ids": ["OBJ-001", "OBJ-002", "OBJ-004", "OBJ-007"],
+    "qualified_inherited_requirement_rows": 66,
+    "hold_map_rows": 10,
+    "hold_interpretation": "nine holds plus separate R16-B",
+    "historical_sow_basis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+    "runtime_identity": "root-runtime-1 epoch 1",
+    "candidate_changes_identity_allocation_or_topology": false
+  },
+  "blocker": "NEW exact reviewed Root D36 candidate identity not yet supplied by parent",
+  "canonical_applied": false,
+  "sca_pointer_changed": false,
+  "gates_claimed": ["Gate 1 intent previously approved only"]
+}
+

@@ -1,0 +1,55 @@
+{
+  "schema": "runtime-sca002-ledger-repair-preimage/v4",
+  "status": "VERIFIED",
+  "head": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "originMain": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "target": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "sha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+    "rows": 1
+  },
+  "predecessor": {
+    "authorV5ManifestPath": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v5-ledger-repair/MANIFEST.json",
+    "authorV5ManifestSha256": "0b9f1b3ef6c0e855d66fa3cc8e00c95eab638fea38d2ca01ddd7927b17c7d618",
+    "authorV5PostimageSha256": "ea49773b7385473bd068144d40dfcb5a8be7fbba61aa5565302d4fcef62874be",
+    "authorV5PatchSha256": "4be2ef41f8f622d31835f0e4e3d6e9d5f9740a1a283a598ff12fff284474e80a",
+    "requiredCorrections": [
+      "Remove proposed/candidate wording from the canonical fields so the row remains current after application.",
+      "Use an unambiguous exact external aed8 location for the accepted-contract evidence."
+    ]
+  },
+  "acceptedContractBasis": {
+    "choices": ["HOST-P1", "POLICY-R1", "ACCOUNT-WIRE-V1"],
+    "decisionRecord": {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/OWNER_DECISIONS/DECISIONS.md",
+      "sha256": "ff389e47a48386aeabe344496acf509386301aa0b72868a690ba5b4190bfe67c"
+    },
+    "manifest": {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/OWNER_DECISIONS/MANIFEST_v2.json",
+      "sha256": "f4fcbe92c15c3a9803f6835dfa1d9dc1563101ec3a6e7308b251b0570c314872"
+    },
+    "effect": "Accepted contract basis only; no canonical/SOW/source/hold/activation/supplier/hosted-readiness/release authority."
+  },
+  "firstPostapplicationAudit": {
+    "date": "2026-09-07",
+    "manifestSha256": "f2044a82fe16474865c6c1f99d66aa9c886851afedb1b72d22924f9ed7cc8369",
+    "returnSha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1",
+    "issueLogSha256": "130ae0490e693ee92a2774b88efb08297bdc2d9b7660a8c5b4a7a23fa9e59af7",
+    "historicalFinding": "BLOCKED_ON_THEN_CURRENT_LEDGER_METADATA"
+  },
+  "conservation": {
+    "sca001Stage1": "APPLIED_AND_OWNER_ACCEPTED",
+    "sca001Stage2": "EXACT_SOW_PROPAGATION_APPLIED_AND_LOCALLY_VALIDATED",
+    "sca001Pending": ["Root successor adoption/publication", "Runtime publication"],
+    "sca002Gates2To4AndApplication": "COMPLETED",
+    "sca002FutureSowPropagation": "PENDING",
+    "scopeRows": 1,
+    "package": "PKG-02_Runtime_Product",
+    "deliverableCarriers": 7,
+    "objectiveIds": ["OBJ-001", "OBJ-002", "OBJ-004", "OBJ-007"],
+    "qualifiedInheritedRequirementRows": 66,
+    "holdInterpretation": "nine holds plus separate R16-B",
+    "historicalSowBasis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+    "runtimeIdentity": "root-runtime-1 epoch 1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "runtime-scope-change-authority-clarification-addendum",
+  "prior_manifest": {
+    "path": "MANIFEST.json",
+    "sha256": "ff1309138d3ab05f4e881f96b6f3d5fdfed9a562bd75baa565a64d9cd82a549d"
+  },
+  "members": [
+    {
+      "path": "AUTHORITY_CLARIFICATION_ADDENDUM.md",
+      "sha256": "2b66fc68d1262b5f9dfef15573ef7a15b2357a279962f730867b177c18f35a84"
+    }
+  ],
+  "effect": "clarifies Root implementation authority; Runtime exact-candidate and propagation gates remain",
+  "canonical_applied": false
+}

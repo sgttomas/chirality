@@ -1,0 +1,70 @@
+{
+  "schema": "chirality-runtime-final-prospective-candidate-review-manifest/v2",
+  "verdict": "PASS_DECISION_READY_PROSPECTIVE",
+  "candidate_status": "PROSPECTIVE / NOT EFFECTIVE",
+  "application_basis": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+  "reviewer": "independent nondelegating ephemeral Agent 2 under Runtime SCOPE_CHANGE; instruction-asserted",
+  "inputs": [
+    {
+      "path": "SEALED_BRIEF.md",
+      "sha256": "68477d368d3796f2a868ecde05ac131ca2b0ec31c0fd02341738e503c4695b48"
+    },
+    {
+      "path": "../AUTHOR_V2_FREEZE.json",
+      "sha256": "89b4d23c8bf8aa38852cfffd638e4dabb276de7b1fc14a71935ac794b9dd9678"
+    },
+    {
+      "path": "../author-v2/MANIFEST.json",
+      "sha256": "54a94c193e0064ce2242c58dca2031959b8bca267593de90d2a9eed0574c005a"
+    },
+    {
+      "path": "../author-v2/CANDIDATE.patch",
+      "sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395"
+    },
+    {
+      "path": "../review-v1/MANIFEST.json",
+      "sha256": "a96e49e733138eb2e1cce49fec9f3358ab2205e05aa6d8a248e5b5b574968055"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/docs/governance_harness/_DECISIONS/D-GOV-36_managed_auth_custody_exception.md",
+      "sha256": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_REVIEW.md",
+      "sha256": "cd8ae2d5c27d6ce4196df2027e51b1b4ccb86744eaa0058c38096dd71421cd5b"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/root/review-v1/FINAL_APPLIED_MANIFEST.json",
+      "sha256": "c07f8be9b82e36aa1c4fdf0043c74203936bf7f6600f76d626a200287462944c"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-root/RETURN.md",
+      "sha256": "de700461af5d85d64e7606e5c89d06d3ce30b848822492adc97f1398e01986bf"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-root/MANIFEST.json",
+      "sha256": "fe774deb86c6419bc05302f54475068461f1c2110e7000e9057b4fdcc0b57b43"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-runtime-third-sync/RETURN.md",
+      "sha256": "02388f2a307ba9e461d4bafbbda9b58d620f0b7e43a8b9a1c17f20c1de9bda5b"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-runtime-third-sync/MANIFEST.json",
+      "sha256": "73e588dcbcada92f87100ea72b6ca1fce901713fdb6479b4cbe7ad85d0b45ed9"
+    }
+  ],
+  "members": [
+    {
+      "path": "CHECKS.json",
+      "sha256": "a165f3733d4806227f96a8d26304ea6d564f18c95efabc1a96cb440e14597dab"
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "9ec887392b6fd707932642899e54baffb46462feeebc4b4f5567382529bf25b4"
+    }
+  ],
+  "canonical_applied": false,
+  "candidate_modified": false,
+  "git_state_mutated": false
+}

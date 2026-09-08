@@ -1,0 +1,45 @@
+{
+  "schema": "chirality-runtime-candidate-author-manifest/v2",
+  "status": "PROSPECTIVE_NOT_EFFECTIVE",
+  "verdict": "READY_FOR_FINAL_INDEPENDENT_REVIEW",
+  "baseCommit": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+  "rootPublishedHead": "f3f68d744fc745996776cfbe8f30cbd2bb7b100a",
+  "rootFetchedMain": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+  "canonicalApplied": false,
+  "gitStateMutated": false,
+  "role": "bounded nondelegating ephemeral Agent 2 under Runtime SCOPE_CHANGE; instruction-asserted",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/CANDIDATE.patch",
+      "sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/PREIMAGE_INDEX.json",
+      "sha256": "eb9eab2663083a880bd07db069ce5754e9a38e24e442a522e7218eba4d721665"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/POSTIMAGE_INDEX.json",
+      "sha256": "703c523eade7b1ae468860c706c30a3ac284ab58c7dc69e62b6a78ee61843373"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/CHECKS.json",
+      "sha256": "a80b3a699e1723a9069d4541d943305c0a2884780c088f987efb0dc2016c952a"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/RETURN.md",
+      "sha256": "d561b870f454840982789734d641dc363ba2e194b529dd66f0d845b3b084d553"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+      "sha256": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v2/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920"
+    }
+  ]
+}

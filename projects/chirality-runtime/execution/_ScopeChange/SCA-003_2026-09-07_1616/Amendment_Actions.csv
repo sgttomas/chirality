@@ -1,0 +1,2 @@
+AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns
+SCA-003,1,MODIFY,SCOPE_LEDGER,SOW-104,"Replace only DecisionRef and Notes with the exact self-current owner-approved metadata; preserve all other fields.",projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv,"Fresh independent AUDIT_DECOMP; separate Gate 5 owner confirmation"

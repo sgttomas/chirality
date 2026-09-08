@@ -1,0 +1,21 @@
+{
+  "schema": "runtime-sca003-gate5-poststate-decision/v1",
+  "date": "2026-09-07",
+  "status": "DECISION_READY_WITH_EXPLICIT_TEMPORAL_DISPOSITION",
+  "members": [
+    {"path":"scope/GATE5_POSTSTATE_DECISION_SUBJECT.md","sha256":"d86964d327edd52de20a5fe557d8dcc90f6334411dd882f6ae1c12539fd91ca4","bytes":5153},
+    {"path":"scope/GATE5_POSTSTATE_HANDOFF.md","sha256":"bebd0877edd1a4eb30838efba65d7b159e8ba7a666a6f62b00c226e0d6423b04","bytes":1237},
+    {"path":"scope/GATE5_REPAIR_V6_OWNER_GRANT.md","sha256":"47d3e5415ad945fd3cbe2ffb781fdfd55ffdbb8aca6732f62979b3b38021c78c","bytes":1867},
+    {"path":"projects/chirality-runtime/execution/_ScopeChange/SCA-003_2026-09-07_1616/SNAPSHOT_MANIFEST.json","sha256":"ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48","bytes":3529},
+    {"path":"projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SCA003_LEDGER_REPAIR_POSTSTATE_2026-09-07_2227/RETURN.md","sha256":"c90d6c2bc7f71c9d2204c8bb8b7cf660a0b1bbe0169c4c054404021cbe8328fa","bytes":3928},
+    {"path":"projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SCA003_LEDGER_REPAIR_POSTSTATE_2026-09-07_2227/OUTPUT_MANIFEST.json","sha256":"93e17c03c0091b16abbf9b8a8d31c06dcce33f7048b2e1f6f215bd097bf79012","bytes":2431},
+    {"path":"scope/poststate-audit-v2/temporal-recheck/RETURN.md","sha256":"5542e84d47c61eb6cfda107c1e502204c941bd4a74fa6149ed8fa6f8f8630536","bytes":5115},
+    {"path":"scope/poststate-audit-v2/temporal-recheck/MANIFEST.json","sha256":"d7db6654789426ab6541ce79164e085eb90921420e690c87e2b022cad3d26e76","bytes":1715}
+  ],
+  "memberCount": 8,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "canonicalLedgerSha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d",
+  "auditAssessment": "Structural/application-state audit NON_BLOCKING_PASS; temporal recheck requires explicit application-time qualification in final Gate 5 disposition. No further canonical edit is required if owner adopts that disposition.",
+  "nextDecision": "Accept exact SCA-003 Gate 5 poststate and included temporal disposition; trigger no other downstream rerun; authorize immutable acceptance record/pointer and CHANGE handoff under existing standing Git grant.",
+  "authorityLimits": "No Gate 5 acceptance inferred; no product release or SOW/source/supplier/process/credential/lifecycle/activation/hold/protected-fixture/hosted-readiness/Root-adoption authority."
+}

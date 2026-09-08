@@ -1,0 +1,43 @@
+{
+  "schema": "runtime-scope-change-snapshot-manifest/v1",
+  "amendmentId": "SCA-003",
+  "status": "EXACT_REPAIR_APPLIED_AUDIT_PENDING",
+  "snapshot": "projects/chirality-runtime/execution/_ScopeChange/SCA-003_2026-09-07_1616",
+  "canonicalPostimage": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "sha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d"
+  },
+  "ownerGrant": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/GATE5_REPAIR_V6_OWNER_GRANT.md",
+    "sha256": "47d3e5415ad945fd3cbe2ffb781fdfd55ffdbb8aca6732f62979b3b38021c78c"
+  },
+  "approvedCandidate": {
+    "patchSha256": "9b2e2d0975cdacebb7aabd826bc339389afb3130284548b620346a8eb9a20855",
+    "postimageSha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d",
+    "authorManifestSha256": "f98e20e7db16bcabfeed39329b1c65241bebd4171a7be1f75f5dc1b300d19f59",
+    "reviewManifestSha256": "721a73781e09672ddf49984278609c2cc1391436298a391f72a854aebd5ac7fe"
+  },
+  "members": [
+    {"path":"Amendment_Actions.csv","sha256":"1be41bd32deb208716d0e1bc2d90e2f07caa3292b3117555cc74328c139a2475","bytes":397},
+    {"path":"Application_Journal.json","sha256":"a89469733195e57a948178ea65f544923c744ff72e50b93c8734f48a1b704b24","bytes":911},
+    {"path":"Brief.md","sha256":"177db0f0e670ab1f6c6e131527823f52c7840297585994e9def87e12e602d205","bytes":854},
+    {"path":"Decision_Log.md","sha256":"be34792e486008e3e18ffc762582fb87a3bf07b057e70b863a4858c9e77588ab","bytes":803},
+    {"path":"Handoff_State.md","sha256":"cf42408bc361dcd4cba6eb627213ad529947f788d13ba91a4042162ef156148a","bytes":1165},
+    {"path":"Impact_Assessment.md","sha256":"c5f374e9ec9140e9f39531a121455be299e358058d9c69c70981ac752e0b844c","bytes":1026},
+    {"path":"LATEST_POSTIMAGE.md","sha256":"941753dfbe4ebedd9385aa8934acefe7c4a46360fbf126648ba93a3d233b3972","bytes":1050},
+    {"path":"LATEST_PREIMAGE.md","sha256":"512b66c08858b11835b6fd4e661aee7d33443fcf339e1fd496a2952339068a00","bytes":941},
+    {"path":"POINTER_JOURNAL.json","sha256":"f3184831d65123786d5855dd8ee7814871babcd79773cc2da0fdbcaa141b76ea","bytes":473},
+    {"path":"Post_Change_Coverage.json","sha256":"61d1cd8c21bc49e1adc9beb4f3ebe30dbbeccb510f040032313dd17a3fd9cb46","bytes":872},
+    {"path":"Pre_Change_Coverage.json","sha256":"b5f7f033ee7cdc8f311c2c5db4060f23b92971392114f5636f7c6cf8aa5f88ce","bytes":817},
+    {"path":"Propagation_Plan.md","sha256":"db62e053b0c2eceabde1a69fd7627fbd617abcf52e537907672e279bc5b71c2b","bytes":565},
+    {"path":"RUN_SUMMARY.md","sha256":"031707e7c0157138d7d1f82e4c307c171c82ce3516f5ec995b02054d1bd2e941","bytes":1316},
+    {"path":"Supersession_Delta.csv","sha256":"9b62e98744d517fcc12fde63fe6cbc69925815dc111908bf7c7db455be81fcb9","bytes":237},
+    {"path":"Supersession_Map.csv","sha256":"0e4edab7e205d89c9180507127ddbb1cb2cd566b866861d75b704689cfdefb0a","bytes":4992},
+    {"path":"Supersession_Map_Findings.csv","sha256":"d288096f20845863777a4b5d0956be5c7783577857e3148e6d174200b74eb8b4","bytes":33}
+  ],
+  "memberCount": 16,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "pointerSha256": "941753dfbe4ebedd9385aa8934acefe7c4a46360fbf126648ba93a3d233b3972",
+  "conservation": "one SOW; seven carriers; four objectives; 66 requirements; nine holds plus R16-B; historical basis 9f21e4b86c304343b92ccd9ef10895b28c1a4f48; root-runtime-1 epoch 1",
+  "next": "Fresh independent AUDIT_DECOMP, then separate Gate 5 owner confirmation."
+}

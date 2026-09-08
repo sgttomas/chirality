@@ -1,0 +1,15 @@
+{
+  "decomp_variant": "SOFTWARE",
+  "basis": "immediately before SCA-003 exact ledger repair",
+  "canonical": {
+    "ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d",
+    "Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e",
+    "RUNTIME_SCOPE_LEDGER.csv": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920"
+  },
+  "topology": {"packages": 1, "deliverables": 7, "objectives": 4, "scope_items": 1, "ledger_rows": 1},
+  "qualified_inherited_requirements": 66,
+  "holds": "nine plus separate R16-B",
+  "historical_sow_basis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+  "runtime_identity": "root-runtime-1 epoch 1",
+  "first_postapplication_audit": "BLOCKED_LEDGER_METADATA_ONLY"
+}

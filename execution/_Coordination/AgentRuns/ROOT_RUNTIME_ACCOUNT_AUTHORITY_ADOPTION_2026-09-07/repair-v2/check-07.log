@@ -1,0 +1,76 @@
+{
+  "checks": [
+    "practitioner_harness",
+    "validation"
+  ],
+  "paths": [
+    "docs/governance_harness/_DECISIONS/D-GOV-39_runtime_account_authority_successor_adoption.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-ACCOUNT-AUTHORITY-ADOPTION-20260907.yaml",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CANDIDATE_DIFF.patch.gz",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CHECKS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CHECK_NOTE.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/COMPOSITION_RESULT.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/ENVIRONMENT_NOTE.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/FINAL_CHECKS.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/HANDOFF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/OUTPUT_MANIFEST.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-00.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-01.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-02.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-03.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-04.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-05.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-06.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-07.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-08.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-09.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-10.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-11.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/freeze.py",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/HANDOFF_CLARIFICATION.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-00.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-01.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-02.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-03.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-04.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-05.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-06.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/run_checks.py",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/verify_injected_account.py",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/CHECKS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/MANIFEST.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/RETURN.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/run_checks.py",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/verify_composition.py",
+    "execution/_Coordination/LOOP_RECEIPTS.md",
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07.md",
+    "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07.md",
+    "tools/validation/root_runtime_successors.py",
+    "tools/validation/test_root_runtime_successors.py"
+  ],
+  "reasons": {},
+  "schema": "chirality-affected-checks/v1"
+}
+[run-affected] running 2 suite(s); skipping 15: analysis, coordination, decomp, drawing_extract, equation_audit, pdf2md, publication, reporting, retrieval, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime
+[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13/bin/python -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 25%]
+........................................................................ [ 34%]
+........................uuu.................u..u...uu..uuu.u.u.......... [ 41%]
+........................................................................ [ 50%]
+......................uu................................................ [ 58%]
+..............u......................................................... [ 67%]
+.......u................................................................ [ 75%]
+.....................................u......uuuuuu.uu................... [ 82%]
+...............................................u........................ [ 91%]
+.........u................u.......u.....u.uuuuuuuuuu.u............u..... [ 98%]
+uuuu.uu...............                                                   [100%]
+838 passed, 48 subtests passed in 27.45s

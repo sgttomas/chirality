@@ -1,0 +1,18 @@
+test_acceptance_must_name_exact_subject_even_when_rehashed (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_acceptance_must_name_exact_subject_even_when_rehashed) ... ok
+test_baseline_rejects_injected_account_supplement_without_policy (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_baseline_rejects_injected_account_supplement_without_policy) ... ok
+test_changed_or_missing_live_file_and_mixed_revision_fail (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_changed_or_missing_live_file_and_mixed_revision_fail) ... ok
+test_duplicate_and_escaping_subject_members_are_rejected (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_duplicate_and_escaping_subject_members_are_rejected) ... ok
+test_exact_accepted_revision_without_main_is_not_published_or_authorized (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_exact_accepted_revision_without_main_is_not_published_or_authorized) ... ok
+test_exact_baseline_needs_no_successor_evidence (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_exact_baseline_needs_no_successor_evidence) ... ok
+test_index_membership_and_exact_projection_are_required (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_index_membership_and_exact_projection_are_required) ... ok
+test_missing_or_tampered_evidence_fails (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_missing_or_tampered_evidence_fails) ... ok
+test_selected_policy_preserves_prior_objects_and_verifies_account_chain (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_selected_policy_preserves_prior_objects_and_verifies_account_chain) ... ok
+test_subject_member_symlink_is_rejected (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_subject_member_symlink_is_rejected) ... ok
+test_unaccepted_sow_is_not_hidden_by_accepted_decomposition (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_unaccepted_sow_is_not_hidden_by_accepted_decomposition) ... ok
+test_unknown_or_escaping_change_scope_is_rejected (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_unknown_or_escaping_change_scope_is_rejected) ... ok
+test_wrong_predecessor_and_duplicate_change_are_rejected (tools.validation.test_root_runtime_successors.SuccessorRecognitionTests.test_wrong_predecessor_and_duplicate_change_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 5.763s
+
+OK

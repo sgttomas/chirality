@@ -1,0 +1,69 @@
+{
+  "schema": "root-runtime-account-authority-adoption-independent-review-checks/v1",
+  "status": "FAIL",
+  "role": "ephemeral Agent 2 independent reviewer",
+  "roleEnforcement": "instruction-asserted",
+  "nondelegation": "instruction-asserted",
+  "sealedBasis": {
+    "headExpected": "c3e9ab0f8e49314befc1fc81a9e01346641a7344",
+    "headActual": "c3e9ab0f8e49314befc1fc81a9e01346641a7344",
+    "authorManifestExpected": "7a4df3f1b9595ff9163dcc80d9362647e199541a527aa51259ca387463768afa",
+    "authorManifestActual": "7a4df3f1b9595ff9163dcc80d9362647e199541a527aa51259ca387463768afa",
+    "candidateDiffExpected": "4f8ae520b4dc4a90a40a8507ccf4cea0de7e26354d79d297f57a882c71575ce9",
+    "candidateDiffActual": "4f8ae520b4dc4a90a40a8507ccf4cea0de7e26354d79d297f57a882c71575ce9",
+    "candidateDiffUncompressedSha256": "37f763a49a346bc1334fdbee47e9f2b490f8f5dd76c626dac80fc581366d8a6e"
+  },
+  "checks": [
+    {
+      "id": "complete-diff-and-manifest",
+      "result": "PASS",
+      "evidence": "31 diff paths reproduced exactly; author manifest lists 32 non-self members with matching hashes and sizes; plus manifest itself gives 33 package paths"
+    },
+    {
+      "id": "prior-policy-preservation",
+      "result": "PASS",
+      "evidence": "new policy adoptions[0:2] exactly equal prior Stage2 policy adoptions"
+    },
+    {
+      "id": "native-gate5-chain",
+      "result": "PASS",
+      "evidence": "acceptance, subject, package, SCA-002 snapshot and SCA-003 snapshot hashes match; member sets verified 8/6/13/16 with all hashes and recorded sizes/counts matching"
+    },
+    {
+      "id": "canonical-postimages",
+      "result": "PASS",
+      "evidence": "account disposition 19baaea2..., decomposition 413687ca..., ledger bffda270... match exact current bytes"
+    },
+    {
+      "id": "bounded-delta",
+      "result": "PASS",
+      "evidence": "no Runtime canonical-byte, SOW, .gitattributes, broad repin, source/product, or publication mutation in frozen candidate"
+    },
+    {
+      "id": "baseline-account-authority-injection",
+      "result": "FAIL",
+      "command": "PYTHONPATH=tools/validation /Users/ryan/.local/share/mise/installs/python/3.13/bin/python - <synthetic fixture>",
+      "evidence": "exact baseline + custody absent + injected ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md + policy absent returned migration-baseline/published=true instead of GovernanceError",
+      "cause": "tools/validation/root_runtime_successors.py:32 tests only SUPPLEMENT absence before early return"
+    },
+    {
+      "id": "focused-successor-tests",
+      "result": "PASS_WITH_COVERAGE_GAP",
+      "command": "PYTHONPATH=tools/validation /Users/ryan/.local/share/mise/installs/python/3.13/bin/python -m unittest tools.validation.test_root_runtime_successors -v",
+      "evidence": "12 tests passed; no test covers account supplement injected at exact baseline with custody absent"
+    },
+    {
+      "id": "root-guards",
+      "result": "PASS",
+      "interpreter": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+      "evidence": "G0, G1, G2 and G3 passed; 53/46/7/9 retained"
+    },
+    {
+      "id": "governance-and-notice-claims",
+      "result": "PASS_EXCEPT_DERIVATIVE_FAIL_CLOSED_CLAIMS",
+      "evidence": "D-GOV-39/register/M2-G4/Receipt149/notices consistently say applied locally and pending publication with no execution/release grant; fail-closed summaries must be regenerated after repair"
+    }
+  ],
+  "blockingFinding": "EARLY_BASELINE_ACCOUNT_SUPPLEMENT_BYPASS",
+  "requiredOutcome": "repair, add regression/composition negative, regenerate frozen evidence, and re-review before publication"
+}

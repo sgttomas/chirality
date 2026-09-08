@@ -1,0 +1,27 @@
+{
+  "schema": "root-runtime-account-authority-adoption-independent-review-manifest/v1",
+  "pathBase": "repository root",
+  "status": "SEALED_FAIL",
+  "verdict": "FAIL",
+  "reviewBasis": {
+    "head": "c3e9ab0f8e49314befc1fc81a9e01346641a7344",
+    "authorOutputManifestSha256": "7a4df3f1b9595ff9163dcc80d9362647e199541a527aa51259ca387463768afa",
+    "candidateDiffGzipSha256": "4f8ae520b4dc4a90a40a8507ccf4cea0de7e26354d79d297f57a882c71575ce9"
+  },
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/RETURN.md",
+      "sha256": "b6e97b0b2d941957245205b056557a718e86e8d5f776775ed9fe553ceee0ef74",
+      "bytes": 4536
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/CHECKS.json",
+      "sha256": "0ee6dcb4eb9a182f5d385228a0e98e146b3404f9acc49edd059e0d00f6b101b4",
+      "bytes": 3631
+    }
+  ],
+  "memberCount": 2,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "blockingFinding": "EARLY_BASELINE_ACCOUNT_SUPPLEMENT_BYPASS",
+  "publicationDisposition": "BLOCKED_PENDING_REPAIR_AND_FRESH_REVIEW"
+}

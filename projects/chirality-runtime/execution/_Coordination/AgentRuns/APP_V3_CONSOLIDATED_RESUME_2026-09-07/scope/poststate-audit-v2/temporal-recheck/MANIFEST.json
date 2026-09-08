@@ -1,0 +1,28 @@
+{
+  "schema": "runtime-sca003-audit-temporal-recheck/v1",
+  "status": "RECHECK_COMPLETE",
+  "verdict": "BLOCKED_TEMPORAL_METADATA",
+  "originalAuditVerdictForGate5Reliance": "SUPERSEDED_BY_TEMPORAL_RECHECK",
+  "canonicalMutation": false,
+  "priorAuditMutation": false,
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "5542e84d47c61eb6cfda107c1e502204c941bd4a74fa6149ed8fa6f8f8630536",
+      "bytes": 5115
+    }
+  ],
+  "inputs": {
+    "sealedBriefSha256": "8b3f85bd2264dfdfac4d675af47851e1600da3267f6a4e7fb107d20ca5e49d05",
+    "canonicalLedgerSha256": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d",
+    "sca003SnapshotManifestSha256": "ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48",
+    "scopeChangePointerSha256": "941753dfbe4ebedd9385aa8934acefe7c4a46360fbf126648ba93a3d233b3972",
+    "completedAuditOutputManifestSha256": "93e17c03c0091b16abbf9b8a8d31c06dcce33f7048b2e1f6f215bd097bf79012",
+    "completedAuditReturnSha256": "c90d6c2bc7f71c9d2204c8bb8b7cf660a0b1bbe0169c4c054404021cbe8328fa",
+    "auditPointerSha256": "74f4ccdeff8a96f0b5ab0220915c5b268eec92d8ae9070609b0a544661c1310e"
+  },
+  "minimalCorrection": "An explicit append-only owner Gate 5 disposition may qualify and supersede the ledger phrase as SCA-003 application-time status and assign later audit/Gate 5 status to immutable owning records and pointers; otherwise separately govern a two-clause canonical correction. No recurring canonical refresh rule was found.",
+  "authority": "This recheck grants no edit or closure authority.",
+  "role": "same independent nondelegating AUDIT_DECOMP Agent 2; instruction-asserted",
+  "nondelegation": "instruction-asserted; no delegation performed"
+}

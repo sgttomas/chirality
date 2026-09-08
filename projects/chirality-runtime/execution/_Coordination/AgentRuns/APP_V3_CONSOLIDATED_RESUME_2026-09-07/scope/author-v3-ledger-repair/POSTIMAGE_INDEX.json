@@ -1,0 +1,35 @@
+{
+  "schema": "runtime-sca002-ledger-repair-postimage/v1",
+  "status": "CANDIDATE_NOT_APPLIED",
+  "verdict": "READY_FOR_INDEPENDENT_REVIEW",
+  "target": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "postimage": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/POSTIMAGE/RUNTIME_SCOPE_LEDGER.csv",
+    "preimageSha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+    "postimageSha256": "c6e985bc25bf4f10ca8a8f27d82484736e0febbe85a95a6e3d9e2cc825c4cadc"
+  },
+  "patch": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v3-ledger-repair/CANDIDATE.patch",
+    "sha256": "ecb1cb62c2b8bb1b060cca52e02867d777464eab9726b54849fc1f17064838fd"
+  },
+  "changedFields": [
+    "DecisionRef",
+    "Notes"
+  ],
+  "preservedFields": [
+    "ScopeItemID",
+    "InOutStatus",
+    "ScopeItemStatement",
+    "SourceRef",
+    "PackageID",
+    "DeliverableIDs",
+    "ObjectiveIDs",
+    "PRDItem",
+    "Categories",
+    "OpenIssue",
+    "SourceLineage",
+    "CandidateState"
+  ],
+  "candidateStateInterpretation": "GATE3_REVIEW_NOT_ACCEPTED is preserved historical migration/decomposition candidate-stratum metadata; it is not current SCA-002 Gate 3 status.",
+  "effect": "No effect until independent review, separate owner approval and governed application."
+}

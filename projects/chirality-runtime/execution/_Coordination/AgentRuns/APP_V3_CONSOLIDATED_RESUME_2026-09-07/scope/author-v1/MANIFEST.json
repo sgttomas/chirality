@@ -1,0 +1,42 @@
+{
+  "status": "PROSPECTIVE_NOT_EFFECTIVE",
+  "verdict": "PASS_AUTHOR_QA_READY_FOR_INDEPENDENT_REVIEW",
+  "baseCommit": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+  "canonicalApplied": false,
+  "gitStateMutated": false,
+  "role": "bounded nondelegating ephemeral Agent 2 under Runtime SCOPE_CHANGE; instruction-asserted",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/CANDIDATE.patch",
+      "sha256": "bbbf69bab5ef0ba19053bbf7838d82adf57372d3f2d56403cf1552babe8a9c05"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/PREIMAGE_INDEX.json",
+      "sha256": "cd2a8da9134491d64b9674e95c3bccd14d76a18a7f29c05c6e5106727285750b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/POSTIMAGE_INDEX.json",
+      "sha256": "f49fcf8773320bb5da31726b209028f9fd8a28889bd66adf7e3caeee1a53c13a"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/CHECKS.json",
+      "sha256": "1a4f3aafa5c243c8107c76043c6065ea672b712d03b920d76570c769c2adc274"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/RETURN.md",
+      "sha256": "98bd4306655f7193a514bb55c8d989598f6cb2f088d9bd32f78c69d515110afd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+      "sha256": "84b9bd1908ca2f26539c91bec1d67ef1a06b7b26c907cb6cfe24d6445d0bae9b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "a366ed3044f226f9dc5a02866a48f5027497397997b596603deb81b3d3c193dd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "511a8b9cf806d8b00768f11bfc59c9cab7c7a618b9ddf62ab99fd5abf997a19c"
+    }
+  ]
+}

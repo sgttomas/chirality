@@ -1,0 +1,12 @@
+{
+  "schema": "runtime-scope-change-gate5-pointer-journal/v1",
+  "acceptedAtUtc": "2026-09-07T22:47:52Z",
+  "pointer": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "preimageSha256": "941753dfbe4ebedd9385aa8934acefe7c4a46360fbf126648ba93a3d233b3972",
+  "preimageCopy": "LATEST_PREIMAGE.md",
+  "postimageCopy": "LATEST_POSTIMAGE.md",
+  "targetSnapshot": "SCA-003_2026-09-07_1616/",
+  "state": "GATE5_ACCEPTED_FOR_SCA002_TO_SCA003_CHAIN",
+  "postimageSha256": "78a35e83db927cdd82e47119b40b4d99d70a77d0034b2e39887e5e3f4509dfe6",
+  "result": "EXACT_POSTIMAGE_PASS"
+}

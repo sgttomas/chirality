@@ -1,0 +1,61 @@
+{
+  "schema": "runtime-sca002-ledger-repair-preimage/v2",
+  "status": "VERIFIED",
+  "head": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "originMain": "579015fab0c121e702d10c255d2824a86bcad58d",
+  "target": {
+    "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+    "sha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+    "rows": 1
+  },
+  "predecessor": {
+    "authorV3ManifestSha256": "ed86340cea71d7003246f20b003ece2ac211b91ac7a9b355c66d6c7cc0378b67",
+    "reviewV3ManifestSha256": "e9d408fefd8d7339101652d13afbc63f0b6fad7f3169bd09aa10e6be9a54aef7",
+    "reviewV3Verdict": "RETURN_FOR_REMEDIATION",
+    "blockers": [
+      "Unqualified Runtime custody application pending contradicted accepted SCA-001 Stage 1.",
+      "Unqualified DEL-02-06/09 SOW propagation pending contradicted applied and locally validated SCA-001 Stage 2."
+    ]
+  },
+  "sca001": {
+    "stage1OwnerAcceptance": {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA001_STAGE1_2026-09-06/OWNER_ACCEPTANCE.md",
+      "sha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f",
+      "state": "APPLIED_AND_OWNER_ACCEPTED"
+    },
+    "stage1PointerPostimageSha256": "d7cad81cf72f48d9f9ccb8ec4fa2877d5e13e5195bba6d72e55971b979601026",
+    "stage2Propagation": {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA001_STAGE2_2026-09-07/PROPAGATION_RETURN.md",
+      "sha256": "6e3484cd879f3474e4cb50f3dce85dd8d4b694b2b46c41bf2001a96ab6a4e865",
+      "state": "EXACT_SOW_PROPAGATION_APPLIED_AND_LOCALLY_VALIDATED"
+    },
+    "stage2PointerPostimageSha256": "0936efafb58f204123e859286f460fde109d83f1c7b4449c7dbed0af36895fea",
+    "pending": [
+      "Root successor adoption/publication",
+      "Runtime publication"
+    ]
+  },
+  "sca002": {
+    "snapshotManifestSha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3",
+    "applicationJournalSha256": "78cbfb2e304e675369d364ff807427a133388b70ed07ddcdbd3f86bf685a7786",
+    "poststateAuditReturnSha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1",
+    "poststateAuditIssueLogSha256": "130ae0490e693ee92a2774b88efb08297bdc2d9b7660a8c5b4a7a23fa9e59af7",
+    "state": "EXACT_APPLICATION_EXECUTED; GATE5_REPAIR_RERUN_AND_OWNER_ACCEPTANCE_PENDING",
+    "futureSowPropagation": "PENDING"
+  },
+  "conservation": {
+    "scopeRows": 1,
+    "package": "PKG-02_Runtime_Product",
+    "deliverableCarriers": 7,
+    "objectiveIds": [
+      "OBJ-001",
+      "OBJ-002",
+      "OBJ-004",
+      "OBJ-007"
+    ],
+    "qualifiedInheritedRequirementRows": 66,
+    "holdInterpretation": "nine holds plus separate R16-B",
+    "historicalSowBasis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+    "runtimeIdentity": "root-runtime-1 epoch 1"
+  }
+}

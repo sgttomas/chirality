@@ -1,0 +1,27 @@
+{
+  "kind": "immutable-decomposition-coverage-audit-snapshot",
+  "run_label": "SCA002_ACCOUNT_AUTH_POSTSTATE",
+  "snapshot": "COV_SCA002_ACCOUNT_AUTH_POSTSTATE_2026-09-07_2050",
+  "verdict": "BLOCKED",
+  "members": [
+    {"path": "Brief.md", "sha256": "f41156aaa7f3df1b387207a132c8da4fd4cc166b82814be384daf35a20d11b69"},
+    {"path": "CHECKS.json", "sha256": "eaaa0c76ea5fbd337acca4af3904d0df584090a91a66cbacc6080a5bd753ad00"},
+    {"path": "Decision_Log.md", "sha256": "48ef0d968334b19856834bf1961977bc0aa6fe1b507824f3a43d928c33668223"},
+    {"path": "Decomp_Coverage_IssueLog.csv", "sha256": "130ae0490e693ee92a2774b88efb08297bdc2d9b7660a8c5b4a7a23fa9e59af7"},
+    {"path": "Decomp_Coverage_Matrix.csv", "sha256": "3f12b117eecda38fbe2c51796c22df5efb7f580aa244dc10fdefe4146bd06c9a"},
+    {"path": "Decomp_Coverage_Report.md", "sha256": "c74327d176986e14cd091f90df21f950173756535ccf76bea536bc2dcebafc08"},
+    {"path": "INPUT_PINS.json", "sha256": "5e8fa2a751634a8662f90429ebb56ded64cbb6e1730b51ca822804ed881a9ed0"},
+    {"path": "QA_Report.md", "sha256": "8f2aa5f6fc76f0fded17b972c5b04c9b2130e397dd6edf2dfc391f4c0dc42978"},
+    {"path": "RETURN.md", "sha256": "912d287934e65e3d224194803f5f54f872a35868e673d47c220186a5282979f1"},
+    {"path": "RUN_SUMMARY.md", "sha256": "c9452d05a8d5d710b7e4997993a04ddefce293b1afddac02bb8ee158587e9c36"},
+    {"path": "coverage_summary.json", "sha256": "cffcfa0a60dbe801c89a7eeea85eb291d0aca0311af26408fc9866d80a526a40"}
+  ],
+  "pointer": {
+    "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/_LATEST.md",
+    "sha256": "18809dec23c0d10b76529c85da84546ad6f30b71523305ea218d83935de3b71b"
+  },
+  "expected_source_snapshot": "/private/tmp/chirality-runtime-custody-amendment-20260906/projects/chirality-runtime/execution/_ScopeChange/SCA-002_2026-09-07_ACCOUNT_AUTHORITY/SNAPSHOT_MANIFEST.json",
+  "source_snapshot_sha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3",
+  "role": "dedicated AUDIT_DECOMP Agent 2; instruction-asserted",
+  "nondelegation": "instruction-asserted; no delegation performed"
+}

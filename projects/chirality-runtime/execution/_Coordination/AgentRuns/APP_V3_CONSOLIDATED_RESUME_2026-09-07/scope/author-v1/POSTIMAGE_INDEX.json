@@ -1,0 +1,54 @@
+{
+  "status": "PROSPECTIVE_NOT_EFFECTIVE",
+  "baseCommit": "628424395ff7506eee01ff14d37f4dcbd2c8519d",
+  "rootDependency": {
+    "candidateSha256": "2697862a31ee856ae923c91af38a5e07f8997115a4bd1baabf083afb069939b1",
+    "reviewSha256": "32d44dcc5de4dfc6056ce4e430966f7b46248cd477fc66814f049d08c001d439",
+    "effect": "PROSPECTIVE / NOT EFFECTIVE"
+  },
+  "files": [
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+      "packageRole": "authoritative companion supplement",
+      "postimage": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+      "preimageSha256": null,
+      "postimageSha256": "84b9bd1908ca2f26539c91bec1d67ef1a06b7b26c907cb6cfe24d6445d0bae9b"
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "packageRole": "working surface",
+      "postimage": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "preimageSha256": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1",
+      "postimageSha256": "a366ed3044f226f9dc5a02866a48f5027497397997b596603deb81b3d3c193dd"
+    },
+    {
+      "target": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "packageRole": "authoritative companion register",
+      "postimage": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/POSTIMAGES/projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "preimageSha256": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9",
+      "postimageSha256": "511a8b9cf806d8b00768f11bfc59c9cab7c7a618b9ddf62ab99fd5abf997a19c"
+    }
+  ],
+  "patch": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/author-v1/CANDIDATE.patch",
+    "sha256": "bbbf69bab5ef0ba19053bbf7838d82adf57372d3f2d56403cf1552babe8a9c05"
+  },
+  "conservation": {
+    "scopeRows": 1,
+    "package": "PKG-02_Runtime_Product",
+    "deliverableCarriers": 7,
+    "objectiveIds": [
+      "OBJ-001",
+      "OBJ-002",
+      "OBJ-004",
+      "OBJ-007"
+    ],
+    "qualifiedInheritedRequirementRows": 66,
+    "holdMapRows": 10,
+    "holdInterpretation": "nine holds plus separate R16-B",
+    "historicalSowBasis": "9f21e4b86c304343b92ccd9ef10895b28c1a4f48",
+    "runtimeIdentity": "root-runtime-1 epoch 1",
+    "identityAllocationChanged": false,
+    "topologyChanged": false
+  }
+}

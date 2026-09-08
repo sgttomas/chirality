@@ -1,0 +1,58 @@
+{
+  "kind": "runtime-scope-change-decision-ready-prospective-candidate",
+  "verdict": "PASS_DECISION_READY_PROSPECTIVE",
+  "application_basis": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+  "candidate_status": "PROSPECTIVE / NOT EFFECTIVE",
+  "canonical_applied": false,
+  "members": [
+    {
+      "path": "FINAL_HANDOFF.md",
+      "sha256": "a76456207234df60793d2da0aba71a542b2a53caf194622ac595ca2f716e7ecc"
+    },
+    {
+      "path": "DECISION_SUBJECT.md",
+      "sha256": "3be40d62ada16bb7d2588c948904c0a6ec9fb5f83d64c15e6c40dbdaaeffcaf1"
+    },
+    {
+      "path": "IMPACT_AND_ORDERING_REFRESH.md",
+      "sha256": "029e607be4f5189311f01f6cf7e0a375604d013aba02cfb969df4bc750cd1362"
+    },
+    {
+      "path": "PROPAGATION_PLAN_DRAFT.md",
+      "sha256": "f81bfeb89c2846b23f5b894969838cd797e27a178d87e286c65d90a32ef8ccfd"
+    },
+    {
+      "path": "AMENDMENT_ACTIONS_DRAFT.csv",
+      "sha256": "3685b15ccadae3beb2e308e49f3bd637ad7c0a1ee4137c0f735e1b5c3cd93c7a"
+    },
+    {
+      "path": "AUTHOR_V2_FREEZE.json",
+      "sha256": "89b4d23c8bf8aa38852cfffd638e4dabb276de7b1fc14a71935ac794b9dd9678"
+    },
+    {
+      "path": "author-v2/MANIFEST.json",
+      "sha256": "54a94c193e0064ce2242c58dca2031959b8bca267593de90d2a9eed0574c005a"
+    },
+    {
+      "path": "author-v2/CANDIDATE.patch",
+      "sha256": "4be28f9e5929765c8666908e8895ffa2a8d75d2f0df66c133e1b383ee1e94395"
+    },
+    {
+      "path": "review-v2/MANIFEST.json",
+      "sha256": "f56e83895059b7b138a6d3c046430d1a8a95d78e425339ceaae165b0ca641665"
+    },
+    {
+      "path": "review-v2/RETURN.md",
+      "sha256": "9ec887392b6fd707932642899e54baffb46462feeebc4b4f5567382529bf25b4"
+    }
+  ],
+  "agent2": {
+    "author": "/root/runtime_scope/runtime_candidate_author",
+    "reviewer": "/root/runtime_scope/runtime_candidate_reviewer",
+    "model": "gpt-5.6-sol",
+    "reasoning": "medium",
+    "separate_instances": true,
+    "nondelegation": "instruction-asserted"
+  },
+  "next_decision": "Runtime Gate 2 impact acceptance + Gate 3 exact candidate approval + Gate 4 propagation-plan approval; exact wording in DECISION_SUBJECT.md"
+}

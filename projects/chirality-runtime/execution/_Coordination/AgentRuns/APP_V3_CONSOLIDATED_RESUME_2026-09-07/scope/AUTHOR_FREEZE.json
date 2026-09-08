@@ -1,0 +1,34 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "manager_validation": "PASS",
+  "author_agent": "/root/runtime_scope/runtime_candidate_author",
+  "model_allocation": "gpt-5.6-sol medium",
+  "role_attribution": "instruction-asserted",
+  "candidate_patch": {
+    "path": "author-v1/CANDIDATE.patch",
+    "sha256": "bbbf69bab5ef0ba19053bbf7838d82adf57372d3f2d56403cf1552babe8a9c05"
+  },
+  "author_manifest": {
+    "path": "author-v1/MANIFEST.json",
+    "sha256": "344f9f8800c5ac94ad49ba6910a997ce8ac67eb966f0459ce66ae220a72d84b7",
+    "member_hash_validation": "PASS"
+  },
+  "postimages": [
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+      "sha256": "84b9bd1908ca2f26539c91bec1d67ef1a06b7b26c907cb6cfe24d6445d0bae9b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+      "sha256": "a366ed3044f226f9dc5a02866a48f5027497397997b596603deb81b3d3c193dd"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+      "sha256": "511a8b9cf806d8b00768f11bfc59c9cab7c7a618b9ddf62ab99fd5abf997a19c"
+    }
+  ],
+  "patch_applicability": "PASS against original Runtime canonical preimages at HEAD 628424395ff7506eee01ff14d37f4dcbd2c8519d",
+  "candidate_status": "PROSPECTIVE / NOT EFFECTIVE",
+  "canonical_applied": false
+}
+

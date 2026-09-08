@@ -1,0 +1,16 @@
+{
+  "kind": "runtime-sca002-gate5-ledger-repair-decision-packet",
+  "status": "WAITING_EXACT_OWNER_APPROVAL",
+  "members": [
+    {"path": "GATE5_REPAIR_DECISION_SUBJECT.md", "sha256": "3ce136ad98023717c5353e34178abec1cd618cb76daacd9e74a0c33defd87ba2"},
+    {"path": "GATE5_REPAIR_HANDOFF.md", "sha256": "d11df1405d9e7ea8d85b75236ab6b2ad1f777ebbef9804f84601b2f36d930f92"},
+    {"path": "author-v4-ledger-repair/MANIFEST.json", "sha256": "7645678894c9d5f704d29d4207e60a4654275c2e702ab2dab7a12e630e397109"},
+    {"path": "author-v4-ledger-repair/CANDIDATE.patch", "sha256": "64c2748759644761e1924c59cb6dcc6eb70d0046e5d5daae2f0627a3038a43be"},
+    {"path": "author-v4-ledger-repair/POSTIMAGE/RUNTIME_SCOPE_LEDGER.csv", "sha256": "e07accd8ad81429a83bd53673de97af38c721dd03799a5bc6af89d12f9d29854"},
+    {"path": "review-v4-ledger-repair/MANIFEST.json", "sha256": "65257a958fc70bf62a468c36f9ab1165f0f13e57b61e8bd2460601ed24ebda6b"},
+    {"path": "review-v4-ledger-repair/RETURN.md", "sha256": "ba00128c7fe7008d83ea54534192746d47d3f30fccd8a7b63e93c994d3f8085a"}
+  ],
+  "canonical_preimage_sha256": "e3621b3cef4f58644c26d830e5f991e699e955413e15842b4f615dcb67a61920",
+  "canonical_repair_applied": false,
+  "gate5_acceptance": "PENDING_AFTER_REPAIR_AND_CLEAN_AUDIT"
+}

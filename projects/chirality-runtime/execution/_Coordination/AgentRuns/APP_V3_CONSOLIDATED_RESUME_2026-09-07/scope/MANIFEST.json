@@ -1,0 +1,30 @@
+{
+  "kind": "runtime-scope-change-preparation-derivative",
+  "status": "READY_FOR_EXACT_ROOT_IDENTITY",
+  "canonical_applied": false,
+  "members": [
+    {
+      "path": "HANDOFF.md",
+      "sha256": "6090945f276e3cf305faa605a746acc018bfa64c6c60126dc980c818e882d9a2"
+    },
+    {
+      "path": "IMPACT_AND_ORDERING_REFRESH.md",
+      "sha256": "029e607be4f5189311f01f6cf7e0a375604d013aba02cfb969df4bc750cd1362"
+    },
+    {
+      "path": "MANAGER_ENTRY.md",
+      "sha256": "62c6764b615e1a41217453eb1264c4ce086d65c952cb5a188373e7ce2a5918e0"
+    },
+    {
+      "path": "PREIMAGE_AUDIT.json",
+      "sha256": "0af4ac544cb5d3f34d878ff57d8088e092dcfe9b6a90f0826e30b140d99ca58c"
+    },
+    {
+      "path": "STATUS.md",
+      "sha256": "6d440025d6978f30963fe181e6ed8bb6994ed3244c13dc0551207fb0824c5199"
+    }
+  ],
+  "role_attribution": "instruction-asserted",
+  "agent2_dispatches": 0,
+  "blocker": "NEW exact independently reviewed Root D36 candidate identity pending from parent"
+}
