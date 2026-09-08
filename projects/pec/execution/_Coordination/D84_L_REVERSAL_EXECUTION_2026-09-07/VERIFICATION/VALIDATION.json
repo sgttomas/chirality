@@ -1,0 +1,90 @@
+{
+  "schema": "pec-d84-l-reversal-independent-validation/v1",
+  "verdict": "PASS",
+  "role": {
+    "type": "Agent 2 ephemeral verifier under REVIEW",
+    "native_role_enforcement": "instruction-asserted",
+    "delegated": false,
+    "configured_model": "gpt-5.6-sol",
+    "configured_reasoning_effort": "medium",
+    "serving_identity": "not exposed"
+  },
+  "authority": {
+    "head_equals_origin_main": true,
+    "origin_main": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+    "merge_parents": [
+      "c5192790f98ec024e7c2728cb1d4df3ae2b2a2dd",
+      "480bd302ef347963c748cf41fe0d4f118227a550"
+    ],
+    "pr_753_head_is_merge_parent": true,
+    "d84_s_a_origin_main_sha256": "6d9812b46874c39a4617476b8ba7b40702b3a3227c0511fc95b95aaeb8a2fe7a",
+    "d84_l_origin_main_sha256": "2f52907fe4728fe70e21a095c27d077fa7b901a7f3ee080ae360cde9e48c9d10",
+    "session_authority_origin_main_sha256": "c2542058f197363644d2973f7c408a8984b9113f943c0f5c357e62a0eba5fe2b",
+    "result": "PASS"
+  },
+  "fresh_hold_preflights": {
+    "cwd": "projects/pec",
+    "register": "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+    "operation": "candidate-validation",
+    "results": [
+      {"target": "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md", "exit": 0, "stdout": {"operation": "candidate-validation", "status": "ALLOW"}},
+      {"target": "execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07", "exit": 0, "stdout": {"operation": "candidate-validation", "status": "ALLOW"}}
+    ],
+    "prohibitions_honored": true,
+    "label_bypass_used": false,
+    "result": "PASS"
+  },
+  "status_application": {
+    "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+    "recorded_preimage_sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+    "live_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+    "approved_candidate_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+    "authored_postimage_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+    "live_byte_equals_approved_candidate": true,
+    "live_byte_equals_authored_postimage": true,
+    "current_state": "IN_PROGRESS",
+    "last_updated": "2026-09-07",
+    "original_history_preserved_as_history_prefix": true,
+    "appended_top_level_history_events": 1,
+    "all_three_frozen_source_hashes_present_in_appended_event": true,
+    "remaining_section_present": false,
+    "result": "PASS"
+  },
+  "preservation": {
+    "files": [
+      {"path": "projects/pec/v2/tools/check_service_core_posture.py", "sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643", "match": true},
+      {"path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py", "sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf", "match": true},
+      {"path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py", "sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20", "match": true},
+      {"path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REVIEW.md", "sha256": "fd9158b211f27b2bf6d451f68f620788522a80a57bf99264ee1e009cb95258d9", "match": true},
+      {"path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Review_Findings.csv", "sha256": "414339c78c45598ff75d247f7456c30c5b37b7b440b39a2d37c064db391ac00a", "match": true},
+      {"path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md", "sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53", "match": true}
+    ],
+    "result": "PASS"
+  },
+  "authored_json": {
+    "parse_result": "PASS",
+    "files": [
+      {"path": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/APPLICATION_RESULT.json", "sha256": "7d627986784406e4e6556769537098a43c69e917007af4e3d9d33e8c4f82a460"},
+      {"path": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/BASIS/HOLD_PREFLIGHTS.json", "sha256": "01d6f2bc4fb89e6f99637509d944924783e79aa9049cd19834a8dfe38379b85b"},
+      {"path": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/BASIS/READ_MANIFEST.json", "sha256": "13e7cb4f9d7bbe4a180ab2fc16cfba73df4ac0b88c71f88c38467be7bfae558e"},
+      {"path": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/BASIS/TARGETS.json", "sha256": "3b426e05e3613770ef90202b9623cf64c59ab09059ce8ee21c48af423f15727a"},
+      {"path": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/CHECKS.json", "sha256": "586c50620184214aaed44a415e5d703bd83326e4fe93886d2746fbbe2c07ca20"}
+    ]
+  },
+  "scope": {
+    "author_evidence_files_before_verification": 9,
+    "author_evidence_all_route_authorized": true,
+    "verifier_write_root": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/VERIFICATION/",
+    "verifier_output_names_exact": ["REVIEW.md", "READ_MANIFEST.json", "VALIDATION.json", "OUTPUT_MANIFEST.json", "HANDOFF.md"],
+    "prohibited_write_observed_from_verifier": false,
+    "other_modified_statuses_observed": 57,
+    "other_statuses_treated_as_external_d83_changes": true,
+    "external_coordination_and_reconciliation_evidence_observed": true,
+    "global_worktree_unchanged_claim": false,
+    "promotion_or_artifact_acceptance": false,
+    "remaining_or_source_write": false,
+    "result": "PASS"
+  },
+  "product_tests": "NOT_APPLICABLE: status-only administrative act",
+  "discrepancies": []
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "pec-change-iteration-closeout/v1",
+  "role": "CHANGE Agent 1; requested gpt-5.6-sol / medium; serving identity not independently exposed",
+  "branch": "codex/pec-d83-d84-execution-20260907",
+  "iteration_base": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "shared_main_basis": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "common_manifest_sha256": "719015e0a6365aaecc206aa8d95b86dc61e3d9ad8755857a32dafe95fa5d6a59",
+  "d83_current_terminal_sha256": "65e5ee64fec34c99a80befe2fe77d3d6b4288e772f9d730673ff3dac540cf848",
+  "d84_terminal_sha256": "268595626ba92fc7b6945cfd7cdcfbb10b358fff151040cec079f738881d4cac",
+  "release": "HELP_HUMAN accepted the scanner author, fresh verifier, RECONCILIATION backcheck, D83 LF formatting successor and common fan-in, then released final Git publication and merge under the standing owner authority.",
+  "scope": "Exact three scanner source/test postimages; D84 run evidence; Iteration 03 common evidence; Receipt 175; D83 formatting successor with four current package updates and four additive successor files; this additive CHANGE evidence.",
+  "checks": [
+    {
+      "command": "python3 tools/validation/validate_pec_loop_receipts.py --repo-root .",
+      "exit": 0,
+      "result": "VALID; frozen through Receipt-166; versioned receipt contract satisfied"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "exit": 0,
+      "result": "PASS with inherited INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=55"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v v2.tests.enforcement.test_dependency_assertion v2.tests.enforcement.test_locality_assertion",
+      "cwd": "projects/pec",
+      "exit": 0,
+      "result": "23 tests passed"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s v2/tests/enforcement -p 'test_*.py'",
+      "cwd": "projects/pec",
+      "exit": 0,
+      "result": "28 tests passed"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s v2/tests/contracts/api -p 'test_*.py'",
+      "cwd": "projects/pec",
+      "exit": 0,
+      "result": "6 tests passed"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 v2/tools/check_service_core_posture.py --config v2/config/service_core_posture.json --workflow software-workflow.json",
+      "cwd": "projects/pec",
+      "exit": 0,
+      "result": "PASS: dependency, locality and registration"
+    }
+  ],
+  "whitespace_state": "The precommit worktree combines committed CRLF history at 14f42e9 with its released unstaged LF successor, so committed-range inspection alone still reports the historical CR. After this successor is committed, the default full candidate validator must pass against origin/main; no override, attribute, workflow change or waiver is permitted.",
+  "limits": "No D83 frozen Remaining application, D85, repaired-artifact acceptance, CHECKING re-entry, promotion, issuance or release. Passing tests and publication do not establish artifact fitness."
+}

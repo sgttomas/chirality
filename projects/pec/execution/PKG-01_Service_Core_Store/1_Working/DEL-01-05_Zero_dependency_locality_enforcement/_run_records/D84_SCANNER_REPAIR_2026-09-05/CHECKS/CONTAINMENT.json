@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "author_write_scope": "exact three product files plus enumerated BASIS/AUTHOR/CHECKS evidence files",
+  "validate_change_scope": {"status": "PASS", "violations": []},
+  "git_diff_check": "PASS",
+  "product_paths_modified": [
+    "projects/pec/v2/tools/check_service_core_posture.py",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py"
+  ],
+  "preexisting_parent_paths_preserved": ["ACTIVATION.md", "BRIEFS/AUTHOR.md", "DISPATCH_RECORDS.json"],
+  "forbidden_paths_written_by_author": [],
+  "source_fixture_pollution": false,
+  "pyc_or_pyo_under_v2_or_run_root": [],
+  "scratch_policy": "all test/probe/check TMPDIR values used fresh /private/tmp directories; no service or non-scratch database ran",
+  "git_mutations": false
+}

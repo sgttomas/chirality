@@ -1,0 +1,117 @@
+{
+  "schema": "pec-derivative-output-manifest/v1",
+  "status": "TERMINAL_PASS_READY_FOR_CHANGE",
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "ACTIVATION.md",
+      "sha256": "d643ea5f0be32c7088c563b7192f86dcb05075996584aeef5c05996ffab8b7fa",
+      "bytes": 1580
+    },
+    {
+      "path": "ACTUAL_RETURNS/D83_FORMATTING_SUCCESSOR.md",
+      "sha256": "cc8bab002ad235b34b856f6f5ef59468fab6d60803941d946a381ec4871361e4",
+      "bytes": 1027
+    },
+    {
+      "path": "ACTUAL_RETURNS/RECONCILIATION_BACKCHECK.md",
+      "sha256": "40946dd8015597c42ecd27ac18a9e8b43d191f41f59bc76396eef6c074f7348a",
+      "bytes": 1550
+    },
+    {
+      "path": "ACTUAL_RETURNS/SOURCE_VERIFICATION.md",
+      "sha256": "0aef66ce6471aeb83757f481914ad48e812015a05cbabf14ac4cafd73d73108d",
+      "bytes": 1879
+    },
+    {
+      "path": "ACTUAL_RETURNS/TERMINAL_D84_SCANNER.md",
+      "sha256": "7cde1e0c8b04b20980a827721e00f8460ef5a3c847486c0a3d4c57d3ad7208c1",
+      "bytes": 1677
+    },
+    {
+      "path": "AGENT0_GRAPH_V3.md",
+      "sha256": "d0c445e96b4a5ffd863a3dd6d9c460bb24106c23881ab209ed6677cf22bdbe3f",
+      "bytes": 2560
+    },
+    {
+      "path": "BRIEFS/change_closeout.md",
+      "sha256": "8b2b6536d7d456541baa950435630dad0b3e10f615e2a983e97ccc1d4bcd1417",
+      "bytes": 834
+    },
+    {
+      "path": "BRIEFS/common_integration.md",
+      "sha256": "dfde9e6e2325a53f94d547e7efb57f9290624f577ae02cde443fbe43643b28d1",
+      "bytes": 845
+    },
+    {
+      "path": "BRIEFS/d83_formatting_successor.md",
+      "sha256": "af243bd4140a5abdf445b5517e0c89db53bd69304032df514e7b28e0f2295990",
+      "bytes": 1177
+    },
+    {
+      "path": "BRIEFS/reconciliation_backcheck.md",
+      "sha256": "960e5185e8e45f393eb8df7f5602be913cd73fe7dd3a0c439bb0cac3f8f132eb",
+      "bytes": 966
+    },
+    {
+      "path": "BRIEFS/working_items_source.md",
+      "sha256": "fb94136c66bc0d12c6a6db8579c7f5eda1b5f4d706d4c2bfbb65ed499fee9ecc",
+      "bytes": 954
+    },
+    {
+      "path": "CHECKS.json",
+      "sha256": "90a97d22fa28a1b39d6401d511da54b9af7220b2b5ba62ddf431b840b329d486",
+      "bytes": 1772
+    },
+    {
+      "path": "DISPATCH_RECORDS_V3.json",
+      "sha256": "dafcb50a2cd13820effb05c14c84a9fbe044c1d2f679e5a4cebcdd201f5c363e",
+      "bytes": 1390
+    },
+    {
+      "path": "FAN_IN_CHECKS.json",
+      "sha256": "903aac6e5a2d4b212bbefb387506404659b4b8b0038f382e4253d1929988b194",
+      "bytes": 2730
+    },
+    {
+      "path": "HANDOFF_STATE.md",
+      "sha256": "6ce247b8822d31a88bda52fd37e43f55f342a9257bc52e4a92983b673a7639b9",
+      "bytes": 2899
+    },
+    {
+      "path": "PRE_FANIN_OBSERVATIONS.md",
+      "sha256": "e7d0deb5dbbd7024af097cedecb6b6f07d5afa0c09f648265335dc7818a731d4",
+      "bytes": 2284
+    },
+    {
+      "path": "STEP0_AND_SOURCE_BASIS.json",
+      "sha256": "cab291fc1965a3ea0f181061fa3e154c5293468ff0f4d1688a9da4f40d039969",
+      "bytes": 1403
+    }
+  ],
+  "external_outputs": [
+    {
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "sha256": "efe77c70bb93984989a95d3d2f63fcabdd0182432f7e4df8b49b5458bdf15d14"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/OUTPUT_MANIFEST.json",
+      "sha256": "65e5ee64fec34c99a80befe2fe77d3d6b4288e772f9d730673ff3dac540cf848"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D84_SCANNER_REPAIR_2026-09-05/OUTPUT_MANIFEST.json",
+      "sha256": "268595626ba92fc7b6945cfd7cdcfbb10b358fff151040cec079f738881d4cac"
+    }
+  ],
+  "preservation": {
+    "receipt_174_prefix_bytes": 442888,
+    "receipt_174_prefix_sha256": "1cc34003eb1a07d26197226dcf29fd0b97d9bd1cae064f4523806ef9e36867c9",
+    "receipt_prefix_preserved": true,
+    "iteration_02_common_manifest_sha256": "017802d4782b6d0362031e756be7b7b0e3cfae65347fd9b8f25014aa9fb22014",
+    "historical_d83_root_manifest_sha256": "501366e971d57d8030a73269648ed55942cc6fc97842e44324b7886695c2bad6",
+    "decision_register_changed": false,
+    "status_or_remaining_changed": false,
+    "frozen_remaining_applied": false,
+    "d85_or_acceptance_or_promotion_act": false
+  }
+}

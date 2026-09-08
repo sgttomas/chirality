@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "historical_test_methods": 19,
+  "added_test_methods": 9,
+  "actual_total_test_methods": 28,
+  "focused_changed_modules": {"test_methods": 23, "exit_code": 0, "result": "OK"},
+  "full_enforcement_suite": {"test_methods": 28, "exit_code": 0, "result": "OK"},
+  "matrix": {
+    "dynamic_import_alias_forms": ["module alias", "unaliased from-import", "aliased from-import", "assignment alias"],
+    "dynamic_import_policy": ["literal third-party BLOCK", "literal stdlib BLOCK", "literal admitted workspace BLOCK", "unknown name BLOCK"],
+    "dependency_controls": ["static stdlib PASS", "static admitted workspace PASS", "direct third-party BLOCK", "transitive third-party BLOCK", "unrelated local callable PASS"],
+    "udp_overloads": ["bound two positional", "bound three positional", "unbound three positional", "unbound four positional"],
+    "udp_alias_forms": ["module", "class", "instance", "bound callable", "unbound callable", "inline constructor"],
+    "udp_local_destinations": ["IPv4 loopback", "IPv6 loopback with extra tuple fields", "Unix path"],
+    "udp_address_keyword_convention": ["bound payload", "bound payload plus literal flags", "unbound payload", "unbound payload plus literal flags", "local destination"],
+    "udp_fail_closed": ["host without address", "url without address", "no destination", "starred args", "double-star kwargs", "excessive arity", "duplicate destination", "unknown variable", "unknown expression", "mixed bindings not all local"],
+    "preserved_regressions": ["RF-002 HTTP/socket/urllib", "registration failure", "absent/unreadable/tool failure", "local transports"]
+  },
+  "first_run_failures": [
+    {
+      "scope": "auxiliary registered-check runner invocation",
+      "product_failure": false,
+      "cause": "runner requires its normalized --output path inside workspace_root; the attempted /private/tmp output was rejected before checks ran",
+      "exit_code": 1,
+      "resolution": "ran each selected registered command directly with scratch TMPDIR and PYTHONDONTWRITEBYTECODE=1"
+    }
+  ]
+}

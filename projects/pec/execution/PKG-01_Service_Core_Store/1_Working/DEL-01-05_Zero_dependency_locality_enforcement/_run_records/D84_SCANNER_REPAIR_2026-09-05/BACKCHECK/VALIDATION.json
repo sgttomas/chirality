@@ -1,0 +1,78 @@
+{
+  "schema": "pec-d84-scanner-repair-reconciliation-backcheck/v1",
+  "verdict": "PASS",
+  "manager": "/root/pec_d83_application",
+  "manager_role": "RECONCILIATION Agent 1; instruction-asserted",
+  "configured_model": "gpt-5.6-sol",
+  "configured_reasoning_effort": "medium",
+  "authority": {
+    "d84_ruling_sha256": "6d9812b46874c39a4617476b8ba7b40702b3a3227c0511fc95b95aaeb8a2fe7a",
+    "d84_l_ruling_sha256": "2f52907fe4728fe70e21a095c27d077fa7b901a7f3ee080ae360cde9e48c9d10",
+    "source_base": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+    "branch_head": "14f42e9ce17effa52e6415cc205a2df969b1256d"
+  },
+  "source_postimages": {
+    "projects/pec/v2/tools/check_service_core_posture.py": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "8b686f4ed2b1729575d1961ff8bef7cfc4218795f816f4bb2b614d05510019c0",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "54bb589632f764e9bdbd537e5f29ca75678bfd99492d4eea4467f2245f762bed"
+  },
+  "input_bindings": {
+    "proposed_items_sha256": "91be362163e94b0225fbea85c6ecbf9eed3a47f9f3f05b8bcf936dfb2c569b75",
+    "claim_to_proposal_map_sha256": "c6cdf4e27518d38b395256cea7bd36a4c708b3837f2aad6d8e0a57364361d1ab",
+    "author_change_map_sha256": "1ba6336eee0b7693665f523231e08e56257bb216f639bf646d960d1e98a1391a",
+    "author_postimage_hashes_sha256": "efaff4be2b2023e85be6bb03fee7bc4de2a6def03374c5cdb12a48055c53fe76",
+    "before_probes_sha256": "ebd3bac7e53fcbb08ba0a61c7242a9be500945768cf919ae701262af3e5bf75e",
+    "after_probes_sha256": "a94969bcbf7a359e9f070db16d8c740bb6f10969c39e7e552491a677e6ae049b",
+    "regression_results_sha256": "2cf7a069cabbecd557b603d9dac67dccf7020705f85d4f7ea5dcbcf42c1e0a64",
+    "independent_verification_manifest_sha256": "71f219267fbb58af1925b7aba3c2cfd140a24a18e3ab50bb2ea8e52e91447ac9",
+    "independent_verification_review_sha256": "5bb825cbaf551eb348905d5333b0f896c98d6d7102826a13561fd710737b422d",
+    "validated_l_verification_manifest_sha256": "ef40d11563bea0b9c27acf44e046cee853ff1e5c0e67d86c7bc5ddaac8ac5193",
+    "current_status_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"
+  },
+  "counts": {
+    "changed_residuals": 2,
+    "changed_claim_multiset_rows": 8,
+    "changed_distinct_claim_ids": 7,
+    "unselected_evidence_residuals": 1,
+    "unselected_evidence_claim_references": 4,
+    "held_residuals": 2,
+    "held_claim_references": 4,
+    "no_change_rows": 3,
+    "fresh_backcheck_hold_preflights": 10,
+    "findings": 0
+  },
+  "checks": {
+    "source_postimages_match_author_and_live_files": true,
+    "independent_verifier_manifest_and_five_bound_files_rehash": true,
+    "independent_verifier_verdict_pass_zero_findings": true,
+    "independent_verifier_format_normalization_only": true,
+    "before_probes_pass_is_demonstrated_failure": true,
+    "after_exact_probes_block_with_located_findings": true,
+    "focused_23_full_28_posture_api_6_harness_pass": true,
+    "duplicate_sensitive_residual_claim_multiset_equal": true,
+    "req_004_preserved_under_both_residuals": true,
+    "unselected_inquiry_preserved_without_execution": true,
+    "historical_held_rows_preserved_without_reopening_d77": true,
+    "current_status_in_progress_via_validated_d84_l": true,
+    "scanner_repair_performed_no_additional_status_act": true,
+    "fresh_backcheck_hold_preflights_all_allow": true,
+    "git_diff_check": true
+  },
+  "fresh_hold_preflights": {
+    "candidate_validation": 3,
+    "consume": 7,
+    "all_exit_zero": true,
+    "all_status_allow": true,
+    "cwd": "projects/pec",
+    "checker": "execution/_Scripts/pec_reliance_hold.py"
+  },
+  "findings": [],
+  "limitations": [
+    "Finite scanner evidence only; no blanket OUT/AC completion.",
+    "No artifact acceptance, lifecycle promotion, issuance or release.",
+    "VER-004 and OI-009 remain open.",
+    "D83 frozen DEL-01-05 Remaining candidate remains unapplied.",
+    "No full-corpus reassessment was performed.",
+    "Verifier REVIEW normalization removed two Markdown hard-break trailing-space pairs only; semantic text, source, probes, tests, claims and verdict are unchanged."
+  ]
+}

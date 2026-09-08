@@ -1,0 +1,23 @@
+{
+  "schema": "pec-d84-l-reversal-hold-preflights/v1",
+  "register": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+  "register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+  "script": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+  "script_sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+  "results": [
+    {
+      "target": "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "operation": "candidate-validation",
+      "exit": 0,
+      "stdout": {"operation": "candidate-validation", "status": "ALLOW"}
+    },
+    {
+      "target": "execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07",
+      "operation": "candidate-validation",
+      "exit": 0,
+      "stdout": {"operation": "candidate-validation", "status": "ALLOW"}
+    }
+  ],
+  "prohibition_honored": true,
+  "label_bypass_used": false
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "pec-d84-scanner-repair-independent-validation/v1",
+  "verdict": "PASS_FOR_MANAGER_FAN_IN",
+  "attempt": 2,
+  "role": {"type": "fresh evidence-only Agent 2 verifier", "delegated": false, "native_role_enforcement": "instruction-asserted", "product_repair": false},
+  "attempt_history": {"attempt_1": "completed required checks with zero findings, then was interrupted before any verification file write", "product_changed_after_attempt_1": false},
+  "basis": {"branch_match": true, "head_match": true, "origin_main_match": true, "status_state": "IN_PROGRESS", "status_hash_match": true, "postimage_hashes_match": true, "preimage_copies_match_accepted_base": true, "result": "PASS"},
+  "fresh_hold_preflights": {"operations": ["candidate-validation", "rely-for-production"], "targets": ["v2/tools/check_service_core_posture.py", "v2/tests/enforcement/test_dependency_assertion.py", "v2/tests/enforcement/test_locality_assertion.py"], "count": 6, "all_exit_zero": true, "all_status": "ALLOW", "result": "PASS"},
+  "semantic_review": {"dependency_aliases": "PASS", "udp_sendto": "PASS", "no_general_constant_propagation": true, "no_unrelated_policy_expansion": true, "findings": 0},
+  "exact_probes": {
+    "parse_only": true,
+    "dynamic_import_alias": {"source_sha256": "b9bf8faa1bc575f9e5ffe3fb680a7bccc03c57681612fc94931f5666304eeeb2", "verdict": "BLOCK", "assertion": "dependency", "code": "UNCLASSIFIABLE_DYNAMIC_IMPORT", "dependency": "importlib.import_module", "importer": "core/app.py", "line": 2},
+    "external_udp": {"source_sha256": "75257d5cfcdd23d0ae7876478652af2257d79af5f08e1da4a9f1f7bb1ea760f3", "verdict": "BLOCK", "assertion": "locality", "code": "EXTERNAL_NETWORK_CALL", "endpoint": "198.51.100.10", "importer": "core/app.py", "line": 3},
+    "result": "PASS"
+  },
+  "checks": {
+    "environment": {"python": "Python 3.13.7", "PYTHONDONTWRITEBYTECODE": "1", "scratch_tmp_and_cache": true},
+    "focused_changed_modules": {"tests": 23, "exit": 0, "result": "OK"},
+    "full_enforcement_discovery": {"tests": 28, "exit": 0, "result": "OK"},
+    "v2_core_posture": {"exit": 0, "verdict": "PASS", "core_tree_sha256": "2c830d1fe9bc7f550c47d5f22223f330a3a95118360e61bb6d9c785b47c151ca", "config_sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed", "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"},
+    "v2_api_contract": {"tests": 6, "exit": 0, "result": "OK"},
+    "harness_self_check": {"initial_wrong_cwd_exit": 2, "initial_check_executed": false, "corrected_registered_cwd": "repository root", "corrected_exit": 0, "existing_findings_preserved": true, "result": "PASS"}
+  },
+  "containment": {"validate_change_scope": "PASS", "git_diff_check": "PASS", "product_paths_modified": 3, "forbidden_write_observed": false, "source_fixture_pollution": false, "ignored_state_pollution": false, "bytecode_pollution": false, "config_workflow_core_mutation": false, "service_or_database_run": false, "git_mutation": false, "result": "PASS"},
+  "author_evidence": {"complete_basis_author_checks_read": true, "json_parse_result": "PASS", "hashes_consistent": true, "output_inventory_authorized": true, "result": "PASS"},
+  "findings": [],
+  "limitations": ["finite evidence only", "no artifact acceptance", "no lifecycle or release act", "no universal-confinement claim", "no VER-004 or OI-009 closure", "no Remaining application"]
+}

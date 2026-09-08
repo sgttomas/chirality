@@ -87,6 +87,17 @@ def evaluate_source(source: str):
 
 
 class LocalityAssertionTests(unittest.TestCase):
+    def assert_external_call(self, source: str, endpoint: str):
+        result = evaluate_source(source)
+        findings = [
+            item for item in result["findings"] if item["code"] == "EXTERNAL_NETWORK_CALL"
+        ]
+        self.assertEqual(result["assertions"]["locality"], "BLOCK")
+        self.assertEqual(len(findings), 1)
+        self.assertEqual(findings[0]["endpoint"], endpoint)
+        self.assertEqual(findings[0]["importer"], "core/app.py")
+        self.assertTrue(findings[0]["line"])
+
     def test_external_network_call_fails_with_location(self):
         result = evaluate_fixture("external_call")
         findings = [item for item in result["findings"] if item["assertion"] == "locality"]
@@ -164,6 +175,154 @@ class LocalityAssertionTests(unittest.TestCase):
         )
         self.assertEqual(evaluate_source(unix_source)["assertions"]["locality"], "PASS")
         self.assertEqual(evaluate_source(loopback_source)["assertions"]["locality"], "PASS")
+
+    def test_external_udp_exact_probe_and_bound_unbound_overloads_block(self):
+        exact_source = (
+            "import socket\n"
+            "s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n"
+            's.sendto(b"probe", ("198.51.100.10", 443))\n'
+        )
+        self.assertEqual(
+            hashlib.sha256(exact_source.encode("utf-8")).hexdigest(),
+            "75257d5cfcdd23d0ae7876478652af2257d79af5f08e1da4a9f1f7bb1ea760f3",
+        )
+        cases = {
+            "bound_two": exact_source,
+            "bound_three": (
+                "import socket\ns = socket.socket()\n"
+                's.sendto("127.0.0.1", 0, ("198.51.100.10", 443))\n'
+            ),
+            "unbound_three": (
+                "import socket\ns = socket.socket()\n"
+                'socket.socket.sendto(s, "127.0.0.1", ("198.51.100.10", 443))\n'
+            ),
+            "unbound_four": (
+                "import socket\ns = socket.socket()\n"
+                'socket.socket.sendto(s, "127.0.0.1", 0, ("198.51.100.10", 443))\n'
+            ),
+        }
+        for name, source in cases.items():
+            with self.subTest(name=name):
+                self.assert_external_call(source, "198.51.100.10")
+
+    def test_udp_module_class_instance_callable_aliases_and_inline_constructor_block(self):
+        cases = {
+            "module_alias": (
+                "import socket as network\ns = network.socket()\n"
+                'network.socket.sendto(s, b"data", ("198.51.100.10", 443))\n'
+            ),
+            "class_alias": (
+                "from socket import socket as SocketClass\ns = SocketClass()\n"
+                'SocketClass.sendto(s, b"data", ("198.51.100.10", 443))\n'
+            ),
+            "instance_alias": (
+                "import socket\ns = socket.socket()\nrenamed = s\n"
+                'renamed.sendto(b"data", ("198.51.100.10", 443))\n'
+            ),
+            "callable_alias": (
+                "import socket\ns = socket.socket()\nsend = s.sendto\n"
+                'send(b"data", ("198.51.100.10", 443))\n'
+            ),
+            "unbound_callable_alias": (
+                "import socket\ns = socket.socket()\nsend = socket.socket.sendto\n"
+                'send(s, b"data", ("198.51.100.10", 443))\n'
+            ),
+            "inline_constructor": (
+                "import socket\n"
+                'socket.socket().sendto(b"data", ("198.51.100.10", 443))\n'
+            ),
+        }
+        for name, source in cases.items():
+            with self.subTest(name=name):
+                self.assert_external_call(source, "198.51.100.10")
+
+    def test_udp_local_destinations_pass_even_when_payload_looks_external(self):
+        sources = {
+            "ipv4": (
+                "import socket\ns = socket.socket()\n"
+                's.sendto("198.51.100.10", ("127.0.0.1", 443))\n'
+            ),
+            "ipv6_extra_tuple_fields": (
+                "import socket\ns = socket.socket()\n"
+                's.sendto("198.51.100.10", ("::1", 443, 0, 0))\n'
+            ),
+            "unix": (
+                "import socket\ns = socket.socket()\n"
+                's.sendto("198.51.100.10", "/tmp/pec-v2.sock")\n'
+            ),
+        }
+        for name, source in sources.items():
+            with self.subTest(name=name):
+                self.assertEqual(evaluate_source(source)["assertions"]["locality"], "PASS")
+
+    def test_udp_address_keyword_convention_uses_only_the_destination(self):
+        external_sources = {
+            "bound_payload": (
+                "import socket\ns = socket.socket()\n"
+                's.sendto("127.0.0.1", address=("198.51.100.10", 443))\n'
+            ),
+            "bound_payload_flags": (
+                "import socket\ns = socket.socket()\n"
+                's.sendto("127.0.0.1", 0, address=("198.51.100.10", 443))\n'
+            ),
+            "unbound_payload": (
+                "import socket\ns = socket.socket()\n"
+                'socket.socket.sendto(s, "127.0.0.1", address=("198.51.100.10", 443))\n'
+            ),
+            "unbound_payload_flags": (
+                "import socket\ns = socket.socket()\n"
+                'socket.socket.sendto(s, "127.0.0.1", 0, address=("198.51.100.10", 443))\n'
+            ),
+        }
+        for name, source in external_sources.items():
+            with self.subTest(name=name):
+                self.assert_external_call(source, "198.51.100.10")
+        local_source = (
+            "import socket\ns = socket.socket()\n"
+            's.sendto("198.51.100.10", address=("127.0.0.1", 443))\n'
+        )
+        self.assertEqual(evaluate_source(local_source)["assertions"]["locality"], "PASS")
+
+    def test_udp_unknown_and_ambiguous_shapes_fail_closed(self):
+        cases = {
+            "host_without_address": 'import socket\ns = socket.socket()\ns.sendto(b"x", host="127.0.0.1")\n',
+            "url_without_address": 'import socket\ns = socket.socket()\ns.sendto(b"x", url="unix:/tmp/x")\n',
+            "no_destination": 'import socket\ns = socket.socket()\ns.sendto(b"x")\n',
+            "starred_args": (
+                'import socket\ns = socket.socket()\nargs = (b"x", ("127.0.0.1", 1))\n'
+                "s.sendto(*args)\n"
+            ),
+            "double_star_kwargs": (
+                'import socket\ns = socket.socket()\nkwargs = {"address": ("127.0.0.1", 1)}\n'
+                "s.sendto(b\"x\", **kwargs)\n"
+            ),
+            "excessive_arity": (
+                'import socket\ns = socket.socket()\ns.sendto(b"x", 0, ("127.0.0.1", 1), 4)\n'
+            ),
+            "duplicate_destination": (
+                "import socket\ns = socket.socket()\n"
+                's.sendto(b"x", ("127.0.0.1", 1), address=("127.0.0.1", 1))\n'
+            ),
+            "unknown_variable": "import socket\ns = socket.socket()\ns.sendto(b\"x\", destination)\n",
+            "unknown_expression": (
+                'import socket\ns = socket.socket()\ns.sendto(b"x", ("127." + suffix, 1))\n'
+            ),
+        }
+        for name, source in cases.items():
+            with self.subTest(name=name):
+                self.assert_external_call(source, "UNRESOLVED")
+
+    def test_multiple_possible_network_bindings_require_every_endpoint_to_be_local(self):
+        mixed_source = (
+            "import socket\ns = socket.socket()\noperation = s.sendto\noperation = s.connect\n"
+            'operation("198.51.100.10", ("127.0.0.1", 1))\n'
+        )
+        self.assert_external_call(mixed_source, "198.51.100.10")
+        all_local_source = (
+            "import socket\ns = socket.socket()\noperation = s.sendto\noperation = s.connect\n"
+            'operation("/tmp/pec-v2.sock", ("127.0.0.1", 1))\n'
+        )
+        self.assertEqual(evaluate_source(all_local_source)["assertions"]["locality"], "PASS")
 
 
 if __name__ == "__main__":

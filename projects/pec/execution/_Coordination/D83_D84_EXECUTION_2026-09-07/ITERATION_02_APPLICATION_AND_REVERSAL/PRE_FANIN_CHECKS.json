@@ -1,0 +1,33 @@
+{
+  "schema": "pec-iteration-pre-fanin/v1",
+  "captured_before_manager_completion": true,
+  "common_hold_preflights": [
+    {
+      "target": "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "operation": "candidate-validation",
+      "result": "ALLOW"
+    },
+    {
+      "target": "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/APPLICATION_MANIFEST.json",
+      "operation": "consume",
+      "result": "ALLOW"
+    }
+  ],
+  "manifest_population": {
+    "proposed_items_total": 92,
+    "authorized_ordinary_items": 89,
+    "excluded_frozen_items": 3,
+    "authorized_ordinary_carrier_entries": 57
+  },
+  "in_flight_observation": {
+    "d83_r5_tree_appeared": true,
+    "d83_author_preflight_reported": "PASS 57 entries / 89 items; excluded status postimage preserved",
+    "d84_reversal_tree_appeared": true,
+    "d84_author_checks_reported": "approved status e2579018 to 7d3eeb98; one history event; no Remaining; three source files, SOW, review and findings unchanged",
+    "d84_fresh_verifier": "RUNNING under REVIEW; five verification paths; no terminal acceptance yet",
+    "status_path_modified_by_owning_manager": true,
+    "scanner_source_touched": false,
+    "fan_in_claimed": false
+  },
+  "note": "Manager-owned files are in flight. Common integration will rely only on terminal sealed returns relayed and accepted by HELP_HUMAN."
+}

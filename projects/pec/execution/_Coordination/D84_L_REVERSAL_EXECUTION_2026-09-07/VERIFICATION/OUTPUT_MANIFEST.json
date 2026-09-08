@@ -1,0 +1,14 @@
+{
+  "schema": "pec-d84-l-reversal-independent-output-manifest/v1",
+  "verdict": "PASS",
+  "root": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/VERIFICATION/",
+  "files": [
+    {"path": "REVIEW.md", "sha256": "f8bb0b27995da02189ce484ed9e858edfbbb388fa3e66415c5bf014f27170000", "bytes": 2487},
+    {"path": "READ_MANIFEST.json", "sha256": "890849c806719cae54e1e492eecb6768f47a6b2289b810f2d074bc9c1fa92bd7", "bytes": 5885},
+    {"path": "VALIDATION.json", "sha256": "f2e57b2c3960d0d86307e01f220d3dd263e85d188f4d0cd17a34148bc4bf6347", "bytes": 5736},
+    {"path": "HANDOFF.md", "sha256": "573d7506af956dbcd75c6c845be91b77c32c8461af7bf848b1a316568599724c", "bytes": 2165}
+  ],
+  "file_count_including_manifest": 5,
+  "write_scope_exact": true,
+  "discrepancies": []
+}

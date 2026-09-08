@@ -1,0 +1,14 @@
+{
+  "schema": "pec-d84-scanner-repair-rollback-precheck/v1",
+  "status": "PASS_NOT_INVOKED",
+  "checked_candidate_postimages": true,
+  "all_three_current_paths_equal_required_postimages": true,
+  "all_three_restore_copies_equal_accepted_preimages": true,
+  "unrelated_overwrite_authorized": false,
+  "rollback_authority": "not invoked; before publication owner may invoke only through the approved repair workflow, and after publication a separately accepted successor or revert is required",
+  "checked_postimages": {
+    "projects/pec/v2/tools/check_service_core_posture.py": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "8b686f4ed2b1729575d1961ff8bef7cfc4218795f816f4bb2b614d05510019c0",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "54bb589632f764e9bdbd537e5f29ca75678bfd99492d4eea4467f2245f762bed"
+  }
+}

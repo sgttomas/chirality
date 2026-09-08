@@ -1,0 +1,17 @@
+{
+  "schema": "pec-d84-scanner-repair-independent-output-manifest/v1",
+  "verdict": "PASS_FOR_MANAGER_FAN_IN",
+  "root": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D84_SCANNER_REPAIR_2026-09-05/VERIFICATION/",
+  "self_excluded": true,
+  "files": [
+    {"path": "REVIEW.md", "sha256": "5bb825cbaf551eb348905d5333b0f896c98d6d7102826a13561fd710737b422d", "bytes": 4003},
+    {"path": "FINDINGS.csv", "sha256": "181a1d7fb9e58ab9efae182ff3094a27839f3ebd4f47bab41aec29926ba52de8", "bytes": 74},
+    {"path": "READ_MANIFEST.json", "sha256": "94eeedb9ba912b054077de4fb4806ca698c9ed27e76ee215170c522f5c86b529", "bytes": 5153},
+    {"path": "VALIDATION.json", "sha256": "dbb824301c143046d9ab83aa4d1552d7f448d1d376170bd9b5df04aa4206586d", "bytes": 3412},
+    {"path": "HANDOFF.md", "sha256": "13fa2133c544030c2cf18156d6dd9463517e8a2e209e647a266b16c9d25e31ed", "bytes": 2052}
+  ],
+  "file_count_including_manifest": 6,
+  "write_scope_exact": true,
+  "findings_count": 0,
+  "discrepancies": []
+}

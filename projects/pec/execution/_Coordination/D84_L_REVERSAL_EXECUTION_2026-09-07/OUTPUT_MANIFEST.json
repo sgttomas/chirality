@@ -1,0 +1,25 @@
+{
+  "schema": "pec-d84-l-reversal-output-manifest/v1",
+  "verdict": "COMPLETE_INDEPENDENT_PASS",
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {"path": "APPLICATION_RESULT.json", "sha256": "7d627986784406e4e6556769537098a43c69e917007af4e3d9d33e8c4f82a460", "bytes": 807},
+    {"path": "BASIS/HOLD_PREFLIGHTS.json", "sha256": "01d6f2bc4fb89e6f99637509d944924783e79aa9049cd19834a8dfe38379b85b", "bytes": 954},
+    {"path": "BASIS/OWNER_ACT.md", "sha256": "15635f170a9929be3079ba8bb7bc087227f0d160f9a56458a8c2c34de896666c", "bytes": 1238},
+    {"path": "BASIS/READ_MANIFEST.json", "sha256": "13e7cb4f9d7bbe4a180ab2fc16cfba73df4ac0b88c71f88c38467be7bfae558e", "bytes": 2064},
+    {"path": "BASIS/STATUS_PREIMAGE.md", "sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e", "bytes": 483},
+    {"path": "BASIS/TARGETS.json", "sha256": "3b426e05e3613770ef90202b9623cf64c59ab09059ce8ee21c48af423f15727a", "bytes": 1826},
+    {"path": "BRIEF.md", "sha256": "7bc3e5f7c02f7a9ff499d20acf92bb283161a8dc71ffc1835ece70eb1fbf4c56", "bytes": 1771},
+    {"path": "CHECKS.json", "sha256": "586c50620184214aaed44a415e5d703bd83326e4fe93886d2746fbbe2c07ca20", "bytes": 2434},
+    {"path": "HANDOFF_STATE.md", "sha256": "091251cf44c5af047f0c610dec0d47beb30cdc54f20d762afab1e089b6524a54", "bytes": 3236},
+    {"path": "STATUS_POSTIMAGE.md", "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c", "bytes": 1336},
+    {"path": "VERIFICATION/HANDOFF.md", "sha256": "573d7506af956dbcd75c6c845be91b77c32c8461af7bf848b1a316568599724c", "bytes": 2165},
+    {"path": "VERIFICATION/OUTPUT_MANIFEST.json", "sha256": "ef40d11563bea0b9c27acf44e046cee853ff1e5c0e67d86c7bc5ddaac8ac5193", "bytes": 792},
+    {"path": "VERIFICATION/READ_MANIFEST.json", "sha256": "890849c806719cae54e1e492eecb6768f47a6b2289b810f2d074bc9c1fa92bd7", "bytes": 5885},
+    {"path": "VERIFICATION/REVIEW.md", "sha256": "f8bb0b27995da02189ce484ed9e858edfbbb388fa3e66415c5bf014f27170000", "bytes": 2487},
+    {"path": "VERIFICATION/VALIDATION.json", "sha256": "f2e57b2c3960d0d86307e01f220d3dd263e85d188f4d0cd17a34148bc4bf6347", "bytes": 5736}
+  ],
+  "file_count_excluding_manifest": 15,
+  "rollback_outputs_present": false,
+  "scope_exact": true
+}

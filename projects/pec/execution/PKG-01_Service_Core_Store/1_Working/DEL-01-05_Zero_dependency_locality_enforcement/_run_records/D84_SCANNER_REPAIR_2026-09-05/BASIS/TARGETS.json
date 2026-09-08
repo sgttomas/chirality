@@ -1,0 +1,27 @@
+{
+  "source_targets": [
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "preimage_copy": "BASIS/PREIMAGES/checker.py",
+      "preimage_sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+      "preimage_copy": "BASIS/PREIMAGES/dependency_test.py",
+      "preimage_sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf"
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+      "preimage_copy": "BASIS/PREIMAGES/locality_test.py",
+      "preimage_sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20"
+    }
+  ],
+  "status": {
+    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+    "state": "IN_PROGRESS",
+    "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"
+  },
+  "branch": "codex/pec-d83-d84-execution-20260907",
+  "head": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "origin_main": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3"
+}

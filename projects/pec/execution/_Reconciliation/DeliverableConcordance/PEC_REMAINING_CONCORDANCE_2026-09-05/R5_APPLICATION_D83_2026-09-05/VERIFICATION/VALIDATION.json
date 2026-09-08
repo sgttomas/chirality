@@ -1,0 +1,1250 @@
+{
+  "kind": "D83_R5_independent_verifier_validation",
+  "verdict": "PASS",
+  "authority": "D-PEC-83 A-A",
+  "counts": {
+    "carrier_census": 64,
+    "applied_carriers": 57,
+    "applied_items": 89,
+    "applied_claim_reference_rows": 1185,
+    "authorized_claim_unique_keys": 1185,
+    "no_change_rows": 7,
+    "prepared_no_application_carriers": 6,
+    "excluded_frozen_carriers": 1,
+    "held_raw_rows": 70,
+    "conditional_raw_rows": 3,
+    "held_claim_references": 134,
+    "conditional_claim_references": 9,
+    "fresh_hold_records": 68,
+    "rollback_inverse_mappings": 57,
+    "findings": 0
+  },
+  "duplicate_sensitive_multiset_sha256": "99903a7e22a2f7604d870a443297d8062929b6334b168f025838022a10d07385",
+  "checks": {
+    "pinned_sha256:projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_remaining_application_proposal_2026-09-05.md": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_remaining_application_proposal_2026-09-05.md expected=9892db3ed95623532c025ca1bc7c6ec346f64110b30fb581d70c6e02a6ca492b actual=9892db3ed95623532c025ca1bc7c6ec346f64110b30fb581d70c6e02a6ca492b"
+    },
+    "pinned_sha256:projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/APPLICATION_MANIFEST.json": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/APPLICATION_MANIFEST.json expected=47db5a1358c0eb7baf40457efa205ae02748498abce2a9046e8970020727283d actual=47db5a1358c0eb7baf40457efa205ae02748498abce2a9046e8970020727283d"
+    },
+    "pinned_sha256:projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/PROPOSED_ITEMS.csv": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/PROPOSED_ITEMS.csv expected=91be362163e94b0225fbea85c6ecbf9eed3a47f9f3f05b8bcf936dfb2c569b75 actual=91be362163e94b0225fbea85c6ecbf9eed3a47f9f3f05b8bcf936dfb2c569b75"
+    },
+    "pinned_sha256:projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/ROLLBACK_MANIFEST.json": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/ROLLBACK_MANIFEST.json expected=c9d78063220afbe2cff04876dbf6fa25e232c4ec3315e0107dc9cabcbad82d14 actual=c9d78063220afbe2cff04876dbf6fa25e232c4ec3315e0107dc9cabcbad82d14"
+    },
+    "pinned_sha256:projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CLAIM_TO_PROPOSAL_MAP.json": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CLAIM_TO_PROPOSAL_MAP.json expected=c6cdf4e27518d38b395256cea7bd36a4c708b3837f2aad6d8e0a57364361d1ab actual=c6cdf4e27518d38b395256cea7bd36a4c708b3837f2aad6d8e0a57364361d1ab"
+    },
+    "pinned_sha256:projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CARRIER_DISPOSITIONS.csv": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CARRIER_DISPOSITIONS.csv expected=0c9b6116240de26211f6cfae681860c33475eee35516d0848a0d7383a1a514c0 actual=0c9b6116240de26211f6cfae681860c33475eee35516d0848a0d7383a1a514c0"
+    },
+    "authority_records_A_A_approval": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_RULING_2026-09-07.md"
+    },
+    "manifest_carrier_population_64": {
+      "pass": true,
+      "detail": "manifest=64 census=64"
+    },
+    "ordinary_target_count_57": {
+      "pass": true,
+      "detail": "57"
+    },
+    "excluded_frozen_exact_DEL_01_05": {
+      "pass": true,
+      "detail": "['DEL-01-05']"
+    },
+    "ordinary_item_count_89": {
+      "pass": true,
+      "detail": "manifest=89 csv=89 unique=89"
+    },
+    "target_postimage:DEL-00-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md"
+    },
+    "preimage_prefix:DEL-00-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md"
+    },
+    "append_length:DEL-00-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md"
+    },
+    "exact_item:DEL-00-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md"
+    },
+    "exact_item:DEL-00-02-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md"
+    },
+    "target_postimage:DEL-01-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md"
+    },
+    "preimage_prefix:DEL-01-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md"
+    },
+    "append_length:DEL-01-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md"
+    },
+    "exact_item:DEL-01-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md"
+    },
+    "exact_item:DEL-01-01-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md"
+    },
+    "target_postimage:DEL-01-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md"
+    },
+    "preimage_prefix:DEL-01-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md"
+    },
+    "append_length:DEL-01-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md"
+    },
+    "exact_item:DEL-01-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md"
+    },
+    "target_postimage:DEL-01-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md"
+    },
+    "preimage_prefix:DEL-01-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md"
+    },
+    "append_length:DEL-01-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md"
+    },
+    "exact_item:DEL-01-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md"
+    },
+    "exact_item:DEL-01-03-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md"
+    },
+    "exact_item:DEL-01-03-REM-003": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md"
+    },
+    "target_postimage:DEL-01-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md"
+    },
+    "preimage_prefix:DEL-01-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md"
+    },
+    "append_length:DEL-01-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md"
+    },
+    "exact_item:DEL-01-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md"
+    },
+    "target_postimage:DEL-02-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md"
+    },
+    "preimage_prefix:DEL-02-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md"
+    },
+    "append_length:DEL-02-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md"
+    },
+    "exact_item:DEL-02-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md"
+    },
+    "exact_item:DEL-02-01-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md"
+    },
+    "target_postimage:DEL-02-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md"
+    },
+    "preimage_prefix:DEL-02-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md"
+    },
+    "append_length:DEL-02-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md"
+    },
+    "exact_item:DEL-02-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md"
+    },
+    "target_postimage:DEL-02-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md"
+    },
+    "preimage_prefix:DEL-02-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md"
+    },
+    "append_length:DEL-02-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md"
+    },
+    "exact_item:DEL-02-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md"
+    },
+    "target_postimage:DEL-02-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md"
+    },
+    "preimage_prefix:DEL-02-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md"
+    },
+    "append_length:DEL-02-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md"
+    },
+    "exact_item:DEL-02-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md"
+    },
+    "target_postimage:DEL-02-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md"
+    },
+    "preimage_prefix:DEL-02-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md"
+    },
+    "append_length:DEL-02-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md"
+    },
+    "exact_item:DEL-02-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md"
+    },
+    "target_postimage:DEL-02-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md"
+    },
+    "preimage_prefix:DEL-02-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md"
+    },
+    "append_length:DEL-02-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md"
+    },
+    "exact_item:DEL-02-06-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md"
+    },
+    "target_postimage:DEL-02-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md"
+    },
+    "preimage_prefix:DEL-02-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md"
+    },
+    "append_length:DEL-02-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md"
+    },
+    "exact_item:DEL-02-07-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md"
+    },
+    "exact_item:DEL-02-07-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md"
+    },
+    "exact_item:DEL-02-07-REM-003": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md"
+    },
+    "exact_item:DEL-02-07-REM-004": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md"
+    },
+    "target_postimage:DEL-03-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md"
+    },
+    "preimage_prefix:DEL-03-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md"
+    },
+    "append_length:DEL-03-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md"
+    },
+    "exact_item:DEL-03-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md"
+    },
+    "exact_item:DEL-03-01-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md"
+    },
+    "target_postimage:DEL-03-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "preimage_prefix:DEL-03-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "append_length:DEL-03-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-003": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-004": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-005": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-006": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-007": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-008": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-009": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-010": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-011": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-012": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-013": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-014": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "exact_item:DEL-03-02-REM-016": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md"
+    },
+    "target_postimage:DEL-03-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md"
+    },
+    "preimage_prefix:DEL-03-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md"
+    },
+    "append_length:DEL-03-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md"
+    },
+    "exact_item:DEL-03-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md"
+    },
+    "exact_item:DEL-03-03-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md"
+    },
+    "exact_item:DEL-03-03-REM-004": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md"
+    },
+    "target_postimage:DEL-03-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md"
+    },
+    "preimage_prefix:DEL-03-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md"
+    },
+    "append_length:DEL-03-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md"
+    },
+    "exact_item:DEL-03-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md"
+    },
+    "target_postimage:DEL-03-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md"
+    },
+    "preimage_prefix:DEL-03-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md"
+    },
+    "append_length:DEL-03-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md"
+    },
+    "exact_item:DEL-03-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md"
+    },
+    "target_postimage:DEL-03-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md"
+    },
+    "preimage_prefix:DEL-03-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md"
+    },
+    "append_length:DEL-03-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md"
+    },
+    "exact_item:DEL-03-06-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md"
+    },
+    "exact_item:DEL-03-06-REM-004": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md"
+    },
+    "target_postimage:DEL-04-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md"
+    },
+    "preimage_prefix:DEL-04-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md"
+    },
+    "append_length:DEL-04-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md"
+    },
+    "exact_item:DEL-04-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md"
+    },
+    "exact_item:DEL-04-01-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md"
+    },
+    "target_postimage:DEL-04-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md"
+    },
+    "preimage_prefix:DEL-04-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md"
+    },
+    "append_length:DEL-04-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md"
+    },
+    "exact_item:DEL-04-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md"
+    },
+    "exact_item:DEL-04-02-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md"
+    },
+    "target_postimage:DEL-04-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md"
+    },
+    "preimage_prefix:DEL-04-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md"
+    },
+    "append_length:DEL-04-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md"
+    },
+    "exact_item:DEL-04-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md"
+    },
+    "exact_item:DEL-04-03-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md"
+    },
+    "target_postimage:DEL-04-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md"
+    },
+    "preimage_prefix:DEL-04-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md"
+    },
+    "append_length:DEL-04-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md"
+    },
+    "exact_item:DEL-04-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md"
+    },
+    "exact_item:DEL-04-05-REM-003": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md"
+    },
+    "target_postimage:DEL-05-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md"
+    },
+    "preimage_prefix:DEL-05-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md"
+    },
+    "append_length:DEL-05-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md"
+    },
+    "exact_item:DEL-05-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md"
+    },
+    "target_postimage:DEL-05-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md"
+    },
+    "preimage_prefix:DEL-05-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md"
+    },
+    "append_length:DEL-05-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md"
+    },
+    "exact_item:DEL-05-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md"
+    },
+    "target_postimage:DEL-06-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md"
+    },
+    "preimage_prefix:DEL-06-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md"
+    },
+    "append_length:DEL-06-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md"
+    },
+    "exact_item:DEL-06-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md"
+    },
+    "target_postimage:DEL-06-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md"
+    },
+    "preimage_prefix:DEL-06-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md"
+    },
+    "append_length:DEL-06-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md"
+    },
+    "exact_item:DEL-06-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md"
+    },
+    "target_postimage:DEL-06-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md"
+    },
+    "preimage_prefix:DEL-06-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md"
+    },
+    "append_length:DEL-06-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md"
+    },
+    "exact_item:DEL-06-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md"
+    },
+    "target_postimage:DEL-06-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md"
+    },
+    "preimage_prefix:DEL-06-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md"
+    },
+    "append_length:DEL-06-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md"
+    },
+    "exact_item:DEL-06-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md"
+    },
+    "target_postimage:DEL-06-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md"
+    },
+    "preimage_prefix:DEL-06-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md"
+    },
+    "append_length:DEL-06-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md"
+    },
+    "exact_item:DEL-06-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md"
+    },
+    "target_postimage:DEL-06-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md"
+    },
+    "preimage_prefix:DEL-06-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md"
+    },
+    "append_length:DEL-06-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md"
+    },
+    "exact_item:DEL-06-06-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md"
+    },
+    "target_postimage:DEL-07-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md"
+    },
+    "preimage_prefix:DEL-07-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md"
+    },
+    "append_length:DEL-07-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md"
+    },
+    "exact_item:DEL-07-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md"
+    },
+    "target_postimage:DEL-07-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md"
+    },
+    "preimage_prefix:DEL-07-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md"
+    },
+    "append_length:DEL-07-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md"
+    },
+    "exact_item:DEL-07-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md"
+    },
+    "target_postimage:DEL-07-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md"
+    },
+    "preimage_prefix:DEL-07-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md"
+    },
+    "append_length:DEL-07-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md"
+    },
+    "exact_item:DEL-07-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md"
+    },
+    "target_postimage:DEL-07-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md"
+    },
+    "preimage_prefix:DEL-07-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md"
+    },
+    "append_length:DEL-07-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md"
+    },
+    "exact_item:DEL-07-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md"
+    },
+    "target_postimage:DEL-07-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md"
+    },
+    "preimage_prefix:DEL-07-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md"
+    },
+    "append_length:DEL-07-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md"
+    },
+    "exact_item:DEL-07-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md"
+    },
+    "target_postimage:DEL-08-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md"
+    },
+    "preimage_prefix:DEL-08-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md"
+    },
+    "append_length:DEL-08-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md"
+    },
+    "exact_item:DEL-08-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md"
+    },
+    "target_postimage:DEL-08-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md"
+    },
+    "preimage_prefix:DEL-08-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md"
+    },
+    "append_length:DEL-08-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md"
+    },
+    "exact_item:DEL-08-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md"
+    },
+    "target_postimage:DEL-08-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md"
+    },
+    "preimage_prefix:DEL-08-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md"
+    },
+    "append_length:DEL-08-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md"
+    },
+    "exact_item:DEL-08-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md"
+    },
+    "target_postimage:DEL-08-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md"
+    },
+    "preimage_prefix:DEL-08-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md"
+    },
+    "append_length:DEL-08-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md"
+    },
+    "exact_item:DEL-08-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md"
+    },
+    "target_postimage:DEL-09-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md"
+    },
+    "preimage_prefix:DEL-09-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md"
+    },
+    "append_length:DEL-09-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md"
+    },
+    "exact_item:DEL-09-01-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md"
+    },
+    "target_postimage:DEL-09-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md"
+    },
+    "preimage_prefix:DEL-09-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md"
+    },
+    "append_length:DEL-09-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md"
+    },
+    "exact_item:DEL-09-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md"
+    },
+    "target_postimage:DEL-09-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md"
+    },
+    "preimage_prefix:DEL-09-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md"
+    },
+    "append_length:DEL-09-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md"
+    },
+    "exact_item:DEL-09-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md"
+    },
+    "target_postimage:DEL-09-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md"
+    },
+    "preimage_prefix:DEL-09-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md"
+    },
+    "append_length:DEL-09-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md"
+    },
+    "exact_item:DEL-09-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md"
+    },
+    "target_postimage:DEL-09-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md"
+    },
+    "preimage_prefix:DEL-09-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md"
+    },
+    "append_length:DEL-09-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md"
+    },
+    "exact_item:DEL-09-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md"
+    },
+    "target_postimage:DEL-09-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md"
+    },
+    "preimage_prefix:DEL-09-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md"
+    },
+    "append_length:DEL-09-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md"
+    },
+    "exact_item:DEL-09-06-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md"
+    },
+    "target_postimage:DEL-09-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md"
+    },
+    "preimage_prefix:DEL-09-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md"
+    },
+    "append_length:DEL-09-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md"
+    },
+    "exact_item:DEL-09-07-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md"
+    },
+    "target_postimage:DEL-10-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md"
+    },
+    "append_length:DEL-10-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md"
+    },
+    "exact_item:DEL-10-02-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md"
+    },
+    "exact_item:DEL-10-02-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md"
+    },
+    "target_postimage:DEL-10-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md"
+    },
+    "append_length:DEL-10-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md"
+    },
+    "exact_item:DEL-10-03-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md"
+    },
+    "target_postimage:DEL-10-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md"
+    },
+    "append_length:DEL-10-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md"
+    },
+    "exact_item:DEL-10-04-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md"
+    },
+    "target_postimage:DEL-10-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md"
+    },
+    "append_length:DEL-10-05": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md"
+    },
+    "exact_item:DEL-10-05-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md"
+    },
+    "target_postimage:DEL-10-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md"
+    },
+    "append_length:DEL-10-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md"
+    },
+    "exact_item:DEL-10-06-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md"
+    },
+    "target_postimage:DEL-10-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md"
+    },
+    "append_length:DEL-10-07": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md"
+    },
+    "exact_item:DEL-10-07-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md"
+    },
+    "target_postimage:DEL-10-08": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-08": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md"
+    },
+    "append_length:DEL-10-08": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md"
+    },
+    "exact_item:DEL-10-08-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md"
+    },
+    "target_postimage:DEL-10-09": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-09": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md"
+    },
+    "append_length:DEL-10-09": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md"
+    },
+    "exact_item:DEL-10-09-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md"
+    },
+    "target_postimage:DEL-10-10": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-10": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md"
+    },
+    "append_length:DEL-10-10": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md"
+    },
+    "exact_item:DEL-10-10-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md"
+    },
+    "exact_item:DEL-10-10-REM-002": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md"
+    },
+    "target_postimage:DEL-10-11": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-11": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md"
+    },
+    "append_length:DEL-10-11": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md"
+    },
+    "exact_item:DEL-10-11-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md"
+    },
+    "target_postimage:DEL-10-12": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md"
+    },
+    "preimage_prefix:DEL-10-12": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md"
+    },
+    "append_length:DEL-10-12": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md"
+    },
+    "exact_item:DEL-10-12-REM-001": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md"
+    },
+    "all_89_items_reextracted_once": {
+      "pass": true,
+      "detail": "89"
+    },
+    "authorized_claim_rows_1185": {
+      "pass": true,
+      "detail": "1185"
+    },
+    "author_authorized_multiset_exact": {
+      "pass": true,
+      "detail": "author_rows=1185"
+    },
+    "author_changed_reextraction_exact": {
+      "pass": true,
+      "detail": "author_rows=1185"
+    },
+    "held_raw_population_70": {
+      "pass": true,
+      "detail": "70"
+    },
+    "conditional_raw_population_3": {
+      "pass": true,
+      "detail": "3"
+    },
+    "held_claim_references_134": {
+      "pass": true,
+      "detail": "134"
+    },
+    "conditional_claim_references_9": {
+      "pass": true,
+      "detail": "9"
+    },
+    "held_conditional_not_in_proposed_items": {
+      "pass": true,
+      "detail": "[]"
+    },
+    "held_conditional_not_rendered": {
+      "pass": true,
+      "detail": "[]"
+    },
+    "prepared_no_application_count_6": {
+      "pass": true,
+      "detail": "['DEL-00-01', 'DEL-00-03', 'DEL-01-06', 'DEL-04-04', 'DEL-08-02', 'DEL-10-01']"
+    },
+    "no_application_unchanged:DEL-00-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md"
+    },
+    "no_application_unchanged:DEL-00-03": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md"
+    },
+    "no_application_unchanged:DEL-01-06": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md"
+    },
+    "no_application_unchanged:DEL-04-04": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md"
+    },
+    "no_application_unchanged:DEL-08-02": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md"
+    },
+    "no_application_unchanged:DEL-10-01": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md"
+    },
+    "del_01_05_equals_D84_postimage": {
+      "pass": true,
+      "detail": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md"
+    },
+    "del_01_05_no_D83_remaining_append": {
+      "pass": true,
+      "detail": "[]"
+    },
+    "no_forced_NONE": {
+      "pass": true,
+      "detail": "[]"
+    },
+    "no_item_execution": {
+      "pass": true,
+      "detail": "[]"
+    },
+    "author_hold_register_current": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv"
+    },
+    "author_hold_checker_current": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Scripts/pec_reliance_hold.py"
+    },
+    "fresh_exact_hold_records_68_ALLOW": {
+      "pass": true,
+      "detail": "count=68 nonallow=0"
+    },
+    "hold_operation_counts": {
+      "pass": true,
+      "detail": "Counter({'promote': 57, 'consume': 11})"
+    },
+    "rollback_inverse_mappings_57": {
+      "pass": true,
+      "detail": "entries=57 invalid=0"
+    },
+    "author_application_results_exact_counts": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/APPLICATION_RESULTS.json"
+    },
+    "author_targets_exact_counts": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BASIS/TARGETS.json"
+    },
+    "author_no_change_census_exact": {
+      "pass": true,
+      "detail": "['DEL-00-01', 'DEL-00-03', 'DEL-01-05', 'DEL-01-06', 'DEL-04-04', 'DEL-08-02', 'DEL-10-01']"
+    },
+    "author_rollback_precheck_exact": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/ROLLBACK/PRECHECK.json"
+    },
+    "author_rollback_results_exact": {
+      "pass": true,
+      "detail": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/ROLLBACK/RESULTS.json"
+    },
+    "git_read_identity": {
+      "pass": true,
+      "detail": "head=62636f3a1ccc247af8c598b3c0a74ce9179d1fd3 branch=codex/pec-d83-d84-execution-20260907 errors="
+    }
+  },
+  "limits": [
+    "Bounded R5 post-application backcheck; no new corpus assessment.",
+    "DEL-01-05 D84 lifecycle postimage accepted as external state and checked only for D83 exclusion.",
+    "Product/source tests were out of scope.",
+    "Rollback mappings were verified without executing rollback.",
+    "Serving model identity was not exposed; only requested configuration is recorded."
+  ],
+  "commands": [
+    "python3 VERIFICATION/BACKCHECK_2026-09-07/reproduce.py",
+    "68 exact pec_reliance_hold.py commands replayed from BASIS/HOLD_PREFLIGHTS.json",
+    "git diff --binary -- <64 carrier paths> (read-only identity)",
+    "git status --short (read-only identity)"
+  ]
+}

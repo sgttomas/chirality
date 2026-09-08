@@ -1,0 +1,32 @@
+{
+  "kind": "D83_R5_verifier_formatting_successor_validation",
+  "status": "PASS",
+  "source_commit": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "old_findings_sha256": "10405dc6b2c0ddd1cca74a17b4e6ba2a1ca1e3082f34881f1a664134398875af",
+  "old_findings_bytes": 46,
+  "new_findings_sha256": "6e29c522748c299b5fd15ae0979b3ac6c048374ee7bc8dcf6a179a079c9d232a",
+  "new_findings_bytes": 45,
+  "checks": {
+    "exact_one_cr_removed": true,
+    "lf_bytes_exact": true,
+    "logical_csv_rows_equal": true,
+    "header_equal": true,
+    "data_rows_before": 0,
+    "data_rows_after": 0,
+    "verdict_and_findings_unchanged": true,
+    "source_probe_test_claim_status_application_changes": 0,
+    "preimage_csv_child_root_bytes_embedded_and_reconstructable": true,
+    "successor_chain_acyclic": true
+  },
+  "unchanged_prior_verifier_files": {
+    "REVIEW.md": "ea7e38bb0422aef8b3450214343dc876dc63e9c84072614f70a770a03e7003e6",
+    "READ_MANIFEST.json": "0ea98b1b8168247025d32fd29519dd192e604a3d8618b7b360cc312e34bcd276",
+    "VALIDATION.json": "40993c6cc041438aa59f2c34e77645cc5db7a7ca884e3c879d47fa896d867732",
+    "HANDOFF.md": "713ba90297c710f24c9c6ef012e2399ab9a18f8ac0f1b18377195207a529c9f1"
+  },
+  "limits": [
+    "Formatting-only prepublication successor.",
+    "No behavioral or claim rerun.",
+    "No source, status, ruling, application or lifecycle act."
+  ]
+}

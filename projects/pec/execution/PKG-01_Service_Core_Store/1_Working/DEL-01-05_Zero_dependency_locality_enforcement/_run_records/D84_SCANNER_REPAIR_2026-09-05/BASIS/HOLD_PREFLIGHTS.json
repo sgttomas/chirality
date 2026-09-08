@@ -1,0 +1,12 @@
+{
+  "register": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+  "cwd": "projects/pec",
+  "results": [
+    {"target": "v2/tools/check_service_core_posture.py", "operation": "dispatch-for-production", "status": "ALLOW", "exit_code": 0},
+    {"target": "v2/tools/check_service_core_posture.py", "operation": "rely-for-production", "status": "ALLOW", "exit_code": 0},
+    {"target": "v2/tests/enforcement/test_dependency_assertion.py", "operation": "dispatch-for-production", "status": "ALLOW", "exit_code": 0},
+    {"target": "v2/tests/enforcement/test_dependency_assertion.py", "operation": "rely-for-production", "status": "ALLOW", "exit_code": 0},
+    {"target": "v2/tests/enforcement/test_locality_assertion.py", "operation": "dispatch-for-production", "status": "ALLOW", "exit_code": 0},
+    {"target": "v2/tests/enforcement/test_locality_assertion.py", "operation": "rely-for-production", "status": "ALLOW", "exit_code": 0}
+  ]
+}

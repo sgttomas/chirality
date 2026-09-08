@@ -1,0 +1,25 @@
+{
+  "kind": "D83_R5_verifier_formatting_successor_output_manifest",
+  "status": "PASS",
+  "source_commit": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/PREIMAGE.json",
+      "sha256": "2b48ec34e0b5f01bc51c11d9960e874d78c75ebc9064f6e3e93efa15b2302d82",
+      "bytes": 14438
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/VALIDATION.json",
+      "sha256": "56fc01cb2c2b13eb6b548e3f023811eeec8f04683892b0abea1c24b7a829106a",
+      "bytes": 1364
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/HANDOFF.md",
+      "sha256": "d2ece823e26bc6d94aa9d00b46b1f8e8a6a04202760241b090a8a29afd8acb07",
+      "bytes": 802
+    }
+  ],
+  "file_count_excluding_manifest": 3,
+  "acyclic": true
+}

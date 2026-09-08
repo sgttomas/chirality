@@ -1,0 +1,40 @@
+{
+  "schema": "pec-change-iteration-closeout/v1",
+  "role": "CHANGE Agent 1; requested gpt-5.6-sol / medium; serving identity not independently exposed",
+  "branch": "codex/pec-d83-d84-execution-20260907",
+  "base": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "common_manifest_sha256": "017802d4782b6d0362031e756be7b7b0e3cfae65347fd9b8f25014aa9fb22014",
+  "d83_terminal_sha256": "501366e971d57d8030a73269648ed55942cc6fc97842e44324b7886695c2bad6",
+  "d84_terminal_sha256": "c9654a03635885fa22a450da153136d1a1ed6a01d9ac3a58059dd4b9cc233ae3",
+  "release": "HELP_HUMAN accepted both validated fan-ins and released Iteration 02 for scoped commit and first push of the execution branch.",
+  "scope": "57 D83 ordinary Remaining status carriers, one separately authorized D84 status reversal, the exact D83 and D84 evidence roots, Iteration 02 common evidence, Receipt 174, and this additive CHANGE evidence.",
+  "checks": [
+    {
+      "command": "python3 tools/validation/validate_pec_loop_receipts.py --repo-root .",
+      "exit": 0,
+      "result": "VALID; frozen through Receipt-166; versioned receipt contract satisfied"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "exit": 0,
+      "result": "PASS with inherited INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=55"
+    },
+    {
+      "command": "git diff --check",
+      "exit": 2,
+      "result": "One finding: the terminal CR byte in the CRLF-serialized empty VERIFICATION/FINDINGS.csv header. No space/tab defect or blank line is present."
+    },
+    {
+      "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --cached --check",
+      "exit": 0,
+      "result": "PASS with explicit command-local CRLF-aware policy; repository configuration unchanged"
+    },
+    {
+      "command": "python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main",
+      "exit": 1,
+      "result": "Flags the same terminal CR after staging because it delegates to the default whitespace policy; before staging its untracked scan passed. This is the same bounded CRLF serialization finding, not a second defect."
+    }
+  ],
+  "format_interpretation": "HELP_HUMAN reproduced the default finding and accepted the command-local cr-at-eol check for this sealed CSV serialization. The sealed D83 verifier bytes remain unchanged; no persistent Git configuration or substantive verification waiver is introduced.",
+  "deferred": "Scanner source authoring and source-specific verification remain deferred until this commit is pushed and HELP_HUMAN releases Iteration 03. No PR is opened for this intermediate commit."
+}

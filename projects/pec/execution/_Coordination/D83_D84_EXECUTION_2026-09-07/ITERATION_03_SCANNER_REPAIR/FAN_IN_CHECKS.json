@@ -1,0 +1,57 @@
+{
+  "schema": "pec-d84-scanner-common-fanin/v1",
+  "base_commit": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "source": {
+    "postimages": {
+      "checker": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+      "dependency_tests": "8b686f4ed2b1729575d1961ff8bef7cfc4218795f816f4bb2b614d05510019c0",
+      "locality_tests": "54bb589632f764e9bdbd537e5f29ca75678bfd99492d4eea4467f2245f762bed"
+    },
+    "verifier_seal": "71f219267fbb58af1925b7aba3c2cfd140a24a18e3ab50bb2ea8e52e91447ac9",
+    "verdict": "PASS_ZERO_FINDINGS",
+    "checks": {"focused": 23, "full_enforcement": 28, "api_contract": 6, "posture": "PASS", "harness": "PASS"}
+  },
+  "backcheck": {
+    "files": 6,
+    "verdict": "PASS_ZERO_FINDINGS",
+    "changed_residuals": 2,
+    "duplicate_sensitive_rows": 8,
+    "distinct_claims": 7,
+    "handoff_sha256": "dd20c3c4dcd9b03c3088decf3005f715e1338ae43d6ea6fad72363777de4034d",
+    "validation_sha256": "29ba7936195925dec64384f6359666d5b6fdae9279c5d1890b6a6d4ba64d44f7",
+    "formatting_successor_integrated": true,
+    "preserved": ["REM-003 unselected", "REM-004 held", "REM-005 held", "DEL-01-05 IN_PROGRESS", "D77 settled history"]
+  },
+  "terminal": {
+    "root_manifest_sha256": "268595626ba92fc7b6945cfd7cdcfbb10b358fff151040cec079f738881d4cac",
+    "handoff_sha256": "89514afdcb20b0a78d94d101e273801a307f5bbc9564535434487afca5741c11",
+    "dispatch_sha256": "cb6f807d77bf7b25579bafb303cb70450264dd8790120bd6b376497158ecc086",
+    "bound_files": 37,
+    "recursive_total_files": 38,
+    "rehash": "PASS",
+    "corrected_manifest": true,
+    "rejected_attempt_preserved": true
+  },
+  "d83_formatting_successor": {
+    "root_manifest_sha256": "65e5ee64fec34c99a80befe2fe77d3d6b4288e772f9d730673ff3dac540cf848",
+    "verification_manifest_sha256": "86f63fd040b3178f4280ae7e232a71b3d10bedbe9433d33c473f757e4945d705",
+    "successor_manifest_sha256": "48ea88f42ea3c92fb866cfac6d0ed171b32afbe7d58abf2e7a62372c10e8ef46",
+    "handoff_sha256": "800cec6b2cfb5d999fb074009c6d61451ab041d135a8078636eb9288270fb070",
+    "bound_files": 28,
+    "recursive_total_files": 29,
+    "cr_removed": 1,
+    "semantic_or_status_or_claim_changes": 0,
+    "historical_root_manifest_sha256": "501366e971d57d8030a73269648ed55942cc6fc97842e44324b7886695c2bad6",
+    "historical_common_manifest_sha256": "017802d4782b6d0362031e756be7b7b0e3cfae65347fd9b8f25014aa9fb22014",
+    "verdict": "PASS_FORMATTING_ONLY"
+  },
+  "surviving_gates": {
+    "new_artifact_fitness_acceptance": "OPEN",
+    "lifecycle_promotion": "OPEN",
+    "frozen_remaining_application": "NOT_AUTHORIZED",
+    "d85_source": "NOT_AUTHORIZED",
+    "issuance_release": "NOT_AUTHORIZED"
+  },
+  "parent_fan_in": "ACCEPTED",
+  "all_writers_frozen": true
+}

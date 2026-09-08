@@ -1,0 +1,34 @@
+{
+  "kind": "D83_R5_author_backcheck_validation",
+  "status": "PASS",
+  "source_commit": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "counts": {
+    "carrier_census": 64,
+    "applied_carriers": 57,
+    "no_change_rows": 7,
+    "excluded_frozen_carriers": 1,
+    "prepared_no_application_carriers": 6,
+    "applied_items": 89,
+    "applied_claim_reference_rows": 1185,
+    "authorized_claim_multiset_rows": 1185,
+    "authorized_claim_unique_keys": 1185,
+    "held_raw_rows": 70,
+    "conditional_raw_rows": 3,
+    "held_claim_references": 134,
+    "conditional_claim_references": 9
+  },
+  "checks": {
+    "all_applied_targets_equal_pinned_postimages": true,
+    "all_non_remaining_prefix_bytes_preserved": true,
+    "all_89_items_reextracted_once": true,
+    "changed_claim_multiset_equals_authorized": true,
+    "duplicate_sensitive_multiset_sha256": "52af8f3d2a8b075eafe26dee355ebd14ee4c0a69f8ba098a04b0f3e636f880d8",
+    "all_64_carriers_accounted": true,
+    "held_and_conditional_populations_preserved": true,
+    "rollback_inverse_mapping_complete": true,
+    "del_01_05_untouched_by_author": true,
+    "product_source_tests_run": false
+  },
+  "findings": [],
+  "review_readiness": "READY_FOR_INDEPENDENT_EVIDENCE_ONLY_REVIEW"
+}

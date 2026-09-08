@@ -1,0 +1,22 @@
+{
+  "schema": "pec-iteration-step0-basis/v1",
+  "repo_root": "/Users/ryan/.codex/worktrees/b347/chirality",
+  "working_root": "projects/pec",
+  "branch": "codex/pec-d83-d84-execution-20260907",
+  "head": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "origin_main": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "pr_753": {"state": "MERGED", "approved_head": "480bd302ef347963c748cf41fe0d4f118227a550", "merge_commit": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3", "ci": {"harness": "SUCCESS", "pec": "SUCCESS"}},
+  "receipt_validator": "PASS",
+  "rulings": {
+    "D83_sha256": "b002945953945ac11d78e1fe0eba516909fb58ba4659e9179d49607c15be2492",
+    "D84_SA_sha256": "6d9812b46874c39a4617476b8ba7b40702b3a3227c0511fc95b95aaeb8a2fe7a",
+    "D84_L_sha256": "2f52907fe4728fe70e21a095c27d077fa7b901a7f3ee080ae360cde9e48c9d10"
+  },
+  "authority": {"session_sha256": "c2542058f197363644d2973f7c408a8984b9113f943c0f5c357e62a0eba5fe2b", "parent_seal_sha256": "059487318b951b58aba0df8334f7d8d46403e439cc403b4094b9836f142b09f0"},
+  "application_manifest_sha256": "47db5a1358c0eb7baf40457efa205ae02748498abce2a9046e8970020727283d",
+  "status": {"live_preimage_sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e", "approved_postimage_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"},
+  "hold_register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+  "full_assessment_rerun": false,
+  "manager_owned_preflights_and_validation": true,
+  "scanner_source_touched": false
+}

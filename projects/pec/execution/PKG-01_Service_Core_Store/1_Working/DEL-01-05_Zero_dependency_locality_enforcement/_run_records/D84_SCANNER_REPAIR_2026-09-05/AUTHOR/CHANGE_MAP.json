@@ -1,0 +1,22 @@
+{
+  "objective": "D84 exact scanner repair",
+  "changes": [
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "acts": [
+        "compute import-derived bindings once per dependency-scanned module and recognize canonical importlib.import_module through module, from-import, and assignment aliases",
+        "add socket.sendto to import-derived network operations",
+        "extract bound and unbound sendto destinations by exact positional overload or strict address-keyword AST convention",
+        "treat starred, double-starred, missing, duplicate, excessive, unknown, and non-unanimously-local interpretations as BLOCK"
+      ]
+    },
+    {"path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py", "acts": ["add three test methods covering alias forms, unchanged conservative dynamic-import policy, and static/bare-call controls"]},
+    {"path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py", "acts": ["add six test methods covering exact UDP probe, overloads, aliases, local destinations, address convention, malformed/unknown inputs, and multiple bindings"]}
+  ],
+  "changed_claims": [
+    {"residual": "DEL-01-05-REM-001", "output": "DEL-01-05::OUT-001", "requirements": ["REQ-001", "REQ-004"], "acceptance": ["AC-001"]},
+    {"residual": "DEL-01-05-REM-002", "output": "DEL-01-05::OUT-002", "requirements": ["REQ-003", "REQ-004"], "acceptance": ["AC-003"]}
+  ],
+  "policy_changes": false,
+  "general_constant_propagation_added": false
+}

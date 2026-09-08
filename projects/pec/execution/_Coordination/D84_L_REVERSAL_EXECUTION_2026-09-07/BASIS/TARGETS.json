@@ -1,0 +1,23 @@
+{
+  "schema": "pec-d84-l-reversal-targets/v1",
+  "status_act": {
+    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+    "preimage_sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+    "postimage_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+    "state_before": "CHECKING",
+    "state_after": "IN_PROGRESS",
+    "remaining_before": false,
+    "remaining_after": false
+  },
+  "frozen_sources": [
+    {"path": "projects/pec/v2/tools/check_service_core_posture.py", "sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643"},
+    {"path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py", "sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf"},
+    {"path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py", "sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20"}
+  ],
+  "protected_unchanged": [
+    {"path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REVIEW.md", "sha256": "fd9158b211f27b2bf6d451f68f620788522a80a57bf99264ee1e009cb95258d9"},
+    {"path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Review_Findings.csv", "sha256": "414339c78c45598ff75d247f7456c30c5b37b7b440b39a2d37c064db391ac00a"},
+    {"path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md", "sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53"}
+  ],
+  "excluded": ["D83 carrier application", "scanner source changes", "Remaining insertion", "promotion", "artifact acceptance", "Git", "receipts"]
+}

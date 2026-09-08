@@ -1,0 +1,14 @@
+{
+  "schema": "pec-d84-l-reversal-application-result/v1",
+  "result": "APPLIED_EXACTLY",
+  "target": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+  "before_sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+  "after_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+  "approved_candidate_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+  "state_before": "CHECKING",
+  "state_after": "IN_PROGRESS",
+  "old_history_preserved_as_prefix": true,
+  "remaining_inserted": false,
+  "source_files_modified": false,
+  "scope_note": "Concurrent D83 may modify 57 other status files; those are allowed external writes and are not attributed to this recorder."
+}

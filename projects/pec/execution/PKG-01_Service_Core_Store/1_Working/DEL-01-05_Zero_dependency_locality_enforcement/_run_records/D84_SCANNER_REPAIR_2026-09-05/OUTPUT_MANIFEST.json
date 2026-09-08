@@ -1,0 +1,214 @@
+{
+  "schema": "pec-d84-scanner-repair-terminal-output-manifest/v1",
+  "verdict": "PASS_FOR_OWNER_REVIEW",
+  "root": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D84_SCANNER_REPAIR_2026-09-05/",
+  "self_excluded": true,
+  "self_exclusion_rule": "exclude only the root OUTPUT_MANIFEST.json path",
+  "files": [
+    {
+      "path": "ACTIVATION.md",
+      "sha256": "77e20acc5a556e9200292549c4234bea987aa05d85010c182201ebbca44fd2be",
+      "bytes": 2728
+    },
+    {
+      "path": "AUTHOR/CHANGE_MAP.json",
+      "sha256": "1ba6336eee0b7693665f523231e08e56257bb216f639bf646d960d1e98a1391a",
+      "bytes": 1508
+    },
+    {
+      "path": "AUTHOR/HANDOFF.md",
+      "sha256": "2d322427ec0c5543388930e5555fed686420b56f072a03fd07ae00c3064d8659",
+      "bytes": 2925
+    },
+    {
+      "path": "AUTHOR/POSTIMAGE_HASHES.json",
+      "sha256": "efaff4be2b2023e85be6bb03fee7bc4de2a6def03374c5cdb12a48055c53fe76",
+      "bytes": 1077
+    },
+    {
+      "path": "BACKCHECK/AUTHORIZED_CLAIM_MULTISET.csv",
+      "sha256": "9d596ec7f3512bae06080aafc9cb21296c115bab0332225fdb24397b341cb355",
+      "bytes": 352
+    },
+    {
+      "path": "BACKCHECK/CHANGED_CLAIM_REEXTRACTION.csv",
+      "sha256": "1ce4ad75e9abf846aaad0beea223a91bd420b90f100c7cba5f8486d6549401ea",
+      "bytes": 2918
+    },
+    {
+      "path": "BACKCHECK/HANDOFF.md",
+      "sha256": "dd20c3c4dcd9b03c3088decf3005f715e1338ae43d6ea6fad72363777de4034d",
+      "bytes": 1991
+    },
+    {
+      "path": "BACKCHECK/HELD_AND_DEFERRED_AUDIT.md",
+      "sha256": "2cf677d84d4bf14062f046d1a230b831b208cc3447820dc1eab893a4d7263bc4",
+      "bytes": 2015
+    },
+    {
+      "path": "BACKCHECK/NO_CHANGE_ROWS.csv",
+      "sha256": "014d6c5ee193f77819b34b547b17f4b80d29f8dd8976a3c69469f72abe1ab28f",
+      "bytes": 883
+    },
+    {
+      "path": "BACKCHECK/VALIDATION.json",
+      "sha256": "29ba7936195925dec64384f6359666d5b6fdae9279c5d1890b6a6d4ba64d44f7",
+      "bytes": 4183
+    },
+    {
+      "path": "BASIS/HOLD_PREFLIGHTS.json",
+      "sha256": "1529e946d23fddcaffdbd013e65fed6735fa6c673b7f50ccd254a69f37f4f5cb",
+      "bytes": 953
+    },
+    {
+      "path": "BASIS/PREIMAGES/checker.py",
+      "sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+      "bytes": 28510
+    },
+    {
+      "path": "BASIS/PREIMAGES/dependency_test.py",
+      "sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+      "bytes": 4162
+    },
+    {
+      "path": "BASIS/PREIMAGES/locality_test.py",
+      "sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+      "bytes": 7350
+    },
+    {
+      "path": "BASIS/READ_MANIFEST.json",
+      "sha256": "107ce7e6a3a4c3843970df3baf0518e977df2652d3252de10b8e047ee53e3052",
+      "bytes": 3866
+    },
+    {
+      "path": "BASIS/TARGETS.json",
+      "sha256": "551705910a283c6d573e2519a57d571c0fc2e93ad0e4b89eb3074539622cd3a8",
+      "bytes": 1171
+    },
+    {
+      "path": "BRIEFS/AUTHOR.md",
+      "sha256": "cae01d6decf837c5680eb13b90b437e7bc47fc9957a20e9f159517706d2302e5",
+      "bytes": 5361
+    },
+    {
+      "path": "BRIEFS/VERIFIER.md",
+      "sha256": "65020a1881bb1faa6fbade314e716a3cb6843f50695c50aab698f2875b4134f5",
+      "bytes": 4013
+    },
+    {
+      "path": "CHECKS/AFTER_PROBES.json",
+      "sha256": "a94969bcbf7a359e9f070db16d8c740bb6f10969c39e7e552491a677e6ae049b",
+      "bytes": 1463
+    },
+    {
+      "path": "CHECKS/BEFORE_PROBES.json",
+      "sha256": "ebd3bac7e53fcbb08ba0a61c7242a9be500945768cf919ae701262af3e5bf75e",
+      "bytes": 1099
+    },
+    {
+      "path": "CHECKS/COMMANDS.json",
+      "sha256": "1faa7711fd05c6287a4aa32f43d93828d47fd05d50a3c6a2248fac2814702ac4",
+      "bytes": 2677
+    },
+    {
+      "path": "CHECKS/CONTAINMENT.json",
+      "sha256": "d9dcb3cb6f585e88e090e51ba13fe1a279d10434546fa1990759c3bd0cae00c7",
+      "bytes": 836
+    },
+    {
+      "path": "CHECKS/POSTURE_CHECK.json",
+      "sha256": "8319a30b02a75ce4ae0024b2cbfd846892a5001ce37d7c1041b8edd80abfd48e",
+      "bytes": 943
+    },
+    {
+      "path": "CHECKS/REGRESSION_RESULTS.json",
+      "sha256": "2cf7a069cabbecd557b603d9dac67dccf7020705f85d4f7ea5dcbcf42c1e0a64",
+      "bytes": 2072
+    },
+    {
+      "path": "CHECKS/UNITTEST.log",
+      "sha256": "faf77b71fafe19b91f4cf62236c9bbbf7bfb050babb85412b6c242f8cd6cc66c",
+      "bytes": 349
+    },
+    {
+      "path": "DISPATCH_RECORDS.json",
+      "sha256": "82f215d476fc3f9765f3f5370b4f47559f2c65096149b50fddcd1fddbed9dbe1",
+      "bytes": 46505
+    },
+    {
+      "path": "HANDOFF_STATE.md",
+      "sha256": "89514afdcb20b0a78d94d101e273801a307f5bbc9564535434487afca5741c11",
+      "bytes": 5532
+    },
+    {
+      "path": "ROLLBACK/HANDOFF.md",
+      "sha256": "b5203d33cba8dceabb2a1c5d4bf7c6b5fe342a353570509ead3eafd8d660b913",
+      "bytes": 848
+    },
+    {
+      "path": "ROLLBACK/INVERSE_MAP.json",
+      "sha256": "f13bd215c827a15306d7124b88f24d30e4d016da18d64b1e26b4afd26946a85e",
+      "bytes": 1199
+    },
+    {
+      "path": "ROLLBACK/PRECHECK.json",
+      "sha256": "c0682ff64cf9b20892e14ec69f49398a862fbf6098a6ae61e94a5552bd1e89a5",
+      "bytes": 925
+    },
+    {
+      "path": "ROLLBACK/RESULTS.json",
+      "sha256": "0c7493e084cd01ba265eb3651f57a15aa6db8f07559d680b54ae3876040b1b2e",
+      "bytes": 351
+    },
+    {
+      "path": "VERIFICATION/FINDINGS.csv",
+      "sha256": "181a1d7fb9e58ab9efae182ff3094a27839f3ebd4f47bab41aec29926ba52de8",
+      "bytes": 74
+    },
+    {
+      "path": "VERIFICATION/HANDOFF.md",
+      "sha256": "13fa2133c544030c2cf18156d6dd9463517e8a2e209e647a266b16c9d25e31ed",
+      "bytes": 2052
+    },
+    {
+      "path": "VERIFICATION/OUTPUT_MANIFEST.json",
+      "sha256": "71f219267fbb58af1925b7aba3c2cfd140a24a18e3ab50bb2ea8e52e91447ac9",
+      "bytes": 1060
+    },
+    {
+      "path": "VERIFICATION/READ_MANIFEST.json",
+      "sha256": "94eeedb9ba912b054077de4fb4806ca698c9ed27e76ee215170c522f5c86b529",
+      "bytes": 5153
+    },
+    {
+      "path": "VERIFICATION/REVIEW.md",
+      "sha256": "5bb825cbaf551eb348905d5333b0f896c98d6d7102826a13561fd710737b422d",
+      "bytes": 4003
+    },
+    {
+      "path": "VERIFICATION/VALIDATION.json",
+      "sha256": "dbb824301c143046d9ab83aa4d1552d7f448d1d376170bd9b5df04aa4206586d",
+      "bytes": 3412
+    }
+  ],
+  "file_count_excluding_manifest": 37,
+  "file_count_including_manifest": 38,
+  "product_postimages": {
+    "projects/pec/v2/tools/check_service_core_posture.py": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "8b686f4ed2b1729575d1961ff8bef7cfc4218795f816f4bb2b614d05510019c0",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "54bb589632f764e9bdbd537e5f29ca75678bfd99492d4eea4467f2245f762bed"
+  },
+  "verification_manifest_sha256": "71f219267fbb58af1925b7aba3c2cfd140a24a18e3ab50bb2ea8e52e91447ac9",
+  "verification_review_sha256": "5bb825cbaf551eb348905d5333b0f896c98d6d7102826a13561fd710737b422d",
+  "backcheck_validation_sha256": "29ba7936195925dec64384f6359666d5b6fdae9279c5d1890b6a6d4ba64d44f7",
+  "rejected_terminal_manifest_sha256": "339bb9a6155032ecbc81ef1e4d6474b22238f42f578c23c34e4478d3f46a7a38",
+  "rollback": "NOT_EXECUTED",
+  "closure_limits": [
+    "no artifact acceptance",
+    "lifecycle remains IN_PROGRESS",
+    "no release or Git act",
+    "no VER-004 or OI-009 closure",
+    "no frozen Remaining application",
+    "finite evidence only"
+  ]
+}

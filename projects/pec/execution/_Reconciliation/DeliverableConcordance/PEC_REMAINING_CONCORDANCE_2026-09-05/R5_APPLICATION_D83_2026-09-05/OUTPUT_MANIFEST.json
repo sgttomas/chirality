@@ -1,0 +1,172 @@
+{
+  "kind": "D83_R5_application_terminal_output_manifest",
+  "status": "COMPLETE_VALIDATED_PASS_FORMATTING_SUCCESSOR",
+  "authority": "D-PEC-83 A-A",
+  "source_commit": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "branch": "codex/pec-d83-d84-execution-20260907",
+  "counts": {
+    "carrier_census": 64,
+    "applied_carriers": 57,
+    "applied_items": 89,
+    "claim_reference_rows": 1185,
+    "no_action_carriers": 7,
+    "held_raw_rows": 70,
+    "conditional_raw_rows": 3,
+    "fresh_hold_checks": 68,
+    "rollback_mappings": 57,
+    "findings": 0
+  },
+  "verifier_output_manifest_sha256": "86f63fd040b3178f4280ae7e232a71b3d10bedbe9433d33c473f757e4945d705",
+  "formatting_successor": "VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/OUTPUT_MANIFEST.json",
+  "prior_root_manifest": {
+    "source_commit": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+    "sha256": "501366e971d57d8030a73269648ed55942cc6fc97842e44324b7886695c2bad6",
+    "preserved_in_successor_preimage": true
+  },
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/ACTIVATION.md",
+      "sha256": "1f5ec72b41d1a6a835493bf12b17a2cfcbe0eb0f48ed8c55fefffdc7426d919a",
+      "bytes": 2719
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/APPLICATION_RESULTS.json",
+      "sha256": "74de0cb04586a0259c02730b9b7063f870186ca8bfa3eef7350548d044b102ba",
+      "bytes": 52875
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BACKCHECK/AUTHORIZED_CLAIM_MULTISET.csv",
+      "sha256": "e7062028fcfdd008bfbe82aa1d49598455942bc768e86ab6d180604ffd9dca83",
+      "bytes": 191762
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BACKCHECK/CHANGED_CLAIM_REEXTRACTION.csv",
+      "sha256": "5e4680b2dcadae81fa48456bdb13e6afdd43cab12040ae85dfbd974da4aeb85f",
+      "bytes": 1428875
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BACKCHECK/HANDOFF.md",
+      "sha256": "3b791b7f9c72b1b27948df0e24ff5add4115abbfab62ff691218d3e4ee7777e2",
+      "bytes": 1287
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BACKCHECK/HELD_AND_DEFERRED_AUDIT.md",
+      "sha256": "bb789b5070fbf4c770a20cd7205aa9e590dafd03454830c7a67849b3004fa64e",
+      "bytes": 40089
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BACKCHECK/NO_CHANGE_ROWS.csv",
+      "sha256": "3b73a15e2308aa8d4b7fcea50b900262b725d9e84df1b357fd64f1d2fe469e33",
+      "bytes": 3402
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BACKCHECK/VALIDATION.json",
+      "sha256": "62971f0b83e8fe322262987fe49e7e31f3fa63bfc05955144745391f201bc306",
+      "bytes": 1238
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BASIS/HOLD_PREFLIGHTS.json",
+      "sha256": "62d5e56ef245e83105fda29104678b0576a22c2b0140b1b36f333fc1d5fc5d8a",
+      "bytes": 57895
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BASIS/READ_MANIFEST.json",
+      "sha256": "73de2539dc55bd2a2ce89fc8d599199fba1c3ba12e69df877332765966017ee7",
+      "bytes": 20330
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BASIS/TARGETS.json",
+      "sha256": "7cf53a11088de2141104006d4edd325d5734ade625914cfb302ebfe2dc967092",
+      "bytes": 54565
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BRIEFS/AUTHOR.md",
+      "sha256": "1a5f383d56aa7dbfd0aac4666997474ed7072167f91246078c61009d07963f31",
+      "bytes": 3652
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/BRIEFS/VERIFIER.md",
+      "sha256": "a2659aa778365bd5baf9f2be1fad477634ba2555f514ea02d3f8a2036e51c502",
+      "bytes": 2604
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/DISPATCH_RECORDS.json",
+      "sha256": "c221c8f0dd55f0fb2a04212c5f88a71df5411cc228ad116f81d80d1a7ba883f1",
+      "bytes": 881
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/HANDOFF_STATE.md",
+      "sha256": "800cec6b2cfb5d999fb074009c6d61451ab041d135a8078636eb9288270fb070",
+      "bytes": 3566
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/ROLLBACK/HANDOFF.md",
+      "sha256": "14f2e47cd4bf7d8e7a8d80e7f47440d1864b4de0a5c335c2bc1ad51ff6e678f4",
+      "bytes": 523
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/ROLLBACK/PRECHECK.json",
+      "sha256": "171224b87a72147d5db7f350c705f222cdd806d7e61a3fe781c747d6a5740af9",
+      "bytes": 24023
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/ROLLBACK/RESULTS.json",
+      "sha256": "607889281ba458744434a5a9cf6d848906ebbec0f4eb6e5b4f234176db491697",
+      "bytes": 69345
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/HANDOFF.md",
+      "sha256": "d2ece823e26bc6d94aa9d00b46b1f8e8a6a04202760241b090a8a29afd8acb07",
+      "bytes": 802
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/OUTPUT_MANIFEST.json",
+      "sha256": "48ea88f42ea3c92fb866cfac6d0ed171b32afbe7d58abf2e7a62372c10e8ef46",
+      "bytes": 1264
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/PREIMAGE.json",
+      "sha256": "2b48ec34e0b5f01bc51c11d9960e874d78c75ebc9064f6e3e93efa15b2302d82",
+      "bytes": 14438
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/VALIDATION.json",
+      "sha256": "56fc01cb2c2b13eb6b548e3f023811eeec8f04683892b0abea1c24b7a829106a",
+      "bytes": 1364
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/FINDINGS.csv",
+      "sha256": "6e29c522748c299b5fd15ae0979b3ac6c048374ee7bc8dcf6a179a079c9d232a",
+      "bytes": 45
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/HANDOFF.md",
+      "sha256": "713ba90297c710f24c9c6ef012e2399ab9a18f8ac0f1b18377195207a529c9f1",
+      "bytes": 1034
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/OUTPUT_MANIFEST.json",
+      "sha256": "86f63fd040b3178f4280ae7e232a71b3d10bedbe9433d33c473f757e4945d705",
+      "bytes": 3255
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/READ_MANIFEST.json",
+      "sha256": "0ea98b1b8168247025d32fd29519dd192e604a3d8618b7b360cc312e34bcd276",
+      "bytes": 46459
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/REVIEW.md",
+      "sha256": "ea7e38bb0422aef8b3450214343dc876dc63e9c84072614f70a770a03e7003e6",
+      "bytes": 2261
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/VALIDATION.json",
+      "sha256": "40993c6cc041438aa59f2c34e77645cc5db7a7ca884e3c879d47fa896d867732",
+      "bytes": 59985
+    }
+  ],
+  "file_count_excluding_manifest": 28,
+  "write_scope_exact": true,
+  "closure": "D83 Remaining application complete; formatting successor normalizes only verifier FINDINGS CSV line ending; Git/receipt/coordination closeout owned elsewhere."
+}
