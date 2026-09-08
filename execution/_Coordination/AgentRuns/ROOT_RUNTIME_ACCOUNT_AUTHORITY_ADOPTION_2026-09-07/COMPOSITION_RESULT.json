@@ -1,0 +1,127 @@
+{
+  "status": "PASS",
+  "initial_head": "c3e9ab0f8e49314befc1fc81a9e01346641a7344",
+  "pr_base": "d4b8a8cec2e4d3c636740cb97a27fe3b1a3ef327",
+  "preserved_prior_adoptions": true,
+  "recognition": {
+    "state": "accepted-pending-publication",
+    "adoptions": [
+      "D36_STAGE1",
+      "D36_STAGE2",
+      "D36_ACCOUNT_AUTHORITY"
+    ],
+    "published": false,
+    "current_bindings": {
+      "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e",
+      "projects/chirality-runtime/execution/_Decomposition/RUNTIME_OBJECTIVE_REGISTER.csv": "d7e7aa5ee900031d23baeb82479ac956a0e8ba731bfc39e1ee05f3877a949cdd",
+      "projects/chirality-runtime/execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv": "4923353de43fbe99aecb585971a3ffb91e86787734ed93b9379300fa15378663",
+      "projects/chirality-runtime/docs/PRD.md": "ec2837e50ae89d1aa333f8bef20ec483f0e7bb0ccfbec56633e354dfd81f4e68",
+      "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/ScopeOfWork.md": "935c44dda437b1455b63dfbdbaafb1f9c6a42f044b75808216c2ba416a76a4c4",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/ScopeOfWork.md": "b664f927fdfc1730b858fe3074a628441648b479d08ef87ef1b316ec35114644",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md": "655c032fa6c1bb8c63154efde499c003cdfda52905745155a828ae526c195f1c",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md": "c4a11cc5314a9b7542b268debf4051374dcb0e4a2b94a46e56b314f7e5ffdf76",
+      "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/ScopeOfWork.md": "ce7ddcdfd5921684145ca9273452d4138f7ea14fc54bd53e34d7e6d320f32c8b",
+      "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309",
+      "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d"
+    },
+    "execution_authority": false
+  },
+  "counts": [
+    53,
+    46,
+    7,
+    9
+  ],
+  "guards": [
+    {
+      "check": "root_materialization_fence",
+      "exit": 0,
+      "stdout": "G0 PASS: exact governance/historical census validated; stage=effective; no production authorization\n",
+      "stderr": ""
+    },
+    {
+      "check": "root_harness_adapter",
+      "exit": 0,
+      "stdout": "G1 PASS: governance adapter exact pointers, controls and historical census; stage=effective\n",
+      "stderr": ""
+    },
+    {
+      "check": "root_surface_ownership",
+      "exit": 0,
+      "stdout": "G2 PASS: accepted successor scopes; historical read custody only\n",
+      "stderr": ""
+    },
+    {
+      "check": "root_work_graph_dispatch",
+      "exit": 0,
+      "stdout": "G3 PASS (CI mode): work graph work_graph.yaml is schema-valid (root-work-graph/v1); 46 node(s), active: none; declared write targets, disjointness/serialization, and M2 markers check out.\n",
+      "stderr": ""
+    }
+  ],
+  "negative": [
+    {
+      "case": "missing acceptance",
+      "result": "REJECTED",
+      "error": "governed file is absent: projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA003_GATE5_2026-09-07/OWNER_ACCEPTANCE.md"
+    },
+    {
+      "case": "tampered acceptance",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA003_GATE5_2026-09-07/OWNER_ACCEPTANCE.md"
+    },
+    {
+      "case": "missing subject",
+      "result": "REJECTED",
+      "error": "governed file is absent: projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/GATE5_POSTSTATE_MANIFEST.json"
+    },
+    {
+      "case": "tampered subject",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/GATE5_POSTSTATE_MANIFEST.json"
+    },
+    {
+      "case": "missing acceptance manifest",
+      "result": "REJECTED",
+      "error": "governed file is absent: projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA003_GATE5_2026-09-07/OUTPUT_MANIFEST.json"
+    },
+    {
+      "case": "tampered acceptance manifest",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA003_GATE5_2026-09-07/OUTPUT_MANIFEST.json"
+    },
+    {
+      "case": "missing SCA-002 snapshot",
+      "result": "REJECTED",
+      "error": "governed file is absent: projects/chirality-runtime/execution/_ScopeChange/SCA-002_2026-09-07_ACCOUNT_AUTHORITY/SNAPSHOT_MANIFEST.json"
+    },
+    {
+      "case": "tampered SCA-003 snapshot",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_ScopeChange/SCA-003_2026-09-07_1616/SNAPSHOT_MANIFEST.json"
+    },
+    {
+      "case": "mixed canonical ledger",
+      "result": "REJECTED",
+      "error": "Runtime current bytes do not match baseline or an exact accepted successor"
+    },
+    {
+      "case": "tampered subject member",
+      "result": "REJECTED",
+      "error": "reference hash mismatch: projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/GATE5_POSTSTATE_DECISION_SUBJECT.md"
+    },
+    {
+      "case": "missing snapshot member",
+      "result": "REJECTED",
+      "error": "governed file is absent: projects/chirality-runtime/execution/_ScopeChange/SCA-002_2026-09-07_ACCOUNT_AUTHORITY/Amendment_Actions.csv"
+    },
+    {
+      "case": "unknown path",
+      "result": "REJECTED",
+      "error": "invalid bounded Runtime successor change"
+    }
+  ],
+  "scope": "disposable fixture; no Runtime live bytes written"
+}

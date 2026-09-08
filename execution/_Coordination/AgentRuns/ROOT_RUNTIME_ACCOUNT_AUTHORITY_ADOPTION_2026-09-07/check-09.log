@@ -1,0 +1,62 @@
+[run-affected] base 'd4b8a8cec2e4d3c636740cb97a27fe3b1a3ef327' not resolvable; failing open to the full estate
+{
+  "checks": [
+    "analysis",
+    "coordination",
+    "decomp",
+    "drawing_extract",
+    "equation_audit",
+    "pdf2md",
+    "practitioner_harness",
+    "publication",
+    "reporting",
+    "retrieval",
+    "scope_of_work",
+    "software_workflow",
+    "source_audit",
+    "source_catalog",
+    "taskmgmt",
+    "validation",
+    "workflow_runtime"
+  ],
+  "paths": [],
+  "reasons": {
+    "*": [
+      "base-unresolvable"
+    ]
+  }
+}
+[run-affected] running 17 suite(s); skipping 0: (none)
+[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13.14/bin/python3 -m pytest -q -n auto --dist loadscope tools/analysis tools/coordination tools/decomp tools/drawing_extract tools/equation_audit tools/pdf2md tools/practitioner_harness tools/publication tools/reporting tools/retrieval tools/scope_of_work tools/software_workflow tools/source_audit tools/source_catalog tools/taskmgmt tools/validation tools/workflow_runtime
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  5%]
+........................................................................ [ 10%]
+........................................................................ [ 15%]
+........................................................................ [ 20%]
+........................................................................ [ 26%]
+........................................................................ [ 31%]
+..............................................uuuu.uu.uuu............... [ 35%]
+....................................u............................u...... [ 41%]
+.................................................................u...... [ 46%]
+........................................................................ [ 51%]
+...............u........................................................ [ 56%]
+............................................................u.uu.uuuu... [ 61%]
+u.u..................................................................... [ 66%]
+........................................................................ [ 71%]
+........................................................................ [ 76%]
+........................................................................ [ 81%]
+........................................................................ [ 87%]
+........................................................................ [ 92%]
+.......u......................................u...............u........u [ 97%]
+...u.uuuuuuuuuu.u............u.....uuuu.uu...............                [100%]
+=============================== warnings summary ===============================
+tools/software_workflow/test_tools_test_routing.py::test_bearing_dirs
+  /Users/ryan/.local/share/mise/installs/python/3.13.14/lib/python3.13/site-packages/_pytest/python.py:171: PytestReturnNotNoneWarning: Test functions should return None, but tools/software_workflow/test_tools_test_routing.py::test_bearing_dirs returned <class 'set'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1380 passed, 1 warning, 45 subtests passed in 28.23s

@@ -1,0 +1,281 @@
+{
+  "schema": "root-runtime-account-authority-adoption-output/v2",
+  "pathBase": "repository root",
+  "status": "FROZEN_REPAIR_PASS_PENDING_FRESH_INDEPENDENT_REVIEW",
+  "reviewV1Finding": "P1 baseline fast-path account-supplement omission repaired",
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "candidateDiffScope": "all changed paths except CANDIDATE_DIFF_v2.patch.gz and OUTPUT_MANIFEST_v2.json",
+  "originalEvidencePreserved": true,
+  "files": [
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-39_runtime_account_authority_successor_adoption.md",
+      "sha256": "899f3ea3f6110e5c3d46cff38c4a4402a6ce386de2af92c4f7679334db8ed575",
+      "bytes": 3291
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sha256": "7da1d018e5b0ea11fc2dea8dbcb5e1847fa0d9183734676d886c761dd21a08d6",
+      "bytes": 39147
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-ACCOUNT-AUTHORITY-ADOPTION-20260907.yaml",
+      "sha256": "b4eeefa7e24b4a9c144557e8c074d84fb20403935f946e4930033d88a3a8034e",
+      "bytes": 1762
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/BRIEF.md",
+      "sha256": "8c4766fea3775334357a8e223626381ea8e61c5f11a9a8333960ea58c21fd265",
+      "bytes": 1177
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CANDIDATE_DIFF.patch.gz",
+      "sha256": "4f8ae520b4dc4a90a40a8507ccf4cea0de7e26354d79d297f57a882c71575ce9",
+      "bytes": 22129
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CANDIDATE_DIFF_v2.patch.gz",
+      "sha256": "124daed6c1424e2917ae9998cb083269f610bf9ec70ed485833c4e94532174d8",
+      "bytes": 56882
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CHECKS.json",
+      "sha256": "f48c2ff22707b56cfb1f7531440cedfaf7fdc70e04a33edccdfa018ce37bc0d0",
+      "bytes": 2608
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CHECK_NOTE.md",
+      "sha256": "28e9cef5bda1fafd6d7193ec5f40ff2b612773a29d4f348b6b8a93f59410988b",
+      "bytes": 632
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/COMPOSITION_RESULT.json",
+      "sha256": "879cda94ec7f7ad29e44d5ef07ce94a833b03104736f4f310491ff8cd30c6366",
+      "bytes": 6765
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/ENVIRONMENT_NOTE.md",
+      "sha256": "6b62c42cf80790a68e7318fc2e20f8b6c1e402250266e32481832e79c6a3edae",
+      "bytes": 781
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/FINAL_CHECKS.md",
+      "sha256": "4132704f98a3c796fc40cab74bd50ecdc3e68c515ee0b782b014aa6a8a6db979",
+      "bytes": 1176
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/HANDOFF.md",
+      "sha256": "973d428c040ee8cbce57e87ac1e8b8841125ee4a01edf8d76f18bc0e4ba6dda7",
+      "bytes": 2327
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/OUTPUT_MANIFEST.json",
+      "sha256": "7a4df3f1b9595ff9163dcc80d9362647e199541a527aa51259ca387463768afa",
+      "bytes": 7719
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+      "sha256": "b95b60481a08124aa6f1a8c3625e5f1cea3931794c616e8c305be8c72254736d",
+      "bytes": 5664
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-00.log",
+      "sha256": "ea45221c495d1cfc3ffe119b5dd3adc473a71ab006d0c37ac42768df4db9da2a",
+      "bytes": 85
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-01.log",
+      "sha256": "d65b3b06d6c20f9f9d78031d0af6be46cddcabce4923d309f2df75a16db0bef1",
+      "bytes": 2411
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-02.log",
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c",
+      "bytes": 100
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-03.log",
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37",
+      "bytes": 92
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-04.log",
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618",
+      "bytes": 65
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-05.log",
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6",
+      "bytes": 188
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-06.log",
+      "sha256": "fac918788564e13c17be7fb7e4399135dd14d4fe319ebf1de287ba6f0901bda4",
+      "bytes": 5691
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-07.log",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf",
+      "bytes": 49
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-08.log",
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945",
+      "bytes": 24824
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-09.log",
+      "sha256": "5f76dd7348c7235d260c7e3e1a8141ce29a68d35a5317b2f7edab743ce1cf033",
+      "bytes": 3396
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-10.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "bytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/check-11.log",
+      "sha256": "34d80a5c5a992dda4a9009430c7402ec3721eb1af1dbfaaed87a2ecb910392b3",
+      "bytes": 45
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/freeze.py",
+      "sha256": "c0fb38ce29956551d41aeb905380a87b19a19b78a15a087152225b607f9682f9",
+      "bytes": 2465
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/BRIEF.md",
+      "sha256": "17ed1b929f7d5b7c4cc7e63e913dad7066972548338300dd741cde383158ad60",
+      "bytes": 714
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/CHECKS.json",
+      "sha256": "49db948c278d435e9f40ae7faa89c7de57dd590f66fe314568b5f226792429be",
+      "bytes": 2211
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/HANDOFF_CLARIFICATION.md",
+      "sha256": "96e5e48f6ca68b2cb886a387039d10807b6ba26e956085bdf69c9c30870d7570",
+      "bytes": 858
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/PRESERVATION.json",
+      "sha256": "2546a63fd44b68970f870a163a38b1efed3e3c51c8f45bf32aa97e17f8ad0d2d",
+      "bytes": 1191
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-00.log",
+      "sha256": "2334d05cb314e9eda4f370aeaec01f941492a7cd381639d4a44435ddcb0f419c",
+      "bytes": 2622
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-01.log",
+      "sha256": "ea45221c495d1cfc3ffe119b5dd3adc473a71ab006d0c37ac42768df4db9da2a",
+      "bytes": 85
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-02.log",
+      "sha256": "668ffa78409d912b58cdcccebd6e7d93abd065fb518fb6c9a84452b98cbba022",
+      "bytes": 89
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-03.log",
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c",
+      "bytes": 100
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-04.log",
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37",
+      "bytes": 92
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-05.log",
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618",
+      "bytes": 65
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-06.log",
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6",
+      "bytes": 188
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-07.log",
+      "sha256": "652ad46555a6ad6f77c31332c1bc6041a96d293e8963799b8b494aa327ae7b2b",
+      "bytes": 6633
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-08.log",
+      "sha256": "135e3ace058200b3eefd6662f22766c33ea7108daf48c2e948cb37def9ca19f7",
+      "bytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/check-09.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/freeze_v2.py",
+      "sha256": "f3f57ace2a7fd1e3db88b39dc142048bd61645a26c2ef29ecb89f6e29254763e",
+      "bytes": 3146
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/run_checks.py",
+      "sha256": "0ea02dd63393780ae7aeacf492fbac3d3416a0abf1a5e126e49e4057841b2a1b",
+      "bytes": 1874
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/repair-v2/verify_injected_account.py",
+      "sha256": "e84b09220dfc2559758eba9cda4e2a141b521896c34dc0d03f190df77785e90a",
+      "bytes": 1075
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/CHECKS.json",
+      "sha256": "0ee6dcb4eb9a182f5d385228a0e98e146b3404f9acc49edd059e0d00f6b101b4",
+      "bytes": 3631
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/MANIFEST.json",
+      "sha256": "96fc52b9bb9425b1a2bdf3ed0048077f7d3d5aab6fb3d659bf47c3b1039b9522",
+      "bytes": 1151
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/RETURN.md",
+      "sha256": "b6e97b0b2d941957245205b056557a718e86e8d5f776775ed9fe553ceee0ef74",
+      "bytes": 4536
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/run_checks.py",
+      "sha256": "dbaba9ebb5e3caa0b5e1a5d59365364614796748c61038235ce31136a2c87338",
+      "bytes": 1945
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/verify_composition.py",
+      "sha256": "fabf7ff867fc3efa991dd6c689e35c101396a9ec465753e497e75b06c7fde0e6",
+      "bytes": 6250
+    },
+    {
+      "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+      "sha256": "bdae434628bcbb52191323d9b53629b4486cdae1e21823ca8cda61bc66187e3c",
+      "bytes": 569450
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07.md",
+      "sha256": "442209b87cdc5bdc07fe041391d10f934e31ba7dea9cb9c542fd31f76150ea1a",
+      "bytes": 953
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07.md",
+      "sha256": "f4146a6612cec1c73da48dc8b34503ae5ddb92b53794daae118e435892aa9b6d",
+      "bytes": 956
+    },
+    {
+      "path": "tools/validation/root_runtime_successors.py",
+      "sha256": "3eb7987a9866076b4647d49519350a3855a0cd2b94879f6169a54440cb8c5e10",
+      "bytes": 11629
+    },
+    {
+      "path": "tools/validation/test_root_runtime_successors.py",
+      "sha256": "862afeb37f853018724511c4bf685cf145032d1a73fe67e29b2ae0103ab559d1",
+      "bytes": 12789
+    }
+  ]
+}

@@ -93,6 +93,32 @@ class SuccessorRecognitionTests(unittest.TestCase):
         self.assertEqual(result['adoptions'], [])
         self.assertIs(result['execution_authority'], False)
 
+    def test_baseline_rejects_injected_account_supplement_without_policy(self):
+        account = self.root / s.ACCOUNT_SUPPLEMENT
+        for kind in ['file', 'directory', 'dangling-symlink']:
+            with self.subTest(kind=kind):
+                for p, b in self.old.items():
+                    self.put(p, b)
+                custody = self.root / s.SUPPLEMENT
+                if custody.exists():
+                    custody.unlink()
+                policy = self.root / self.policy_path
+                if policy.exists():
+                    policy.unlink()
+                if account.is_symlink() or account.is_file():
+                    account.unlink()
+                elif account.is_dir():
+                    account.rmdir()
+                if kind == 'file':
+                    self.put(s.ACCOUNT_SUPPLEMENT, 'unaccepted account authority')
+                elif kind == 'directory':
+                    account.mkdir(parents=True)
+                else:
+                    account.parent.mkdir(parents=True, exist_ok=True)
+                    account.symlink_to(account.parent / 'missing-target')
+                with self.assertRaises(GovernanceError):
+                    self.recognize()
+
     def test_exact_accepted_revision_without_main_is_not_published_or_authorized(self):
         self.assertFalse((self.root / '.git').exists())
         self.assertIs(s._verify_adoption(self.root, self.adoption), False)
@@ -203,6 +229,29 @@ class SuccessorRecognitionTests(unittest.TestCase):
         path.symlink_to(self.root / 'accepted/sibling.md')
         with self.assertRaises(GovernanceError):
             self.recognize()
+
+    def test_selected_policy_preserves_prior_objects_and_verifies_account_chain(self):
+        repo = Path(__file__).resolve().parents[2]
+        current = json.loads((repo / ('execution/_Coordination/AgentRuns/'
+                                      'ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/'
+                                      'SUCCESSOR_ADOPTIONS.json')).read_text())
+        prior = json.loads((repo / ('execution/_Coordination/AgentRuns/'
+                                     'ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07/'
+                                     'SUCCESSOR_ADOPTIONS.json')).read_text())
+        self.assertEqual(current['adoptions'][:2], prior['adoptions'])
+        account = current['adoptions'][2]
+        self.assertEqual(account['id'], 'D36_ACCOUNT_AUTHORITY')
+        self.assertIsInstance(s._verify_adoption(repo, account), bool)
+        self.assertEqual(
+            {Path(item['path']).name: item['after'] for item in account['changes']},
+            {
+                'ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md':
+                    '19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d',
+                'Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md':
+                    '413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e',
+                'RUNTIME_SCOPE_LEDGER.csv':
+                    'bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d',
+            })
 
 
 if __name__ == '__main__':

@@ -1,0 +1,3 @@
+# Review-v1 P1 repair — sealed brief
+
+Repair only the baseline fast path identified by review v1: migration baseline is valid only when both known successor supplement paths are absent. Preserve the hard canonical path/symlink behavior. Add a focused unit regression covering injected file, directory and dangling-symlink forms, plus a disposable synthetic composition rejection. Rerun focused composition, four Root guards and affected tests with mise Python 3.13. Preserve every original author and review-v1 evidence byte; write new evidence only under this directory and successor root-level v2 freeze artifacts. No policy, Runtime, SOW, governance record, notice, receipt, Git index, commit or push change.

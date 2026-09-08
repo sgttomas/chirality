@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "original_author_manifest": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/OUTPUT_MANIFEST.json",
+    "sha256": "7a4df3f1b9595ff9163dcc80d9362647e199541a527aa51259ca387463768afa"
+  },
+  "original_candidate_diff": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/CANDIDATE_DIFF.patch.gz",
+    "sha256": "4f8ae520b4dc4a90a40a8507ccf4cea0de7e26354d79d297f57a882c71575ce9"
+  },
+  "review_v1_manifest": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/MANIFEST.json",
+    "sha256": "96fc52b9bb9425b1a2bdf3ed0048077f7d3d5aab6fb3d659bf47c3b1039b9522"
+  },
+  "review_v1_return": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/review-v1/RETURN.md",
+    "sha256": "b6e97b0b2d941957245205b056557a718e86e8d5f776775ed9fe553ceee0ef74"
+  },
+  "verification": "freeze_v2.py verifies every original author manifest member except the two intentionally repaired live helper/test paths, plus all four pinned evidence files, before writing successor freeze artifacts"
+}
