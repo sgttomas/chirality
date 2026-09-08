@@ -1,0 +1,25 @@
+{
+  "schema": "chirality-publication-selection-manifest/v4",
+  "created_at": "2026-09-08T03:22:27.595039+00:00",
+  "selection_file": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02-agents-presentation/PUBLICATION_SELECTION_v4.json",
+    "sha256": "22ee3b6e37fe9a523ff2b5711cd67baf98967a5b712350db77bd603098de90ce",
+    "bytes": 20860
+  },
+  "payload_count": 65,
+  "publication_path_count": 67,
+  "payload_digest_sha256": "1bc4cfa94d37a99093cfb4cbcfd8ca1731d7f2db6e82b534ddeb599a38ee17ef",
+  "gitattributes_pre_sha256": "7d9d8cedce4e8ee24ca95a754ae8f335eb0c2204b628d837ca1e2d3950c13c4f",
+  "gitattributes_post_sha256": "02be0186e8e4b68e74668e20030a4fdbd9e234a2bce6dcf0fd86f20cd316dfd6",
+  "format_disposition_sha256": "b0e974487a0a013103bab84b4424f32b45911791ae6e2949ad3d25fffc002c82",
+  "preserved_original_selection_sha256": "f12626a602ed7ea04ef8fdcf7a1595fac45164b44fc78b79dbace6c66eafad4e",
+  "private_index_validation": {
+    "basis": "origin/main",
+    "selected_path_count": 67,
+    "staged_path_set_exact": true,
+    "command": "python3 tools/validation/validate_candidate_whitespace.py --repo-root <repo> --paths <exact 67 selected paths>",
+    "verdict": "PASS",
+    "validator_output": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).",
+    "private_index_removed": true
+  }
+}
