@@ -52,8 +52,7 @@ NETWORK_FUNCTIONS = {
 }
 SOCKET_CLASS = "socket.socket"
 SOCKET_INSTANCE = "<socket.socket instance>"
-SOCKET_METHODS = {"bind", "connect", "connect_ex", "sendto"}
-SOCKET_SENDTO_NAMES = {f"{SOCKET_CLASS}.sendto", f"{SOCKET_INSTANCE}.sendto"}
+SOCKET_METHODS = {"bind", "connect", "connect_ex"}
 ENDPOINT_LABELS = ("address", "endpoint", "host", "server", "uri", "url")
 
 
@@ -251,7 +250,6 @@ def dependency_assertion(config: Config, project_root: Path) -> tuple[list[dict[
         tree = parse_module(path)
         importer = location(path, project_root)
         package_parts = importer_package_parts(path, config.source_root)
-        bindings = import_bindings(tree)
 
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -328,19 +326,13 @@ def dependency_assertion(config: Config, project_root: Path) -> tuple[list[dict[
                 )
             elif isinstance(node, ast.Call):
                 call_name = dotted_name(node.func)
-                resolved_call_names = resolve_binding(node.func, bindings)
-                if call_name == "__import__" or call_name == "importlib.import_module" or (
-                    "importlib.import_module" in resolved_call_names
-                ):
-                    canonical_name = (
-                        "__import__" if call_name == "__import__" else "importlib.import_module"
-                    )
+                if call_name in {"__import__", "importlib.import_module"}:
                     findings.append(
                         finding(
                             "UNCLASSIFIABLE_DYNAMIC_IMPORT",
                             "dependency",
-                            f"dynamic import {canonical_name!r} is not statically classifiable at {importer}:{node.lineno}",
-                            dependency=canonical_name,
+                            f"dynamic import {call_name!r} is not statically classifiable at {importer}:{node.lineno}",
+                            dependency=call_name,
                             importer=importer,
                             line=node.lineno,
                         )
@@ -483,69 +475,18 @@ def network_call_names(node: ast.Call, bindings: dict[str, set[str]]) -> set[str
     }
 
 
-def clear_sendto_flags(node: ast.AST) -> bool:
-    """Return whether an AST expression is an unambiguous literal flags value."""
+def call_endpoint_node(node: ast.Call, call_names: set[str]) -> ast.AST | None:
+    """Return the endpoint expression for a resolved network operation."""
 
-    return isinstance(node, ast.Constant) and isinstance(node.value, int) and not isinstance(
-        node.value, bool
-    )
-
-
-def sendto_endpoint_node(node: ast.Call, *, unbound: bool) -> ast.AST | None:
-    """Extract a sendto destination under the scanner's strict AST convention."""
-
-    if any(isinstance(argument, ast.Starred) for argument in node.args):
-        return None
-    if any(keyword.arg is None for keyword in node.keywords):
-        return None
-
-    address_keywords = [keyword for keyword in node.keywords if keyword.arg == "address"]
-    if address_keywords:
-        if len(address_keywords) != 1 or len(node.keywords) != 1:
-            return None
-        required = 2 if unbound else 1
-        if len(node.args) == required:
-            return address_keywords[0].value
-        if len(node.args) == required + 1 and clear_sendto_flags(node.args[-1]):
-            return address_keywords[0].value
-        return None
-
-    if node.keywords:
-        return None
-    if unbound:
-        if len(node.args) == 3:
-            return node.args[2]
-        if len(node.args) == 4:
-            return node.args[3]
-    else:
-        if len(node.args) == 2:
-            return node.args[1]
-        if len(node.args) == 3:
-            return node.args[2]
-    return None
-
-
-def call_endpoint_nodes(node: ast.Call, call_names: set[str]) -> list[ast.AST | None]:
-    """Return one endpoint interpretation for every resolved network operation."""
-
-    endpoints: list[ast.AST | None] = []
     keyword_names = {"address", "host", "url"}
-    keyword_endpoint = next(
-        (keyword.value for keyword in node.keywords if keyword.arg in keyword_names), None
-    )
-    unbound_methods = {f"{SOCKET_CLASS}.{method}" for method in SOCKET_METHODS}
-    for call_name in sorted(call_names):
-        if call_name in SOCKET_SENDTO_NAMES:
-            endpoints.append(
-                sendto_endpoint_node(node, unbound=call_name == f"{SOCKET_CLASS}.sendto")
-            )
-        elif keyword_endpoint is not None:
-            endpoints.append(keyword_endpoint)
-        elif call_name in unbound_methods:
-            endpoints.append(node.args[1] if len(node.args) > 1 else None)
-        else:
-            endpoints.append(node.args[0] if node.args else None)
-    return endpoints
+    for keyword in node.keywords:
+        if keyword.arg in keyword_names:
+            return keyword.value
+    # An unbound socket-class method receives the socket object before the
+    # endpoint; instance methods and the other canonical operations do not.
+    if any(name in {f"{SOCKET_CLASS}.{method}" for method in SOCKET_METHODS} for name in call_names):
+        return node.args[1] if len(node.args) > 1 else None
+    return node.args[0] if node.args else None
 
 
 def locality_assertion(config: Config, project_root: Path) -> list[dict[str, Any]]:
@@ -582,24 +523,11 @@ def locality_assertion(config: Config, project_root: Path) -> list[dict[str, Any
             call_names = network_call_names(node, bindings)
             if not call_names:
                 continue
-            endpoint_nodes = call_endpoint_nodes(node, call_names)
-            endpoints = [
-                endpoint_value(endpoint_node) if endpoint_node is not None else None
-                for endpoint_node in endpoint_nodes
-            ]
-            classifications = [endpoint_class(endpoint) for endpoint in endpoints]
-            if classifications and all(
-                classification in {"unix", "loopback"} for classification in classifications
-            ):
+            endpoint_node = call_endpoint_node(node, call_names)
+            endpoint = endpoint_value(endpoint_node) if endpoint_node is not None else None
+            classification = endpoint_class(endpoint)
+            if classification in {"unix", "loopback"}:
                 continue
-            endpoint = next(
-                (
-                    value
-                    for value, classification in zip(endpoints, classifications)
-                    if classification == "external"
-                ),
-                None,
-            )
             shown_name = sorted(call_names)[0]
             findings.append(
                 finding(

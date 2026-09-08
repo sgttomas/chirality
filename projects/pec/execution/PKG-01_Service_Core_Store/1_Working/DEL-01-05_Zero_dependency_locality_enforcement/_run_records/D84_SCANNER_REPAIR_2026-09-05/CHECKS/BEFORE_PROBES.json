@@ -1,0 +1,27 @@
+{
+  "checker_sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+  "parse_only": true,
+  "probe_capture_exit_code": 0,
+  "intentional_new_assertions_exit_code": 1,
+  "intentional_new_assertions_result": "FAILED (failures=2): each checker result was PASS where the new assertion required BLOCK",
+  "probes": [
+    {
+      "name": "external_udp",
+      "source": "import socket\ns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\ns.sendto(b\"probe\", (\"198.51.100.10\", 443))\n",
+      "source_sha256": "75257d5cfcdd23d0ae7876478652af2257d79af5f08e1da4a9f1f7bb1ea760f3",
+      "actual_verdict": "PASS",
+      "actual_assertion": "PASS",
+      "expected_contract_verdict": "BLOCK",
+      "findings": []
+    },
+    {
+      "name": "dynamic_import_alias",
+      "source": "from importlib import import_module as load\nload(\"requests\")\n",
+      "source_sha256": "b9bf8faa1bc575f9e5ffe3fb680a7bccc03c57681612fc94931f5666304eeeb2",
+      "actual_verdict": "PASS",
+      "actual_assertion": "PASS",
+      "expected_contract_verdict": "BLOCK",
+      "findings": []
+    }
+  ]
+}

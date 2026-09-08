@@ -1,0 +1,61 @@
+{
+  "schema": "pec-d84-scanner-repair-independent-read-manifest/v1",
+  "verdict": "PASS",
+  "attempt": 2,
+  "repo_root": "/Users/ryan/.codex/worktrees/b347/chirality",
+  "working_root": "/Users/ryan/.codex/worktrees/b347/chirality/projects/pec",
+  "branch": "codex/pec-d83-d84-execution-20260907",
+  "head": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "origin_main": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "python": "Python 3.13.7",
+  "instruction_inputs": {
+    "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "projects/pec/loop/LOOP_INIT.md": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570",
+    "agents/AGENT_TASK.md": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+    "docs/SOFTWARE_WORKFLOW_PROFILE.md": "f97af1d323524f9a2be1dab8b5b33c1350c8f48c38cd3c6f8d0f8a9cd9821ea2",
+    "skills/software-code-review/SKILL.md": "aae98f44d3f5d923e0879872a5c71e7133e9d109b0142dd9ff19aaac6e1fd031",
+    "skills/software-code-review/BRIEF_SCHEMA.md": "f4622f020e60cd9e99958cf992f1acb7bd87145c212ff634d485745e03bbe8d8",
+    "skills/software-code-review/TOOL_POLICY.md": "c06c32c9b08fe0e98329c1c670660135f84c1795a07a237a84f74e80306a5b26",
+    "skills/software-code-review/QA_CHECKS.md": "b6fd4756bbf2775baedc83488bc88219362715f0aec79e9f9330ebf19a5e2dc8"
+  },
+  "authority_and_contract_inputs": {
+    "ACTIVATION.md": "77e20acc5a556e9200292549c4234bea987aa05d85010c182201ebbca44fd2be",
+    "BRIEFS/AUTHOR.md": "cae01d6decf837c5680eb13b90b437e7bc47fc9957a20e9f159517706d2302e5",
+    "BRIEFS/VERIFIER.md": "65020a1881bb1faa6fbade314e716a3cb6843f50695c50aab698f2875b4134f5",
+    "D-PEC-84_RULING_2026-09-07.md": "6d9812b46874c39a4617476b8ba7b40702b3a3227c0511fc95b95aaeb8a2fe7a",
+    "D-PEC-84_L_RULING_2026-09-07.md": "2f52907fe4728fe70e21a095c27d077fa7b901a7f3ee080ae360cde9e48c9d10",
+    "SCANNER/PROPOSAL.md": "bebfa8c83fdcfa5773612290dbf5076b85bf63d27ea5691ab08374ac10191dbf",
+    "SCANNER/TARGETS.json": "a388bc33c338da49a348464a2aba8eb24684e4422df8189f35d58df92e9e6b7b",
+    "SCANNER/REGRESSION_PLAN.md": "ac15b7f87741fbce0f5ea2044b7aea86c08245a156111f6f50e0f3c8fdfaa0b7",
+    "FULL_02/R4_DECISION_PACKETS/SCANNER_EXACT_ACTS_AND_EVIDENCE.md": "1fa3bcb2f2c23830e26a4df142aaa15310c056e4d3773162d2a7d2b7bec4ea8e"
+  },
+  "complete_author_packet": {
+    "BASIS/HOLD_PREFLIGHTS.json": "1529e946d23fddcaffdbd013e65fed6735fa6c673b7f50ccd254a69f37f4f5cb",
+    "BASIS/READ_MANIFEST.json": "107ce7e6a3a4c3843970df3baf0518e977df2652d3252de10b8e047ee53e3052",
+    "BASIS/TARGETS.json": "551705910a283c6d573e2519a57d571c0fc2e93ad0e4b89eb3074539622cd3a8",
+    "BASIS/PREIMAGES/checker.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "BASIS/PREIMAGES/dependency_test.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "BASIS/PREIMAGES/locality_test.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "AUTHOR/CHANGE_MAP.json": "1ba6336eee0b7693665f523231e08e56257bb216f639bf646d960d1e98a1391a",
+    "AUTHOR/HANDOFF.md": "2d322427ec0c5543388930e5555fed686420b56f072a03fd07ae00c3064d8659",
+    "AUTHOR/POSTIMAGE_HASHES.json": "efaff4be2b2023e85be6bb03fee7bc4de2a6def03374c5cdb12a48055c53fe76",
+    "CHECKS/AFTER_PROBES.json": "a94969bcbf7a359e9f070db16d8c740bb6f10969c39e7e552491a677e6ae049b",
+    "CHECKS/BEFORE_PROBES.json": "ebd3bac7e53fcbb08ba0a61c7242a9be500945768cf919ae701262af3e5bf75e",
+    "CHECKS/COMMANDS.json": "1faa7711fd05c6287a4aa32f43d93828d47fd05d50a3c6a2248fac2814702ac4",
+    "CHECKS/CONTAINMENT.json": "d9dcb3cb6f585e88e090e51ba13fe1a279d10434546fa1990759c3bd0cae00c7",
+    "CHECKS/POSTURE_CHECK.json": "8319a30b02a75ce4ae0024b2cbfd846892a5001ce37d7c1041b8edd80abfd48e",
+    "CHECKS/REGRESSION_RESULTS.json": "2cf7a069cabbecd557b603d9dac67dccf7020705f85d4f7ea5dcbcf42c1e0a64",
+    "CHECKS/UNITTEST.log": "faf77b71fafe19b91f4cf62236c9bbbf7bfb050babb85412b6c242f8cd6cc66c"
+  },
+  "live_bindings": {
+    "projects/pec/v2/tools/check_service_core_posture.py": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "8b686f4ed2b1729575d1961ff8bef7cfc4218795f816f4bb2b614d05510019c0",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "54bb589632f764e9bdbd537e5f29ca75678bfd99492d4eea4467f2245f762bed",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+    "projects/pec/v2/config/service_core_posture.json": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "projects/pec/software-workflow.json": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+    "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "projects/pec/execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "pec-native-dispatch-record/v3",
+  "parent": "/root",
+  "model_policy": {"configured_model": "gpt-5.6-sol", "configured_reasoning": "medium", "serving_identity_claimed": false},
+  "role_enforcement": "instruction-asserted",
+  "nodes": [
+    {"id": "/root/pec_session_authority", "role": "RECONCILIATION", "state": "terminal-common-closeout", "brief": "BRIEFS/common_integration.md"},
+    {"id": "/root/pec_d84_repair", "role": "WORKING_ITEMS", "state": "final-refreshed-terminal-seal-accepted; writers-frozen", "brief": "BRIEFS/working_items_source.md", "manager_owned_specialists": ["/root/pec_d84_repair/author", "/root/pec_d84_repair/verifier", "/root/pec_d84_repair/verifier_attempt2"], "source_return": "ACTUAL_RETURNS/SOURCE_VERIFICATION.md", "terminal_return": "ACTUAL_RETURNS/TERMINAL_D84_SCANNER.md"},
+    {"id": "/root/pec_d83_application", "role": "RECONCILIATION", "state": "scanner-six-file-backcheck-pass-accepted; d83-formatting-successor-accepted; writer-frozen", "briefs": ["BRIEFS/reconciliation_backcheck.md", "BRIEFS/d83_formatting_successor.md"], "scanner_return": "ACTUAL_RETURNS/RECONCILIATION_BACKCHECK.md", "formatting_return": "ACTUAL_RETURNS/D83_FORMATTING_SUCCESSOR.md"},
+    {"id": "/root/pec_change_sol", "role": "CHANGE", "state": "released-after-common-seal", "brief": "BRIEFS/change_closeout.md"}
+  ],
+  "common_integration_specialists": []
+}

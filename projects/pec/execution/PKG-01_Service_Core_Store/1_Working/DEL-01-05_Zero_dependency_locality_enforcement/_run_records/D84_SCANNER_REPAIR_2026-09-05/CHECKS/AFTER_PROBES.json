@@ -1,0 +1,27 @@
+{
+  "checker_sha256": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+  "parse_only": true,
+  "exit_code": 0,
+  "probes": [
+    {
+      "name": "external_udp",
+      "source": "import socket\ns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\ns.sendto(b\"probe\", (\"198.51.100.10\", 443))\n",
+      "source_sha256": "75257d5cfcdd23d0ae7876478652af2257d79af5f08e1da4a9f1f7bb1ea760f3",
+      "actual": {
+        "verdict": "BLOCK",
+        "assertions": {"dependency": "PASS", "locality": "BLOCK", "registration": "PASS"},
+        "findings": [{"assertion": "locality", "code": "EXTERNAL_NETWORK_CALL", "endpoint": "198.51.100.10", "importer": "core/app.py", "line": 3, "message": "external or unclassifiable network call '<socket.socket instance>.sendto' at core/app.py:3"}]
+      }
+    },
+    {
+      "name": "dynamic_import_alias",
+      "source": "from importlib import import_module as load\nload(\"requests\")\n",
+      "source_sha256": "b9bf8faa1bc575f9e5ffe3fb680a7bccc03c57681612fc94931f5666304eeeb2",
+      "actual": {
+        "verdict": "BLOCK",
+        "assertions": {"dependency": "BLOCK", "locality": "PASS", "registration": "PASS"},
+        "findings": [{"assertion": "dependency", "code": "UNCLASSIFIABLE_DYNAMIC_IMPORT", "dependency": "importlib.import_module", "importer": "core/app.py", "line": 2, "message": "dynamic import 'importlib.import_module' is not statically classifiable at core/app.py:2"}]
+      }
+    }
+  ]
+}

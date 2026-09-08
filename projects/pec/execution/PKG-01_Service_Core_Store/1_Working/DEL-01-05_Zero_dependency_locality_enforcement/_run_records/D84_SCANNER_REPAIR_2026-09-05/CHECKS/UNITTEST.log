@@ -1,0 +1,11 @@
+command: python3 -m unittest discover -s v2/tests/enforcement -p 'test_*.py'
+cwd: projects/pec
+interpreter: Python 3.13.7
+environment: PYTHONDONTWRITEBYTECODE=1; TMPDIR=/private/tmp/pec-d84-unittest.<random>
+exit_code: 0
+
+............................
+----------------------------------------------------------------------
+Ran 28 tests in 0.048s
+
+OK

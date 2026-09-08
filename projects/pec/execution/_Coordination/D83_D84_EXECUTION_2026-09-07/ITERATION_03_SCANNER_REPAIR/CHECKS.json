@@ -1,0 +1,39 @@
+{
+  "schema": "pec-d84-scanner-iteration-closeout/v1",
+  "receipt": {
+    "receipt_174_prefix_bytes": 442888,
+    "receipt_174_prefix_sha256": "1cc34003eb1a07d26197226dcf29fd0b97d9bd1cae064f4523806ef9e36867c9",
+    "prefix_preserved": true,
+    "post_append_bytes": 444985,
+    "post_append_sha256": "efe77c70bb93984989a95d3d2f63fcabdd0182432f7e4df8b49b5458bdf15d14",
+    "post_append_validator": "PASS"
+  },
+  "manager_manifests": {
+    "d84_scanner": "PASS: 37 bound entries / 38 recursive files; parent independently rehashed",
+    "d83_formatting_successor": "PASS: 28 bound entries / 29 recursive files; parent independently rehashed"
+  },
+  "candidate_whitespace": {
+    "git_diff_check": "PASS",
+    "current_iteration_files": "PASS",
+    "selected_findings_csv_cr_bytes": 0,
+    "precommit_default_validator": "EXPECTED FAIL: origin/main...HEAD still reads the historical CRLF CSV from committed HEAD",
+    "required_postcommit_check": "CHANGE must run the default candidate validator after committing the LF successor; PASS is required before merge",
+    "attributes_or_waiver": "NONE"
+  },
+  "containment": {
+    "common_writes": [
+      "ITERATION_03_SCANNER_REPAIR/**",
+      "Receipt 175 append only"
+    ],
+    "production_writes_owned_by": [
+      "WORKING_ITEMS exact three source/test paths and scanner run records",
+      "RECONCILIATION D83 formatting successor and six scanner BACKCHECK files"
+    ],
+    "decision_register_changed": false,
+    "status_or_remaining_changed": false,
+    "outside_authorized_scope": []
+  },
+  "manager_source_tests": "NOT_RERUN by common integration; accepted manager evidence owns semantic verification",
+  "fresh_general_review": "NOT_ADDED: HELP_HUMAN accepted both final manager fan-ins",
+  "writers_frozen": true
+}

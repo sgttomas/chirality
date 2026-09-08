@@ -42,9 +42,16 @@ through its authorized workflow.
 
 The bounded author and fresh independent verifier were both configured as
 `gpt-5.6-sol` with `medium` reasoning and `fork_turns=none`; their Agent 2
-roles and nondelegation were instruction-asserted. The verifier output seal is
-SHA-256 `e6fdfeb2c6ec50edae70694412feaf618d02c6d4442de80756c47bc0d4ea61f6`
-with zero findings.
+roles and nondelegation were instruction-asserted. The current verifier output
+seal is SHA-256
+`86f63fd040b3178f4280ae7e232a71b3d10bedbe9433d33c473f757e4945d705`
+with zero findings. It succeeds the commit-pinned verifier seal
+`e6fdfeb2c6ec50edae70694412feaf618d02c6d4442de80756c47bc0d4ea61f6`
+only to normalize the header-only `FINDINGS.csv` from CRLF to LF. The bounded
+`VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/` package preserves
+the exact prior CSV, child-manifest and R5 root-manifest bytes and proves that
+logical CSV content, claim accounting, target postimages and verdict are
+unchanged.
 
 This D83 lane now releases its prerequisite for the separately authorized D84
 scanner repair. Scanner authoring still depends on the D84 lifecycle-reversal

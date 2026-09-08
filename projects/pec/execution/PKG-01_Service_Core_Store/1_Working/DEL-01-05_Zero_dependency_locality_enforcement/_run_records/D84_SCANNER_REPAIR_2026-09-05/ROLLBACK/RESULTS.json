@@ -1,0 +1,10 @@
+{
+  "schema": "pec-d84-scanner-repair-rollback-results/v1",
+  "invoked": false,
+  "status": "NOT_EXECUTED",
+  "restored_paths": [],
+  "reason": "candidate repair passed author and fresh independent verification; no rollback was requested",
+  "current_candidate_preserved": true,
+  "historical_findings_preserved": true,
+  "lifecycle_changed": false
+}

@@ -1,0 +1,27 @@
+# D84 scanner repair terminal handoff
+
+Closure verdict: **EVIDENCE-BACKED REPAIR CANDIDATE / PASS FOR OWNER REVIEW** for the exact three-file D84 scanner repair. The product candidate remains `IN_PROGRESS`. This handoff does not accept its new bytes, re-enter `CHECKING`, issue, release, merge, or apply the frozen D83 DEL-01-05 Remaining preview.
+
+Terminal-seal correction: the first root manifest, SHA-256 `339bb9a6155032ecbc81ef1e4d6474b22238f42f578c23c34e4478d3f46a7a38`, was rejected because its enumerator excluded every basename `OUTPUT_MANIFEST.json` and therefore omitted the nested verifier manifest. Its exact bytes and the parent finding are preserved in `DISPATCH_RECORDS.json`. The corrected terminal manifest excludes only the root `OUTPUT_MANIFEST.json` and binds 37 entries / 38 total files, including `VERIFICATION/OUTPUT_MANIFEST.json`.
+
+Evidence-format correction: the owning verifier replaced the two trailing-space Markdown hardbreaks on `VERIFICATION/REVIEW.md` lines 3 and 4 with blank-line paragraph separation, preserving the read meaning and all behavioral claims. The prior REVIEW, verifier manifest, root manifest, and six BACKCHECK files are preserved byte-for-byte in `DISPATCH_RECORDS.json`. The refreshed REVIEW SHA-256 is `5bb825cbaf551eb348905d5333b0f896c98d6d7102826a13561fd710737b422d`; candidate-whitespace validation passes with command-local `cr-at-eol` awareness and `blank-at-eol` enforcement retained.
+
+Accepted upstream basis: D-PEC-84 S-A/L are observable at `origin/main` `62636f3a1ccc247af8c598b3c0a74ce9179d1fd3`; execution proceeds from accepted Iteration 02 commit `14f42e9ce17effa52e6415cc205a2df969b1256d`; D83 terminal seal is `501366e971d57d8030a73269648ed55942cc6fc97842e44324b7886695c2bad6`; D84 L terminal seal is `c9654a03635885fa22a450da153136d1a1ed6a01d9ac3a58059dd4b9cc233ae3`; common seal is `017802d4782b6d0362031e756be7b7b0e3cfae65347fd9b8f25014aa9fb22014`. Live DEL-01-05 status remains `IN_PROGRESS`, SHA-256 `7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c`.
+
+The author changed only the authorized checker and two enforcement test modules. Exact postimages are:
+
+- checker: `03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89`
+- dependency tests: `8b686f4ed2b1729575d1961ff8bef7cfc4218795f816f4bb2b614d05510019c0`
+- locality tests: `54bb589632f764e9bdbd537e5f29ca75678bfd99492d4eea4467f2245f762bed`
+
+Both exact accepted probes reproduced their original false-negative PASS before repair; the intentional new regression assertions failed before repair. After repair, the aliased dynamic import BLOCKs at `core/app.py:2` as `UNCLASSIFIABLE_DYNAMIC_IMPORT`, and the external UDP call BLOCKs at `core/app.py:3` as `EXTERNAL_NETWORK_CALL` with endpoint `198.51.100.10`. Focused enforcement passes 23 tests; full enforcement passes 28 tests, including nine added methods and their matrix subcases. Registered `v2-core-posture` passes, API contract passes six tests, and harness self-check exits zero. Core/config/workflow hashes remain unchanged. Fixtures were parsed only; no source fixture import, networking, live service, or non-scratch database execution occurred.
+
+Fresh independent verifier attempt 2 returns `PASS_FOR_MANAGER_FAN_IN` with zero findings; after the evidence-format correction, its self-excluded manifest SHA-256 is `71f219267fbb58af1925b7aba3c2cfd140a24a18e3ab50bb2ea8e52e91447ac9`. Attempt 1 completed checks with zero findings but stalled before durable output and was interrupted. Attempt 2 preserves its wrong-cwd harness invocation and correction, transient evidence-string corrections, and shell-variable validation correction before the final passing seal. The candidate did not change between attempts.
+
+The separate RECONCILIATION backcheck passes with zero findings. Its exact changed population is two residuals and eight duplicate-sensitive residual-to-claim rows over seven distinct claims because `REQ-004` belongs to both repairs. It preserves the unselected REM-003 inquiry and HELD REM-004/REM-005 no-change rows, current `IN_PROGRESS` state, and D77 historical acceptance/AC/RF resolutions. After the evidence-reference refresh, backcheck handoff SHA-256 is `dd20c3c4dcd9b03c3088decf3005f715e1338ae43d6ea6fad72363777de4034d`; validation SHA-256 is `29ba7936195925dec64384f6359666d5b6fdae9279c5d1890b6a6d4ba64d44f7`.
+
+The exact three-path rollback inverse map and precheck are prepared. Current candidate hashes equal the required postimages and the BASIS copies equal the accepted preimages. Rollback was not invoked; no source or lifecycle byte was restored. Before publication it requires fresh exact-hash/no-overwrite checks through the approved repair workflow. After publication or artifact acceptance it requires a separately accepted successor or revert. CHANGE alone owns Git.
+
+All evidence here is derivative and finite. It does not establish universal scanner confinement, close `VER-004` or `OI-009`, reopen or erase D77 history, create a general source grant, change config/workflow/core contracts, or authorize professional reliance. A material change to authority, lifecycle status, any product postimage, hold policy, config/workflow/evaluated core, verification evidence, or claim maps requires the affected verification/backcheck to rerun.
+
+Next owner: HELP_HUMAN routes the exact candidate and evidence to REVIEW/owner for artifact-fitness and lifecycle disposition. Any Git closeout remains with CHANGE. No further WORKING_ITEMS production action is pending on the frozen bytes.

@@ -1,6 +1,6 @@
 {
   "kind": "D83_R5_application_terminal_output_manifest",
-  "status": "COMPLETE_VALIDATED_PASS",
+  "status": "COMPLETE_VALIDATED_PASS_FORMATTING_SUCCESSOR",
   "authority": "D-PEC-83 A-A",
   "source_commit": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
   "branch": "codex/pec-d83-d84-execution-20260907",
@@ -16,7 +16,13 @@
     "rollback_mappings": 57,
     "findings": 0
   },
-  "verifier_output_manifest_sha256": "e6fdfeb2c6ec50edae70694412feaf618d02c6d4442de80756c47bc0d4ea61f6",
+  "verifier_output_manifest_sha256": "86f63fd040b3178f4280ae7e232a71b3d10bedbe9433d33c473f757e4945d705",
+  "formatting_successor": "VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/OUTPUT_MANIFEST.json",
+  "prior_root_manifest": {
+    "source_commit": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+    "sha256": "501366e971d57d8030a73269648ed55942cc6fc97842e44324b7886695c2bad6",
+    "preserved_in_successor_preimage": true
+  },
   "self_excluded": "OUTPUT_MANIFEST.json",
   "files": [
     {
@@ -91,8 +97,8 @@
     },
     {
       "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/HANDOFF_STATE.md",
-      "sha256": "debfb6cdc2e604c6cb4dde57fc88688255411097a5b9d78f2acef3906922203e",
-      "bytes": 3130
+      "sha256": "800cec6b2cfb5d999fb074009c6d61451ab041d135a8078636eb9288270fb070",
+      "bytes": 3566
     },
     {
       "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/ROLLBACK/HANDOFF.md",
@@ -110,9 +116,29 @@
       "bytes": 69345
     },
     {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/HANDOFF.md",
+      "sha256": "d2ece823e26bc6d94aa9d00b46b1f8e8a6a04202760241b090a8a29afd8acb07",
+      "bytes": 802
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/OUTPUT_MANIFEST.json",
+      "sha256": "48ea88f42ea3c92fb866cfac6d0ed171b32afbe7d58abf2e7a62372c10e8ef46",
+      "bytes": 1264
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/PREIMAGE.json",
+      "sha256": "2b48ec34e0b5f01bc51c11d9960e874d78c75ebc9064f6e3e93efa15b2302d82",
+      "bytes": 14438
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/BACKCHECK_FORMATTING_SUCCESSOR_2026-09-08/VALIDATION.json",
+      "sha256": "56fc01cb2c2b13eb6b548e3f023811eeec8f04683892b0abea1c24b7a829106a",
+      "bytes": 1364
+    },
+    {
       "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/FINDINGS.csv",
-      "sha256": "10405dc6b2c0ddd1cca74a17b4e6ba2a1ca1e3082f34881f1a664134398875af",
-      "bytes": 46
+      "sha256": "6e29c522748c299b5fd15ae0979b3ac6c048374ee7bc8dcf6a179a079c9d232a",
+      "bytes": 45
     },
     {
       "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/HANDOFF.md",
@@ -121,8 +147,8 @@
     },
     {
       "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/OUTPUT_MANIFEST.json",
-      "sha256": "e6fdfeb2c6ec50edae70694412feaf618d02c6d4442de80756c47bc0d4ea61f6",
-      "bytes": 1829
+      "sha256": "86f63fd040b3178f4280ae7e232a71b3d10bedbe9433d33c473f757e4945d705",
+      "bytes": 3255
     },
     {
       "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/READ_MANIFEST.json",
@@ -140,7 +166,7 @@
       "bytes": 59985
     }
   ],
-  "file_count_excluding_manifest": 24,
+  "file_count_excluding_manifest": 28,
   "write_scope_exact": true,
-  "closure": "D83 Remaining application complete; D84 scanner prerequisite from this lane released; Git/receipt/coordination closeout owned elsewhere."
+  "closure": "D83 Remaining application complete; formatting successor normalizes only verifier FINDINGS CSV line ending; Git/receipt/coordination closeout owned elsewhere."
 }

@@ -1,0 +1,23 @@
+{
+  "schema": "pec-iteration-step0-basis/v1",
+  "repo_root": "/Users/ryan/.codex/worktrees/b347/chirality",
+  "working_root": "projects/pec",
+  "branch": "codex/pec-d83-d84-execution-20260907",
+  "head": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "upstream": "origin/codex/pec-d83-d84-execution-20260907",
+  "upstream_head": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+  "working_tree_at_activation": "CLEAN",
+  "iteration_02_seal_sha256": "017802d4782b6d0362031e756be7b7b0e3cfae65347fd9b8f25014aa9fb22014",
+  "session_authority_sha256": "c2542058f197363644d2973f7c408a8984b9113f943c0f5c357e62a0eba5fe2b",
+  "d84_SA_sha256": "6d9812b46874c39a4617476b8ba7b40702b3a3227c0511fc95b95aaeb8a2fe7a",
+  "d84_L_sha256": "2f52907fe4728fe70e21a095c27d077fa7b901a7f3ee080ae360cde9e48c9d10",
+  "source_preimages": {
+    "projects/pec/v2/tools/check_service_core_posture.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20"
+  },
+  "hold_register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+  "receipt_validator": "PASS",
+  "assessment_rerun": false,
+  "register_change_expected": false
+}

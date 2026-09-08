@@ -1,0 +1,4 @@
+ResidualID,Route,ClaimIDs,BackcheckDisposition,CurrentState,Reason
+DEL-01-05-REM-003,EVIDENCE,DEL-01-05::REQ-006;DEL-01-05::REQ-012;DEL-01-05::AC-004;DEL-01-05::VER-004,UNSELECTED_NO_EXECUTION,IN_PROGRESS,Choice E was not selected; scanner repair did not execute the evidence inquiry or establish the VER-004 sequence.
+DEL-01-05-REM-004,HELD,DEL-01-05::CLM-010;DEL-01-05::CON-002;DEL-01-05::AX-008,HELD_NO_DOCUMENT_ACT,IN_PROGRESS,Historical raw held wording is preserved; D77 G-A and exact artifact acceptance remain settled authority and are not reopened; no documentation harmonization occurred.
+DEL-01-05-REM-005,HELD,DEL-01-05::STATUS-CHECKING,RAW_HISTORY_PRESERVED_NO_SCANNER_STATUS_ACT,IN_PROGRESS,The raw R4 row described then-current CHECKING; D84 L separately and validly changed current state to IN_PROGRESS before repair; scanner repair made no additional lifecycle act.
