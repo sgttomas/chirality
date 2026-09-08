@@ -1,0 +1,115 @@
+{
+  "schema": "pec-d85-ruling-verification/v1",
+  "verdict": "PASS",
+  "scope": "D85_P_A_RULING_AND_PUBLICATION_CANDIDATE_ONLY",
+  "role_evidence": "instruction-asserted",
+  "requested_runtime": {
+    "model": "gpt-5.6-sol",
+    "reasoning": "medium",
+    "serving_identity_claimed": false
+  },
+  "base": {
+    "head": "55df51ac3201456e0f181823e3aefefef47a73bb",
+    "origin_main": "55df51ac3201456e0f181823e3aefefef47a73bb",
+    "equal": true
+  },
+  "authority": {
+    "owner_quote_fidelity": "PASS_VERBATIM_ACROSS_RULING_OWNER_DIRECTION_REGISTER_RECEIPT",
+    "production_effect": "AFTER_EXACT_RULING_AND_REGISTER_OBSERVED_ON_FETCHED_ORIGIN_MAIN",
+    "durable_session_authority_preserved_without_scope_ENLARGEMENT": true
+  },
+  "proposal_hashes": {
+    "selected_v2_proposal": {
+      "expected": "0da4d163c5d36fde15d7336256f412c1f31a6ac4e5d60c1d55c8e388c000541b",
+      "actual": "0da4d163c5d36fde15d7336256f412c1f31a6ac4e5d60c1d55c8e388c000541b",
+      "match": true
+    },
+    "selected_v2_manifest": {
+      "expected": "4f83533beadad4cdff56f061d50d34a556f4e54df12ffbe4da3218fd85321fd2",
+      "actual": "4f83533beadad4cdff56f061d50d34a556f4e54df12ffbe4da3218fd85321fd2",
+      "match": true
+    },
+    "current_selection": {
+      "expected": "e6b7fd693b0fee323314c4f64e64b4e143794a44c5dd8ed2f9d06d1298f6ab7e",
+      "actual": "e6b7fd693b0fee323314c4f64e64b4e143794a44c5dd8ed2f9d06d1298f6ab7e",
+      "match": true
+    },
+    "completed_review_manifest": {
+      "expected": "6bd963899a4cf670693950cda20f92c276df3a7eb725a394237befc6272abaa1",
+      "actual": "6bd963899a4cf670693950cda20f92c276df3a7eb725a394237befc6272abaa1",
+      "match": true,
+      "verdict": "PASS_FOR_RULING_PUBLICATION_AND_PROPOSAL_READINESS",
+      "open_material_findings": 0
+    }
+  },
+  "scope_checks": {
+    "exact_product_configuration_path_count": 9,
+    "exact_paths_and_acts_match_v2": true,
+    "administrative_scope_matches_v2": true,
+    "ordinary_initialized_to_in_progress_only_at_actual_start": true,
+    "one_later_closeout_receipt_after_fresh_number_discovery": true,
+    "checking_granted": false,
+    "issued_granted": false,
+    "artifact_acceptance_granted": false,
+    "full_del_01_03_or_p1_granted": false,
+    "author_then_fresh_read_only_verifier": true,
+    "production_coordination_root": "execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/**",
+    "production_coordination_is_sibling_of_authority_root": true,
+    "authority_root_immutable_after_common_seal": true,
+    "only_named_common_manifest_exclusion": "D85_EXECUTION_2026-09-08/CHANGE_PUBLICATION/**",
+    "additional_named_exclusions_found": []
+  },
+  "current_preimages": {
+    "del_01_03_sow": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341",
+    "del_01_03_status": "c6153c5c06334b00dbff29b460a48c40347e76c5dd13b5a23e918e36e3eac91e",
+    "software_workflow": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+    "gitignore": "93f7c8ad2e972efd1ec16864258f9c203bef7f190d79051bdc36d9ef4cad2aec",
+    "status_is_initialized": true,
+    "seven_new_product_paths_absent": true,
+    "memory_absent": true,
+    "dependencies": "TWO_SATISFIED_ANCHOR_ROWS_NO_EXECUTION_PREREQUISITE"
+  },
+  "holds_and_notices": {
+    "hold_register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "candidate_validation": {
+      "cwd": "projects/pec",
+      "target": "execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "operation": "candidate-validation",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}"
+    },
+    "production_hold_checks_deferred_for_fresh_post_merge_rerun": true,
+    "runtime_notices_are_coordination_only": true,
+    "pec_adoption_or_operational_authority_inferred": false
+  },
+  "register": {
+    "preimage_sha256": "90611eb20c4f1acdb702d96eeab3af833eb073da2cd66b386f0839439a842606",
+    "preimage_matches_origin_main": true,
+    "d85_row_count_before": 1,
+    "d85_row_count_after": 1,
+    "only_d85_row_changed": true,
+    "all_other_lines_byte_equal": true
+  },
+  "receipt": {
+    "preimage_sha256": "efe77c70bb93984989a95d3d2f63fcabdd0182432f7e4df8b49b5458bdf15d14",
+    "preimage_matches_origin_main": true,
+    "complete_prefix_preserved": true,
+    "parent": "Receipt-175",
+    "candidate": "Receipt-176",
+    "validator": {
+      "command": "python3 tools/validation/validate_pec_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "VALID projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied"
+    }
+  },
+  "candidate_whitespace": {
+    "command": "python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main",
+    "cwd": ".",
+    "includes_untracked": true,
+    "exit_code": 0,
+    "stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0)."
+  },
+  "broad_product_review_rerun": false,
+  "open_findings": []
+}

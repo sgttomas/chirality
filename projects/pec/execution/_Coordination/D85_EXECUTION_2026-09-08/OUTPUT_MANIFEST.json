@@ -1,0 +1,41 @@
+{
+  "schema": "pec-d85-authority-output-manifest/v1",
+  "status": "PASS_FOR_CHANGE_PUBLICATION",
+  "derivative_package": true,
+  "accepted_upstream": {
+    "base_commit": "55df51ac3201456e0f181823e3aefefef47a73bb",
+    "selected_v2_proposal_sha256": "0da4d163c5d36fde15d7336256f412c1f31a6ac4e5d60c1d55c8e388c000541b",
+    "selected_v2_manifest_sha256": "4f83533beadad4cdff56f061d50d34a556f4e54df12ffbe4da3218fd85321fd2",
+    "completed_review_manifest_sha256": "6bd963899a4cf670693950cda20f92c276df3a7eb725a394237befc6272abaa1"
+  },
+  "self_excluded": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/OUTPUT_MANIFEST.json",
+  "future_named_exclusion": {
+    "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/CHANGE_PUBLICATION/**",
+    "owner": "CHANGE",
+    "reason": "Publication evidence is additive after the common authority seal."
+  },
+  "additional_exclusions": [],
+  "nested_manifests_included": [
+    "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/OUTPUT_MANIFEST.json"
+  ],
+  "files": [
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/AGENT_GRAPH.md","sha256":"88adce4e6e487cf057793e94aae40a94174f7fcc9756af790e17d74f9ad021f4","bytes":1893},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/AUTHORIZED_SCOPE.md","sha256":"301fd94e3fd054f21e429319dbe38d676ada694eb433035324b1cf3d80995743","bytes":2000},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/BRIEFS/CHANGE_PUBLICATION.md","sha256":"ba0daa81b8b1cb4e67a3e23c1e233b50ff41c2404e2ce4add48c71f98b644e55","bytes":1468},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/BRIEFS/WORKING_ITEMS_PRODUCTION.md","sha256":"f1838bdc5fc55be0829a8ad76654ce6ea0f3efd4d7d9c2c07ba0981ad0c29020","bytes":2584},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/HANDOFF_STATE.md","sha256":"d43faed1b6c3ebc521f184b6396d6135297003be90cf14e23941e1fad54a8d4d","bytes":2058},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/OWNER_DIRECTION.md","sha256":"d3423d071a4f32a6b20b5852a1738f5c078024cf8c90b884178599d0212dcaf0","bytes":976},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/RUN_BASIS.md","sha256":"0a6dc52578bdd7f0cd111922156e387324a094cc08de8c9046d4379a84332147","bytes":2805},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/TERMINAL_SEAL.json","sha256":"36dd74d66bb9d035eb042036a0657249b9a939a6e1ebb9dd6b98532f2eecbb4c","bytes":1058},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VALIDATION.json","sha256":"5afd752dcb1da245412fcc75771268e37dd15b0661797e87184094044b0c6395","bytes":2222},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/BRIEF.md","sha256":"fe7e88272e2b1ac2e4c4f06752bc9d310ea0ba97b8df1ba812a0e2d4badcc740","bytes":2100},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/FINDINGS.md","sha256":"1d898fce22d2b048a786081ba424a154912afe6ff4d668fba508b66ce0d79056","bytes":339},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/HANDOFF.md","sha256":"117ce6816f52274cfd301e4d9a55f247f8b7a9888decfbe441bf3d00aba6b5d0","bytes":1717},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/OUTPUT_MANIFEST.json","sha256":"b4c10ad2850e7d2bd3900abc713292145ecc0bc125079309dcc4925bec89c445","bytes":902},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/VALIDATION.json","sha256":"52756d77aea11305cbb4ee643f627e0f8bd1b2925a11969095359654fbe69939","bytes":4992},
+    {"path":"projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/VERIFICATION.md","sha256":"0d35aee6b4bca38ac112924d45dd11042698e9e6e9d55aeab1a8f35f018b095f","bytes":5697},
+    {"path":"projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md","sha256":"67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851","bytes":5945},
+    {"path":"projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md","sha256":"fb3a3a6b483522fce3a36a0974cbf98ef2fbba43c495ce8b7b10d3a6dc3a22ba","bytes":52787},
+    {"path":"projects/pec/loop/LOOP_RECEIPTS.md","sha256":"6e48e9656fe98f44fe4075836f3649bae173f5a75bcc0f99808ff14430a7cf84","bytes":447621}
+  ]
+}
