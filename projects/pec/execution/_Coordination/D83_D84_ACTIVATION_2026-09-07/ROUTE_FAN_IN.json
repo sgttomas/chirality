@@ -1,0 +1,19 @@
+{
+  "parent_clearance": "Parent read/accepted manager preparation return; independent final review still required.",
+  "manifest": "projects/pec/execution/_Coordination/D84_CHECKING_ROUTE_PREP_2026-09-07/OUTPUT_MANIFEST.json",
+  "sha256": "ec2ff62fd8ba274722f35ad30a75244954a01e2eecf4b9272255ae650765faa5",
+  "read_handoff": "projects/pec/execution/_Coordination/D84_CHECKING_ROUTE_PREP_2026-09-07/HANDOFF_STATE.md",
+  "hold_command": [
+    "python3",
+    "execution/_Scripts/pec_reliance_hold.py",
+    "--register",
+    "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+    "--target",
+    "execution/_Coordination/D84_CHECKING_ROUTE_PREP_2026-09-07/ROUTE_PROPOSAL.md",
+    "--operation",
+    "candidate-validation"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+  "stderr": ""
+}

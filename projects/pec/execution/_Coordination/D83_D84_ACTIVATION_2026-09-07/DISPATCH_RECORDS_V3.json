@@ -1,0 +1,11 @@
+{
+  "parent": "/root",
+  "agent": "/root/pec_activation_verifier",
+  "form": "ephemeral Agent2",
+  "class": "delegated-harness-native",
+  "role_enforcement": "instruction-asserted",
+  "no_delegation": "instruction+config asserted",
+  "brief": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/BRIEFS/pec_activation_verifier.md",
+  "brief_sha256": "d2ec33c1e212bf2a36f0f28264a053d10a72deb2c3d6cca793e4da67315ba6bb",
+  "state": "dispatched; terminal pending"
+}

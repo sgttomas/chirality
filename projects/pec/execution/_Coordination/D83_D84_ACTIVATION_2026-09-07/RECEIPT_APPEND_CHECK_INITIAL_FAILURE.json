@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "tools/validation/validate_pec_loop_receipts.py",
+    "--repo-root",
+    "."
+  ],
+  "cwd": "{REPO_ROOT}",
+  "exit_code": 1,
+  "stdout": "INVALID OWNER_DIRECTION_STATUS /Users/ryan/.codex/worktrees/b347/chirality/projects/pec/loop/LOOP_RECEIPTS.md:1921: Owner-Direction must include 'CHAT_TRANSCRIPTION \u2014 EVIDENCE, NOT RULING'\n",
+  "stderr": "",
+  "prefix_preserved": true,
+  "suffix_receipt": "Receipt-172"
+}

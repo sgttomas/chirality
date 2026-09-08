@@ -1,0 +1,27 @@
+{
+  "status": "COMPLETE_FOR_PARENT_REVIEW",
+  "derivative_package": true,
+  "outputs": [
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/BRIEF.md",
+      "sha256": "80ad7460d087637c86078694fa86c7254902e471eb98b7c9dfe7968f7570ec29"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CHECKS.json",
+      "sha256": "bb131c43b8634d5b75a9a445ebecb64069c6c1622ab1b26389dd6a298f1a434d"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/HANDOFF_STATE.md",
+      "sha256": "9e241759f8e517ffff2ec614193617333dbd1cf601419cb763d71918a74a52a3"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/PROPOSAL.md",
+      "sha256": "d8affa0a474fc9c969bb9df1a59df3acdfa7a3bd2e42e5d299e8dacb8e6ab952"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/SOURCE_MANIFEST.json",
+      "sha256": "5cc91aeb77dca7cb3593ad4f2dd4f28955210ae8b27537931cb0669ce196ef83"
+    }
+  ],
+  "checks": "10 hold preflights ALLOW; current source hash integrity and own-file whitespace pass; no product tests"
+}

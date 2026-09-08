@@ -1,0 +1,20 @@
+{
+  "status": "V2_PROPOSAL_PENDING_INDEPENDENT_BACKCHECK",
+  "selected_proposal": {
+    "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/PROPOSAL.md",
+    "sha256": "0da4d163c5d36fde15d7336256f412c1f31a6ac4e5d60c1d55c8e388c000541b"
+  },
+  "selected_handoff": {
+    "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/HANDOFF_STATE.md",
+    "sha256": "a3d433b35ac044ec10d3125ed5e6a7d4aedbb550d00623458d75082a67b5cc89"
+  },
+  "successor_manifest": {
+    "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/OUTPUT_MANIFEST.json",
+    "sha256": "4f83533beadad4cdff56f061d50d34a556f4e54df12ffbe4da3218fd85321fd2"
+  },
+  "preserved_v1_manifest": {
+    "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/OUTPUT_MANIFEST.json",
+    "sha256": "a418452faf3d3fb3cd2771f2e8ec5f20a5dfe72d75d9e8cff3e314c010177dae"
+  },
+  "common_evidence": "Original V1 BRIEF.md, CHECKS.json and SOURCE_MANIFEST.json retained; original proposal/handoff are historical."
+}

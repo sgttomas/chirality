@@ -1,0 +1,7 @@
+{
+  "command": "python3 tools/validation/validate_pec_loop_receipts.py --repo-root .",
+  "exit_code": 0,
+  "stdout": "VALID /Users/ryan/.codex/worktrees/b347/chirality/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied\n",
+  "stderr": "",
+  "correction": "Added required receipt-only epistemic label; exact quotation and owning ruling records unchanged. Initial failure preserved separately."
+}

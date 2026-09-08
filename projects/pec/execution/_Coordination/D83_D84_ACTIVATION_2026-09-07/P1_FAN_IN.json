@@ -1,0 +1,21 @@
+{
+  "parent_clearance": "Parent read manager terminal for integration; fresh independent verifier required",
+  "manifest": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/OUTPUT_MANIFEST.json",
+  "sha256": "a418452faf3d3fb3cd2771f2e8ec5f20a5dfe72d75d9e8cff3e314c010177dae",
+  "proposal": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/PROPOSAL.md",
+  "proposal_sha256": "d8affa0a474fc9c969bb9df1a59df3acdfa7a3bd2e42e5d299e8dacb8e6ab952",
+  "packet": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_P1_STORE_GUARD_PROPOSAL_2026-09-07.md",
+  "hold_command": [
+    "python3",
+    "execution/_Scripts/pec_reliance_hold.py",
+    "--register",
+    "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+    "--target",
+    "execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/PROPOSAL.md",
+    "--operation",
+    "candidate-validation"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+  "stderr": ""
+}

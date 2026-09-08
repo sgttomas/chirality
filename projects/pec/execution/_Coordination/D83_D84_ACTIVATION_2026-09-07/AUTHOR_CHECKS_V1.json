@@ -1,0 +1,20 @@
+{
+  "receipt_prefix_preserved": true,
+  "receipt_suffix_count": 1,
+  "status_source_diff": "",
+  "json_files_parsed": [
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/DISPATCH_RECORDS_V1.json",
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/RECEIPT_APPEND_CHECK.json",
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/RECEIPT_APPEND_CHECK_INITIAL_FAILURE.json",
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/STEP0.json",
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/RECEIPT_PREIMAGE.json",
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/ROUTE_FAN_IN.json",
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/PREFLIGHT.json",
+    "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/AUTHORITY_READ_MANIFEST.json"
+  ],
+  "diff_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

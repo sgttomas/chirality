@@ -1,0 +1,1449 @@
+{
+  "base": "35249accf139f52478d029458946e50ed25ee5dc",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "selected_pins": [
+    {
+      "name": "manager_full",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/OUTPUT_MANIFEST.json",
+      "sha256": "0062cc22f1a234444f9438d49c0f470448cdaa60fa2922eac670960c2beea92d",
+      "current_sha256": "0062cc22f1a234444f9438d49c0f470448cdaa60fa2922eac670960c2beea92d",
+      "match": true
+    },
+    {
+      "name": "application_full",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/OUTPUT_MANIFEST.json",
+      "sha256": "26fe5361866e8a600af90f1d5048d689d1c8f754c2adf1ae336aa12a4c0880bd",
+      "current_sha256": "26fe5361866e8a600af90f1d5048d689d1c8f754c2adf1ae336aa12a4c0880bd",
+      "match": true
+    },
+    {
+      "name": "scanner",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SCANNER/OUTPUT_MANIFEST.json",
+      "sha256": "d2865bb7b08d1d1d86107ea32a1ceeb14c577004e18833123fdc6e81a2d1922f",
+      "current_sha256": "d2865bb7b08d1d1d86107ea32a1ceeb14c577004e18833123fdc6e81a2d1922f",
+      "match": true
+    },
+    {
+      "name": "final_structural_accounting",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/AGGREGATE_ADDITIVE/FINAL_STRUCTURAL_ACCOUNTING/OUTPUT_MANIFEST.json",
+      "sha256": "c378d3b9dd643539bb4ed1753219e85a9c9f5abb17613d4db8e3d449a92c0bfb",
+      "current_sha256": "c378d3b9dd643539bb4ed1753219e85a9c9f5abb17613d4db8e3d449a92c0bfb",
+      "match": true
+    },
+    {
+      "name": "independent_final_R4",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/R4_REVIEW/OUTPUT_MANIFEST.json",
+      "sha256": "5d105f0733b893032e4e7d153b7354ab24ca6a45e8dcc863762ea8e805c72bac",
+      "current_sha256": "5d105f0733b893032e4e7d153b7354ab24ca6a45e8dcc863762ea8e805c72bac",
+      "match": true
+    }
+  ],
+  "source_manifest_count": 648,
+  "source_drift": [
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "expected": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+      "current": "e91fff1d51809715b8ba4e6f659cd15f24c80ac38d33653516f456e10641b7f4"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "expected": "41d74244fef0e192caf3b47ca01f644a522ecb462ed8181eee58796b2ded85dd",
+      "current": "88f4579533f0a37c6dd26e8eb209566c781264a73d44dd615af520cea0fcc688"
+    }
+  ],
+  "carrier_preimages": [
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+      "expected": "99ff6d67b15056165a814e5b64086da6bd29cac0b86e9f6ddd7462f3e20cc71c",
+      "current": "99ff6d67b15056165a814e5b64086da6bd29cac0b86e9f6ddd7462f3e20cc71c",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+      "expected": "c23a1a46e96361de3cae96d6be2f994fbc71482af52958b26751b016a4bfecd6",
+      "current": "c23a1a46e96361de3cae96d6be2f994fbc71482af52958b26751b016a4bfecd6",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+      "expected": "a37d37ee118dab727548742246f928405d79415e7e69b99142cdb10246964d60",
+      "current": "a37d37ee118dab727548742246f928405d79415e7e69b99142cdb10246964d60",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "expected": "c2f5ee7bd025a83c73b7a884e7eecd5e9545496fb81fdc0ffc6deacfbbb7c959",
+      "current": "c2f5ee7bd025a83c73b7a884e7eecd5e9545496fb81fdc0ffc6deacfbbb7c959",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+      "expected": "4810d911f12c793462123bd2a36003c35e64475b5280ec088766d3a64871afc1",
+      "current": "4810d911f12c793462123bd2a36003c35e64475b5280ec088766d3a64871afc1",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "expected": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+      "current": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+      "frozen": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md",
+      "expected": "86a95eebc0fe2ad74cce49e4a41b34cefc9dfcd2ab774f3099e253e6dff8e56f",
+      "current": "86a95eebc0fe2ad74cce49e4a41b34cefc9dfcd2ab774f3099e253e6dff8e56f",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md",
+      "expected": "69217baccc7e3d224744e911b80d2711cbedb7b8331353b912f28b53be56b566",
+      "current": "69217baccc7e3d224744e911b80d2711cbedb7b8331353b912f28b53be56b566",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md",
+      "expected": "b7c0eb4d066686efd93f3dae15d76d1d7e2b3a6e94cb52170b55597078ce7de2",
+      "current": "b7c0eb4d066686efd93f3dae15d76d1d7e2b3a6e94cb52170b55597078ce7de2",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md",
+      "expected": "7f603cbb185aeb39eec060563c7dc043fc08f3113b970004feddbf4dad60ed5f",
+      "current": "7f603cbb185aeb39eec060563c7dc043fc08f3113b970004feddbf4dad60ed5f",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md",
+      "expected": "0eb7455c6e3e3af6def22578fffbe587b8e32dc007c4ab642bf50ada5c8fa66f",
+      "current": "0eb7455c6e3e3af6def22578fffbe587b8e32dc007c4ab642bf50ada5c8fa66f",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md",
+      "expected": "8142a9f53dd3e5b5fa2b398a76fedbe23a86accfeaf48e3ae7263754cd109ed4",
+      "current": "8142a9f53dd3e5b5fa2b398a76fedbe23a86accfeaf48e3ae7263754cd109ed4",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+      "expected": "c26d6861c1f07ee33c8fec6c74d126270d619955da1068c853a4b0132c2a8792",
+      "current": "c26d6861c1f07ee33c8fec6c74d126270d619955da1068c853a4b0132c2a8792",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+      "expected": "f8816dcaa48f3ca980f1b6db51129efb5d3a5095d0120fbf4698878e9b9121b5",
+      "current": "f8816dcaa48f3ca980f1b6db51129efb5d3a5095d0120fbf4698878e9b9121b5",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+      "expected": "4cf4d59c47254cd334e751889ba3e6327634e197b2edab7ffc58d3fd2791c160",
+      "current": "4cf4d59c47254cd334e751889ba3e6327634e197b2edab7ffc58d3fd2791c160",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+      "expected": "1b14db6bedec408a409e175fa78b6d92cd3de9a2adeefa45d2729954d537c416",
+      "current": "1b14db6bedec408a409e175fa78b6d92cd3de9a2adeefa45d2729954d537c416",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+      "expected": "7414b154f06470f422709874e2b0ecc7aa94a6f294c1c94cd590ded2de7f188a",
+      "current": "7414b154f06470f422709874e2b0ecc7aa94a6f294c1c94cd590ded2de7f188a",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+      "expected": "fd6080075a378ac9993c05d79b1e47f3b67329383e66dbd4be0f9f0028fbf6e5",
+      "current": "fd6080075a378ac9993c05d79b1e47f3b67329383e66dbd4be0f9f0028fbf6e5",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md",
+      "expected": "a024c5ed98513acfde552d651ea0e7fd5c0f99c35eea7f300034d6aee1cf48a4",
+      "current": "a024c5ed98513acfde552d651ea0e7fd5c0f99c35eea7f300034d6aee1cf48a4",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+      "expected": "7c9902184deeb30b80728979fd76c710a23396ba549c144bc713134e51a94dd1",
+      "current": "7c9902184deeb30b80728979fd76c710a23396ba549c144bc713134e51a94dd1",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+      "expected": "e11421d3eabcf50e240ef11e0af1f998a0de213ea3da5128e09f20feff5754d7",
+      "current": "e11421d3eabcf50e240ef11e0af1f998a0de213ea3da5128e09f20feff5754d7",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+      "expected": "08c9a093a7a412af8e7c8d4c9dc4e610533267ae2c55b4585ee7d1f8822b73ed",
+      "current": "08c9a093a7a412af8e7c8d4c9dc4e610533267ae2c55b4585ee7d1f8822b73ed",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+      "expected": "73f3247c1fd1b9e9cd7f944651c46a31b3fbb8fc2472c8828d930ba09c35ec44",
+      "current": "73f3247c1fd1b9e9cd7f944651c46a31b3fbb8fc2472c8828d930ba09c35ec44",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md",
+      "expected": "95fb8f9d0ec0f23f047dcf2d8ce2b84614a1de6089b95d166d1a3630177942c2",
+      "current": "95fb8f9d0ec0f23f047dcf2d8ce2b84614a1de6089b95d166d1a3630177942c2",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md",
+      "expected": "53a679574db2308af8d45c2ba28f5e29bfae2a294c7d1b053bb8e8391df49179",
+      "current": "53a679574db2308af8d45c2ba28f5e29bfae2a294c7d1b053bb8e8391df49179",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md",
+      "expected": "be64f574e68d322375d0c9ba3b7cf17cef1fa1c824fe9764a5643dc877850e4c",
+      "current": "be64f574e68d322375d0c9ba3b7cf17cef1fa1c824fe9764a5643dc877850e4c",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md",
+      "expected": "9755a57025ae7217312cac26a53ff6b8cf6e7d5a073ffb318e1055c705c22a7c",
+      "current": "9755a57025ae7217312cac26a53ff6b8cf6e7d5a073ffb318e1055c705c22a7c",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md",
+      "expected": "23fad2dc48088abf369db19931077af28e4e2644ba12d7e3ad4e169fb0c4f4f0",
+      "current": "23fad2dc48088abf369db19931077af28e4e2644ba12d7e3ad4e169fb0c4f4f0",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md",
+      "expected": "22e3ed6b0bdc38aeb51e1cfdc96551421d95d36b1d22a3e2430696d7d62ae3ac",
+      "current": "22e3ed6b0bdc38aeb51e1cfdc96551421d95d36b1d22a3e2430696d7d62ae3ac",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md",
+      "expected": "53d45abdbc213ee262a71b3715b278bb316426bae584637297b7c3a5c02983e0",
+      "current": "53d45abdbc213ee262a71b3715b278bb316426bae584637297b7c3a5c02983e0",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md",
+      "expected": "d497e47566f7b2ac1eb2144daa88dccad06d14356deaa2d250fdeafc3eeca330",
+      "current": "d497e47566f7b2ac1eb2144daa88dccad06d14356deaa2d250fdeafc3eeca330",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+      "expected": "f0841ea1987d66c9fe91c8451a48770a50cccac12be5735225b797be0c466501",
+      "current": "f0841ea1987d66c9fe91c8451a48770a50cccac12be5735225b797be0c466501",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+      "expected": "2d662bcd27a1af9e2c2469e58060baa9b4c2681ab5ff2eee77846516ddf1066e",
+      "current": "2d662bcd27a1af9e2c2469e58060baa9b4c2681ab5ff2eee77846516ddf1066e",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+      "expected": "c4b6f503ab7599978f7fe2e51625ccf5fecdeac295fb8203a3a3379b8bd66250",
+      "current": "c4b6f503ab7599978f7fe2e51625ccf5fecdeac295fb8203a3a3379b8bd66250",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+      "expected": "ef8ebf5df340578b317abb98f45c371df18d7c656ae403c74909019e9c91b4c7",
+      "current": "ef8ebf5df340578b317abb98f45c371df18d7c656ae403c74909019e9c91b4c7",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+      "expected": "922b89de97d3a0013f05ff939e148f78450631b047fd75a72013332bf6bfa5f2",
+      "current": "922b89de97d3a0013f05ff939e148f78450631b047fd75a72013332bf6bfa5f2",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+      "expected": "a7e72ebf6c52876e2f59c9eedff3039c8e4b6f7e3d5779b591df11cba1449e5a",
+      "current": "a7e72ebf6c52876e2f59c9eedff3039c8e4b6f7e3d5779b591df11cba1449e5a",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+      "expected": "4b119028c9af1d82aa529cdd1bf851493f63b3471998ca0dbb3667e2caa0d5ee",
+      "current": "4b119028c9af1d82aa529cdd1bf851493f63b3471998ca0dbb3667e2caa0d5ee",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+      "expected": "f33ac4a98d0650deb5e6815eb7d201a55f79750ab76bde6f7b3edf9573f1d4a4",
+      "current": "f33ac4a98d0650deb5e6815eb7d201a55f79750ab76bde6f7b3edf9573f1d4a4",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+      "expected": "4cdf6ec8ae63491527cbc9c58641d402e9642c868879917a09727cbc67634960",
+      "current": "4cdf6ec8ae63491527cbc9c58641d402e9642c868879917a09727cbc67634960",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+      "expected": "342fcb850982ef57ea5ab07dd95b886a381b058ce42c3162c8cd9b3eb4b61acc",
+      "current": "342fcb850982ef57ea5ab07dd95b886a381b058ce42c3162c8cd9b3eb4b61acc",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md",
+      "expected": "c827fb9feeaa78156fd1c56221aa5fc426bdd2651895b752d2eec0841283c33e",
+      "current": "c827fb9feeaa78156fd1c56221aa5fc426bdd2651895b752d2eec0841283c33e",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+      "expected": "3a330ed651b411c5ab5e1c0f618ebcc9c7a19b79cf51789778950bc7a8a009c3",
+      "current": "3a330ed651b411c5ab5e1c0f618ebcc9c7a19b79cf51789778950bc7a8a009c3",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+      "expected": "61680c0f0eb67d39137d07fa637b7051b7661b6511b0aebd6eafa793be7f75c3",
+      "current": "61680c0f0eb67d39137d07fa637b7051b7661b6511b0aebd6eafa793be7f75c3",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+      "expected": "6f1e3562d087b6e81efc2e00dc82bc2c621687f98fbe3d388d998b2dc5c94c0b",
+      "current": "6f1e3562d087b6e81efc2e00dc82bc2c621687f98fbe3d388d998b2dc5c94c0b",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+      "expected": "51a95d30a7585a6448035dd9ff8a866017212648784b6118335922a8a3dbeead",
+      "current": "51a95d30a7585a6448035dd9ff8a866017212648784b6118335922a8a3dbeead",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+      "expected": "35a457b82b888f218e677552b60976e8914b28f052c9bc36ad896f612f2187ed",
+      "current": "35a457b82b888f218e677552b60976e8914b28f052c9bc36ad896f612f2187ed",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "expected": "d3300fe1a73b53f510c3ee58088707743fd4b99b9b1f064239d45092cfd8e1c9",
+      "current": "d3300fe1a73b53f510c3ee58088707743fd4b99b9b1f064239d45092cfd8e1c9",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md",
+      "expected": "5b3c2e5567f8a62196b46b81a5117a2283de1cdc6b239620c3bc42c133f035bc",
+      "current": "5b3c2e5567f8a62196b46b81a5117a2283de1cdc6b239620c3bc42c133f035bc",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md",
+      "expected": "ab06eef6d934fb4e2f39def1a8c610a78c56b23f0f81780e92529e8ac496a189",
+      "current": "ab06eef6d934fb4e2f39def1a8c610a78c56b23f0f81780e92529e8ac496a189",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md",
+      "expected": "5007aea8384903fedc7351ab023a1208b2bfed890d5cd8843b427c6277ec3c40",
+      "current": "5007aea8384903fedc7351ab023a1208b2bfed890d5cd8843b427c6277ec3c40",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md",
+      "expected": "f2413ebc0314de0cfa5921c102bba8a526ff306911786fbb82a6f5c72a288557",
+      "current": "f2413ebc0314de0cfa5921c102bba8a526ff306911786fbb82a6f5c72a288557",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md",
+      "expected": "02bc7ef9651c3a36ff391d93849be51cd458667142f63be76dd2d4c6f206fae3",
+      "current": "02bc7ef9651c3a36ff391d93849be51cd458667142f63be76dd2d4c6f206fae3",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md",
+      "expected": "c081994028e728ccd3e5951388958ace66474be90c6a3c2b03009da8de3fafdd",
+      "current": "c081994028e728ccd3e5951388958ace66474be90c6a3c2b03009da8de3fafdd",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md",
+      "expected": "9577e29a009bdcb2358ff7da50489f2002e73d9a8f1bc3f9f0f0dfbbc469f1bf",
+      "current": "9577e29a009bdcb2358ff7da50489f2002e73d9a8f1bc3f9f0f0dfbbc469f1bf",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md",
+      "expected": "24030ebc3d4badfce74149e729a67b6a525522ccd08f048dd4d31811d57905a3",
+      "current": "24030ebc3d4badfce74149e729a67b6a525522ccd08f048dd4d31811d57905a3",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md",
+      "expected": "83e644c4f797d8b4c2a25952a0be3161d064dcee52e8b365faa845b9654f5bb6",
+      "current": "83e644c4f797d8b4c2a25952a0be3161d064dcee52e8b365faa845b9654f5bb6",
+      "frozen": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md",
+      "expected": "b16f2e2638df5c5fd31a57e04b1d2ca2c358d457454d9f36f714bae2d85adcbb",
+      "current": "b16f2e2638df5c5fd31a57e04b1d2ca2c358d457454d9f36f714bae2d85adcbb",
+      "frozen": false
+    }
+  ],
+  "scanner_preimages": [
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "preimage_sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "exists": true,
+      "base_equals_current": true,
+      "postimage_sha256": null,
+      "authorization": "PROPOSED_ONLY; exact owner source fence and CHECKING path outstanding",
+      "current_sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+      "match": true
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_dependency_assertion.py",
+      "preimage_sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "exists": true,
+      "base_equals_current": true,
+      "postimage_sha256": null,
+      "authorization": "PROPOSED_ONLY; exact owner source fence and CHECKING path outstanding",
+      "current_sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+      "match": true
+    },
+    {
+      "path": "projects/pec/v2/tests/enforcement/test_locality_assertion.py",
+      "preimage_sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+      "source_commit": "2be412ccea62bdc4bd96deb082c46d7a792076ea",
+      "exists": true,
+      "base_equals_current": true,
+      "postimage_sha256": null,
+      "authorization": "PROPOSED_ONLY; exact owner source fence and CHECKING path outstanding",
+      "current_sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+      "match": true
+    }
+  ],
+  "hold_checks": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/SELECTED_OUTPUTS.json",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/REPORT.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "v2/tools/check_service_core_posture.py",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "v2/tests/enforcement/test_dependency_assertion.py",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "v2/tests/enforcement/test_locality_assertion.py",
+        "--operation",
+        "candidate-validation"
+      ],
+      "cwd": "{WORKING_ROOT}",
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    }
+  ]
+}

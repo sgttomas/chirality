@@ -1,0 +1,59 @@
+{
+  "role": "CHANGE Agent 1; native role instruction-asserted; model identity not exposed",
+  "release": "HELP_HUMAN accepted independent PASS with zero open findings; common terminal seal released 2026-09-07 for scoped commit, push, ready PR. No merge authority.",
+  "scope": "Three preparation coordination roots, exact D83/D84 ruling records and D85 proposal, decision register D83/D84/D85 rows and Receipt172 append; this additive CHANGE_PUBLICATION evidence only.",
+  "branch": "codex/pec-d83-d84-activation-20260907",
+  "base": "35249accf139f52478d029458946e50ed25ee5dc",
+  "fresh_origin_main": "c5192790f98ec024e7c2728cb1d4df3ae2b2a2dd",
+  "remote_delta": "PR752 app-dev presentation paths and .gitattributes exact app-dev SOURCE.patch whitespace exemption; no PEC overlap. No merge/rebase/reset performed.",
+  "seal_verified": "5e10468aa3ae27d1e408c96ad106632d64934b6a854066e106cdd53f4bc9dec0",
+  "seal_entries": 46,
+  "cwd": "repository root",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_pec_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/b347/chirality/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_candidate_whitespace.py",
+        "--base-ref",
+        "origin/main"
+      ],
+      "exit": 0,
+      "stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n",
+      "stderr": ""
+    }
+  ],
+  "not_applicable": "Root tranche manifest: no protected instruction-surface path changes. Source, tool, instruction-entrypoint, kill and parity checks: coordination-only ruling/proposal publication; no corresponding capability changed. CI remains independent.",
+  "self_check_prior": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+    "exit": 0,
+    "severities": {
+      "REVIEW": 4,
+      "WARN": 55,
+      "INFO": 14,
+      "NOT_APPLICABLE": 1
+    },
+    "raw_evidence": "../SELF_CHECK_POST_AUTHOR.json; independently repeated by CHANGE with same summary and exit 0"
+  }
+}

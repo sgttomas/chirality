@@ -1,0 +1,50 @@
+{
+  "base": "35249accf139f52478d029458946e50ed25ee5dc",
+  "independent_review_manifest": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/OUTPUT_MANIFEST.json",
+  "sha256": "6bd963899a4cf670693950cda20f92c276df3a7eb725a394237befc6272abaa1",
+  "parent_fan_in": "accepted for ruling/preparation publication only",
+  "review_verdict": "PASS; zero open material findings; IV001 repaired by owning V2 and independently backchecked",
+  "hold_command": [
+    "python3",
+    "execution/_Scripts/pec_reliance_hold.py",
+    "--register",
+    "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+    "--target",
+    "execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/INDEPENDENT_REVIEW_V1/OUTPUT_MANIFEST.json",
+    "--operation",
+    "candidate-validation"
+  ],
+  "hold_exit_code": 0,
+  "hold_stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+  "hold_stderr": "",
+  "register_only_D83_D84_and_new_D85": true,
+  "receipt_prefix_preserved": true,
+  "live_status_source_diff": "",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_pec_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "{REPO_ROOT}",
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/b347/chirality/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "{REPO_ROOT}",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "product_checks": "NOT_APPLICABLE governance preparation",
+  "CHANGE_final_publication_checks": "PENDING; no Git act asserted"
+}

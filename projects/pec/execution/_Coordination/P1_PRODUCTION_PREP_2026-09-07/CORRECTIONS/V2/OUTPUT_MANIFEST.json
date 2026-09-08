@@ -1,0 +1,27 @@
+{
+  "status": "CORRECTION_PREPARED_FOR_INDEPENDENT_BACKCHECK",
+  "supersedes_proposal_only": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/PROPOSAL.md",
+  "original_manifest_sha256": "a418452faf3d3fb3cd2771f2e8ec5f20a5dfe72d75d9e8cff3e314c010177dae",
+  "outputs": [
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/CHECKS.json",
+      "sha256": "11cd9e5084ec23858fc21703e28cceddd13cb2804fb16bec434d15aa16066000"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/CORRECTION_RECORD.md",
+      "sha256": "bb806bc06a885dd4ed2e8f1e0e11a557c490792d592845a4e1c544926b0417fc"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/HANDOFF_STATE.md",
+      "sha256": "a3d433b35ac044ec10d3125ed5e6a7d4aedbb550d00623458d75082a67b5cc89"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/PROPOSAL.md",
+      "sha256": "0da4d163c5d36fde15d7336256f412c1f31a6ac4e5d60c1d55c8e388c000541b"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/P1_PRODUCTION_PREP_2026-09-07/CORRECTIONS/V2/SOURCE_MANIFEST.json",
+      "sha256": "6322f4576db7cee871d29ef1472c6c9daab5ef685a821938396f311842ea96f6"
+    }
+  ]
+}
