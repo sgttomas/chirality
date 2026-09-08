@@ -1,0 +1,12 @@
+{
+  "schema": "chirality-affected-checks/v1",
+  "checks": [
+    "harness-self-check",
+    "v2-api-contract",
+    "v2-core-posture",
+    "v2-loop-registry",
+    "v2-store-guard"
+  ],
+  "status": "PASS",
+  "verdict": "exact match to attempt-2 author and manager evidence"
+}

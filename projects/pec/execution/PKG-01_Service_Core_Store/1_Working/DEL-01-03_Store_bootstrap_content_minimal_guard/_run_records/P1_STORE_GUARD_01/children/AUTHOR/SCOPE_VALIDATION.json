@@ -1,0 +1,17 @@
+{
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "allowed": [
+    "projects/pec/v2/src/pec_v2/core/ports/store.py",
+    "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+    "projects/pec/v2/src/pec_v2/adapters/storage/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+    "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+    "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+    "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+    "projects/pec/.gitignore",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR"
+  ],
+  "validated_path_count": 16,
+  "violations": []
+}

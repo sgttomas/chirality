@@ -1,0 +1,9 @@
+{
+  "schema": "chirality-generated-drift/v1",
+  "source_manifest": "../AUTHOR/MANIFEST.json",
+  "normalized_manifest": "AUTHOR_MANIFEST_COMPAT.json",
+  "status": "PASS",
+  "findings": [],
+  "listed_file_count": 7,
+  "completeness": "PASS: seven non-root files observed and listed; the root MANIFEST.json is the only exclusion; no nested manifests exist"
+}

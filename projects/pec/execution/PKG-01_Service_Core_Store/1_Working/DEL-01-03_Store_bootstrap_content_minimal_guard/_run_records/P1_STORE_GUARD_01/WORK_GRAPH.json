@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-working-items-graph/v1",
+  "version": 1,
+  "package_id": "PKG-01",
+  "deliverable_ids": ["DEL-01-03"],
+  "selection_authority": "D-PEC-85 P-A",
+  "posture": "MIXED",
+  "nodes": [
+    {"id": "N0", "owner": "WORKING_ITEMS", "purpose": "production start, evidence, and check registration", "status": "COMPLETE"},
+    {"id": "N1", "owner": "TASK+software-bounded-implementation", "purpose": "write eight non-profile product paths", "status": "REMEDIATION_COMPLETE", "model": "gpt-5.6-sol", "reasoning": "medium", "fork_turns": "none", "role_evidence": "instruction-asserted"},
+    {"id": "N2", "owner": "TASK+software-code-review", "purpose": "fresh read-only substantive verification", "status": "COMPLETE_PASS", "model": "gpt-5.6-sol", "reasoning": "medium", "fork_turns": "none", "role_evidence": "instruction-asserted"},
+    {"id": "N3", "owner": "WORKING_ITEMS", "purpose": "validated fan-in and honest residual handoff", "status": "COMPLETE"}
+  ],
+  "edges": [["N0", "N1"], ["N1", "N2"], ["N2", "N3"]],
+  "integration_owner": "WORKING_ITEMS",
+  "overlap_rule": "serialized; verifier read-only; defects return to author",
+  "acceptance_boundary": "technical fan-in only; no artifact or lifecycle acceptance"
+}

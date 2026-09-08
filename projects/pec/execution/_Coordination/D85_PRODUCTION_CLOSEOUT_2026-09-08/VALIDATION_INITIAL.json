@@ -1,0 +1,28 @@
+{
+  "status": "READY_AWAITING_PRODUCTION_MANAGER_RETURN",
+  "base_commit": "1b780310665240f1df85ea4b127168521639a775",
+  "origin_main_equal": true,
+  "authority": {
+    "ruling_sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851",
+    "register_sha256": "fb3a3a6b483522fce3a36a0974cbf98ef2fbba43c495ce8b7b10d3a6dc3a22ba",
+    "authority_manifest_sha256": "13426b4b0e046c9372e13d6c735a8962ab8c0d9593722590433d43dcc855d951",
+    "observable_on_origin_main": true
+  },
+  "step0": {
+    "receipt_head": "Receipt-176",
+    "receipt_validator": "PASS",
+    "task_management_live_rows": 18,
+    "task_management_closed_rows": 7,
+    "committed_workplan": "NONE_DELIVERABLES_ALONE",
+    "harness_self_check": "PASS"
+  },
+  "holds": {
+    "dispatch-for-production": "ALLOW",
+    "rely-for-production": "ALLOW"
+  },
+  "graph": "N0_THEN_AUTHOR_THEN_FRESH_VERIFIER_THEN_MANAGER_FAN_IN",
+  "receipt_candidate": "HELD_EXPECTED_177_AFTER_FRESH_DISCOVERY",
+  "terminal_seal": "HELD_PENDING_VALIDATED_MANAGER_RETURN",
+  "authority_root_preserved": true,
+  "product_fitness_or_promotion_claim": false
+}

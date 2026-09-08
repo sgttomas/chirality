@@ -1,0 +1,21 @@
+{
+  "schema": "pec-d85-check-registration/v1",
+  "profile": "software-workflow.json",
+  "preimage_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b",
+  "registered_sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a",
+  "registration": {
+    "name": "v2-store-guard",
+    "cwd": ".",
+    "command": ["python3", "-m", "unittest", "discover", "-s", "v2/tests/storage", "-p", "test_*.py"]
+  },
+  "review": {
+    "json_parse": "PASS",
+    "existing_commands_preserved": true,
+    "always_checks_preserved": ["v2-api-contract", "v2-core-posture", "harness-self-check"],
+    "selected_checks": ["harness-self-check", "v2-api-contract", "v2-core-posture", "v2-loop-registry", "v2-store-guard"],
+    "selector_cwd": "projects/pec",
+    "selector_paths": "all nine D-PEC-85 product/configuration targets, project-relative",
+    "interpreter": "Python 3.13.7"
+  },
+  "status": "REGISTERED_AND_REVIEWED_BEFORE_AUTHOR_DISPATCH"
+}

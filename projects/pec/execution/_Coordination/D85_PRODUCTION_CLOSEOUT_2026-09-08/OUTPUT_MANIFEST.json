@@ -1,0 +1,30 @@
+{
+  "schema": "pec-d85-production-common-output-manifest/v1",
+  "status": "PASS_FOR_CHANGE_PUBLICATION",
+  "derivative_package": true,
+  "accepted_upstream": {
+    "authority_manifest_sha256": "13426b4b0e046c9372e13d6c735a8962ab8c0d9593722590433d43dcc855d951",
+    "manager_manifest_sha256": "b1a5c8b7f6137a200bee9818647a1dd46f9f7f8c2625c7a2205dcee0b7b25c8a",
+    "backcheck_manifest_sha256": "210cbc392b50813a930fe2ca28ff134c3d04f542d1aed150b4de0abe1a74e4d8"
+  },
+  "self_excluded": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/OUTPUT_MANIFEST.json",
+  "future_named_exclusion": {
+    "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/CHANGE_PUBLICATION/**",
+    "owner": "CHANGE",
+    "reason": "Publication evidence is additive after the common closeout seal."
+  },
+  "additional_exclusions": [],
+  "nested_manifests_in_this_root": [],
+  "files": [
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/AGENT_GRAPH.md","sha256":"64e1f3dd16a9f202b5fc2cdd744f76674f7b0fb3ab1acb96ffbc71fba88047fc","bytes":1429},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/BRIEFS/COMMON_CLOSEOUT.md","sha256":"e889a1de651e0b73d3e05f33a143cde0cf1315caa86eacc0d27c2c62a570bec4","bytes":1281},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/BRIEFS/MANAGER_RETURN.md","sha256":"8878b38ae7f3a54ba922a1b00a3c0ccf4b63a62dbb85e829272998771eda1d77","bytes":1622},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FAN_IN.md","sha256":"bf0706c2dac1a9aaba2829ffc940983e8958e57a3c7aade9215dcd43fc7d9a32","bytes":2282},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FINAL_VALIDATION.json","sha256":"3f2f7e0602429985e11ca5ae7a32ae4356671b6bf5a9ff64abeec9f654f046c2","bytes":2288},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/HANDOFF_STATE.md","sha256":"2a85d16f77f8fb4f560a9b6d821937a7c14a007871de46da518b634f48b68c9d","bytes":1587},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/RUN_BASIS.md","sha256":"5a87b86d98455feeec071ac00dce12057937bb6604060684ef2c49f166d42528","bytes":2054},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/TERMINAL_SEAL.json","sha256":"2ea9fbca40195c7d68e4eb3c89b85568a85c1877753db3f4eed3b102f02522e9","bytes":993},
+    {"path":"projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/VALIDATION_INITIAL.json","sha256":"a800011a5922d4ce013c8d738d61d6f4bd7e90d818b5169db7ea843e55825308","bytes":1108},
+    {"path":"projects/pec/loop/LOOP_RECEIPTS.md","sha256":"8068b143c3189db09201e9da54198257139798ceffbd5c35bf1f0fa10be3e124","bytes":449618}
+  ]
+}

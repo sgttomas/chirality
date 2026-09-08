@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-recursive-output-manifest/v1",
+  "root": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY",
+  "recursive": true,
+  "exclusions": ["MANIFEST.json"],
+  "nested_manifests": [
+    "AUTHOR_MANIFEST_COMPAT.json",
+    "CANDIDATE_ATTEMPT_01_COMPAT.json"
+  ],
+  "files": {
+    "AFFECTED_CHECKS.json": "2deccca667620877c5c745854ddd88b42bb6c71af1ad700075ff9bac465ac3db",
+    "AUTHOR_MANIFEST_COMPAT.json": "de36ad0a8b46ab29f1836c142c2f920d079676b4e5305fad066fe87ca7c1f646",
+    "AUTHOR_MANIFEST_VALIDATION.json": "52a9c5723d7ae24d61d2a54435cfea5b544e6333e342a07cb3ddbc3c4f26bd7b",
+    "CANDIDATE_ATTEMPT_01_COMPAT.json": "b14c4b2a4ca174e6f1bcd49cd3742cbd310501a7606df95cb1641c22d5f7ad30",
+    "LAUNCH_BRIEF.md": "0c109b844953460be29505874c71e191d16bbf395ce007598b0975663cfdc8ae",
+    "REVIEW.md": "cf4932c5c3d9469d332142c39b692aa377d83237aa89370b33bfda77c104e896",
+    "SCOPE_VALIDATION.json": "94f0c947d0fce76f907401b2a48c7ede792b803ded81e0a58f7684eb18d2f72b",
+    "TASK_RUN_2026-09-08_0915.md": "e3355fd432e37b93c86053f53674c9a0158d9b983f8f66d54678a9cb66d0c322",
+    "VALIDATION_SUMMARY.json": "f7394295f5c031d1d2800b83ffe323a834cb60aaf864dfb00637e4aa65a76076"
+  }
+}

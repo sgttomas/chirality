@@ -1,0 +1,38 @@
+{
+  "schema": "pec-d85-production-change-precommit-readiness/v1",
+  "recorded_at_utc": "2026-09-08T16:13:32Z",
+  "branch": "codex/pec-d85-store-guard-production-20260908",
+  "base_commit": "1b780310665240f1df85ea4b127168521639a775",
+  "base_ref": "origin/main",
+  "fresh_main_drift": "0_ahead_0_behind",
+  "authority": "standing owner session authority permits scoped commit, explicit branch push, PR open, and PR merge without repeated confirmation",
+  "checks": {
+    "production_manifest": "52/52 PASS; exact 53-file inventory",
+    "production_manifest_sha256": "b1a5c8b7f6137a200bee9818647a1dd46f9f7f8c2625c7a2205dcee0b7b25c8a",
+    "live_product_configuration_postimages": "9/9 PASS",
+    "backcheck_manifest_sha256": "210cbc392b50813a930fe2ca28ff134c3d04f542d1aed150b4de0abe1a74e4d8",
+    "backcheck_verdict": "PASS_VALID_FOR_TECHNICAL_FAN_IN",
+    "common_manifest": "10/10 PASS; exact root inventory",
+    "common_manifest_sha256": "f400b8c56d2ef0cee4ab553cbacc225f194cf40032d515e516e4b07e43d14ab5",
+    "common_tree_digest": "6a616b32e7be45d22105302533547ad48499163bd815f8eb15dba42f3636777f",
+    "receipt_176_prefix_bytes": 447621,
+    "receipt_176_prefix_preserved": true,
+    "receipt_177_suffix_bytes": 1997,
+    "receipt_validator": "PASS",
+    "candidate_whitespace_including_untracked": "PASS",
+    "git_diff_check": "PASS",
+    "harness_self_check": "PASS_WITH_EXISTING_REVIEW_WARN_INFO_FINDINGS",
+    "scope_containment": "PASS"
+  },
+  "historical_authority_verification": {
+    "accepted_merge": "1b780310665240f1df85ea4b127168521639a775",
+    "manifest_entries_at_accepted_merge": "18/18 PASS",
+    "live_receipt_ledger_rehashed_against_old_manifest": false
+  },
+  "test_policy": "No source suites rerun during publication; accepted manager evidence and existing CI govern absent a new change or failure.",
+  "seal_boundary": {
+    "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/CHANGE_PUBLICATION/**",
+    "excluded_from_common_closeout_seal": true
+  },
+  "publication_state": "READY_TO_COMMIT_AND_EXPLICITLY_PUSH_NAMED_BRANCH"
+}

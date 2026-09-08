@@ -1,0 +1,14 @@
+{
+  "schema": "pec-d85-independent-review/v1",
+  "verdict": "FAIL",
+  "fan_in": "BLOCKED_FOR_FAN_IN",
+  "scope": "PASS",
+  "candidate_attempt_01_manifest": "PASS_CURRENT_ALL_NINE",
+  "affected_checks": "PASS: exact five-check set",
+  "registered_check_evidence": "PASS_REPORTED_ALL_FIVE",
+  "author_manifest": "PASS_CURRENT_AND_COMPLETE",
+  "evidence_sufficiency": "FAIL",
+  "blocking_findings": ["V-F001", "V-F002"],
+  "repairs_applied": false,
+  "acceptance_performed": false
+}

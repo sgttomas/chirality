@@ -1,0 +1,17 @@
+{
+  "schema": "pec-d85-production-common-terminal-seal/v1",
+  "status": "PASS_FOR_CHANGE_PUBLICATION",
+  "base_commit": "1b780310665240f1df85ea4b127168521639a775",
+  "manager_manifest_sha256": "b1a5c8b7f6137a200bee9818647a1dd46f9f7f8c2625c7a2205dcee0b7b25c8a",
+  "sealed_file_count_excluding_this_seal_and_root_manifest": 9,
+  "sealed_tree_digest": "6a616b32e7be45d22105302533547ad48499163bd815f8eb15dba42f3636777f",
+  "digest_rule": "sha256 of UTF-8 lines '<sha256>  <repo-relative-path>\\n' sorted by path",
+  "root_manifest_self_excluded": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/OUTPUT_MANIFEST.json",
+  "future_named_exclusion": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/CHANGE_PUBLICATION/**",
+  "future_exclusion_owner": "CHANGE",
+  "additional_exclusions": [],
+  "receipt": "Receipt-177",
+  "receipt_176_prefix_preserved": true,
+  "product_writers_stopped": true,
+  "common_writer_state": "STOPPED_AFTER_ROOT_MANIFEST"
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "pec-d85-evidence-backcheck/v1",
+  "status": "PASS",
+  "registered_checks": {
+    "expected": ["harness-self-check", "v2-api-contract", "v2-core-posture", "v2-loop-registry", "v2-store-guard"],
+    "observed": ["harness-self-check", "v2-api-contract", "v2-core-posture", "v2-loop-registry", "v2-store-guard"],
+    "all_exit_zero": true,
+    "all_status_pass": true
+  },
+  "storage_suite": {"registered_tests": 13, "verbose_test_identities": 13, "all_verbose_outcomes": "PASS"},
+  "verification_coverage": "exactly VER-001 through VER-009",
+  "candidate_whitespace": "PASS with untracked files included",
+  "scope": "PASS with zero violations"
+}

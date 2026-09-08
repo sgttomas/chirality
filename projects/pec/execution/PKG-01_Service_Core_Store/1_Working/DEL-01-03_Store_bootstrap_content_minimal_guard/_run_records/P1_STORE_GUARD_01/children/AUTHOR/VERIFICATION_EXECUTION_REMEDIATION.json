@@ -1,0 +1,24 @@
+{
+  "schema": "pec-d85-verification-execution/v1",
+  "command": ["python3", "-m", "unittest", "discover", "-v", "-s", "v2/tests/storage", "-p", "test_*.py"],
+  "cwd": "projects/pec",
+  "python": "Python 3.13.7",
+  "exit_code": 0,
+  "summary": "Ran 13 tests; OK",
+  "map_validation": "PASS: loaded suite IDs equal TEST_TO_VERIFICATION keys; mapped values equal VER-001..009",
+  "results": [
+    {"id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_admission_and_readback_preserve_all_five_typed_classes", "verifications": ["VER-004", "VER-005"], "status": "PASS"},
+    {"id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_content_diff_prose_unknown_classes_and_misleading_keys_are_rejected_atomically", "verifications": ["VER-004"], "status": "PASS"},
+    {"id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution", "verifications": ["VER-005"], "status": "PASS"},
+    {"id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_006_reconciler_presence_and_event_stand_ins_share_the_same_boundary", "verifications": ["VER-006"], "status": "PASS"},
+    {"id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing", "verifications": ["VER-004", "VER-008"], "status": "PASS"},
+    {"id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_policy_is_fixed_finite_and_domain_checked", "verifications": ["VER-008"], "status": "PASS"},
+    {"id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_database_journal_and_temp_artifacts_are_ignored", "verifications": ["VER-001"], "status": "PASS"},
+    {"id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_force_tracked_store_artifact_fails_before_any_write", "verifications": ["VER-001"], "status": "PASS"},
+    {"id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_later_negation_of_the_rule_fails_before_store_creation", "verifications": ["VER-001"], "status": "PASS"},
+    {"id": "test_store_lifecycle.StoreLifecycleTests.test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation", "verifications": ["VER-002"], "status": "PASS"},
+    {"id": "test_store_lifecycle.StoreLifecycleTests.test_ver_003_port_isolated_and_adapter_has_one_guarded_record_write_surface", "verifications": ["VER-003"], "status": "PASS"},
+    {"id": "test_store_lifecycle.StoreLifecycleTests.test_ver_007_runtime_imports_are_stdlib_or_pec_and_make_no_network_call", "verifications": ["VER-007"], "status": "PASS"},
+    {"id": "test_store_lifecycle.StoreLifecycleTests.test_ver_009_loaded_suite_has_exact_execution_mapping", "verifications": ["VER-009"], "status": "PASS"}
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "pec-d85-working-items-fan-in/v1",
+  "status": "PASS",
+  "verdict": "VALID_FOR_TECHNICAL_FAN_IN",
+  "candidate_attempt": 2,
+  "product_configuration_postimages": "PASS_ALL_NINE",
+  "registered_checks": {
+    "status": "PASS_ALL_FIVE",
+    "evidence": "checks/MANAGER_REGISTERED_CHECKS_FINAL.json",
+    "sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118",
+    "results": {
+      "v2-store-guard": "PASS_RAN_13",
+      "v2-api-contract": "PASS_RAN_6",
+      "v2-core-posture": "PASS",
+      "v2-loop-registry": "PASS_RAN_12",
+      "harness-self-check": "PASS"
+    }
+  },
+  "author_manifest": {
+    "status": "PASS_COMPLETE_16",
+    "sha256": "7c50366ac481e8e22da6186d0077ef0f75bdc80e1d6a65d212a540b336da8d51"
+  },
+  "initial_verifier_manifest": {
+    "status": "PASS_PRESERVED_FAILING_REVIEW",
+    "sha256": "44fbb6ad843d129cd18bac5537d36ceb6cee6ad857f21bb17142711ce2d3f8b2"
+  },
+  "backcheck_manifest": {
+    "status": "PASS_COMPLETE_12",
+    "sha256": "210cbc392b50813a930fe2ca28ff134c3d04f542d1aed150b4de0abe1a74e4d8"
+  },
+  "prior_findings": {
+    "V-F001": "CLOSED",
+    "V-F002": "CLOSED"
+  },
+  "new_findings": [],
+  "attempt_01_recovery": "PASS_FOUR_EXACT_HASHES",
+  "change_scope": "PASS_ZERO_VIOLATIONS",
+  "git_diff_check": "PASS",
+  "candidate_whitespace": "PASS_DEFAULT_INCLUDING_UNTRACKED",
+  "pec_receipt_validation": "PASS_FROZEN_THROUGH_166",
+  "rely_for_production": "ALLOW_ALL_FINAL_TARGETS",
+  "remaining_rows": "PASS_BYTES_UNCHANGED_FROM_ORIGIN_MAIN",
+  "lifecycle_state": "IN_PROGRESS",
+  "acceptance_performed": false,
+  "git_actions_performed": false
+}

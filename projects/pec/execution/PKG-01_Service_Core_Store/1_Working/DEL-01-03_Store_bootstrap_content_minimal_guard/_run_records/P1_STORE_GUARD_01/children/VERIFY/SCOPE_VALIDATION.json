@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-change-scope/v1",
+  "basis": "origin/main to working tree, including untracked files",
+  "status": "PASS",
+  "violations": [],
+  "allowed_roots": [
+    "the nine exact D-PEC-85 product/configuration paths",
+    "the DEL-01-03 administrative subtree",
+    "execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08"
+  ],
+  "observed_path_count": 32,
+  "note": "The count includes manager, AUTHOR, and VERIFY evidence paths under the authorized administrative roots."
+}
