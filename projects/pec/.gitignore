@@ -14,3 +14,4 @@ pilot-scratch/
 pec-demo.db
 pec-demo.db-shm
 pec-demo.db-wal
+/.pec-v2/

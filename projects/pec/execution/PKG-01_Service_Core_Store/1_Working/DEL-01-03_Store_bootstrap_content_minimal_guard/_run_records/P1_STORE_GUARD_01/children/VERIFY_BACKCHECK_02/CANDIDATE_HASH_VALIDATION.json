@@ -1,0 +1,7 @@
+{
+  "schema": "chirality-generated-drift/v1",
+  "attempt": 2,
+  "status": "PASS",
+  "findings": [],
+  "verified": "all nine product/configuration files plus the AUTHOR manifest"
+}

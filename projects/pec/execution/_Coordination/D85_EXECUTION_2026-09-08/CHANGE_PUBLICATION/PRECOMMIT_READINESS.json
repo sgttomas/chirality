@@ -1,0 +1,38 @@
+{
+  "schema": "pec-d85-change-precommit-readiness/v1",
+  "recorded_at_utc": "2026-09-08T14:39:58Z",
+  "branch": "codex/pec-d85-store-guard-20260908",
+  "base_commit": "55df51ac3201456e0f181823e3aefefef47a73bb",
+  "base_ref": "origin/main",
+  "scope": "D85 authority publication only",
+  "authority": "standing owner session authority permits scoped commit, explicit branch push, PR open, and PR merge without repeated confirmation",
+  "checks": {
+    "common_manifest_entries": "18/18 PASS",
+    "common_manifest_sha256": "13426b4b0e046c9372e13d6c735a8962ab8c0d9593722590433d43dcc855d951",
+    "sealed_tree_entries_excluding_terminal_seal": "17/17 PASS",
+    "sealed_tree_digest": "0a426886d7400ad13de49f350f0e833244ff44c75e0abe5cc7917bc4cf17aa12",
+    "verifier_manifest_entries": "5/5 PASS",
+    "verifier_manifest_sha256": "b4c10ad2850e7d2bd3900abc713292145ecc0bc125079309dcc4925bec89c445",
+    "verifier_verdict": "PASS_ZERO_FINDINGS",
+    "ruling_sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851",
+    "register_sha256": "fb3a3a6b483522fce3a36a0974cbf98ef2fbba43c495ce8b7b10d3a6dc3a22ba",
+    "receipt_175_prefix_sha256": "efe77c70bb93984989a95d3d2f63fcabdd0182432f7e4df8b49b5458bdf15d14",
+    "receipt_175_prefix_preserved": true,
+    "receipt_validator": "PASS",
+    "candidate_whitespace_including_untracked": "PASS",
+    "git_diff_check": "PASS",
+    "harness_self_check": "PASS_WITH_EXISTING_REVIEW_WARN_INFO_FINDINGS",
+    "scope_containment": "PASS"
+  },
+  "change_inventory": {
+    "common_authority_files": 19,
+    "change_publication_files": 1,
+    "product_status_memory_changes": 0,
+    "sister_project_changes": 0
+  },
+  "seal_boundary": {
+    "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/CHANGE_PUBLICATION/**",
+    "excluded_from_common_authority_seal": true
+  },
+  "publication_state": "READY_TO_COMMIT_AND_EXPLICITLY_PUSH_NAMED_BRANCH"
+}

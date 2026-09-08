@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-generated-manifest/v1",
+  "source_manifest": "../AUTHOR/MANIFEST.json",
+  "files": {
+    "AFFECTED_CHECKS.json": "9f0b54800aba253d2c4801eb6d823c7682cd2d54ff0aeb7e685df08aa9cecec3",
+    "CHECKS_REGISTERED.json": "828db2e6d7fb87dd7a2d1eb4112a495d73903487f5d8adfbfb1a1f43c2247ae6",
+    "CHECK_V2_STORE_GUARD_INITIAL.json": "854d318367fa5ac5eaa4fab60e41cb3b22bf610afd66ff8293f195d8c9ee7a80",
+    "ENVIRONMENT.json": "e15815bfd5de4ce6758f3badcfb1e6e2fb1d4131af70694773706fa1786b39d8",
+    "LAUNCH_BRIEF.md": "f0dc77c56f0d79724cf6aaa056fee9c4968c4ae2c1354a76419b053c4a259f94",
+    "SCOPE_VALIDATION.json": "b1728a8155b42dc404f627c08085e4a0096bfbd7b07303702623f9d6b65df12c",
+    "TASK_RUN_DEL-01-03_2026-09-08_0852.md": "0d473d7445e6768a64ba9423e59ac513dfcf9619d3f3283b4c767ac85a3dab95"
+  }
+}

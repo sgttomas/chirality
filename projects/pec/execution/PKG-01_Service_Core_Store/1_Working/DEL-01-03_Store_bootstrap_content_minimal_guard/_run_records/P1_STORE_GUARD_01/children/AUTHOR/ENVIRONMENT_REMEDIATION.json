@@ -1,0 +1,14 @@
+{
+  "schema": "pec-d85-author-remediation-environment/v1",
+  "python": "Python 3.13.7",
+  "registered_check_cwd": "projects/pec",
+  "focused_evidence": "CHECK_V2_STORE_GUARD_REMEDIATION.json",
+  "full_evidence": "CHECKS_REGISTERED_REMEDIATION.json",
+  "identity_result_evidence": "VERIFICATION_EXECUTION_REMEDIATION.json",
+  "git_diff_check": {"command": "git diff --check -- projects/pec/.gitignore", "exit_code": 0},
+  "candidate_whitespace": {
+    "command": "python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main",
+    "exit_code": 0,
+    "result": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0)."
+  }
+}

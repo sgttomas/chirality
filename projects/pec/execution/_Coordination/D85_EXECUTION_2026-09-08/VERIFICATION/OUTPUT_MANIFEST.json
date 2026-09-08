@@ -1,0 +1,33 @@
+{
+  "schema": "pec-d85-ruling-verification-manifest/v1",
+  "verdict": "PASS",
+  "derivative_package": true,
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "BRIEF.md",
+      "sha256": "fe7e88272e2b1ac2e4c4f06752bc9d310ea0ba97b8df1ba812a0e2d4badcc740",
+      "bytes": 2100
+    },
+    {
+      "path": "FINDINGS.md",
+      "sha256": "1d898fce22d2b048a786081ba424a154912afe6ff4d668fba508b66ce0d79056",
+      "bytes": 339
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "117ce6816f52274cfd301e4d9a55f247f8b7a9888decfbe441bf3d00aba6b5d0",
+      "bytes": 1717
+    },
+    {
+      "path": "VALIDATION.json",
+      "sha256": "52756d77aea11305cbb4ee643f627e0f8bd1b2925a11969095359654fbe69939",
+      "bytes": 4992
+    },
+    {
+      "path": "VERIFICATION.md",
+      "sha256": "0d35aee6b4bca38ac112924d45dd11042698e9e6e9d55aeab1a8f35f018b095f",
+      "bytes": 5697
+    }
+  ]
+}

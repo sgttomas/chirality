@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-affected-checks/v1",
+  "paths": [
+    "v2/src/pec_v2/core/ports/store.py",
+    "v2/src/pec_v2/core/content_minimal_guard.py",
+    "v2/src/pec_v2/adapters/storage/__init__.py",
+    "v2/src/pec_v2/adapters/storage/sqlite_store.py",
+    "v2/tests/storage/test_store_lifecycle.py",
+    "v2/tests/storage/test_content_minimal_guard.py",
+    "v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+    ".gitignore"
+  ],
+  "checks": [
+    "harness-self-check",
+    "v2-api-contract",
+    "v2-core-posture",
+    "v2-loop-registry",
+    "v2-store-guard"
+  ],
+  "result": "PASS"
+}

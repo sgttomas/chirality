@@ -1,0 +1,57 @@
+{
+  "schema": "pec-d85-production-common-fan-in/v1",
+  "status": "PASS_FOR_CHANGE_PUBLICATION",
+  "base_commit": "1b780310665240f1df85ea4b127168521639a775",
+  "authority": {
+    "ruling_sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851",
+    "register_sha256": "fb3a3a6b483522fce3a36a0974cbf98ef2fbba43c495ce8b7b10d3a6dc3a22ba",
+    "authority_manifest_sha256": "13426b4b0e046c9372e13d6c735a8962ab8c0d9593722590433d43dcc855d951",
+    "receipt_176_prefix_sha256": "6e48e9656fe98f44fe4075836f3649bae173f5a75bcc0f99808ff14430a7cf84"
+  },
+  "manager": {
+    "manifest_sha256": "b1a5c8b7f6137a200bee9818647a1dd46f9f7f8c2625c7a2205dcee0b7b25c8a",
+    "bound_files": 52,
+    "inventory_files_including_root_manifest": 53,
+    "only_root_manifest_excluded": true,
+    "all_nine_live_postimages_match": true,
+    "writer_stopped": true
+  },
+  "correction_chain": {
+    "initial_verifier_manifest_sha256": "44fbb6ad843d129cd18bac5537d36ceb6cee6ad857f21bb17142711ce2d3f8b2",
+    "author_manifest_sha256": "7c50366ac481e8e22da6186d0077ef0f75bdc80e1d6a65d212a540b336da8d51",
+    "backcheck_manifest_sha256": "210cbc392b50813a930fe2ca28ff134c3d04f542d1aed150b4de0abe1a74e4d8",
+    "V-F001": "CLOSED",
+    "V-F002": "CLOSED",
+    "new_findings": []
+  },
+  "checks": {
+    "manifest_sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118",
+    "exact_selected_count": 5,
+    "v2-store-guard": "PASS_13",
+    "v2-api-contract": "PASS_6",
+    "v2-loop-registry": "PASS_12",
+    "v2-core-posture": "PASS",
+    "harness-self-check": "PASS"
+  },
+  "lifecycle": "IN_PROGRESS",
+  "remaining_inquiry_bytes": "UNCHANGED",
+  "memory": "FINITE_RESIDUALS_RECORDED",
+  "artifact_fitness_accepted": false,
+  "checking_or_issued": false,
+  "full_deliverable_or_p1_complete": false,
+  "product_tests_rerun_by_common": false,
+  "receipt": {
+    "id": "Receipt-177",
+    "parent": "Receipt-176",
+    "prefix_sha256": "6e48e9656fe98f44fe4075836f3649bae173f5a75bcc0f99808ff14430a7cf84",
+    "prefix_preserved": true,
+    "validator_before_after": "PASS"
+  },
+  "common_checks": {
+    "candidate_whitespace_including_untracked": "PASS",
+    "git_diff_check": "PASS",
+    "harness_self_check": "PASS",
+    "authority_root_manifest_unchanged": true,
+    "containment": "PASS"
+  }
+}

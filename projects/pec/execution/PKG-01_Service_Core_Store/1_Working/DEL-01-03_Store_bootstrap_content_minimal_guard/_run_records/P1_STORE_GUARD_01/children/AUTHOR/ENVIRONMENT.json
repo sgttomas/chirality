@@ -1,0 +1,10 @@
+{
+  "schema": "pec-d85-author-environment/v1",
+  "python": "Python 3.13.7",
+  "registered_check_cwd": "projects/pec",
+  "selector": "python3 ../../tools/software_workflow/select_affected_checks.py software-workflow.json <eight project-relative product paths>",
+  "registered_runner": "python3 ../../tools/software_workflow/run_registered_checks.py software-workflow.json --check v2-store-guard --check v2-api-contract --check v2-core-posture --check v2-loop-registry --check harness-self-check --output projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/CHECKS_REGISTERED.json",
+  "git_diff_check": "git diff --check -- projects/pec/.gitignore",
+  "candidate_whitespace": "python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main",
+  "candidate_whitespace_result": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0)."
+}

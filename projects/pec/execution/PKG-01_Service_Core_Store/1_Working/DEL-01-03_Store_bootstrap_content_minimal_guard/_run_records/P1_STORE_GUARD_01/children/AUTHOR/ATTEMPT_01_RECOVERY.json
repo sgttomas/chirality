@@ -1,0 +1,21 @@
+{
+  "schema": "pec-d85-attempt-recovery/v1",
+  "direction": "corrected postimage to exact attempt-1 preimage",
+  "patch": "ATTEMPT_01_REVERSE.patch.b64",
+  "encoding": "base64",
+  "artifact_sha256": "e5672ac7271ce003efcef5086dcb86f0c0e4989301fff24d66e3fda1f8c2bec0",
+  "decoded_patch_sha256": "c7e0ff2d50f2f03df06ccaabd476d3a74685a9adc6bfb110844eac498bdfe0fc",
+  "changed_files_only": {
+    "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py": "9f8a25062ec5348324d83a5e959c85c55bbcf862a9743408bc30d2ac739ae47d",
+    "projects/pec/v2/tests/storage/test_content_minimal_guard.py": "2a22039bdcc8b2bf052c19b61a124982fc1f0c5995f558443202db71d9838b0b",
+    "projects/pec/v2/tests/storage/test_store_lifecycle.py": "db14f5ce804631d1067572a4d6a4c8b90bd3253a02a08042a9a16919b2309a6f",
+    "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md": "4ce4be5a19dae2ca9ba16a7c2bff34d6610d9e829ee5d9ecda47fcbf3bc064fc"
+  },
+  "basis": "children/VERIFY/CANDIDATE_ATTEMPT_01_COMPAT.json",
+  "verification": {
+    "scratch_only": true,
+    "git_apply_check": "PASS",
+    "git_apply": "PASS",
+    "reconstructed_hashes_equal_attempt_01_manifest": "PASS"
+  }
+}
