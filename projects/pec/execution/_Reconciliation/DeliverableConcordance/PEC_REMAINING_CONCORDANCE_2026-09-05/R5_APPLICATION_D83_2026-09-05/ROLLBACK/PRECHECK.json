@@ -1,0 +1,407 @@
+{
+  "kind": "D83_R5_rollback_precheck",
+  "status": "PASS",
+  "applied_target_count": 57,
+  "all_current_targets_equal_expected_applied_postimage": true,
+  "entries": [
+    {
+      "deliverable_id": "DEL-00-02",
+      "target_path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+      "current_sha256": "90412b8561835d76d697054cd30049760ff95a686dbc175c4e1fd216c6eb0d84",
+      "expected_applied_postimage_sha256": "90412b8561835d76d697054cd30049760ff95a686dbc175c4e1fd216c6eb0d84",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-01-01",
+      "target_path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+      "current_sha256": "37d11e4937651bfb29108db79031b2b73902f40a06d0b928ccc5340941843eb3",
+      "expected_applied_postimage_sha256": "37d11e4937651bfb29108db79031b2b73902f40a06d0b928ccc5340941843eb3",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-01-02",
+      "target_path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+      "current_sha256": "8f0e880702d0fd09595d2f41cd70031645254847c604dae85633d7387f5f66db",
+      "expected_applied_postimage_sha256": "8f0e880702d0fd09595d2f41cd70031645254847c604dae85633d7387f5f66db",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-01-03",
+      "target_path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "current_sha256": "c6153c5c06334b00dbff29b460a48c40347e76c5dd13b5a23e918e36e3eac91e",
+      "expected_applied_postimage_sha256": "c6153c5c06334b00dbff29b460a48c40347e76c5dd13b5a23e918e36e3eac91e",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-01-04",
+      "target_path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+      "current_sha256": "9600471873fbef6cd0b82db765e68ab801f42ee5c52ab29e7a27e791e3531564",
+      "expected_applied_postimage_sha256": "9600471873fbef6cd0b82db765e68ab801f42ee5c52ab29e7a27e791e3531564",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-02-01",
+      "target_path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md",
+      "current_sha256": "9a14fb751451f9c062846ce0f1dd74fa9f09bb36181e466f4c6db3484d301e66",
+      "expected_applied_postimage_sha256": "9a14fb751451f9c062846ce0f1dd74fa9f09bb36181e466f4c6db3484d301e66",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-02-02",
+      "target_path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md",
+      "current_sha256": "513a003912f8fa98955ae3043330256f643835284686fa9cc152dd337d8ee066",
+      "expected_applied_postimage_sha256": "513a003912f8fa98955ae3043330256f643835284686fa9cc152dd337d8ee066",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-02-03",
+      "target_path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md",
+      "current_sha256": "001b4d3951e041ba36a3a56e6748d0f422fad36e1f70d0b4c2e41c781bbfdbfd",
+      "expected_applied_postimage_sha256": "001b4d3951e041ba36a3a56e6748d0f422fad36e1f70d0b4c2e41c781bbfdbfd",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-02-04",
+      "target_path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md",
+      "current_sha256": "8ccba8f2854d6f190dda068bef04042ec1ec7382a8bd44970051c7fb3d334919",
+      "expected_applied_postimage_sha256": "8ccba8f2854d6f190dda068bef04042ec1ec7382a8bd44970051c7fb3d334919",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-02-05",
+      "target_path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md",
+      "current_sha256": "1f05a08832b222e229eb51ad3833d3fc5affdf52d32c84c0cc0ac75807c66af6",
+      "expected_applied_postimage_sha256": "1f05a08832b222e229eb51ad3833d3fc5affdf52d32c84c0cc0ac75807c66af6",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-02-06",
+      "target_path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md",
+      "current_sha256": "627993d6fae59c0276ba7bbe01c750797f4c3be4aa2c2c56a2f778efbeff22c4",
+      "expected_applied_postimage_sha256": "627993d6fae59c0276ba7bbe01c750797f4c3be4aa2c2c56a2f778efbeff22c4",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-02-07",
+      "target_path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+      "current_sha256": "4cea9b1c000db8a9248356412960f33d13b271530eb80f38ebd28d98d7ec42bd",
+      "expected_applied_postimage_sha256": "4cea9b1c000db8a9248356412960f33d13b271530eb80f38ebd28d98d7ec42bd",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-03-01",
+      "target_path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+      "current_sha256": "46a49e2444c22c5c622943def0ed069345f6b0e8b639e54d6684b00abf1cf80d",
+      "expected_applied_postimage_sha256": "46a49e2444c22c5c622943def0ed069345f6b0e8b639e54d6684b00abf1cf80d",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-03-02",
+      "target_path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+      "current_sha256": "ff69a831e9dcd2ea38f8aae10e8cbeae76467c0213eb714bdb427ab9a4874b07",
+      "expected_applied_postimage_sha256": "ff69a831e9dcd2ea38f8aae10e8cbeae76467c0213eb714bdb427ab9a4874b07",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-03-03",
+      "target_path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+      "current_sha256": "3757edd7955f681a71713f64d30146522fb80bb363e8c68a468f1d4a0b669612",
+      "expected_applied_postimage_sha256": "3757edd7955f681a71713f64d30146522fb80bb363e8c68a468f1d4a0b669612",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-03-04",
+      "target_path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+      "current_sha256": "e76d6d6f3c45dfb688955f8f63c43881e1df167f5f0fe085730c9a7e2ebcff1a",
+      "expected_applied_postimage_sha256": "e76d6d6f3c45dfb688955f8f63c43881e1df167f5f0fe085730c9a7e2ebcff1a",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-03-05",
+      "target_path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+      "current_sha256": "38f0190b841865e1841ef84e13bcda339c989fc1eb14aab46a218eedb49c85b5",
+      "expected_applied_postimage_sha256": "38f0190b841865e1841ef84e13bcda339c989fc1eb14aab46a218eedb49c85b5",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-03-06",
+      "target_path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md",
+      "current_sha256": "4bb6e2fa272830c99f92c53942496b0be81465c9579d6936975a1cdc7d66dea1",
+      "expected_applied_postimage_sha256": "4bb6e2fa272830c99f92c53942496b0be81465c9579d6936975a1cdc7d66dea1",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-04-01",
+      "target_path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+      "current_sha256": "c08a317519a7dea41fdc852b9a43dce38f3fb8b669fd1cc276431e87c97e1ca6",
+      "expected_applied_postimage_sha256": "c08a317519a7dea41fdc852b9a43dce38f3fb8b669fd1cc276431e87c97e1ca6",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-04-02",
+      "target_path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+      "current_sha256": "25a5ab54d49a1aaf7a26ffbbf51812d1c14bd935856d2c35674f571ad9e443f1",
+      "expected_applied_postimage_sha256": "25a5ab54d49a1aaf7a26ffbbf51812d1c14bd935856d2c35674f571ad9e443f1",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-04-03",
+      "target_path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+      "current_sha256": "6b8653f06c399b9eeef0b378b6ee899772150008f0eac4b1ad9b828ba57278bf",
+      "expected_applied_postimage_sha256": "6b8653f06c399b9eeef0b378b6ee899772150008f0eac4b1ad9b828ba57278bf",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-04-05",
+      "target_path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+      "current_sha256": "b9b4160fe2870703aa84a61466da7259003cddc7b120d94a8dd04e810f91d826",
+      "expected_applied_postimage_sha256": "b9b4160fe2870703aa84a61466da7259003cddc7b120d94a8dd04e810f91d826",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-05-01",
+      "target_path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md",
+      "current_sha256": "c2ff52d3f946fbcb7fdd8ea7eebb814ba13775b0c0538d35657229aa0b80a95b",
+      "expected_applied_postimage_sha256": "c2ff52d3f946fbcb7fdd8ea7eebb814ba13775b0c0538d35657229aa0b80a95b",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-05-02",
+      "target_path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md",
+      "current_sha256": "97204fa6ec6e67b58ba70322e6f250e2c6597a019f2c33fea9c46f4abe1b8c52",
+      "expected_applied_postimage_sha256": "97204fa6ec6e67b58ba70322e6f250e2c6597a019f2c33fea9c46f4abe1b8c52",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-06-01",
+      "target_path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md",
+      "current_sha256": "62e7050ea75b36e340ea14618d031d9fb00b40dfdb76532406f1c26a012a6e53",
+      "expected_applied_postimage_sha256": "62e7050ea75b36e340ea14618d031d9fb00b40dfdb76532406f1c26a012a6e53",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-06-02",
+      "target_path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md",
+      "current_sha256": "e352e6f4627487ed4e71370ec1005eac2c0bd29aeb513df587efee32ee79d906",
+      "expected_applied_postimage_sha256": "e352e6f4627487ed4e71370ec1005eac2c0bd29aeb513df587efee32ee79d906",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-06-03",
+      "target_path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md",
+      "current_sha256": "d3862a7371289a677350fee7d5d910c431a4facada2b81780d07a6325a12505e",
+      "expected_applied_postimage_sha256": "d3862a7371289a677350fee7d5d910c431a4facada2b81780d07a6325a12505e",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-06-04",
+      "target_path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md",
+      "current_sha256": "8cfb8b8800a591124cc0e24aeae9d643f278e8845bf99cd1bb90170a471d4726",
+      "expected_applied_postimage_sha256": "8cfb8b8800a591124cc0e24aeae9d643f278e8845bf99cd1bb90170a471d4726",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-06-05",
+      "target_path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md",
+      "current_sha256": "cf41c05e567f13bf1d7fc772150d110507e1b3d9779f064216d4484991b7e31a",
+      "expected_applied_postimage_sha256": "cf41c05e567f13bf1d7fc772150d110507e1b3d9779f064216d4484991b7e31a",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-06-06",
+      "target_path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md",
+      "current_sha256": "31239d73ac547cc8d954bb7208a18038e09c60b2e43d24707706a56239f92c42",
+      "expected_applied_postimage_sha256": "31239d73ac547cc8d954bb7208a18038e09c60b2e43d24707706a56239f92c42",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-07-01",
+      "target_path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+      "current_sha256": "4c29577a180f11091cd2d494082881ee94efc25f6e27d0aea72ba4a4c8894317",
+      "expected_applied_postimage_sha256": "4c29577a180f11091cd2d494082881ee94efc25f6e27d0aea72ba4a4c8894317",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-07-02",
+      "target_path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+      "current_sha256": "b05edcc916edf44db252bcd8ca055391ec9d48525e23aaead17f962af4f0f45f",
+      "expected_applied_postimage_sha256": "b05edcc916edf44db252bcd8ca055391ec9d48525e23aaead17f962af4f0f45f",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-07-03",
+      "target_path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+      "current_sha256": "d64fbe49770c82daa0d4524364bf12b7702ec3853187ec7465bbdc4753877332",
+      "expected_applied_postimage_sha256": "d64fbe49770c82daa0d4524364bf12b7702ec3853187ec7465bbdc4753877332",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-07-04",
+      "target_path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+      "current_sha256": "10905472a88d4e3d6ca96cfe22769106fa408b79097e403b0fb65b499a34b726",
+      "expected_applied_postimage_sha256": "10905472a88d4e3d6ca96cfe22769106fa408b79097e403b0fb65b499a34b726",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-07-05",
+      "target_path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+      "current_sha256": "4fb85e33b8c28cc220f8c0e40a66705929f96aa0abcbe793d07be731731d30df",
+      "expected_applied_postimage_sha256": "4fb85e33b8c28cc220f8c0e40a66705929f96aa0abcbe793d07be731731d30df",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-08-01",
+      "target_path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+      "current_sha256": "db1e606dc164359b12649bc6d9e3fc91a22d952f989380ecfe4be1a0f04f2cf0",
+      "expected_applied_postimage_sha256": "db1e606dc164359b12649bc6d9e3fc91a22d952f989380ecfe4be1a0f04f2cf0",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-08-03",
+      "target_path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+      "current_sha256": "871866000a44ad7d3fb261079163f31315bb7da2b339b091b97900f0cd24eb53",
+      "expected_applied_postimage_sha256": "871866000a44ad7d3fb261079163f31315bb7da2b339b091b97900f0cd24eb53",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-08-04",
+      "target_path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+      "current_sha256": "cd5577e642d4f1ea9b3c578ba4781880fdcd263c4e38ed67ceac2c07e47685a5",
+      "expected_applied_postimage_sha256": "cd5577e642d4f1ea9b3c578ba4781880fdcd263c4e38ed67ceac2c07e47685a5",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-08-05",
+      "target_path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+      "current_sha256": "954f7f6406f11037236d963567610826cff7b912de4158b7213e81dd7ff74d7e",
+      "expected_applied_postimage_sha256": "954f7f6406f11037236d963567610826cff7b912de4158b7213e81dd7ff74d7e",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-09-01",
+      "target_path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+      "current_sha256": "3daebf75f6316004b283c4a319146298d514ce266b578cde78b61edbcf9e0b90",
+      "expected_applied_postimage_sha256": "3daebf75f6316004b283c4a319146298d514ce266b578cde78b61edbcf9e0b90",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-09-02",
+      "target_path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md",
+      "current_sha256": "3bfe3105ee545054ebc7fe5b55aee0752040be5487b08a2349d5cf78491f2533",
+      "expected_applied_postimage_sha256": "3bfe3105ee545054ebc7fe5b55aee0752040be5487b08a2349d5cf78491f2533",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-09-03",
+      "target_path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+      "current_sha256": "8f4d0b179587cb89a9d68f55cea28edb1e8bdc7a1d0f6825ccef832728be4f6f",
+      "expected_applied_postimage_sha256": "8f4d0b179587cb89a9d68f55cea28edb1e8bdc7a1d0f6825ccef832728be4f6f",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-09-04",
+      "target_path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+      "current_sha256": "d4e10dc94d4b3bf21e839639ca2db1a2df68e5582921f569c493305aba8360a1",
+      "expected_applied_postimage_sha256": "d4e10dc94d4b3bf21e839639ca2db1a2df68e5582921f569c493305aba8360a1",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-09-05",
+      "target_path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+      "current_sha256": "930c3aca6ad9cd8e5ec332a9b3c1867b939e47ed78331f87eac7b2592b146f24",
+      "expected_applied_postimage_sha256": "930c3aca6ad9cd8e5ec332a9b3c1867b939e47ed78331f87eac7b2592b146f24",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-09-06",
+      "target_path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+      "current_sha256": "ae2c4efd9e27bb01a7d2657ac17848aeb429612cbd6098f4547e232076993054",
+      "expected_applied_postimage_sha256": "ae2c4efd9e27bb01a7d2657ac17848aeb429612cbd6098f4547e232076993054",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-09-07",
+      "target_path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+      "current_sha256": "dd95c428edb7c9a56b5ab9946c20c136843a75972dc77c478c723ce274bc2629",
+      "expected_applied_postimage_sha256": "dd95c428edb7c9a56b5ab9946c20c136843a75972dc77c478c723ce274bc2629",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-02",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "current_sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415",
+      "expected_applied_postimage_sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-03",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md",
+      "current_sha256": "cfdf2a3e9a8736dddcab4c1367c8da5be8cf722c19769bc5dca8091c54f74d0b",
+      "expected_applied_postimage_sha256": "cfdf2a3e9a8736dddcab4c1367c8da5be8cf722c19769bc5dca8091c54f74d0b",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-04",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md",
+      "current_sha256": "c7a2e6c374271160c4b78de56386a8c7a0b7e6968b48f1f97f3bb2acc012259b",
+      "expected_applied_postimage_sha256": "c7a2e6c374271160c4b78de56386a8c7a0b7e6968b48f1f97f3bb2acc012259b",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-05",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md",
+      "current_sha256": "c71ed9aa993819ba6de56f54833531900b169764f5984e7a1f0d86455f84c878",
+      "expected_applied_postimage_sha256": "c71ed9aa993819ba6de56f54833531900b169764f5984e7a1f0d86455f84c878",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-06",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md",
+      "current_sha256": "8fa911b4143585e0429298d6a384587306f0d5078b686f9f5f26182fee1b8757",
+      "expected_applied_postimage_sha256": "8fa911b4143585e0429298d6a384587306f0d5078b686f9f5f26182fee1b8757",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-07",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md",
+      "current_sha256": "766424853d9617e57e92f0083f9e4d957e1f9ce43f96afa537a3fa407b158b3d",
+      "expected_applied_postimage_sha256": "766424853d9617e57e92f0083f9e4d957e1f9ce43f96afa537a3fa407b158b3d",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-08",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md",
+      "current_sha256": "da1baf19f80fcf36bdf897c9b82ee82a7562f02858d794c802a806519095e0b2",
+      "expected_applied_postimage_sha256": "da1baf19f80fcf36bdf897c9b82ee82a7562f02858d794c802a806519095e0b2",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-09",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md",
+      "current_sha256": "cd7e5e96f5f526f698a253b295f92cb63308081a041e8f3b421cf09a78c8a628",
+      "expected_applied_postimage_sha256": "cd7e5e96f5f526f698a253b295f92cb63308081a041e8f3b421cf09a78c8a628",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-10",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md",
+      "current_sha256": "802d6a9c0fd2c96fbeb86dc2ec04101f2758953dfa887f070e82cae005419a63",
+      "expected_applied_postimage_sha256": "802d6a9c0fd2c96fbeb86dc2ec04101f2758953dfa887f070e82cae005419a63",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-11",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md",
+      "current_sha256": "1d22b5814c80ad9b786e1e21b9f58eab32e0f6b98a2d09a43f8197a73fc98f9f",
+      "expected_applied_postimage_sha256": "1d22b5814c80ad9b786e1e21b9f58eab32e0f6b98a2d09a43f8197a73fc98f9f",
+      "postimage_match": true
+    },
+    {
+      "deliverable_id": "DEL-10-12",
+      "target_path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md",
+      "current_sha256": "a09c05334d22eb788fa8aacfbb066e69c2b547af20c982e6efc6166d49c0c9de",
+      "expected_applied_postimage_sha256": "a09c05334d22eb788fa8aacfbb066e69c2b547af20c982e6efc6166d49c0c9de",
+      "postimage_match": true
+    }
+  ]
+}

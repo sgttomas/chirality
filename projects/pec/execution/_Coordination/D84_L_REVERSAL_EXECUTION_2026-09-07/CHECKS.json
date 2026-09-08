@@ -1,0 +1,50 @@
+{
+  "schema": "pec-d84-l-reversal-checks/v1",
+  "result": "AUTHOR_CHECKS_PASS",
+  "authority": {
+    "head_equals_origin_main": true,
+    "origin_main": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+    "pr_753_head_in_merge": "480bd302ef347963c748cf41fe0d4f118227a550",
+    "d84_s_a_origin_main_equal": true,
+    "d84_l_origin_main_equal": true,
+    "session_authority_origin_main_equal": true
+  },
+  "holds": {
+    "status_candidate_validation": "ALLOW",
+    "evidence_fan_in_candidate_validation": "ALLOW",
+    "prohibition_honored": true,
+    "label_bypass_used": false
+  },
+  "application": {
+    "preimage_sha256": "e2579018c8012d711d9a6d81395a098991d5e6c601ea13f7486b8a331c9fc80e",
+    "postimage_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+    "live_equals_approved_candidate": true,
+    "state": "IN_PROGRESS",
+    "last_updated": "2026-09-07",
+    "old_history_preserved_as_history_prefix": true,
+    "exact_new_history_event_count": 1,
+    "remaining_present": false
+  },
+  "preservation": {
+    "scanner_tool_sha256": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "dependency_test_sha256": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "locality_test_sha256": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20",
+    "review_sha256": "fd9158b211f27b2bf6d451f68f620788522a80a57bf99264ee1e009cb95258d9",
+    "findings_sha256": "414339c78c45598ff75d247f7456c30c5b37b7b440b39a2d37c064db391ac00a",
+    "sow_sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53",
+    "all_match": true
+  },
+  "scope": {
+    "manager_live_write": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+    "manager_evidence_root": "projects/pec/execution/_Coordination/D84_L_REVERSAL_EXECUTION_2026-09-07/",
+    "external_concurrent_changes_observed": [
+      "projects/pec/execution/_Coordination/D83_D84_EXECUTION_2026-09-07/ITERATION_02_APPLICATION_AND_REVERSAL/",
+      "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/"
+    ],
+    "external_changes_attributed_to_this_recorder": false,
+    "global_worktree_unchanged_claim": false
+  },
+  "json_parse": "PASS",
+  "product_tests": "NOT_APPLICABLE: status-only administrative act",
+  "promotion_or_artifact_acceptance": false
+}

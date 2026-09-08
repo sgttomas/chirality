@@ -1,0 +1,36 @@
+{
+  "kind": "D83_R5_independent_verifier_output_manifest",
+  "verdict": "PASS",
+  "root": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION",
+  "self_excluded": "OUTPUT_MANIFEST.json",
+  "files": [
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/REVIEW.md",
+      "sha256": "ea7e38bb0422aef8b3450214343dc876dc63e9c84072614f70a770a03e7003e6",
+      "bytes": 2261
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/FINDINGS.csv",
+      "sha256": "10405dc6b2c0ddd1cca74a17b4e6ba2a1ca1e3082f34881f1a664134398875af",
+      "bytes": 46
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/READ_MANIFEST.json",
+      "sha256": "0ea98b1b8168247025d32fd29519dd192e604a3d8618b7b360cc312e34bcd276",
+      "bytes": 46459
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/VALIDATION.json",
+      "sha256": "40993c6cc041438aa59f2c34e77645cc5db7a7ca884e3c879d47fa896d867732",
+      "bytes": 59985
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R5_APPLICATION_D83_2026-09-05/VERIFICATION/HANDOFF.md",
+      "sha256": "713ba90297c710f24c9c6ef012e2399ab9a18f8ac0f1b18377195207a529c9f1",
+      "bytes": 1034
+    }
+  ],
+  "file_count_excluding_manifest": 5,
+  "write_scope_exact": true,
+  "findings": 0
+}

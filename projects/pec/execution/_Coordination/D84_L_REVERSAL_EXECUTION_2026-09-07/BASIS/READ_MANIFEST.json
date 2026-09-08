@@ -1,0 +1,22 @@
+{
+  "schema": "pec-d84-l-reversal-read-manifest/v1",
+  "repo_head": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "origin_main": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "merge_head": "480bd302ef347963c748cf41fe0d4f118227a550",
+  "configured_model": "gpt-5.6-sol",
+  "configured_reasoning_effort": "medium",
+  "serving_identity": "not exposed",
+  "native_role_enforcement": "instruction-asserted",
+  "files": [
+    {"path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-84_RULING_2026-09-07.md", "sha256": "6d9812b46874c39a4617476b8ba7b40702b3a3227c0511fc95b95aaeb8a2fe7a", "origin_main_equal": true},
+    {"path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-84_L_RULING_2026-09-07.md", "sha256": "2f52907fe4728fe70e21a095c27d077fa7b901a7f3ee080ae360cde9e48c9d10", "origin_main_equal": true},
+    {"path": "projects/pec/execution/_Coordination/D83_D84_EXECUTION_2026-09-07/SESSION_AUTHORITY.md", "sha256": "c2542058f197363644d2973f7c408a8984b9113f943c0f5c357e62a0eba5fe2b", "origin_main_equal": true},
+    {"path": "projects/pec/execution/_Coordination/D84_CHECKING_ROUTE_PREP_2026-09-07/ROUTE_PROPOSAL.md", "sha256": "723381a947da7fed4486b28f66cce2e714559d57e0a68251ba0d1837bdd6733e"},
+    {"path": "projects/pec/execution/_Coordination/D84_CHECKING_ROUTE_PREP_2026-09-07/TARGETS.json", "sha256": "7230d2abd1e592074da7fc04b580c9f48c63d0c946e2e796b6c200d311d8bb34"},
+    {"path": "projects/pec/execution/_Coordination/D84_CHECKING_ROUTE_PREP_2026-09-07/STATUS_POSTIMAGE_CANDIDATE.md", "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"},
+    {"path": "docs/SPEC.md", "sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645"},
+    {"path": "agents/AGENT_REVIEW.md", "sha256": "40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab"},
+    {"path": "projects/pec/AGENTS.md", "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846"},
+    {"path": "projects/pec/loop/LOOP_INIT.md", "sha256": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570"}
+  ]
+}

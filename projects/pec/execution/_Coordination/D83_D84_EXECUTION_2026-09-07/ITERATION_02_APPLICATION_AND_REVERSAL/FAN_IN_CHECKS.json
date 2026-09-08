@@ -1,0 +1,39 @@
+{
+  "schema": "pec-d83-d84-iteration-fanin/v1",
+  "basis_commit": "62636f3a1ccc247af8c598b3c0a74ce9179d1fd3",
+  "d83": {
+    "terminal_manifest_sha256": "501366e971d57d8030a73269648ed55942cc6fc97842e44324b7886695c2bad6",
+    "handoff_sha256": "debfb6cdc2e604c6cb4dde57fc88688255411097a5b9d78f2acef3906922203e",
+    "verifier_seal_sha256": "e6fdfeb2c6ec50edae70694412feaf618d02c6d4442de80756c47bc0d4ea61f6",
+    "verdict": "PASS_ZERO_FINDINGS",
+    "carriers": {"applied": 57, "no_action": 7, "total": 64},
+    "items_applied": 89,
+    "appended_bytes": 88237,
+    "claim_references": 1185,
+    "held": {"rows": 70, "claim_references": 134},
+    "conditional": {"rows": 3, "claim_references": 9},
+    "fresh_holds_allow": {"consume": 11, "promote": 57, "total": 68},
+    "inverse_rollbacks_valid": 57,
+    "del_01_05_remaining_append": false
+  },
+  "d84": {
+    "terminal_manifest_sha256": "c9654a03635885fa22a450da153136d1a1ed6a01d9ac3a58059dd4b9cc233ae3",
+    "handoff_sha256": "091251cf44c5af047f0c610dec0d47beb30cdc54f20d762afab1e089b6524a54",
+    "verifier_seal_sha256": "ef40d11563bea0b9c27acf44e046cee853ff1e5c0e67d86c7bc5ddaac8ac5193",
+    "verdict": "PASS_ZERO_DISCREPANCIES",
+    "status_postimage_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+    "verification_entries": 15,
+    "remaining_append": false,
+    "promotion_or_acceptance": false
+  },
+  "common": {
+    "remaining_carriers_observed": 57,
+    "status_files_total": 64,
+    "changed_status_files_expected": 58,
+    "scanner_source_preimages_unchanged": true,
+    "register_change": false,
+    "frozen_carrier_application": false,
+    "d85_act": false,
+    "parent_acceptance": "BOTH_MANAGER_FAN_INS_ACCEPTED"
+  }
+}

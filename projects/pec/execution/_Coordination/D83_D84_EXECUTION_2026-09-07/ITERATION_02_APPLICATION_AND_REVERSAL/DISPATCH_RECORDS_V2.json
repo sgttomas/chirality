@@ -1,0 +1,14 @@
+{
+  "schema": "pec-native-dispatch-record/v2",
+  "parent": "/root",
+  "model_policy": {"configured_model": "gpt-5.6-sol", "configured_reasoning": "medium", "serving_identity_claimed": false},
+  "role_enforcement": "instruction-asserted",
+  "nodes": [
+    {"id": "/root/pec_session_authority", "role": "RECONCILIATION", "state": "active-common-integration", "brief": "BRIEFS/common_integration.md"},
+    {"id": "/root/pec_d83_application", "role": "RECONCILIATION", "state": "terminal-validated-fan-in-accepted; writers-stopped", "scope": "57 ordinary Remaining entries / 89 items; frozen carrier excluded", "manager_owned_specialists": ["/root/pec_d83_application/d83_author", "/root/pec_d83_application/d83_verifier"], "return": "ACTUAL_RETURNS/D83_APPLICATION.md"},
+    {"id": "/root/pec_d84_reversal", "role": "REVIEW", "state": "terminal-validated-fan-in-accepted; writers-stopped", "scope": "one exact status reversal plus independent verification", "manager_owned_specialists": ["/root/pec_d84_reversal/d84_l_verifier"], "return": "ACTUAL_RETURNS/D84_L_REVERSAL.md"},
+    {"id": "/root/pec_d84_repair", "role": "WORKING_ITEMS", "state": "prepared-source-held-through-iteration-closeout", "scope": "later scanner repair after parent release"},
+    {"id": "/root/pec_change_sol", "role": "CHANGE", "state": "released-after-common-seal", "brief": "BRIEFS/change_closeout.md"}
+  ],
+  "production_agent2_nodes_recorded": []
+}

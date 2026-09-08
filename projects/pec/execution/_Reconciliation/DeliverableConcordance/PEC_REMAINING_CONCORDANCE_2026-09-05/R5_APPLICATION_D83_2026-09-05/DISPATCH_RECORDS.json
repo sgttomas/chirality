@@ -1,0 +1,25 @@
+{
+  "run": "R5_APPLICATION_D83_2026-09-05",
+  "manager": "/root/pec_d83_application",
+  "manager_role": "RECONCILIATION Agent 1; instruction-asserted",
+  "dispatches": [
+    {
+      "identity": "/root/pec_d83_application/d83_author",
+      "role": "bounded ephemeral Agent 2 author; instruction-asserted nondelegation",
+      "configured_model": "gpt-5.6-sol",
+      "configured_reasoning_effort": "medium",
+      "fork_turns": "none",
+      "brief": "BRIEFS/AUTHOR.md",
+      "status": "COMPLETE_PASS"
+    },
+    {
+      "identity": "/root/pec_d83_application/d83_verifier",
+      "role": "fresh bounded ephemeral Agent 2 evidence-only verifier; instruction-asserted nondelegation",
+      "configured_model": "gpt-5.6-sol",
+      "configured_reasoning_effort": "medium",
+      "fork_turns": "none",
+      "brief": "BRIEFS/VERIFIER.md",
+      "status": "COMPLETE_PASS"
+    }
+  ]
+}

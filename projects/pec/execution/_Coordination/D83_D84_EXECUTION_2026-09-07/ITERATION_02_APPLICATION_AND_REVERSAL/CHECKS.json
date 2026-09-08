@@ -1,0 +1,42 @@
+{
+  "schema": "pec-d83-d84-iteration-closeout/v1",
+  "receipt": {
+    "preimage_bytes": 440884,
+    "preimage_sha256": "68acb227bc108bdff2f469cfd1d1e80bb84611f9324fe83e5778228b24ab8bf4",
+    "prefix_preserved": true,
+    "post_append_validator": "PASS"
+  },
+  "manager_manifests": {
+    "d83": "PASS 24/24 files",
+    "d84": "PASS 15/15 files"
+  },
+  "candidate_whitespace": {
+    "initial": "FAIL: three unsealed common files had one extra final blank line",
+    "initial_paths": [
+      "ACTIVATION.md",
+      "BRIEFS/change_closeout.md",
+      "BRIEFS/common_integration.md"
+    ],
+    "correction": "owning common recorder removed only the extra final blank lines before sealing",
+    "final": "PASS"
+  },
+  "git_diff_check": "PASS",
+  "containment": {
+    "tracked_paths": 59,
+    "untracked_paths": 52,
+    "status_changes": 58,
+    "status_change_breakdown": "57 D83 ordinary Remaining carriers plus one D84 L status reversal",
+    "receipt_changed": true,
+    "decision_register_changed": false,
+    "scanner_source_changed": false,
+    "outside_expected_scope": []
+  },
+  "scanner_preimages": {
+    "projects/pec/v2/tools/check_service_core_posture.py": "3d88b013e967a66d9cb6a8e5ac9d5f9511c99d02aea04525d2f47bf74ce31643",
+    "projects/pec/v2/tests/enforcement/test_dependency_assertion.py": "0de9c85f1613a204eef1a0357cf4ec20d72646d21170553d7737e804ec68c9cf",
+    "projects/pec/v2/tests/enforcement/test_locality_assertion.py": "69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20"
+  },
+  "live_d84_status_sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+  "product_source_tests": "NOT_RERUN by common integration; manager evidence and CHANGE branch checks own verification",
+  "fresh_general_review": "NOT_ADDED: HELP_HUMAN accepted both owning manager/verifier fan-ins"
+}
