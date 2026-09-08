@@ -1,0 +1,56 @@
+{
+  "status": "PASS_FOR_CHANGE_PUBLICATION",
+  "base_commit": "55df51ac3201456e0f181823e3aefefef47a73bb",
+  "step0": {
+    "fetch": "coordinated_through_CHANGE",
+    "exit_code": 0,
+    "receipt_validator": "PASS_RECEIPT_175_CURRENT",
+    "committed_workplan": "NONE_DELIVERABLES_ALONE",
+    "task_management_live_rows": 18,
+    "task_management_closed_rows": 7,
+    "deliverable_status_files": 64,
+    "remaining_surfaces": 58,
+    "harness_self_check": "PASS"
+  },
+  "proposal": {
+    "selected_v2_sha256": "0da4d163c5d36fde15d7336256f412c1f31a6ac4e5d60c1d55c8e388c000541b",
+    "selected_manifest_sha256": "4f83533beadad4cdff56f061d50d34a556f4e54df12ffbe4da3218fd85321fd2",
+    "current_selection_sha256": "e6b7fd693b0fee323314c4f64e64b4e143794a44c5dd8ed2f9d06d1298f6ab7e",
+    "completed_review_manifest_sha256": "6bd963899a4cf670693950cda20f92c276df3a7eb725a394237befc6272abaa1",
+    "completed_review_verdict": "PASS_FOR_RULING_PUBLICATION_AND_PROPOSAL_READINESS",
+    "open_material_findings": 0,
+    "historical_pending_phrases_preserved": true
+  },
+  "scope": {
+    "product_configuration_paths": 9,
+    "package": "PKG-01",
+    "deliverable": "DEL-01-03",
+    "initial_state": "INITIALIZED",
+    "authorized_start_state": "IN_PROGRESS",
+    "checking_or_issued_granted": false,
+    "artifact_acceptance_granted": false,
+    "full_p1_granted": false
+  },
+  "holds": {
+    "register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "candidate-validation": "ALLOW",
+    "dispatch-for-production": "ALLOW_RERUN_AFTER_MERGE",
+    "rely-for-production": "ALLOW_RERUN_AFTER_MERGE"
+  },
+  "receipt": {
+    "preimage_sha256": "efe77c70bb93984989a95d3d2f63fcabdd0182432f7e4df8b49b5458bdf15d14",
+    "parent": "Receipt-175",
+    "candidate": "Receipt-176",
+    "prefix_preserved": true,
+    "validator": "PASS"
+  },
+  "independent_verification": {
+    "verdict": "PASS",
+    "open_findings": 0,
+    "manifest_sha256": "b4c10ad2850e7d2bd3900abc713292145ecc0bc125079309dcc4925bec89c445"
+  },
+  "candidate_whitespace_including_untracked": "PASS",
+  "git_diff_check": "PASS",
+  "manifest_exclusion": "D85_EXECUTION_2026-09-08/CHANGE_PUBLICATION/**",
+  "product_status_memory_mutation": "NONE"
+}

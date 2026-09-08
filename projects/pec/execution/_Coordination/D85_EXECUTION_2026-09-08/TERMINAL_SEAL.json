@@ -1,0 +1,17 @@
+{
+  "schema": "pec-d85-authority-terminal-seal/v1",
+  "status": "PASS_FOR_CHANGE_PUBLICATION",
+  "base_commit": "55df51ac3201456e0f181823e3aefefef47a73bb",
+  "sealed_file_count_excluding_this_seal_and_root_manifest": 17,
+  "sealed_tree_digest": "0a426886d7400ad13de49f350f0e833244ff44c75e0abe5cc7917bc4cf17aa12",
+  "digest_rule": "sha256 of UTF-8 lines '<sha256>  <repo-relative-path>\\n' sorted by path",
+  "nested_verifier_manifest_included": true,
+  "root_manifest_self_excluded": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/OUTPUT_MANIFEST.json",
+  "future_named_exclusion": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/CHANGE_PUBLICATION/**",
+  "future_exclusion_owner": "CHANGE",
+  "additional_exclusions": [],
+  "later_production_coordination_root": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/**",
+  "independent_verification_manifest_sha256": "b4c10ad2850e7d2bd3900abc713292145ecc0bc125079309dcc4925bec89c445",
+  "open_findings": 0,
+  "writer_state": "STOPPED_AFTER_ROOT_MANIFEST"
+}
