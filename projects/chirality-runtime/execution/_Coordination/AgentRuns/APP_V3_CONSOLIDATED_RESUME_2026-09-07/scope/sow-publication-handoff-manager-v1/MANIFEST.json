@@ -1,0 +1,17 @@
+{
+  "schema": "accepted-runtime-app-sow-publication-handoff-manifest/v1",
+  "status": "READY_FOR_CHANGE_COPY_REVALIDATION_AND_ROOT_FAN_IN",
+  "members": [
+    {"path":"SUBJECT_SELECTION.tsv","sha256":"0dfe74c4e465ea7c8946e714174fe3ac5e15fea66d2abf079bcdd1f78bfb3578","bytes":14231},
+    {"path":"ROOT_RUNTIME_INPUT.json","sha256":"59a14a2354abfe785e1e0d8832adcbe73673e2a871371a3a779678b6e5efdb9c","bytes":2025},
+    {"path":"CROSS_PROJECT_HANDOFF.md","sha256":"6c899d7366a164d0d89531b2284d0a2c10baf7704333c28d311daae34a3f0fd5","bytes":1709},
+    {"path":"CHANGE_HANDOFF.md","sha256":"2b46ec64852eaaa4194d9d88a4809177e6541b399ceaef3726ec66aecdcded3f","bytes":1633},
+    {"path":"CHECKS.json","sha256":"11b6cca83aff36ba9c967b3b13f0033223a756326be6b11df0b37e4f65080c2f","bytes":1155}
+  ],
+  "memberCount": 5,
+  "subjectSelectionMemberCount": 68,
+  "runtimeAcceptanceManifestSha256": "e90c7850b6ef22a18db9929b2d8e1c80c22ec04fcd174fac15493469f5de602e",
+  "appAcceptanceManifestSha256": "bfebfd4c43b5c5da928c6598bd221e6b9d720c26973207706bc29d76882086ad",
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "effects": "Evidence only; no Git, canonical, pointer, source, supplier, lifecycle, release, concordance, or publication mutation"
+}

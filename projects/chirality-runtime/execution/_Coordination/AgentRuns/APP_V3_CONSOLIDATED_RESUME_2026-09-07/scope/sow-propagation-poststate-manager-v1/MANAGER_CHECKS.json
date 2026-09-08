@@ -1,0 +1,39 @@
+{
+  "schema": "runtime-app-sow-poststate-manager-checks/v1",
+  "verdict": "BOTH_POSTSTATES_AUDITED_PASS__TWO_OWNER_CONFIRMATIONS_REQUIRED",
+  "basisCommit": "35249accf139f52478d029458946e50ed25ee5dc",
+  "runtime": {
+    "decisionSubjectSha256": "360fd1ac7378072f972daf2fe4da237e1ac1903dcc20bda3a2760eb35162319a",
+    "patchSha256": "dac1cd0868325fa0a074922da50acefd6900a53be530ddd00cc879bd5bfad482",
+    "del06Sha256": "2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe",
+    "del09Sha256": "0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e",
+    "addendumManifestSha256": "efb4011fa2a777d096ec15d50964234a8aef218a3bed1971c5a817d21a7dc6d0",
+    "applicationEvidenceManifestSha256": "9b60f6a40f4b1bae58c28821a60dbca3c0ceda57cdb0b166c0b4bab32ba25b1c",
+    "pointerSha256": "ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea",
+    "auditSnapshotManifestSha256": "432aa2e1238d93c4b28e923ba19e12e3bfbaf52152845f8195eb18a9e27665b1",
+    "auditCoordinationManifestSha256": "d23125821d64496ce4a6daf70dd700077969715e05a726ccf2b1ce5e836c836d",
+    "auditVerdict": "PASS"
+  },
+  "app": {
+    "decisionSubjectSha256": "fe9d87e93e3b175029ebf7ae622c75382cf5af5a8a1b11eeba7d693e646457b5",
+    "patchSha256": "d71f6a2971409e6a872b778a73d66a2355cb41b2bb125af95da26c3d67f6b98f",
+    "del05Sha256": "0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29",
+    "addendumManifestSha256": "694baaa9b7f102e855df1e428ea5b729b0d5749c15e38515706371ee49bf907f",
+    "pointerSha256": "7a2d955e464403267daba513ac2600e6666acb814e42ff0be09935cf8f4eee23",
+    "auditSnapshotManifestSha256": "72c0846169f06c9903511577a39221d5ab91016936179ad25f5a84cdf53eb238",
+    "auditCoordinationManifestSha256": "49997996e295eef6f8c274652501d7dc72ee9038be92fc45ec0d0eff488ae0c5",
+    "historicalQuoteSha256": "02d170d6d7a24634deeabd5d23847c3d9cbf22edf4b056eded13d2aa20c10de3",
+    "auditVerdict": "PASS"
+  },
+  "checks": [
+    {"id":"EXACT_LIVE_POSTIMAGES","status":"PASS"},
+    {"id":"APPLICATION_MANIFESTS_REHASH","status":"PASS"},
+    {"id":"INDEPENDENT_AUDIT_MANIFESTS_REHASH","status":"PASS"},
+    {"id":"SCOPED_WHITESPACE","status":"PASS"},
+    {"id":"ACTIVE_SEMANTIC_SNAPSHOTS_PRESERVED","status":"PASS"},
+    {"id":"HISTORICAL_EVIDENCE_IMMUTABLE","status":"PASS"},
+    {"id":"CARRIED_BLOCKERS_EXPLICIT","status":"PASS"},
+    {"id":"NO_SOURCE_SUPPLIER_IMPLEMENTATION_LIFECYCLE_RELEASE_EFFECT","status":"PASS"},
+    {"id":"OWNER_POSTSTATE_CONFIRMATIONS_NOT_INFERRED","status":"PASS"}
+  ]
+}

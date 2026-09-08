@@ -1,0 +1,29 @@
+{
+  "schema": "runtime-sow-propagation-addendum-manifest/v1",
+  "date": "2026-09-07",
+  "status": "APPLIED_AUDIT_PENDING",
+  "kind": "immutable-owning-propagation-addendum",
+  "chain": "SCA-002_TO_SCA-003",
+  "activeSemanticSnapshot": "SCA-003_2026-09-07_1616/",
+  "members": [
+    {"path":"APPLICATION_JOURNAL.json","sha256":"25a1b81a918bf67637de936bec937869f57f2e1d19a01bb32a7529a690993d19","bytes":1496},
+    {"path":"BINDINGS.json","sha256":"a50d2a892de496b91474e85e577bb6d0b182edf59e53c8c5f0e660eef4dae0c5","bytes":2207},
+    {"path":"HANDOFF_STATE.md","sha256":"b0bd8c4594af5441bb424688b6ae3659187435e7ab56acb7521d705a433340ec","bytes":1852},
+    {"path":"LATEST_POSTIMAGE.md","sha256":"ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea","bytes":1227},
+    {"path":"LATEST_PREIMAGE.md","sha256":"78a35e83db927cdd82e47119b40b4d99d70a77d0034b2e39887e5e3f4509dfe6","bytes":1220},
+    {"path":"OWNER_GRANT.md","sha256":"c9a62ff7cacd04e3d46849035151ae41a2fc2d900b63899a5a91d272c5cb348a","bytes":1811},
+    {"path":"POINTER_JOURNAL.json","sha256":"8fcbb94d3715820873dcd35a65537ffb2004c9672433b92eeab8e689481a8500","bytes":940},
+    {"path":"PROPAGATION_RETURN.md","sha256":"119700065ef5130f6084d7bc60f02e307c8872108e0b078221b18ac971d9572b","bytes":1727},
+    {"path":"VALIDATION.json","sha256":"064b7bb677b266d3978bfe4be3360f2113b43e8c399999d9e6fa9311252020a4","bytes":2535}
+  ],
+  "memberCount": 9,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "canonicalPostimages": {
+    "DEL-02-06": "2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe",
+    "DEL-02-09": "0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e"
+  },
+  "pointerSha256": "ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea",
+  "conservation": "one SOW-104 row; seven carriers; four objectives; 66 qualified inherited requirements; nine holds plus R16-B; historical basis 9f21e4b86c304343b92ccd9ef10895b28c1a4f48; root-runtime-1 epoch 1",
+  "auditState": "PENDING_INDEPENDENT_POSTSTATE_AUDIT",
+  "gate5PoststateAcceptance": "NOT_CLAIMED"
+}

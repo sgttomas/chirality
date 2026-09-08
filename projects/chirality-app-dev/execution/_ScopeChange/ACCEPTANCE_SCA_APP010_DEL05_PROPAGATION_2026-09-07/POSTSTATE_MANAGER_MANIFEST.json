@@ -1,0 +1,32 @@
+{
+  "schema": "runtime-app-sow-poststate-manager-manifest/v1",
+  "status": "BOTH_POSTSTATES_AUDITED_PASS__TWO_OWNER_CONFIRMATIONS_REQUIRED",
+  "basisCommit": "35249accf139f52478d029458946e50ed25ee5dc",
+  "members": [
+    {
+      "path": "RUNTIME_POSTSTATE_DECISION.md",
+      "sha256": "37141786ee3806d41402996f9cb7e022bbb071d94efadc46f151f310d2c864a5",
+      "bytes": 2198
+    },
+    {
+      "path": "APP_POSTSTATE_DECISION.md",
+      "sha256": "9f625e31cbc6d0847d82b68d7d9dec7d4b1f0406e1ed468d5acfdc9a86e88c23",
+      "bytes": 2237
+    },
+    {
+      "path": "FINAL_HANDOFF.md",
+      "sha256": "2e8cdc3a4c26e90ee5cfdd916c75c5c21d415c60b5c252eada90d547325e00eb",
+      "bytes": 1354
+    },
+    {
+      "path": "MANAGER_CHECKS.json",
+      "sha256": "e97bab64f4694bc2b543b05fcfa8a93065322f8f94a6b11de19a433813b33111",
+      "bytes": 2507
+    }
+  ],
+  "memberCount": 4,
+  "runtimeAuditManifestSha256": "432aa2e1238d93c4b28e923ba19e12e3bfbaf52152845f8195eb18a9e27665b1",
+  "appAuditManifestSha256": "72c0846169f06c9903511577a39221d5ab91016936179ad25f5a84cdf53eb238",
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "effects": "Poststate decision packet only; no canonical, pointer, Git, source, supplier, implementation, lifecycle, or release mutation"
+}

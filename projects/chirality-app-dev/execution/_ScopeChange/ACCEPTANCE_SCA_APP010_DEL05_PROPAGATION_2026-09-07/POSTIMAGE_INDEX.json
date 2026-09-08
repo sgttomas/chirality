@@ -1,0 +1,22 @@
+{
+  "schema": "app-sow-poststate-acceptance-index/v1",
+  "status": "ACCEPTED_EXACT_AUDITED_POSTSTATE",
+  "ownerAnswer": "Accept both exact poststates",
+  "acceptedSubjectSha256": "9f625e31cbc6d0847d82b68d7d9dec7d4b1f0406e1ed468d5acfdc9a86e88c23",
+  "activeSemanticSnapshot": "execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/",
+  "canonicalPostimage": {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md",
+    "sha256": "0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29",
+    "bytes": 35562
+  },
+  "applicationManifestSha256": "694baaa9b7f102e855df1e428ea5b729b0d5749c15e38515706371ee49bf907f",
+  "auditSnapshotManifestSha256": "72c0846169f06c9903511577a39221d5ab91016936179ad25f5a84cdf53eb238",
+  "pointer": {
+    "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+    "preimageSha256": "7a2d955e464403267daba513ac2600e6666acb814e42ff0be09935cf8f4eee23",
+    "preimageBytes": 2471,
+    "postimageSha256": "e2b15e33b2f5b58bb4d98a2874c38886fe04328703fd35d915cda6f0a11071ed",
+    "postimageBytes": 2957
+  },
+  "closureState": "DEL02_05_PROPAGATION_ACCEPTED__SCA_DERIVATIVE_CLOSURE_OPEN__CROSS_PROJECT_CONCORDANCE_INEFFECTIVE"
+}

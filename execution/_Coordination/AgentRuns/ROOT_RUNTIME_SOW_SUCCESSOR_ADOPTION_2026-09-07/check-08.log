@@ -1,0 +1,135 @@
+{
+  "checks": [
+    "practitioner_harness",
+    "validation"
+  ],
+  "paths": [
+    ".gitattributes",
+    "docs/governance_harness/_DECISIONS/D-GOV-40_runtime_sow_successor_adoption.md",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md",
+    "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-SOW-SUCCESSOR-ADOPTION-20260907.yaml",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-sow-root-publication/format-method-v1/CHECKS.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-sow-root-publication/format-method-v1/FORMAT_DISPOSITION.json",
+    "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-sow-root-publication/format-method-v1/MANIFEST.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/AUTHOR_BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/COMPOSITION_RESULT.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SEALED_BASIS_AMENDMENT.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SEALED_BRIEF.md",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-00.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-01.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-02.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-03.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-04.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-05.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-06.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-07.log",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/run_checks.py",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/verify_composition.py",
+    "execution/_Coordination/LOOP_RECEIPTS.md",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md",
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Brief.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/CHECKS.json",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decision_Log.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decomp_Coverage_IssueLog.csv",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decomp_Coverage_Matrix.csv",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decomp_Coverage_Report.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Handoff_State.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/MANIFEST.sha256",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/QA_Report.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/RETURN.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/RUN_SUMMARY.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/coverage_summary.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/APP_POSTSTATE_DECISION.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/AUDIT_SNAPSHOT_MANIFEST.sha256",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/CHANGE_HANDOFF.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/MANIFEST.sha256",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/OWNER_ACCEPTANCE.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POINTER_JOURNAL.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POINTER_POSTIMAGE.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POINTER_PREIMAGE.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POSTIMAGE_INDEX.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POSTSTATE_MANAGER_MANIFEST.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/VALIDATION.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/APP.patch",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/APPLICATION_JOURNAL.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/APP_DECISION_SUBJECT.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/AUTHOR_MANIFEST.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Evidence/BOUNDED_CHECKS.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Evidence/REVIEW_CHECKLIST.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Evidence/SOW_VALIDATION.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Handoff_State.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/IMPACT_AND_GATES.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/MANIFEST.sha256",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/OWNER_GRANT.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/REVIEW_MANIFEST.json",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/RUN_SUMMARY.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/VALIDATION.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+    "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/APP_POSTSTATE_DECISION.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/FINAL_HANDOFF.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/FINAL_MANIFEST.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/MANAGER_CHECKS.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/RUNTIME_POSTSTATE_DECISION.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/CHANGE_HANDOFF.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/CHECKS.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/CROSS_PROJECT_HANDOFF.md",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/MANIFEST.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/ROOT_RUNTIME_INPUT.json",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/SUBJECT_SELECTION.tsv",
+    "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07.md",
+    "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/AUDIT_REPORT.md",
+    "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/CHECKS.json",
+    "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/HANDOFF_STATE.md",
+    "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OUTPUT_MANIFEST.json",
+    "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/RETURN.md",
+    "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/coverage_summary.json",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/BINDINGS.json",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/CHAIN_CLOSURE.md",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/CHANGE_HANDOFF.md",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/LATEST_POSTIMAGE.md",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/LATEST_PREIMAGE.md",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OUTPUT_MANIFEST.json",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OWNER_ACCEPTANCE.md",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/POINTER_JOURNAL.json",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/POSTIMAGE_INDEX.json",
+    "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/VALIDATION.json",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/APPLICATION_JOURNAL.json",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/BINDINGS.json",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/HANDOFF_STATE.md",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/LATEST_POSTIMAGE.md",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/LATEST_PREIMAGE.md",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/OUTPUT_MANIFEST.json",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/OWNER_GRANT.md",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/POINTER_JOURNAL.json",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/PROPAGATION_RETURN.md",
+    "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/VALIDATION.json",
+    "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+    "tools/validation/root_runtime_successors.py",
+    "tools/validation/test_root_runtime_successors.py"
+  ],
+  "reasons": {},
+  "schema": "chirality-affected-checks/v1"
+}
+[run-affected] running 2 suite(s); skipping 15: analysis, coordination, decomp, drawing_extract, equation_audit, pdf2md, publication, reporting, retrieval, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime
+[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13/bin/python -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 25%]
+........................................................................ [ 34%]
+...................uuu.......u.uuu.u.u..uuu............................. [ 41%]
+........................................................................ [ 50%]
+..............u.........................u............................... [ 58%]
+u................................................u...................... [ 66%]
+.............................................................u.......... [ 75%]
+.............................................uuuu.uuu.u................. [ 82%]
+.........................................u....u.........u............... [ 91%]
+..u.............................u....uuu.uuuuuuu....u.u................. [ 97%]
+uuuu.uu................                                                  [100%]
+839 passed, 48 subtests passed in 17.27s

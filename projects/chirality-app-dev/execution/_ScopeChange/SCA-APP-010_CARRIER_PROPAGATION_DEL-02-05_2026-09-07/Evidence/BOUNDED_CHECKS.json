@@ -1,0 +1,29 @@
+{
+  "balanced_fences": true,
+  "definition_counts": {
+    "AC": 2,
+    "CLM": 28,
+    "OUT": 2,
+    "REQ": 5,
+    "VER": 2
+  },
+  "duplicate_ids": {
+    "AC": [],
+    "CLM": [],
+    "OUT": [],
+    "REQ": [],
+    "VER": []
+  },
+  "electron_main_only_transport": true,
+  "fail_closed": true,
+  "historical_applied_row_quote_post_sha256": "02d170d6d7a24634deeabd5d23847c3d9cbf22edf4b056eded13d2aa20c10de3",
+  "historical_applied_row_quote_pre_sha256": "02d170d6d7a24634deeabd5d23847c3d9cbf22edf4b056eded13d2aa20c10de3",
+  "historical_applied_row_quote_unchanged": true,
+  "postimage_sha256": "0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29",
+  "preimage_sha256": "83f206d623dd72130cab799e8e9216440635fb3cbe82ed8b17a6216092abf06f",
+  "renderer_exclusion": true,
+  "runtime_supplier_ownership": true,
+  "schema_frontmatter": true,
+  "typed_runtime_projection": true,
+  "ui_fixture_limits": true
+}

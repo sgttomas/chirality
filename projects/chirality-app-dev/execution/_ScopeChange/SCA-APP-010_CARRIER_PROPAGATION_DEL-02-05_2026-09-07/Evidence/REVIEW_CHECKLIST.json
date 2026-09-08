@@ -1,0 +1,66 @@
+{
+  "item_count": 2,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 296,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29"
+      },
+      "text": "The Scope of Work preserves and traces all legacy source content to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-05-VER-001",
+          "source_line": 408,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, followed by human review against the accepted legacy basis."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-02-05-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 297,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29"
+      },
+      "text": "The v3 account/consent outputs assigned by the applied decomposition row (API key and account settings panel, `HostedEngineConsentPort` UI adapter, per-root login and command-network consent controls, attachment picker and preview chips, typed storage/runtime error display, consent/revocation and retry-state tests) exist and satisfy REQ-001 through REQ-005, and any live-account claim carries accepted implementation, supplier-qualification, exact version/capability, live identity-pair, and G3/G-CSP/G4 evidence where applicable rather than being inferred from the accepted contract basis or UI fixtures.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-02-05-VER-002",
+          "source_line": 409,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the consent/revocation, retry-state, typed storage-state, command-network-posture, and role/posture-label tests behind fakes; inspect that Electron main exclusively owns transport, the renderer receives no socket, bearer, credential, private-supervisor access, or arbitrary forwarding, and no ambient `~/.codex` read or project-truth secret persistence occurs; and treat those fixtures as UI-only evidence. Live-account evidence remains unavailable until implementation and supplier qualification establish the current atomic identity pair, exact version/capability result, fail-closed status, and G3/G-CSP/G4 evidence where applicable."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29"
+  },
+  "tool_version": "1"
+}

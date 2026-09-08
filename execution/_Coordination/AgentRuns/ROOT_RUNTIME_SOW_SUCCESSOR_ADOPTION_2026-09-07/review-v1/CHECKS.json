@@ -1,0 +1,87 @@
+{
+  "schema": "root-runtime-sow-successor-adoption-independent-review-checks/v1",
+  "status": "PASS",
+  "role": "fresh nondelegating ephemeral Agent 2 independent reviewer",
+  "roleEnforcement": "instruction-asserted",
+  "nondelegation": "instruction-asserted",
+  "requestedModelAllocation": "gpt-5.6-sol medium",
+  "sealedBasis": {
+    "head": "c5192790f98ec024e7c2728cb1d4df3ae2b2a2dd",
+    "authorManifestExpected": "96eda353cdd6f34d7353fee820cf834856cb7508b68c65e4e0e7d7e8e3d34360",
+    "authorManifestActual": "96eda353cdd6f34d7353fee820cf834856cb7508b68c65e4e0e7d7e8e3d34360",
+    "candidateDiffExpected": "310f3aeed23fa94d7e7b8579b2f7e42b12e1347f9d375dee039b5fa7313caf04",
+    "candidateDiffActual": "310f3aeed23fa94d7e7b8579b2f7e42b12e1347f9d375dee039b5fa7313caf04",
+    "candidateDiffUncompressedSha256": "9b0e6db3861c2e1451dab4063bc27aa66ac649657421404570aad8b6bd2e47fe",
+    "candidateDiffUncompressedBytes": 343525,
+    "policySha256": "bc0aa4c917f1773bba26cb3bee98fd4cca1c9788addeff0582626d485caae840"
+  },
+  "checks": [
+    {
+      "id": "exhaustive-freeze",
+      "result": "PASS",
+      "evidence": "113 manifest members match hashes, byte counts, and Git status; exact 112-path diff reproduced; self-excluded manifest gives 114 total package paths"
+    },
+    {
+      "id": "staged-custody",
+      "result": "PASS",
+      "evidence": "83 staged paths; index tree 64f944b55cc69b34ecccaca585f4ca399354d8c5; staged binary diff 4e00e0147eb66b779ce6a7aecc079c61ad87e2afc854110e12685df2b7f61577; zero staged-path worktree drift"
+    },
+    {
+      "id": "prior-policy-preservation",
+      "result": "PASS",
+      "evidence": "first three adoption JSON source spans and parsed objects are byte-identical and ordered"
+    },
+    {
+      "id": "runtime-pair-and-app-exclusion",
+      "result": "PASS",
+      "evidence": "fourth adoption contains exactly Runtime DEL-02-06 and DEL-02-09; App DEL-02-05 absent"
+    },
+    {
+      "id": "acceptance-proof",
+      "result": "PASS",
+      "evidence": "all direct policy references and 32 members across acceptance, manager, audit, application, and handoff manifests match; native counts and recorded sizes match"
+    },
+    {
+      "id": "verifier-design",
+      "result": "PASS",
+      "evidence": "exact schema dispatch and evidence bindings; ordered index projection, live pair, current pointer, path and publication checks; no generic fallback or execution grant"
+    },
+    {
+      "id": "negative-coverage",
+      "result": "PASS",
+      "evidence": "32 retained rejections cover evidence absence/alteration, member tamper, type/symlink, mixed revision, predecessor/postimage, App/unknown/escaping path, and duplicate change"
+    },
+    {
+      "id": "focused-tests",
+      "result": "PASS",
+      "command": "PYTHONPATH=tools/validation /Users/ryan/.local/share/mise/installs/python/3.13/bin/python -m unittest tools.validation.test_root_runtime_successors -v",
+      "evidence": "14 tests passed"
+    },
+    {
+      "id": "composition",
+      "result": "PASS",
+      "evidence": "four exact ordered adoptions; accepted-pending-publication; published=false; execution_authority=false; 53/46/7/9"
+    },
+    {
+      "id": "root-guards",
+      "result": "PASS",
+      "evidence": "independent G0/G1/G2/G3/G4 passed"
+    },
+    {
+      "id": "author-affected-checks",
+      "result": "PASS",
+      "evidence": "839 tests and 48 subtests passed; self-check exited zero; whitespace and git diff checks clean"
+    },
+    {
+      "id": "root-write-boundary",
+      "result": "PASS",
+      "evidence": "29 unstaged Root paths all within sealed scope; no Runtime/App canonical, source, SOW, or .gitattributes mutation by Root"
+    },
+    {
+      "id": "publication-boundary",
+      "result": "PASS",
+      "evidence": "no publication, execution, activation, concordance, or release claim; CI and fetched-main backcheck remain"
+    }
+  ],
+  "verdict": "PASS"
+}

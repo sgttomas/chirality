@@ -1,0 +1,2 @@
+ProductionUnitID,PartitionID,ConcreteProductionUnitLabel,ConcretePartitionLabel,FolderExists,ContextPresent,ContextMatch,ArtifactCoverage,ObjectivesMapped,LifecycleState,IssueCount
+DEL-02-05,PKG-02,Deliverable,Package,true,true,MATCH,1/1,2/2,IN_PROGRESS,0

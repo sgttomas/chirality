@@ -1,0 +1,697 @@
+{
+  "schema": "root-runtime-sow-successor-adoption-output-manifest/v1",
+  "basisCommit": "c5192790f98ec024e7c2728cb1d4df3ae2b2a2dd",
+  "candidateDiff": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/CANDIDATE_DIFF.patch.gz",
+    "sha256": "310f3aeed23fa94d7e7b8579b2f7e42b12e1347f9d375dee039b5fa7313caf04",
+    "uncompressedBytes": 343525,
+    "compression": "gzip-mtime-0"
+  },
+  "stagedCustody": {
+    "paths": 83,
+    "indexTree": "64f944b55cc69b34ecccaca585f4ca399354d8c5",
+    "binaryDiffSha256": "4e00e0147eb66b779ce6a7aecc079c61ad87e2afc854110e12685df2b7f61577"
+  },
+  "members": [
+    {
+      "path": ".gitattributes",
+      "status": "M ",
+      "bytes": 8367,
+      "sha256": "ebd621ac7c403ca0a3728cd07f8a7e76ddfc7f31110a7dffcaa5a5938fac40cf"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-40_runtime_sow_successor_adoption.md",
+      "status": "??",
+      "bytes": 2694,
+      "sha256": "2680cd286ae138e7690b22edd9b8e69f905c46ecaf55fa14e63767427d05d4d3"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "status": " M",
+      "bytes": 39710,
+      "sha256": "0d56de08f469dc54e86f22227c49cd92c5556c34f6aeadc909d1e65b1b91fe2c"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-SOW-SUCCESSOR-ADOPTION-20260907.yaml",
+      "status": "??",
+      "bytes": 1487,
+      "sha256": "0f300eadeca3edf49b27ed0da9bcef05b183d56b88cb8731df56361f7345de23"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-sow-root-publication/format-method-v1/CHECKS.json",
+      "status": "A ",
+      "bytes": 774,
+      "sha256": "9c87bad673302983bbe39b90d31bc17dfe703002b4b2881bf471c463c088030e"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-sow-root-publication/format-method-v1/FORMAT_DISPOSITION.json",
+      "status": "A ",
+      "bytes": 5875,
+      "sha256": "146d7fdbcf100b5b8aab7c0f7fd279dfce428cf0432979784b3659ff68c9f2ce"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-sow-root-publication/format-method-v1/MANIFEST.json",
+      "status": "A ",
+      "bytes": 383,
+      "sha256": "f809b877487e18e24b9607b63560681283f759708b3b4ea661985979e0dc2c7a"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/AUTHOR_BRIEF.md",
+      "status": "??",
+      "bytes": 795,
+      "sha256": "5b560bc654617ae9c5824c01d1ddb7cb392c12cc157d8cc9104d140e2b6d6fb0"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/CANDIDATE_DIFF.patch.gz",
+      "status": "??",
+      "bytes": 70740,
+      "sha256": "310f3aeed23fa94d7e7b8579b2f7e42b12e1347f9d375dee039b5fa7313caf04"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/CHECKS.json",
+      "status": "??",
+      "bytes": 2361,
+      "sha256": "562a12e96ca2a41fe243be57aa5e525c3a26930ad4fdd0f21ed52de15cc1b51b"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/COMPOSITION_RESULT.json",
+      "status": "??",
+      "bytes": 11421,
+      "sha256": "270c4a301908bc29a41c412aba44070ecd31594f2349f8b27477e4339474de03"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/HANDOFF.md",
+      "status": "??",
+      "bytes": 1792,
+      "sha256": "26ce95f32f267012390e3a1a399112fa6b8de3598b5c5028dedeea7b062318f3"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SEALED_BASIS_AMENDMENT.md",
+      "status": "??",
+      "bytes": 1562,
+      "sha256": "b151538f6050e739e7e0c369cb15b4f3a72128f8b9c4719b51739825c50cfd7d"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SEALED_BRIEF.md",
+      "status": "??",
+      "bytes": 5416,
+      "sha256": "85969abd8d3ccfb71f0a0523acdfdc0b2fdd42baa341be6b49812f0776de433a"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/STAGED_PRESERVATION.json",
+      "status": "??",
+      "bytes": 223,
+      "sha256": "c8ea9536dbec240685f450c1506a4c3c7f525cd864a1ddec584e149e9dd4828e"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+      "status": "??",
+      "bytes": 9590,
+      "sha256": "bc0aa4c917f1773bba26cb3bee98fd4cca1c9788addeff0582626d485caae840"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-00.log",
+      "status": "??",
+      "bytes": 2835,
+      "sha256": "48e22409a1cbc5420c92f97a8ca84f4fa35041464b4893fd243272bdc37ee11c"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-01.log",
+      "status": "??",
+      "bytes": 60,
+      "sha256": "e1835ed07494a130f0f005bc0d2d214b9075e5010f2627f85e20d33243ae1fb6"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-02.log",
+      "status": "??",
+      "bytes": 100,
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-03.log",
+      "status": "??",
+      "bytes": 92,
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-04.log",
+      "status": "??",
+      "bytes": 65,
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-05.log",
+      "status": "??",
+      "bytes": 188,
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-06.log",
+      "status": "??",
+      "bytes": 5739,
+      "sha256": "923b41accde4dcb475f7d99160952aef9d5bf3c1b071b60e641e38de7c07009d"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-07.log",
+      "status": "??",
+      "bytes": 24824,
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-08.log",
+      "status": "??",
+      "bytes": 14897,
+      "sha256": "2b0eaa47c0dc764b60c487fcb568052f26ff115a14a60b37e353380b9eff84b4"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-09.log",
+      "status": "??",
+      "bytes": 88,
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-10.log",
+      "status": "??",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/run_checks.py",
+      "status": "??",
+      "bytes": 2807,
+      "sha256": "32b2a15ef8cba2fa239e5d194e9d797de42a69c6abe60c4246f1ac5dd277b644"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/verify_composition.py",
+      "status": "??",
+      "bytes": 7437,
+      "sha256": "d52649878fe18c753b67b7f8ffd86df0ee93d1121818c030793bb2f612fba8dc"
+    },
+    {
+      "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+      "status": " M",
+      "bytes": 571026,
+      "sha256": "47d8f7dfddd85f68297286700a727634619d4c747b8872d7a65fd3f828528a6f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md",
+      "status": "M ",
+      "bytes": 35562,
+      "sha256": "0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07.md",
+      "status": "??",
+      "bytes": 728,
+      "sha256": "1e8884249ff07b7321f7efdd8e3d297bb44b141c0ab347252187dc7db33da151"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Brief.md",
+      "status": "A ",
+      "bytes": 1423,
+      "sha256": "5841b02195a42c03c14b381920d02fded82984439a9ae9a44d6a7da5901863b3"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/CHECKS.json",
+      "status": "A ",
+      "bytes": 2251,
+      "sha256": "e8953dd51854478fe821c973f0a93667031302d9043056b6139d560f7280ff99"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decision_Log.md",
+      "status": "A ",
+      "bytes": 1048,
+      "sha256": "b166f7c4fa9130d6dc254506285e35f8ce91eec4c2387f6af53b9d57b6dd8d16"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decomp_Coverage_IssueLog.csv",
+      "status": "A ",
+      "bytes": 106,
+      "sha256": "55edeefaacf3bb972fc47f2718bd66f05eed301433d5f3ebc9c3d124859b4366"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decomp_Coverage_Matrix.csv",
+      "status": "A ",
+      "bytes": 256,
+      "sha256": "64faa201526d18e407911390f9fbb9875b28cccaaaff96fe0406eb877e06b665"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Decomp_Coverage_Report.md",
+      "status": "A ",
+      "bytes": 5159,
+      "sha256": "b9131f1b334637fd67108e35a5c01c0e7743f81e255d61e9f426cc51a718f535"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/Handoff_State.md",
+      "status": "A ",
+      "bytes": 1194,
+      "sha256": "ac2e00a210a875a2097db6f1356a2e803400a7bf1c7c689e3fe249c59407c320"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/MANIFEST.sha256",
+      "status": "A ",
+      "bytes": 922,
+      "sha256": "72c0846169f06c9903511577a39221d5ab91016936179ad25f5a84cdf53eb238"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/QA_Report.md",
+      "status": "A ",
+      "bytes": 2309,
+      "sha256": "bec3d354797e8ec476bbd808e5abfb25130f70f78cad9bf64d2d39dfe6c571ba"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/RETURN.md",
+      "status": "A ",
+      "bytes": 1054,
+      "sha256": "2dec91d0d55b775dfb2aef213b8818d8247355f4a79f9858ccda250bc9494898"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/RUN_SUMMARY.md",
+      "status": "A ",
+      "bytes": 639,
+      "sha256": "563aa05ae636b9b2d226782419391633bc4c259509662fef650e1951a7fa9ca8"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA_APP_010_DEL05_2026-09-07/coverage_summary.json",
+      "status": "A ",
+      "bytes": 2744,
+      "sha256": "ab6b28d5feed2d109fdf1d46b22c4cedf6a66f73088c483bac638c6d7abf36cb"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/APP_POSTSTATE_DECISION.md",
+      "status": "A ",
+      "bytes": 2237,
+      "sha256": "9f625e31cbc6d0847d82b68d7d9dec7d4b1f0406e1ed468d5acfdc9a86e88c23"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/AUDIT_SNAPSHOT_MANIFEST.sha256",
+      "status": "A ",
+      "bytes": 922,
+      "sha256": "72c0846169f06c9903511577a39221d5ab91016936179ad25f5a84cdf53eb238"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/CHANGE_HANDOFF.md",
+      "status": "A ",
+      "bytes": 1039,
+      "sha256": "e0ee5e977059d206dc22cf993519c845810e7f912f2e35cd23d8c6f5a2b21180"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/MANIFEST.sha256",
+      "status": "A ",
+      "bytes": 882,
+      "sha256": "bfebfd4c43b5c5da928c6598bd221e6b9d720c26973207706bc29d76882086ad"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/OWNER_ACCEPTANCE.md",
+      "status": "A ",
+      "bytes": 1786,
+      "sha256": "d7f6fe606f0a6ad389f0c219af79b7d5e4d89c8db08f5b85c540b34d69758cf0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POINTER_JOURNAL.md",
+      "status": "A ",
+      "bytes": 1052,
+      "sha256": "27c596000b345e85b0310e7cd3e6b182822459f08b2089e7b42ec2a8dd65ef73"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POINTER_POSTIMAGE.md",
+      "status": "A ",
+      "bytes": 2957,
+      "sha256": "e2b15e33b2f5b58bb4d98a2874c38886fe04328703fd35d915cda6f0a11071ed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POINTER_PREIMAGE.md",
+      "status": "A ",
+      "bytes": 2471,
+      "sha256": "7a2d955e464403267daba513ac2600e6666acb814e42ff0be09935cf8f4eee23"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POSTIMAGE_INDEX.json",
+      "status": "A ",
+      "bytes": 1318,
+      "sha256": "4ab0c3e36919b4f690c937a46190ce262b41b825bb1c94715d55d97940dde239"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/POSTSTATE_MANAGER_MANIFEST.json",
+      "status": "A ",
+      "bytes": 1254,
+      "sha256": "0fcd9b3624046407d800ca3e9a522073cbf9a5d058ce3d3473d9a346acc7f03b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/ACCEPTANCE_SCA_APP010_DEL05_PROPAGATION_2026-09-07/VALIDATION.md",
+      "status": "A ",
+      "bytes": 1470,
+      "sha256": "557d5406faccb40820b82871b2de97b742e2bbc90ac17aff4ad6972d77daea9c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/APP.patch",
+      "status": "A ",
+      "bytes": 10184,
+      "sha256": "d71f6a2971409e6a872b778a73d66a2355cb41b2bb125af95da26c3d67f6b98f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/APPLICATION_JOURNAL.md",
+      "status": "A ",
+      "bytes": 2916,
+      "sha256": "ce4120324dcaa3f6b8ba0b83c7748e32ba9cbccb499f062bf6cae8e69886719b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/APP_DECISION_SUBJECT.md",
+      "status": "A ",
+      "bytes": 2296,
+      "sha256": "fe9d87e93e3b175029ebf7ae622c75382cf5af5a8a1b11eeba7d693e646457b5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/AUTHOR_MANIFEST.json",
+      "status": "A ",
+      "bytes": 2744,
+      "sha256": "eeca1e23f72819c894d9f4c43cffb0b19f612563f31357477c36a3c8f610c1e5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Evidence/BOUNDED_CHECKS.json",
+      "status": "A ",
+      "bytes": 910,
+      "sha256": "ec0b2f62107b8dbc0183da646939cae211db19f0cd67184cefa9790c3fc49318"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Evidence/REVIEW_CHECKLIST.json",
+      "status": "A ",
+      "bytes": 3426,
+      "sha256": "fdb055a4e64a8381c1828933f2e27cb7157963a3613b977e116b04a8df3de2eb"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Evidence/SOW_VALIDATION.json",
+      "status": "A ",
+      "bytes": 288,
+      "sha256": "c700fb549e6c8c73470c3b0fb3dd5c91ab713c5d1b8503920ab45d735e4f0909"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/Handoff_State.md",
+      "status": "A ",
+      "bytes": 2760,
+      "sha256": "c4af5d39f1d033eea19919aa145bbb93b50df16d7560beb338ac04a0e64fa5f9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/IMPACT_AND_GATES.md",
+      "status": "A ",
+      "bytes": 2661,
+      "sha256": "e4d6110ff75d4af915c5c4ffc4b0c58d30fb2fbfc8d07d5f7227418060f60bf9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/MANIFEST.sha256",
+      "status": "A ",
+      "bytes": 1127,
+      "sha256": "694baaa9b7f102e855df1e428ea5b729b0d5749c15e38515706371ee49bf907f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/OWNER_GRANT.md",
+      "status": "A ",
+      "bytes": 1811,
+      "sha256": "c9a62ff7cacd04e3d46849035151ae41a2fc2d900b63899a5a91d272c5cb348a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/REVIEW_MANIFEST.json",
+      "status": "A ",
+      "bytes": 1280,
+      "sha256": "cf21900de32e25faf472f9b547d8ee029d201b4a616ee6366cad97eaf7c423b6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/RUN_SUMMARY.md",
+      "status": "A ",
+      "bytes": 964,
+      "sha256": "646846d83a226f97eae050481e5d36cb8085d861c1be4b5bdc50803927b4330d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_CARRIER_PROPAGATION_DEL-02-05_2026-09-07/VALIDATION.md",
+      "status": "A ",
+      "bytes": 1995,
+      "sha256": "393cc58d903dc2e7d2ff20121d3fa0dd50a53ed29c6e3fcc8e0467c7d4427120"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+      "status": "M ",
+      "bytes": 2957,
+      "sha256": "e2b15e33b2f5b58bb4d98a2874c38886fe04328703fd35d915cda6f0a11071ed"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "status": "M ",
+      "bytes": 55622,
+      "sha256": "2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "status": "M ",
+      "bytes": 15980,
+      "sha256": "0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/APP_POSTSTATE_DECISION.md",
+      "status": "A ",
+      "bytes": 2237,
+      "sha256": "9f625e31cbc6d0847d82b68d7d9dec7d4b1f0406e1ed468d5acfdc9a86e88c23"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/FINAL_HANDOFF.md",
+      "status": "A ",
+      "bytes": 1354,
+      "sha256": "2e8cdc3a4c26e90ee5cfdd916c75c5c21d415c60b5c252eada90d547325e00eb"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/FINAL_MANIFEST.json",
+      "status": "A ",
+      "bytes": 1254,
+      "sha256": "0fcd9b3624046407d800ca3e9a522073cbf9a5d058ce3d3473d9a346acc7f03b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/MANAGER_CHECKS.json",
+      "status": "A ",
+      "bytes": 2507,
+      "sha256": "e97bab64f4694bc2b543b05fcfa8a93065322f8f94a6b11de19a433813b33111"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/RUNTIME_POSTSTATE_DECISION.md",
+      "status": "A ",
+      "bytes": 2198,
+      "sha256": "37141786ee3806d41402996f9cb7e022bbb071d94efadc46f151f310d2c864a5"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/CHANGE_HANDOFF.md",
+      "status": "A ",
+      "bytes": 1633,
+      "sha256": "2b46ec64852eaaa4194d9d88a4809177e6541b399ceaef3726ec66aecdcded3f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/CHECKS.json",
+      "status": "A ",
+      "bytes": 1155,
+      "sha256": "11b6cca83aff36ba9c967b3b13f0033223a756326be6b11df0b37e4f65080c2f"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/CROSS_PROJECT_HANDOFF.md",
+      "status": "A ",
+      "bytes": 1709,
+      "sha256": "6c899d7366a164d0d89531b2284d0a2c10baf7704333c28d311daae34a3f0fd5"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/MANIFEST.json",
+      "status": "A ",
+      "bytes": 1230,
+      "sha256": "0e053db4cee2419c7c535a5c702cdff79313829bffc2e48d32208b60b3b1ea17"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/ROOT_RUNTIME_INPUT.json",
+      "status": "A ",
+      "bytes": 2025,
+      "sha256": "59a14a2354abfe785e1e0d8832adcbe73673e2a871371a3a779678b6e5efdb9c"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/SUBJECT_SELECTION.tsv",
+      "status": "A ",
+      "bytes": 14231,
+      "sha256": "0dfe74c4e465ea7c8946e714174fe3ac5e15fea66d2abf079bcdd1f78bfb3578"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07.md",
+      "status": "??",
+      "bytes": 706,
+      "sha256": "42d66fd44367a1d1942c2fa2db50e13fa335fbdda91c85d739f90c3a4a589c37"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/AUDIT_REPORT.md",
+      "status": "A ",
+      "bytes": 5690,
+      "sha256": "dba27bf358a9e6e29c0182d85f111c62d5e324aae8fb3c3ad5bee1c36b0cbbc9"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/CHECKS.json",
+      "status": "A ",
+      "bytes": 837,
+      "sha256": "48ef77af606daa86b1120d95fa7b95bebb6ef611eca7fc7db0101c4565ec8a42"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/HANDOFF_STATE.md",
+      "status": "A ",
+      "bytes": 1090,
+      "sha256": "9e08ad8312483f960d06049851743f28107a3b6d7e858a2f105a794f0b423b08"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OUTPUT_MANIFEST.json",
+      "status": "A ",
+      "bytes": 833,
+      "sha256": "432aa2e1238d93c4b28e923ba19e12e3bfbaf52152845f8195eb18a9e27665b1"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/RETURN.md",
+      "status": "A ",
+      "bytes": 979,
+      "sha256": "268edec96fe0aafa0215395a5e1a3100c08e48acf45591fe9b351409e6dde550"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/coverage_summary.json",
+      "status": "A ",
+      "bytes": 1463,
+      "sha256": "3ac01cd835aa3210445e8dfad1b033cf5c5677af5bc6ef50f39e3cb6ff0bb391"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/BINDINGS.json",
+      "status": "A ",
+      "bytes": 1563,
+      "sha256": "ac410e74647f61b674da29ae41abad4b497b7f68dbadce7f7b932d23f454d4f2"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/CHAIN_CLOSURE.md",
+      "status": "A ",
+      "bytes": 1295,
+      "sha256": "884ac7b887cb5f8328ba556645840478f89cce373cb58cfab4fb45b01d7ae390"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/CHANGE_HANDOFF.md",
+      "status": "A ",
+      "bytes": 1259,
+      "sha256": "dbda1ea1f19f38bb6f04f8ee6ce98e48da4a260413ef3db4301b9ea0da828686"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/LATEST_POSTIMAGE.md",
+      "status": "A ",
+      "bytes": 1375,
+      "sha256": "da47241ba281cb65cf7f74dfd74fbbf5c65d220ad5488b607d8b70f1245edc81"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/LATEST_PREIMAGE.md",
+      "status": "A ",
+      "bytes": 1227,
+      "sha256": "ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OUTPUT_MANIFEST.json",
+      "status": "A ",
+      "bytes": 2269,
+      "sha256": "e90c7850b6ef22a18db9929b2d8e1c80c22ec04fcd174fac15493469f5de602e"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OWNER_ACCEPTANCE.md",
+      "status": "A ",
+      "bytes": 1478,
+      "sha256": "0329293b691862f9bd1d3ca2977278e3706b278aa3ac4d177f24a289fa016367"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/POINTER_JOURNAL.json",
+      "status": "A ",
+      "bytes": 983,
+      "sha256": "65062c5736d11ab6fc17c1b51719b08fff91f6a2452eb3a662bafee53ad82f0c"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/POSTIMAGE_INDEX.json",
+      "status": "A ",
+      "bytes": 1395,
+      "sha256": "ffac42013c68c2ce2f36469b7e37808fffab0d0f18fa723d9a1d7439a3d3e470"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/VALIDATION.json",
+      "status": "A ",
+      "bytes": 1735,
+      "sha256": "01123a10a983ecfb5cd8eb3f731d7d9c1666602fde524b7b1b3998ff5a2d73a9"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/APPLICATION_JOURNAL.json",
+      "status": "A ",
+      "bytes": 1496,
+      "sha256": "25a1b81a918bf67637de936bec937869f57f2e1d19a01bb32a7529a690993d19"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/BINDINGS.json",
+      "status": "A ",
+      "bytes": 2207,
+      "sha256": "a50d2a892de496b91474e85e577bb6d0b182edf59e53c8c5f0e660eef4dae0c5"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/HANDOFF_STATE.md",
+      "status": "A ",
+      "bytes": 1852,
+      "sha256": "b0bd8c4594af5441bb424688b6ae3659187435e7ab56acb7521d705a433340ec"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/LATEST_POSTIMAGE.md",
+      "status": "A ",
+      "bytes": 1227,
+      "sha256": "ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/LATEST_PREIMAGE.md",
+      "status": "A ",
+      "bytes": 1220,
+      "sha256": "78a35e83db927cdd82e47119b40b4d99d70a77d0034b2e39887e5e3f4509dfe6"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/OUTPUT_MANIFEST.json",
+      "status": "A ",
+      "bytes": 2063,
+      "sha256": "efb4011fa2a777d096ec15d50964234a8aef218a3bed1971c5a817d21a7dc6d0"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/OWNER_GRANT.md",
+      "status": "A ",
+      "bytes": 1811,
+      "sha256": "c9a62ff7cacd04e3d46849035151ae41a2fc2d900b63899a5a91d272c5cb348a"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/POINTER_JOURNAL.json",
+      "status": "A ",
+      "bytes": 940,
+      "sha256": "8fcbb94d3715820873dcd35a65537ffb2004c9672433b92eeab8e689481a8500"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/PROPAGATION_RETURN.md",
+      "status": "A ",
+      "bytes": 1727,
+      "sha256": "119700065ef5130f6084d7bc60f02e307c8872108e0b078221b18ac971d9572b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/VALIDATION.json",
+      "status": "A ",
+      "bytes": 2535,
+      "sha256": "064b7bb677b266d3978bfe4be3360f2113b43e8c399999d9e6fa9311252020a4"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+      "status": "M ",
+      "bytes": 1375,
+      "sha256": "da47241ba281cb65cf7f74dfd74fbbf5c65d220ad5488b607d8b70f1245edc81"
+    },
+    {
+      "path": "tools/validation/root_runtime_successors.py",
+      "status": " M",
+      "bytes": 18495,
+      "sha256": "2eb3bf54a1ffee97fd5de5b360eacdc9cd236ba94130a6b325ef683ba329cd63"
+    },
+    {
+      "path": "tools/validation/test_root_runtime_successors.py",
+      "status": " M",
+      "bytes": 14068,
+      "sha256": "a348d629cad265b18075f025492a69a16e22e34d01ccb056a728cc328c9ae998"
+    }
+  ],
+  "memberCount": 113,
+  "manifestSelfHash": "excluded"
+}

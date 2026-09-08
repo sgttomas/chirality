@@ -1,0 +1,41 @@
+{
+  "schema": "runtime-app-sow-propagation-author-manifest/v2",
+  "status": "READY_FOR_INDEPENDENT_REVIEW",
+  "sourceBrief": {
+    "path": "SEALED_BRIEF.md",
+    "sha256": "bd17da9a941c8cf77721a594a3a5e2d9f404e990b70c93bc8f201ef185f827a2",
+    "bytes": 3024
+  },
+  "predecessors": [
+    {
+      "path": "../sow-propagation-author-v1/MANIFEST.json",
+      "sha256": "c3ce17824fc340bed763015783679cbf0e0a6d3944aa2462baba6a96541d2eaa",
+      "bytes": 2397
+    },
+    {
+      "path": "../sow-propagation-review-v1/MANIFEST.json",
+      "sha256": "652dd4bd6cc4175c243669053784247fd20504ce7268f33f8764b16c159c296a",
+      "bytes": 1170
+    }
+  ],
+  "sourceCommit": "35249accf139f52478d029458946e50ed25ee5dc",
+  "members": [
+    {"path":"POSTIMAGE_RUNTIME/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md","sha256":"2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe","bytes":55622},
+    {"path":"POSTIMAGE_RUNTIME/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md","sha256":"0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e","bytes":15980},
+    {"path":"POSTIMAGE_APP/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md","sha256":"0c40921347b4478d3d200daf4a766a5652239a2c9ab4b60ad0646017c5c70c29","bytes":35562},
+    {"path":"RUNTIME.patch","sha256":"dac1cd0868325fa0a074922da50acefd6900a53be530ddd00cc879bd5bfad482","bytes":5842},
+    {"path":"APP.patch","sha256":"d71f6a2971409e6a872b778a73d66a2355cb41b2bb125af95da26c3d67f6b98f","bytes":10184},
+    {"path":"AUTHOR_V1_CANDIDATE_DELTA.patch","sha256":"0add9d729432cfeee65df574eec46bf29a524e0a5806f6e44bf095a110779a78","bytes":5118},
+    {"path":"IMPACT_AND_GATES.md","sha256":"e4d6110ff75d4af915c5c4ffc4b0c58d30fb2fbfc8d07d5f7227418060f60bf9","bytes":2661},
+    {"path":"CROSS_PROJECT_HANDOFF.md","sha256":"1df48ce98f5c2c0b0112a031ccd3ebdb0b66f731c017507f91e163f3e08504b8","bytes":3727},
+    {"path":"PREIMAGE_INDEX.json","sha256":"1275a487f4faee6dffc27f1da1e42ecc80a08db37ed217db2bb3e108a6aabb22","bytes":3079},
+    {"path":"POSTIMAGE_INDEX.json","sha256":"a9118a72bdb3f94c68587f125470ec674627617436cd625e026d0cbf4f6c7fe8","bytes":2297},
+    {"path":"REMEDIATION_DELTA.json","sha256":"ddf2e25ed880278295b421075ca502df5d3818308a5cc3f18ddb589c228ef50f","bytes":1657},
+    {"path":"CHECKS.json","sha256":"3af2106583e7b067e5994c62dc582f023a123b667254defd0fdac3807c47a822","bytes":3381},
+    {"path":"RETURN.md","sha256":"aaefcaee89f180772ea4896684adf3c8961996bfe9eec538cb2c8190b737d489","bytes":1332}
+  ],
+  "memberCount": 13,
+  "remediationScope": ["F-001", "F-002"],
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "effects": "Append-only successor candidate preparation; no canonical/SOW/source/Git or operational mutation"
+}

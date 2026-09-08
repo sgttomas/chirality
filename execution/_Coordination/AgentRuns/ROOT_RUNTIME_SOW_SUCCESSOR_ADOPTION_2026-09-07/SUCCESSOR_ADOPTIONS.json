@@ -1,0 +1,169 @@
+{
+  "schema": "root-runtime-successor-adoptions/v1",
+  "root_owner_act": {
+    "path": "docs/governance_harness/_DECISIONS/D-GOV-40_runtime_sow_successor_adoption.md",
+    "sha256": "2680cd286ae138e7690b22edd9b8e69f905c46ecaf55fa14e63767427d05d4d3"
+  },
+  "adoptions": [
+    {
+      "id": "D36_STAGE1",
+      "acceptance": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA001_STAGE1_2026-09-06/OWNER_ACCEPTANCE.md",
+        "sha256": "9648738696be79dca57eaa7d6e886a3d7e1ad97cb0f57fcafb33b3e0a7f32c1f"
+      },
+      "subject": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/HANDOFF_MANIFEST.json",
+        "sha256": "cd88975f4d884c81d69c0e36e0afe0853b1dc0b5fb1d84f992089a866f5b3eae"
+      },
+      "postimage_index": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-001_2026-09-06_D36_CUSTODY/CONTROL/POSTIMAGE_INDEX.json",
+        "sha256": "86052a0de234eb2b7c2d53e6d7d539ca67ec6a4105202bfde2585c288addacd8"
+      },
+      "changes": [
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/CUSTODY_DISPOSITION_D36.md",
+          "before": null,
+          "after": "e475a28d003cbbe44728ddc3cb24e407f7b286f24d9c105fba744a24ca46b309"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+          "before": "ead0c52db231d955e1f0d593585e09b5b8009ac1df8c21ea58fd6271afc7d5c7",
+          "after": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+          "before": "64f37da455c6a1565eca4d7cc8dc0fb7638672f1b1df0288c4c038f476bdd767",
+          "after": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9"
+        }
+      ]
+    },
+    {
+      "id": "D36_STAGE2",
+      "acceptance": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07/OWNER_ACCEPTANCE.md",
+        "sha256": "b20d00386b79ff69d09ad2d8009f732b26a45d6be5884077fe056fa0cd9106be"
+      },
+      "subject": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/HANDOFF_MANIFEST.json",
+        "sha256": "c5054fd4f4c23338c28c3194a3227bac706f8d6813d3673deb40d8b50075a3fb"
+      },
+      "postimage_index": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07/ROOT_ADOPTION_INPUTS/POSTIMAGE_INDEX.json",
+        "sha256": "ade3e354cfdeeaa327b1f734f3a3828edd727f5ac8297a94b05e5d61b4c0ae08"
+      },
+      "changes": [
+        {
+          "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+          "before": "c178211d4a6b43eee8773f664704d86db286d2a0e96cbe2bea7bfcca47a93b09",
+          "after": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+          "before": "6982297e60f03ff6ea488857fb82932658023c95abeb5da6946885b2243098b9",
+          "after": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e"
+        }
+      ]
+    },
+    {
+      "id": "D36_ACCOUNT_AUTHORITY",
+      "acceptance": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA003_GATE5_2026-09-07/OWNER_ACCEPTANCE.md",
+        "sha256": "edfd03dfc559438531af1e714532210caf54aae4b959f246e9065f75eba0365e"
+      },
+      "subject": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/GATE5_POSTSTATE_MANIFEST.json",
+        "sha256": "0fcaae692e617419b6ea34fc4b57aaf6c855317803adbe3e88ebec2ff963470b"
+      },
+      "acceptance_manifest": {
+        "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SCA003_GATE5_2026-09-07/OUTPUT_MANIFEST.json",
+        "sha256": "a4cd1680631e44835e3f89c008ea791251d874c20052ca7ec4351fb92d332990"
+      },
+      "snapshot_manifests": [
+        {
+          "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-002_2026-09-07_ACCOUNT_AUTHORITY/SNAPSHOT_MANIFEST.json",
+          "sha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_ScopeChange/SCA-003_2026-09-07_1616/SNAPSHOT_MANIFEST.json",
+          "sha256": "ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48"
+        }
+      ],
+      "changes": [
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/ACCOUNT_CONTROL_AUTHORITY_DISPOSITION.md",
+          "before": null,
+          "after": "19baaea22ba3a5b2dc465c30f7e8273db7b1833fd4a9bf6c2de0fc6056dcdd9d"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/Chirality_Runtime_SOFTWARE_DECOMP_v1_0.md",
+          "before": "d26e03f580f1d33a7c906f8509418ab6d0f5774b7b5102a593dbae400eb381e1",
+          "after": "413687ca6a857f5464a3205e9f9c4b29ace512c8d2b67dfa095ef3640fab883e"
+        },
+        {
+          "path": "projects/chirality-runtime/execution/_Decomposition/RUNTIME_SCOPE_LEDGER.csv",
+          "before": "3d9b7210994804c53e7433fd497a8b417dcd7bae67c95b1bc9168abd8063e2d9",
+          "after": "bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d"
+        }
+      ]
+    },
+    {
+        "id": "D36_RUNTIME_SOW_PROPAGATION",
+        "acceptance": {
+            "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OWNER_ACCEPTANCE.md",
+            "sha256": "0329293b691862f9bd1d3ca2977278e3706b278aa3ac4d177f24a289fa016367"
+        },
+        "subject": {
+            "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/RUNTIME_POSTSTATE_DECISION.md",
+            "sha256": "37141786ee3806d41402996f9cb7e022bbb071d94efadc46f151f310d2c864a5"
+        },
+        "sow_acceptance_manifest": {
+            "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OUTPUT_MANIFEST.json",
+            "sha256": "e90c7850b6ef22a18db9929b2d8e1c80c22ec04fcd174fac15493469f5de602e"
+        },
+        "postimage_index": {
+            "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/POSTIMAGE_INDEX.json",
+            "sha256": "ffac42013c68c2ce2f36469b7e37808fffab0d0f18fa723d9a1d7439a3d3e470"
+        },
+        "bindings": {
+            "path": "projects/chirality-runtime/execution/_ScopeChange/ACCEPTANCE_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/BINDINGS.json",
+            "sha256": "ac410e74647f61b674da29ae41abad4b497b7f68dbadce7f7b932d23f454d4f2"
+        },
+        "manager_manifest": {
+            "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/FINAL_MANIFEST.json",
+            "sha256": "0fcd9b3624046407d800ca3e9a522073cbf9a5d058ce3d3473d9a346acc7f03b"
+        },
+        "audit_manifest": {
+            "path": "projects/chirality-runtime/execution/_Evaluation/DecompCoverage/COV_SOW_PROPAGATION_SCA002_SCA003_2026-09-07/OUTPUT_MANIFEST.json",
+            "sha256": "432aa2e1238d93c4b28e923ba19e12e3bfbaf52152845f8195eb18a9e27665b1"
+        },
+        "application_manifest": {
+            "path": "projects/chirality-runtime/execution/_ScopeChange/PROPAGATION_SCA002_SCA003_SOW_2026-09-07/OUTPUT_MANIFEST.json",
+            "sha256": "efb4011fa2a777d096ec15d50964234a8aef218a3bed1971c5a817d21a7dc6d0"
+        },
+        "pointer": {
+            "path": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+            "sha256": "da47241ba281cb65cf7f74dfd74fbbf5c65d220ad5488b607d8b70f1245edc81"
+        },
+        "handoff_manifest": {
+            "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/MANIFEST.json",
+            "sha256": "0e053db4cee2419c7c535a5c702cdff79313829bffc2e48d32208b60b3b1ea17"
+        },
+        "root_input": {
+            "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-publication-handoff-manager-v1/ROOT_RUNTIME_INPUT.json",
+            "sha256": "59a14a2354abfe785e1e0d8832adcbe73673e2a871371a3a779678b6e5efdb9c"
+        },
+        "changes": [
+            {
+                "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+                "before": "e87e567f7be38e6a98a2c15ee44dd7f5c2e7ebdf72628155ea18a62e539aaa54",
+                "after": "2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe"
+            },
+            {
+                "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+                "before": "5e46d0a1538618d69b4e9ae6368b5a71dc96aeb4bc4d2d9c46a6d0b23cbcc46e",
+                "after": "0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e"
+            }
+        ]
+    }
+  ]
+}

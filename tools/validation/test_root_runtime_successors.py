@@ -253,6 +253,25 @@ class SuccessorRecognitionTests(unittest.TestCase):
                     'bffda2701dea3667a63f72194404db72b20520802a7d840af13ac456fb1f149d',
             })
 
+    def test_sow_policy_preserves_prior_objects_and_verifies_runtime_pair(self):
+        repo = Path(__file__).resolve().parents[2]
+        current = json.loads((repo / ('execution/_Coordination/AgentRuns/'
+                                      'ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/'
+                                      'SUCCESSOR_ADOPTIONS.json')).read_text())
+        prior = json.loads((repo / ('execution/_Coordination/AgentRuns/'
+                                     'ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07/'
+                                     'SUCCESSOR_ADOPTIONS.json')).read_text())
+        self.assertEqual(current['adoptions'][:3], prior['adoptions'])
+        sow = current['adoptions'][3]
+        self.assertEqual(sow['id'], 'D36_RUNTIME_SOW_PROPAGATION')
+        self.assertIsInstance(s._verify_adoption(repo, sow), bool)
+        self.assertEqual([item['path'] for item in sow['changes']], [
+            'projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/'
+            'DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md',
+            'projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/'
+            'DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md',
+        ])
+
 
 if __name__ == '__main__':
     unittest.main()

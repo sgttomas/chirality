@@ -1,0 +1,20 @@
+{
+  "schema": "runtime-sow-poststate-audit-checks/v1",
+  "verdict": "PASS",
+  "gitBasis": "35249accf139f52478d029458946e50ed25ee5dc",
+  "checks": [
+    {"id":"EXACT_PREIMAGE_POSTIMAGE","status":"PASS"},
+    {"id":"RUNTIME_WRITE_SET","status":"PASS"},
+    {"id":"SOW_STRUCTURE_WHITESPACE","status":"PASS"},
+    {"id":"CLAUSE_BOUNDARY","status":"PASS"},
+    {"id":"D_GOV_36_D_GOV_39_ATTRIBUTION","status":"PASS"},
+    {"id":"PROJECT_PREREQUISITES_AND_RUNTIME_OWNERSHIP","status":"PASS"},
+    {"id":"ATOMIC_IDENTITY_AND_FAIL_CLOSED_CONTROLS","status":"PASS"},
+    {"id":"CONSERVATION","status":"PASS"},
+    {"id":"HISTORICAL_SNAPSHOT_IMMUTABILITY","status":"PASS"},
+    {"id":"ACTIVE_SEMANTIC_SNAPSHOT","status":"PASS"},
+    {"id":"MANIFEST_INTEGRITY","status":"PASS"},
+    {"id":"NO_EFFECT_BOUNDARY","status":"PASS"}
+  ],
+  "issues": []
+}

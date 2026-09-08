@@ -1,0 +1,28 @@
+{
+  "schema": "runtime-sow-propagation-acceptance-bindings/v1",
+  "date": "2026-09-07",
+  "ownerAnswer": "Accept both exact poststates",
+  "acceptedRuntimeSubject": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/RUNTIME_POSTSTATE_DECISION.md",
+    "sha256": "37141786ee3806d41402996f9cb7e022bbb071d94efadc46f151f310d2c864a5"
+  },
+  "managerManifest": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/scope/sow-propagation-poststate-manager-v1/FINAL_MANIFEST.json",
+    "sha256": "0fcd9b3624046407d800ca3e9a522073cbf9a5d058ce3d3473d9a346acc7f03b",
+    "membersVerified": 4
+  },
+  "application": {
+    "addendumManifestSha256": "efb4011fa2a777d096ec15d50964234a8aef218a3bed1971c5a817d21a7dc6d0",
+    "evidenceManifestSha256": "9b60f6a40f4b1bae58c28821a60dbca3c0ceda57cdb0b166c0b4bab32ba25b1c",
+    "del02_06Sha256": "2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe",
+    "del02_09Sha256": "0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e"
+  },
+  "independentAudit": {
+    "snapshotManifestSha256": "432aa2e1238d93c4b28e923ba19e12e3bfbaf52152845f8195eb18a9e27665b1",
+    "coordinationManifestSha256": "d23125821d64496ce4a6daf70dd700077969715e05a726ccf2b1ce5e836c836d",
+    "verdict": "PASS",
+    "checksPassed": 12
+  },
+  "activeSemanticSnapshot": "SCA-003_2026-09-07_1616/",
+  "crossProjectConcordance": "NOT_EFFECTIVE_PENDING_LATER_INTEGRATION_BINDING"
+}

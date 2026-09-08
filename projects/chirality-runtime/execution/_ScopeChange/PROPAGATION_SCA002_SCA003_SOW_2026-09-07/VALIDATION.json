@@ -1,0 +1,54 @@
+{
+  "schema": "runtime-sow-propagation-validation/v1",
+  "date": "2026-09-07",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "CHANGE_RELEASE",
+      "status": "PASS",
+      "evidence": "Branch codex/runtime-app-sow-application was clean at HEAD and origin/main 35249accf139f52478d029458946e50ed25ee5dc; CHANGE explicitly released Runtime-only SCOPE writes."
+    },
+    {
+      "id": "PREWRITE_BINDINGS",
+      "status": "PASS",
+      "evidence": "Owner grant, decision subject, manager, author and review manifests, approved patch, and both exact preimages rehashed to their approved identities immediately before writing."
+    },
+    {
+      "id": "POSTIMAGE_HASH_AND_SIZE",
+      "status": "PASS",
+      "evidence": "DEL-02-06 is 2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe / 55622 bytes; DEL-02-09 is 0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e / 15980 bytes."
+    },
+    {
+      "id": "EXACT_DIFF",
+      "status": "PASS",
+      "evidence": "Both live postimages are byte-identical to the reviewed author-v2 complete postimages, and the exact approved RUNTIME.patch passes git apply --check --reverse --whitespace=error-all."
+    },
+    {
+      "id": "SOW_STRUCTURE",
+      "status": "PASS",
+      "evidence": "tools/scope_of_work/validate_scope_of_work.py --json reports SOW_V1, valid true, and zero issues for each changed SOW."
+    },
+    {
+      "id": "CLAUSE_BOUNDARY",
+      "status": "PASS",
+      "evidence": "The approved diff changes only DEL-02-06 CLM-003 and REQ-010 and DEL-02-09 REQ-001 and REQ-002."
+    },
+    {
+      "id": "CONSERVATION",
+      "status": "PASS",
+      "evidence": "One SOW-104 ledger row, seven carrier rows, OBJ-001/002/004/007, 66 unique qualified inherited requirements, nine HELD_UNAVAILABLE rows plus one R16-B separately disposed row, historical basis 9f21e4b86c304343b92ccd9ef10895b28c1a4f48, and root-runtime-1 epoch 1 remain."
+    },
+    {
+      "id": "WHITESPACE",
+      "status": "PASS",
+      "evidence": "validate_candidate_whitespace.py and git diff --check pass for both SOW targets."
+    },
+    {
+      "id": "HISTORICAL_SNAPSHOT_IMMUTABILITY",
+      "status": "PASS",
+      "evidence": "SCA-002 and SCA-003 snapshot manifests retain SHA-256 8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3 and ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48; no historical snapshot member was edited."
+    }
+  ],
+  "auditState": "PENDING_INDEPENDENT_POSTSTATE_AUDIT",
+  "gate5PoststateAcceptance": "NOT_CLAIMED"
+}

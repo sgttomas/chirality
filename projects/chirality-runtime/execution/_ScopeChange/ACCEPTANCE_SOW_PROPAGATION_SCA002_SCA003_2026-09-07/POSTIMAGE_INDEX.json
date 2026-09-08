@@ -1,0 +1,31 @@
+{
+  "schema": "runtime-sow-propagation-acceptance-postimage-index/v1",
+  "date": "2026-09-07",
+  "status": "ACCEPTED",
+  "activeSemanticSnapshot": "SCA-003_2026-09-07_1616/",
+  "canonicalSowPostimages": [
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "sha256": "2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe",
+      "bytes": 55622,
+      "mutationDuringAcceptance": false
+    },
+    {
+      "path": "projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/ScopeOfWork.md",
+      "sha256": "0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e",
+      "bytes": 15980,
+      "mutationDuringAcceptance": false
+    }
+  ],
+  "acceptanceRecord": {
+    "path": "OWNER_ACCEPTANCE.md",
+    "sha256": "0329293b691862f9bd1d3ca2977278e3706b278aa3ac4d177f24a289fa016367"
+  },
+  "pointer": {
+    "path": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+    "preimageSha256": "ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea",
+    "postimageSha256": "da47241ba281cb65cf7f74dfd74fbbf5c65d220ad5488b607d8b70f1245edc81"
+  },
+  "closure": "CLOSED_FOR_RUNTIME_SOW_PROPAGATION_ONLY",
+  "crossProjectConcordance": "NOT_EFFECTIVE_PENDING_LATER_INTEGRATION_BINDING"
+}

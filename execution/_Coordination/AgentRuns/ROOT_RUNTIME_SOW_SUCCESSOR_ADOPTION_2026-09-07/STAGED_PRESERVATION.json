@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "paths": 83,
+  "indexTree": "64f944b55cc69b34ecccaca585f4ca399354d8c5",
+  "stagedBinaryDiffSha256": "4e00e0147eb66b779ce6a7aecc079c61ad87e2afc854110e12685df2b7f61577",
+  "rootOutputsStaged": false
+}

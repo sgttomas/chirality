@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-change-format-method-manifest/v1",
+  "members": [
+    {
+      "path": "FORMAT_DISPOSITION.json",
+      "sha256": "146d7fdbcf100b5b8aab7c0f7fd279dfce428cf0432979784b3659ff68c9f2ce",
+      "bytes": 5875
+    },
+    {
+      "path": "CHECKS.json",
+      "sha256": "9c87bad673302983bbe39b90d31bc17dfe703002b4b2881bf471c463c088030e",
+      "bytes": 774
+    }
+  ]
+}
