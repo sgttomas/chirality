@@ -1,0 +1,30 @@
+{
+  "schema": "pec-d85-production-preimage/v1",
+  "head": "1b780310665240f1df85ea4b127168521639a775",
+  "ruling": {
+    "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+    "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851"
+  },
+  "selected_proposal_sha256": "0da4d163c5d36fde15d7336256f412c1f31a6ac4e5d60c1d55c8e388c000541b",
+  "selected_proposal_manifest_sha256": "4f83533beadad4cdff56f061d50d34a556f4e54df12ffbe4da3218fd85321fd2",
+  "accepted_decomposition": {
+    "SOFTWARE_DECOMP.md": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72"
+  },
+  "existing_targets": {
+    ".gitignore": "93f7c8ad2e972efd1ec16864258f9c203bef7f190d79051bdc36d9ef4cad2aec",
+    "software-workflow.json": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+  },
+  "absent_targets": [
+    "v2/src/pec_v2/core/ports/store.py",
+    "v2/src/pec_v2/core/content_minimal_guard.py",
+    "v2/src/pec_v2/adapters/storage/__init__.py",
+    "v2/src/pec_v2/adapters/storage/sqlite_store.py",
+    "v2/tests/storage/test_store_lifecycle.py",
+    "v2/tests/storage/test_content_minimal_guard.py",
+    "v2/docs/STORE_LIFECYCLE_AND_GUARD.md"
+  ],
+  "dependency_result": "NO_UPSTREAM_PREDECESSORS; TWO SATISFIED ANCHOR ROWS",
+  "hold_register_sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc"
+}

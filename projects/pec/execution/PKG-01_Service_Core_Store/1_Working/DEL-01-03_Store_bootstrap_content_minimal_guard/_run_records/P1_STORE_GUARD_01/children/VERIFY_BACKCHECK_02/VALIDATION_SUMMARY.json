@@ -1,0 +1,17 @@
+{
+  "schema": "pec-d85-independent-backcheck/v1",
+  "attempt": 2,
+  "verdict": "PASS",
+  "fan_in": "VALID_FOR_TECHNICAL_FAN_IN",
+  "scope": "PASS",
+  "candidate_hashes": "PASS_ALL_NINE_PLUS_AUTHOR_MANIFEST",
+  "author_manifest": "PASS_ALL_SIXTEEN_AND_COMPLETE",
+  "affected_checks": "PASS_EXACT_FIVE",
+  "registered_check_evidence": "PASS_ALL_FIVE_CURRENT_POST_CORRECTION",
+  "verification_execution": "PASS_THIRTEEN_IDENTITIES_ALL_PASS_EXACT_VER_001_009_COVERAGE",
+  "attempt_01_recovery": "PASS_FOUR_EXACT_HASHES",
+  "prior_findings": {"V-F001": "CLOSED", "V-F002": "CLOSED"},
+  "new_findings": [],
+  "repairs_applied": false,
+  "acceptance_performed": false
+}

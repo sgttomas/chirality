@@ -1,0 +1,29 @@
+{
+  "profile": "projects/pec/software-workflow.json",
+  "project_root": "projects/pec",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "v2/tests/storage",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "projects/pec",
+      "duration_seconds": 1.31,
+      "exit_code": 0,
+      "id": "v2-store-guard",
+      "status": "PASS",
+      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 1.249s\n\nOK\n",
+      "stdout": "",
+      "timeout_seconds": 600.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "."
+}

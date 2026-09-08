@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-recursive-output-manifest/v1",
+  "root": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02",
+  "recursive": true,
+  "exclusions": ["MANIFEST.json"],
+  "nested_manifests": ["AUTHOR_MANIFEST_COMPAT.json", "CANDIDATE_ATTEMPT_02_COMPAT.json"],
+  "files": {
+    "AFFECTED_CHECKS.json": "8b148fba1eb36b74aeaf98eab6c934e617172b8071d3d7705d38a5757b057d42",
+    "AUTHOR_MANIFEST_COMPAT.json": "1d9ffc57a73eefe5e1d3d6a0492290dd0de1e38b6fc638a0b3066b657d227d45",
+    "AUTHOR_MANIFEST_VALIDATION.json": "c4298d496246fb93867510fdf552a79dae1816820c61fa3889627038a89ef49d",
+    "CANDIDATE_ATTEMPT_02_COMPAT.json": "599aef7e62285c73ce16a43a0981791ddf96ddcd323a55bad275dcdf99104ca9",
+    "CANDIDATE_HASH_VALIDATION.json": "df05c7cb62eae96c8b1c9225f1009515b17f39bc05e0efbb77d331ae7139efd3",
+    "EVIDENCE_VALIDATION.json": "53152d7733b5d2aeb22dd869da68d3298948b4c288d60a6992ee3b0f421ec15f",
+    "LAUNCH_BRIEF.md": "0604c2908b04ecc8ff0c39f6e0c80165cea01a7ca404e0211cb135e0c6b6fb93",
+    "RECOVERY_VALIDATION.json": "19c81ddbf943abdc324d66fd6facf81cb7b3170f8fb5e078905c798bc9f936a8",
+    "REVIEW.md": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123",
+    "SCOPE_VALIDATION.json": "3d0db755bdf498d956ecc0b30f2c12d3cf25965c36482bbe85af330a87449115",
+    "TASK_RUN_2026-09-08_0948.md": "00cd458be9776641e2ec836f16a1d7c616df7dfd3cf693f3ecd9cee858849505",
+    "VALIDATION_SUMMARY.json": "391237aed8cb34f5bc02292611d83371a38b372c4495e87256bb55a6c959763c"
+  }
+}

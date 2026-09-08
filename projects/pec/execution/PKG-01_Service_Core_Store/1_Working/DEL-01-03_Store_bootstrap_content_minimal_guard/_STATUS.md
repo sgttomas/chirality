@@ -1,11 +1,13 @@
 # Status: DEL-01-03
 
-**Current State:** INITIALIZED
-**Last Updated:** 2026-07-25
+**Current State:** IN_PROGRESS
+**Last Updated:** 2026-09-08
 
 ## History
 - 2026-07-25 — State set to OPEN (PREPARATION)
 - 2026-07-25 — State set to INITIALIZED (TASK+status-advance)
+- 2026-09-08 — State set to IN_PROGRESS by WORKING_ITEMS at actual D-PEC-85 P-A production start; semantic step skipped under Root `docs/SPEC.md` §3.3. The merged ruling, fresh preimage/dependency checks, and exact-operation hold results are recorded in `_run_records/P1_STORE_GUARD_01/`. No artifact acceptance or later lifecycle promotion is implied.
+- 2026-09-08 — D-PEC-85 P-A store/guard primitive reached validated technical fan-in. All five affected registered checks passed, the independent corrected-candidate backcheck returned PASS, and exact correction history is retained. State remains IN_PROGRESS pending separately governed artifact/lifecycle acceptance and later DEL-01-03 scope; the three inquiry rows remain unchanged.
 
 ## Remaining
 

@@ -1,0 +1,25 @@
+{
+  "schema": "pec-d85-candidate-manifest/v1",
+  "attempt": 2,
+  "status": "CORRECTED_CANDIDATE_FOR_BACKCHECK",
+  "files": [
+    {"path": "v2/src/pec_v2/core/ports/store.py", "sha256": "2f5cdbf50bb1ed8b02ce8b7d820f81b749da4ca2d62e195afec39c78a035a4af"},
+    {"path": "v2/src/pec_v2/core/content_minimal_guard.py", "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"},
+    {"path": "v2/src/pec_v2/adapters/storage/__init__.py", "sha256": "c9d8b3e5a1338ecf9dbc5a7405c47c69956e3c68e3219f60e3c988c1f1880540"},
+    {"path": "v2/src/pec_v2/adapters/storage/sqlite_store.py", "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"},
+    {"path": "v2/tests/storage/test_store_lifecycle.py", "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"},
+    {"path": "v2/tests/storage/test_content_minimal_guard.py", "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"},
+    {"path": "v2/docs/STORE_LIFECYCLE_AND_GUARD.md", "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"},
+    {"path": ".gitignore", "sha256": "352a305b5d6e002da80daa248a0d0bc330886685d039dbcfdf8b41897bfde9da"},
+    {"path": "software-workflow.json", "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a"}
+  ],
+  "author_manifest": {
+    "path": "children/AUTHOR/MANIFEST.json",
+    "sha256": "7c50366ac481e8e22da6186d0077ef0f75bdc80e1d6a65d212a540b336da8d51"
+  },
+  "attempt_01_recovery": {
+    "path": "children/AUTHOR/ATTEMPT_01_RECOVERY.json",
+    "artifact": "children/AUTHOR/ATTEMPT_01_REVERSE.patch.b64",
+    "artifact_sha256": "e5672ac7271ce003efcef5086dcb86f0c0e4989301fff24d66e3fda1f8c2bec0"
+  }
+}

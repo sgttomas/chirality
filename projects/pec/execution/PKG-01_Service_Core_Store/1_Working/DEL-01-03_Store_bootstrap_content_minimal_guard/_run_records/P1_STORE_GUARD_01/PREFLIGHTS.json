@@ -1,0 +1,26 @@
+{
+  "schema": "pec-d85-hold-preflights/v1",
+  "cwd": "projects/pec",
+  "register": "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+  "register_state": "READABLE_HEADER_ONLY_ZERO_ROWS",
+  "operations": {
+    "dispatch-for-production": "ALLOW_ALL_TARGETS",
+    "rely-for-production": "ALLOW_ALL_TARGETS"
+  },
+  "targets": [
+    "v2/src/pec_v2/core/ports/store.py",
+    "v2/src/pec_v2/core/content_minimal_guard.py",
+    "v2/src/pec_v2/adapters/storage/__init__.py",
+    "v2/src/pec_v2/adapters/storage/sqlite_store.py",
+    "v2/tests/storage/test_store_lifecycle.py",
+    "v2/tests/storage/test_content_minimal_guard.py",
+    "v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+    ".gitignore",
+    "software-workflow.json",
+    "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+    "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+    "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01"
+  ],
+  "exit_codes": "ALL_ZERO",
+  "rerun_required_before": ["author_dispatch", "verifier_dispatch", "manager_fan_in"]
+}

@@ -1,0 +1,8 @@
+{
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "allowed_product_paths": 8,
+  "allowed_evidence_root": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR",
+  "validated_path_count": 23,
+  "violations": []
+}
