@@ -1,0 +1,15 @@
+{
+  "schema": "runtime-sow-propagation-acceptance-pointer-journal/v1",
+  "target": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "activeSemanticSnapshotBefore": "SCA-003_2026-09-07_1616/",
+  "activeSemanticSnapshotAfter": "SCA-003_2026-09-07_1616/",
+  "newSemanticSnapshot": false,
+  "beforeSha256": "ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea",
+  "afterSha256": "da47241ba281cb65cf7f74dfd74fbbf5c65d220ad5488b607d8b70f1245edc81",
+  "latestPreimagePath": "LATEST_PREIMAGE.md",
+  "latestPostimagePath": "LATEST_POSTIMAGE.md",
+  "ownerAcceptanceSha256": "0329293b691862f9bd1d3ca2977278e3706b278aa3ac4d177f24a289fa016367",
+  "postimageIndexSha256": "ffac42013c68c2ce2f36469b7e37808fffab0d0f18fa723d9a1d7439a3d3e470",
+  "authority": "Owner answer Accept both exact poststates over Runtime subject 37141786ee3806d41402996f9cb7e022bbb071d94efadc46f151f310d2c864a5",
+  "crossProjectConcordance": "NOT_EFFECTIVE_PENDING_LATER_INTEGRATION_BINDING"
+}

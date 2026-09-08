@@ -1,0 +1,52 @@
+{
+  "schema": "runtime-sow-propagation-bindings/v1",
+  "chain": "SCA-002_TO_SCA-003",
+  "activeSemanticSnapshot": "SCA-003_2026-09-07_1616/",
+  "sourceCommit": "35249accf139f52478d029458946e50ed25ee5dc",
+  "ownerGrant": {
+    "path": "OWNER_GRANT.md",
+    "sha256": "c9a62ff7cacd04e3d46849035151ae41a2fc2d900b63899a5a91d272c5cb348a"
+  },
+  "decisionSubject": {
+    "logicalPath": "sow-propagation-manager-v1/RUNTIME_DECISION_SUBJECT.md",
+    "sha256": "360fd1ac7378072f972daf2fe4da237e1ac1903dcc20bda3a2760eb35162319a"
+  },
+  "managerManifest": {
+    "logicalPath": "sow-propagation-manager-v1/FINAL_MANIFEST.json",
+    "sha256": "e1d4c570466a872e00a21283b1aa3200efee1b523dff29daeada369e4212da27"
+  },
+  "authorManifest": {
+    "logicalPath": "sow-propagation-author-v2/MANIFEST.json",
+    "sha256": "eeca1e23f72819c894d9f4c43cffb0b19f612563f31357477c36a3c8f610c1e5"
+  },
+  "reviewManifest": {
+    "logicalPath": "sow-propagation-review-v2/MANIFEST.json",
+    "sha256": "cf21900de32e25faf472f9b547d8ee029d201b4a616ee6366cad97eaf7c423b6",
+    "verdict": "PASS"
+  },
+  "approvedPatch": {
+    "logicalPath": "sow-propagation-author-v2/RUNTIME.patch",
+    "sha256": "dac1cd0868325fa0a074922da50acefd6900a53be530ddd00cc879bd5bfad482",
+    "bytes": 5842
+  },
+  "impactBinding": {
+    "logicalPath": "sow-propagation-author-v2/IMPACT_AND_GATES.md",
+    "sha256": "e4d6110ff75d4af915c5c4ffc4b0c58d30fb2fbfc8d07d5f7227418060f60bf9"
+  },
+  "planBinding": {
+    "logicalPath": "sow-propagation-author-v2/CROSS_PROJECT_HANDOFF.md",
+    "sha256": "1df48ce98f5c2c0b0112a031ccd3ebdb0b66f731c017507f91e163f3e08504b8"
+  },
+  "acceptedUpstream": {
+    "sca002SnapshotManifestSha256": "8865716ba1fb55188658ae39ae9cef06ef17290b0801552621e93faee76aeda3",
+    "sca003SnapshotManifestSha256": "ce84376323a5d213c8a6dadcbf47534ecba407a9128543250f55e4b13eaaaa48",
+    "sca003Gate5AcceptanceManifestSha256": "a4cd1680631e44835e3f89c008ea791251d874c20052ca7ec4351fb92d332990"
+  },
+  "changeRelease": {
+    "branch": "codex/runtime-app-sow-application",
+    "head": "35249accf139f52478d029458946e50ed25ee5dc",
+    "originMain": "35249accf139f52478d029458946e50ed25ee5dc",
+    "scopeWritesMayResume": true,
+    "runtimeOnly": true
+  }
+}

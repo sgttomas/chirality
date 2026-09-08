@@ -1,0 +1,14 @@
+{
+  "schema": "runtime-sow-propagation-pointer-journal/v1",
+  "target": "projects/chirality-runtime/execution/_ScopeChange/_LATEST.md",
+  "activeSemanticSnapshotBefore": "SCA-003_2026-09-07_1616/",
+  "activeSemanticSnapshotAfter": "SCA-003_2026-09-07_1616/",
+  "newSemanticSnapshot": false,
+  "beforeSha256": "78a35e83db927cdd82e47119b40b4d99d70a77d0034b2e39887e5e3f4509dfe6",
+  "afterSha256": "ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea",
+  "latestPreimagePath": "LATEST_PREIMAGE.md",
+  "latestPostimagePath": "LATEST_POSTIMAGE.md",
+  "propagationReturnSha256": "119700065ef5130f6084d7bc60f02e307c8872108e0b078221b18ac971d9572b",
+  "authority": "Owner-approved exact Runtime SOW propagation after CHANGE released the synchronized Runtime-only application lane",
+  "concurrentExcludedState": "App-owned DEL-02-05 and SCA-APP-010 writes are separately authorized sibling work and excluded from this Runtime journal."
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "accepted-runtime-app-sow-publication-selection-checks/v1",
+  "verdict": "PASS",
+  "selectionSha256": "0dfe74c4e465ea7c8946e714174fe3ac5e15fea66d2abf079bcdd1f78bfb3578",
+  "selectionMemberCount": 68,
+  "expectedModifiedPaths": 5,
+  "expectedAddedPaths": 63,
+  "checks": [
+    {"id":"NUL_SAFE_ENUMERATION_OF_NAMED_ROOTS","status":"PASS"},
+    {"id":"PER_PATH_SHA256_AND_BYTES","status":"PASS"},
+    {"id":"THREE_CANONICAL_SOWS_EXACT","status":"PASS"},
+    {"id":"TWO_ACCEPTED_POINTERS_EXACT","status":"PASS"},
+    {"id":"SIX_OWNING_FOLDERS_COMPLETE","status":"PASS"},
+    {"id":"RUNTIME_AND_APP_ACCEPTANCE_MANIFESTS_REHASH","status":"PASS"},
+    {"id":"SCOPED_DIFF_CHECK","status":"PASS"},
+    {"id":"NO_COORDINATION_HISTORY_IN_SUBJECT_SELECTION","status":"PASS"},
+    {"id":"NO_PRODUCT_SOURCE_OR_TEST","status":"PASS"},
+    {"id":"NO_EFFECTIVE_CONCORDANCE_RECORD","status":"PASS"},
+    {"id":"ROOT_INPUT_EXCLUDES_APP_DEL05","status":"PASS"}
+  ],
+  "crossProjectConcordance": "NOT_EFFECTIVE_PENDING_INTEGRATION_RECORD",
+  "effects": "Evidence only; no Git, canonical, pointer, source, supplier, lifecycle, release, or publication mutation"
+}

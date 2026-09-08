@@ -1,0 +1,15 @@
+{
+  "schema": "runtime-sow-poststate-audit-manifest/v1",
+  "date": "2026-09-07",
+  "verdict": "PASS",
+  "members": [
+    {"path":"AUDIT_REPORT.md","sha256":"dba27bf358a9e6e29c0182d85f111c62d5e324aae8fb3c3ad5bee1c36b0cbbc9","bytes":5690},
+    {"path":"CHECKS.json","sha256":"48ef77af606daa86b1120d95fa7b95bebb6ef611eca7fc7db0101c4565ec8a42","bytes":837},
+    {"path":"coverage_summary.json","sha256":"3ac01cd835aa3210445e8dfad1b033cf5c5677af5bc6ef50f39e3cb6ff0bb391","bytes":1463},
+    {"path":"HANDOFF_STATE.md","sha256":"9e08ad8312483f960d06049851743f28107a3b6d7e858a2f105a794f0b423b08","bytes":1090},
+    {"path":"RETURN.md","sha256":"268edec96fe0aafa0215395a5e1a3100c08e48acf45591fe9b351409e6dde550","bytes":979}
+  ],
+  "memberCount": 5,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "gate5PoststateAcceptance": "NOT_CLAIMED"
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "runtime-sow-propagation-acceptance-validation/v1",
+  "date": "2026-09-07",
+  "verdict": "PASS",
+  "checks": [
+    {"id":"OWNER_ANSWER","status":"PASS","evidence":"Exact answer recorded as Accept both exact poststates."},
+    {"id":"ACCEPTED_SUBJECT","status":"PASS","evidence":"Runtime poststate subject rehashes to 37141786ee3806d41402996f9cb7e022bbb071d94efadc46f151f310d2c864a5."},
+    {"id":"MANAGER_MANIFEST","status":"PASS","evidence":"Manager manifest rehashes to 0fcd9b3624046407d800ca3e9a522073cbf9a5d058ce3d3473d9a346acc7f03b."},
+    {"id":"AUDIT_PASS","status":"PASS","evidence":"Independent audit snapshot manifest rehashes to 432aa2e1238d93c4b28e923ba19e12e3bfbaf52152845f8195eb18a9e27665b1 with PASS verdict."},
+    {"id":"LIVE_SOW_IDENTITIES","status":"PASS","evidence":"DEL-02-06 remains 2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe and DEL-02-09 remains 0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e."},
+    {"id":"APPLICATION_IDENTITIES","status":"PASS","evidence":"Application addendum and evidence manifests remain efb4011fa2a777d096ec15d50964234a8aef218a3bed1971c5a817d21a7dc6d0 and 9b60f6a40f4b1bae58c28821a60dbca3c0ceda57cdb0b166c0b4bab32ba25b1c."},
+    {"id":"ACTIVE_SNAPSHOT","status":"PASS","evidence":"SCA-003_2026-09-07_1616 remains the active semantic snapshot."},
+    {"id":"WRITE_SCOPE","status":"PASS","evidence":"Acceptance writes are confined to this new Runtime acceptance folder, its coordination return directory, and the Runtime pointer; no canonical SOW, App, source, or Git mutation is performed."}
+  ],
+  "closure": "CLOSED_FOR_RUNTIME_SOW_PROPAGATION_ONLY",
+  "crossProjectConcordance": "NOT_EFFECTIVE_PENDING_LATER_INTEGRATION_BINDING"
+}

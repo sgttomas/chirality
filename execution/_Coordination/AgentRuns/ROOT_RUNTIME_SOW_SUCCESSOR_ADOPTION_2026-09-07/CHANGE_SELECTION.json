@@ -1,0 +1,226 @@
+{
+  "schema": "root-runtime-sow-successor-adoption-change-selection/v1",
+  "createdAt": "2026-09-08T04:26:31Z",
+  "basisCommit": "c5192790f98ec024e7c2728cb1d4df3ae2b2a2dd",
+  "preservedStagedCustody": {
+    "pathCount": 83,
+    "indexTree": "64f944b55cc69b34ecccaca585f4ca399354d8c5",
+    "binaryDiffSha256": "4e00e0147eb66b779ce6a7aecc079c61ad87e2afc854110e12685df2b7f61577"
+  },
+  "verdict": "PASS__READY_FOR_CHANGE_INTEGRATION",
+  "payloadMemberCount": 35,
+  "payloadMembers": [
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "status": " M",
+      "bytes": 39710,
+      "sha256": "0d56de08f469dc54e86f22227c49cd92c5556c34f6aeadc909d1e65b1b91fe2c"
+    },
+    {
+      "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+      "status": " M",
+      "bytes": 571026,
+      "sha256": "47d8f7dfddd85f68297286700a727634619d4c747b8872d7a65fd3f828528a6f"
+    },
+    {
+      "path": "tools/validation/root_runtime_successors.py",
+      "status": " M",
+      "bytes": 18495,
+      "sha256": "2eb3bf54a1ffee97fd5de5b360eacdc9cd236ba94130a6b325ef683ba329cd63"
+    },
+    {
+      "path": "tools/validation/test_root_runtime_successors.py",
+      "status": " M",
+      "bytes": 14068,
+      "sha256": "a348d629cad265b18075f025492a69a16e22e34d01ccb056a728cc328c9ae998"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-40_runtime_sow_successor_adoption.md",
+      "status": "??",
+      "bytes": 2694,
+      "sha256": "2680cd286ae138e7690b22edd9b8e69f905c46ecaf55fa14e63767427d05d4d3"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-RUNTIME-SOW-SUCCESSOR-ADOPTION-20260907.yaml",
+      "status": "??",
+      "bytes": 1487,
+      "sha256": "0f300eadeca3edf49b27ed0da9bcef05b183d56b88cb8731df56361f7345de23"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/AUTHOR_BRIEF.md",
+      "status": "??",
+      "bytes": 795,
+      "sha256": "5b560bc654617ae9c5824c01d1ddb7cb392c12cc157d8cc9104d140e2b6d6fb0"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/CANDIDATE_DIFF.patch.gz",
+      "status": "??",
+      "bytes": 70740,
+      "sha256": "310f3aeed23fa94d7e7b8579b2f7e42b12e1347f9d375dee039b5fa7313caf04"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/CHECKS.json",
+      "status": "??",
+      "bytes": 2361,
+      "sha256": "562a12e96ca2a41fe243be57aa5e525c3a26930ad4fdd0f21ed52de15cc1b51b"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/COMPOSITION_RESULT.json",
+      "status": "??",
+      "bytes": 11421,
+      "sha256": "270c4a301908bc29a41c412aba44070ecd31594f2349f8b27477e4339474de03"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/HANDOFF.md",
+      "status": "??",
+      "bytes": 1792,
+      "sha256": "26ce95f32f267012390e3a1a399112fa6b8de3598b5c5028dedeea7b062318f3"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/MANAGER_FAN_IN.md",
+      "status": "??",
+      "bytes": 3127,
+      "sha256": "29f774e10e5e956886116a75d13060704af475d570e3b4f3252e5b74618b799a"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/OUTPUT_MANIFEST.json",
+      "status": "??",
+      "bytes": 31466,
+      "sha256": "96eda353cdd6f34d7353fee820cf834856cb7508b68c65e4e0e7d7e8e3d34360"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SEALED_BASIS_AMENDMENT.md",
+      "status": "??",
+      "bytes": 1562,
+      "sha256": "b151538f6050e739e7e0c369cb15b4f3a72128f8b9c4719b51739825c50cfd7d"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SEALED_BRIEF.md",
+      "status": "??",
+      "bytes": 5416,
+      "sha256": "85969abd8d3ccfb71f0a0523acdfdc0b2fdd42baa341be6b49812f0776de433a"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/STAGED_PRESERVATION.json",
+      "status": "??",
+      "bytes": 223,
+      "sha256": "c8ea9536dbec240685f450c1506a4c3c7f525cd864a1ddec584e149e9dd4828e"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/SUCCESSOR_ADOPTIONS.json",
+      "status": "??",
+      "bytes": 9590,
+      "sha256": "bc0aa4c917f1773bba26cb3bee98fd4cca1c9788addeff0582626d485caae840"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-00.log",
+      "status": "??",
+      "bytes": 2835,
+      "sha256": "48e22409a1cbc5420c92f97a8ca84f4fa35041464b4893fd243272bdc37ee11c"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-01.log",
+      "status": "??",
+      "bytes": 60,
+      "sha256": "e1835ed07494a130f0f005bc0d2d214b9075e5010f2627f85e20d33243ae1fb6"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-02.log",
+      "status": "??",
+      "bytes": 100,
+      "sha256": "19878a424b48ca671d3e758269df15cb764f6158b2626ff8670d80c93cd9b11c"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-03.log",
+      "status": "??",
+      "bytes": 92,
+      "sha256": "a446575a34e6896cb92123eab0cfd5c4e0180db7ff62699e5db07b438fe9be37"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-04.log",
+      "status": "??",
+      "bytes": 65,
+      "sha256": "8a2425c5d13c122eb51b2482911778315724f5d3854922916c43f49cc6247618"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-05.log",
+      "status": "??",
+      "bytes": 188,
+      "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-06.log",
+      "status": "??",
+      "bytes": 5739,
+      "sha256": "923b41accde4dcb475f7d99160952aef9d5bf3c1b071b60e641e38de7c07009d"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-07.log",
+      "status": "??",
+      "bytes": 24824,
+      "sha256": "d764facd4ac71406c694fda44eabdd9b08b371bfbf208522b301c69085329945"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-08.log",
+      "status": "??",
+      "bytes": 14897,
+      "sha256": "2b0eaa47c0dc764b60c487fcb568052f26ff115a14a60b37e353380b9eff84b4"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-09.log",
+      "status": "??",
+      "bytes": 88,
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/check-10.log",
+      "status": "??",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/review-v1/CHECKS.json",
+      "status": "??",
+      "bytes": 3911,
+      "sha256": "832eb99cf2b645221581517e3d833cee082f1aed6be023a3900ea0e40059a952"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/review-v1/MANIFEST.json",
+      "status": "??",
+      "bytes": 1396,
+      "sha256": "2b257215ade4ac629243659668e78dc2da5e6871e3e044fd5cee891a52c33b32"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/review-v1/RETURN.md",
+      "status": "??",
+      "bytes": 4207,
+      "sha256": "d637c6eed97905d30a81a63bc0a0d442dd86ff82b725769f41ac4023468bd10e"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/run_checks.py",
+      "status": "??",
+      "bytes": 2807,
+      "sha256": "32b2a15ef8cba2fa239e5d194e9d797de42a69c6abe60c4246f1ac5dd277b644"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/verify_composition.py",
+      "status": "??",
+      "bytes": 7437,
+      "sha256": "d52649878fe18c753b67b7f8ffd86df0ee93d1121818c030793bb2f612fba8dc"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07.md",
+      "status": "??",
+      "bytes": 728,
+      "sha256": "1e8884249ff07b7321f7efdd8e3d297bb44b141c0ab347252187dc7db33da151"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07.md",
+      "status": "??",
+      "bytes": 706,
+      "sha256": "42d66fd44367a1d1942c2fa2db50e13fa335fbdda91c85d739f90c3a4a589c37"
+    }
+  ],
+  "carrierRule": "Stage every payloadMembers path plus this CHANGE_SELECTION.json carrier. This carrier is self-excluded from payloadMembers; its full SHA256 is supplied in the manager handoff to CHANGE.",
+  "publicationBoundary": "The later prospective cross-project concordance is excluded. App DEL-02-05 remains outside Root policy. Publication and fetched-main recognition backcheck remain CHANGE gates."
+}

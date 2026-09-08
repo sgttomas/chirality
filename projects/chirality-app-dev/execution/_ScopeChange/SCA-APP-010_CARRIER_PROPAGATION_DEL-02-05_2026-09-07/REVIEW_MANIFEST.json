@@ -1,0 +1,28 @@
+{
+  "schema": "runtime-app-sow-propagation-independent-review-manifest/v2",
+  "verdict": "PASS",
+  "sourceBrief": {
+    "path": "SEALED_BRIEF.md",
+    "sha256": "e584ec20880f8f4bcbb0f44e9c4e9e88fd398e843fadc499b44284c185ec78ea",
+    "bytes": 2839
+  },
+  "reviewSubject": {
+    "path": "../sow-propagation-author-v2/MANIFEST.json",
+    "sha256": "eeca1e23f72819c894d9f4c43cffb0b19f612563f31357477c36a3c8f610c1e5",
+    "memberCount": 13,
+    "sourceCommit": "35249accf139f52478d029458946e50ed25ee5dc"
+  },
+  "predecessors": {
+    "authorV1ManifestSha256": "c3ce17824fc340bed763015783679cbf0e0a6d3944aa2462baba6a96541d2eaa",
+    "reviewV1ManifestSha256": "652dd4bd6cc4175c243669053784247fd20504ce7268f33f8764b16c159c296a"
+  },
+  "members": [
+    {"path":"REVIEW.md","sha256":"f51e5ccf95a33e8d5cb82467ac7ca00923b8d1c99748f127703f7177e8a52b83","bytes":4921},
+    {"path":"CHECKS.json","sha256":"1943e66db0d373db7999a8f430ac5c9aafb4b5b821ee2bd51519060e5346f50b","bytes":3029},
+    {"path":"RETURN.md","sha256":"88ad71e1d7c3f593db51d30d0cb80941b4b402c62aa61bfeef32e27ae28f40ef","bytes":1407}
+  ],
+  "memberCount": 3,
+  "findingCount": 0,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "effects": "Independent review evidence only; no canonical/SOW/source/Git or operational mutation"
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-change-format-method-checks/v1",
+  "verdict": "PASS_PENDING_INDEPENDENT_REVIEW",
+  "exact_paths": 17,
+  "accepted_selection_paths": 79,
+  "gitattributes_post_sha256": "ebd621ac7c403ca0a3728cd07f8a7e76ddfc7f31110a7dffcaa5a5938fac40cf",
+  "raw_diagnostic_sha256": "2fdd2e94ff2de3c1076fc46b450230bd4d0e5d6a9f5f9ac96d62f22f3e9a5e2a",
+  "checks": {
+    "accepted_68_bytes_unchanged": true,
+    "canonical_sow_bytes_unchanged": true,
+    "no_normalization": true,
+    "no_pattern_rule": true,
+    "no_validator_or_workflow_change": true,
+    "no_local_git_masking": true,
+    "git_diff_cached_check": "PASS",
+    "candidate_whitespace": "PASS"
+  },
+  "raw_extension_diagnostic_sha256": "9ab8ac6a93905501edd44ca50dbdbeb22107b553bbe33523d67e004164ecbf70"
+}

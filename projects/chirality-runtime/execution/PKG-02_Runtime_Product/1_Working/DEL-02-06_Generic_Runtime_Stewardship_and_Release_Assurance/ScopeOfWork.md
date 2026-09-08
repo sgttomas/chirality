@@ -99,7 +99,13 @@ to specification, read-only inventory, evidence-matrix design and planning.
 - **CLM-003** — D-GOV-20 authorizes authenticated project-scoped HTTP/1.1 over
   a protected Unix-domain socket and authorizes no TCP control listener,
   automatic model scheduling or fallback, multiple simultaneous primary local
-  models, or release/publication/issuance.
+  models, or release/publication/issuance. D-GOV-36 alone supplies and admits
+  the narrow dedicated authenticated account-only public Unix authority solely
+  for nonexecuting bootstrap authentication, status/cancellation, and
+  hosted-account lifecycle control or observation. D-GOV-39 only recognizes
+  the exact owning-accepted, accepted-published Runtime successor; it does not
+  independently admit, authorize, or expand the exception. Every project
+  operation remains project-authorized.
 - **CLM-004** — D-GOV-28 adopts O-11 and preserves separate gates for
   decomposition, write-locus creation, runtime implementation, App and PEC
   scope, contract repinning, lifecycle, release, and reliance.
@@ -164,7 +170,22 @@ to specification, read-only inventory, evidence-matrix design and planning.
   client/daemon contract identity. The daemon shall separately establish the
   required runtime-owned credentials, engines, sessions, delegation, tools,
   turn locks, interruption, and model-residency readiness without transferring
-  custody or ownership to a client.
+  custody or ownership to a client. These project preconditions continue for
+  every consequential project operation. A nonexecuting account-only operation
+  instead shall require its own accepted authenticated caller and operation
+  authority, an active `HOST-P1` lease, current account and supplier
+  generations, and a compatible `ACCOUNT-WIRE-V1`/`POLICY-R1` contract and
+  version/capability result; it cannot waive any project prerequisite. Before
+  account binding or readiness, one atomic current supplier snapshot shall
+  provide both a stable opaque nonsecret account/user identifier and a stable
+  opaque nonsecret provider-selected-workspace identifier. Provider-selected
+  workspace means the supplier's current tenancy/workspace/account selection,
+  never a folder, `canonicalRoot`, `projectId`, repository, window, caller
+  hint, or other local locator. A partial, stale, absent, error, capability or
+  version mismatch, or otherwise unqualified supplier or identity shall keep
+  `binding:{state:"unavailable",reason:"canonical-identity-producer-unavailable"}`
+  and `hostedReady:false`; no fallback, mixed-version claim, project/no-folder
+  execution, credential exposure, or private-supervisor access is permitted.
 - **REQ-011** — Failure of any required precondition shall fail the affected
   runtime-dependent operation closed and shall not authorize another runtime
   loop, daemon, model, protocol version, or transport.

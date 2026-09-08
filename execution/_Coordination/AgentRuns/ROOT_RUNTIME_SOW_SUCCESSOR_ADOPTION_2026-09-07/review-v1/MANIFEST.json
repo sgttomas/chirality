@@ -1,0 +1,30 @@
+{
+  "schema": "root-runtime-sow-successor-adoption-independent-review-manifest/v1",
+  "pathBase": "repository root",
+  "status": "SEALED_PASS",
+  "verdict": "PASS",
+  "reviewBasis": {
+    "head": "c5192790f98ec024e7c2728cb1d4df3ae2b2a2dd",
+    "authorOutputManifestSha256": "96eda353cdd6f34d7353fee820cf834856cb7508b68c65e4e0e7d7e8e3d34360",
+    "candidateDiffGzipSha256": "310f3aeed23fa94d7e7b8579b2f7e42b12e1347f9d375dee039b5fa7313caf04",
+    "policySha256": "bc0aa4c917f1773bba26cb3bee98fd4cca1c9788addeff0582626d485caae840",
+    "stagedPaths": 83,
+    "stagedIndexTree": "64f944b55cc69b34ecccaca585f4ca399354d8c5",
+    "stagedBinaryDiffSha256": "4e00e0147eb66b779ce6a7aecc079c61ad87e2afc854110e12685df2b7f61577"
+  },
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/review-v1/RETURN.md",
+      "sha256": "d637c6eed97905d30a81a63bc0a0d442dd86ff82b725769f41ac4023468bd10e",
+      "bytes": 4207
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07/review-v1/CHECKS.json",
+      "sha256": "832eb99cf2b645221581517e3d833cee082f1aed6be023a3900ea0e40059a952",
+      "bytes": 3911
+    }
+  ],
+  "memberCount": 2,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "publicationDisposition": "ELIGIBLE_FOR_AUTHORIZED_CHANGE_AND_PR_FLOW_WITH_CI_AND_FETCHED_MAIN_BACKCHECK_PENDING"
+}

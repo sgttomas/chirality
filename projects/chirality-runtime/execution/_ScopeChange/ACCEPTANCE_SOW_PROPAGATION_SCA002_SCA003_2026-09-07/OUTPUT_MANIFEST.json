@@ -1,0 +1,31 @@
+{
+  "schema": "runtime-sow-propagation-acceptance-manifest/v1",
+  "date": "2026-09-07",
+  "status": "RUNTIME_SOW_PROPAGATION_POSTSTATE_ACCEPTED",
+  "members": [
+    {"path":"BINDINGS.json","sha256":"ac410e74647f61b674da29ae41abad4b497b7f68dbadce7f7b932d23f454d4f2","bytes":1563},
+    {"path":"CHAIN_CLOSURE.md","sha256":"884ac7b887cb5f8328ba556645840478f89cce373cb58cfab4fb45b01d7ae390","bytes":1295},
+    {"path":"CHANGE_HANDOFF.md","sha256":"dbda1ea1f19f38bb6f04f8ee6ce98e48da4a260413ef3db4301b9ea0da828686","bytes":1259},
+    {"path":"LATEST_POSTIMAGE.md","sha256":"da47241ba281cb65cf7f74dfd74fbbf5c65d220ad5488b607d8b70f1245edc81","bytes":1375},
+    {"path":"LATEST_PREIMAGE.md","sha256":"ee7afdbdc4e9654795922dab4d1d938e1bdadfb64fa9f871a68b71853169afea","bytes":1227},
+    {"path":"OWNER_ACCEPTANCE.md","sha256":"0329293b691862f9bd1d3ca2977278e3706b278aa3ac4d177f24a289fa016367","bytes":1478},
+    {"path":"POINTER_JOURNAL.json","sha256":"65062c5736d11ab6fc17c1b51719b08fff91f6a2452eb3a662bafee53ad82f0c","bytes":983},
+    {"path":"POSTIMAGE_INDEX.json","sha256":"ffac42013c68c2ce2f36469b7e37808fffab0d0f18fa723d9a1d7439a3d3e470","bytes":1395},
+    {"path":"VALIDATION.json","sha256":"01123a10a983ecfb5cd8eb3f731d7d9c1666602fde524b7b1b3998ff5a2d73a9","bytes":1735}
+  ],
+  "memberCount": 9,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT",
+  "ownerAnswer": "Accept both exact poststates",
+  "acceptedSubjectSha256": "37141786ee3806d41402996f9cb7e022bbb071d94efadc46f151f310d2c864a5",
+  "managerManifestSha256": "0fcd9b3624046407d800ca3e9a522073cbf9a5d058ce3d3473d9a346acc7f03b",
+  "auditSnapshotManifestSha256": "432aa2e1238d93c4b28e923ba19e12e3bfbaf52152845f8195eb18a9e27665b1",
+  "applicationAddendumManifestSha256": "efb4011fa2a777d096ec15d50964234a8aef218a3bed1971c5a817d21a7dc6d0",
+  "canonicalPostimages": {
+    "DEL-02-06": "2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe",
+    "DEL-02-09": "0d154c0067da5a9152c46497bead5cd16cfe3fc524a0bc0648c103b32822fd3e"
+  },
+  "pointerSha256": "da47241ba281cb65cf7f74dfd74fbbf5c65d220ad5488b607d8b70f1245edc81",
+  "activeSemanticSnapshot": "SCA-003_2026-09-07_1616/",
+  "closure": "CLOSED_FOR_RUNTIME_SOW_PROPAGATION_ONLY",
+  "crossProjectConcordance": "NOT_EFFECTIVE_PENDING_LATER_INTEGRATION_BINDING"
+}

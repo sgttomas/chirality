@@ -1,0 +1,56 @@
+--- a/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md
+@@ -55,7 +55,9 @@
+ account/consent semantics. No ambient `~/.codex` read or project-truth secret
+ persistence. DEL-09-06 retains server-side attachment, network, key,
+ credential-IPC, and renderer security validation. Live claims remain gated by
+-the accepted Root/App account/consent contract, G3, G-CSP, and G4. Presenting
++accepted implementation, supplier qualification, and live evidence under the
++accepted `HOST-P1`/`POLICY-R1`/`ACCOUNT-WIRE-V1` contract basis, plus G3,
++G-CSP, and G4 where applicable. Presenting
+ the account as app-wide (SCA-APP-010 SR-19) does not change the port's per-root
+ login semantics; the root-private login home is Root-owned and the shared-login
+ amendment routes through Root DEL-02-09 (OI-008).
+@@ -70,8 +72,8 @@
+ 
+ 1. One app-wide account is presented; consent, network posture, and role are explained and controlled per folder over the root-private app-owned `CODEX_HOME`; `K-CONSENT-1` and the port's per-root login semantics are unchanged.
+ 2. The account row shows only the local model server status; no OpenAI status indicator and no API status indicator is rendered, now or after DEL-02-05-V3-03 (Q7).
+-3. The Settings view hosts the split app-wide and per-folder account groups plus the runtime, key, and appearance panels with port behaviour unchanged; the fake port carries the UI until the accepted Root/App contract (DEL-02-05-V3-03).
+-4. The root-private login home and any shared-login contract remain Root DEL-02-09's; the amendment is routed by the SCA-APP-010 Root notice (Q8) and live claims stay gated on the accepted contract, G3, G-CSP, and G4.
++3. The Settings view hosts the split app-wide and per-folder account groups plus the runtime, key, and appearance panels with port behaviour unchanged; the fake port carries UI-only fixtures while implementation, supplier qualification, and live readiness evidence remain unmet (DEL-02-05-V3-03).
++4. The root-private login home and any shared-login contract remain Root DEL-02-09's; the amendment is routed by the SCA-APP-010 Root notice (Q8), the `HOST-P1`/`POLICY-R1`/`ACCOUNT-WIRE-V1` contract basis is accepted, and live claims stay gated on implementation, supplier qualification, live evidence, and G3/G-CSP/G4 where applicable.
+ 5. Agent 0/1/2 role entry remains available for Codex sessions with the exact `role not mechanically enforced` and `Opt-in Preview` posture labels.
+ 
+ ### Seating and rulings
+@@ -286,13 +288,13 @@
+ > - Exact retry state owner for drafts and attachments.
+ > - Final evidence paths or commands for key status precedence, key storage secrecy, runtime redaction, and non-authoritative UI state checks.
+ 
+-- **REQ-001** — The deliverable shall serve as the explicit App account/consent UX carrier by consuming `HostedEngineConsentPort`, explaining per-root login and the root-private app-owned `CODEX_HOME`, and presenting login/logout/account and consent/revocation state; Root retains account/consent semantics, and no ambient `~/.codex` read or project-truth secret persistence occurs.
++- **REQ-001** — The deliverable shall serve as the explicit App account/consent UX carrier by consuming `HostedEngineConsentPort`, explaining per-root login and the root-private app-owned `CODEX_HOME`, and presenting login/logout/account and consent/revocation state; Root retains account/consent semantics, and no ambient `~/.codex` read or project-truth secret persistence occurs. Electron main alone shall own `HOST-P1` and `ACCOUNT-WIRE-V1` transport and expose typed contract methods; the renderer shall receive no socket, bearer, credential, private-supervisor access, or arbitrary request forwarding. One app-wide account may be observed and controlled before folder selection, while folder consent and every project operation remain separate. Through Electron main, the App shall consume the typed Runtime contract projection/result carrying one atomic current pair of stable opaque nonsecret account/user and provider-selected-workspace identifiers, where provider-selected workspace means the supplier's tenancy/workspace/account selection and never a folder, `canonicalRoot`, `projectId`, repository, window, caller hint, or other local locator, together with the exact version/capability result. Runtime remains the supplier acquisition, production, and qualification owner.
+ - **REQ-002** — The UI shall distinguish the typed storage states `missing`, `storageUnavailable`, `decryptFailed`, and `available`.
+ - **REQ-003** — The UI shall offer the three per-root command-network postures exactly as assigned: no command network by default; ask per destination with host/protocol context and the queued-request caveat plus explicit-user-only `acceptForSession`; or labelled command network on through `network_access = true`.
+ - **REQ-004** — Agent 0/1/2 role entry shall remain available for Codex sessions; Agent 2/TASK shall be labelled `role not mechanically enforced` when G-ROLE fails; and the product posture shall be labelled `Opt-in Preview`.
+-- **REQ-005** — Live claims remain gated by the accepted Root/App account/consent contract, G3, G-CSP, and G4; DEL-09-06 retains server-side attachment, network, key, credential-IPC, and renderer security validation.
++- **REQ-005** — The `HOST-P1`/`POLICY-R1`/`ACCOUNT-WIRE-V1` contract basis is accepted, while implementation, supplier qualification, and live readiness evidence remain unmet. Unavailable, stale, partial, error, capability or version mismatch, or otherwise unqualified supplier or identity shall remain `binding:{state:"unavailable",reason:"canonical-identity-producer-unavailable"}` and `hostedReady:false`; no fallback or mixed-version readiness claim is permitted. UI fixtures shall not prove supplier capability, live identity binding, hosted readiness, or account-enabled trial readiness. G3, G-CSP, and G4 remain applicable where required; DEL-09-06 retains server-side attachment, network, key, credential-IPC, and renderer security validation.
+ - **AC-001** — The Scope of Work preserves and traces all legacy source content to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.
+-- **AC-002** — The v3 account/consent outputs assigned by the applied decomposition row (API key and account settings panel, `HostedEngineConsentPort` UI adapter, per-root login and command-network consent controls, attachment picker and preview chips, typed storage/runtime error display, consent/revocation and retry-state tests) exist and satisfy REQ-001 through REQ-005, and any live-account claim carries the accepted Root/App account/consent contract and G3/G-CSP/G4 evidence rather than being inferred.
++- **AC-002** — The v3 account/consent outputs assigned by the applied decomposition row (API key and account settings panel, `HostedEngineConsentPort` UI adapter, per-root login and command-network consent controls, attachment picker and preview chips, typed storage/runtime error display, consent/revocation and retry-state tests) exist and satisfy REQ-001 through REQ-005, and any live-account claim carries accepted implementation, supplier-qualification, exact version/capability, live identity-pair, and G3/G-CSP/G4 evidence where applicable rather than being inferred from the accepted contract basis or UI fixtures.
+ 
+ ## Production and Verification Method — Praxeology
+ 
+@@ -404,7 +406,7 @@
+ > | Secret hygiene and project-truth boundary | Static, unit, integration, or review evidence proving key material, logs, drafts, transcripts, and UI state do not become project truth. | TBD - final evidence paths or commands not yet accepted. |
+ 
+ - **VER-001** — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, followed by human review against the accepted legacy basis.
+-- **VER-002** — Run the consent/revocation, retry-state, typed storage-state, command-network-posture, and role/posture-label tests behind fakes; inspect that no ambient `~/.codex` read or project-truth secret persistence occurs; and treat live-account evidence as unavailable until the accepted Root/App account/consent contract, G3, G-CSP, and G4 pass.
++- **VER-002** — Run the consent/revocation, retry-state, typed storage-state, command-network-posture, and role/posture-label tests behind fakes; inspect that Electron main exclusively owns transport, the renderer receives no socket, bearer, credential, private-supervisor access, or arbitrary forwarding, and no ambient `~/.codex` read or project-truth secret persistence occurs; and treat those fixtures as UI-only evidence. Live-account evidence remains unavailable until implementation and supplier qualification establish the current atomic identity pair, exact version/capability result, fail-closed status, and G3/G-CSP/G4 evidence where applicable.
+ 
+ ## Governing Values and Decisions — Axiology
+ 
+@@ -479,4 +481,4 @@
+ | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
+ |---|---|---|---|---|---|
+ | OUT-001 | SOW-013 SOW-019 OBJ-001 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+-| OUT-002 | SOW-013 SOW-019 SOW-023 OBJ-001 OBJ-008 | CLM-028 REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 | AC-002 | VER-002 | Fixture and test evidence behind fakes; typed storage-state and network-posture fixtures; gate-bound live-claim evidence only after the named gates |
++| OUT-002 | SOW-013 SOW-019 SOW-023 OBJ-001 OBJ-008 | CLM-028 REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 | AC-002 | VER-002 | UI-only fixture and test evidence behind fakes; typed storage-state and network-posture fixtures; live-claim evidence only after implementation, supplier qualification, atomic identity-pair, exact version/capability, and applicable gate evidence |

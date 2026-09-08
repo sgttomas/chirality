@@ -94,6 +94,15 @@ invented by this Scope of Work.
   actual multi-root experience. Authenticated project-scoped Unix control, no
   TCP control listener and operational/non-authoritative credential state
   remain unchanged. This does not accept B2 execution-context semantics.
+  D-GOV-39 preserves that project-scoped baseline and recognizes the narrow
+  dedicated authenticated account-only public Unix authority solely for
+  nonexecuting bootstrap authentication, status/cancellation, and
+  hosted-account lifecycle control or observation; project operations remain
+  project-authorized. Account-only operations require their own accepted
+  authenticated caller and operation authority, an active `HOST-P1` lease,
+  current generations, and a compatible `ACCOUNT-WIRE-V1`/`POLICY-R1`
+  contract and version/capability result, and cannot waive project
+  prerequisites.
 - **REQ-002** — The boundary shall preserve account/epoch and policy continuity,
   and consent shall not cross root, account, or policy-digest drift.
   Under D-GOV-36, global account switch/sign-out shall durably fence every
@@ -105,7 +114,18 @@ invented by this Scope of Work.
   offline or impossible revoke proceeds to local cleanup with remote state
   unknown. Credentials shall not be retained indefinitely; no browser-wide
   or provider-global revocation is claimed. Human-approval assurance remains
-  separate. These dispositions grant no implementation or operational act.
+  separate. Account binding and hosted readiness require one atomic current
+  supplier snapshot containing both a stable opaque nonsecret account/user
+  identifier and a stable opaque nonsecret provider-selected-workspace
+  identifier. Provider-selected workspace means the supplier's current
+  tenancy/workspace/account selection, never a folder, `canonicalRoot`,
+  `projectId`, repository, window, caller hint, or other local locator. A
+  partial, stale, absent, error, capability or version mismatch, or otherwise
+  unqualified supplier or identity keeps
+  `binding:{state:"unavailable",reason:"canonical-identity-producer-unavailable"}`
+  and `hostedReady:false`; no fallback, mixed-version claim, project/no-folder
+  execution, credential exposure, or private-supervisor access is permitted.
+  These dispositions grant no implementation or operational act.
 - **REQ-003** — The `K-ROLE-2` digest and role controls shall preserve the A3
   parity, label, and evidence-posture distinctions stated in `CLM-002` without
   changing hard filesystem/network/process containment.
