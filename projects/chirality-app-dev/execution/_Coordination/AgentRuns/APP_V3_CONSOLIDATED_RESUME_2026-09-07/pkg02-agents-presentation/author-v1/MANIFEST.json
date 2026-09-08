@@ -1,0 +1,38 @@
+{
+  "schema": "chirality-evidence-manifest/v1",
+  "algorithm": "sha256",
+  "base_commit": "4f98be53e7359b72521f20181537f67fd63ad69b",
+  "inputs": [
+    {
+      "path": "../SEALED_BRIEF.md",
+      "sha256": "d80ebbfafd6d02774f67198db7e4bf644320ea83d11c5c0e24f64c314faa261c"
+    },
+    {
+      "path": "../OWNER_DIRECTION.md",
+      "sha256": "f41e000e395c37c0ddacdcba08daffe1de2a57cce089e5649da2a5689f098720"
+    }
+  ],
+  "files": [
+    {
+      "path": "SOURCE.patch",
+      "bytes": 17866,
+      "sha256": "23462b0f2020c5dbaf9ab19d95d8a276bbe2c59d51df6688c499d33d35f252a8"
+    },
+    {
+      "path": "SOURCE_MANIFEST.json",
+      "bytes": 983,
+      "sha256": "4098057eb83c00b0eb9d9fa17e1c7bfe1cdab9addd78ee7f97e6f5f47b86d4d1"
+    },
+    {
+      "path": "CHECKS.json",
+      "bytes": 2435,
+      "sha256": "9b536b28c870f526060643cb84d84fa5c3479f446d3a75fa39c446ef844a407c"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 2055,
+      "sha256": "fd0f350095b61c19196698313936f866c516f0a3196ad2dadda6d913c768dab1"
+    }
+  ],
+  "recompute": "cd author-v1 && shasum -a 256 SOURCE.patch SOURCE_MANIFEST.json CHECKS.json RETURN.md"
+}

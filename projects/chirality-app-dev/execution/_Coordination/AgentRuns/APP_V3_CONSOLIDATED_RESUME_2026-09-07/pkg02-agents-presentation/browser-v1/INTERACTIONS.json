@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-browser-interactions/v1",
+  "fixtureWidthCssPx": 390,
+  "records": [
+    {"browser":"Chrome","state":"light-initial","ax":"ax/chrome-light-initial.txt","screenshot":"screenshots/chrome-light-initial.jpg"},
+    {"browser":"Chrome","action":"activate Refresh","state":"refreshing-disabled","ax":"ax/chrome-light-refresh.txt","screenshot":"screenshots/chrome-light-refresh.jpg"},
+    {"browser":"Chrome","state":"refresh-complete-count-1","ax":"ax/chrome-light-refresh-complete.txt","screenshot":"screenshots/chrome-light-refresh-complete.jpg"},
+    {"browser":"Chrome","action":"select Agent 2 REVIEW","state":"aria-pressed true / AX Value 1","ax":"ax/chrome-light-selected.txt","screenshot":"screenshots/chrome-light-selected.jpg"},
+    {"browser":"Chrome","state":"dark-initial","ax":"ax/chrome-dark-initial.txt","screenshot":"screenshots/chrome-dark-initial.jpg"},
+    {"browser":"Chrome","state":"light-disabled-selection","ax":"ax/chrome-light-disabled.txt","screenshot":"screenshots/chrome-light-disabled.jpg"},
+    {"browser":"Safari","state":"light-initial","ax":"ax/safari-light-initial.txt","screenshot":"screenshots/safari-light-initial.jpg"},
+    {"browser":"Safari","action":"activate Refresh","state":"refreshing-disabled","ax":"ax/safari-light-refresh.txt","screenshot":"screenshots/safari-light-refresh.jpg"},
+    {"browser":"Safari","state":"refresh-complete-count-1","ax":"ax/safari-light-refresh-complete.txt","screenshot":"screenshots/safari-light-refresh-complete.jpg"},
+    {"browser":"Safari","action":"select Agent 2 REVIEW","state":"toggle on","ax":"ax/safari-light-selected.txt","screenshot":"screenshots/safari-light-selected.jpg"},
+    {"browser":"Safari","state":"dark-initial","ax":"ax/safari-dark-initial.txt","screenshot":"screenshots/safari-dark-initial.jpg"},
+    {"browser":"Safari","state":"light-disabled-selection","ax":"ax/safari-light-disabled.txt","screenshot":"screenshots/safari-light-disabled.jpg"}
+  ],
+  "scope": "safe presentation controls only"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-browser-process/v1",
+  "scratchRoot": "/private/tmp/chirality-app-agents-presentation-20260907",
+  "portSelectionCommand": "python3 -c 'import socket; s=socket.socket(); s.bind((\"127.0.0.1\",0)); print(s.getsockname()[1]); s.close()'",
+  "selectedPort": 64503,
+  "serverCommand": "python3 -m http.server 64503 --bind 127.0.0.1 --directory /private/tmp/chirality-app-agents-presentation-20260907",
+  "serverPid": 78002,
+  "execSessionId": 9760,
+  "readinessCommand": "curl --fail --silent --show-error http://127.0.0.1:64503/",
+  "readinessStatus": "PASS",
+  "readinessBytes": 416,
+  "initialDetachedAttempt": {
+    "pid": 77866,
+    "result": "exited when its launching shell ended; no browser evidence relied on it"
+  },
+  "browserVersions": {
+    "chrome": "Google Chrome 152.0.7977.83",
+    "safariShortVersion": "26.6.2",
+    "safariBundleVersion": "21624.5.1.11.3"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-browser-commands/v1",
+  "workingDirectory": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "commands": [
+    {
+      "purpose": "bundle persisted fixture",
+      "command": "NODE_PATH=/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend/node_modules projects/chirality-app-dev/frontend/node_modules/.bin/esbuild projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02-agents-presentation/browser-v1/fixture/main.tsx --bundle --outfile=/private/tmp/chirality-app-agents-presentation-20260907/bundle.js --platform=browser --format=iife",
+      "result": "PASS; 1.0mb bundle; 39ms final build"
+    },
+    {
+      "purpose": "serve exact scratch fixture",
+      "command": "python3 -m http.server 64503 --bind 127.0.0.1 --directory /private/tmp/chirality-app-agents-presentation-20260907",
+      "result": "PASS; PID 78002; readiness HTTP 200"
+    },
+    {
+      "purpose": "verify cleanup",
+      "command": "lsof -nP -iTCP:64503 -sTCP:LISTEN",
+      "result": "expected nonzero/no output; no listener"
+    },
+    {
+      "purpose": "verify accepted and fixture source hashes",
+      "command": "shasum -a 256 <accepted inputs, live sources, fixture production copies>",
+      "result": "PASS; values recorded in SOURCE_VERIFICATION.json"
+    },
+    {
+      "purpose": "scan persisted accessibility evidence for prohibited metadata",
+      "command": "rg -n <raw fixture IDs and removed metadata vocabulary> browser-v1/ax",
+      "result": "PASS; no matches"
+    }
+  ],
+  "cua": "Actual Chrome tab CUA and Safari native-app CUA; exact per-state evidence mapping is INTERACTIONS.json."
+}

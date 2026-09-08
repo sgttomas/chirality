@@ -1,0 +1,27 @@
+Window: "personal — Agents Projection Visual Fixture", App: Safari.
+0 standard window personal — Agents Projection Visual Fixture, ID: SafariWindow?IsSecure=false&UUID=6D8A2BC2-57A7-489D-8FBA-8413DC39C946, Secondary Actions: Raise
+	1 split group
+		2 tab group
+			3 scroll area
+				4 HTML content Description: Agents Projection Visual Fixture, URL: 127.0.0.1:64503/?theme=light
+					5 container
+						6 text BROWSER VISUAL FIXTURE · SYNTHETIC RECORDS
+						7 container
+							8 text Refresh completed  1  time .
+						9 container Recorded agent tree
+							10 text Recorded agent tree
+							11 button Refresh
+							12 container Top-level agents
+								13 container
+									14 toggle button Agent 0 HELP_HUMAN Top-level, Value: off
+									15 container Agents reporting to HELP_HUMAN
+										16 container
+											17 toggle button Agent 1 WORKING_ITEMS Parent: HELP_HUMAN, Value: off
+											18 container Agents reporting to WORKING_ITEMS
+												19 toggle button Agent 2 REVIEW Parent: WORKING_ITEMS, Value: off
+												20 toggle button Agent 2 TASK Parent: WORKING_ITEMS, Value: off
+										21 toggle button Parent: HELP_HUMAN, Value: off
+							22 container Agents without an available parent
+								23 heading Parent relationship unavailable, Value: 3
+									24 text Parent relationship unavailable
+								25 toggle button Agent 2 RESEARCHER Parent relationship unavailable, Value: off

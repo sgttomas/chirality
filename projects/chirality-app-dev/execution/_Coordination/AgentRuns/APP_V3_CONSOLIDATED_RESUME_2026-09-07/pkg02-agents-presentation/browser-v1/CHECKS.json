@@ -1,0 +1,31 @@
+{
+  "schema": "chirality-browser-checks/v1",
+  "verdict": "PASS",
+  "checks": {
+    "acceptedHashesExact": true,
+    "fixtureUsesByteExactProductionComponent": true,
+    "fixtureUsesByteExactProductionHierarchyBuilder": true,
+    "fixtureUsesByteExactFullProductionCss": true,
+    "representativeAgent0Agent1Agent2": true,
+    "knownPersonas": true,
+    "nestedParentRelationships": true,
+    "unknownTypeAndPersonaOmitted": true,
+    "detachedRelationshipRendered": true,
+    "chromeLightAndDark": true,
+    "safariLightAndDark": true,
+    "compactWidth390CssPx": true,
+    "refreshAccessibleAndOperableBothBrowsers": true,
+    "selectionAccessibleAndOperableBothBrowsers": true,
+    "disabledSelectionAccessibleBothBrowsers": true,
+    "rawSessionOrParentIdsAbsentFromAx": true,
+    "removedMetadataAbsentFromAx": true,
+    "meaningfulTreeAndRelationshipNames": true,
+    "requiredContentVisuallyUnclipped": true,
+    "screenshotsValidJpegMagicAndDimensions": true,
+    "ownedTabsClosed": true,
+    "ownedServerStopped": true,
+    "productSourceUnchanged": true
+  },
+  "scopeLimit": "Narrow AgentsProjection fixture only; no full-shell behavior is claimed.",
+  "captureLimitation": "CUA returned JPEG bytes for requested screenshot captures. Safari native captures included browser chrome and unrelated tab titles, so retained Safari screenshots are cropped to the complete web-content viewport and persisted AX files contain only the fixture page subtree."
+}

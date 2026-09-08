@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-manager-agents-presentation-manifest/v1",
+  "created_at": "2026-09-08T02:57:32.058472+00:00",
+  "verdict": "PASS_PUBLICATION_READY_SELECTION",
+  "files": [
+    {
+      "path": "MANAGER_RETURN.md",
+      "sha256": "dd97f17e1402a60bab7d61b61391854accdca6d3e6bdfb4e9d3fdaa2a7cf8058",
+      "bytes": 3097
+    }
+  ],
+  "inputs": {
+    "owner_direction_sha256": "f41e000e395c37c0ddacdcba08daffe1de2a57cce089e5649da2a5689f098720",
+    "source_patch_sha256": "23462b0f2020c5dbaf9ab19d95d8a276bbe2c59d51df6688c499d33d35f252a8",
+    "author_manifest_sha256": "44a0908e83464783531257bb6866de7ce49cbfd50f9f0866f90f8b546c06f4b1",
+    "review_manifest_sha256": "c76e430d3ee34edfa9071f4991e43e50e617ac5a2abfb1314f9c14a1d9264820",
+    "browser_manifest_sha256": "5636d4adeb51778519e134b2c52cfd1e54a469ef23b5eca41e42a953a7f59ded"
+  }
+}

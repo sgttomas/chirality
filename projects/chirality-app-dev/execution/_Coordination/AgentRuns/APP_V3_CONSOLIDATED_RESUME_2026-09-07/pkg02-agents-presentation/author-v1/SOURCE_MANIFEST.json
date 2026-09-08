@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-source-manifest/v1",
+  "base_commit": "4f98be53e7359b72521f20181537f67fd63ad69b",
+  "sealed_brief_sha256": "d80ebbfafd6d02774f67198db7e4bf644320ea83d11c5c0e24f64c314faa261c",
+  "owner_direction_sha256": "f41e000e395c37c0ddacdcba08daffe1de2a57cce089e5649da2a5689f098720",
+  "source_patch_sha256": "23462b0f2020c5dbaf9ab19d95d8a276bbe2c59d51df6688c499d33d35f252a8",
+  "files": [
+    {
+      "path": "frontend/src/components/woven-dialogue/agents-projection.tsx",
+      "pre_sha256": "7a95a521615dcf2680dd4d8abb511ab9d008c277b0006897be542f401609b237",
+      "post_sha256": "99f516d8e16a79d5082c2892e41b4d86582d492692ce05d32415bab99547adb4",
+      "bytes": 5691
+    },
+    {
+      "path": "frontend/src/__tests__/components/agents-projection.test.tsx",
+      "pre_sha256": "9d5f23a2d5017ad6001a832f0a614b4283abaa5f4aaa9c26f829a821bcd5f79a",
+      "post_sha256": "1da832039a57f3ba036728380df8adfb787161511c77c4f89e9a9f0033407338",
+      "bytes": 6502
+    }
+  ]
+}
