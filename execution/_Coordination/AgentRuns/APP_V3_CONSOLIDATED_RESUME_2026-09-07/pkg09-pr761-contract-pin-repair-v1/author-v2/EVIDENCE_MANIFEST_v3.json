@@ -1,0 +1,52 @@
+{
+  "schema": "chirality-agent2-author-successor-evidence/v3",
+  "status": "EVIDENCE_CORRECTED_REVIEW_FAIL_PRESERVED_CI_REQUIRED",
+  "review_verdict": "FAIL",
+  "review_verdict_changed": false,
+  "correction_kind": "append-only-exact-incremental-patch-replacement",
+  "preserved_corrupt_evidence": {
+    "path": "two-path.patch",
+    "sha256": "0f841b7e5bbaa57ae58c4bf4a86afc36ff425d2e7642656e1dc8df18b0231683",
+    "bytes": 4390,
+    "git_apply_check": "FAIL_CORRUPT_PATCH_AT_LINE_71"
+  },
+  "preserved_manifests": [
+    {
+      "path": "EVIDENCE_MANIFEST.json",
+      "sha256": "194e264fd6486a7bcf30642c4acce5a68b729ab5bdd1eae0cc1b64b33ecb9263",
+      "bytes": 911
+    },
+    {
+      "path": "EVIDENCE_MANIFEST_v2.json",
+      "sha256": "398d4e120118d99ff0239b07f10bfb4b47fd5b81a359ab4f6255c0126a2b0b66",
+      "bytes": 1295
+    }
+  ],
+  "corrected_patch": {
+    "path": "two-path-corrected.patch",
+    "sha256": "a8387c0242a52224c7cd5e4c9eae35ae4962006f4e6dd4d644bb243ccfeda393",
+    "bytes": 4390,
+    "forward_check": "PASS_GIT_APPLY_CHECK_AGAINST_RECONSTRUCTED_AUTHOR_V1_TREE",
+    "reverse_check": "PASS_GIT_APPLY_REVERSE_CHECK_AGAINST_LIVE_SOURCE_TREE"
+  },
+  "source_transition": [
+    {
+      "path": ".github/workflows/desktop-release-template.yml",
+      "preimage_sha256": "b1c01b43572d015596aaf7e61e93d5bae3655b3eba6729e15b4fb6aef2701c1f",
+      "preimage_bytes": 13679,
+      "postimage_sha256": "913d7510858386f6f8c32cad1abcb883bdac9239d6e2dcf4d81a3b8797d6c7c6",
+      "postimage_bytes": 13658
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/desktop-release-workflow.test.ts",
+      "preimage_sha256": "728bbb2ca6793654eccc60f19b4e0db1edf3c685c82430c1ffb7202c4515fea7",
+      "preimage_bytes": 9995,
+      "postimage_sha256": "50732e509d6255065cfb42a731ec3df1222b5e99d12c29734b891c018e84147f",
+      "postimage_bytes": 10930
+    }
+  ],
+  "source_changed_by_evidence_repair": false,
+  "source_checks_rerun": false,
+  "git_staged": false,
+  "git_committed": false
+}

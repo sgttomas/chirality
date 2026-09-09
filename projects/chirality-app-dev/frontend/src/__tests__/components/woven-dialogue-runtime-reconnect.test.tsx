@@ -57,6 +57,23 @@ vi.mock('../../lib/woven-dialogue/selected-session-replay', () => ({
   })
 }));
 
+vi.mock('../../lib/woven-dialogue/chat-organization', async (importOriginal) => {
+  const actual = await importOriginal<
+    typeof import('../../lib/woven-dialogue/chat-organization')
+  >();
+  return {
+    ...actual,
+    deriveChatTitle: actual.deriveChatTitle,
+    visibleActiveChatSessions: actual.visibleActiveChatSessions,
+    createChatReplayReader: () => ({
+      loadFirstOperatorMessages: vi.fn(async () => ({})),
+      search: vi.fn(async () => []),
+      cancel: vi.fn(),
+      dispose: vi.fn()
+    })
+  };
+});
+
 vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => ({ projectRoot: '/repo/projects/chirality-app-dev' })
 }));

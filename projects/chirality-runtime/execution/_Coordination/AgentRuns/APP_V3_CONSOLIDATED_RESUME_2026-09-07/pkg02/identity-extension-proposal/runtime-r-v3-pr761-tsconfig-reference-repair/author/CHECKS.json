@@ -1,0 +1,115 @@
+{
+  "schema": "chirality.runtime.pr761-daemon-reference-repair.author-checks.v1",
+  "status": "AUTHOR_STATIC_CHECKS_PASS__FROZEN_FOR_REVIEW",
+  "brief": {
+    "path": "BRIEF.md",
+    "sha256": "6c7af65cd4cd82e8d8c3a2482565ae8cbe332795f7d034c0a1a736b66934d05f"
+  },
+  "workspace": "/private/tmp/chirality-graceful-source-closure-20260908",
+  "sourceEdit": {
+    "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+    "preimage": {
+      "bytes": 345,
+      "sha256": "3b14197e0ee6cc749515c27953f5f20138404f98323be386655a7c3a58122833"
+    },
+    "postimage": {
+      "bytes": 394,
+      "sha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b"
+    },
+    "byteDelta": 49,
+    "onlyChange": "inserted one reference object with path ../native-admission after ../core and before ../engine-pi-omlx",
+    "secondSourceEditRequired": false
+  },
+  "parsedGraphEvidence": {
+    "daemonReferences": [
+      "../contracts",
+      "../core",
+      "../native-admission",
+      "../engine-pi-omlx"
+    ],
+    "nativeAdmissionReferences": [
+      "../core"
+    ],
+    "rootSolutionReferences": [
+      "packages/contracts",
+      "packages/core",
+      "packages/engine-claude",
+      "packages/engine-pi-omlx",
+      "packages/client",
+      "packages/daemon",
+      "packages/cli",
+      "packages/native-admission"
+    ],
+    "rootIncludesDaemon": true,
+    "rootIncludesNativeAdmission": true
+  },
+  "packageDependencyEvidence": {
+    "daemonPackage": "@chirality/runtime-daemon",
+    "daemonDependency": {
+      "name": "@chirality/native-admission",
+      "specifier": "*",
+      "present": true
+    },
+    "nativeAdmissionPackage": "@chirality/native-admission",
+    "nativeAdmissionDependencies": {
+      "@chirality/runtime-core": "*"
+    }
+  },
+  "cycleCheck": {
+    "result": "ACYCLIC_FOR_ADDED_EDGE",
+    "method": "parsed the permitted TypeScript reference arrays and performed focused directed reachability from native-admission toward daemon; native-admission has the sole outgoing edge native-admission -> core, no daemon edge, while daemon already points to core; the new daemon -> native-admission edge therefore supplies no declared return path in the inspected graph",
+    "newEdge": "daemon -> native-admission",
+    "returnPathToDaemon": false
+  },
+  "acceptedSourcePreservation": {
+    "selectionEvidencePath": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo/projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2/author/v3/SOURCE_CHANGED_PATHS.json",
+    "selectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+    "expectedMemberCount": 29,
+    "matchedSha256AndBytesCount": 29,
+    "mismatches": [],
+    "result": "PASS"
+  },
+  "changedPathContainment": {
+    "handedOffTreeGitStatusBefore": [],
+    "gitStatusAfter": [
+      " M projects/chirality-runtime/packages/daemon/tsconfig.json"
+    ],
+    "additionalProductChangedPaths": [
+      "projects/chirality-runtime/packages/daemon/tsconfig.json"
+    ],
+    "unexpectedAdditionalProductChangedPaths": [],
+    "result": "PASS"
+  },
+  "validation": {
+    "performed": [
+      "preimage SHA-256 and byte count",
+      "postimage SHA-256 and byte count",
+      "JSON parsing and ordered reference-array inspection",
+      "package dependency inspection",
+      "focused cycle analysis",
+      "accepted 29-path SHA-256 and byte-count preservation",
+      "Git status and one-file diff containment"
+    ],
+    "ciRemaining": [
+      "clean Runtime build in required PR CI",
+      "PEC run validation",
+      "Harness run validation"
+    ],
+    "buildPassClaimed": false
+  },
+  "exclusions": {
+    "npm": 0,
+    "typescriptCompiler": 0,
+    "nodeGyp": 0,
+    "nativeCompilation": 0,
+    "tests": 0,
+    "dependencySetup": 0,
+    "network": 0,
+    "supplierAccess": 0,
+    "accountOperations": 0,
+    "productProcesses": 0,
+    "delegation": 0,
+    "gitMutations": 0
+  },
+  "conduct": "Bounded nondelegating Agent 2 author; one authorized source edit and four declared evidence files only; no account functionality accepted or enabled."
+}

@@ -4102,7 +4102,11 @@ button:disabled {
 .woven-navigator-session-row > .woven-navigator-session {
   flex: 1;
   min-width: 0;
+  display: grid;
+  gap: 2px;
 }
+.woven-navigator-session-heading { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.woven-navigator-session-folder { color: var(--ink-faint); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .woven-navigator-session-reveal {
   flex: none;
   border: 0;
@@ -4111,6 +4115,17 @@ button:disabled {
   font-size: 12px;
   line-height: 1;
 }
+.woven-navigator-session-overflow {
+  flex: none;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-faint);
+  padding: 4px;
+  letter-spacing: -2px;
+}
+.woven-navigator-session-overflow:focus-visible,
+.woven-navigator-session-overflow:hover { color: var(--ink); outline: 2px solid var(--accent); outline-offset: 1px; }
 .woven-navigator-session-reveal:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
@@ -4119,6 +4134,30 @@ button:disabled {
 .woven-workspace .woven-navigator-session[aria-pressed="true"] {
   background: var(--accent-soft);
 }
+.woven-chat-search input { width: 100%; min-width: 0; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); padding: 7px 9px; font: inherit; }
+.woven-chat-section { display: grid; gap: 2px; }
+.woven-chat-section-heading,
+.woven-chat-section-label { width: 100%; display: flex; justify-content: space-between; border: 0; background: transparent; color: var(--ink-faint); padding: 6px 8px 3px; font: 600 11px/1.2 var(--font-body); text-transform: uppercase; letter-spacing: .04em; }
+.woven-chat-section-label { margin: 0; box-sizing: border-box; }
+.woven-chat-menu { position: fixed; z-index: 80; left: 250px; top: 110px; width: 190px; max-height: min(32rem, calc(100vh - 132px)); overflow-y: auto; overscroll-behavior: contain; display: grid; padding: 6px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+.woven-chat-menu button { border: 0; background: transparent; color: var(--ink); padding: 7px 9px; text-align: left; border-radius: 4px; }
+.woven-chat-menu button:hover,
+.woven-chat-menu button:focus-visible { background: var(--accent-soft); outline: none; }
+.woven-chat-menu hr { width: 100%; border: 0; border-top: 1px solid var(--rule); }
+.woven-chat-dialog-backdrop { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: rgba(0,0,0,.35); }
+.woven-chat-dialog { width: min(360px, calc(100vw - 32px)); display: grid; gap: 14px; padding: 18px; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); color: var(--ink); box-shadow: 0 16px 48px rgba(0,0,0,.25); }
+.woven-chat-dialog h2,
+.woven-chat-dialog p { margin: 0; }
+.woven-chat-dialog label { display: grid; gap: 5px; }
+.woven-chat-dialog input { min-width: 0; padding: 7px 9px; }
+.woven-chat-dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.woven-chat-visibility { display: grid; gap: 2px; }
+.woven-chat-visibility button { border: 0; background: transparent; color: var(--ink-soft); padding: 4px 8px; text-align: left; }
+.woven-chat-visibility button[aria-pressed="true"] { color: var(--ink); font-weight: 600; }
+.woven-collapsed-strip { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0; }
+.woven-collapsed-strip > button { width: 34px; height: 34px; border: 0; border-radius: 6px; background: transparent; color: var(--ink); }
+.woven-collapsed-strip > button:focus-visible { outline: 2px solid var(--accent); }
+.woven-collapsed-strip .woven-collapsed-settings { margin-top: auto; }
 .woven-workspace .woven-compatibility {
   margin: 0;
   border-top: 1px solid var(--rule);

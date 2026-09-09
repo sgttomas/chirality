@@ -517,10 +517,23 @@ async function startPackagedRendererServer(): Promise<RendererServer> {
   await nextApp.prepare();
   const handle = nextApp.getRequestHandler();
   const server = createServer((req, res) => {
-    // Derive the policy once per request and expose its nonce to Next before it
-    // renders. The helper attaches the byte-identical policy to the response.
+    // Derive the policy once per request and install the one-shot response
+    // finalizer before Next can commit headers. The finalizer preserves these
+    // nonce bytes for HTML and substitutes only the exact eligible PDF tuple.
     applyPackagedRendererRequestPolicy(req, res);
-    handle(req, res);
+    try {
+      void Promise.resolve(handle(req, res)).catch((error: unknown) => {
+        if (res.headersSent) {
+          res.destroy(error instanceof Error ? error : new Error(String(error)));
+          return;
+        }
+        res.statusCode = 500;
+        res.end('Internal Server Error');
+      });
+    } catch (error) {
+      if (res.headersSent) res.destroy(error instanceof Error ? error : new Error(String(error)));
+      else { res.statusCode = 500; res.end('Internal Server Error'); }
+    }
   });
 
   await new Promise<void>((resolve, reject) => {

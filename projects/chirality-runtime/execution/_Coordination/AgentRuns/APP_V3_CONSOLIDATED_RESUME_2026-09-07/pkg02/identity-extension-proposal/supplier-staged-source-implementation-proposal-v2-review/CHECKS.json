@@ -1,0 +1,164 @@
+{
+  "schema": "chirality.supplier.staged-source-implementation-proposal-v2-focused-backcheck.v1",
+  "status": "FROZEN",
+  "verdict": "PASS",
+  "reviewer": {
+    "identity": "/root/runtime_identity/supplier_staged_impl_proposal_reviewer",
+    "model": "gpt-5.6-sol",
+    "reasoning": "medium",
+    "role": "author-distinct-nondelegating-agent-2",
+    "authorSeparation": "PASS"
+  },
+  "reviewBrief": {
+    "path": "BRIEF.md",
+    "expectedSha256": "4feddb8c3e91a8606cb1ebbc00d56c6eee61b40b87638e4318410a234f6f2954",
+    "actualSha256": "4feddb8c3e91a8606cb1ebbc00d56c6eee61b40b87638e4318410a234f6f2954",
+    "result": "PASS"
+  },
+  "reviewedPacket": {
+    "manifestPath": "../supplier-staged-source-implementation-proposal-v2/MANIFEST.json",
+    "expectedManifestSha256": "0ac3446bc892a116425811339142fba79dfb20bc97fbb4b1324b64db521a5ad6",
+    "actualManifestSha256": "0ac3446bc892a116425811339142fba79dfb20bc97fbb4b1324b64db521a5ad6",
+    "result": "PASS",
+    "memberRehashes": [
+      {
+        "path": "IMPLEMENTATION_PROPOSAL.md",
+        "bytes": 36849,
+        "sha256": "02faa20d42f1d2e9a000bd8bd8b15786c8a41dae5c9f5ac1e8dc164b98790344",
+        "result": "PASS"
+      },
+      {
+        "path": "NEXT_DECISION_SUBJECT.md",
+        "bytes": 12375,
+        "sha256": "9eebd27ce872efaadce38fef2423032384f2c63a719f92a7ee5ccdc9ada04ddd",
+        "result": "PASS"
+      },
+      {
+        "path": "RETURN.md",
+        "bytes": 4035,
+        "sha256": "7faaf6184ed20de9fe9b5d5bc53e16159a4bffe29e60bdefe438393d0acfed54",
+        "result": "PASS"
+      }
+    ],
+    "inputRehashes": [
+      {
+        "path": "BRIEF.md",
+        "sha256": "4689faafd7902de025cc3da876501e36d47beb748af9b19b3741eb20f161289c",
+        "result": "PASS"
+      },
+      {
+        "path": "../supplier-staged-source-implementation-proposal-v1/MANIFEST.json",
+        "sha256": "b239db0edbf748a9f49667d732b91633c90f42df20d9b67274459623d8b5179a",
+        "result": "PASS"
+      },
+      {
+        "path": "../supplier-staged-source-implementation-proposal-v1-review/MANIFEST.json",
+        "sha256": "ae648058a6e58fd45e2d1fbfce3199d3ada15de58b391880fb0fff3eef915f42",
+        "result": "PASS"
+      },
+      {
+        "path": "../supplier-staged-source-implementation-proposal-v1/TOOLING_PREFLIGHT.json",
+        "sha256": "31b50f5a992913856954ec5d69a89ec6a32e96926e12a12da59e72f5c366d5eb",
+        "result": "PASS"
+      },
+      {
+        "path": "../supplier-staged-source-implementation-proposal-v1/MANAGER_TOOLING_AMENDMENT.md",
+        "sha256": "5cec95553e76bb546034c91d328328e313a614b2740eeeb4a61e141edea2b1bd",
+        "result": "PASS"
+      },
+      {
+        "path": "../local-implementation-readiness-v4/IMPLEMENTATION_READINESS.md",
+        "sha256": "416c9332628bc1631db5e53826be567c1a371570f09884c2fc18b80c19cc3a4d",
+        "result": "PASS"
+      },
+      {
+        "path": "../supplier-implementation-proposal-v3/IMPLEMENTATION_PROPOSAL.md",
+        "sha256": "0c206b1c1487f6c0848b55d981f5866cd9de73dca89d3c83c8ce5a46de7d42ba",
+        "result": "PASS"
+      },
+      {
+        "path": "../supplier-core-integration-continuation-v4/MANIFEST.json",
+        "sha256": "c0d76407c93f3ae39507f4fda06f86b4dd99c7c589daa42790f60957d1bc7697",
+        "result": "PASS"
+      },
+      {
+        "path": "../supplier-core-integration-continuation-v4-review/MANIFEST.json",
+        "sha256": "7e7ef7a778cb6ca142aff4ce0798eaa9a1c860ae34b28fd9046c7538fa84fd5c",
+        "result": "PASS"
+      },
+      {
+        "path": "../runtime-r-v3-source-acceptance/MANIFEST.json",
+        "sha256": "58e202bd9bfba6115b84aff4ac949ec481cf8a6599e94c222f4b82664314c7ee",
+        "result": "PASS"
+      },
+      {
+        "path": "../runtime-r-v3-interface-concordance-v1/MANIFEST.json",
+        "sha256": "c47c29516890d5ebcd92fb6fed92c75a3b42a5e0b75bf7d9b15549bf6d7be919",
+        "result": "PASS"
+      },
+      {
+        "path": "../../../../../../../../../execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/standing-initiative-model-authority-2026-09-08/AUTHORITY.json",
+        "sha256": "662c9d15e59de0dbf90c762f7bb9cea594ace42fa85148791ceab2b33a35ee40",
+        "result": "PASS__PATH_RESOLVES"
+      }
+    ]
+  },
+  "predecessorReview": {
+    "manifestSha256": "ae648058a6e58fd45e2d1fbfce3199d3ada15de58b391880fb0fff3eef915f42",
+    "verdict": "FAIL",
+    "blockingFindings": [
+      "F001",
+      "F002",
+      "F003"
+    ]
+  },
+  "focusedChecks": {
+    "F001": {
+      "result": "PASS__CLOSED",
+      "evidence": "The V2 manifest adds the required ninth parent traversal; the declared repository-root authority path resolves and hashes to 662c9d15e59de0dbf90c762f7bb9cea594ace42fa85148791ceab2b33a35ee40."
+    },
+    "F002": {
+      "result": "PASS__CLOSED",
+      "evidence": "IMPLEMENTATION_PROPOSAL.md, NEXT_DECISION_SUBJECT.md, RETURN.md, and MANIFEST.json consistently retain immutable locked dependency/task-Cargo registry/git payloads and reviewed Stage 0/A/B source snapshots as recoverable bytes until successor-verified alternate byte recovery or explicit owner disposal. Hashes and inventories are expressly insufficient; cleanup is limited to derivative build/target/tmp and explicitly non-custodial scratch outputs."
+    },
+    "F003": {
+      "result": "PASS__CLOSED",
+      "evidence": "Both general proposal stop/exclusion clauses and the decision-subject general exclusion clause state that unauthorized network in any stage and all Stage A/B network activity stop, while the exact locked target-specific Stage 0 cargo fetch is the sole exception. RETURN.md and MANIFEST.json repeat the same boundary."
+    },
+    "unchangedPreviouslyPassedSemantics": {
+      "result": "PASS",
+      "evidence": "The V1-to-V2 delta is limited to version/predecessor identification, relocated inherited input references, the corrected authority path, recoverable custody retention, and unambiguous Stage 0 network-exception language. No technical Stage A/B requirement, expected or ancillary path envelope, test/review gate, Stage 0 command/source boundary, or downstream hold changed."
+    }
+  },
+  "findings": [],
+  "heldGates": [
+    "OWNER_APPROVAL",
+    "STAGE_A_PENDING_DISTINCT_DEPENDENCY_CUSTODY_PASS",
+    "STAGE_B_PENDING_DISTINCT_STAGE_A_SOURCE_TEST_PASS",
+    "POSITIVE_CAPABILITY_OR_V4_ADVERTISEMENT",
+    "PRODUCTION_ADMISSION_ACQUIRE",
+    "PUBLIC_OR_GENERATED_PROTOCOL_SURFACES",
+    "BAZEL_PARITY",
+    "PRODUCTION_SUPPLIER_BUILD",
+    "RUNTIME_NATIVE_BUILD",
+    "SUPPLIER_RUNTIME_PAIR_QUALIFICATION",
+    "PROVIDER_ID_QUALIFICATION",
+    "ACCOUNT_ENABLED_TRIAL",
+    "APP_CLI_ADOPTION",
+    "ACTIVATION",
+    "PUBLICATION",
+    "RELEASE"
+  ],
+  "conduct": {
+    "delegations": 0,
+    "authorFilesRepairedOrRewritten": 0,
+    "newSupplierSourceOrEvidenceReads": 0,
+    "dependencyAcquisitions": 0,
+    "compilations": 0,
+    "testsExecuted": 0,
+    "networkActions": 0,
+    "accountCredentialKeyringProviderActions": 0,
+    "implementationActivationPublicationReleaseActions": 0,
+    "reviewOutputsAuthored": 3
+  }
+}

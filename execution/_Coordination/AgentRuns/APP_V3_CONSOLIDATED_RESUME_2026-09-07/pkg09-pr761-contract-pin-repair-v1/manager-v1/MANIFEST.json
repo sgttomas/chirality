@@ -1,0 +1,54 @@
+{
+  "schema": "chirality-pr761-manager-handoff/v1",
+  "status": "PASS_READY_FOR_CHANGE_CI_REQUIRED",
+  "baseHead": "e980f2ee773d32d1137646f437dc973126286e9b",
+  "sourceRoot": "/private/tmp/chirality-graceful-source-closure-20260908",
+  "pathCount": 5,
+  "members": [
+    {
+      "path": "manager-v1/FINAL_FIVE_PATH.patch",
+      "sha256": "9de48cd6c3ee8ab93be3745c014e27d57cc34285b18eec784517e1d5644ab496",
+      "bytes": 13356
+    },
+    {
+      "path": "manager-v1/SELECTION.json",
+      "sha256": "481c40926d545447c7bbe99792219bc183fe0e55c7df1cf7338db21ecc5bc2d4",
+      "bytes": 2267
+    },
+    {
+      "path": "manager-v1/MANAGER_RETURN.md",
+      "sha256": "897387df72688b479fb3313fe9d23f1373ab7de186aef1c5a27caa9144094de7",
+      "bytes": 2081
+    },
+    {
+      "path": "author-v2/EVIDENCE_MANIFEST_v3.json",
+      "sha256": "050c294030334fba863156617310e29da87162f2732241785cfbc53d5419730e",
+      "bytes": 2018
+    },
+    {
+      "path": "review-v3/MANIFEST.json",
+      "sha256": "f55c5f9f32955a4b522ff217a6dab7d03a75c1429757afe5eabfdd38e137310b",
+      "bytes": 755
+    },
+    {
+      "path": "review-v3/RETURN.md",
+      "sha256": "c5bb8be47618de31a77bf287bce34292416b1f19a6541a55857cae0125c2deba",
+      "bytes": 1949
+    },
+    {
+      "path": "review-v3/CHECKS.json",
+      "sha256": "b76d899cbf7af65af0638c5561308aac56cdec75c33b1225461a7127c408e31b",
+      "bytes": 1977
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANAGER_RETURN.md",
+      "sha256": "7735261db60d0d88e2a9bad6493c18650366b409472efd3f81e80a94c3a76a50",
+      "bytes": 1868
+    }
+  ],
+  "requiredNext": [
+    "CHANGE stages only the exact five selected paths",
+    "PR CI runs focused Vitest, registered typecheck, Harness Section 9, and required gates",
+    "release remains fail-closed until qualified evidence workflow is separately reviewed and supplied"
+  ]
+}

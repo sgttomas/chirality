@@ -1,0 +1,45 @@
+{
+  "schema": "chirality-pr761-reconnect-fixture-manager-handoff/v1",
+  "status": "PASS_READY_FOR_CHANGE_CI_REQUIRED",
+  "sourceHead": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5",
+  "pathCount": 1,
+  "postimageSha256": "26046c6a127e7496341c05181e0131840cf713ec1324ccbae1d6691c28283fd4",
+  "members": [
+    {
+      "path": "manager-v1/FINAL_ONE_PATH.patch",
+      "sha256": "aa3689fcc53a0692e536031b45434af26074c8f228300a641cfa9775d6b0a9c1",
+      "bytes": 1265
+    },
+    {
+      "path": "manager-v1/MANAGER_RETURN.md",
+      "sha256": "f7f760169fce364376fc3d52b4394accd198a26f068e9a12da14da6cd7b1189c",
+      "bytes": 1375
+    },
+    {
+      "path": "author-v1/EVIDENCE_MANIFEST.json",
+      "sha256": "c22b40c23e43cb6db48bee63b0b30529d0bc0c0fdcb4208ecae2404f0f0aad18",
+      "bytes": 1152
+    },
+    {
+      "path": "review-v1/MANIFEST.json",
+      "sha256": "2ef0d3d87e982b14abb5a28dd5b0182845d249c55ee8a76e062487397829a797",
+      "bytes": 697
+    },
+    {
+      "path": "review-v1/RETURN.md",
+      "sha256": "ee9270a7414dd7e2632de012b2570d6935ff0aa47df0333a9d9735a0edbef02b",
+      "bytes": 2731
+    },
+    {
+      "path": "review-v1/CHECKS.json",
+      "sha256": "293c781499657ef048cf331a20d5ae7e3aea1365828e346b07953761d411181b",
+      "bytes": 1677
+    }
+  ],
+  "ciRequired": [
+    "focused_and_related_tests",
+    "registered_typecheck",
+    "full_app_suite",
+    "harness"
+  ]
+}

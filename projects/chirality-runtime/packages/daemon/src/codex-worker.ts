@@ -1,3 +1,4 @@
+import { retireNativeSupplier } from "./codex-transport-lifecycle.js";
 import { spawn } from "node:child_process";
 import { lstat, mkdtemp, mkdir, realpath, writeFile, rm } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -6,6 +7,8 @@ import { isAbsolute, resolve, join, dirname } from "node:path";
 import { verifyExactSupply, revalidateExactSupply } from "@chirality/runtime-core";
 
 export interface CodexProbeInput { executablePath: string; privateDirectory: string }
+/** Workers never receive supplier authority secrets, leases, generations, snapshots, or transcript frames. */
+export const CODEX_WORKER_AUTHORITY_SURFACE = "none" as const;
 export interface CodexProtocolCheck { method: string; status: "passed" | "rejected" }
 export interface CodexProbeResult {
   evidenceClass: "accepted-supply-offline-probe" | "controlled-fixture";
@@ -133,4 +136,13 @@ export async function runControlledCodexProbeForTests(input: CodexProbeInput & {
   const root = await privateScratch(input);
   try { return { evidenceClass: "controlled-fixture", ...await exchange(input.executablePath, input.args, root) }; }
   finally { await rm(root, { recursive: true, force: true }); }
+}
+
+/** Private supplier source composition. This is never used by the public worker route. */
+export async function createNativeSupplierTransport(input:{executable:string;args:readonly string[];authoritySecret:Buffer}):Promise<import("./codex-session.js").CodexSessionTransport> {
+  const {loadNativeAdmissionBinding}=await import("@chirality/native-admission");
+  const native=loadNativeAdmissionBinding(true);if(native.state!=="available")throw new Error("Supplier authority native package unavailable");
+  const spawned=native.value.spawnSupplier(input.executable,input.args,input.authoritySecret);if(spawned.state!=="available")throw new Error("Supplier authority spawn unavailable");
+  const child=spawned.value;let closing:Promise<void>|undefined;
+  return {stdin:child.stdin,stdout:child.stdout,close:()=>closing??=retireNativeSupplier(child)};
 }

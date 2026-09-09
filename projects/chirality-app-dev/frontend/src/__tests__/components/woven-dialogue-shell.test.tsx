@@ -12,11 +12,17 @@ const shellState = vi.hoisted(() => ({
   query: '',
   projectRoot: '/repo/projects/chirality-app-dev' as string | null,
   streaming: false,
+  runtimeEpoch: 0,
   extraSessions: [] as string[],
   mounted: 0,
   unmounted: 0,
   replayLoad: vi.fn(),
-  replayNotify: undefined as ((state: unknown) => void) | undefined
+  replayNotify: undefined as ((state: unknown) => void) | undefined,
+  titleLoad: vi.fn(async () => ({} as Record<string, string>)),
+  titleCancel: vi.fn(),
+  titleDispose: vi.fn(),
+  useRealReader: false,
+  realReaders: [] as Array<{ dispose: ReturnType<typeof vi.fn>; cancel: ReturnType<typeof vi.fn> }>
 }));
 
 vi.mock('next/navigation', () => ({
@@ -36,6 +42,15 @@ vi.mock('../../lib/harness/client', () => ({
   harnessApiErrorMessage: (error: unknown) => String(error),
   replaySessionEvents: vi.fn(async () => ({ events: [] }))
 }));
+vi.mock('../../lib/woven-dialogue/chat-organization', async importOriginal => {
+  const actual = await importOriginal<typeof import('../../lib/woven-dialogue/chat-organization')>();
+  return { ...actual, createChatReplayReader: () => {
+    if (!shellState.useRealReader) return { loadFirstOperatorMessages: shellState.titleLoad, search: vi.fn(async () => []), cancel: shellState.titleCancel, dispose: shellState.titleDispose };
+    const reader = actual.createChatReplayReader();
+    const wrapped = { ...reader, cancel: vi.fn(() => reader.cancel()), dispose: vi.fn(() => reader.dispose()) };
+    shellState.realReaders.push(wrapped); return wrapped;
+  } };
+});
 vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => ({ projectRoot: shellState.projectRoot })
 }));
@@ -49,9 +64,9 @@ vi.mock('../../components/shell/shell-frame', () => ({
   )
 }));
 vi.mock('../../components/shell/chat-panel', () => ({
-  ChatPanel: ({ onActiveSessionChange, onDraftCaptured }: { onActiveSessionChange: (id: string) => void; onDraftCaptured: () => void }) => {
+  ChatPanel: ({ onActiveSessionChange, onDraftCaptured, onSessionBootedPrompt, fileCatalog = [], onOpenFile }: { onActiveSessionChange: (id: string) => void; onDraftCaptured: () => void; onSessionBootedPrompt: (input: { sessionId: string; prompt: string; persona: string }) => void; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }) => {
     useEffect(() => { shellState.mounted++; onActiveSessionChange('primary'); return () => { shellState.unmounted++; }; }, [onActiveSessionChange]);
-    return <input data-chat-panel="mounted" data-chat-input="primary" onChange={onDraftCaptured} />;
+    return <><input data-chat-panel="mounted" data-chat-input="primary" onChange={onDraftCaptured} /><button data-chat-file={fileCatalog.length} onClick={() => { if (fileCatalog[0]) onOpenFile?.(fileCatalog[0]); }}>open linked file</button><button data-live-title onClick={() => onSessionBootedPrompt({ sessionId: 'primary', prompt: `Review ${process.env.CHIRALITY_ANTHROPIC_API_KEY ?? ''} safely`, persona: 'TASK' })}>capture title</button></>;
   }
 }));
 vi.mock('../../components/shell/persona-picker', () => ({
@@ -74,14 +89,24 @@ vi.mock('../../components/pipeline/pipeline-surface', () => ({
 vi.mock('../../components/woven-dialogue/agents-projection', () => ({
   AgentsProjection: () => <div data-agents="mounted" />
 }));
-vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0 }));
+vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => shellState.runtimeEpoch }));
 vi.mock('../../lib/woven-dialogue/selected-session-replay', () => ({
-  createSelectedSessionReplayLoader: () => ({
+  createSelectedSessionReplayLoader: () => {
+    let current: any = { status: 'IDLE' };
+    return {
+    getState: () => current,
     subscribe: (notify: (state: unknown) => void) => { shellState.replayNotify = notify; return () => {}; },
-    load: (id: string) => { shellState.replayLoad(id); shellState.replayNotify?.({ status: 'LOADING', selectedSessionId: id }); },
+    load: async (id: string, options?: { observedAt?: string; maxItems?: number }) => {
+      shellState.replayLoad(id);
+      if (options?.maxItems) {
+        current = { status: 'READY', projection: { selectedSessionId: id, sourceReference: `session:${id}/events`, observedAt: options.observedAt ?? '2026-09-07T00:00:00Z', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { sessionId: id, itemCount: 1, items: [{ key: 'one', kind: 'message', role: 'user', status: 'accepted', title: 'User', timestamp: '2026-09-07T00:00:00Z', eventId: 'event', eventType: 'message.accepted', text: `recorded message ${id}` }] }, malformedLineCount: 0, sourceEventCount: 1, renderedItemCount: 1, diagnostics: [] } };
+        return { applied: true, state: current };
+      }
+      shellState.replayNotify?.({ status: 'LOADING', selectedSessionId: id }); return { applied: true, state: current };
+    },
     cancel: () => shellState.replayNotify?.({ status: 'IDLE' }),
     dispose: () => {}
-  })
+  }; }
 }));
 vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
   ActivityStrip: ({ onOpenDetails, primarySessionId }: { onOpenDetails: () => void; primarySessionId?: string }) => <button onClick={onOpenDetails} data-primary-session={primarySessionId} data-activity-strip="mounted">Details</button>,
@@ -102,7 +127,11 @@ describe('WovenDialogueShell composition', () => {
     shellState.query = '';
     shellState.projectRoot = '/repo/projects/chirality-app-dev';
     shellState.streaming = false;
+    shellState.runtimeEpoch = 0;
     shellState.extraSessions = [];
+    shellState.titleLoad.mockReset(); shellState.titleLoad.mockResolvedValue({});
+    shellState.titleCancel.mockClear(); shellState.titleDispose.mockClear();
+    shellState.useRealReader = false; shellState.realReaders = [];
   });
 
   it.each(['dialogue', 'workbench', 'pipeline'] as const)('only mounts Dialogue even with historical %s surface input', (surface) => {
@@ -205,6 +234,31 @@ describe('WovenDialogueShell composition', () => {
     act(() => tree.unmount());
   });
 
+  it('binds the loaded catalog to the current root and routes chat links through the contained file opener', async () => {
+    const persist = vi.fn();
+    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    const panel = tree.root.findByType(RightPanel);
+    const oldCatalogCallback = panel.props.onFileCatalog;
+    act(() => oldCatalogCallback({ root: shellState.projectRoot, paths: [`${shellState.projectRoot}/docs/SPEC.md`] }));
+    expect(tree.root.findByProps({ 'data-chat-file': 1 })).toBeTruthy();
+    act(() => tree.root.findByProps({ 'data-chat-file': 1 }).props.onClick());
+    expect(JSON.parse(persist.mock.calls.at(-1)![1])).toMatchObject({ openDocumentPath: 'docs/SPEC.md', rightPanelView: 'files', coordinationCollapsed: false });
+
+    act(() => panel.props.onOpenFile('/repo/projects/chirality-app-dev-other/docs/SPEC.md'));
+    expect(JSON.parse(persist.mock.calls.at(-1)![1]).openDocumentPath).toBe('docs/SPEC.md');
+
+    shellState.projectRoot = '/repo/next';
+    act(() => tree.update(<WovenDialogueShell defaultSurface="dialogue" />));
+    expect(tree.root.findByProps({ 'data-chat-file': 0 })).toBeTruthy();
+    act(() => oldCatalogCallback({ root: '/repo/projects/chirality-app-dev', paths: ['/repo/projects/chirality-app-dev/docs/SPEC.md'] }));
+    expect(tree.root.findByProps({ 'data-chat-file': 0 })).toBeTruthy();
+    act(() => tree.root.findByType(RightPanel).props.onFileCatalog({ root: '/repo/next', paths: ['/repo/next/docs/SPEC.md'] }));
+    expect(tree.root.findByProps({ 'data-chat-file': 1 })).toBeTruthy();
+    act(() => tree.unmount());
+  });
+
   it('opens a recorded parent through the existing selection guard, preserving live-turn and primary behavior', async () => {
     shellState.extraSessions = ['parent']; shellState.replayLoad.mockClear();
     const focus = vi.fn();
@@ -300,6 +354,88 @@ describe('WovenDialogueShell composition', () => {
     const html = renderToStaticMarkup(<WovenDialogueShell defaultSurface="workbench" />);
 
     expect(html).toContain('href="/workbench?agent=CHANGE&amp;legacy=1"');
+  });
+
+  it('persists a redacted live title and rejects an older recorded-title completion', async () => {
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'configured-secret-value';
+    const persist = vi.fn();
+    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    let finish!: (titles: Record<string, string>) => void;
+    shellState.titleLoad.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+    shellState.runtimeEpoch += 1;
+    act(() => tree.update(<WovenDialogueShell defaultSurface="dialogue" />));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    act(() => tree.root.findByProps({ 'data-live-title': true }).props.onClick());
+    const live = JSON.parse(persist.mock.calls.at(-1)![1]).chatTitles.primary;
+    expect(live).toContain('[REDACTED_API_KEY]');
+    expect(live).not.toContain('configured-secret-value');
+    await act(async () => finish({ primary: 'older replay title' }));
+    expect(JSON.parse(persist.mock.calls.at(-1)![1]).chatTitles.primary).toBe(live);
+    act(() => tree.unmount());
+    delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+  });
+
+  it('loads recorded titles only for visible active sessions', async () => {
+    shellState.extraSessions = ['visible']; shellState.titleLoad.mockClear();
+    vi.stubGlobal('window', { localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', chatArchived: ['recorded'], chatDeleted: ['primary'] }), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    const titleCalls = shellState.titleLoad.mock.calls as unknown as Array<[Array<{ sessionId: string }>]>;
+    const loaded = titleCalls.at(-1)![0];
+    expect(loaded.map(item => item.sessionId)).toEqual(['visible']);
+    act(() => tree.unmount());
+  });
+
+  it('exposes collapsed search, guarded new-chat, expand, and account controls', async () => {
+    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
+    expect(tree.root.findByProps({ className: 'woven-collapsed-strip' })).toBeTruthy();
+    expect(tree.root.findByProps({ 'aria-label': 'New chat' }).props.disabled).toBe(false);
+    expect(tree.root.findByProps({ 'data-account-control': 'true' })).toBeTruthy();
+    act(() => tree.root.findByProps({ 'aria-label': 'Search chats' }).props.onClick());
+    expect(tree.root.findByType(Navigator)).toBeTruthy();
+    act(() => tree.unmount());
+  });
+
+  it('owns Cmd-K while collapsed and suppresses it behind every Navigator dialog', async () => {
+    const listeners: Record<string, Array<(event: any) => void>> = {}; const focus = vi.fn();
+    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: (name: string, fn: (event: any) => void) => { (listeners[name] ??= []).push(fn); }, removeEventListener: (name: string, fn: (event: any) => void) => { listeners[name] = (listeners[name] ?? []).filter(item => item !== fn); }, requestAnimationFrame: (cb: () => void) => cb() });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'input' && element.props['aria-label'] === 'Search chats' ? { focus } : null }); });
+    act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
+    const shortcut = () => listeners.keydown.forEach(listener => listener({ key: 'k', metaKey: true, ctrlKey: false, preventDefault: vi.fn() }));
+    act(shortcut); expect(tree.root.findByType(Navigator)).toBeTruthy(); expect(focus).toHaveBeenCalled();
+    for (const action of ['Rename', 'New group…', 'Delete…']) {
+      act(() => tree.root.findAllByType('button').find(button => String(button.props['aria-label'] ?? '').startsWith('Chat actions'))!.props.onClick({ currentTarget: { isConnected: true, focus: vi.fn() } }));
+      act(() => tree.root.findAllByType('button').find(button => button.children.includes(action))!.props.onClick());
+      const before = focus.mock.calls.length; act(shortcut); expect(tree.root.findByProps({ role: 'dialog' })).toBeTruthy(); expect(focus).toHaveBeenCalledTimes(before);
+      act(() => tree.root.findByProps({ role: 'dialog' }).findAllByType('button').find(button => button.children.includes('Cancel'))!.props.onClick());
+      act(() => tree.root.findByProps({ role: 'menu' }).findAllByType('button').find(button => button.children.includes('Close menu'))!.props.onClick());
+    }
+    act(() => tree.unmount());
+  });
+
+  it('replaces cleaned-up real replay readers across StrictMode effect replay and retains title/search work', async () => {
+    shellState.useRealReader = true;
+    const persist = vi.fn();
+    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<React.StrictMode><WovenDialogueShell defaultSurface="dialogue" /></React.StrictMode>); });
+    act(() => tree.update(<React.StrictMode />));
+    expect(shellState.realReaders).toHaveLength(2); expect(shellState.realReaders[0].dispose).toHaveBeenCalled(); expect(shellState.realReaders[1].dispose).toHaveBeenCalled();
+    await act(async () => { tree.update(<React.StrictMode><WovenDialogueShell defaultSurface="dialogue" /></React.StrictMode>); });
+    expect(shellState.realReaders.length).toBeGreaterThanOrEqual(4);
+    expect(JSON.parse(persist.mock.calls.at(-1)![1]).chatTitles).toMatchObject({ primary: 'recorded message primary', recorded: 'recorded message recorded' });
+    const search = tree.root.findByProps({ 'aria-label': 'Search chats' });
+    act(() => search.props.onChange({ target: { value: 'recorded message' } }));
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 260)); });
+    expect(tree.root.findByProps({ 'aria-label': 'Message matches' }).findAllByProps({ 'data-session-id': 'recorded' })).toHaveLength(1);
+    act(() => tree.unmount());
+    expect(shellState.realReaders.at(-1)!.dispose).toHaveBeenCalled();
   });
 });
 

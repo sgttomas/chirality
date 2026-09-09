@@ -1,0 +1,43 @@
+{
+  "schema": "chirality.change.graceful-source-closure-checks.v3",
+  "recordedAt": "2026-09-09T05:39:13.395559+00:00",
+  "reviewedCandidate": {
+    "pathCount": 88,
+    "tree": "dd6a4ac0f3b3c7443848ba8b222f8acbf67e7b32",
+    "fullIndexDiffSha256": "d49290517b7bf4e4718dce1f940588ce7f7721289b1a83804e778448c25dbfd7",
+    "independentReviewManifestSha256": "d6f925992d93e138519c7434cf6ff17ee58841c13674d9e2d6c535b8650fa647",
+    "verdict": "PASS"
+  },
+  "source": {
+    "count": 58,
+    "postimageHashSizeVerification": "PASS",
+    "currentMainSelectedPathOverlap": 0,
+    "unchangedByDocumentationSuccessor": false,
+    "successorCalibration": "Runtime accepted 29 and App accepted 26 remain byte-identical; three historical App postimages are intentionally superseded by the reviewed contract repair, with two additional workflow/test paths. Published main requires a future fresh App qualification binding."
+  },
+  "checks": {
+    "exactStagedSet": "PASS",
+    "stagedDiffCheck": "PASS",
+    "targetedSensitiveMaterialScan": "PASS__FOUR_INERT_TEST_FIXTURES",
+    "runtimeDefaultOffAndAppNonAdoption": "PASS",
+    "pr755PathOverlap": 0
+  },
+  "localExecution": {
+    "dependencyInstall": false,
+    "build": false,
+    "packaging": false,
+    "nativeQualification": false
+  },
+  "freshRequiredPrCi": "PENDING",
+  "successorCandidate": {
+    "expectedChangedPathCount": 134,
+    "payloadCount": 132,
+    "appSecurityContractRepairPaths": 5,
+    "historicallyAcceptedAppPostimagesSuperseded": 3,
+    "runtimePublicationConfigRepairPaths": 1,
+    "exactSetAndHashSizeVerification": "PENDING_FINAL_RECHECK",
+    "combinedDiffCheck": "PENDING_FINAL_RECHECK",
+    "terminalIndependentReview": "PENDING",
+    "freshRequiredPrCi": "PENDING"
+  }
+}

@@ -25,6 +25,26 @@ type TreeResponse = {
   scannedAt: string;
 };
 
+export type FileCatalog = {
+  root: string;
+  paths: string[];
+};
+
+function collectFilePaths(node: TreeNode): string[] {
+  const paths: string[] = [];
+  const visit = (candidate: TreeNode): void => {
+    if (candidate.kind === 'file') {
+      paths.push(candidate.path);
+      return;
+    }
+    if (candidate.kind === 'directory') {
+      candidate.children?.forEach(visit);
+    }
+  };
+  visit(node);
+  return paths.sort();
+}
+
 type TreeNodeViewProps = {
   compact?: boolean;
   node: TreeNode;
@@ -89,7 +109,7 @@ function TreeNodeView({ compact = false, node, expandedByPath, onToggle, onOpenF
   );
 }
 
-export function FileTreePanel({ onOpenFile, selectedPath, presentation, folderLocked = false, onFolderSelectionPending }: { presentation?: 'woven'; onFolderSelectionPending?: (pending: boolean) => void; folderLocked?: boolean; onOpenFile?: (path: string) => void; selectedPath?: string | null } = {}): JSX.Element {
+export function FileTreePanel({ onOpenFile, onFileCatalog, selectedPath, presentation, folderLocked = false, onFolderSelectionPending }: { presentation?: 'woven'; onFolderSelectionPending?: (pending: boolean) => void; folderLocked?: boolean; onOpenFile?: (path: string) => void; onFileCatalog?: (catalog: FileCatalog | null) => void; selectedPath?: string | null } = {}): JSX.Element {
   const { projectRoot, chooseProjectRoot, hasElectronDirectoryPicker, errorMessage } = useWorkspace();
   // The preload capability is client-only; keep SSR and the first client render identical.
   const [mounted, setMounted] = useState(false);
@@ -114,7 +134,10 @@ export function FileTreePanel({ onOpenFile, selectedPath, presentation, folderLo
     treeRef.current = null;
     setError(null);
     setLoading(false);
-  }, [projectRoot]);
+    onFileCatalog?.(null);
+  }, [projectRoot, onFileCatalog]);
+
+  useEffect(() => () => onFileCatalog?.(null), [onFileCatalog]);
 
   const triggerRefresh = useCallback(() => {
     setRefreshNonce((current) => current + 1);
@@ -131,6 +154,7 @@ export function FileTreePanel({ onOpenFile, selectedPath, presentation, folderLo
       if (!projectRoot) {
         setTree(null);
         setError(null);
+        onFileCatalog?.(null);
         return;
       }
 
@@ -159,6 +183,7 @@ export function FileTreePanel({ onOpenFile, selectedPath, presentation, folderLo
 
         setTree(payload.root);
         setError(null);
+        onFileCatalog?.({ root: projectRoot, paths: collectFilePaths(payload.root) });
       } catch (loadError) {
         if (cancelled || requestId !== latestRequestIdRef.current) {
           return;
@@ -167,6 +192,7 @@ export function FileTreePanel({ onOpenFile, selectedPath, presentation, folderLo
         const message = loadError instanceof Error ? loadError.message : 'Unable to load directory tree';
         setError(message);
         setTree(null);
+        onFileCatalog?.(null);
       } finally {
         if (!cancelled && requestId === latestRequestIdRef.current && showInitialLoading) {
           setLoading(false);
@@ -179,7 +205,7 @@ export function FileTreePanel({ onOpenFile, selectedPath, presentation, folderLo
     return () => {
       cancelled = true;
     };
-  }, [projectRoot, refreshNonce]);
+  }, [projectRoot, refreshNonce, onFileCatalog]);
 
   useEffect(() => {
     if (!projectRoot) {

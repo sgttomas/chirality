@@ -1,0 +1,152 @@
+{
+  "schema": "chirality.runtime.pr761-daemon-reference-repair.independent-review-checks.v1",
+  "status": "PASS",
+  "role": "fresh nondelegating Agent 2 reviewer",
+  "brief": {
+    "path": "BRIEF.md",
+    "expectedSha256": "28634c239b374c2d3b6f07170d200c4e0dd03eb8eacb5cb562804e320bc273e3",
+    "actualSha256": "28634c239b374c2d3b6f07170d200c4e0dd03eb8eacb5cb562804e320bc273e3",
+    "result": "PASS"
+  },
+  "authorManifest": {
+    "path": "../author/MANIFEST.json",
+    "expectedSha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
+    "actualSha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
+    "result": "PASS"
+  },
+  "authorMembers": [
+    {
+      "path": "../author/PATCH.diff",
+      "bytes": 448,
+      "sha256": "ac6f229bb6950ee4409c305b440ef6dd53a771ba473422260389594cfc2a6bfc",
+      "result": "PASS"
+    },
+    {
+      "path": "../author/CHECKS.json",
+      "bytes": 4144,
+      "sha256": "52ce3587b9242b80da122e768c1c98c418e33db23919b5e4bd3182cb119ef4ca",
+      "result": "PASS"
+    },
+    {
+      "path": "../author/RETURN.md",
+      "bytes": 1788,
+      "sha256": "9fe020f74b697f3ddf5050fc2d42492b5e88874b812e73cc9fef33ed38d70302",
+      "result": "PASS"
+    }
+  ],
+  "authorBrief": {
+    "path": "../author/BRIEF.md",
+    "expectedSha256": "6c7af65cd4cd82e8d8c3a2482565ae8cbe332795f7d034c0a1a736b66934d05f",
+    "actualSha256": "6c7af65cd4cd82e8d8c3a2482565ae8cbe332795f7d034c0a1a736b66934d05f",
+    "result": "PASS"
+  },
+  "sourceEdit": {
+    "workspace": "/private/tmp/chirality-graceful-source-closure-20260908",
+    "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+    "preimage": {
+      "bytes": 345,
+      "sha256": "3b14197e0ee6cc749515c27953f5f20138404f98323be386655a7c3a58122833",
+      "source": "Git HEAD object"
+    },
+    "postimage": {
+      "bytes": 394,
+      "sha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b"
+    },
+    "byteDelta": 49,
+    "parsedJsonValid": true,
+    "exactInsertion": {
+      "value": {
+        "path": "../native-admission"
+      },
+      "after": "../core",
+      "before": "../engine-pi-omlx",
+      "otherByteChanges": 0,
+      "authorPatchMatchesLiveDiff": true
+    },
+    "result": "PASS"
+  },
+  "graphEvidence": {
+    "daemonReferences": [
+      "../contracts",
+      "../core",
+      "../native-admission",
+      "../engine-pi-omlx"
+    ],
+    "daemonPackageDependency": {
+      "name": "@chirality/native-admission",
+      "specifier": "*",
+      "present": true
+    },
+    "nativeAdmissionReferences": [
+      "../core"
+    ],
+    "nativeAdmissionReferencesDaemon": false,
+    "nativeAdmissionDependencies": {
+      "@chirality/runtime-core": "*"
+    },
+    "rootSolutionReferences": [
+      "packages/contracts",
+      "packages/core",
+      "packages/engine-claude",
+      "packages/engine-pi-omlx",
+      "packages/client",
+      "packages/daemon",
+      "packages/cli",
+      "packages/native-admission"
+    ],
+    "rootIncludesDaemon": true,
+    "rootIncludesNativeAdmission": true,
+    "declaredProjectReferenceGraphAcyclic": true,
+    "cycles": [],
+    "result": "PASS"
+  },
+  "acceptedSourcePreservation": {
+    "selectionEvidencePath": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo/projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2/author/v3/SOURCE_CHANGED_PATHS.json",
+    "selectionBytes": 16924,
+    "selectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+    "declaredMemberCount": 29,
+    "observedMemberCount": 29,
+    "matchedSha256AndBytesCount": 29,
+    "mismatches": [],
+    "result": "PASS"
+  },
+  "changedPathContainment": {
+    "gitStatus": [
+      " M projects/chirality-runtime/packages/daemon/tsconfig.json"
+    ],
+    "additionalSourceChangedPathCount": 1,
+    "unexpectedAdditionalSourcePaths": [],
+    "secondSourceEditRequired": false,
+    "result": "PASS"
+  },
+  "semanticScope": {
+    "classification": "default-off publication integration only",
+    "accountFunctionalityAccepted": false,
+    "accountFunctionalityEnabled": false,
+    "basis": "The exact postimage changes only TypeScript build graph metadata by adding the daemon-to-native-admission project reference; it changes no product implementation or runtime/account configuration.",
+    "result": "PASS"
+  },
+  "validationBoundary": {
+    "staticReviewComplete": true,
+    "buildPassClaimed": false,
+    "prCiRequired": true,
+    "ciRemaining": [
+      "clean Runtime build in PR CI",
+      "PEC run validation",
+      "Harness run validation"
+    ]
+  },
+  "exclusions": {
+    "delegation": 0,
+    "sourceRepairs": 0,
+    "builds": 0,
+    "tests": 0,
+    "npm": 0,
+    "nodeGyp": 0,
+    "dependencySetup": 0,
+    "network": 0,
+    "supplierAccess": 0,
+    "accountOperations": 0
+  },
+  "verdict": "PASS__ONE_FILE_POSTIMAGE_APPROVED_FOR_CHANGE__PR_CI_REMAINS_REQUIRED"
+}

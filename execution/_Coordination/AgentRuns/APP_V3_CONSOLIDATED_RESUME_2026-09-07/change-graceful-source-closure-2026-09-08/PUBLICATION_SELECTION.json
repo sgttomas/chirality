@@ -1,0 +1,890 @@
+{
+  "schema": "chirality.change.graceful-source-closure-selection.v10",
+  "status": "FINAL_REVIEWED_SOURCE_AND_GOVERNANCE_SUCCESSOR_FROZEN__FRESH_CI_AND_TERMINAL_REVIEW_PENDING",
+  "baseCommit": "533332349a4607eee561d4ef90fb05a62d86519e",
+  "payloadCount": 143,
+  "publicationRule": "publish exactly payloadMembers plus this selection and its manifest; terminal independent review receipt remains external to avoid self-reference",
+  "sourceCounts": {
+    "historicallyAcceptedAppPostimages": 29,
+    "acceptedRuntimePostimages": 29,
+    "runtimePublicationConfigRepair": 1,
+    "appSecurityContractSuccessorPaths": 5,
+    "historicalAppPostimagesSupersededBySuccessor": 3,
+    "newWorkflowAndTestPaths": 2,
+    "appReconnectFixtureCorrection": 1
+  },
+  "qualificationBoundary": "Published main source includes a reviewed five-path App contract successor. It is not the prior accepted App artifact identity and requires a fresh future App qualification binding. Release workflow fails closed before workload until deferred S0 qualification is supplied.",
+  "payloadMembers": [
+    {
+      "path": ".github/workflows/desktop-release-template.yml",
+      "sha256": "913d7510858386f6f8c32cad1abcb883bdac9239d6e2dcf4d81a3b8797d6c7c6",
+      "bytes": 13658,
+      "group": "app-security-contract-repair-source"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/APP-V3-GRACEFUL-SOURCE-CLOSURE-20260909.yaml",
+      "group": "g4-tranche-manifest",
+      "sha256": "0fe50c6f3a8b6448add4f35864c0ff53bf169ed6d8179f6fb0bdbbc938fff4a6",
+      "bytes": 2156
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/CANDIDATE_CHECKS.json",
+      "sha256": "24bc322abfa019d5a389ad4ef702604a2f6411af9910994e5d26024311c80f07",
+      "bytes": 1740,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/CI_FAILURE_AND_REPAIR.json",
+      "sha256": "932f9838a7d236e5f8a6c88784189a77ce6c0728f108ce5e8c25a4f71f2b969f",
+      "bytes": 4209,
+      "group": "change-repair-disposition"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/G4_FAILURE_AND_AUTHORITY.json",
+      "group": "change-repair-disposition",
+      "sha256": "9bff6ec038819ed7a0b687fcb4e20e358b5bdb4c6d744c9bacf8c2cd7ab28cd7",
+      "bytes": 1111
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/PREFLIGHT.json",
+      "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
+      "bytes": 3221,
+      "group": "change-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/RETAINED_EVIDENCE_BOUNDARY.md",
+      "sha256": "1cb9b86a253ba3b4510baa76508f51123af15d980cea2553a3ad19a37b2bf7cd",
+      "bytes": 2036,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/review-v1/CHECKS.json",
+      "sha256": "c92758dae3dd58c708fe3e72e3a9d05703b9c77ce942a5afd3488d5488179e0b",
+      "bytes": 6666,
+      "group": "independent-review"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/review-v1/MANIFEST.json",
+      "sha256": "d6f925992d93e138519c7434cf6ff17ee58841c13674d9e2d6c535b8650fa647",
+      "bytes": 705,
+      "group": "independent-review"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/review-v1/RETURN.md",
+      "sha256": "92e2f80032c58c5e70d50930ca7ab6bd4593ec20877d6b40e6c0584f3b25240b",
+      "bytes": 3160,
+      "group": "independent-review"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/review-v1/reviewed-inputs/MANIFEST.json",
+      "sha256": "71a12e14f0e2c657dcedf0c051e2731514c7fa51edefec6ce7e496c9ce2151a9",
+      "bytes": 447,
+      "group": "review-v1-input-custody"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/review-v1/reviewed-inputs/PREFLIGHT.json",
+      "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
+      "bytes": 3221,
+      "group": "review-v1-input-custody"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/review-v1/reviewed-inputs/PUBLICATION_SELECTION.json",
+      "sha256": "dc307f7ff0315f5975a656c583d402c57063cdc46dcf49501f2838b0a6c59e4c",
+      "bytes": 24849,
+      "group": "review-v1-input-custody"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/instruction-transition-closeout-v1/HANDOFF.md",
+      "sha256": "7aa504bbe22193627bfff3b7145d263b5bfc8a7a510626fb9642aa93c544a427",
+      "bytes": 5247,
+      "group": "owner-transition"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/instruction-transition-closeout-v1/MANIFEST.json",
+      "sha256": "5466ba772ec2582e60bd35d34fa7e0e5fee3959286aed89f7afe42315d0937c6",
+      "bytes": 328,
+      "group": "owner-transition"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/owner-graceful-pause-pr-2026-09-08/MANIFEST.json",
+      "sha256": "0780ad3fe377654ff288a55a1db1171a30ddd1c68cab5c908d8f2bb3527b3050",
+      "bytes": 177,
+      "group": "owner-transition"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/owner-graceful-pause-pr-2026-09-08/OWNER_DIRECTION.json",
+      "sha256": "c10e90d2e9c73e8f3af4bf9e6aa03ff12a6de78acb5a85ac8a8f1c10d58435ae",
+      "bytes": 1638,
+      "group": "owner-transition"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/EXPERT_RETURN.md",
+      "sha256": "316e99880902c98d500965c44c0dadc3607ce3d1f329bae3f4a83d4d84088979",
+      "bytes": 5222,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANAGER_RETURN.md",
+      "sha256": "7735261db60d0d88e2a9bad6493c18650366b409472efd3f81e80a94c3a76a50",
+      "bytes": 1868,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANIFEST.json",
+      "sha256": "b7d0e408c7ed50f674e655d02e77646c344f7a632520cb82c4b9d0ebcd135feb",
+      "bytes": 637,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/author-v2/EVIDENCE_MANIFEST_v3.json",
+      "sha256": "050c294030334fba863156617310e29da87162f2732241785cfbc53d5419730e",
+      "bytes": 2018,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/MANAGER_RETURN.md",
+      "sha256": "897387df72688b479fb3313fe9d23f1373ab7de186aef1c5a27caa9144094de7",
+      "bytes": 2081,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/MANIFEST.json",
+      "sha256": "10e126ad3f376c47bdb1eec448bec06cc2654440faa61daaa5bb74d4a15e8a12",
+      "bytes": 1985,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/SELECTION.json",
+      "sha256": "481c40926d545447c7bbe99792219bc183fe0e55c7df1cf7338db21ecc5bc2d4",
+      "bytes": 2267,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/review-v3/CHECKS.json",
+      "sha256": "b76d899cbf7af65af0638c5561308aac56cdec75c33b1225461a7127c408e31b",
+      "bytes": 1977,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/review-v3/MANIFEST.json",
+      "sha256": "f55c5f9f32955a4b522ff217a6dab7d03a75c1429757afe5eabfdd38e137310b",
+      "bytes": 755,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/review-v3/RETURN.md",
+      "sha256": "c5bb8be47618de31a77bf287bce34292416b1f19a6541a55857cae0125c2deba",
+      "bytes": 1949,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-failure-diagnosis-v1/DIAGNOSIS.md",
+      "group": "app-test-fixture-diagnosis",
+      "sha256": "a2e6a14d18e9add8c52146eeb7aa796fdbeb3068071d6ed04f80276178739dad",
+      "bytes": 3673
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-failure-diagnosis-v1/MANIFEST.json",
+      "group": "app-test-fixture-diagnosis",
+      "sha256": "a9672351c2314a5a444b11fcceaa151fc5108f6177658ffa87183a86b772f0d6",
+      "bytes": 519
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/author-v1/EVIDENCE_MANIFEST.json",
+      "group": "app-test-fixture-repair-evidence",
+      "sha256": "c22b40c23e43cb6db48bee63b0b30529d0bc0c0fdcb4208ecae2404f0f0aad18",
+      "bytes": 1152
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/manager-v1/MANAGER_RETURN.md",
+      "group": "app-test-fixture-repair-manager",
+      "sha256": "f7f760169fce364376fc3d52b4394accd198a26f068e9a12da14da6cd7b1189c",
+      "bytes": 1375
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/manager-v1/MANIFEST.json",
+      "group": "app-test-fixture-repair-manager",
+      "sha256": "9ed230339e637d336f8505ef1f1389d8ed2ab24673229d6153323243b01afe34",
+      "bytes": 1389
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/review-v1/CHECKS.json",
+      "group": "app-test-fixture-repair-review",
+      "sha256": "293c781499657ef048cf331a20d5ae7e3aea1365828e346b07953761d411181b",
+      "bytes": 1677
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/review-v1/MANIFEST.json",
+      "group": "app-test-fixture-repair-review",
+      "sha256": "2ef0d3d87e982b14abb5a28dd5b0182845d249c55ee8a76e062487397829a797",
+      "bytes": 697
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/review-v1/RETURN.md",
+      "group": "app-test-fixture-repair-review",
+      "sha256": "ee9270a7414dd7e2632de012b2570d6935ff0aa47df0333a9d9735a0edbef02b",
+      "bytes": 2731
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-repair-disposition-v1/DISPOSITION.json",
+      "sha256": "429dc78609225751550d1e781b86739b2a92763d1092ed648e7be36aa0ab1503",
+      "bytes": 3003,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-repair-disposition-v1/MANIFEST.json",
+      "sha256": "03649b3d37ab9ff19fd00de28c7360b3042661b0d0336226c8329ed993e20010",
+      "bytes": 173,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-review-exception-v1/EXCEPTION.json",
+      "sha256": "bba8b7c63f0061b3de625f05248349cea0537e4a51f00d5c918d1ebd49dc7880",
+      "bytes": 1664,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-review-exception-v1/MANIFEST.json",
+      "sha256": "f98128d7a78ba242a3b6eaf6872402dd3f893ced49dcac8a54d51a3ca5269016",
+      "bytes": 171,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/standing-initiative-model-authority-2026-09-08/AUTHORITY.json",
+      "sha256": "662c9d15e59de0dbf90c762f7bb9cea594ace42fa85148791ceab2b33a35ee40",
+      "bytes": 2552,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/standing-initiative-model-authority-2026-09-08/MANIFEST.json",
+      "sha256": "13892179404122bd5f3c86083a4f4915206f533e1d1e4ec5ede2a2694178e888",
+      "bytes": 171,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/execution-grant-v3/PARTIAL_MANIFEST.json",
+      "sha256": "e2331c74dc054ddb02540685e5c72e7275a016b856591dbf87834e0791ea25f1",
+      "bytes": 1595,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/execution-grant-v3/SOURCE_CONTROL_ACCEPTANCE.json",
+      "sha256": "5225c8933f41464831f9a414a66c27076f22757bdddd93afcfb686a337981e07",
+      "bytes": 1714,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/reproducible-input-proposal-v2/final-decision-v2/HANDOFF_STATE.json",
+      "sha256": "9f29e13d424fc04b4691577db72f40d9b66f108fd3d309116b68c92fbc5ca725",
+      "bytes": 1440,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/reproducible-input-proposal-v2/final-decision-v2/MANIFEST.json",
+      "sha256": "258a6e93f2db5a798cc99eee04432e0dc02657f95442025c92c253c1cce0eed3",
+      "bytes": 3140,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/reproducible-input-proposal-v2/final-decision-v2/OWNER_DECISION_SUBJECT.md",
+      "sha256": "474b1fd1c8929aaab452b47d10b85fbc96a8457e59772c676028ba66af8ec953",
+      "bytes": 6600,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-remediation-v1/candidate-v4/MANIFEST.json",
+      "sha256": "b085f38c7dfd7e4530b4e692ca0d5f58c6d6bb8c2731a49e7cb49774203f22fd",
+      "bytes": 12000,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-remediation-v1/successor-review-v4/MANIFEST.json",
+      "sha256": "b29e50f58e054bbe03bc392bda46ac610360dc339dce9ae89b8b0d6d29365570",
+      "bytes": 735,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-remediation-v1/successor-review-v4/RETURN.md",
+      "sha256": "73fdd047d82fab0aec5da4586cd8bb2989ac4b58be9f816fe18e1478e6cd075e",
+      "bytes": 955,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-v2/MANIFEST.json",
+      "sha256": "8c4966a092df231f74830935473fd3e7caed1a3cb1456af97d884ccee2485efc",
+      "bytes": 8687,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-v2/RETURN.md",
+      "sha256": "08348d1279d99a8928182248ded35fed46bf191cf3be9bc67b946346bb1771cf",
+      "bytes": 4111,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-v2/SOURCE_BINDING_CANDIDATE.json",
+      "sha256": "49394ada25ecedab8b4946e289d4a002a4032a949363e526c202652a7994dc28",
+      "bytes": 6778,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-v2/SOURCE_MANIFEST.json",
+      "sha256": "9db143277b9c6852c3e045d9ba5607d0642cfdfd2002f228c334d2f3340d17aa",
+      "bytes": 6678,
+      "group": "app-evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "sha256": "ea82a7dcbf9cbb60ac46cf0ab9b649c287a71b59341d0a27f13999787d79d6e3",
+      "bytes": 39110,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "sha256": "bf7c0351875e906e8a2646baf292452b5ac537a0f52887def9ef1d95f45c7560",
+      "bytes": 4654,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts",
+      "sha256": "e2d63d32423d1ef6b0a03259235676ac9cefadde00e4f067be4f13e5ed2cc3ed",
+      "bytes": 33544,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+      "sha256": "b5aed40de46d3482999961fab616ab8007febb96300df447d8bc4fd6de5fdf2d",
+      "bytes": 79122,
+      "group": "app-security-contract-repair-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+      "sha256": "8fb4cf4c12b9e6c97065d2194a9122f4cc6257384ec9822289892adbd5111f63",
+      "bytes": 16443,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-markdown.test.ts",
+      "sha256": "c30dd6a28b81ec24b676a3f070be5e847cb792af8ca1fdac6104c6cdd6594180",
+      "bytes": 4369,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx",
+      "sha256": "891bf8d35315ab859b5997009869a051b06efd92d262749c203487f72b39e1f0",
+      "bytes": 19141,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+      "sha256": "e00f193e66afbf4fc1e30a84a17467871b259fd22462d786b6c546265eded861",
+      "bytes": 13638,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+      "sha256": "905523e704d957e1d7061c244bf9ac32df7c3170dbe48ce6c236cc2648ace849",
+      "bytes": 11049,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "sha256": "d6044e3cb76ce17d6ffbd5b921c4fdb32e96717a5e375a495917600701d1fada",
+      "bytes": 19908,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "group": "app-test-fixture-repair",
+      "sha256": "26046c6a127e7496341c05181e0131840cf713ec1324ccbae1d6691c28283fd4",
+      "bytes": 12383
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "f64cbf88011fec9710823688093b3f0ba1f5b6e0b00849237c37a68bf13fb589",
+      "bytes": 34795,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+      "sha256": "388cafa5c9015d31e0a83ad5728e74879aab5bd6d577d8deea015c69bebc0a92",
+      "bytes": 25613,
+      "group": "app-security-contract-repair-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/folder-preload.test.ts",
+      "sha256": "ab65a700be92ec4c5dc3ae6737a066cf90ac5c11605624b682f0512a4ec49da6",
+      "bytes": 2658,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/renderer-window-policy.test.ts",
+      "sha256": "d3ef6b47e07cbff491f3fd490f219e5b887f37fa156ecd922991eb5697469248",
+      "bytes": 46990,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/chat-organization.test.ts",
+      "sha256": "cc2bcfdd67f67b5010ecc795433e87d16549d4c3602c2e7dd42156df013ed938",
+      "bytes": 12102,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+      "sha256": "781526afac15798ad2f24666e2f997e523e564818682c32f3390de80ff3c500e",
+      "bytes": 28208,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/desktop-release-workflow.test.ts",
+      "sha256": "50732e509d6255065cfb42a731ec3df1222b5e99d12c29734b891c018e84147f",
+      "bytes": 10930,
+      "group": "app-security-contract-repair-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "sha256": "5e9267882d2515408492ee72dcfa9a4c03a44669fa466f5a324fe7dc8b392e62",
+      "bytes": 56169,
+      "group": "app-security-contract-repair-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+      "sha256": "f40f5a14583ff1f43f072273d2c476ecfd899f81571d7531cdc2a95fc43a6f9c",
+      "bytes": 9480,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+      "sha256": "75c098a0af0fe1348a036f9ca0ed71526177cec579d6cb66bb1427b6dd743919",
+      "bytes": 7476,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "sha256": "cb6898e8f127c64ad04dde7a466c8dbf27a425151c8a8010774a5edb467392aa",
+      "bytes": 98623,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-markdown.tsx",
+      "sha256": "71faa5f6fbf4a3994c1d85f872dc4b37af990a519b2d8acac25805a515b04ccf",
+      "bytes": 3984,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "fd76952cfc2144283db551a5291f5d0bcfd0821ef8eaa294b99c8f04c6d7a754",
+      "bytes": 33463,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "sha256": "384ef2d622223ef5b4f13a95ce38449f943b65bc81485d187c4a03a87da44982",
+      "bytes": 23110,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+      "sha256": "f88d1fe41098e780439f357622569b85313f98d9c4cfb6fccab7aaeee4b85411",
+      "bytes": 10739,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "c9da9addade47123aec1ab0b28dad72b09b4e3985619cd745d8be7ba9d32ed1b",
+      "bytes": 24459,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "2d4c2ed6d037a9336d1a27b9ad3a694d44a7d96a4702a37e8be66e911f25d104",
+      "bytes": 13468,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "425b3b29417a56fc8fa2c8042913c8a239d1b45fc9cdfe332babf996dd345fa7",
+      "bytes": 33468,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/chat-organization.ts",
+      "sha256": "cf9fb81b2b321be74d5543bf90b81d62940ea87a6ff67f8b8e8268c9d76ec661",
+      "bytes": 13348,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+      "sha256": "dc5a3903d9a8df752ba0c1daed47182715439e6c82acc79d5c555f455898f3e3",
+      "bytes": 23807,
+      "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-stopped-branch-remediation-v2/branch-r-review-v2/MANIFEST.json",
+      "sha256": "3ffec439bce1531f243972c7cb67e65350ac283c47178f50667a75ea2900ea60",
+      "bytes": 2158,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-stopped-branch-remediation-v2/branch-r-review-v2/RETURN.md",
+      "sha256": "94fca08c135735cb53291a39297d3a9536930d939e453a9644675fe6bf0eee54",
+      "bytes": 2251,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-two-branch-execution-v4/manager-v2/runtime-r-v3-fanin/MANIFEST.json",
+      "sha256": "469bf06014738103bc126aba9e0772758d78e2adb6a49f5891d99aae14037369",
+      "bytes": 644,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-two-branch-execution-v4/manager-v2/runtime-r-v3-fanin/RETURN.md",
+      "sha256": "3302d4cc809d0aa40c2dddd6d4d3358747affc53b753af1427693dcd27efd56c",
+      "bytes": 2972,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-interface-concordance-v1/MANIFEST.json",
+      "sha256": "c47c29516890d5ebcd92fb6fed92c75a3b42a5e0b75bf7d9b15549bf6d7be919",
+      "bytes": 325,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/CHECKS.json",
+      "sha256": "52ce3587b9242b80da122e768c1c98c418e33db23919b5e4bd3182cb119ef4ca",
+      "bytes": 4144,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/MANIFEST.json",
+      "sha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
+      "bytes": 1588,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/PATCH.diff",
+      "sha256": "ac6f229bb6950ee4409c305b440ef6dd53a771ba473422260389594cfc2a6bfc",
+      "bytes": 448,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/RETURN.md",
+      "sha256": "9fe020f74b697f3ddf5050fc2d42492b5e88874b812e73cc9fef33ed38d70302",
+      "bytes": 1788,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/manager/MANIFEST.json",
+      "sha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2",
+      "bytes": 1159,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/manager/RETURN.md",
+      "sha256": "d87ca5d3f5cb466942246381d487dff05eafe9e7fc25d998941ddc38dd073b80",
+      "bytes": 1873,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/CHECKS.json",
+      "sha256": "508e2d96e6ff49cd3c5bf6da50acc35c8d0de3ffbf0079b812d8cd31489edb20",
+      "bytes": 4941,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/MANIFEST.json",
+      "sha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13",
+      "bytes": 1281,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/RETURN.md",
+      "sha256": "bcb2ca4dcda053ff408cdf2ea07f05618cb3f2e2e563a3cd5abaebe9cd50eb20",
+      "bytes": 1842,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-source-acceptance/ACCEPTANCE.json",
+      "sha256": "82ecafe5fd5746127fd16fbf2b804adff52604e8d7676dfbdb6f33451ace541f",
+      "bytes": 1746,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-source-acceptance/MANIFEST.json",
+      "sha256": "58e202bd9bfba6115b84aff4ac949ec481cf8a6599e94c222f4b82664314c7ee",
+      "bytes": 492,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-source-acceptance/POINTER.json",
+      "sha256": "3b5e5029759e92ec03c84c3fb485bc01f84e93a10e0973e4d3f9083d8017a281",
+      "bytes": 453,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2-manager-fanin/MANIFEST.json",
+      "sha256": "e14911d4d99defc471ccc4b1e7bcd64f5997209087052127ccb22a0b576e0e44",
+      "bytes": 1599,
+      "group": "runtime-manager-pause"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2-manager-fanin/PUBLICATION_SELECTION.json",
+      "sha256": "18f956b866fdeae40f3e3247467776614d4f50f201b080bbd55a05baeff12f24",
+      "bytes": 12062,
+      "group": "runtime-manager-pause"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2-manager-fanin/RETURN.md",
+      "sha256": "cafa986e795f7f3f9928f171f057b67345e121364cbf28ef419a4cba6e89a4f0",
+      "bytes": 3494,
+      "group": "runtime-manager-pause"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2-review/CHECKS.json",
+      "sha256": "8ebbcf326484971a86b98c495296156005d4d769b1815b34c1188f35122cb95d",
+      "bytes": 7024,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2-review/MANIFEST.json",
+      "sha256": "e05f861fedb53e85124cef322469d6c159027ee213db378e10a1cebd295d7538",
+      "bytes": 2706,
+      "group": "supplier-proposal-calibration"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2-review/RETURN.md",
+      "sha256": "9edbb91ea5baea1543583c44b771dd41a3586847c82bba44e491985d9a9d5897",
+      "bytes": 1621,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2/IMPLEMENTATION_PROPOSAL.md",
+      "sha256": "02faa20d42f1d2e9a000bd8bd8b15786c8a41dae5c9f5ac1e8dc164b98790344",
+      "bytes": 36849,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2/MANIFEST.json",
+      "sha256": "0ac3446bc892a116425811339142fba79dfb20bc97fbb4b1324b64db521a5ad6",
+      "bytes": 6839,
+      "group": "supplier-proposal-calibration"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2/NEXT_DECISION_SUBJECT.md",
+      "sha256": "9eebd27ce872efaadce38fef2423032384f2c63a719f92a7ee5ccdc9ada04ddd",
+      "bytes": 12375,
+      "group": "supplier-proposal-calibration"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/supplier-staged-source-implementation-proposal-v2/RETURN.md",
+      "sha256": "7faaf6184ed20de9fe9b5d5bc53e16159a4bffe29e60bdefe438393d0acfed54",
+      "bytes": 4035,
+      "group": "closure-documentation"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2/author/v3/MANIFEST.json",
+      "sha256": "21029a7019124ffb67b7a21aba3fd707b2eb248558eb5078128ed825aac68de3",
+      "bytes": 5727,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2/author/v3/SOURCE_CHANGED_PATHS.json",
+      "sha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+      "bytes": 16924,
+      "group": "runtime-evidence"
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "sha256": "4195789d5bb47a1ddc83abd8c6fde5544a167dfd1c148e875004f3de37680059",
+      "bytes": 214151,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "sha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede",
+      "bytes": 489,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "sha256": "24bd6ee1274c0cc453a01138e7d76d706424d01c38360daeff4e6632819bb819",
+      "bytes": 386,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/index.ts",
+      "sha256": "05465c998d507681031b497809a1e1f56db7450aa43fdbf1fcafc4599e8e3522",
+      "bytes": 785,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-admission-lock.ts",
+      "sha256": "11c2b9040e09bf99adf81d1aef66e8c2566a652bd796a092cc9fdd9dfecda53b",
+      "bytes": 1632,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/package.json",
+      "sha256": "366731b6f52a904d7bc4adf8dc3d661699c346c60981b84625fc08415caed667",
+      "bytes": 534,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "24cc3b789797b853c6e70dbb84ce2cccd869a9a756bea55a20f1cc377425beaf",
+      "bytes": 57376,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "a754f04215371caa795ebf1e387b15b414e6bb5f3bb672200d8cdd2d293dd71c",
+      "bytes": 23079,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-transport-lifecycle.ts",
+      "sha256": "01817d8f7ab050c155a10ec5899589c7a82ede8abdfaf45f3bc152132d9d0163",
+      "bytes": 7375,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "sha256": "3ddd854a2290709615df74b21e3c7bdd2bd9e78358696da1dbaf6fa4d90eaecd",
+      "bytes": 10078,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/index.ts",
+      "sha256": "ca974df16f8eda2ad1d49d30f627f3f60bfe560d3b99fb66f798dc0075694f24",
+      "bytes": 433,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "5d0ac9f797efd1533128dc8f2814020e4c51fce9d446ee35f7f0f692754a469a",
+      "bytes": 46654,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "sha256": "fc1d8357a0c98925c72c956bfa1ce4a30056febbb2dff4c63fe6cabc578fc2e8",
+      "bytes": 35501,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "sha256": "4cd9ed29f37fcd522ee2440e8e57d207563a5a473d7262726fe6ae47f2cacf86",
+      "bytes": 20604,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supplier-authority-controller.ts",
+      "sha256": "0d4afc18134b36c298bea652d2935f8db6741296360f0b6302cf96796fbb0e72",
+      "bytes": 22522,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supplier-authority-journal.ts",
+      "sha256": "a986bf1b66714e971b8d8ae76a787636aea522fae36b63fb80c3f527c4d1b02d",
+      "bytes": 10437,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+      "sha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b",
+      "bytes": 394,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/binding.gyp",
+      "sha256": "df14d8d305bbf82f75b3cf14ad6a1877e729dae2b53f613cc1dcc08e322f7ea7",
+      "bytes": 218,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/package.json",
+      "sha256": "527cd7cdb42ffa7022c6ada5f059a590a39e696c9340fcde7d5df9e3ba851d47",
+      "bytes": 530,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/src/addon.cc",
+      "sha256": "6a62583456a66a8806b9408006ed5126b2096de8934c1ebc6975d57810c4b847",
+      "bytes": 13419,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/src/index.ts",
+      "sha256": "30e93c50b2818fb0ced0ac25f456251c8246710da86a0c7e5c0543742a050d16",
+      "bytes": 5488,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/tsconfig.json",
+      "sha256": "f7b6007cdeaa37eac7ba1787b5dbb32c788ab90aa656cd2c258eb0c983e0b9f4",
+      "bytes": 257,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "sha256": "ed87f2f886cead01bd3ec4ac9a607556d278dfeab3ae72362d64c1ebf91ec258",
+      "bytes": 58394,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "sha256": "4cb993437f86636fc2cc8ee89a8d3543cc75aa814aa68a97faa15c8e6cc70179",
+      "bytes": 23570,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/local-supplier-authority.e2e.test.ts",
+      "sha256": "0980e796ab7db7193d8020ae52bf4dc4dc037c71f944dbd1cfd04b4e42e3e8f7",
+      "bytes": 23690,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-admission-native.test.ts",
+      "sha256": "70da83180bed460bd9666f7b32cab22b27ec2105dbe2097f263a474fe0fcf21b",
+      "bytes": 4407,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/supervisor-server.test.ts",
+      "sha256": "90a625645379f829e3fc9940b44976a39c77f5b9421d59068513d8c1c11094b3",
+      "bytes": 3384,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/supplier-authority-controller.test.ts",
+      "sha256": "670ad68ea4660d91b6689913589f294817e1069860ac2b47d0094330b630bb08",
+      "bytes": 8392,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/supplier-authority-journal.test.ts",
+      "sha256": "ebaafa3547e9a71943320d50f5e1debaa66471d5b5d4f5cf4185a5990c7567c4",
+      "bytes": 11456,
+      "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/tsconfig.json",
+      "sha256": "3fac13e26991dec49b2410142c48140c6665a210814f52867219854cc7ead4dd",
+      "bytes": 343,
+      "group": "runtime-source"
+    }
+  ],
+  "exclusions": [
+    "no product release or activation",
+    "no packaging execution; subject 474b1fd1c8929aaab452b47d10b85fbc96a8457e59772c676028ba66af8ec953 remains deferred",
+    "supplier V2 remains an unapproved, unexecuted proposal under the prior instruction basis",
+    "no acquired supplier source, binary, vendor/cache, node_modules, credentials, generated dependency trees, or PR755 paths",
+    "new instruction/skill/workflow doctrine conformance not assessed",
+    "excluded redundant App COMPLETE_BASE_TO_CURRENT.patch; its SHA-256 remains bound by SOURCE_MANIFEST.json and original remains preserved",
+    "excluded optional App readiness Markdown records; their hashes remain cited by the selected Root transition handoff and originals remain preserved",
+    "historical manifest members beyond the compact selected bodies remain in preserved custody; see RETAINED_EVIDENCE_BOUNDARY.md"
+  ],
+  "representationBoundary": "The reviewed five-path repair patch remains byte-preserved in the aed8 custody worktree at SHA-256 9de48cd6c3ee8ab93be3745c014e27d57cc34285b18eec784517e1d5644ab496; publication carries exact live postimages and readable manager/review records, excluding the redundant unified-diff representation. The reconnect-fixture author return and redundant patches remain preserved in aed8; its author manifest, manager return, and independent review are published.",
+  "governanceSuccessor": "Adds only a schema-readable G4 tranche manifest and concise failure/authority receipt; the reviewed f8c9b22 product and workflow bytes are unchanged.",
+  "testFixtureSuccessor": "One reviewed App test fixture isolates the background title-reader mock from the selected replay-loader spy; no product behavior changes."
+}

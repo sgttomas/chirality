@@ -1,0 +1,42 @@
+{
+  "schema": "chirality-agent2-review-checks/v1",
+  "verdict": "PASS",
+  "source_head": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5",
+  "author_evidence_manifest_sha256": "c22b40c23e43cb6db48bee63b0b30529d0bc0c0fdcb4208ecae2404f0f0aad18",
+  "patch_sha256": "aa3689fcc53a0692e536031b45434af26074c8f228300a641cfa9775d6b0a9c1",
+  "patch_bytes": 1265,
+  "source_transition": {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "preimage_sha256": "b21c16a91694a4524d97ffc5a75737a415385372cc8a10de8b1ff955c8d4e879",
+    "preimage_bytes": 11860,
+    "postimage_sha256": "26046c6a127e7496341c05181e0131840cf713ec1324ccbae1d6691c28283fd4",
+    "postimage_bytes": 12383
+  },
+  "checks": {
+    "author_manifest_hash": "PASS",
+    "patch_hash_and_size": "PASS",
+    "patch_equals_live_diff": "PASS",
+    "patch_reverse_check": "PASS",
+    "exact_one_path_unstaged_scope": "PASS",
+    "preimage_hash_and_size": "PASS",
+    "postimage_hash_and_size": "PASS",
+    "diff_check": "PASS",
+    "partial_mock_preserves_real_exports": "PASS",
+    "reader_is_independent_per_factory_call": "PASS",
+    "reader_satisfies_full_interface": "PASS",
+    "existing_replay_assertions_unchanged": "PASS",
+    "diagnosis_mechanism_closed": "PASS",
+    "product_behavior_not_masked": "PASS"
+  },
+  "ci_required_not_run_local": [
+    "focused_reconnect_vitest_repeated",
+    "related_woven_dialogue_shell_vitest",
+    "related_chat_organization_vitest",
+    "frontend_typecheck",
+    "full_app_suite",
+    "harness_wrapper"
+  ],
+  "reviewer_product_writes": false,
+  "git_staged_by_reviewer": false,
+  "git_committed_by_reviewer": false
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "chirality.change.graceful-source-closure-preflight.v1",
+  "recordedAt": "2026-09-09T05:24:20.060258+00:00",
+  "status": "CANDIDATE_V2_PREPARED__INDEPENDENT_REVIEW_AND_FRESH_CHECKS_PENDING",
+  "role": "CHANGE Agent 1",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "executionAttribution": "instruction-asserted",
+  "baseCommit": "533332349a4607eee561d4ef90fb05a62d86519e",
+  "baseTree": "cb0b89058dc4bebaa1519821fe2346ede85df311",
+  "branch": "codex/graceful-source-closure-20260908",
+  "worktree": "/private/tmp/chirality-graceful-source-closure-20260908",
+  "source": {
+    "app": {
+      "count": 29,
+      "bytes": 743216,
+      "baseCommit": "24edf3ecabdc32433462e0ea51b1272c139e13e3",
+      "patchSha256": "e1b45e9eeddc32ce61dadce50244317fef76e6af1c56460473ace15a4854bc1c",
+      "manifestSha256": "9db143277b9c6852c3e045d9ba5607d0642cfdfd2002f228c334d2f3340d17aa",
+      "postimagesVerified": true,
+      "currentMainPathOverlap": 0
+    },
+    "runtime": {
+      "count": 29,
+      "bytes": 605584,
+      "baseCommit": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+      "selectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+      "acceptanceManifestSha256": "58e202bd9bfba6115b84aff4ac949ec481cf8a6599e94c222f4b82664314c7ee",
+      "postimagesVerified": true,
+      "currentMainPathOverlap": 0,
+      "calibration": "default-off; native and production supplier interoperability unqualified"
+    }
+  },
+  "limitations": [
+    "no product release or activation",
+    "no packaging execution; subject 474b1fd1c8929aaab452b47d10b85fbc96a8457e59772c676028ba66af8ec953 remains deferred",
+    "supplier V2 remains an unapproved, unexecuted proposal under the prior instruction basis",
+    "no acquired supplier source, binary, vendor/cache, node_modules, credentials, generated dependency trees, or PR755 paths",
+    "new instruction/skill/workflow doctrine conformance not assessed"
+  ],
+  "checksCompleted": [
+    "58/58 source postimage SHA-256 and byte-size verification",
+    "0/29 App and 0/29 Runtime selected-path upstream overlap against current main"
+  ],
+  "checksPending": [
+    "candidate exact selection and whitespace/secret checks",
+    "fresh App and Runtime tests/typechecks",
+    "independent combined-diff review",
+    "required pull-request CI and matching-head merge/backcheck"
+  ],
+  "evidenceFormatDisposition": {
+    "excludedPreservedExternalPaths": [
+      "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-owner-review-readiness-v1/HASH_CORRECTION.md",
+      "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-owner-review-readiness-v1/READINESS_HANDOFF.md",
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-v2/COMPLETE_BASE_TO_CURRENT.patch"
+    ],
+    "reason": "redundant patch representation and optional Markdown readiness records caused candidate whitespace diagnostics; their exact hashes remain cited by selected manifests/handoff and original bytes remain in preserved custody",
+    "sourceOrSemanticBytesChanged": false
+  }
+}

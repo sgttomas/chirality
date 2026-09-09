@@ -145,26 +145,58 @@ describe('desktop unsigned artifact workflow', () => {
     expect(cleanupIndex).toBeGreaterThan(mountedProofIndex);
   });
 
-  it('runs the packaged network, safeStorage, and renderer-security proof fail-closed', async () => {
+  it('fails closed at the deferred S0 qualification boundary before release workload', async () => {
     const workflow = await readWorkflow();
 
     expect(workflow).toContain(
+      '- name: Block release workload pending deferred S0 qualification'
+    );
+    expect(workflow).toContain(
+      'Deferred S0 qualification must supply accepted consume-only packaged-security inputs before release packaging can proceed.'
+    );
+    expect(workflow).not.toContain('continue-on-error:');
+    expect(workflow).not.toContain('npm run proof:packaged-security --');
+    expect(workflow).not.toContain(
       'packaged_security_root="${verification_root}/packaged-security"'
     );
-    expect(workflow).toContain('npm run proof:packaged-security --');
-    expect(workflow).toContain('--app-path "${app_path}"');
-    expect(workflow).toContain('--source-revision "${GITHUB_SHA}"');
-    expect(workflow).toContain('summary.status !== "pass"');
-    expect(workflow).toContain('summary.exclusions.realCredentialsUsed !== false');
-    expect(workflow).toContain(
+    expect(workflow).not.toContain(
       "'artifacts/release-verification/packaged-security/summary.json'"
     );
+    expect(workflow).not.toContain('if: always()');
 
-    const appGuardIndex = workflow.indexOf('[[ -d "${app_path}" ]]');
-    const proofIndex = workflow.indexOf('npm run proof:packaged-security --');
-    const mountIndex = workflow.indexOf('hdiutil attach -nobrowse -readonly');
-    expect(proofIndex).toBeGreaterThan(appGuardIndex);
-    expect(mountIndex).toBeGreaterThan(proofIndex);
+    const checkoutIndex = workflow.indexOf('- name: Checkout');
+    const holdIndex = workflow.indexOf(
+      '- name: Block release workload pending deferred S0 qualification'
+    );
+    const failureIndex = workflow.indexOf('\n          exit 1\n', holdIndex);
+    const setupIndex = workflow.indexOf('- name: Setup Node.js');
+    const downstreamWorkloadIndexes = [
+      workflow.indexOf('- name: Install and build shared runtime'),
+      workflow.indexOf('npm ci'),
+      workflow.indexOf('npm run build'),
+      workflow.indexOf('- name: Install frontend dependencies'),
+      workflow.indexOf('- name: Verify unsigned build posture'),
+      workflow.indexOf('- name: Run release-target policy tests'),
+      workflow.indexOf('npm test --'),
+      workflow.indexOf('- name: Build unsigned macOS DMG'),
+      workflow.indexOf('run: npm run desktop:dist'),
+      workflow.indexOf('- name: Prove packaged LaunchAgent RunAtLoad'),
+      workflow.indexOf('node ./scripts/run-packaged-launchagent-runatload-proof.mjs'),
+      workflow.indexOf('- name: Upload packaged LaunchAgent RunAtLoad proof evidence'),
+      workflow.indexOf('- name: Verify unsigned artifact'),
+      workflow.indexOf('node ./scripts/verify-packaged-dependency-boundary.mjs'),
+      workflow.indexOf('hdiutil verify "${dmg_path}"'),
+      workflow.indexOf('hdiutil attach -nobrowse -readonly'),
+      workflow.indexOf('- name: Upload unsigned CI artifact and verification evidence')
+    ];
+    expect(checkoutIndex).toBeGreaterThanOrEqual(0);
+    expect(holdIndex).toBeGreaterThan(checkoutIndex);
+    expect(holdIndex).toBeGreaterThanOrEqual(0);
+    expect(failureIndex).toBeGreaterThan(holdIndex);
+    expect(setupIndex).toBeGreaterThan(failureIndex);
+    for (const workloadIndex of downstreamWorkloadIndexes) {
+      expect(workloadIndex).toBeGreaterThan(failureIndex);
+    }
   });
 
   it('proves packaged RunAtLoad in the disposable macOS account without a manual start', async () => {
@@ -194,7 +226,7 @@ describe('desktop unsigned artifact workflow', () => {
       'projects/chirality-app-dev/frontend/artifacts/release-verification/**'
     );
     expect(workflow).toContain('Upload packaged LaunchAgent RunAtLoad proof evidence');
-    expect(workflow).toContain('if: always()');
+    expect(workflow).not.toContain('if: always()');
     expect(workflow).toContain(
       'projects/chirality-app-dev/frontend/artifacts/release-verification/launchagent-runatload/summary.json'
     );
@@ -213,9 +245,6 @@ describe('desktop unsigned artifact workflow', () => {
     );
     expect(workflow).toContain(
       'artifacts/release-verification/packaged-agent-sdk/mounted/summary.json'
-    );
-    expect(workflow).toContain(
-      'artifacts/release-verification/packaged-security/summary.json'
     );
     expect(workflow).not.toContain('softprops/action-gh-release');
     expect(workflow).not.toContain('actions/create-release');

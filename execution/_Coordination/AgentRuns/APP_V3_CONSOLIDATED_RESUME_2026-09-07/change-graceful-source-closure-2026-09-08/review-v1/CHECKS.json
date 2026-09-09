@@ -1,0 +1,161 @@
+{
+  "schema": "chirality.change.graceful-source-closure-independent-review-checks.v1",
+  "recordedAt": "2026-09-09T05:34:12Z",
+  "reviewer": {
+    "role": "ephemeral Agent 2 independent reviewer",
+    "delegated": false,
+    "executionAttribution": "instruction-asserted"
+  },
+  "binding": {
+    "worktree": "/private/tmp/chirality-graceful-source-closure-20260908",
+    "branch": "codex/graceful-source-closure-20260908",
+    "baseCommit": "533332349a4607eee561d4ef90fb05a62d86519e",
+    "head": "533332349a4607eee561d4ef90fb05a62d86519e",
+    "stagedTree": "dd6a4ac0f3b3c7443848ba8b222f8acbf67e7b32",
+    "fullIndexBinaryDiffSha256": "d49290517b7bf4e4718dce1f940588ce7f7721289b1a83804e778448c25dbfd7",
+    "selectionPath": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/PUBLICATION_SELECTION.json"
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "checks": [
+    {
+      "id": "EXACT-STAGED-SELECTION",
+      "status": "PASS",
+      "observed": {
+        "declaredPayloadCount": 86,
+        "actualPayloadCount": 86,
+        "selectionAndManifestCount": 2,
+        "expectedStagedCount": 88,
+        "actualStagedCount": 88,
+        "missing": [],
+        "extra": [],
+        "duplicateSelectedPaths": []
+      }
+    },
+    {
+      "id": "SELECTED-HASH-SIZE",
+      "status": "PASS",
+      "observed": {
+        "payloadMembersChecked": 86,
+        "payloadMismatches": [],
+        "selectionManifestMembersChecked": 2,
+        "selectionManifestMismatches": []
+      }
+    },
+    {
+      "id": "APP-ACCEPTED-SOURCE-BINDING",
+      "status": "PASS",
+      "observed": {
+        "selectedSourceCount": 29,
+        "acceptedManifestMemberCount": 29,
+        "exactPathHashSizeMatch": true,
+        "acceptedSourceManifestSha256": "9db143277b9c6852c3e045d9ba5607d0642cfdfd2002f228c334d2f3340d17aa",
+        "sourceControlAcceptanceVerdict": "PASS"
+      }
+    },
+    {
+      "id": "RUNTIME-ACCEPTED-SOURCE-BINDING",
+      "status": "PASS",
+      "observed": {
+        "selectedSourceCount": 29,
+        "acceptedSelectionMemberCount": 29,
+        "exactPathHashSizeMatch": true,
+        "acceptedSelectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+        "acceptanceManifestSha256": "58e202bd9bfba6115b84aff4ac949ec481cf8a6599e94c222f4b82664314c7ee",
+        "acceptanceStatus": "ACCEPTED_DEFAULT_OFF_SOURCE_RESULT"
+      }
+    },
+    {
+      "id": "COMBINED-DIFF-SEMANTICS",
+      "status": "PASS",
+      "observed": {
+        "appRuntimeSelectedSourcePathOverlap": 0,
+        "sourceConflictMarkers": 0,
+        "appPrivateAuthorityIdentifierMatches": 0,
+        "appBuildScriptChanged": false,
+        "appRuntimeHostChanged": false,
+        "appPackageMetadataChanged": false,
+        "runtimeSupplierAuthorityInjection": "optional",
+        "hostedEnabledUse": "rejected as unqualified",
+        "standaloneComposition": "supplier authority deliberately omitted"
+      },
+      "interpretation": "The staged App and Runtime postimages can coexist without a semantic merge conflict. The App retains its existing baseline Runtime composition, but this tranche adds no App wiring that enables or adopts the Runtime R V3 private supplier-authority capability."
+    },
+    {
+      "id": "CURRENT-MAIN-CALIBRATION",
+      "status": "PASS",
+      "observed": {
+        "baseIsOriginMain": true,
+        "appAcceptedBaseIsAncestor": true,
+        "runtimeAcceptedBaseIsAncestor": true,
+        "selectedAppPathsUnchangedOnCurrentMain": 0,
+        "selectedRuntimePathsUnchangedOnCurrentMain": 0,
+        "forbiddenPriorQualifiedAppArtifactClaimMatches": 0
+      },
+      "interpretation": "Current main is the published source basis. The candidate does not characterize it as a prior qualified App artifact; the 29 App postimages are separately accepted source bytes applied over that published basis."
+    },
+    {
+      "id": "SUPPLIER-V2-AND-PACKAGING-BOUNDARY",
+      "status": "PASS",
+      "observed": {
+        "supplierV2Status": "FROZEN_APPEND_ONLY_SUCCESSOR_DECISION_READY_COORDINATION_EVIDENCE_ONLY",
+        "supplierImplementationAccepted": false,
+        "supplierExecutionObserved": false,
+        "packagingSubject": "474b1fd1c8929aaab452b47d10b85fbc96a8457e59772c676028ba66af8ec953",
+        "packagingDisposition": "deferred and unexecuted"
+      }
+    },
+    {
+      "id": "FORBIDDEN-SCOPE",
+      "status": "PASS",
+      "observed": {
+        "releaseOrActivationArtifacts": 0,
+        "acquiredSupplierSourceOrBinaries": 0,
+        "binaryDiffEntries": 0,
+        "vendorCacheNodeModulesOrGeneratedDependencyTreePaths": 0,
+        "nodeModulesPresentInAppOrRuntimeWorktree": false,
+        "credentialOrSecretArtifacts": 0
+      },
+      "note": "The selected Runtime package-lock is accepted source metadata, not an installed or generated dependency tree."
+    },
+    {
+      "id": "PR755-NON-REPUBLICATION",
+      "status": "PASS",
+      "observed": {
+        "pr755FirstParentChangedPathCount": 119,
+        "stagedPathOverlapCount": 0,
+        "overlap": []
+      }
+    },
+    {
+      "id": "STAGED-DIFF-CHECK",
+      "status": "PASS",
+      "observed": {
+        "command": "git diff --cached --check",
+        "exitCode": 0,
+        "diagnostics": []
+      }
+    },
+    {
+      "id": "SUSPICIOUS-SECRET-REVIEW",
+      "status": "PASS",
+      "observed": {
+        "targetedCandidateCount": 4,
+        "candidateFiles": [
+          "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+          "projects/chirality-app-dev/frontend/src/__tests__/lib/chat-organization.test.ts",
+          "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+          "projects/chirality-runtime/tests/codex-session.test.ts"
+        ],
+        "classifiedInertFixtures": 4,
+        "actualCredentialsOrSecrets": 0
+      },
+      "note": "The App fixtures exercise redaction, non-persistence, and non-export behavior. The Runtime fixture uses deterministic synthetic bytes and an intentionally invalid proof token. Values are intentionally omitted from this record."
+    }
+  ],
+  "limitations": [
+    "This review validates the exact staged source-closure candidate and its stated no-effect boundaries; it does not qualify packaging, native supplier interoperability, production supplier interoperability, release, or activation.",
+    "Fresh App and Runtime checks, pull-request CI, exact-head merge, and terminal publication backcheck remain later CHANGE closeout steps.",
+    "No claim of conformance to the changed instruction, skill, or workflow doctrine is made."
+  ]
+}

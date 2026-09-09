@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contracts';
 import { guardRecordedSessionSelection } from '../../lib/woven-dialogue/guarded-session-selection';
 import { useWorkspace } from '../workspace/workspace-provider';
-import { FileTreePanel } from '../shell/file-tree-panel';
+import { FileTreePanel, type FileCatalog } from '../shell/file-tree-panel';
 import { DocumentView, handoffDocument } from '../shell/document-view';
 import type { WovenWorkspaceState } from '../../lib/woven-dialogue/woven-workspace-state';
 
@@ -65,6 +65,7 @@ type Props = {
   settingsView?: React.ReactNode;
   onView: (view: 'files' | 'workflows' | 'agents' | 'activity' | 'settings') => void;
   onOpenFile: (path: string) => void;
+  onFileCatalog?: (catalog: FileCatalog | null) => void;
   onClose: () => void;
   onExpand: () => void;
   coordination: React.ReactNode;
@@ -75,7 +76,7 @@ type Props = {
   liveTurnActive?: boolean;
   onOpenParent?: (sessionId: string) => void;
 };
-export function RightPanel({ settingsView, state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent }: Props): JSX.Element {
+export function RightPanel({ settingsView, state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onFileCatalog, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent }: Props): JSX.Element {
   const { projectRoot } = useWorkspace();
   const [refresh, setRefresh] = useState(0);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -153,7 +154,7 @@ export function RightPanel({ settingsView, state, sessionOpen, folderLocked = fa
     {copyStatus ? <p role="status">{copyStatus}</p> : null}
     {menuError ? <p role="alert">{menuError}</p> : null}
     <div id="right-view-content" role={detailOpen ? undefined : 'tabpanel'} aria-labelledby={view === 'settings' ? 'right-settings-title' : detailOpen ? undefined : `right-tab-${view}`} style={{ minHeight: 0, flex: 1, overflow: 'auto' }}>
-      {view === 'settings' ? settingsView ?? <p>Settings are unavailable.</p> : view === 'workflows' ? folderMismatch ? <p role="alert">The chat is bound to a different folder. Workflows are unavailable until that folder is synchronized.</p> : projectRoot ? <WorkflowsView projectRoot={projectRoot} name={workflowName} refresh={refresh} onOpen={name => setWorkflowSelection({ root: projectRoot, name })} /> : <p>Choose a folder to see its workflow files.</p> : view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
+      {view === 'settings' ? settingsView ?? <p>Settings are unavailable.</p> : view === 'workflows' ? folderMismatch ? <p role="alert">The chat is bound to a different folder. Workflows are unavailable until that folder is synchronized.</p> : projectRoot ? <WorkflowsView projectRoot={projectRoot} name={workflowName} refresh={refresh} onOpen={name => setWorkflowSelection({ root: projectRoot, name })} /> : <p>Choose a folder to see its workflow files.</p> : view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} onFileCatalog={onFileCatalog} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
     </div>
   </section>;
 }

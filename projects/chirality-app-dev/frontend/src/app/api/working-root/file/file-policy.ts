@@ -67,6 +67,29 @@ export async function openDocument(input: unknown, instructionRoot: string) {
     return { ...after, info, handle };
   } catch (error) { await handle.close(); throw error; }
 }
+/**
+ * Detect observable descriptor mutation during streaming. Size and mtime checks
+ * do not provide snapshot isolation: a same-size edit with restored mtime can
+ * remain indistinguishable without a separately approved locking/snapshot design.
+ */
+export async function assertOpenDocumentUnchanged(
+  handle: { stat(): Promise<{ size: number; mtimeMs: number }> },
+  expected: { size: number; mtimeMs: number },
+  message = 'File changed while reading. Retry the preview.'
+): Promise<void> {
+  const current = await handle.stat();
+  if (current.size !== expected.size || current.mtimeMs !== expected.mtimeMs) {
+    throw new FilePolicyError('FILE_CHANGED', 409, message);
+  }
+}
+export function createCloseOnce(closeDescriptor: () => Promise<void>): () => Promise<void> {
+  let closed = false;
+  return async () => {
+    if (closed) return;
+    closed = true;
+    await closeDescriptor();
+  };
+}
 export function fileError(error: unknown): { status: number; body: { error: { code: string; message: string } } } {
   if (error instanceof FilePolicyError) return { status: error.status, body: { error: { code: error.code, message: error.message } } };
   const code = (error as NodeJS.ErrnoException)?.code;

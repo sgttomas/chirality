@@ -6,6 +6,7 @@ import { FileTreePanel } from '../../components/shell/file-tree-panel';
 const workspace = vi.hoisted(() => ({ projectRoot: '/root' as string | null, chooseProjectRoot: vi.fn(async () => true), hasElectronDirectoryPicker: true, errorMessage: null }));
 vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: () => workspace }));
 afterEach(() => { vi.unstubAllGlobals(); workspace.projectRoot = '/root'; workspace.hasElectronDirectoryPicker = true; workspace.chooseProjectRoot.mockClear(); });
+function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>(done => { resolve = done; }); return { promise, resolve }; }
 it('opens regular files, toggles directories and preserves inert legacy files', async () => {
   vi.stubGlobal('window', { setInterval: vi.fn(), clearInterval: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn() });
   vi.stubGlobal('document', { addEventListener: vi.fn(), removeEventListener: vi.fn() });
@@ -97,5 +98,46 @@ it('retains the folder selector fallback after mounting in a browser without the
   expect(tree.root.findByType('footer').findByType('button').props.disabled).toBe(true);
   expect(tree.root.findAllByType('p').some(node => node.children.includes('Choose a folder using the folder selector above.'))).toBe(true);
   expect(workspace.chooseProjectRoot).not.toHaveBeenCalled();
+  act(() => tree.unmount());
+});
+
+it('publishes a sorted file-only catalog from the tree response and clears it on error and unmount', async () => {
+  let poll!: () => void;
+  vi.stubGlobal('window', { setInterval: vi.fn((callback: () => void) => { poll = callback; return 1; }), clearInterval: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal('document', { visibilityState: 'visible', addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  const fetch = vi.fn()
+    .mockResolvedValueOnce({ ok: true, json: async () => ({ root: { name: 'root', path: '/root', kind: 'directory', children: [
+      { name: 'dir', path: '/root/dir', kind: 'directory', children: [{ name: 'z.md', path: '/root/dir/z.md', kind: 'file' }] },
+      { name: 'link', path: '/root/link', kind: 'symlink' },
+      { name: 'a.md', path: '/root/a.md', kind: 'file' }
+    ] } }) })
+    .mockResolvedValueOnce({ ok: false, json: async () => ({ error: { message: 'tree failed' } }) });
+  vi.stubGlobal('fetch', fetch);
+  const catalog = vi.fn(); let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<FileTreePanel onFileCatalog={catalog} />); });
+  expect(fetch).toHaveBeenCalledTimes(1);
+  expect(catalog).toHaveBeenLastCalledWith({ root: '/root', paths: ['/root/a.md', '/root/dir/z.md'] });
+  await act(async () => { poll(); });
+  expect(fetch).toHaveBeenCalledTimes(2);
+  expect(catalog).toHaveBeenLastCalledWith(null);
+  act(() => tree.unmount());
+  expect(catalog).toHaveBeenLastCalledWith(null);
+});
+
+it('clears immediately on root change and ignores a late response from the stale root', async () => {
+  const oldRequest = deferred<{ ok: boolean; json: () => Promise<unknown> }>();
+  const newRequest = deferred<{ ok: boolean; json: () => Promise<unknown> }>();
+  vi.stubGlobal('window', { setInterval: vi.fn(() => 1), clearInterval: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal('document', { visibilityState: 'visible', addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal('fetch', vi.fn().mockReturnValueOnce(oldRequest.promise).mockReturnValueOnce(newRequest.promise));
+  const catalog = vi.fn(); let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<FileTreePanel onFileCatalog={catalog} />); });
+  workspace.projectRoot = '/next';
+  await act(async () => { tree.update(<FileTreePanel onFileCatalog={catalog} />); });
+  expect(catalog).toHaveBeenLastCalledWith(null);
+  await act(async () => oldRequest.resolve({ ok: true, json: async () => ({ root: { name: 'root', path: '/root', kind: 'directory', children: [{ name: 'old.md', path: '/root/old.md', kind: 'file' }] } }) }));
+  expect(catalog).not.toHaveBeenCalledWith({ root: '/root', paths: ['/root/old.md'] });
+  await act(async () => newRequest.resolve({ ok: true, json: async () => ({ root: { name: 'next', path: '/next', kind: 'directory', children: [{ name: 'new.md', path: '/next/new.md', kind: 'file' }] } }) }));
+  expect(catalog).toHaveBeenLastCalledWith({ root: '/next', paths: ['/next/new.md'] });
   act(() => tree.unmount());
 });

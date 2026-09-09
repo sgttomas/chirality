@@ -1,0 +1,73 @@
+{
+  "schema": "chirality.change.pr761-clean-build-repair.v1",
+  "recordedAt": "2026-09-09T06:06:28.257789+00:00",
+  "failedHead": "5bd5a63ef673d5fb5691a302020d16135534f516",
+  "failedTree": "25d0f3ec3cdbb24b509ead8ef22b21e2e28d9ac1",
+  "failedRuns": [
+    {
+      "name": "pec",
+      "id": 34316177123,
+      "url": "https://github.com/sgttomas/chirality/actions/runs/34316177123"
+    },
+    {
+      "name": "Harness pre-merge",
+      "id": 34316177042,
+      "url": "https://github.com/sgttomas/chirality/actions/runs/34316177042"
+    }
+  ],
+  "diagnostic": "packages/daemon/src/codex-worker.ts(143,51): error TS2307: Cannot find module '@chirality/native-admission' or its corresponding type declarations.",
+  "externalTerminalFailReviewManifest": {
+    "path": "/private/tmp/chirality-graceful-source-closure-20260908-terminal-review/MANIFEST.json",
+    "sha256": "0792873a70d6c68e8fa8602eb413ad6daabe057ab03229229e144fc757e67ec7"
+  },
+  "repair": {
+    "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+    "postimageSha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b",
+    "scope": "one TypeScript project reference to ../native-admission; no feature or activation change",
+    "managerManifestSha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2",
+    "reviewManifestSha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13"
+  },
+  "freshSuccessorCi": "PENDING",
+  "secondFailedHead": "e980f2ee773d32d1137646f437dc973126286e9b",
+  "secondFailure": {
+    "run": 34317657667,
+    "url": "https://github.com/sgttomas/chirality/actions/runs/34317657667",
+    "check": "Harness pre-merge",
+    "diagnostic": "contract-pins rejected five obsolete packaged-security verifier pins; owning diagnosis found mixed contract drift and incomplete release caller",
+    "pecRun34317657696": "PASS",
+    "governanceRun34317657687": "PASS"
+  },
+  "appSecurityContractRepair": {
+    "pathCount": 5,
+    "selectionSha256": "481c40926d545447c7bbe99792219bc183fe0e55c7df1cf7338db21ecc5bc2d4",
+    "patchSha256": "9de48cd6c3ee8ab93be3745c014e27d57cc34285b18eec784517e1d5644ab496",
+    "managerManifestSha256": "10e126ad3f376c47bdb1eec448bec06cc2654440faa61daaa5bb74d4a15e8a12",
+    "reviewManifestSha256": "f55c5f9f32955a4b522ff217a6dab7d03a75c1429757afe5eabfdd38e137310b",
+    "disposition": "reviewed successor; release workflow fails closed before install/build/native work; three historical accepted App postimages superseded and require a future fresh App qualification binding"
+  },
+  "thirdFailedHead": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5",
+  "thirdFailure": {
+    "run": 34322182923,
+    "url": "https://github.com/sgttomas/chirality/actions/runs/34322182923",
+    "check": "governance-harness",
+    "diagnostic": "G4 required an added schema-readable tranche manifest for the reviewed desktop release workflow change",
+    "sourceOrWorkflowBytesChangedByRepair": false,
+    "repairRecord": "G4_FAILURE_AND_AUTHORITY.json"
+  },
+  "fourthFailure": {
+    "head": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5",
+    "run": 34322182961,
+    "url": "https://github.com/sgttomas/chirality/actions/runs/34322182961",
+    "check": "Harness pre-merge",
+    "diagnostic": "full App suite: woven-dialogue-runtime-reconnect replay-loader spy expected one call but observed two; 181 files and 1959 tests passed; Section9, pins, workflow repair tests, registered typecheck, and Runtime clean build/test passed",
+    "classification": "test-fixture spy conflated background title reader with selected replay loader; no duplicate product dispatch",
+    "repair": {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "postimageSha256": "26046c6a127e7496341c05181e0131840cf713ec1324ccbae1d6691c28283fd4",
+      "scope": "one test fixture mocks the title reader independently while preserving actual helper exports and assertions",
+      "managerManifestSha256": "9ed230339e637d336f8505ef1f1389d8ed2ab24673229d6153323243b01afe34",
+      "reviewManifestSha256": "2ef0d3d87e982b14abb5a28dd5b0182845d249c55ee8a76e062487397829a797"
+    },
+    "productBehaviorChanged": false
+  }
+}

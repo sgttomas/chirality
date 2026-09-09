@@ -1,0 +1,19 @@
+{
+  "schema": "chirality.change.pr761-g4-publication-repair.v1",
+  "recordedAt": "2026-09-09T07:12:15.251733+00:00",
+  "failedHead": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5",
+  "failedRun": {
+    "name": "governance-harness",
+    "id": 34322182923,
+    "url": "https://github.com/sgttomas/chirality/actions/runs/34322182923",
+    "result": "FAIL_G4_ONLY"
+  },
+  "diagnostic": ".github/workflows/desktop-release-template.yml is an instruction-surface path and the candidate added no schema-readable tranche manifest covering it",
+  "repair": {
+    "path": "docs/governance_harness/tranche_manifests/APP-V3-GRACEFUL-SOURCE-CLOSURE-20260909.yaml",
+    "scope": "one required instruction-tranche-manifest/v1 record; product and workflow bytes unchanged from reviewed f8c9b22 source",
+    "sourcePin": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5"
+  },
+  "authorityBoundary": "Records existing user merge direction, Root five-path disposition, and delegated G4 documentation grant; no claim that the user personally inspected f8c9b22 bytes; no release or activation authority.",
+  "freshSuccessorChecks": "PENDING"
+}

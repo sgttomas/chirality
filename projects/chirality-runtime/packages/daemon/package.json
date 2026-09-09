@@ -16,6 +16,7 @@
   "dependencies": {
     "@chirality/runtime-contracts": "*",
     "@chirality/runtime-core": "*",
+    "@chirality/native-admission": "*",
     "@chirality/engine-pi-omlx": "*"
   },
   "bin": {

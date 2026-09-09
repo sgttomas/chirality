@@ -5,6 +5,7 @@ import { buildChatDraftStorageKey } from '../../lib/harness/chat-draft';
 
 const state = vi.hoisted(() => ({ root: '/chosen/subfolder', query: '', listeners: new Set<() => void>(),
   create: vi.fn(), boot: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), streaming: vi.fn(),
+  markdownProps: [] as Array<{ source: string; projectRoot?: string | null; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }>,
   nativeListener: undefined as ((intent: { path?: string; error?: string }) => void) | undefined
 }));
 vi.mock('next/navigation', () => ({ usePathname: () => '/chat', useSearchParams: () => new URLSearchParams(state.query), useRouter: () => ({ replace: vi.fn() }) }));
@@ -16,9 +17,9 @@ vi.mock('../../components/workspace/toolkit-provider', () => ({ useToolkit: () =
 vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEventActions: () => ({ appendEvent: state.append, clearEvents: state.clear, setStreaming: state.streaming }) }));
 vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0 }));
 vi.mock('../../components/shell/persona-picker', () => ({ PersonaPicker: () => <span>Working Items</span> }));
-vi.mock('../../components/shell/file-picker', () => ({ FilePicker: () => null }));
+vi.mock('../../components/shell/file-picker', () => ({ FilePicker: ({ onAddAttachments }: { onAddAttachments: (items: Array<{ path: string; displayName: string; clientType: 'text' }>) => void }) => <button data-add-attachment onClick={() => onAddAttachments([{ path: '/chosen/subfolder/docs/input.txt', displayName: 'input.txt', clientType: 'text' }])}>add fixture attachment</button> }));
 vi.mock('../../components/shell/permission-requests', () => ({ PermissionRequests: () => null }));
-vi.mock('../../components/shell/chat-markdown', () => ({ ChatMarkdown: ({ source }: { source: string }) => <p>{source}</p> }));
+vi.mock('../../components/shell/chat-markdown', () => ({ ChatMarkdown: (props: { source: string; projectRoot?: string | null; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }) => { state.markdownProps.push(props); return <p>{props.source}</p>; } }));
 vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 
@@ -35,6 +36,7 @@ async function submit() { await act(async () => { tree!.root.findByType('form').
 function assertCanonicalUntouched() { expect(values.get(canonicalKey)).toBe(canonicalDraft); expect(writes.filter(([key]) => key === canonicalKey)).toEqual([]); }
 beforeEach(() => {
   vi.clearAllMocks(); state.root = '/chosen/subfolder'; state.query = ''; state.listeners.clear(); state.nativeListener = undefined;
+  state.markdownProps = [];
   values = new Map([[canonicalKey, canonicalDraft]]); writes = [];
   vi.stubGlobal('window', { confirm: vi.fn(() => true), localStorage: { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => { writes.push([key, value]); values.set(key, value); }, removeItem: (key: string) => values.delete(key) }, chirality: { folders: {
     registerRecent: vi.fn(async () => ({ ok: true })), pathForFile: vi.fn(() => ''), subscribeOpen: (listener: typeof state.nativeListener) => { state.nativeListener = listener; return () => { state.nativeListener = undefined; }; }
@@ -95,6 +97,18 @@ it('keeps Enter submission distinct from Shift+Enter and IME composition', async
   expect(submit).not.toHaveBeenCalled();
   handler({ key: 'Enter', shiftKey: false, nativeEvent: { isComposing: false }, preventDefault, currentTarget: { form: { requestSubmit: submit } } });
   expect(submit).toHaveBeenCalledTimes(1); expect(preventDefault).toHaveBeenCalledTimes(1);
+});
+
+it('captures only the first prompt after a session boots successfully', async () => {
+  state.stream.mockResolvedValue(undefined);
+  const captured = vi.fn();
+  await mount({ onSessionBootedPrompt: captured });
+  await type('First prompt'); await submit();
+  expect(captured).toHaveBeenCalledWith({ sessionId: 'bound', prompt: 'First prompt', persona: 'WORKING_ITEMS' });
+  await type('Second prompt'); await submit();
+  expect(captured).toHaveBeenCalledTimes(1);
+  expect(state.create).toHaveBeenCalledTimes(1);
+  expect(state.boot).toHaveBeenCalledTimes(1);
 });
 
 it('rejects empty and multiple-file drops without invoking folder validation', async () => {
@@ -199,4 +213,37 @@ it('keeps legacy session creation and draft storage aligned with a changed Worki
   expect(state.create).toHaveBeenCalledTimes(2);
   expect(JSON.parse(values.get(keyA)!).draft).toBe('Unsent root A prompt');
   expect(values.has(keyB)).toBe(false);
+});
+
+it('threads file navigation only to assistant Markdown and preserves attachment payload and failure restoration', async () => {
+  const open = vi.fn();
+  const catalog = ['/chosen/subfolder/docs/SPEC.md'];
+  await mount({ fileCatalog: catalog, onOpenFile: open });
+  expect(state.markdownProps.at(-1)).toMatchObject({ source: 'What would you like to work on?', fileCatalog: catalog, onOpenFile: open });
+  expect(state.markdownProps.at(-1)?.projectRoot).toBeUndefined();
+  await act(async () => tree!.root.findByProps({ 'data-add-attachment': true }).props.onClick());
+  await type('Keep attachment');
+  await submit();
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({
+    message: 'Keep attachment',
+    attachments: ['/chosen/subfolder/docs/input.txt']
+  }), expect.any(Function));
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep attachment');
+  expect(tree!.root.findAllByProps({ className: 'attachment-chip' }).some(node => node.props.title === '/chosen/subfolder/docs/input.txt')).toBe(true);
+  expect(state.markdownProps.every(props => props.fileCatalog === catalog && props.onOpenFile === open)).toBe(true);
+});
+
+it('keeps retained assistant Markdown bound to the root that produced it', async () => {
+  state.stream.mockImplementation(async (_input, onEvent) => { onEvent({ event: 'chat:complete', data: { text: '[spec](docs/SPEC.md)' } }); });
+  state.boot.mockResolvedValue({ session: { sessionId: 'bound', projectRoot: '/chosen/subfolder' } });
+  await mount({ fileCatalog: ['/chosen/subfolder/docs/SPEC.md'], onOpenFile: vi.fn() });
+  await type('Create a link'); await submit();
+  expect(state.markdownProps.at(-1)?.projectRoot).toBe('/chosen/subfolder');
+  await act(async () => root('/other'));
+  await act(async () => tree!.update(<ChatPanel presentation="woven" fileCatalog={['/other/docs/SPEC.md']} onOpenFile={vi.fn()} />));
+  expect(state.markdownProps.at(-1)).toMatchObject({ projectRoot: '/chosen/subfolder', fileCatalog: ['/other/docs/SPEC.md'] });
+  act(() => tree!.unmount()); tree = undefined;
+  state.markdownProps = [];
+  await mount({ fileCatalog: ['/other/docs/SPEC.md'], onOpenFile: vi.fn() });
+  expect(state.markdownProps.at(-1)?.projectRoot).toBeUndefined();
 });

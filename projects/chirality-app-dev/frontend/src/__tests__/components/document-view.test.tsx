@@ -72,6 +72,19 @@ it('honors Electron inline-PDF capability and sends the actual default-app reque
   expect(handoff).toHaveBeenCalledWith({ projectRoot: '/root', target: 'a.pdf', action: 'open' }); act(() => tree.unmount());
 });
 
+it('uses the candidate desktop capability but treats iframe failure as unavailable and retryable', async () => {
+  const handoff = vi.fn(async () => ({ ok: true }));
+  vi.stubGlobal('window', { chirality: { document: { inlinePdfPreview: true, handoff } } });
+  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => ({ name: 'a.pdf', kind: 'pdf', size: 12, modifiedAt: 'today' }) })));
+  let tree!: ReactTestRenderer; await act(async () => { tree = create(<DocumentView target="a.pdf" />); });
+  expect(tree.root.findByType('iframe').props.src).toBe('/api/working-root/file?projectRoot=%2Froot&target=a.pdf&content=pdf');
+  await act(async () => { tree.root.findByType('iframe').props.onError(); });
+  expect(tree.root.findAllByType('iframe')).toHaveLength(0);
+  expect(tree.root.findAllByType('p').some(x => x.children.includes('PDF preview is unavailable here. Open this file in its default app.'))).toBe(true);
+  await act(async () => { tree.root.findAllByType('button').find(x => x.children.includes('Retry PDF preview'))!.props.onClick(); });
+  expect(tree.root.findByType('iframe')).toBeTruthy(); act(() => tree.unmount());
+});
+
 it('resolves only safe relative Markdown paths', () => {
   expect(resolveLocalDocumentLink('docs/readme.md', './next.md')).toBe('docs/next.md');
   for (const value of ['../secret', '%2e%2e/secret', '/etc/passwd', '//example.com/x', 'javascript:alert(1)', 'x?target=secret', 'a\\b']) expect(resolveLocalDocumentLink('docs/readme.md', value)).toBeNull();

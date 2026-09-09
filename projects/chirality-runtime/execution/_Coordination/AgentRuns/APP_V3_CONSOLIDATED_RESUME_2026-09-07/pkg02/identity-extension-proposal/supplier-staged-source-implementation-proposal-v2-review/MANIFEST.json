@@ -1,0 +1,83 @@
+{
+  "schema": "chirality.supplier.staged-source-implementation-proposal-v2-focused-backcheck-manifest.v1",
+  "status": "FROZEN_PASS",
+  "verdict": "PASS",
+  "reviewer": {
+    "identity": "/root/runtime_identity/supplier_staged_impl_proposal_reviewer",
+    "model": "gpt-5.6-sol",
+    "reasoning": "medium",
+    "role": "author-distinct-nondelegating-agent-2"
+  },
+  "reviewBriefSha256": "4feddb8c3e91a8606cb1ebbc00d56c6eee61b40b87638e4318410a234f6f2954",
+  "reviewedManifest": {
+    "path": "../supplier-staged-source-implementation-proposal-v2/MANIFEST.json",
+    "sha256": "0ac3446bc892a116425811339142fba79dfb20bc97fbb4b1324b64db521a5ad6"
+  },
+  "predecessorReviewManifest": {
+    "path": "../supplier-staged-source-implementation-proposal-v1-review/MANIFEST.json",
+    "sha256": "ae648058a6e58fd45e2d1fbfce3199d3ada15de58b391880fb0fff3eef915f42",
+    "verdict": "FAIL"
+  },
+  "closedFindings": [
+    "F001__RESOLVING_REPOSITORY_ROOT_AUTHORITY_PATH",
+    "F002__RETAIN_RECOVERABLE_DEPENDENCY_AND_REVIEWED_SOURCE_BYTES",
+    "F003__SOLE_STAGE0_NETWORK_EXCEPTION_UNAMBIGUOUS"
+  ],
+  "otherSemanticsChanged": false,
+  "findings": [],
+  "exactOutputNames": [
+    "CHECKS.json",
+    "RETURN.md",
+    "MANIFEST.json"
+  ],
+  "members": [
+    {
+      "path": "CHECKS.json",
+      "bytes": 7024,
+      "sha256": "8ebbcf326484971a86b98c495296156005d4d769b1815b34c1188f35122cb95d"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 1621,
+      "sha256": "9edbb91ea5baea1543583c44b771dd41a3586847c82bba44e491985d9a9d5897"
+    }
+  ],
+  "memberCountExcludingManifest": 2,
+  "held": [
+    "OWNER_APPROVAL",
+    "STAGE_A_PENDING_DISTINCT_DEPENDENCY_CUSTODY_PASS",
+    "STAGE_B_PENDING_DISTINCT_STAGE_A_SOURCE_TEST_PASS",
+    "POSITIVE_CAPABILITY_OR_V4_ADVERTISEMENT",
+    "PRODUCTION_ADMISSION_ACQUIRE",
+    "PUBLIC_OR_GENERATED_PROTOCOL_SURFACES",
+    "BAZEL_PARITY",
+    "PRODUCTION_SUPPLIER_BUILD",
+    "RUNTIME_NATIVE_BUILD",
+    "SUPPLIER_RUNTIME_PAIR_QUALIFICATION",
+    "PROVIDER_ID_QUALIFICATION",
+    "ACCOUNT_ENABLED_TRIAL",
+    "APP_CLI_ADOPTION",
+    "ACTIVATION",
+    "PUBLICATION",
+    "RELEASE"
+  ],
+  "conduct": {
+    "delegations": 0,
+    "authorFileWrites": 0,
+    "newSupplierSourceOrEvidenceReads": 0,
+    "dependencyAcquisitions": 0,
+    "builds": 0,
+    "testsExecuted": 0,
+    "networkActions": 0,
+    "accountCredentialKeyringProviderActions": 0,
+    "implementationActivationPublicationReleaseActions": 0,
+    "reviewOutputsAuthored": 3
+  },
+  "handoff": {
+    "derivativePackage": true,
+    "closureVerdict": "FOCUSED_BACKCHECK_COMPLETE__PASS__F001_F002_F003_CLOSED",
+    "rerunRequired": false,
+    "remainingBlocker": "OWNER_DECISION"
+  },
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT"
+}

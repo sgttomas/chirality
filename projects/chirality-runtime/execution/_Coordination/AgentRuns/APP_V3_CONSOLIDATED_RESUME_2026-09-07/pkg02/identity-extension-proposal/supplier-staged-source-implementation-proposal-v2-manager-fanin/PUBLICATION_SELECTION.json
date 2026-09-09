@@ -1,0 +1,242 @@
+{
+  "schema": "chirality.runtime.identity-extension.publication-selection.v1",
+  "status": "READ_ONLY_SELECTION__CHANGE_MANAGER_DECIDES_PUBLICATION__NO_STAGING_BY_RUNTIME_MANAGER",
+  "acceptedRuntimeSource": {
+    "root": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo",
+    "baseCommit": "e8cdc460cffccfe9e58ab4e5b9bbc05350c09327",
+    "baseTree": "b952e783524c5a6a925065a13a8603e680398c0e",
+    "selectionEvidence": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo/projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2/author/v3/SOURCE_CHANGED_PATHS.json",
+    "selectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+    "memberCount": 29,
+    "totalBytes": 605584,
+    "members": [
+      {
+        "path": "projects/chirality-runtime/packages/core/src/runtime-admission-lock.ts",
+        "bytes": 1632,
+        "sha256": "11c2b9040e09bf99adf81d1aef66e8c2566a652bd796a092cc9fdd9dfecda53b"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/core/src/index.ts",
+        "bytes": 785,
+        "sha256": "05465c998d507681031b497809a1e1f56db7450aa43fdbf1fcafc4599e8e3522"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/core/package.json",
+        "bytes": 386,
+        "sha256": "24bd6ee1274c0cc453a01138e7d76d706424d01c38360daeff4e6632819bb819"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/supplier-authority-controller.ts",
+        "bytes": 22522,
+        "sha256": "0d4afc18134b36c298bea652d2935f8db6741296360f0b6302cf96796fbb0e72"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/supplier-authority-journal.ts",
+        "bytes": 10437,
+        "sha256": "a986bf1b66714e971b8d8ae76a787636aea522fae36b63fb80c3f527c4d1b02d"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+        "bytes": 23079,
+        "sha256": "a754f04215371caa795ebf1e387b15b414e6bb5f3bb672200d8cdd2d293dd71c"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+        "bytes": 46654,
+        "sha256": "5d0ac9f797efd1533128dc8f2814020e4c51fce9d446ee35f7f0f692754a469a"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+        "bytes": 57376,
+        "sha256": "24cc3b789797b853c6e70dbb84ce2cccd869a9a756bea55a20f1cc377425beaf"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/codex-worker.ts",
+        "bytes": 10078,
+        "sha256": "3ddd854a2290709615df74b21e3c7bdd2bd9e78358696da1dbaf6fa4d90eaecd"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/codex-transport-lifecycle.ts",
+        "bytes": 7375,
+        "sha256": "01817d8f7ab050c155a10ec5899589c7a82ede8abdfaf45f3bc152132d9d0163"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+        "bytes": 20604,
+        "sha256": "4cd9ed29f37fcd522ee2440e8e57d207563a5a473d7262726fe6ae47f2cacf86"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+        "bytes": 35501,
+        "sha256": "fc1d8357a0c98925c72c956bfa1ce4a30056febbb2dff4c63fe6cabc578fc2e8"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/src/index.ts",
+        "bytes": 433,
+        "sha256": "ca974df16f8eda2ad1d49d30f627f3f60bfe560d3b99fb66f798dc0075694f24"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/daemon/package.json",
+        "bytes": 534,
+        "sha256": "366731b6f52a904d7bc4adf8dc3d661699c346c60981b84625fc08415caed667"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/native-admission/package.json",
+        "bytes": 530,
+        "sha256": "527cd7cdb42ffa7022c6ada5f059a590a39e696c9340fcde7d5df9e3ba851d47"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/native-admission/binding.gyp",
+        "bytes": 218,
+        "sha256": "df14d8d305bbf82f75b3cf14ad6a1877e729dae2b53f613cc1dcc08e322f7ea7"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/native-admission/src/addon.cc",
+        "bytes": 13419,
+        "sha256": "6a62583456a66a8806b9408006ed5126b2096de8934c1ebc6975d57810c4b847"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/native-admission/src/index.ts",
+        "bytes": 5488,
+        "sha256": "30e93c50b2818fb0ced0ac25f456251c8246710da86a0c7e5c0543742a050d16"
+      },
+      {
+        "path": "projects/chirality-runtime/packages/native-admission/tsconfig.json",
+        "bytes": 257,
+        "sha256": "f7b6007cdeaa37eac7ba1787b5dbb32c788ab90aa656cd2c258eb0c983e0b9f4"
+      },
+      {
+        "path": "projects/chirality-runtime/package.json",
+        "bytes": 489,
+        "sha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede"
+      },
+      {
+        "path": "projects/chirality-runtime/package-lock.json",
+        "bytes": 214151,
+        "sha256": "4195789d5bb47a1ddc83abd8c6fde5544a167dfd1c148e875004f3de37680059"
+      },
+      {
+        "path": "projects/chirality-runtime/tsconfig.json",
+        "bytes": 343,
+        "sha256": "3fac13e26991dec49b2410142c48140c6665a210814f52867219854cc7ead4dd"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/supplier-authority-controller.test.ts",
+        "bytes": 8392,
+        "sha256": "670ad68ea4660d91b6689913589f294817e1069860ac2b47d0094330b630bb08"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/supplier-authority-journal.test.ts",
+        "bytes": 11456,
+        "sha256": "ebaafa3547e9a71943320d50f5e1debaa66471d5b5d4f5cf4185a5990c7567c4"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/runtime-admission-native.test.ts",
+        "bytes": 4407,
+        "sha256": "70da83180bed460bd9666f7b32cab22b27ec2105dbe2097f263a474fe0fcf21b"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+        "bytes": 58394,
+        "sha256": "ed87f2f886cead01bd3ec4ac9a607556d278dfeab3ae72362d64c1ebf91ec258"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/supervisor-server.test.ts",
+        "bytes": 3384,
+        "sha256": "90a625645379f829e3fc9940b44976a39c77f5b9421d59068513d8c1c11094b3"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+        "bytes": 23570,
+        "sha256": "4cb993437f86636fc2cc8ee89a8d3543cc75aa814aa68a97faa15c8e6cc70179"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/local-supplier-authority.e2e.test.ts",
+        "bytes": 23690,
+        "sha256": "0980e796ab7db7193d8020ae52bf4dc4dc037c71f944dbd1cfd04b4e42e3e8f7"
+      }
+    ],
+    "status": "OWNER_ACCEPTED_DEFAULT_OFF_SOURCE__NATIVE_UNCOMPILED_UNQUALIFIED__PRODUCTION_SUPPLIER_INTEROP_UNQUALIFIED"
+  },
+  "compactAcceptedEvidence": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-source-acceptance/MANIFEST.json",
+      "sha256": "58e202bd9bfba6115b84aff4ac949ec481cf8a6599e94c222f4b82664314c7ee",
+      "purpose": "accepted source boundary"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-source-acceptance/ACCEPTANCE.json",
+      "sha256": "82ecafe5fd5746127fd16fbf2b804adff52604e8d7676dfbdb6f33451ace541f",
+      "purpose": "owner acceptance and calibration"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-source-acceptance/POINTER.json",
+      "sha256": "3b5e5029759e92ec03c84c3fb485bc01f84e93a10e0973e4d3f9083d8017a281",
+      "purpose": "accepted pointer"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-two-branch-execution-v4/manager-v2/runtime-r-v3-fanin/MANIFEST.json",
+      "sha256": "469bf06014738103bc126aba9e0772758d78e2adb6a49f5891d99aae14037369",
+      "purpose": "manager fan-in"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-stopped-branch-remediation-v2/branch-r-review-v2/MANIFEST.json",
+      "sha256": "3ffec439bce1531f243972c7cb67e65350ac283c47178f50667a75ea2900ea60",
+      "purpose": "independent source review PASS"
+    },
+    {
+      "path": "PRIVATE_SOURCE_ROOT/projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2/author/v3/MANIFEST.json",
+      "sha256": "21029a7019124ffb67b7a21aba3fd707b2eb248558eb5078128ed825aac68de3",
+      "purpose": "author evidence manifest; requires explicit publication copy selection"
+    },
+    {
+      "path": "PRIVATE_SOURCE_ROOT/projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2/author/v3/SOURCE_CHANGED_PATHS.json",
+      "sha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+      "purpose": "exact 29-path/size/hash selection; requires explicit publication copy selection"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-interface-concordance-v1/MANIFEST.json",
+      "sha256": "c47c29516890d5ebcd92fb6fed92c75a3b42a5e0b75bf7d9b15549bf6d7be919",
+      "purpose": "accepted Runtime duplicate-key boundary concordance"
+    }
+  ],
+  "pendingProposalEvidence": {
+    "v2Manifest": "0ac3446bc892a116425811339142fba79dfb20bc97fbb4b1324b64db521a5ad6",
+    "v2DecisionSubject": "9eebd27ce872efaadce38fef2423032384f2c63a719f92a7ee5ccdc9ada04ddd",
+    "v2ReviewManifest": "e05f861fedb53e85124cef322469d6c159027ee213db378e10a1cebd295d7538",
+    "status": "INDEPENDENT_PASS_UNDER_PRIOR_INSTRUCTION_BASIS__OWNER_DECISION_NOT_APPLIED__NEW_DOCTRINE_CONFORMANCE_UNASSESSED__EXECUTION_PAUSED",
+    "publicationDisposition": "may be published only with this pending/proposal calibration; never as accepted supplier capability or execution authority"
+  },
+  "excludeFromAcceptedRuntimeSourcePublication": [
+    {
+      "pattern": "identity-extension-proposal/supplier-*",
+      "reason": "supplier mapping/proposal evidence is not accepted supplier implementation/capability; V2 may be separately published as pending proposal evidence"
+    },
+    {
+      "pattern": "identity-extension-proposal/**/branch-s*",
+      "reason": "stopped/reference-only supplier inquiry evidence, including recorded conduct defects"
+    },
+    {
+      "pattern": "identity-extension-proposal/**/source-inquiry*",
+      "reason": "consumed/stopped inquiry evidence, not execution authority"
+    },
+    {
+      "pattern": "identity-extension-proposal/local-two-branch-execution-v4/branch-r-review/**",
+      "reason": "superseded FAIL review; preserve historically but omit from compact accepted source publication unless provenance policy requires full history"
+    },
+    {
+      "pattern": "identity-extension-proposal/local-stopped-branch-remediation-v2/branch-r-review-v1/**",
+      "reason": "superseded FAIL review"
+    },
+    {
+      "pattern": "supplier source/binary/artifact/vendor/cache roots",
+      "reason": "never publish or treat as accepted Runtime source"
+    }
+  ],
+  "canonicalCollision": {
+    "docsOrSowPathsTouchedByAccepted29": false,
+    "sourcePathsIntentionallyOverlayRuntimeProject": true,
+    "baseIdentityMustBeReverifiedByChange": true,
+    "note": "Accepted Runtime SOW/publication is an upstream dependency; no canonical document edit is part of the 29-path source selection. CHANGE must recheck current destination preimages before applying/publishing source bytes."
+  }
+}

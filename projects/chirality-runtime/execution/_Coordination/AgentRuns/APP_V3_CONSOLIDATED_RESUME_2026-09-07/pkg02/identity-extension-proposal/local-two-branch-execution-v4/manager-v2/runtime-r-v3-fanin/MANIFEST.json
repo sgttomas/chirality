@@ -1,0 +1,23 @@
+{
+  "memberCount": 3,
+  "members": [
+    {
+      "bytes": 1196,
+      "path": "CLEANUP.json",
+      "sha256": "8515effaf6c00608b4339474523ca45d5c4669f4bc6f68f3d9e1b0d37fb7fad1"
+    },
+    {
+      "bytes": 2972,
+      "path": "RETURN.md",
+      "sha256": "3302d4cc809d0aa40c2dddd6d4d3358747affc53b753af1427693dcd27efd56c"
+    },
+    {
+      "bytes": 2983,
+      "path": "NEXT_DECISION_SUBJECT.md",
+      "sha256": "87b9ab3d47a9845ad3f046e831a9b7535d27055c8d8c245a1d6cf6b874cf04c6"
+    }
+  ],
+  "rehashed": true,
+  "schema": "chirality.runtime.identity-continuation.manager-fanin.v1",
+  "status": "VALIDATED_FAN_IN__OWNER_DISPOSITION_REQUIRED"
+}

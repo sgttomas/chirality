@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-09-09T05:17:24.163933+00:00",
+  "members": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 5247,
+      "sha256": "7aa504bbe22193627bfff3b7145d263b5bfc8a7a510626fb9642aa93c544a427"
+    }
+  ],
+  "publicationComplete": false,
+  "productExecutionPaused": true,
+  "newDoctrineConformanceAssessed": false
+}
