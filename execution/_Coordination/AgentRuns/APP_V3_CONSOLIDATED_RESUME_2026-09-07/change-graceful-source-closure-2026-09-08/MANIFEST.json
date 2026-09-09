@@ -1,60 +1,45 @@
 {
-  "schema": "chirality.change.graceful-source-closure-manifest.v7",
+  "schema": "chirality.change.graceful-source-closure-manifest.v10",
   "members": [
-    {
-      "path": "PREFLIGHT.json",
-      "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
-      "bytes": 3221
-    },
     {
       "path": "CANDIDATE_CHECKS.json",
       "sha256": "24bc322abfa019d5a389ad4ef702604a2f6411af9910994e5d26024311c80f07",
       "bytes": 1740
     },
     {
-      "path": "RETAINED_EVIDENCE_BOUNDARY.md",
-      "sha256": "5a3a6e4b90c90727e97bf320a5a2123a75c426b77f7cea11ccaee389f4592b41",
-      "bytes": 1708
+      "path": "CI_FAILURE_AND_REPAIR.json",
+      "sha256": "932f9838a7d236e5f8a6c88784189a77ce6c0728f108ce5e8c25a4f71f2b969f",
+      "bytes": 4209
     },
     {
-      "path": "review-v1/MANIFEST.json",
-      "sha256": "d6f925992d93e138519c7434cf6ff17ee58841c13674d9e2d6c535b8650fa647",
-      "bytes": 705
+      "path": "G4_FAILURE_AND_AUTHORITY.json",
+      "sha256": "9bff6ec038819ed7a0b687fcb4e20e358b5bdb4c6d744c9bacf8c2cd7ab28cd7",
+      "bytes": 1111
     },
     {
-      "path": "review-v1/reviewed-inputs/PREFLIGHT.json",
+      "path": "PREFLIGHT.json",
       "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
       "bytes": 3221
     },
     {
-      "path": "review-v1/reviewed-inputs/PUBLICATION_SELECTION.json",
-      "sha256": "dc307f7ff0315f5975a656c583d402c57063cdc46dcf49501f2838b0a6c59e4c",
-      "bytes": 24849
+      "path": "PUBLICATION_SELECTION.json",
+      "sha256": "74460f4c3a632588da7fb8fccafade97e48f8bf19b76082ff505bbf57957dd10",
+      "bytes": 45661
     },
     {
-      "path": "review-v1/reviewed-inputs/MANIFEST.json",
-      "sha256": "71a12e14f0e2c657dcedf0c051e2731514c7fa51edefec6ce7e496c9ce2151a9",
-      "bytes": 447
+      "path": "RETAINED_EVIDENCE_BOUNDARY.md",
+      "sha256": "1cb9b86a253ba3b4510baa76508f51123af15d980cea2553a3ad19a37b2bf7cd",
+      "bytes": 2036
     },
     {
-      "path": "CI_FAILURE_AND_REPAIR.json",
-      "sha256": "96376285b2cce4743dba44c904b8761b4be53b51b43798c36413897685d20c4b",
-      "bytes": 2556
+      "path": "docs/governance_harness/tranche_manifests/APP-V3-GRACEFUL-SOURCE-CLOSURE-20260909.yaml",
+      "sha256": "0fe50c6f3a8b6448add4f35864c0ff53bf169ed6d8179f6fb0bdbbc938fff4a6",
+      "bytes": 2156
     },
     {
-      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/MANIFEST.json",
-      "sha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
-      "bytes": 1588
-    },
-    {
-      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/MANIFEST.json",
-      "sha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13",
-      "bytes": 1281
-    },
-    {
-      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/manager/MANIFEST.json",
-      "sha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2",
-      "bytes": 1159
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANIFEST.json",
+      "sha256": "b7d0e408c7ed50f674e655d02e77646c344f7a632520cb82c4b9d0ebcd135feb",
+      "bytes": 637
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/MANIFEST.json",
@@ -67,14 +52,24 @@
       "bytes": 755
     },
     {
-      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANIFEST.json",
-      "sha256": "b7d0e408c7ed50f674e655d02e77646c344f7a632520cb82c4b9d0ebcd135feb",
-      "bytes": 637
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-failure-diagnosis-v1/MANIFEST.json",
+      "sha256": "a9672351c2314a5a444b11fcceaa151fc5108f6177658ffa87183a86b772f0d6",
+      "bytes": 519
     },
     {
-      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-review-exception-v1/MANIFEST.json",
-      "sha256": "f98128d7a78ba242a3b6eaf6872402dd3f893ced49dcac8a54d51a3ca5269016",
-      "bytes": 171
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/author-v1/EVIDENCE_MANIFEST.json",
+      "sha256": "c22b40c23e43cb6db48bee63b0b30529d0bc0c0fdcb4208ecae2404f0f0aad18",
+      "bytes": 1152
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/manager-v1/MANIFEST.json",
+      "sha256": "9ed230339e637d336f8505ef1f1389d8ed2ab24673229d6153323243b01afe34",
+      "bytes": 1389
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/review-v1/MANIFEST.json",
+      "sha256": "2ef0d3d87e982b14abb5a28dd5b0182845d249c55ee8a76e062487397829a797",
+      "bytes": 697
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-repair-disposition-v1/MANIFEST.json",
@@ -82,9 +77,44 @@
       "bytes": 173
     },
     {
-      "path": "PUBLICATION_SELECTION.json",
-      "sha256": "553e54216f0d11c68fcdc4ffd5d35146590500d4644dd9d8b3d49149fee22602",
-      "bytes": 41713
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-review-exception-v1/MANIFEST.json",
+      "sha256": "f98128d7a78ba242a3b6eaf6872402dd3f893ced49dcac8a54d51a3ca5269016",
+      "bytes": 171
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/MANIFEST.json",
+      "sha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
+      "bytes": 1588
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/manager/MANIFEST.json",
+      "sha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2",
+      "bytes": 1159
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/MANIFEST.json",
+      "sha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13",
+      "bytes": 1281
+    },
+    {
+      "path": "review-v1/MANIFEST.json",
+      "sha256": "d6f925992d93e138519c7434cf6ff17ee58841c13674d9e2d6c535b8650fa647",
+      "bytes": 705
+    },
+    {
+      "path": "review-v1/reviewed-inputs/MANIFEST.json",
+      "sha256": "71a12e14f0e2c657dcedf0c051e2731514c7fa51edefec6ce7e496c9ce2151a9",
+      "bytes": 447
+    },
+    {
+      "path": "review-v1/reviewed-inputs/PREFLIGHT.json",
+      "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
+      "bytes": 3221
+    },
+    {
+      "path": "review-v1/reviewed-inputs/PUBLICATION_SELECTION.json",
+      "sha256": "dc307f7ff0315f5975a656c583d402c57063cdc46dcf49501f2838b0a6c59e4c",
+      "bytes": 24849
     }
   ],
   "manifestSelfHash": "EXCLUDED_BY_CONTRACT"

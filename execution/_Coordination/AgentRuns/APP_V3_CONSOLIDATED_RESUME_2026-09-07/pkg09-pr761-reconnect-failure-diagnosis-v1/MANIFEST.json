@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-readonly-diagnosis-handoff/v1",
+  "status": "TEST_FIXTURE_DEFECT_ONE_PATH_REPAIR_RECOMMENDED",
+  "sourceHead": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5",
+  "ciRun": 34322182961,
+  "members": [
+    {
+      "path": "DIAGNOSIS.md",
+      "sha256": "a2e6a14d18e9add8c52146eeb7aa796fdbeb3068071d6ed04f80276178739dad",
+      "bytes": 3673
+    }
+  ],
+  "sourceWritten": false,
+  "testsRun": false,
+  "determinism": "static_call_graph_deterministic_for_current_fixture; observed_once_in_current_CI"
+}

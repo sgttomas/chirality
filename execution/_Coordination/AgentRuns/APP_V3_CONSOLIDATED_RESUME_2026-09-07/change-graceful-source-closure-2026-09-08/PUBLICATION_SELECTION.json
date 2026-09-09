@@ -1,8 +1,8 @@
 {
-  "schema": "chirality.change.graceful-source-closure-selection.v7",
-  "status": "FROZEN_REVIEWED_APP_AND_RUNTIME_PUBLICATION_REPAIRS__FRESH_CI_AND_TERMINAL_REVIEW_PENDING",
+  "schema": "chirality.change.graceful-source-closure-selection.v10",
+  "status": "FINAL_REVIEWED_SOURCE_AND_GOVERNANCE_SUCCESSOR_FROZEN__FRESH_CI_AND_TERMINAL_REVIEW_PENDING",
   "baseCommit": "533332349a4607eee561d4ef90fb05a62d86519e",
-  "payloadCount": 132,
+  "payloadCount": 143,
   "publicationRule": "publish exactly payloadMembers plus this selection and its manifest; terminal independent review receipt remains external to avoid self-reference",
   "sourceCounts": {
     "historicallyAcceptedAppPostimages": 29,
@@ -10,7 +10,8 @@
     "runtimePublicationConfigRepair": 1,
     "appSecurityContractSuccessorPaths": 5,
     "historicalAppPostimagesSupersededBySuccessor": 3,
-    "newWorkflowAndTestPaths": 2
+    "newWorkflowAndTestPaths": 2,
+    "appReconnectFixtureCorrection": 1
   },
   "qualificationBoundary": "Published main source includes a reviewed five-path App contract successor. It is not the prior accepted App artifact identity and requires a fresh future App qualification binding. Release workflow fails closed before workload until deferred S0 qualification is supplied.",
   "payloadMembers": [
@@ -21,6 +22,12 @@
       "group": "app-security-contract-repair-source"
     },
     {
+      "path": "docs/governance_harness/tranche_manifests/APP-V3-GRACEFUL-SOURCE-CLOSURE-20260909.yaml",
+      "group": "g4-tranche-manifest",
+      "sha256": "0fe50c6f3a8b6448add4f35864c0ff53bf169ed6d8179f6fb0bdbbc938fff4a6",
+      "bytes": 2156
+    },
+    {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/CANDIDATE_CHECKS.json",
       "sha256": "24bc322abfa019d5a389ad4ef702604a2f6411af9910994e5d26024311c80f07",
       "bytes": 1740,
@@ -28,9 +35,15 @@
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/CI_FAILURE_AND_REPAIR.json",
-      "sha256": "96376285b2cce4743dba44c904b8761b4be53b51b43798c36413897685d20c4b",
-      "bytes": 2556,
+      "sha256": "932f9838a7d236e5f8a6c88784189a77ce6c0728f108ce5e8c25a4f71f2b969f",
+      "bytes": 4209,
       "group": "change-repair-disposition"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/G4_FAILURE_AND_AUTHORITY.json",
+      "group": "change-repair-disposition",
+      "sha256": "9bff6ec038819ed7a0b687fcb4e20e358b5bdb4c6d744c9bacf8c2cd7ab28cd7",
+      "bytes": 1111
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/PREFLIGHT.json",
@@ -40,8 +53,8 @@
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/RETAINED_EVIDENCE_BOUNDARY.md",
-      "sha256": "5a3a6e4b90c90727e97bf320a5a2123a75c426b77f7cea11ccaee389f4592b41",
-      "bytes": 1708,
+      "sha256": "1cb9b86a253ba3b4510baa76508f51123af15d980cea2553a3ad19a37b2bf7cd",
+      "bytes": 2036,
       "group": "closure-documentation"
     },
     {
@@ -163,6 +176,54 @@
       "sha256": "c5bb8be47618de31a77bf287bce34292416b1f19a6541a55857cae0125c2deba",
       "bytes": 1949,
       "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-failure-diagnosis-v1/DIAGNOSIS.md",
+      "group": "app-test-fixture-diagnosis",
+      "sha256": "a2e6a14d18e9add8c52146eeb7aa796fdbeb3068071d6ed04f80276178739dad",
+      "bytes": 3673
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-failure-diagnosis-v1/MANIFEST.json",
+      "group": "app-test-fixture-diagnosis",
+      "sha256": "a9672351c2314a5a444b11fcceaa151fc5108f6177658ffa87183a86b772f0d6",
+      "bytes": 519
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/author-v1/EVIDENCE_MANIFEST.json",
+      "group": "app-test-fixture-repair-evidence",
+      "sha256": "c22b40c23e43cb6db48bee63b0b30529d0bc0c0fdcb4208ecae2404f0f0aad18",
+      "bytes": 1152
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/manager-v1/MANAGER_RETURN.md",
+      "group": "app-test-fixture-repair-manager",
+      "sha256": "f7f760169fce364376fc3d52b4394accd198a26f068e9a12da14da6cd7b1189c",
+      "bytes": 1375
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/manager-v1/MANIFEST.json",
+      "group": "app-test-fixture-repair-manager",
+      "sha256": "9ed230339e637d336f8505ef1f1389d8ed2ab24673229d6153323243b01afe34",
+      "bytes": 1389
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/review-v1/CHECKS.json",
+      "group": "app-test-fixture-repair-review",
+      "sha256": "293c781499657ef048cf331a20d5ae7e3aea1365828e346b07953761d411181b",
+      "bytes": 1677
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/review-v1/MANIFEST.json",
+      "group": "app-test-fixture-repair-review",
+      "sha256": "2ef0d3d87e982b14abb5a28dd5b0182845d249c55ee8a76e062487397829a797",
+      "bytes": 697
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-reconnect-fixture-repair-v1/review-v1/RETURN.md",
+      "group": "app-test-fixture-repair-review",
+      "sha256": "ee9270a7414dd7e2632de012b2570d6935ff0aa47df0333a9d9735a0edbef02b",
+      "bytes": 2731
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-repair-disposition-v1/DISPOSITION.json",
@@ -331,6 +392,12 @@
       "sha256": "d6044e3cb76ce17d6ffbd5b921c4fdb32e96717a5e375a495917600701d1fada",
       "bytes": 19908,
       "group": "app-source"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "group": "app-test-fixture-repair",
+      "sha256": "26046c6a127e7496341c05181e0131840cf713ec1324ccbae1d6691c28283fd4",
+      "bytes": 12383
     },
     {
       "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
@@ -817,5 +884,7 @@
     "excluded optional App readiness Markdown records; their hashes remain cited by the selected Root transition handoff and originals remain preserved",
     "historical manifest members beyond the compact selected bodies remain in preserved custody; see RETAINED_EVIDENCE_BOUNDARY.md"
   ],
-  "representationBoundary": "The reviewed five-path repair patch remains byte-preserved in the aed8 custody worktree at SHA-256 9de48cd6c3ee8ab93be3745c014e27d57cc34285b18eec784517e1d5644ab496; publication carries exact live postimages and readable manager/review records, excluding the redundant unified-diff representation."
+  "representationBoundary": "The reviewed five-path repair patch remains byte-preserved in the aed8 custody worktree at SHA-256 9de48cd6c3ee8ab93be3745c014e27d57cc34285b18eec784517e1d5644ab496; publication carries exact live postimages and readable manager/review records, excluding the redundant unified-diff representation. The reconnect-fixture author return and redundant patches remain preserved in aed8; its author manifest, manager return, and independent review are published.",
+  "governanceSuccessor": "Adds only a schema-readable G4 tranche manifest and concise failure/authority receipt; the reviewed f8c9b22 product and workflow bytes are unchanged.",
+  "testFixtureSuccessor": "One reviewed App test fixture isolates the background title-reader mock from the selected replay-loader spy; no product behavior changes."
 }
