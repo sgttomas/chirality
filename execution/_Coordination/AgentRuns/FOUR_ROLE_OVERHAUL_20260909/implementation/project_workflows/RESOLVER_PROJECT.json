@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "role": "WORKING_ITEMS",
+  "workflow": "project-decomp",
+  "stage": null,
+  "legacy_alias": null,
+  "role_configuration": {
+    "instruction": "agents/AGENT_WORKING_ITEMS.md",
+    "type": 1,
+    "direct_entry": true,
+    "delegates_to": [
+      "TASK"
+    ],
+    "allow_generalist_agent2": true,
+    "tools": [
+      "read",
+      "write",
+      "bash",
+      "delegate_agent",
+      "report_coordination_notice",
+      "send_agent_update",
+      "ack_agent_update"
+    ],
+    "write_scope": "explicit brief targets within authorized working root"
+  },
+  "execution": {
+    "schema_version": 1,
+    "compatible_roles": [
+      "WORKING_ITEMS"
+    ]
+  },
+  "effective_tools": {
+    "capabilities": [
+      "ack_agent_update",
+      "bash",
+      "delegate_agent",
+      "read",
+      "report_coordination_notice",
+      "send_agent_update",
+      "write"
+    ],
+    "commands": {
+      "all_of": []
+    }
+  },
+  "resolved_commands": [],
+  "context": [
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "sha256": "ae79d81cb442e5c7eca8cc0277bac78ea18732c22d9966a8f9cb651f9dea1a2c"
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "sha256": "0ecba3159ceaf1eb998ae9ab120cca4cb7adc25a59dcb02e7835660811319521"
+    }
+  ],
+  "configuration_basis": [
+    {
+      "path": "agents/registry.json",
+      "sha256": "61b92f120b5093c4bf1691dce33b62f52999cdcc701764fbf6b87bc9018d1e89"
+    },
+    {
+      "path": "workflows/project-decomp/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    }
+  ],
+  "tool_root": "/Users/ryan/.codex/worktrees/45d2/chirality",
+  "context_evidence": "mechanically-recorded resolver inputs; host context delivery unverified",
+  "enforcement": "instruction-asserted; host must enforce effective restrictions"
+}

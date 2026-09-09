@@ -1,0 +1,25 @@
+{
+  "reason": "Initial inventory ran while design was writing retained role candidates. For these four entries, source_sha256 captured candidate rather than original bytes. Original source hashes are corrected from the immutable pre-design source_basis; captured candidate hashes remain attributed separately. Git-basis verification found the distinction. No historical source bytes changed.",
+  "corrections": [
+    {
+      "source": "agents/AGENT_HELPS_HUMANS.md",
+      "initial_captured_candidate_sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "original_source_sha256": "47a30075b4286a7352d78aae9d033d8eead8ef125e4063d0cc7c1235b3e9101a"
+    },
+    {
+      "source": "agents/AGENT_HELP_HUMAN.md",
+      "initial_captured_candidate_sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+      "original_source_sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981"
+    },
+    {
+      "source": "agents/AGENT_TASK.md",
+      "initial_captured_candidate_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "original_source_sha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983"
+    },
+    {
+      "source": "agents/AGENT_WORKING_ITEMS.md",
+      "initial_captured_candidate_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "original_source_sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# Bounded Type 2 implementation brief
+
+Parent: WORKING_ITEMS, /root/working_items. Authority: user-approved Four-role agent and workflow overhaul implementation. Mechanism: delegated-harness-native, role and scope instruction-asserted. Act as TASK / bounded Agent 2; use available read/write/shell tools within this brief. Return findings to parent. The run's instructions are frozen at launch; read the actual current TASK role and root contract before starting. Do not delegate.
+
+Read the user-approved plan, design contract in this run, original assigned source files, and relevant cards in execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md and type2/PROPOSAL.md. Those proposals' roster recommendations and experiment gates are superseded by the accepted four-role plan; their concrete defects are implementation requirements.
+
+Read access: repository as needed. Write only the assignment paths below and your own evidence subdirectory under implementation/. Use native tools truthfully; do not claim host enforcement from prose or tool configuration. Preserve unrelated work and historical snapshots. No commits, staging, branches, pushes, project product code writes, or sibling communication. Request shared-file changes through WORKING_ITEMS. Record source-to-destination dispositions, substantive changes, commands/results, and unresolved matters in RETURN.md plus machine-readable coverage in your evidence subtree. Make the assignment complete rather than merely relocating text.
+
+## Write scope
+
+Own tools/, exports/, .github/workflows/governance-harness.yml, agents/registry.json, and removal of agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md and agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md. Other .github changes require parent scope amendment. Own runtime_tools/ evidence subtree.
+
+Implement shared runtime registry and Root workflow resolver, effective restriction composition, explicit Workflow/legacy TaskSkill adapter, fingerprints, staged resource loading, path resolution outside repository cwd. All live Root brief builders and source validators migrate; historical reader compatibility remains explicit. Update registry/README tools documentation and public exporter staging. Export adoption is held for incompatible consumers; do not change App or Runtime source.
+
+## Assignment-specific acceptance
+
+Two audit CLI replacements at tools/evaluation/audit_structure.py and audit_dependencies.py expose CSV-aware exhaustive inventories and structured output. Dependency checks use exact fields/all rows, quoted/multiline input, canonical enum sets, missing anchors/evidence, empty/malformed inputs and meaningful denominator counts. Structure audit uses explicit unit inventory/variant, parses Current State rather than history, includes RETIRED and production format outcomes, separates completed audit from conforming subject. Repair audit_dep_closure analyzer advertised parameters/checks, malformed rows, missing nodes and orphan labeling. Scaffolder created-path evidence/no-overwrite behavior must support preparation workflow. Research packet allocation must respect explicit output directory and pointer ownership.
+
+Update agent validator from old six-row metadata/forced named child edges to four role registry and four-section packages. Workflow validator replaces old mandatory companion schema; old validate_skill_metadata entrypoint may act as explicit compatibility wrapper. Update G4/G2/G3 instruction surface recognition for workflows/registry while preserving historical manifest validity and pinned governance-state truth. Update brief generators (decomp, drawing, equation, PDF, publication, harness) to RequestedBy actual role + Workflow field; preserve historical TaskSkill readers. Old build_skill_pack_batch historical batches remain historical.
+
+Regression tests must exercise permission narrowing, conflicting Workflow/TaskSkill, stage-selective resources, missing selected resource, cwd-independent tool resolution, CSV/structure audit defects, idempotent scaffolding and partial research. Run required affected test suites. If tool APIs used by workflow authors need coordination, send exact interface to parent early.

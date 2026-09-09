@@ -66,14 +66,14 @@ If you want help, Chirality AI Ltd. offers paid work to develop and refine metho
 
 **To use the App:** visit the [release page](https://github.com/sgttomas/chirality-app/releases) and read the notes for the version you download. The desktop distribution targets Apple Silicon Macs running macOS 15 or newer. Version 3.0 is in development.
 
-**To explore the methods:** start with [`skills/README.md`](skills/README.md). Choose a task whose result you can evaluate, inspect the method's inputs and review requirements, and adapt it to your work.
+**To explore the methods:** start with [`workflows/README.md`](workflows/README.md). Choose a task whose result you can evaluate, inspect the method's inputs and review requirements, and adapt it to your work.
 
 **To understand or develop the system:**
 
 | Location | What you'll find |
 | --- | --- |
-| [`AGENTS.md`](AGENTS.md) and [`agents/`](agents/) | Agent roles, responsibilities, and instructions |
-| [`skills/`](skills/) | Reusable methods and their input, output, and review requirements |
+| [`AGENTS.md`](AGENTS.md) and [`agents/`](agents/) | Four roles, their instructions, and runtime registry |
+| [`workflows/`](workflows/) | Reusable methods and their input, output, and review requirements |
 | [`tools/`](tools/) | Deterministic utilities, checks, and transformations |
 | [`projects/chirality-runtime/`](projects/chirality-runtime/) | Shared runtime, engine adapters, daemon, client, and CLI |
 | [`projects/chirality-app-dev/`](projects/chirality-app-dev/) | Desktop application source and development documentation |

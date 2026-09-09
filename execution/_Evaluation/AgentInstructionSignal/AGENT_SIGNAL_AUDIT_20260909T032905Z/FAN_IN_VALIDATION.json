@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "basis": "781b478176db46ca66ebd38991607612e0ce9338",
+  "checks": {
+    "exact_cohort_union": true,
+    "all_subject_hashes_unchanged": true,
+    "all_shared_source_hashes_unchanged": true,
+    "all_subject_reads_reported_complete": true,
+    "one_card_four_sections_and_probe_per_role": true,
+    "tracked_diff_empty": true,
+    "markdown_file_links_resolve": true
+  },
+  "subject_count": 34,
+  "subject_lines": 15718,
+  "shared_sources_checked": 20,
+  "dispositions": {
+    "SLIM": 20,
+    "CONVERT_TO_SKILL": 12,
+    "CONVERT_TO_TOOL": 2
+  },
+  "errors": [],
+  "behavioral_trials_executed": false,
+  "structural_baseline": "BASELINE_VALIDATION.json",
+  "note": "Read completeness is the auditors\u2019 declaration; source identity and report coverage are mechanically checked.",
+  "checker_note": "Corrected the cohort checker to compare role-name sequences; the first checker mistakenly passed a metadata mapping to Counter.",
+  "markdown_file_links_checked": 175
+}

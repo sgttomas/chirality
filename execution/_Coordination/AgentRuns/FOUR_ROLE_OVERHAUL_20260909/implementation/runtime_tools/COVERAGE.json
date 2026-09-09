@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "role": "TASK",
+  "parent": "WORKING_ITEMS",
+  "mechanism": "delegated-harness-native",
+  "enforcement": "instruction-asserted",
+  "outputs": [
+    {
+      "path": ".github/workflows/governance-harness.yml",
+      "sha256": "6bb965c4f1fda2b7de55195c6199759b505e34307522cddf75fa87e4ca2e2fd6"
+    },
+    {
+      "path": "agents/registry.json",
+      "sha256": "61b92f120b5093c4bf1691dce33b62f52999cdcc701764fbf6b87bc9018d1e89"
+    },
+    {
+      "path": "exports/chirality-app/export_public.py",
+      "sha256": "7f621a3e23702fbfc5174248aa4561582e7f6050df3ddca9aeb6b354301376de"
+    },
+    {
+      "path": "tools/EXTERNAL_TOOLS.md",
+      "sha256": "379b4cbf3599a2872d442629885c0f2ffc6571e41ad8dfcb073b0f8522596b80"
+    },
+    {
+      "path": "tools/REGISTRY.md",
+      "sha256": "71b6aab5569c099f07086773edfb4084abad909b294115b5ebf93953a6a9a78e"
+    },
+    {
+      "path": "tools/decomp/build_atomization_brief.py",
+      "sha256": "6c2b55994759dd7ba76a857f30498b3543a834e0b1e0d54bfe365ed638ba335c"
+    },
+    {
+      "path": "tools/decomp/build_manifest_domain_adapter.py",
+      "sha256": "fcef17bb51f24d79cd667ca281d2c4fce524bf66d50264636164224853accfa4"
+    },
+    {
+      "path": "tools/decomp/build_prose_validate_brief.py",
+      "sha256": "84202b5035446c6c85b870c7843bc3fa98a82ddd8928ca8f791b8bca988602a4"
+    },
+    {
+      "path": "tools/diagnostics/ka_coverage_audit.py",
+      "sha256": "3fc2327621a7d8a61257d92df4f0890baabaafcfcc12b3e1f8b4c272cd2ff250"
+    },
+    {
+      "path": "tools/drawing_extract/build_page_worker_brief.py",
+      "sha256": "b52ebd3c04921b251efeb6a045f000198186b9bea8902d2a03ac7107eea5f234"
+    },
+    {
+      "path": "tools/drawing_extract/build_pandid_valve_tile_brief.py",
+      "sha256": "87727bdf117fdfc22354589add01e50c4aece609b25272bd87328c5adbb923f6"
+    },
+    {
+      "path": "tools/drawing_extract/build_titleblock_page_brief.py",
+      "sha256": "6bdbf566461dd9bb9d69e3668c5bc32591e2ab4f4f149fa8069bfc9561566ef9"
+    },
+    {
+      "path": "tools/drawing_extract/normalize_equipment_stub_layout.py",
+      "sha256": "82f28b3a1476734bbac74262ed524e9c952171687f46ae9f502e65b91a49ea20"
+    },
+    {
+      "path": "tools/drawing_extract/report_stub_counts.py",
+      "sha256": "b3f616e2fd8cdbdba56204f3ee920ddbeeb0a5f93b137dcd54d20ab4a9337756"
+    },
+    {
+      "path": "tools/equation_audit/build_equation_bbox_brief.py",
+      "sha256": "b1e624bf612da8bcc7663390811e91c943f80958d5180cdb54589bb322fad69c"
+    },
+    {
+      "path": "tools/equation_audit/build_equation_interpret_brief.py",
+      "sha256": "c308be7ccbf28e7968e686223aa513c0f1b78d76a701380afab3a034859bbcf8"
+    },
+    {
+      "path": "tools/pdf2md/build_folio_extract_brief.py",
+      "sha256": "65a1501314ced6f7c8c5a65cf3a0cb5ba448ecfb4aef3318894cbe1a8bc475ef"
+    },
+    {
+      "path": "tools/pdf2md/build_page_assets_brief.py",
+      "sha256": "99989ec7a7f6ef210c1255828a1f76c2b7515e914daaff8498a508d3f40855f7"
+    },
+    {
+      "path": "tools/pdf2md/build_page_brief.py",
+      "sha256": "325c1e77beb8433af4d74ef2d535bb84eb7d573d02ea91ee53a18b18e440a7d2"
+    },
+    {
+      "path": "tools/pdf2md/build_page_full_brief.py",
+      "sha256": "728e66eacbffc25bde1ad330b3175ddfabe8673f3d2a7ed5a0140070468103d4"
+    },
+    {
+      "path": "tools/pdf2md/materialize_page_assets.py",
+      "sha256": "7a9f5311535e7d219716005faebe77d91cbd4342899341b5b993ac8b9e286454"
+    },
+    {
+      "path": "tools/pdf2md/render_table_xlsx.py",
+      "sha256": "c6d915c04bfa8aaeb7a69106b94a9bf94453611626fb6d5c9fdf88e41543ef09"
+    },
+    {
+      "path": "tools/pdf2md/rewrite_inline_asset_refs.py",
+      "sha256": "4fcd7d07d1d580ca2e7f14163c9d318122a6e730c3613d812e6c293401951da2"
+    },
+    {
+      "path": "tools/pdf2md/test_materialize_page_assets.py",
+      "sha256": "f281f21c41a6ccde50df81b1393e363ec68c83da563cb4b37a94b638e861179c"
+    },
+    {
+      "path": "tools/pdf2md/test_rewrite_inline_asset_refs.py",
+      "sha256": "2f32de96b867ca74d9a8272ac36608106a73ae5e558d01222aa37fffe5bfeb83"
+    },
+    {
+      "path": "tools/practitioner_harness/README.md",
+      "sha256": "b30448ef70ace0f7933c14cc27841d47cc1043c51761f81957e02a0617894088"
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_brief.py",
+      "sha256": "fc6929ee862dc6fd695e967a0409dd8dafd641c25cd5ba1ebcf51b59297342d0"
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_self_check.py",
+      "sha256": "ba1e6f4a14ebddb8bd0c88c069a913b8729997d656d55988b330df56546b8a96"
+    },
+    {
+      "path": "tools/publication/render_dispatch_briefs.py",
+      "sha256": "8a2790b0befe800ff883de90fd8ebfccbee2f9b3c072281cf036963b814b6d44"
+    },
+    {
+      "path": "tools/publication/test_render_dispatch_briefs.py",
+      "sha256": "f0d55a0459478b8b59383ee9d252c1b9f6955b14ce6ff5de9829ea41141f7fb6"
+    },
+    {
+      "path": "tools/retrieval/scaffold_research_packet.py",
+      "sha256": "1f364bf9664869e12a7e783f18f3b09e0ce85f75e43c8f022b190150bde95d7f"
+    },
+    {
+      "path": "tools/retrieval/test_scaffold_research_packet.py",
+      "sha256": "b95e1bca0a09fe00f36d3974aeb2f45799355812b234766745d6c4803187f15e"
+    },
+    {
+      "path": "tools/scaffolding/scaffold_deliverable.sh",
+      "sha256": "55085fdff842e85e87787fe69e56d05ee2d8d2744c1ad193110d99f8bec29f41"
+    },
+    {
+      "path": "tools/scaffolding/scaffold_package.sh",
+      "sha256": "482a3d4a5b9f964da7f3dd4368f816a311d0953f47e7bdeb8a6d57fca410cb25"
+    },
+    {
+      "path": "tools/scaffolding/test_scaffold.py",
+      "sha256": "28640d84d1462bf143ae352ca786c119c8faf8f6958629112b7f9192d7c71530"
+    },
+    {
+      "path": "tools/source_audit/compare_extracts.py",
+      "sha256": "a12d31a4b083714d67dcebe213ea31c874cb196565fb540ae46c79a24c88ac41"
+    },
+    {
+      "path": "tools/source_catalog/research_packet.py",
+      "sha256": "9032618954d136269014e4df09bb118308c88dffb45827a9207d1c3d201dbac6"
+    },
+    {
+      "path": "tools/tools-test-routing.json",
+      "sha256": "4849da12fdd3c05d9c72552f1f3c581497a5459c1b78ab72f4ac0f689feb8c26"
+    },
+    {
+      "path": "tools/validation/README.md",
+      "sha256": "f5195368ebb0045817c32bf657905d98f5603e2a6de4fc3fb1e74856de5e31f4"
+    },
+    {
+      "path": "tools/validation/test_four_role_contract.py",
+      "sha256": "3624d1f161042d60775e968c60a82ccd1bfc96b51e23e44bb5439ec882059083"
+    },
+    {
+      "path": "tools/validation/test_public_export_profile.py",
+      "sha256": "87a59c055215bcef784a9ba14fe87a2f6a20f8661e66dc7d21c550492dd81d8f"
+    },
+    {
+      "path": "tools/validation/test_validate_agent_instructions.py",
+      "sha256": "09ed1a455c9a70ee1fe64216e966cde9f6dcab98734c5186bde42e1b08fd951b"
+    },
+    {
+      "path": "tools/validation/test_validate_kty_remediation_manifest.py",
+      "sha256": "9ac019186b49e3a8e60976f8802ed31ab47820dc3ed6b72d41487569fcc9ba43"
+    },
+    {
+      "path": "tools/validation/validate_agent_instructions.py",
+      "sha256": "0bc7156b3b7824adad524ff46d2c7cddae1ff3c29304d7d265414497bfa68540"
+    },
+    {
+      "path": "tools/validation/validate_enum.py",
+      "sha256": "add20ed27e0bb85dad5377b207ffddfb23287f7a79540d0deb6283c6aac6fa2d"
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "sha256": "ff2c39290cb1de17a338cfb1e60583329489bcf0a0eae5131f966989947baaff"
+    },
+    {
+      "path": "tools/validation/validate_kty_remediation_manifest.py",
+      "sha256": "97c958a0ba16c62f45900ebe75b29ff47febaf7a30c34f56b3ae019243e9973b"
+    },
+    {
+      "path": "tools/validation/validate_root_surface_ownership.py",
+      "sha256": "725b65dd15bdfe115ec9a5cd28c729251232249a331e4661359282f26a2b606a"
+    },
+    {
+      "path": "tools/validation/validate_root_work_graph_dispatch.py",
+      "sha256": "af7186283c8b66035f1fdef777cd7c04edc5e69e2905290e04a530a60386cf91"
+    },
+    {
+      "path": "tools/validation/validate_skill_metadata.py",
+      "sha256": "9ff6cc74feb0648aa9c51cf5df97c6c0d0dc83caf0fd99f7f7ef151e0009fdf9"
+    },
+    {
+      "path": "tools/validation/validate_workflow_metadata.py",
+      "sha256": "8ae7043e81737618dcb875b31295bbc2b4d5418599135c0ca1bc8323075691eb"
+    },
+    {
+      "path": "tools/workflow_runtime/README.md",
+      "sha256": "b787a4c7c3a160bd2e4a84f03690d017b7937b2098dd0da8df47cd4014966e5b"
+    },
+    {
+      "path": "tools/workflow_runtime/normalize_brief.py",
+      "sha256": "583351ec9fd7376ec304fef48c8610944299402b3bc89d6328214daceea397da"
+    },
+    {
+      "path": "tools/workflow_runtime/resolve_workflow.py",
+      "sha256": "dd55c92f711238e19c2e1d208c4fdff8b7140153c4c8560c4413c58ee38e94c0"
+    },
+    {
+      "path": "tools/workflow_runtime/test_normalize_brief.py",
+      "sha256": "356e40114bc65358171e8949c53926799b3a5d1f27ac1970c32054445abf60b6"
+    },
+    {
+      "path": "tools/workflow_runtime/test_resolve_workflow.py",
+      "sha256": "50384194442bd980ee76d6818acb0385e190a742e3a5dae49d45fe23423396c3"
+    },
+    {
+      "path": "tools/source_catalog/test_research_packet.py",
+      "sha256": "53f8c5012025e90a7998b0f81e70cb00342a6493b62b1353e1a7c20b85da7bbc"
+    }
+  ],
+  "retired_agent_dispositions": [
+    {
+      "source": "agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "destination": "tools/evaluation/audit_structure.py",
+      "implementation_owner": "audit_tools",
+      "integration": "source removed after parent reported replacement regression pass"
+    },
+    {
+      "source": "agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "destination": "tools/evaluation/audit_dependencies.py",
+      "implementation_owner": "audit_tools",
+      "integration": "source removed after parent reported replacement regression pass"
+    }
+  ],
+  "relocated_task_contracts": [
+    "four-role registry tool ceilings",
+    "explicit workflow loading and legacy selection adapter",
+    "structured inline/file brief normalization",
+    "independent instruction and working roots",
+    "explicit write scope and read-only returns",
+    "capability set intersection and conjunctive scoped command constraints",
+    "source fingerprints and between-run basis",
+    "partial/blocked/failed return distinctions documented in runtime README"
+  ],
+  "historical_readers": [
+    "validate_agent_instructions legacy snapshots",
+    "validate_skill_metadata explicit skills directories",
+    "validate_kty_remediation_manifest TaskSkill column",
+    "build_skill_pack_batch/refine_gate3_categories/propose_gate4_kty accepted historical taxonomies",
+    "validate_domain_engine_profile SHA-pinned historical contract"
+  ],
+  "validation": [
+    {
+      "command": "broad affected suites (workflow_runtime scaffolding retrieval publication decomp drawing_extract equation_audit pdf2md validation practitioner_harness)",
+      "result": "1146 passed,48 subtests; one transitional roster failure subsequently resolved by removal of two retired audit files"
+    },
+    {
+      "command": "final focused live baseline, export, role, KTY, runtime, scaffolding suites",
+      "result": "55 passed"
+    },
+    {
+      "command": "final workflow/runtime/scaffolding/new validation/research/publication/drawing/equation/PDF suites",
+      "result": "278 passed"
+    },
+    {
+      "command": "latest runtime/scaffolding/new registry/KTY/publication regression pass",
+      "result": "33 passed"
+    },
+    {
+      "command": "validate_agent_instructions.py --json",
+      "result": "4 files,0 errors,0 warnings"
+    },
+    {
+      "command": "validate_workflow_metadata.py --json",
+      "result": "71 checked,0 invalid"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "latest tools-directory escape regression plus runtime/scaffolding/registry/KTY/publication suites",
+      "result": "34 passed"
+    },
+    {
+      "command": "python3 -m pytest -q tools/retrieval/test_scaffold_research_packet.py",
+      "result": "5 passed; output containment enforced with and without pointer flag, symlink escapes rejected, nested contained outputs allowed"
+    },
+    {
+      "command": "python3 -m pytest -q tools/software_workflow/test_tools_test_routing.py tools/source_catalog/test_research_packet.py",
+      "result": "17 passed; pre-existing PytestReturnNotNoneWarning on test_bearing_dirs"
+    }
+  ],
+  "adoption": "HELD; exported staging has ADOPTION_HOLD.json and apply refuses held staging",
+  "remaining_blockers": []
+}

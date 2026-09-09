@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "manifest": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/FINAL_CANDIDATE_MANIFEST.json",
+  "manifest_sha256": "3676e19a5512da82d7d6417227e015a9ca6d23bf3de55a8186ab2be21b128b56",
+  "files": 621,
+  "present": 406,
+  "deleted": 215,
+  "mismatches": [],
+  "changed_observed_files_revisited": [
+    "workflows/evaluation-protocol/WORKFLOW.md",
+    "workflows/evaluation-protocol/execution.json",
+    "workflows/domain-prose-validate/WORKFLOW.md",
+    "workflows/research-orchestration/execution.json",
+    "workflows/kty-content-remediate/WORKFLOW.md",
+    "workflows/researcher/resources/method.md",
+    "workflows/review/resources/method.md",
+    "workflows/audit-dep-closure/resources/method.md",
+    "workflows/evaluation-protocol/resources/contract.md",
+    "workflows/evaluation-protocol/resources/tools.md",
+    "workflows/task-management/resources/contract.md",
+    "workflows/audit-agents/resources/method.md",
+    "workflows/audit-agents/resources/contract.md",
+    "workflows/aggregation/resources/method.md",
+    "workflows/audit-governance/resources/method.md",
+    "workflows/audit-governance/resources/contract.md",
+    "tools/workflow_runtime/test_resolve_workflow.py",
+    "tools/workflow_runtime/normalize_brief.py",
+    "tools/workflow_runtime/resolve_workflow.py"
+  ],
+  "final_tests": "....................................................                     [100%]\n52 passed in 0.45s",
+  "inline_file_write_target_conflict": "inline and file brief disagree on AllowedWriteTargets"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "initial_head": "781b478176db46ca66ebd38991607612e0ce9338",
+  "fetched_main": "533332349a4607eee561d4ef90fb05a62d86519e",
+  "initial_divergence": {
+    "ahead": 0,
+    "behind": 6
+  },
+  "branch": "codex/four-role-workflow-overhaul",
+  "tracking": "origin/main",
+  "preserved_untracked": [
+    "execution/_Evaluation/AgentInstructionSignal/"
+  ],
+  "delta_boundary": "intervening changes were project-loop surfaces; original instruction basis unchanged",
+  "worktree": "/Users/ryan/.codex/worktrees/45d2/chirality",
+  "authority": "bounded Root candidate preparation under explicit current user implementation direction; no merged owner act inferred",
+  "root_mode": "governance-only; no product materialization"
+}

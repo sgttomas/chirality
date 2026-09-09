@@ -37,7 +37,7 @@ def test_section_brief_required_fields(tmp_path):
         "MaxKAFiles": "12",
     }
     brief, _ = render_section_brief(section, tmp_path / "sections" / "SEC-01", paths, "Root")
-    assert "TaskSkill: dbm-section-publish" in brief
+    assert "Workflow: dbm-section-publish" in brief
     assert "DBM_OUTPUT_MODE: FULL_ENGINEERING_DBM" in brief
     assert "PUBLICATION_CONCORDANCE_REGISTER_PATH:" in brief
     assert "SECTION_CONTEXT_PATH:" in brief
@@ -71,7 +71,7 @@ def test_verify_brief_rendering(tmp_path):
         "input_manifest": tmp_path / "_Planning" / "Publication_Input_Manifest.md",
     }
     brief = render_concordance_verify_brief(tmp_path / "package" / "RUN", paths)
-    assert "TaskSkill: dbm-concordance-verify" in brief
+    assert "Workflow: dbm-concordance-verify" in brief
     assert "Publication_Concordance_Verification_Findings.csv" in brief
 
 

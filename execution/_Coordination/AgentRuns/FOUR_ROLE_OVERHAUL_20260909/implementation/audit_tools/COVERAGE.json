@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "role": "TASK",
+  "mechanism": "delegated-harness-native",
+  "boundary_evidence": "instruction-asserted",
+  "source_basis": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/source_basis",
+  "role_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+  "files": [
+    {
+      "path": "tools/coordination/analyze_dep_closure.py",
+      "sha256": "fe546d0f18aac3ab44866d55d6e6ca39c2b6d323ee0355e923b01106a1698ccd"
+    },
+    {
+      "path": "tools/coordination/test_analyze_dep_closure.py",
+      "sha256": "989309199491e871d4e67de4417359ab74d41211279ebb0c85e0712dc5f68765"
+    },
+    {
+      "path": "tools/evaluation/README.md",
+      "sha256": "3c7d576620c2408f2c4cf25517963431c4ef5027f55714cc8ee422f899f3a6e9"
+    },
+    {
+      "path": "tools/evaluation/audit_common.py",
+      "sha256": "2d5eb4f62cc3fb13cce39b2e80ee92f55ff737fed181f98745a63966f1fef026"
+    },
+    {
+      "path": "tools/evaluation/audit_dependencies.py",
+      "sha256": "d98d95bf34783d8d5f7b73eb80910f45b3fa21176b1178b159c732f6d0ce22bc"
+    },
+    {
+      "path": "tools/evaluation/audit_structure.py",
+      "sha256": "d37ffbd040ace47ea990fd6fbb0911ea073358303a40ac32b3b7d7b111ecdb3f"
+    },
+    {
+      "path": "tools/evaluation/check_dependency_schema.sh",
+      "sha256": "475bbfd8cf7fb971135fe71d606742acff696deda3b3d9b155f5edda0a8282d0"
+    },
+    {
+      "path": "tools/evaluation/check_evidence_coverage.sh",
+      "sha256": "475bbfd8cf7fb971135fe71d606742acff696deda3b3d9b155f5edda0a8282d0"
+    },
+    {
+      "path": "tools/evaluation/check_implements_node.sh",
+      "sha256": "475bbfd8cf7fb971135fe71d606742acff696deda3b3d9b155f5edda0a8282d0"
+    },
+    {
+      "path": "tools/evaluation/count_deliverable_files.sh",
+      "sha256": "bc57c8dbbfd29766d6b2e47b96d29d3c822b54f56ac518bbb019030dba318347"
+    },
+    {
+      "path": "tools/evaluation/extract_lifecycle_states.sh",
+      "sha256": "7656ff4ab836cde38bcf5251abc485b7ee85b93f94b8e7b190e8d8d3575b019e"
+    },
+    {
+      "path": "tools/evaluation/test_audits.py",
+      "sha256": "4eab3fa4f854ff1dec43f9c9b71303ca2266784b7639a1f0ecd5f2cd30f8ae23"
+    }
+  ]
+}

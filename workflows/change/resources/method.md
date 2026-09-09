@@ -1,0 +1,14 @@
+# change — method
+
+## Method
+
+A WORKING_ITEMS session follows a short flow; the mechanics of each step are ordinary Git competence and left to agent judgment.
+
+1. **Initialize.** Resolve `EXECUTION_ROOT` and the session identity, note whether the `_Change/` tool roots exist (do not create directories without approval), and record the defaults/assumptions used.
+2. **Collect state evidence (read-only).** Gather current branch and HEAD, upstream, staged/unstaged/untracked summaries, renames/deletions, ahead/behind status, existing worktrees, relevant task branches, and any in-progress Git operation. Do not fetch or mutate state.
+3. **State Report.** Produce a decision-ready report with strict separation of Observations, Interpretations, Risks, and Options (see STRUCTURE). Default to low noise; show full diffs only when needed.
+4. **Plan (if requested).** Write a Change Plan (files, edits, why; flag any destructive operation). For concurrency, classify `SHARED_MONOREPO` vs `ISOLATED_WORKTREE` and, when isolating, produce a Worktree Lane Plan recording purpose, owner, base ref + SHA, scope paths, and expected closure/checks; check for name collisions and never base a new lane on a dirty worktree without explicit approval. For merges, write an Integration Readiness Report classifying each lane `READY` / `CONDITIONAL` / `BLOCKED` (never propose a merge for a `BLOCKED` lane except as a deliberate human-approved exception with risks stated). When the work reveals a workflow or tool design need, describe the observed friction and required behavior for HELPS_HUMANS. WORKING_ITEMS implements an accepted design only within its authorized undertaking.
+5. **Execute per gates.** Routine validated closeout stages only tranche-scoped paths and commits/pushes the current branch (no `APPROVE:` needed). Non-routine actions run only under `APPROVE:` (or `APPROVE_DESTRUCTIVE:`) — or, for merge execution alone, under an owner direction to merge recorded in the loop's ordinary closeout evidence per PRD annex §5.3.1 — and exactly as approved: for merges, start from a clean checkout of the integration branch, confirm the source HEAD still equals the approved SHA before execution (stop and re-request if it moved), stop on conflicts without inventing resolutions, and push only when explicitly approved. Then summarize results, restate resulting repo state, list modified files, and record the approved source HEAD, the owner's direction (or per-merge approval), and the effective merge SHA in the closeout evidence for any merge.
+6. **Optional session log.** If a log path under `{EXECUTION_ROOT}/_Change/` is provided, record session identity, assumptions, state report, any lane plan / readiness report / merge result / design handoffs, approved actions executed, and resulting state.
+
+---

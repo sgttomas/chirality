@@ -360,6 +360,16 @@ OBJ-3 tests that the two loops close; §8.3 governs the release gate.
 
 ## 5. Stable governance requirements
 
+> **D-GOV-41 prospective registry interpretation.** For the authorized Root
+> candidate, references below to the live agent index resolve jointly to
+> `AGENTS.md` and `agents/registry.json`; method-registry references resolve to
+> `workflows/README.md` and immediate `workflows/*/WORKFLOW.md` packages.
+> This relocates O-1/O-5's instruction and method surfaces and preserves their
+> registry discipline. Historical transcription rows retain their original
+> bytes and provenance. Incompatible downstream consumers remain on their
+> accepted basis pending their owning-loop adoption.
+
+
 **Registry discipline (anti-rot).** This section states **stable product
 commitments** and incorporates **dynamic registries by reference**. It cites
 registries, not their members: the invariant catalog (`docs/CONTRACT.md` §1),

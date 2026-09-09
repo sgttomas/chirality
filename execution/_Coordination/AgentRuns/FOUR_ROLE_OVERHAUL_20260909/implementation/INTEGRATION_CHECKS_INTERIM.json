@@ -1,0 +1,43 @@
+{
+  "status": "INTERIM",
+  "observations": [
+    {
+      "command": "python3 tools/validation/validate_instruction_entrypoints.py",
+      "exit_code": 0,
+      "result": "root instruction entrypoints are canonical"
+    },
+    {
+      "command": "python3 tools/validation/validate_root_surface_ownership.py",
+      "exit_code": 0,
+      "result": "accepted successor scopes; historical read custody only"
+    },
+    {
+      "command": "python3 tools/validation/validate_instruction_tranche_manifest.py",
+      "exit_code": 0,
+      "result": "63 schema-valid tranche manifests; existing historical INFO dispositions preserved"
+    },
+    {
+      "command": "rg NEXT_INSTANCE_(PROMPT|STATE) workflows",
+      "result": "No matches after Amendment03",
+      "attribution": "independently observed by WORKING_ITEMS and supervisor"
+    },
+    {
+      "check": "project-decomp method spine",
+      "result": "Packages/Deliverables/objectives and boundary judgment present",
+      "attribution": "supervisor read-only inspection reported to WORKING_ITEMS"
+    },
+    {
+      "check": "relative Markdown target scan",
+      "result": "11 example/placeholder targets; no actual broken relative file target in observed workflow corpus"
+    },
+    {
+      "check": "legacy agent alias coverage",
+      "result": {
+        "aliases": 30,
+        "WORKING_ITEMS": 16,
+        "TASK": 14
+      }
+    }
+  ],
+  "limits": "Writers still active; terminal validation required after fan-in."
+}

@@ -48,3 +48,14 @@ git config core.hooksPath .githooks
 Root `.editorconfig` settings trim trailing whitespace in compatible editors.
 Neither editor support nor an installed hook is treated as the
 authoritative gate; required pull-request CI remains the backstop.
+
+
+## Four-role and workflow validation
+
+Run `python3 tools/validation/validate_agent_instructions.py --json` and
+`python3 tools/validation/validate_workflow_metadata.py --json` for the current
+Root contract. Agent runtime configuration lives in `agents/registry.json`;
+workflow resources are optional and restrictions live in `execution.json`.
+Explicit historical instruction snapshots and skill directories retain their
+old reader contracts. Root G2/G3/G4 checks recognize `workflows/` as an
+instruction surface alongside historical `skills/` inputs.

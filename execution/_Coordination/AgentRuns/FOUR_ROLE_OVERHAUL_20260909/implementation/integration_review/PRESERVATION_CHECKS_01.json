@@ -1,0 +1,7 @@
+{
+  "downstream_census_count": 1777,
+  "changed_census_files": [],
+  "frozen_files_checked": 44,
+  "frozen_mismatches": [],
+  "limitation": "Comparison against recorded hashes; no Git comparison performed by read-only reviewer"
+}

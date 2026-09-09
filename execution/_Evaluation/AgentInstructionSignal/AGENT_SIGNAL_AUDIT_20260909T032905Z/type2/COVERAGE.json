@@ -1,0 +1,1648 @@
+{
+  "status": "CANDIDATE",
+  "basis": "781b478176db46ca66ebd38991607612e0ce9338",
+  "derivative_package": true,
+  "source_manifest": "../SOURCE_MANIFEST.json",
+  "read_method": "Full sequential subject reads; truncated combined read was completed by targeted reread of the omitted scope-closure interval.",
+  "agents": [
+    {
+      "role": "AGGREGATION",
+      "source_path": "agents/AGENT_AGGREGATION.md",
+      "sha256": "f4541eae6d9c787436c848b8135baae501dffa0ee467ea11548f0f772f9bf94a",
+      "line_count": 317,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 22,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 35,
+          "heading": "Runtime variables and defaults"
+        },
+        {
+          "line": 48,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 59,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 73,
+          "heading": "Mission profile \u2014 Estimate Collation (default)"
+        },
+        {
+          "line": 90,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 92,
+          "heading": "Function 0 \u2014 Bootstrap tool root (create-if-missing)"
+        },
+        {
+          "line": 102,
+          "heading": "Function 1 \u2014 Read the brief (INIT-TASK) and interpret it"
+        },
+        {
+          "line": 117,
+          "heading": "Function 2 \u2014 Locate estimate artifact sets for each deliverable"
+        },
+        {
+          "line": 143,
+          "heading": "Function 3 \u2014 Validate format and preserve provenance"
+        },
+        {
+          "line": 177,
+          "heading": "Function 4 \u2014 Collate into project-level artifacts (incremental)"
+        },
+        {
+          "line": 192,
+          "heading": "Function 5 \u2014 Publish outputs (always)"
+        },
+        {
+          "line": 228,
+          "heading": "SPEC"
+        },
+        {
+          "line": 230,
+          "heading": "Snapshot validity (always)"
+        },
+        {
+          "line": 237,
+          "heading": "Additional validity for Estimate Collation"
+        },
+        {
+          "line": 244,
+          "heading": "Non-negotiable epistemic rules"
+        },
+        {
+          "line": 255,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 257,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 290,
+          "heading": "Coverage.csv minimum schema"
+        },
+        {
+          "line": 302,
+          "heading": "Project_Detail.csv key"
+        },
+        {
+          "line": 311,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Project-specific estimate output consumers not fully inventoried.",
+        "Incremental source selection and currency policies require replacement checks."
+      ]
+    },
+    {
+      "role": "AUDIT_AGENTS",
+      "source_path": "agents/AGENT_AUDIT_AGENTS.md",
+      "sha256": "bf0bb0b1484a884cd61302b4f2a50b8332810f1c17715c358671b4a02b999b79",
+      "line_count": 243,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 19,
+          "heading": "Revision"
+        },
+        {
+          "line": 27,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 40,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 51,
+          "heading": "Mission"
+        },
+        {
+          "line": 62,
+          "heading": "Invocation / Ownership"
+        },
+        {
+          "line": 69,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 81,
+          "heading": "Inputs (brief-driven)"
+        },
+        {
+          "line": 100,
+          "heading": "Outputs (write zone)"
+        },
+        {
+          "line": 124,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 126,
+          "heading": "Step 0 \u2014 Preconditions"
+        },
+        {
+          "line": 137,
+          "heading": "Step 1 \u2014 Inventory metadata (per file)"
+        },
+        {
+          "line": 146,
+          "heading": "Step 2 \u2014 Apply the rubric"
+        },
+        {
+          "line": 160,
+          "heading": "Step 3 \u2014 Issue log"
+        },
+        {
+          "line": 172,
+          "heading": "Step 4 \u2014 Patch plan"
+        },
+        {
+          "line": 182,
+          "heading": "Step 5 \u2014 Publish snapshot and return summary"
+        },
+        {
+          "line": 196,
+          "heading": "SPEC"
+        },
+        {
+          "line": 212,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 214,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 235,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Signal-focused redesign requires a suitable accepted rubric or mode."
+      ]
+    },
+    {
+      "role": "AUDIT_DECOMP",
+      "source_path": "agents/AGENT_AUDIT_DECOMP.md",
+      "sha256": "1f12e86e2f1dd3506fe1d1e46caf7f9be2d1b4b8acd75427f2876593dc2015cb",
+      "line_count": 591,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 22,
+          "heading": "Revision"
+        },
+        {
+          "line": 31,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 44,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 55,
+          "heading": "Mission"
+        },
+        {
+          "line": 66,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 79,
+          "heading": "Inputs (brief schema)"
+        },
+        {
+          "line": 94,
+          "heading": "Variant Entity Binding"
+        },
+        {
+          "line": 106,
+          "heading": "Variant Section Binding"
+        },
+        {
+          "line": 133,
+          "heading": "Variant Folder Patterns"
+        },
+        {
+          "line": 140,
+          "heading": "Variant ID Formats"
+        },
+        {
+          "line": 148,
+          "heading": "Variant-Specific Behavior"
+        },
+        {
+          "line": 165,
+          "heading": "Outputs (write zone)"
+        },
+        {
+          "line": 186,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 188,
+          "heading": "Step 0 \u2014 Preconditions and scope resolution"
+        },
+        {
+          "line": 209,
+          "heading": "Step 1 \u2014 Forward Coverage: Packages (Check 1)"
+        },
+        {
+          "line": 218,
+          "heading": "Step 2 \u2014 Forward Coverage: Deliverables (Check 2)"
+        },
+        {
+          "line": 227,
+          "heading": "Step 3 \u2014 Reverse Coverage: Folders (Check 3)"
+        },
+        {
+          "line": 241,
+          "heading": "Step 4 \u2014 ID Consistency (Check 4)"
+        },
+        {
+          "line": 253,
+          "heading": "Step 5 \u2014 Context Fidelity (Check 5)"
+        },
+        {
+          "line": 270,
+          "heading": "Step 6 \u2014 Artifact Presence (Check 6)"
+        },
+        {
+          "line": 287,
+          "heading": "Step 7 \u2014 Objective Mapping (Check 7)"
+        },
+        {
+          "line": 303,
+          "heading": "Step 8 \u2014 Ledger Integrity (Check 8)"
+        },
+        {
+          "line": 317,
+          "heading": "Step 9 \u2014 Derivative Package Parity (Check 9)"
+        },
+        {
+          "line": 339,
+          "heading": "Step 9b \u2014 Package-Shape Conformance (Check 9b)"
+        },
+        {
+          "line": 355,
+          "heading": "Step 10 \u2014 Active Snapshot And Handoff State (Check 10)"
+        },
+        {
+          "line": 373,
+          "heading": "Step 11 \u2014 Lifecycle Distribution (Check 11)"
+        },
+        {
+          "line": 386,
+          "heading": "Step 12 \u2014 Optional comparison mode"
+        },
+        {
+          "line": 398,
+          "heading": "Step 13 \u2014 Assemble outputs and publish snapshot"
+        },
+        {
+          "line": 497,
+          "heading": "SPEC"
+        },
+        {
+          "line": 515,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 517,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 533,
+          "heading": "Issue Log Schema"
+        },
+        {
+          "line": 547,
+          "heading": "Coverage Matrix Schema"
+        },
+        {
+          "line": 568,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Fuzzy context and filename comparison remain semantic.",
+        "Shared heading resolver and matrix schema callers require migration."
+      ]
+    },
+    {
+      "role": "AUDIT_DEP_CLOSURE",
+      "source_path": "agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "sha256": "e233b8edbd202436328fdef96f731d69e9d24a6ae4dc8bd7fdf3e8620f3abb4c",
+      "line_count": 294,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 22,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 35,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 46,
+          "heading": "Mission"
+        },
+        {
+          "line": 56,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 67,
+          "heading": "Inputs (brief schema)"
+        },
+        {
+          "line": 90,
+          "heading": "Outputs (write zone)"
+        },
+        {
+          "line": 112,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 114,
+          "heading": "Step 0 \u2014 Preconditions and scope resolution"
+        },
+        {
+          "line": 124,
+          "heading": "Step 1 \u2014 Locate dependency registers"
+        },
+        {
+          "line": 136,
+          "heading": "Step 2 \u2014 Parse and validate schema"
+        },
+        {
+          "line": 147,
+          "heading": "Step 3 \u2014 Build the graph (analysis-only)"
+        },
+        {
+          "line": 171,
+          "heading": "Step 4 \u2014 Run core checks"
+        },
+        {
+          "line": 214,
+          "heading": "Step 5 \u2014 Optional comparison mode"
+        },
+        {
+          "line": 225,
+          "heading": "Step 6 \u2014 Publish snapshot and return summary"
+        },
+        {
+          "line": 242,
+          "heading": "SPEC"
+        },
+        {
+          "line": 256,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 258,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 287,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Analyzer does not implement all advertised checks/options.",
+        "No production graph executed."
+      ]
+    },
+    {
+      "role": "AUDIT_EPISTEMIC",
+      "source_path": "agents/AGENT_AUDIT_EPISTEMIC.md",
+      "sha256": "4ece509c8f51b3ac547e593e425f8c3c7d3d98d0975a8a19aa4af239b9261b5e",
+      "line_count": 527,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 22,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 35,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 46,
+          "heading": "Mission"
+        },
+        {
+          "line": 67,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 82,
+          "heading": "Inputs (brief schema)"
+        },
+        {
+          "line": 114,
+          "heading": "Outputs (write zone)"
+        },
+        {
+          "line": 140,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 142,
+          "heading": "Pass 0 \u2014 Preconditions and scope resolution"
+        },
+        {
+          "line": 158,
+          "heading": "Pass 1 \u2014 Epistemic label coverage scan"
+        },
+        {
+          "line": 177,
+          "heading": "Pass 2 \u2014 Provenance verification"
+        },
+        {
+          "line": 190,
+          "heading": "Pass 3 \u2014 Gap detection"
+        },
+        {
+          "line": 209,
+          "heading": "Pass 4 \u2014 Conflict detection"
+        },
+        {
+          "line": 230,
+          "heading": "Pass 5 \u2014 Warrant lifecycle assessment"
+        },
+        {
+          "line": 247,
+          "heading": "Pass 6 \u2014 Cross-document consistency"
+        },
+        {
+          "line": 268,
+          "heading": "Pass 7 \u2014 Dependencies.csv provenance audit"
+        },
+        {
+          "line": 281,
+          "heading": "Pass 8 \u2014 Publish snapshot and return summary"
+        },
+        {
+          "line": 302,
+          "heading": "SPEC"
+        },
+        {
+          "line": 327,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 329,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 343,
+          "heading": "INIT-TASK Brief format"
+        },
+        {
+          "line": 370,
+          "heading": "Epistemic_Audit_Report.md structure"
+        },
+        {
+          "line": 412,
+          "heading": "Epistemic_Audit_IssueLog.csv schema"
+        },
+        {
+          "line": 426,
+          "heading": "epistemic_audit_summary.json schema"
+        },
+        {
+          "line": 464,
+          "heading": "QA_Report.md structure"
+        },
+        {
+          "line": 501,
+          "heading": "RATIONALE"
+        },
+        {
+          "line": 503,
+          "heading": "Why this agent exists"
+        },
+        {
+          "line": 509,
+          "heading": "What makes this agent distinctive"
+        },
+        {
+          "line": 515,
+          "heading": "The epistemic audit as professional enablement"
+        },
+        {
+          "line": 521,
+          "heading": "Design decisions"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Named-role advantage over TASK plus method is unmeasured.",
+        "Citation presence and substantive warrant need separately assessed metrics."
+      ]
+    },
+    {
+      "role": "AUDIT_GOVERNANCE",
+      "source_path": "agents/AGENT_AUDIT_GOVERNANCE.md",
+      "sha256": "58c4f9e5dc4e1c3ae16f2e0bb70940e4400dcc3e07259f911f8e3b9af680a628",
+      "line_count": 558,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 16,
+          "heading": "Revision"
+        },
+        {
+          "line": 24,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 37,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 48,
+          "heading": "Mission"
+        },
+        {
+          "line": 62,
+          "heading": "Invocation / Ownership"
+        },
+        {
+          "line": 69,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 85,
+          "heading": "Inputs (brief-driven)"
+        },
+        {
+          "line": 87,
+          "heading": "Required"
+        },
+        {
+          "line": 94,
+          "heading": "Optional"
+        },
+        {
+          "line": 109,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 111,
+          "heading": "Pass 0 \u2014 Preconditions"
+        },
+        {
+          "line": 121,
+          "heading": "Pass 1 \u2014 Count Integrity"
+        },
+        {
+          "line": 143,
+          "heading": "Pass 2 \u2014 Cross-Reference Resolution"
+        },
+        {
+          "line": 164,
+          "heading": "Pass 3 \u2014 Invariant ID Integrity"
+        },
+        {
+          "line": 188,
+          "heading": "Pass 4 \u2014 Terminology Consistency"
+        },
+        {
+          "line": 206,
+          "heading": "Pass 5 \u2014 Agent Inventory Consistency"
+        },
+        {
+          "line": 228,
+          "heading": "Pass 6 \u2014 Document Hierarchy Coherence"
+        },
+        {
+          "line": 251,
+          "heading": "Pass 6b \u2014 Claim Strength Calibration (K-CLAIM-1)"
+        },
+        {
+          "line": 274,
+          "heading": "Pass 7 \u2014 Synthesis and Output"
+        },
+        {
+          "line": 289,
+          "heading": "SPEC \u2014 Validity Requirements"
+        },
+        {
+          "line": 293,
+          "heading": "V1 \u2014 All requested passes executed"
+        },
+        {
+          "line": 296,
+          "heading": "V2 \u2014 Every finding has provenance"
+        },
+        {
+          "line": 299,
+          "heading": "V3 \u2014 No governance document modified"
+        },
+        {
+          "line": 302,
+          "heading": "V4 \u2014 Snapshot immutability"
+        },
+        {
+          "line": 305,
+          "heading": "V5 \u2014 Issue log is structured and actionable"
+        },
+        {
+          "line": 309,
+          "heading": "V6 \u2014 Machine-readable summary is accurate"
+        },
+        {
+          "line": 312,
+          "heading": "V7 \u2014 Coverage self-assessment exists"
+        },
+        {
+          "line": 315,
+          "heading": "V8 \u2014 Count claims are grounded"
+        },
+        {
+          "line": 318,
+          "heading": "V9 \u2014 Cross-references are testable"
+        },
+        {
+          "line": 321,
+          "heading": "V10 \u2014 Orphan detection is exhaustive"
+        },
+        {
+          "line": 324,
+          "heading": "Invalid states (MUST NOT occur)"
+        },
+        {
+          "line": 337,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 339,
+          "heading": "INIT-TASK Brief Format"
+        },
+        {
+          "line": 367,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 380,
+          "heading": "Brief.md"
+        },
+        {
+          "line": 384,
+          "heading": "Governance_Audit_Report.md"
+        },
+        {
+          "line": 449,
+          "heading": "Governance_Audit_IssueLog.csv"
+        },
+        {
+          "line": 465,
+          "heading": "governance_audit_summary.json"
+        },
+        {
+          "line": 503,
+          "heading": "QA_Report.md"
+        },
+        {
+          "line": 531,
+          "heading": "_LATEST.md (pointer \u2014 mutable)"
+        },
+        {
+          "line": 543,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "No unified full governance scanner identified.",
+        "Claim-calibration output vocabulary conflicts with current schema."
+      ]
+    },
+    {
+      "role": "AUDIT_HYPERGRAPH_CLOSURE",
+      "source_path": "agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "sha256": "b7f20fae614cb1083eb9a8764ca0ada49f4b5147a4308a09c14e7e14c895d346",
+      "line_count": 403,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 28,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 41,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 52,
+          "heading": "Mission"
+        },
+        {
+          "line": 62,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 76,
+          "heading": "Inputs (brief schema)"
+        },
+        {
+          "line": 98,
+          "heading": "Outputs (write zone)"
+        },
+        {
+          "line": 126,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 128,
+          "heading": "Step 0 \u2014 Resolve hypergraph input (AUTO or explicit)"
+        },
+        {
+          "line": 147,
+          "heading": "Step 1 \u2014 Parse and validate schema (mandatory)"
+        },
+        {
+          "line": 164,
+          "heading": "Step 2 \u2014 Build internal closure structures"
+        },
+        {
+          "line": 179,
+          "heading": "Step 3 \u2014 Run core checks (PASS/WARNING/BLOCKER)"
+        },
+        {
+          "line": 252,
+          "heading": "Step 4 \u2014 Produce consolidated Issue Log (mandatory)"
+        },
+        {
+          "line": 268,
+          "heading": "Step 5 \u2014 Optional comparison mode"
+        },
+        {
+          "line": 281,
+          "heading": "Step 6 \u2014 Publish snapshot and pointer"
+        },
+        {
+          "line": 301,
+          "heading": "SPEC"
+        },
+        {
+          "line": 315,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 317,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 341,
+          "heading": "`closure_summary.json` schema"
+        },
+        {
+          "line": 393,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "No existing complete independent snapshot validator identified.",
+        "Current closure contract lacks subject/materialization checks present in builder."
+      ]
+    },
+    {
+      "role": "AUDIT_SCOPE_CLOSURE",
+      "source_path": "agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "sha256": "660c5f8604cdd0a101a3bb74e53ed5ae72e622f7c5aa438c1153329abf5d85fc",
+      "line_count": 568,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 20,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 33,
+          "heading": "Revision"
+        },
+        {
+          "line": 39,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 50,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 63,
+          "heading": "Glossary"
+        },
+        {
+          "line": 76,
+          "heading": "PROTOCOL \u2014 Straight-Through Audit Procedure"
+        },
+        {
+          "line": 78,
+          "heading": "Pass 0 \u2014 Preconditions"
+        },
+        {
+          "line": 106,
+          "heading": "Pass 1 \u2014 Amendment Action Verification"
+        },
+        {
+          "line": 144,
+          "heading": "Pass 2 \u2014 Downstream Rerun Verification"
+        },
+        {
+          "line": 170,
+          "heading": "Pass 3 \u2014 Orphaned Reference Detection"
+        },
+        {
+          "line": 184,
+          "heading": "Pass 4 \u2014 Decomposition Consistency"
+        },
+        {
+          "line": 214,
+          "heading": "Pass 5 \u2014 Context Metadata Consistency"
+        },
+        {
+          "line": 231,
+          "heading": "Pass 6 \u2014 Supersession Binding Completeness"
+        },
+        {
+          "line": 254,
+          "heading": "Pass 7 \u2014 KTY Content Remediation Verification"
+        },
+        {
+          "line": 323,
+          "heading": "Pass 8 \u2014 Synthesis and Output"
+        },
+        {
+          "line": 353,
+          "heading": "SPEC \u2014 Validity Requirements"
+        },
+        {
+          "line": 373,
+          "heading": "Invalid States"
+        },
+        {
+          "line": 390,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 392,
+          "heading": "INIT-TASK Brief Format"
+        },
+        {
+          "line": 407,
+          "heading": "Snapshot Layout"
+        },
+        {
+          "line": 424,
+          "heading": "Issue Log Schema (`Scope_Closure_IssueLog.csv`)"
+        },
+        {
+          "line": 440,
+          "heading": "Summary JSON Schema (`scope_closure_summary.json`)"
+        },
+        {
+          "line": 467,
+          "heading": "Report Structure (`Scope_Closure_Report.md`)"
+        },
+        {
+          "line": 508,
+          "heading": "QA Report (`QA_Report.md`)"
+        },
+        {
+          "line": 535,
+          "heading": "RATIONALE"
+        },
+        {
+          "line": 537,
+          "heading": "Why This Agent Exists"
+        },
+        {
+          "line": 541,
+          "heading": "Why It Runs After Remediation"
+        },
+        {
+          "line": 545,
+          "heading": "Why EVALUATION Dispatches It"
+        },
+        {
+          "line": 555,
+          "heading": "Why Orphan Detection Is Critical"
+        },
+        {
+          "line": 559,
+          "heading": "Value Hierarchy"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Legacy rerun evidence may lack basis-specific completion receipts.",
+        "Severity vocabularies need reconciliation."
+      ]
+    },
+    {
+      "role": "DOMAIN_HYPERGRAPH",
+      "source_path": "agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "sha256": "48bce547848c3666b01ae78505002f73f48dc8fefec00eb3b13727f44f47a32d",
+      "line_count": 593,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 32,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 45,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 56,
+          "heading": "Mission"
+        },
+        {
+          "line": 68,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 80,
+          "heading": "Inputs (brief schema)"
+        },
+        {
+          "line": 109,
+          "heading": "Outputs (write zone)"
+        },
+        {
+          "line": 137,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 139,
+          "heading": "Step 0 \u2014 Preconditions & scope resolution"
+        },
+        {
+          "line": 155,
+          "heading": "Step 1 \u2014 Discover Categories and Knowledge Types (evidence-first)"
+        },
+        {
+          "line": 208,
+          "heading": "Step 2 \u2014 Discover Knowledge Subjects and Knowledge Artifacts (policy-driven)"
+        },
+        {
+          "line": 256,
+          "heading": "Step 3 \u2014 Optional: Locate and ingest Domain Ledger (AUTO, conservative)"
+        },
+        {
+          "line": 298,
+          "heading": "Evidence CSV Contracts (tool input)"
+        },
+        {
+          "line": 329,
+          "heading": "Step 4 \u2014 Invoke build_hypergraph.py (deterministic graph construction)"
+        },
+        {
+          "line": 352,
+          "heading": "Step 5 \u2014 Hyperedge + incidence construction (tool-emitted; hashing algorithm locked)"
+        },
+        {
+          "line": 377,
+          "heading": "Step 6 \u2014 QA checks (tool-emitted, 9 checks)"
+        },
+        {
+          "line": 395,
+          "heading": "Step 7 \u2014 Optional comparison mode"
+        },
+        {
+          "line": 407,
+          "heading": "Step 8 \u2014 Publish snapshot + record provenance"
+        },
+        {
+          "line": 435,
+          "heading": "SPEC"
+        },
+        {
+          "line": 457,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 459,
+          "heading": "Tool-root layout"
+        },
+        {
+          "line": 483,
+          "heading": "Canonical registers (CSV)"
+        },
+        {
+          "line": 521,
+          "heading": "`hypergraph.json` (convenience export)"
+        },
+        {
+          "line": 570,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Builder tests cover staged construction rather than all discovery.",
+        "Accepted authority for Scoping bridge and ledger selection needs alignment."
+      ]
+    },
+    {
+      "role": "EVALUATION_DEPENDENCY_AUDIT",
+      "source_path": "agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "sha256": "e703c11e20179f2b101d7b8cb11577f4cb21c2f769b04a87360eb7be5323a231",
+      "line_count": 189,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 16,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 29,
+          "heading": "Precedence"
+        },
+        {
+          "line": 35,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 43,
+          "heading": "Inputs (INIT-TASK Brief)"
+        },
+        {
+          "line": 54,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 56,
+          "heading": "Step 1 \u2014 Find all Dependencies.csv files"
+        },
+        {
+          "line": 59,
+          "heading": "Step 2 \u2014 Validate schema per file"
+        },
+        {
+          "line": 66,
+          "heading": "Step 3 \u2014 Check IMPLEMENTS_NODE anchor"
+        },
+        {
+          "line": 70,
+          "heading": "Step 4 \u2014 Check EvidenceFile population"
+        },
+        {
+          "line": 74,
+          "heading": "Step 5 \u2014 Validate enum values"
+        },
+        {
+          "line": 88,
+          "heading": "Step 6 \u2014 Run full graph analysis (if feasible)"
+        },
+        {
+          "line": 99,
+          "heading": "Step 7 \u2014 Compile report"
+        },
+        {
+          "line": 107,
+          "heading": "SPEC"
+        },
+        {
+          "line": 121,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 123,
+          "heading": "Report format"
+        },
+        {
+          "line": 180,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_TOOL",
+      "uncertainties": [
+        "Unified robust CSV audit CLI is proposed, not present."
+      ]
+    },
+    {
+      "role": "EVALUATION_REPORT",
+      "source_path": "agents/AGENT_EVALUATION_REPORT.md",
+      "sha256": "747657cc3c86de5d6aa23af798cf8a017c74aed5004f821f0bff0bb69f15fd5b",
+      "line_count": 189,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 20,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 33,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 42,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 52,
+          "heading": "Inputs (INIT-TASK Brief)"
+        },
+        {
+          "line": 68,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 70,
+          "heading": "Step 1 \u2014 Read the evaluation protocol"
+        },
+        {
+          "line": 73,
+          "heading": "Step 2 \u2014 Gather evidence"
+        },
+        {
+          "line": 86,
+          "heading": "Step 3 \u2014 Apply checks"
+        },
+        {
+          "line": 92,
+          "heading": "Step 4 \u2014 Score the dimension"
+        },
+        {
+          "line": 99,
+          "heading": "Step 5 \u2014 Write the report"
+        },
+        {
+          "line": 107,
+          "heading": "SPEC"
+        },
+        {
+          "line": 122,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 124,
+          "heading": "Report format"
+        },
+        {
+          "line": 176,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Parent compatibility with TASK outer run wrapper requires validation."
+      ]
+    },
+    {
+      "role": "EVALUATION_STRUCTURE_AUDIT",
+      "source_path": "agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "sha256": "51eb017f64f6ad2797a95711543b5b60c570d4821246d299d9c013adecdd6100",
+      "line_count": 193,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 16,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 29,
+          "heading": "Precedence"
+        },
+        {
+          "line": 35,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 43,
+          "heading": "Inputs (INIT-TASK Brief)"
+        },
+        {
+          "line": 54,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 56,
+          "heading": "Step 1 \u2014 Enumerate all deliverable folders"
+        },
+        {
+          "line": 59,
+          "heading": "Step 2 \u2014 Count file inventory"
+        },
+        {
+          "line": 67,
+          "heading": "Step 3 \u2014 Extract lifecycle states"
+        },
+        {
+          "line": 73,
+          "heading": "Step 4 \u2014 Check MUST files for each deliverable"
+        },
+        {
+          "line": 91,
+          "heading": "Step 5 \u2014 Check SHOULD/MAY files"
+        },
+        {
+          "line": 97,
+          "heading": "Step 6 \u2014 Check package subfolder structure"
+        },
+        {
+          "line": 104,
+          "heading": "Step 7 \u2014 Check tool root presence"
+        },
+        {
+          "line": 110,
+          "heading": "Step 8 \u2014 Compile report"
+        },
+        {
+          "line": 118,
+          "heading": "SPEC"
+        },
+        {
+          "line": 131,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 133,
+          "heading": "Report format"
+        },
+        {
+          "line": 184,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_TOOL",
+      "uncertainties": [
+        "Unified structure CLI is proposed, not present.",
+        "DOMAIN inclusion needs an explicit scope/variant contract."
+      ]
+    },
+    {
+      "role": "PREPARATION",
+      "source_path": "agents/AGENT_PREPARATION.md",
+      "sha256": "0bd1b2cf01abad570575fd9920a6f8bb296b7afcdb0834f85dd55524db5a760a",
+      "line_count": 592,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 26,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 39,
+          "heading": "Runtime parameters (provided by PROJECT_SETUP; do not hard-code)"
+        },
+        {
+          "line": 55,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 66,
+          "heading": "Foundations: Ontology, Epistemology, Praxeology, Axiology"
+        },
+        {
+          "line": 75,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 95,
+          "heading": "PROTOCOL"
+        },
+        {
+          "line": 97,
+          "heading": "Operational \u2014 \"How to do?\""
+        },
+        {
+          "line": 106,
+          "heading": "Task Type A: Create Package Folder Hierarchy"
+        },
+        {
+          "line": 120,
+          "heading": "Task Type B: Populate `0_References/` for a Package"
+        },
+        {
+          "line": 140,
+          "heading": "Task Type C: Populate One Deliverable Folder (Minimum Viable Fileset)"
+        },
+        {
+          "line": 175,
+          "heading": "Task Type D: Initialize Project-Level Aggregation Support (Structural Prereqs Only)"
+        },
+        {
+          "line": 194,
+          "heading": "Task Type E: Create Category Folder Hierarchy (DOMAIN)"
+        },
+        {
+          "line": 219,
+          "heading": "Task Type F: Populate One Knowledge Type Folder (Minimum Viable Fileset) (DOMAIN)"
+        },
+        {
+          "line": 257,
+          "heading": "Task Type G: Initialize Domain-Level Tool Roots (Structural Prereqs Only)"
+        },
+        {
+          "line": 274,
+          "heading": "Operating Rules (always)"
+        },
+        {
+          "line": 286,
+          "heading": "Filesystem-safe folder labels"
+        },
+        {
+          "line": 307,
+          "heading": "QA Contract"
+        },
+        {
+          "line": 324,
+          "heading": "SPEC"
+        },
+        {
+          "line": 326,
+          "heading": "Validity"
+        },
+        {
+          "line": 336,
+          "heading": "Invalid states (examples)"
+        },
+        {
+          "line": 350,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 356,
+          "heading": "`_CONTEXT.md` Schema"
+        },
+        {
+          "line": 380,
+          "heading": "`_CONTEXT.md` Schema (Knowledge Type \u2014 DOMAIN variant)"
+        },
+        {
+          "line": 405,
+          "heading": "`_DEPENDENCIES.md` Schema (hybrid container: human declarations + extracted summary)"
+        },
+        {
+          "line": 448,
+          "heading": "`_STATUS.md` Schema"
+        },
+        {
+          "line": 462,
+          "heading": "`_REFERENCES.md` Schema"
+        },
+        {
+          "line": 480,
+          "heading": "`_MEMORY.md` Template Schema"
+        },
+        {
+          "line": 505,
+          "heading": "`_SEMANTIC.md` Placeholder Schema"
+        },
+        {
+          "line": 523,
+          "heading": "`{EXECUTION_ROOT}/_Aggregation/_Templates/AGGREGATION_BRIEF_TEMPLATE.md`"
+        },
+        {
+          "line": 567,
+          "heading": "`{EXECUTION_ROOT}/_Aggregation/_Templates/TARGET_SCHEMA_TEMPLATE.csv`"
+        },
+        {
+          "line": 582,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Status actor consumers and historical briefs need migration inventory.",
+        "Created-path manifest and memory-stub behavior require definition."
+      ]
+    },
+    {
+      "role": "RESEARCHER",
+      "source_path": "agents/AGENT_RESEARCHER.md",
+      "sha256": "4b1b022b9b97b245e4067c63c2bfb4e7b1e6dde6a5b0c5102a290a4d2b060341",
+      "line_count": 225,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 35,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 48,
+          "heading": "Runtime parameters (provided by the dispatching agent; do not hard-code)"
+        },
+        {
+          "line": 68,
+          "heading": "Precedence (conflict resolution)"
+        },
+        {
+          "line": 80,
+          "heading": "Non-negotiable invariants"
+        },
+        {
+          "line": 99,
+          "heading": "PROTOCOL \u2014 Bounded Research Execution"
+        },
+        {
+          "line": 139,
+          "heading": "SPEC \u2014 Validity"
+        },
+        {
+          "line": 148,
+          "heading": "Valid RESEARCHER result"
+        },
+        {
+          "line": 160,
+          "heading": "Hard rules"
+        },
+        {
+          "line": 172,
+          "heading": "STRUCTURE"
+        },
+        {
+          "line": 174,
+          "heading": "Structured return object"
+        },
+        {
+          "line": 194,
+          "heading": "Packet members"
+        },
+        {
+          "line": 207,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Packet ownership and resume/retry behavior not exercised.",
+        "TASK outer status lacks PARTIAL; conversion equivalence unproven."
+      ]
+    },
+    {
+      "role": "TASK",
+      "source_path": "agents/AGENT_TASK.md",
+      "sha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+      "line_count": 573,
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 9,
+          "heading": "Purpose"
+        },
+        {
+          "line": 42,
+          "heading": "Agent Type"
+        },
+        {
+          "line": 55,
+          "heading": "Deprecated Task Profiles"
+        },
+        {
+          "line": 77,
+          "heading": "Hard authorization boundary (non-negotiable)"
+        },
+        {
+          "line": 79,
+          "heading": "In scope"
+        },
+        {
+          "line": 85,
+          "heading": "Out of scope (MUST NOT)"
+        },
+        {
+          "line": 94,
+          "heading": "Input normalization (MUST)"
+        },
+        {
+          "line": 98,
+          "heading": "Accepted control surface fields"
+        },
+        {
+          "line": 103,
+          "heading": "Accepted context/scope fields"
+        },
+        {
+          "line": 109,
+          "heading": "Accepted behavior fields"
+        },
+        {
+          "line": 122,
+          "heading": "Normalization rules"
+        },
+        {
+          "line": 189,
+          "heading": "Skill loading (MAY)"
+        },
+        {
+          "line": 208,
+          "heading": "Skill frontmatter resolution (MUST when skill is loaded)"
+        },
+        {
+          "line": 224,
+          "heading": "Skill behavior contract"
+        },
+        {
+          "line": 237,
+          "heading": "Write authorization resolution (MUST)"
+        },
+        {
+          "line": 254,
+          "heading": "Run record persistence (MUST)"
+        },
+        {
+          "line": 266,
+          "heading": "Run-record lifecycle"
+        },
+        {
+          "line": 272,
+          "heading": "Edge cases"
+        },
+        {
+          "line": 281,
+          "heading": "Structural validation (MUST)"
+        },
+        {
+          "line": 285,
+          "heading": "Pre-execution checks (during normalization and method loading)"
+        },
+        {
+          "line": 299,
+          "heading": "Post-execution checks (during QA, PROTOCOL step 5)"
+        },
+        {
+          "line": 312,
+          "heading": "Companion file reporting"
+        },
+        {
+          "line": 323,
+          "heading": "Deprecated profile compatibility"
+        },
+        {
+          "line": 340,
+          "heading": "Generic shell behavior"
+        },
+        {
+          "line": 354,
+          "heading": "Shell / skill / brief separation (guidance)"
+        },
+        {
+          "line": 383,
+          "heading": "Epistemic controls (MUST)"
+        },
+        {
+          "line": 394,
+          "heading": "Output format (MUST)"
+        },
+        {
+          "line": 427,
+          "heading": "Run-record file format (MUST)"
+        },
+        {
+          "line": 431,
+          "heading": "YAML frontmatter fields"
+        },
+        {
+          "line": 450,
+          "heading": "Markdown body headings"
+        },
+        {
+          "line": 466,
+          "heading": "File location"
+        },
+        {
+          "line": 472,
+          "heading": "INIT-TASK brief format"
+        },
+        {
+          "line": 522,
+          "heading": "PROTOCOL (straight-through)"
+        },
+        {
+          "line": 563,
+          "heading": "RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Mechanical normalized-launch component is proposed, not verified complete.",
+        "Invocation-mode coverage, fallback and wide caller compatibility need testing."
+      ]
+    }
+  ]
+}

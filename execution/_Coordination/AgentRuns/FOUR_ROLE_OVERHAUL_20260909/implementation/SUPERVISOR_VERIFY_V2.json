@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "attribution": "/root HELP_HUMAN reported actual read-only Python verification to WORKING_ITEMS",
+  "manifest": "FINAL_CANDIDATE_MANIFEST_V2.json",
+  "sha256": "eafd9e0c9f1e7370a3edf8489428818b6c833c8fc85e06127b409712f7009448",
+  "checked_paths": 621,
+  "hash_or_deletion_mismatches": [],
+  "uncovered_changed_or_new_source_paths": [],
+  "role_files": 4,
+  "workflow_entrypoints": 71,
+  "authority": "scoped commit/push/single PR authorized once fresh V2 review PASS and fetched main delta clear; no merge/release"
+}

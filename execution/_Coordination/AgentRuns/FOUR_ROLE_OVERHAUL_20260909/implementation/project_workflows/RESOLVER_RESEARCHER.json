@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "role": "TASK",
+  "workflow": "researcher",
+  "stage": null,
+  "legacy_alias": null,
+  "role_configuration": {
+    "instruction": "agents/AGENT_TASK.md",
+    "type": 2,
+    "direct_entry": false,
+    "delegates_to": [],
+    "allow_generalist_agent2": false,
+    "tools": [
+      "read",
+      "write",
+      "bash",
+      "report_coordination_notice",
+      "ack_agent_update"
+    ],
+    "write_scope": "explicit brief targets within authorized working root"
+  },
+  "execution": {
+    "schema_version": 1,
+    "compatible_roles": [
+      "TASK"
+    ],
+    "tools": {
+      "capabilities": [
+        "read",
+        "write",
+        "bash",
+        "report_coordination_notice",
+        "ack_agent_update"
+      ]
+    }
+  },
+  "effective_tools": {
+    "capabilities": [
+      "ack_agent_update",
+      "bash",
+      "read",
+      "report_coordination_notice",
+      "write"
+    ],
+    "commands": {
+      "all_of": []
+    }
+  },
+  "resolved_commands": [],
+  "context": [
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "workflows/researcher/WORKFLOW.md",
+      "sha256": "c9539b1aa020bb757d06a09a96a67015b1cf8f34750ac184067e025460bf7744"
+    },
+    {
+      "path": "workflows/researcher/resources/evidence.md",
+      "sha256": "968a0cad028b1fa69c07a5275b40d0396df5b12013e29056ea198bbf89336b1e"
+    },
+    {
+      "path": "workflows/researcher/resources/inquiry.md",
+      "sha256": "b52266b972ca2c336eff17148cf0abf74cdea04a1158af1f48982d16e8ba0f3f"
+    }
+  ],
+  "configuration_basis": [
+    {
+      "path": "agents/registry.json",
+      "sha256": "61b92f120b5093c4bf1691dce33b62f52999cdcc701764fbf6b87bc9018d1e89"
+    },
+    {
+      "path": "workflows/researcher/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    }
+  ],
+  "tool_root": "/Users/ryan/.codex/worktrees/45d2/chirality",
+  "context_evidence": "mechanically-recorded resolver inputs; host context delivery unverified",
+  "enforcement": "instruction-asserted; host must enforce effective restrictions"
+}

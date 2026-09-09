@@ -1,0 +1,10 @@
+.................                                                        [100%]
+=============================== warnings summary ===============================
+tools/software_workflow/test_tools_test_routing.py::test_bearing_dirs
+  /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/_pytest/python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but tools/software_workflow/test_tools_test_routing.py::test_bearing_dirs returned <class 'set'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+17 passed, 1 warning in 0.70s

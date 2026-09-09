@@ -271,6 +271,10 @@ def validate_skill_dir(skill_dir: Path, repo_root: Path) -> dict:
 
 
 def main() -> int:
+    if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] == '--json') or any(Path(arg).name == 'workflows' for arg in sys.argv[1:]):
+        from validate_workflow_metadata import main as workflow_main
+        return workflow_main()
+    # Explicit historical skills/ input keeps the former validation contract.
     args = parse_args()
     skills_root = Path(args.skills_root).expanduser().resolve()
     repo_root = skills_root.parent

@@ -1,0 +1,75 @@
+{
+  "status": "interim; findings sent to parent; fixes in progress; final frozen recheck pending",
+  "findings": [
+    {
+      "id": "IR-01",
+      "severity": "HIGH",
+      "file": "workflows/evaluation-protocol/execution.json",
+      "finding": "Manager capabilities omit write/bash while method directly writes protocol and synthesis; research counterpart same restriction.",
+      "recommendation": "Align output-recorder routing or capabilities with subject-read-only contract."
+    },
+    {
+      "id": "IR-02",
+      "severity": "MEDIUM",
+      "file": "workflows/audit-governance/resources/method.md",
+      "finding": "Old WRITE_SCOPE and numbered \u00a714 catalog assumptions conflict with registry and new standard.",
+      "recommendation": "Audit registry/workflow/brief ceilings and bind Requirement identifier continuity heading."
+    },
+    {
+      "id": "IR-03",
+      "severity": "MEDIUM",
+      "file": "workflows/task-management/resources/contract.md",
+      "finding": "Named Agent2 specialist and sibling-manager framing retain retired topology.",
+      "recommendation": "Use TASK/ephemeral executors and explicit undertaking-owner routing."
+    },
+    {
+      "id": "IR-04",
+      "severity": "HIGH",
+      "file": "tools/workflow_runtime/resolve_workflow.py",
+      "finding": "resolve_tool accepts tools/../AGENTS.md outside actual tools directory.",
+      "recommendation": "Contain resolved tools beneath tools directory; test traversal and symlink escapes."
+    },
+    {
+      "id": "IR-05",
+      "severity": "HIGH",
+      "file": "workflows/review/resources/method.md",
+      "finding": "write_status.sh WORKING_ITEMS actor always rejected for CHECKING/ISSUED.",
+      "recommendation": "Represent accepted human decision as HUMAN with required ruling/SHA inputs; distinguish recorder."
+    },
+    {
+      "id": "IR-06",
+      "severity": "HIGH",
+      "file": "workflows/audit-dep-closure/resources/method.md",
+      "finding": "Unknown Direction instructed to become undirected topology but tool excludes invalid rows.",
+      "recommendation": "Align invalid-row exclusion, incomplete topology evidence and SCC implementation contract."
+    },
+    {
+      "id": "IR-07",
+      "severity": "HIGH",
+      "file": "workflows/researcher/resources/method.md",
+      "finding": "Several recipes construct TOOL_ROOT/tools although TOOL_ROOT already ends tools.",
+      "recommendation": "Use INSTRUCTION_ROOT/tools consistently across five observed recipes."
+    },
+    {
+      "id": "IR-08",
+      "severity": "HIGH",
+      "file": "tools/retrieval/scaffold_research_packet.py",
+      "finding": "Explicit output-dir outside research-root accepted with no-update-latest despite packet quarantine contract.",
+      "recommendation": "Check output containment independently from pointer update eligibility."
+    },
+    {
+      "id": "IR-09",
+      "severity": "MEDIUM",
+      "file": "workflows/audit-agents/resources/method.md",
+      "finding": "Audit assumes Type1-only caller, old metadata fields and removed rubric sections/severity.",
+      "recommendation": "Align directType0 dispatch, registry inputs, current rubric and output schema."
+    },
+    {
+      "id": "IR-10",
+      "severity": "LOW",
+      "file": "workflows/domain-prose-validate/WORKFLOW.md",
+      "finding": "Two live package titles still say SKILL; report_stub_counts documentation points missing QA_CHECKS.",
+      "recommendation": "Replace current names and consolidated companion path."
+    }
+  ]
+}

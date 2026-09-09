@@ -1,0 +1,812 @@
+{
+  "assignment": "project_workflows",
+  "status": "COMPLETE",
+  "sources": [
+    {
+      "source": "skills/decomposition-package-review/SKILL.md",
+      "destination": "workflows/decomposition-package-review/WORKFLOW.md",
+      "source_sha256": "6d41b4686576c88767831f7f62d0e0ce1abc141d6ca90180cbcee4acb53bb361",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/deliverable-consistency/SKILL.md",
+      "destination": "workflows/deliverable-consistency/WORKFLOW.md",
+      "source_sha256": "f718368386a9bd4c22ae48274b0d4bc18b84036a144e0750dc57a47e79c69e0d",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/dependency-extract/SKILL.md",
+      "destination": "workflows/dependency-extract/WORKFLOW.md",
+      "source_sha256": "66f136b27cc617743452f734a8edd5e4068087507693b44c86953352d90454f3",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/domain-documents/SKILL.md",
+      "destination": "workflows/domain-documents/WORKFLOW.md",
+      "source_sha256": "e6c00343e18ed4891602f99940a10bfa60bff8985432ee9641c09cef6b00be15",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/domain-prose-validate/SKILL.md",
+      "destination": "workflows/domain-prose-validate/WORKFLOW.md",
+      "source_sha256": "ea2554c0587448808aa825f8746b74850aee48b6ee85099c419bdf402c099635",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/domain-source-atomize/SKILL.md",
+      "destination": "workflows/domain-source-atomize/WORKFLOW.md",
+      "source_sha256": "48e3ac841f6284002e520d31a8e000ee96b7661fbf9d39deb7d8d2aa636541fc",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/estimate-prep/SKILL.md",
+      "destination": "workflows/estimate-prep/WORKFLOW.md",
+      "source_sha256": "df2e1ec4135b79f3f44056c67cb1b3a8fdbd6aed7324107d999efe7eb5f41943",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 7
+    },
+    {
+      "source": "skills/estimate-snapshot/SKILL.md",
+      "destination": "workflows/estimate-snapshot/WORKFLOW.md",
+      "source_sha256": "29957192cd31611276ecfc494bfc825040fd514bbbe5afb5e656bbb29f6a5079",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/evaluation-protocol/SKILL.md",
+      "destination": "workflows/evaluation-protocol/WORKFLOW.md",
+      "source_sha256": "7efbb4d3826a6a12d1eb7f6bf71c3665c26d2f267bd1d233a1abcf2ce4cf5884",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/four-documents/SKILL.md",
+      "destination": "workflows/four-documents/WORKFLOW.md",
+      "source_sha256": "51673e7ff1a2c875cb5363f388c25e39f0cf3087fa5e034c1da24fd3ca3397cf",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/kty-content-remediate/SKILL.md",
+      "destination": "workflows/kty-content-remediate/WORKFLOW.md",
+      "source_sha256": "e953f0698adf0f35fd540872449027eec41321b99204c9b9bb4cfe62e1823b59",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/kty-metadata-align/SKILL.md",
+      "destination": "workflows/kty-metadata-align/WORKFLOW.md",
+      "source_sha256": "fe7ef3ed92166ed591364db2c8a83119f0f54d891195ccb60036966bcbbdb680",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/lens-register/SKILL.md",
+      "destination": "workflows/lens-register/WORKFLOW.md",
+      "source_sha256": "3bbea14b867110a665e03d460457fa9e83a615eda307fa7c52424fe40af0a790",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/research-orchestration/SKILL.md",
+      "destination": "workflows/research-orchestration/WORKFLOW.md",
+      "source_sha256": "14e844e3f8045be0cc5b8d13843d8f02a7c527f18c6e8fb5f013f2b43e4b35d6",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/scc-resolution-case/SKILL.md",
+      "destination": "workflows/scc-resolution-case/WORKFLOW.md",
+      "source_sha256": "a645ef7de9bf2916a570dd8fbb559c52a1d23a219f6ce710280c2d673ed0a888",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/scope-change-packet/SKILL.md",
+      "destination": "workflows/scope-change-packet/WORKFLOW.md",
+      "source_sha256": "71bd346f33be31f23d41dfa78a85351fc2114feae679ece5877032b5982dc5c3",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/scope-of-work/SKILL.md",
+      "destination": "workflows/scope-of-work/WORKFLOW.md",
+      "source_sha256": "42b0af456beebac43afeabf1ab9c0da230746fb479b70a432525301d42c8f486",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/semantic-lensing/SKILL.md",
+      "destination": "workflows/semantic-lensing/WORKFLOW.md",
+      "source_sha256": "617c99a188fb95e8c81f9803d3e2438f7540c4ab5bbd5baba0555977caa2e8d3",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/semantic-matrix-build/SKILL.md",
+      "destination": "workflows/semantic-matrix-build/WORKFLOW.md",
+      "source_sha256": "e5f9aa3638e4c8c6f438d4cd505cfbb2c7953539f4fa78dbff49665b3f0deaad",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/software-bounded-implementation/SKILL.md",
+      "destination": "workflows/software-bounded-implementation/WORKFLOW.md",
+      "source_sha256": "2072bb896c0ecf7e7fef7427010afc0304d21e25103828e93663d6ddb8cff7fc",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/software-code-review/SKILL.md",
+      "destination": "workflows/software-code-review/WORKFLOW.md",
+      "source_sha256": "aae98f44d3f5d923e0879872a5c71e7133e9d109b0142dd9ff19aaac6e1fd031",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/software-defect-diagnosis/SKILL.md",
+      "destination": "workflows/software-defect-diagnosis/WORKFLOW.md",
+      "source_sha256": "6924d5a3fb05b590e0a34677618a9d64d48714f563e1d58fe97e7e3f79206e3c",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/software-repository-reconnaissance/SKILL.md",
+      "destination": "workflows/software-repository-reconnaissance/WORKFLOW.md",
+      "source_sha256": "7b7bf27d0b0b219b79eb5a4a79c98c4a3db39ab6b2cb06d93e0f1c85bf22e508",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "skills/software-test-planning/SKILL.md",
+      "destination": "workflows/software-test-planning/WORKFLOW.md",
+      "source_sha256": "bde1194603bff6584f3d74c9f80e44b29ca259162eca9ee2a7ce4748f9f6d775",
+      "disposition": "migrated-method-and-selected-resources",
+      "original_files": 4
+    },
+    {
+      "source": "agents/AGENT_AGGREGATION.md",
+      "destination": "workflows/aggregation/WORKFLOW.md",
+      "source_sha256": "f4541eae6d9c787436c848b8135baae501dffa0ee467ea11548f0f772f9bf94a",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_AUDIT_AGENTS.md",
+      "destination": "workflows/audit-agents/WORKFLOW.md",
+      "source_sha256": "bf0bb0b1484a884cd61302b4f2a50b8332810f1c17715c358671b4a02b999b79",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Revision",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Invocation / Ownership",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_AUDIT_DECOMP.md",
+      "destination": "workflows/audit-decomp/WORKFLOW.md",
+      "source_sha256": "1f12e86e2f1dd3506fe1d1e46caf7f9be2d1b4b8acd75427f2876593dc2015cb",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Revision",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "destination": "workflows/audit-dep-closure/WORKFLOW.md",
+      "source_sha256": "e233b8edbd202436328fdef96f731d69e9d24a6ae4dc8bd7fdf3e8620f3abb4c",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_AUDIT_EPISTEMIC.md",
+      "destination": "workflows/audit-epistemic/WORKFLOW.md",
+      "source_sha256": "4ece509c8f51b3ac547e593e425f8c3c7d3d98d0975a8a19aa4af239b9261b5e",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_AUDIT_GOVERNANCE.md",
+      "destination": "workflows/audit-governance/WORKFLOW.md",
+      "source_sha256": "58c4f9e5dc4e1c3ae16f2e0bb70940e4400dcc3e07259f911f8e3b9af680a628",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Revision",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Invocation / Ownership",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "destination": "workflows/audit-hypergraph-closure/WORKFLOW.md",
+      "source_sha256": "b7f20fae614cb1083eb9a8764ca0ada49f4b5147a4308a09c14e7e14c895d346",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "destination": "workflows/audit-scope-closure/WORKFLOW.md",
+      "source_sha256": "660c5f8604cdd0a101a3bb74e53ed5ae72e622f7c5aa438c1153329abf5d85fc",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Revision",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_CHANGE.md",
+      "destination": "workflows/change/WORKFLOW.md",
+      "source_sha256": "bb2922c5761395687caf120097276806769ec38f4fee8935d9e6c7bbb8506a06",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_DOMAIN_DECOMP.md",
+      "destination": "workflows/domain-decomp/WORKFLOW.md",
+      "source_sha256": "bd2eb97cf246d0c1f4bdaa5dd26580f5fc78470af6116072f8e3a65fac6dec29",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_DOMAIN_ENGINE.md",
+      "destination": "workflows/domain-engine/WORKFLOW.md",
+      "source_sha256": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (Conflict Resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "destination": "workflows/domain-hypergraph/WORKFLOW.md",
+      "source_sha256": "48bce547848c3666b01ae78505002f73f48dc8fefec00eb3b13727f44f47a32d",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_EVALUATION.md",
+      "destination": "workflows/evaluation-protocol/WORKFLOW.md",
+      "source_sha256": "49f11c18efe3b2b88bdb2f6fb377d3f5013e84753e8fd1f074715a322b906cc7",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Method hydration",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Contract",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Specialist roster",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_EVALUATION_REPORT.md",
+      "destination": "workflows/evaluation-report/WORKFLOW.md",
+      "source_sha256": "747657cc3c86de5d6aa23af798cf8a017c74aed5004f821f0bff0bb69f15fd5b",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_PREPARATION.md",
+      "destination": "workflows/preparation/WORKFLOW.md",
+      "source_sha256": "0bd1b2cf01abad570575fd9920a6f8bb296b7afcdb0834f85dd55524db5a760a",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Foundations: Ontology, Epistemology, Praxeology, Axiology",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_PROJECT_DECOMP.md",
+      "destination": "workflows/project-decomp/WORKFLOW.md",
+      "source_sha256": "8348766462c99eb81423a4a474e53ababc4a92ecffa330695ded07bf2fbb09d9",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_PROJECT_SETUP.md",
+      "destination": "workflows/project-setup/WORKFLOW.md",
+      "source_sha256": "8cd3af620af3b81ed3c9b1d967679ab0557bdcb6806f7a3302fc5f08dfd164d8",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Foundations: Ontology, Epistemology, Praxeology, Axiology",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_RECONCILIATION.md",
+      "destination": "workflows/reconciliation/WORKFLOW.md",
+      "source_sha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_RESEARCH.md",
+      "destination": "workflows/research-orchestration/WORKFLOW.md",
+      "source_sha256": "a828037551c1c923fc3a1c122c6d6ed2bca46e6d6cea989d4bf66f4a57810870",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (Conflict Resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_RESEARCHER.md",
+      "destination": "workflows/researcher/WORKFLOW.md",
+      "source_sha256": "4b1b022b9b97b245e4067c63c2bfb4e7b1e6dde6a5b0c5102a290a4d2b060341",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_REVIEW.md",
+      "destination": "workflows/review/WORKFLOW.md",
+      "source_sha256": "40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Revision",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_SCOPE_CHANGE.md",
+      "destination": "workflows/scope-change/WORKFLOW.md",
+      "source_sha256": "fc46378b11c8d56e2c0caf170a76c8a459647848c7f39e50d4af48156b3d0167",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Revision",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_SOFTWARE_DECOMP.md",
+      "destination": "workflows/software-decomp/WORKFLOW.md",
+      "source_sha256": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence (conflict resolution)",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    },
+    {
+      "source": "agents/AGENT_TASK_MANAGEMENT.md",
+      "destination": "workflows/task-management/WORKFLOW.md",
+      "source_sha256": "e84d1dbdd2540e7667ecd6efc9022d8158fc2a0357be717660911bc5a9d7a2e0",
+      "disposition": "workflow-with-stage-resources",
+      "removed_sections": [
+        {
+          "section": "role introduction",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Agent Type",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "Precedence",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        },
+        {
+          "section": "RATIONALE",
+          "reason": "Role envelope, generic precedence, or rationale replaced by the shared role/runtime contract."
+        }
+      ]
+    }
+  ],
+  "expected_entrypoints": 46,
+  "retained_role_method_migrations": [
+    {
+      "source": "agents/AGENT_WORKING_ITEMS.md",
+      "source_sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "destinations": [
+        "workflows/scope-of-work/resources/representation-migration.md",
+        "workflows/project-setup/resources/package-activation.md",
+        "workflows/software-bounded-implementation/resources/activation.md"
+      ],
+      "disposition": "specialized-methods-extracted-from-retained-role"
+    }
+  ],
+  "intentional_omissions": "INTENTIONAL_OMISSIONS.json"
+}

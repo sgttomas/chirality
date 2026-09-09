@@ -1,0 +1,52 @@
+{
+  "command": "python3 -m pytest -q tools/evaluation tools/coordination/test_analyze_dep_closure.py",
+  "exit_code": 0,
+  "passed": 12,
+  "smoke": {
+    "dependencies": {
+      "run_status": "COMPLETE",
+      "subject_status": "FAIL",
+      "summary": {
+        "denominator_complete": true,
+        "evidence_coverage_percent": null,
+        "evidence_denominator": 0,
+        "evidence_populated": 0,
+        "files": 0,
+        "files_with_implements_node": 0,
+        "malformed_rows": 0,
+        "production_units": 53,
+        "readable_rows": 0,
+        "rows": 0,
+        "schema_valid_files": 0
+      }
+    },
+    "structure": {
+      "run_status": "COMPLETE",
+      "subject_status": "FAIL",
+      "summary": {
+        "fail": 7,
+        "lifecycle_states": {
+          "RETIRED": 53
+        },
+        "partitions": 6,
+        "pass": 46,
+        "production_formats": {
+          "INVALID": 7,
+          "SOW_V1": 46
+        },
+        "units": 53
+      }
+    },
+    "closure": {
+      "run_status": "COMPLETE",
+      "subject_status": "FAIL",
+      "summary": {
+        "production_units": 53,
+        "total_files": 0,
+        "graph_nodes": 53,
+        "graph_edges": 0
+      }
+    }
+  },
+  "scope_note": "Root execution smoke observations are inventories of physical historical/current files, not a new acceptance or activation of product scope."
+}

@@ -1,0 +1,277 @@
+{
+  "basis": "781b478176db46ca66ebd38991607612e0ce9338",
+  "agents": [
+    {
+      "role": "CHANGE",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Keep file/Git-state judgment and action authority; isolate reusable integration procedures only where useful.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:28"
+    },
+    {
+      "role": "DBM_PUBLISHER",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain design-basis publication judgment; select planning, section publication, assembly, and post-authoring workflows at their relevant stages.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:50"
+    },
+    {
+      "role": "DOMAIN_DECOMP",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain category/KTY/source-atom judgment; bind source-review, atomization, and ratification workflows at their relevant stages.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:73"
+    },
+    {
+      "role": "DOMAIN_ENGINE",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain integration and engine-coverage judgment; move operation recipes, profiles, and review templates into selected integration workflow resources.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:100"
+    },
+    {
+      "role": "DRAWING_EXTRACT",
+      "type": 1,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract drawing-extraction-workflow; compare any residual role orientation and choose its orchestration owner before retiring the manager.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:121"
+    },
+    {
+      "role": "EQUATION_AUDIT",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain source-grounded human review orientation; extract the review loop and bind existing flag-interpretation and bbox workflows, resolving root conventions.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:145"
+    },
+    {
+      "role": "EVALUATION",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain evidence selection and assessment; enact evaluation-protocol as a manager workflow and migrate its audit/scoring bindings.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:170"
+    },
+    {
+      "role": "HELPS_HUMANS",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Keep component-design judgment; rewrite placement vocabulary and classification to include workflow definitions. Extract detailed design and migration templates.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:192"
+    },
+    {
+      "role": "HELP_HUMAN",
+      "type": 0,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Keep alignment and cross-manager judgment in the role; load the selected coordination undertaking explicitly.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:215"
+    },
+    {
+      "role": "PDF2MD",
+      "type": 1,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract pdf-conversion-workflow; compare any residual role orientation and choose its orchestration owner before retiring the manager.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:236"
+    },
+    {
+      "role": "PROJECT_DECOMP",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain Packages, Deliverables, objectives, and boundary judgment in STRUCTURE; place detailed PROJECT decomposition schemas and templates in workflow resources.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:261"
+    },
+    {
+      "role": "PROJECT_SETUP",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain readiness and setup decisions; select setup/estimation workflows explicitly. PDF/drawing ownership requires a separate charter choice.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:283"
+    },
+    {
+      "role": "RECONCILIATION",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain claim-level concordance judgment; load its concordance workflow and the shared representation-migration profile.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:305"
+    },
+    {
+      "role": "RESEARCH",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain question framing, source selection, and synthesis; enact research-orchestration as a manager workflow and reconcile the shared worker packet contract.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:331"
+    },
+    {
+      "role": "REVIEW",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain human review/disposition judgment; extract review preparation and record methods into workflows, resolving readiness and audit-caller conflicts.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:356"
+    },
+    {
+      "role": "SCOPE_CHANGE",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain amendment and consequence judgment; bind scope-amendment and remediation workflows, resolving variant and audit-caller contracts.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:382"
+    },
+    {
+      "role": "SOFTWARE_DECOMP",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain bounded-context and coupling judgment; put SOFTWARE decomposition fields, templates, and shared gate detail in workflow resources.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:408"
+    },
+    {
+      "role": "TASK_MANAGEMENT",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain attention to unresolved obligations and human disposition; load selected harvest, triage, and resolution workflows with their tools.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:430"
+    },
+    {
+      "role": "WORKING_ITEMS",
+      "type": 1,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Retain package production and work-graph judgment; select relevant production workflows and the applicable migration profile.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type01/PROPOSAL.md:455"
+    },
+    {
+      "role": "AGGREGATION",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract aggregation with an estimate-collation profile; preserve source-selection/conflict judgment and assess whether it warrants a continuing role.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:39"
+    },
+    {
+      "role": "AUDIT_AGENTS",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract agent-instruction-audit; retain explicit conformance/redesign basis in the workflow brief and assess lasting role usefulness.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:55"
+    },
+    {
+      "role": "AUDIT_DECOMP",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract decomposition-coverage-audit; migrate shared heading/schema contracts and callers, then assess lasting role usefulness.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:71"
+    },
+    {
+      "role": "AUDIT_DEP_CLOSURE",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract dependency-closure-audit after repairing the analyzer; preserve graph interpretation and assess lasting role usefulness.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:87"
+    },
+    {
+      "role": "AUDIT_EPISTEMIC",
+      "type": 2,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Slim and extract detailed epistemic-audit workflow resources; keep the broader warrant-examination role hypothesis explicitly open.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:103"
+    },
+    {
+      "role": "AUDIT_GOVERNANCE",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract governance-consistency-audit; reconcile calibration and severity schemas and assess lasting role usefulness.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:121"
+    },
+    {
+      "role": "AUDIT_HYPERGRAPH_CLOSURE",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract hypergraph-closure-audit around the proposed independent validator; assess any residual named-role contribution.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:137"
+    },
+    {
+      "role": "AUDIT_SCOPE_CLOSURE",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract scope-closure-audit; retain evidence-sensitive closure judgment and assess lasting role usefulness.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:153"
+    },
+    {
+      "role": "DOMAIN_HYPERGRAPH",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract domain-hypergraph around semantic discovery and the existing builder; assess lasting role usefulness.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:169"
+    },
+    {
+      "role": "EVALUATION_DEPENDENCY_AUDIT",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_TOOL",
+      "revised_disposition": "CONVERT_TO_TOOL",
+      "revision": "Implement the CSV-aware dependency-register audit tool; migrate callers and output contracts before retiring the dedicated package.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:185"
+    },
+    {
+      "role": "EVALUATION_REPORT",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract evaluation-dimension; retain evidence-calibrated scoring in the workflow and assess lasting role usefulness.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:201"
+    },
+    {
+      "role": "EVALUATION_STRUCTURE_AUDIT",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_TOOL",
+      "revised_disposition": "CONVERT_TO_TOOL",
+      "revision": "Implement the workspace structure audit tool; migrate current-state parsing and output contracts before retiring the dedicated package.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:217"
+    },
+    {
+      "role": "PREPARATION",
+      "type": 2,
+      "original_disposition": "CONVERT_TO_SKILL",
+      "revised_disposition": "EXTRACT_WORKFLOW_AND_REVIEW_ROLE",
+      "revision": "Extract workspace-scaffold with the existing tools and repaired rerun contracts; assess any residual named-role contribution.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:233"
+    },
+    {
+      "role": "RESEARCHER",
+      "type": 2,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Slim during packet/recovery migration; evaluate research-evidence workflow execution through TASK and the case for any lasting named role.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:249"
+    },
+    {
+      "role": "TASK",
+      "type": 2,
+      "original_disposition": "SLIM",
+      "revised_disposition": "SLIM",
+      "revision": "Slim the execution role; load Workflow explicitly, adapt legacy TaskSkill, resolve selective resources and effective runtime policy without collection-wide hydration.",
+      "source_card": "/Users/ryan/.codex/worktrees/45d2/chirality/execution/_Evaluation/AgentInstructionSignal/AGENT_SIGNAL_AUDIT_20260909T032905Z/type2/PROPOSAL.md:267"
+    }
+  ]
+}

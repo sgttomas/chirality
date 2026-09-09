@@ -13,10 +13,10 @@ Missing, malformed, escaping, or missing-target pointers stop entry; never guess
 - Authority: `docs/PRD_ROOT.md` current document control; `docs/CONTRACT.md`; `docs/SPEC.md` §0.2; `docs/governance_harness/_DECISIONS/_REGISTER.md` and its ruling records.
 - Owner steers: `plans/steers/`; reopen the applicable ruling and steer, including their basis gates and pins.
 - Handoffs: `execution/_Coordination/LOOP_RECEIPTS.md`, `HANDOFF_STATE.md`, `NOTICE_*`; relevant App and Piping `loop/LOOP_RECEIPTS.md` under their `projects/chirality-*` roots.
-- Attention: `execution/_Coordination/_TaskManagement/REGISTER.csv` and its cited rulings; `agents/AGENT_TASK_MANAGEMENT.md` governs disposition, never automatic harvesting on entry.
+- Attention: `execution/_Coordination/_TaskManagement/REGISTER.csv` and its cited rulings; `workflows/task-management/WORKFLOW.md` governs disposition, never automatic harvesting on entry.
 - Product: `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md`, companions and `execution/_ScopeChange/_LATEST.md`; `execution/PKG-*/1_Working/DEL-*/` holds scopes, `_STATUS.md` `## Remaining`, dependencies and `_run_records/`.
 - Delegation and evidence: `AGENTS.md`; actual runs at `execution/_Coordination/AgentRuns/`; empirical evidence requirements in the applicable steer (R17 N3 for v3).
-- Containment and checks: `execution/_harness/` and D-GOV-21; Git closeout: `agents/AGENT_CHANGE.md` and PRD_ROOT §5.3.1.
+- Containment and checks: `execution/_harness/` and D-GOV-21; Git closeout: `workflows/change/WORKFLOW.md` and PRD_ROOT §5.3.1.
 
 Discover in order: owner steer of record → routed notices without a recorded disposition → register rows ruled for action → deliverable `## Remaining` items.
 The first three are control-plane discovery surfaces, not automatic work grants; each action needs its own recorded authority and write scope. Product work remains deliverable-local. Empty or absent `Remaining` records no open product scope.
@@ -82,5 +82,5 @@ Use the declared delegation mechanism and sealed scopes in `AGENTS.md`; record a
 One branch per run from `origin/main`; one receipt and commit per iteration, pushed after each closeout. Independent nodes may run concurrently with disjoint writes; dependent nodes may run in later iterations under §2. Open one PR at terminus, or when the next lawful step needs a merged act. Never self-merge.
 Before closeout run Step 0 guards, affected-profile checks, `python3 tools/validation/validate_instruction_entrypoints.py`, `python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main`, `python3 tools/run_affected_tests.py --base origin/main`, and `git diff --check`; repair within authority and rerun failed checks. On committed instruction changes also run `python3 tools/validation/validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only` before push.
 Append one minimal receipt using the existing ledger form; cite authority, artifacts, gates, checks and blockers. No Root receipt validator exists: inspection is manual, not a machine-enforced grammar.
-Emit handoff with accepted upstream snapshots, derivative status, closure verdict, reruns and blockers; attribute model truthfully and state role-enforcement limits. Use CHANGE for scoped commit/push. Continue until only owner decisions remain, then return one PR and a decision slate.
+Emit handoff with accepted upstream snapshots, derivative status, closure verdict, reruns and blockers; attribute model truthfully and state role-enforcement limits. Use WORKING_ITEMS with the change workflow for scoped commit/push. Continue until only owner decisions remain, then return one PR and a decision slate.
 A per-run steer may narrow or direct this protocol; it cannot supply an absent owner act or relax ratified governance. Historical citations use the section numbers at their cited Git revision.

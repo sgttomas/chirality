@@ -87,6 +87,7 @@ INSTRUCTION_SURFACE_PROHIBITED = (
     "tools/**",
     "agents/**",
     "skills/**",
+    "workflows/**",
     "docs/**",
 )
 

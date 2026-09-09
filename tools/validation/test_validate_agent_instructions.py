@@ -286,12 +286,12 @@ class ValidateAgentInstructionsTests(unittest.TestCase):
 
     def test_live_help_human_declares_narrow_agent0_direct_agent2_metadata(self) -> None:
         root = Path(validator.__file__).resolve().parents[2]
-        text = (root / "agents" / "AGENT_HELP_HUMAN.md").read_text(encoding="utf-8")
-        self.assertIn("TASK", validator.frontmatter_list(text, "subagents"))
-        self.assertRegex(
-            validator.frontmatter_block(text),
-            r"(?m)^allow_generalist_agent2:\s*true\s*$",
-        )
+        import json
+        role = json.loads((root / 'agents/registry.json').read_text())['roles']['HELP_HUMAN']
+        self.assertIn('TASK', role['delegates_to'])
+        self.assertTrue(role['allow_generalist_agent2'])
+        self.assertTrue(role['direct_entry'])
+
 
 
 if __name__ == "__main__":

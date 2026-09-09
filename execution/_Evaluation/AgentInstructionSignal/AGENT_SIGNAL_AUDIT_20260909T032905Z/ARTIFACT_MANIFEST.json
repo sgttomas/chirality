@@ -1,0 +1,92 @@
+{
+  "status": "FINALIZED_CANDIDATE_PACKET",
+  "basis": "781b478176db46ca66ebd38991607612e0ce9338",
+  "files": [
+    {
+      "path": "BASELINE_VALIDATION.json",
+      "sha256": "f69dd9d76fee5326d40660f4d11b686487da40b7d67fd7534e046dc459a999e6",
+      "bytes": 279
+    },
+    {
+      "path": "BRIEF.md",
+      "sha256": "3d579a28b59a04961a30cc8255a847617a6b76f3ea89941c6fe262189d2ce768",
+      "bytes": 4667
+    },
+    {
+      "path": "DISPATCH.json",
+      "sha256": "71af3ccc43e12f0fb2a76e4068fad7ce78008dc451563064ded58fd289e3473e",
+      "bytes": 722
+    },
+    {
+      "path": "FAN_IN_VALIDATION.json",
+      "sha256": "f71846ba923a6ba0d426c220c19b235a7169655f69160f740a67b494c7cf9ead",
+      "bytes": 993
+    },
+    {
+      "path": "HANDOFF_STATE.md",
+      "sha256": "01f9f318b31616786c9efa2df23b837b71f24275a9f854fc5bfecf1873b5633e",
+      "bytes": 4783
+    },
+    {
+      "path": "PROPOSAL.md",
+      "sha256": "b69ebd868d247a139c489317dd8879505dac2b2d0972a6bfad69de745b726881",
+      "bytes": 13259
+    },
+    {
+      "path": "SHARED_FINDINGS.md",
+      "sha256": "4f8393a04ebe93c8a0c9519d917c922a77d382e75a02cca41aecf401c72c1f47",
+      "bytes": 7352
+    },
+    {
+      "path": "SHARED_SOURCE_MANIFEST.json",
+      "sha256": "b8c23a49dad268dd83b5032a10e4ed1f0e2c1af5ded26126be16229f6c04fc39",
+      "bytes": 3545
+    },
+    {
+      "path": "SOURCE_MANIFEST.json",
+      "sha256": "fd8cd0ce7ebc0a2c13a9cfe68c1f8b1d6947cfe8bc5d443d6a9abd0b7591246b",
+      "bytes": 8120
+    },
+    {
+      "path": "type01/COVERAGE.json",
+      "sha256": "2fc305ba3b735be3b6ba44d48ef70a48dd6c2398e6a48899b28be939abdb491c",
+      "bytes": 71556
+    },
+    {
+      "path": "type01/LAUNCH_BRIEF.md",
+      "sha256": "507eea55367aff680beeb3da48da2e1721b2f2e4ff4aaf13870a704786909672",
+      "bytes": 783
+    },
+    {
+      "path": "type01/PROPOSAL.md",
+      "sha256": "724f8b2aaaad5f48f35e4832d2facf8f7f9fd92904ea5cd583eef9f185a93ceb",
+      "bytes": 72242
+    },
+    {
+      "path": "type01/RETURN.md",
+      "sha256": "68983c64bc0a613cabccadfd3d64609fbbcb353174d7898f0c9280f419d747a2",
+      "bytes": 2317
+    },
+    {
+      "path": "type2/COVERAGE.json",
+      "sha256": "0e7bc95b82ef7f8b9db2241905b1d9f940478cb9a146c96f6523ab30fb37c011",
+      "bytes": 42154
+    },
+    {
+      "path": "type2/LAUNCH_BRIEF.md",
+      "sha256": "43aa20838210945ac2728bda550ca3cc441b175fa16e447f81f45761c0b95e58",
+      "bytes": 789
+    },
+    {
+      "path": "type2/PROPOSAL.md",
+      "sha256": "396250bdd307a9796ff2b291ca5eebc9e0f6d01d08a6f2c167599f37fb100224",
+      "bytes": 46348
+    },
+    {
+      "path": "type2/RETURN.md",
+      "sha256": "bf96cfcb480011b6193c7809377a3a2233701d88be6a04875adc048fa9a0dad6",
+      "bytes": 5321
+    }
+  ],
+  "excludes": "ARTIFACT_MANIFEST.json (self)"
+}

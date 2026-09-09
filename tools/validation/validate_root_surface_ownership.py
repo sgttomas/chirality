@@ -119,7 +119,8 @@ TBD = "TBD"
 INSTRUCTION_SURFACE_FILES = ("AGENTS.md", "CLAUDE.md")
 INSTRUCTION_SURFACE_DIRS = (
     "agents/",
-    "skills/",
+    "skills/",  # Historical packages remain instruction surfaces.
+    "workflows/",
     "tools/",
     "docs/",
     "init/",

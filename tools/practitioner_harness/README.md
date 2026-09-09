@@ -630,3 +630,10 @@ prefix. They live as string constants inside `test_`-prefixed modules on
 purpose: loose fixture data files under `tools/` carrying home-dir-absolute
 content would fail `tools/validation/validate_path_anchors.py`, and `tools/`
 ships verbatim into the public export.
+
+
+D-GOV-41 updates current role inventory lookup to `agents/registry.json`.
+GEN-9 reads that registry when present and checks its instruction targets against
+live role files. Historical fixture repositories without the JSON registry keep
+the AGENTS.md token reader. Workflow selection is explicit; see
+`tools/workflow_runtime/README.md` for loading and permission composition.

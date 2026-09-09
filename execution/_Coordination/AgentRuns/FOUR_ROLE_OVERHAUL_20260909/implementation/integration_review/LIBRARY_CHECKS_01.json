@@ -1,0 +1,390 @@
+{
+  "checks": [
+    {
+      "workflow": "aggregation",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "audit-agents",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "audit-decomp",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "audit-dep-closure",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "audit-epistemic",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "audit-governance",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "audit-hypergraph-closure",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "audit-scope-closure",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "change",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "content-digest",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dbm-concordance-seed",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dbm-concordance-verify",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dbm-draft-review",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dbm-postauthor-concordance",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dbm-publish",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dbm-publisher",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dbm-section-publish",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "decomposition-package-review",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "deliverable-consistency",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "dependency-extract",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "domain-decomp",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "domain-documents",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "domain-engine",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "domain-hypergraph",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "domain-prose-validate",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "domain-source-atomize",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "drawing-extract",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "drawing-extract-page",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "drawing-titleblock-page",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "equation-audit",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "equation-bbox-detect",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "equation-flag-interpret",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "equipment-costing-extract",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "equipment-extract",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "estimate-prep",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "estimate-snapshot",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "evaluation-protocol",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "evaluation-report",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "four-documents",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "kty-content-remediate",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "kty-metadata-align",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "lens-register",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pandid-valve-symbol-instance",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pandid-valve-tile",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pdf2md",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pdf2md-folio-extract",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pdf2md-orchestration",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pdf2md-page",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pdf2md-page-assets",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "pdf2md-page-full",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "preparation",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "project-decomp",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "project-setup",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "proposal-format",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "reconciliation",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "research-orchestration",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "researcher",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "review",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "scc-resolution-case",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "scope-change",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "scope-change-packet",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "scope-of-work",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "semantic-lensing",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "semantic-matrix-build",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "software-bounded-implementation",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "software-code-review",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "software-decomp",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "software-defect-diagnosis",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "software-repository-reconnaissance",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "software-test-planning",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    },
+    {
+      "workflow": "task-management",
+      "check": "explicit entrypoint only",
+      "status": "PASS"
+    }
+  ],
+  "unresolved_literal_links": [
+    {
+      "file": "workflows/domain-decomp/resources/method.md",
+      "target": "figures/\u2026"
+    },
+    {
+      "file": "workflows/domain-decomp/resources/method.md",
+      "target": "tables/\u2026"
+    },
+    {
+      "file": "workflows/domain-decomp/resources/method.md",
+      "target": "images/\u2026"
+    },
+    {
+      "file": "workflows/domain-prose-validate/WORKFLOW.md",
+      "target": "path"
+    },
+    {
+      "file": "workflows/domain-prose-validate/resources/tools.md",
+      "target": "path"
+    },
+    {
+      "file": "workflows/domain-prose-validate/resources/checks.md",
+      "target": "path"
+    },
+    {
+      "file": "workflows/domain-prose-validate/resources/checks.md",
+      "target": "path"
+    }
+  ],
+  "scope": "All71 entrypoints, all selected package resources, compatibility and next-instance omission; semantic review targeted separately"
+}

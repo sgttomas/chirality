@@ -1,0 +1,30 @@
+{
+  "basis": "781b478176db46ca66ebd38991607612e0ce9338",
+  "primary_source": "User-supplied sgttomas text and conversation; interpretive analysis of this exchange",
+  "sources": [
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "47a30075b4286a7352d78aae9d033d8eead8ef125e4063d0cc7c1235b3e9101a"
+    },
+    {
+      "path": "docs/thesis/appendix_d_framework_s.md",
+      "sha256": "548fd57dd51997fdb8deea21847fee705d7975a8896d090cd8d697e6abec5bec"
+    },
+    {
+      "path": "docs/thesis/03_philosophical_framework.md",
+      "sha256": "c5c25c35e0a3efaa496e32d053422540df035f0a1b10d32d0167404d64110614"
+    }
+  ],
+  "files": [
+    {
+      "path": "CHECKS.json",
+      "sha256": "8102f31a4ff7d6f15bac62f315930110e7eb6e3cf37cc6e3a5b7b5a418a4e380"
+    },
+    {
+      "path": "INVESTIGATION.md",
+      "sha256": "83d0efb7b638a57ae3feab76f6553899dac55fb492d81433d784e3abef225bc9"
+    }
+  ],
+  "links_verified": 3,
+  "tracked_changes": []
+}

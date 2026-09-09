@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "source_basis": "781b478176db46ca66ebd38991607612e0ce9338",
+  "agent_count": 34,
+  "dispositions": {
+    "SLIM": 20,
+    "EXTRACT_WORKFLOW_AND_REVIEW_ROLE": 12,
+    "CONVERT_TO_TOOL": 2
+  },
+  "workflow_packages": 45,
+  "workflow_files_hashed": 183,
+  "original_packet_files_verified": 17,
+  "agent_source_hashes_verified": 34,
+  "shared_source_hashes_verified": 20,
+  "local_links_checked": 82,
+  "role_card_anchors_verified": 34,
+  "tracked_changes": [],
+  "errors": [],
+  "runtime_behavior_tests_executed": false,
+  "scope": "Proposal revision, inventory, source identity, coverage and reference validation."
+}

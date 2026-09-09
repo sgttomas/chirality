@@ -1,0 +1,11 @@
+{
+  "status": "routed",
+  "routes": [
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+    "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+    "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+    "projects/pec/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+    "_DomainEngines/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md"
+  ],
+  "adoption": "held pending owning-loop acceptance; no pins changed"
+}

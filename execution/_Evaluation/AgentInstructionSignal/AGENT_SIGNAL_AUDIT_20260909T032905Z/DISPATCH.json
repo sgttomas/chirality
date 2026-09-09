@@ -1,0 +1,21 @@
+{
+  "parent": "/root",
+  "parent_role": "HELPS_HUMANS",
+  "execution_class": "delegated-harness-native",
+  "children": [
+    {
+      "agent": "/root/audit_type01",
+      "construction": "ephemeral Agent 2",
+      "assignment": "type01/LAUNCH_BRIEF.md",
+      "subjects": 19
+    },
+    {
+      "agent": "/root/audit_type2",
+      "construction": "ephemeral Agent 2",
+      "assignment": "type2/LAUNCH_BRIEF.md",
+      "subjects": 15
+    }
+  ],
+  "authority": "User explicitly requested separate subagents and per-agent change proposals; latest steering specifies positive task framing.",
+  "evidence_calibration": "Actual child executions via collaboration.spawn_agent; role and write restrictions instruction-asserted."
+}

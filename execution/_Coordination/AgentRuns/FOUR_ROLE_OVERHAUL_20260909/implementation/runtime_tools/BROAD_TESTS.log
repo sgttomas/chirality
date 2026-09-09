@@ -1,0 +1,46 @@
+........................................................................ [  6%]
+........................................................................ [ 12%]
+........................................................................ [ 18%]
+........................................................................ [ 25%]
+............................................................... [ 30%]
+................................. [ 33%]
+........................................................................ [ 39%]
+........................................................................ [ 46%]
+........................................................................ [ 52%]
+........................................................................ [ 58%]
+........................................................................ [ 64%]
+........................................................................ [ 71%]
+......................................................................F. [ 77%]
+........................................................................ [ 83%]
+........................................................................ [ 89%]
+........................................................................ [ 96%]
+...........................................                              [100%]
+=================================== FAILURES ===================================
+_________________ test_live_gen9_registry_currency_zero_drift __________________
+
+live_self_check = (Report(command='self-check', findings=[Finding(severity=<Severity.REVIEW: 'REVIEW'>, code='STALE_RULING_ANNOTATION', ...-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them aut …[truncated]']), None)
+
+    @live
+    def test_live_gen9_registry_currency_zero_drift(live_self_check):
+        # Consistency-audit §4 item 3 was the check's first detection target: the
+        # registry indexed DELIVERABLE_TASK as live (AGENTS.md:89 at 4e01db61e)
+        # while the file existed only under the gitignored agents/.archive/. The
+        # owner ruled the disposition REMOVE (directed 2026-07-01; applied in this
+        # PR — the detection state is pinned by the prior commit, fcca5fedd), so
+        # the live registry is pinned clean in BOTH directions. A regression in
+        # either direction is a conscious pin update, never a silent one; the
+        # detector itself is proven by test_agent_registry_fixtures.py.
+        report, _ = live_self_check
+        assert [f for f in report.findings
+                if f.code == "REGISTRY_TARGET_MISSING"] == []
+>       assert [f for f in report.findings
+                if f.code == "AGENT_FILE_UNINDEXED"] == []
+E       AssertionError: assert [Finding(seve...', caveat='')] == []
+E
+E         Left contains 2 more items, first extra item: Finding(severity=<Severity.WARN: 'WARN'>, code='AGENT_FILE_UNINDEXED', dimension='staleness', message='Live file `agen...VALUATION_DEPENDENCY_AUDIT.md', source_line=None, invariant='K-AGENTS-1', invariant_ratification='RATIFIED', caveat='')
+E         Use -v to get more diff
+
+tools/practitioner_harness/test_live_baseline.py:267: AssertionError
+=========================== short test summary info ============================
+FAILED tools/practitioner_harness/test_live_baseline.py::test_live_gen9_registry_currency_zero_drift
+1 failed, 1146 passed, 48 subtests passed in 120.73s (0:02:00)

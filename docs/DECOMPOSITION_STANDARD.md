@@ -478,7 +478,7 @@ A conforming agent SHOULD also:
 
 The decomposition protocol — intake, normalize, partition, operationalize, verify, publish — is broadly invariant across domains. The three existing decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) share the precedence order, the non-negotiable invariants, the required output sections (ledger, telemetry, vocabulary map, open issues, decision log), and the completeness and consistency requirements.
 
-**Variants may omit phases when the domain ontology does not warrant them.** The base specification establishes the maximal 7-gate skeleton. A conforming variant MAY omit a phase (and its associated entity, gate, and telemetry) when that phase has no meaningful semantics in the variant's ontology. Such deviations MUST be explicitly documented in the variant's own doctrine with rationale. Example: `DOMAIN_DECOMP` omits the Objectives layer (Phase 3 in the base) because domain knowledge handbooks rarely state explicit decomposable objectives; principles, goals, and intent are absorbed into Knowledge Types of `Guidance / Playbook` schema. See `AGENT_DOMAIN_DECOMP.md` deviation note.
+**Variants may omit phases when the domain ontology does not warrant them.** The base specification establishes the maximal 7-gate skeleton. A conforming variant MAY omit a phase (and its associated entity, gate, and telemetry) when that phase has no meaningful semantics in the variant's ontology. Such deviations MUST be explicitly documented in the variant's own doctrine with rationale. Example: the `domain-decomp` workflow omits the Objectives layer (Phase 3 in the base) because domain knowledge handbooks rarely state explicit decomposable objectives; principles, goals, and intent are absorbed into Knowledge Types of `Guidance / Playbook` schema. See `workflows/domain-decomp/WORKFLOW.md` and its variant contract.
 
 The remaining differences across variants are in domain-specific semantics: what entities are called, how IDs are formatted, what type taxonomies apply, and what domain-specific constraints are added (e.g., Context Envelope for software sizing).
 
@@ -502,8 +502,8 @@ Domain-specific content that cannot be abstracted without losing meaning:
 ### References
 - `docs/WORKFLOW_COMPONENT_STANDARD.md` — canonical workflow-component design standard
 - `agents/AGENT_HELPS_HUMANS.md` — component-design manager
-- `AGENT_PROJECT_DECOMP.md` — EPC/design-build conforming agent
-- `AGENT_SOFTWARE_DECOMP.md` — software development conforming agent
-- `AGENT_DOMAIN_DECOMP.md` — handbook/knowledge domain conforming agent
+- `workflows/project-decomp/WORKFLOW.md` — EPC/design-build decomposition workflow
+- `workflows/software-decomp/WORKFLOW.md` — software decomposition workflow
+- `workflows/domain-decomp/WORKFLOW.md` — handbook/knowledge decomposition workflow
 
 [[END:RATIONALE]]
